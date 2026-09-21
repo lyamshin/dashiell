@@ -274,6 +274,22 @@ describe('clue sourcing over seeds 1..200', () => {
     }
   });
 
+  it('never has a source describe themselves as being in two rooms at once', () => {
+    for (const c of corpus) {
+      const truth = new Map(c.schedules.map((s) => [s.personId, s.truth]));
+      for (const clue of c.clues) {
+        if (clue.source.type !== 'person' || clue.kind !== 'observation') continue;
+        const ticks = clue.establishes
+          .filter((f) => f.kind === 'personNotAt')
+          .map((f) => (f as { tick: number }).tick);
+        if (ticks.length < 2) continue;
+        const line = truth.get(clue.source.personId);
+        const places = new Set(ticks.map((t) => line?.[t]));
+        expect(places.size, `${clue.id}: ${clue.text}`).toBe(1);
+      }
+    }
+  });
+
   it('gives every clue a non-empty, voiceless line of text', () => {
     for (const c of corpus) {
       for (const clue of c.clues) {

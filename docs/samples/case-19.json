@@ -7003,7 +7003,19 @@
           "personId": "p-s2",
           "location": "lobby",
           "tick": 3
-        },
+        }
+      ],
+      "text": "Sterling Lathrop was at the Front Desk at 7:30 PM and says Assunta Ruggiero was not in the Lobby."
+    },
+    {
+      "id": "c152",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Assunta Ruggiero's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s2",
@@ -7011,10 +7023,10 @@
           "tick": 4
         }
       ],
-      "text": "Sterling Lathrop was at the Front Desk from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby."
+      "text": "Sterling Lathrop was in the Lobby at 8:00 PM and says Assunta Ruggiero was not in the Lobby."
     },
     {
-      "id": "c152",
+      "id": "c153",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7027,7 +7039,19 @@
           "personId": "p-s2",
           "location": "lobby",
           "tick": 3
-        },
+        }
+      ],
+      "text": "Concetta Vitale was at the Front Desk at 7:30 PM and says Assunta Ruggiero was not in the Lobby."
+    },
+    {
+      "id": "c154",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Assunta Ruggiero's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s2",
@@ -7035,10 +7059,10 @@
           "tick": 4
         }
       ],
-      "text": "Concetta Vitale was at the Front Desk from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby."
+      "text": "Concetta Vitale was in the Lobby at 8:00 PM and says Assunta Ruggiero was not in the Lobby."
     },
     {
-      "id": "c153",
+      "id": "c155",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7062,7 +7086,7 @@
       "text": "Karl Dettweiler was on the Street from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby."
     },
     {
-      "id": "c154",
+      "id": "c156",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7080,7 +7104,7 @@
       "text": "Nora Rafferty was in the Lobby at 8:00 PM and says Assunta Ruggiero was not in the Lobby."
     },
     {
-      "id": "c155",
+      "id": "c157",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7104,7 +7128,7 @@
       "text": "Jacob Lefkowitz was in the Lobby from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby."
     },
     {
-      "id": "c156",
+      "id": "c158",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7128,7 +7152,7 @@
       "text": "Otto Reinhardt was in the Bar from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby."
     },
     {
-      "id": "c157",
+      "id": "c159",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7146,7 +7170,7 @@
       "text": "Sterling Lathrop was in the Lobby at 7:00 PM and says Klara Lindemann was not in the Lobby."
     },
     {
-      "id": "c158",
+      "id": "c160",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7164,7 +7188,7 @@
       "text": "Assunta Ruggiero was in the Bar at 7:00 PM and says Klara Lindemann was not in the Lobby."
     },
     {
-      "id": "c159",
+      "id": "c161",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7182,7 +7206,7 @@
       "text": "Concetta Vitale was at the Front Desk at 7:00 PM and says Klara Lindemann was not in the Lobby."
     },
     {
-      "id": "c160",
+      "id": "c162",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7200,7 +7224,7 @@
       "text": "Karl Dettweiler was in the Lobby at 7:00 PM and says Klara Lindemann was not in the Lobby."
     },
     {
-      "id": "c161",
+      "id": "c163",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7218,7 +7242,7 @@
       "text": "Jacob Lefkowitz was on the Street at 7:00 PM and says Klara Lindemann was not in the Lobby."
     },
     {
-      "id": "c162",
+      "id": "c164",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7236,7 +7260,7 @@
       "text": "Otto Reinhardt was in the Bar at 7:00 PM and says Klara Lindemann was not in the Lobby."
     },
     {
-      "id": "c163",
+      "id": "c165",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7254,7 +7278,7 @@
       "text": "Sterling Lathrop was in the Bar at 8:30 PM and says Concetta Vitale was not in the Lobby."
     },
     {
-      "id": "c164",
+      "id": "c166",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7267,7 +7291,19 @@
           "personId": "p-s4",
           "location": "lobby",
           "tick": 5
-        },
+        }
+      ],
+      "text": "Assunta Ruggiero was in the Lobby at 8:30 PM and says Concetta Vitale was not in the Lobby."
+    },
+    {
+      "id": "c167",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Concetta Vitale's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -7275,10 +7311,10 @@
           "tick": 6
         }
       ],
-      "text": "Assunta Ruggiero was in the Lobby from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby."
+      "text": "Assunta Ruggiero was in the Bar at 9:00 PM and says Concetta Vitale was not in the Lobby."
     },
     {
-      "id": "c165",
+      "id": "c168",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7296,7 +7332,7 @@
       "text": "Klara Lindemann was in the Lobby at 9:00 PM and says Concetta Vitale was not in the Lobby."
     },
     {
-      "id": "c166",
+      "id": "c169",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7309,7 +7345,19 @@
           "personId": "p-s4",
           "location": "lobby",
           "tick": 5
-        },
+        }
+      ],
+      "text": "Nora Rafferty was in the Lobby at 8:30 PM and says Concetta Vitale was not in the Lobby."
+    },
+    {
+      "id": "c170",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Concetta Vitale's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -7317,10 +7365,10 @@
           "tick": 6
         }
       ],
-      "text": "Nora Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby."
+      "text": "Nora Rafferty was in the Bar at 9:00 PM and says Concetta Vitale was not in the Lobby."
     },
     {
-      "id": "c167",
+      "id": "c171",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7344,7 +7392,7 @@
       "text": "Jacob Lefkowitz was in the Lobby from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby."
     },
     {
-      "id": "c168",
+      "id": "c172",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7368,7 +7416,7 @@
       "text": "Otto Reinhardt was in the Bar from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby."
     },
     {
-      "id": "c169",
+      "id": "c173",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7386,7 +7434,7 @@
       "text": "Sterling Lathrop was in the Bar at 8:30 PM and says Karl Dettweiler was not in the Lobby."
     },
     {
-      "id": "c170",
+      "id": "c174",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7399,7 +7447,19 @@
           "personId": "p-s5",
           "location": "lobby",
           "tick": 5
-        },
+        }
+      ],
+      "text": "Assunta Ruggiero was in the Lobby at 8:30 PM and says Karl Dettweiler was not in the Lobby."
+    },
+    {
+      "id": "c175",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Karl Dettweiler's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s5",
@@ -7407,10 +7467,10 @@
           "tick": 6
         }
       ],
-      "text": "Assunta Ruggiero was in the Lobby from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby."
+      "text": "Assunta Ruggiero was in the Bar at 9:00 PM and says Karl Dettweiler was not in the Lobby."
     },
     {
-      "id": "c171",
+      "id": "c176",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7428,7 +7488,7 @@
       "text": "Klara Lindemann was in the Lobby at 9:00 PM and says Karl Dettweiler was not in the Lobby."
     },
     {
-      "id": "c172",
+      "id": "c177",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7441,7 +7501,19 @@
           "personId": "p-s5",
           "location": "lobby",
           "tick": 5
-        },
+        }
+      ],
+      "text": "Nora Rafferty was in the Lobby at 8:30 PM and says Karl Dettweiler was not in the Lobby."
+    },
+    {
+      "id": "c178",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Karl Dettweiler's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s5",
@@ -7449,10 +7521,10 @@
           "tick": 6
         }
       ],
-      "text": "Nora Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby."
+      "text": "Nora Rafferty was in the Bar at 9:00 PM and says Karl Dettweiler was not in the Lobby."
     },
     {
-      "id": "c173",
+      "id": "c179",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7476,7 +7548,7 @@
       "text": "Jacob Lefkowitz was in the Lobby from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby."
     },
     {
-      "id": "c174",
+      "id": "c180",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7500,7 +7572,7 @@
       "text": "Otto Reinhardt was in the Bar from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby."
     },
     {
-      "id": "c175",
+      "id": "c181",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7518,7 +7590,7 @@
       "text": "Sterling Lathrop was at the Front Desk at 7:30 PM and says Nora Rafferty was not in the Lobby."
     },
     {
-      "id": "c176",
+      "id": "c182",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7536,7 +7608,7 @@
       "text": "Concetta Vitale was at the Front Desk at 7:30 PM and says Nora Rafferty was not in the Lobby."
     },
     {
-      "id": "c177",
+      "id": "c183",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7554,7 +7626,7 @@
       "text": "Karl Dettweiler was on the Street at 7:30 PM and says Nora Rafferty was not in the Lobby."
     },
     {
-      "id": "c178",
+      "id": "c184",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7572,7 +7644,7 @@
       "text": "Jacob Lefkowitz was in the Lobby at 7:30 PM and says Nora Rafferty was not in the Lobby."
     },
     {
-      "id": "c179",
+      "id": "c185",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7590,7 +7662,7 @@
       "text": "Otto Reinhardt was in the Bar at 7:30 PM and says Nora Rafferty was not in the Lobby."
     },
     {
-      "id": "c180",
+      "id": "c186",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -7608,7 +7680,7 @@
       "text": "Emilio Moretti was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close."
     },
     {
-      "id": "c181",
+      "id": "c187",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7624,7 +7696,7 @@
       "text": "A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it."
     },
     {
-      "id": "c182",
+      "id": "c188",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7634,7 +7706,7 @@
       "text": "Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c183",
+      "id": "c189",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -7645,7 +7717,7 @@
       "text": "Otto Reinhardt says the bar radio carried a talk on the tariff by a congressman at 10:30 PM, and that the congressman lost his place and had to start a page over. Anyone in the bar could tell you that."
     },
     {
-      "id": "c184",
+      "id": "c190",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7655,7 +7727,7 @@
       "text": "Concetta Vitale's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date."
     },
     {
-      "id": "c185",
+      "id": "c191",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7671,7 +7743,7 @@
       "text": "Found in the Victim's Suite: A lease assignment made out in Assunta Ruggiero's name, waiting only on Emilio Moretti's signature."
     },
     {
-      "id": "c186",
+      "id": "c192",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7688,7 +7760,7 @@
       "text": "Karl Dettweiler says Emilio Moretti told Assunta Ruggiero the lease would go to somebody else at the quarter day."
     },
     {
-      "id": "c187",
+      "id": "c193",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7704,7 +7776,7 @@
       "text": "Found in the Victim's Suite: A subpoena naming Emilio Moretti as a witness before the grand jury, with Concetta Vitale's name written in the margin."
     },
     {
-      "id": "c188",
+      "id": "c194",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7730,7 +7802,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c180",
+      "c186",
       "c003",
       "c023",
       "c082",
@@ -7767,22 +7839,22 @@
       ]
     },
     "inculpation": [
-      "c164",
-      "c165",
-      "c166",
       "c167",
       "c168",
+      "c170",
+      "c171",
+      "c172",
       "c012",
       "c078",
       "c113"
     ],
     "method": [
-      "c180",
-      "c181"
+      "c186",
+      "c187"
     ],
     "motive": [
-      "c187",
-      "c188"
+      "c193",
+      "c194"
     ]
   }
 }

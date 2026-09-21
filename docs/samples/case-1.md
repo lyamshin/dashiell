@@ -213,7 +213,7 @@ On Beatrice Ellery:
 
 On the rain:
 
-- **c144** [environment] Antonio Marchetti says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM_
+- **c145** [environment] Antonio Marchetti says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM_
 
 ### From Willa Prentiss (a stagehand at the Selwyn)
 
@@ -254,11 +254,11 @@ On Lorraine Ashby's account:
 
 On Beatrice Ellery's account:
 
-- **c136** [observation] Willa Prentiss was in the Bar at 8:30 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM_
+- **c137** [observation] Willa Prentiss was in the Bar at 8:30 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM_
 
 On Lorraine Ashby and Maureen Quill:
 
-- **c151** [overheard] Willa Prentiss says Lorraine Ashby told Maureen Quill to keep away, loud enough to turn heads. — _establishes: Lorraine Ashby had a motive (jealousy)_
+- **c152** [overheard] Willa Prentiss says Lorraine Ashby told Maureen Quill to keep away, loud enough to turn heads. — _establishes: Lorraine Ashby had a motive (jealousy)_
 
 ### From Delia Mulcahy (a piano teacher)
 
@@ -346,7 +346,7 @@ On Delia Mulcahy's account:
 
 On Beatrice Ellery's account:
 
-- **c137** [observation] Marion Winslow was in the Bar from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
+- **c138** [observation] Marion Winslow was in the Bar from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
 
 ### From Lorraine Ashby (a stringer for the evening papers)
 
@@ -390,7 +390,7 @@ On Delia Mulcahy's account:
 
 On Beatrice Ellery's account:
 
-- **c138** [observation] Lorraine Ashby was in the Lobby at 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 9:00 PM_
+- **c139** [observation] Lorraine Ashby was in the Lobby at 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 9:00 PM_
 
 ### From Beatrice Ellery (a chorus girl between engagements)
 
@@ -487,19 +487,20 @@ On Delia Mulcahy's account:
 
 On Lorraine Ashby's account:
 
-- **c134** [observation] Martin Feeney was on the Street from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM–7:30 PM_
+- **c134** [observation] Martin Feeney was on the Street at 7:00 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM_
+- **c135** [observation] Martin Feeney was in the Lobby at 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:30 PM_
 
 On Beatrice Ellery's account:
 
-- **c139** [observation] Martin Feeney was in the Lobby from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
+- **c140** [observation] Martin Feeney was in the Lobby from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
 
 On Antonio Marchetti and Maureen Quill:
 
-- **c147** [overheard] Martin Feeney says Maureen Quill said to Antonio Marchetti that a man who testifies sleeps better. — _establishes: Antonio Marchetti had a motive (silence-a-witness)_
+- **c148** [overheard] Martin Feeney says Maureen Quill said to Antonio Marchetti that a man who testifies sleeps better. — _establishes: Antonio Marchetti had a motive (silence-a-witness)_
 
 On Willa Prentiss and Maureen Quill:
 
-- **c149** [overheard] Martin Feeney says Maureen Quill told Willa Prentiss that Friday was the end of it, one way or the other. — _establishes: Willa Prentiss had a motive (debt)_
+- **c150** [overheard] Martin Feeney says Maureen Quill told Willa Prentiss that Friday was the end of it, one way or the other. — _establishes: Willa Prentiss had a motive (debt)_
 
 ### From Harriet Havemeyer (the bartender)
 
@@ -558,33 +559,33 @@ On Delia Mulcahy's account:
 
 On Lorraine Ashby's account:
 
-- **c135** [observation] Harriet Havemeyer was in the Bar from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM–7:30 PM_
+- **c136** [observation] Harriet Havemeyer was in the Bar from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM–7:30 PM_
 
 On Beatrice Ellery's account:
 
-- **c140** [observation] Harriet Havemeyer was in the Bar from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
+- **c141** [observation] Harriet Havemeyer was in the Bar from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
 
 ### From the Front Desk
 
-- **c145** [document] Marion Winslow's papers do not hold up. A steamship ticket stub in the name of a man who died at Belleau Wood. — _establishes: context only_
-- **c148** [document] Found in the Front Desk: A promissory note for $4,000 signed by Willa Prentiss, endorsed to Maureen Quill, three months past due. — _establishes: Willa Prentiss had a motive (debt)_
-- **c150** [document] Found in the Front Desk: Three letters in Maureen Quill's hand to a woman Lorraine Ashby is engaged to, kept in the drawer, the last one opened. — _establishes: Lorraine Ashby had a motive (jealousy)_
+- **c146** [document] Marion Winslow's papers do not hold up. A steamship ticket stub in the name of a man who died at Belleau Wood. — _establishes: context only_
+- **c149** [document] Found in the Front Desk: A promissory note for $4,000 signed by Willa Prentiss, endorsed to Maureen Quill, three months past due. — _establishes: Willa Prentiss had a motive (debt)_
+- **c151** [document] Found in the Front Desk: Three letters in Maureen Quill's hand to a woman Lorraine Ashby is engaged to, kept in the drawer, the last one opened. — _establishes: Lorraine Ashby had a motive (jealousy)_
 
 ### From the Kitchen
 
-- **c142** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
+- **c143** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
 
 ### From the Victim's Suite
 
-- **c146** [document] Found in the Victim's Suite: A subpoena naming Maureen Quill as a witness before the grand jury, with Antonio Marchetti's name written in the margin. — _establishes: Antonio Marchetti had a motive (silence-a-witness)_
+- **c147** [document] Found in the Victim's Suite: A subpoena naming Maureen Quill as a witness before the grand jury, with Antonio Marchetti's name written in the margin. — _establishes: Antonio Marchetti had a motive (silence-a-witness)_
 
 ### From the Roof Garden
 
-- **c141** [morgue] Maureen Quill was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 8:30 PM and 9:00 PM_
+- **c142** [morgue] Maureen Quill was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 8:30 PM and 9:00 PM_
 
 ### From the Street
 
-- **c143** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c144** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -605,7 +606,7 @@ On Beatrice Ellery's account:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c141, c014, c036, c077, c098)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c142, c014, c036, c077, c098)_
 
 **Clearing the innocent.**
 
@@ -617,9 +618,9 @@ On Beatrice Ellery's account:
 
 **Naming the killer.** Antonio Marchetti claims the Lobby at 9:00 PM. Two independent sources put that out of the question, and one ties Antonio Marchetti to strangling with a cord. _(c117, c118, c119, c120, c053, c099)_
 
-**Method.** Strangling with a cord, on two physical sources. _(c141, c142)_
+**Method.** Strangling with a cord, on two physical sources. _(c142, c143)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c146, c147)_
+**Motive.** silence-a-witness, on two independent sources. _(c147, c148)_
 
 ## 8. Red herrings
 

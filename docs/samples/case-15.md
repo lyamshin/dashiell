@@ -218,7 +218,7 @@ On Pasquale Grasso's account:
 
 On the rain:
 
-- **c134** [environment] Lavinia Thorndike says Constance Stannard came in off the street at 11:30 PM with a soaked coat, so Constance Stannard was outside at 11:00 PM. — _establishes: Constance Stannard on the Street, 11:00 PM_
+- **c135** [environment] Lavinia Thorndike says Constance Stannard came in off the street at 11:30 PM with a soaked coat, so Constance Stannard was outside at 11:00 PM. — _establishes: Constance Stannard on the Street, 11:00 PM_
 
 ### From Constance Stannard (a chorus girl between engagements)
 
@@ -260,11 +260,11 @@ On Nunzio Tramonti's account:
 
 On the rain:
 
-- **c135** [environment] Constance Stannard says Pasquale Grasso came in off the street at 8:00 PM with a soaked coat, so Pasquale Grasso was outside at 7:30 PM. — _establishes: Pasquale Grasso on the Street, 7:30 PM_
+- **c136** [environment] Constance Stannard says Pasquale Grasso came in off the street at 8:00 PM with a soaked coat, so Pasquale Grasso was outside at 7:30 PM. — _establishes: Pasquale Grasso on the Street, 7:30 PM_
 
 On Pasquale Grasso and Bella Hurwitz:
 
-- **c145** [overheard] Constance Stannard says Bella Hurwitz told Pasquale Grasso that the story would run whether Pasquale Grasso liked it or not. — _establishes: Pasquale Grasso had a motive (exposure)_
+- **c146** [overheard] Constance Stannard says Bella Hurwitz told Pasquale Grasso that the story would run whether Pasquale Grasso liked it or not. — _establishes: Pasquale Grasso had a motive (exposure)_
 
 ### From Emilio Vitale (a dentist with rooms on the third floor)
 
@@ -319,11 +319,12 @@ On Abraham Sirkin's account:
 
 On Nunzio Tramonti's account:
 
-- **c127** [observation] Emilio Vitale was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+- **c127** [observation] Emilio Vitale was in the Lobby at 10:30 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM_
+- **c128** [observation] Emilio Vitale was in the Bar at 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 11:00 PM_
 
 On Abraham Sirkin and Bella Hurwitz:
 
-- **c147** [overheard] Emilio Vitale says Bella Hurwitz told Abraham Sirkin that Friday was the end of it, one way or the other. — _establishes: Abraham Sirkin had a motive (debt)_
+- **c148** [overheard] Emilio Vitale says Bella Hurwitz told Abraham Sirkin that Friday was the end of it, one way or the other. — _establishes: Abraham Sirkin had a motive (debt)_
 
 ### From Pasquale Grasso (a ward heeler)
 
@@ -362,7 +363,7 @@ On Abraham Sirkin's account:
 
 On Constance Stannard and Bella Hurwitz:
 
-- **c143** [overheard] Pasquale Grasso says Bella Hurwitz told Constance Stannard the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Constance Stannard had a motive (inheritance)_
+- **c144** [overheard] Pasquale Grasso says Bella Hurwitz told Constance Stannard the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Constance Stannard had a motive (inheritance)_
 
 ### From Abraham Sirkin (a bookmaker in a small way)
 
@@ -407,7 +408,7 @@ On Pasquale Grasso's account:
 
 On Nunzio Tramonti's account:
 
-- **c128** [observation] Abraham Sirkin was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+- **c129** [observation] Abraham Sirkin was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
 
 ### From Nunzio Tramonti (a stagehand at the Selwyn)
 
@@ -510,11 +511,11 @@ On Abraham Sirkin's account:
 
 On Nunzio Tramonti's account:
 
-- **c129** [observation] Heinrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+- **c130** [observation] Heinrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
 
 On Nunzio Tramonti and Bella Hurwitz:
 
-- **c149** [overheard] Heinrich Obermann says Nunzio Tramonti told Bella Hurwitz to keep away, loud enough to turn heads. — _establishes: Nunzio Tramonti had a motive (jealousy)_
+- **c150** [overheard] Heinrich Obermann says Nunzio Tramonti told Bella Hurwitz to keep away, loud enough to turn heads. — _establishes: Nunzio Tramonti had a motive (jealousy)_
 
 ### From Friedrich Kreuzer (the bartender)
 
@@ -579,38 +580,38 @@ On Abraham Sirkin's account:
 
 On Nunzio Tramonti's account:
 
-- **c130** [observation] Friedrich Kreuzer was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+- **c131** [observation] Friedrich Kreuzer was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
 
 ### From the Lobby
 
-- **c136** [environment] The passenger elevator was out of order from 9:00 PM to 10:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c137** [environment] The passenger elevator was out of order from 9:00 PM to 10:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c141** [document] Pasquale Grasso's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
-- **c144** [document] Found in the Front Desk: A typed page of dates and sums in Bella Hurwitz's file, headed with Pasquale Grasso's name. — _establishes: Pasquale Grasso had a motive (exposure)_
-- **c146** [document] Found in the Front Desk: A promissory note for $4,000 signed by Abraham Sirkin, endorsed to Bella Hurwitz, three months past due. — _establishes: Abraham Sirkin had a motive (debt)_
-- **c148** [document] Found in the Front Desk: Three letters in Bella Hurwitz's hand to a woman Nunzio Tramonti is engaged to, kept in the drawer, the last one opened. — _establishes: Nunzio Tramonti had a motive (jealousy)_
+- **c142** [document] Pasquale Grasso's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
+- **c145** [document] Found in the Front Desk: A typed page of dates and sums in Bella Hurwitz's file, headed with Pasquale Grasso's name. — _establishes: Pasquale Grasso had a motive (exposure)_
+- **c147** [document] Found in the Front Desk: A promissory note for $4,000 signed by Abraham Sirkin, endorsed to Bella Hurwitz, three months past due. — _establishes: Abraham Sirkin had a motive (debt)_
+- **c149** [document] Found in the Front Desk: Three letters in Bella Hurwitz's hand to a woman Nunzio Tramonti is engaged to, kept in the drawer, the last one opened. — _establishes: Nunzio Tramonti had a motive (jealousy)_
 
 ### From the Kitchen
 
-- **c132** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
+- **c133** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
 
 ### From the Service Stairs
 
-- **c131** [morgue] Bella Hurwitz was found on the Service Stairs. The coroner puts death between 10:00 PM and 10:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 10:00 PM and 10:30 PM_
-- **c137** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Bella Hurwitz's sleeve; Bella Hurwitz was on the stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM_
-- **c138** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Lavinia Thorndike's sleeve; Lavinia Thorndike was on the stairs at 9:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 9:30 PM_
-- **c139** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Emilio Vitale's sleeve; Emilio Vitale was on the stairs at 9:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM_
-- **c140** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Abraham Sirkin's sleeve; Abraham Sirkin was on the stairs at 9:00 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:00 PM_
+- **c132** [morgue] Bella Hurwitz was found on the Service Stairs. The coroner puts death between 10:00 PM and 10:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 10:00 PM and 10:30 PM_
+- **c138** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Bella Hurwitz's sleeve; Bella Hurwitz was on the stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM_
+- **c139** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Lavinia Thorndike's sleeve; Lavinia Thorndike was on the stairs at 9:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 9:30 PM_
+- **c140** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Emilio Vitale's sleeve; Emilio Vitale was on the stairs at 9:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM_
+- **c141** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Abraham Sirkin's sleeve; Abraham Sirkin was on the stairs at 9:00 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:00 PM_
 
 ### From the Victim's Suite
 
-- **c142** [document] Found in the Victim's Suite: A draft codicil in Bella Hurwitz's hand striking Constance Stannard out of the will, dated last Tuesday and unsigned. — _establishes: Constance Stannard had a motive (inheritance)_
+- **c143** [document] Found in the Victim's Suite: A draft codicil in Bella Hurwitz's hand striking Constance Stannard out of the will, dated last Tuesday and unsigned. — _establishes: Constance Stannard had a motive (inheritance)_
 
 ### From the Street
 
-- **c133** [environment] Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c134** [environment] Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -631,7 +632,7 @@ On Nunzio Tramonti's account:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:30 PM. _(c131, c058, c070, c086)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:30 PM. _(c132, c058, c070, c086)_
 
 **Clearing the innocent.**
 
@@ -643,9 +644,9 @@ On Nunzio Tramonti's account:
 
 **Naming the killer.** Pasquale Grasso claims the Bar at 10:30 PM. Two independent sources put that out of the question, and one ties Pasquale Grasso to strangling with a cord. _(c116, c117, c118, c119, c120, c015, c055, c064, c094, c095)_
 
-**Method.** Strangling with a cord, on two physical sources. _(c131, c132)_
+**Method.** Strangling with a cord, on two physical sources. _(c132, c133)_
 
-**Motive.** exposure, on two independent sources. _(c144, c145)_
+**Motive.** exposure, on two independent sources. _(c145, c146)_
 
 ## 8. Red herrings
 

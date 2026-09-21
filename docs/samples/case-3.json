@@ -7315,7 +7315,19 @@
           "personId": "p-s1",
           "location": "lobby",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Rachel Kessler was at the Front Desk at 9:30 PM and says Clementine Bledsoe was not in the Lobby."
+    },
+    {
+      "id": "c160",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Clementine Bledsoe's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s1",
@@ -7323,10 +7335,10 @@
           "tick": 8
         }
       ],
-      "text": "Rachel Kessler was at the Front Desk from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby."
+      "text": "Rachel Kessler was in the Lobby at 10:00 PM and says Clementine Bledsoe was not in the Lobby."
     },
     {
-      "id": "c160",
+      "id": "c161",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7344,7 +7356,7 @@
       "text": "Abraham Margolis was in the Lobby at 9:30 PM and says Clementine Bledsoe was not in the Lobby."
     },
     {
-      "id": "c161",
+      "id": "c162",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7362,7 +7374,7 @@
       "text": "Adelaide Havemeyer was in the Lobby at 9:30 PM and says Clementine Bledsoe was not in the Lobby."
     },
     {
-      "id": "c162",
+      "id": "c163",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7386,7 +7398,7 @@
       "text": "Alonzo Colquitt was in the Bar from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby."
     },
     {
-      "id": "c163",
+      "id": "c164",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7404,7 +7416,7 @@
       "text": "Lorraine Renfro was in the Lobby at 10:00 PM and says Clementine Bledsoe was not in the Lobby."
     },
     {
-      "id": "c164",
+      "id": "c165",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7428,7 +7440,7 @@
       "text": "Cornelius Corrigan was in the Lobby from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby."
     },
     {
-      "id": "c165",
+      "id": "c166",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7452,7 +7464,7 @@
       "text": "Esther Hurwitz was in the Bar from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby."
     },
     {
-      "id": "c166",
+      "id": "c167",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7470,7 +7482,7 @@
       "text": "Clementine Bledsoe says Lorraine Renfro was there. Lorraine Renfro says otherwise: Lorraine Renfro was on the Service Stairs at 9:30 PM, not in the Lobby."
     },
     {
-      "id": "c167",
+      "id": "c168",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7488,7 +7500,7 @@
       "text": "Abraham Margolis was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby."
     },
     {
-      "id": "c168",
+      "id": "c169",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7506,7 +7518,7 @@
       "text": "Adelaide Havemeyer was at the Front Desk at 8:00 PM and says Rachel Kessler was not in the Lobby."
     },
     {
-      "id": "c169",
+      "id": "c170",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7524,7 +7536,7 @@
       "text": "Alonzo Colquitt was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby."
     },
     {
-      "id": "c170",
+      "id": "c171",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7542,7 +7554,7 @@
       "text": "Lorraine Renfro was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby."
     },
     {
-      "id": "c171",
+      "id": "c172",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7560,7 +7572,7 @@
       "text": "Cornelius Corrigan was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby."
     },
     {
-      "id": "c172",
+      "id": "c173",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7578,7 +7590,7 @@
       "text": "Esther Hurwitz was in the Bar at 8:00 PM and says Rachel Kessler was not in the Lobby."
     },
     {
-      "id": "c173",
+      "id": "c174",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7596,7 +7608,7 @@
       "text": "Rachel Kessler says Clementine Bledsoe was there. Clementine Bledsoe says otherwise: Clementine Bledsoe was in the Kitchen at 8:00 PM, not in the Lobby."
     },
     {
-      "id": "c174",
+      "id": "c175",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7620,7 +7632,7 @@
       "text": "Rachel Kessler was in the Lobby from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby."
     },
     {
-      "id": "c175",
+      "id": "c176",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7638,7 +7650,7 @@
       "text": "Adelaide Havemeyer was in the Lobby at 10:30 PM and says Abraham Margolis was not in the Lobby."
     },
     {
-      "id": "c176",
+      "id": "c177",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7662,7 +7674,7 @@
       "text": "Alonzo Colquitt was in the Bar from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby."
     },
     {
-      "id": "c177",
+      "id": "c178",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7680,7 +7692,7 @@
       "text": "Lorraine Renfro was in the Lobby at 10:00 PM and says Abraham Margolis was not in the Lobby."
     },
     {
-      "id": "c178",
+      "id": "c179",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7704,7 +7716,7 @@
       "text": "Cornelius Corrigan was in the Lobby from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby."
     },
     {
-      "id": "c179",
+      "id": "c180",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7728,7 +7740,7 @@
       "text": "Esther Hurwitz was in the Bar from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby."
     },
     {
-      "id": "c180",
+      "id": "c181",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7746,7 +7758,7 @@
       "text": "Rachel Kessler was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street."
     },
     {
-      "id": "c181",
+      "id": "c182",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7764,7 +7776,7 @@
       "text": "Lorraine Renfro was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street."
     },
     {
-      "id": "c182",
+      "id": "c183",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7782,7 +7794,7 @@
       "text": "Cornelius Corrigan was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street."
     },
     {
-      "id": "c183",
+      "id": "c184",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7800,7 +7812,7 @@
       "text": "Adelaide Havemeyer says Alonzo Colquitt was there. Alonzo Colquitt says otherwise: Alonzo Colquitt was in the Bar at 10:00 PM, not on the Street."
     },
     {
-      "id": "c184",
+      "id": "c185",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7818,7 +7830,7 @@
       "text": "Clementine Bledsoe was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby."
     },
     {
-      "id": "c185",
+      "id": "c186",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7836,7 +7848,7 @@
       "text": "Rachel Kessler was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby."
     },
     {
-      "id": "c186",
+      "id": "c187",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7854,7 +7866,7 @@
       "text": "Abraham Margolis was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby."
     },
     {
-      "id": "c187",
+      "id": "c188",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7872,7 +7884,7 @@
       "text": "Adelaide Havemeyer was at the Front Desk at 9:00 PM and says Lorraine Renfro was not in the Lobby."
     },
     {
-      "id": "c188",
+      "id": "c189",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7890,7 +7902,7 @@
       "text": "Alonzo Colquitt was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby."
     },
     {
-      "id": "c189",
+      "id": "c190",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7908,7 +7920,7 @@
       "text": "Cornelius Corrigan was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby."
     },
     {
-      "id": "c190",
+      "id": "c191",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7926,7 +7938,7 @@
       "text": "Esther Hurwitz was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby."
     },
     {
-      "id": "c191",
+      "id": "c192",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -7944,7 +7956,7 @@
       "text": "Patrick Sweeney was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
     },
     {
-      "id": "c192",
+      "id": "c193",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7960,7 +7972,7 @@
       "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
     },
     {
-      "id": "c193",
+      "id": "c194",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7970,7 +7982,7 @@
       "text": "Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c194",
+      "id": "c195",
       "kind": "environment",
       "source": {
         "type": "person",
@@ -7988,7 +8000,7 @@
       "text": "Abraham Margolis says Rachel Kessler came in off the street at 11:30 PM with a soaked coat, so Rachel Kessler was outside at 11:00 PM."
     },
     {
-      "id": "c195",
+      "id": "c196",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7998,7 +8010,7 @@
       "text": "Alonzo Colquitt's papers do not hold up. Two signatures in the guest register, a month apart, are in different hands."
     },
     {
-      "id": "c196",
+      "id": "c197",
       "kind": "document",
       "source": {
         "type": "location",
@@ -8014,7 +8026,7 @@
       "text": "Found in the Victim's Suite: A lease assignment made out in Abraham Margolis's name, waiting only on Patrick Sweeney's signature."
     },
     {
-      "id": "c197",
+      "id": "c198",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -8031,7 +8043,7 @@
       "text": "Alonzo Colquitt says Patrick Sweeney told Abraham Margolis the lease would go to somebody else at the quarter day."
     },
     {
-      "id": "c198",
+      "id": "c199",
       "kind": "document",
       "source": {
         "type": "location",
@@ -8047,7 +8059,7 @@
       "text": "Found in the Front Desk: A typed page of dates and sums in Patrick Sweeney's file, headed with Adelaide Havemeyer's name."
     },
     {
-      "id": "c199",
+      "id": "c200",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -8064,7 +8076,7 @@
       "text": "Cornelius Corrigan says Patrick Sweeney told Adelaide Havemeyer that the story would run whether Adelaide Havemeyer liked it or not."
     },
     {
-      "id": "c200",
+      "id": "c201",
       "kind": "document",
       "source": {
         "type": "location",
@@ -8080,7 +8092,7 @@
       "text": "Found in the Front Desk: Three letters in Patrick Sweeney's hand to a woman Alonzo Colquitt is engaged to, kept in the drawer, the last one opened."
     },
     {
-      "id": "c201",
+      "id": "c202",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -8097,7 +8109,7 @@
       "text": "Cornelius Corrigan says Alonzo Colquitt told Patrick Sweeney to keep away, loud enough to turn heads."
     },
     {
-      "id": "c202",
+      "id": "c203",
       "kind": "document",
       "source": {
         "type": "location",
@@ -8113,7 +8125,7 @@
       "text": "Found in the Victim's Suite: A promissory note for $4,000 signed by Lorraine Renfro, endorsed to Patrick Sweeney, three months past due."
     },
     {
-      "id": "c203",
+      "id": "c204",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -8139,7 +8151,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c191",
+      "c192",
       "c014",
       "c037",
       "c055",
@@ -8180,10 +8192,10 @@
       ]
     },
     "inculpation": [
-      "c180",
       "c181",
       "c182",
       "c183",
+      "c184",
       "c028",
       "c029",
       "c049",
@@ -8195,12 +8207,12 @@
       "c125"
     ],
     "method": [
-      "c191",
-      "c192"
+      "c192",
+      "c193"
     ],
     "motive": [
-      "c198",
-      "c199"
+      "c199",
+      "c200"
     ]
   }
 }

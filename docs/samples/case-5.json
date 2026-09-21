@@ -7477,7 +7477,19 @@
           "personId": "p-s4",
           "location": "lobby",
           "tick": 8
-        },
+        }
+      ],
+      "text": "Beatrice Thorndike was in the Lobby at 10:00 PM and says Jacob Lefkowitz was not in the Lobby."
+    },
+    {
+      "id": "c143",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Jacob Lefkowitz's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -7485,10 +7497,10 @@
           "tick": 9
         }
       ],
-      "text": "Beatrice Thorndike was in the Lobby from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby."
+      "text": "Beatrice Thorndike was on the Street at 10:30 PM and says Jacob Lefkowitz was not in the Lobby."
     },
     {
-      "id": "c143",
+      "id": "c144",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7506,7 +7518,7 @@
       "text": "Eileen Feeney was in the Lobby at 10:30 PM and says Jacob Lefkowitz was not in the Lobby."
     },
     {
-      "id": "c144",
+      "id": "c145",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7519,7 +7531,19 @@
           "personId": "p-s4",
           "location": "lobby",
           "tick": 8
-        },
+        }
+      ],
+      "text": "Thaddeus Fairbanks was in the Bar at 10:00 PM and says Jacob Lefkowitz was not in the Lobby."
+    },
+    {
+      "id": "c146",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Jacob Lefkowitz's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -7527,10 +7551,10 @@
           "tick": 9
         }
       ],
-      "text": "Thaddeus Fairbanks was in the Bar from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby."
+      "text": "Thaddeus Fairbanks was in the Lobby at 10:30 PM and says Jacob Lefkowitz was not in the Lobby."
     },
     {
-      "id": "c145",
+      "id": "c147",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7554,7 +7578,7 @@
       "text": "Lucia Carbone was in the Lobby from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby."
     },
     {
-      "id": "c146",
+      "id": "c148",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7578,7 +7602,7 @@
       "text": "Grafton Ellery was in the Bar from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby."
     },
     {
-      "id": "c147",
+      "id": "c149",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7602,7 +7626,7 @@
       "text": "Jacob Lefkowitz says Teresa Petrosino was there. Teresa Petrosino says otherwise: Teresa Petrosino was in the Kitchen from 10:00 PM to 10:30 PM, not in the Lobby."
     },
     {
-      "id": "c148",
+      "id": "c150",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7620,7 +7644,7 @@
       "text": "Beatrice Thorndike was in the Lobby at 8:00 PM and says Teresa Petrosino was not in the Lobby."
     },
     {
-      "id": "c149",
+      "id": "c151",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7644,7 +7668,7 @@
       "text": "Eileen Feeney was at the Front Desk from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby."
     },
     {
-      "id": "c150",
+      "id": "c152",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7668,7 +7692,7 @@
       "text": "Odessa Broadnax was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby."
     },
     {
-      "id": "c151",
+      "id": "c153",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7692,7 +7716,7 @@
       "text": "Jacob Lefkowitz was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby."
     },
     {
-      "id": "c152",
+      "id": "c154",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7705,7 +7729,19 @@
           "personId": "p-s5",
           "location": "lobby",
           "tick": 3
-        },
+        }
+      ],
+      "text": "Thaddeus Fairbanks was on the Street at 7:30 PM and says Teresa Petrosino was not in the Lobby."
+    },
+    {
+      "id": "c155",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Teresa Petrosino's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s5",
@@ -7713,10 +7749,10 @@
           "tick": 4
         }
       ],
-      "text": "Thaddeus Fairbanks was on the Street from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby."
+      "text": "Thaddeus Fairbanks was in the Lobby at 8:00 PM and says Teresa Petrosino was not in the Lobby."
     },
     {
-      "id": "c153",
+      "id": "c156",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7740,7 +7776,7 @@
       "text": "Lucia Carbone was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby."
     },
     {
-      "id": "c154",
+      "id": "c157",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7764,7 +7800,7 @@
       "text": "Grafton Ellery was in the Bar from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby."
     },
     {
-      "id": "c155",
+      "id": "c158",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -7782,7 +7818,7 @@
       "text": "Rufus Tillman was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
     },
     {
-      "id": "c156",
+      "id": "c159",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7798,7 +7834,7 @@
       "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
     },
     {
-      "id": "c157",
+      "id": "c160",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7808,7 +7844,7 @@
       "text": "Rain began at 9:00 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c158",
+      "id": "c161",
       "kind": "environment",
       "source": {
         "type": "person",
@@ -7826,7 +7862,7 @@
       "text": "Beatrice Thorndike says Rufus Tillman came in off the street at 9:30 PM with a soaked coat, so Rufus Tillman was outside at 9:00 PM."
     },
     {
-      "id": "c159",
+      "id": "c162",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7836,7 +7872,7 @@
       "text": "The passenger elevator was out of order from 7:30 PM to 8:30 PM. Anyone changing floors in that time used the service stairs."
     },
     {
-      "id": "c160",
+      "id": "c163",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7853,7 +7889,7 @@
       "text": "The service stairs were whitewashed that afternoon. There is whitewash on Beatrice Thorndike's sleeve; Beatrice Thorndike was on the stairs at 7:30 PM."
     },
     {
-      "id": "c161",
+      "id": "c164",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7870,7 +7906,7 @@
       "text": "The service stairs were whitewashed that afternoon. There is whitewash on Teresa Petrosino's sleeve; Teresa Petrosino was on the stairs at 8:30 PM."
     },
     {
-      "id": "c162",
+      "id": "c165",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -7881,7 +7917,7 @@
       "text": "Grafton Ellery says the bar radio carried a dance band from the Roseland at 10:00 PM, and that the band broke off twice and the announcer filled with a soap advertisement. Anyone in the bar could tell you that."
     },
     {
-      "id": "c163",
+      "id": "c166",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -7899,7 +7935,7 @@
       "text": "Eileen Feeney says Eileen Feeney was in the bar at 10:00 PM but cannot say how the broadcast ended."
     },
     {
-      "id": "c164",
+      "id": "c167",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -7917,7 +7953,7 @@
       "text": "Odessa Broadnax says Odessa Broadnax was in the bar at 10:00 PM but cannot say how the broadcast ended."
     },
     {
-      "id": "c165",
+      "id": "c168",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7927,7 +7963,7 @@
       "text": "Thaddeus Fairbanks's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used."
     },
     {
-      "id": "c166",
+      "id": "c169",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7943,7 +7979,7 @@
       "text": "Found in the Victim's Suite: A draft codicil in Rufus Tillman's hand striking Eileen Feeney out of the will, dated last Tuesday and unsigned."
     },
     {
-      "id": "c167",
+      "id": "c170",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7960,7 +7996,7 @@
       "text": "Grafton Ellery says Rufus Tillman told Eileen Feeney the lawyer was coming Thursday and that the arrangement would be changed."
     },
     {
-      "id": "c168",
+      "id": "c171",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7976,7 +8012,7 @@
       "text": "Found in the Victim's Suite: Three letters in Rufus Tillman's hand to a woman Thaddeus Fairbanks is engaged to, kept in the drawer, the last one opened."
     },
     {
-      "id": "c169",
+      "id": "c172",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -8002,7 +8038,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c155",
+      "c158",
       "c002",
       "c030",
       "c044",
@@ -8042,7 +8078,7 @@
       "c133",
       "c134",
       "c135",
-      "c163",
+      "c166",
       "c003",
       "c036",
       "c051",
@@ -8050,12 +8086,12 @@
       "c092"
     ],
     "method": [
-      "c155",
-      "c156"
+      "c158",
+      "c159"
     ],
     "motive": [
-      "c166",
-      "c167"
+      "c169",
+      "c170"
     ]
   }
 }

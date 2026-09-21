@@ -226,23 +226,24 @@ On Nora Rafferty:
 
 On Assunta Ruggiero's account:
 
-- **c151** [observation] Sterling Lathrop was at the Front Desk from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM–8:00 PM_
+- **c151** [observation] Sterling Lathrop was at the Front Desk at 7:30 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM_
+- **c152** [observation] Sterling Lathrop was in the Lobby at 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 8:00 PM_
 
 On Klara Lindemann's account:
 
-- **c157** [observation] Sterling Lathrop was in the Lobby at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
+- **c159** [observation] Sterling Lathrop was in the Lobby at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
 
 On Concetta Vitale's account:
 
-- **c163** [observation] Sterling Lathrop was in the Bar at 8:30 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM_
+- **c165** [observation] Sterling Lathrop was in the Bar at 8:30 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM_
 
 On Karl Dettweiler's account:
 
-- **c169** [observation] Sterling Lathrop was in the Bar at 8:30 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM_
+- **c173** [observation] Sterling Lathrop was in the Bar at 8:30 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM_
 
 On Nora Rafferty's account:
 
-- **c175** [observation] Sterling Lathrop was at the Front Desk at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
+- **c181** [observation] Sterling Lathrop was at the Front Desk at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
 
 ### From Assunta Ruggiero (a dentist with rooms on the third floor)
 
@@ -289,15 +290,17 @@ On Sterling Lathrop's account:
 
 On Klara Lindemann's account:
 
-- **c158** [observation] Assunta Ruggiero was in the Bar at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
+- **c160** [observation] Assunta Ruggiero was in the Bar at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
 
 On Concetta Vitale's account:
 
-- **c164** [observation] Assunta Ruggiero was in the Lobby from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM–9:00 PM_
+- **c166** [observation] Assunta Ruggiero was in the Lobby at 8:30 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM_
+- **c167** [observation] Assunta Ruggiero was in the Bar at 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 9:00 PM_
 
 On Karl Dettweiler's account:
 
-- **c170** [observation] Assunta Ruggiero was in the Lobby from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM–9:00 PM_
+- **c174** [observation] Assunta Ruggiero was in the Lobby at 8:30 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM_
+- **c175** [observation] Assunta Ruggiero was in the Bar at 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 9:00 PM_
 
 ### From Klara Lindemann (a piano teacher)
 
@@ -329,11 +332,11 @@ On Sterling Lathrop's account:
 
 On Concetta Vitale's account:
 
-- **c165** [observation] Klara Lindemann was in the Lobby at 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 9:00 PM_
+- **c168** [observation] Klara Lindemann was in the Lobby at 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 9:00 PM_
 
 On Karl Dettweiler's account:
 
-- **c171** [observation] Klara Lindemann was in the Lobby at 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 9:00 PM_
+- **c176** [observation] Klara Lindemann was in the Lobby at 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 9:00 PM_
 
 ### From Concetta Vitale (a chorus girl between engagements)
 
@@ -375,15 +378,16 @@ On Nora Rafferty:
 
 On Assunta Ruggiero's account:
 
-- **c152** [observation] Concetta Vitale was at the Front Desk from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM–8:00 PM_
+- **c153** [observation] Concetta Vitale was at the Front Desk at 7:30 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM_
+- **c154** [observation] Concetta Vitale was in the Lobby at 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 8:00 PM_
 
 On Klara Lindemann's account:
 
-- **c159** [observation] Concetta Vitale was at the Front Desk at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
+- **c161** [observation] Concetta Vitale was at the Front Desk at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
 
 On Nora Rafferty's account:
 
-- **c176** [observation] Concetta Vitale was at the Front Desk at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
+- **c182** [observation] Concetta Vitale was at the Front Desk at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
 
 ### From Karl Dettweiler (a travelling salesman in patent medicines)
 
@@ -422,19 +426,19 @@ On Nora Rafferty:
 
 On Assunta Ruggiero's account:
 
-- **c153** [observation] Karl Dettweiler was on the Street from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM–8:00 PM_
+- **c155** [observation] Karl Dettweiler was on the Street from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM–8:00 PM_
 
 On Klara Lindemann's account:
 
-- **c160** [observation] Karl Dettweiler was in the Lobby at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
+- **c162** [observation] Karl Dettweiler was in the Lobby at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
 
 On Nora Rafferty's account:
 
-- **c177** [observation] Karl Dettweiler was on the Street at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
+- **c183** [observation] Karl Dettweiler was on the Street at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
 
 On Assunta Ruggiero and Emilio Moretti:
 
-- **c186** [overheard] Karl Dettweiler says Emilio Moretti told Assunta Ruggiero the lease would go to somebody else at the quarter day. — _establishes: Assunta Ruggiero had a motive (property)_
+- **c192** [overheard] Karl Dettweiler says Emilio Moretti told Assunta Ruggiero the lease would go to somebody else at the quarter day. — _establishes: Assunta Ruggiero had a motive (property)_
 
 ### From Nora Rafferty (a seamstress)
 
@@ -478,15 +482,17 @@ On Sterling Lathrop's account:
 
 On Assunta Ruggiero's account:
 
-- **c154** [observation] Nora Rafferty was in the Lobby at 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 8:00 PM_
+- **c156** [observation] Nora Rafferty was in the Lobby at 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 8:00 PM_
 
 On Concetta Vitale's account:
 
-- **c166** [observation] Nora Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM–9:00 PM_
+- **c169** [observation] Nora Rafferty was in the Lobby at 8:30 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM_
+- **c170** [observation] Nora Rafferty was in the Bar at 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 9:00 PM_
 
 On Karl Dettweiler's account:
 
-- **c172** [observation] Nora Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM–9:00 PM_
+- **c177** [observation] Nora Rafferty was in the Lobby at 8:30 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM_
+- **c178** [observation] Nora Rafferty was in the Bar at 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 9:00 PM_
 
 ### From Jacob Lefkowitz (the doorman)
 
@@ -541,23 +547,23 @@ On Sterling Lathrop's account:
 
 On Assunta Ruggiero's account:
 
-- **c155** [observation] Jacob Lefkowitz was in the Lobby from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM–8:00 PM_
+- **c157** [observation] Jacob Lefkowitz was in the Lobby from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM–8:00 PM_
 
 On Klara Lindemann's account:
 
-- **c161** [observation] Jacob Lefkowitz was on the Street at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
+- **c163** [observation] Jacob Lefkowitz was on the Street at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
 
 On Concetta Vitale's account:
 
-- **c167** [observation] Jacob Lefkowitz was in the Lobby from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM–9:00 PM_
+- **c171** [observation] Jacob Lefkowitz was in the Lobby from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM–9:00 PM_
 
 On Karl Dettweiler's account:
 
-- **c173** [observation] Jacob Lefkowitz was in the Lobby from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM–9:00 PM_
+- **c179** [observation] Jacob Lefkowitz was in the Lobby from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM–9:00 PM_
 
 On Nora Rafferty's account:
 
-- **c178** [observation] Jacob Lefkowitz was in the Lobby at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
+- **c184** [observation] Jacob Lefkowitz was in the Lobby at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
 
 ### From Otto Reinhardt (the bartender)
 
@@ -613,49 +619,49 @@ On Sterling Lathrop's account:
 
 On Assunta Ruggiero's account:
 
-- **c156** [observation] Otto Reinhardt was in the Bar from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM–8:00 PM_
+- **c158** [observation] Otto Reinhardt was in the Bar from 7:30 PM to 8:00 PM and says Assunta Ruggiero was not in the Lobby. — _establishes: Assunta Ruggiero not in the Lobby, 7:30 PM–8:00 PM_
 
 On Klara Lindemann's account:
 
-- **c162** [observation] Otto Reinhardt was in the Bar at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
+- **c164** [observation] Otto Reinhardt was in the Bar at 7:00 PM and says Klara Lindemann was not in the Lobby. — _establishes: Klara Lindemann not in the Lobby, 7:00 PM_
 
 On Concetta Vitale's account:
 
-- **c168** [observation] Otto Reinhardt was in the Bar from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM–9:00 PM_
+- **c172** [observation] Otto Reinhardt was in the Bar from 8:30 PM to 9:00 PM and says Concetta Vitale was not in the Lobby. — _establishes: Concetta Vitale not in the Lobby, 8:30 PM–9:00 PM_
 
 On Karl Dettweiler's account:
 
-- **c174** [observation] Otto Reinhardt was in the Bar from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM–9:00 PM_
+- **c180** [observation] Otto Reinhardt was in the Bar from 8:30 PM to 9:00 PM and says Karl Dettweiler was not in the Lobby. — _establishes: Karl Dettweiler not in the Lobby, 8:30 PM–9:00 PM_
 
 On Nora Rafferty's account:
 
-- **c179** [observation] Otto Reinhardt was in the Bar at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
+- **c185** [observation] Otto Reinhardt was in the Bar at 7:30 PM and says Nora Rafferty was not in the Lobby. — _establishes: Nora Rafferty not in the Lobby, 7:30 PM_
 
 On the radio:
 
-- **c183** [radio] Otto Reinhardt says the bar radio carried a talk on the tariff by a congressman at 10:30 PM, and that the congressman lost his place and had to start a page over. Anyone in the bar could tell you that. — _establishes: context only_
+- **c189** [radio] Otto Reinhardt says the bar radio carried a talk on the tariff by a congressman at 10:30 PM, and that the congressman lost his place and had to start a page over. Anyone in the bar could tell you that. — _establishes: context only_
 
 On Concetta Vitale and Emilio Moretti:
 
-- **c188** [overheard] Otto Reinhardt says Emilio Moretti said to Concetta Vitale that a man who testifies sleeps better. — _establishes: Concetta Vitale had a motive (silence-a-witness)_
+- **c194** [overheard] Otto Reinhardt says Emilio Moretti said to Concetta Vitale that a man who testifies sleeps better. — _establishes: Concetta Vitale had a motive (silence-a-witness)_
 
 ### From the Front Desk
 
-- **c181** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c184** [document] Concetta Vitale's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
+- **c187** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
+- **c190** [document] Concetta Vitale's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
 
 ### From the Victim's Suite
 
-- **c185** [document] Found in the Victim's Suite: A lease assignment made out in Assunta Ruggiero's name, waiting only on Emilio Moretti's signature. — _establishes: Assunta Ruggiero had a motive (property)_
-- **c187** [document] Found in the Victim's Suite: A subpoena naming Emilio Moretti as a witness before the grand jury, with Concetta Vitale's name written in the margin. — _establishes: Concetta Vitale had a motive (silence-a-witness)_
+- **c191** [document] Found in the Victim's Suite: A lease assignment made out in Assunta Ruggiero's name, waiting only on Emilio Moretti's signature. — _establishes: Assunta Ruggiero had a motive (property)_
+- **c193** [document] Found in the Victim's Suite: A subpoena naming Emilio Moretti as a witness before the grand jury, with Concetta Vitale's name written in the margin. — _establishes: Concetta Vitale had a motive (silence-a-witness)_
 
 ### From the Roof Garden
 
-- **c180** [morgue] Emilio Moretti was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 8:30 PM and 9:00 PM_
+- **c186** [morgue] Emilio Moretti was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 8:30 PM and 9:00 PM_
 
 ### From the Street
 
-- **c182** [environment] Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c188** [environment] Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -678,7 +684,7 @@ On Concetta Vitale and Emilio Moretti:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c180, c003, c023, c082, c099, c123)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c186, c003, c023, c082, c099, c123)_
 
 **Clearing the innocent.**
 
@@ -688,11 +694,11 @@ On Concetta Vitale and Emilio Moretti:
 - Karl Dettweiler was not in the Roof Garden at 9:00 PM, on two independent sources. _(c044, c116)_
 - Nora Rafferty was not in the Roof Garden at 9:00 PM, on two independent sources. _(c038, c047, c119, c143)_
 
-**Naming the killer.** Concetta Vitale claims the Lobby at 9:00 PM. Two independent sources put that out of the question, and one ties Concetta Vitale to a gunshot. _(c164, c165, c166, c167, c168, c012, c078, c113)_
+**Naming the killer.** Concetta Vitale claims the Lobby at 9:00 PM. Two independent sources put that out of the question, and one ties Concetta Vitale to a gunshot. _(c167, c168, c170, c171, c172, c012, c078, c113)_
 
-**Method.** A gunshot, on two physical sources. _(c180, c181)_
+**Method.** A gunshot, on two physical sources. _(c186, c187)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c187, c188)_
+**Motive.** silence-a-witness, on two independent sources. _(c193, c194)_
 
 ## 8. Red herrings
 

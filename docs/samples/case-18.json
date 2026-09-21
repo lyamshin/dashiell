@@ -6674,7 +6674,19 @@
           "personId": "p-s3",
           "location": "lobby",
           "tick": 8
-        },
+        }
+      ],
+      "text": "Chandler Havemeyer was in the Lobby from 9:30 PM to 10:00 PM and says Jacob Weisglass was not in the Lobby."
+    },
+    {
+      "id": "c115",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Jacob Weisglass's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s3",
@@ -6682,10 +6694,10 @@
           "tick": 9
         }
       ],
-      "text": "Chandler Havemeyer was in the Lobby from 9:30 PM to 10:30 PM and says Jacob Weisglass was not in the Lobby."
+      "text": "Chandler Havemeyer was on the Street at 10:30 PM and says Jacob Weisglass was not in the Lobby."
     },
     {
-      "id": "c115",
+      "id": "c116",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6709,7 +6721,7 @@
       "text": "Marion Coffin was in the Bar from 9:30 PM to 10:00 PM and says Jacob Weisglass was not in the Lobby."
     },
     {
-      "id": "c116",
+      "id": "c117",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6733,7 +6745,7 @@
       "text": "Rachel Abramowitz was in the Lobby from 10:00 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar."
     },
     {
-      "id": "c117",
+      "id": "c118",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6746,7 +6758,19 @@
           "personId": "p-s5",
           "location": "bar",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Francis Doyle was in the Kitchen at 9:30 PM and says Vincenzo Vitale was not in the Bar."
+    },
+    {
+      "id": "c119",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Vincenzo Vitale's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s5",
@@ -6760,10 +6784,10 @@
           "tick": 9
         }
       ],
-      "text": "Francis Doyle was in the Kitchen from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar."
+      "text": "Francis Doyle was in the Bar from 10:00 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar."
     },
     {
-      "id": "c118",
+      "id": "c120",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6793,7 +6817,7 @@
       "text": "Agnes Kavanagh was in the Bar from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar."
     },
     {
-      "id": "c119",
+      "id": "c121",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6823,7 +6847,7 @@
       "text": "Emilio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar."
     },
     {
-      "id": "c120",
+      "id": "c122",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6847,7 +6871,7 @@
       "text": "Chandler Havemeyer was in the Lobby from 9:30 PM to 10:00 PM and says Vincenzo Vitale was not in the Bar."
     },
     {
-      "id": "c121",
+      "id": "c123",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6866,7 +6890,19 @@
           "personId": "p-s5",
           "location": "bar",
           "tick": 8
-        },
+        }
+      ],
+      "text": "Marion Coffin was in the Bar from 9:30 PM to 10:00 PM and says Vincenzo Vitale was not in the Bar."
+    },
+    {
+      "id": "c124",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Vincenzo Vitale's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s5",
@@ -6874,10 +6910,10 @@
           "tick": 9
         }
       ],
-      "text": "Marion Coffin was in the Bar from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar."
+      "text": "Marion Coffin was in the Kitchen at 10:30 PM and says Vincenzo Vitale was not in the Bar."
     },
     {
-      "id": "c122",
+      "id": "c125",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6895,7 +6931,7 @@
       "text": "Francis Doyle was in the Bar at 8:00 PM and says Emilio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c123",
+      "id": "c126",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6919,7 +6955,7 @@
       "text": "Jacob Weisglass was in the Lobby from 8:30 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c124",
+      "id": "c127",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6932,7 +6968,19 @@
           "personId": "p-s6",
           "location": "lobby",
           "tick": 4
-        },
+        }
+      ],
+      "text": "Agnes Kavanagh was in the Lobby at 8:00 PM and says Emilio Ruggiero was not in the Lobby."
+    },
+    {
+      "id": "c128",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Emilio Ruggiero's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s6",
@@ -6946,10 +6994,10 @@
           "tick": 6
         }
       ],
-      "text": "Agnes Kavanagh was in the Lobby from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby."
+      "text": "Agnes Kavanagh was in the Bar from 8:30 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c125",
+      "id": "c129",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6962,7 +7010,19 @@
           "personId": "p-s6",
           "location": "lobby",
           "tick": 4
-        },
+        }
+      ],
+      "text": "Vincenzo Vitale was in the Bar at 8:00 PM and says Emilio Ruggiero was not in the Lobby."
+    },
+    {
+      "id": "c130",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Emilio Ruggiero's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s6",
@@ -6976,10 +7036,10 @@
           "tick": 6
         }
       ],
-      "text": "Vincenzo Vitale was in the Bar from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby."
+      "text": "Vincenzo Vitale was in the Lobby from 8:30 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c126",
+      "id": "c131",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7009,7 +7069,7 @@
       "text": "Chandler Havemeyer was in the Lobby from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c127",
+      "id": "c132",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7039,7 +7099,7 @@
       "text": "Marion Coffin was in the Bar from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c128",
+      "id": "c133",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -7057,7 +7117,7 @@
       "text": "Wilhelm Vogel was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
     },
     {
-      "id": "c129",
+      "id": "c134",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7073,7 +7133,7 @@
       "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
     },
     {
-      "id": "c130",
+      "id": "c135",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7083,7 +7143,7 @@
       "text": "Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c131",
+      "id": "c136",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7093,7 +7153,7 @@
       "text": "The passenger elevator was out of order from 7:00 PM to 7:30 PM. Anyone changing floors in that time used the service stairs."
     },
     {
-      "id": "c132",
+      "id": "c137",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7110,7 +7170,7 @@
       "text": "The service stairs were whitewashed that afternoon. There is whitewash on Emilio Ruggiero's sleeve; Emilio Ruggiero was on the stairs at 7:30 PM."
     },
     {
-      "id": "c133",
+      "id": "c138",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7120,7 +7180,7 @@
       "text": "Agnes Kavanagh's papers do not hold up. A steamship ticket stub in the name of a man who died at Belleau Wood."
     },
     {
-      "id": "c134",
+      "id": "c139",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7136,7 +7196,7 @@
       "text": "Found in the Victim's Suite: A subpoena naming Wilhelm Vogel as a witness before the grand jury, with Rachel Abramowitz's name written in the margin."
     },
     {
-      "id": "c135",
+      "id": "c140",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7153,7 +7213,7 @@
       "text": "Marion Coffin says Wilhelm Vogel said to Rachel Abramowitz that a man who testifies sleeps better."
     },
     {
-      "id": "c136",
+      "id": "c141",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7169,7 +7229,7 @@
       "text": "Found in the Front Desk: A draft codicil in Wilhelm Vogel's hand striking Francis Doyle out of the will, dated last Tuesday and unsigned."
     },
     {
-      "id": "c137",
+      "id": "c142",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7186,7 +7246,7 @@
       "text": "Marion Coffin says Wilhelm Vogel told Francis Doyle the lawyer was coming Thursday and that the arrangement would be changed."
     },
     {
-      "id": "c138",
+      "id": "c143",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7202,7 +7262,7 @@
       "text": "Found in the Front Desk: Three letters in Wilhelm Vogel's hand to a woman Jacob Weisglass is engaged to, kept in the drawer, the last one opened."
     },
     {
-      "id": "c139",
+      "id": "c144",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7219,7 +7279,7 @@
       "text": "Agnes Kavanagh says Jacob Weisglass told Wilhelm Vogel to keep away, loud enough to turn heads."
     },
     {
-      "id": "c140",
+      "id": "c145",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7235,7 +7295,7 @@
       "text": "Found in the Victim's Suite: A lease assignment made out in Emilio Ruggiero's name, waiting only on Wilhelm Vogel's signature."
     },
     {
-      "id": "c141",
+      "id": "c146",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7261,7 +7321,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c128",
+      "c133",
       "c027",
       "c033",
       "c047",
@@ -7300,22 +7360,22 @@
       ]
     },
     "inculpation": [
-      "c123",
-      "c124",
-      "c125",
       "c126",
-      "c127",
+      "c128",
+      "c130",
+      "c131",
+      "c132",
       "c025",
       "c045",
       "c080"
     ],
     "method": [
-      "c128",
-      "c129"
+      "c133",
+      "c134"
     ],
     "motive": [
-      "c140",
-      "c141"
+      "c145",
+      "c146"
     ]
   }
 }

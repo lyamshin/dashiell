@@ -215,11 +215,11 @@ On Lorraine Renfro:
 
 On Rachel Kessler's account:
 
-- **c173** [observation] Rachel Kessler says Clementine Bledsoe was there. Clementine Bledsoe says otherwise: Clementine Bledsoe was in the Kitchen at 8:00 PM, not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
+- **c174** [observation] Rachel Kessler says Clementine Bledsoe was there. Clementine Bledsoe says otherwise: Clementine Bledsoe was in the Kitchen at 8:00 PM, not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
 
 On Lorraine Renfro's account:
 
-- **c184** [observation] Clementine Bledsoe was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
+- **c185** [observation] Clementine Bledsoe was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
 
 ### From Rachel Kessler (the night manager)
 
@@ -268,19 +268,20 @@ On Lorraine Renfro:
 
 On Clementine Bledsoe's account:
 
-- **c159** [observation] Rachel Kessler was at the Front Desk from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM–10:00 PM_
+- **c159** [observation] Rachel Kessler was at the Front Desk at 9:30 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM_
+- **c160** [observation] Rachel Kessler was in the Lobby at 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 10:00 PM_
 
 On Abraham Margolis's account:
 
-- **c174** [observation] Rachel Kessler was in the Lobby from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM–10:30 PM_
+- **c175** [observation] Rachel Kessler was in the Lobby from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM–10:30 PM_
 
 On Adelaide Havemeyer's account:
 
-- **c180** [observation] Rachel Kessler was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street. — _establishes: Adelaide Havemeyer not on the Street, 10:00 PM_
+- **c181** [observation] Rachel Kessler was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street. — _establishes: Adelaide Havemeyer not on the Street, 10:00 PM_
 
 On Lorraine Renfro's account:
 
-- **c185** [observation] Rachel Kessler was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
+- **c186** [observation] Rachel Kessler was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
 
 ### From Abraham Margolis (a stagehand at the Selwyn)
 
@@ -322,23 +323,23 @@ On Lorraine Renfro:
 
 On Clementine Bledsoe's account:
 
-- **c160** [observation] Abraham Margolis was in the Lobby at 9:30 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM_
+- **c161** [observation] Abraham Margolis was in the Lobby at 9:30 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM_
 
 On Rachel Kessler's account:
 
-- **c167** [observation] Abraham Margolis was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
+- **c168** [observation] Abraham Margolis was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
 
 On Lorraine Renfro's account:
 
-- **c186** [observation] Abraham Margolis was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
+- **c187** [observation] Abraham Margolis was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
 
 On the rain:
 
-- **c194** [environment] Abraham Margolis says Rachel Kessler came in off the street at 11:30 PM with a soaked coat, so Rachel Kessler was outside at 11:00 PM. — _establishes: Rachel Kessler on the Street, 11:00 PM_
+- **c195** [environment] Abraham Margolis says Rachel Kessler came in off the street at 11:30 PM with a soaked coat, so Rachel Kessler was outside at 11:00 PM. — _establishes: Rachel Kessler on the Street, 11:00 PM_
 
 On Lorraine Renfro and Patrick Sweeney:
 
-- **c203** [overheard] Abraham Margolis says Patrick Sweeney told Lorraine Renfro that Friday was the end of it, one way or the other. — _establishes: Lorraine Renfro had a motive (debt)_
+- **c204** [overheard] Abraham Margolis says Patrick Sweeney told Lorraine Renfro that Friday was the end of it, one way or the other. — _establishes: Lorraine Renfro had a motive (debt)_
 
 ### From Adelaide Havemeyer (a piano teacher)
 
@@ -380,19 +381,19 @@ On Lorraine Renfro:
 
 On Clementine Bledsoe's account:
 
-- **c161** [observation] Adelaide Havemeyer was in the Lobby at 9:30 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM_
+- **c162** [observation] Adelaide Havemeyer was in the Lobby at 9:30 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM_
 
 On Rachel Kessler's account:
 
-- **c168** [observation] Adelaide Havemeyer was at the Front Desk at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
+- **c169** [observation] Adelaide Havemeyer was at the Front Desk at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
 
 On Abraham Margolis's account:
 
-- **c175** [observation] Adelaide Havemeyer was in the Lobby at 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:30 PM_
+- **c176** [observation] Adelaide Havemeyer was in the Lobby at 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:30 PM_
 
 On Lorraine Renfro's account:
 
-- **c187** [observation] Adelaide Havemeyer was at the Front Desk at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
+- **c188** [observation] Adelaide Havemeyer was at the Front Desk at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
 
 ### From Alonzo Colquitt (a private secretary)
 
@@ -434,27 +435,27 @@ On Lorraine Renfro:
 
 On Clementine Bledsoe's account:
 
-- **c162** [observation] Alonzo Colquitt was in the Bar from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM–10:00 PM_
+- **c163** [observation] Alonzo Colquitt was in the Bar from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM–10:00 PM_
 
 On Rachel Kessler's account:
 
-- **c169** [observation] Alonzo Colquitt was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
+- **c170** [observation] Alonzo Colquitt was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
 
 On Abraham Margolis's account:
 
-- **c176** [observation] Alonzo Colquitt was in the Bar from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM–10:30 PM_
+- **c177** [observation] Alonzo Colquitt was in the Bar from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM–10:30 PM_
 
 On Adelaide Havemeyer's account:
 
-- **c183** [observation] Adelaide Havemeyer says Alonzo Colquitt was there. Alonzo Colquitt says otherwise: Alonzo Colquitt was in the Bar at 10:00 PM, not on the Street. — _establishes: Adelaide Havemeyer not on the Street, 10:00 PM_
+- **c184** [observation] Adelaide Havemeyer says Alonzo Colquitt was there. Alonzo Colquitt says otherwise: Alonzo Colquitt was in the Bar at 10:00 PM, not on the Street. — _establishes: Adelaide Havemeyer not on the Street, 10:00 PM_
 
 On Lorraine Renfro's account:
 
-- **c188** [observation] Alonzo Colquitt was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
+- **c189** [observation] Alonzo Colquitt was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
 
 On Abraham Margolis and Patrick Sweeney:
 
-- **c197** [overheard] Alonzo Colquitt says Patrick Sweeney told Abraham Margolis the lease would go to somebody else at the quarter day. — _establishes: Abraham Margolis had a motive (property)_
+- **c198** [overheard] Alonzo Colquitt says Patrick Sweeney told Abraham Margolis the lease would go to somebody else at the quarter day. — _establishes: Abraham Margolis had a motive (property)_
 
 ### From Lorraine Renfro (a wine steward out of work since the Act)
 
@@ -497,20 +498,20 @@ On Alonzo Colquitt:
 
 On Clementine Bledsoe's account:
 
-- **c163** [observation] Lorraine Renfro was in the Lobby at 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 10:00 PM_
-- **c166** [observation] Clementine Bledsoe says Lorraine Renfro was there. Lorraine Renfro says otherwise: Lorraine Renfro was on the Service Stairs at 9:30 PM, not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM_
+- **c164** [observation] Lorraine Renfro was in the Lobby at 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 10:00 PM_
+- **c167** [observation] Clementine Bledsoe says Lorraine Renfro was there. Lorraine Renfro says otherwise: Lorraine Renfro was on the Service Stairs at 9:30 PM, not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM_
 
 On Rachel Kessler's account:
 
-- **c170** [observation] Lorraine Renfro was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
+- **c171** [observation] Lorraine Renfro was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
 
 On Abraham Margolis's account:
 
-- **c177** [observation] Lorraine Renfro was in the Lobby at 10:00 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM_
+- **c178** [observation] Lorraine Renfro was in the Lobby at 10:00 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM_
 
 On Adelaide Havemeyer's account:
 
-- **c181** [observation] Lorraine Renfro was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street. — _establishes: Adelaide Havemeyer not on the Street, 10:00 PM_
+- **c182** [observation] Lorraine Renfro was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street. — _establishes: Adelaide Havemeyer not on the Street, 10:00 PM_
 
 ### From Cornelius Corrigan (the doorman)
 
@@ -563,31 +564,31 @@ On Lorraine Renfro:
 
 On Clementine Bledsoe's account:
 
-- **c164** [observation] Cornelius Corrigan was in the Lobby from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM–10:00 PM_
+- **c165** [observation] Cornelius Corrigan was in the Lobby from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM–10:00 PM_
 
 On Rachel Kessler's account:
 
-- **c171** [observation] Cornelius Corrigan was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
+- **c172** [observation] Cornelius Corrigan was in the Lobby at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
 
 On Abraham Margolis's account:
 
-- **c178** [observation] Cornelius Corrigan was in the Lobby from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM–10:30 PM_
+- **c179** [observation] Cornelius Corrigan was in the Lobby from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM–10:30 PM_
 
 On Adelaide Havemeyer's account:
 
-- **c182** [observation] Cornelius Corrigan was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street. — _establishes: Adelaide Havemeyer not on the Street, 10:00 PM_
+- **c183** [observation] Cornelius Corrigan was in the Lobby at 10:00 PM and says Adelaide Havemeyer was not on the Street. — _establishes: Adelaide Havemeyer not on the Street, 10:00 PM_
 
 On Lorraine Renfro's account:
 
-- **c189** [observation] Cornelius Corrigan was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
+- **c190** [observation] Cornelius Corrigan was in the Lobby at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
 
 On Adelaide Havemeyer and Patrick Sweeney:
 
-- **c199** [overheard] Cornelius Corrigan says Patrick Sweeney told Adelaide Havemeyer that the story would run whether Adelaide Havemeyer liked it or not. — _establishes: Adelaide Havemeyer had a motive (exposure)_
+- **c200** [overheard] Cornelius Corrigan says Patrick Sweeney told Adelaide Havemeyer that the story would run whether Adelaide Havemeyer liked it or not. — _establishes: Adelaide Havemeyer had a motive (exposure)_
 
 On Alonzo Colquitt and Patrick Sweeney:
 
-- **c201** [overheard] Cornelius Corrigan says Alonzo Colquitt told Patrick Sweeney to keep away, loud enough to turn heads. — _establishes: Alonzo Colquitt had a motive (jealousy)_
+- **c202** [overheard] Cornelius Corrigan says Alonzo Colquitt told Patrick Sweeney to keep away, loud enough to turn heads. — _establishes: Alonzo Colquitt had a motive (jealousy)_
 
 ### From Esther Hurwitz (the bartender)
 
@@ -637,39 +638,39 @@ On Lorraine Renfro:
 
 On Clementine Bledsoe's account:
 
-- **c165** [observation] Esther Hurwitz was in the Bar from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM–10:00 PM_
+- **c166** [observation] Esther Hurwitz was in the Bar from 9:30 PM to 10:00 PM and says Clementine Bledsoe was not in the Lobby. — _establishes: Clementine Bledsoe not in the Lobby, 9:30 PM–10:00 PM_
 
 On Rachel Kessler's account:
 
-- **c172** [observation] Esther Hurwitz was in the Bar at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
+- **c173** [observation] Esther Hurwitz was in the Bar at 8:00 PM and says Rachel Kessler was not in the Lobby. — _establishes: Rachel Kessler not in the Lobby, 8:00 PM_
 
 On Abraham Margolis's account:
 
-- **c179** [observation] Esther Hurwitz was in the Bar from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM–10:30 PM_
+- **c180** [observation] Esther Hurwitz was in the Bar from 10:00 PM to 10:30 PM and says Abraham Margolis was not in the Lobby. — _establishes: Abraham Margolis not in the Lobby, 10:00 PM–10:30 PM_
 
 On Lorraine Renfro's account:
 
-- **c190** [observation] Esther Hurwitz was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
+- **c191** [observation] Esther Hurwitz was in the Bar at 9:00 PM and says Lorraine Renfro was not in the Lobby. — _establishes: Lorraine Renfro not in the Lobby, 9:00 PM_
 
 ### From the Front Desk
 
-- **c192** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-- **c195** [document] Alonzo Colquitt's papers do not hold up. Two signatures in the guest register, a month apart, are in different hands. — _establishes: context only_
-- **c198** [document] Found in the Front Desk: A typed page of dates and sums in Patrick Sweeney's file, headed with Adelaide Havemeyer's name. — _establishes: Adelaide Havemeyer had a motive (exposure)_
-- **c200** [document] Found in the Front Desk: Three letters in Patrick Sweeney's hand to a woman Alonzo Colquitt is engaged to, kept in the drawer, the last one opened. — _establishes: Alonzo Colquitt had a motive (jealousy)_
+- **c193** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
+- **c196** [document] Alonzo Colquitt's papers do not hold up. Two signatures in the guest register, a month apart, are in different hands. — _establishes: context only_
+- **c199** [document] Found in the Front Desk: A typed page of dates and sums in Patrick Sweeney's file, headed with Adelaide Havemeyer's name. — _establishes: Adelaide Havemeyer had a motive (exposure)_
+- **c201** [document] Found in the Front Desk: Three letters in Patrick Sweeney's hand to a woman Alonzo Colquitt is engaged to, kept in the drawer, the last one opened. — _establishes: Alonzo Colquitt had a motive (jealousy)_
 
 ### From the Victim's Suite
 
-- **c196** [document] Found in the Victim's Suite: A lease assignment made out in Abraham Margolis's name, waiting only on Patrick Sweeney's signature. — _establishes: Abraham Margolis had a motive (property)_
-- **c202** [document] Found in the Victim's Suite: A promissory note for $4,000 signed by Lorraine Renfro, endorsed to Patrick Sweeney, three months past due. — _establishes: Lorraine Renfro had a motive (debt)_
+- **c197** [document] Found in the Victim's Suite: A lease assignment made out in Abraham Margolis's name, waiting only on Patrick Sweeney's signature. — _establishes: Abraham Margolis had a motive (property)_
+- **c203** [document] Found in the Victim's Suite: A promissory note for $4,000 signed by Lorraine Renfro, endorsed to Patrick Sweeney, three months past due. — _establishes: Lorraine Renfro had a motive (debt)_
 
 ### From the Roof Garden
 
-- **c191** [morgue] Patrick Sweeney was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:30 PM and 10:00 PM_
+- **c192** [morgue] Patrick Sweeney was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:30 PM and 10:00 PM_
 
 ### From the Street
 
-- **c193** [environment] Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c194** [environment] Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -690,7 +691,7 @@ On Lorraine Renfro's account:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c191, c014, c037, c055, c073, c110, c136)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c192, c014, c037, c055, c073, c110, c136)_
 
 **Clearing the innocent.**
 
@@ -700,11 +701,11 @@ On Lorraine Renfro's account:
 - Alonzo Colquitt was not in the Roof Garden at 10:00 PM, on two independent sources. _(c031, c108, c132, c155)_
 - Lorraine Renfro was not in the Roof Garden at 10:00 PM, on two independent sources. _(c034, c089, c134, c157)_
 
-**Naming the killer.** Adelaide Havemeyer claims the Street at 10:00 PM. Two independent sources put that out of the question, and one ties Adelaide Havemeyer to a push from the roof garden. _(c180, c181, c182, c183, c028, c029, c049, c081, c082, c103, c104, c124, c125)_
+**Naming the killer.** Adelaide Havemeyer claims the Street at 10:00 PM. Two independent sources put that out of the question, and one ties Adelaide Havemeyer to a push from the roof garden. _(c181, c182, c183, c184, c028, c029, c049, c081, c082, c103, c104, c124, c125)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c191, c192)_
+**Method.** A push from the roof garden, on two physical sources. _(c192, c193)_
 
-**Motive.** exposure, on two independent sources. _(c198, c199)_
+**Motive.** exposure, on two independent sources. _(c199, c200)_
 
 ## 8. Red herrings
 

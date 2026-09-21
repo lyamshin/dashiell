@@ -228,8 +228,8 @@ On Assunta Grasso's account:
 
 On Wilhelm Brauer's account:
 
-- **c187** [observation] Rutherford Bidwell was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
-- **c192** [observation] Wilhelm Brauer says Rutherford Bidwell was there. Rutherford Bidwell says otherwise: Rutherford Bidwell was in the Bar at 10:00 PM, not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:00 PM_
+- **c189** [observation] Rutherford Bidwell was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
+- **c194** [observation] Wilhelm Brauer says Rutherford Bidwell was there. Rutherford Bidwell says otherwise: Rutherford Bidwell was in the Bar at 10:00 PM, not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:00 PM_
 
 ### From Assunta Grasso (a bookkeeper)
 
@@ -276,7 +276,7 @@ On Marion Ellery's account:
 
 On Maureen Corrigan's account:
 
-- **c181** [observation] Assunta Grasso was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:30 PM_
+- **c182** [observation] Assunta Grasso was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:30 PM_
 
 ### From Marion Ellery (a piano teacher)
 
@@ -321,11 +321,11 @@ On Assunta Grasso's account:
 
 On Wilhelm Brauer's account:
 
-- **c188** [observation] Marion Ellery was in the Lobby at 10:30 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM_
+- **c190** [observation] Marion Ellery was in the Lobby at 10:30 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM_
 
 On Edith Winslow's account:
 
-- **c193** [observation] Marion Ellery was on the Street from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
+- **c195** [observation] Marion Ellery was on the Street from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
 
 ### From Maureen Corrigan (a photographer for the rotogravure section)
 
@@ -367,7 +367,7 @@ On Assunta Grasso's account:
 
 On Wilhelm Brauer's account:
 
-- **c189** [observation] Maureen Corrigan was in the Lobby from 10:00 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:00 PM–11:00 PM_
+- **c191** [observation] Maureen Corrigan was in the Lobby from 10:00 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:00 PM–11:00 PM_
 
 ### From Wilhelm Brauer (a longshoreman)
 
@@ -412,16 +412,18 @@ On Rutherford Bidwell's account:
 
 On Marion Ellery's account:
 
-- **c175** [observation] Wilhelm Brauer was in the Lobby from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM–8:30 PM_
+- **c175** [observation] Wilhelm Brauer was in the Lobby at 8:00 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM_
+- **c176** [observation] Wilhelm Brauer was in the Bar at 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:30 PM_
 
 On Maureen Corrigan's account:
 
-- **c179** [observation] Wilhelm Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Maureen Corrigan was not at the Front Desk. — _establishes: Maureen Corrigan not at the Front Desk, 6:30 PM–7:00 PM_
-- **c182** [observation] Wilhelm Brauer was in the Lobby from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM–8:30 PM_
+- **c180** [observation] Wilhelm Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Maureen Corrigan was not at the Front Desk. — _establishes: Maureen Corrigan not at the Front Desk, 6:30 PM–7:00 PM_
+- **c183** [observation] Wilhelm Brauer was in the Lobby at 8:00 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM_
+- **c184** [observation] Wilhelm Brauer was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:30 PM_
 
 On Edith Winslow's account:
 
-- **c194** [observation] Wilhelm Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
+- **c196** [observation] Wilhelm Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
 
 ### From Edith Winslow (the night manager)
 
@@ -471,16 +473,16 @@ On Assunta Grasso's account:
 
 On Marion Ellery's account:
 
-- **c176** [observation] Edith Winslow was in the Bar at 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:30 PM_
+- **c177** [observation] Edith Winslow was in the Bar at 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:30 PM_
 
 On Maureen Corrigan's account:
 
-- **c183** [observation] Edith Winslow was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:30 PM_
-- **c186** [observation] Maureen Corrigan says Edith Winslow was there. Edith Winslow says otherwise: Edith Winslow was in the Kitchen at 8:00 PM, not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM_
+- **c185** [observation] Edith Winslow was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:30 PM_
+- **c188** [observation] Maureen Corrigan says Edith Winslow was there. Edith Winslow says otherwise: Edith Winslow was in the Kitchen at 8:00 PM, not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM_
 
 On Wilhelm Brauer's account:
 
-- **c190** [observation] Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
+- **c192** [observation] Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
 
 ### From Gittel Sirkin (the doorman)
 
@@ -538,24 +540,24 @@ On Assunta Grasso's account:
 
 On Marion Ellery's account:
 
-- **c177** [observation] Gittel Sirkin was in the Lobby from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM–8:30 PM_
+- **c178** [observation] Gittel Sirkin was in the Lobby from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM–8:30 PM_
 
 On Maureen Corrigan's account:
 
-- **c180** [observation] Gittel Sirkin was in the Lobby from 6:30 PM to 7:00 PM and says Maureen Corrigan was not at the Front Desk. — _establishes: Maureen Corrigan not at the Front Desk, 6:30 PM–7:00 PM_
-- **c184** [observation] Gittel Sirkin was in the Lobby from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM–8:30 PM_
+- **c181** [observation] Gittel Sirkin was in the Lobby from 6:30 PM to 7:00 PM and says Maureen Corrigan was not at the Front Desk. — _establishes: Maureen Corrigan not at the Front Desk, 6:30 PM–7:00 PM_
+- **c186** [observation] Gittel Sirkin was in the Lobby from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM–8:30 PM_
 
 On Wilhelm Brauer's account:
 
-- **c191** [observation] Gittel Sirkin was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
+- **c193** [observation] Gittel Sirkin was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
 
 On Edith Winslow's account:
 
-- **c195** [observation] Gittel Sirkin was in the Lobby from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
+- **c197** [observation] Gittel Sirkin was in the Lobby from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
 
 On Maureen Corrigan and Giuseppe Lanza:
 
-- **c204** [overheard] Gittel Sirkin says Giuseppe Lanza said to Maureen Corrigan that a man who testifies sleeps better. — _establishes: Maureen Corrigan had a motive (silence-a-witness)_
+- **c206** [overheard] Gittel Sirkin says Giuseppe Lanza said to Maureen Corrigan that a man who testifies sleeps better. — _establishes: Maureen Corrigan had a motive (silence-a-witness)_
 
 ### From Chandler Thorndike (the bartender)
 
@@ -614,43 +616,43 @@ On Rutherford Bidwell's account:
 
 On Marion Ellery's account:
 
-- **c178** [observation] Chandler Thorndike was in the Bar from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM–8:30 PM_
+- **c179** [observation] Chandler Thorndike was in the Bar from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM–8:30 PM_
 
 On Maureen Corrigan's account:
 
-- **c185** [observation] Chandler Thorndike was in the Bar from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM–8:30 PM_
+- **c187** [observation] Chandler Thorndike was in the Bar from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM–8:30 PM_
 
 On Edith Winslow's account:
 
-- **c196** [observation] Chandler Thorndike was in the Bar from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
+- **c198** [observation] Chandler Thorndike was in the Bar from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
 
 On the radio:
 
-- **c200** [radio] Chandler Thorndike says the bar radio carried a serial about a lost heiress at 7:30 PM, and that the episode ended with the lawyer arrested, not the brother. Anyone in the bar could tell you that. — _establishes: context only_
+- **c202** [radio] Chandler Thorndike says the bar radio carried a serial about a lost heiress at 7:30 PM, and that the episode ended with the lawyer arrested, not the brother. Anyone in the bar could tell you that. — _establishes: context only_
 
 On Assunta Grasso and Giuseppe Lanza:
 
-- **c202** [overheard] Chandler Thorndike says Giuseppe Lanza told Assunta Grasso the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Assunta Grasso had a motive (inheritance)_
+- **c204** [overheard] Chandler Thorndike says Giuseppe Lanza told Assunta Grasso the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Assunta Grasso had a motive (inheritance)_
 
 ### From the Front Desk
 
-- **c201** [document] Found in the Front Desk: A draft codicil in Giuseppe Lanza's hand striking Assunta Grasso out of the will, dated last Tuesday and unsigned. — _establishes: Assunta Grasso had a motive (inheritance)_
+- **c203** [document] Found in the Front Desk: A draft codicil in Giuseppe Lanza's hand striking Assunta Grasso out of the will, dated last Tuesday and unsigned. — _establishes: Assunta Grasso had a motive (inheritance)_
 
 ### From the Kitchen
 
-- **c198** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
+- **c200** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
 
 ### From the Service Stairs
 
-- **c197** [morgue] Giuseppe Lanza was found on the Service Stairs. The coroner puts death between 8:00 PM and 8:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 8:00 PM and 8:30 PM_
+- **c199** [morgue] Giuseppe Lanza was found on the Service Stairs. The coroner puts death between 8:00 PM and 8:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 8:00 PM and 8:30 PM_
 
 ### From the Victim's Suite
 
-- **c203** [document] Found in the Victim's Suite: A subpoena naming Giuseppe Lanza as a witness before the grand jury, with Maureen Corrigan's name written in the margin. — _establishes: Maureen Corrigan had a motive (silence-a-witness)_
+- **c205** [document] Found in the Victim's Suite: A subpoena naming Giuseppe Lanza as a witness before the grand jury, with Maureen Corrigan's name written in the margin. — _establishes: Maureen Corrigan had a motive (silence-a-witness)_
 
 ### From the Street
 
-- **c199** [environment] Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c201** [environment] Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -687,7 +689,7 @@ On Assunta Grasso and Giuseppe Lanza:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 8:30 PM. _(c197, c078, c113, c136)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 8:30 PM. _(c199, c078, c113, c136)_
 
 **Clearing the innocent.**
 
@@ -697,11 +699,11 @@ On Assunta Grasso and Giuseppe Lanza:
 - Wilhelm Brauer was not on the Service Stairs at 8:30 PM, on two independent sources. _(c037, c110, c132, c159)_
 - Edith Winslow was not on the Service Stairs at 8:30 PM, on two independent sources. _(c039, c093, c133, c161)_
 
-**Naming the killer.** Maureen Corrigan claims the Lobby at 8:30 PM. Two independent sources put that out of the question, and one ties Maureen Corrigan to strangling with a cord. _(c181, c182, c183, c184, c185, c011, c012, c029, c030, c151, c152)_
+**Naming the killer.** Maureen Corrigan claims the Lobby at 8:30 PM. Two independent sources put that out of the question, and one ties Maureen Corrigan to strangling with a cord. _(c182, c184, c185, c186, c187, c011, c012, c029, c030, c151, c152)_
 
-**Method.** Strangling with a cord, on two physical sources. _(c197, c198)_
+**Method.** Strangling with a cord, on two physical sources. _(c199, c200)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c203, c204)_
+**Motive.** silence-a-witness, on two independent sources. _(c205, c206)_
 
 ## 8. Red herrings
 

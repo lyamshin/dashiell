@@ -274,7 +274,7 @@ On Rutherford Stannard's account:
 
 On Patrick Sweeney's account:
 
-- **c147** [observation] Isidore Lefkowitz was in the Lobby at 10:30 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM_
+- **c148** [observation] Isidore Lefkowitz was in the Lobby at 10:30 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM_
 
 ### From Concetta Alfano (a tailor)
 
@@ -316,7 +316,7 @@ On Isidore Lefkowitz's account:
 
 On Patrick Sweeney's account:
 
-- **c148** [observation] Concetta Alfano was on the Street from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
+- **c149** [observation] Concetta Alfano was on the Street from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
 
 ### From Booker Prentiss (a bookkeeper)
 
@@ -361,7 +361,8 @@ On Concetta Alfano's account:
 
 On Rutherford Stannard's account:
 
-- **c143** [observation] Booker Prentiss was in the Bar from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
+- **c143** [observation] Booker Prentiss was in the Bar at 9:00 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM_
+- **c144** [observation] Booker Prentiss was in the Kitchen at 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:30 PM_
 
 ### From Rutherford Stannard (a travelling salesman in patent medicines)
 
@@ -435,7 +436,7 @@ On Concetta Alfano's account:
 
 On Rutherford Stannard's account:
 
-- **c144** [observation] Patrick Sweeney was in the Lobby from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
+- **c145** [observation] Patrick Sweeney was in the Lobby from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
 
 ### From Vincenzo Vitale (the doorman)
 
@@ -499,15 +500,15 @@ On Booker Prentiss's account:
 
 On Rutherford Stannard's account:
 
-- **c145** [observation] Vincenzo Vitale was in the Lobby from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
+- **c146** [observation] Vincenzo Vitale was in the Lobby from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
 
 On Patrick Sweeney's account:
 
-- **c149** [observation] Vincenzo Vitale was in the Lobby from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
+- **c150** [observation] Vincenzo Vitale was in the Lobby from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
 
 On Rutherford Stannard and Meyer Rosenbaum:
 
-- **c165** [overheard] Vincenzo Vitale says Meyer Rosenbaum told Rutherford Stannard the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Rutherford Stannard had a motive (inheritance)_
+- **c166** [overheard] Vincenzo Vitale says Meyer Rosenbaum told Rutherford Stannard the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Rutherford Stannard had a motive (inheritance)_
 
 ### From Eunice Dandridge (the bartender)
 
@@ -566,55 +567,55 @@ On Concetta Alfano's account:
 On Booker Prentiss's account:
 
 - **c140** [observation] Eunice Dandridge was in the Bar from 10:30 PM to 11:00 PM and says Booker Prentiss was not in the Bar. — _establishes: Booker Prentiss not in the Bar, 10:30 PM–11:00 PM_
-- **c158** [radio] Booker Prentiss says Booker Prentiss was in the bar at 11:00 PM but cannot say how the broadcast ended. — _establishes: Booker Prentiss not in the Bar, 11:00 PM_
+- **c159** [radio] Booker Prentiss says Booker Prentiss was in the bar at 11:00 PM but cannot say how the broadcast ended. — _establishes: Booker Prentiss not in the Bar, 11:00 PM_
 
 On Rutherford Stannard's account:
 
-- **c146** [observation] Eunice Dandridge was in the Bar from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
+- **c147** [observation] Eunice Dandridge was in the Bar from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
 
 On Patrick Sweeney's account:
 
-- **c150** [observation] Eunice Dandridge was in the Bar from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
+- **c151** [observation] Eunice Dandridge was in the Bar from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
 
 On the radio:
 
-- **c157** [radio] Eunice Dandridge says the bar radio carried a six-day bicycle race from the Velodrome at 11:00 PM, and that a rider fell at the bank and the lead changed hands. Anyone in the bar could tell you that. — _establishes: context only_
+- **c158** [radio] Eunice Dandridge says the bar radio carried a six-day bicycle race from the Velodrome at 11:00 PM, and that a rider fell at the bank and the lead changed hands. Anyone in the bar could tell you that. — _establishes: context only_
 
 On Elsa Vogel and Meyer Rosenbaum:
 
-- **c161** [overheard] Eunice Dandridge says Elsa Vogel told Meyer Rosenbaum to keep away, loud enough to turn heads. — _establishes: Elsa Vogel had a motive (jealousy)_
+- **c162** [overheard] Eunice Dandridge says Elsa Vogel told Meyer Rosenbaum to keep away, loud enough to turn heads. — _establishes: Elsa Vogel had a motive (jealousy)_
 
 On Concetta Alfano and Meyer Rosenbaum:
 
-- **c163** [overheard] Eunice Dandridge says Meyer Rosenbaum said to Concetta Alfano that a man who testifies sleeps better. — _establishes: Concetta Alfano had a motive (silence-a-witness)_
+- **c164** [overheard] Eunice Dandridge says Meyer Rosenbaum said to Concetta Alfano that a man who testifies sleeps better. — _establishes: Concetta Alfano had a motive (silence-a-witness)_
 
 ### From the Lobby
 
-- **c154** [environment] The passenger elevator was out of order from 8:00 PM to 8:30 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c155** [environment] The passenger elevator was out of order from 8:00 PM to 8:30 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c152** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c159** [document] Rutherford Stannard's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
-- **c160** [document] Found in the Front Desk: Three letters in Meyer Rosenbaum's hand to a woman Elsa Vogel is engaged to, kept in the drawer, the last one opened. — _establishes: Elsa Vogel had a motive (jealousy)_
+- **c153** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
+- **c160** [document] Rutherford Stannard's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
+- **c161** [document] Found in the Front Desk: Three letters in Meyer Rosenbaum's hand to a woman Elsa Vogel is engaged to, kept in the drawer, the last one opened. — _establishes: Elsa Vogel had a motive (jealousy)_
 
 ### From the Service Stairs
 
-- **c155** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Meyer Rosenbaum's sleeve; Meyer Rosenbaum was on the stairs at 8:30 PM. — _establishes: Meyer Rosenbaum on the Service Stairs, 8:30 PM_
-- **c156** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Patrick Sweeney's sleeve; Patrick Sweeney was on the stairs at 8:00 PM. — _establishes: Patrick Sweeney on the Service Stairs, 8:00 PM_
+- **c156** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Meyer Rosenbaum's sleeve; Meyer Rosenbaum was on the stairs at 8:30 PM. — _establishes: Meyer Rosenbaum on the Service Stairs, 8:30 PM_
+- **c157** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Patrick Sweeney's sleeve; Patrick Sweeney was on the stairs at 8:00 PM. — _establishes: Patrick Sweeney on the Service Stairs, 8:00 PM_
 
 ### From the Victim's Suite
 
-- **c162** [document] Found in the Victim's Suite: A subpoena naming Meyer Rosenbaum as a witness before the grand jury, with Concetta Alfano's name written in the margin. — _establishes: Concetta Alfano had a motive (silence-a-witness)_
-- **c164** [document] Found in the Victim's Suite: A draft codicil in Meyer Rosenbaum's hand striking Rutherford Stannard out of the will, dated last Tuesday and unsigned. — _establishes: Rutherford Stannard had a motive (inheritance)_
+- **c163** [document] Found in the Victim's Suite: A subpoena naming Meyer Rosenbaum as a witness before the grand jury, with Concetta Alfano's name written in the margin. — _establishes: Concetta Alfano had a motive (silence-a-witness)_
+- **c165** [document] Found in the Victim's Suite: A draft codicil in Meyer Rosenbaum's hand striking Rutherford Stannard out of the will, dated last Tuesday and unsigned. — _establishes: Rutherford Stannard had a motive (inheritance)_
 
 ### From the Roof Garden
 
-- **c151** [morgue] Meyer Rosenbaum was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:00 PM and 9:30 PM_
+- **c152** [morgue] Meyer Rosenbaum was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:00 PM and 9:30 PM_
 
 ### From the Street
 
-- **c153** [environment] Rain began at 7:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c154** [environment] Rain began at 7:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -638,7 +639,7 @@ On Concetta Alfano and Meyer Rosenbaum:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c151, c013, c044, c071, c083, c105)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c152, c013, c044, c071, c083, c105)_
 
 **Clearing the innocent.**
 
@@ -648,11 +649,11 @@ On Concetta Alfano and Meyer Rosenbaum:
 - Booker Prentiss was not in the Roof Garden at 9:30 PM, on two independent sources. _(c024, c119)_
 - Patrick Sweeney was not in the Roof Garden at 9:30 PM, on two independent sources. _(c028, c101, c124)_
 
-**Naming the killer.** Rutherford Stannard claims the Bar at 9:30 PM. Two independent sources put that out of the question, and one ties Rutherford Stannard to a gunshot. _(c142, c143, c144, c145, c146, c038, c050, c079, c096, c120)_
+**Naming the killer.** Rutherford Stannard claims the Bar at 9:30 PM. Two independent sources put that out of the question, and one ties Rutherford Stannard to a gunshot. _(c142, c144, c145, c146, c147, c038, c050, c079, c096, c120)_
 
-**Method.** A gunshot, on two physical sources. _(c151, c152)_
+**Method.** A gunshot, on two physical sources. _(c152, c153)_
 
-**Motive.** inheritance, on two independent sources. _(c164, c165)_
+**Motive.** inheritance, on two independent sources. _(c165, c166)_
 
 ## 8. Red herrings
 

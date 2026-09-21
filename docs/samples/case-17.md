@@ -215,19 +215,21 @@ On Thaddeus Havemeyer:
 
 On Dennis Brennan's account:
 
-- **c157** [observation] Filomena Vitale was on the Street at 7:00 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:00 PM_
+- **c158** [observation] Filomena Vitale was on the Street at 7:00 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:00 PM_
 
 On Constance Stannard's account:
 
-- **c163** [observation] Filomena Vitale was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
+- **c165** [observation] Filomena Vitale was in the Lobby at 10:00 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM_
+- **c166** [observation] Filomena Vitale was on the Street at 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:30 PM_
 
 On Thaddeus Havemeyer's account:
 
-- **c169** [observation] Filomena Vitale was in the Lobby from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM–10:30 PM_
+- **c173** [observation] Filomena Vitale was in the Lobby at 10:00 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM_
+- **c174** [observation] Filomena Vitale was on the Street at 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:30 PM_
 
 On the rain:
 
-- **c179** [environment] Filomena Vitale says Constance Stannard came in off the street at 9:30 PM with a soaked coat, so Constance Stannard was outside at 9:00 PM. — _establishes: Constance Stannard on the Street, 9:00 PM_
+- **c185** [environment] Filomena Vitale says Constance Stannard came in off the street at 9:30 PM with a soaked coat, so Constance Stannard was outside at 9:00 PM. — _establishes: Constance Stannard on the Street, 9:00 PM_
 
 ### From Kathleen Sweeney (the night manager)
 
@@ -273,23 +275,24 @@ On Filomena Vitale's account:
 
 On Adelaide Lathrop's account:
 
-- **c152** [observation] Kathleen Sweeney was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
+- **c153** [observation] Kathleen Sweeney was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
 
 On Dennis Brennan's account:
 
-- **c158** [observation] Kathleen Sweeney was in the Bar from 7:00 PM to 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:00 PM–7:30 PM_
+- **c159** [observation] Kathleen Sweeney was in the Bar at 7:00 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:00 PM_
+- **c160** [observation] Kathleen Sweeney was in the Lobby at 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:30 PM_
 
 On Constance Stannard's account:
 
-- **c164** [observation] Kathleen Sweeney was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
+- **c167** [observation] Kathleen Sweeney was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
 
 On Thaddeus Havemeyer's account:
 
-- **c170** [observation] Kathleen Sweeney was in the Bar from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM–10:30 PM_
+- **c175** [observation] Kathleen Sweeney was in the Bar from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM–10:30 PM_
 
 On the rain:
 
-- **c178** [environment] Kathleen Sweeney says Filomena Vitale came in off the street at 9:30 PM with a soaked coat, so Filomena Vitale was outside at 9:00 PM. — _establishes: Filomena Vitale on the Street, 9:00 PM_
+- **c184** [environment] Kathleen Sweeney says Filomena Vitale came in off the street at 9:30 PM with a soaked coat, so Filomena Vitale was outside at 9:00 PM. — _establishes: Filomena Vitale on the Street, 9:00 PM_
 
 ### From Adelaide Lathrop (a chambermaid)
 
@@ -329,11 +332,11 @@ On Thaddeus Havemeyer:
 
 On Constance Stannard's account:
 
-- **c165** [observation] Adelaide Lathrop was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
+- **c168** [observation] Adelaide Lathrop was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
 
 On Thaddeus Havemeyer's account:
 
-- **c171** [observation] Adelaide Lathrop was in the Lobby from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM–10:30 PM_
+- **c176** [observation] Adelaide Lathrop was in the Lobby from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM–10:30 PM_
 
 ### From Dennis Brennan (a bookmaker in a small way)
 
@@ -383,11 +386,11 @@ On Filomena Vitale's account:
 
 On Constance Stannard's account:
 
-- **c166** [observation] Dennis Brennan was in the Lobby at 10:00 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM_
+- **c169** [observation] Dennis Brennan was in the Lobby at 10:00 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM_
 
 On Thaddeus Havemeyer's account:
 
-- **c172** [observation] Dennis Brennan was in the Lobby at 10:00 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM_
+- **c177** [observation] Dennis Brennan was in the Lobby at 10:00 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM_
 
 ### From Constance Stannard (a chorus girl between engagements)
 
@@ -427,15 +430,16 @@ On Thaddeus Havemeyer:
 
 On Filomena Vitale's account:
 
-- **c148** [observation] Constance Stannard was in the Lobby from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 7:30 PM–8:00 PM_
+- **c148** [observation] Constance Stannard was in the Lobby at 7:30 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 7:30 PM_
+- **c149** [observation] Constance Stannard was on the Street at 8:00 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 8:00 PM_
 
 On Adelaide Lathrop's account:
 
-- **c153** [observation] Constance Stannard was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
+- **c154** [observation] Constance Stannard was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
 
 On Dennis Brennan's account:
 
-- **c159** [observation] Constance Stannard was in the Lobby at 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:30 PM_
+- **c161** [observation] Constance Stannard was in the Lobby at 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:30 PM_
 
 ### From Thaddeus Havemeyer (a photographer for the rotogravure section)
 
@@ -475,15 +479,15 @@ On Constance Stannard:
 
 On Filomena Vitale's account:
 
-- **c149** [observation] Thaddeus Havemeyer was in the Bar from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 7:30 PM–8:00 PM_
+- **c150** [observation] Thaddeus Havemeyer was in the Bar from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 7:30 PM–8:00 PM_
 
 On Adelaide Lathrop's account:
 
-- **c154** [observation] Thaddeus Havemeyer was in the Bar at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
+- **c155** [observation] Thaddeus Havemeyer was in the Bar at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
 
 On Dennis Brennan's account:
 
-- **c160** [observation] Thaddeus Havemeyer was in the Bar at 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:30 PM_
+- **c162** [observation] Thaddeus Havemeyer was in the Bar at 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:30 PM_
 
 ### From Morris Zeldin (the doorman)
 
@@ -531,27 +535,29 @@ On Thaddeus Havemeyer:
 
 On Filomena Vitale's account:
 
-- **c150** [observation] Morris Zeldin was in the Lobby from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 7:30 PM–8:00 PM_
+- **c151** [observation] Morris Zeldin was in the Lobby from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 7:30 PM–8:00 PM_
 
 On Adelaide Lathrop's account:
 
-- **c155** [observation] Morris Zeldin was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
+- **c156** [observation] Morris Zeldin was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
 
 On Dennis Brennan's account:
 
-- **c161** [observation] Morris Zeldin was in the Lobby from 7:00 PM to 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:00 PM–7:30 PM_
+- **c163** [observation] Morris Zeldin was in the Lobby from 7:00 PM to 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:00 PM–7:30 PM_
 
 On Constance Stannard's account:
 
-- **c167** [observation] Morris Zeldin was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
+- **c170** [observation] Morris Zeldin was in the Lobby at 10:00 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM_
+- **c171** [observation] Morris Zeldin was on the Street at 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:30 PM_
 
 On Thaddeus Havemeyer's account:
 
-- **c173** [observation] Morris Zeldin was in the Lobby from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM–10:30 PM_
+- **c178** [observation] Morris Zeldin was in the Lobby at 10:00 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM_
+- **c179** [observation] Morris Zeldin was on the Street at 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:30 PM_
 
 On Thaddeus Havemeyer and Concetta Marchetti:
 
-- **c186** [overheard] Morris Zeldin says Concetta Marchetti told Thaddeus Havemeyer the lease would go to somebody else at the quarter day. — _establishes: Thaddeus Havemeyer had a motive (property)_
+- **c192** [overheard] Morris Zeldin says Concetta Marchetti told Thaddeus Havemeyer the lease would go to somebody else at the quarter day. — _establishes: Thaddeus Havemeyer had a motive (property)_
 
 ### From Lotte Obermann (the bartender)
 
@@ -597,50 +603,50 @@ On Thaddeus Havemeyer:
 
 On Filomena Vitale's account:
 
-- **c151** [observation] Lotte Obermann was in the Bar from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 7:30 PM–8:00 PM_
+- **c152** [observation] Lotte Obermann was in the Bar from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby. — _establishes: Filomena Vitale not in the Lobby, 7:30 PM–8:00 PM_
 
 On Adelaide Lathrop's account:
 
-- **c156** [observation] Lotte Obermann was in the Bar at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
+- **c157** [observation] Lotte Obermann was in the Bar at 7:30 PM and says Adelaide Lathrop was not in the Bar. — _establishes: Adelaide Lathrop not in the Bar, 7:30 PM_
 
 On Dennis Brennan's account:
 
-- **c162** [observation] Lotte Obermann was in the Bar from 7:00 PM to 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:00 PM–7:30 PM_
+- **c164** [observation] Lotte Obermann was in the Bar from 7:00 PM to 7:30 PM and says Dennis Brennan was not in the Lobby. — _establishes: Dennis Brennan not in the Lobby, 7:00 PM–7:30 PM_
 
 On Constance Stannard's account:
 
-- **c168** [observation] Lotte Obermann was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
+- **c172** [observation] Lotte Obermann was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
 
 On Thaddeus Havemeyer's account:
 
-- **c174** [observation] Lotte Obermann was in the Bar from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM–10:30 PM_
+- **c180** [observation] Lotte Obermann was in the Bar from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby. — _establishes: Thaddeus Havemeyer not in the Lobby, 10:00 PM–10:30 PM_
 
 On Adelaide Lathrop and Concetta Marchetti:
 
-- **c182** [overheard] Lotte Obermann says Adelaide Lathrop told Concetta Marchetti to keep away, loud enough to turn heads. — _establishes: Adelaide Lathrop had a motive (jealousy)_
+- **c188** [overheard] Lotte Obermann says Adelaide Lathrop told Concetta Marchetti to keep away, loud enough to turn heads. — _establishes: Adelaide Lathrop had a motive (jealousy)_
 
 On Dennis Brennan and Concetta Marchetti:
 
-- **c184** [overheard] Lotte Obermann says Concetta Marchetti said to Dennis Brennan that a man who testifies sleeps better. — _establishes: Dennis Brennan had a motive (silence-a-witness)_
+- **c190** [overheard] Lotte Obermann says Concetta Marchetti said to Dennis Brennan that a man who testifies sleeps better. — _establishes: Dennis Brennan had a motive (silence-a-witness)_
 
 ### From the Front Desk
 
-- **c180** [document] Kathleen Sweeney's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
-- **c183** [document] Found in the Front Desk: A subpoena naming Concetta Marchetti as a witness before the grand jury, with Dennis Brennan's name written in the margin. — _establishes: Dennis Brennan had a motive (silence-a-witness)_
-- **c185** [document] Found in the Front Desk: A lease assignment made out in Thaddeus Havemeyer's name, waiting only on Concetta Marchetti's signature. — _establishes: Thaddeus Havemeyer had a motive (property)_
+- **c186** [document] Kathleen Sweeney's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
+- **c189** [document] Found in the Front Desk: A subpoena naming Concetta Marchetti as a witness before the grand jury, with Dennis Brennan's name written in the margin. — _establishes: Dennis Brennan had a motive (silence-a-witness)_
+- **c191** [document] Found in the Front Desk: A lease assignment made out in Thaddeus Havemeyer's name, waiting only on Concetta Marchetti's signature. — _establishes: Thaddeus Havemeyer had a motive (property)_
 
 ### From the Kitchen
 
-- **c176** [physical] A cut-glass decanter is missing from the Kitchen. The stopper has been wiped and the dregs test positive for chloral. — _establishes: an object gone from the Kitchen_
+- **c182** [physical] A cut-glass decanter is missing from the Kitchen. The stopper has been wiped and the dregs test positive for chloral. — _establishes: an object gone from the Kitchen_
 
 ### From the Victim's Suite
 
-- **c175** [morgue] Concetta Marchetti was found in the Victim's Suite. The coroner puts death between 7:00 PM and 7:30 PM. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle. — _establishes: death between 7:00 PM and 7:30 PM_
-- **c181** [document] Found in the Victim's Suite: Three letters in Concetta Marchetti's hand to a woman Adelaide Lathrop is engaged to, kept in the drawer, the last one opened. — _establishes: Adelaide Lathrop had a motive (jealousy)_
+- **c181** [morgue] Concetta Marchetti was found in the Victim's Suite. The coroner puts death between 7:00 PM and 7:30 PM. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle. — _establishes: death between 7:00 PM and 7:30 PM_
+- **c187** [document] Found in the Victim's Suite: Three letters in Concetta Marchetti's hand to a woman Adelaide Lathrop is engaged to, kept in the drawer, the last one opened. — _establishes: Adelaide Lathrop had a motive (jealousy)_
 
 ### From the Street
 
-- **c177** [environment] Rain began at 8:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c183** [environment] Rain began at 8:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -664,7 +670,7 @@ On Dennis Brennan and Concetta Marchetti:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 7:30 PM. _(c175, c001, c012, c106, c127)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 7:30 PM. _(c181, c001, c012, c106, c127)_
 
 **Clearing the innocent.**
 
@@ -674,11 +680,11 @@ On Dennis Brennan and Concetta Marchetti:
 - Constance Stannard was not in the Victim's Suite at 7:30 PM, on two independent sources. _(c023, c102, c121, c140)_
 - Thaddeus Havemeyer was not in the Victim's Suite at 7:30 PM, on two independent sources. _(c027, c085, c125, c143)_
 
-**Naming the killer.** Adelaide Lathrop claims the Bar at 7:30 PM. Two independent sources put that out of the question, and one ties Adelaide Lathrop to poison in a drink. _(c152, c153, c154, c155, c156, c016, c059, c077, c096, c134)_
+**Naming the killer.** Adelaide Lathrop claims the Bar at 7:30 PM. Two independent sources put that out of the question, and one ties Adelaide Lathrop to poison in a drink. _(c153, c154, c155, c156, c157, c016, c059, c077, c096, c134)_
 
-**Method.** Poison in a drink, on two physical sources. _(c175, c176)_
+**Method.** Poison in a drink, on two physical sources. _(c181, c182)_
 
-**Motive.** jealousy, on two independent sources. _(c181, c182)_
+**Motive.** jealousy, on two independent sources. _(c187, c188)_
 
 ## 8. Red herrings
 

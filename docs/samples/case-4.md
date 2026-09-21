@@ -218,12 +218,12 @@ On Gretchen Steinbach:
 
 On Maureen Callahan's account:
 
-- **c150** [observation] Wilhelm Hochstetter was in the Kitchen at 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 9:00 PM_
-- **c155** [observation] Maureen Callahan says Wilhelm Hochstetter was there. Wilhelm Hochstetter says otherwise: Wilhelm Hochstetter was on the Service Stairs at 8:30 PM, not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM_
+- **c151** [observation] Wilhelm Hochstetter was in the Kitchen at 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 9:00 PM_
+- **c157** [observation] Maureen Callahan says Wilhelm Hochstetter was there. Wilhelm Hochstetter says otherwise: Wilhelm Hochstetter was on the Service Stairs at 8:30 PM, not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM_
 
 On Gretchen Steinbach's account:
 
-- **c161** [observation] Wilhelm Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
+- **c163** [observation] Wilhelm Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
 
 ### From Lyman Ellery (a travelling salesman in patent medicines)
 
@@ -269,19 +269,19 @@ On Wilhelm Hochstetter's account:
 
 On Louis Hurwitz's account:
 
-- **c147** [observation] Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
+- **c148** [observation] Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
 
 On Bernard Feldman's account:
 
-- **c156** [observation] Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
+- **c158** [observation] Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
 
 On Gretchen Steinbach's account:
 
-- **c162** [observation] Lyman Ellery was at the Front Desk from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
+- **c164** [observation] Lyman Ellery was at the Front Desk from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
 
 On Maureen Callahan and Salvatore Alfano:
 
-- **c175** [overheard] Lyman Ellery says Salvatore Alfano told Maureen Callahan the lease would go to somebody else at the quarter day. — _establishes: Maureen Callahan had a motive (property)_
+- **c177** [overheard] Lyman Ellery says Salvatore Alfano told Maureen Callahan the lease would go to somebody else at the quarter day. — _establishes: Maureen Callahan had a motive (property)_
 
 ### From Louis Hurwitz (a private nurse)
 
@@ -318,7 +318,7 @@ On Lyman Ellery's account:
 
 On Maureen Callahan's account:
 
-- **c151** [observation] Louis Hurwitz was in the Bar from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM–9:00 PM_
+- **c152** [observation] Louis Hurwitz was in the Bar from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM–9:00 PM_
 
 ### From Maureen Callahan (a bookmaker in a small way)
 
@@ -359,11 +359,11 @@ On Gretchen Steinbach:
 
 On Bernard Feldman's account:
 
-- **c157** [observation] Maureen Callahan was in the Bar at 7:30 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM_
+- **c159** [observation] Maureen Callahan was in the Bar at 7:30 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM_
 
 On Gretchen Steinbach's account:
 
-- **c163** [observation] Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
+- **c165** [observation] Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
 
 ### From Bernard Feldman (a longshoreman)
 
@@ -404,7 +404,7 @@ On Lyman Ellery's account:
 
 On Gretchen Steinbach's account:
 
-- **c164** [observation] Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
+- **c166** [observation] Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
 
 ### From Gretchen Steinbach (a private secretary)
 
@@ -450,15 +450,15 @@ On Lyman Ellery's account:
 
 On Louis Hurwitz's account:
 
-- **c148** [observation] Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
+- **c149** [observation] Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
 
 On Maureen Callahan's account:
 
-- **c152** [observation] Gretchen Steinbach was in the Lobby at 8:30 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM_
+- **c153** [observation] Gretchen Steinbach was in the Lobby at 8:30 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM_
 
 On Bernard Feldman's account:
 
-- **c158** [observation] Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
+- **c160** [observation] Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
 
 ### From Morris Rosenbaum (the doorman)
 
@@ -516,19 +516,19 @@ On Lyman Ellery's account:
 
 On Louis Hurwitz's account:
 
-- **c149** [observation] Morris Rosenbaum was in the Lobby from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
+- **c150** [observation] Morris Rosenbaum was in the Lobby from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
 
 On Maureen Callahan's account:
 
-- **c153** [observation] Morris Rosenbaum was in the Lobby from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM–9:00 PM_
+- **c154** [observation] Morris Rosenbaum was in the Lobby from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM–9:00 PM_
 
 On Bernard Feldman's account:
 
-- **c159** [observation] Morris Rosenbaum was in the Lobby from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
+- **c161** [observation] Morris Rosenbaum was in the Lobby from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
 
 On Gretchen Steinbach's account:
 
-- **c165** [observation] Morris Rosenbaum was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
+- **c167** [observation] Morris Rosenbaum was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
 
 ### From Domenica Lanza (the bartender)
 
@@ -579,45 +579,47 @@ On Gretchen Steinbach:
 
 On Lyman Ellery's account:
 
-- **c146** [observation] Domenica Lanza was in the Bar from 8:30 PM to 9:00 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 8:30 PM–9:00 PM_
+- **c146** [observation] Domenica Lanza was in the Bar at 8:30 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 8:30 PM_
+- **c147** [observation] Domenica Lanza was in the Lobby at 9:00 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 9:00 PM_
 
 On Maureen Callahan's account:
 
-- **c154** [observation] Domenica Lanza was in the Bar from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM–9:00 PM_
+- **c155** [observation] Domenica Lanza was in the Bar at 8:30 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM_
+- **c156** [observation] Domenica Lanza was in the Lobby at 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 9:00 PM_
 
 On Bernard Feldman's account:
 
-- **c160** [observation] Domenica Lanza was in the Bar from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
+- **c162** [observation] Domenica Lanza was in the Bar from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
 
 On the radio:
 
-- **c171** [radio] Domenica Lanza says the bar radio carried a dance band from the Roseland at 10:30 PM, and that the band broke off twice and the announcer filled with a soap advertisement. Anyone in the bar could tell you that. — _establishes: context only_
+- **c173** [radio] Domenica Lanza says the bar radio carried a dance band from the Roseland at 10:30 PM, and that the band broke off twice and the announcer filled with a soap advertisement. Anyone in the bar could tell you that. — _establishes: context only_
 
 On Wilhelm Hochstetter and Salvatore Alfano:
 
-- **c173** [overheard] Domenica Lanza says Salvatore Alfano told Wilhelm Hochstetter the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Wilhelm Hochstetter had a motive (inheritance)_
+- **c175** [overheard] Domenica Lanza says Salvatore Alfano told Wilhelm Hochstetter the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Wilhelm Hochstetter had a motive (inheritance)_
 
 ### From the Lobby
 
-- **c168** [environment] The passenger elevator was out of order from 10:00 PM to 11:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c170** [environment] The passenger elevator was out of order from 10:00 PM to 11:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c167** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
+- **c169** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
 
 ### From the Service Stairs
 
-- **c169** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Wilhelm Hochstetter's sleeve; Wilhelm Hochstetter was on the stairs at 11:00 PM. — _establishes: Wilhelm Hochstetter on the Service Stairs, 11:00 PM_
-- **c170** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Gretchen Steinbach's sleeve; Gretchen Steinbach was on the stairs at 11:00 PM. — _establishes: Gretchen Steinbach on the Service Stairs, 11:00 PM_
+- **c171** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Wilhelm Hochstetter's sleeve; Wilhelm Hochstetter was on the stairs at 11:00 PM. — _establishes: Wilhelm Hochstetter on the Service Stairs, 11:00 PM_
+- **c172** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Gretchen Steinbach's sleeve; Gretchen Steinbach was on the stairs at 11:00 PM. — _establishes: Gretchen Steinbach on the Service Stairs, 11:00 PM_
 
 ### From the Victim's Suite
 
-- **c172** [document] Found in the Victim's Suite: A draft codicil in Salvatore Alfano's hand striking Wilhelm Hochstetter out of the will, dated last Tuesday and unsigned. — _establishes: Wilhelm Hochstetter had a motive (inheritance)_
-- **c174** [document] Found in the Victim's Suite: A lease assignment made out in Maureen Callahan's name, waiting only on Salvatore Alfano's signature. — _establishes: Maureen Callahan had a motive (property)_
+- **c174** [document] Found in the Victim's Suite: A draft codicil in Salvatore Alfano's hand striking Wilhelm Hochstetter out of the will, dated last Tuesday and unsigned. — _establishes: Wilhelm Hochstetter had a motive (inheritance)_
+- **c176** [document] Found in the Victim's Suite: A lease assignment made out in Maureen Callahan's name, waiting only on Salvatore Alfano's signature. — _establishes: Maureen Callahan had a motive (property)_
 
 ### From the Roof Garden
 
-- **c166** [morgue] Salvatore Alfano was found in the Roof Garden. The coroner puts death between 7:00 PM and 7:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 7:00 PM and 7:30 PM_
+- **c168** [morgue] Salvatore Alfano was found in the Roof Garden. The coroner puts death between 7:00 PM and 7:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 7:00 PM and 7:30 PM_
 
 ### Withheld — the player cannot get these
 
@@ -639,7 +641,7 @@ On Wilhelm Hochstetter and Salvatore Alfano:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 7:30 PM. _(c166, c001, c015, c045, c062, c075, c093, c116)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 7:30 PM. _(c168, c001, c015, c045, c062, c075, c093, c116)_
 
 **Clearing the innocent.**
 
@@ -651,9 +653,9 @@ On Wilhelm Hochstetter and Salvatore Alfano:
 
 **Naming the killer.** Wilhelm Hochstetter claims the Street at 7:30 PM. Two independent sources put that out of the question, and one ties Wilhelm Hochstetter to a push from the roof garden. _(c140, c141, c016, c046, c063, c094)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c166, c167)_
+**Method.** A push from the roof garden, on two physical sources. _(c168, c169)_
 
-**Motive.** inheritance, on two independent sources. _(c172, c173)_
+**Motive.** inheritance, on two independent sources. _(c174, c175)_
 
 ## 8. Red herrings
 

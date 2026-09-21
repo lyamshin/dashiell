@@ -6824,7 +6824,19 @@
           "personId": "p-s2",
           "location": "lobby",
           "tick": 5
-        },
+        }
+      ],
+      "text": "Domenica Lanza was in the Bar at 8:30 PM and says Lyman Ellery was not in the Lobby."
+    },
+    {
+      "id": "c147",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Lyman Ellery's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s2",
@@ -6832,10 +6844,10 @@
           "tick": 6
         }
       ],
-      "text": "Domenica Lanza was in the Bar from 8:30 PM to 9:00 PM and says Lyman Ellery was not in the Lobby."
+      "text": "Domenica Lanza was in the Lobby at 9:00 PM and says Lyman Ellery was not in the Lobby."
     },
     {
-      "id": "c147",
+      "id": "c148",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6859,7 +6871,7 @@
       "text": "Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk."
     },
     {
-      "id": "c148",
+      "id": "c149",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6883,7 +6895,7 @@
       "text": "Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk."
     },
     {
-      "id": "c149",
+      "id": "c150",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6907,7 +6919,7 @@
       "text": "Morris Rosenbaum was in the Lobby from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk."
     },
     {
-      "id": "c150",
+      "id": "c151",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6925,7 +6937,7 @@
       "text": "Wilhelm Hochstetter was in the Kitchen at 9:00 PM and says Maureen Callahan was not in the Bar."
     },
     {
-      "id": "c151",
+      "id": "c152",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6949,7 +6961,7 @@
       "text": "Louis Hurwitz was in the Bar from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar."
     },
     {
-      "id": "c152",
+      "id": "c153",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6967,7 +6979,7 @@
       "text": "Gretchen Steinbach was in the Lobby at 8:30 PM and says Maureen Callahan was not in the Bar."
     },
     {
-      "id": "c153",
+      "id": "c154",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6991,7 +7003,7 @@
       "text": "Morris Rosenbaum was in the Lobby from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar."
     },
     {
-      "id": "c154",
+      "id": "c155",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7004,7 +7016,19 @@
           "personId": "p-s4",
           "location": "bar",
           "tick": 5
-        },
+        }
+      ],
+      "text": "Domenica Lanza was in the Bar at 8:30 PM and says Maureen Callahan was not in the Bar."
+    },
+    {
+      "id": "c156",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Maureen Callahan's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -7012,10 +7036,10 @@
           "tick": 6
         }
       ],
-      "text": "Domenica Lanza was in the Bar from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar."
+      "text": "Domenica Lanza was in the Lobby at 9:00 PM and says Maureen Callahan was not in the Bar."
     },
     {
-      "id": "c155",
+      "id": "c157",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7033,7 +7057,7 @@
       "text": "Maureen Callahan says Wilhelm Hochstetter was there. Wilhelm Hochstetter says otherwise: Wilhelm Hochstetter was on the Service Stairs at 8:30 PM, not in the Bar."
     },
     {
-      "id": "c156",
+      "id": "c158",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7057,7 +7081,7 @@
       "text": "Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby."
     },
     {
-      "id": "c157",
+      "id": "c159",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7075,7 +7099,7 @@
       "text": "Maureen Callahan was in the Bar at 7:30 PM and says Bernard Feldman was not in the Lobby."
     },
     {
-      "id": "c158",
+      "id": "c160",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7099,7 +7123,7 @@
       "text": "Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby."
     },
     {
-      "id": "c159",
+      "id": "c161",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7123,7 +7147,7 @@
       "text": "Morris Rosenbaum was in the Lobby from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby."
     },
     {
-      "id": "c160",
+      "id": "c162",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7147,7 +7171,7 @@
       "text": "Domenica Lanza was in the Bar from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby."
     },
     {
-      "id": "c161",
+      "id": "c163",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7171,7 +7195,7 @@
       "text": "Wilhelm Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk."
     },
     {
-      "id": "c162",
+      "id": "c164",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7195,7 +7219,7 @@
       "text": "Lyman Ellery was at the Front Desk from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk."
     },
     {
-      "id": "c163",
+      "id": "c165",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7219,7 +7243,7 @@
       "text": "Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk."
     },
     {
-      "id": "c164",
+      "id": "c166",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7243,7 +7267,7 @@
       "text": "Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk."
     },
     {
-      "id": "c165",
+      "id": "c167",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7267,7 +7291,7 @@
       "text": "Morris Rosenbaum was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk."
     },
     {
-      "id": "c166",
+      "id": "c168",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -7285,7 +7309,7 @@
       "text": "Salvatore Alfano was found in the Roof Garden. The coroner puts death between 7:00 PM and 7:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
     },
     {
-      "id": "c167",
+      "id": "c169",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7301,7 +7325,7 @@
       "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
     },
     {
-      "id": "c168",
+      "id": "c170",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7311,7 +7335,7 @@
       "text": "The passenger elevator was out of order from 10:00 PM to 11:00 PM. Anyone changing floors in that time used the service stairs."
     },
     {
-      "id": "c169",
+      "id": "c171",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7328,7 +7352,7 @@
       "text": "The service stairs were whitewashed that afternoon. There is whitewash on Wilhelm Hochstetter's sleeve; Wilhelm Hochstetter was on the stairs at 11:00 PM."
     },
     {
-      "id": "c170",
+      "id": "c172",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7345,7 +7369,7 @@
       "text": "The service stairs were whitewashed that afternoon. There is whitewash on Gretchen Steinbach's sleeve; Gretchen Steinbach was on the stairs at 11:00 PM."
     },
     {
-      "id": "c171",
+      "id": "c173",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -7356,7 +7380,7 @@
       "text": "Domenica Lanza says the bar radio carried a dance band from the Roseland at 10:30 PM, and that the band broke off twice and the announcer filled with a soap advertisement. Anyone in the bar could tell you that."
     },
     {
-      "id": "c172",
+      "id": "c174",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7372,7 +7396,7 @@
       "text": "Found in the Victim's Suite: A draft codicil in Salvatore Alfano's hand striking Wilhelm Hochstetter out of the will, dated last Tuesday and unsigned."
     },
     {
-      "id": "c173",
+      "id": "c175",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7389,7 +7413,7 @@
       "text": "Domenica Lanza says Salvatore Alfano told Wilhelm Hochstetter the lawyer was coming Thursday and that the arrangement would be changed."
     },
     {
-      "id": "c174",
+      "id": "c176",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7405,7 +7429,7 @@
       "text": "Found in the Victim's Suite: A lease assignment made out in Maureen Callahan's name, waiting only on Salvatore Alfano's signature."
     },
     {
-      "id": "c175",
+      "id": "c177",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7431,7 +7455,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c166",
+      "c168",
       "c001",
       "c015",
       "c045",
@@ -7476,12 +7500,12 @@
       "c094"
     ],
     "method": [
-      "c166",
-      "c167"
+      "c168",
+      "c169"
     ],
     "motive": [
-      "c172",
-      "c173"
+      "c174",
+      "c175"
     ]
   }
 }

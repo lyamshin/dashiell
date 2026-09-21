@@ -6537,7 +6537,19 @@
           "personId": "p-s6",
           "location": "bar",
           "tick": 6
-        },
+        }
+      ],
+      "text": "Carmela Ruggiero was in the Lobby at 9:00 PM and says Agnes Sweeney was not in the Bar."
+    },
+    {
+      "id": "c145",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Agnes Sweeney's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s6",
@@ -6545,10 +6557,10 @@
           "tick": 7
         }
       ],
-      "text": "Carmela Ruggiero was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar."
+      "text": "Carmela Ruggiero was in the Bar at 9:30 PM and says Agnes Sweeney was not in the Bar."
     },
     {
-      "id": "c145",
+      "id": "c146",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6566,7 +6578,7 @@
       "text": "Francis Quill was in the Lobby at 9:30 PM and says Agnes Sweeney was not in the Bar."
     },
     {
-      "id": "c146",
+      "id": "c147",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6579,7 +6591,19 @@
           "personId": "p-s6",
           "location": "bar",
           "tick": 6
-        },
+        }
+      ],
+      "text": "Assunta Bellucci was in the Lobby at 9:00 PM and says Agnes Sweeney was not in the Bar."
+    },
+    {
+      "id": "c148",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Agnes Sweeney's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s6",
@@ -6587,10 +6611,10 @@
           "tick": 7
         }
       ],
-      "text": "Assunta Bellucci was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar."
+      "text": "Assunta Bellucci was in the Bar at 9:30 PM and says Agnes Sweeney was not in the Bar."
     },
     {
-      "id": "c147",
+      "id": "c149",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6614,7 +6638,7 @@
       "text": "Meyer Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar."
     },
     {
-      "id": "c148",
+      "id": "c150",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6638,7 +6662,7 @@
       "text": "Bernard Sirkin was in the Bar from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar."
     },
     {
-      "id": "c149",
+      "id": "c151",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -6656,7 +6680,7 @@
       "text": "Ernst Obermann was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
     },
     {
-      "id": "c150",
+      "id": "c152",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -6672,7 +6696,7 @@
       "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
     },
     {
-      "id": "c151",
+      "id": "c153",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -6682,7 +6706,7 @@
       "text": "Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c152",
+      "id": "c154",
       "kind": "environment",
       "source": {
         "type": "person",
@@ -6700,7 +6724,7 @@
       "text": "Konrad Hochstetter says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM."
     },
     {
-      "id": "c153",
+      "id": "c155",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -6711,7 +6735,7 @@
       "text": "Bernard Sirkin says the bar radio carried the returns from the ward elections at 8:00 PM, and that the Ninth went the other way and the announcer said so twice. Anyone in the bar could tell you that."
     },
     {
-      "id": "c154",
+      "id": "c156",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6721,7 +6745,7 @@
       "text": "Carmela Ruggiero's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo."
     },
     {
-      "id": "c155",
+      "id": "c157",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6731,7 +6755,7 @@
       "text": "Agnes Sweeney's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo."
     },
     {
-      "id": "c156",
+      "id": "c158",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6747,7 +6771,7 @@
       "text": "Found in the Victim's Suite: A lease assignment made out in Konrad Hochstetter's name, waiting only on Ernst Obermann's signature."
     },
     {
-      "id": "c157",
+      "id": "c159",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -6764,7 +6788,7 @@
       "text": "Bernard Sirkin says Ernst Obermann told Konrad Hochstetter the lease would go to somebody else at the quarter day."
     },
     {
-      "id": "c158",
+      "id": "c160",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6780,7 +6804,7 @@
       "text": "Found in the Victim's Suite: A promissory note for $4,000 signed by Francis Quill, endorsed to Ernst Obermann, three months past due."
     },
     {
-      "id": "c159",
+      "id": "c161",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -6797,7 +6821,7 @@
       "text": "Bernard Sirkin says Ernst Obermann told Francis Quill that Friday was the end of it, one way or the other."
     },
     {
-      "id": "c160",
+      "id": "c162",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6813,7 +6837,7 @@
       "text": "Found in the Front Desk: A subpoena naming Ernst Obermann as a witness before the grand jury, with Agnes Sweeney's name written in the margin."
     },
     {
-      "id": "c161",
+      "id": "c163",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -6839,7 +6863,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c149",
+      "c151",
       "c013",
       "c029",
       "c044",
@@ -6877,22 +6901,22 @@
       ]
     },
     "inculpation": [
-      "c144",
       "c145",
       "c146",
-      "c147",
       "c148",
+      "c149",
+      "c150",
       "c060",
       "c071",
       "c108"
     ],
     "method": [
-      "c149",
-      "c150"
+      "c151",
+      "c152"
     ],
     "motive": [
-      "c160",
-      "c161"
+      "c162",
+      "c163"
     ]
   }
 }

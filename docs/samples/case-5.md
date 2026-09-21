@@ -227,15 +227,16 @@ On Odessa Broadnax's account:
 
 On Jacob Lefkowitz's account:
 
-- **c142** [observation] Beatrice Thorndike was in the Lobby from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
+- **c142** [observation] Beatrice Thorndike was in the Lobby at 10:00 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM_
+- **c143** [observation] Beatrice Thorndike was on the Street at 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:30 PM_
 
 On Teresa Petrosino's account:
 
-- **c148** [observation] Beatrice Thorndike was in the Lobby at 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 8:00 PM_
+- **c150** [observation] Beatrice Thorndike was in the Lobby at 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 8:00 PM_
 
 On the rain:
 
-- **c158** [environment] Beatrice Thorndike says Rufus Tillman came in off the street at 9:30 PM with a soaked coat, so Rufus Tillman was outside at 9:00 PM. — _establishes: Rufus Tillman on the Street, 9:00 PM_
+- **c161** [environment] Beatrice Thorndike says Rufus Tillman came in off the street at 9:30 PM with a soaked coat, so Rufus Tillman was outside at 9:00 PM. — _establishes: Rufus Tillman on the Street, 9:00 PM_
 
 ### From Eileen Feeney (a stringer for the evening papers)
 
@@ -273,11 +274,11 @@ On Beatrice Thorndike's account:
 
 On Jacob Lefkowitz's account:
 
-- **c143** [observation] Eileen Feeney was in the Lobby at 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:30 PM_
+- **c144** [observation] Eileen Feeney was in the Lobby at 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:30 PM_
 
 On Teresa Petrosino's account:
 
-- **c149** [observation] Eileen Feeney was at the Front Desk from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
+- **c151** [observation] Eileen Feeney was at the Front Desk from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
 
 ### From Odessa Broadnax (a bookkeeper)
 
@@ -323,7 +324,7 @@ On Eileen Feeney's account:
 
 On Teresa Petrosino's account:
 
-- **c150** [observation] Odessa Broadnax was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
+- **c152** [observation] Odessa Broadnax was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
 
 ### From Jacob Lefkowitz (an insurance adjuster)
 
@@ -367,7 +368,7 @@ On Eileen Feeney's account:
 
 On Teresa Petrosino's account:
 
-- **c151** [observation] Jacob Lefkowitz was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
+- **c153** [observation] Jacob Lefkowitz was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
 
 ### From Teresa Petrosino (a chambermaid)
 
@@ -395,7 +396,7 @@ On Odessa Broadnax's account:
 
 On Jacob Lefkowitz's account:
 
-- **c147** [observation] Jacob Lefkowitz says Teresa Petrosino was there. Teresa Petrosino says otherwise: Teresa Petrosino was in the Kitchen from 10:00 PM to 10:30 PM, not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
+- **c149** [observation] Jacob Lefkowitz says Teresa Petrosino was there. Teresa Petrosino says otherwise: Teresa Petrosino was in the Kitchen from 10:00 PM to 10:30 PM, not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
 
 ### From Thaddeus Fairbanks (a longshoreman)
 
@@ -450,11 +451,13 @@ On Odessa Broadnax's account:
 
 On Jacob Lefkowitz's account:
 
-- **c144** [observation] Thaddeus Fairbanks was in the Bar from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
+- **c145** [observation] Thaddeus Fairbanks was in the Bar at 10:00 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM_
+- **c146** [observation] Thaddeus Fairbanks was in the Lobby at 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:30 PM_
 
 On Teresa Petrosino's account:
 
-- **c152** [observation] Thaddeus Fairbanks was on the Street from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
+- **c154** [observation] Thaddeus Fairbanks was on the Street at 7:30 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM_
+- **c155** [observation] Thaddeus Fairbanks was in the Lobby at 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 8:00 PM_
 
 ### From Lucia Carbone (the doorman)
 
@@ -514,11 +517,11 @@ On Odessa Broadnax's account:
 
 On Jacob Lefkowitz's account:
 
-- **c145** [observation] Lucia Carbone was in the Lobby from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
+- **c147** [observation] Lucia Carbone was in the Lobby from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
 
 On Teresa Petrosino's account:
 
-- **c153** [observation] Lucia Carbone was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
+- **c156** [observation] Lucia Carbone was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
 
 ### From Grafton Ellery (the bartender)
 
@@ -568,59 +571,59 @@ On Beatrice Thorndike's account:
 On Eileen Feeney's account:
 
 - **c135** [observation] Grafton Ellery was in the Bar from 9:30 PM to 10:00 PM and says Eileen Feeney was not in the Bar. — _establishes: Eileen Feeney not in the Bar, 9:30 PM–10:00 PM_
-- **c163** [radio] Eileen Feeney says Eileen Feeney was in the bar at 10:00 PM but cannot say how the broadcast ended. — _establishes: Eileen Feeney not in the Bar, 10:00 PM_
+- **c166** [radio] Eileen Feeney says Eileen Feeney was in the bar at 10:00 PM but cannot say how the broadcast ended. — _establishes: Eileen Feeney not in the Bar, 10:00 PM_
 
 On Odessa Broadnax's account:
 
 - **c141** [observation] Grafton Ellery was in the Bar at 10:00 PM and says Odessa Broadnax was not in the Bar. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
-- **c164** [radio] Odessa Broadnax says Odessa Broadnax was in the bar at 10:00 PM but cannot say how the broadcast ended. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
+- **c167** [radio] Odessa Broadnax says Odessa Broadnax was in the bar at 10:00 PM but cannot say how the broadcast ended. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
 
 On Jacob Lefkowitz's account:
 
-- **c146** [observation] Grafton Ellery was in the Bar from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
+- **c148** [observation] Grafton Ellery was in the Bar from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
 
 On Teresa Petrosino's account:
 
-- **c154** [observation] Grafton Ellery was in the Bar from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
+- **c157** [observation] Grafton Ellery was in the Bar from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
 
 On the radio:
 
-- **c162** [radio] Grafton Ellery says the bar radio carried a dance band from the Roseland at 10:00 PM, and that the band broke off twice and the announcer filled with a soap advertisement. Anyone in the bar could tell you that. — _establishes: context only_
+- **c165** [radio] Grafton Ellery says the bar radio carried a dance band from the Roseland at 10:00 PM, and that the band broke off twice and the announcer filled with a soap advertisement. Anyone in the bar could tell you that. — _establishes: context only_
 
 On Eileen Feeney and Rufus Tillman:
 
-- **c167** [overheard] Grafton Ellery says Rufus Tillman told Eileen Feeney the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Eileen Feeney had a motive (inheritance)_
+- **c170** [overheard] Grafton Ellery says Rufus Tillman told Eileen Feeney the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Eileen Feeney had a motive (inheritance)_
 
 On Thaddeus Fairbanks and Rufus Tillman:
 
-- **c169** [overheard] Grafton Ellery says Thaddeus Fairbanks told Rufus Tillman to keep away, loud enough to turn heads. — _establishes: Thaddeus Fairbanks had a motive (jealousy)_
+- **c172** [overheard] Grafton Ellery says Thaddeus Fairbanks told Rufus Tillman to keep away, loud enough to turn heads. — _establishes: Thaddeus Fairbanks had a motive (jealousy)_
 
 ### From the Lobby
 
-- **c159** [environment] The passenger elevator was out of order from 7:30 PM to 8:30 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c162** [environment] The passenger elevator was out of order from 7:30 PM to 8:30 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c156** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-- **c165** [document] Thaddeus Fairbanks's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used. — _establishes: context only_
+- **c159** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
+- **c168** [document] Thaddeus Fairbanks's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used. — _establishes: context only_
 
 ### From the Service Stairs
 
-- **c160** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Beatrice Thorndike's sleeve; Beatrice Thorndike was on the stairs at 7:30 PM. — _establishes: Beatrice Thorndike on the Service Stairs, 7:30 PM_
-- **c161** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Teresa Petrosino's sleeve; Teresa Petrosino was on the stairs at 8:30 PM. — _establishes: Teresa Petrosino on the Service Stairs, 8:30 PM_
+- **c163** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Beatrice Thorndike's sleeve; Beatrice Thorndike was on the stairs at 7:30 PM. — _establishes: Beatrice Thorndike on the Service Stairs, 7:30 PM_
+- **c164** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Teresa Petrosino's sleeve; Teresa Petrosino was on the stairs at 8:30 PM. — _establishes: Teresa Petrosino on the Service Stairs, 8:30 PM_
 
 ### From the Victim's Suite
 
-- **c166** [document] Found in the Victim's Suite: A draft codicil in Rufus Tillman's hand striking Eileen Feeney out of the will, dated last Tuesday and unsigned. — _establishes: Eileen Feeney had a motive (inheritance)_
-- **c168** [document] Found in the Victim's Suite: Three letters in Rufus Tillman's hand to a woman Thaddeus Fairbanks is engaged to, kept in the drawer, the last one opened. — _establishes: Thaddeus Fairbanks had a motive (jealousy)_
+- **c169** [document] Found in the Victim's Suite: A draft codicil in Rufus Tillman's hand striking Eileen Feeney out of the will, dated last Tuesday and unsigned. — _establishes: Eileen Feeney had a motive (inheritance)_
+- **c171** [document] Found in the Victim's Suite: Three letters in Rufus Tillman's hand to a woman Thaddeus Fairbanks is engaged to, kept in the drawer, the last one opened. — _establishes: Thaddeus Fairbanks had a motive (jealousy)_
 
 ### From the Roof Garden
 
-- **c155** [morgue] Rufus Tillman was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:30 PM and 10:00 PM_
+- **c158** [morgue] Rufus Tillman was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:30 PM and 10:00 PM_
 
 ### From the Street
 
-- **c157** [environment] Rain began at 9:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c160** [environment] Rain began at 9:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -637,7 +640,7 @@ On Thaddeus Fairbanks and Rufus Tillman:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c155, c002, c030, c044, c064, c083, c107)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c158, c002, c030, c044, c064, c083, c107)_
 
 **Clearing the innocent.**
 
@@ -647,11 +650,11 @@ On Thaddeus Fairbanks and Rufus Tillman:
 - Teresa Petrosino was not in the Roof Garden at 10:00 PM, on two independent sources. _(c081, c120)_
 - Thaddeus Fairbanks was not in the Roof Garden at 10:00 PM, on two independent sources. _(c015, c062, c104, c123)_
 
-**Naming the killer.** Eileen Feeney claims the Bar at 10:00 PM. Two independent sources put that out of the question, and one ties Eileen Feeney to a push from the roof garden. _(c130, c132, c133, c134, c135, c163, c003, c036, c051, c073, c092)_
+**Naming the killer.** Eileen Feeney claims the Bar at 10:00 PM. Two independent sources put that out of the question, and one ties Eileen Feeney to a push from the roof garden. _(c130, c132, c133, c134, c135, c166, c003, c036, c051, c073, c092)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c155, c156)_
+**Method.** A push from the roof garden, on two physical sources. _(c158, c159)_
 
-**Motive.** inheritance, on two independent sources. _(c166, c167)_
+**Motive.** inheritance, on two independent sources. _(c169, c170)_
 
 ## 8. Red herrings
 

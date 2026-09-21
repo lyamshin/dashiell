@@ -7624,7 +7624,19 @@
           "personId": "p-s6",
           "location": "lobby",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Augustus Bledsoe was in the Lobby at 9:30 PM and says Domenico Salerno was not in the Lobby."
+    },
+    {
+      "id": "c167",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s6",
@@ -7632,10 +7644,10 @@
           "tick": 8
         }
       ],
-      "text": "Augustus Bledsoe was in the Lobby from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby."
+      "text": "Augustus Bledsoe was at the Front Desk at 10:00 PM and says Domenico Salerno was not in the Lobby."
     },
     {
-      "id": "c167",
+      "id": "c168",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7659,7 +7671,7 @@
       "text": "Concetta Ruggiero was in the Lobby from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby."
     },
     {
-      "id": "c168",
+      "id": "c169",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7683,7 +7695,7 @@
       "text": "Margaret Rafferty was in the Bar from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby."
     },
     {
-      "id": "c169",
+      "id": "c170",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -7701,7 +7713,7 @@
       "text": "Nora Kavanagh was found in the Roof Garden. The coroner puts death between 7:30 PM and 8:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
     },
     {
-      "id": "c170",
+      "id": "c171",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7717,7 +7729,7 @@
       "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
     },
     {
-      "id": "c171",
+      "id": "c172",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7727,7 +7739,7 @@
       "text": "Rain began at 8:30 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c172",
+      "id": "c173",
       "kind": "environment",
       "source": {
         "type": "person",
@@ -7745,7 +7757,7 @@
       "text": "Heinrich Vogel says Rachel Feldman came in off the street at 9:00 PM with a soaked coat, so Rachel Feldman was outside at 8:30 PM."
     },
     {
-      "id": "c173",
+      "id": "c174",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7755,7 +7767,7 @@
       "text": "Roscoe Tillman's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date."
     },
     {
-      "id": "c174",
+      "id": "c175",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7771,7 +7783,7 @@
       "text": "Found in the Front Desk: A subpoena naming Nora Kavanagh as a witness before the grand jury, with Roscoe Tillman's name written in the margin."
     },
     {
-      "id": "c175",
+      "id": "c176",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7788,7 +7800,7 @@
       "text": "Margaret Rafferty says Nora Kavanagh said to Roscoe Tillman that a man who testifies sleeps better."
     },
     {
-      "id": "c176",
+      "id": "c177",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7804,7 +7816,7 @@
       "text": "Found in the Front Desk: A draft codicil in Nora Kavanagh's hand striking Domenico Salerno out of the will, dated last Tuesday and unsigned."
     },
     {
-      "id": "c177",
+      "id": "c178",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7830,7 +7842,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c169",
+      "c170",
       "c026",
       "c046",
       "c073",
@@ -7874,12 +7886,12 @@
       "c113"
     ],
     "method": [
-      "c169",
-      "c170"
+      "c170",
+      "c171"
     ],
     "motive": [
-      "c176",
-      "c177"
+      "c177",
+      "c178"
     ]
   }
 }

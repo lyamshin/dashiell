@@ -218,15 +218,15 @@ On Grafton Havemeyer's account:
 
 On Delia Brennan's account:
 
-- **c123** [observation] Hedwig Kreuzer was at the Front Desk from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
+- **c125** [observation] Hedwig Kreuzer was at the Front Desk from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
 
 On Eunice Prentiss's account:
 
-- **c129** [observation] Hedwig Kreuzer was at the Front Desk at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
+- **c133** [observation] Hedwig Kreuzer was at the Front Desk at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
 
 On Margaret Rafferty's account:
 
-- **c139** [observation] Hedwig Kreuzer was in the Lobby from 9:00 PM to 9:30 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM–9:30 PM_
+- **c143** [observation] Hedwig Kreuzer was in the Lobby from 9:00 PM to 9:30 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM–9:30 PM_
 
 ### From Grafton Havemeyer (a private nurse)
 
@@ -261,19 +261,19 @@ On Hedwig Kreuzer's account:
 
 On Ezekiel Hargrove's account:
 
-- **c134** [observation] Grafton Havemeyer was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
+- **c138** [observation] Grafton Havemeyer was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
 
 On Margaret Rafferty's account:
 
-- **c140** [observation] Grafton Havemeyer was in the Lobby at 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 10:00 PM_
+- **c144** [observation] Grafton Havemeyer was in the Lobby at 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 10:00 PM_
 
 On Hedwig Kreuzer and Beatrice Crowninshield:
 
-- **c153** [overheard] Grafton Havemeyer says Hedwig Kreuzer said Beatrice Crowninshield had taken everything and would be made to feel it. — _establishes: Hedwig Kreuzer had a motive (revenge)_
+- **c157** [overheard] Grafton Havemeyer says Hedwig Kreuzer said Beatrice Crowninshield had taken everything and would be made to feel it. — _establishes: Hedwig Kreuzer had a motive (revenge)_
 
 On Margaret Rafferty and Beatrice Crowninshield:
 
-- **c159** [overheard] Grafton Havemeyer says Beatrice Crowninshield told Margaret Rafferty that the story would run whether Margaret Rafferty liked it or not. — _establishes: Margaret Rafferty had a motive (exposure)_
+- **c163** [overheard] Grafton Havemeyer says Beatrice Crowninshield told Margaret Rafferty that the story would run whether Margaret Rafferty liked it or not. — _establishes: Margaret Rafferty had a motive (exposure)_
 
 ### From Delia Brennan (a dentist with rooms on the third floor)
 
@@ -316,11 +316,11 @@ On Hedwig Kreuzer's account:
 
 On Ezekiel Hargrove's account:
 
-- **c135** [observation] Delia Brennan was in the Bar at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
+- **c139** [observation] Delia Brennan was in the Bar at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
 
 On Margaret Rafferty's account:
 
-- **c141** [observation] Delia Brennan was in the Lobby at 9:30 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:30 PM_
+- **c145** [observation] Delia Brennan was in the Lobby at 9:30 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:30 PM_
 
 ### From Eunice Prentiss (a photographer for the rotogravure section)
 
@@ -362,12 +362,12 @@ On Hedwig Kreuzer's account:
 
 On Ezekiel Hargrove's account:
 
-- **c136** [observation] Eunice Prentiss was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
+- **c140** [observation] Eunice Prentiss was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
 
 On Margaret Rafferty's account:
 
-- **c142** [observation] Eunice Prentiss was in the Lobby from 9:30 PM to 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:30 PM–10:00 PM_
-- **c145** [observation] Margaret Rafferty says Eunice Prentiss was there. Eunice Prentiss says otherwise: Eunice Prentiss was on the Service Stairs at 9:00 PM, not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM_
+- **c146** [observation] Eunice Prentiss was in the Lobby from 9:30 PM to 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:30 PM–10:00 PM_
+- **c149** [observation] Margaret Rafferty says Eunice Prentiss was there. Eunice Prentiss says otherwise: Eunice Prentiss was on the Service Stairs at 9:00 PM, not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM_
 
 ### From Ezekiel Hargrove (an insurance adjuster)
 
@@ -406,15 +406,15 @@ On Grafton Havemeyer's account:
 
 On Delia Brennan's account:
 
-- **c124** [observation] Ezekiel Hargrove was in the Lobby from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
+- **c126** [observation] Ezekiel Hargrove was in the Lobby from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
 
 On Eunice Prentiss's account:
 
-- **c130** [observation] Ezekiel Hargrove was in the Lobby at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
+- **c134** [observation] Ezekiel Hargrove was in the Lobby at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
 
 On Margaret Rafferty's account:
 
-- **c143** [observation] Ezekiel Hargrove was in the Lobby at 9:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM_
+- **c147** [observation] Ezekiel Hargrove was in the Lobby at 9:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM_
 
 ### From Margaret Rafferty (a wine steward out of work since the Act)
 
@@ -451,11 +451,11 @@ On Grafton Havemeyer's account:
 
 On Delia Brennan's account:
 
-- **c125** [observation] Margaret Rafferty was at the Front Desk from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
+- **c127** [observation] Margaret Rafferty was at the Front Desk from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
 
 On Eunice Prentiss's account:
 
-- **c131** [observation] Margaret Rafferty was at the Front Desk at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
+- **c135** [observation] Margaret Rafferty was at the Front Desk at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
 
 ### From Ellsworth Coffin (the doorman)
 
@@ -507,27 +507,31 @@ On Hedwig Kreuzer's account:
 
 On Grafton Havemeyer's account:
 
-- **c120** [observation] Ellsworth Coffin was in the Lobby from 7:00 PM to 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM–8:00 PM_
+- **c120** [observation] Ellsworth Coffin was in the Lobby at 7:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM_
+- **c121** [observation] Ellsworth Coffin was in the Lobby at 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 8:00 PM_
+- **c122** [observation] Ellsworth Coffin was at the Front Desk at 7:30 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:30 PM_
 
 On Delia Brennan's account:
 
-- **c126** [observation] Ellsworth Coffin was in the Lobby from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
+- **c128** [observation] Ellsworth Coffin was in the Lobby at 7:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM_
+- **c129** [observation] Ellsworth Coffin was in the Lobby at 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 8:00 PM_
+- **c130** [observation] Ellsworth Coffin was at the Front Desk at 7:30 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:30 PM_
 
 On Eunice Prentiss's account:
 
-- **c132** [observation] Ellsworth Coffin was in the Lobby at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
+- **c136** [observation] Ellsworth Coffin was in the Lobby at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
 
 On Ezekiel Hargrove's account:
 
-- **c137** [observation] Ellsworth Coffin was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
+- **c141** [observation] Ellsworth Coffin was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
 
 On Margaret Rafferty's account:
 
-- **c144** [observation] Ellsworth Coffin was in the Lobby from 9:00 PM to 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM–10:00 PM_
+- **c148** [observation] Ellsworth Coffin was in the Lobby from 9:00 PM to 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM–10:00 PM_
 
 On Eunice Prentiss and Beatrice Crowninshield:
 
-- **c157** [overheard] Ellsworth Coffin says Beatrice Crowninshield told Eunice Prentiss the lease would go to somebody else at the quarter day. — _establishes: Eunice Prentiss had a motive (property)_
+- **c161** [overheard] Ellsworth Coffin says Beatrice Crowninshield told Eunice Prentiss the lease would go to somebody else at the quarter day. — _establishes: Eunice Prentiss had a motive (property)_
 
 ### From Winthrop Winslow (the bartender)
 
@@ -576,47 +580,47 @@ On Hedwig Kreuzer's account:
 
 On Grafton Havemeyer's account:
 
-- **c121** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM_
-- **c122** [observation] Winthrop Winslow was in the Bar at 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 8:00 PM_
+- **c123** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM_
+- **c124** [observation] Winthrop Winslow was in the Bar at 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 8:00 PM_
 
 On Delia Brennan's account:
 
-- **c127** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM_
-- **c128** [observation] Winthrop Winslow was in the Bar at 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 8:00 PM_
+- **c131** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM_
+- **c132** [observation] Winthrop Winslow was in the Bar at 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 8:00 PM_
 
 On Eunice Prentiss's account:
 
-- **c133** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
+- **c137** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
 
 On Ezekiel Hargrove's account:
 
-- **c138** [observation] Winthrop Winslow was in the Bar at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
+- **c142** [observation] Winthrop Winslow was in the Bar at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
 
 On Delia Brennan and Beatrice Crowninshield:
 
-- **c155** [overheard] Winthrop Winslow says Beatrice Crowninshield said to Delia Brennan that a man who testifies sleeps better. — _establishes: Delia Brennan had a motive (silence-a-witness)_
+- **c159** [overheard] Winthrop Winslow says Beatrice Crowninshield said to Delia Brennan that a man who testifies sleeps better. — _establishes: Delia Brennan had a motive (silence-a-witness)_
 
 ### From the Lobby
 
-- **c148** [environment] The passenger elevator was out of order from 6:30 PM to 7:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c152** [environment] The passenger elevator was out of order from 6:30 PM to 7:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c147** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c152** [document] Found in the Front Desk: A clipping about the failure of Hedwig Kreuzer's business, with Beatrice Crowninshield's name underlined twice in pencil. — _establishes: Hedwig Kreuzer had a motive (revenge)_
-- **c156** [document] Found in the Front Desk: A lease assignment made out in Eunice Prentiss's name, waiting only on Beatrice Crowninshield's signature. — _establishes: Eunice Prentiss had a motive (property)_
-- **c158** [document] Found in the Front Desk: A typed page of dates and sums in Beatrice Crowninshield's file, headed with Margaret Rafferty's name. — _establishes: Margaret Rafferty had a motive (exposure)_
+- **c151** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
+- **c156** [document] Found in the Front Desk: A clipping about the failure of Hedwig Kreuzer's business, with Beatrice Crowninshield's name underlined twice in pencil. — _establishes: Hedwig Kreuzer had a motive (revenge)_
+- **c160** [document] Found in the Front Desk: A lease assignment made out in Eunice Prentiss's name, waiting only on Beatrice Crowninshield's signature. — _establishes: Eunice Prentiss had a motive (property)_
+- **c162** [document] Found in the Front Desk: A typed page of dates and sums in Beatrice Crowninshield's file, headed with Margaret Rafferty's name. — _establishes: Margaret Rafferty had a motive (exposure)_
 
 ### From the Service Stairs
 
-- **c149** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Beatrice Crowninshield's sleeve; Beatrice Crowninshield was on the stairs at 6:30 PM. — _establishes: Beatrice Crowninshield on the Service Stairs, 6:30 PM_
-- **c150** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Grafton Havemeyer's sleeve; Grafton Havemeyer was on the stairs at 7:00 PM. — _establishes: Grafton Havemeyer on the Service Stairs, 7:00 PM_
-- **c151** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Delia Brennan's sleeve; Delia Brennan was on the stairs at 6:30 PM. — _establishes: Delia Brennan on the Service Stairs, 6:30 PM_
+- **c153** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Beatrice Crowninshield's sleeve; Beatrice Crowninshield was on the stairs at 6:30 PM. — _establishes: Beatrice Crowninshield on the Service Stairs, 6:30 PM_
+- **c154** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Grafton Havemeyer's sleeve; Grafton Havemeyer was on the stairs at 7:00 PM. — _establishes: Grafton Havemeyer on the Service Stairs, 7:00 PM_
+- **c155** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Delia Brennan's sleeve; Delia Brennan was on the stairs at 6:30 PM. — _establishes: Delia Brennan on the Service Stairs, 6:30 PM_
 
 ### From the Victim's Suite
 
-- **c146** [morgue] Beatrice Crowninshield was found in the Victim's Suite. The coroner puts death between 9:30 PM and 10:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:30 PM and 10:00 PM_
-- **c154** [document] Found in the Victim's Suite: A subpoena naming Beatrice Crowninshield as a witness before the grand jury, with Delia Brennan's name written in the margin. — _establishes: Delia Brennan had a motive (silence-a-witness)_
+- **c150** [morgue] Beatrice Crowninshield was found in the Victim's Suite. The coroner puts death between 9:30 PM and 10:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:30 PM and 10:00 PM_
+- **c158** [document] Found in the Victim's Suite: A subpoena naming Beatrice Crowninshield as a witness before the grand jury, with Delia Brennan's name written in the margin. — _establishes: Delia Brennan had a motive (silence-a-witness)_
 
 ### Withheld — the player cannot get these
 
@@ -634,7 +638,7 @@ On Delia Brennan and Beatrice Crowninshield:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c146, c001, c025, c039, c053, c073, c094)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c150, c001, c025, c039, c053, c073, c094)_
 
 **Clearing the innocent.**
 
@@ -644,11 +648,11 @@ On Delia Brennan and Beatrice Crowninshield:
 - Eunice Prentiss was not in the Victim's Suite at 10:00 PM, on two independent sources. _(c019, c033, c084, c102)_
 - Ezekiel Hargrove was not in the Victim's Suite at 10:00 PM, on two independent sources. _(c037, c107)_
 
-**Naming the killer.** Margaret Rafferty claims the Front Desk at 10:00 PM. Two independent sources put that out of the question, and one ties Margaret Rafferty to a gunshot. _(c140, c142, c144, c013, c061, c092)_
+**Naming the killer.** Margaret Rafferty claims the Front Desk at 10:00 PM. Two independent sources put that out of the question, and one ties Margaret Rafferty to a gunshot. _(c144, c146, c148, c013, c061, c092)_
 
-**Method.** A gunshot, on two physical sources. _(c146, c147)_
+**Method.** A gunshot, on two physical sources. _(c150, c151)_
 
-**Motive.** exposure, on two independent sources. _(c158, c159)_
+**Motive.** exposure, on two independent sources. _(c162, c163)_
 
 ## 8. Red herrings
 

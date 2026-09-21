@@ -205,20 +205,30 @@ export function deriveClues(ctx: ClueContext): Clue[] {
           return graph.canSee(dLoc, claimLoc);
         });
         if (usable.length === 0) continue;
-        for (const run of runs(usable)) {
-          const dLoc = (build.truth[denier.id] as (Id | null)[])[run[0] as Tick] as Id;
-          const facts: Fact[] = run.map((t) => ({
-            kind: 'personNotAt' as const,
-            personId: liar.id,
-            location: claimLoc,
-            tick: t,
-          }));
-          add(
-            'observation',
-            { type: 'person', personId: denier.id, topic: `${liar.name}'s account` },
-            facts,
-            `${denier.name} was ${graph.where(dLoc)} ${span(run)} and says ${liar.name} was not ${graph.where(claimLoc)}.`,
-          );
+        // Split by where the denier themselves stood, or a run that straddles
+        // their own move would be described from the wrong room.
+        const byDenierLocation = new Map<Id, Tick[]>();
+        for (const t of usable) {
+          const dLoc = (build.truth[denier.id] as (Id | null)[])[t] as Id;
+          const list = byDenierLocation.get(dLoc) ?? [];
+          list.push(t);
+          byDenierLocation.set(dLoc, list);
+        }
+        for (const [dLoc, ticks] of byDenierLocation) {
+          for (const run of runs(ticks.slice().sort((x, y) => x - y))) {
+            const facts: Fact[] = run.map((t) => ({
+              kind: 'personNotAt' as const,
+              personId: liar.id,
+              location: claimLoc,
+              tick: t,
+            }));
+            add(
+              'observation',
+              { type: 'person', personId: denier.id, topic: `${liar.name}'s account` },
+              facts,
+              `${denier.name} was ${graph.where(dLoc)} ${span(run)} and says ${liar.name} was not ${graph.where(claimLoc)}.`,
+            );
+          }
         }
       }
 
@@ -231,20 +241,28 @@ export function deriveClues(ctx: ClueContext): Clue[] {
           return Boolean(cLoc) && cLoc !== claimLoc && !graph.canSee(cLoc as Id, claimLoc);
         });
         if (usable.length > 0) {
-          for (const run of runs(usable)) {
-            const cLoc = (build.truth[named] as (Id | null)[])[run[0] as Tick] as Id;
-            const facts: Fact[] = run.map((t) => ({
-              kind: 'personNotAt' as const,
-              personId: liar.id,
-              location: claimLoc,
-              tick: t,
-            }));
-            add(
-              'observation',
-              { type: 'person', personId: named, topic: `${liar.name}'s account` },
-              facts,
-              `${liar.name} says ${companion.name} was there. ${companion.name} says otherwise: ${companion.name} was ${graph.where(cLoc)} ${span(run)}, not ${graph.where(claimLoc)}.`,
-            );
+          const byCompanionLocation = new Map<Id, Tick[]>();
+          for (const t of usable) {
+            const cLoc = (build.truth[named] as (Id | null)[])[t] as Id;
+            const list = byCompanionLocation.get(cLoc) ?? [];
+            list.push(t);
+            byCompanionLocation.set(cLoc, list);
+          }
+          for (const [cLoc, ticks] of byCompanionLocation) {
+            for (const run of runs(ticks.slice().sort((x, y) => x - y))) {
+              const facts: Fact[] = run.map((t) => ({
+                kind: 'personNotAt' as const,
+                personId: liar.id,
+                location: claimLoc,
+                tick: t,
+              }));
+              add(
+                'observation',
+                { type: 'person', personId: named, topic: `${liar.name}'s account` },
+                facts,
+                `${liar.name} says ${companion.name} was there. ${companion.name} says otherwise: ${companion.name} was ${graph.where(cLoc)} ${span(run)}, not ${graph.where(claimLoc)}.`,
+              );
+            }
           }
         }
       }

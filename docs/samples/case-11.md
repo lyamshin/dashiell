@@ -214,7 +214,7 @@ On Filomena Lanza:
 
 On Gustav Wehrle's account:
 
-- **c116** [observation] Gustav Wehrle says Elijah Bledsoe was there. Elijah Bledsoe says otherwise: Elijah Bledsoe was in the Kitchen at 10:00 PM, not on the Street. — _establishes: Gustav Wehrle not on the Street, 10:00 PM_
+- **c118** [observation] Gustav Wehrle says Elijah Bledsoe was there. Elijah Bledsoe says otherwise: Elijah Bledsoe was in the Kitchen at 10:00 PM, not on the Street. — _establishes: Gustav Wehrle not on the Street, 10:00 PM_
 
 ### From Ellsworth Bidwell (a longshoreman)
 
@@ -245,11 +245,11 @@ On Elijah Bledsoe's account:
 
 On Margaret Sweeney's account:
 
-- **c117** [observation] Ellsworth Bidwell was in the Bar at 9:30 PM and says Margaret Sweeney was not in the Lobby. — _establishes: Margaret Sweeney not in the Lobby, 9:30 PM_
+- **c119** [observation] Ellsworth Bidwell was in the Bar at 9:30 PM and says Margaret Sweeney was not in the Lobby. — _establishes: Margaret Sweeney not in the Lobby, 9:30 PM_
 
 On Filomena Lanza's account:
 
-- **c121** [observation] Ellsworth Bidwell was in the Bar at 9:30 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:30 PM_
+- **c123** [observation] Ellsworth Bidwell was in the Bar at 9:30 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:30 PM_
 
 ### From Domenica Marchetti (a stagehand at the Selwyn)
 
@@ -287,15 +287,16 @@ On Elijah Bledsoe's account:
 
 On Gustav Wehrle's account:
 
-- **c113** [observation] Domenica Marchetti was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not on the Street. — _establishes: Gustav Wehrle not on the Street, 9:30 PM–10:00 PM_
+- **c113** [observation] Domenica Marchetti was in the Lobby at 9:30 PM and says Gustav Wehrle was not on the Street. — _establishes: Gustav Wehrle not on the Street, 9:30 PM_
+- **c114** [observation] Domenica Marchetti was on the Street at 10:00 PM and says Gustav Wehrle was not on the Street. — _establishes: Gustav Wehrle not on the Street, 10:00 PM_
 
 On Margaret Sweeney's account:
 
-- **c118** [observation] Domenica Marchetti was in the Lobby at 9:30 PM and says Margaret Sweeney was not in the Lobby. — _establishes: Margaret Sweeney not in the Lobby, 9:30 PM_
+- **c120** [observation] Domenica Marchetti was in the Lobby at 9:30 PM and says Margaret Sweeney was not in the Lobby. — _establishes: Margaret Sweeney not in the Lobby, 9:30 PM_
 
 On Filomena Lanza's account:
 
-- **c122** [observation] Domenica Marchetti was in the Lobby from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:00 PM–9:30 PM_
+- **c124** [observation] Domenica Marchetti was in the Lobby from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:00 PM–9:30 PM_
 
 ### From Gustav Wehrle (the night manager)
 
@@ -363,11 +364,11 @@ On Ellsworth Bidwell's account:
 
 On Gustav Wehrle's account:
 
-- **c114** [observation] Margaret Sweeney was on the Street at 10:00 PM and says Gustav Wehrle was not on the Street. — _establishes: Gustav Wehrle not on the Street, 10:00 PM_
+- **c115** [observation] Margaret Sweeney was on the Street at 10:00 PM and says Gustav Wehrle was not on the Street. — _establishes: Gustav Wehrle not on the Street, 10:00 PM_
 
 On Filomena Lanza's account:
 
-- **c123** [observation] Margaret Sweeney was on the Street at 9:00 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:00 PM_
+- **c125** [observation] Margaret Sweeney was on the Street at 9:00 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:00 PM_
 
 ### From Filomena Lanza (a private secretary)
 
@@ -446,23 +447,24 @@ On Ellsworth Bidwell's account:
 
 On Gustav Wehrle's account:
 
-- **c115** [observation] Edward Brennan was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not on the Street. — _establishes: Gustav Wehrle not on the Street, 9:30 PM–10:00 PM_
+- **c116** [observation] Edward Brennan was in the Lobby at 9:30 PM and says Gustav Wehrle was not on the Street. — _establishes: Gustav Wehrle not on the Street, 9:30 PM_
+- **c117** [observation] Edward Brennan was on the Street at 10:00 PM and says Gustav Wehrle was not on the Street. — _establishes: Gustav Wehrle not on the Street, 10:00 PM_
 
 On Margaret Sweeney's account:
 
-- **c119** [observation] Edward Brennan was in the Lobby at 9:30 PM and says Margaret Sweeney was not in the Lobby. — _establishes: Margaret Sweeney not in the Lobby, 9:30 PM_
+- **c121** [observation] Edward Brennan was in the Lobby at 9:30 PM and says Margaret Sweeney was not in the Lobby. — _establishes: Margaret Sweeney not in the Lobby, 9:30 PM_
 
 On Filomena Lanza's account:
 
-- **c124** [observation] Edward Brennan was in the Lobby from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:00 PM–9:30 PM_
+- **c126** [observation] Edward Brennan was in the Lobby from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:00 PM–9:30 PM_
 
 On Domenica Marchetti and Margarethe Dettweiler:
 
-- **c133** [overheard] Edward Brennan says Margarethe Dettweiler told Domenica Marchetti that Friday was the end of it, one way or the other. — _establishes: Domenica Marchetti had a motive (debt)_
+- **c135** [overheard] Edward Brennan says Margarethe Dettweiler told Domenica Marchetti that Friday was the end of it, one way or the other. — _establishes: Domenica Marchetti had a motive (debt)_
 
 On Filomena Lanza and Margarethe Dettweiler:
 
-- **c135** [overheard] Edward Brennan says Filomena Lanza said Margarethe Dettweiler had taken everything and would be made to feel it. — _establishes: Filomena Lanza had a motive (revenge)_
+- **c137** [overheard] Edward Brennan says Filomena Lanza said Margarethe Dettweiler had taken everything and would be made to feel it. — _establishes: Filomena Lanza had a motive (revenge)_
 
 ### From James Quill (the bartender)
 
@@ -520,34 +522,34 @@ On Ellsworth Bidwell's account:
 
 On Margaret Sweeney's account:
 
-- **c120** [observation] James Quill was in the Bar at 9:30 PM and says Margaret Sweeney was not in the Lobby. — _establishes: Margaret Sweeney not in the Lobby, 9:30 PM_
+- **c122** [observation] James Quill was in the Bar at 9:30 PM and says Margaret Sweeney was not in the Lobby. — _establishes: Margaret Sweeney not in the Lobby, 9:30 PM_
 
 On Filomena Lanza's account:
 
-- **c125** [observation] James Quill was in the Bar from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:00 PM–9:30 PM_
+- **c127** [observation] James Quill was in the Bar from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby. — _establishes: Filomena Lanza not in the Lobby, 9:00 PM–9:30 PM_
 
 ### From the Lobby
 
-- **c128** [environment] The passenger elevator was out of order from 7:00 PM to 8:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c130** [environment] The passenger elevator was out of order from 7:00 PM to 8:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c131** [document] Domenica Marchetti's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used. — _establishes: context only_
-- **c134** [document] Found in the Front Desk: A clipping about the failure of Filomena Lanza's business, with Margarethe Dettweiler's name underlined twice in pencil. — _establishes: Filomena Lanza had a motive (revenge)_
+- **c133** [document] Domenica Marchetti's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used. — _establishes: context only_
+- **c136** [document] Found in the Front Desk: A clipping about the failure of Filomena Lanza's business, with Margarethe Dettweiler's name underlined twice in pencil. — _establishes: Filomena Lanza had a motive (revenge)_
 
 ### From the Kitchen
 
-- **c127** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
+- **c129** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
 
 ### From the Service Stairs
 
-- **c126** [morgue] Margarethe Dettweiler was found on the Service Stairs. The coroner puts death between 9:00 PM and 9:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 9:00 PM and 9:30 PM_
-- **c129** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Ellsworth Bidwell's sleeve; Ellsworth Bidwell was on the stairs at 8:00 PM. — _establishes: Ellsworth Bidwell on the Service Stairs, 8:00 PM_
-- **c130** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Domenica Marchetti's sleeve; Domenica Marchetti was on the stairs at 7:00 PM. — _establishes: Domenica Marchetti on the Service Stairs, 7:00 PM_
+- **c128** [morgue] Margarethe Dettweiler was found on the Service Stairs. The coroner puts death between 9:00 PM and 9:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 9:00 PM and 9:30 PM_
+- **c131** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Ellsworth Bidwell's sleeve; Ellsworth Bidwell was on the stairs at 8:00 PM. — _establishes: Ellsworth Bidwell on the Service Stairs, 8:00 PM_
+- **c132** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Domenica Marchetti's sleeve; Domenica Marchetti was on the stairs at 7:00 PM. — _establishes: Domenica Marchetti on the Service Stairs, 7:00 PM_
 
 ### From the Victim's Suite
 
-- **c132** [document] Found in the Victim's Suite: A promissory note for $4,000 signed by Domenica Marchetti, endorsed to Margarethe Dettweiler, three months past due. — _establishes: Domenica Marchetti had a motive (debt)_
+- **c134** [document] Found in the Victim's Suite: A promissory note for $4,000 signed by Domenica Marchetti, endorsed to Margarethe Dettweiler, three months past due. — _establishes: Domenica Marchetti had a motive (debt)_
 
 ### Withheld — the player cannot get these
 
@@ -567,7 +569,7 @@ On Filomena Lanza's account:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c126, c024, c047, c068, c083)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c128, c024, c047, c068, c083)_
 
 **Clearing the innocent.**
 
@@ -577,11 +579,11 @@ On Filomena Lanza's account:
 - Gustav Wehrle was not on the Service Stairs at 9:30 PM, on two independent sources. _(c019, c028, c075, c096)_
 - Margaret Sweeney was not on the Service Stairs at 9:30 PM, on two independent sources. _(c030, c079)_
 
-**Naming the killer.** Filomena Lanza claims the Lobby at 9:30 PM. Two independent sources put that out of the question, and one ties Filomena Lanza to strangling with a cord. _(c121, c122, c124, c125, c009, c010, c041, c042, c100, c101)_
+**Naming the killer.** Filomena Lanza claims the Lobby at 9:30 PM. Two independent sources put that out of the question, and one ties Filomena Lanza to strangling with a cord. _(c123, c124, c126, c127, c009, c010, c041, c042, c100, c101)_
 
-**Method.** Strangling with a cord, on two physical sources. _(c126, c127)_
+**Method.** Strangling with a cord, on two physical sources. _(c128, c129)_
 
-**Motive.** revenge, on two independent sources. _(c134, c135)_
+**Motive.** revenge, on two independent sources. _(c136, c137)_
 
 ## 8. Red herrings
 

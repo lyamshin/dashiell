@@ -5461,7 +5461,19 @@
           "personId": "p-s4",
           "location": "lobby",
           "tick": 0
-        },
+        }
+      ],
+      "text": "Lurline Mosley was at the Front Desk at 6:00 PM and says Sol Rosenbaum was not in the Lobby."
+    },
+    {
+      "id": "c113",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Sol Rosenbaum's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -5469,10 +5481,10 @@
           "tick": 1
         }
       ],
-      "text": "Lurline Mosley was at the Front Desk from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby."
+      "text": "Lurline Mosley was in the Lobby at 6:30 PM and says Sol Rosenbaum was not in the Lobby."
     },
     {
-      "id": "c113",
+      "id": "c114",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5496,7 +5508,7 @@
       "text": "Giovanna Alfano was in the Lobby from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby."
     },
     {
-      "id": "c114",
+      "id": "c115",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5520,7 +5532,7 @@
       "text": "Lyman Ainsworth was in the Bar from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby."
     },
     {
-      "id": "c115",
+      "id": "c116",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5544,7 +5556,7 @@
       "text": "Booker Bledsoe was in the Bar from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby."
     },
     {
-      "id": "c116",
+      "id": "c117",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5568,7 +5580,7 @@
       "text": "Sol Rosenbaum was at the Front Desk from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby."
     },
     {
-      "id": "c117",
+      "id": "c118",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5581,7 +5593,19 @@
           "personId": "p-s6",
           "location": "lobby",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Margarethe Kreuzer was in the Lobby at 9:30 PM and says Lurline Mosley was not in the Lobby."
+    },
+    {
+      "id": "c119",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Lurline Mosley's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s6",
@@ -5589,10 +5613,10 @@
           "tick": 8
         }
       ],
-      "text": "Margarethe Kreuzer was in the Lobby from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby."
+      "text": "Margarethe Kreuzer was in the Bar at 10:00 PM and says Lurline Mosley was not in the Lobby."
     },
     {
-      "id": "c118",
+      "id": "c120",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5605,7 +5629,19 @@
           "personId": "p-s6",
           "location": "lobby",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Giovanna Alfano was in the Lobby at 9:30 PM and says Lurline Mosley was not in the Lobby."
+    },
+    {
+      "id": "c121",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Lurline Mosley's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s6",
@@ -5613,10 +5649,10 @@
           "tick": 8
         }
       ],
-      "text": "Giovanna Alfano was in the Lobby from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby."
+      "text": "Giovanna Alfano was at the Front Desk at 10:00 PM and says Lurline Mosley was not in the Lobby."
     },
     {
-      "id": "c119",
+      "id": "c122",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5640,7 +5676,7 @@
       "text": "Lyman Ainsworth was in the Bar from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby."
     },
     {
-      "id": "c120",
+      "id": "c123",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -5658,7 +5694,7 @@
       "text": "Maureen Donnelly was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close."
     },
     {
-      "id": "c121",
+      "id": "c124",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -5674,7 +5710,7 @@
       "text": "A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it."
     },
     {
-      "id": "c122",
+      "id": "c125",
       "kind": "document",
       "source": {
         "type": "location",
@@ -5684,7 +5720,7 @@
       "text": "Margarethe Kreuzer's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date."
     },
     {
-      "id": "c123",
+      "id": "c126",
       "kind": "document",
       "source": {
         "type": "location",
@@ -5700,7 +5736,7 @@
       "text": "Found in the Front Desk: A promissory note for $4,000 signed by Booker Bledsoe, endorsed to Maureen Donnelly, three months past due."
     },
     {
-      "id": "c124",
+      "id": "c127",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -5717,7 +5753,7 @@
       "text": "Margarethe Kreuzer says Maureen Donnelly told Booker Bledsoe that Friday was the end of it, one way or the other."
     },
     {
-      "id": "c125",
+      "id": "c128",
       "kind": "document",
       "source": {
         "type": "location",
@@ -5733,7 +5769,7 @@
       "text": "Found in the Front Desk: A draft codicil in Maureen Donnelly's hand striking Hedwig Hochstetter out of the will, dated last Tuesday and unsigned."
     },
     {
-      "id": "c126",
+      "id": "c129",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -5759,7 +5795,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c120",
+      "c123",
       "c027",
       "c037",
       "c049",
@@ -5801,12 +5837,12 @@
       "c065"
     ],
     "method": [
-      "c120",
-      "c121"
+      "c123",
+      "c124"
     ],
     "motive": [
-      "c125",
-      "c126"
+      "c128",
+      "c129"
     ]
   }
 }

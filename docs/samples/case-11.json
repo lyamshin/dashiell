@@ -6147,7 +6147,19 @@
           "personId": "p-s4",
           "location": "street",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Domenica Marchetti was in the Lobby at 9:30 PM and says Gustav Wehrle was not on the Street."
+    },
+    {
+      "id": "c114",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Gustav Wehrle's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -6155,10 +6167,10 @@
           "tick": 8
         }
       ],
-      "text": "Domenica Marchetti was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not on the Street."
+      "text": "Domenica Marchetti was on the Street at 10:00 PM and says Gustav Wehrle was not on the Street."
     },
     {
-      "id": "c114",
+      "id": "c115",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6176,7 +6188,7 @@
       "text": "Margaret Sweeney was on the Street at 10:00 PM and says Gustav Wehrle was not on the Street."
     },
     {
-      "id": "c115",
+      "id": "c116",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6189,7 +6201,19 @@
           "personId": "p-s4",
           "location": "street",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Edward Brennan was in the Lobby at 9:30 PM and says Gustav Wehrle was not on the Street."
+    },
+    {
+      "id": "c117",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Gustav Wehrle's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -6197,10 +6221,10 @@
           "tick": 8
         }
       ],
-      "text": "Edward Brennan was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not on the Street."
+      "text": "Edward Brennan was on the Street at 10:00 PM and says Gustav Wehrle was not on the Street."
     },
     {
-      "id": "c116",
+      "id": "c118",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6218,7 +6242,7 @@
       "text": "Gustav Wehrle says Elijah Bledsoe was there. Elijah Bledsoe says otherwise: Elijah Bledsoe was in the Kitchen at 10:00 PM, not on the Street."
     },
     {
-      "id": "c117",
+      "id": "c119",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6236,7 +6260,7 @@
       "text": "Ellsworth Bidwell was in the Bar at 9:30 PM and says Margaret Sweeney was not in the Lobby."
     },
     {
-      "id": "c118",
+      "id": "c120",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6254,7 +6278,7 @@
       "text": "Domenica Marchetti was in the Lobby at 9:30 PM and says Margaret Sweeney was not in the Lobby."
     },
     {
-      "id": "c119",
+      "id": "c121",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6272,7 +6296,7 @@
       "text": "Edward Brennan was in the Lobby at 9:30 PM and says Margaret Sweeney was not in the Lobby."
     },
     {
-      "id": "c120",
+      "id": "c122",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6290,7 +6314,7 @@
       "text": "James Quill was in the Bar at 9:30 PM and says Margaret Sweeney was not in the Lobby."
     },
     {
-      "id": "c121",
+      "id": "c123",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6308,7 +6332,7 @@
       "text": "Ellsworth Bidwell was in the Bar at 9:30 PM and says Filomena Lanza was not in the Lobby."
     },
     {
-      "id": "c122",
+      "id": "c124",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6332,7 +6356,7 @@
       "text": "Domenica Marchetti was in the Lobby from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby."
     },
     {
-      "id": "c123",
+      "id": "c125",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6350,7 +6374,7 @@
       "text": "Margaret Sweeney was on the Street at 9:00 PM and says Filomena Lanza was not in the Lobby."
     },
     {
-      "id": "c124",
+      "id": "c126",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6374,7 +6398,7 @@
       "text": "Edward Brennan was in the Lobby from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby."
     },
     {
-      "id": "c125",
+      "id": "c127",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6398,7 +6422,7 @@
       "text": "James Quill was in the Bar from 9:00 PM to 9:30 PM and says Filomena Lanza was not in the Lobby."
     },
     {
-      "id": "c126",
+      "id": "c128",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -6416,7 +6440,7 @@
       "text": "Margarethe Dettweiler was found on the Service Stairs. The coroner puts death between 9:00 PM and 9:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin."
     },
     {
-      "id": "c127",
+      "id": "c129",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -6432,7 +6456,7 @@
       "text": "A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from."
     },
     {
-      "id": "c128",
+      "id": "c130",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -6442,7 +6466,7 @@
       "text": "The passenger elevator was out of order from 7:00 PM to 8:00 PM. Anyone changing floors in that time used the service stairs."
     },
     {
-      "id": "c129",
+      "id": "c131",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -6459,7 +6483,7 @@
       "text": "The service stairs were whitewashed that afternoon. There is whitewash on Ellsworth Bidwell's sleeve; Ellsworth Bidwell was on the stairs at 8:00 PM."
     },
     {
-      "id": "c130",
+      "id": "c132",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -6476,7 +6500,7 @@
       "text": "The service stairs were whitewashed that afternoon. There is whitewash on Domenica Marchetti's sleeve; Domenica Marchetti was on the stairs at 7:00 PM."
     },
     {
-      "id": "c131",
+      "id": "c133",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6486,7 +6510,7 @@
       "text": "Domenica Marchetti's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used."
     },
     {
-      "id": "c132",
+      "id": "c134",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6502,7 +6526,7 @@
       "text": "Found in the Victim's Suite: A promissory note for $4,000 signed by Domenica Marchetti, endorsed to Margarethe Dettweiler, three months past due."
     },
     {
-      "id": "c133",
+      "id": "c135",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -6519,7 +6543,7 @@
       "text": "Edward Brennan says Margarethe Dettweiler told Domenica Marchetti that Friday was the end of it, one way or the other."
     },
     {
-      "id": "c134",
+      "id": "c136",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6535,7 +6559,7 @@
       "text": "Found in the Front Desk: A clipping about the failure of Filomena Lanza's business, with Margarethe Dettweiler's name underlined twice in pencil."
     },
     {
-      "id": "c135",
+      "id": "c137",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -6561,7 +6585,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c126",
+      "c128",
       "c024",
       "c047",
       "c068",
@@ -6594,10 +6618,10 @@
       ]
     },
     "inculpation": [
-      "c121",
-      "c122",
+      "c123",
       "c124",
-      "c125",
+      "c126",
+      "c127",
       "c009",
       "c010",
       "c041",
@@ -6606,12 +6630,12 @@
       "c101"
     ],
     "method": [
-      "c126",
-      "c127"
+      "c128",
+      "c129"
     ],
     "motive": [
-      "c134",
-      "c135"
+      "c136",
+      "c137"
     ]
   }
 }

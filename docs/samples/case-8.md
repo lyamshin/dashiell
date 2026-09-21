@@ -217,7 +217,7 @@ On Agnes Sweeney's account:
 
 On the rain:
 
-- **c152** [environment] Konrad Hochstetter says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM_
+- **c154** [environment] Konrad Hochstetter says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM_
 
 ### From Carmela Ruggiero (a piano teacher)
 
@@ -265,7 +265,8 @@ On Delia Mulcahy's account:
 
 On Agnes Sweeney's account:
 
-- **c144** [observation] Carmela Ruggiero was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
+- **c144** [observation] Carmela Ruggiero was in the Lobby at 9:00 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM_
+- **c145** [observation] Carmela Ruggiero was in the Bar at 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:30 PM_
 
 ### From Francis Quill (a stringer for the evening papers)
 
@@ -312,7 +313,7 @@ On Delia Mulcahy's account:
 
 On Agnes Sweeney's account:
 
-- **c145** [observation] Francis Quill was in the Lobby at 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:30 PM_
+- **c146** [observation] Francis Quill was in the Lobby at 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:30 PM_
 
 ### From Assunta Bellucci (a dentist with rooms on the third floor)
 
@@ -367,7 +368,8 @@ On Delia Mulcahy's account:
 
 On Agnes Sweeney's account:
 
-- **c146** [observation] Assunta Bellucci was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
+- **c147** [observation] Assunta Bellucci was in the Lobby at 9:00 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM_
+- **c148** [observation] Assunta Bellucci was in the Bar at 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:30 PM_
 
 ### From Delia Mulcahy (a stagehand at the Selwyn)
 
@@ -407,7 +409,7 @@ On Assunta Bellucci's account:
 
 On Agnes Sweeney and Ernst Obermann:
 
-- **c161** [overheard] Delia Mulcahy says Ernst Obermann said to Agnes Sweeney that a man who testifies sleeps better. — _establishes: Agnes Sweeney had a motive (silence-a-witness)_
+- **c163** [overheard] Delia Mulcahy says Ernst Obermann said to Agnes Sweeney that a man who testifies sleeps better. — _establishes: Agnes Sweeney had a motive (silence-a-witness)_
 
 ### From Agnes Sweeney (a photographer for the rotogravure section)
 
@@ -510,7 +512,7 @@ On Delia Mulcahy's account:
 
 On Agnes Sweeney's account:
 
-- **c147** [observation] Meyer Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
+- **c149** [observation] Meyer Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
 
 ### From Bernard Sirkin (the bartender)
 
@@ -563,39 +565,39 @@ On Delia Mulcahy's account:
 
 On Agnes Sweeney's account:
 
-- **c148** [observation] Bernard Sirkin was in the Bar from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
+- **c150** [observation] Bernard Sirkin was in the Bar from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
 
 On the radio:
 
-- **c153** [radio] Bernard Sirkin says the bar radio carried the returns from the ward elections at 8:00 PM, and that the Ninth went the other way and the announcer said so twice. Anyone in the bar could tell you that. — _establishes: context only_
+- **c155** [radio] Bernard Sirkin says the bar radio carried the returns from the ward elections at 8:00 PM, and that the Ninth went the other way and the announcer said so twice. Anyone in the bar could tell you that. — _establishes: context only_
 
 On Konrad Hochstetter and Ernst Obermann:
 
-- **c157** [overheard] Bernard Sirkin says Ernst Obermann told Konrad Hochstetter the lease would go to somebody else at the quarter day. — _establishes: Konrad Hochstetter had a motive (property)_
+- **c159** [overheard] Bernard Sirkin says Ernst Obermann told Konrad Hochstetter the lease would go to somebody else at the quarter day. — _establishes: Konrad Hochstetter had a motive (property)_
 
 On Francis Quill and Ernst Obermann:
 
-- **c159** [overheard] Bernard Sirkin says Ernst Obermann told Francis Quill that Friday was the end of it, one way or the other. — _establishes: Francis Quill had a motive (debt)_
+- **c161** [overheard] Bernard Sirkin says Ernst Obermann told Francis Quill that Friday was the end of it, one way or the other. — _establishes: Francis Quill had a motive (debt)_
 
 ### From the Front Desk
 
-- **c150** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-- **c154** [document] Carmela Ruggiero's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
-- **c155** [document] Agnes Sweeney's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
-- **c160** [document] Found in the Front Desk: A subpoena naming Ernst Obermann as a witness before the grand jury, with Agnes Sweeney's name written in the margin. — _establishes: Agnes Sweeney had a motive (silence-a-witness)_
+- **c152** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
+- **c156** [document] Carmela Ruggiero's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
+- **c157** [document] Agnes Sweeney's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
+- **c162** [document] Found in the Front Desk: A subpoena naming Ernst Obermann as a witness before the grand jury, with Agnes Sweeney's name written in the margin. — _establishes: Agnes Sweeney had a motive (silence-a-witness)_
 
 ### From the Victim's Suite
 
-- **c156** [document] Found in the Victim's Suite: A lease assignment made out in Konrad Hochstetter's name, waiting only on Ernst Obermann's signature. — _establishes: Konrad Hochstetter had a motive (property)_
-- **c158** [document] Found in the Victim's Suite: A promissory note for $4,000 signed by Francis Quill, endorsed to Ernst Obermann, three months past due. — _establishes: Francis Quill had a motive (debt)_
+- **c158** [document] Found in the Victim's Suite: A lease assignment made out in Konrad Hochstetter's name, waiting only on Ernst Obermann's signature. — _establishes: Konrad Hochstetter had a motive (property)_
+- **c160** [document] Found in the Victim's Suite: A promissory note for $4,000 signed by Francis Quill, endorsed to Ernst Obermann, three months past due. — _establishes: Francis Quill had a motive (debt)_
 
 ### From the Roof Garden
 
-- **c149** [morgue] Ernst Obermann was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:00 PM and 9:30 PM_
+- **c151** [morgue] Ernst Obermann was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:00 PM and 9:30 PM_
 
 ### From the Street
 
-- **c151** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c153** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -609,7 +611,7 @@ On Francis Quill and Ernst Obermann:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c149, c013, c029, c044, c062, c087, c111)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c151, c013, c029, c044, c062, c087, c111)_
 
 **Clearing the innocent.**
 
@@ -619,11 +621,11 @@ On Francis Quill and Ernst Obermann:
 - Assunta Bellucci was not in the Roof Garden at 9:30 PM, on two independent sources. _(c024, c037, c098, c120)_
 - Delia Mulcahy was not in the Roof Garden at 9:30 PM, on two independent sources. _(c039, c104)_
 
-**Naming the killer.** Agnes Sweeney claims the Bar at 9:30 PM. Two independent sources put that out of the question, and one ties Agnes Sweeney to a push from the roof garden. _(c144, c145, c146, c147, c148, c060, c071, c108)_
+**Naming the killer.** Agnes Sweeney claims the Bar at 9:30 PM. Two independent sources put that out of the question, and one ties Agnes Sweeney to a push from the roof garden. _(c145, c146, c148, c149, c150, c060, c071, c108)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c149, c150)_
+**Method.** A push from the roof garden, on two physical sources. _(c151, c152)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c160, c161)_
+**Motive.** silence-a-witness, on two independent sources. _(c162, c163)_
 
 ## 8. Red herrings
 

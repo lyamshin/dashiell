@@ -7107,7 +7107,19 @@
           "personId": "p-s1",
           "location": "lobby",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Daniel Hanrahan was in the Bar at 9:30 PM and says Gustav Wehrle was not in the Lobby."
+    },
+    {
+      "id": "c152",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Gustav Wehrle's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s1",
@@ -7115,10 +7127,10 @@
           "tick": 8
         }
       ],
-      "text": "Daniel Hanrahan was in the Bar from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby."
+      "text": "Daniel Hanrahan was in the Lobby at 10:00 PM and says Gustav Wehrle was not in the Lobby."
     },
     {
-      "id": "c152",
+      "id": "c153",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7131,7 +7143,19 @@
           "personId": "p-s1",
           "location": "lobby",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Mary Kavanagh was in the Lobby at 9:30 PM and says Gustav Wehrle was not in the Lobby."
+    },
+    {
+      "id": "c154",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Gustav Wehrle's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s1",
@@ -7139,10 +7163,10 @@
           "tick": 8
         }
       ],
-      "text": "Mary Kavanagh was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby."
+      "text": "Mary Kavanagh was on the Street at 10:00 PM and says Gustav Wehrle was not in the Lobby."
     },
     {
-      "id": "c153",
+      "id": "c155",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7155,7 +7179,19 @@
           "personId": "p-s1",
           "location": "lobby",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Hyman Hurwitz was in the Lobby at 9:30 PM and says Gustav Wehrle was not in the Lobby."
+    },
+    {
+      "id": "c156",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Gustav Wehrle's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s1",
@@ -7163,10 +7199,10 @@
           "tick": 8
         }
       ],
-      "text": "Hyman Hurwitz was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby."
+      "text": "Hyman Hurwitz was in the Bar at 10:00 PM and says Gustav Wehrle was not in the Lobby."
     },
     {
-      "id": "c154",
+      "id": "c157",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7190,7 +7226,7 @@
       "text": "Wilhelm Obermann was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby."
     },
     {
-      "id": "c155",
+      "id": "c158",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7214,7 +7250,7 @@
       "text": "Antonio Grasso was in the Bar from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby."
     },
     {
-      "id": "c156",
+      "id": "c159",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7232,7 +7268,7 @@
       "text": "Gustav Wehrle was in the Lobby at 7:30 PM and says Daniel Hanrahan was not on the Street."
     },
     {
-      "id": "c157",
+      "id": "c160",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7250,7 +7286,7 @@
       "text": "Hyman Hurwitz was in the Lobby at 7:00 PM and says Daniel Hanrahan was not on the Street."
     },
     {
-      "id": "c158",
+      "id": "c161",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7268,7 +7304,7 @@
       "text": "Rachel Kessler was in the Lobby at 6:30 PM and says Daniel Hanrahan was not on the Street."
     },
     {
-      "id": "c159",
+      "id": "c162",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7298,7 +7334,7 @@
       "text": "Wilhelm Obermann was in the Lobby from 6:30 PM to 7:30 PM and says Daniel Hanrahan was not on the Street."
     },
     {
-      "id": "c160",
+      "id": "c163",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7316,7 +7352,7 @@
       "text": "Daniel Hanrahan was in the Lobby at 10:00 PM and says Percival Dandridge was not in the Lobby."
     },
     {
-      "id": "c161",
+      "id": "c164",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7334,7 +7370,7 @@
       "text": "Mary Kavanagh was on the Street at 10:00 PM and says Percival Dandridge was not in the Lobby."
     },
     {
-      "id": "c162",
+      "id": "c165",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7352,7 +7388,7 @@
       "text": "Hyman Hurwitz was in the Bar at 10:00 PM and says Percival Dandridge was not in the Lobby."
     },
     {
-      "id": "c163",
+      "id": "c166",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7370,7 +7406,7 @@
       "text": "Wilhelm Obermann was in the Lobby at 10:00 PM and says Percival Dandridge was not in the Lobby."
     },
     {
-      "id": "c164",
+      "id": "c167",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7388,7 +7424,7 @@
       "text": "Antonio Grasso was in the Bar at 10:00 PM and says Percival Dandridge was not in the Lobby."
     },
     {
-      "id": "c165",
+      "id": "c168",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7406,7 +7442,7 @@
       "text": "Gustav Wehrle was in the Lobby at 7:30 PM and says Mary Kavanagh was not on the Street."
     },
     {
-      "id": "c166",
+      "id": "c169",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7424,7 +7460,7 @@
       "text": "Hyman Hurwitz was in the Lobby at 7:00 PM and says Mary Kavanagh was not on the Street."
     },
     {
-      "id": "c167",
+      "id": "c170",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7442,7 +7478,7 @@
       "text": "Rachel Kessler was in the Lobby at 6:30 PM and says Mary Kavanagh was not on the Street."
     },
     {
-      "id": "c168",
+      "id": "c171",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7472,7 +7508,7 @@
       "text": "Wilhelm Obermann was in the Lobby from 6:30 PM to 7:30 PM and says Mary Kavanagh was not on the Street."
     },
     {
-      "id": "c169",
+      "id": "c172",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7496,7 +7532,7 @@
       "text": "Mary Kavanagh says Rachel Kessler was there. Rachel Kessler says otherwise: Rachel Kessler was at the Front Desk from 7:00 PM to 7:30 PM, not on the Street."
     },
     {
-      "id": "c170",
+      "id": "c173",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7514,7 +7550,7 @@
       "text": "Gustav Wehrle was in the Lobby at 7:30 PM and says Hyman Hurwitz was not in the Lobby."
     },
     {
-      "id": "c171",
+      "id": "c174",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7532,7 +7568,7 @@
       "text": "Percival Dandridge was in the Bar at 7:30 PM and says Hyman Hurwitz was not in the Lobby."
     },
     {
-      "id": "c172",
+      "id": "c175",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7550,7 +7586,7 @@
       "text": "Rachel Kessler was at the Front Desk at 7:30 PM and says Hyman Hurwitz was not in the Lobby."
     },
     {
-      "id": "c173",
+      "id": "c176",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7568,7 +7604,7 @@
       "text": "Wilhelm Obermann was in the Lobby at 7:30 PM and says Hyman Hurwitz was not in the Lobby."
     },
     {
-      "id": "c174",
+      "id": "c177",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7586,7 +7622,7 @@
       "text": "Antonio Grasso was in the Bar at 7:30 PM and says Hyman Hurwitz was not in the Lobby."
     },
     {
-      "id": "c175",
+      "id": "c178",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7604,7 +7640,7 @@
       "text": "Gustav Wehrle was in the Lobby at 9:00 PM and says Rachel Kessler was not on the Street."
     },
     {
-      "id": "c176",
+      "id": "c179",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7622,7 +7658,7 @@
       "text": "Daniel Hanrahan was in the Lobby at 10:00 PM and says Rachel Kessler was not on the Street."
     },
     {
-      "id": "c177",
+      "id": "c180",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7641,7 +7677,19 @@
           "personId": "p-s6",
           "location": "street",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Mary Kavanagh was in the Lobby from 9:00 PM to 9:30 PM and says Rachel Kessler was not on the Street."
+    },
+    {
+      "id": "c181",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Rachel Kessler's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s6",
@@ -7649,10 +7697,10 @@
           "tick": 8
         }
       ],
-      "text": "Mary Kavanagh was in the Lobby from 9:00 PM to 10:00 PM and says Rachel Kessler was not on the Street."
+      "text": "Mary Kavanagh was on the Street at 10:00 PM and says Rachel Kessler was not on the Street."
     },
     {
-      "id": "c178",
+      "id": "c182",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7676,7 +7724,7 @@
       "text": "Hyman Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Rachel Kessler was not on the Street."
     },
     {
-      "id": "c179",
+      "id": "c183",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7706,7 +7754,7 @@
       "text": "Wilhelm Obermann was in the Lobby from 9:00 PM to 10:00 PM and says Rachel Kessler was not on the Street."
     },
     {
-      "id": "c180",
+      "id": "c184",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -7724,7 +7772,7 @@
       "text": "Sadie Lefkowitz was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
     },
     {
-      "id": "c181",
+      "id": "c185",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7740,7 +7788,7 @@
       "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
     },
     {
-      "id": "c182",
+      "id": "c186",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7750,7 +7798,7 @@
       "text": "Rain began at 8:00 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c183",
+      "id": "c187",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -7761,7 +7809,7 @@
       "text": "Antonio Grasso says the bar radio carried a six-day bicycle race from the Velodrome at 8:30 PM, and that a rider fell at the bank and the lead changed hands. Anyone in the bar could tell you that."
     },
     {
-      "id": "c184",
+      "id": "c188",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7777,7 +7825,7 @@
       "text": "Found in the Victim's Suite: A typed page of dates and sums in Sadie Lefkowitz's file, headed with Gustav Wehrle's name."
     },
     {
-      "id": "c185",
+      "id": "c189",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7794,7 +7842,7 @@
       "text": "Wilhelm Obermann says Sadie Lefkowitz told Gustav Wehrle that the story would run whether Gustav Wehrle liked it or not."
     },
     {
-      "id": "c186",
+      "id": "c190",
       "kind": "document",
       "source": {
         "type": "location",
@@ -7810,7 +7858,7 @@
       "text": "Found in the Victim's Suite: A lease assignment made out in Rachel Kessler's name, waiting only on Sadie Lefkowitz's signature."
     },
     {
-      "id": "c187",
+      "id": "c191",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -7836,7 +7884,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c180",
+      "c184",
       "c020",
       "c048",
       "c064",
@@ -7871,9 +7919,9 @@
       ]
     },
     "inculpation": [
-      "c176",
-      "c177",
       "c179",
+      "c181",
+      "c183",
       "c014",
       "c015",
       "c061",
@@ -7883,12 +7931,12 @@
       "c122"
     ],
     "method": [
-      "c180",
-      "c181"
+      "c184",
+      "c185"
     ],
     "motive": [
-      "c186",
-      "c187"
+      "c190",
+      "c191"
     ]
   }
 }

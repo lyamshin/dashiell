@@ -211,11 +211,11 @@ On Eileen Rafferty's account:
 
 On Francis Hanrahan's account:
 
-- **c144** [observation] Roscoe Cheatham was in the Lobby at 6:00 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM_
+- **c147** [observation] Roscoe Cheatham was in the Lobby at 6:00 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM_
 
 On Lorraine Whitfield and Esther Hurwitz:
 
-- **c164** [overheard] Roscoe Cheatham says Esther Hurwitz said to Lorraine Whitfield that a man who testifies sleeps better. — _establishes: Lorraine Whitfield had a motive (silence-a-witness)_
+- **c167** [overheard] Roscoe Cheatham says Esther Hurwitz said to Lorraine Whitfield that a man who testifies sleeps better. — _establishes: Lorraine Whitfield had a motive (silence-a-witness)_
 
 ### From Gretchen Brauer (a wine steward out of work since the Act)
 
@@ -254,7 +254,7 @@ On Lorraine Whitfield's account:
 
 On Francis Hanrahan's account:
 
-- **c145** [observation] Gretchen Brauer was in the Kitchen from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
+- **c148** [observation] Gretchen Brauer was in the Kitchen from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
 
 ### From Abraham Lefkowitz (a private nurse)
 
@@ -310,11 +310,12 @@ On Eileen Rafferty's account:
 
 On Lorraine Whitfield's account:
 
-- **c140** [observation] Abraham Lefkowitz was in the Lobby from 10:30 PM to 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM–11:00 PM_
+- **c140** [observation] Abraham Lefkowitz was in the Lobby at 10:30 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM_
+- **c141** [observation] Abraham Lefkowitz was at the Front Desk at 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 11:00 PM_
 
 On Francis Hanrahan's account:
 
-- **c146** [observation] Abraham Lefkowitz was in the Bar from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
+- **c149** [observation] Abraham Lefkowitz was in the Bar from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
 
 ### From Eileen Rafferty (a seamstress)
 
@@ -351,7 +352,7 @@ On Francis Hanrahan:
 
 On Roscoe Cheatham and Esther Hurwitz:
 
-- **c158** [overheard] Eileen Rafferty says Esther Hurwitz told Roscoe Cheatham the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Roscoe Cheatham had a motive (inheritance)_
+- **c161** [overheard] Eileen Rafferty says Esther Hurwitz told Roscoe Cheatham the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Roscoe Cheatham had a motive (inheritance)_
 
 ### From Lorraine Whitfield (the night manager)
 
@@ -384,7 +385,7 @@ On Francis Hanrahan:
 
 On Francis Hanrahan's account:
 
-- **c147** [observation] Lorraine Whitfield was in the Kitchen from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
+- **c150** [observation] Lorraine Whitfield was in the Kitchen from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
 
 ### From Francis Hanrahan (a tailor)
 
@@ -430,7 +431,8 @@ On Gretchen Brauer's account:
 On Lorraine Whitfield's account:
 
 - **c137** [observation] Francis Hanrahan was in the Lobby at 9:00 PM and says Lorraine Whitfield was not on the Street. — _establishes: Lorraine Whitfield not on the Street, 9:00 PM_
-- **c141** [observation] Francis Hanrahan was in the Lobby from 10:30 PM to 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM–11:00 PM_
+- **c142** [observation] Francis Hanrahan was in the Lobby at 10:30 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM_
+- **c143** [observation] Francis Hanrahan was at the Front Desk at 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 11:00 PM_
 
 ### From Friedrich Obermann (the doorman)
 
@@ -489,19 +491,19 @@ On Eileen Rafferty's account:
 On Lorraine Whitfield's account:
 
 - **c138** [observation] Friedrich Obermann was in the Lobby at 9:00 PM and says Lorraine Whitfield was not on the Street. — _establishes: Lorraine Whitfield not on the Street, 9:00 PM_
-- **c142** [observation] Friedrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM–11:00 PM_
+- **c144** [observation] Friedrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM–11:00 PM_
 
 On Francis Hanrahan's account:
 
-- **c148** [observation] Friedrich Obermann was in the Lobby from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
+- **c151** [observation] Friedrich Obermann was in the Lobby from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
 
 On Abraham Lefkowitz and Esther Hurwitz:
 
-- **c160** [overheard] Friedrich Obermann says Abraham Lefkowitz said Esther Hurwitz had taken everything and would be made to feel it. — _establishes: Abraham Lefkowitz had a motive (revenge)_
+- **c163** [overheard] Friedrich Obermann says Abraham Lefkowitz said Esther Hurwitz had taken everything and would be made to feel it. — _establishes: Abraham Lefkowitz had a motive (revenge)_
 
 On Eileen Rafferty and Esther Hurwitz:
 
-- **c162** [overheard] Friedrich Obermann says Esther Hurwitz told Eileen Rafferty the lease would go to somebody else at the quarter day. — _establishes: Eileen Rafferty had a motive (property)_
+- **c165** [overheard] Friedrich Obermann says Esther Hurwitz told Eileen Rafferty the lease would go to somebody else at the quarter day. — _establishes: Eileen Rafferty had a motive (property)_
 
 ### From Frieda Dettweiler (the bartender)
 
@@ -565,43 +567,44 @@ On Eileen Rafferty's account:
 
 On Lorraine Whitfield's account:
 
-- **c143** [observation] Frieda Dettweiler was in the Bar from 10:30 PM to 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM–11:00 PM_
+- **c145** [observation] Frieda Dettweiler was in the Bar at 10:30 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM_
+- **c146** [observation] Frieda Dettweiler was in the Lobby at 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 11:00 PM_
 
 On Francis Hanrahan's account:
 
-- **c149** [observation] Frieda Dettweiler was in the Bar from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
+- **c152** [observation] Frieda Dettweiler was in the Bar from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
 
 On the radio:
 
-- **c155** [radio] Frieda Dettweiler says the bar radio carried a fight card from the Garden at 7:30 PM, and that the challenger went down in the fourth and the crowd booed. Anyone in the bar could tell you that. — _establishes: context only_
+- **c158** [radio] Frieda Dettweiler says the bar radio carried a fight card from the Garden at 7:30 PM, and that the challenger went down in the fourth and the crowd booed. Anyone in the bar could tell you that. — _establishes: context only_
 
 ### From the Lobby
 
-- **c152** [environment] The passenger elevator was out of order from 7:30 PM to 8:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c155** [environment] The passenger elevator was out of order from 7:30 PM to 8:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c156** [document] Abraham Lefkowitz's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
-- **c157** [document] Found in the Front Desk: A draft codicil in Esther Hurwitz's hand striking Roscoe Cheatham out of the will, dated last Tuesday and unsigned. — _establishes: Roscoe Cheatham had a motive (inheritance)_
-- **c161** [document] Found in the Front Desk: A lease assignment made out in Eileen Rafferty's name, waiting only on Esther Hurwitz's signature. — _establishes: Eileen Rafferty had a motive (property)_
+- **c159** [document] Abraham Lefkowitz's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
+- **c160** [document] Found in the Front Desk: A draft codicil in Esther Hurwitz's hand striking Roscoe Cheatham out of the will, dated last Tuesday and unsigned. — _establishes: Roscoe Cheatham had a motive (inheritance)_
+- **c164** [document] Found in the Front Desk: A lease assignment made out in Eileen Rafferty's name, waiting only on Esther Hurwitz's signature. — _establishes: Eileen Rafferty had a motive (property)_
 
 ### From the Kitchen
 
-- **c151** [physical] A cut-glass decanter is missing from the Kitchen. The stopper has been wiped and the dregs test positive for chloral. — _establishes: an object gone from the Kitchen_
+- **c154** [physical] A cut-glass decanter is missing from the Kitchen. The stopper has been wiped and the dregs test positive for chloral. — _establishes: an object gone from the Kitchen_
 
 ### From the Service Stairs
 
-- **c153** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Lorraine Whitfield's sleeve; Lorraine Whitfield was on the stairs at 8:00 PM. — _establishes: Lorraine Whitfield on the Service Stairs, 8:00 PM_
-- **c154** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Francis Hanrahan's sleeve; Francis Hanrahan was on the stairs at 7:30 PM. — _establishes: Francis Hanrahan on the Service Stairs, 7:30 PM_
+- **c156** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Lorraine Whitfield's sleeve; Lorraine Whitfield was on the stairs at 8:00 PM. — _establishes: Lorraine Whitfield on the Service Stairs, 8:00 PM_
+- **c157** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Francis Hanrahan's sleeve; Francis Hanrahan was on the stairs at 7:30 PM. — _establishes: Francis Hanrahan on the Service Stairs, 7:30 PM_
 
 ### From the Victim's Suite
 
-- **c159** [document] Found in the Victim's Suite: A clipping about the failure of Abraham Lefkowitz's business, with Esther Hurwitz's name underlined twice in pencil. — _establishes: Abraham Lefkowitz had a motive (revenge)_
-- **c163** [document] Found in the Victim's Suite: A subpoena naming Esther Hurwitz as a witness before the grand jury, with Lorraine Whitfield's name written in the margin. — _establishes: Lorraine Whitfield had a motive (silence-a-witness)_
+- **c162** [document] Found in the Victim's Suite: A clipping about the failure of Abraham Lefkowitz's business, with Esther Hurwitz's name underlined twice in pencil. — _establishes: Abraham Lefkowitz had a motive (revenge)_
+- **c166** [document] Found in the Victim's Suite: A subpoena naming Esther Hurwitz as a witness before the grand jury, with Lorraine Whitfield's name written in the margin. — _establishes: Lorraine Whitfield had a motive (silence-a-witness)_
 
 ### From the Roof Garden
 
-- **c150** [morgue] Esther Hurwitz was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle. — _establishes: death between 8:30 PM and 9:00 PM_
+- **c153** [morgue] Esther Hurwitz was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle. — _establishes: death between 8:30 PM and 9:00 PM_
 
 ### Withheld — the player cannot get these
 
@@ -621,7 +624,7 @@ On the radio:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c150, c010, c023, c044, c056, c081, c100)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c153, c010, c023, c044, c056, c081, c100)_
 
 **Clearing the innocent.**
 
@@ -633,9 +636,9 @@ On the radio:
 
 **Naming the killer.** Lorraine Whitfield claims the Street at 9:00 PM. Two independent sources put that out of the question, and one ties Lorraine Whitfield to poison in a drink. _(c137, c138, c018, c034, c053, c078, c116)_
 
-**Method.** Poison in a drink, on two physical sources. _(c150, c151)_
+**Method.** Poison in a drink, on two physical sources. _(c153, c154)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c163, c164)_
+**Motive.** silence-a-witness, on two independent sources. _(c166, c167)_
 
 ## 8. Red herrings
 

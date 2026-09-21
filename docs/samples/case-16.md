@@ -251,7 +251,7 @@ On Domenico Salerno's account:
 
 On the rain:
 
-- **c172** [environment] Heinrich Vogel says Rachel Feldman came in off the street at 9:00 PM with a soaked coat, so Rachel Feldman was outside at 8:30 PM. — _establishes: Rachel Feldman on the Street, 8:30 PM_
+- **c173** [environment] Heinrich Vogel says Rachel Feldman came in off the street at 9:00 PM with a soaked coat, so Rachel Feldman was outside at 8:30 PM. — _establishes: Rachel Feldman on the Street, 8:30 PM_
 
 ### From Roscoe Tillman (a longshoreman)
 
@@ -403,7 +403,8 @@ On Rosaria Petrosino's account:
 
 On Domenico Salerno's account:
 
-- **c166** [observation] Augustus Bledsoe was in the Lobby from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby. — _establishes: Domenico Salerno not in the Lobby, 9:30 PM–10:00 PM_
+- **c166** [observation] Augustus Bledsoe was in the Lobby at 9:30 PM and says Domenico Salerno was not in the Lobby. — _establishes: Domenico Salerno not in the Lobby, 9:30 PM_
+- **c167** [observation] Augustus Bledsoe was at the Front Desk at 10:00 PM and says Domenico Salerno was not in the Lobby. — _establishes: Domenico Salerno not in the Lobby, 10:00 PM_
 
 ### From Domenico Salerno (a stagehand at the Selwyn)
 
@@ -525,7 +526,7 @@ On Augustus Bledsoe's account:
 On Domenico Salerno's account:
 
 - **c162** [observation] Concetta Ruggiero was in the Lobby at 8:00 PM and says Domenico Salerno was not in the Bar. — _establishes: Domenico Salerno not in the Bar, 8:00 PM_
-- **c167** [observation] Concetta Ruggiero was in the Lobby from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby. — _establishes: Domenico Salerno not in the Lobby, 9:30 PM–10:00 PM_
+- **c168** [observation] Concetta Ruggiero was in the Lobby from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby. — _establishes: Domenico Salerno not in the Lobby, 9:30 PM–10:00 PM_
 
 ### From Margaret Rafferty (the bartender)
 
@@ -591,30 +592,30 @@ On Augustus Bledsoe's account:
 On Domenico Salerno's account:
 
 - **c163** [observation] Margaret Rafferty was in the Bar at 8:00 PM and says Domenico Salerno was not in the Bar. — _establishes: Domenico Salerno not in the Bar, 8:00 PM_
-- **c168** [observation] Margaret Rafferty was in the Bar from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby. — _establishes: Domenico Salerno not in the Lobby, 9:30 PM–10:00 PM_
+- **c169** [observation] Margaret Rafferty was in the Bar from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby. — _establishes: Domenico Salerno not in the Lobby, 9:30 PM–10:00 PM_
 
 On Roscoe Tillman and Nora Kavanagh:
 
-- **c175** [overheard] Margaret Rafferty says Nora Kavanagh said to Roscoe Tillman that a man who testifies sleeps better. — _establishes: Roscoe Tillman had a motive (silence-a-witness)_
+- **c176** [overheard] Margaret Rafferty says Nora Kavanagh said to Roscoe Tillman that a man who testifies sleeps better. — _establishes: Roscoe Tillman had a motive (silence-a-witness)_
 
 On Domenico Salerno and Nora Kavanagh:
 
-- **c177** [overheard] Margaret Rafferty says Nora Kavanagh told Domenico Salerno the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Domenico Salerno had a motive (inheritance)_
+- **c178** [overheard] Margaret Rafferty says Nora Kavanagh told Domenico Salerno the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Domenico Salerno had a motive (inheritance)_
 
 ### From the Front Desk
 
-- **c170** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-- **c173** [document] Roscoe Tillman's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
-- **c174** [document] Found in the Front Desk: A subpoena naming Nora Kavanagh as a witness before the grand jury, with Roscoe Tillman's name written in the margin. — _establishes: Roscoe Tillman had a motive (silence-a-witness)_
-- **c176** [document] Found in the Front Desk: A draft codicil in Nora Kavanagh's hand striking Domenico Salerno out of the will, dated last Tuesday and unsigned. — _establishes: Domenico Salerno had a motive (inheritance)_
+- **c171** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
+- **c174** [document] Roscoe Tillman's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
+- **c175** [document] Found in the Front Desk: A subpoena naming Nora Kavanagh as a witness before the grand jury, with Roscoe Tillman's name written in the margin. — _establishes: Roscoe Tillman had a motive (silence-a-witness)_
+- **c177** [document] Found in the Front Desk: A draft codicil in Nora Kavanagh's hand striking Domenico Salerno out of the will, dated last Tuesday and unsigned. — _establishes: Domenico Salerno had a motive (inheritance)_
 
 ### From the Roof Garden
 
-- **c169** [morgue] Nora Kavanagh was found in the Roof Garden. The coroner puts death between 7:30 PM and 8:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 7:30 PM and 8:00 PM_
+- **c170** [morgue] Nora Kavanagh was found in the Roof Garden. The coroner puts death between 7:30 PM and 8:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 7:30 PM and 8:00 PM_
 
 ### From the Street
 
-- **c171** [environment] Rain began at 8:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c172** [environment] Rain began at 8:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -642,7 +643,7 @@ On Domenico Salerno and Nora Kavanagh:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 8:00 PM. _(c169, c026, c046, c073, c094, c118)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 8:00 PM. _(c170, c026, c046, c073, c094, c118)_
 
 **Clearing the innocent.**
 
@@ -654,9 +655,9 @@ On Domenico Salerno and Nora Kavanagh:
 
 **Naming the killer.** Domenico Salerno claims the Bar at 8:00 PM. Two independent sources put that out of the question, and one ties Domenico Salerno to a push from the roof garden. _(c160, c161, c162, c163, c041, c058, c069, c113)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c169, c170)_
+**Method.** A push from the roof garden, on two physical sources. _(c170, c171)_
 
-**Motive.** inheritance, on two independent sources. _(c176, c177)_
+**Motive.** inheritance, on two independent sources. _(c177, c178)_
 
 ## 8. Red herrings
 

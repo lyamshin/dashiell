@@ -6627,7 +6627,19 @@
           "personId": "p-s5",
           "location": "lobby",
           "tick": 2
-        },
+        }
+      ],
+      "text": "Martin Feeney was on the Street at 7:00 PM and says Lorraine Ashby was not in the Lobby."
+    },
+    {
+      "id": "c135",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Lorraine Ashby's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s5",
@@ -6635,10 +6647,10 @@
           "tick": 3
         }
       ],
-      "text": "Martin Feeney was on the Street from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby."
+      "text": "Martin Feeney was in the Lobby at 7:30 PM and says Lorraine Ashby was not in the Lobby."
     },
     {
-      "id": "c135",
+      "id": "c136",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6662,7 +6674,7 @@
       "text": "Harriet Havemeyer was in the Bar from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby."
     },
     {
-      "id": "c136",
+      "id": "c137",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6680,7 +6692,7 @@
       "text": "Willa Prentiss was in the Bar at 8:30 PM and says Beatrice Ellery was not in the Lobby."
     },
     {
-      "id": "c137",
+      "id": "c138",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6704,7 +6716,7 @@
       "text": "Marion Winslow was in the Bar from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby."
     },
     {
-      "id": "c138",
+      "id": "c139",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6722,7 +6734,7 @@
       "text": "Lorraine Ashby was in the Lobby at 9:00 PM and says Beatrice Ellery was not in the Lobby."
     },
     {
-      "id": "c139",
+      "id": "c140",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6746,7 +6758,7 @@
       "text": "Martin Feeney was in the Lobby from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby."
     },
     {
-      "id": "c140",
+      "id": "c141",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6770,7 +6782,7 @@
       "text": "Harriet Havemeyer was in the Bar from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby."
     },
     {
-      "id": "c141",
+      "id": "c142",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -6788,7 +6800,7 @@
       "text": "Maureen Quill was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. A ligature furrow across the throat. Three fibres of hemp in the skin."
     },
     {
-      "id": "c142",
+      "id": "c143",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -6804,7 +6816,7 @@
       "text": "A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from."
     },
     {
-      "id": "c143",
+      "id": "c144",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -6814,7 +6826,7 @@
       "text": "Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c144",
+      "id": "c145",
       "kind": "environment",
       "source": {
         "type": "person",
@@ -6832,7 +6844,7 @@
       "text": "Antonio Marchetti says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM."
     },
     {
-      "id": "c145",
+      "id": "c146",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6842,7 +6854,7 @@
       "text": "Marion Winslow's papers do not hold up. A steamship ticket stub in the name of a man who died at Belleau Wood."
     },
     {
-      "id": "c146",
+      "id": "c147",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6858,7 +6870,7 @@
       "text": "Found in the Victim's Suite: A subpoena naming Maureen Quill as a witness before the grand jury, with Antonio Marchetti's name written in the margin."
     },
     {
-      "id": "c147",
+      "id": "c148",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -6875,7 +6887,7 @@
       "text": "Martin Feeney says Maureen Quill said to Antonio Marchetti that a man who testifies sleeps better."
     },
     {
-      "id": "c148",
+      "id": "c149",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6891,7 +6903,7 @@
       "text": "Found in the Front Desk: A promissory note for $4,000 signed by Willa Prentiss, endorsed to Maureen Quill, three months past due."
     },
     {
-      "id": "c149",
+      "id": "c150",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -6908,7 +6920,7 @@
       "text": "Martin Feeney says Maureen Quill told Willa Prentiss that Friday was the end of it, one way or the other."
     },
     {
-      "id": "c150",
+      "id": "c151",
       "kind": "document",
       "source": {
         "type": "location",
@@ -6924,7 +6936,7 @@
       "text": "Found in the Front Desk: Three letters in Maureen Quill's hand to a woman Lorraine Ashby is engaged to, kept in the drawer, the last one opened."
     },
     {
-      "id": "c151",
+      "id": "c152",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -6950,7 +6962,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c141",
+      "c142",
       "c014",
       "c036",
       "c077",
@@ -6991,12 +7003,12 @@
       "c099"
     ],
     "method": [
-      "c141",
-      "c142"
+      "c142",
+      "c143"
     ],
     "motive": [
-      "c146",
-      "c147"
+      "c147",
+      "c148"
     ]
   }
 }

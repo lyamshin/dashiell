@@ -222,7 +222,7 @@ On Jacob Weisglass's account:
 
 On Vincenzo Vitale's account:
 
-- **c116** [observation] Rachel Abramowitz was in the Lobby from 10:00 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 10:00 PM–10:30 PM_
+- **c117** [observation] Rachel Abramowitz was in the Lobby from 10:00 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 10:00 PM–10:30 PM_
 
 ### From Francis Doyle (a photographer for the rotogravure section)
 
@@ -260,11 +260,12 @@ On Jacob Weisglass's account:
 
 On Vincenzo Vitale's account:
 
-- **c117** [observation] Francis Doyle was in the Kitchen from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:30 PM_
+- **c118** [observation] Francis Doyle was in the Kitchen at 9:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM_
+- **c119** [observation] Francis Doyle was in the Bar from 10:00 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 10:00 PM–10:30 PM_
 
 On Emilio Ruggiero's account:
 
-- **c122** [observation] Francis Doyle was in the Bar at 8:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM_
+- **c125** [observation] Francis Doyle was in the Bar at 8:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM_
 
 ### From Jacob Weisglass (a stringer for the evening papers)
 
@@ -302,7 +303,7 @@ On Francis Doyle's account:
 
 On Emilio Ruggiero's account:
 
-- **c123** [observation] Jacob Weisglass was in the Lobby from 8:30 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:30 PM–9:00 PM_
+- **c126** [observation] Jacob Weisglass was in the Lobby from 8:30 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:30 PM–9:00 PM_
 
 ### From Agnes Kavanagh (an insurance adjuster)
 
@@ -352,15 +353,16 @@ On Jacob Weisglass's account:
 
 On Vincenzo Vitale's account:
 
-- **c118** [observation] Agnes Kavanagh was in the Bar from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:30 PM_
+- **c120** [observation] Agnes Kavanagh was in the Bar from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:30 PM_
 
 On Emilio Ruggiero's account:
 
-- **c124** [observation] Agnes Kavanagh was in the Lobby from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM–9:00 PM_
+- **c127** [observation] Agnes Kavanagh was in the Lobby at 8:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM_
+- **c128** [observation] Agnes Kavanagh was in the Bar from 8:30 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:30 PM–9:00 PM_
 
 On Jacob Weisglass and Wilhelm Vogel:
 
-- **c139** [overheard] Agnes Kavanagh says Jacob Weisglass told Wilhelm Vogel to keep away, loud enough to turn heads. — _establishes: Jacob Weisglass had a motive (jealousy)_
+- **c144** [overheard] Agnes Kavanagh says Jacob Weisglass told Wilhelm Vogel to keep away, loud enough to turn heads. — _establishes: Jacob Weisglass had a motive (jealousy)_
 
 ### From Vincenzo Vitale (a tailor)
 
@@ -399,7 +401,8 @@ On Francis Doyle's account:
 
 On Emilio Ruggiero's account:
 
-- **c125** [observation] Vincenzo Vitale was in the Bar from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM–9:00 PM_
+- **c129** [observation] Vincenzo Vitale was in the Bar at 8:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM_
+- **c130** [observation] Vincenzo Vitale was in the Lobby from 8:30 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:30 PM–9:00 PM_
 
 ### From Emilio Ruggiero (a bookmaker in a small way)
 
@@ -431,7 +434,7 @@ On Jacob Weisglass's account:
 
 On Vincenzo Vitale's account:
 
-- **c119** [observation] Emilio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:30 PM_
+- **c121** [observation] Emilio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:30 PM_
 
 ### From Chandler Havemeyer (the doorman)
 
@@ -484,19 +487,20 @@ On Francis Doyle's account:
 
 On Jacob Weisglass's account:
 
-- **c114** [observation] Chandler Havemeyer was in the Lobby from 9:30 PM to 10:30 PM and says Jacob Weisglass was not in the Lobby. — _establishes: Jacob Weisglass not in the Lobby, 9:30 PM–10:30 PM_
+- **c114** [observation] Chandler Havemeyer was in the Lobby from 9:30 PM to 10:00 PM and says Jacob Weisglass was not in the Lobby. — _establishes: Jacob Weisglass not in the Lobby, 9:30 PM–10:00 PM_
+- **c115** [observation] Chandler Havemeyer was on the Street at 10:30 PM and says Jacob Weisglass was not in the Lobby. — _establishes: Jacob Weisglass not in the Lobby, 10:30 PM_
 
 On Vincenzo Vitale's account:
 
-- **c120** [observation] Chandler Havemeyer was in the Lobby from 9:30 PM to 10:00 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:00 PM_
+- **c122** [observation] Chandler Havemeyer was in the Lobby from 9:30 PM to 10:00 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:00 PM_
 
 On Emilio Ruggiero's account:
 
-- **c126** [observation] Chandler Havemeyer was in the Lobby from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM–9:00 PM_
+- **c131** [observation] Chandler Havemeyer was in the Lobby from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM–9:00 PM_
 
 On Emilio Ruggiero and Wilhelm Vogel:
 
-- **c141** [overheard] Chandler Havemeyer says Wilhelm Vogel told Emilio Ruggiero the lease would go to somebody else at the quarter day. — _establishes: Emilio Ruggiero had a motive (property)_
+- **c146** [overheard] Chandler Havemeyer says Wilhelm Vogel told Emilio Ruggiero the lease would go to somebody else at the quarter day. — _establishes: Emilio Ruggiero had a motive (property)_
 
 ### From Marion Coffin (the bartender)
 
@@ -549,51 +553,52 @@ On Francis Doyle's account:
 
 On Jacob Weisglass's account:
 
-- **c115** [observation] Marion Coffin was in the Bar from 9:30 PM to 10:00 PM and says Jacob Weisglass was not in the Lobby. — _establishes: Jacob Weisglass not in the Lobby, 9:30 PM–10:00 PM_
+- **c116** [observation] Marion Coffin was in the Bar from 9:30 PM to 10:00 PM and says Jacob Weisglass was not in the Lobby. — _establishes: Jacob Weisglass not in the Lobby, 9:30 PM–10:00 PM_
 
 On Vincenzo Vitale's account:
 
-- **c121** [observation] Marion Coffin was in the Bar from 9:30 PM to 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:30 PM_
+- **c123** [observation] Marion Coffin was in the Bar from 9:30 PM to 10:00 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 9:30 PM–10:00 PM_
+- **c124** [observation] Marion Coffin was in the Kitchen at 10:30 PM and says Vincenzo Vitale was not in the Bar. — _establishes: Vincenzo Vitale not in the Bar, 10:30 PM_
 
 On Emilio Ruggiero's account:
 
-- **c127** [observation] Marion Coffin was in the Bar from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM–9:00 PM_
+- **c132** [observation] Marion Coffin was in the Bar from 8:00 PM to 9:00 PM and says Emilio Ruggiero was not in the Lobby. — _establishes: Emilio Ruggiero not in the Lobby, 8:00 PM–9:00 PM_
 
 On Rachel Abramowitz and Wilhelm Vogel:
 
-- **c135** [overheard] Marion Coffin says Wilhelm Vogel said to Rachel Abramowitz that a man who testifies sleeps better. — _establishes: Rachel Abramowitz had a motive (silence-a-witness)_
+- **c140** [overheard] Marion Coffin says Wilhelm Vogel said to Rachel Abramowitz that a man who testifies sleeps better. — _establishes: Rachel Abramowitz had a motive (silence-a-witness)_
 
 On Francis Doyle and Wilhelm Vogel:
 
-- **c137** [overheard] Marion Coffin says Wilhelm Vogel told Francis Doyle the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Francis Doyle had a motive (inheritance)_
+- **c142** [overheard] Marion Coffin says Wilhelm Vogel told Francis Doyle the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Francis Doyle had a motive (inheritance)_
 
 ### From the Lobby
 
-- **c131** [environment] The passenger elevator was out of order from 7:00 PM to 7:30 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c136** [environment] The passenger elevator was out of order from 7:00 PM to 7:30 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c129** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-- **c133** [document] Agnes Kavanagh's papers do not hold up. A steamship ticket stub in the name of a man who died at Belleau Wood. — _establishes: context only_
-- **c136** [document] Found in the Front Desk: A draft codicil in Wilhelm Vogel's hand striking Francis Doyle out of the will, dated last Tuesday and unsigned. — _establishes: Francis Doyle had a motive (inheritance)_
-- **c138** [document] Found in the Front Desk: Three letters in Wilhelm Vogel's hand to a woman Jacob Weisglass is engaged to, kept in the drawer, the last one opened. — _establishes: Jacob Weisglass had a motive (jealousy)_
+- **c134** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
+- **c138** [document] Agnes Kavanagh's papers do not hold up. A steamship ticket stub in the name of a man who died at Belleau Wood. — _establishes: context only_
+- **c141** [document] Found in the Front Desk: A draft codicil in Wilhelm Vogel's hand striking Francis Doyle out of the will, dated last Tuesday and unsigned. — _establishes: Francis Doyle had a motive (inheritance)_
+- **c143** [document] Found in the Front Desk: Three letters in Wilhelm Vogel's hand to a woman Jacob Weisglass is engaged to, kept in the drawer, the last one opened. — _establishes: Jacob Weisglass had a motive (jealousy)_
 
 ### From the Service Stairs
 
-- **c132** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Emilio Ruggiero's sleeve; Emilio Ruggiero was on the stairs at 7:30 PM. — _establishes: Emilio Ruggiero on the Service Stairs, 7:30 PM_
+- **c137** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Emilio Ruggiero's sleeve; Emilio Ruggiero was on the stairs at 7:30 PM. — _establishes: Emilio Ruggiero on the Service Stairs, 7:30 PM_
 
 ### From the Victim's Suite
 
-- **c134** [document] Found in the Victim's Suite: A subpoena naming Wilhelm Vogel as a witness before the grand jury, with Rachel Abramowitz's name written in the margin. — _establishes: Rachel Abramowitz had a motive (silence-a-witness)_
-- **c140** [document] Found in the Victim's Suite: A lease assignment made out in Emilio Ruggiero's name, waiting only on Wilhelm Vogel's signature. — _establishes: Emilio Ruggiero had a motive (property)_
+- **c139** [document] Found in the Victim's Suite: A subpoena naming Wilhelm Vogel as a witness before the grand jury, with Rachel Abramowitz's name written in the margin. — _establishes: Rachel Abramowitz had a motive (silence-a-witness)_
+- **c145** [document] Found in the Victim's Suite: A lease assignment made out in Emilio Ruggiero's name, waiting only on Wilhelm Vogel's signature. — _establishes: Emilio Ruggiero had a motive (property)_
 
 ### From the Roof Garden
 
-- **c128** [morgue] Wilhelm Vogel was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 8:30 PM and 9:00 PM_
+- **c133** [morgue] Wilhelm Vogel was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 8:30 PM and 9:00 PM_
 
 ### From the Street
 
-- **c130** [environment] Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c135** [environment] Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -615,7 +620,7 @@ On Francis Doyle and Wilhelm Vogel:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c128, c027, c033, c047, c064, c082)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c133, c027, c033, c047, c064, c082)_
 
 **Clearing the innocent.**
 
@@ -625,11 +630,11 @@ On Francis Doyle and Wilhelm Vogel:
 - Agnes Kavanagh was not in the Roof Garden at 9:00 PM, on two independent sources. _(c030, c055, c075, c093)_
 - Vincenzo Vitale was not in the Roof Garden at 9:00 PM, on two independent sources. _(c031, c043, c079, c098)_
 
-**Naming the killer.** Emilio Ruggiero claims the Lobby at 9:00 PM. Two independent sources put that out of the question, and one ties Emilio Ruggiero to a push from the roof garden. _(c123, c124, c125, c126, c127, c025, c045, c080)_
+**Naming the killer.** Emilio Ruggiero claims the Lobby at 9:00 PM. Two independent sources put that out of the question, and one ties Emilio Ruggiero to a push from the roof garden. _(c126, c128, c130, c131, c132, c025, c045, c080)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c128, c129)_
+**Method.** A push from the roof garden, on two physical sources. _(c133, c134)_
 
-**Motive.** property, on two independent sources. _(c140, c141)_
+**Motive.** property, on two independent sources. _(c145, c146)_
 
 ## 8. Red herrings
 

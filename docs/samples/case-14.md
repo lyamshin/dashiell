@@ -222,19 +222,19 @@ On Rachel Kessler:
 
 On Daniel Hanrahan's account:
 
-- **c156** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 7:30 PM_
+- **c159** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 7:30 PM_
 
 On Mary Kavanagh's account:
 
-- **c165** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:30 PM_
+- **c168** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:30 PM_
 
 On Hyman Hurwitz's account:
 
-- **c170** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
+- **c173** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
 
 On Rachel Kessler's account:
 
-- **c175** [observation] Gustav Wehrle was in the Lobby at 9:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM_
+- **c178** [observation] Gustav Wehrle was in the Lobby at 9:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM_
 
 ### From Daniel Hanrahan (a travelling salesman in patent medicines)
 
@@ -272,15 +272,16 @@ On Rachel Kessler:
 
 On Gustav Wehrle's account:
 
-- **c151** [observation] Daniel Hanrahan was in the Bar from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
+- **c151** [observation] Daniel Hanrahan was in the Bar at 9:30 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM_
+- **c152** [observation] Daniel Hanrahan was in the Lobby at 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 10:00 PM_
 
 On Percival Dandridge's account:
 
-- **c160** [observation] Daniel Hanrahan was in the Lobby at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
+- **c163** [observation] Daniel Hanrahan was in the Lobby at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
 
 On Rachel Kessler's account:
 
-- **c176** [observation] Daniel Hanrahan was in the Lobby at 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 10:00 PM_
+- **c179** [observation] Daniel Hanrahan was in the Lobby at 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 10:00 PM_
 
 ### From Percival Dandridge (a longshoreman)
 
@@ -318,7 +319,7 @@ On Rachel Kessler:
 
 On Hyman Hurwitz's account:
 
-- **c171** [observation] Percival Dandridge was in the Bar at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
+- **c174** [observation] Percival Dandridge was in the Bar at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
 
 ### From Mary Kavanagh (a wine steward out of work since the Act)
 
@@ -358,15 +359,17 @@ On Rachel Kessler:
 
 On Gustav Wehrle's account:
 
-- **c152** [observation] Mary Kavanagh was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
+- **c153** [observation] Mary Kavanagh was in the Lobby at 9:30 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM_
+- **c154** [observation] Mary Kavanagh was on the Street at 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 10:00 PM_
 
 On Percival Dandridge's account:
 
-- **c161** [observation] Mary Kavanagh was on the Street at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
+- **c164** [observation] Mary Kavanagh was on the Street at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
 
 On Rachel Kessler's account:
 
-- **c177** [observation] Mary Kavanagh was in the Lobby from 9:00 PM to 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–10:00 PM_
+- **c180** [observation] Mary Kavanagh was in the Lobby from 9:00 PM to 9:30 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–9:30 PM_
+- **c181** [observation] Mary Kavanagh was on the Street at 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 10:00 PM_
 
 ### From Hyman Hurwitz (a dentist with rooms on the third floor)
 
@@ -413,23 +416,24 @@ On Rachel Kessler:
 
 On Gustav Wehrle's account:
 
-- **c153** [observation] Hyman Hurwitz was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
+- **c155** [observation] Hyman Hurwitz was in the Lobby at 9:30 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM_
+- **c156** [observation] Hyman Hurwitz was in the Bar at 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 10:00 PM_
 
 On Daniel Hanrahan's account:
 
-- **c157** [observation] Hyman Hurwitz was in the Lobby at 7:00 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 7:00 PM_
+- **c160** [observation] Hyman Hurwitz was in the Lobby at 7:00 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 7:00 PM_
 
 On Percival Dandridge's account:
 
-- **c162** [observation] Hyman Hurwitz was in the Bar at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
+- **c165** [observation] Hyman Hurwitz was in the Bar at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
 
 On Mary Kavanagh's account:
 
-- **c166** [observation] Hyman Hurwitz was in the Lobby at 7:00 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:00 PM_
+- **c169** [observation] Hyman Hurwitz was in the Lobby at 7:00 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:00 PM_
 
 On Rachel Kessler's account:
 
-- **c178** [observation] Hyman Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–9:30 PM_
+- **c182** [observation] Hyman Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–9:30 PM_
 
 ### From Rachel Kessler (a photographer for the rotogravure section)
 
@@ -467,16 +471,16 @@ On Hyman Hurwitz:
 
 On Daniel Hanrahan's account:
 
-- **c158** [observation] Rachel Kessler was in the Lobby at 6:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 6:30 PM_
+- **c161** [observation] Rachel Kessler was in the Lobby at 6:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 6:30 PM_
 
 On Mary Kavanagh's account:
 
-- **c167** [observation] Rachel Kessler was in the Lobby at 6:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 6:30 PM_
-- **c169** [observation] Mary Kavanagh says Rachel Kessler was there. Rachel Kessler says otherwise: Rachel Kessler was at the Front Desk from 7:00 PM to 7:30 PM, not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:00 PM–7:30 PM_
+- **c170** [observation] Rachel Kessler was in the Lobby at 6:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 6:30 PM_
+- **c172** [observation] Mary Kavanagh says Rachel Kessler was there. Rachel Kessler says otherwise: Rachel Kessler was at the Front Desk from 7:00 PM to 7:30 PM, not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:00 PM–7:30 PM_
 
 On Hyman Hurwitz's account:
 
-- **c172** [observation] Rachel Kessler was at the Front Desk at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
+- **c175** [observation] Rachel Kessler was at the Front Desk at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
 
 ### From Wilhelm Obermann (the doorman)
 
@@ -529,31 +533,31 @@ On Rachel Kessler:
 
 On Gustav Wehrle's account:
 
-- **c154** [observation] Wilhelm Obermann was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
+- **c157** [observation] Wilhelm Obermann was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
 
 On Daniel Hanrahan's account:
 
-- **c159** [observation] Wilhelm Obermann was in the Lobby from 6:30 PM to 7:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 6:30 PM–7:30 PM_
+- **c162** [observation] Wilhelm Obermann was in the Lobby from 6:30 PM to 7:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 6:30 PM–7:30 PM_
 
 On Percival Dandridge's account:
 
-- **c163** [observation] Wilhelm Obermann was in the Lobby at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
+- **c166** [observation] Wilhelm Obermann was in the Lobby at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
 
 On Mary Kavanagh's account:
 
-- **c168** [observation] Wilhelm Obermann was in the Lobby from 6:30 PM to 7:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 6:30 PM–7:30 PM_
+- **c171** [observation] Wilhelm Obermann was in the Lobby from 6:30 PM to 7:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 6:30 PM–7:30 PM_
 
 On Hyman Hurwitz's account:
 
-- **c173** [observation] Wilhelm Obermann was in the Lobby at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
+- **c176** [observation] Wilhelm Obermann was in the Lobby at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
 
 On Rachel Kessler's account:
 
-- **c179** [observation] Wilhelm Obermann was in the Lobby from 9:00 PM to 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–10:00 PM_
+- **c183** [observation] Wilhelm Obermann was in the Lobby from 9:00 PM to 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–10:00 PM_
 
 On Gustav Wehrle and Sadie Lefkowitz:
 
-- **c185** [overheard] Wilhelm Obermann says Sadie Lefkowitz told Gustav Wehrle that the story would run whether Gustav Wehrle liked it or not. — _establishes: Gustav Wehrle had a motive (exposure)_
+- **c189** [overheard] Wilhelm Obermann says Sadie Lefkowitz told Gustav Wehrle that the story would run whether Gustav Wehrle liked it or not. — _establishes: Gustav Wehrle had a motive (exposure)_
 
 ### From Antonio Grasso (the bartender)
 
@@ -605,40 +609,40 @@ On Rachel Kessler:
 
 On Gustav Wehrle's account:
 
-- **c155** [observation] Antonio Grasso was in the Bar from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
+- **c158** [observation] Antonio Grasso was in the Bar from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
 
 On Percival Dandridge's account:
 
-- **c164** [observation] Antonio Grasso was in the Bar at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
+- **c167** [observation] Antonio Grasso was in the Bar at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
 
 On Hyman Hurwitz's account:
 
-- **c174** [observation] Antonio Grasso was in the Bar at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
+- **c177** [observation] Antonio Grasso was in the Bar at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
 
 On the radio:
 
-- **c183** [radio] Antonio Grasso says the bar radio carried a six-day bicycle race from the Velodrome at 8:30 PM, and that a rider fell at the bank and the lead changed hands. Anyone in the bar could tell you that. — _establishes: context only_
+- **c187** [radio] Antonio Grasso says the bar radio carried a six-day bicycle race from the Velodrome at 8:30 PM, and that a rider fell at the bank and the lead changed hands. Anyone in the bar could tell you that. — _establishes: context only_
 
 On Rachel Kessler and Sadie Lefkowitz:
 
-- **c187** [overheard] Antonio Grasso says Sadie Lefkowitz told Rachel Kessler the lease would go to somebody else at the quarter day. — _establishes: Rachel Kessler had a motive (property)_
+- **c191** [overheard] Antonio Grasso says Sadie Lefkowitz told Rachel Kessler the lease would go to somebody else at the quarter day. — _establishes: Rachel Kessler had a motive (property)_
 
 ### From the Front Desk
 
-- **c181** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
+- **c185** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
 
 ### From the Victim's Suite
 
-- **c184** [document] Found in the Victim's Suite: A typed page of dates and sums in Sadie Lefkowitz's file, headed with Gustav Wehrle's name. — _establishes: Gustav Wehrle had a motive (exposure)_
-- **c186** [document] Found in the Victim's Suite: A lease assignment made out in Rachel Kessler's name, waiting only on Sadie Lefkowitz's signature. — _establishes: Rachel Kessler had a motive (property)_
+- **c188** [document] Found in the Victim's Suite: A typed page of dates and sums in Sadie Lefkowitz's file, headed with Gustav Wehrle's name. — _establishes: Gustav Wehrle had a motive (exposure)_
+- **c190** [document] Found in the Victim's Suite: A lease assignment made out in Rachel Kessler's name, waiting only on Sadie Lefkowitz's signature. — _establishes: Rachel Kessler had a motive (property)_
 
 ### From the Roof Garden
 
-- **c180** [morgue] Sadie Lefkowitz was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:30 PM and 10:00 PM_
+- **c184** [morgue] Sadie Lefkowitz was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:30 PM and 10:00 PM_
 
 ### From the Street
 
-- **c182** [environment] Rain began at 8:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c186** [environment] Rain began at 8:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -661,7 +665,7 @@ On Rachel Kessler and Sadie Lefkowitz:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c180, c020, c048, c064, c101, c127)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c184, c020, c048, c064, c101, c127)_
 
 **Clearing the innocent.**
 
@@ -671,11 +675,11 @@ On Rachel Kessler and Sadie Lefkowitz:
 - Mary Kavanagh was not in the Roof Garden at 10:00 PM, on two independent sources. _(c028, c114)_
 - Hyman Hurwitz was not in the Roof Garden at 10:00 PM, on two independent sources. _(c031, c119, c147)_
 
-**Naming the killer.** Rachel Kessler claims the Street at 10:00 PM. Two independent sources put that out of the question, and one ties Rachel Kessler to a push from the roof garden. _(c176, c177, c179, c014, c015, c061, c082, c083, c121, c122)_
+**Naming the killer.** Rachel Kessler claims the Street at 10:00 PM. Two independent sources put that out of the question, and one ties Rachel Kessler to a push from the roof garden. _(c179, c181, c183, c014, c015, c061, c082, c083, c121, c122)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c180, c181)_
+**Method.** A push from the roof garden, on two physical sources. _(c184, c185)_
 
-**Motive.** property, on two independent sources. _(c186, c187)_
+**Motive.** property, on two independent sources. _(c190, c191)_
 
 ## 8. Red herrings
 

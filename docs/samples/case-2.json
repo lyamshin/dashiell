@@ -7467,7 +7467,19 @@
           "personId": "p-s3",
           "location": "lobby",
           "tick": 4
-        },
+        }
+      ],
+      "text": "Wilhelm Brauer was in the Lobby at 8:00 PM and says Marion Ellery was not in the Lobby."
+    },
+    {
+      "id": "c176",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Marion Ellery's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s3",
@@ -7475,10 +7487,10 @@
           "tick": 5
         }
       ],
-      "text": "Wilhelm Brauer was in the Lobby from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby."
+      "text": "Wilhelm Brauer was in the Bar at 8:30 PM and says Marion Ellery was not in the Lobby."
     },
     {
-      "id": "c176",
+      "id": "c177",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7496,7 +7508,7 @@
       "text": "Edith Winslow was in the Bar at 8:30 PM and says Marion Ellery was not in the Lobby."
     },
     {
-      "id": "c177",
+      "id": "c178",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7520,7 +7532,7 @@
       "text": "Gittel Sirkin was in the Lobby from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby."
     },
     {
-      "id": "c178",
+      "id": "c179",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7544,7 +7556,7 @@
       "text": "Chandler Thorndike was in the Bar from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby."
     },
     {
-      "id": "c179",
+      "id": "c180",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7568,7 +7580,7 @@
       "text": "Wilhelm Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Maureen Corrigan was not at the Front Desk."
     },
     {
-      "id": "c180",
+      "id": "c181",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7592,7 +7604,7 @@
       "text": "Gittel Sirkin was in the Lobby from 6:30 PM to 7:00 PM and says Maureen Corrigan was not at the Front Desk."
     },
     {
-      "id": "c181",
+      "id": "c182",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7610,7 +7622,7 @@
       "text": "Assunta Grasso was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby."
     },
     {
-      "id": "c182",
+      "id": "c183",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7623,7 +7635,19 @@
           "personId": "p-s4",
           "location": "lobby",
           "tick": 4
-        },
+        }
+      ],
+      "text": "Wilhelm Brauer was in the Lobby at 8:00 PM and says Maureen Corrigan was not in the Lobby."
+    },
+    {
+      "id": "c184",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Maureen Corrigan's account"
+      },
+      "establishes": [
         {
           "kind": "personNotAt",
           "personId": "p-s4",
@@ -7631,10 +7655,10 @@
           "tick": 5
         }
       ],
-      "text": "Wilhelm Brauer was in the Lobby from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby."
+      "text": "Wilhelm Brauer was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby."
     },
     {
-      "id": "c183",
+      "id": "c185",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7652,7 +7676,7 @@
       "text": "Edith Winslow was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby."
     },
     {
-      "id": "c184",
+      "id": "c186",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7676,7 +7700,7 @@
       "text": "Gittel Sirkin was in the Lobby from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby."
     },
     {
-      "id": "c185",
+      "id": "c187",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7700,7 +7724,7 @@
       "text": "Chandler Thorndike was in the Bar from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby."
     },
     {
-      "id": "c186",
+      "id": "c188",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7718,7 +7742,7 @@
       "text": "Maureen Corrigan says Edith Winslow was there. Edith Winslow says otherwise: Edith Winslow was in the Kitchen at 8:00 PM, not in the Lobby."
     },
     {
-      "id": "c187",
+      "id": "c189",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7742,7 +7766,7 @@
       "text": "Rutherford Bidwell was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street."
     },
     {
-      "id": "c188",
+      "id": "c190",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7760,7 +7784,7 @@
       "text": "Marion Ellery was in the Lobby at 10:30 PM and says Wilhelm Brauer was not on the Street."
     },
     {
-      "id": "c189",
+      "id": "c191",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7790,7 +7814,7 @@
       "text": "Maureen Corrigan was in the Lobby from 10:00 PM to 11:00 PM and says Wilhelm Brauer was not on the Street."
     },
     {
-      "id": "c190",
+      "id": "c192",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7814,7 +7838,7 @@
       "text": "Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street."
     },
     {
-      "id": "c191",
+      "id": "c193",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7838,7 +7862,7 @@
       "text": "Gittel Sirkin was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street."
     },
     {
-      "id": "c192",
+      "id": "c194",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7856,7 +7880,7 @@
       "text": "Wilhelm Brauer says Rutherford Bidwell was there. Rutherford Bidwell says otherwise: Rutherford Bidwell was in the Bar at 10:00 PM, not on the Street."
     },
     {
-      "id": "c193",
+      "id": "c195",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7880,7 +7904,7 @@
       "text": "Marion Ellery was on the Street from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby."
     },
     {
-      "id": "c194",
+      "id": "c196",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7904,7 +7928,7 @@
       "text": "Wilhelm Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby."
     },
     {
-      "id": "c195",
+      "id": "c197",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7928,7 +7952,7 @@
       "text": "Gittel Sirkin was in the Lobby from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby."
     },
     {
-      "id": "c196",
+      "id": "c198",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -7952,7 +7976,7 @@
       "text": "Chandler Thorndike was in the Bar from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby."
     },
     {
-      "id": "c197",
+      "id": "c199",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -7970,7 +7994,7 @@
       "text": "Giuseppe Lanza was found on the Service Stairs. The coroner puts death between 8:00 PM and 8:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin."
     },
     {
-      "id": "c198",
+      "id": "c200",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -7986,7 +8010,7 @@
       "text": "A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from."
     },
     {
-      "id": "c199",
+      "id": "c201",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -7996,7 +8020,7 @@
       "text": "Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c200",
+      "id": "c202",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -8007,7 +8031,7 @@
       "text": "Chandler Thorndike says the bar radio carried a serial about a lost heiress at 7:30 PM, and that the episode ended with the lawyer arrested, not the brother. Anyone in the bar could tell you that."
     },
     {
-      "id": "c201",
+      "id": "c203",
       "kind": "document",
       "source": {
         "type": "location",
@@ -8023,7 +8047,7 @@
       "text": "Found in the Front Desk: A draft codicil in Giuseppe Lanza's hand striking Assunta Grasso out of the will, dated last Tuesday and unsigned."
     },
     {
-      "id": "c202",
+      "id": "c204",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -8040,7 +8064,7 @@
       "text": "Chandler Thorndike says Giuseppe Lanza told Assunta Grasso the lawyer was coming Thursday and that the arrangement would be changed."
     },
     {
-      "id": "c203",
+      "id": "c205",
       "kind": "document",
       "source": {
         "type": "location",
@@ -8056,7 +8080,7 @@
       "text": "Found in the Victim's Suite: A subpoena naming Giuseppe Lanza as a witness before the grand jury, with Maureen Corrigan's name written in the margin."
     },
     {
-      "id": "c204",
+      "id": "c206",
       "kind": "overheard",
       "source": {
         "type": "person",
@@ -8082,7 +8106,7 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c197",
+      "c199",
       "c078",
       "c113",
       "c136"
@@ -8121,11 +8145,11 @@
       ]
     },
     "inculpation": [
-      "c181",
       "c182",
-      "c183",
       "c184",
       "c185",
+      "c186",
+      "c187",
       "c011",
       "c012",
       "c029",
@@ -8134,12 +8158,12 @@
       "c152"
     ],
     "method": [
-      "c197",
-      "c198"
+      "c199",
+      "c200"
     ],
     "motive": [
-      "c203",
-      "c204"
+      "c205",
+      "c206"
     ]
   }
 }

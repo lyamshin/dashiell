@@ -215,11 +215,11 @@ On Fannie Feldman's account:
 
 On Lurline Mosley's account:
 
-- **c115** [observation] Booker Bledsoe was in the Bar from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
+- **c116** [observation] Booker Bledsoe was in the Bar from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
 
 On Hedwig Hochstetter and Maureen Donnelly:
 
-- **c126** [overheard] Booker Bledsoe says Maureen Donnelly told Hedwig Hochstetter the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Hedwig Hochstetter had a motive (inheritance)_
+- **c129** [overheard] Booker Bledsoe says Maureen Donnelly told Hedwig Hochstetter the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Hedwig Hochstetter had a motive (inheritance)_
 
 ### From Hedwig Hochstetter (an insurance adjuster)
 
@@ -308,7 +308,7 @@ On Hedwig Hochstetter's account:
 
 On Lurline Mosley's account:
 
-- **c116** [observation] Sol Rosenbaum was at the Front Desk from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
+- **c117** [observation] Sol Rosenbaum was at the Front Desk from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
 
 ### From Margarethe Kreuzer (a seamstress)
 
@@ -354,11 +354,12 @@ On Fannie Feldman's account:
 
 On Lurline Mosley's account:
 
-- **c117** [observation] Margarethe Kreuzer was in the Lobby from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
+- **c118** [observation] Margarethe Kreuzer was in the Lobby at 9:30 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM_
+- **c119** [observation] Margarethe Kreuzer was in the Bar at 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 10:00 PM_
 
 On Booker Bledsoe and Maureen Donnelly:
 
-- **c124** [overheard] Margarethe Kreuzer says Maureen Donnelly told Booker Bledsoe that Friday was the end of it, one way or the other. — _establishes: Booker Bledsoe had a motive (debt)_
+- **c127** [overheard] Margarethe Kreuzer says Maureen Donnelly told Booker Bledsoe that Friday was the end of it, one way or the other. — _establishes: Booker Bledsoe had a motive (debt)_
 
 ### From Lurline Mosley (a chambermaid)
 
@@ -397,7 +398,8 @@ On Hedwig Hochstetter's account:
 
 On Sol Rosenbaum's account:
 
-- **c112** [observation] Lurline Mosley was at the Front Desk from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM–6:30 PM_
+- **c112** [observation] Lurline Mosley was at the Front Desk at 6:00 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM_
+- **c113** [observation] Lurline Mosley was in the Lobby at 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:30 PM_
 
 ### From Giovanna Alfano (the doorman)
 
@@ -454,11 +456,12 @@ On Fannie Feldman's account:
 
 On Sol Rosenbaum's account:
 
-- **c113** [observation] Giovanna Alfano was in the Lobby from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM–6:30 PM_
+- **c114** [observation] Giovanna Alfano was in the Lobby from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM–6:30 PM_
 
 On Lurline Mosley's account:
 
-- **c118** [observation] Giovanna Alfano was in the Lobby from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
+- **c120** [observation] Giovanna Alfano was in the Lobby at 9:30 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM_
+- **c121** [observation] Giovanna Alfano was at the Front Desk at 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 10:00 PM_
 
 ### From Lyman Ainsworth (the bartender)
 
@@ -512,22 +515,22 @@ On Fannie Feldman's account:
 
 On Sol Rosenbaum's account:
 
-- **c114** [observation] Lyman Ainsworth was in the Bar from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM–6:30 PM_
+- **c115** [observation] Lyman Ainsworth was in the Bar from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM–6:30 PM_
 
 On Lurline Mosley's account:
 
-- **c119** [observation] Lyman Ainsworth was in the Bar from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
+- **c122** [observation] Lyman Ainsworth was in the Bar from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
 
 ### From the Front Desk
 
-- **c121** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c122** [document] Margarethe Kreuzer's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
-- **c123** [document] Found in the Front Desk: A promissory note for $4,000 signed by Booker Bledsoe, endorsed to Maureen Donnelly, three months past due. — _establishes: Booker Bledsoe had a motive (debt)_
-- **c125** [document] Found in the Front Desk: A draft codicil in Maureen Donnelly's hand striking Hedwig Hochstetter out of the will, dated last Tuesday and unsigned. — _establishes: Hedwig Hochstetter had a motive (inheritance)_
+- **c124** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
+- **c125** [document] Margarethe Kreuzer's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
+- **c126** [document] Found in the Front Desk: A promissory note for $4,000 signed by Booker Bledsoe, endorsed to Maureen Donnelly, three months past due. — _establishes: Booker Bledsoe had a motive (debt)_
+- **c128** [document] Found in the Front Desk: A draft codicil in Maureen Donnelly's hand striking Hedwig Hochstetter out of the will, dated last Tuesday and unsigned. — _establishes: Hedwig Hochstetter had a motive (inheritance)_
 
 ### From the Roof Garden
 
-- **c120** [morgue] Maureen Donnelly was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:00 PM and 9:30 PM_
+- **c123** [morgue] Maureen Donnelly was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:00 PM and 9:30 PM_
 
 ### Withheld — the player cannot get these
 
@@ -547,7 +550,7 @@ On Lurline Mosley's account:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c120, c027, c037, c049, c060, c080)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c123, c027, c037, c049, c060, c080)_
 
 **Clearing the innocent.**
 
@@ -559,9 +562,9 @@ On Lurline Mosley's account:
 
 **Naming the killer.** Hedwig Hochstetter claims the Front Desk at 9:30 PM. Two independent sources put that out of the question, and one ties Hedwig Hochstetter to a gunshot. _(c104, c105, c106, c052, c065)_
 
-**Method.** A gunshot, on two physical sources. _(c120, c121)_
+**Method.** A gunshot, on two physical sources. _(c123, c124)_
 
-**Motive.** inheritance, on two independent sources. _(c125, c126)_
+**Motive.** inheritance, on two independent sources. _(c128, c129)_
 
 ## 8. Red herrings
 

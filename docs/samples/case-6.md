@@ -222,15 +222,15 @@ On Patrick Quill:
 
 On Gretchen Dettweiler's account:
 
-- **c141** [observation] Beatrice Havemeyer was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM–9:00 PM_
+- **c142** [observation] Beatrice Havemeyer was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM–9:00 PM_
 
 On Wendell Dandridge's account:
 
-- **c145** [observation] Beatrice Havemeyer was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
+- **c146** [observation] Beatrice Havemeyer was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
 
 On Patrick Quill's account:
 
-- **c154** [observation] Beatrice Havemeyer was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
+- **c155** [observation] Beatrice Havemeyer was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
 
 ### From Gretchen Dettweiler (a chorus girl between engagements)
 
@@ -270,15 +270,16 @@ On Patrick Quill:
 
 On Beatrice Havemeyer's account:
 
-- **c136** [observation] Gretchen Dettweiler was at the Front Desk from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
+- **c136** [observation] Gretchen Dettweiler was at the Front Desk at 6:00 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM_
+- **c137** [observation] Gretchen Dettweiler was in the Lobby at 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:30 PM_
 
 On Antonio Ruggiero's account:
 
-- **c150** [observation] Gretchen Dettweiler was in the Lobby at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
+- **c151** [observation] Gretchen Dettweiler was in the Lobby at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
 
 On Patrick Quill's account:
 
-- **c155** [observation] Gretchen Dettweiler was in the Lobby at 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:30 PM_
+- **c156** [observation] Gretchen Dettweiler was in the Lobby at 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:30 PM_
 
 ### From Wendell Dandridge (a tailor)
 
@@ -310,11 +311,11 @@ On Patrick Quill:
 
 On Beatrice Havemeyer's account:
 
-- **c140** [observation] Beatrice Havemeyer says Wendell Dandridge was there. Wendell Dandridge says otherwise: Wendell Dandridge was in the Kitchen from 6:00 PM to 6:30 PM, not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
+- **c141** [observation] Beatrice Havemeyer says Wendell Dandridge was there. Wendell Dandridge says otherwise: Wendell Dandridge was in the Kitchen from 6:00 PM to 6:30 PM, not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
 
 On Patrick Quill's account:
 
-- **c160** [observation] Patrick Quill says Wendell Dandridge was there. Wendell Dandridge says otherwise: Wendell Dandridge was in the Kitchen at 9:30 PM, not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:30 PM_
+- **c162** [observation] Patrick Quill says Wendell Dandridge was there. Wendell Dandridge says otherwise: Wendell Dandridge was in the Kitchen at 9:30 PM, not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:30 PM_
 
 ### From Ernst Reinhardt (a stringer for the evening papers)
 
@@ -355,23 +356,23 @@ On Patrick Quill:
 
 On Beatrice Havemeyer's account:
 
-- **c137** [observation] Ernst Reinhardt was at the Front Desk from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
+- **c138** [observation] Ernst Reinhardt was at the Front Desk from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
 
 On Gretchen Dettweiler's account:
 
-- **c142** [observation] Ernst Reinhardt was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM_
+- **c143** [observation] Ernst Reinhardt was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM_
 
 On Wendell Dandridge's account:
 
-- **c146** [observation] Ernst Reinhardt was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
+- **c147** [observation] Ernst Reinhardt was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
 
 On Antonio Ruggiero's account:
 
-- **c151** [observation] Ernst Reinhardt was at the Front Desk at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
+- **c152** [observation] Ernst Reinhardt was at the Front Desk at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
 
 On Patrick Quill's account:
 
-- **c156** [observation] Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
+- **c157** [observation] Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
 
 ### From Antonio Ruggiero (a dentist with rooms on the third floor)
 
@@ -413,15 +414,16 @@ On Patrick Quill:
 
 On Gretchen Dettweiler's account:
 
-- **c143** [observation] Antonio Ruggiero was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM_
+- **c144** [observation] Antonio Ruggiero was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM_
 
 On Wendell Dandridge's account:
 
-- **c147** [observation] Antonio Ruggiero was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
+- **c148** [observation] Antonio Ruggiero was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
 
 On Patrick Quill's account:
 
-- **c157** [observation] Antonio Ruggiero was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
+- **c158** [observation] Antonio Ruggiero was in the Bar at 9:00 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM_
+- **c159** [observation] Antonio Ruggiero was in the Lobby at 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:30 PM_
 
 ### From Patrick Quill (a photographer for the rotogravure section)
 
@@ -505,23 +507,23 @@ On Patrick Quill:
 
 On Beatrice Havemeyer's account:
 
-- **c138** [observation] Daniel Rafferty was in the Lobby from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
+- **c139** [observation] Daniel Rafferty was in the Lobby from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
 
 On Gretchen Dettweiler's account:
 
-- **c144** [observation] Daniel Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM–9:00 PM_
+- **c145** [observation] Daniel Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM–9:00 PM_
 
 On Wendell Dandridge's account:
 
-- **c148** [observation] Daniel Rafferty was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
+- **c149** [observation] Daniel Rafferty was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
 
 On Antonio Ruggiero's account:
 
-- **c152** [observation] Daniel Rafferty was in the Lobby at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
+- **c153** [observation] Daniel Rafferty was in the Lobby at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
 
 On Patrick Quill's account:
 
-- **c158** [observation] Daniel Rafferty was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
+- **c160** [observation] Daniel Rafferty was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
 
 ### From Edward Feeney (the bartender)
 
@@ -566,46 +568,46 @@ On Patrick Quill:
 
 On Beatrice Havemeyer's account:
 
-- **c139** [observation] Edward Feeney was in the Bar from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
+- **c140** [observation] Edward Feeney was in the Bar from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
 
 On Wendell Dandridge's account:
 
-- **c149** [observation] Edward Feeney was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
+- **c150** [observation] Edward Feeney was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
 
 On Antonio Ruggiero's account:
 
-- **c153** [observation] Edward Feeney was in the Bar at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
+- **c154** [observation] Edward Feeney was in the Bar at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
 
 On Patrick Quill's account:
 
-- **c159** [observation] Edward Feeney was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
+- **c161** [observation] Edward Feeney was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
 
 On the radio:
 
-- **c164** [radio] Edward Feeney says the bar radio carried a serial about a lost heiress at 11:00 PM, and that the episode ended with the lawyer arrested, not the brother. Anyone in the bar could tell you that. — _establishes: context only_
+- **c166** [radio] Edward Feeney says the bar radio carried a serial about a lost heiress at 11:00 PM, and that the episode ended with the lawyer arrested, not the brother. Anyone in the bar could tell you that. — _establishes: context only_
 
 On Gretchen Dettweiler and Kathleen Doyle:
 
-- **c167** [overheard] Edward Feeney says Kathleen Doyle told Gretchen Dettweiler that the story would run whether Gretchen Dettweiler liked it or not. — _establishes: Gretchen Dettweiler had a motive (exposure)_
+- **c169** [overheard] Edward Feeney says Kathleen Doyle told Gretchen Dettweiler that the story would run whether Gretchen Dettweiler liked it or not. — _establishes: Gretchen Dettweiler had a motive (exposure)_
 
 On Antonio Ruggiero and Kathleen Doyle:
 
-- **c169** [overheard] Edward Feeney says Antonio Ruggiero told Kathleen Doyle to keep away, loud enough to turn heads. — _establishes: Antonio Ruggiero had a motive (jealousy)_
+- **c171** [overheard] Edward Feeney says Antonio Ruggiero told Kathleen Doyle to keep away, loud enough to turn heads. — _establishes: Antonio Ruggiero had a motive (jealousy)_
 
 ### From the Front Desk
 
-- **c162** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c165** [document] Ernst Reinhardt's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
-- **c166** [document] Found in the Front Desk: A typed page of dates and sums in Kathleen Doyle's file, headed with Gretchen Dettweiler's name. — _establishes: Gretchen Dettweiler had a motive (exposure)_
-- **c168** [document] Found in the Front Desk: Three letters in Kathleen Doyle's hand to a woman Antonio Ruggiero is engaged to, kept in the drawer, the last one opened. — _establishes: Antonio Ruggiero had a motive (jealousy)_
+- **c164** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
+- **c167** [document] Ernst Reinhardt's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
+- **c168** [document] Found in the Front Desk: A typed page of dates and sums in Kathleen Doyle's file, headed with Gretchen Dettweiler's name. — _establishes: Gretchen Dettweiler had a motive (exposure)_
+- **c170** [document] Found in the Front Desk: Three letters in Kathleen Doyle's hand to a woman Antonio Ruggiero is engaged to, kept in the drawer, the last one opened. — _establishes: Antonio Ruggiero had a motive (jealousy)_
 
 ### From the Roof Garden
 
-- **c161** [morgue] Kathleen Doyle was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 8:30 PM and 9:00 PM_
+- **c163** [morgue] Kathleen Doyle was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 8:30 PM and 9:00 PM_
 
 ### From the Street
 
-- **c163** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c165** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -628,7 +630,7 @@ On Antonio Ruggiero and Kathleen Doyle:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c161, c002, c047, c065, c082, c097, c118)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c163, c002, c047, c065, c082, c097, c118)_
 
 **Clearing the innocent.**
 
@@ -638,11 +640,11 @@ On Antonio Ruggiero and Kathleen Doyle:
 - Antonio Ruggiero was not in the Roof Garden at 9:00 PM, on two independent sources. _(c016, c060, c115, c132)_
 - Patrick Quill was not in the Roof Garden at 9:00 PM, on two independent sources. _(c017, c062, c079, c116, c134)_
 
-**Naming the killer.** Gretchen Dettweiler claims the Street at 9:00 PM. Two independent sources put that out of the question, and one ties Gretchen Dettweiler to a gunshot. _(c141, c144, c050, c102)_
+**Naming the killer.** Gretchen Dettweiler claims the Street at 9:00 PM. Two independent sources put that out of the question, and one ties Gretchen Dettweiler to a gunshot. _(c142, c145, c050, c102)_
 
-**Method.** A gunshot, on two physical sources. _(c161, c162)_
+**Method.** A gunshot, on two physical sources. _(c163, c164)_
 
-**Motive.** exposure, on two independent sources. _(c166, c167)_
+**Motive.** exposure, on two independent sources. _(c168, c169)_
 
 ## 8. Red herrings
 

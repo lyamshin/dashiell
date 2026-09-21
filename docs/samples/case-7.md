@@ -215,19 +215,20 @@ On Ilse Brauer:
 
 On Ezekiel Whitfield's account:
 
-- **c162** [observation] Meyer Shapiro was in the Kitchen at 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:30 PM_
+- **c164** [observation] Meyer Shapiro was in the Kitchen at 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:30 PM_
 
 On Vincenzo Marchetti's account:
 
-- **c168** [observation] Meyer Shapiro was in the Lobby at 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 10:30 PM_
+- **c171** [observation] Meyer Shapiro was in the Lobby at 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 10:30 PM_
 
 On Adelaide Lathrop's account:
 
-- **c172** [observation] Meyer Shapiro was on the Street from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
+- **c175** [observation] Meyer Shapiro was on the Street at 10:00 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM_
+- **c176** [observation] Meyer Shapiro was in the Lobby at 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:30 PM_
 
 On Ilse Brauer's account:
 
-- **c178** [observation] Meyer Shapiro was in the Lobby from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
+- **c183** [observation] Meyer Shapiro was in the Lobby from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
 
 ### From Ezekiel Whitfield (a ward heeler)
 
@@ -271,19 +272,22 @@ On Ilse Brauer:
 
 On Meyer Shapiro's account:
 
-- **c155** [observation] Ezekiel Whitfield was in the Lobby from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
+- **c155** [observation] Ezekiel Whitfield was in the Lobby at 6:30 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM_
+- **c156** [observation] Ezekiel Whitfield was at the Front Desk at 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 7:00 PM_
 
 On Vincenzo Marchetti's account:
 
-- **c169** [observation] Ezekiel Whitfield was in the Lobby from 9:30 PM to 10:00 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:00 PM_
+- **c172** [observation] Ezekiel Whitfield was in the Lobby from 9:30 PM to 10:00 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:00 PM_
 
 On Adelaide Lathrop's account:
 
-- **c173** [observation] Ezekiel Whitfield was in the Lobby from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
+- **c177** [observation] Ezekiel Whitfield was in the Lobby at 10:00 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM_
+- **c178** [observation] Ezekiel Whitfield was in the Bar at 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:30 PM_
 
 On Ilse Brauer's account:
 
-- **c179** [observation] Ezekiel Whitfield was in the Bar from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
+- **c184** [observation] Ezekiel Whitfield was in the Bar at 10:30 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM_
+- **c185** [observation] Ezekiel Whitfield was in the Lobby at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
 
 ### From Gittel Feldman (the night manager)
 
@@ -331,23 +335,23 @@ On Ilse Brauer:
 
 On Meyer Shapiro's account:
 
-- **c156** [observation] Gittel Feldman was in the Lobby from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
+- **c157** [observation] Gittel Feldman was in the Lobby from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
 
 On Ezekiel Whitfield's account:
 
-- **c163** [observation] Gittel Feldman was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
+- **c165** [observation] Gittel Feldman was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
 
 On Vincenzo Marchetti's account:
 
-- **c170** [observation] Gittel Feldman was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:30 PM_
+- **c173** [observation] Gittel Feldman was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:30 PM_
 
 On Adelaide Lathrop's account:
 
-- **c174** [observation] Gittel Feldman was in the Lobby from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
+- **c179** [observation] Gittel Feldman was in the Lobby from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
 
 On Ilse Brauer's account:
 
-- **c180** [observation] Gittel Feldman was in the Lobby from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
+- **c186** [observation] Gittel Feldman was in the Lobby from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
 
 ### From Vincenzo Marchetti (a private nurse)
 
@@ -388,15 +392,15 @@ On Ilse Brauer:
 
 On Meyer Shapiro's account:
 
-- **c157** [observation] Vincenzo Marchetti was at the Front Desk from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
+- **c158** [observation] Vincenzo Marchetti was at the Front Desk from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
 
 On Ezekiel Whitfield's account:
 
-- **c164** [observation] Vincenzo Marchetti was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
+- **c166** [observation] Vincenzo Marchetti was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
 
 On Ilse Brauer's account:
 
-- **c181** [observation] Vincenzo Marchetti was in the Lobby at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
+- **c187** [observation] Vincenzo Marchetti was in the Lobby at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
 
 ### From Adelaide Lathrop (a chambermaid)
 
@@ -438,11 +442,11 @@ On Ilse Brauer:
 
 On Meyer Shapiro's account:
 
-- **c158** [observation] Adelaide Lathrop was at the Front Desk from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
+- **c159** [observation] Adelaide Lathrop was at the Front Desk from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
 
 On Ilse Brauer's account:
 
-- **c182** [observation] Adelaide Lathrop was in the Lobby at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
+- **c188** [observation] Adelaide Lathrop was in the Lobby at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
 
 ### From Ilse Brauer (a seamstress)
 
@@ -483,15 +487,16 @@ On Adelaide Lathrop:
 
 On Meyer Shapiro's account:
 
-- **c159** [observation] Ilse Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
+- **c160** [observation] Ilse Brauer was in the Lobby at 6:30 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM_
+- **c161** [observation] Ilse Brauer was in the Bar at 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 7:00 PM_
 
 On Ezekiel Whitfield's account:
 
-- **c165** [observation] Ilse Brauer was in the Bar from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
+- **c167** [observation] Ilse Brauer was in the Bar from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
 
 On Adelaide Lathrop's account:
 
-- **c175** [observation] Ilse Brauer was in the Bar at 10:00 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM_
+- **c180** [observation] Ilse Brauer was in the Bar at 10:00 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM_
 
 ### From Harrison Stannard (the doorman)
 
@@ -544,31 +549,32 @@ On Ilse Brauer:
 
 On Meyer Shapiro's account:
 
-- **c160** [observation] Harrison Stannard was in the Lobby from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
+- **c162** [observation] Harrison Stannard was in the Lobby from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
 
 On Ezekiel Whitfield's account:
 
-- **c166** [observation] Harrison Stannard was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
+- **c168** [observation] Harrison Stannard was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
 
 On Vincenzo Marchetti's account:
 
-- **c171** [observation] Harrison Stannard was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:30 PM_
+- **c174** [observation] Harrison Stannard was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:30 PM_
 
 On Adelaide Lathrop's account:
 
-- **c176** [observation] Harrison Stannard was in the Lobby from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
+- **c181** [observation] Harrison Stannard was in the Lobby from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
 
 On Ilse Brauer's account:
 
-- **c183** [observation] Harrison Stannard was in the Lobby from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
+- **c189** [observation] Harrison Stannard was in the Lobby at 10:30 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM_
+- **c190** [observation] Harrison Stannard was on the Street at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
 
 On Ezekiel Whitfield and Agnes Doyle:
 
-- **c189** [overheard] Harrison Stannard says Ezekiel Whitfield said Agnes Doyle had taken everything and would be made to feel it. — _establishes: Ezekiel Whitfield had a motive (revenge)_
+- **c196** [overheard] Harrison Stannard says Ezekiel Whitfield said Agnes Doyle had taken everything and would be made to feel it. — _establishes: Ezekiel Whitfield had a motive (revenge)_
 
 On Ilse Brauer and Agnes Doyle:
 
-- **c195** [overheard] Harrison Stannard says Agnes Doyle told Ilse Brauer that Friday was the end of it, one way or the other. — _establishes: Ilse Brauer had a motive (debt)_
+- **c202** [overheard] Harrison Stannard says Agnes Doyle told Ilse Brauer that Friday was the end of it, one way or the other. — _establishes: Ilse Brauer had a motive (debt)_
 
 ### From Hedwig Lindemann (the bartender)
 
@@ -616,43 +622,44 @@ On Ilse Brauer:
 
 On Meyer Shapiro's account:
 
-- **c161** [observation] Hedwig Lindemann was in the Bar from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
+- **c163** [observation] Hedwig Lindemann was in the Bar from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
 
 On Ezekiel Whitfield's account:
 
-- **c167** [observation] Hedwig Lindemann was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
+- **c169** [observation] Hedwig Lindemann was in the Lobby at 8:00 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM_
+- **c170** [observation] Hedwig Lindemann was in the Bar at 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:30 PM_
 
 On Adelaide Lathrop's account:
 
-- **c177** [observation] Hedwig Lindemann was in the Bar from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
+- **c182** [observation] Hedwig Lindemann was in the Bar from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
 
 On Ilse Brauer's account:
 
-- **c184** [observation] Hedwig Lindemann was in the Bar from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
+- **c191** [observation] Hedwig Lindemann was in the Bar from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
 
 On Vincenzo Marchetti and Agnes Doyle:
 
-- **c191** [overheard] Hedwig Lindemann says Agnes Doyle told Vincenzo Marchetti the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Vincenzo Marchetti had a motive (inheritance)_
+- **c198** [overheard] Hedwig Lindemann says Agnes Doyle told Vincenzo Marchetti the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Vincenzo Marchetti had a motive (inheritance)_
 
 On Adelaide Lathrop and Agnes Doyle:
 
-- **c193** [overheard] Hedwig Lindemann says Adelaide Lathrop told Agnes Doyle to keep away, loud enough to turn heads. — _establishes: Adelaide Lathrop had a motive (jealousy)_
+- **c200** [overheard] Hedwig Lindemann says Adelaide Lathrop told Agnes Doyle to keep away, loud enough to turn heads. — _establishes: Adelaide Lathrop had a motive (jealousy)_
 
 ### From the Front Desk
 
-- **c186** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c187** [document] Gittel Feldman's papers do not hold up. Two signatures in the guest register, a month apart, are in different hands. — _establishes: context only_
-- **c188** [document] Found in the Front Desk: A clipping about the failure of Ezekiel Whitfield's business, with Agnes Doyle's name underlined twice in pencil. — _establishes: Ezekiel Whitfield had a motive (revenge)_
-- **c192** [document] Found in the Front Desk: Three letters in Agnes Doyle's hand to a woman Adelaide Lathrop is engaged to, kept in the drawer, the last one opened. — _establishes: Adelaide Lathrop had a motive (jealousy)_
-- **c194** [document] Found in the Front Desk: A promissory note for $4,000 signed by Ilse Brauer, endorsed to Agnes Doyle, three months past due. — _establishes: Ilse Brauer had a motive (debt)_
+- **c193** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
+- **c194** [document] Gittel Feldman's papers do not hold up. Two signatures in the guest register, a month apart, are in different hands. — _establishes: context only_
+- **c195** [document] Found in the Front Desk: A clipping about the failure of Ezekiel Whitfield's business, with Agnes Doyle's name underlined twice in pencil. — _establishes: Ezekiel Whitfield had a motive (revenge)_
+- **c199** [document] Found in the Front Desk: Three letters in Agnes Doyle's hand to a woman Adelaide Lathrop is engaged to, kept in the drawer, the last one opened. — _establishes: Adelaide Lathrop had a motive (jealousy)_
+- **c201** [document] Found in the Front Desk: A promissory note for $4,000 signed by Ilse Brauer, endorsed to Agnes Doyle, three months past due. — _establishes: Ilse Brauer had a motive (debt)_
 
 ### From the Victim's Suite
 
-- **c190** [document] Found in the Victim's Suite: A draft codicil in Agnes Doyle's hand striking Vincenzo Marchetti out of the will, dated last Tuesday and unsigned. — _establishes: Vincenzo Marchetti had a motive (inheritance)_
+- **c197** [document] Found in the Victim's Suite: A draft codicil in Agnes Doyle's hand striking Vincenzo Marchetti out of the will, dated last Tuesday and unsigned. — _establishes: Vincenzo Marchetti had a motive (inheritance)_
 
 ### From the Roof Garden
 
-- **c185** [morgue] Agnes Doyle was found in the Roof Garden. The coroner puts death between 10:00 PM and 10:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 10:00 PM and 10:30 PM_
+- **c192** [morgue] Agnes Doyle was found in the Roof Garden. The coroner puts death between 10:00 PM and 10:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 10:00 PM and 10:30 PM_
 
 ### Withheld — the player cannot get these
 
@@ -675,7 +682,7 @@ On Adelaide Lathrop and Agnes Doyle:
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:30 PM. _(c185, c001, c015, c033, c093, c110, c136)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:30 PM. _(c192, c001, c015, c033, c093, c110, c136)_
 
 **Clearing the innocent.**
 
@@ -685,11 +692,11 @@ On Adelaide Lathrop and Agnes Doyle:
 - Adelaide Lathrop was not in the Roof Garden at 10:30 PM, on two independent sources. _(c008, c052, c129)_
 - Ilse Brauer was not in the Roof Garden at 10:30 PM, on two independent sources. _(c011, c031, c055, c131, c153)_
 
-**Naming the killer.** Vincenzo Marchetti claims the Front Desk at 10:30 PM. Two independent sources put that out of the question, and one ties Vincenzo Marchetti to a gunshot. _(c168, c170, c171, c021, c044, c084, c102, c122)_
+**Naming the killer.** Vincenzo Marchetti claims the Front Desk at 10:30 PM. Two independent sources put that out of the question, and one ties Vincenzo Marchetti to a gunshot. _(c171, c173, c174, c021, c044, c084, c102, c122)_
 
-**Method.** A gunshot, on two physical sources. _(c185, c186)_
+**Method.** A gunshot, on two physical sources. _(c192, c193)_
 
-**Motive.** inheritance, on two independent sources. _(c190, c191)_
+**Motive.** inheritance, on two independent sources. _(c197, c198)_
 
 ## 8. Red herrings
 
