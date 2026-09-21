@@ -1,0 +1,2179 @@
+[
+  {
+    "id": "LEX-001",
+    "term": "the El",
+    "gloss": "The elevated railway; steel-trestle train line running above the avenues.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"area is filled-in land. Beyond the el structure are State Street and\""
+  },
+  {
+    "id": "LEX-002",
+    "term": "the Elevated",
+    "gloss": "Short for the elevated railway; also \"the El.\"",
+    "register": "street",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"its way beneath the heavy Elevated pillars. The sun was up—a\""
+  },
+  {
+    "id": "LEX-003",
+    "term": "the Tenderloin",
+    "gloss": "Manhattan's old vice district, roughly west of Broadway in the West 20s-40s; saloons, gambling, and worse.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"way, where once the city's tenderloin put forth its red shadows.\""
+  },
+  {
+    "id": "LEX-004",
+    "term": "the Bowery",
+    "gloss": "Downtown Manhattan street and district, shorthand for flophouses, dive bars, and men down on their luck.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"St.-White Plains Road) serves the Bowery , 3d Ave., in Manhattan\""
+  },
+  {
+    "id": "LEX-005",
+    "term": "Hell's Kitchen",
+    "gloss": "Rough West Side neighborhood, roughly 34th to 59th Streets west of Eighth Avenue.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"Side, in the Gashouse and Hell's Kitchen , in Chelsea and Greenwich\""
+  },
+  {
+    "id": "LEX-006",
+    "term": "Yorkville",
+    "gloss": "Upper East Side neighborhood, largely German and Hungarian in this period.",
+    "register": "society",
+    "citation": "WPA Guide to New York City (1939) — \"Fifth, Madison, and Park Avenues Yorkville THE HARLEMS Negro Harlem Spanish\""
+  },
+  {
+    "id": "LEX-007",
+    "term": "Chelsea",
+    "gloss": "West Side neighborhood south of the West 30s.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"my husband—or former husband—at the Chelsea apartments, I think. “Last summer,\""
+  },
+  {
+    "id": "LEX-008",
+    "term": "Gramercy",
+    "gloss": "Genteel neighborhood around Gramercy Park, a private, gated square.",
+    "register": "society",
+    "citation": "WPA Guide to New York City (1939) — \"W. 23d St.; *!RVING, 26 Gramercy Park S.; GRAMERCY PARK, 52\""
+  },
+  {
+    "id": "LEX-009",
+    "term": "the Lower East Side",
+    "gloss": "Dense immigrant tenement district south of Houston Street.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"thousand already asleep on the Lower East Side will be a large number\""
+  },
+  {
+    "id": "LEX-010",
+    "term": "Harlem",
+    "gloss": "Uptown Manhattan neighborhood; by the 1920s the center of Black New York.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"facing the tumbling fountain in Harlem Park, beside a woman who\""
+  },
+  {
+    "id": "LEX-011",
+    "term": "Broadway",
+    "gloss": "Manhattan's diagonal spine; also shorthand for the theater district.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"2101 Mountain Boulevard. Take a Broadway car, get off at Laurel\""
+  },
+  {
+    "id": "LEX-012",
+    "term": "Times Square",
+    "gloss": "Theater-district crossroads at Broadway and 42nd Street, named for the Times tower.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"Broadway and 43d St. ( Times Square ) ; DAILY NEWS INFORMA-\""
+  },
+  {
+    "id": "LEX-013",
+    "term": "Wall Street",
+    "gloss": "The financial district; also shorthand for high finance itself.",
+    "register": "society",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"take chances made me in Wall Street , and that same instinct\""
+  },
+  {
+    "id": "LEX-014",
+    "term": "the Battery",
+    "gloss": "Manhattan's southern tip, at the harbor.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"sections of Manhattan: downtown, from the Battery to Fourteenth Street ; midtown,\""
+  },
+  {
+    "id": "LEX-015",
+    "term": "Greenwich Village",
+    "gloss": "Bohemian downtown neighborhood, artists and radicals.",
+    "register": "society",
+    "citation": "WPA Guide to New York City (1939) — \"Houston Street and some in Greenwich Village , where the gridiron system\""
+  },
+  {
+    "id": "LEX-016",
+    "term": "Chinatown",
+    "gloss": "Downtown Manhattan enclave around Mott and Pell Streets.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"Stockton before slipping downhill to Chinatown , Spade paid his fare\""
+  },
+  {
+    "id": "LEX-017",
+    "term": "Central Park",
+    "gloss": "Manhattan's great park, running up the island's center.",
+    "register": "society",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"it—the red touring—crawling slowly toward Central Park West. There was the blast\""
+  },
+  {
+    "id": "LEX-018",
+    "term": "Grand Central Terminal",
+    "gloss": "The great midtown rail terminal at 42nd and Park.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"Ave. and 42d St., opposite Grand Central Terminal; POLICE DEPARTMENT INFORMATION BOOTH,\""
+  },
+  {
+    "id": "LEX-019",
+    "term": "the subway",
+    "gloss": "The underground rapid-transit line, newer and faster than the El.",
+    "register": "street",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"the Broadway car to the subway . I do not travel\""
+  },
+  {
+    "id": "LEX-020",
+    "term": "Fifth Avenue",
+    "gloss": "Manhattan's premier shopping and society street.",
+    "register": "society",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"blotted out the sun. Up Fifth Avenue we strolled until we hit\""
+  },
+  {
+    "id": "LEX-021",
+    "term": "Park Row",
+    "gloss": "Downtown street by City Hall, historically lined with newspaper offices.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"BROOKLYN. FULTON STREET LINE ( Park Row — Lefferts Ave.) serves City\""
+  },
+  {
+    "id": "LEX-022",
+    "term": "Newspaper Row",
+    "gloss": "Nickname for Park Row when the big dailies had their offices there.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"and early twentieth centuries \" Newspaper Row \" was situated on Park\""
+  },
+  {
+    "id": "LEX-023",
+    "term": "Herald Square",
+    "gloss": "Midtown square named for the New York Herald, near Macy's.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"and 3ist St. ; * HERALD SQUARE , 116 W. 34th St.;\""
+  },
+  {
+    "id": "LEX-024",
+    "term": "Union Square",
+    "gloss": "Downtown square, once a hub for soapbox political speeches.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"Then I went up to Union Square , where I had seen\""
+  },
+  {
+    "id": "LEX-025",
+    "term": "Madison Square",
+    "gloss": "Midtown square near the old Madison Square Garden.",
+    "register": "society",
+    "citation": "WPA Guide to New York City (1939) — \"HOLLEY, 36 Washington Sq.; * MADISON SQUARE , Madison Ave. and 25th\""
+  },
+  {
+    "id": "LEX-026",
+    "term": "Coney Island",
+    "gloss": "Brooklyn's beach and amusement-park district.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"About a piano player in Coney Island that he called--what was it?\""
+  },
+  {
+    "id": "LEX-027",
+    "term": "the Brooklyn Bridge",
+    "gloss": "Suspension bridge linking Manhattan and Brooklyn since 1883.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"west of Fulton St., near Brooklyn Bridge . TRANSPORTATION There are four\""
+  },
+  {
+    "id": "LEX-028",
+    "term": "Pennsylvania Station",
+    "gloss": "Midtown's great rail terminal, opened 1910 (the original McKim, Mead & White building).",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"Ave. ; TRAVELERS AID SOCIETY, Pennsylvania Station and Grand Central Terminal. STREETS\""
+  },
+  {
+    "id": "LEX-029",
+    "term": "speakeasy",
+    "gloss": "An illegal drinking establishment, usually admission by password or a look through a slot.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"job as hostess in a speakeasy run by a Greek named\""
+  },
+  {
+    "id": "LEX-030",
+    "term": "blind pig",
+    "gloss": "An unlicensed saloon; older term for a speakeasy.",
+    "register": "police",
+    "citation": "The Evening World, 1921 selected pages — \"DRY SLEUTHS FIND WAGON \" BLIND PIG \" Agents Say Stranger Led\""
+  },
+  {
+    "id": "LEX-031",
+    "term": "hooch",
+    "gloss": "Cheap or illegal liquor.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"with the fumes of spilled hooch , we waded around until\""
+  },
+  {
+    "id": "LEX-032",
+    "term": "rye",
+    "gloss": "Rye whiskey, a standard bar order.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"called through the door. “ Rye , gin, tequila, Scotch—” “The\""
+  },
+  {
+    "id": "LEX-033",
+    "term": "rum-runner",
+    "gloss": "A smuggler who brings liquor in by boat.",
+    "register": "press",
+    "citation": "The Evening World, 1922 selected pages — \"NAVY FIRES FIRST SHOT AT RUM-RUNNER The, Mrlifilnlo. Ontfooted In Chnae\""
+  },
+  {
+    "id": "LEX-034",
+    "term": "bootlegger",
+    "gloss": "Someone who makes, transports, or sells illegal liquor.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"being curious. You aren’t a bootlegger , are you? Donald changes\""
+  },
+  {
+    "id": "LEX-035",
+    "term": "highball",
+    "gloss": "A mixed drink, liquor and soda or water over ice, served tall.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"chase the blighter after another highball , I'll drink your excellent\""
+  },
+  {
+    "id": "LEX-036",
+    "term": "near beer",
+    "gloss": "Legal low-alcohol beer, the Prohibition-era substitute for the real thing.",
+    "register": "press",
+    "citation": "The Evening World, 1920 selected pages — \"hopo to con tinue selling near beer and light vMnos will be\""
+  },
+  {
+    "id": "LEX-037",
+    "term": "chaser",
+    "gloss": "A mild drink taken right after a hard one.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"whisky with milk for a chaser . I used to drink\""
+  },
+  {
+    "id": "LEX-038",
+    "term": "flask",
+    "gloss": "A flat pocket bottle for carrying liquor.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"the King George into a flask , pocketed it, and went\""
+  },
+  {
+    "id": "LEX-039",
+    "term": "moonshine",
+    "gloss": "Illegally distilled liquor.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"man ordered two drinks of moonshine and let the scene blur\""
+  },
+  {
+    "id": "LEX-040",
+    "term": "gin mill",
+    "gloss": "A cheap bar.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"went away after wrecking the gin mill , they dropped completely out\""
+  },
+  {
+    "id": "LEX-041",
+    "term": "bathtub gin",
+    "gloss": "Home-distilled gin, reputedly mixed in a bathtub for volume.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-042",
+    "term": "giggle water",
+    "gloss": "Slang for liquor, especially champagne or cocktails.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-043",
+    "term": "the growler",
+    "gloss": "A pail or can used to carry draft beer home; \"rushing the growler\" meant fetching a refill.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-044",
+    "term": "soft drink parlor",
+    "gloss": "A legal front shop, ostensibly selling soda, sometimes a cover for a blind pig.",
+    "register": "press",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-045",
+    "term": "a grand",
+    "gloss": "One thousand dollars.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"said. “Willsson got a five- grand check in Dinah Brand’s name\""
+  },
+  {
+    "id": "LEX-046",
+    "term": "a century",
+    "gloss": "One hundred dollars.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"so far?” “I got a century from Pete and a century\""
+  },
+  {
+    "id": "LEX-047",
+    "term": "a sawbuck",
+    "gloss": "A ten-dollar bill.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-048",
+    "term": "a fin",
+    "gloss": "A five-dollar bill.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"— with smoked squid, shark fin , blubber, roast ducks, and\""
+  },
+  {
+    "id": "LEX-049",
+    "term": "a deuce",
+    "gloss": "Two dollars, or a two-dollar bill.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"good guy, straight as ace- deuce -trey-four-five, till he got on\""
+  },
+  {
+    "id": "LEX-050",
+    "term": "two bits",
+    "gloss": "Twenty-five cents.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"beat the Jew out of two bits ’ worth of Java and\""
+  },
+  {
+    "id": "LEX-051",
+    "term": "four bits",
+    "gloss": "Fifty cents.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"fish, and have to bum four bits for breakfast.” I said it\""
+  },
+  {
+    "id": "LEX-052",
+    "term": "a C-note",
+    "gloss": "A hundred-dollar bill.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-053",
+    "term": "dough",
+    "gloss": "Money.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"to give anybody any more dough than he’s used to.” Jerry\""
+  },
+  {
+    "id": "LEX-054",
+    "term": "jack",
+    "gloss": "Money.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"to pick up a little jack when she can. So I\""
+  },
+  {
+    "id": "LEX-055",
+    "term": "kale",
+    "gloss": "Money.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-056",
+    "term": "mazuma",
+    "gloss": "Money (Yiddish loanword, common in New York slang).",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"given words like kibitzer, kosher, mazuma , p hooey; and the\""
+  },
+  {
+    "id": "LEX-057",
+    "term": "a roll",
+    "gloss": "A wad of paper money.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"at her. “Forget the bank roll and go in for charity.\""
+  },
+  {
+    "id": "LEX-058",
+    "term": "a touch",
+    "gloss": "An attempt to borrow (or extract) money from someone.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"said I would get in touch with him at the Herald\""
+  },
+  {
+    "id": "LEX-059",
+    "term": "a shakedown",
+    "gloss": "Extortion, usually by someone with real or claimed authority.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"the early part of the shakedown , explaining: “I had to\""
+  },
+  {
+    "id": "LEX-060",
+    "term": "graft",
+    "gloss": "Money or favors gained through official corruption.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"I was through with the graft , had ‘gone queer,’ that\""
+  },
+  {
+    "id": "LEX-061",
+    "term": "a payoff",
+    "gloss": "A bribe, or the proceeds of a scheme.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"that, when we find the payoff ’s a bust, I said\""
+  },
+  {
+    "id": "LEX-062",
+    "term": "a retainer",
+    "gloss": "A fee paid up front to secure a professional's services.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"have to have a ten-thousand-dollar retainer .” “Ten thousand dollars! Why\""
+  },
+  {
+    "id": "LEX-063",
+    "term": "a derby",
+    "gloss": "A stiff round felt hat with a curled brim (bowler).",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"spats. He held a black derby hat in a chamois-gloved hand\""
+  },
+  {
+    "id": "LEX-064",
+    "term": "a fedora",
+    "gloss": "A soft felt hat with an indented crown, snap brim.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"of tan and a gray fedora . M. Coini is the\""
+  },
+  {
+    "id": "LEX-065",
+    "term": "spats",
+    "gloss": "Cloth or leather ankle coverings worn over shoes, a mark of dandyism.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"city dignitaries welcoming somebody in spats dropped down to the floor\""
+  },
+  {
+    "id": "LEX-066",
+    "term": "a topcoat",
+    "gloss": "A lightweight overcoat.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"there was. His hat and topcoat were on a chair where\""
+  },
+  {
+    "id": "LEX-067",
+    "term": "a slicker",
+    "gloss": "A waterproof coat, often yellow rubber.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"dressed in black rubber boots, slicker , and hat that were\""
+  },
+  {
+    "id": "LEX-068",
+    "term": "a stickpin",
+    "gloss": "An ornamental pin worn through a necktie.",
+    "register": "society",
+    "citation": "Ring Lardner, You Know Me Al (1916) — \"to. I sent her a stickpin from Oklahoma City but I\""
+  },
+  {
+    "id": "LEX-069",
+    "term": "a shirtwaist",
+    "gloss": "A woman's tailored blouse, buttoned like a man's shirt.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"in them, a buff silk shirtwaist with stripes a shade darker,\""
+  },
+  {
+    "id": "LEX-070",
+    "term": "a bob",
+    "gloss": "A short, boyish woman's haircut, fashionable through the 1920s.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"said his name was MacSwain, Bob MacSwain, and I could ask\""
+  },
+  {
+    "id": "LEX-071",
+    "term": "gaiters",
+    "gloss": "Cloth or leather leg coverings worn over the shoe and ankle, older than spats.",
+    "register": "society",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-072",
+    "term": "a watch chain",
+    "gloss": "A chain across a man's waistcoat, holding a pocket watch.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-073",
+    "term": "a boiled shirt",
+    "gloss": "A stiff-fronted formal dress shirt.",
+    "register": "society",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-074",
+    "term": "a Norfolk jacket",
+    "gloss": "A belted, box-pleated sporting jacket.",
+    "register": "society",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-075",
+    "term": "a cloche hat",
+    "gloss": "A close-fitting bell-shaped woman's hat, the signature 1920s silhouette.",
+    "register": "society",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-076",
+    "term": "knickers",
+    "gloss": "Knee-length breeches, worn for golf, motoring, or by boys.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-077",
+    "term": "a roadster",
+    "gloss": "A two-seat open touring automobile.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"“Yeah?” He had a Chrysler roadster parked around the corner. We\""
+  },
+  {
+    "id": "LEX-078",
+    "term": "a sedan",
+    "gloss": "A closed, enclosed automobile body.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"brought it about. A blue sedan came out of a cross-street\""
+  },
+  {
+    "id": "LEX-079",
+    "term": "a flivver",
+    "gloss": "Slang for a cheap, small car, especially a Model T.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"to gas and water the flivver . Take yor time.” Adderly\""
+  },
+  {
+    "id": "LEX-080",
+    "term": "a touring car",
+    "gloss": "A large open car seating four or more.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"the occupant of a Stutz touring car . “That’s Whisper in the\""
+  },
+  {
+    "id": "LEX-081",
+    "term": "a running board",
+    "gloss": "The step-plate along an automobile's side, below the doors.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"Reno’s feet were on the running board beside me. I wrapped my\""
+  },
+  {
+    "id": "LEX-082",
+    "term": "a jitney",
+    "gloss": "An informal share-taxi, or a nickel; also any small cheap car.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"I put them in a jitney and took them over to\""
+  },
+  {
+    "id": "LEX-083",
+    "term": "a hack",
+    "gloss": "A taxicab, or the cab driver himself.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"have it for mine.” “Well, hack -drivers don’t live forever.” “Maybe\""
+  },
+  {
+    "id": "LEX-084",
+    "term": "a garage",
+    "gloss": "A building for storing or repairing automobiles.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"and at the square white garage that stood in the rear\""
+  },
+  {
+    "id": "LEX-085",
+    "term": "a Stutz",
+    "gloss": "Stutz Motor Company automobile, a fast and expensive make.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"to the occupant of a Stutz touring car. “That’s Whisper in\""
+  },
+  {
+    "id": "LEX-086",
+    "term": "a Packard",
+    "gloss": "Packard Motor Car Company automobile, an expensive luxury make.",
+    "register": "society",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"a Tacoma suburb, a new Packard , and the rest of\""
+  },
+  {
+    "id": "LEX-087",
+    "term": "a spare tire",
+    "gloss": "The extra tire carried on an automobile, often mounted on the rear or running board.",
+    "register": "street",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"tightly bound rim of the spare tire on the rear and swung\""
+  },
+  {
+    "id": "LEX-088",
+    "term": "a chauffeur",
+    "gloss": "A hired driver, usually for a household's own car.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"house besides you?” “Yes, the chauffeur , the Chinese cook.” “Let\""
+  },
+  {
+    "id": "LEX-089",
+    "term": "a livery stable",
+    "gloss": "A stable that boards and hires out horses and carriages (and later cars).",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"you’re right.” IX In the livery stable , where we had put\""
+  },
+  {
+    "id": "LEX-090",
+    "term": "a brougham",
+    "gloss": "A closed horse-drawn (or early motor) carriage with an outside driver's seat.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"the Hall in a Hispano-Suiza brougham ; but there was no\""
+  },
+  {
+    "id": "LEX-091",
+    "term": "a gat",
+    "gloss": "A pistol.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"her the next second—with the gat in her hand.” “That’s no\""
+  },
+  {
+    "id": "LEX-092",
+    "term": "a rod",
+    "gloss": "A gun.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"I’m alone. I’ll drop my rod in the street if you\""
+  },
+  {
+    "id": "LEX-093",
+    "term": "a heater",
+    "gloss": "A gun.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"feet and go for your heater !” Spade smiled at the\""
+  },
+  {
+    "id": "LEX-094",
+    "term": "a roscoe",
+    "gloss": "Underworld slang for a pistol.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"James Mattern and Bennett Griffin, Roscoe Turner, the flying Hutchinson family,\""
+  },
+  {
+    "id": "LEX-095",
+    "term": "a blackjack",
+    "gloss": "A short leather-covered club, weighted, for close-in beatings.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"The other hand held a blackjack as big as a milk\""
+  },
+  {
+    "id": "LEX-096",
+    "term": "a sap",
+    "gloss": "A blackjack or similar hand club.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"will you look at the sap he’s toting?” He kicked the\""
+  },
+  {
+    "id": "LEX-097",
+    "term": "brass knuckles",
+    "gloss": "A metal hand weapon fitted over the knuckles.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"he took a pair of brass knuckles and a shiny revolver. “Here!\""
+  },
+  {
+    "id": "LEX-098",
+    "term": "an automatic",
+    "gloss": "A self-loading pistol, as opposed to a revolver.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"before, but now a black automatic pistol lay on the covers\""
+  },
+  {
+    "id": "LEX-099",
+    "term": "a shiv",
+    "gloss": "A knife, especially a homemade or concealed one.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-100",
+    "term": "a heist",
+    "gloss": "A robbery.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-101",
+    "term": "a mob",
+    "gloss": "A criminal gang or crew.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"years ago, when Scissors Haggerty’s mob croaked two messengers. Al didn’t\""
+  },
+  {
+    "id": "LEX-102",
+    "term": "a torpedo",
+    "gloss": "A hired gunman.",
+    "register": "street",
+    "citation": "The Evening World, 1920 selected pages — \"1IAGUK. March 16 A Dutch torpedo boat hu arrived in tho\""
+  },
+  {
+    "id": "LEX-103",
+    "term": "a moll",
+    "gloss": "A gangster's girlfriend or female accomplice.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"had quality. Whoever this gunman’s moll was, she either had had\""
+  },
+  {
+    "id": "LEX-104",
+    "term": "a fence",
+    "gloss": "A dealer in stolen goods.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"ended against a high board fence with a locked gate. A\""
+  },
+  {
+    "id": "LEX-105",
+    "term": "a con man",
+    "gloss": "A confidence trickster.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"He was “Penny” Quayle, a con man who had been active in\""
+  },
+  {
+    "id": "LEX-106",
+    "term": "a grifter",
+    "gloss": "A small-time swindler.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"he do now?” “A small-time grifter . What do you think\""
+  },
+  {
+    "id": "LEX-107",
+    "term": "a frame-up",
+    "gloss": "A false case built to incriminate an innocent person.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"cover till noon, and his frame-up will be a washout.” Thaler\""
+  },
+  {
+    "id": "LEX-108",
+    "term": "a rap",
+    "gloss": "A criminal charge.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"“Noonan’s figuring on hanging the rap on you as well as\""
+  },
+  {
+    "id": "LEX-109",
+    "term": "a stretch",
+    "gloss": "A prison term.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"give us ain’t enough to stretch him I’m a pickpocket.” I\""
+  },
+  {
+    "id": "LEX-110",
+    "term": "the big house",
+    "gloss": "State prison.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"riding back to the Kansas big house by now. He got word\""
+  },
+  {
+    "id": "LEX-111",
+    "term": "the can",
+    "gloss": "Jail.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"dynamited the floor out of the can . I dropped through the\""
+  },
+  {
+    "id": "LEX-112",
+    "term": "a caper",
+    "gloss": "A criminal job or scheme.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"he was in on the caper . He used to scrap\""
+  },
+  {
+    "id": "LEX-113",
+    "term": "a mug",
+    "gloss": "A person's face; also a small-time thug.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"never let them put his mug in the papers or on\""
+  },
+  {
+    "id": "LEX-114",
+    "term": "a gorilla",
+    "gloss": "A large, brutal hired thug.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"a big meat-eating wrestler—bull-throated, mountain-shouldered, gorilla -armed, leather-skinned. The god that\""
+  },
+  {
+    "id": "LEX-115",
+    "term": "muscle",
+    "gloss": "Hired physical intimidation; also the men who supply it.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"one or the other.” A muscle began twitching in her upper\""
+  },
+  {
+    "id": "LEX-116",
+    "term": "a dip",
+    "gloss": "A pickpocket.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"solemnly: “I think if you’d dip him in blueing he’d come\""
+  },
+  {
+    "id": "LEX-117",
+    "term": "a hophead",
+    "gloss": "A drug addict, especially opium.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"existed. It’ll sound like a hophead ’s dream to a jury.\""
+  },
+  {
+    "id": "LEX-118",
+    "term": "dope",
+    "gloss": "Narcotics; also, information.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"him, MacSwain. Give me the dope , and I’ll make the\""
+  },
+  {
+    "id": "LEX-119",
+    "term": "a stool pigeon",
+    "gloss": "A police informer.",
+    "register": "police",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-120",
+    "term": "a wise guy",
+    "gloss": "A know-it-all, or a man connected to the rackets.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-121",
+    "term": "a chiseler",
+    "gloss": "A petty cheat.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-122",
+    "term": "a reefer",
+    "gloss": "A marijuana cigarette.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-123",
+    "term": "a racket",
+    "gloss": "An illegal or exploitative business.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"He advised the old sabotage racket , staying on the job\""
+  },
+  {
+    "id": "LEX-124",
+    "term": "a racketeer",
+    "gloss": "One who runs an illegal business, especially by extortion.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"the Riveter was a Philadelphia racketeer who had moved north to\""
+  },
+  {
+    "id": "LEX-125",
+    "term": "a dive",
+    "gloss": "A disreputable, cheap bar or club.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"hear Ike Bush takes a dive in the sixth. … It\""
+  },
+  {
+    "id": "LEX-126",
+    "term": "a joint",
+    "gloss": "Any place of business, usually disreputable.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"we rode. “Whisper’s got a joint over on King Street. He\""
+  },
+  {
+    "id": "LEX-127",
+    "term": "a gangster",
+    "gloss": "A member of an organized criminal gang.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"and order in the neighborhood. Gangster rule of Hell's Kitchen continued\""
+  },
+  {
+    "id": "LEX-128",
+    "term": "a cold-water flat",
+    "gloss": "A tenement apartment with no hot running water.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"family on relief in a cold-water flat . The neighborhood extends for\""
+  },
+  {
+    "id": "LEX-129",
+    "term": "a brownstone",
+    "gloss": "A row house faced in brown sandstone, the standard middle-class New York house.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"Shan house was a big brownstone affair, set among sodded lawns.\""
+  },
+  {
+    "id": "LEX-130",
+    "term": "a tenement",
+    "gloss": "A multi-family apartment building, usually crowded and cheap.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"day at Mrs. Balmer's faded tenement with an equally faded trunk.\""
+  },
+  {
+    "id": "LEX-131",
+    "term": "a rooming house",
+    "gloss": "A house with furnished rooms let to lodgers.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"telephone, in a Ronney Street rooming house . “By yourself?” he asked\""
+  },
+  {
+    "id": "LEX-132",
+    "term": "a flophouse",
+    "gloss": "The cheapest kind of lodging house, a cot for a night.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"again?” “Go up to his flophouse and find out who he\""
+  },
+  {
+    "id": "LEX-133",
+    "term": "a lobby",
+    "gloss": "A building's entrance hall.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"Bank, was sitting in the lobby when I returned to the\""
+  },
+  {
+    "id": "LEX-134",
+    "term": "the elevator man",
+    "gloss": "The fixture who runs a building's elevator by hand and sees everyone who rides it.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"not then left it. The elevator man who had carried Ansley and\""
+  },
+  {
+    "id": "LEX-135",
+    "term": "the doorman",
+    "gloss": "A residential hotel or apartment building's fixture at the entrance.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"of his cashiers and a doorman of colluding to defraud him.\""
+  },
+  {
+    "id": "LEX-136",
+    "term": "the super",
+    "gloss": "The superintendent of a building.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"you could play to yourself—a super -gentleman-crook, a mastermind, a desperate\""
+  },
+  {
+    "id": "LEX-137",
+    "term": "the landlady",
+    "gloss": "A woman who owns or manages a rooming house or tenement.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"on Sixth Street, where the landlady —a rough-hewn woman of fifty,\""
+  },
+  {
+    "id": "LEX-138",
+    "term": "the stoop",
+    "gloss": "The raised entrance steps of a row house or tenement.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"Vanaman in. Shepp was a stoop -shouldered tall man whose wide\""
+  },
+  {
+    "id": "LEX-139",
+    "term": "the fire escape",
+    "gloss": "An exterior iron stair or ladder, a fixture of every tenement facade.",
+    "register": "street",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"little wooden affair, not a fire escape , you understand. Nothing above—the\""
+  },
+  {
+    "id": "LEX-140",
+    "term": "the areaway",
+    "gloss": "A sunken passage or yard below street level, in front of a basement door.",
+    "register": "press",
+    "citation": "The Evening World, 1920 selected pages — \"Nine Foot Board, Stretched Over Areaway , to Safely. MOTHER RISKS\""
+  },
+  {
+    "id": "LEX-141",
+    "term": "a lamppost",
+    "gloss": "A street lamp on its post.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"and rolled over on the lamppost behind it. The lamppost snapped,\""
+  },
+  {
+    "id": "LEX-142",
+    "term": "a hydrant",
+    "gloss": "A fire hydrant.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"fifteen feet of a fire hydrant . (4) No parking is\""
+  },
+  {
+    "id": "LEX-143",
+    "term": "an alley",
+    "gloss": "A narrow street or passage behind buildings.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"been done from a narrow alley across the street. That was\""
+  },
+  {
+    "id": "LEX-144",
+    "term": "the newsstand",
+    "gloss": "A fixture selling papers and magazines on the corner.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"of the building is a newsstand where home-town newspapers may be\""
+  },
+  {
+    "id": "LEX-145",
+    "term": "the Curb Exchange",
+    "gloss": "The outdoor securities market that traded on the street before moving indoors (later the American Stock Exchange).",
+    "register": "society",
+    "citation": "WPA Guide to New York City (1939) — \"entrance to the New York Curb Exchange Building (see page 86). The\""
+  },
+  {
+    "id": "LEX-146",
+    "term": "a lunch counter",
+    "gloss": "A stand-up or stool counter serving quick food.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"made my last stop a lunch counter , where I tossed the\""
+  },
+  {
+    "id": "LEX-147",
+    "term": "a soda fountain",
+    "gloss": "A drugstore counter serving sodas, malteds, and ice cream.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"branches in Manhattan, all with soda fountain ; liquor served at 9\""
+  },
+  {
+    "id": "LEX-148",
+    "term": "the druggist",
+    "gloss": "A pharmacist; the fixture behind a drugstore soda fountain counter.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"him. He gave me the druggist ’s package. I took ten\""
+  },
+  {
+    "id": "LEX-149",
+    "term": "a chophouse",
+    "gloss": "A restaurant specializing in grilled meats.",
+    "register": "society",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"an adieu outside his favorite chophouse . Then he turned. The\""
+  },
+  {
+    "id": "LEX-150",
+    "term": "a delicatessen",
+    "gloss": "A shop selling prepared and cured foods.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"something. Broun falls against the delicatessen store window and groans. And\""
+  },
+  {
+    "id": "LEX-151",
+    "term": "an egg cream",
+    "gloss": "A fountain drink of milk, seltzer, and chocolate syrup — despite the name, no egg and no cream.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-152",
+    "term": "the soda jerk",
+    "gloss": "The counterman who works a soda fountain.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-153",
+    "term": "a malted",
+    "gloss": "A malted milk drink, a soda-fountain staple.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-154",
+    "term": "the precinct",
+    "gloss": "A police district, and the station house that commands it.",
+    "register": "police",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"Sergt. Kuzick of the first precinct , \"offhand, I can't think\""
+  },
+  {
+    "id": "LEX-155",
+    "term": "the desk sergeant",
+    "gloss": "The sergeant who mans a station house's front desk.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"bail the Negro out. The desk sergeant had told Somerton that nothing\""
+  },
+  {
+    "id": "LEX-156",
+    "term": "a patrolman",
+    "gloss": "The lowest-ranking uniformed police officer.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"so he told the first patrolman he met about it. “The\""
+  },
+  {
+    "id": "LEX-157",
+    "term": "a roundsman",
+    "gloss": "A police officer ranked between patrolman and sergeant, who inspects the beats.",
+    "register": "police",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-158",
+    "term": "the captain",
+    "gloss": "The officer commanding a precinct.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"a few piers away. The Captain wasn’t aboard. His name’s Jacobi\""
+  },
+  {
+    "id": "LEX-159",
+    "term": "an inspector",
+    "gloss": "A senior police officer overseeing several precincts.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"them. Lusk, a post office inspector , was also there. We\""
+  },
+  {
+    "id": "LEX-160",
+    "term": "the commissioner",
+    "gloss": "The civilian head of the police department.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"County Register, Surrogates' Court, and Commissioner of Jurors. Designed by John\""
+  },
+  {
+    "id": "LEX-161",
+    "term": "a plainclothesman",
+    "gloss": "A police officer working out of uniform.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"or Houston!” Duff called the plainclothesman a damned clumsy mick as\""
+  },
+  {
+    "id": "LEX-162",
+    "term": "a dick",
+    "gloss": "A detective.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"the Agency asking to have Dick Foley and Mickey Linehan shipped\""
+  },
+  {
+    "id": "LEX-163",
+    "term": "the bulls",
+    "gloss": "The police, especially detectives (underworld usage).",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"Al Kennedy that the Philly bulls want for the Keystone trick.\""
+  },
+  {
+    "id": "LEX-164",
+    "term": "the homicide squad",
+    "gloss": "The detective unit that investigates murders.",
+    "register": "police",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-165",
+    "term": "the morgue",
+    "gloss": "Where the dead are kept and identified.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"took Gantvoort around to the morgue to see his father, then.\""
+  },
+  {
+    "id": "LEX-166",
+    "term": "the coroner",
+    "gloss": "The official who investigates the cause of death.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"vote to the others. The coroner and his jury came to\""
+  },
+  {
+    "id": "LEX-167",
+    "term": "night court",
+    "gloss": "The court session that handles overnight arrests.",
+    "register": "police",
+    "citation": "WPA Guide to New York City (1939) — \"the precinct beside the Men's Night Court on West Fifty-fourth Street, and\""
+  },
+  {
+    "id": "LEX-168",
+    "term": "the patrol wagon",
+    "gloss": "The police van used to haul in arrested prisoners.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"the situation over. A police patrol wagon stood in front of Murry’s.\""
+  },
+  {
+    "id": "LEX-169",
+    "term": "his beat",
+    "gloss": "The fixed route a patrolman walks.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"city and the state. To beat the miners he had to\""
+  },
+  {
+    "id": "LEX-170",
+    "term": "the station house",
+    "gloss": "The building housing a police precinct.",
+    "register": "police",
+    "citation": "WPA Guide to New York City (1939) — \"West Side had. made the station house one of the busiest in\""
+  },
+  {
+    "id": "LEX-171",
+    "term": "headquarters",
+    "gloss": "Police headquarters, the department's central command.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"was sent out from I.W.W. headquarters in Chicago to give them\""
+  },
+  {
+    "id": "LEX-172",
+    "term": "the third degree",
+    "gloss": "Rough or coercive interrogation.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"put me through your little third degree ?” But I grinned back,\""
+  },
+  {
+    "id": "LEX-173",
+    "term": "the Bertillon man",
+    "gloss": "The department specialist in Bertillon measurements, the pre-fingerprint identification system.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"murder. Phels, the police department Bertillon man, found a number of\""
+  },
+  {
+    "id": "LEX-174",
+    "term": "the detective bureau",
+    "gloss": "A police department's plainclothes investigative division.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"downtown again, to the police detective bureau in the Hall of Justice.\""
+  },
+  {
+    "id": "LEX-175",
+    "term": "a traffic cop",
+    "gloss": "An officer directing street traffic.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"Coini, as undisturbed as a traffic cop or a loop pigeon, commands\""
+  },
+  {
+    "id": "LEX-176",
+    "term": "a shield",
+    "gloss": "A police officer's badge.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"faith enough in his divinity- shield , or he was nutty\""
+  },
+  {
+    "id": "LEX-177",
+    "term": "a badge",
+    "gloss": "A police officer's shield.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"regular detective like you—with a badge and everything—can find more.” “You\""
+  },
+  {
+    "id": "LEX-178",
+    "term": "a gumshoe",
+    "gloss": "A detective (from the soft-soled shoes plainclothesmen wore).",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"down, growled: “So you’re a gumshoe .” “That’s the bunk,” I\""
+  },
+  {
+    "id": "LEX-179",
+    "term": "an operative",
+    "gloss": "A private detective agency's field investigator.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"“I’m a Continental Detective Agency operative , San Francisco branch,” I\""
+  },
+  {
+    "id": "LEX-180",
+    "term": "an alibi",
+    "gloss": "A claim of having been elsewhere when a crime occurred.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"been way off with an alibi nobody could shake. Second place,\""
+  },
+  {
+    "id": "LEX-181",
+    "term": "the witness stand",
+    "gloss": "Where a witness testifies in court.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"and kept me on the witness stand throughout the meal, though neither\""
+  },
+  {
+    "id": "LEX-182",
+    "term": "the grand jury",
+    "gloss": "The jury that decides whether to indict.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"made to talk to a Grand Jury or even a Coroner’s Jury,\""
+  },
+  {
+    "id": "LEX-183",
+    "term": "the district attorney",
+    "gloss": "The public prosecutor.",
+    "register": "press",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"lot of brown mustache, and district attorney Vernon, sharp-featured, aggressive, and hungry\""
+  },
+  {
+    "id": "LEX-184",
+    "term": "arraignment",
+    "gloss": "The court proceeding where a charge is formally read.",
+    "register": "press",
+    "citation": "The Evening World, 1921 selected pages — \"Will Disregard Manslaughter In dictment Arraignment Is Postponed. Comedian Nervous in\""
+  },
+  {
+    "id": "LEX-185",
+    "term": "bail",
+    "gloss": "Money posted to secure release pending trial.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"Street, does a lot of bail bond business, handles most of\""
+  },
+  {
+    "id": "LEX-186",
+    "term": "a warrant",
+    "gloss": "A court order authorizing a search or arrest.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"“Have you got a search- warrant ? What the hell are\""
+  },
+  {
+    "id": "LEX-187",
+    "term": "a subpoena",
+    "gloss": "A court order compelling testimony or evidence.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"see me, pinch me or subpoena me or something and I’ll\""
+  },
+  {
+    "id": "LEX-188",
+    "term": "an indictment",
+    "gloss": "A formal criminal charge issued by a grand jury.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"bring quite so harsh an indictment of my stupidity for suspecting\""
+  },
+  {
+    "id": "LEX-189",
+    "term": "the verdict",
+    "gloss": "A jury or coroner's official finding.",
+    "register": "police",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"he gave us a preliminary verdict that the bomb had been\""
+  },
+  {
+    "id": "LEX-190",
+    "term": "the courthouse",
+    "gloss": "The building housing the criminal courts.",
+    "register": "press",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"district attorney’s office in the courthouse . Vernon pushed aside a\""
+  },
+  {
+    "id": "LEX-191",
+    "term": "the Tombs",
+    "gloss": "Manhattan's central detention prison, by City Hall.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"Building 58. Municipal Building 71. Tombs 59. Statue of Horace Greeley\""
+  },
+  {
+    "id": "LEX-192",
+    "term": "Sing Sing",
+    "gloss": "The state prison up the Hudson at Ossining.",
+    "register": "press",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"convicted stop both released from Sing Sing February six this year stop\""
+  },
+  {
+    "id": "LEX-193",
+    "term": "the electric chair",
+    "gloss": "The method of execution used in New York State.",
+    "register": "press",
+    "citation": "The Evening World, 1922 selected pages — \"BOY S MURDER Man Facing Electric Chair Involves Two in Murder Plot.\""
+  },
+  {
+    "id": "LEX-194",
+    "term": "the gallows",
+    "gloss": "Hanging, as a figure of speech for execution generally.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"“You can go to the gallows with a clear conscience. Have\""
+  },
+  {
+    "id": "LEX-195",
+    "term": "the noose",
+    "gloss": "A hangman's rope; figuratively, a fatal predicament.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"put our necks in the noose ?” Hook, scornfully: “As if\""
+  },
+  {
+    "id": "LEX-196",
+    "term": "the line-up",
+    "gloss": "The daily police showing of arrested suspects.",
+    "register": "police",
+    "citation": "WPA Guide to New York City (1939) — \"all units. The daily \" line-up \" of arrested criminals takes\""
+  },
+  {
+    "id": "LEX-197",
+    "term": "a riot gun",
+    "gloss": "A short shotgun issued for crowd or riot control.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"told the truth, centering the riot gun on the company, “maybe pieces\""
+  },
+  {
+    "id": "LEX-198",
+    "term": "the Black Maria",
+    "gloss": "A police prisoner van.",
+    "register": "street",
+    "citation": "The Evening World, 1922 selected pages — \"to-da a prisoner in tlio Black Maria , along with twclvo other\""
+  },
+  {
+    "id": "LEX-199",
+    "term": "police court",
+    "gloss": "The lower court that handles minor offenses and initial hearings.",
+    "register": "press",
+    "citation": "The Evening World, 1920 selected pages — \"were arraigned In the Tombs Police Court to-day be-: fore Magistrate Tobias.\""
+  },
+  {
+    "id": "LEX-200",
+    "term": "the magistrate",
+    "gloss": "A judge presiding over a lower (police) court.",
+    "register": "police",
+    "citation": "WPA Guide to New York City (1939) — \"Bronx are brought before a magistrate who presides here from eight\""
+  },
+  {
+    "id": "LEX-201",
+    "term": "a nightstick",
+    "gloss": "A patrolman's club.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"from sweet dreams by a nightstick on his shoe-soles. He excused\""
+  },
+  {
+    "id": "LEX-202",
+    "term": "the autopsy",
+    "gloss": "The medical examination determining cause of death.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"dinner yet. How about the autopsy on Sue Hambleton?” “Chronic arsenic\""
+  },
+  {
+    "id": "LEX-203",
+    "term": "an extra",
+    "gloss": "A special edition of a newspaper, rushed out for big news.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"to smoke some cigarettes over extra cups of coffee. It was\""
+  },
+  {
+    "id": "LEX-204",
+    "term": "the wire",
+    "gloss": "The telegraph news service; also a telegram.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"here.” “Suppose you got a wire from Chi?” I asked. “Hell\""
+  },
+  {
+    "id": "LEX-205",
+    "term": "the front page",
+    "gloss": "A newspaper's first page, reserved for the biggest story.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"Charles Proctor Dawn, divided the front page of the Herald, with Helen\""
+  },
+  {
+    "id": "LEX-206",
+    "term": "a tabloid",
+    "gloss": "A newspaper in the smaller, picture-heavy format.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"New York Daily News, the tabloid that has a larger circulation\""
+  },
+  {
+    "id": "LEX-207",
+    "term": "a newsboy",
+    "gloss": "A boy who sells papers on the street.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"as soon as the doc’s newsboy made his delivery. There was\""
+  },
+  {
+    "id": "LEX-208",
+    "term": "the World",
+    "gloss": "The New York World, a major daily.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"the Industrial Workers of the World . There wasn’t a word\""
+  },
+  {
+    "id": "LEX-209",
+    "term": "the Evening World",
+    "gloss": "Pulitzer's evening paper, sister to the World.",
+    "register": "press",
+    "citation": "The Evening World, 1920 selected pages — \"THE EVENING WORLD (New York, N.Y.) — Selected\""
+  },
+  {
+    "id": "LEX-210",
+    "term": "the Tribune",
+    "gloss": "The New York Tribune, a major daily.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"of newspapers, especially the Herald Tribune , Journal and American, Times,\""
+  },
+  {
+    "id": "LEX-211",
+    "term": "the Sun",
+    "gloss": "The New York Sun, a major daily.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"the dull light of morning sun filtered through drawn blinds. I\""
+  },
+  {
+    "id": "LEX-212",
+    "term": "the Times",
+    "gloss": "The New York Times.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"he had been shot four times in stomach, chest and back,\""
+  },
+  {
+    "id": "LEX-213",
+    "term": "the Journal",
+    "gloss": "Hearst's New York Journal.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"New York office sent a journal on the job to the\""
+  },
+  {
+    "id": "LEX-214",
+    "term": "the Herald",
+    "gloss": "The New York Herald, a major daily.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"the station, I called the Herald , asked for Donald Willsson,\""
+  },
+  {
+    "id": "LEX-215",
+    "term": "the city desk",
+    "gloss": "A newspaper's local-news editing desk.",
+    "register": "press",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-216",
+    "term": "the rewrite man",
+    "gloss": "The reporter who turns phoned-in facts into a written story.",
+    "register": "press",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-217",
+    "term": "a legman",
+    "gloss": "A reporter who works the street for facts, phoning them to a rewrite man.",
+    "register": "press",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-218",
+    "term": "a scoop",
+    "gloss": "An exclusive story, published before any rival.",
+    "register": "press",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-219",
+    "term": "a cub reporter",
+    "gloss": "A green, junior reporter.",
+    "register": "press",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-220",
+    "term": "a banner headline",
+    "gloss": "A headline spanning the full width of the front page.",
+    "register": "press",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-221",
+    "term": "the society page",
+    "gloss": "The newspaper section covering the well-to-do's parties and marriages.",
+    "register": "society",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-222",
+    "term": "the smart set",
+    "gloss": "Fashionable society.",
+    "register": "society",
+    "citation": "WPA Guide to New York City (1939) — \"PARIS, 142 E. 53d St.; smart set rendezvous; dinner $2.50. NICK'S, yth\""
+  },
+  {
+    "id": "LEX-223",
+    "term": "a debutante",
+    "gloss": "A young woman making her formal entrance into society.",
+    "register": "society",
+    "citation": "WPA Guide to New York City (1939) — \"and drink for an average debutante supper for some six hundred\""
+  },
+  {
+    "id": "LEX-224",
+    "term": "calling cards",
+    "gloss": "Printed cards left when paying a social visit.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"is the name on his calling cards . He’s bouncer and general\""
+  },
+  {
+    "id": "LEX-225",
+    "term": "the opera",
+    "gloss": "A marker of high society entertainment.",
+    "register": "society",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"To paraphrase an old comic opera lyric: \"You never can tell\""
+  },
+  {
+    "id": "LEX-226",
+    "term": "the club",
+    "gloss": "A private men's social club.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"it you’re back in the club again, all brothers together, let\""
+  },
+  {
+    "id": "LEX-227",
+    "term": "the country club",
+    "gloss": "A suburban club built around golf and tennis, a mark of money.",
+    "register": "society",
+    "citation": "The Evening World, 1922 selected pages — \"links of the West- chester-Blltmore Country Club and will visit tho links\""
+  },
+  {
+    "id": "LEX-228",
+    "term": "old money",
+    "gloss": "Wealth inherited over generations, as distinct from a fresh fortune.",
+    "register": "society",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-229",
+    "term": "Prohibition",
+    "gloss": "The nationwide ban on the manufacture and sale of alcohol, 1920-1933.",
+    "register": "press",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"winnings in the place when Prohibition made the roadhouse game good.\""
+  },
+  {
+    "id": "LEX-230",
+    "term": "the Volstead Act",
+    "gloss": "The federal law enforcing Prohibition.",
+    "register": "press",
+    "citation": "The Evening World, 1920 selected pages — \"nuisance as defined by tho Volstead act. He was paroled in\""
+  },
+  {
+    "id": "LEX-231",
+    "term": "the excise commissioner",
+    "gloss": "The official who oversaw liquor licensing before Prohibition.",
+    "register": "press",
+    "citation": "The Evening World, 1920 selected pages — \"day of tills month. \"Deputy Excise Commissioner D. Horry Kalston said to-day\""
+  },
+  {
+    "id": "LEX-232",
+    "term": "a dry agent",
+    "gloss": "A federal agent enforcing Prohibition.",
+    "register": "press",
+    "citation": "The Evening World, 1920 selected pages — \"HAS NOTHING ON HIS TOLD DRY AGENT . MIND BUT \"BOOZE\" Brooklyn\""
+  },
+  {
+    "id": "LEX-233",
+    "term": "faro",
+    "gloss": "A card gambling game, common in back-room games.",
+    "register": "press",
+    "citation": "The Evening World, 1922 selected pages — \"Into city employ. Tho passenger faro will bo reduced to 0\""
+  },
+  {
+    "id": "LEX-234",
+    "term": "craps",
+    "gloss": "A dice gambling game.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"to go up against poker, craps , chuck-a-luck, wheels of fortune,\""
+  },
+  {
+    "id": "LEX-235",
+    "term": "poker",
+    "gloss": "A card gambling game.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"of cards and some gummy poker chips on it, a brown\""
+  },
+  {
+    "id": "LEX-236",
+    "term": "laudanum",
+    "gloss": "A tincture of opium, sold legally as a medicine and painkiller.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"bottle. The room smelled of laudanum . Dinah Brand slid her\""
+  },
+  {
+    "id": "LEX-237",
+    "term": "morphine",
+    "gloss": "An opium-derived painkiller, also abused as a narcotic.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"the end of my tongue— morphine . I went back to\""
+  },
+  {
+    "id": "LEX-238",
+    "term": "chloroform",
+    "gloss": "An anesthetic; used in fiction to knock someone out.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"whether they used ether or chloroform or what: its odor was\""
+  },
+  {
+    "id": "LEX-239",
+    "term": "a brokerage",
+    "gloss": "A stock-trading business.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"in more money in his brokerage office than he was spending.\""
+  },
+  {
+    "id": "LEX-240",
+    "term": "the ticker tape",
+    "gloss": "The paper strip printing stock prices from the ticker machine.",
+    "register": "society",
+    "citation": "WPA Guide to New York City (1939) — \"meticulous detail on the Exchange's ticker tape and are communicated by telegraph\""
+  },
+  {
+    "id": "LEX-241",
+    "term": "a messenger boy",
+    "gloss": "A boy employed to carry messages, telegrams, and packages.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"and gave it to a messenger boy in the station. Then I\""
+  },
+  {
+    "id": "LEX-242",
+    "term": "Western Union",
+    "gloss": "The telegraph company; shorthand for sending a wire.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"Highway 24. Cosmopolitan Hotel 25. Western Union Telegraph Building 26. New York\""
+  },
+  {
+    "id": "LEX-243",
+    "term": "the switchboard",
+    "gloss": "A building or office's manual telephone exchange.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"against the girls at the switchboard , and learned nothing. I\""
+  },
+  {
+    "id": "LEX-244",
+    "term": "a safe deposit box",
+    "gloss": "A bank's rented lockbox for valuables.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"occasion to go to the safe deposit box where the bonds had been\""
+  },
+  {
+    "id": "LEX-245",
+    "term": "the vault",
+    "gloss": "A bank's or building's strongroom.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"the Golden Gate Trust Company’s vault —and they were gone!” “Anybody\""
+  },
+  {
+    "id": "LEX-246",
+    "term": "a pawnshop",
+    "gloss": "A shop that lends money against pledged goods.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"Justice. Nobody was in the pawnshop detail office. I crossed the\""
+  },
+  {
+    "id": "LEX-247",
+    "term": "a pawnbroker",
+    "gloss": "The proprietor of a pawnshop.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"no more emotion than a pawnbroker . “He seems to have\""
+  },
+  {
+    "id": "LEX-248",
+    "term": "the icebox",
+    "gloss": "A cabinet cooled by a block of ice, before electric refrigeration.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"the kitchen, I looted the icebox for a bite or two,\""
+  },
+  {
+    "id": "LEX-249",
+    "term": "gaslight",
+    "gloss": "Illumination by burning gas, common before full electrification.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"Bronze whale-oil mantel lamps, old gaslight fixtures, and Duncan Phyf e\""
+  },
+  {
+    "id": "LEX-250",
+    "term": "the radiator",
+    "gloss": "A steam or hot-water heating unit.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"on all fours with its radiator jammed into a eucalyptus tree.\""
+  },
+  {
+    "id": "LEX-251",
+    "term": "the janitor",
+    "gloss": "The caretaker of an office or apartment building.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"twenty-five minutes past ten, the janitor of the Rutledge Block had\""
+  },
+  {
+    "id": "LEX-252",
+    "term": "the chambermaid",
+    "gloss": "A hotel or household maid who tends the bedrooms.",
+    "register": "society",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"the bathroom showed that the chambermaid had not yet been in\""
+  },
+  {
+    "id": "LEX-253",
+    "term": "the cook",
+    "gloss": "A household or restaurant cook.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"“Yes, the chauffeur, the Chinese cook .” “Let the chauffeur stay\""
+  },
+  {
+    "id": "LEX-254",
+    "term": "the housekeeper",
+    "gloss": "A household's senior domestic servant.",
+    "register": "society",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"1921, alone except for the housekeeper —a Mrs. Begg, who, Mrs.\""
+  },
+  {
+    "id": "LEX-255",
+    "term": "a valet",
+    "gloss": "A gentleman's personal manservant.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"dismissed Barton—Barton was his butler- valet , and had been with\""
+  },
+  {
+    "id": "LEX-256",
+    "term": "the butler",
+    "gloss": "A household's chief manservant.",
+    "register": "society",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"he dismissed Barton—Barton was his butler -valet, and had been with\""
+  },
+  {
+    "id": "LEX-257",
+    "term": "the elevator boy",
+    "gloss": "A young man who runs a building elevator.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"know about that. Maybe the elevator boy . I guess his gin\""
+  },
+  {
+    "id": "LEX-258",
+    "term": "a bellhop",
+    "gloss": "A hotel's uniformed errand boy.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"got hold of a kid—a bellhop at Thursby’s hotel—that had seen\""
+  },
+  {
+    "id": "LEX-259",
+    "term": "the grocer",
+    "gloss": "A shopkeeper selling food staples.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"loitered in front of a grocer ’s on the corner above.\""
+  },
+  {
+    "id": "LEX-260",
+    "term": "the butcher",
+    "gloss": "A shopkeeper who sells meat.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"that neither neighbor, grocer nor butcher had seen any of them\""
+  },
+  {
+    "id": "LEX-261",
+    "term": "the candy store",
+    "gloss": "A corner shop selling sweets, papers, and sundries.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"died.\" The clock in a candy store window says \"Three-twelve.\" A few\""
+  },
+  {
+    "id": "LEX-262",
+    "term": "a peddler",
+    "gloss": "An itinerant street seller.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"bird figured as a dope peddler . If he was—or was\""
+  },
+  {
+    "id": "LEX-263",
+    "term": "a pushcart",
+    "gloss": "A hand-pushed vendor's cart, common on Lower East Side streets.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"Shops 22. 23, 24. Italian Pushcart Markets 25. Hardware and Machinery\""
+  },
+  {
+    "id": "LEX-264",
+    "term": "the milkman",
+    "gloss": "The tradesman who delivers milk door to door.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"to do washing. And the milkman and the grocer came around\""
+  },
+  {
+    "id": "LEX-265",
+    "term": "the furnace man",
+    "gloss": "A building's boiler and heating attendant.",
+    "register": "street",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"absence. “We are without a furnace man .” There was the reason\""
+  },
+  {
+    "id": "LEX-266",
+    "term": "the barber shop",
+    "gloss": "A shop for shaves and haircuts, often a gossip hub.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"the manicure girls in the barber shop give him the out-and-out sneer\""
+  },
+  {
+    "id": "LEX-267",
+    "term": "the ferry",
+    "gloss": "A boat crossing the harbor or river.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"came over on the next ferry . The Freemander house was\""
+  },
+  {
+    "id": "LEX-268",
+    "term": "a trolley",
+    "gloss": "An electric streetcar.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"surface lines, either busses or trolley cars, or both, which run\""
+  },
+  {
+    "id": "LEX-269",
+    "term": "a streetcar",
+    "gloss": "A rail-borne passenger car running in the street.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"four people waiting for a streetcar on the opposite corner. Spade\""
+  },
+  {
+    "id": "LEX-270",
+    "term": "the turnstile",
+    "gloss": "The gate that admits fare-paying passengers.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"moving around like a groaning turnstile . Bodies are hidden. The\""
+  },
+  {
+    "id": "LEX-271",
+    "term": "a token",
+    "gloss": "A coin-like fare token for the subway or El.",
+    "register": "street",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"was told to make sure—a token , I think it was.”\""
+  },
+  {
+    "id": "LEX-272",
+    "term": "the conductor",
+    "gloss": "The transit employee who collects fares and calls stops.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"Street,” I said to the conductor . “Where’d he get off?”\""
+  },
+  {
+    "id": "LEX-273",
+    "term": "the motorman",
+    "gloss": "The operator of a streetcar or El train.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"examination of motormen. Should a motorman fail to observe the red\""
+  },
+  {
+    "id": "LEX-274",
+    "term": "a hobo",
+    "gloss": "A wandering laborer or transient.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"was too well-dressed for a hobo : Weeks supposed he had\""
+  },
+  {
+    "id": "LEX-275",
+    "term": "a tramp",
+    "gloss": "A homeless wanderer.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"him on account of that tramp .” He reached down and\""
+  },
+  {
+    "id": "LEX-276",
+    "term": "a settlement house",
+    "gloss": "A charitable institution offering aid and education in a poor neighborhood.",
+    "register": "press",
+    "citation": "WPA Guide to New York City (1939) — \"of Georgian Colonial design, a settlement house . Its social and educational\""
+  },
+  {
+    "id": "LEX-277",
+    "term": "black crepe",
+    "gloss": "Black crepe fabric hung on a door or worn as a mourning band.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"in a black and white crepe dress. “Miss Cara Kenbrook?” “Yes.”\""
+  },
+  {
+    "id": "LEX-278",
+    "term": "a wake",
+    "gloss": "A watch kept over the dead before burial.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"him.” “Yeah?” “For God’s sake wake up. This I’m giving you\""
+  },
+  {
+    "id": "LEX-279",
+    "term": "the undertaker",
+    "gloss": "The funeral director.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"and she went to an undertaker . Her eyes were still\""
+  },
+  {
+    "id": "LEX-280",
+    "term": "a telegram",
+    "gloss": "A message sent by wire.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"shave and haircut, sent a telegram to the Agency asking to\""
+  },
+  {
+    "id": "LEX-281",
+    "term": "a typewriter",
+    "gloss": "A writing machine, standard office equipment.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"silver; and a small portable typewriter , bent and twisted, and\""
+  },
+  {
+    "id": "LEX-282",
+    "term": "the stenographer",
+    "gloss": "An office's shorthand note-taker.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"to Biddle, Dart and a stenographer , when the chief of\""
+  },
+  {
+    "id": "LEX-283",
+    "term": "the office boy",
+    "gloss": "A young clerk who runs errands in an office.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"evening, Tommy Howd, our pug-nosed office boy , found me and gave\""
+  },
+  {
+    "id": "LEX-284",
+    "term": "the Automat",
+    "gloss": "Horn & Hardart's coin-operated cafeteria, food behind small glass-and-chrome doors.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-285",
+    "term": "a nightcap",
+    "gloss": "A last drink before bed.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-286",
+    "term": "the bar rail",
+    "gloss": "The brass foot rail running along the base of a bar.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-287",
+    "term": "a walk-up",
+    "gloss": "An apartment building with no elevator.",
+    "register": "press",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-288",
+    "term": "the fingerprint bureau",
+    "gloss": "A police department's fingerprint records division, which had displaced Bertillon measurement by the 1920s.",
+    "register": "police",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-289",
+    "term": "a mug shot",
+    "gloss": "A police photograph of an arrested person.",
+    "register": "police",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-290",
+    "term": "the paddy wagon",
+    "gloss": "A police prisoner van (see also Black Maria).",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-291",
+    "term": "a loan shark",
+    "gloss": "A lender who charges illegally high interest.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-292",
+    "term": "the five-and-dime",
+    "gloss": "A variety store selling cheap goods (Woolworth's and its imitators).",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-293",
+    "term": "a cabby",
+    "gloss": "A taxicab driver (usually just \"cab\" in this era's usage).",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Maltese Falcon (1930) — \"I put her in the cab , I rode a dozen\""
+  },
+  {
+    "id": "LEX-294",
+    "term": "the iceman",
+    "gloss": "The tradesman who delivers ice blocks for the icebox.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-295",
+    "term": "a scullery maid",
+    "gloss": "The lowest-ranking kitchen maid, doing the washing-up.",
+    "register": "society",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-296",
+    "term": "a shoeshine boy",
+    "gloss": "A boy who polishes shoes for a nickel on the street corner.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"streets have lunch counters, barbershops, shoeshine stands, florist shops, phone booths.\""
+  },
+  {
+    "id": "LEX-297",
+    "term": "the bread line",
+    "gloss": "A queue for free food at a mission or relief station.",
+    "register": "street",
+    "citation": "WPA Guide to New York City (1939) — \"with hopeless faces for some bread line or free lodging house to\""
+  },
+  {
+    "id": "LEX-298",
+    "term": "the milk wagon",
+    "gloss": "The dairy's horse-drawn (or motor) delivery wagon, out before dawn.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-299",
+    "term": "a klaxon",
+    "gloss": "An automobile's loud electric horn.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-300",
+    "term": "the tailor shop",
+    "gloss": "A shop where suits are made and altered to order.",
+    "register": "street",
+    "citation": "Carroll John Daly, The White Circle (1926) — \"last week they misunderstood. Your tailor is the most offensive.” And\""
+  },
+  {
+    "id": "LEX-301",
+    "term": "an ice cream parlor",
+    "gloss": "A shop serving ice cream, often attached to a candy store.",
+    "register": "street",
+    "citation": "Ben Hecht, A Thousand and One Afternoons in Chicago (1922) — \"and don't buy him any ice cream on the way.\" Mrs. Sardotopolis\""
+  },
+  {
+    "id": "LEX-302",
+    "term": "a gambling den",
+    "gloss": "An illegal gambling house.",
+    "register": "street",
+    "citation": "Not directly attested in the collected corpus; standard 1900-1935 New York usage (see docs/03-style-notes.md)."
+  },
+  {
+    "id": "LEX-303",
+    "term": "a billiard parlor",
+    "gloss": "A public hall of pool and billiard tables.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"and pants, and had a billiard cue in one fist. “What\""
+  },
+  {
+    "id": "LEX-304",
+    "term": "the dumbwaiter",
+    "gloss": "A small hand-hauled elevator for moving food or goods between floors.",
+    "register": "street",
+    "citation": "The Evening World, 1922 selected pages — \"It's as Narrow as a Dumb Waiter Fancy Shower Bath at Base.\""
+  },
+  {
+    "id": "LEX-305",
+    "term": "a bunco game",
+    "gloss": "A confidence swindle; \"bunco squad\" was the police unit assigned to such cases.",
+    "register": "police",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"Grout says he’s an ex- bunco man who is in with\""
+  },
+  {
+    "id": "LEX-306",
+    "term": "a private dick",
+    "gloss": "A private detective.",
+    "register": "street",
+    "citation": "Dashiell Hammett, The Dain Curse (1929) — \"name—was once one of you private dicks —had an agency of his\""
+  },
+  {
+    "id": "LEX-307",
+    "term": "the cigar store",
+    "gloss": "A shop selling tobacco, often with a newsstand and a back-room betting wire.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"joint was occupied by a cigar store that served as entrance and\""
+  },
+  {
+    "id": "LEX-308",
+    "term": "a tin-horn",
+    "gloss": "A cheap, small-time gambler or blowhard who talks bigger than his money.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"hell with him, the little tin-horn runt!” Her eyes were shiny\""
+  },
+  {
+    "id": "LEX-309",
+    "term": "a yegg",
+    "gloss": "A safecracker or professional burglar.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Continental Op stories (1923-1930) — \"by ‘Tin-Star’ Joplin, an ex- yegg who invested his winnings in\""
+  },
+  {
+    "id": "LEX-310",
+    "term": "a sleuth",
+    "gloss": "A detective (informal, often slightly mocking).",
+    "register": "press",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"“It’s no fun being a sleuth when somebody steals your stuff,\""
+  },
+  {
+    "id": "LEX-311",
+    "term": "the watchman",
+    "gloss": "A building's night guard.",
+    "register": "street",
+    "citation": "Dashiell Hammett, Red Harvest (1929) — \"clean with the jack. The watchman here dropped one of them,\""
+  }
+]
