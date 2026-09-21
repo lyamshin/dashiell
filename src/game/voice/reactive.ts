@@ -23,6 +23,7 @@ import { Rng } from '../../gen/rng.js';
 import type { CaseView, Established } from '../derive.js';
 import { personName, placeName } from '../derive.js';
 import { isWarm, type DashiellRoll } from './roll.js';
+import { tidyPunctuation } from './prose.js';
 
 export interface Board {
   established: Established;
@@ -107,10 +108,37 @@ const CLEARED = [
   'One name off. The rest of them are still in the hat.',
 ];
 
-const THEORY = [
+/**
+ * The leading theory, at the three strengths the evidence comes in.
+ *
+ * One fact is a lean. M4's integration said "It is Brauer. I have been round
+ * the block on it and it comes back Brauer" on page one, off the client's word
+ * and nothing else — which is not a man who has been round the block, it is a
+ * man who has been told something once. The mechanic still fires on one fact,
+ * and is still wrong as often as it was; it just says so in the voice of a man
+ * who knows how little he has.
+ */
+const THEORY_LEAN = [
+  'If I had to put money down tonight, {name}.',
+  'Nothing is settled. If it is anybody yet, it is {name}.',
+  '{name}, on what I have, which is one thing and somebody else’s word for it.',
+];
+
+const THEORY_CONVICTION = [
   'It is {name}. I have been round the block on it and it comes back {name}.',
+  'Two things point at {name}, and neither of them came from {name}.',
+  'I am looking at {name} now, and I have stopped looking politely.',
+];
+
+const THEORY_CERTAIN = [
   'Say it plainly: {name} did this.',
   'Everything on the page points one way tonight, and the way is {name}.',
+  'There is no reading of the evening left where {name} walks out of it.',
+];
+
+const THEORY_CHANGED_LEAN = [
+  'I had been leaning on {old}. Tonight I would lean on {name} instead, and not hard.',
+  'Put {old} down for a minute. {name} is the one with something against them now.',
 ];
 
 const THEORY_CHANGED = [
@@ -136,6 +164,36 @@ export const CONTRADICTION_TEMPLATES = {
   hardTurned: HARD_TURNED,
 } as const;
 
+/** The theory pools, by how much is actually against the man. */
+export const THEORY_TEMPLATES = {
+  lean: THEORY_LEAN,
+  conviction: THEORY_CONVICTION,
+  certain: THEORY_CERTAIN,
+  changedLean: THEORY_CHANGED_LEAN,
+  changed: THEORY_CHANGED,
+} as const;
+
+/**
+ * How many separate things are against this person — not `weightAgainst`,
+ * which is the detective's arithmetic and double-counts a contradiction on
+ * purpose. This is the count a reader would make: each contradicting clue,
+ * a motive, access to the weapon.
+ */
+export function factsAgainst(est: Established, personId: Id): number {
+  let n = contradictionsAgainst(est, personId).length;
+  if (est.motives.some((m) => m.personId === personId)) n += 1;
+  if (est.access.some((a) => a.personId === personId)) n += 1;
+  return n;
+}
+
+/** One fact is a lean, two a conviction, three or more a certainty. */
+export function theoryPool(strength: number, changed: boolean): string[] {
+  if (changed) return strength <= 1 ? THEORY_CHANGED_LEAN : THEORY_CHANGED;
+  if (strength <= 1) return THEORY_LEAN;
+  if (strength === 2) return THEORY_CONVICTION;
+  return THEORY_CERTAIN;
+}
+
 export interface ReactiveInput {
   view: CaseView;
   roll: DashiellRoll;
@@ -157,7 +215,7 @@ export interface ReactiveResult {
 function pick(rng: Rng, pool: string[], slots: Record<string, string>): string {
   let text = rng.pick(pool);
   for (const [k, v] of Object.entries(slots)) text = text.split(`{${k}}`).join(v);
-  return text.replace(/\{[a-z]+\}/g, '').replace(/\s{2,}/g, ' ').trim();
+  return tidyPunctuation(text.replace(/\{[a-z]+\}/g, ''));
 }
 
 function windowLabel(ticks: Tick[]): string {
@@ -204,17 +262,15 @@ export function reactiveMonologue(input: ReactiveInput): ReactiveResult {
     lines.push(pick(rng, CLEARED, { name: personName(view, newlyCleared[0] as Id) }));
   }
 
-  /* The leading theory, stated as fact. */
+  /* The leading theory, stated at the strength the evidence can carry. */
   const theory = leadingTheory(view, after);
   if (theory !== null && theory !== input.previousTheory) {
-    lines.push(
-      input.previousTheory === null
-        ? pick(rng, THEORY, { name: personName(view, theory) })
-        : pick(rng, THEORY_CHANGED, {
-            name: personName(view, theory),
-            old: personName(view, input.previousTheory),
-          }),
-    );
+    const strength = factsAgainst(after, theory);
+    const slots = {
+      name: personName(view, theory),
+      old: input.previousTheory === null ? '' : personName(view, input.previousTheory),
+    };
+    lines.push(pick(rng, theoryPool(strength, input.previousTheory !== null), slots));
   }
 
   /* The clock. */

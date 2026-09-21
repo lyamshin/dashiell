@@ -14,30 +14,42 @@ import type { Fact, Person } from '../../src/gen/types.js';
 import { buildView, establishedFrom, segmentNouns } from '../../src/game/derive.js';
 import { buildNotebook } from '../../src/game/notebook.js';
 import { playOracle, playWandering } from '../../src/game/oracle.js';
-import { newRun, stepInput } from '../../src/game/reducer.js';
+import { newRun, stepInput, topicSlots } from '../../src/game/reducer.js';
 import { wordsOnPage } from '../../src/game/transcript.js';
 import type { RunState } from '../../src/game/types.js';
 import {
   ALL_CARDS,
   CONTRADICTION_TEMPLATES,
   DECKS,
+  SCHEMA,
+  THEORY_TEMPLATES,
   Dealer,
+  askSlots,
   beatsOf,
+  businessLine,
   burnTier,
   carriesFact,
   crossRunOnly,
   deckOf,
   describePerson,
+  factOnPage,
+  factsAgainst,
   fill,
+  genderHintOf,
   leadingTheory,
   oddsFor,
   reactiveMonologue,
   rollCast,
   rollDashiell,
+  simileTargetsFor,
   slotsOf,
+  speakClue,
   temperOf,
+  theoryPool,
+  tidyPunctuation,
   validateDecks,
   weightsFor,
+  type AskKind,
   type Card,
 } from '../../src/game/voice/index.js';
 
@@ -769,6 +781,618 @@ describe('the deck loader', () => {
       const deck = deckOf(card.id);
       expect(deck, card.id).not.toBeNull();
       expect(['run-to-run', 'within-run', 'free']).toContain(burnTier(deck as never));
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * m4-polish — the seams where the real content decks met the engine.
+ * ------------------------------------------------------------------ */
+
+describe('the find slot', () => {
+  it('puts the record on the page when the card has no {fact} of its own', () => {
+    // The card carries the slot: the writer chose where the record falls.
+    expect(
+      factOnPage(
+        'Under the radiator. {fact}',
+        'Under the radiator. A latch was thrown.',
+        'A latch was thrown.',
+      ),
+    ).toBe('Under the radiator. A latch was thrown.');
+    // The card does not: the engine says the card, then the record.
+    expect(
+      factOnPage(
+        'A window latch, thrown, though the room stood four floors up.',
+        'A window latch, thrown, though the room stood four floors up.',
+        'Vitale was found at the back lot.',
+      ),
+    ).toBe(
+      'A window latch, thrown, though the room stood four floors up. Vitale was found at the back lot.',
+    );
+  });
+
+  it('gives every find card in the deck somewhere for its fact to land', () => {
+    for (const card of DECKS.find) {
+      expect(card.text.includes('{fact}'), `${card.id} has no {fact} slot`).toBe(true);
+    }
+  });
+
+  it('never drops a found fact off a find page, over four seeds', () => {
+    for (const seed of [7, 11, 19, 23]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      const state = exhaust(seed, 2);
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' || block.voice !== 'find' || !block.clueId) continue;
+          const flat = v.findableById.get(block.clueId)?.text;
+          if (!flat) continue;
+          expect(block.text, `${block.clueId} came upon and then forgotten`).toContain(flat);
+        }
+      }
+    }
+  });
+});
+
+describe('the exchange slots', () => {
+  const askScene = (askKind: AskKind, slots: Record<string, string | undefined>) =>
+    ({
+      kind: 'ask' as const,
+      personId: 'p-1',
+      askKind,
+      topicLabel: 'a topic',
+      topicSlots: slots,
+      clues: [],
+      account: null,
+      volunteer: null,
+      free: false,
+    });
+
+  it('puts the subject of the question in {name}, never the person being asked', () => {
+    const slots = askSlots({ place: 'the speakeasy' }, askScene('ask-person', { subject: 'Vitale' }), 'Ainsworth');
+    expect(slots.name).toBe('Vitale');
+    expect(slots.subject).toBe('Vitale');
+    expect(slots.addressee).toBe('Ainsworth');
+  });
+
+  it('makes {name} the addressee for the two kinds that ask about them', () => {
+    for (const kind of ['ask-evening', 'ask-hired'] as AskKind[]) {
+      const slots = askSlots({}, askScene(kind, {}), 'Ainsworth');
+      expect(slots.name, kind).toBe('Ainsworth');
+      expect(slots.subject, kind).toBe('Ainsworth');
+    }
+    // And every other kind is a question about somebody else.
+    for (const kind of ['ask-person', 'ask-place', 'ask-object', 'follow-up', 'close'] as AskKind[]) {
+      expect(askSlots({}, askScene(kind, {}), 'Ainsworth').name, kind).toBeUndefined();
+    }
+  });
+
+  it('asks about the topic’s place and thing, not the room it is standing in', () => {
+    const base = { place: 'the speakeasy', object: 'the revolver' };
+    expect(askSlots(base, askScene('ask-place', { place: 'Mrs. Teague’s' }), 'Doyle').place).toBe(
+      'Mrs. Teague’s',
+    );
+    expect(askSlots(base, askScene('ask-object', { object: 'the latchkey' }), 'Doyle').object).toBe(
+      'the latchkey',
+    );
+    // With no topic of its own, the page's own room stands.
+    expect(askSlots(base, askScene('ask-person', { subject: 'Brauer' }), 'Doyle').place).toBe(
+      'the speakeasy',
+    );
+  });
+
+  it('reads the subject out of a generated exact topic string', () => {
+    const vitale = view.victim.surname;
+    expect(topicSlots(view, { kind: 'exact', personId: 'p-1', topic: `${vitale} that evening` })).toEqual({
+      subject: vitale,
+    });
+    expect(topicSlots(view, { kind: 'exact', personId: 'p-1', topic: 'the noise that evening' })).toEqual({
+      subject: undefined,
+    });
+  });
+
+  it('never puts the person being asked into a question about somebody else', () => {
+    for (const seed of [7, 11, 19]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      let asked = 0;
+      for (const place of v.kase.places) {
+        const here = v.peopleAt.get(place.id) ?? [];
+        for (const addresseeId of here) {
+          const addressee = v.personById.get(addresseeId);
+          if (!addressee) continue;
+          for (const subject of v.kase.people) {
+            if (subject.id === addresseeId || subject.kind === 'fixture') continue;
+            let state = newRun(v, { detectiveName: 'Dashiell' });
+            state = stepInput(state, `go ${place.shortName}`, v).state;
+            const step = stepInput(state, `ask ${addressee.surname} about ${subject.surname}`, v);
+            const question = step.page.blocks.find(
+              (b) => b.kind === 'prose' && b.voice === 'exchange',
+            );
+            if (!question || question.kind !== 'prose') continue;
+            asked++;
+            expect(
+              question.text.includes(addressee.surname),
+              `asked ${addressee.surname} about ${subject.surname}: ${question.text}`,
+            ).toBe(false);
+          }
+        }
+      }
+      expect(asked, `seed ${seed} asked nothing`).toBeGreaterThan(0);
+    }
+  });
+
+  it('keeps a reported fact free of the page’s own slots', () => {
+    // An utterance is filled from its beat and nothing else: the room the page
+    // happens in and the hour it opened on are not part of the fact.
+    const clue = view.kase.findable.find((c) => beatsOf(view, c).length === 1);
+    expect(clue, 'no single-fact clue in seed 7').toBeDefined();
+    const cast = rollCast(view.kase);
+    const gaps: string[] = [];
+    const spoken = speakClue(
+      new Dealer(1, [], []),
+      view,
+      cast,
+      clue as never,
+      undefined,
+      'truth',
+      { place: 'NOT-THE-PLACE', time: 'NOT-THE-TIME', name: 'NOT-A-NAME', subject: 'NOT-A-NAME' },
+      gaps,
+    );
+    expect(spoken.text).not.toContain('NOT-THE-PLACE');
+    expect(spoken.text).not.toContain('NOT-THE-TIME');
+    expect(spoken.text).not.toContain('NOT-A-NAME');
+  });
+});
+
+describe('business', () => {
+  const asPerson = (fixtureRole: string | undefined): Person =>
+    ({
+      id: 'p-x',
+      name: 'A Person',
+      surname: 'Person',
+      role: 'somebody',
+      kind: fixtureRole ? 'fixture' : 'suspect',
+      fixtureRole,
+      isKiller: false,
+    }) as Person;
+
+  it('never hands a fixture another fixture’s props', () => {
+    const roles = [...new Set(DECKS.business.map((c) => String(c.tags.role)))].filter(
+      (r) => r !== 'any' && r !== 'suspect',
+    );
+    expect(roles.length).toBeGreaterThan(5);
+    for (const role of roles) {
+      for (const temper of ['enigma', 'plain', 'yap'] as const) {
+        const dealer = new Dealer(role.length * 31 + temper.length, [], []);
+        for (let i = 0; i < 40; i++) {
+          const drawn = businessLine(dealer, asPerson(role), temper, {});
+          expect(drawn, `${role} × ${temper} dealt nothing`).not.toBeNull();
+          const card = CARD_BY_ID.get((drawn as { cardId: string }).cardId) as Card;
+          expect(
+            [role, 'any'],
+            `${card.id} (${String(card.tags.role)}) went to a ${role}`,
+          ).toContain(String(card.tags.role));
+        }
+      }
+    }
+  });
+
+  it('gives a suspect the generic suspect role and not a fixture’s', () => {
+    const dealer = new Dealer(5, [], []);
+    for (let i = 0; i < 40; i++) {
+      const drawn = businessLine(dealer, asPerson(undefined), 'plain', {});
+      const card = CARD_BY_ID.get((drawn as { cardId: string }).cardId) as Card;
+      expect(['suspect', 'any']).toContain(String(card.tags.role));
+    }
+  });
+
+  it('logs a gap when a role has nothing to deal', () => {
+    const gaps: string[] = [];
+    const everything = new Set(DECKS.business.map((c) => c.id));
+    const drawn = businessLine(new Dealer(9, [], []), asPerson('landlady'), 'plain', {}, everything, gaps);
+    expect(drawn).toBeNull();
+    expect(gaps.join(' ')).toContain('no-business: landlady');
+  });
+});
+
+describe('the seams between cards', () => {
+  it('never leaves two stops where a card and a frame each brought one', () => {
+    expect(tidyPunctuation('“Alive, I’d say..”')).toBe('“Alive, I’d say.”');
+    expect(tidyPunctuation('Short, and done..')).toBe('Short, and done.');
+    expect(tidyPunctuation('“He was there.”.')).toBe('“He was there.”');
+    expect(tidyPunctuation('Was he there?.')).toBe('Was he there?');
+  });
+
+  it('drops a full stop that a comma was meant to follow', () => {
+    expect(tidyPunctuation('Carbone is in more often than Carbone lets on., and here is the rest.')).toBe(
+      'Carbone is in more often than Carbone lets on, and here is the rest.',
+    );
+    expect(tidyPunctuation('He said so.: plainly')).toBe('He said so: plainly');
+  });
+
+  it('does not put a full stop in front of a lower-case fragment', () => {
+    expect(tidyPunctuation('9:00 PM to 9:30 PM. the speakeasy.')).toBe(
+      '9:00 PM to 9:30 PM, the speakeasy.',
+    );
+    // An abbreviation is one word with stops in it, not two sentences.
+    expect(tidyPunctuation('The street at 3 a.m. was empty.')).toBe(
+      'The street at 3 a.m. was empty.',
+    );
+  });
+
+  it('leaves a card that had no slot exactly as it was written', () => {
+    for (const card of ALL_CARDS) {
+      if (slotsOf(card).length > 0) continue;
+      expect(fill(card, {}), card.id).toBe(card.text);
+    }
+  });
+
+  it('prints no doubled punctuation anywhere in a run, over six seeds', () => {
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const state = exhaust(seed, 2);
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' && block.kind !== 'note') continue;
+          expect(block.text, `seed ${seed}: ${block.text}`).not.toMatch(/[.!?]\s*[.,;:]/);
+        }
+      }
+    }
+  });
+});
+
+describe('the simile', () => {
+  /** What each page's simile was about, page by page, nulls for pages without. */
+  const targetsOf = (state: RunState): (string | null)[] =>
+    state.log.map((page) => {
+      for (const id of page.cardsUsed) {
+        if (deckOf(id) !== 'similes') continue;
+        const card = CARD_BY_ID.get(id);
+        if (card) return String(card.tags.target);
+      }
+      return null;
+    });
+
+  it('is about what the page is about, not about the room by default', () => {
+    const at = view.kase.places[0]?.id as string;
+    const ask = {
+      kind: 'ask' as const,
+      personId: 'p-1',
+      askKind: 'ask-person' as AskKind,
+      topicLabel: 't',
+      topicSlots: {},
+      clues: [],
+      account: null,
+      volunteer: null,
+      free: false,
+    };
+    const exchange = simileTargetsFor(view, ask, [{ kind: 'prose', text: 'x', voice: 'approach' }], at, null);
+    expect(exchange[0]).toBe('voice');
+    expect(exchange).toContain('face');
+    expect(exchange, 'an exchange is not about the room').not.toContain('room');
+
+    const arrival = simileTargetsFor(
+      view,
+      { kind: 'travel', to: at, already: false },
+      [{ kind: 'prose', text: 'x', voice: 'arrival' }],
+      at,
+      null,
+    );
+    expect(['street', 'weather', 'city', 'drink']).toContain(arrival[0]);
+
+    // A page about the place may still be about the room.
+    expect(simileTargetsFor(view, { kind: 'look' }, [], at, null)).toContain('room');
+  });
+
+  it('never puts the same simile target on two pages running', () => {
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const targets = targetsOf(exhaust(seed, 2));
+      for (let i = 1; i < targets.length; i++) {
+        if (targets[i] === null) continue;
+        expect(targets[i], `seed ${seed}, page ${i}`).not.toBe(targets[i - 1]);
+      }
+    }
+  });
+
+  it('does not always close the page with it', () => {
+    let closes = 0;
+    let elsewhere = 0;
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      for (const page of exhaust(seed, 2).log) {
+        const prose = page.blocks.filter((b) => b.kind === 'prose');
+        const at = prose.findIndex((b) => b.kind === 'prose' && b.voice === 'simile');
+        if (at < 0) continue;
+        if (at === prose.length - 1) closes++;
+        else elsewhere++;
+      }
+    }
+    expect(closes).toBeGreaterThan(0);
+    expect(elsewhere, 'every simile still closes its page').toBeGreaterThan(0);
+  });
+
+  it('still puts at most one on a page', () => {
+    for (const seed of [1, 7, 19]) {
+      for (const page of exhaust(seed, 2).log) {
+        const n = page.blocks.filter((b) => b.kind === 'prose' && b.voice === 'simile').length;
+        expect(n, `seed ${seed}, page ${page.n}`).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+});
+
+describe('two facts in one clue', () => {
+  it('holds the second fact back instead of gluing it to the first', () => {
+    const clue = view.kase.findable.find((c) => beatsOf(view, c).length === 2);
+    expect(clue, 'seed 7 has no two-fact clue').toBeDefined();
+    const spoken = speakClue(
+      new Dealer(3, [], []),
+      view,
+      rollCast(view.kase),
+      clue as never,
+      undefined,
+      'truth',
+      {},
+      [],
+    );
+    if (spoken.mode !== 'utterance') return; // a fallback carries it whole
+    expect(spoken.rest.length).toBe(1);
+    expect(spoken.text).not.toContain(spoken.rest[0] as string);
+  });
+
+  it('puts one of Dashiell’s follow-ups between the two answers', () => {
+    let seen = 0;
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of exhaust(seed, 2).log) {
+        const twoFact = page.found.filter((id) => {
+          const clue = v.findableById.get(id);
+          return clue !== undefined && beatsOf(v, clue).length > 1;
+        });
+        if (twoFact.length === 0) continue;
+        for (const id of twoFact) {
+          const carrying = page.blocks.filter(
+            (b) => b.kind === 'prose' && b.clueId === id && b.voice !== 'find',
+          );
+          if (carrying.length < 2) continue;
+          seen++;
+          // Between the two answers there is a line of Dashiell's, and it is
+          // one of the follow-ups rather than more of the same speech.
+          const first = page.blocks.indexOf(carrying[0] as never);
+          const second = page.blocks.indexOf(carrying[1] as never);
+          const between = page.blocks.slice(first + 1, second);
+          expect(between.length, `${id} glued two answers together`).toBeGreaterThan(0);
+        }
+      }
+    }
+    expect(seen, 'no two-fact clue reached a page').toBeGreaterThan(0);
+  });
+});
+
+describe('the leading theory', () => {
+  const kase = generateCase(7, { difficulty: 2 });
+  const roll = rollDashiell(kase);
+  const suspect = kase.people.find((p) => p.kind === 'suspect') as Person;
+
+  const boardWith = (n: number) => {
+    const est = establishedFrom(view, [], []);
+    est.placements.set(
+      suspect.id,
+      Array.from({ length: n }, (_, i) => ({
+        personId: suspect.id,
+        placeId: view.kase.places[0]?.id as string,
+        tick: i,
+        present: true,
+        clueId: `made-up-${i}`,
+        contradicts: true,
+      })),
+    );
+    return est;
+  };
+
+  const said = (n: number, previousTheory: string | null = null): string =>
+    reactiveMonologue({
+      view,
+      roll,
+      before: establishedFrom(view, [], []),
+      after: boardWith(n),
+      touched: [],
+      actionsLeft: 9,
+      previousTheory,
+      seed: 11,
+    }).lines.join(' ');
+
+  const from = (pool: readonly string[], line: string): boolean =>
+    pool.some((t) => {
+      const head = t.split('{')[0] as string;
+      return head.length > 6 && line.includes(head.trim());
+    });
+
+  it('counts what is actually against a man, not the weight it gives it', () => {
+    expect(factsAgainst(boardWith(1), suspect.id)).toBe(1);
+    expect(factsAgainst(boardWith(3), suspect.id)).toBe(3);
+  });
+
+  it('leans on one fact, is convinced by two, and is certain on three', () => {
+    expect(theoryPool(1, false)).toBe(THEORY_TEMPLATES.lean);
+    expect(theoryPool(2, false)).toBe(THEORY_TEMPLATES.conviction);
+    expect(theoryPool(3, false)).toBe(THEORY_TEMPLATES.certain);
+    expect(theoryPool(9, false)).toBe(THEORY_TEMPLATES.certain);
+    // A theory that changes off one fact is still only a lean.
+    expect(theoryPool(1, true)).toBe(THEORY_TEMPLATES.changedLean);
+    expect(theoryPool(2, true)).toBe(THEORY_TEMPLATES.changed);
+  });
+
+  it('says it in the voice the evidence can carry', () => {
+    const lean = said(1);
+    expect(from(THEORY_TEMPLATES.lean, lean), lean).toBe(true);
+    expect(from(THEORY_TEMPLATES.certain, lean)).toBe(false);
+    const certain = said(3);
+    expect(from(THEORY_TEMPLATES.certain, certain), certain).toBe(true);
+  });
+
+  it('still names somebody off a single fact, so it can still be wrong', () => {
+    expect(leadingTheory(view, boardWith(1))).toBe(suspect.id);
+    expect(said(1)).toContain(suspect.surname);
+  });
+});
+
+describe('every utterance carries its fact', () => {
+  const MANDATORY = (
+    SCHEMA.decks.utterances as { mandatorySlots: Record<string, string[]> }
+  ).mandatorySlots;
+
+  it('has the slots its fact kind needs, on every card in the deck', () => {
+    const short: string[] = [];
+    for (const card of DECKS.utterances) {
+      const kind = String(card.tags.factKind);
+      if (!carriesFact(card, kind)) short.push(`${card.id} (${kind})`);
+    }
+    expect(short, `${short.length} utterances cannot carry their fact`).toEqual([]);
+    // And the schema really does ask something of every kind the deck uses.
+    for (const card of DECKS.utterances) {
+      expect(MANDATORY[String(card.tags.factKind)], String(card.tags.factKind)).toBeDefined();
+    }
+  });
+
+  it('asks for nothing its beat cannot give it', () => {
+    // Every slot name a beat of each kind actually supplies, over ten cases.
+    const supplied = new Map<string, Set<string>>();
+    for (let seed = 1; seed <= 10; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const clue of v.kase.findable) {
+        for (const beat of beatsOf(v, clue)) {
+          const set = supplied.get(beat.kind) ?? new Set<string>();
+          for (const [k, value] of Object.entries(beat.slots)) {
+            if (value !== undefined && value.length > 0) set.add(k);
+          }
+          supplied.set(beat.kind, set);
+        }
+      }
+    }
+    expect(supplied.size).toBeGreaterThan(4);
+    for (const card of DECKS.utterances) {
+      const kind = String(card.tags.factKind);
+      const set = supplied.get(kind);
+      if (!set) continue; // an implicit fact kind: never spoken on its own
+      for (const slot of slotsOf(card)) {
+        if (slot === 'detective') continue;
+        expect(set.has(slot), `${card.id} (${kind}) asks for {${slot}}`).toBe(true);
+      }
+    }
+  });
+
+  it('leaves the validator nothing to warn about — the same rule, same data', () => {
+    // scripts/validate-decks.mjs reads content/deck-schema.json and warns on
+    // exactly this. Asserting it here keeps the two in step without shelling
+    // out to Node from a test.
+    const warnings: string[] = [];
+    for (const card of DECKS.utterances) {
+      const need = MANDATORY[String(card.tags.factKind)] ?? [];
+      const missing = need.filter((s) => !card.text.includes(`{${s}}`));
+      if (missing.length > 0) warnings.push(`${card.id}: ${missing.join(', ')}`);
+    }
+    expect(warnings).toEqual([]);
+  });
+});
+
+describe('gendered business', () => {
+  const PRONOUN = { m: /\b(he|his|him|himself)\b/i, f: /\b(she|her|hers|herself)\b/i };
+
+  it('tags every card that carries a pronoun, and leaves the rest alone', () => {
+    for (const card of DECKS.business) {
+      const male = PRONOUN.m.test(card.text);
+      const female = PRONOUN.f.test(card.text);
+      const want = male ? 'm' : female ? 'f' : 'any';
+      expect(String(card.tags.gender), `${card.id}: ${card.text}`).toBe(want);
+    }
+  });
+
+  it('reads a person’s gender off the name the generator gave them', () => {
+    for (const seed of [1, 7, 19]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      // A landlady is a woman and a doorman is a man, whatever the archetype
+      // tables say, because the generator names them out of gendered pools.
+      for (const person of v.kase.people) {
+        if (person.fixtureRole === 'landlady') expect(genderHintOf(person)).toBe('f');
+        if (person.fixtureRole === 'doorman') expect(genderHintOf(person)).toBe('m');
+      }
+      expect(v.kase.people.every((p) => genderHintOf(p) !== 'any')).toBe(true);
+    }
+  });
+
+  it('never gives a woman a card that calls her he, or the other way about', () => {
+    let dealt = 0;
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const person of v.kase.people) {
+        if (person.kind === 'victim') continue;
+        const gender = genderHintOf(person);
+        if (gender === 'any') continue;
+        const wrong = gender === 'm' ? PRONOUN.f : PRONOUN.m;
+        const dealer = new Dealer(seed * 13 + person.id.length, [], []);
+        for (let i = 0; i < 30; i++) {
+          const drawn = businessLine(dealer, person, temperOf(rollCast(v.kase), person.id), {});
+          expect(drawn, `${person.surname} got no business at all`).not.toBeNull();
+          dealt++;
+          expect(
+            wrong.test((drawn as { text: string }).text),
+            `${person.surname} (${gender}): ${(drawn as { text: string }).text}`,
+          ).toBe(false);
+        }
+      }
+    }
+    expect(dealt).toBeGreaterThan(100);
+  });
+});
+
+describe('the endings', () => {
+  it('are in the first person, like every other page', () => {
+    for (const card of DECKS.endings) {
+      if (card.status === 'placeholder') continue;
+      expect(card.text, `${card.id} still narrates from outside`).toMatch(/\b(I|[Mm]y|me)\b/);
+      expect(card.text, `${card.id} names the detective in the third person`).not.toContain(
+        '{detective}',
+      );
+    }
+  });
+
+  it('keep their tags, and still cover every outcome and par delta', () => {
+    const cells = new Set<string>();
+    for (const card of DECKS.endings) {
+      cells.add(`${String(card.tags.outcome)}/${String(card.tags.parDelta)}`);
+    }
+    for (const outcome of ['hanged', 'wrong-man', 'thin-case', 'cold']) {
+      for (const delta of ['under', 'at', 'over']) {
+        expect(cells.has(`${outcome}/${delta}`), `${outcome}/${delta}`).toBe(true);
+      }
+    }
+  });
+
+  it('still say what was missed when the wrong man goes up', () => {
+    const wrong = DECKS.endings.filter(
+      (c) => c.tags.outcome === 'wrong-man' && c.status !== 'placeholder',
+    );
+    expect(wrong.length).toBeGreaterThan(0);
+    for (const card of wrong) expect(card.text, card.id).toContain('{missed}');
+  });
+});
+
+describe('a frame that asks for business twice', () => {
+  it('gets two gestures and not one printed twice', () => {
+    // Twenty-eight of the frames have two {business} slots — the gesture on
+    // the way in and the one mid-answer — and `fill` put the same card in
+    // both of them.
+    const twice = DECKS.frames.filter((c) => (c.text.match(/\{business\}/g) ?? []).length > 1);
+    expect(twice.length, 'no frame asks for business twice any more').toBeGreaterThan(0);
+
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      for (const page of exhaust(seed, 2).log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose') continue;
+          for (const card of DECKS.business) {
+            const hits = block.text.split(card.text).length - 1;
+            expect(hits, `seed ${seed}: ${card.id} twice in one paragraph`).toBeLessThanOrEqual(1);
+          }
+        }
+      }
     }
   });
 });

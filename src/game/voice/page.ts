@@ -29,7 +29,8 @@ import {
   ROOM_LINES,
   type NothingLine,
 } from '../voice-data.js';
-import { Dealer, tagIs, tagOf, type Card, type Slots } from './cards.js';
+import { DECKS, Dealer, tagIs, tagOf, type Card, type Slots } from './cards.js';
+import { joinSentences, tidyPunctuation } from './prose.js';
 import { describePerson, temperOf, type CastSheet, type Temper } from './cast.js';
 import {
   askKindOf,
@@ -40,6 +41,7 @@ import {
   speakClue,
   type AskKind,
   type Register,
+  type SpokenClue,
 } from './exchange.js';
 import { findKindOf } from './facts.js';
 import { knowsHim } from './roll.js';
@@ -65,7 +67,82 @@ export function caseStateOf(view: CaseView, found: Id[], actionsLeft: number): C
   return 'hot';
 }
 
-/** What a simile on this page should be about, best guess first. */
+/**
+ * What a simile on *this* page should be about, and where on the page it
+ * should fall — both read off what the page actually contains.
+ *
+ * M4's integration put one at the bottom of every page and pointed it at the
+ * room, because the room is the only thing the engine knew for certain. Four
+ * pages running closed on "the room was ... as ...", which is one page
+ * printed four times. A simile is about what the page just spent its words
+ * on: a face or a pair of hands after a portrait, a voice after an exchange,
+ * the street or the weather after an arrival. The room only when the page is
+ * about the place.
+ */
+export type SimileSlot = 'after-arrival' | 'after-approach' | 'close';
+
+/** Which voices a simile may be set down behind, in page order. */
+const SIMILE_ANCHORS: Record<Exclude<SimileSlot, 'close'>, ProseVoice[]> = {
+  'after-arrival': ['arrival', 'place'],
+  'after-approach': ['approach', 'presence'],
+};
+
+export function simileTargetsFor(
+  view: CaseView,
+  scene: Scene,
+  blocks: Block[],
+  placeId: Id,
+  clue: Clue | null,
+): string[] {
+  const kind = view.placeById.get(placeId)?.kind ?? 'semi';
+  const out: string[] = [];
+  const push = (...targets: string[]): void => {
+    for (const t of targets) if (!out.includes(t)) out.push(t);
+  };
+  const has = (...voices: ProseVoice[]): boolean =>
+    blocks.some((b) => b.kind === 'prose' && voices.includes(b.voice));
+  const portrayed = has('presence', 'approach');
+  const aboutThePlace =
+    scene.kind === 'look' || scene.kind === 'open' || scene.kind === 'examine' || has('place');
+
+  // What the page led with comes first: that is what the reader has in hand.
+  switch (scene.kind) {
+    case 'ask':
+      push('voice', 'lie', 'face', 'hands');
+      break;
+    case 'travel':
+      push('street', 'weather', kind === 'public' ? 'city' : 'drink');
+      break;
+    case 'examine':
+    case 'open':
+      push(...simileTargets(view, clue, placeId).filter((t) => t !== 'room' || aboutThePlace));
+      break;
+    default:
+      break;
+  }
+  if (portrayed) push('face', 'hands', 'clothes');
+  if (clue) push(...simileTargets(view, clue, placeId).filter((t) => t !== 'room' || aboutThePlace));
+  if (aboutThePlace) push('room', 'silence');
+  push('silence');
+  return out;
+}
+
+/** Where on the page the simile falls, out of the places this page has. */
+export function simileSlotFor(dealer: Dealer, blocks: Block[]): number {
+  const open: number[] = [];
+  for (const [slot, voices] of Object.entries(SIMILE_ANCHORS)) {
+    void slot;
+    let last = -1;
+    blocks.forEach((b, i) => {
+      if (b.kind === 'prose' && voices.includes(b.voice)) last = i;
+    });
+    if (last >= 0) open.push(last + 1);
+  }
+  open.push(blocks.length);
+  return dealer.random.pick(open);
+}
+
+/** What a simile after a given clue should be about, best guess first. */
 export function simileTargets(view: CaseView, clue: Clue | null, placeId: Id): string[] {
   const kind = view.placeById.get(placeId)?.kind ?? 'semi';
   const byPlace =
@@ -108,6 +185,12 @@ export type Scene =
       personId: Id;
       askKind: AskKind;
       topicLabel: string;
+      /**
+       * What the question is *about*, resolved by the reducer: `subject` for a
+       * person, `place` for a place, `object` for a thing. Never the person
+       * being spoken to — see `askSlots`.
+       */
+      topicSlots: Slots;
       clues: Clue[];
       account: ClaimedAccount | null;
       volunteer: Clue | null;
@@ -140,6 +223,8 @@ export interface Stage {
   /** Pages so far, for "every third page". */
   pageIndex: number;
   previousTheory: Id | null;
+  /** What the previous page's simile was about. This page picks another. */
+  lastSimile: string | null;
   /** This run has already spent its one intensity-3 simile. */
   showedOff: boolean;
 }
@@ -152,6 +237,8 @@ export interface Composed {
   /** People portrayed in full by this page. */
   portrayed: Id[];
   theory: Id | null;
+  /** What this page's simile was about, if it had one. */
+  simileTarget: string | null;
 }
 
 const WORD_TARGET_LOW = 120;
@@ -283,17 +370,30 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const person = view.personById.get(scene.personId);
     const temper = temperOf(cast, scene.personId);
     const familiar = knowsHim(cast.roll, scene.personId);
-    const slots: Slots = { ...base, name: person?.surname, topic: scene.topicLabel };
+    const slots: Slots = askSlots(base, scene, person?.surname);
     // One page, one piece of business per draw: the same hands must not be
     // doing the same thing twice in the same paragraph.
     const usedBusiness = new Set<string>();
+
+    /**
+     * A clue that states two facts is two answers, not one breath. The first
+     * answers the question; each one after it gets a follow-up in front of it,
+     * so Dashiell is seen to ask again for what he did not get the first time.
+     */
+    const sayTheRest = (spoken: SpokenClue, isFamiliar: boolean, withSlots: Slots): void => {
+      for (const more of spoken.rest) {
+        const follow = dashiellLine(dealer, 'follow-up', isFamiliar, withSlots);
+        say(follow?.text ?? '"And then."', 'exchange');
+        say(`"${more}"`, 'exchange', spoken.clueId);
+      }
+    };
 
     /* approach — who they are, and what their hands are doing */
     const seen = stage.portrayed.includes(scene.personId);
     if (person) {
       const portrait = describePerson(cast, scene.personId, person.surname, seen, stage.pageIndex);
       if (!seen) portrayed.push(scene.personId);
-      const approach = businessLine(dealer, person, temper, slots, usedBusiness);
+      const approach = businessLine(dealer, person, temper, slots, usedBusiness, gaps);
       if (approach) usedBusiness.add(approach.cardId);
       const greeting =
         familiar && !seen
@@ -327,6 +427,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         slots,
         opener?.text ?? '',
         usedBusiness,
+        gaps,
       );
     }
     for (const [i, clue] of scene.clues.entries()) {
@@ -346,9 +447,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         slots,
         opener?.text ?? '',
         usedBusiness,
+        gaps,
       );
       for (const id of answer.cardIds) usedBusiness.add(id);
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', clue.id);
+      sayTheRest(spoken, familiar, slots);
     }
     if (scene.clues.length === 0 && !scene.account) {
       say(nothingLine(dealer, 'present', slots), 'nothing');
@@ -372,8 +475,10 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         slots,
         opener?.text ?? '',
         usedBusiness,
+        gaps,
       );
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', scene.volunteer.id);
+      sayTheRest(spoken, familiar, slots);
     }
 
     const closer = dashiellLine(dealer, 'close', familiar, slots);
@@ -474,15 +579,29 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     }
   }
 
+  let simileTarget: string | null = null;
   if (scene.kind !== 'nothing' && words(blocks) < WORD_TARGET_HIGH - 25) {
     const last = lastClue(scene);
+    // Two pages running about the same thing is the repetition the reader
+    // notices first, so last page's target is off the table entirely rather
+    // than merely deprioritized.
+    const targets = simileTargetsFor(view, scene, blocks, stage.at, last).filter(
+      (t) => t !== stage.lastSimile,
+    );
     const sim = simile(
       dealer,
-      simileTargets(view, last, stage.at),
+      targets,
       { ...base, name: last ? subjectName(view, last) : undefined },
       stage.showedOff,
     );
-    if (sim) say(sim, 'simile');
+    if (sim) {
+      simileTarget = sim.target;
+      blocks.splice(simileSlotFor(dealer, blocks), 0, {
+        kind: 'prose',
+        text: sim.text,
+        voice: 'simile',
+      });
+    }
   }
 
   // A page that is still short has run its decks out rather than had nothing
@@ -516,12 +635,56 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     gaps.push(`deck-exhausted: ${deck} came round again inside one run`);
   }
 
-  return { blocks, gaps, asideBand, portrayed, theory: reaction.theory };
+  return { blocks, gaps, asideBand, portrayed, theory: reaction.theory, simileTarget };
 }
 
 /* ------------------------------------------------------------------ *
  * The pieces.
  * ------------------------------------------------------------------ */
+
+/** The ask kinds where the question is about the person being asked. */
+export const ASK_ABOUT_ADDRESSEE: ReadonlySet<AskKind> = new Set<AskKind>([
+  'ask-evening',
+  'ask-hired',
+]);
+
+/**
+ * Every slot the exchange is built with, and what each one means.
+ *
+ *   {name}       the subject of the question — who or what is being asked
+ *                about. Never the person being spoken to, unless they are
+ *                also the subject.
+ *   {subject}    the same, under the name the utterance deck uses for it.
+ *   {addressee}  the person being spoken to. A vocative, nothing more.
+ *   {place}      the place the question is about, or the room they are
+ *                standing in when the question is about neither.
+ *   {object}     the thing the question is about, else the case's evidence.
+ *   {detective}  Dashiell, always.
+ *   {topic}      the thread as the player clicked it, verbatim.
+ *
+ * `ask-evening` and `ask-hired` are the two kinds where the subject *is* the
+ * addressee, because the question is about them — "walk me through your
+ * evening", "why me?". Everywhere else, putting the addressee in {name}
+ * produces the M4 integration's loudest bug: asking Ainsworth about Vitale
+ * and hearing "when did you last lay eyes on Ainsworth?".
+ */
+export function askSlots(
+  base: Slots,
+  scene: Extract<Scene, { kind: 'ask' }>,
+  addressee: string | undefined,
+): Slots {
+  const topic = scene.topicSlots;
+  const subject = ASK_ABOUT_ADDRESSEE.has(scene.askKind) ? addressee : topic.subject;
+  return {
+    ...base,
+    place: topic.place ?? base.place,
+    object: topic.object ?? base.object,
+    name: subject,
+    subject,
+    addressee,
+    topic: scene.topicLabel,
+  };
+}
 
 function openingClues(view: CaseView): Clue[] {
   return view.kase.starting
@@ -530,11 +693,15 @@ function openingClues(view: CaseView): Clue[] {
 }
 
 function plainArrival(dealer: Dealer, shortName: string | undefined): string {
-  return dealer.random.pick(PLAIN_ARRIVALS).split('{place}').join(shortName ?? 'the address');
+  return tidyPunctuation(
+    dealer.random.pick(PLAIN_ARRIVALS).split('{place}').join(shortName ?? 'the address'),
+  );
 }
 
 function nothingLeft(dealer: Dealer, shortName: string | undefined): string {
-  return dealer.random.pick(NOTHING_LEFT).split('{place}').join(shortName ?? 'the room');
+  return tidyPunctuation(
+    dealer.random.pick(NOTHING_LEFT).split('{place}').join(shortName ?? 'the room'),
+  );
 }
 
 function nothingLine(dealer: Dealer, tag: NothingLine['tag'], slots: Slots): string {
@@ -545,7 +712,7 @@ function nothingLine(dealer: Dealer, tag: NothingLine['tag'], slots: Slots): str
     if (v === undefined) continue;
     text = text.split(`{${k}}`).join(v);
   }
-  return text.replace(/\{[a-z]+\}/g, 'it');
+  return tidyPunctuation(text.replace(/\{[a-z]+\}/g, 'it'));
 }
 
 function placeCard(dealer: Dealer, view: CaseView, placeId: Id): string | null {
@@ -594,7 +761,23 @@ function findLine(dealer: Dealer, view: CaseView, clue: Clue, placeId: Id, base:
     { ...base, fact: clue.text },
     true,
   );
-  return drawn?.text ?? clue.text;
+  if (!drawn) return clue.text;
+  const card = DECKS.find.find((c) => c.id === drawn.cardId);
+  return factOnPage(card?.text ?? '', drawn.text, clue.text);
+}
+
+/**
+ * A find card that carries `{fact}` has the record inside it already, where
+ * the writer put it. One that does not — every card the content pass wrote
+ * before the slot was agreed — describes the coming-upon and then stops, and
+ * the fact it was dealt for would go on the floor.
+ *
+ * The player never loses information (A.5). The card is the first sentence and
+ * the record is the second.
+ */
+export function factOnPage(cardText: string, rendered: string, fact: string): string {
+  if (cardText.includes('{fact}')) return rendered;
+  return joinSentences(rendered, fact);
 }
 
 function simile(
@@ -602,7 +785,7 @@ function simile(
   targets: string[],
   slots: Slots,
   showedOff: boolean,
-): string | null {
+): { text: string; target: string } | null {
   const cap = (c: Card): boolean => {
     const i = tagOf('similes', c, 'intensity');
     return typeof i === 'number' && i <= (showedOff ? 2 : 3);
@@ -615,7 +798,7 @@ function simile(
       slots,
       true,
     );
-    if (drawn) return drawn.text;
+    if (drawn) return { text: drawn.text, target };
   }
   // Nothing fresh on anything this page is about: the page goes without,
   // which M3's notes found reads better than reaching for a stranger.
@@ -660,6 +843,7 @@ function answerAccount(
   slots: Slots,
   dashiell: string,
   exclude: ReadonlySet<string>,
+  gaps: string[],
 ): void {
   const account = scene.account;
   if (!account) return;
@@ -674,7 +858,7 @@ function answerAccount(
       : 'I was where I was and I could not tell you the hours of it.';
   const answer = frameAnswer(
     stage.dealer,
-    { clueId: '', text: fact, mode: 'utterance', cardIds: [] },
+    { clueId: '', text: fact, rest: [], mode: 'utterance', cardIds: [] },
     person,
     temper,
     register,
@@ -682,6 +866,7 @@ function answerAccount(
     slots,
     dashiell,
     exclude,
+    gaps,
   );
   blocks.push({ kind: 'prose', text: answer.text, voice: 'exchange' });
   blocks.push({ kind: 'timeline', personId: scene.personId, rows: account.rows });

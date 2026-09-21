@@ -134,9 +134,11 @@
       "burn": "free",
       "target": 120,
       "slots": ["detective", "name", "place", "object", "time"],
+      "$genderNote": "A business card that says 'he' or 'she' belongs to a person of that gender and to nobody else — 'folded the newspaper she'd been reading' on a man is the tell. Tag every card that carries a gendered pronoun; a card with no pronoun in it is 'any' and goes to anybody. The engine treats this as a filter and not as a preference: it would rather deal a card of the wrong temper than one that calls a woman 'he'.",
       "tags": {
         "role": { "required": true, "vocab": "fixtureRole", "extraValues": ["suspect", "any"] },
-        "temper": { "required": true, "vocab": "temper", "extraValues": ["any"] }
+        "temper": { "required": true, "vocab": "temper", "extraValues": ["any"] },
+        "gender": { "required": false, "default": "any", "values": ["m", "f", "any"] }
       },
       "coverage": [["role", "temper"]]
     },
@@ -147,7 +149,8 @@
       "placeholderPrefix": "hum-p",
       "burn": "free",
       "target": 80,
-      "slots": ["detective", "name", "place", "object", "time", "topic"],
+      "$slotNote": "{name} is the SUBJECT of the question — whoever or whatever Dashiell is asking about — and never the person he is asking. The two coincide for exactly two kinds: 'ask-evening' and 'ask-hired' are questions about the person in front of him, so there {name} is the addressee. Everywhere else, use {addressee} for a vocative ('The {object}, {addressee}.') and {name} only for the subject ('Tell me about {name}.'). {place} and {object} are the place or thing the question is about, not the room the page happens in. A card with {name} is dealt only when the topic names a person; a topic that names none — an anchor, a noise — is asked for with {topic}.",
+      "slots": ["detective", "name", "addressee", "place", "object", "time", "topic"],
       "tags": {
         "kind": {
           "required": true,
@@ -233,6 +236,9 @@
       "burn": "within-run",
       "target": 50,
       "slots": ["detective", "name", "place", "object", "time", "fact"],
+      "warnSlots": {
+        "fact": "the clue's own record has nowhere to land inside the card, so the engine appends it as a second sentence instead of the writer choosing where it falls"
+      },
       "tags": {
         "clueKind": { "required": true, "values": ["physical", "document", "morgue", "scene"] },
         "placeKind": { "required": false, "default": "any", "vocab": "placeKind", "extraValues": ["any"] }

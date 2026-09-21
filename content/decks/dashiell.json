@@ -2,7 +2,7 @@
   {
     "id": "hum-p001",
     "deck": "dashiell-lines",
-    "text": "“{name},” I said.",
+    "text": "“{addressee},” I said.",
     "tags": {
       "kind": "open",
       "familiar": "no"
@@ -113,7 +113,7 @@
   {
     "id": "hum-001",
     "deck": "dashiell-lines",
-    "text": "\"{name},\" I said.",
+    "text": "\"{addressee},\" I said.",
     "tags": {
       "kind": "open",
       "familiar": "no"
@@ -123,7 +123,7 @@
   {
     "id": "hum-002",
     "deck": "dashiell-lines",
-    "text": "\"Evening. {name}?\"",
+    "text": "\"Evening. {addressee}?\"",
     "tags": {
       "kind": "open",
       "familiar": "no"
@@ -133,7 +133,7 @@
   {
     "id": "hum-003",
     "deck": "dashiell-lines",
-    "text": "\"Sorry to trouble you, {name}.\"",
+    "text": "\"Sorry to trouble you, {addressee}.\"",
     "tags": {
       "kind": "open",
       "familiar": "no"
@@ -143,7 +143,7 @@
   {
     "id": "hum-004",
     "deck": "dashiell-lines",
-    "text": "\"Just a few questions, {name}, if you can spare the time.\"",
+    "text": "\"Just a few questions, {addressee}, if you can spare the time.\"",
     "tags": {
       "kind": "open",
       "familiar": "no"
@@ -153,7 +153,7 @@
   {
     "id": "hum-005",
     "deck": "dashiell-lines",
-    "text": "\"{name}. I won't keep you long.\"",
+    "text": "\"{addressee}. I won't keep you long.\"",
     "tags": {
       "kind": "open",
       "familiar": "no"
@@ -163,7 +163,7 @@
   {
     "id": "hum-006",
     "deck": "dashiell-lines",
-    "text": "\"{name}. Been a while.\"",
+    "text": "\"{addressee}. Been a while.\"",
     "tags": {
       "kind": "open",
       "familiar": "yes"
@@ -183,7 +183,7 @@
   {
     "id": "hum-008",
     "deck": "dashiell-lines",
-    "text": "\"{name}, you're a hard man to find tonight.\"",
+    "text": "\"{addressee}, you're a hard man to find tonight.\"",
     "tags": {
       "kind": "open",
       "familiar": "yes"
@@ -203,7 +203,7 @@
   {
     "id": "hum-010",
     "deck": "dashiell-lines",
-    "text": "\"{name}. You'll want to sit down for this one.\"",
+    "text": "\"{addressee}. You'll want to sit down for this one.\"",
     "tags": {
       "kind": "open",
       "familiar": "yes"
@@ -463,7 +463,7 @@
   {
     "id": "hum-036",
     "deck": "dashiell-lines",
-    "text": "\"The {object}, {name}. Don't waste my evening.\"",
+    "text": "\"The {object}, {addressee}. Don't waste my evening.\"",
     "tags": {
       "kind": "ask-object",
       "familiar": "yes"

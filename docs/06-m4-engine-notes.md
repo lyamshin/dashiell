@@ -246,6 +246,43 @@ and will not collide with their zero-padded ones.
 built from frames × dashiell-lines × utterances instead. It is kept because it
 still validates and a writer can mine it.
 
+## The polish pass (`m4-polish`)
+
+The decks above were placeholders when the engine was written against them.
+The real Content A and Content B decks landed afterwards and the seams showed
+in the seed 7 transcript. Ten fixes, one commit each; what a later reader
+needs to know about them:
+
+- **`prose.ts` is new.** Every card is a finished sentence with its own
+  punctuation, and a frame written around `"{fact}."` gives `"Alive, I'd
+  say.."`. `tidyPunctuation` runs wherever slots are substituted and nowhere
+  else, so a card with no slots comes out exactly as its writer wrote it.
+- **The slot audit, settled.** Content A's notes asked for a ruling on
+  `{name}` vs `{subject}`, and the ruling is in `askSlots` and in the
+  dashiell-lines `$slotNote`: **`{name}` and `{subject}` are the subject of
+  the question**, `{addressee}` is the person being spoken to, and the two
+  coincide only for `ask-evening` and `ask-hired`, which are questions about
+  the person in front of him. An utterance is filled from its beat and
+  `{detective}` alone — the page's own room and hour have no business inside
+  a reported fact.
+- **A find card carries `{fact}`.** Where it does not, the engine says the
+  card and then the record. The validator warns (`warnSlots` in the schema),
+  because where the record falls is the writer's decision and not the
+  engine's.
+- **Business filters on role, then gender, then temper**, and never widens
+  onto another fixture's role. Gender is a filter and not a rung. A role with
+  nothing to deal logs `no-business` rather than borrowing somebody's bar rag.
+- **`genderHintOf` reads the given name** out of the generator's own pools
+  before the archetype hint. Fixtures have no archetype, and a suspect whose
+  relationship carries `opposeVictimGender` is named against their
+  archetype's hint — the name is decided last and is always right.
+- **The simile moved.** Target comes off the page's own content and placement
+  is drawn from the slots the page has; `lastSimile` rides in the run state so
+  no two pages running are about the same thing.
+- **The theory scales.** `factsAgainst` counts what a reader would count, and
+  one fact draws a lean, two a conviction, three a certainty. The wrong-able
+  mechanic is untouched.
+
 ## Out of scope, and still out of it
 
 Reputation, persistence past the burn pile, Dashiell's evolution across runs.

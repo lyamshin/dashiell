@@ -23,13 +23,24 @@ import type { CaseView } from '../derive.js';
 import { clueTick } from '../derive.js';
 import type { Tick } from '../../gen/types.js';
 import type { CastSheet, Temper } from './cast.js';
-import { temperOf } from './cast.js';
+import { genderHintOf, temperOf } from './cast.js';
 import { Dealer, SCHEMA, tagIs, tagOf, type Card, type Slots } from './cards.js';
 import { beatsOf, findKindOf, strippedQuote, type Beat } from './facts.js';
 import { knowsHim } from './roll.js';
 import { COLOUR_LINES, RECORD_LEADS } from '../voice-data.js';
+import { tidyPunctuation } from './prose.js';
 
 export type Register = 'truth' | 'lie' | 'evasion';
+
+/**
+ * Stand-ins put into a frame's `{business}` and `{colour}` slots while it is
+ * dealt, so each occurrence can be given a card of its own afterwards. A
+ * frame that asks for business twice means two gestures, not one gesture
+ * printed twice. Control characters: nothing in any deck contains them, and
+ * they never survive the function.
+ */
+const BUSINESS_MARK = 'business';
+const COLOUR_MARK = 'colour';
 
 const MANDATORY = (SCHEMA.decks.utterances?.mandatorySlots ?? {}) as Record<string, string[]>;
 
@@ -55,6 +66,17 @@ export interface SpokenClue {
   clueId: Id;
   /** What goes inside the frame's quotation marks, or the record's paragraph. */
   text: string;
+  /**
+   * The rest of what the same clue states, one utterance each.
+   *
+   * A clue that establishes two facts used to come out as both utterances
+   * concatenated inside one frame — "Vitale came into Mrs. Teague's around
+   * 9:00 PM and stayed a while. Somebody was moving around in there past 9:00
+   * PM. Alive, I'd say." — which is two answers read as one breath. The page
+   * grammar puts a follow-up between them instead: the primary fact answers
+   * the question, and the second is something Dashiell had to ask again for.
+   */
+  rest: string[];
   mode: 'utterance' | 'quote' | 'record';
   cardIds: string[];
 }
@@ -90,7 +112,16 @@ export function speakClue(
       said.push(drawn.text);
     }
     if (said.length === beats.length) {
-      return { clueId: clue.id, text: said.join(' '), mode: 'utterance', cardIds };
+      // `beatsOf` has already put the placement first: where somebody was
+      // comes before what it means, and the first beat is the answer to the
+      // question that was actually asked.
+      return {
+        clueId: clue.id,
+        text: said[0] as string,
+        rest: said.slice(1),
+        mode: 'utterance',
+        cardIds,
+      };
     }
   } else if (beats.length === 0) {
     gaps.push(`no-fact: ${clue.kind} (${clue.id}) states nothing structured; its own line stands`);
@@ -99,8 +130,9 @@ export function speakClue(
   }
 
   const stripped = strippedQuote(clue, speaker);
-  if (stripped !== null) return { clueId: clue.id, text: stripped, mode: 'quote', cardIds };
-  return { clueId: clue.id, text: clue.text, mode: 'record', cardIds };
+  if (stripped !== null)
+    return { clueId: clue.id, text: stripped, rest: [], mode: 'quote', cardIds };
+  return { clueId: clue.id, text: clue.text, rest: [], mode: 'record', cardIds };
 }
 
 function utteranceFor(
@@ -110,7 +142,11 @@ function utteranceFor(
   register: Register,
   base: Slots,
 ): { text: string; cardId: string } | null {
-  const slots: Slots = { ...base, ...beat.slots };
+  // An utterance reports a fact, so every slot in it belongs to that fact and
+  // to nothing else. The page's own slots — the room they are standing in, the
+  // person being spoken to, the tick the page opened on — would quietly turn a
+  // true sentence into a false one, so only {detective} survives from them.
+  const slots: Slots = { detective: base.detective, ...beat.slots };
   const kindIs = (c: Card): boolean =>
     tagOf('utterances', c, 'factKind') === beat.kind && carriesFact(c, beat.kind);
   const drawn = dealer.draw(
@@ -157,30 +193,56 @@ export function dashiellLine(
   return drawn ? { text: drawn.text, cardId: drawn.cardId } : null;
 }
 
-/** What the person is doing with their hands while they answer. */
+/**
+ * What the person is doing with their hands while they answer.
+ *
+ * Role first, temper second, and never another fixture's role. A landlady
+ * keeping the rag going over the same six inches of counter is a bartender's
+ * card on a landlady, which is what the old temper-only rung produced: the
+ * props are the role, and swapping them swaps the person.
+ *
+ * The only widening is onto cards tagged `role: any`, which are written to
+ * belong to nobody in particular. A suspect's generic role is `suspect`
+ * already, so that is where a suspect starts; a fixture with an empty role
+ * gets no business at all and says so in the gap log.
+ */
 export function businessLine(
   dealer: Dealer,
   person: Person | undefined,
   temper: Temper,
   slots: Slots,
   exclude: ReadonlySet<string> = new Set(),
+  gaps?: string[],
 ): { text: string; cardId: string } | null {
   const role = person?.fixtureRole ?? 'suspect';
+  const gender = person ? genderHintOf(person) : 'any';
+  // Gender is a filter and not a rung: a card that says "she" is wrong on a
+  // man however well it fits the role, so it is never reached for. Being one
+  // temper out is a smaller wrong than calling a woman "he".
+  const fitsGender = (c: Card): boolean =>
+    gender === 'any' || tagIs('business', c, 'gender', gender);
   // `business` is a free deck — it may come round again on a later page — but
   // not twice on the same one, where a reader would see it.
-  const ok = (c: Card): boolean => !exclude.has(c.id);
+  const ok = (c: Card): boolean => !exclude.has(c.id) && fitsGender(c);
+  // Not `tagIs`: a card tagged `any` is a wildcard everywhere else, and here
+  // it is its own rung, below anything written for the role itself.
+  const roleIs = (c: Card, want: string): boolean => tagOf('business', c, 'role') === want;
   const drawn = dealer.draw(
     'business',
     [
-      (c) => ok(c) && tagIs('business', c, 'role', role) && tagIs('business', c, 'temper', temper),
-      (c) => ok(c) && tagIs('business', c, 'role', role),
-      (c) => ok(c) && tagIs('business', c, 'temper', temper),
-      ok,
+      (c) => ok(c) && roleIs(c, role) && tagIs('business', c, 'temper', temper),
+      (c) => ok(c) && roleIs(c, role),
+      (c) => ok(c) && roleIs(c, 'any') && tagIs('business', c, 'temper', temper),
+      (c) => ok(c) && roleIs(c, 'any'),
     ],
     slots,
     true,
   );
-  return drawn ? { text: drawn.text, cardId: drawn.cardId } : null;
+  if (!drawn) {
+    gaps?.push(`no-business: ${role} × ${temper} × ${gender} has no card of its own to deal`);
+    return null;
+  }
+  return { text: drawn.text, cardId: drawn.cardId };
 }
 
 export interface Answer {
@@ -205,15 +267,36 @@ export function frameAnswer(
   slots: Slots,
   dashiell: string,
   exclude: ReadonlySet<string> = new Set(),
+  gaps?: string[],
 ): Answer {
   const cardIds = [...spoken.cardIds];
-  const business = businessLine(dealer, person, temper, slots, exclude);
-  if (business) cardIds.push(business.cardId);
-  const colour = COLOUR_LINES[dealer.random.int(COLOUR_LINES.length)] as string;
+  // A frame that asks for business twice — the gesture on the way in and the
+  // one mid-answer — must get two different pieces of it, so the slots are
+  // filled one at a time out of a widening exclusion list rather than all at
+  // once with the same card. Twenty-eight of the frames ask twice.
+  const spentBusiness = new Set(exclude);
+  const nextBusiness = (): string => {
+    const drawn = businessLine(dealer, person, temper, slots, spentBusiness, gaps);
+    if (!drawn) return '';
+    spentBusiness.add(drawn.cardId);
+    cardIds.push(drawn.cardId);
+    return drawn.text;
+  };
+  const spentColour = new Set<string>();
+  const nextColour = (): string => {
+    for (let i = 0; i < COLOUR_LINES.length; i++) {
+      const line = COLOUR_LINES[dealer.random.int(COLOUR_LINES.length)] as string;
+      if (spentColour.has(line)) continue;
+      spentColour.add(line);
+      return line;
+    }
+    return COLOUR_LINES[0] as string;
+  };
 
   if (spoken.mode === 'record') {
     const lead = RECORD_LEADS[dealer.random.int(RECORD_LEADS.length)] as string;
-    const head = business ? `${business.text} ` : '';
+    const business = nextBusiness();
+    const head = business.length > 0 ? `${business} ` : '';
     return { text: `${head}${lead} ${spoken.text}`, mode: spoken.mode, cardIds };
   }
 
@@ -232,17 +315,23 @@ export function frameAnswer(
     {
       ...slots,
       fact: spoken.text,
-      business: business?.text ?? '',
-      colour,
+      // Sentinels: the frame is dealt with its business and colour slots
+      // marked rather than filled, and each mark takes its own card below.
+      business: BUSINESS_MARK,
+      colour: COLOUR_MARK,
       dashiell,
     },
   );
   if (!frame) {
-    const head = business ? `${business.text} ` : '';
+    const business = nextBusiness();
+    const head = business.length > 0 ? `${business} ` : '';
     return { text: `${head}“${spoken.text}”`, mode: spoken.mode, cardIds };
   }
   cardIds.push(frame.cardId);
-  return { text: frame.text.replace(/\s{2,}/g, ' ').trim(), mode: spoken.mode, cardIds };
+  let text = frame.text;
+  while (text.includes(BUSINESS_MARK)) text = text.replace(BUSINESS_MARK, nextBusiness());
+  while (text.includes(COLOUR_MARK)) text = text.replace(COLOUR_MARK, nextColour());
+  return { text: tidyPunctuation(text), mode: spoken.mode, cardIds };
 }
 
 /** Which of Dashiell's line kinds a topic asks for. */

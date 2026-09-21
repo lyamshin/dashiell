@@ -201,7 +201,7 @@
   {
     "id": "utt-001",
     "deck": "utterances",
-    "text": "{subject}, {time}. Gone before the next round.",
+    "text": "{subject}, {place}, {time}. Gone before the next round.",
     "tags": {
       "factKind": "personAt",
       "temper": "enigma",
@@ -696,7 +696,7 @@
   {
     "id": "utt-046",
     "deck": "utterances",
-    "text": "{subject} owed money. Plenty of it.",
+    "text": "{subject} {motive}. Plenty of reason in that.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "enigma",
@@ -707,7 +707,7 @@
   {
     "id": "utt-047",
     "deck": "utterances",
-    "text": "Bad blood, {subject} and the dead man. Old money trouble.",
+    "text": "Bad blood there. {subject} {motive}.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "enigma",
@@ -718,7 +718,7 @@
   {
     "id": "utt-048",
     "deck": "utterances",
-    "text": "{subject} stood to gain, and everybody at {place} knew it.",
+    "text": "{subject} {motive}, and everybody knew it.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "enigma",
@@ -729,7 +729,7 @@
   {
     "id": "utt-049",
     "deck": "utterances",
-    "text": "There was talk about {subject} and money. I don't repeat talk.",
+    "text": "Talk was {subject} {motive}. I don't repeat talk.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "enigma",
@@ -740,7 +740,7 @@
   {
     "id": "utt-050",
     "deck": "utterances",
-    "text": "Ask somebody else about {subject}'s reasons. Not my business to say.",
+    "text": "{subject} {motive}, they say. Ask somebody else about it.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "enigma",
@@ -751,7 +751,7 @@
   {
     "id": "utt-051",
     "deck": "utterances",
-    "text": "{subject} had been pressing for money, and not getting it.",
+    "text": "{subject} {motive}, and made no secret of it.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "plain",
@@ -762,7 +762,7 @@
   {
     "id": "utt-052",
     "deck": "utterances",
-    "text": "There was trouble between {subject} and the dead man, going back a while.",
+    "text": "There was trouble going back a while: {subject} {motive}.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "plain",
@@ -773,7 +773,7 @@
   {
     "id": "utt-053",
     "deck": "utterances",
-    "text": "{subject} had plenty to gain, and everyone at {place} knew it.",
+    "text": "{subject} {motive}, and everyone who knew them both knew it.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "plain",
@@ -784,7 +784,7 @@
   {
     "id": "utt-054",
     "deck": "utterances",
-    "text": "I heard talk of {subject} owing money, but I don't put much stock in talk.",
+    "text": "I heard {subject} {motive}, but I don't put much stock in talk.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "plain",
@@ -795,7 +795,7 @@
   {
     "id": "utt-055",
     "deck": "utterances",
-    "text": "There might've been bad blood there. I try to stay out of it.",
+    "text": "They'll tell you {subject} {motive}. I try to stay out of it.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "plain",
@@ -806,7 +806,7 @@
   {
     "id": "utt-056",
     "deck": "utterances",
-    "text": "{subject} had been after the dead man for money for months, and not quiet about it either, not at {place}.",
+    "text": "{subject} {motive}, for months, and was not quiet about it either, not where I could help hearing.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "yap",
@@ -817,7 +817,7 @@
   {
     "id": "utt-057",
     "deck": "utterances",
-    "text": "There was old trouble between {subject} and the dead man, going back years, the kind that doesn't just go away.",
+    "text": "{subject} {motive}, and it went back years, the kind of trouble that doesn't just go away on its own.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "yap",
@@ -828,7 +828,7 @@
   {
     "id": "utt-058",
     "deck": "utterances",
-    "text": "{subject} stood to come out ahead, and half of {place} could've told you as much, if you'd asked around.",
+    "text": "{subject} {motive}, and half the block could've told you as much, if you'd asked around.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "yap",
@@ -839,7 +839,7 @@
   {
     "id": "utt-059",
     "deck": "utterances",
-    "text": "I heard plenty of talk about {subject} and money troubles, but talk's cheap around {place}, and I don't spread it further.",
+    "text": "I heard plenty of talk that {subject} {motive}, but talk's cheap around here, and I don't spread it any further.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "yap",
@@ -850,7 +850,7 @@
   {
     "id": "utt-060",
     "deck": "utterances",
-    "text": "There might've been bad blood there, I couldn't say for certain, people don't tell me everything that goes on.",
+    "text": "They say {subject} {motive}, though I couldn't swear to it myself, people don't tell me everything that goes on.",
     "tags": {
       "factKind": "hasMotive",
       "temper": "yap",
@@ -861,7 +861,7 @@
   {
     "id": "utt-061",
     "deck": "utterances",
-    "text": "{subject} knew where the {object} was kept.",
+    "text": "{subject} knew where the {object} was kept, there at {place}.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "enigma",
@@ -883,7 +883,7 @@
   {
     "id": "utt-063",
     "deck": "utterances",
-    "text": "That {object} was easy enough for {subject} to get to.",
+    "text": "That {object} at {place} was easy enough for {subject} to get to.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "enigma",
@@ -894,7 +894,7 @@
   {
     "id": "utt-064",
     "deck": "utterances",
-    "text": "Plenty of people could've gotten at the {object}. {subject} included.",
+    "text": "Plenty of people could've gotten at the {object} at {place}. {subject} included.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "enigma",
@@ -905,7 +905,7 @@
   {
     "id": "utt-065",
     "deck": "utterances",
-    "text": "I couldn't say who all knew where the {object} was kept.",
+    "text": "{subject} knew where the {object} was kept at {place}. Who else, I couldn't say.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "enigma",
@@ -927,7 +927,7 @@
   {
     "id": "utt-067",
     "deck": "utterances",
-    "text": "{subject} knew right where the {object} was kept, no question.",
+    "text": "{subject} knew right where the {object} was kept at {place}, no question.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "plain",
@@ -938,7 +938,7 @@
   {
     "id": "utt-068",
     "deck": "utterances",
-    "text": "Getting to the {object} wouldn't have taken {subject} five minutes.",
+    "text": "Getting to the {object} at {place} wouldn't have taken {subject} five minutes.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "plain",
@@ -949,7 +949,7 @@
   {
     "id": "utt-069",
     "deck": "utterances",
-    "text": "A few people knew where the {object} was, {subject} among them, but I couldn't say who used it.",
+    "text": "A few people knew where the {object} was kept at {place}, {subject} among them, but I couldn't say who used it.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "plain",
@@ -960,7 +960,7 @@
   {
     "id": "utt-070",
     "deck": "utterances",
-    "text": "I suppose {subject} could've gotten to the {object}. So could a few others.",
+    "text": "I suppose {subject} could've gotten to the {object} at {place}. So could a few others.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "plain",
@@ -1004,7 +1004,7 @@
   {
     "id": "utt-074",
     "deck": "utterances",
-    "text": "There were a good few people who knew where the {object} was kept, {subject} being one of them, though I'd hate to single anyone out.",
+    "text": "There were a good few people who knew where the {object} was kept at {place}, {subject} being one of them, though I'd hate to single anyone out.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "yap",
@@ -1015,7 +1015,7 @@
   {
     "id": "utt-075",
     "deck": "utterances",
-    "text": "I couldn't tell you for certain who all had access to the {object} at {place}. More people than you'd think, is all I'll say.",
+    "text": "{subject} had a way to the {object} at {place}, and more people besides, is all I'll say.",
     "tags": {
       "factKind": "hadAccess",
       "temper": "yap",
@@ -1301,7 +1301,7 @@
   {
     "id": "utt-101",
     "deck": "utterances",
-    "text": "Dead by {time}. The coroner's sure of that much.",
+    "text": "{window}. The coroner's sure of that much.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "enigma",
@@ -1312,7 +1312,7 @@
   {
     "id": "utt-102",
     "deck": "utterances",
-    "text": "{time}. That's the window, near as they can fix it.",
+    "text": "{window}. That's the window, near as they can fix it.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "enigma",
@@ -1323,7 +1323,7 @@
   {
     "id": "utt-103",
     "deck": "utterances",
-    "text": "Not before {time}. Not after, either.",
+    "text": "{window}. Not a minute either side of it, the way he tells it.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "enigma",
@@ -1334,7 +1334,7 @@
   {
     "id": "utt-104",
     "deck": "utterances",
-    "text": "The coroner won't commit past a window around {time}.",
+    "text": "The coroner won't commit past {window}.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "enigma",
@@ -1345,7 +1345,7 @@
   {
     "id": "utt-105",
     "deck": "utterances",
-    "text": "The coroner puts it around {time}, give or take.",
+    "text": "The coroner puts it {window}, give or take.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "plain",
@@ -1356,7 +1356,7 @@
   {
     "id": "utt-106",
     "deck": "utterances",
-    "text": "Best guess is {time}, according to the coroner's office.",
+    "text": "Best guess is {window}, according to the coroner's office.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "plain",
@@ -1367,7 +1367,7 @@
   {
     "id": "utt-107",
     "deck": "utterances",
-    "text": "Time of death comes back to somewhere around {time}.",
+    "text": "Time of death comes back {window}.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "plain",
@@ -1378,7 +1378,7 @@
   {
     "id": "utt-108",
     "deck": "utterances",
-    "text": "The coroner's office wouldn't pin it closer than somewhere near {time}.",
+    "text": "The coroner's office wouldn't pin it closer than {window}.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "plain",
@@ -1389,7 +1389,7 @@
   {
     "id": "utt-109",
     "deck": "utterances",
-    "text": "The coroner's office came back with somewhere around {time}, though they hedge it the way they always do, never quite committing to the minute.",
+    "text": "The coroner's office came back with {window}, though they hedge it the way they always do, never quite committing to the minute.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "yap",
@@ -1400,7 +1400,7 @@
   {
     "id": "utt-110",
     "deck": "utterances",
-    "text": "Best they'll say is somewhere near {time}, and they went on a while about why they couldn't do better than that.",
+    "text": "Best they'll say is {window}, and they went on a while about why they couldn't do better than that.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "yap",
@@ -1411,7 +1411,7 @@
   {
     "id": "utt-111",
     "deck": "utterances",
-    "text": "Time of death comes back to around {time}, according to a report that ran three pages longer than it needed to.",
+    "text": "Time of death comes back {window}, according to a report that ran three pages longer than it needed to.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "yap",
@@ -1422,7 +1422,7 @@
   {
     "id": "utt-112",
     "deck": "utterances",
-    "text": "The coroner's office wouldn't commit past a window somewhere around {time}, and I wouldn't push them, they know their business better than I do.",
+    "text": "The coroner's office wouldn't commit past {window}, and I wouldn't push them, they know their business better than I do.",
     "tags": {
       "factKind": "timeOfDeath",
       "temper": "yap",
@@ -1697,7 +1697,7 @@
   {
     "id": "utt-137",
     "deck": "utterances",
-    "text": "The {object} tells the story plain enough.",
+    "text": "{method}. The {object} tells the story plain enough.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "enigma",
@@ -1708,7 +1708,7 @@
   {
     "id": "utt-138",
     "deck": "utterances",
-    "text": "Marks on the {object}. Match what you'd expect.",
+    "text": "Marks on the {object}. They match {method} and nothing else.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "enigma",
@@ -1719,7 +1719,7 @@
   {
     "id": "utt-139",
     "deck": "utterances",
-    "text": "That {object} did the work. No question.",
+    "text": "{method}, and that {object} did the work. No question.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "enigma",
@@ -1730,7 +1730,7 @@
   {
     "id": "utt-140",
     "deck": "utterances",
-    "text": "Couldn't say for certain what the {object} was used for.",
+    "text": "They're saying {method}. Couldn't say for certain what the {object} was used for.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "enigma",
@@ -1741,7 +1741,7 @@
   {
     "id": "utt-141",
     "deck": "utterances",
-    "text": "The {object} had marks on it that told their own story.",
+    "text": "The {object} had marks on it that told their own story, and the story was {method}.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "plain",
@@ -1752,7 +1752,7 @@
   {
     "id": "utt-142",
     "deck": "utterances",
-    "text": "Whatever happened, the {object} was part of it. Plain to see.",
+    "text": "It was {method}, and the {object} was part of it. Plain to see.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "plain",
@@ -1763,7 +1763,7 @@
   {
     "id": "utt-143",
     "deck": "utterances",
-    "text": "The state of the {object} answers most of the question by itself.",
+    "text": "The state of the {object} says {method}, and answers most of the question by itself.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "plain",
@@ -1774,7 +1774,7 @@
   {
     "id": "utt-144",
     "deck": "utterances",
-    "text": "The {object} might tell you something, though I couldn't begin to guess what.",
+    "text": "They say {method}. The {object} might tell you more, though I couldn't begin to guess what.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "plain",
@@ -1785,7 +1785,7 @@
   {
     "id": "utt-145",
     "deck": "utterances",
-    "text": "The {object} had marks on it that told their own story, and the coroner's man spent a good while going over every inch of it before he'd say so.",
+    "text": "The {object} had marks on it that told their own story — {method}, and no mistaking it — and the coroner's man spent a good while going over every inch before he'd say so.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "yap",
@@ -1796,7 +1796,7 @@
   {
     "id": "utt-146",
     "deck": "utterances",
-    "text": "Whatever happened, the {object} was part of it, plain to see, and I could point out exactly where if you wanted to look yourself.",
+    "text": "It was {method}, plain to see, and the {object} was part of it, and I could point out exactly where if you wanted to look yourself.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "yap",
@@ -1807,7 +1807,7 @@
   {
     "id": "utt-147",
     "deck": "utterances",
-    "text": "The state of the {object} answers most of the question by itself, though it took somebody with a trained eye to point it out to the rest of us.",
+    "text": "The state of the {object} says {method} by itself, though it took somebody with a trained eye to point it out to the rest of us.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "yap",
@@ -1818,7 +1818,7 @@
   {
     "id": "utt-148",
     "deck": "utterances",
-    "text": "The {object} might tell you something, though I couldn't begin to guess what, not being trained to spot such things.",
+    "text": "They're telling it as {method}, and the {object} might say more, though I couldn't begin to guess what, not being trained to spot such things.",
     "tags": {
       "factKind": "methodEvidence",
       "temper": "yap",
@@ -1829,7 +1829,7 @@
   {
     "id": "utt-149",
     "deck": "utterances",
-    "text": "{subject}'s secret. Not murder. Just trouble of another kind.",
+    "text": "{secret}. That was {subject}'s secret. Not murder.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "enigma",
@@ -1840,7 +1840,7 @@
   {
     "id": "utt-150",
     "deck": "utterances",
-    "text": "Whatever {subject} was hiding, it wasn't that.",
+    "text": "What {subject} was hiding: {secret}. Not what you're after.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "enigma",
@@ -1851,7 +1851,7 @@
   {
     "id": "utt-151",
     "deck": "utterances",
-    "text": "{subject} had a reason to hide it. Just not this reason.",
+    "text": "{subject} had a reason to hide it: {secret}. Just not this reason.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "enigma",
@@ -1862,7 +1862,7 @@
   {
     "id": "utt-152",
     "deck": "utterances",
-    "text": "Can't say what {subject}'s secret was, only that it wasn't what you're asking about.",
+    "text": "{secret}, is what I heard of {subject}. Not what you're asking about.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "enigma",
@@ -1873,7 +1873,7 @@
   {
     "id": "utt-153",
     "deck": "utterances",
-    "text": "{subject} had something to hide, but it wasn't the murder.",
+    "text": "{subject} had something to hide — {secret} — but it wasn't the murder.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "plain",
@@ -1884,7 +1884,7 @@
   {
     "id": "utt-154",
     "deck": "utterances",
-    "text": "Whatever {subject} was covering up, none of it touched on the dead man.",
+    "text": "What {subject} was covering up was {secret}, and none of it touched the dead man.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "plain",
@@ -1895,7 +1895,7 @@
   {
     "id": "utt-155",
     "deck": "utterances",
-    "text": "{subject}'s secret was real enough, just not the one you're after.",
+    "text": "{subject}'s secret was real enough — {secret} — just not the one you're after.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "plain",
@@ -1906,7 +1906,7 @@
   {
     "id": "utt-156",
     "deck": "utterances",
-    "text": "There was something {subject} was hiding, though I couldn't tell you it wasn't connected, only that it never looked that way to me.",
+    "text": "{secret}, that's what {subject} was hiding. I couldn't tell you it wasn't connected, only that it never looked that way to me.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "plain",
@@ -1917,7 +1917,7 @@
   {
     "id": "utt-157",
     "deck": "utterances",
-    "text": "{subject} had something to hide, sure enough, but once it came out it had nothing at all to do with the dead man, just embarrassment, mostly.",
+    "text": "{subject} had something to hide, sure enough — {secret} — but once it came out it had nothing at all to do with the dead man, just embarrassment, mostly.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "yap",
@@ -1928,7 +1928,7 @@
   {
     "id": "utt-158",
     "deck": "utterances",
-    "text": "Whatever {subject} was covering up turned out to be its own separate trouble, unconnected to the murder, though it took some digging to be sure.",
+    "text": "What {subject} was covering up turned out to be {secret}, its own separate trouble, unconnected to the murder, though it took some digging to be sure.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "yap",
@@ -1939,7 +1939,7 @@
   {
     "id": "utt-159",
     "deck": "utterances",
-    "text": "{subject}'s secret was real, and it cost them plenty to keep it quiet, but it wasn't the one you're after, not by a long way.",
+    "text": "{subject}'s secret was real, {secret}, and it cost them plenty to keep it quiet, but it wasn't the one you're after, not by a long way.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "yap",
@@ -1950,7 +1950,7 @@
   {
     "id": "utt-160",
     "deck": "utterances",
-    "text": "There was something {subject} was hiding, and I couldn't swear it wasn't connected, only that everything I heard pointed the other way.",
+    "text": "There was {secret} in it somewhere, and that is what {subject} was hiding, and I couldn't swear it wasn't connected, only that everything I heard pointed the other way.",
     "tags": {
       "factKind": "secretExplained",
       "temper": "yap",

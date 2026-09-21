@@ -17,6 +17,7 @@
  */
 
 import { Rng } from '../../gen/rng.js';
+import { tidyPunctuation } from './prose.js';
 import schemaJson from '../../../content/deck-schema.json';
 import similesJson from '../../../content/decks/similes.json';
 import placesJson from '../../../content/decks/places.json';
@@ -180,14 +181,17 @@ export type Slots = Record<string, string | undefined>;
  * names are written lower case — "the speakeasy" — and a sentence is not.
  */
 export function fill(card: Card, slots: Slots): string | null {
+  const names = slotsOf(card);
   let out = card.text;
-  for (const name of slotsOf(card)) {
+  for (const name of names) {
     const value = slots[name];
     if (value === undefined || value.length === 0) return null;
     out = out.split(`{${name}}`).join(value);
   }
   if (/^\{/.test(card.text)) out = out.charAt(0).toUpperCase() + out.slice(1);
-  return out;
+  // Only a card that had something put into it can have a seam in it. A card
+  // with no slots is exactly what the writer wrote, punctuation and all.
+  return names.length > 0 ? tidyPunctuation(out) : out;
 }
 
 export interface Drawn {

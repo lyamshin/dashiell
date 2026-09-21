@@ -235,6 +235,14 @@ function validateDeck(deckName, path) {
           report.errors.push(`${where}: every ${deckName} card must carry the {${slot}} slot`);
         }
       }
+      // Not fatal: the engine renders the card and then the record as its own
+      // sentence. But a card that names its own place for the fact reads
+      // better than one the engine has to staple a second sentence onto.
+      for (const [slot, why] of Object.entries(spec.warnSlots ?? {})) {
+        if (!card.text.includes(`{${slot}}`)) {
+          report.warnings.push(`${where}: no {${slot}} slot — ${why}`);
+        }
+      }
       if (spec.mandatorySlots) {
         const kind = readTags(deckName, card).factKind;
         const need = spec.mandatorySlots[kind] ?? [];

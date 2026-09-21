@@ -196,6 +196,11 @@ export interface RunState {
   portrayed: Id[];
   /** The suspect the monologue is currently accusing. Often wrong. */
   theory: Id | null;
+  /**
+   * What the previous page's simile was about, so this one is about something
+   * else. Four pages of "the room was ... as ..." is one page repeated.
+   */
+  lastSimile: string | null;
 }
 
 export const SAVE_KEY = 'dashiell:run';
