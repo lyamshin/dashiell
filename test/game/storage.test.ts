@@ -41,7 +41,7 @@ describe('the run survives a reload', () => {
   });
 
   it('round-trips through a plain string', () => {
-    const state = newRun(view, { detectiveName: 'Humphrey' });
+    const state = newRun(view, { detectiveName: 'Dashiell' });
     expect(deserializeRun(serializeRun(state))).toEqual(state);
   });
 
@@ -65,7 +65,7 @@ describe('the run survives a reload', () => {
         throw new Error('blocked');
       },
     };
-    const state = newRun(view, { detectiveName: 'Humphrey' });
+    const state = newRun(view, { detectiveName: 'Dashiell' });
     expect(() => saveRun(hostile, state)).not.toThrow();
     expect(loadRun(hostile)).toBeNull();
     expect(loadBurned(hostile)).toEqual([]);
@@ -74,7 +74,7 @@ describe('the run survives a reload', () => {
 
   it('clears the run without clearing the burned pile', () => {
     const store = memoryStore();
-    saveRun(store, newRun(view, { detectiveName: 'Humphrey' }));
+    saveRun(store, newRun(view, { detectiveName: 'Dashiell' }));
     addBurned(store, ['SIM-001'], ALL_CARDS.length);
     clearRun(store);
     expect(loadRun(store)).toBeNull();

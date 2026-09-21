@@ -146,7 +146,7 @@ interface DeductionPath { timeOfDeath: Id[]; exculpations: Record<Id, Id[]>; inc
 interface Case { seed: number; attempts: number; detectiveName: string; hotelName: string; locations: Location[]; objects: GameObject[]; people: Person[]; environment: Environment; schedules: Schedule[]; observations: Observation[]; clues: Clue[]; solution: Solution; deduction: DeductionPath; }
 ```
 
-`detectiveName` defaults to `"Humphrey"`. `generateCase(seed: number, opts?: { detectiveName?: string }): Case` is the single public entry point.
+`detectiveName` defaults to `"Dashiell"`. `generateCase(seed: number, opts?: { detectiveName?: string }): Case` is the single public entry point.
 
 `text` on a Clue is plain, flat, factual English for now ("The doorman says he saw Mrs. Kessler come in off the street at about half past nine, coat soaked."). No voice. That's M2's job.
 

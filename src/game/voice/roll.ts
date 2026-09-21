@@ -3,7 +3,7 @@
  * already knows him.
  *
  * Rolled once, after the case is generated, off the run seed: the same seed is
- * the same night, every time. `rollHumphrey` takes its seed as an argument
+ * the same night, every time. `rollDashiell` takes its seed as an argument
  * rather than reading it off the case, so that a later milestone can seed it
  * from persistent state — a detective who is carrying last week with him —
  * without any of this changing.
@@ -50,7 +50,7 @@ export interface Acquaintance {
   warmth: -1 | 0 | 1;
 }
 
-export interface HumphreyRoll {
+export interface DashiellRoll {
   circumstance: Circumstance;
   relationship: RelationshipState;
   knows: Record<Id, Acquaintance>;
@@ -135,7 +135,7 @@ export function oddsFor(person: Person): number {
 
 const SALT = 0x5f3a91;
 
-export function rollHumphrey(kase: Case, opts?: { seed?: number }): HumphreyRoll {
+export function rollDashiell(kase: Case, opts?: { seed?: number }): DashiellRoll {
   const rng = new Rng(((opts?.seed ?? kase.seed) * 2654435761 + SALT) >>> 0);
   const circumstance = rng.pick(CIRCUMSTANCES);
   const relationship = rng.pick(RELATIONSHIP_STATES);
@@ -166,12 +166,12 @@ export function rollHumphrey(kase: Case, opts?: { seed?: number }): HumphreyRoll
 }
 
 /** Does this person know him well enough to be biased about? */
-export function isWarm(roll: HumphreyRoll, personId: Id): boolean {
+export function isWarm(roll: DashiellRoll, personId: Id): boolean {
   const acq = roll.knows[personId];
   return acq !== undefined && (acq.how === 'old-flame' || acq.warmth === 1);
 }
 
-export function knowsHim(roll: HumphreyRoll, personId: Id): boolean {
+export function knowsHim(roll: DashiellRoll, personId: Id): boolean {
   return roll.knows[personId] !== undefined;
 }
 

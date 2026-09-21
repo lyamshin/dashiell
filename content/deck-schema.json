@@ -140,9 +140,9 @@
       },
       "coverage": [["role", "temper"]]
     },
-    "humphrey-lines": {
-      "file": "humphrey.json",
-      "deckValues": ["humphrey-lines", "humphrey"],
+    "dashiell-lines": {
+      "file": "dashiell.json",
+      "deckValues": ["dashiell-lines", "dashiell"],
       "idPrefix": "HUM",
       "placeholderPrefix": "hum-p",
       "burn": "free",
@@ -174,7 +174,7 @@
       "burn": "within-run",
       "target": 110,
       "minPerCoverageCell": 4,
-      "slots": ["detective", "name", "place", "object", "time", "fact", "business", "colour", "humphrey"],
+      "slots": ["detective", "name", "place", "object", "time", "fact", "business", "colour", "dashiell"],
       "requiredSlots": ["fact"],
       "tags": {
         "register": { "required": true, "vocab": "register" },
@@ -340,7 +340,7 @@
       "placeholderPrefix": "wit-p",
       "burn": "within-run",
       "target": 50,
-      "legacy": "M3's one-card-per-answer deck. The M4 exchange is built from frames × humphrey-lines × utterances instead, so nothing deals this any more. Kept so the file still validates and so a writer can mine it.",
+      "legacy": "M3's one-card-per-answer deck. The M4 exchange is built from frames × dashiell-lines × utterances instead, so nothing deals this any more. Kept so the file still validates and so a writer can mine it.",
       "slots": ["detective", "name", "place", "object", "time"],
       "tags": {
         "fixtureRole": { "required": true, "vocab": "fixtureRole", "extraValues": ["secretary", "neighbor", "business-partner", "relative"] },

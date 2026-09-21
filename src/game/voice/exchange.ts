@@ -1,8 +1,8 @@
 /**
- * The exchange (A.5). Humphrey's line, then a dialogue frame, and inside the
+ * The exchange (A.5). Dashiell's line, then a dialogue frame, and inside the
  * frame the fact as the person says it.
  *
- *   humphrey-lines × frames × utterances
+ *   dashiell-lines × frames × utterances
  *
  * Register is M3's: a fixture tells the truth; a suspect delivering a clue
  * about a tick they are lying about is evading; a suspect reciting their own
@@ -127,7 +127,7 @@ function utteranceFor(
   return drawn ? { text: drawn.text, cardId: drawn.cardId } : null;
 }
 
-/** Which of Humphrey's lines this question is. */
+/** Which of Dashiell's lines this question is. */
 export type AskKind =
   | 'open'
   | 'ask-person'
@@ -138,7 +138,7 @@ export type AskKind =
   | 'follow-up'
   | 'close';
 
-export function humphreyLine(
+export function dashiellLine(
   dealer: Dealer,
   kind: AskKind,
   familiar: boolean,
@@ -146,10 +146,10 @@ export function humphreyLine(
 ): { text: string; cardId: string } | null {
   const want = familiar ? 'yes' : 'no';
   const drawn = dealer.draw(
-    'humphrey-lines',
+    'dashiell-lines',
     [
-      (c) => tagIs('humphrey-lines', c, 'kind', kind) && tagIs('humphrey-lines', c, 'familiar', want),
-      (c) => tagIs('humphrey-lines', c, 'kind', kind),
+      (c) => tagIs('dashiell-lines', c, 'kind', kind) && tagIs('dashiell-lines', c, 'familiar', want),
+      (c) => tagIs('dashiell-lines', c, 'kind', kind),
     ],
     slots,
     true,
@@ -203,7 +203,7 @@ export function frameAnswer(
   register: Register,
   familiar: boolean,
   slots: Slots,
-  humphrey: string,
+  dashiell: string,
   exclude: ReadonlySet<string> = new Set(),
 ): Answer {
   const cardIds = [...spoken.cardIds];
@@ -234,7 +234,7 @@ export function frameAnswer(
       fact: spoken.text,
       business: business?.text ?? '',
       colour,
-      humphrey,
+      dashiell,
     },
   );
   if (!frame) {
@@ -245,7 +245,7 @@ export function frameAnswer(
   return { text: frame.text.replace(/\s{2,}/g, ' ').trim(), mode: spoken.mode, cardIds };
 }
 
-/** Which of Humphrey's line kinds a topic asks for. */
+/** Which of Dashiell's line kinds a topic asks for. */
 export function askKindOf(topicKind: string): AskKind {
   switch (topicKind) {
     case 'person':

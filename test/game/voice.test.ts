@@ -33,7 +33,7 @@ import {
   oddsFor,
   reactiveMonologue,
   rollCast,
-  rollHumphrey,
+  rollDashiell,
   slotsOf,
   temperOf,
   validateDecks,
@@ -139,25 +139,25 @@ describe('the roll', () => {
   it('is the same night for the same seed, and a different one for another', () => {
     for (const seed of [1, 7, 40, 99]) {
       const kase = generateCase(seed, { difficulty: 2 });
-      expect(rollHumphrey(kase)).toEqual(rollHumphrey(kase));
+      expect(rollDashiell(kase)).toEqual(rollDashiell(kase));
       expect(rollCast(kase)).toEqual(rollCast(kase));
     }
-    const a = rollHumphrey(generateCase(7, { difficulty: 2 }));
-    const b = rollHumphrey(generateCase(8, { difficulty: 2 }));
+    const a = rollDashiell(generateCase(7, { difficulty: 2 }));
+    const b = rollDashiell(generateCase(8, { difficulty: 2 }));
     expect(JSON.stringify(a)).not.toBe(JSON.stringify(b));
   });
 
   it('can be seeded from somewhere other than the case, for a later milestone', () => {
     const kase = generateCase(7, { difficulty: 2 });
-    expect(rollHumphrey(kase, { seed: 4242 })).toEqual(rollHumphrey(kase, { seed: 4242 }));
-    expect(rollHumphrey(kase, { seed: 4242 })).not.toEqual(rollHumphrey(kase));
+    expect(rollDashiell(kase, { seed: 4242 })).toEqual(rollDashiell(kase, { seed: 4242 }));
+    expect(rollDashiell(kase, { seed: 4242 })).not.toEqual(rollDashiell(kase));
   });
 
   it('knows a bartender far more often than an heiress, over 400 cases', () => {
     const met = new Map<string, { seen: number; known: number }>();
     for (let seed = 1; seed <= 400; seed++) {
       const kase = generateCase(seed, { difficulty: 2 });
-      const roll = rollHumphrey(kase);
+      const roll = rollDashiell(kase);
       for (const person of kase.people) {
         if (person.kind === 'victim') continue;
         const key = person.fixtureRole ?? 'suspect';
@@ -181,7 +181,7 @@ describe('the roll', () => {
   it('never puts an old flame on a fixture, and never more than one a run', () => {
     for (let seed = 1; seed <= 200; seed++) {
       const kase = generateCase(seed, { difficulty: 2 });
-      const roll = rollHumphrey(kase);
+      const roll = rollDashiell(kase);
       const flames = Object.entries(roll.knows).filter(([, a]) => a.how === 'old-flame');
       expect(flames.length).toBeLessThanOrEqual(1);
       for (const [id] of flames) {
@@ -555,7 +555,7 @@ describe('the utterance deck', () => {
 
 describe('the reactive monologue', () => {
   const kase = generateCase(7, { difficulty: 2 });
-  const roll = rollHumphrey(kase);
+  const roll = rollDashiell(kase);
   const suspect = kase.people.find((p) => p.kind === 'suspect') as Person;
 
   const boardWith = (n: number) => {

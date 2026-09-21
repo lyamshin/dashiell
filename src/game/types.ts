@@ -175,7 +175,7 @@ export interface RunState {
   /* --------------------------------------------------- M4: the voice */
 
   /**
-   * Humphrey's roll, the tempers and the portraits. Fixed at case start and
+   * Dashiell's roll, the tempers and the portraits. Fixed at case start and
    * carried in the save so that the same man has the same split thumbnail
    * after a reload.
    */
@@ -198,8 +198,8 @@ export interface RunState {
   theory: Id | null;
 }
 
-export const SAVE_KEY = 'humphrey:run';
-export const BURNED_KEY = 'humphrey:burned';
+export const SAVE_KEY = 'dashiell:run';
+export const BURNED_KEY = 'dashiell:burned';
 
 /** The eight hours between the body and the DA, in minutes. */
 export const NIGHT_MINUTES = 480;

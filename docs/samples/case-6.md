@@ -1,6 +1,6 @@
 # the Gas House District — case 6
 
-**Seed** 6 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+**Seed** 6 · **Difficulty** 2 · **Attempts** 1 · **Detective** Dashiell
 
 **Par** 12 actions · **Slack** 6 · **Budget** 18 · **Findable** 34 (spine 12, corroboration 8, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 173
 

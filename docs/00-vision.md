@@ -1,4 +1,6 @@
-# Humphrey — Vision
+# Dashiell — Vision
+
+*Formerly Humphrey; renamed 2026-09-21 as homage to Hammett.*
 
 A noir murder mystery roguelike presented as a bound book. Early 20th century New York. Text input with clickable nouns. One case per run, 30–45 minutes, replayable indefinitely.
 
@@ -16,7 +18,7 @@ A noir murder mystery roguelike presented as a bound book. Early 20th century Ne
 
 ## The detective
 
-Named by the player at the start of a run. Defaults to **Humphrey**, which is also the name of the game. First-person narration. Other characters address him by name.
+Named by the player at the start of a run. Defaults to **Dashiell**, which is also the name of the game. First-person narration. Other characters address him by name.
 
 ## Milestones
 

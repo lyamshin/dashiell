@@ -9,7 +9,7 @@
  *
  * Two things in here are the milestone's whole thesis:
  *
- * - **The leading theory.** Humphrey names the suspect with the most against
+ * - **The leading theory.** Dashiell names the suspect with the most against
  *   them, in the flat voice of a man who has decided. It is recomputed every
  *   page, it is very often wrong, and when it changes he says so.
  * - **Bias.** For an old flame or a warm acquaintance the mild contradiction
@@ -22,7 +22,7 @@ import { clock } from '../../gen/types.js';
 import { Rng } from '../../gen/rng.js';
 import type { CaseView, Established } from '../derive.js';
 import { personName, placeName } from '../derive.js';
-import { isWarm, type HumphreyRoll } from './roll.js';
+import { isWarm, type DashiellRoll } from './roll.js';
 
 export interface Board {
   established: Established;
@@ -138,7 +138,7 @@ export const CONTRADICTION_TEMPLATES = {
 
 export interface ReactiveInput {
   view: CaseView;
-  roll: HumphreyRoll;
+  roll: DashiellRoll;
   before: Established;
   after: Established;
   /** Whose claim the page's new facts speak to. */

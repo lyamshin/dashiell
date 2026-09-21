@@ -1,6 +1,6 @@
 # Chelsea — case 13
 
-**Seed** 13 · **Difficulty** 2 · **Attempts** 5 · **Detective** Humphrey
+**Seed** 13 · **Difficulty** 2 · **Attempts** 5 · **Detective** Dashiell
 
 **Par** 11 actions · **Slack** 6 · **Budget** 17 · **Findable** 34 (spine 12, corroboration 8, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 147
 

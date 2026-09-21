@@ -1,5 +1,5 @@
 /**
- * Humphrey — Milestone 2b data model.
+ * Dashiell — Milestone 2b data model.
  *
  * Everything here is JSON-serializable. No classes, no functions, no undefined
  * that matters: a `Case` round-trips through `JSON.stringify` unchanged.
@@ -100,7 +100,7 @@ export interface Person {
   isKiller: boolean;
   /** Where the detective finds this person the next day. Not set for the victim. */
   foundAt?: Id;
-  /** The one who hired Humphrey. Might be the killer. */
+  /** The one who hired Dashiell. Might be the killer. */
   isClient?: boolean;
 }
 

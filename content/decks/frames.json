@@ -674,7 +674,7 @@
   {
     "id": "fra-050",
     "deck": "frames",
-    "text": "{business} \"Plenty of people could tell you that better than me.\" {humphrey} \"{fact}.\"",
+    "text": "{business} \"Plenty of people could tell you that better than me.\" {dashiell} \"{fact}.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -685,7 +685,7 @@
   {
     "id": "fra-051",
     "deck": "frames",
-    "text": "{business} \"I try not to keep track of things like that.\" {humphrey} \"{fact}. That's as much as I'll say.\"",
+    "text": "{business} \"I try not to keep track of things like that.\" {dashiell} \"{fact}. That's as much as I'll say.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -696,7 +696,7 @@
   {
     "id": "fra-052",
     "deck": "frames",
-    "text": "{business} \"Some things are better left to the people involved.\" {humphrey} \"{fact}.\"",
+    "text": "{business} \"Some things are better left to the people involved.\" {dashiell} \"{fact}.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -707,7 +707,7 @@
   {
     "id": "fra-053",
     "deck": "frames",
-    "text": "{business} \"You're fishing in the wrong pond with that one.\" {humphrey} \"{fact}, if it matters.\"",
+    "text": "{business} \"You're fishing in the wrong pond with that one.\" {dashiell} \"{fact}, if it matters.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -718,7 +718,7 @@
   {
     "id": "fra-054",
     "deck": "frames",
-    "text": "{business} \"I couldn't say, and wouldn't if I could.\" {humphrey} \"{fact}. Make of it what you like.\"",
+    "text": "{business} \"I couldn't say, and wouldn't if I could.\" {dashiell} \"{fact}. Make of it what you like.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -729,7 +729,7 @@
   {
     "id": "fra-055",
     "deck": "frames",
-    "text": "{business} \"That's a question for somebody with less sense than me.\" {humphrey} \"{fact}.\"",
+    "text": "{business} \"That's a question for somebody with less sense than me.\" {dashiell} \"{fact}.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -740,7 +740,7 @@
   {
     "id": "fra-056",
     "deck": "frames",
-    "text": "{business} \"I don't make a habit of watching that closely.\" {humphrey} \"{fact}, {detective}. Satisfied?\"",
+    "text": "{business} \"I don't make a habit of watching that closely.\" {dashiell} \"{fact}, {detective}. Satisfied?\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -751,7 +751,7 @@
   {
     "id": "fra-057",
     "deck": "frames",
-    "text": "{business} \"There's things I notice and things I let go by.\" {humphrey} \"{fact}. You know I wouldn't lie to you outright.\"",
+    "text": "{business} \"There's things I notice and things I let go by.\" {dashiell} \"{fact}. You know I wouldn't lie to you outright.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -762,7 +762,7 @@
   {
     "id": "fra-058",
     "deck": "frames",
-    "text": "{business} \"That's not the kind of thing I keep straight.\" {humphrey} \"{fact}. There, now you've got it.\"",
+    "text": "{business} \"That's not the kind of thing I keep straight.\" {dashiell} \"{fact}. There, now you've got it.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -773,7 +773,7 @@
   {
     "id": "fra-059",
     "deck": "frames",
-    "text": "{business} \"That's a family matter, and none of mine to spread.\" {humphrey} \"{fact}, {detective}.\"",
+    "text": "{business} \"That's a family matter, and none of mine to spread.\" {dashiell} \"{fact}, {detective}.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -784,7 +784,7 @@
   {
     "id": "fra-060",
     "deck": "frames",
-    "text": "{business} \"You'd be surprised what a person learns not to notice.\" {humphrey} \"{fact}. Happy now?\"",
+    "text": "{business} \"You'd be surprised what a person learns not to notice.\" {dashiell} \"{fact}. Happy now?\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -795,7 +795,7 @@
   {
     "id": "fra-061",
     "deck": "frames",
-    "text": "{business} \"I keep my eyes on my own work, mostly.\" {humphrey} \"{fact}. For old times' sake.\"",
+    "text": "{business} \"I keep my eyes on my own work, mostly.\" {dashiell} \"{fact}. For old times' sake.\"",
     "tags": {
       "register": "evasion",
       "temper": "plain",
@@ -806,7 +806,7 @@
   {
     "id": "fra-062",
     "deck": "frames",
-    "text": "{colour} {business} \"That's not something I'd swear to either way.\" {humphrey} \"{fact}.\" {business}",
+    "text": "{colour} {business} \"That's not something I'd swear to either way.\" {dashiell} \"{fact}.\" {business}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -817,7 +817,7 @@
   {
     "id": "fra-063",
     "deck": "frames",
-    "text": "{business} \"There's a version of that answer and a true one, and I'm not sure which you want.\" {humphrey} \"{fact}.\" {colour}",
+    "text": "{business} \"There's a version of that answer and a true one, and I'm not sure which you want.\" {dashiell} \"{fact}.\" {colour}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -828,7 +828,7 @@
   {
     "id": "fra-064",
     "deck": "frames",
-    "text": "{business} \"I don't like guessing at other people's business.\" {humphrey} \"{fact}, and here's how I know it.\" {business}",
+    "text": "{business} \"I don't like guessing at other people's business.\" {dashiell} \"{fact}, and here's how I know it.\" {business}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -839,7 +839,7 @@
   {
     "id": "fra-065",
     "deck": "frames",
-    "text": "{colour} {business} \"You'd have better luck asking twice.\" {humphrey} \"{fact}.\" {business}",
+    "text": "{colour} {business} \"You'd have better luck asking twice.\" {dashiell} \"{fact}.\" {business}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -850,7 +850,7 @@
   {
     "id": "fra-066",
     "deck": "frames",
-    "text": "{business} \"That kind of thing gets a person talked about, is all.\" {humphrey} \"{fact}.\" {colour} {business}",
+    "text": "{business} \"That kind of thing gets a person talked about, is all.\" {dashiell} \"{fact}.\" {colour} {business}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -861,7 +861,7 @@
   {
     "id": "fra-067",
     "deck": "frames",
-    "text": "{business} \"I've learned to let some questions answer themselves.\" {humphrey} \"{fact}, if you're keeping score.\" {colour}",
+    "text": "{business} \"I've learned to let some questions answer themselves.\" {dashiell} \"{fact}, if you're keeping score.\" {colour}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -872,7 +872,7 @@
   {
     "id": "fra-068",
     "deck": "frames",
-    "text": "{colour} {business} \"Ask me tomorrow. Might remember it different.\" {humphrey} \"{fact}, {detective}.\" {business}",
+    "text": "{colour} {business} \"Ask me tomorrow. Might remember it different.\" {dashiell} \"{fact}, {detective}.\" {business}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -883,7 +883,7 @@
   {
     "id": "fra-069",
     "deck": "frames",
-    "text": "{business} \"That's not a story that's mine to tell first.\" {humphrey} \"{fact}. There, satisfied?\" {colour}",
+    "text": "{business} \"That's not a story that's mine to tell first.\" {dashiell} \"{fact}. There, satisfied?\" {colour}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -894,7 +894,7 @@
   {
     "id": "fra-070",
     "deck": "frames",
-    "text": "{business} \"There's a lot goes on I don't put my nose in.\" {humphrey} \"{fact}, same as I'd tell anyone else.\" {business}",
+    "text": "{business} \"There's a lot goes on I don't put my nose in.\" {dashiell} \"{fact}, same as I'd tell anyone else.\" {business}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -905,7 +905,7 @@
   {
     "id": "fra-071",
     "deck": "frames",
-    "text": "{colour} {business} \"You always did ask the hard ones first.\" {humphrey} \"{fact}.\" {business}",
+    "text": "{colour} {business} \"You always did ask the hard ones first.\" {dashiell} \"{fact}.\" {business}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -916,7 +916,7 @@
   {
     "id": "fra-072",
     "deck": "frames",
-    "text": "{business} \"Give me a minute, {detective}. It's been a long night.\" {humphrey} \"{fact}.\" {colour}",
+    "text": "{business} \"Give me a minute, {detective}. It's been a long night.\" {dashiell} \"{fact}.\" {colour}",
     "tags": {
       "register": "evasion",
       "temper": "yap",
@@ -927,7 +927,7 @@
   {
     "id": "fra-073",
     "deck": "frames",
-    "text": "{business} \"Forgive me, {detective}. It's been a long night on this end too.\" {humphrey} \"{fact}, and that's the last of it.\" {business}",
+    "text": "{business} \"Forgive me, {detective}. It's been a long night on this end too.\" {dashiell} \"{fact}, and that's the last of it.\" {business}",
     "tags": {
       "register": "evasion",
       "temper": "yap",

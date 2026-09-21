@@ -35,7 +35,7 @@ import {
   askKindOf,
   businessLine,
   frameAnswer,
-  humphreyLine,
+  dashiellLine,
   registerFor,
   speakClue,
   type AskKind,
@@ -308,8 +308,8 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       }
     }
 
-    /* Humphrey's line */
-    const opener = humphreyLine(dealer, scene.askKind, familiar, slots);
+    /* Dashiell's line */
+    const opener = dashiellLine(dealer, scene.askKind, familiar, slots);
     if (opener) say(opener.text, 'exchange');
     else say(`“${scene.topicLabel},” I said.`, 'exchange');
 
@@ -331,7 +331,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     }
     for (const [i, clue] of scene.clues.entries()) {
       if (i > 0) {
-        const follow = humphreyLine(dealer, 'follow-up', familiar, slots);
+        const follow = dashiellLine(dealer, 'follow-up', familiar, slots);
         if (follow) say(follow.text, 'exchange');
       }
       const register = registerFor(view, scene.personId, clue);
@@ -376,7 +376,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', scene.volunteer.id);
     }
 
-    const closer = humphreyLine(dealer, 'close', familiar, slots);
+    const closer = dashiellLine(dealer, 'close', familiar, slots);
     if (closer) say(closer.text, 'exchange');
   }
 
@@ -658,7 +658,7 @@ function answerAccount(
   register: Register,
   familiar: boolean,
   slots: Slots,
-  humphrey: string,
+  dashiell: string,
   exclude: ReadonlySet<string>,
 ): void {
   const account = scene.account;
@@ -680,7 +680,7 @@ function answerAccount(
     register,
     familiar,
     slots,
-    humphrey,
+    dashiell,
     exclude,
   );
   blocks.push({ kind: 'prose', text: answer.text, voice: 'exchange' });

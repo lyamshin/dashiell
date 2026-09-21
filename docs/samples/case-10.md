@@ -1,6 +1,6 @@
 # Yorkville — case 10
 
-**Seed** 10 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+**Seed** 10 · **Difficulty** 2 · **Attempts** 1 · **Detective** Dashiell
 
 **Par** 10 actions · **Slack** 6 · **Budget** 16 · **Findable** 34 (spine 11, corroboration 9, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 177
 

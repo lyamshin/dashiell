@@ -12,7 +12,7 @@
  *   runs; the browser remembers the ids until the deck is exhausted.
  * - `within-run` — frames, places, ambient, arrivals, find. Never repeated
  *   inside one run.
- * - `free` — transitions, business, Humphrey's lines, utterances. These are
+ * - `free` — transitions, business, Dashiell's lines, utterances. These are
  *   the furniture of a page and are allowed to come round again.
  */
 
@@ -23,7 +23,7 @@ import placesJson from '../../../content/decks/places.json';
 import witnessJson from '../../../content/decks/witness.json';
 import portraitsJson from '../../../content/decks/portraits.json';
 import businessJson from '../../../content/decks/business.json';
-import humphreyJson from '../../../content/decks/humphrey.json';
+import dashiellJson from '../../../content/decks/dashiell.json';
 import framesJson from '../../../content/decks/frames.json';
 import utterancesJson from '../../../content/decks/utterances.json';
 import findJson from '../../../content/decks/find.json';
@@ -37,7 +37,7 @@ export type DeckName =
   | 'similes'
   | 'portraits'
   | 'business'
-  | 'humphrey-lines'
+  | 'dashiell-lines'
   | 'frames'
   | 'utterances'
   | 'find'
@@ -102,7 +102,7 @@ const RAW: Record<DeckName, unknown> = {
   witness: witnessJson,
   portraits: portraitsJson,
   business: businessJson,
-  'humphrey-lines': humphreyJson,
+  'dashiell-lines': dashiellJson,
   frames: framesJson,
   utterances: utterancesJson,
   find: findJson,

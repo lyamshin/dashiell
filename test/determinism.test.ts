@@ -46,7 +46,7 @@ describe('determinism', () => {
     const plain = generateCase(5);
     const named = generateCase(5, { detectiveName: 'Marlowe' });
     expect(named.detectiveName).toBe('Marlowe');
-    expect(JSON.stringify({ ...named, detectiveName: 'Humphrey' })).toBe(JSON.stringify(plain));
+    expect(JSON.stringify({ ...named, detectiveName: 'Dashiell' })).toBe(JSON.stringify(plain));
   });
 });
 

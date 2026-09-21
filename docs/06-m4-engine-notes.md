@@ -18,7 +18,7 @@ src/game/voice/
   roll.ts       A.2 — the detective's night, and who already knows him
   cast.ts       A.3, A.4 — temper and portraits, rolled once
   facts.ts      a clue read as something a person could say
-  exchange.ts   A.5 — Humphrey's line × a dialogue frame × the fact as speech
+  exchange.ts   A.5 — Dashiell's line × a dialogue frame × the fact as speech
   reactive.ts   A.6 — the derived monologue, the leading theory, the bias
   page.ts       A.5, A.7 — the slots, and which of them fire
   index.ts      the public surface, plus the yap volunteer
@@ -118,7 +118,7 @@ Everything else falls back, in three named ways, all of them logged to
    9:00 PM to 9:30 PM" in it — which is exactly what the clue's own text says.
    Without this the exchange reads like a roll call.
 
-5. **`weather` is part of the roll.** A.2's `HumphreyRoll` does not have it and
+5. **`weather` is part of the roll.** A.2's `DashiellRoll` does not have it and
    the arrivals deck is tagged by it, so it goes in the roll where it is
    deterministic per seed. It agrees with the generator when the case drew the
    rain anchor and is otherwise scenery. It never touches the mystery.
@@ -198,7 +198,7 @@ team.
 
 5. **`ask-place`, `ask-object` and `ask-hired` almost never fire.** The topic
    catalogue resolves most questions to a person, so `ask-person` does nearly
-   all the work and the other seven kinds of Humphrey's line are rare. 80 cards
+   all the work and the other seven kinds of Dashiell's line are rare. 80 cards
    split evenly across eight kinds would put 70 of them on pages nobody sees.
    **Weight the deck toward `ask-person`, `follow-up` and `close`.**
 
@@ -225,7 +225,7 @@ deck            file               cards  target  burn         status
 similes         similes.json       106    300     run-to-run   100 generated, 6 placeholder
 portraits       portraits.json     9      150     run-to-run   9 placeholder
 business        business.json      10     120     free         10 placeholder
-humphrey-lines  humphrey.json      11     80      free         11 placeholder
+dashiell-lines  dashiell.json      11     80      free         11 placeholder
 frames          frames.json        12     110     within-run   12 placeholder
 utterances      utterances.json    18     160     free         18 placeholder
 find            find.json          8      50      within-run   8 placeholder
@@ -243,12 +243,12 @@ branches' work; the placeholder ids sit in a reserved `<prefix>-pNNN` range
 and will not collide with their zero-padded ones.
 
 `witness.json` is M3's deck and nothing deals it any more — the exchange is
-built from frames × humphrey-lines × utterances instead. It is kept because it
+built from frames × dashiell-lines × utterances instead. It is kept because it
 still validates and a writer can mine it.
 
 ## Out of scope, and still out of it
 
-Reputation, persistence past the burn pile, Humphrey's evolution across runs.
+Reputation, persistence past the burn pile, Dashiell's evolution across runs.
 The roll takes its seed as an argument rather than reading it off the case, so
 the day a detective carries last week with him, nothing in `roll.ts` has to
 change.

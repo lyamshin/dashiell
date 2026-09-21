@@ -12,7 +12,7 @@ import type { Case, Id, Person } from '../../gen/types.js';
 import { ARCHETYPE_BY_ID, VICTIM_ARCHETYPES } from '../../gen/data/cast.js';
 import weightsJson from '../../../content/temper-weights.json';
 import { DECKS, tagIs, type Card } from './cards.js';
-import { rollHumphrey, type HumphreyRoll } from './roll.js';
+import { rollDashiell, type DashiellRoll } from './roll.js';
 
 export type Temper = 'enigma' | 'plain' | 'yap';
 
@@ -65,7 +65,7 @@ export interface Portrait {
 }
 
 export interface CastSheet {
-  roll: HumphreyRoll;
+  roll: DashiellRoll;
   temper: Record<Id, Temper>;
   portraits: Record<Id, Portrait>;
   /** Which component of each portrait was shown last, so a repeat varies. */
@@ -140,7 +140,7 @@ export function rollCast(
     order[person.id] = 0;
   }
 
-  return { roll: rollHumphrey(kase, opts?.seed === undefined ? {} : { seed: opts.seed }), temper, portraits, order };
+  return { roll: rollDashiell(kase, opts?.seed === undefined ? {} : { seed: opts.seed }), temper, portraits, order };
 }
 
 export function temperOf(cast: CastSheet, personId: Id): Temper {

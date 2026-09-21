@@ -1,6 +1,6 @@
 # Hell’s Kitchen — case 17
 
-**Seed** 17 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+**Seed** 17 · **Difficulty** 2 · **Attempts** 1 · **Detective** Dashiell
 
 **Par** 11 actions · **Slack** 6 · **Budget** 17 · **Findable** 34 (spine 12, corroboration 8, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 173
 

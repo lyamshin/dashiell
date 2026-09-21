@@ -1,9 +1,9 @@
 {
-  "name": "humphrey",
+  "name": "dashiell",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Humphrey \u2014 noir murder mystery roguelike. Milestone 3: the book.",
+  "description": "Dashiell \u2014 noir murder mystery roguelike. Milestone 3: the book.",
   "engines": {
     "node": ">=20"
   },

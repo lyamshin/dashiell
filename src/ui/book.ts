@@ -36,7 +36,7 @@ type Screen =
   | { kind: 'truth' };
 
 const DEFAULT_NAME = 'Dashiell';
-const NAME_KEY = 'humphrey:detective';
+const NAME_KEY = 'dashiell:detective';
 
 function safeStore(): KeyValueStore {
   try {

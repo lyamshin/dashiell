@@ -6,7 +6,7 @@ left thin, and where the B.1/B.2 schema pushed back against the writing.
 ## Hardest tag combinations
 
 **Ambient's `caseState` axis is the thinnest lever in any deck.** The
-brief is Humphrey "thinking about nothing useful," and `hourBand` and
+brief is Dashiell "thinking about nothing useful," and `hourBand` and
 `circumstance` both give real, concrete material (the hour has a
 physical feel; a circumstance is a fact about his life). `caseState`
 (cold/warm/hot/tight) is a fact about the *investigation*, and the spec
@@ -102,16 +102,16 @@ itself pulls against the guide's own numbers, and a future writer
 should know that going in rather than rediscover it.
 
 **Endings' omniscient close is a real point-of-view shift from every
-other deck.** Everywhere else, Humphrey's monologue is limited — he
+other deck.** Everywhere else, Dashiell's monologue is limited — he
 can be wrong, and the game's whole design rests on that (Vision
 principle 5). The wrong-man ending's `{missed}`/`{killer}` slots
 require the closing paragraph to state the actual truth plainly, which
 only makes sense if endings are read as the case file's postscript
-rather than something Humphrey himself narrates in the moment. I
+rather than something Dashiell himself narrates in the moment. I
 wrote them that way (report-register, past tense, slightly outside
 his own head), but this is worth confirming against how the engine
 actually frames the closing page — if it's meant to still read as
-Humphrey's own voice, the wrong-man cards need another pass.
+Dashiell's own voice, the wrong-man cards need another pass.
 
 ## Validation
 
