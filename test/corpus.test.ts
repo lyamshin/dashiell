@@ -37,6 +37,18 @@ describe('hard constraints over seeds 1..200', () => {
     }
   });
 
+  it('clears the scene after the murder, the killer included', () => {
+    for (const c of corpus) {
+      const { murderTick: M, murderLocationId: L } = c.solution;
+      for (const s of c.schedules) {
+        for (let t = M + 1; t < TICKS; t++) {
+          expect(s.truth[t], `${s.personId} is still in the murder room at tick ${t}`).not.toBe(L);
+          expect(s.claimed[t]).not.toBe(L);
+        }
+      }
+    }
+  });
+
   it('never puts the murder in the first or last tick', () => {
     for (const c of corpus) {
       expect(c.solution.murderTick).toBeGreaterThanOrEqual(1);

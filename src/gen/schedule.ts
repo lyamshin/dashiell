@@ -208,7 +208,11 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   for (let t = blockStart; t <= M; t++) murderCells.push(t);
 
   /* --- fixtures ------------------------------------------------------- */
-  const fixtureSchedule = (post: Id, away: Id[]): (Id | null)[] => {
+  const fixtureSchedule = (post: Id, rawAway: Id[]): (Id | null)[] => {
+    // A fixture must never step into the murder room: at the murder tick it
+    // would break "the killer and the victim, alone", and afterwards it would
+    // find the body and end the evening early.
+    const away = rawAway.filter((l) => l !== L);
     const arr: (Id | null)[] = new Array(TICKS).fill(post);
     const excursions = rng.range(1, 2);
     for (let i = 0; i < excursions; i++) {
@@ -218,6 +222,7 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
       // excursion is still a legal move. Two excursions on adjacent ticks
       // would otherwise let a fixture cross the hotel in one step.
       if (arr[t - 1] !== post || arr[t + 1] !== post) continue;
+      if (away.length === 0) break;
       const dest = rng.pick(away);
       if (graph.adjacentOrSame(post, dest)) arr[t] = dest;
     }
@@ -369,6 +374,18 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   secretCellsByPerson[cast.killer.id] = murderCells.slice();
   for (const t of murderCells) (fixedByPerson[cast.killer.id] as Record<number, Id>)[t] = L;
 
+  // The killer leaves the scene on the next tick. Without this they wander off
+  // at their leisure and, because their lies stop at the murder tick, they
+  // cheerfully tell the detective they were standing in the room with the body
+  // half an hour after it became a body.
+  if (M + 1 <= TICKS - 1) {
+    const exits = graph
+      .movesInto(L, M + 1)
+      .filter((loc) => loc !== L && loc !== LOC.suite);
+    if (exits.length === 0) return fail('the killer has no way out of the scene');
+    (fixedByPerson[cast.killer.id] as Record<number, Id>)[M + 1] = rng.pick(exits);
+  }
+
   // Access requirement: the killer had to be where the weapon lived, and be
   // seen there, before the murder.
   const killerFixed = fixedByPerson[cast.killer.id] as Record<number, Id>;
@@ -502,6 +519,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     return (loc, tick) => {
       if (loc === LOC.suite) return false;
       if (loc === L && tick >= blockStart && !isKiller && !isVictim) return false;
+      // Nobody revisits the scene once the murder has happened, the killer
+      // least of all.
+      if (loc === L && tick > M) return false;
       return true;
     };
   };
