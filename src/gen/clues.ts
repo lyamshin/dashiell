@@ -136,9 +136,14 @@ export function deriveClues(ctx: ClueContext): Clue[] {
 
   const personById = (id: Id): Person => cast.people.find((p) => p.id === id) as Person;
 
-  /* 1. Observations people are willing to repeat. ---------------------- */
+  /* 1. Observations people are willing to repeat. ----------------------
+   * The victim observed plenty and can tell the detective none of it, so the
+   * victim is never a clue source. Their observations still exist in the
+   * observation record: they are facts about the evening, just unobtainable.
+   */
   const reportable = cast.people.filter((p) => p.kind !== 'fixture');
-  for (const observer of cast.people) {
+  const witnesses = cast.people.filter((p) => p.kind !== 'victim');
+  for (const observer of witnesses) {
     for (const subject of reportable) {
       if (subject.id === observer.id) continue;
       const mine = observations.filter(
@@ -173,7 +178,7 @@ export function deriveClues(ctx: ClueContext): Clue[] {
             'observation',
             { type: 'person', personId: observer.id, topic: subject.name },
             facts,
-            `${observer.name} says ${subject.name} was in the ${graph.name(location)} ${span(run)}.`,
+            `${observer.name} says ${subject.name} was ${graph.where(location)} ${span(run)}.`,
           );
         }
       }
@@ -212,7 +217,7 @@ export function deriveClues(ctx: ClueContext): Clue[] {
             'observation',
             { type: 'person', personId: denier.id, topic: `${liar.name}'s account` },
             facts,
-            `${denier.name} was in the ${graph.name(dLoc)} ${span(run)} and says ${liar.name} was not in the ${graph.name(claimLoc)}.`,
+            `${denier.name} was ${graph.where(dLoc)} ${span(run)} and says ${liar.name} was not ${graph.where(claimLoc)}.`,
           );
         }
       }
@@ -238,7 +243,7 @@ export function deriveClues(ctx: ClueContext): Clue[] {
               'observation',
               { type: 'person', personId: named, topic: `${liar.name}'s account` },
               facts,
-              `${liar.name} says ${companion.name} was there. ${companion.name} says otherwise: ${companion.name} was in the ${graph.name(cLoc)} ${span(run)}, not the ${graph.name(claimLoc)}.`,
+              `${liar.name} says ${companion.name} was there. ${companion.name} says otherwise: ${companion.name} was ${graph.where(cLoc)} ${span(run)}, not ${graph.where(claimLoc)}.`,
             );
           }
         }
@@ -251,7 +256,7 @@ export function deriveClues(ctx: ClueContext): Clue[] {
     'morgue',
     { type: 'location', locationId: L },
     [{ kind: 'timeOfDeath', ticks: [morgueRange[0], morgueRange[1]] }],
-    `${cast.victim.name} was found in the ${graph.name(L)}. The coroner puts death between ${clock(morgueRange[0])} and ${clock(morgueRange[1])}. ${method.bodyEvidence}`,
+    `${cast.victim.name} was found ${graph.where(L)}. The coroner puts death between ${clock(morgueRange[0])} and ${clock(morgueRange[1])}. ${method.bodyEvidence}`,
   );
 
   /* 4. The weapon. ------------------------------------------------------- */
@@ -272,7 +277,7 @@ export function deriveClues(ctx: ClueContext): Clue[] {
       'physical',
       { type: 'person', personId: hearer.person.id, topic: 'the noise' },
       [{ kind: 'noiseAt', location: L, tick: M }],
-      `${hearer.person.name} was in the ${graph.name(hearer.location)} at ${clock(M)} and heard ${noiseWord} from the direction of the ${graph.name(L)}.`,
+      `${hearer.person.name} was ${graph.where(hearer.location)} at ${clock(M)} and heard ${noiseWord} from the direction of the ${graph.name(L)}.`,
     );
   }
 
@@ -295,6 +300,7 @@ export function deriveClues(ctx: ClueContext): Clue[] {
         const witness = cast.people.find(
           (q) =>
             q.id !== p.id &&
+            q.kind !== 'victim' &&
             !(build.lies[q.id] as Tick[]).includes(t + 1) &&
             Boolean(line[t + 1]) &&
             Boolean((build.truth[q.id] as (Id | null)[])[t + 1]) &&
