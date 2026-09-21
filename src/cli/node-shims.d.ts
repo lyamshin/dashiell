@@ -19,6 +19,8 @@ declare module 'node:path' {
 
 declare const process: {
   argv: string[];
+  /** Read by the tests, to print the table that went into the notes. */
+  env: Record<string, string | undefined>;
   exitCode: number | undefined;
   exit(code?: number): never;
   stdout: {
