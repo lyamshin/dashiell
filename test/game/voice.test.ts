@@ -1342,3 +1342,35 @@ describe('gendered business', () => {
     expect(dealt).toBeGreaterThan(100);
   });
 });
+
+describe('the endings', () => {
+  it('are in the first person, like every other page', () => {
+    for (const card of DECKS.endings) {
+      if (card.status === 'placeholder') continue;
+      expect(card.text, `${card.id} still narrates from outside`).toMatch(/\b(I|[Mm]y|me)\b/);
+      expect(card.text, `${card.id} names the detective in the third person`).not.toContain(
+        '{detective}',
+      );
+    }
+  });
+
+  it('keep their tags, and still cover every outcome and par delta', () => {
+    const cells = new Set<string>();
+    for (const card of DECKS.endings) {
+      cells.add(`${String(card.tags.outcome)}/${String(card.tags.parDelta)}`);
+    }
+    for (const outcome of ['hanged', 'wrong-man', 'thin-case', 'cold']) {
+      for (const delta of ['under', 'at', 'over']) {
+        expect(cells.has(`${outcome}/${delta}`), `${outcome}/${delta}`).toBe(true);
+      }
+    }
+  });
+
+  it('still say what was missed when the wrong man goes up', () => {
+    const wrong = DECKS.endings.filter(
+      (c) => c.tags.outcome === 'wrong-man' && c.status !== 'placeholder',
+    );
+    expect(wrong.length).toBeGreaterThan(0);
+    for (const card of wrong) expect(card.text, card.id).toContain('{missed}');
+  });
+});
