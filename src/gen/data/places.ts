@@ -11,7 +11,13 @@ import type { FixtureRole, Id, PlaceKind } from '../types.js';
  */
 export interface PlaceTemplate {
   id: Id;
+  /**
+   * How the place is written out in full. It appears once per sheet, in the
+   * Places section; nothing else — no clue, no table, no graph node — uses it.
+   */
   name: string;
+  /** What everything else calls it: "the speakeasy", "Kaplan's", "the roof". */
+  shortName: string;
   kind: PlaceKind;
   /** Posted here and sees everyone. Absent means unwatched. */
   watcher?: FixtureRole;
@@ -31,6 +37,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   /* ---------------------------------------------------- the victim's address */
   {
     id: 'res-apartment',
+    shortName: 'the fourth floor',
     name: 'the victim’s apartment on the fourth floor',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
@@ -41,6 +48,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'res-brownstone',
+    shortName: 'the brownstone',
     name: 'the victim’s rooms in the brownstone',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
@@ -51,6 +59,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'res-walkup',
+    shortName: 'the walk-up',
     name: 'the victim’s walk-up over the drugstore',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
@@ -61,6 +70,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'res-suite',
+    shortName: 'the suite',
     name: 'the victim’s suite at the residential hotel',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
@@ -71,6 +81,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'res-backhouse',
+    shortName: 'the back lot',
     name: 'the victim’s house on the back lot',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab', 'fall'],
@@ -83,6 +94,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   /* ------------------------------------------------- private, not the address */
   {
     id: 'rooftop',
+    shortName: 'the roof',
     name: 'the roof over the Dover',
     kind: 'private',
     murderMethods: ['fall', 'blunt', 'strangle', 'shot'],
@@ -92,6 +104,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'back-alley',
+    shortName: 'the alley',
     name: 'the alley behind the delicatessen',
     kind: 'private',
     murderMethods: ['blunt', 'strangle', 'shot', 'stab'],
@@ -101,6 +114,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'office-over-tailor',
+    shortName: 'the office',
     name: 'the office over the tailor’s shop',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
@@ -110,6 +124,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'pier-shed',
+    shortName: 'Pier 46',
     name: 'Pier 46, under the shed',
     kind: 'private',
     murderMethods: ['blunt', 'strangle', 'shot', 'stab', 'fall'],
@@ -119,6 +134,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'laundry-yard',
+    shortName: 'the drying yard',
     name: 'the drying yard behind the laundry',
     kind: 'private',
     murderMethods: ['blunt', 'strangle', 'stab'],
@@ -128,6 +144,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'walkup-flat',
+    shortName: 'the third floor',
     name: 'the third-floor walk-up on Ninth',
     kind: 'private',
     watcher: 'landlady',
@@ -138,6 +155,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'hallam-vestibule',
+    shortName: 'the Hallam',
     name: 'the vestibule of the Hallam apartments',
     kind: 'private',
     watcher: 'elevator-man',
@@ -148,6 +166,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'rooming-house-room',
+    shortName: 'Mrs. Teague’s',
     name: 'the back room at Mrs. Teague’s',
     kind: 'private',
     watcher: 'landlady',
@@ -160,6 +179,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   /* ------------------------------------------------------- watched, in public */
   {
     id: 'dolans-bar',
+    shortName: 'Dolan’s',
     name: 'Dolan’s Bar',
     kind: 'semi',
     watcher: 'bartender',
@@ -170,6 +190,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'speakeasy',
+    shortName: 'the speakeasy',
     name: 'the speakeasy under the hat shop',
     kind: 'semi',
     watcher: 'bartender',
@@ -180,6 +201,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'hotel-lobby',
+    shortName: 'the Wyckoff',
     name: 'the lobby of the Wyckoff',
     kind: 'semi',
     watcher: 'doorman',
@@ -190,6 +212,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'corner-newsstand',
+    shortName: 'the newsstand',
     name: 'the newsstand on the corner',
     kind: 'public',
     watcher: 'newsstand',
@@ -200,6 +223,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'automat',
+    shortName: 'the Automat',
     name: 'the Automat on the corner',
     kind: 'public',
     watcher: 'counterman',
@@ -210,6 +234,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'movie-house',
+    shortName: 'the Bijou',
     name: 'the Bijou picture house',
     kind: 'public',
     watcher: 'ticket-taker',
@@ -220,6 +245,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'dance-hall',
+    shortName: 'the Arcadia',
     name: 'the Arcadia dance hall',
     kind: 'public',
     watcher: 'ticket-taker',
@@ -230,6 +256,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'drugstore',
+    shortName: 'Kaplan’s',
     name: 'Kaplan’s drugstore with the soda fountain',
     kind: 'public',
     watcher: 'druggist',
@@ -240,6 +267,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'cab-stand',
+    shortName: 'the cab stand',
     name: 'the cab stand outside the Hippodrome',
     kind: 'public',
     watcher: 'cabbie',
@@ -250,6 +278,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'tenement-stairwell',
+    shortName: 'the stairwell',
     name: 'the stairwell of the Mott Street tenement',
     kind: 'semi',
     watcher: 'landlady',
@@ -260,6 +289,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'pool-hall',
+    shortName: 'Mancuso’s',
     name: 'Mancuso’s pool hall',
     kind: 'semi',
     watcher: 'counterman',
@@ -270,6 +300,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'pawnshop',
+    shortName: 'Zelinsky’s',
     name: 'Zelinsky’s pawnshop, the back room',
     kind: 'semi',
     watcher: 'counterman',
@@ -280,6 +311,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'chop-suey',
+    shortName: 'the chop suey place',
     name: 'the chop suey place over the laundry',
     kind: 'semi',
     watcher: 'counterman',
@@ -290,6 +322,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'boarding-parlor',
+    shortName: 'the parlour',
     name: 'the parlour of Mrs. Teague’s boarding house',
     kind: 'semi',
     watcher: 'landlady',
@@ -300,6 +333,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'barber-shop',
+    shortName: 'Ruggiero’s',
     name: 'Ruggiero’s barber shop',
     kind: 'semi',
     watcher: 'counterman',
@@ -310,6 +344,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'hotel-garage',
+    shortName: 'the garage',
     name: 'the garage on Eleventh Avenue',
     kind: 'semi',
     watcher: 'counterman',
@@ -322,6 +357,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   /* ------------------------------------------------------ unwatched and open */
   {
     id: 'el-platform',
+    shortName: 'the El platform',
     name: 'the El platform at Twenty-Third Street',
     kind: 'public',
     murderMethods: [],
@@ -331,6 +367,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'square-benches',
+    shortName: 'the benches',
     name: 'the benches at the north end of the square',
     kind: 'public',
     murderMethods: [],
@@ -340,6 +377,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'ferry-slip',
+    shortName: 'the ferry slip',
     name: 'the ferry slip at the foot of the street',
     kind: 'public',
     murderMethods: [],
@@ -349,6 +387,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'subway-kiosk',
+    shortName: 'the subway kiosk',
     name: 'the subway kiosk at the corner',
     kind: 'public',
     murderMethods: [],
@@ -358,6 +397,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'side-chapel',
+    shortName: 'the side chapel',
     name: 'the side chapel at St. Malachy’s',
     kind: 'semi',
     murderMethods: [],
@@ -367,6 +407,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   },
   {
     id: 'union-hall',
+    shortName: 'the union hall',
     name: 'the local’s hall over the bakery',
     kind: 'semi',
     murderMethods: ['blunt', 'strangle', 'stab'],

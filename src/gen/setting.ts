@@ -31,6 +31,11 @@ export interface Setting {
   high: AnchorDraw;
   /** An optional third anchor, plus the beat cop's pass if he is on tonight. */
   extra: AnchorDraw[];
+  /**
+   * The anchor that times the scene is loud enough to bury the killing, so
+   * nobody heard it. Decided here, once, and obeyed by the whole derivation.
+   */
+  soundMasked: boolean;
 }
 
 const watched = (t: PlaceTemplate): boolean => t.watcher !== undefined;
@@ -233,6 +238,7 @@ export function buildSetting(rng: Rng): Setting | null {
     const place: Place = {
       id: t.id,
       name: t.name,
+      shortName: t.shortName,
       kind: t.kind,
       objects: objects.filter((o) => o.homePlace === t.id).map((o) => o.id),
       isResidence: t.isResidence === true,
@@ -261,5 +267,6 @@ export function buildSetting(rng: Rng): Setting | null {
     low,
     high,
     extra,
+    soundMasked: high.template.masks,
   };
 }

@@ -1,5 +1,5 @@
 import {
-  BUDGETS,
+  SLACK,
   TICKS,
   type Anchor,
   type Case,
@@ -63,7 +63,9 @@ function instantiate(draw: AnchorDraw, ticks: Tick[]): Anchor {
     ticks,
     traces: draw.template.traces.map((t) => ({ ...t })),
     timing: draw.template.timing,
-    sceneTiming: draw.template.sceneTiming,
+    highTiming: draw.template.highTiming,
+    sceneFact: draw.template.sceneFact,
+    masks: draw.template.masks,
   };
   if (draw.placeId !== undefined) anchor.placeId = draw.placeId;
   return anchor;
@@ -137,7 +139,10 @@ function run(
 ): Case {
   const rng = new Rng(seed + difficulty * 7919);
   let attempts = 0;
-  const budget = BUDGETS[difficulty];
+  // The budget is no longer a number per difficulty. It is par plus slack, so
+  // a case that costs fourteen actions to solve is given fourteen plus six to
+  // solve it in, and the dial is how little room that leaves.
+  const slack = SLACK[difficulty];
 
   for (let outer = 0; outer < OUTER_ATTEMPTS; outer++) {
     const setting = buildSetting(rng);
@@ -193,6 +198,7 @@ function run(
         const clone: Person = {
           id: p.id,
           name: p.name,
+          surname: p.surname,
           role: p.role,
           kind: p.kind,
           isKiller: p.isKiller,
@@ -241,6 +247,7 @@ function run(
         lowAnchor,
         highAnchor,
         coronerWindow,
+        soundMasked: setting.soundMasked,
       });
 
       const selection = selectFindable({
@@ -251,7 +258,6 @@ function run(
         difficulty,
         places: placeIds,
         sceneId: build.murderPlaceId,
-        budget,
         ...(diagnostics
           ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
           : {}),
@@ -270,6 +276,7 @@ function run(
         method,
         anchors,
         nearScene: setting.nearScene,
+        soundMasked: setting.soundMasked,
         schedules,
         observations,
         candidates: candidates.clues,
@@ -277,7 +284,8 @@ function run(
         starting: selection.starting,
         clientId: cast.client.id,
         par: selection.par,
-        budget,
+        slack,
+        budget: selection.par + slack,
         coronerWindow,
         solution: {
           killerId: cast.killer.id,

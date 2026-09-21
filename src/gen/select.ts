@@ -1,5 +1,13 @@
 import {
+  BRANCH_COUNT,
+  BRANCH_COUNT_FLOOR,
   BRANCH_DEPTH,
+  FINDABLE_TARGET,
+  FINDABLE_TOLERANCE,
+  NOISE_RATIO,
+  PAR_CEILING,
+  PAR_FLOOR,
+  SPINE_CAP,
   type Case,
   type Clue,
   type Difficulty,
@@ -9,15 +17,23 @@ import {
 } from './types.js';
 import type { Cast } from './cast.js';
 import type { ScheduleBuild } from './schedule.js';
-import type { CandidateSet } from './clues.js';
+import type { CandidateSet, SecretBranchMaterial } from './clues.js';
 import type { Rng } from './rng.js';
 
 /**
- * The heart of M2. Simulation produces a hundred and fifty true things about
- * the evening; a player can absorb twenty-five. So the findable set is
- * *selected*: a spine that carries the proof, corroboration so that no leg of
- * it rests on one voice, and noise that is every bit as true as the spine but
- * about somebody else's secret.
+ * The heart of M2, re-cut for M2b. Simulation produces a couple of hundred
+ * true things about the evening; a player can absorb thirty-odd. So the
+ * findable set is *selected*: a spine that carries the proof, corroboration so
+ * that the parts of it that matter do not rest on one voice, and noise that is
+ * every bit as true as the spine but about somebody else's secret.
+ *
+ * What changed in M2b: with no roll calls, clearing five innocents costs five
+ * clues instead of one, so the spine runs to eleven or thirteen instead of
+ * seven, par runs to twelve or fourteen instead of six, and the budget is
+ * computed from par rather than fixed. The corroboration rule changed to
+ * match: the five legs that name the killer need two routes each, but an
+ * innocent's alibi needs only one in the spine — the second, when there is
+ * one, falls out of the disqualifier at the end of that innocent's branch.
  */
 
 export function sourceKey(clue: Clue): string {
@@ -28,6 +44,8 @@ export function sourceKey(clue: Clue): string {
 export interface Requirement {
   id: string;
   label: string;
+  /** How many independent sources this leg of the proof needs. */
+  routes: number;
   parts: { key: string; clues: Clue[] }[];
 }
 
@@ -51,6 +69,7 @@ export function buildRequirements(input: RequirementInput, pool: Clue[]): Requir
     {
       id: 'tod',
       label: 'the time of death',
+      routes: 2,
       parts: [
         {
           key: 'tod-alive',
@@ -67,6 +86,10 @@ export function buildRequirements(input: RequirementInput, pool: Clue[]): Requir
     reqs.push({
       id: `exc:${p.id}`,
       label: `${p.name} was not at the scene`,
+      // One route in the spine. A second is welcome and usually turns up in
+      // the disqualifier that ends this person's branch — a drinker on a stool
+      // at half past nine is exculpated by the thing he is ashamed of.
+      routes: 1,
       parts: [
         {
           key: `exc:${p.id}`,
@@ -84,6 +107,7 @@ export function buildRequirements(input: RequirementInput, pool: Clue[]): Requir
     {
       id: 'contradict',
       label: `${input.killerName}’s alibi does not stand`,
+      routes: 2,
       parts: [
         {
           key: 'contradict',
@@ -97,16 +121,19 @@ export function buildRequirements(input: RequirementInput, pool: Clue[]): Requir
     {
       id: 'access',
       label: `${input.killerName} could reach the weapon`,
+      routes: 2,
       parts: [{ key: 'access', clues: pick((f) => f.kind === 'hadAccess' && f.personId === killerId) }],
     },
     {
       id: 'method',
       label: 'the method',
+      routes: 2,
       parts: [{ key: 'method', clues: pick((f) => f.kind === 'methodEvidence') }],
     },
     {
       id: 'motive',
       label: 'the motive',
+      routes: 2,
       parts: [
         {
           key: 'motive',
@@ -128,11 +155,6 @@ export interface Selection {
   par: number;
   requirements: Requirement[];
 }
-
-const TARGET = 30;
-/** How much of the thirty the proof itself should take up. */
-const PROOF_FLOOR = 17;
-const SPINE_CAP = 12;
 
 function greedySpine(rng: Rng, reqs: Requirement[], forced: Clue[], pool: Clue[]): Clue[] | null {
   const selected: Clue[] = forced.slice();
@@ -161,7 +183,9 @@ function greedySpine(rng: Rng, reqs: Requirement[], forced: Clue[], pool: Clue[]
       for (const key of uncovered) if (covers.get(key)?.has(c.id)) n++;
       if (n === 0) continue;
       // Two clues that cover the same ground: prefer the one in a room we are
-      // already walking to, because par is counted in footsteps.
+      // already walking to, because par is counted in footsteps. With roll
+      // calls gone `n` is almost always 1, so this tie-break does most of the
+      // work, and par is mostly the shape of the spine's route.
       const score = n * 4 + (placesUsed.has(c.place) ? 1 : 0);
       if (score > bestScore) {
         bestScore = score;
@@ -178,48 +202,21 @@ function greedySpine(rng: Rng, reqs: Requirement[], forced: Clue[], pool: Clue[]
 }
 
 /**
- * Nothing in the proof may rest on one voice. Every requirement gets two
- * independent sources; every part of a requirement gets a second source too
- * where one is going spare.
+ * The minimum corroboration: every requirement up to its own route count. No
+ * padding — the padding happens later, once the size of the noise is known.
  */
-function corroborate(rng: Rng, reqs: Requirement[], spine: Clue[], floor: number): Clue[] | null {
+function corroborate(rng: Rng, reqs: Requirement[], spine: Clue[], universe: Clue[]): Clue[] | null {
   const chosen = new Set(spine.map((c) => c.id));
   const extra: Clue[] = [];
   const placesUsed = new Set(spine.map((c) => c.place));
   const taken = (c: Clue): boolean => chosen.has(c.id) || extra.some((e) => e.id === c.id);
-  // Corroboration is deliberately *not* pulled towards rooms the spine already
-  // visits. Par is measured on the spine alone, so spreading the backup across
-  // the neighbourhood costs nothing on paper and gives the map something to do.
-  const addOne = (options: Clue[], keys: Set<string>): boolean => {
-    const fresh = rng.shuffle(options).filter((c) => !taken(c) && !keys.has(sourceKey(c)));
-    if (fresh.length === 0) return false;
-    const fresher = fresh.filter((c) => !placesUsed.has(c.place));
-    const take = (fresher.length > 0 ? fresher : fresh)[0] as Clue;
-    extra.push(take);
-    placesUsed.add(take.place);
-    return true;
-  };
 
   const sourcesOf = (r: Requirement): Set<string> =>
     new Set(r.parts.flatMap((p) => p.clues).filter(taken).map(sourceKey));
-  // Secret material is reserved for the noise branches. A disqualifier does
-  // establish where an innocent was, so it would happily serve as a second
-  // route here — and then get dealt a second time as the end of its branch.
-  const universe = Array.from(
-    new Map(
-      reqs
-        .flatMap((r) => r.parts.flatMap((p) => p.clues))
-        .filter((c) => c.aboutSecretOf === undefined)
-        .map((c) => [c.id, c]),
-    ).values(),
-  );
 
-  // Greedy over requirements rather than one at a time: one second witness who
-  // can name four people in a room settles four of these at once, which is the
-  // difference between six corroborating clues and twelve.
   let guard = 0;
-  while (guard++ < 40) {
-    const thin = reqs.filter((r) => sourcesOf(r).size < 2);
+  while (guard++ < 60) {
+    const thin = reqs.filter((r) => sourcesOf(r).size < r.routes);
     if (thin.length === 0) break;
     let best: Clue | null = null;
     let bestScore = -1;
@@ -242,36 +239,67 @@ function corroborate(rng: Rng, reqs: Requirement[], spine: Clue[], floor: number
     extra.push(best);
     placesUsed.add(best.place);
   }
-  if (reqs.some((r) => sourcesOf(r).size < 2)) return null;
-
-  // Best-effort depth: a part with one voice behind it gets a second if one is
-  // going spare. The time of death is the one that most wants it, since its
-  // two halves are two different arguments.
-  for (const r of reqs) {
-    for (const part of r.parts) {
-      if (spine.length + extra.length >= floor) break;
-      const mine = part.clues.filter(taken);
-      if (new Set(mine.map(sourceKey)).size >= 2) continue;
-      addOne(part.clues, new Set(mine.map(sourceKey)));
-    }
-  }
-
-  // Roll calls make the spine small — one witness can clear four people — and
-  // a small spine would leave more than half the hand as noise. Pad with third
-  // and fourth routes until the proof takes up enough of the thirty.
-  let pad = 0;
-  while (spine.length + extra.length < floor && pad++ < 20) {
-    if (!addOne(universe, new Set())) break;
-  }
-
+  if (reqs.some((r) => sourcesOf(r).size < r.routes)) return null;
   return extra;
 }
 
-/** Minimum actions to collect the spine, starting at the scene. */
+/**
+ * Bring the proof up to the size the noise plan leaves for it, with third and
+ * fourth routes. Depth goes where it is thinnest first: a leg standing on one
+ * voice gets a second before a leg with two gets a third.
+ */
+function padProof(
+  rng: Rng,
+  reqs: Requirement[],
+  spine: Clue[],
+  extra: Clue[],
+  universe: Clue[],
+  want: number,
+): void {
+  const taken = (c: Clue): boolean =>
+    spine.some((s) => s.id === c.id) || extra.some((e) => e.id === c.id);
+  const sourcesOf = (r: Requirement): Set<string> =>
+    new Set(r.parts.flatMap((p) => p.clues).filter(taken).map(sourceKey));
+
+  let guard = 0;
+  while (spine.length + extra.length < want && guard++ < 60) {
+    let best: Clue | null = null;
+    let bestDepth = Infinity;
+    for (const r of [...reqs].sort((a, b) => sourcesOf(a).size - sourcesOf(b).size)) {
+      const depth = sourcesOf(r).size;
+      if (depth >= bestDepth) continue;
+      const keys = sourcesOf(r);
+      const options = rng
+        .shuffle(r.parts.flatMap((p) => p.clues))
+        .filter((c) => !taken(c) && !keys.has(sourceKey(c)));
+      if (options.length === 0) continue;
+      best = options[0] as Clue;
+      bestDepth = depth;
+    }
+    if (!best) {
+      const any = rng.shuffle(universe).find((c) => !taken(c));
+      if (!any) break;
+      extra.push(any);
+      continue;
+    }
+    extra.push(best);
+  }
+}
+
+/**
+ * Minimum actions to collect the spine, starting at the scene.
+ *
+ * Exact, not a heuristic: a breadth-first search over (where the detective is,
+ * which spine clues he holds), where one action is either fetching a clue in
+ * the room he is standing in or moving to another room. Travel is therefore
+ * counted, and because the search is exhaustive over the optimal play of a
+ * player who already knows which clues are the spine, the number it returns is
+ * a floor on what a real evening costs. It never flatters the case.
+ */
 export function computePar(spine: Clue[], starting: Set<Id>, places: Id[], sceneId: Id): number {
   const need = spine.filter((c) => !starting.has(c.id));
   if (need.length === 0) return 0;
-  if (need.length > 14) return Infinity;
+  if (need.length > 16) return Infinity;
   const index = new Map(need.map((c, i) => [c.id, i]));
 
   // A clue opens up once any clue that leads to it has been taken.
@@ -351,6 +379,64 @@ function wireSpine(rng: Rng, spine: Clue[], starting: Set<Id>): Record<Id, Id[]>
   return snapshot;
 }
 
+/** How the noise divides: how many branches, and how long each one runs. */
+interface NoisePlan {
+  findable: number;
+  sizes: number[];
+}
+
+function distribute(total: number, buckets: number): number[] {
+  const base = Math.floor(total / buckets);
+  const rest = total % buckets;
+  return Array.from({ length: buckets }, (_, i) => base + (i < rest ? 1 : 0));
+}
+
+/**
+ * Pick a hand size and a set of branch lengths that land the noise ratio in
+ * range. Branch count is the difficulty dial — five shallow branches at 1,
+ * three deep ones at 3 — but it bends to whatever the cast can actually
+ * supply, and never below three.
+ */
+function planNoise(
+  difficulty: Difficulty,
+  materialCount: number,
+  proofSize: number,
+): NoisePlan | null {
+  const [minD, capD] = BRANCH_DEPTH[difficulty];
+  const want = BRANCH_COUNT[difficulty];
+  const branchOptions = [want, want + 1, want - 1, want + 2, want - 2].filter(
+    (b) => b >= BRANCH_COUNT_FLOOR && b <= materialCount,
+  );
+  if (branchOptions.length === 0) return null;
+
+  const sizeOptions: number[] = [];
+  for (let d = -FINDABLE_TOLERANCE; d <= FINDABLE_TOLERANCE; d++) sizeOptions.push(d);
+  sizeOptions.sort((a, b) => Math.abs(a) - Math.abs(b) || a - b);
+
+  // Branch count is the outer loop, because it is the dial the player feels:
+  // five shallow branches or three deep ones is a different evening, and the
+  // hand size is only there to keep the noise ratio honest.
+  for (const b of branchOptions) {
+    for (const delta of sizeOptions) {
+      const findable = FINDABLE_TARGET + delta;
+      const lo = Math.ceil(NOISE_RATIO[0] * findable);
+      const hi = Math.floor(NOISE_RATIO[1] * findable);
+      const mid = 0.4 * findable;
+      const noiseOptions: number[] = [];
+      for (let n = lo; n <= hi; n++) noiseOptions.push(n);
+      noiseOptions.sort((a, b2) => Math.abs(a - mid) - Math.abs(b2 - mid) || b2 - a);
+      for (const noise of noiseOptions) {
+        if (findable - noise < proofSize) continue;
+        if (noise < b * (minD + 1) || noise > b * (capD + 1)) continue;
+        const sizes = distribute(noise, b);
+        if (sizes.some((s) => s < minD + 1 || s > capD + 1)) continue;
+        return { findable, sizes };
+      }
+    }
+  }
+  return null;
+}
+
 export interface SelectContext {
   rng: Rng;
   cast: Cast;
@@ -359,13 +445,12 @@ export interface SelectContext {
   difficulty: Difficulty;
   places: Id[];
   sceneId: Id;
-  budget: number;
   /** Optional sink for the reason a selection was abandoned. */
   reject?: (reason: string) => void;
 }
 
 export function selectFindable(ctx: SelectContext): Selection | null {
-  const { rng, cast, build, candidates, difficulty, places, sceneId, budget } = ctx;
+  const { rng, cast, build, candidates, difficulty, places, sceneId } = ctx;
   const bail = (reason: string): null => {
     ctx.reject?.(reason);
     return null;
@@ -379,24 +464,59 @@ export function selectFindable(ctx: SelectContext): Selection | null {
     }
   }
 
+  // Secret material is reserved for the noise branches. A disqualifier does
+  // establish where an innocent was, so it would happily serve as a second
+  // route for an exculpation — and then get dealt a second time as the end of
+  // its own branch.
+  const universe = Array.from(
+    new Map(
+      reqs
+        .flatMap((r) => r.parts.flatMap((p) => p.clues))
+        .filter((c) => c.aboutSecretOf === undefined)
+        .map((c) => [c.id, c]),
+    ).values(),
+  );
+
+  const usable: SecretBranchMaterial[] = candidates.material.filter(
+    (m) => m.disqualifiers.length > 0 && m.hints.length + m.traces.length > 0,
+  );
+  if (usable.length < BRANCH_COUNT_FLOOR) {
+    return bail('fewer than three innocent secrets can carry a branch');
+  }
+
   const forced = [candidates.scene, candidates.morgue, candidates.client];
   const startingIds = new Set(forced.map((c) => c.id));
 
   let best: { spine: Clue[]; corroboration: Clue[]; leads: Record<Id, Id[]>; par: number } | null =
     null;
-  for (let restart = 0; restart < 6; restart++) {
+  let sawSpine = false;
+  let sawPar = false;
+  for (let restart = 0; restart < 8; restart++) {
     const spine = greedySpine(rng, reqs, forced, solutionPool);
     if (!spine) continue;
-    const corroboration = corroborate(rng, reqs, spine, PROOF_FLOOR);
+    sawSpine = true;
+    const corroboration = corroborate(rng, reqs, spine, universe);
     if (!corroboration) continue;
     const leads = wireSpine(rng, spine, startingIds);
     const par = computePar(spine, startingIds, places, sceneId);
-    if (best === null || par < best.par) best = { spine, corroboration, leads, par };
-    if (par <= budget - 9) break;
+    if (!Number.isFinite(par)) continue;
+    sawPar = true;
+    if (par < PAR_FLOOR || par > PAR_CEILING) {
+      if (best === null) best = { spine, corroboration, leads, par };
+      continue;
+    }
+    // In range: take the cheapest, which is the one furthest from the ceiling.
+    if (best === null || best.par < PAR_FLOOR || best.par > PAR_CEILING || par < best.par) {
+      best = { spine, corroboration, leads, par };
+    }
   }
-  if (!best) return bail('no spine covers the proof inside twelve clues');
-  if (!Number.isFinite(best.par)) return bail('the spine cannot be walked from the scene');
-  if (best.par > budget - 6) return bail('par leaves less than six actions of slack');
+  if (!best) {
+    if (!sawSpine) return bail(`no spine covers the proof inside ${SPINE_CAP} clues`);
+    if (!sawPar) return bail('the spine cannot be walked from the scene');
+    return bail('the proof could not be corroborated');
+  }
+  if (best.par < PAR_FLOOR) return bail(`par came out at ${best.par}, under the floor`);
+  if (best.par > PAR_CEILING) return bail(`par came out at ${best.par}, over the ceiling`);
 
   const { spine, corroboration } = best;
   for (const c of pool) {
@@ -415,9 +535,15 @@ export function selectFindable(ctx: SelectContext): Selection | null {
     c.establishes.some((f) => f.kind === 'hadAccess' && f.personId !== killerId);
   if (![...spine, ...corroboration].some(showsOtherAccess)) {
     const option = rng.shuffle(solutionPool).find(showsOtherAccess);
-    if (!option) return null;
+    if (!option) return bail('nobody but the killer can be seen near the weapon');
     corroboration.push(option);
   }
+
+  /* --- how big a hand, and how much of it is noise ---------------------- */
+  const plan = planNoise(difficulty, usable.length, spine.length + corroboration.length);
+  if (!plan) return bail('no hand size puts the noise ratio in range');
+  const noiseWanted = plan.sizes.reduce((a, b) => a + b, 0);
+  padProof(rng, reqs, spine, corroboration, universe, plan.findable - noiseWanted);
 
   for (const c of corroboration) {
     c.role = 'corroboration';
@@ -425,28 +551,21 @@ export function selectFindable(ctx: SelectContext): Selection | null {
     if (!parent.leadsTo.includes(c.id)) parent.leadsTo.push(c.id);
   }
 
-  /* --- noise, in branches ------------------------------------------------ */
+  /* --- noise, one branch per secret activity ----------------------------- */
   const chosen: Clue[] = [...spine, ...corroboration];
-  const room = TARGET - chosen.length;
-  if (room < 4) return bail('the proof leaves no room for noise');
-  const [dMin, dMax] = BRANCH_DEPTH[difficulty];
   const branches: Clue[] = [];
   const hangPoints = [...spine, ...corroboration];
-  const material = rng.shuffle(candidates.material);
+  const material = rng.shuffle(usable);
   let branchNo = 0;
-  let mi = 0;
-  let guard = 0;
-  while (branches.length < room && guard++ < 60) {
-    const m = material[mi % material.length];
-    mi++;
+  for (const [i, size] of plan.sizes.entries()) {
+    const m = material[i];
     if (!m) break;
     const used = new Set([...branches, ...chosen].map((c) => c.id));
     const body = rng.shuffle([...m.hints, ...m.traces]).filter((c) => !used.has(c.id));
     const disq = m.disqualifiers.find((c) => !used.has(c.id));
     if (!disq || body.length === 0) continue;
-    const left = room - branches.length;
-    const depth = Math.max(1, Math.min(rng.range(dMin, dMax), body.length, left - 1));
-    if (depth + 1 > left + 2) break;
+    const depth = Math.min(size - 1, body.length);
+    if (depth < 1) continue;
     branchNo++;
     const branchId = `b${branchNo}`;
     let prev: Clue = rng.pick(hangPoints);
@@ -462,10 +581,17 @@ export function selectFindable(ctx: SelectContext): Selection | null {
     if (!prev.leadsTo.includes(disq.id)) prev.leadsTo.push(disq.id);
     branches.push(disq);
   }
+  if (branchNo < BRANCH_COUNT_FLOOR) return bail('fewer than three branches could be dealt');
 
   const findable = [...chosen, ...branches];
-  if (findable.length < TARGET - 2 || findable.length > TARGET + 2) {
+  const lo = FINDABLE_TARGET - FINDABLE_TOLERANCE;
+  const hi = FINDABLE_TARGET + FINDABLE_TOLERANCE;
+  if (findable.length < lo || findable.length > hi) {
     return bail(`the hand came out at ${findable.length} clues`);
+  }
+  const noiseShare = branches.length / findable.length;
+  if (noiseShare < NOISE_RATIO[0] || noiseShare > NOISE_RATIO[1]) {
+    return bail(`the noise ratio came out at ${Math.round(noiseShare * 100)}%`);
   }
 
   /* --- connectivity ------------------------------------------------------ */
@@ -497,9 +623,9 @@ export function selectFindable(ctx: SelectContext): Selection | null {
 export function requirementInputFor(cast: Cast, build: ScheduleBuild): RequirementInput {
   return {
     killerId: cast.killer.id,
-    killerName: cast.killer.name,
+    killerName: cast.killer.surname,
     motiveType: cast.killer.motive?.type as string,
-    innocents: cast.innocents.map((p) => ({ id: p.id, name: p.name })),
+    innocents: cast.innocents.map((p) => ({ id: p.id, name: p.surname })),
     murderTick: build.murderTick,
     murderPlaceId: build.murderPlaceId,
     killerClaimAtM: build.killerClaimAtM,
@@ -514,11 +640,11 @@ export function requirementInputForCase(
   const M = c.solution.murderTick;
   return {
     killerId: killer.id,
-    killerName: killer.name,
+    killerName: killer.surname,
     motiveType: c.solution.motiveType,
     innocents: c.people
       .filter((p) => p.kind === 'suspect' && p.id !== killer.id)
-      .map((p) => ({ id: p.id, name: p.name })),
+      .map((p) => ({ id: p.id, name: p.surname })),
     murderTick: M,
     murderPlaceId: c.solution.murderPlaceId,
     killerClaimAtM: c.schedules.find((s) => s.personId === killer.id)?.claimed[M] as Id,

@@ -1,5 +1,5 @@
 import type { Difficulty, FixtureRole, Id, Person } from './types.js';
-import { M_LIARS } from './types.js';
+import { M_LIARS, surnameOf } from './types.js';
 import { NAME_POOLS } from './data/names.js';
 import {
   ARCHETYPE_BY_ID,
@@ -78,11 +78,51 @@ function genderOf(hint: 'm' | 'f' | 'any' | undefined): 'male' | 'female' | unde
   return undefined;
 }
 
+/**
+ * Which of an archetype's relationships to the victim actually hold up.
+ *
+ * `rel-rival` needs a shared trade tag, which is the whole point of M2b's cast
+ * pass: a ward heeler is not a retired dry-goods wholesaler's rival in trade,
+ * because neither of them is in the other's trade.
+ */
+export function relationshipsFor(a: Archetype, victim: VictimArchetype): Id[] {
+  const victimGender = genderOf(victim.genderHint);
+  const suspectGender = genderOf(a.genderHint);
+  return a.relationships.filter((id) => {
+    const rel = RELATIONSHIP_BY_ID[id];
+    if (!rel) return false;
+    if (rel.requiresTrade && (a.trade === undefined || a.trade !== victim.trade)) return false;
+    if (rel.forcesGender && suspectGender !== undefined) {
+      if (suspectGender !== genderOf(rel.forcesGender)) return false;
+    }
+    if (rel.opposeVictimGender) {
+      if (victimGender === undefined) return false;
+      if (suspectGender !== undefined && suspectGender === victimGender) return false;
+    }
+    return true;
+  });
+}
+
+/** The gender a relationship forces on the suspect who takes it, if any. */
+function genderFor(
+  a: Archetype,
+  victim: VictimArchetype,
+  relId: Id,
+): 'male' | 'female' | undefined {
+  const rel = RELATIONSHIP_BY_ID[relId];
+  if (rel?.forcesGender) return genderOf(rel.forcesGender);
+  if (rel?.opposeVictimGender) {
+    return genderOf(victim.genderHint) === 'male' ? 'female' : 'male';
+  }
+  return genderOf(a.genderHint);
+}
+
 /** Six archetypes with distinct roles and at least one of three classes. */
 function drawArchetypes(rng: Rng, victim: VictimArchetype): Archetype[] | null {
   const pool = victim.allowedSuspects
     .map((id) => ARCHETYPE_BY_ID[id])
-    .filter((a): a is Archetype => a !== undefined);
+    .filter((a): a is Archetype => a !== undefined)
+    .filter((a) => relationshipsFor(a, victim).length > 0);
   const needed: SuspectClass[] = ['money', 'working', 'underworld'];
   for (let attempt = 0; attempt < 40; attempt++) {
     const picked = rng.pickN(pool, 6);
@@ -97,9 +137,11 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   const name = makeNamer(rng);
 
   const victimArchetype = rng.pick(VICTIM_ARCHETYPES);
+  const victimName = name(genderOf(victimArchetype.genderHint));
   const victim: Person = {
     id: 'p-victim',
-    name: name(genderOf(victimArchetype.genderHint)),
+    name: victimName,
+    surname: surnameOf(victimName),
     role: victimArchetype.role,
     kind: 'victim',
     archetypeId: victimArchetype.id,
@@ -109,21 +151,27 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   const archetypes = drawArchetypes(rng, victimArchetype);
   if (!archetypes) return null;
 
-  const suspects: Person[] = archetypes.map((a, i) => {
-    const relId = rng.pick(a.relationships);
+  const suspects: Person[] = [];
+  for (const [i, a] of archetypes.entries()) {
+    const options = relationshipsFor(a, victimArchetype);
+    if (options.length === 0) return null;
+    const relId = rng.pick(options);
     const rel = RELATIONSHIP_BY_ID[relId];
-    const person: Person = {
+    // The relationship is drawn before the name, because some relationships
+    // only read one way round and so decide who this person is.
+    const fullName = name(genderFor(a, victimArchetype, relId));
+    suspects.push({
       id: `p-s${i + 1}`,
-      name: name(genderOf(a.genderHint)),
+      name: fullName,
+      surname: surnameOf(fullName),
       role: a.role,
       kind: 'suspect',
       archetypeId: a.id,
       relationshipId: relId,
       relationshipToVictim: rel?.text ?? relId,
       isKiller: false,
-    };
-    return person;
-  });
+    });
+  }
 
   const archetypeOf = (p: Person): Archetype => ARCHETYPE_BY_ID[p.archetypeId as Id] as Archetype;
   const allowedMotives = (p: Person): string[] => {
@@ -231,9 +279,11 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   const fixtures: Person[] = [];
   const watcherOf: Record<Id, Id> = {};
   setting.watchers.forEach((w, i) => {
+    const fixtureName = name(FIXTURE_GENDER[w.role]);
     const person: Person = {
       id: `p-f${i + 1}`,
-      name: name(FIXTURE_GENDER[w.role]),
+      name: fixtureName,
+      surname: surnameOf(fixtureName),
       role: FIXTURE_ROLE_TEXT[w.role],
       kind: 'fixture',
       fixtureRole: w.role,
@@ -246,9 +296,11 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
 
   let beatCop: Person | undefined;
   if (setting.hasBeatCop) {
+    const copName = name('male');
     beatCop = {
       id: 'p-cop',
-      name: name('male'),
+      name: copName,
+      surname: surnameOf(copName),
       role: FIXTURE_ROLE_TEXT['beat-cop'],
       kind: 'fixture',
       fixtureRole: 'beat-cop',
