@@ -1,5 +1,13 @@
 import {
+  BRANCH_COUNT_FLOOR,
+  FINDABLE_TARGET,
+  FINDABLE_TOLERANCE,
   M_LIARS,
+  NOISE_RATIO,
+  PAR_CEILING,
+  PAR_FLOOR,
+  SLACK,
+  SPINE_CAP,
   type Case,
   type Clue,
   type DeductionPath,
@@ -8,6 +16,7 @@ import {
   type Tick,
 } from './types.js';
 import { sourceKey } from './select.js';
+import { MASKING_PHRASES } from './data/anchors.js';
 
 export interface CheckResult {
   ok: boolean;
@@ -34,6 +43,20 @@ function ids(clues: Clue[]): Id[] {
 
 function establishing(clues: Clue[], pred: (f: Fact, c: Clue) => boolean): Clue[] {
   return clues.filter((c) => c.establishes.some((f) => pred(f, c)));
+}
+
+/**
+ * Which secret *activity* a person's secret belongs to. Two people in an
+ * affair share one activity and therefore one branch; a blackmailer whose
+ * partner is the victim has an activity of his own, because the victim is in
+ * no position to carry half a branch.
+ */
+export function activityKey(c: Pick<CaseUnderTest, 'people'>, personId: Id): string {
+  const person = c.people.find((p) => p.id === personId);
+  const partnerId = person?.secret?.partnerId;
+  const partner = partnerId ? c.people.find((p) => p.id === partnerId) : undefined;
+  if (!partner || partner.kind !== 'suspect') return personId;
+  return [personId, partnerId].sort().join('+');
 }
 
 /**
@@ -93,7 +116,14 @@ export function checkSolvability(c: CaseUnderTest): CheckResult {
     }
   }
 
-  /* 2. Every innocent is cleared. ---------------------------------------- */
+  /* 2. Every innocent is cleared. ----------------------------------------
+   *
+   * One route, not two. With one subject per clue, insisting on two witnesses
+   * for each of five innocents costs ten clues of a fifteen-clue spine and
+   * leaves no room for the rest of the proof. A second route is common — the
+   * disqualifier at the end of an innocent's own branch usually supplies it —
+   * but it is not required.
+   */
   for (const p of innocents) {
     const cands = establishing(
       clues,
@@ -101,7 +131,7 @@ export function checkSolvability(c: CaseUnderTest): CheckResult {
         (f.kind === 'personAt' && f.personId === p.id && f.tick === M && f.place !== L) ||
         (f.kind === 'personNotAt' && f.personId === p.id && f.tick === M && f.place === L),
     );
-    if (independentSources(cands) < 2) {
+    if (independentSources(cands) < 1) {
       failures.push(`${p.name} is not exculpable at the murder tick`);
     } else {
       deduction.exculpations[p.id] = ids(cands);
@@ -179,13 +209,59 @@ export function checkSolvability(c: CaseUnderTest): CheckResult {
   }
 
   /* The shape of the hand. ------------------------------------------------ */
-  if (clues.length < 28 || clues.length > 32) {
-    failures.push(`the findable set is ${clues.length} clues, not 30 ± 2`);
+  const lo = FINDABLE_TARGET - FINDABLE_TOLERANCE;
+  const hi = FINDABLE_TARGET + FINDABLE_TOLERANCE;
+  if (clues.length < lo || clues.length > hi) {
+    failures.push(
+      `the findable set is ${clues.length} clues, not ${FINDABLE_TARGET} \u00b1 ${FINDABLE_TOLERANCE}`,
+    );
   }
   const spine = clues.filter((cl) => cl.role === 'spine');
-  if (spine.length > 12) failures.push(`the spine is ${spine.length} clues, over the cap of 12`);
-  if (c.par > c.budget - 6) {
-    failures.push(`par ${c.par} leaves less than six actions of slack against ${c.budget}`);
+  if (spine.length > SPINE_CAP) {
+    failures.push(`the spine is ${spine.length} clues, over the cap of ${SPINE_CAP}`);
+  }
+  if (c.par < PAR_FLOOR) failures.push(`par ${c.par} is under the floor of ${PAR_FLOOR}`);
+  if (c.par > PAR_CEILING) failures.push(`par ${c.par} is over the ceiling of ${PAR_CEILING}`);
+  if (c.slack !== SLACK[c.difficulty]) {
+    failures.push(`slack ${c.slack} is not the ${SLACK[c.difficulty]} difficulty ${c.difficulty} allows`);
+  }
+  if (c.budget !== c.par + c.slack) {
+    failures.push(`budget ${c.budget} is not par ${c.par} plus slack ${c.slack}`);
+  }
+
+  /* One subject per observation or denial. No roll calls. ----------------- */
+  for (const cl of clues) {
+    if (cl.kind !== 'observation' && cl.kind !== 'denial') continue;
+    const subjects = new Set(
+      cl.establishes
+        .filter((f) => f.kind === 'personAt' || f.kind === 'personNotAt')
+        .map((f) => (f as { personId: Id }).personId),
+    );
+    if (subjects.size > 1) {
+      failures.push(`${cl.id} is a roll call: it places ${subjects.size} people at once`);
+    }
+  }
+
+  /* Sound consistency: heard, or masked, never both. ---------------------- */
+  const heard = c.candidates.filter((cl) =>
+    cl.establishes.some((f) => f.kind === 'noiseAt' && f.place === L && f.tick === M),
+  );
+  if (c.soundMasked && heard.length > 0) {
+    failures.push(`${heard.length} clues hear a killing the anchor was loud enough to bury`);
+  }
+  const maskPhrases = MASKING_PHRASES.filter((phrase) =>
+    c.candidates.some((cl) => cl.text.includes(phrase)),
+  );
+  if (!c.soundMasked && maskPhrases.length > 0) {
+    failures.push(`a clue calls the noise covered in a case where people heard it`);
+  }
+
+  const noiseCount = clues.filter(
+    (cl) => cl.role === 'noise' || cl.role === 'disqualifier',
+  ).length;
+  const noiseShare = clues.length === 0 ? 0 : noiseCount / clues.length;
+  if (noiseShare < NOISE_RATIO[0] || noiseShare > NOISE_RATIO[1]) {
+    failures.push(`noise is ${Math.round(noiseShare * 100)}% of the hand, outside 35-45%`);
   }
 
   const innocentIds = new Set(innocents.map((p) => p.id));
@@ -202,10 +278,36 @@ export function checkSolvability(c: CaseUnderTest): CheckResult {
     list.push(cl);
     branches.set(cl.branchId, list);
   }
+  const activitySeen = new Map<string, Id>();
   for (const [branchId, list] of branches) {
-    if (!list.some((cl) => cl.role === 'disqualifier')) {
+    const disq = list.filter((cl) => cl.role === 'disqualifier');
+    if (disq.length === 0) {
       failures.push(`branch ${branchId} never gets disqualified`);
+    } else if (disq.length > 1) {
+      failures.push(`branch ${branchId} is disqualified ${disq.length} times over`);
     }
+    // One branch per secret *activity*: an affair is two people and one
+    // branch, whose single disqualifier clears them both.
+    const keys = new Set(
+      list
+        .map((cl) => cl.aboutSecretOf)
+        .filter((id): id is Id => id !== undefined)
+        .map((id) => activityKey(c, id)),
+    );
+    if (keys.size > 1) {
+      failures.push(`branch ${branchId} covers ${keys.size} different secrets`);
+    }
+    for (const key of keys) {
+      const already = activitySeen.get(key);
+      if (already !== undefined) {
+        failures.push(`branches ${already} and ${branchId} are the same secret twice`);
+      } else {
+        activitySeen.set(key, branchId);
+      }
+    }
+  }
+  if (branches.size < BRANCH_COUNT_FLOOR) {
+    failures.push(`only ${branches.size} noise branches, fewer than ${BRANCH_COUNT_FLOOR}`);
   }
 
   const byId = new Map(clues.map((cl) => [cl.id, cl]));

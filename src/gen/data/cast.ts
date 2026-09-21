@@ -13,6 +13,15 @@ import type { Id } from '../types.js';
  * `Relationship.impliesMotives`, where present, narrows it further: whatever
  * motive a person ends up with has to be allowed by both their archetype and
  * their relationship to the victim.
+ *
+ * M2b adds three more gates, because M2 still produced "a ward heeler, the
+ * victim's rival in trade" over a retired dry-goods wholesaler:
+ *
+ * - `requiresTrade` — the suspect and the victim must carry the same `trade`
+ *   tag. You cannot be somebody's rival in a trade neither of you is in.
+ * - `forcesGender` — the relationship only reads one way round ("engaged to
+ *   the victim's daughter"), so it picks the suspect's gender.
+ * - `opposeVictimGender` — a spouse of the opposite sex, in 1929.
  */
 
 export type SuspectClass = 'money' | 'working' | 'underworld' | 'professional';
@@ -21,6 +30,12 @@ export interface Relationship {
   id: Id;
   text: string;
   impliesMotives?: string[];
+  /** Suspect and victim must share a `trade` tag. */
+  requiresTrade?: boolean;
+  /** The suspect must be this gender for the phrase to make sense. */
+  forcesGender?: 'm' | 'f';
+  /** The suspect must be the other gender from the victim. */
+  opposeVictimGender?: boolean;
 }
 
 export interface Archetype {
@@ -31,6 +46,8 @@ export interface Archetype {
   motives: string[];
   secrets: string[];
   class: SuspectClass;
+  /** What line of work they are in, for `rel-rival`. */
+  trade?: string;
 }
 
 export interface VictimArchetype {
@@ -38,6 +55,8 @@ export interface VictimArchetype {
   role: string;
   genderHint?: 'm' | 'f' | 'any';
   allowedSuspects: Id[];
+  /** What line of work they were in, for `rel-rival`. */
+  trade?: string;
 }
 
 export const RELATIONSHIPS: Relationship[] = [
@@ -50,11 +69,26 @@ export const RELATIONSHIPS: Relationship[] = [
   { id: 'rel-lawyer', text: 'the victim’s lawyer', impliesMotives: ['exposure', 'inheritance', 'property'] },
   { id: 'rel-cousin', text: 'the victim’s cousin', impliesMotives: ['inheritance', 'jealousy', 'insurance'] },
   { id: 'rel-inlaw', text: 'the victim’s brother-in-law', impliesMotives: ['inheritance', 'jealousy', 'debt'] },
-  { id: 'rel-rival', text: 'the victim’s rival in trade', impliesMotives: ['revenge', 'property', 'exposure'] },
-  { id: 'rel-spouse', text: 'the victim’s estranged spouse', impliesMotives: ['inheritance', 'jealousy', 'insurance'] },
+  {
+    id: 'rel-rival',
+    text: 'the victim’s rival in trade',
+    impliesMotives: ['revenge', 'property', 'exposure'],
+    requiresTrade: true,
+  },
+  {
+    id: 'rel-spouse',
+    text: 'the victim’s estranged spouse',
+    impliesMotives: ['inheritance', 'jealousy', 'insurance'],
+    opposeVictimGender: true,
+  },
   { id: 'rel-nurse', text: 'the victim’s private nurse', impliesMotives: ['inheritance', 'silence-a-witness', 'protect-another'] },
   { id: 'rel-secretary', text: 'the victim’s secretary', impliesMotives: ['exposure', 'silence-a-witness', 'jealousy'] },
-  { id: 'rel-engaged', text: 'engaged to the victim’s daughter', impliesMotives: ['inheritance', 'jealousy'] },
+  {
+    id: 'rel-engaged',
+    text: 'engaged to the victim’s daughter',
+    impliesMotives: ['inheritance', 'jealousy'],
+    forcesGender: 'm',
+  },
   { id: 'rel-childhood', text: 'a childhood friend of the victim’s from the same block', impliesMotives: ['revenge', 'protect-another', 'debt'] },
   { id: 'rel-willed', text: 'named in the victim’s will', impliesMotives: ['inheritance', 'insurance'] },
   { id: 'rel-witness', text: 'a witness against the people the victim worked for', impliesMotives: ['silence-a-witness', 'protect-another', 'exposure'] },
@@ -70,7 +104,10 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   /* ------------------------------------------------------------------ money */
   {
     id: 'arch-heir',
-    role: 'the victim’s nephew, at loose ends',
+    // Was "the victim's nephew, at loose ends", which fought with three of its
+    // own four relationships: a nephew is not a cousin, not a brother-in-law,
+    // and should not be engaged to the victim's daughter.
+    role: 'a young man living on expectations',
     genderHint: 'm',
     relationships: ['rel-cousin', 'rel-willed', 'rel-inlaw', 'rel-engaged'],
     motives: ['inheritance', 'debt', 'jealousy'],
@@ -81,7 +118,9 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     id: 'arch-widow',
     role: 'a widow with rooms on the avenue',
     genderHint: 'f',
-    relationships: ['rel-spouse', 'rel-willed', 'rel-cousin', 'rel-neighbor'],
+    // `rel-spouse` removed: a widow cannot be the estranged spouse of a man
+    // who was alive this morning.
+    relationships: ['rel-willed', 'rel-cousin', 'rel-neighbor'],
     motives: ['inheritance', 'jealousy', 'insurance'],
     secrets: ['affair', 'blackmail', 'secret-drinking', 'hidden-family'],
     class: 'money',
@@ -89,10 +128,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   {
     id: 'arch-broker',
     role: 'a curb broker',
-    relationships: ['rel-partner', 'rel-creditor', 'rel-debtor', 'rel-rival'],
+    relationships: ['rel-partner', 'rel-creditor', 'rel-debtor', 'rel-rival', 'rel-inlaw'],
     motives: ['debt', 'exposure', 'property'],
     secrets: ['embezzling', 'gambling-debt', 'fence'],
     class: 'money',
+    trade: 'money',
   },
   {
     id: 'arch-society',
@@ -101,6 +141,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     motives: ['exposure', 'revenge', 'silence-a-witness'],
     secrets: ['blackmail', 'affair', 'dope'],
     class: 'money',
+    trade: 'press',
   },
   {
     id: 'arch-blockowner',
@@ -109,13 +150,14 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     motives: ['property', 'debt', 'revenge'],
     secrets: ['embezzling', 'fence', 'blackmail'],
     class: 'money',
+    trade: 'property',
   },
 
   /* ----------------------------------------------------------- professional */
   {
     id: 'arch-lawyer',
     role: 'a lawyer with one clerk',
-    relationships: ['rel-lawyer', 'rel-partner', 'rel-creditor'],
+    relationships: ['rel-lawyer', 'rel-partner', 'rel-creditor', 'rel-engaged'],
     motives: ['exposure', 'inheritance', 'property'],
     secrets: ['embezzling', 'gambling-debt', 'blackmail'],
     class: 'professional',
@@ -148,7 +190,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   {
     id: 'arch-secretary',
     role: 'a private secretary',
-    relationships: ['rel-secretary', 'rel-employee'],
+    relationships: ['rel-secretary', 'rel-employee', 'rel-engaged'],
     motives: ['exposure', 'jealousy', 'silence-a-witness'],
     secrets: ['affair', 'embezzling', 'blackmail'],
     class: 'professional',
@@ -160,6 +202,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     motives: ['exposure', 'silence-a-witness', 'revenge'],
     secrets: ['blackmail', 'secret-drinking', 'gambling-debt'],
     class: 'professional',
+    trade: 'press',
   },
   {
     id: 'arch-piano-teacher',
@@ -176,6 +219,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     motives: ['insurance', 'exposure', 'property'],
     secrets: ['forged-identity', 'gambling-debt', 'embezzling'],
     class: 'professional',
+    trade: 'insurance',
   },
 
   /* ---------------------------------------------------------------- working */
@@ -243,7 +287,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   {
     id: 'arch-nightman',
     role: 'the night manager at the hotel',
-    relationships: ['rel-employee', 'rel-tenant', 'rel-partner'],
+    relationships: ['rel-employee', 'rel-tenant', 'rel-partner', 'rel-inlaw'],
     motives: ['revenge', 'exposure', 'debt'],
     secrets: ['embezzling', 'secret-drinking', 'fence'],
     class: 'working',
@@ -252,7 +296,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     id: 'arch-chorus',
     role: 'a chorus girl between engagements',
     genderHint: 'f',
-    relationships: ['rel-neighbor', 'rel-engaged', 'rel-customer'],
+    relationships: ['rel-neighbor', 'rel-spouse', 'rel-customer'],
     motives: ['jealousy', 'exposure', 'debt'],
     secrets: ['affair', 'dope', 'secret-drinking'],
     class: 'working',
@@ -275,6 +319,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     motives: ['silence-a-witness', 'exposure', 'property'],
     secrets: ['blackmail', 'fence', 'gambling-debt'],
     class: 'underworld',
+    trade: 'graft',
   },
   {
     id: 'arch-pawnman',
@@ -283,6 +328,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     motives: ['debt', 'exposure', 'revenge'],
     secrets: ['fence', 'forged-identity', 'dope'],
     class: 'underworld',
+    trade: 'pawn',
   },
   {
     id: 'arch-bouncer',
@@ -315,7 +361,10 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
   {
     id: 'vic-landlord',
     role: 'the landlord of three tenements on Ninth Avenue',
-    allowedSuspects: except('arch-blockowner', 'arch-chorus'),
+    // `arch-blockowner` was excluded, which left `property` with no rival at
+    // all. A landlord and the man who owns the block are exactly rivals.
+    allowedSuspects: except('arch-chorus'),
+    trade: 'property',
   },
   {
     id: 'vic-bootlegger',
@@ -333,37 +382,46 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     id: 'vic-agent',
     role: 'a theatrical agent',
     allowedSuspects: except('arch-longshoreman', 'arch-nurse'),
+    trade: 'theatrical',
   },
   {
     id: 'vic-inspector',
     role: 'a buildings inspector',
     genderHint: 'm',
     allowedSuspects: except('arch-chorus', 'arch-widow', 'arch-nurse'),
+    trade: 'graft',
   },
   {
     id: 'vic-union-treasurer',
     role: 'a union treasurer',
     allowedSuspects: except('arch-widow', 'arch-society', 'arch-nurse'),
+    trade: 'labor',
   },
   {
     id: 'vic-pawnbroker',
     role: 'a pawnbroker',
     allowedSuspects: except('arch-society', 'arch-nurse', 'arch-piano-teacher'),
+    trade: 'pawn',
   },
   {
     id: 'vic-columnist',
     role: 'a society columnist',
     allowedSuspects: except('arch-longshoreman', 'arch-tailor'),
+    trade: 'press',
   },
   {
     id: 'vic-bondsman',
     role: 'a bail bondsman',
     allowedSuspects: except('arch-society', 'arch-piano-teacher'),
+    trade: 'money',
   },
   {
     id: 'vic-wholesaler',
     role: 'a retired dry-goods wholesaler',
     genderHint: 'm',
     allowedSuspects: except('arch-chorus', 'arch-runner'),
+    // Nothing in the suspect deck is in dry goods, so this victim never has a
+    // rival in trade. That is the seed-7 ward heeler, gone.
+    trade: 'dry-goods',
   },
 ];

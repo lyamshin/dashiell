@@ -566,8 +566,11 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   }
 
   /* --- descriptions ------------------------------------------------------ */
-  const nameOf = (id: Id): string => cast.people.find((p) => p.id === id)?.name ?? 'someone';
-  const placeName = (id: Id): string => setting.places.find((p) => p.id === id)?.name ?? id;
+  // Surnames and short names: the secret descriptions end up in the truth
+  // sheet's Secrets and Red herrings sections, which are not where a person or
+  // a place gets introduced.
+  const nameOf = (id: Id): string => cast.people.find((p) => p.id === id)?.surname ?? 'someone';
+  const placeName = (id: Id): string => setting.places.find((p) => p.id === id)?.shortName ?? id;
 
   for (const p of cast.innocents) {
     const template = cast.innocentSecrets[p.id] as SecretTemplate;
@@ -576,21 +579,21 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     const where = secret.cells.length > 0 ? placeName(secret.cells[0]?.place as Id) : '';
     secret.description = describeSecret(
       template,
-      p.name,
+      p.surname,
       secret.partnerId ? nameOf(secret.partnerId) : null,
       where,
       ticks,
     );
   }
   murderSecret.description =
-    `${cast.killer.name} is at ${placeName(L)} from ${tickRange(murderCells)}, ` +
-    `alone with ${cast.victim.name} when it happens at ${clock(M)}.`;
+    `${cast.killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, ` +
+    `alone with ${cast.victim.surname} when it happens at ${clock(M)}.`;
   if (coverSecret && cast.killerCoverSecret) {
     const ticks = coverSecret.cells.map((c) => c.tick);
     const where = coverSecret.cells.length > 0 ? placeName(coverSecret.cells[0]?.place as Id) : '';
     coverSecret.description = describeSecret(
       cast.killerCoverSecret,
-      cast.killer.name,
+      cast.killer.surname,
       null,
       where,
       ticks,

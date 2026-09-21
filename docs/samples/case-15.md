@@ -2,424 +2,448 @@
 
 **Seed** 15 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
 
-**Par** 6 actions · **Budget** 20 · **Slack** 14 · **Findable** 30 (spine 7, corroboration 11, noise 7 + 5 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 187
+**Par** 10 actions · **Slack** 6 · **Budget** 16 · **Findable** 34 (spine 11, corroboration 9, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 130
 
 ## 1. The Truth
 
-Rivka Weisglass, a seamstress, the victim’s tenant, killed Ellsworth Havemeyer, the landlord of three tenements on Ninth Avenue, with a gunshot at the victim’s apartment on the fourth floor at 11:00 PM. Rivka Weisglass wanted the victim out of a lease (property). Rivka Weisglass had been at the speakeasy under the hat shop earlier in the evening, where the weapon lived, and was alone with Ellsworth Havemeyer when it happened. Friedrich Kreuzer hired us.
+Rudolf Brauer, a longshoreman, a childhood friend of the victim’s from the same block, killed Ellsworth Havemeyer, the landlord of three tenements on Ninth Avenue, with a gunshot at the fourth floor at 8:30 PM. Brauer blamed the victim for a ruin (revenge). Brauer had been at the speakeasy earlier in the evening, where the weapon lived, and was alone with Havemeyer when it happened. Lefkowitz hired us.
 
 ## 2. Dramatis Personae
 
 | Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
 | --- | --- | --- | --- | --- | --- | --- |
 | Ellsworth Havemeyer | the landlord of three tenements on Ninth Avenue | the victim | — | — | — | — |
-| Salvatore Moretti | a doorman at a club with no sign on it | a witness against the people the victim worked for | fence | — | the cab stand outside the Hippodrome | — |
-| Booker Cheatham | a tailor | the victim’s neighbour across the airshaft | hidden-family | — | Ruggiero’s barber shop | — |
-| Grafton Winslow | a society columnist | the victim’s rival in trade | affair | — | the speakeasy under the hat shop | — |
-| Rivka Weisglass | a seamstress | the victim’s tenant | murder (+ union-organizing) | property | Ruggiero’s barber shop | **YES** |
-| Assunta Bellucci | a widow with rooms on the avenue | named in the victim’s will | affair | inheritance | Ruggiero’s barber shop | — |
-| Friedrich Kreuzer (client) | an insurance adjuster | a witness against the people the victim worked for | gambling-debt | — | Ruggiero’s barber shop | — |
-| Martin Feeney | the man behind the counter | fixture (counterman) | — | — | Ruggiero’s barber shop | — |
-| Klara Lindemann | the landlady | fixture (landlady) | — | — | the back room at Mrs. Teague’s | — |
-| Frieda Vogel | the bartender | fixture (bartender) | — | — | the speakeasy under the hat shop | — |
-| Nora Callahan | the hackman on the stand | fixture (cabbie) | — | — | the cab stand outside the Hippodrome | — |
+| Ilse Hochstetter | a seamstress | the victim’s former employee | affair | — | Mrs. Teague’s | — |
+| Rudolf Brauer | a longshoreman | a childhood friend of the victim’s from the same block | murder (+ gambling-debt) | revenge | the speakeasy | **YES** |
+| Francis Brennan | a stagehand at the Selwyn | a childhood friend of the victim’s from the same block | secret-drinking | — | Ruggiero’s | — |
+| Willa Dandridge | a private nurse | named in the victim’s will | dope | inheritance | the cab stand | — |
+| Gittel Lefkowitz (client) | a society columnist | the victim’s neighbour across the airshaft | affair | — | Mrs. Teague’s | — |
+| Grafton Ellery | a policy runner | a customer of the victim’s | dope | — | Ruggiero’s | — |
+| Ida Shapiro | the man behind the counter | fixture (counterman) | — | — | Ruggiero’s | — |
+| Esther Kessler | the landlady | fixture (landlady) | — | — | Mrs. Teague’s | — |
+| Althea Cheatham | the bartender | fixture (bartender) | — | — | the speakeasy | — |
+| Nora Feeney | the hackman on the stand | fixture (cabbie) | — | — | the cab stand | — |
 
 ## 3. Places
 
-- **Ruggiero’s barber shop** (semi) — watched by counterman (Martin Feeney); objects: an ice pick, a folded stack of evening papers
-- **the back room at Mrs. Teague’s** (private) — watched by landlady (Klara Lindemann); objects: a framed photograph, a length of sash cord
-- **the speakeasy under the hat shop** (semi) — watched by bartender (Frieda Vogel); objects: a nickel-plated revolver, a seltzer siphon, a bottle of chloral drops, a silver cigarette case — where the weapon lived; within earshot of the scene
-- **the cab stand outside the Hippodrome** (public) — watched by cabbie (Nora Callahan); objects: a pasted-up timetable
+- **Ruggiero’s barber shop** (semi) — watched by counterman (Shapiro); objects: an ice pick, a folded stack of evening papers
+- **the back room at Mrs. Teague’s** (private) — watched by landlady (Kessler); objects: a framed photograph, a length of sash cord
+- **the speakeasy under the hat shop** (semi) — watched by bartender (Cheatham); objects: a nickel-plated revolver, a seltzer siphon, a bottle of chloral drops, a silver cigarette case — where the weapon lived; within earshot of the scene
+- **the cab stand outside the Hippodrome** (public) — watched by cabbie (Feeney); objects: a pasted-up timetable
 - **the El platform at Twenty-Third Street** (public) — unwatched; objects: none — within earshot of the scene
 - **the victim’s apartment on the fourth floor** (private) — unwatched; objects: a japanned cash box, a bronze bookend — **THE SCENE**; the victim’s address
 
 ## 4. Anchors
 
-The coroner gives 10:00 PM–11:30 PM, four ticks wide. These are what close it: **drunk-singing** and **el-train**.
+The coroner gives 7:30 PM–9:00 PM, four ticks wide. These are what close it: **drunk-singing** and **el-train**.
 
-- **the drunk singing under the window** — at 10:30 PM; at the speakeasy under the hat shop. You can time things by it: the same two verses until somebody threw a shoe. Only those present know that it was a shoe, and it was thrown by a woman, and it did not land.
-- **the El going over** — at 6:00 PM, 7:00 PM, 8:00 PM, 9:00 PM, 10:00 PM, 11:00 PM; across the whole neighbourhood. You can time things by it: everything under the structure stops being audible for twenty seconds.
+- **the drunk singing under the window** — at 8:00 PM; at the speakeasy. You can time things by it: the same two verses until somebody threw a shoe. Only those present know that it was a shoe, and it was thrown by a woman, and it did not land.
+- **the El going over** — at 6:30 PM, 7:30 PM, 8:30 PM, 9:30 PM, 10:30 PM, 11:30 PM; across the whole neighbourhood. You can time things by it: everything under the structure stops being audible for twenty seconds.
 
 ## 5. Timelines
 
-### Ellsworth Havemeyer — the victim
+### Havemeyer — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 1 | 6:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 3 | 7:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 4 | 8:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 5 | 8:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 7 | 9:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 8 | 10:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 10 | 11:00 PM | the victim’s apartment on the fourth floor ☠ | the victim’s apartment on the fourth floor | — |
+| 0 | 6:00 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 1 | 6:30 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 2 | 7:00 PM | the speakeasy | the speakeasy | — |
+| 3 | 7:30 PM | the cab stand | the cab stand | — |
+| 4 | 8:00 PM | the speakeasy | the speakeasy | — |
+| 5 | 8:30 PM | the fourth floor ☠ | the fourth floor | — |
+| 6 | 9:00 PM | — | — | — |
+| 7 | 9:30 PM | — | — | — |
+| 8 | 10:00 PM | — | — | — |
+| 9 | 10:30 PM | — | — | — |
+| 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Salvatore Moretti
+### Hochstetter
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 1 | 6:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 2 | 7:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
-| 3 | 7:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 4 | 8:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 5 | 8:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
-| 6 | 9:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
-| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 8 | 10:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 10 | 11:00 PM | the cab stand outside the Hippodrome | **the speakeasy under the hat shop** | Friedrich Kreuzer |
-| 11 | 11:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 0 | 6:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 1 | 6:30 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 2 | 7:00 PM | Mrs. Teague’s | **Ruggiero’s** | — |
+| 3 | 7:30 PM | Mrs. Teague’s | **Ruggiero’s** | — |
+| 4 | 8:00 PM | Mrs. Teague’s | **Ruggiero’s** | — |
+| 5 | 8:30 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 6 | 9:00 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 7 | 9:30 PM | the El platform | the El platform | — |
+| 8 | 10:00 PM | the El platform | the El platform | — |
+| 9 | 10:30 PM | the speakeasy | the speakeasy | — |
+| 10 | 11:00 PM | the El platform | the El platform | — |
+| 11 | 11:30 PM | the El platform | the El platform | — |
 
-### Booker Cheatham
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 1 | 6:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 3 | 7:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 4 | 8:00 PM | the back room at Mrs. Teague’s | **the El platform at Twenty-Third Street** | — |
-| 5 | 8:30 PM | the back room at Mrs. Teague’s | **the El platform at Twenty-Third Street** | — |
-| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 7 | 9:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 8 | 10:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 9 | 10:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 10 | 11:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 11 | 11:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-
-### Grafton Winslow
+### Brauer — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
-| 1 | 6:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
-| 2 | 7:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 3 | 7:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 4 | 8:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 5 | 8:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 6 | 9:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 8 | 10:00 PM | the back room at Mrs. Teague’s | **the cab stand outside the Hippodrome** | — |
-| 9 | 10:30 PM | the back room at Mrs. Teague’s | **the cab stand outside the Hippodrome** | — |
-| 10 | 11:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 11 | 11:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 0 | 6:00 PM | the speakeasy | the speakeasy | — |
+| 1 | 6:30 PM | the El platform | **the cab stand** | — |
+| 2 | 7:00 PM | the El platform | the El platform | — |
+| 3 | 7:30 PM | the fourth floor | **the cab stand** | Brennan |
+| 4 | 8:00 PM | the fourth floor | **the cab stand** | Brennan |
+| 5 | 8:30 PM | the fourth floor ☠ | **the cab stand** | Brennan |
+| 6 | 9:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 7 | 9:30 PM | the speakeasy | the speakeasy | — |
+| 8 | 10:00 PM | the speakeasy | the speakeasy | — |
+| 9 | 10:30 PM | the speakeasy | the speakeasy | — |
+| 10 | 11:00 PM | the El platform | the El platform | — |
+| 11 | 11:30 PM | the El platform | the El platform | — |
 
-### Rivka Weisglass — the killer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 1 | 6:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 2 | 7:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
-| 3 | 7:30 PM | Ruggiero’s barber shop | **the speakeasy under the hat shop** | Assunta Bellucci |
-| 4 | 8:00 PM | Ruggiero’s barber shop | **the speakeasy under the hat shop** | Assunta Bellucci |
-| 5 | 8:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 8 | 10:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 10 | 11:00 PM | the victim’s apartment on the fourth floor ☠ | **the cab stand outside the Hippodrome** | — |
-| 11 | 11:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-
-### Assunta Bellucci
+### Brennan
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 1 | 6:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 3 | 7:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 4 | 8:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 5 | 8:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 6 | 9:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 7 | 9:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 8 | 10:00 PM | the back room at Mrs. Teague’s | **Ruggiero’s barber shop** | Grafton Winslow |
-| 9 | 10:30 PM | the back room at Mrs. Teague’s | **Ruggiero’s barber shop** | Grafton Winslow |
-| 10 | 11:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
-| 11 | 11:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 0 | 6:00 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 1 | 6:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 2 | 7:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 3 | 7:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 4 | 8:00 PM | Mrs. Teague’s | **the speakeasy** | Ellery |
+| 5 | 8:30 PM | Mrs. Teague’s | **the speakeasy** | Ellery |
+| 6 | 9:00 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 7 | 9:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 8 | 10:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 9 | 10:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 10 | 11:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 11 | 11:30 PM | Ruggiero’s | Ruggiero’s | — |
 
-### Friedrich Kreuzer
+### Dandridge
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
-| 1 | 6:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 2 | 7:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 3 | 7:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
-| 4 | 8:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
-| 5 | 8:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 7 | 9:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 8 | 10:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
-| 9 | 10:30 PM | the cab stand outside the Hippodrome | **Ruggiero’s barber shop** | — |
-| 10 | 11:00 PM | the cab stand outside the Hippodrome | **Ruggiero’s barber shop** | — |
-| 11 | 11:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 0 | 6:00 PM | the cab stand | the cab stand | — |
+| 1 | 6:30 PM | the cab stand | the cab stand | — |
+| 2 | 7:00 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 3 | 7:30 PM | the cab stand | the cab stand | — |
+| 4 | 8:00 PM | the cab stand | the cab stand | — |
+| 5 | 8:30 PM | the cab stand | **Ruggiero’s** | — |
+| 6 | 9:00 PM | the cab stand | **Ruggiero’s** | — |
+| 7 | 9:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 8 | 10:00 PM | the El platform | the El platform | — |
+| 9 | 10:30 PM | the El platform | the El platform | — |
+| 10 | 11:00 PM | the El platform | the El platform | — |
+| 11 | 11:30 PM | the El platform | the El platform | — |
+
+### Lefkowitz
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the speakeasy | the speakeasy | — |
+| 1 | 6:30 PM | the speakeasy | the speakeasy | — |
+| 2 | 7:00 PM | Mrs. Teague’s | **Ruggiero’s** | — |
+| 3 | 7:30 PM | Mrs. Teague’s | **Ruggiero’s** | — |
+| 4 | 8:00 PM | Mrs. Teague’s | **Ruggiero’s** | — |
+| 5 | 8:30 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 6 | 9:00 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 7 | 9:30 PM | Mrs. Teague’s | Mrs. Teague’s | — |
+| 8 | 10:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 9 | 10:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 10 | 11:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 11 | 11:30 PM | Ruggiero’s | Ruggiero’s | — |
+
+### Ellery
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 1 | 6:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 2 | 7:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 3 | 7:30 PM | the cab stand | the cab stand | — |
+| 4 | 8:00 PM | the cab stand | **the speakeasy** | Hochstetter |
+| 5 | 8:30 PM | the cab stand | **the speakeasy** | Hochstetter |
+| 6 | 9:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 7 | 9:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 8 | 10:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 9 | 10:30 PM | Ruggiero’s | Ruggiero’s | — |
+| 10 | 11:00 PM | Ruggiero’s | Ruggiero’s | — |
+| 11 | 11:30 PM | the speakeasy | the speakeasy | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Martin Feeney (the man behind the counter) | Klara Lindemann (the landlady) | Frieda Vogel (the bartender) | Nora Callahan (the hackman on the stand) |
+| Tick | Time | Shapiro (the man behind the counter) | Kessler (the landlady) | Cheatham (the bartender) | Feeney (the hackman on the stand) |
 | --- | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 1 | 6:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 2 | 7:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 3 | 7:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 4 | 8:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 5 | 8:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the El platform at Twenty-Third Street | the cab stand outside the Hippodrome |
-| 6 | 9:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 7 | 9:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Ruggiero’s barber shop |
-| 8 | 10:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 9 | 10:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 10 | 11:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
-| 11 | 11:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 0 | 6:00 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 1 | 6:30 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 2 | 7:00 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 3 | 7:30 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 4 | 8:00 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 5 | 8:30 PM | Ruggiero’s | Mrs. Teague’s | the cab stand | the cab stand |
+| 6 | 9:00 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 7 | 9:30 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 8 | 10:00 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 9 | 10:30 PM | Ruggiero’s | the El platform | the speakeasy | the cab stand |
+| 10 | 11:00 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
+| 11 | 11:30 PM | Ruggiero’s | Mrs. Teague’s | the speakeasy | the cab stand |
 
 ## 6. Secrets in play
 
-- **Salvatore Moretti** (fence): Salvatore Moretti hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 11:00 PM.
-- **Booker Cheatham** (hidden-family): Booker Cheatham goes to the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM to see a child nobody is supposed to know about.
-- **Grafton Winslow** (affair): Grafton Winslow is with Assunta Bellucci at the back room at Mrs. Teague’s from 10:00 PM to 10:30 PM, and both will say they were somewhere else.
-- **Rivka Weisglass** (murder): Rivka Weisglass is at the victim’s apartment on the fourth floor from 11:00 PM, alone with Ellsworth Havemeyer when it happens at 11:00 PM.
-- **Rivka Weisglass** also (union-organizing): Rivka Weisglass is at Ruggiero’s barber shop from 7:30 PM to 8:00 PM signing men up, which is a firing offence and worse.
-- **Assunta Bellucci** (affair): Assunta Bellucci is with Grafton Winslow at the back room at Mrs. Teague’s from 10:00 PM to 10:30 PM, and both will say they were somewhere else.
-- **Friedrich Kreuzer** (gambling-debt): Friedrich Kreuzer slips off to the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM to settle with a bookmaker.
+- **Hochstetter** (affair): Hochstetter is with Lefkowitz at Mrs. Teague’s from 7:00 PM to 8:00 PM, and both will say they were somewhere else.
+- **Brauer** (murder): Brauer is at the fourth floor from 7:30 PM to 8:30 PM, alone with Havemeyer when it happens at 8:30 PM.
+- **Brauer** also (gambling-debt): Brauer slips off to the El platform from 6:30 PM to settle with a bookmaker.
+- **Brennan** (secret-drinking): Brennan drinks alone at Mrs. Teague’s from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
+- **Dandridge** (dope): Dandridge buys morphine at the cab stand from 8:30 PM to 9:00 PM and would rather be thought a murderer than a hop-head.
+- **Lefkowitz** (affair): Lefkowitz is with Hochstetter at Mrs. Teague’s from 7:00 PM to 8:00 PM, and both will say they were somewhere else.
+- **Ellery** (dope): Ellery buys morphine at the cab stand from 8:00 PM to 8:30 PM and would rather be thought a murderer than a hop-head.
 
-## 7. Clue list — the 30 findable
+## 7. Clue list — the 34 findable
 
-The opening three, free at the start: c139, c140, c150. Everything else has to be led to. The full candidate pool is in the companion file.
+The opening three, free at the start: c091, c092, c101. Everything else has to be led to. The full candidate pool is in the companion file.
 
-### At Ruggiero’s barber shop
+### At Ruggiero’s
 
-- **c150** [spine ⟨opening⟩] (client; Friedrich Kreuzer on why I was hired) → c143, c018
-  - Friedrich Kreuzer hired us. Friedrich Kreuzer wants it known that Rivka Weisglass wanted the victim out of a lease, and would rather we started there.
-  - _establishes: Rivka Weisglass had a motive (property)_
-- **c143** [spine] (anchor; Rivka Weisglass on Ellsworth Havemeyer that evening) → c006, c146, c070
-  - Rivka Weisglass puts Ellsworth Havemeyer at the speakeasy under the hat shop while the singing was still going on, which was 10:30 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 10:30 PM; Ellsworth Havemeyer at the speakeasy under the hat shop, 10:30 PM_
-- **c132** [spine] (observation; Assunta Bellucci on Rivka Weisglass’s account) → c006, c141, c144, c145, c015
-  - Assunta Bellucci was at the cab stand outside the Hippodrome at 11:00 PM and says Rivka Weisglass was not.
-  - _establishes: Rivka Weisglass not at the cab stand outside the Hippodrome, 11:00 PM_
-- **c090** [corroboration] (observation; Booker Cheatham on who was there at 11:00 PM) → (end)
-  - Booker Cheatham runs through it: at 11:00 PM there were Salvatore Moretti, Grafton Winslow, Assunta Bellucci, Friedrich Kreuzer at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Salvatore Moretti at the cab stand outside the Hippodrome, 11:00 PM; Grafton Winslow at the cab stand outside the Hippodrome, 11:00 PM; Assunta Bellucci at the cab stand outside the Hippodrome, 11:00 PM; Friedrich Kreuzer at the cab stand outside the Hippodrome, 11:00 PM_
-- **c130** [corroboration] (observation; Booker Cheatham on Rivka Weisglass’s account) → (end)
-  - Booker Cheatham was at the cab stand outside the Hippodrome at 11:00 PM and says Rivka Weisglass was not.
-  - _establishes: Rivka Weisglass not at the cab stand outside the Hippodrome, 11:00 PM_
-- **c015** [corroboration] (observation; Booker Cheatham on Assunta Bellucci) → c155, c162
-  - Booker Cheatham says Assunta Bellucci was at the cab stand outside the Hippodrome at 11:00 PM.
-  - _establishes: Assunta Bellucci at the cab stand outside the Hippodrome, 11:00 PM_
-
-### At the back room at Mrs. Teague’s
-
-- **c176** [noise {b2}] (physical; the place itself) → c179
-  - Two glasses at the back room at Mrs. Teague’s, one of them with a lip print on it, and only one of them paid for.
-  - _establishes: context only_
-- **c179** [disqualifier {b2}] (overheard; the place itself) → (end)
-  - Grafton Winslow breaks and says it plainly: Grafton Winslow was with Assunta Bellucci at the back room at Mrs. Teague’s for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
-  - _establishes: Assunta Bellucci’s affair accounted for; Assunta Bellucci at the back room at Mrs. Teague’s, 10:00 PM–10:30 PM_
-- **c162** [noise {b4}] (physical; the place itself) → c163
-  - A child’s shoe at the back room at Mrs. Teague’s, and nobody at the back room at Mrs. Teague’s has any children.
-  - _establishes: context only_
-- **c163** [disqualifier {b4}] (overheard; the place itself) → (end)
-  - The woman who keeps the child says it straight out: Booker Cheatham was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.
-  - _establishes: Booker Cheatham’s hidden-family accounted for; Booker Cheatham at the back room at Mrs. Teague’s, 8:00 PM–8:30 PM_
-- **c170** [noise {b5}] (physical; the place itself) → c171
-  - A man’s hat at the back room at Mrs. Teague’s that fits nobody who admits to being there.
-  - _establishes: context only_
-- **c171** [disqualifier {b5}] (overheard; the place itself) → (end)
-  - Assunta Bellucci breaks and says it plainly: Assunta Bellucci was with Grafton Winslow at the back room at Mrs. Teague’s for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
-  - _establishes: Grafton Winslow’s affair accounted for; Grafton Winslow at the back room at Mrs. Teague’s, 10:00 PM–10:30 PM_
-
-### At the speakeasy under the hat shop
-
-- **c093** [corroboration] (observation; Grafton Winslow on who was there at 11:00 PM) → (end)
-  - Grafton Winslow runs through it: at 11:00 PM there were Salvatore Moretti, Booker Cheatham, Assunta Bellucci, Friedrich Kreuzer at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Salvatore Moretti at the cab stand outside the Hippodrome, 11:00 PM; Booker Cheatham at the cab stand outside the Hippodrome, 11:00 PM; Assunta Bellucci at the cab stand outside the Hippodrome, 11:00 PM; Friedrich Kreuzer at the cab stand outside the Hippodrome, 11:00 PM_
-- **c141** [corroboration] (physical; the place itself) → (end)
-  - A nickel-plated revolver is gone from the speakeasy under the hat shop. The drawer it was kept in is open and the oiled cloth is still in it.
-  - _establishes: something gone from the speakeasy under the hat shop; how it was done_
-- **c021** [corroboration] (observation; Grafton Winslow on Rivka Weisglass) → (end)
-  - Grafton Winslow says Rivka Weisglass was at the speakeasy under the hat shop at 9:30 PM.
-  - _establishes: Rivka Weisglass at the speakeasy under the hat shop, 9:30 PM; Rivka Weisglass could reach the weapon_
-- **c144** [corroboration] (anchor; Frieda Vogel on Ellsworth Havemeyer that evening) → (end)
-  - Frieda Vogel puts Ellsworth Havemeyer at the speakeasy under the hat shop while the singing was still going on, which was 10:30 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 10:30 PM; Ellsworth Havemeyer at the speakeasy under the hat shop, 10:30 PM_
-- **c145** [corroboration] (anchor; Frieda Vogel on the noise that evening) → (end)
-  - Frieda Vogel was at the speakeasy under the hat shop at 11:00 PM and heard a shot from the direction of the victim’s apartment on the fourth floor, just as the El went over.
-  - _establishes: noise at the victim’s apartment on the fourth floor at 11:00 PM; the victim dead by 11:00 PM; how it was done_
-- **c070** [corroboration] (observation; Frieda Vogel on Rivka Weisglass) → c176
-  - Frieda Vogel says Rivka Weisglass was at the speakeasy under the hat shop from 9:30 PM to 10:30 PM.
-  - _establishes: Rivka Weisglass at the speakeasy under the hat shop, 9:30 PM–10:30 PM; Rivka Weisglass could reach the weapon_
-- **c018** [corroboration] (observation; Grafton Winslow on Salvatore Moretti) → c166
-  - Grafton Winslow says Salvatore Moretti was at the speakeasy under the hat shop at 9:30 PM.
-  - _establishes: Salvatore Moretti at the speakeasy under the hat shop, 9:30 PM; Salvatore Moretti could reach the weapon_
-- **c166** [noise {b5}] (overheard; Frieda Vogel on Grafton Winslow) → c170
-  - Frieda Vogel on Grafton Winslow: Somebody asked Grafton Winslow a plain question about the evening and got three different answers.
+- **c095** [noise {b1}] (anchor; Brennan on the drunk singing under the window) → c113
+  - Brennan claims the speakeasy at 8:00 PM, which is when the drunk singing under the window was on. Asked about it, Brennan cannot say that it was a shoe, and it was thrown by a woman, and it did not land — and everybody who was there can.
+  - _establishes: Brennan not at the speakeasy, 8:00 PM_
+- **c096** [noise {b2}] (anchor; Ellery on the drunk singing under the window) → c128
+  - Ellery claims the speakeasy at 8:00 PM, which is when the drunk singing under the window was on. Asked about it, Ellery cannot say that it was a shoe, and it was thrown by a woman, and it did not land — and everybody who was there can.
+  - _establishes: Ellery not at the speakeasy, 8:00 PM_
+- **c117** [noise {b3}] (overheard; Shapiro on Dandridge) → c123
+  - Shapiro on Dandridge: Dandridge’s sleeves are buttoned at the wrist in a warm room.
   - _establishes: context only_
 
-### At the cab stand outside the Hippodrome
+### At Mrs. Teague’s
 
-- **c121** [spine] (observation; Nora Callahan on who was there at 11:00 PM) → c132, c021, c185
-  - Nora Callahan runs through it: at 11:00 PM there were Salvatore Moretti, Booker Cheatham, Grafton Winslow, Assunta Bellucci, Friedrich Kreuzer at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Salvatore Moretti at the cab stand outside the Hippodrome, 11:00 PM; Booker Cheatham at the cab stand outside the Hippodrome, 11:00 PM; Grafton Winslow at the cab stand outside the Hippodrome, 11:00 PM; Assunta Bellucci at the cab stand outside the Hippodrome, 11:00 PM; Friedrich Kreuzer at the cab stand outside the Hippodrome, 11:00 PM_
-- **c006** [spine] (observation; Salvatore Moretti on Rivka Weisglass) → (end)
-  - Salvatore Moretti says Rivka Weisglass was at the speakeasy under the hat shop from 9:30 PM to 10:30 PM.
-  - _establishes: Rivka Weisglass at the speakeasy under the hat shop, 9:30 PM–10:30 PM; Rivka Weisglass could reach the weapon_
-- **c155** [noise {b1}] (physical; the place itself) → c154
-  - A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.
+- **c101** [spine ⟨opening⟩] (client; Lefkowitz on why I was hired) → c031, c032
+  - Lefkowitz hired us, and wants it known that Brauer blamed the victim for a ruin, and would rather we started there.
+  - _establishes: Brauer had a motive (revenge)_
+- **c031** [spine] (observation; Lefkowitz on Brauer) → c030, c063, c061, c064, c057
+  - Lefkowitz says Brauer was at the speakeasy at 6:00 PM.
+  - _establishes: Brauer at the speakeasy, 6:00 PM; Brauer could reach the weapon_
+- **c032** [spine] (observation; Lefkowitz on Brennan) → c007
+  - Lefkowitz says Brennan was at Mrs. Teague’s from 8:30 PM to 9:00 PM.
+  - _establishes: Brennan at Mrs. Teague’s, 8:30 PM–9:00 PM_
+- **c030** [spine] (observation; Lefkowitz on Hochstetter) → c106
+  - Lefkowitz says Hochstetter was at Mrs. Teague’s from 8:30 PM to 9:00 PM.
+  - _establishes: Hochstetter at Mrs. Teague’s, 8:30 PM–9:00 PM_
+- **c007** [spine] (observation; Hochstetter on Lefkowitz) → c094, c065
+  - Hochstetter says Lefkowitz was at Mrs. Teague’s from 8:30 PM to 9:00 PM.
+  - _establishes: Lefkowitz at Mrs. Teague’s, 8:30 PM–9:00 PM_
+- **c098** [corroboration] (overheard; Kessler on Brauer and Havemeyer) → (end)
+  - Kessler says Brauer said Havemeyer had taken everything and would be made to feel it.
+  - _establishes: Brauer had a motive (revenge)_
+- **c052** [corroboration] (observation; Kessler on Hochstetter) → (end)
+  - Kessler says Hochstetter was at Mrs. Teague’s from 6:30 PM to 9:00 PM.
+  - _establishes: Hochstetter at Mrs. Teague’s, 6:30 PM–9:00 PM_
+- **c004** [corroboration] (observation; Hochstetter on Brennan) → (end)
+  - Hochstetter says Brennan was at Mrs. Teague’s from 8:30 PM to 9:00 PM.
+  - _establishes: Brennan at Mrs. Teague’s, 8:30 PM–9:00 PM_
+- **c057** [corroboration] (observation; Kessler on Lefkowitz) → (end)
+  - Kessler says Lefkowitz was at Mrs. Teague’s from 7:00 PM to 9:30 PM.
+  - _establishes: Lefkowitz at Mrs. Teague’s, 7:00 PM–9:30 PM_
+- **c113** [noise {b1}] (physical; the place itself) → c114
+  - A bottle at Mrs. Teague’s pushed behind the pipes, the seal broken and the level down.
   - _establishes: context only_
-- **c154** [noise {b1}] (physical; the place itself) → c156
-  - Wrapping paper and a cut string at the cab stand outside the Hippodrome, and the shop it came from closed two years ago.
+- **c114** [noise {b1}] (physical; the place itself) → c115
+  - A tab at Mrs. Teague’s in a name that is not Brennan’s, in Brennan’s handwriting.
   - _establishes: context only_
-- **c156** [disqualifier {b1}] (overheard; the place itself) → (end)
-  - The receiver at the cab stand outside the Hippodrome would rather talk than be held: Salvatore Moretti was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Salvatore Moretti will take over this one.
-  - _establishes: Salvatore Moretti’s fence accounted for; Salvatore Moretti at the cab stand outside the Hippodrome, 11:00 PM_
-- **c185** [noise {b3}] (physical; the place itself) → c186
-  - A book of markers at the cab stand outside the Hippodrome with Friedrich Kreuzer’s initials against four of them.
+- **c115** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The man behind the counter at Mrs. Teague’s knows exactly: Brennan was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Brennan’s secret-drinking accounted for; Brennan at Mrs. Teague’s, 8:00 PM–8:30 PM_
+- **c106** [noise {b4}] (physical; the place itself) → c107
+  - A note in a woman’s hand at Mrs. Teague’s, no name on it, naming a time and nothing else.
   - _establishes: context only_
-- **c186** [disqualifier {b3}] (overheard; the place itself) → (end)
-  - The bookmaker’s runner is found and will say it: Friedrich Kreuzer was at the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
-  - _establishes: Friedrich Kreuzer’s gambling-debt accounted for; Friedrich Kreuzer at the cab stand outside the Hippodrome, 10:30 PM–11:00 PM_
+- **c107** [noise {b4}] (physical; the place itself) → c108
+  - A man’s hat at Mrs. Teague’s that fits nobody who admits to being there.
+  - _establishes: context only_
+- **c108** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - Lefkowitz breaks and says it plainly: Lefkowitz was with Hochstetter at Mrs. Teague’s for the whole of it, from 7:00 PM to 8:00 PM, and it is a marriage they are hiding, not a killing.
+  - _establishes: Hochstetter’s affair accounted for; Hochstetter at Mrs. Teague’s, 7:00 PM–8:00 PM; Lefkowitz’s affair accounted for; Lefkowitz at Mrs. Teague’s, 7:00 PM–8:00 PM_
 
-### At the victim’s apartment on the fourth floor
+### At the speakeasy
 
-- **c139** [spine ⟨opening⟩] (scene; the place itself) → c121, c132, c093
-  - Ellsworth Havemeyer was found at the victim’s apartment on the fourth floor. The cigarette he had going burned itself out on the sill where it fell. The El going over came at 11:00 PM, and the El was running to timetable and it covers the half hour exactly. That puts the killing in that half hour and no later.
-  - _establishes: the victim dead by 11:00 PM; how it was done_
-- **c140** [spine ⟨opening⟩] (morgue; the place itself) → c121, c143, c090, c130
-  - The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
-  - _establishes: death between 10:00 PM and 11:30 PM; how it was done_
-- **c146** [corroboration] (document; the place itself) → (end)
-  - Found at the victim’s apartment on the fourth floor: A lease assignment made out in Rivka Weisglass’s name, waiting only on Ellsworth Havemeyer’s signature.
-  - _establishes: Rivka Weisglass had a motive (property)_
+- **c094** [spine] (anchor; Cheatham on Havemeyer that evening) → c098, c122
+  - Cheatham puts Havemeyer at the speakeasy while the singing was still going on, which was 8:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 8:00 PM; Havemeyer at the speakeasy, 8:00 PM_
+- **c065** [spine] (observation; Cheatham on Ellery) → c093
+  - Cheatham says Ellery was at the cab stand at 8:30 PM.
+  - _establishes: Ellery at the cab stand, 8:30 PM_
+- **c063** [spine] (observation; Cheatham on Dandridge) → c078, c052, c095
+  - Cheatham says Dandridge was at the cab stand at 8:30 PM.
+  - _establishes: Dandridge at the cab stand, 8:30 PM_
+- **c078** [spine] (observation; Cheatham on Brauer’s account) → c004, c096
+  - Cheatham was at the cab stand at 8:30 PM and says Brauer was not.
+  - _establishes: Brauer not at the cab stand, 8:30 PM_
+- **c061** [corroboration] (observation; Cheatham on Brauer) → (end)
+  - Cheatham says Brauer was at the speakeasy at 6:00 PM.
+  - _establishes: Brauer at the speakeasy, 6:00 PM; Brauer could reach the weapon_
+- **c093** [corroboration] (physical; the place itself) → c121
+  - A nickel-plated revolver is gone from the speakeasy. The drawer it was kept in is open and the oiled cloth is still in it.
+  - _establishes: something gone from the speakeasy; how it was done_
+- **c064** [corroboration] (observation; Cheatham on Lefkowitz) → (end)
+  - Cheatham says Lefkowitz was at the speakeasy from 6:00 PM to 6:30 PM.
+  - _establishes: Lefkowitz at the speakeasy, 6:00 PM–6:30 PM; Lefkowitz could reach the weapon_
+
+### At the cab stand
+
+- **c079** [corroboration] (observation; Feeney on Brauer’s account) → (end)
+  - Feeney was at the cab stand from 7:30 PM to 8:30 PM and says Brauer was not.
+  - _establishes: Brauer not at the cab stand, 7:30 PM–8:30 PM_
+- **c122** [corroboration] (overheard; the place itself) → (end)
+  - The man who sells it at the cab stand gives it up rather than be held: Dandridge was there from 8:30 PM to 9:00 PM, and stayed until it took hold.
+  - _establishes: Dandridge’s dope accounted for; Dandridge at the cab stand, 8:30 PM–9:00 PM_
+- **c128** [noise {b2}] (physical; the place itself) → c124
+  - A prescription blank at the cab stand signed by a doctor who has been dead since the spring.
+  - _establishes: context only_
+- **c124** [noise {b2}] (overheard; Feeney on Ellery) → c129
+  - Feeney on Ellery: Ellery’s sleeves are buttoned at the wrist in a warm room.
+  - _establishes: context only_
+- **c129** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The man who sells it at the cab stand gives it up rather than be held: Ellery was there from 8:00 PM to 8:30 PM, and stayed until it took hold.
+  - _establishes: Ellery’s dope accounted for; Ellery at the cab stand, 8:00 PM–8:30 PM_
+- **c121** [noise {b3}] (physical; the place itself) → c117
+  - A prescription blank at the cab stand signed by a doctor who has been dead since the spring.
+  - _establishes: context only_
+- **c123** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The doctor Dandridge used to see confirms the habit and the hour: Dandridge was at the cab stand from 8:30 PM to 9:00 PM, and could not have crossed the street unhelped.
+  - _establishes: Dandridge’s dope accounted for; Dandridge at the cab stand, 8:30 PM–9:00 PM_
+
+### At the fourth floor
+
+- **c091** [spine ⟨opening⟩] (scene; the place itself) → c032, c030, c094, c065, c063
+  - Havemeyer was found at the fourth floor. The cigarette he had going burned itself out on the sill where it fell. The El went over at 8:30 PM, running to timetable, and for twenty seconds nothing under the structure can be heard at all.
+  - _establishes: the victim dead by 8:30 PM; how it was done_
+- **c092** [spine ⟨opening⟩] (morgue; the place itself) → c031, c007, c078, c079
+  - The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
+  - _establishes: death between 7:30 PM and 9:00 PM; how it was done_
 
 ## 8. Clue graph
 
 ```mermaid
 graph LR
-  subgraph P1["Ruggiero’s barber shop"]
-    c150["▶ c150 Friedrich Kreuzer"]
-    c143["c143 Rivka Weisglass"]
-    c132["c132 Assunta Bellucci"]
-    c090["c090 Booker Cheatham"]
-    c130["c130 Booker Cheatham"]
-    c015["c015 Booker Cheatham"]
+  subgraph P1["Ruggiero’s"]
+    c095["c095 Brennan"]
+    c096["c096 Ellery"]
+    c117["c117 Shapiro"]
   end
-  subgraph P2["the back room at Mrs. Teague’s"]
-    c176["c176 the place"]
-    c179["✗ c179 the place"]
-    c162["c162 the place"]
-    c163["✗ c163 the place"]
-    c170["c170 the place"]
-    c171["✗ c171 the place"]
+  subgraph P2["Mrs. Teague’s"]
+    c101["▶ c101 Lefkowitz"]
+    c031["c031 Lefkowitz"]
+    c032["c032 Lefkowitz"]
+    c030["c030 Lefkowitz"]
+    c007["c007 Hochstetter"]
+    c098["c098 Kessler"]
+    c052["c052 Kessler"]
+    c004["c004 Hochstetter"]
+    c057["c057 Kessler"]
+    c113["c113 the place"]
+    c114["c114 the place"]
+    c115["✗ c115 the place"]
+    c106["c106 the place"]
+    c107["c107 the place"]
+    c108["✗ c108 the place"]
   end
-  subgraph P3["the speakeasy under the hat shop"]
-    c093["c093 Grafton Winslow"]
-    c141["c141 the place"]
-    c021["c021 Grafton Winslow"]
-    c144["c144 Frieda Vogel"]
-    c145["c145 Frieda Vogel"]
-    c070["c070 Frieda Vogel"]
-    c018["c018 Grafton Winslow"]
-    c166["c166 Frieda Vogel"]
+  subgraph P3["the speakeasy"]
+    c094["c094 Cheatham"]
+    c065["c065 Cheatham"]
+    c063["c063 Cheatham"]
+    c078["c078 Cheatham"]
+    c061["c061 Cheatham"]
+    c093["c093 the place"]
+    c064["c064 Cheatham"]
   end
-  subgraph P4["the cab stand outside the Hippodrome"]
-    c121["c121 Nora Callahan"]
-    c006["c006 Salvatore Moretti"]
-    c155["c155 the place"]
-    c154["c154 the place"]
-    c156["✗ c156 the place"]
-    c185["c185 the place"]
-    c186["✗ c186 the place"]
+  subgraph P4["the cab stand"]
+    c079["c079 Feeney"]
+    c122["c122 the place"]
+    c128["c128 the place"]
+    c124["c124 Feeney"]
+    c129["✗ c129 the place"]
+    c121["c121 the place"]
+    c123["✗ c123 the place"]
   end
-  subgraph P5["the victim’s apartment on the fourth floor"]
-    c139["▶ c139 the place"]
-    c140["▶ c140 the place"]
-    c146["c146 the place"]
+  subgraph P5["the fourth floor"]
+    c091["▶ c091 the place"]
+    c092["▶ c092 the place"]
   end
-  c139 --> c121
-  c139 --> c132
-  c139 --> c093
-  c140 --> c121
-  c140 --> c143
-  c140 --> c090
-  c140 --> c130
-  c150 --> c143
-  c150 --> c018
-  c121 --> c132
-  c121 --> c021
-  c121 -.-> c185
-  c143 --> c006
-  c143 --> c146
-  c143 --> c070
-  c132 --> c006
-  c132 --> c141
-  c132 --> c144
-  c132 --> c145
-  c132 --> c015
-  c070 -.-> c176
-  c015 -.-> c155
-  c015 -.-> c162
-  c018 -.-> c166
-  c155 -.-> c154
-  c154 --> c156
-  c176 --> c179
-  c185 --> c186
-  c162 --> c163
-  c166 -.-> c170
-  c170 --> c171
+  c091 --> c032
+  c091 --> c030
+  c091 --> c094
+  c091 --> c065
+  c091 --> c063
+  c092 --> c031
+  c092 --> c007
+  c092 --> c078
+  c092 --> c079
+  c101 --> c031
+  c101 --> c032
+  c031 --> c030
+  c031 --> c063
+  c031 --> c061
+  c031 --> c064
+  c031 --> c057
+  c032 --> c007
+  c030 -.-> c106
+  c007 --> c094
+  c007 --> c065
+  c094 --> c098
+  c094 --> c122
+  c065 --> c093
+  c063 --> c078
+  c063 --> c052
+  c063 -.-> c095
+  c078 --> c004
+  c078 -.-> c096
+  c093 -.-> c121
+  c095 -.-> c113
+  c113 -.-> c114
+  c114 --> c115
+  c096 -.-> c128
+  c128 -.-> c124
+  c124 --> c129
+  c121 -.-> c117
+  c117 --> c123
+  c106 -.-> c107
+  c107 --> c108
   classDef spine stroke-width:3px;
   classDef corrob stroke-width:1px;
   classDef noise stroke-dasharray: 4 3;
   classDef disq stroke-width:2px,stroke-dasharray: 1 0;
-  class c139,c140,c150,c121,c143,c132,c006 spine;
-  class c093,c141,c021,c090,c146,c130,c144,c145,c070,c015,c018 corrob;
-  class c155,c154,c176,c185,c162,c166,c170 noise;
-  class c156,c179,c186,c163,c171 disq;
+  class c091,c092,c101,c031,c032,c030,c007,c094,c065,c063,c078 spine;
+  class c079,c061,c093,c098,c064,c052,c004,c122,c057 corrob;
+  class c095,c113,c114,c096,c128,c124,c121,c117,c106,c107 noise;
+  class c115,c129,c123,c108 disq;
 ```
 
 ## 9. Deduction path
 
-Par is **6 actions** against a budget of 20: 14 spare. Every id below is a spine clue.
+Par is **10 actions** and the budget is par plus 6: **16**. Every id below is a spine clue; the inference is the sheet’s, not the clue’s.
 
-**Time of death.** The coroner gives four ticks. The anchors close it to 11:00 PM: one puts Ellsworth Havemeyer alive at 10:30 PM, the other times the scene at 11:00 PM. _(c140, c143, c139; + 2 corroborating)_
+**Time of death.** The coroner gives four ticks. The anchors close it to 8:30 PM: one puts Havemeyer alive at 8:00 PM, the other times the scene at 8:30 PM. _(c092, c094, c091)_
 
 **Clearing the innocent.**
 
-- Salvatore Moretti was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 3 corroborating)_
-- Booker Cheatham was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 1 corroborating)_
-- Grafton Winslow was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 1 corroborating)_
-- Assunta Bellucci was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 3 corroborating)_
-- Friedrich Kreuzer was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 3 corroborating)_
+- Hochstetter was not at the fourth floor at 8:30 PM. _(c030; + 1 corroborating)_
+- Brennan was not at the fourth floor at 8:30 PM. _(c032; + 2 corroborating)_
+- Dandridge was not at the fourth floor at 8:30 PM. _(c063; + 2 corroborating)_
+- Lefkowitz was not at the fourth floor at 8:30 PM. _(c007; + 1 corroborating)_
+- Ellery was not at the fourth floor at 8:30 PM. _(c065; + 1 corroborating)_
 
-**Naming the killer.** Rivka Weisglass claims the cab stand outside the Hippodrome at 11:00 PM. Two independent sources put that out of the question. _(c132; + 1 corroborating)_
+**Naming the killer.** Brauer claims the cab stand at 8:30 PM. Two independent sources put that out of the question. _(c078; + 1 corroborating)_
 
-**The weapon.** Rivka Weisglass was at the speakeasy under the hat shop before 11:00 PM, where a nickel-plated revolver was kept. _(c006; + 2 corroborating)_
+**The weapon.** Brauer was at the speakeasy before 8:30 PM, where a nickel-plated revolver was kept. _(c031; + 1 corroborating)_
 
-**Method.** A gunshot, on two physical sources. _(c139, c140; + 2 corroborating)_
+**Method.** A gunshot, on two physical sources. _(c091, c092; + 1 corroborating)_
 
-**Motive.** property, on two independent sources. _(c150; + 1 corroborating)_
+**Motive.** revenge, on two independent sources. _(c101; + 1 corroborating)_
 
 ## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Salvatore Moretti claims the speakeasy under the hat shop at 11:00 PM and was really at the cab stand outside the Hippodrome. Reason: Salvatore Moretti hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 11:00 PM.
-- Friedrich Kreuzer claims Ruggiero’s barber shop at 11:00 PM and was really at the cab stand outside the Hippodrome. Reason: Friedrich Kreuzer slips off to the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM to settle with a bookmaker.
+- Brennan claims the speakeasy at 8:30 PM and was really at Mrs. Teague’s. Reason: Brennan drinks alone at Mrs. Teague’s from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
+- Dandridge claims Ruggiero’s at 8:30 PM and was really at the cab stand. Reason: Dandridge buys morphine at the cab stand from 8:30 PM to 9:00 PM and would rather be thought a murderer than a hop-head.
+- Ellery claims the speakeasy at 8:30 PM and was really at the cab stand. Reason: Ellery buys morphine at the cab stand from 8:00 PM to 8:30 PM and would rather be thought a murderer than a hop-head.
 
 **Innocents with a motive:**
 
-- Assunta Bellucci — inheritance: stands to inherit.
+- Dandridge — inheritance: stands to inherit.
 
 **Noise branches, and what knocks each one down:**
 
-- **b1** (Salvatore Moretti, fence): c155 → c154 → **c156** — The receiver at the cab stand outside the Hippodrome would rather talk than be held: Salvatore Moretti was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Salvatore Moretti will take over this one.
-- **b2** (Assunta Bellucci, affair): c176 → **c179** — Grafton Winslow breaks and says it plainly: Grafton Winslow was with Assunta Bellucci at the back room at Mrs. Teague’s for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
-- **b3** (Friedrich Kreuzer, gambling-debt): c185 → **c186** — The bookmaker’s runner is found and will say it: Friedrich Kreuzer was at the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
-- **b4** (Booker Cheatham, hidden-family): c162 → **c163** — The woman who keeps the child says it straight out: Booker Cheatham was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.
-- **b5** (Grafton Winslow, affair): c166 → c170 → **c171** — Assunta Bellucci breaks and says it plainly: Assunta Bellucci was with Grafton Winslow at the back room at Mrs. Teague’s for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
+- **b1** (Brennan, secret-drinking): c095 → c113 → c114 → **c115** — The man behind the counter at Mrs. Teague’s knows exactly: Brennan was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.
+- **b2** (Ellery, dope): c096 → c128 → c124 → **c129** — The man who sells it at the cab stand gives it up rather than be held: Ellery was there from 8:00 PM to 8:30 PM, and stayed until it took hold.
+- **b3** (Dandridge, dope): c121 → c117 → **c123** — The doctor Dandridge used to see confirms the habit and the hour: Dandridge was at the cab stand from 8:30 PM to 9:00 PM, and could not have crossed the street unhelped.
+- **b4** (Hochstetter, affair): c106 → c107 → **c108** — Lefkowitz breaks and says it plainly: Lefkowitz was with Hochstetter at Mrs. Teague’s for the whole of it, from 7:00 PM to 8:00 PM, and it is a marriage they are hiding, not a killing.
 

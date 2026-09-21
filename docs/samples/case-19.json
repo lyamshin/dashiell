@@ -8,6 +8,7 @@
     {
       "id": "chop-suey",
       "name": "the chop suey place over the laundry",
+      "shortName": "the chop suey place",
       "kind": "semi",
       "objects": [
         "obj-telephone",
@@ -21,6 +22,7 @@
     {
       "id": "movie-house",
       "name": "the Bijou picture house",
+      "shortName": "the Bijou",
       "kind": "public",
       "objects": [
         "obj-ashtray",
@@ -34,6 +36,7 @@
     {
       "id": "rooftop",
       "name": "the roof over the Dover",
+      "shortName": "the roof",
       "kind": "private",
       "objects": [
         "obj-roofkey",
@@ -45,6 +48,7 @@
     {
       "id": "cab-stand",
       "name": "the cab stand outside the Hippodrome",
+      "shortName": "the cab stand",
       "kind": "public",
       "objects": [
         "obj-revolver",
@@ -58,6 +62,7 @@
     {
       "id": "square-benches",
       "name": "the benches at the north end of the square",
+      "shortName": "the benches",
       "kind": "public",
       "objects": [
         "obj-umbrella"
@@ -68,6 +73,7 @@
     {
       "id": "res-brownstone",
       "name": "the victim’s rooms in the brownstone",
+      "shortName": "the brownstone",
       "kind": "private",
       "objects": [
         "obj-photograph",
@@ -153,6 +159,7 @@
     {
       "id": "p-victim",
       "name": "Winthrop Fairbanks",
+      "surname": "Fairbanks",
       "role": "a pawnbroker",
       "kind": "victim",
       "isKiller": false,
@@ -161,6 +168,7 @@
     {
       "id": "p-s1",
       "name": "Vincenzo Tramonti",
+      "surname": "Tramonti",
       "role": "a lawyer with one clerk",
       "kind": "suspect",
       "isKiller": true,
@@ -170,7 +178,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Vincenzo Tramonti is at the victim’s rooms in the brownstone from 8:00 PM to 8:30 PM, alone with Winthrop Fairbanks when it happens at 8:30 PM.",
+        "description": "Tramonti is at the brownstone from 8:00 PM to 8:30 PM, alone with Fairbanks when it happens at 8:30 PM.",
         "cells": [
           {
             "tick": 4,
@@ -186,7 +194,7 @@
       "coverSecret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Vincenzo Tramonti slips off to the cab stand outside the Hippodrome from 7:30 PM to settle with a bookmaker.",
+        "description": "Tramonti slips off to the cab stand from 7:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 3,
@@ -203,16 +211,17 @@
     {
       "id": "p-s2",
       "name": "Roscoe Colquitt",
+      "surname": "Colquitt",
       "role": "the night manager at the hotel",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-nightman",
-      "relationshipId": "rel-employee",
-      "relationshipToVictim": "the victim’s former employee",
+      "relationshipId": "rel-tenant",
+      "relationshipToVictim": "the victim’s tenant",
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Roscoe Colquitt hands a parcel of stolen goods to a man at the chop suey place over the laundry from 8:30 PM.",
+        "description": "Colquitt hands a parcel of stolen goods to a man at the chop suey place from 8:30 PM.",
         "cells": [
           {
             "tick": 5,
@@ -229,6 +238,7 @@
     {
       "id": "p-s3",
       "name": "Michael Mulcahy",
+      "surname": "Mulcahy",
       "role": "a hack driver",
       "kind": "suspect",
       "isKiller": false,
@@ -238,7 +248,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Michael Mulcahy hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 8:30 PM.",
+        "description": "Mulcahy hands a parcel of stolen goods to a man at the cab stand from 8:30 PM.",
         "cells": [
           {
             "tick": 5,
@@ -251,6 +261,7 @@
     {
       "id": "p-s4",
       "name": "Lorraine Tillman",
+      "surname": "Tillman",
       "role": "the owner of the block",
       "kind": "suspect",
       "isKiller": false,
@@ -260,7 +271,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Lorraine Tillman hands a parcel of stolen goods to a man at the chop suey place over the laundry from 8:30 PM to 9:00 PM.",
+        "description": "Tillman hands a parcel of stolen goods to a man at the chop suey place from 8:30 PM to 9:00 PM.",
         "cells": [
           {
             "tick": 5,
@@ -277,6 +288,7 @@
     {
       "id": "p-s5",
       "name": "Thaddeus Coffin",
+      "surname": "Coffin",
       "role": "a bookmaker in a small way",
       "kind": "suspect",
       "isKiller": false,
@@ -286,7 +298,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Thaddeus Coffin hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM.",
+        "description": "Coffin hands a parcel of stolen goods to a man at the cab stand from 10:30 PM to 11:00 PM.",
         "cells": [
           {
             "tick": 9,
@@ -304,6 +316,7 @@
     {
       "id": "p-s6",
       "name": "Rachel Kessler",
+      "surname": "Kessler",
       "role": "a switchboard operator",
       "kind": "suspect",
       "isKiller": false,
@@ -313,7 +326,7 @@
       "secret": {
         "type": "hidden-family",
         "label": "A child boarded out",
-        "description": "Rachel Kessler goes to the benches at the north end of the square from 7:00 PM to see a child nobody is supposed to know about.",
+        "description": "Kessler goes to the benches from 7:00 PM to see a child nobody is supposed to know about.",
         "cells": [
           {
             "tick": 2,
@@ -326,6 +339,7 @@
     {
       "id": "p-f1",
       "name": "Isidore Feldman",
+      "surname": "Feldman",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -335,6 +349,7 @@
     {
       "id": "p-f2",
       "name": "Giovanna Grasso",
+      "surname": "Grasso",
       "role": "the ticket-taker",
       "kind": "fixture",
       "isKiller": false,
@@ -344,6 +359,7 @@
     {
       "id": "p-f3",
       "name": "Edith Stannard",
+      "surname": "Stannard",
       "role": "the hackman on the stand",
       "kind": "fixture",
       "isKiller": false,
@@ -372,10 +388,16 @@
       "traces": [
         {
           "kind": "sighting"
+        },
+        {
+          "kind": "knowledge",
+          "description": "there was an understudy on, and the house was told about it at the door"
         }
       ],
       "timing": "in the crush when the theatre let out",
-      "sceneTiming": "the curtain comes down at the same minute six nights a week",
+      "highTiming": "in the crush when the theatre let out",
+      "sceneFact": "The curtain came down at {T}, the same minute six nights a week, and the street was full for a quarter of an hour.",
+      "masks": true,
       "placeId": "chop-suey"
     },
     {
@@ -393,13 +415,16 @@
         }
       ],
       "timing": "while the milk wagon was in the street",
-      "sceneTiming": "the driver keeps to his round and he was at the corner for it"
+      "highTiming": "while the milk wagon was in the street",
+      "sceneFact": "The milk wagon was at the corner at {T}, where the driver’s round puts him every night.",
+      "masks": false
     }
   ],
   "nearScene": [
     "movie-house",
     "square-benches"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2273,7 +2298,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Winthrop Fairbanks"
+        "topic": "Fairbanks"
       },
       "establishes": [
         {
@@ -2289,7 +2314,7 @@
           "tick": 1
         }
       ],
-      "text": "Vincenzo Tramonti says Winthrop Fairbanks was at the cab stand outside the Hippodrome from 6:00 PM to 6:30 PM.",
+      "text": "Tramonti says Fairbanks was at the cab stand from 6:00 PM to 6:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2300,7 +2325,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -2310,7 +2335,7 @@
           "tick": 10
         }
       ],
-      "text": "Vincenzo Tramonti says Roscoe Colquitt was at the Bijou picture house at 11:00 PM.",
+      "text": "Tramonti says Colquitt was at the Bijou at 11:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2321,7 +2346,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2331,7 +2356,7 @@
           "tick": 2
         }
       ],
-      "text": "Vincenzo Tramonti says Michael Mulcahy was at the chop suey place over the laundry at 7:00 PM.",
+      "text": "Tramonti says Mulcahy was at the chop suey place at 7:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2342,7 +2367,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2352,7 +2377,7 @@
           "tick": 9
         }
       ],
-      "text": "Vincenzo Tramonti says Michael Mulcahy was at the benches at the north end of the square at 10:30 PM.",
+      "text": "Tramonti says Mulcahy was at the benches at 10:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2363,7 +2388,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2384,7 +2409,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Vincenzo Tramonti says Thaddeus Coffin was at the cab stand outside the Hippodrome from 6:00 PM to 6:30 PM.",
+      "text": "Tramonti says Coffin was at the cab stand from 6:00 PM to 6:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2395,7 +2420,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2405,7 +2430,7 @@
           "tick": 8
         }
       ],
-      "text": "Vincenzo Tramonti says Thaddeus Coffin was at the Bijou picture house at 10:00 PM.",
+      "text": "Tramonti says Coffin was at the Bijou at 10:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2416,7 +2441,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2431,7 +2456,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Vincenzo Tramonti says Rachel Kessler was at the cab stand outside the Hippodrome at 6:00 PM.",
+      "text": "Tramonti says Kessler was at the cab stand at 6:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2442,7 +2467,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2452,7 +2477,7 @@
           "tick": 7
         }
       ],
-      "text": "Vincenzo Tramonti says Rachel Kessler was at the benches at the north end of the square at 9:30 PM.",
+      "text": "Tramonti says Kessler was at the benches at 9:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2463,7 +2488,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Winthrop Fairbanks"
+        "topic": "Fairbanks"
       },
       "establishes": [
         {
@@ -2473,7 +2498,7 @@
           "tick": 4
         }
       ],
-      "text": "Roscoe Colquitt says Winthrop Fairbanks was at the chop suey place over the laundry at 8:00 PM.",
+      "text": "Colquitt says Fairbanks was at the chop suey place at 8:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2484,7 +2509,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -2494,7 +2519,7 @@
           "tick": 10
         }
       ],
-      "text": "Roscoe Colquitt says Vincenzo Tramonti was at the Bijou picture house at 11:00 PM.",
+      "text": "Colquitt says Tramonti was at the Bijou at 11:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2505,7 +2530,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2515,7 +2540,7 @@
           "tick": 3
         }
       ],
-      "text": "Roscoe Colquitt says Michael Mulcahy was at the chop suey place over the laundry at 7:30 PM.",
+      "text": "Colquitt says Mulcahy was at the chop suey place at 7:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2526,7 +2551,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Lorraine Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -2536,7 +2561,7 @@
           "tick": 2
         }
       ],
-      "text": "Roscoe Colquitt says Lorraine Tillman was at the roof over the Dover at 7:00 PM.",
+      "text": "Colquitt says Tillman was at the roof at 7:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2547,7 +2572,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Lorraine Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -2575,7 +2600,7 @@
           "tick": 9
         }
       ],
-      "text": "Roscoe Colquitt says Lorraine Tillman was at the chop suey place over the laundry from 9:00 PM to 10:30 PM.",
+      "text": "Colquitt says Tillman was at the chop suey place from 9:00 PM to 10:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2586,7 +2611,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2602,7 +2627,7 @@
           "tick": 7
         }
       ],
-      "text": "Roscoe Colquitt says Thaddeus Coffin was at the chop suey place over the laundry from 9:00 PM to 9:30 PM.",
+      "text": "Colquitt says Coffin was at the chop suey place from 9:00 PM to 9:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2613,7 +2638,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2623,7 +2648,7 @@
           "tick": 11
         }
       ],
-      "text": "Roscoe Colquitt says Rachel Kessler was at the Bijou picture house at 11:30 PM.",
+      "text": "Colquitt says Kessler was at the Bijou at 11:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2634,7 +2659,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -2644,7 +2669,7 @@
           "tick": 2
         }
       ],
-      "text": "Michael Mulcahy says Vincenzo Tramonti was at the chop suey place over the laundry at 7:00 PM.",
+      "text": "Mulcahy says Tramonti was at the chop suey place at 7:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2655,7 +2680,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -2665,7 +2690,7 @@
           "tick": 9
         }
       ],
-      "text": "Michael Mulcahy says Vincenzo Tramonti was at the benches at the north end of the square at 10:30 PM.",
+      "text": "Mulcahy says Tramonti was at the benches at 10:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2676,7 +2701,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -2686,7 +2711,7 @@
           "tick": 3
         }
       ],
-      "text": "Michael Mulcahy says Roscoe Colquitt was at the chop suey place over the laundry at 7:30 PM.",
+      "text": "Mulcahy says Colquitt was at the chop suey place at 7:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2697,7 +2722,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2707,7 +2732,7 @@
           "tick": 10
         }
       ],
-      "text": "Michael Mulcahy says Thaddeus Coffin was at the cab stand outside the Hippodrome at 11:00 PM.",
+      "text": "Mulcahy says Coffin was at the cab stand at 11:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2718,7 +2743,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2728,7 +2753,7 @@
           "tick": 6
         }
       ],
-      "text": "Michael Mulcahy says Rachel Kessler was at the cab stand outside the Hippodrome at 9:00 PM.",
+      "text": "Mulcahy says Kessler was at the cab stand at 9:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2739,7 +2764,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2749,7 +2774,7 @@
           "tick": 10
         }
       ],
-      "text": "Michael Mulcahy says Rachel Kessler was at the cab stand outside the Hippodrome at 11:00 PM.",
+      "text": "Mulcahy says Kessler was at the cab stand at 11:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2760,7 +2785,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2770,7 +2795,7 @@
           "tick": 8
         }
       ],
-      "text": "Michael Mulcahy says Rachel Kessler was at the benches at the north end of the square at 10:00 PM.",
+      "text": "Mulcahy says Kessler was at the benches at 10:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2781,7 +2806,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -2791,7 +2816,7 @@
           "tick": 2
         }
       ],
-      "text": "Lorraine Tillman says Roscoe Colquitt was at the roof over the Dover at 7:00 PM.",
+      "text": "Tillman says Colquitt was at the roof at 7:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2802,7 +2827,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -2824,7 +2849,7 @@
           "tick": 9
         }
       ],
-      "text": "Lorraine Tillman says Roscoe Colquitt was at the chop suey place over the laundry from 9:30 PM to 10:30 PM.",
+      "text": "Tillman says Colquitt was at the chop suey place from 9:30 PM to 10:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2835,7 +2860,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2845,7 +2870,7 @@
           "tick": 7
         }
       ],
-      "text": "Lorraine Tillman says Thaddeus Coffin was at the chop suey place over the laundry at 9:30 PM.",
+      "text": "Tillman says Coffin was at the chop suey place at 9:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2856,7 +2881,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2866,7 +2891,7 @@
           "tick": 1
         }
       ],
-      "text": "Lorraine Tillman says Rachel Kessler was at the benches at the north end of the square at 6:30 PM.",
+      "text": "Tillman says Kessler was at the benches at 6:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -2877,7 +2902,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Winthrop Fairbanks"
+        "topic": "Fairbanks"
       },
       "establishes": [
         {
@@ -2899,7 +2924,7 @@
           "tick": 2
         }
       ],
-      "text": "Thaddeus Coffin says Winthrop Fairbanks was at the cab stand outside the Hippodrome from 6:00 PM to 7:00 PM.",
+      "text": "Coffin says Fairbanks was at the cab stand from 6:00 PM to 7:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2910,7 +2935,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -2931,10 +2956,13 @@
           "methodId": "shot"
         }
       ],
-      "text": "Thaddeus Coffin says Vincenzo Tramonti was at the cab stand outside the Hippodrome from 6:00 PM to 6:30 PM.",
+      "text": "Coffin says Tramonti was at the cab stand from 6:00 PM to 6:30 PM.",
       "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c032",
+        "c099"
+      ],
+      "role": "spine"
     },
     {
       "id": "c029",
@@ -2942,7 +2970,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -2957,17 +2985,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Thaddeus Coffin says Vincenzo Tramonti was at the cab stand outside the Hippodrome at 7:30 PM.",
+      "text": "Coffin says Tramonti was at the cab stand at 7:30 PM.",
       "place": "cab-stand",
-      "leadsTo": [
-        "c126",
-        "c069",
-        "c124",
-        "c067",
-        "c109",
-        "c154"
-      ],
-      "role": "spine"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c030",
@@ -2975,7 +2996,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -2985,7 +3006,7 @@
           "tick": 8
         }
       ],
-      "text": "Thaddeus Coffin says Vincenzo Tramonti was at the Bijou picture house at 10:00 PM.",
+      "text": "Coffin says Tramonti was at the Bijou at 10:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -2996,7 +3017,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -3018,10 +3039,14 @@
           "tick": 7
         }
       ],
-      "text": "Thaddeus Coffin says Roscoe Colquitt was at the chop suey place over the laundry from 8:30 PM to 9:30 PM.",
+      "text": "Coffin says Colquitt was at the chop suey place from 8:30 PM to 9:30 PM.",
       "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c099",
+        "c036",
+        "c097"
+      ],
+      "role": "spine"
     },
     {
       "id": "c032",
@@ -3029,7 +3054,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Lorraine Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3051,10 +3076,12 @@
           "tick": 7
         }
       ],
-      "text": "Thaddeus Coffin says Lorraine Tillman was at the chop suey place over the laundry from 8:30 PM to 9:30 PM.",
+      "text": "Coffin says Tillman was at the chop suey place from 8:30 PM to 9:30 PM.",
       "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c053"
+      ],
+      "role": "spine"
     },
     {
       "id": "c033",
@@ -3062,7 +3089,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3077,7 +3104,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Thaddeus Coffin says Rachel Kessler was at the cab stand outside the Hippodrome at 6:00 PM.",
+      "text": "Coffin says Kessler was at the cab stand at 6:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3088,7 +3115,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3098,10 +3125,13 @@
           "tick": 5
         }
       ],
-      "text": "Thaddeus Coffin says Rachel Kessler was at the chop suey place over the laundry at 8:30 PM.",
+      "text": "Coffin says Kessler was at the chop suey place at 8:30 PM.",
       "place": "cab-stand",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c032",
+        "c118"
+      ],
+      "role": "spine"
     },
     {
       "id": "c035",
@@ -3109,7 +3139,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Winthrop Fairbanks"
+        "topic": "Fairbanks"
       },
       "establishes": [
         {
@@ -3119,7 +3149,7 @@
           "tick": 0
         }
       ],
-      "text": "Rachel Kessler says Winthrop Fairbanks was at the cab stand outside the Hippodrome at 6:00 PM.",
+      "text": "Kessler says Fairbanks was at the cab stand at 6:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3130,7 +3160,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -3145,10 +3175,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rachel Kessler says Vincenzo Tramonti was at the cab stand outside the Hippodrome at 6:00 PM.",
+      "text": "Kessler says Tramonti was at the cab stand at 6:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c037",
@@ -3156,7 +3186,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -3166,7 +3196,7 @@
           "tick": 7
         }
       ],
-      "text": "Rachel Kessler says Vincenzo Tramonti was at the benches at the north end of the square at 9:30 PM.",
+      "text": "Kessler says Tramonti was at the benches at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3177,7 +3207,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -3187,10 +3217,10 @@
           "tick": 5
         }
       ],
-      "text": "Rachel Kessler says Roscoe Colquitt was at the chop suey place over the laundry at 8:30 PM.",
+      "text": "Kessler says Colquitt was at the chop suey place at 8:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c039",
@@ -3198,7 +3228,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -3208,7 +3238,7 @@
           "tick": 11
         }
       ],
-      "text": "Rachel Kessler says Roscoe Colquitt was at the Bijou picture house at 11:30 PM.",
+      "text": "Kessler says Colquitt was at the Bijou at 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3219,7 +3249,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3229,7 +3259,7 @@
           "tick": 6
         }
       ],
-      "text": "Rachel Kessler says Michael Mulcahy was at the cab stand outside the Hippodrome at 9:00 PM.",
+      "text": "Kessler says Mulcahy was at the cab stand at 9:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3240,7 +3270,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3250,7 +3280,7 @@
           "tick": 10
         }
       ],
-      "text": "Rachel Kessler says Michael Mulcahy was at the cab stand outside the Hippodrome at 11:00 PM.",
+      "text": "Kessler says Mulcahy was at the cab stand at 11:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3261,7 +3291,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3271,7 +3301,7 @@
           "tick": 8
         }
       ],
-      "text": "Rachel Kessler says Michael Mulcahy was at the benches at the north end of the square at 10:00 PM.",
+      "text": "Kessler says Mulcahy was at the benches at 10:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3282,7 +3312,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Lorraine Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3292,7 +3322,7 @@
           "tick": 1
         }
       ],
-      "text": "Rachel Kessler says Lorraine Tillman was at the benches at the north end of the square at 6:30 PM.",
+      "text": "Kessler says Tillman was at the benches at 6:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3303,7 +3333,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Lorraine Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3313,7 +3343,7 @@
           "tick": 5
         }
       ],
-      "text": "Rachel Kessler says Lorraine Tillman was at the chop suey place over the laundry at 8:30 PM.",
+      "text": "Kessler says Tillman was at the chop suey place at 8:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3324,7 +3354,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3339,7 +3369,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rachel Kessler says Thaddeus Coffin was at the cab stand outside the Hippodrome at 6:00 PM.",
+      "text": "Kessler says Coffin was at the cab stand at 6:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3350,7 +3380,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3360,7 +3390,7 @@
           "tick": 10
         }
       ],
-      "text": "Rachel Kessler says Thaddeus Coffin was at the cab stand outside the Hippodrome at 11:00 PM.",
+      "text": "Kessler says Coffin was at the cab stand at 11:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3371,7 +3401,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3381,10 +3411,12 @@
           "tick": 5
         }
       ],
-      "text": "Rachel Kessler says Thaddeus Coffin was at the chop suey place over the laundry at 8:30 PM.",
+      "text": "Kessler says Coffin was at the chop suey place at 8:30 PM.",
       "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "corroboration"
     },
     {
       "id": "c048",
@@ -3392,7 +3424,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Winthrop Fairbanks"
+        "topic": "Fairbanks"
       },
       "establishes": [
         {
@@ -3402,7 +3434,7 @@
           "tick": 4
         }
       ],
-      "text": "Isidore Feldman says Winthrop Fairbanks was at the chop suey place over the laundry at 8:00 PM.",
+      "text": "Feldman says Fairbanks was at the chop suey place at 8:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -3413,7 +3445,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -3423,7 +3455,7 @@
           "tick": 2
         }
       ],
-      "text": "Isidore Feldman says Vincenzo Tramonti was at the chop suey place over the laundry at 7:00 PM.",
+      "text": "Feldman says Tramonti was at the chop suey place at 7:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -3434,7 +3466,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -3480,7 +3512,7 @@
           "tick": 9
         }
       ],
-      "text": "Isidore Feldman says Roscoe Colquitt was at the chop suey place over the laundry from 7:30 PM to 10:30 PM.",
+      "text": "Feldman says Colquitt was at the chop suey place from 7:30 PM to 10:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -3491,7 +3523,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3519,7 +3551,7 @@
           "tick": 3
         }
       ],
-      "text": "Isidore Feldman says Michael Mulcahy was at the chop suey place over the laundry from 6:00 PM to 7:30 PM.",
+      "text": "Feldman says Mulcahy was at the chop suey place from 6:00 PM to 7:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -3530,7 +3562,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Lorraine Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3576,7 +3608,7 @@
           "tick": 11
         }
       ],
-      "text": "Isidore Feldman says Lorraine Tillman was at the chop suey place over the laundry from 8:30 PM to 11:30 PM.",
+      "text": "Feldman says Tillman was at the chop suey place from 8:30 PM to 11:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -3587,7 +3619,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3609,10 +3641,14 @@
           "tick": 7
         }
       ],
-      "text": "Isidore Feldman says Thaddeus Coffin was at the chop suey place over the laundry from 8:30 PM to 9:30 PM.",
+      "text": "Feldman says Coffin was at the chop suey place from 8:30 PM to 9:30 PM.",
       "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c081",
+        "c047",
+        "c121"
+      ],
+      "role": "spine"
     },
     {
       "id": "c054",
@@ -3620,7 +3656,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3630,7 +3666,7 @@
           "tick": 5
         }
       ],
-      "text": "Isidore Feldman says Rachel Kessler was at the chop suey place over the laundry at 8:30 PM.",
+      "text": "Feldman says Kessler was at the chop suey place at 8:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -3641,7 +3677,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Winthrop Fairbanks"
+        "topic": "Fairbanks"
       },
       "establishes": [
         {
@@ -3651,7 +3687,7 @@
           "tick": 3
         }
       ],
-      "text": "Giovanna Grasso says Winthrop Fairbanks was at the Bijou picture house at 7:30 PM.",
+      "text": "Grasso says Fairbanks was at the Bijou at 7:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3662,7 +3698,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -3672,7 +3708,7 @@
           "tick": 8
         }
       ],
-      "text": "Giovanna Grasso says Vincenzo Tramonti was at the Bijou picture house at 10:00 PM.",
+      "text": "Grasso says Tramonti was at the Bijou at 10:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3683,7 +3719,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -3693,7 +3729,7 @@
           "tick": 10
         }
       ],
-      "text": "Giovanna Grasso says Vincenzo Tramonti was at the Bijou picture house at 11:00 PM.",
+      "text": "Grasso says Tramonti was at the Bijou at 11:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3704,7 +3740,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -3714,7 +3750,7 @@
           "tick": 1
         }
       ],
-      "text": "Giovanna Grasso says Roscoe Colquitt was at the Bijou picture house at 6:30 PM.",
+      "text": "Grasso says Colquitt was at the Bijou at 6:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3725,7 +3761,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Roscoe Colquitt"
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -3741,7 +3777,7 @@
           "tick": 11
         }
       ],
-      "text": "Giovanna Grasso says Roscoe Colquitt was at the Bijou picture house from 11:00 PM to 11:30 PM.",
+      "text": "Grasso says Colquitt was at the Bijou from 11:00 PM to 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3752,7 +3788,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3762,7 +3798,7 @@
           "tick": 4
         }
       ],
-      "text": "Giovanna Grasso says Michael Mulcahy was at the Bijou picture house at 8:00 PM.",
+      "text": "Grasso says Mulcahy was at the Bijou at 8:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3773,7 +3809,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3783,10 +3819,10 @@
           "tick": 5
         }
       ],
-      "text": "Giovanna Grasso says Michael Mulcahy was at the cab stand outside the Hippodrome at 8:30 PM.",
+      "text": "Grasso says Mulcahy was at the cab stand at 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c062",
@@ -3794,7 +3830,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3804,7 +3840,7 @@
           "tick": 8
         }
       ],
-      "text": "Giovanna Grasso says Thaddeus Coffin was at the Bijou picture house at 10:00 PM.",
+      "text": "Grasso says Coffin was at the Bijou at 10:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3815,7 +3851,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3825,7 +3861,7 @@
           "tick": 9
         }
       ],
-      "text": "Giovanna Grasso says Rachel Kessler was at the Bijou picture house at 10:30 PM.",
+      "text": "Grasso says Kessler was at the Bijou at 10:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3836,7 +3872,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3846,7 +3882,7 @@
           "tick": 11
         }
       ],
-      "text": "Giovanna Grasso says Rachel Kessler was at the Bijou picture house at 11:30 PM.",
+      "text": "Grasso says Kessler was at the Bijou at 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3857,7 +3893,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Winthrop Fairbanks"
+        "topic": "Fairbanks"
       },
       "establishes": [
         {
@@ -3879,7 +3915,7 @@
           "tick": 2
         }
       ],
-      "text": "Edith Stannard says Winthrop Fairbanks was at the cab stand outside the Hippodrome from 6:00 PM to 7:00 PM.",
+      "text": "Stannard says Fairbanks was at the cab stand from 6:00 PM to 7:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3890,7 +3926,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -3911,7 +3947,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Edith Stannard says Vincenzo Tramonti was at the cab stand outside the Hippodrome from 6:00 PM to 6:30 PM.",
+      "text": "Stannard says Tramonti was at the cab stand from 6:00 PM to 6:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3922,7 +3958,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -3937,10 +3973,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Edith Stannard says Vincenzo Tramonti was at the cab stand outside the Hippodrome at 7:30 PM.",
+      "text": "Stannard says Tramonti was at the cab stand at 7:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c068",
@@ -3948,7 +3984,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Vincenzo Tramonti"
+        "topic": "Tramonti"
       },
       "establishes": [
         {
@@ -3958,7 +3994,7 @@
           "tick": 7
         }
       ],
-      "text": "Edith Stannard says Vincenzo Tramonti was at the benches at the north end of the square at 9:30 PM.",
+      "text": "Stannard says Tramonti was at the benches at 9:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3969,7 +4005,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3985,13 +4021,9 @@
           "tick": 6
         }
       ],
-      "text": "Edith Stannard says Michael Mulcahy was at the cab stand outside the Hippodrome from 8:30 PM to 9:00 PM.",
+      "text": "Stannard says Mulcahy was at the cab stand from 8:30 PM to 9:00 PM.",
       "place": "cab-stand",
-      "leadsTo": [
-        "c087",
-        "c125",
-        "c034"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
@@ -4000,7 +4032,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4010,7 +4042,7 @@
           "tick": 10
         }
       ],
-      "text": "Edith Stannard says Michael Mulcahy was at the cab stand outside the Hippodrome at 11:00 PM.",
+      "text": "Stannard says Mulcahy was at the cab stand at 11:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4021,7 +4053,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4060,10 +4092,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Edith Stannard says Thaddeus Coffin was at the cab stand outside the Hippodrome from 6:00 PM to 8:00 PM.",
+      "text": "Stannard says Coffin was at the cab stand from 6:00 PM to 8:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c072",
@@ -4071,7 +4103,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Thaddeus Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4093,7 +4125,7 @@
           "tick": 11
         }
       ],
-      "text": "Edith Stannard says Thaddeus Coffin was at the cab stand outside the Hippodrome from 10:30 PM to 11:30 PM.",
+      "text": "Stannard says Coffin was at the cab stand from 10:30 PM to 11:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4104,7 +4136,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -4119,10 +4151,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Edith Stannard says Rachel Kessler was at the cab stand outside the Hippodrome at 6:00 PM.",
+      "text": "Stannard says Kessler was at the cab stand at 6:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c074",
@@ -4130,7 +4162,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -4140,7 +4172,7 @@
           "tick": 6
         }
       ],
-      "text": "Edith Stannard says Rachel Kessler was at the cab stand outside the Hippodrome at 9:00 PM.",
+      "text": "Stannard says Kessler was at the cab stand at 9:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4151,7 +4183,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -4161,7 +4193,7 @@
           "tick": 10
         }
       ],
-      "text": "Edith Stannard says Rachel Kessler was at the cab stand outside the Hippodrome at 11:00 PM.",
+      "text": "Stannard says Kessler was at the cab stand at 11:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4172,7 +4204,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Rachel Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -4182,7 +4214,7 @@
           "tick": 7
         }
       ],
-      "text": "Edith Stannard says Rachel Kessler was at the benches at the north end of the square at 9:30 PM.",
+      "text": "Stannard says Kessler was at the benches at 9:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4192,25 +4224,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s2",
+        "topic": "Tramonti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "chop-suey",
+          "tick": 3
         }
       ],
-      "text": "Vincenzo Tramonti runs through it: at 6:00 PM there were Thaddeus Coffin, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
+      "text": "Colquitt was at the chop suey place at 7:30 PM and says Tramonti was not.",
+      "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4219,24 +4245,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-s3",
+        "topic": "Tramonti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "chop-suey",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "chop-suey",
-          "tick": 6
+          "tick": 3
         }
       ],
-      "text": "Roscoe Colquitt runs through it: at 9:00 PM there were Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.",
+      "text": "Mulcahy was at the chop suey place at 7:30 PM and says Tramonti was not.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -4246,24 +4266,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f1",
+        "topic": "Tramonti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "chop-suey",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "chop-suey",
-          "tick": 7
+          "tick": 3
         }
       ],
-      "text": "Roscoe Colquitt runs through it: at 9:30 PM there were Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.",
+      "text": "Feldman was at the chop suey place at 7:30 PM and says Tramonti was not.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -4273,25 +4287,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s5",
+        "topic": "Tramonti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "cab-stand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 10
+          "tick": 4
         }
       ],
-      "text": "Michael Mulcahy runs through it: at 11:00 PM there were Thaddeus Coffin, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "chop-suey",
+      "text": "Coffin was at the cab stand at 8:00 PM and says Tramonti was not.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4300,111 +4308,92 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f2",
+        "topic": "Tramonti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "chop-suey",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "cab-stand",
+          "tick": 5
         }
       ],
-      "text": "Lorraine Tillman runs through it: at 9:30 PM there were Roscoe Colquitt, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "chop-suey",
+      "text": "Grasso was at the cab stand at 8:30 PM and says Tramonti was not.",
+      "place": "movie-house",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c082",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f3",
+        "topic": "Tramonti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s1",
           "place": "cab-stand",
-          "tick": 0
+          "tick": 4
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "cab-stand",
-          "tick": 0
+          "tick": 5
         }
       ],
-      "text": "Thaddeus Coffin runs through it: at 6:00 PM there were Vincenzo Tramonti, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.",
+      "text": "Stannard was at the cab stand from 8:00 PM to 8:30 PM and says Tramonti was not.",
       "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c031",
+        "c101",
+        "c126",
+        "c134"
+      ],
+      "role": "spine"
     },
     {
       "id": "c083",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-f2",
+        "topic": "Colquitt’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "chop-suey",
+          "place": "cab-stand",
           "tick": 5
         }
       ],
-      "text": "Thaddeus Coffin runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Rachel Kessler at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "cab-stand",
+      "text": "Grasso was at the cab stand at 8:30 PM and says Colquitt was not.",
+      "place": "movie-house",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c084",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f3",
+        "topic": "Colquitt’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 6
+          "place": "cab-stand",
+          "tick": 5
         }
       ],
-      "text": "Thaddeus Coffin runs through it: at 9:00 PM there were Roscoe Colquitt, Lorraine Tillman at the chop suey place over the laundry, and nobody else worth naming.",
+      "text": "Stannard was at the cab stand at 8:30 PM and says Colquitt was not.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4415,23 +4404,17 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "who was there at 9:30 PM"
+        "topic": "Mulcahy’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s3",
           "place": "chop-suey",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 7
+          "tick": 5
         }
       ],
-      "text": "Thaddeus Coffin runs through it: at 9:30 PM there were Roscoe Colquitt, Lorraine Tillman at the chop suey place over the laundry, and nobody else worth naming.",
+      "text": "Coffin was at the chop suey place at 8:30 PM and says Mulcahy was not.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4442,23 +4425,17 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "who was there at 6:00 PM"
+        "topic": "Mulcahy’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "chop-suey",
+          "tick": 5
         }
       ],
-      "text": "Rachel Kessler runs through it: at 6:00 PM there were Vincenzo Tramonti, Thaddeus Coffin at the cab stand outside the Hippodrome, and nobody else worth naming.",
+      "text": "Kessler was at the chop suey place at 8:30 PM and says Mulcahy was not.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -4468,58 +4445,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-f1",
+        "topic": "Mulcahy’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "kind": "personNotAt",
+          "personId": "p-s3",
           "place": "chop-suey",
           "tick": 5
         }
       ],
-      "text": "Rachel Kessler runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Feldman was at the chop suey place at 8:30 PM and says Mulcahy was not.",
+      "place": "chop-suey",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c088",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s1",
+        "topic": "Mulcahy’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "cab-stand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 10
+          "place": "chop-suey",
+          "tick": 5
         }
       ],
-      "text": "Rachel Kessler runs through it: at 11:00 PM there were Michael Mulcahy, Thaddeus Coffin at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Mulcahy names Tramonti as the company for the chop suey place at 8:30 PM. Tramonti says they were not together that evening.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4528,25 +4487,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-s1",
+        "topic": "Tillman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "chop-suey",
-          "tick": 2
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "square-benches",
+          "tick": 6
         }
       ],
-      "text": "Isidore Feldman runs through it: at 7:00 PM there were Vincenzo Tramonti, Michael Mulcahy at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "chop-suey",
+      "text": "Tramonti was at the benches at 9:00 PM and says Tillman was not.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4555,25 +4508,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-s1",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "chop-suey",
-          "tick": 3
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 9
         }
       ],
-      "text": "Isidore Feldman runs through it: at 7:30 PM there were Roscoe Colquitt, Michael Mulcahy at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "chop-suey",
+      "text": "Tramonti was at the benches at 10:30 PM and says Coffin was not.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4582,73 +4529,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s3",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "chop-suey",
-          "tick": 5
+          "place": "square-benches",
+          "tick": 9
         }
       ],
-      "text": "Isidore Feldman runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin, Rachel Kessler at the chop suey place over the laundry, and nobody else worth naming.",
+      "text": "Mulcahy was at the benches at 10:30 PM and says Coffin was not.",
       "place": "chop-suey",
-      "leadsTo": [
-        "c133",
-        "c140"
-      ],
-      "role": "spine"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c092",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-s1",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s6",
           "place": "chop-suey",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "chop-suey",
-          "tick": 6
+          "tick": 2
         }
       ],
-      "text": "Isidore Feldman runs through it: at 9:00 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "chop-suey",
+      "text": "Tramonti was at the chop suey place at 7:00 PM and says Kessler was not.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4657,30 +4571,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-s3",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s6",
           "place": "chop-suey",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "chop-suey",
-          "tick": 7
+          "tick": 2
         }
       ],
-      "text": "Isidore Feldman runs through it: at 9:30 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.",
+      "text": "Mulcahy was at the chop suey place at 7:00 PM and says Kessler was not.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -4691,677 +4593,23 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "who was there at 10:00 PM"
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s6",
           "place": "chop-suey",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 8
+          "tick": 2
         }
       ],
-      "text": "Isidore Feldman runs through it: at 10:00 PM there were Roscoe Colquitt, Lorraine Tillman at the chop suey place over the laundry, and nobody else worth naming.",
+      "text": "Feldman was at the chop suey place at 7:00 PM and says Kessler was not.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c095",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 9
-        }
-      ],
-      "text": "Isidore Feldman runs through it: at 10:30 PM there were Roscoe Colquitt, Lorraine Tillman at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c096",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "movie-house",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 8
-        }
-      ],
-      "text": "Giovanna Grasso runs through it: at 10:00 PM there were Vincenzo Tramonti, Thaddeus Coffin at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c097",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "movie-house",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 10
-        }
-      ],
-      "text": "Giovanna Grasso runs through it: at 11:00 PM there were Vincenzo Tramonti, Roscoe Colquitt at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 11
-        }
-      ],
-      "text": "Giovanna Grasso runs through it: at 11:30 PM there were Roscoe Colquitt, Rachel Kessler at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 0
-        }
-      ],
-      "text": "Edith Stannard runs through it: at 6:00 PM there were Vincenzo Tramonti, Thaddeus Coffin, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 1
-        }
-      ],
-      "text": "Edith Stannard runs through it: at 6:30 PM there were Vincenzo Tramonti, Thaddeus Coffin at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 3
-        }
-      ],
-      "text": "Edith Stannard runs through it: at 7:30 PM there were Vincenzo Tramonti, Thaddeus Coffin at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "cab-stand",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 6
-        }
-      ],
-      "text": "Edith Stannard runs through it: at 9:00 PM there were Michael Mulcahy, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "square-benches",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "square-benches",
-          "tick": 7
-        }
-      ],
-      "text": "Edith Stannard runs through it: at 9:30 PM there were Vincenzo Tramonti, Rachel Kessler at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "cab-stand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 10
-        }
-      ],
-      "text": "Edith Stannard runs through it: at 11:00 PM there were Michael Mulcahy, Thaddeus Coffin, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Vincenzo Tramonti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 3
-        }
-      ],
-      "text": "Roscoe Colquitt was at the chop suey place over the laundry at 7:30 PM and says Vincenzo Tramonti was not.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Vincenzo Tramonti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 3
-        }
-      ],
-      "text": "Michael Mulcahy was at the chop suey place over the laundry at 7:30 PM and says Vincenzo Tramonti was not.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Vincenzo Tramonti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 3
-        }
-      ],
-      "text": "Isidore Feldman was at the chop suey place over the laundry at 7:30 PM and says Vincenzo Tramonti was not.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Vincenzo Tramonti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 4
-        }
-      ],
-      "text": "Thaddeus Coffin was at the cab stand outside the Hippodrome at 8:00 PM and says Vincenzo Tramonti was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Vincenzo Tramonti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "Giovanna Grasso was at the cab stand outside the Hippodrome at 8:30 PM and says Vincenzo Tramonti was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Vincenzo Tramonti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 4
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "Edith Stannard was at the cab stand outside the Hippodrome from 8:00 PM to 8:30 PM and says Vincenzo Tramonti was not.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c128",
-        "c071"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Roscoe Colquitt’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "Giovanna Grasso was at the cab stand outside the Hippodrome at 8:30 PM and says Roscoe Colquitt was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Roscoe Colquitt’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "Edith Stannard was at the cab stand outside the Hippodrome at 8:30 PM and says Roscoe Colquitt was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Michael Mulcahy’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "chop-suey",
-          "tick": 5
-        }
-      ],
-      "text": "Thaddeus Coffin was at the chop suey place over the laundry at 8:30 PM and says Michael Mulcahy was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Michael Mulcahy’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "chop-suey",
-          "tick": 5
-        }
-      ],
-      "text": "Rachel Kessler was at the chop suey place over the laundry at 8:30 PM and says Michael Mulcahy was not.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Michael Mulcahy’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "chop-suey",
-          "tick": 5
-        }
-      ],
-      "text": "Isidore Feldman was at the chop suey place over the laundry at 8:30 PM and says Michael Mulcahy was not.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Lorraine Tillman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 6
-        }
-      ],
-      "text": "Vincenzo Tramonti was at the benches at the north end of the square at 9:00 PM and says Lorraine Tillman was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Thaddeus Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 9
-        }
-      ],
-      "text": "Vincenzo Tramonti was at the benches at the north end of the square at 10:30 PM and says Thaddeus Coffin was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Thaddeus Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 9
-        }
-      ],
-      "text": "Michael Mulcahy was at the benches at the north end of the square at 10:30 PM and says Thaddeus Coffin was not.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Rachel Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "chop-suey",
-          "tick": 2
-        }
-      ],
-      "text": "Vincenzo Tramonti was at the chop suey place over the laundry at 7:00 PM and says Rachel Kessler was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Rachel Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "chop-suey",
-          "tick": 2
-        }
-      ],
-      "text": "Michael Mulcahy was at the chop suey place over the laundry at 7:00 PM and says Rachel Kessler was not.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Rachel Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "chop-suey",
-          "tick": 2
-        }
-      ],
-      "text": "Isidore Feldman was at the chop suey place over the laundry at 7:00 PM and says Rachel Kessler was not.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -5377,18 +4625,20 @@
           "methodId": "shot"
         }
       ],
-      "text": "Winthrop Fairbanks was found at the victim’s rooms in the brownstone. The cigarette he had going burned itself out on the sill where it fell. The milk wagon on its rounds came at 8:30 PM, and the driver keeps to his round and he was at the corner for it. That puts the killing in that half hour and no later.",
+      "text": "Fairbanks was found at the brownstone. The cigarette he had going burned itself out on the sill where it fell. The milk wagon was at the corner at 8:30 PM, where the driver’s round puts him every night.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c029",
-        "c110",
-        "c069"
+        "c028",
+        "c082",
+        "c034",
+        "c031",
+        "c053"
       ],
       "role": "spine",
       "anchorId": "milk-wagon"
     },
     {
-      "id": "c123",
+      "id": "c096",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -5410,16 +4660,16 @@
       "text": "The coroner puts death between 8:00 PM and 9:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c091",
-        "c029",
-        "c126",
-        "c110",
-        "c083"
+        "c028",
+        "c034",
+        "c069",
+        "c038",
+        "c109"
       ],
       "role": "spine"
     },
     {
-      "id": "c124",
+      "id": "c097",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -5436,20 +4686,18 @@
           "methodId": "shot"
         }
       ],
-      "text": "A nickel-plated revolver is gone from the cab stand outside the Hippodrome. The drawer it was kept in is open and the oiled cloth is still in it.",
+      "text": "A nickel-plated revolver is gone from the cab stand. The drawer it was kept in is open and the oiled cloth is still in it.",
       "place": "cab-stand",
-      "leadsTo": [
-        "c150"
-      ],
+      "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c125",
+      "id": "c098",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Winthrop Fairbanks that evening"
+        "topic": "Fairbanks that evening"
       },
       "establishes": [
         {
@@ -5463,21 +4711,19 @@
           "tick": 4
         }
       ],
-      "text": "Roscoe Colquitt puts Winthrop Fairbanks at the chop suey place over the laundry in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.",
+      "text": "Colquitt puts Fairbanks at the chop suey place in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.",
       "place": "chop-suey",
-      "leadsTo": [
-        "c161"
-      ],
-      "role": "corroboration",
+      "leadsTo": [],
+      "role": "noise",
       "anchorId": "theater-out"
     },
     {
-      "id": "c126",
+      "id": "c099",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Winthrop Fairbanks that evening"
+        "topic": "Fairbanks that evening"
       },
       "establishes": [
         {
@@ -5491,14 +4737,16 @@
           "tick": 4
         }
       ],
-      "text": "Isidore Feldman puts Winthrop Fairbanks at the chop suey place over the laundry in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.",
+      "text": "Feldman puts Fairbanks at the chop suey place in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.",
       "place": "chop-suey",
-      "leadsTo": [],
+      "leadsTo": [
+        "c073"
+      ],
       "role": "spine",
       "anchorId": "theater-out"
     },
     {
-      "id": "c127",
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "place",
@@ -5512,14 +4760,14 @@
           "tick": 4
         }
       ],
-      "text": "The theatre letting out at 8:00 PM puts Roscoe Colquitt at the chop suey place over the laundry.",
+      "text": "The theatre letting out was at 8:00 PM, and Colquitt was at the chop suey place for it.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "theater-out"
     },
     {
-      "id": "c128",
+      "id": "c101",
       "kind": "document",
       "source": {
         "type": "place",
@@ -5532,18 +4780,18 @@
           "motiveType": "property"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A lease assignment made out in Vincenzo Tramonti’s name, waiting only on Winthrop Fairbanks’s signature.",
+      "text": "Found at the brownstone: A lease assignment made out in Tramonti’s name, waiting only on Fairbanks’s signature.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c129",
+      "id": "c102",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Vincenzo Tramonti and Winthrop Fairbanks"
+        "topic": "Tramonti and Fairbanks"
       },
       "establishes": [
         {
@@ -5552,13 +4800,13 @@
           "motiveType": "property"
         }
       ],
-      "text": "Michael Mulcahy says Winthrop Fairbanks told Vincenzo Tramonti the lease would go to somebody else at the quarter day.",
+      "text": "Mulcahy says Fairbanks told Tramonti the lease would go to somebody else at the quarter day.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c130",
+      "id": "c103",
       "kind": "document",
       "source": {
         "type": "place",
@@ -5571,18 +4819,18 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A promissory note for $4,000 signed by Roscoe Colquitt, endorsed to Winthrop Fairbanks, three months past due.",
+      "text": "Found at the brownstone: A promissory note for $4,000 signed by Colquitt, endorsed to Fairbanks, three months past due.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c131",
+      "id": "c104",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Roscoe Colquitt and Winthrop Fairbanks"
+        "topic": "Colquitt and Fairbanks"
       },
       "establishes": [
         {
@@ -5591,13 +4839,13 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Vincenzo Tramonti says Winthrop Fairbanks told Roscoe Colquitt that Friday was the end of it, one way or the other.",
+      "text": "Tramonti says Fairbanks told Colquitt that Friday was the end of it, one way or the other.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c132",
+      "id": "c105",
       "kind": "client",
       "source": {
         "type": "person",
@@ -5611,643 +4859,675 @@
           "motiveType": "property"
         }
       ],
-      "text": "Thaddeus Coffin hired us. Thaddeus Coffin wants it known that Vincenzo Tramonti wanted the victim out of a lease, and would rather we started there.",
+      "text": "Coffin hired us, and wants it known that Tramonti wanted the victim out of a lease, and would rather we started there.",
       "place": "cab-stand",
       "leadsTo": [
-        "c091",
-        "c061"
+        "c082",
+        "c069"
       ],
       "role": "spine"
+    },
+    {
+      "id": "c106",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Colquitt"
+      },
+      "establishes": [],
+      "text": "Coffin on Colquitt: Colquitt was carrying a parcel into the chop suey place and came out without it.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c107",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Colquitt"
+      },
+      "establishes": [],
+      "text": "Feldman on Colquitt: There is a man who meets people at the chop suey place and nobody will say his name out loud.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c111"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b2"
+    },
+    {
+      "id": "c108",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Colquitt"
+      },
+      "establishes": [],
+      "text": "Stannard on Colquitt: Colquitt has been selling things that were never Colquitt’s to sell.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c109",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the chop suey place, and the shop it came from closed two years ago.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c110"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b2"
+    },
+    {
+      "id": "c110",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the chop suey place in a name that does not exist, made out at the hour in question.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c107"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b2"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "chop-suey",
+          "tick": 5
+        }
+      ],
+      "text": "The receiver at the chop suey place would rather talk than be held: Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Colquitt will take over this one.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b2"
+    },
+    {
+      "id": "c112",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "chop-suey",
+          "tick": 5
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Colquitt at the chop suey place from 8:30 PM with both hands full.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c113",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Mulcahy"
+      },
+      "establishes": [],
+      "text": "Feldman on Mulcahy: Mulcahy was carrying a parcel into the cab stand and came out without it.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c114",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Mulcahy"
+      },
+      "establishes": [],
+      "text": "Stannard on Mulcahy: There is a man who meets people at the cab stand and nobody will say his name out loud.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c115",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Mulcahy"
+      },
+      "establishes": [],
+      "text": "Kessler on Mulcahy: Mulcahy has been selling things that were never Mulcahy’s to sell.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c116",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the cab stand, and the shop it came from closed two years ago.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c119"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c117",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the cab stand in a name that does not exist, made out at the hour in question.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "cab-stand",
+          "tick": 5
+        }
+      ],
+      "text": "The receiver at the cab stand would rather talk than be held: Mulcahy was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Mulcahy will take over this one.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "cab-stand",
+          "tick": 5
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Mulcahy at the cab stand from 8:30 PM with both hands full.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Stannard on Tillman: Tillman was carrying a parcel into the chop suey place and came out without it.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c125"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c121",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Kessler on Tillman: There is a man who meets people at the chop suey place and nobody will say his name out loud.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c122",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Grasso on Tillman: Tillman has been selling things that were never Tillman’s to sell.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the chop suey place, and the shop it came from closed two years ago.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c120"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c124",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the chop suey place in a name that does not exist, made out at the hour in question.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 6
+        }
+      ],
+      "text": "The receiver at the chop suey place would rather talk than be held: Tillman was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Tillman will take over this one.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 6
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Tillman at the chop suey place from 8:30 PM to 9:00 PM with both hands full.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Grasso on Coffin: Coffin was carrying a parcel into the cab stand and came out without it.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Tramonti on Coffin: There is a man who meets people at the cab stand and nobody will say his name out loud.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c129",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Mulcahy on Coffin: Coffin has been selling things that were never Coffin’s to sell.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the cab stand, and the shop it came from closed two years ago.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c131",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the cab stand in a name that does not exist, made out at the hour in question.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "cab-stand",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "cab-stand",
+          "tick": 10
+        }
+      ],
+      "text": "The receiver at the cab stand would rather talk than be held: Coffin was there from 10:30 PM to 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Coffin will take over this one.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
     },
     {
       "id": "c133",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Roscoe Colquitt"
+        "type": "place",
+        "placeId": "cab-stand"
       },
-      "establishes": [],
-      "text": "Isidore Feldman on Roscoe Colquitt: Roscoe Colquitt was carrying a parcel into the chop suey place over the laundry and came out without it.",
-      "place": "chop-suey",
-      "leadsTo": [
-        "c134"
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "cab-stand",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "cab-stand",
+          "tick": 10
+        }
       ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Coffin at the cab stand from 10:30 PM to 11:00 PM with both hands full.",
+      "place": "cab-stand",
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s5"
     },
     {
       "id": "c134",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "Roscoe Colquitt"
+        "personId": "p-f1",
+        "topic": "Kessler"
       },
       "establishes": [],
-      "text": "Edith Stannard on Roscoe Colquitt: There is a man who meets people at the chop suey place over the laundry and nobody will say his name out loud.",
-      "place": "cab-stand",
+      "text": "Feldman on Kessler: Kessler sends money out of every pay envelope and cannot say where it goes.",
+      "place": "chop-suey",
       "leadsTo": [
-        "c138"
+        "c136"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
     },
     {
       "id": "c135",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "Roscoe Colquitt"
+        "personId": "p-f3",
+        "topic": "Kessler"
       },
       "establishes": [],
-      "text": "Rachel Kessler on Roscoe Colquitt: Roscoe Colquitt has been selling things that were never Roscoe Colquitt’s to sell.",
-      "place": "square-benches",
+      "text": "Stannard on Kessler: A woman at the benches asked for Kessler by a name Kessler has not used in years.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "aboutSecretOf": "p-s6"
     },
     {
       "id": "c136",
-      "kind": "physical",
+      "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "chop-suey"
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Kessler"
       },
       "establishes": [],
-      "text": "Wrapping paper and a cut string at the chop suey place over the laundry, and the shop it came from closed two years ago.",
+      "text": "Colquitt on Kessler: Kessler keeps a photograph and will not be asked about it twice.",
       "place": "chop-suey",
-      "leadsTo": [],
+      "leadsTo": [
+        "c139"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
     },
     {
       "id": "c137",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "chop-suey"
+        "placeId": "square-benches"
       },
       "establishes": [],
-      "text": "A pawn ticket at the chop suey place over the laundry in a name that does not exist, made out at the hour in question.",
-      "place": "chop-suey",
+      "text": "A board-and-keep receipt at the benches, monthly, eight years of them.",
+      "place": "square-benches",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "aboutSecretOf": "p-s6"
     },
     {
       "id": "c138",
-      "kind": "overheard",
+      "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "chop-suey"
+        "placeId": "square-benches"
       },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 5
-        }
-      ],
-      "text": "The receiver at the chop suey place over the laundry would rather talk than be held: Roscoe Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Roscoe Colquitt will take over this one.",
-      "place": "chop-suey",
+      "establishes": [],
+      "text": "A child’s shoe at the benches, and nobody at the benches has any children.",
+      "place": "square-benches",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
     },
     {
       "id": "c139",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "chop-suey"
+        "placeId": "square-benches"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "fence"
+          "personId": "p-s6",
+          "secretType": "hidden-family"
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 5
+          "personId": "p-s6",
+          "place": "square-benches",
+          "tick": 2
         }
       ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Roscoe Colquitt at the chop suey place over the laundry from 8:30 PM with both hands full.",
-      "place": "chop-suey",
+      "text": "The woman who keeps the child says it straight out: Kessler was at the benches from 7:00 PM, the same as every week, and left with the same face as always.",
+      "place": "square-benches",
       "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
     },
     {
       "id": "c140",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Michael Mulcahy"
-      },
-      "establishes": [],
-      "text": "Edith Stannard on Michael Mulcahy: Michael Mulcahy was carrying a parcel into the cab stand outside the Hippodrome and came out without it.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c141"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c141",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Michael Mulcahy"
-      },
-      "establishes": [],
-      "text": "Rachel Kessler on Michael Mulcahy: There is a man who meets people at the cab stand outside the Hippodrome and nobody will say his name out loud.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c145"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c142",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Michael Mulcahy"
-      },
-      "establishes": [],
-      "text": "Giovanna Grasso on Michael Mulcahy: Michael Mulcahy has been selling things that were never Michael Mulcahy’s to sell.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c143",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the cab stand outside the Hippodrome, and the shop it came from closed two years ago.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c144",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c145",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "The receiver at the cab stand outside the Hippodrome would rather talk than be held: Michael Mulcahy was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Michael Mulcahy will take over this one.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c146",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Michael Mulcahy at the cab stand outside the Hippodrome from 8:30 PM with both hands full.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c147",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Lorraine Tillman"
-      },
-      "establishes": [],
-      "text": "Rachel Kessler on Lorraine Tillman: Lorraine Tillman was carrying a parcel into the chop suey place over the laundry and came out without it.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c148",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Lorraine Tillman"
-      },
-      "establishes": [],
-      "text": "Giovanna Grasso on Lorraine Tillman: There is a man who meets people at the chop suey place over the laundry and nobody will say his name out loud.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c149",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Lorraine Tillman"
-      },
-      "establishes": [],
-      "text": "Thaddeus Coffin on Lorraine Tillman: Lorraine Tillman has been selling things that were never Lorraine Tillman’s to sell.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c150",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the chop suey place over the laundry, and the shop it came from closed two years ago.",
-      "place": "chop-suey",
-      "leadsTo": [
-        "c152"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c151",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the chop suey place over the laundry in a name that does not exist, made out at the hour in question.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c152",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 6
-        }
-      ],
-      "text": "The receiver at the chop suey place over the laundry would rather talk than be held: Lorraine Tillman was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Lorraine Tillman will take over this one.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c153",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 6
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Lorraine Tillman at the chop suey place over the laundry from 8:30 PM to 9:00 PM with both hands full.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c154",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Thaddeus Coffin"
-      },
-      "establishes": [],
-      "text": "Roscoe Colquitt on Thaddeus Coffin: Thaddeus Coffin was carrying a parcel into the cab stand outside the Hippodrome and came out without it.",
-      "place": "chop-suey",
-      "leadsTo": [
-        "c159"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b1"
-    },
-    {
-      "id": "c155",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Thaddeus Coffin"
-      },
-      "establishes": [],
-      "text": "Lorraine Tillman on Thaddeus Coffin: There is a man who meets people at the cab stand outside the Hippodrome and nobody will say his name out loud.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Thaddeus Coffin"
-      },
-      "establishes": [],
-      "text": "Isidore Feldman on Thaddeus Coffin: Thaddeus Coffin has been selling things that were never Thaddeus Coffin’s to sell.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c157",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the cab stand outside the Hippodrome, and the shop it came from closed two years ago.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c158",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 10
-        }
-      ],
-      "text": "The receiver at the cab stand outside the Hippodrome would rather talk than be held: Thaddeus Coffin was there from 10:30 PM to 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Thaddeus Coffin will take over this one.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b1"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 10
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Thaddeus Coffin at the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM with both hands full.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c161",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Rachel Kessler"
-      },
-      "establishes": [],
-      "text": "Vincenzo Tramonti on Rachel Kessler: Rachel Kessler sends money out of every pay envelope and cannot say where it goes.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c165"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b2"
-    },
-    {
-      "id": "c162",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Rachel Kessler"
-      },
-      "establishes": [],
-      "text": "Michael Mulcahy on Rachel Kessler: A woman at the benches at the north end of the square asked for Rachel Kessler by a name Rachel Kessler has not used in years.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c163",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Rachel Kessler"
-      },
-      "establishes": [],
-      "text": "Thaddeus Coffin on Rachel Kessler: Rachel Kessler keeps a photograph and will not be asked about it twice.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c164",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A board-and-keep receipt at the benches at the north end of the square, monthly, eight years of them.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c165",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A child’s shoe at the benches at the north end of the square, and nobody at the benches at the north end of the square has any children.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c166"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b2"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
         "type": "place",
         "placeId": "square-benches"
       },
@@ -6264,34 +5544,7 @@
           "tick": 2
         }
       ],
-      "text": "The woman who keeps the child says it straight out: Rachel Kessler was at the benches at the north end of the square from 7:00 PM, the same as every week, and left with the same face as always.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b2"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "square-benches",
-          "tick": 2
-        }
-      ],
-      "text": "The parish register at the benches at the north end of the square has the christening in it, and the board money receipted through the evening in question.",
+      "text": "The parish register at the benches has the christening in it, and the board money receipted through the evening in question.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise",
@@ -6300,7 +5553,7 @@
   ],
   "findable": [
     {
-      "id": "c122",
+      "id": "c095",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -6316,18 +5569,20 @@
           "methodId": "shot"
         }
       ],
-      "text": "Winthrop Fairbanks was found at the victim’s rooms in the brownstone. The cigarette he had going burned itself out on the sill where it fell. The milk wagon on its rounds came at 8:30 PM, and the driver keeps to his round and he was at the corner for it. That puts the killing in that half hour and no later.",
+      "text": "Fairbanks was found at the brownstone. The cigarette he had going burned itself out on the sill where it fell. The milk wagon was at the corner at 8:30 PM, where the driver’s round puts him every night.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c029",
-        "c110",
-        "c069"
+        "c028",
+        "c082",
+        "c034",
+        "c031",
+        "c053"
       ],
       "role": "spine",
       "anchorId": "milk-wagon"
     },
     {
-      "id": "c123",
+      "id": "c096",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -6349,16 +5604,16 @@
       "text": "The coroner puts death between 8:00 PM and 9:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c091",
-        "c029",
-        "c126",
-        "c110",
-        "c083"
+        "c028",
+        "c034",
+        "c069",
+        "c038",
+        "c109"
       ],
       "role": "spine"
     },
     {
-      "id": "c132",
+      "id": "c105",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6372,21 +5627,112 @@
           "motiveType": "property"
         }
       ],
-      "text": "Thaddeus Coffin hired us. Thaddeus Coffin wants it known that Vincenzo Tramonti wanted the victim out of a lease, and would rather we started there.",
+      "text": "Coffin hired us, and wants it known that Tramonti wanted the victim out of a lease, and would rather we started there.",
       "place": "cab-stand",
       "leadsTo": [
-        "c091",
-        "c061"
+        "c082",
+        "c069"
       ],
       "role": "spine"
     },
     {
-      "id": "c091",
+      "id": "c028",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s5",
+        "topic": "Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "cab-stand",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "cab-stand",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "shot"
+        }
+      ],
+      "text": "Coffin says Tramonti was at the cab stand from 6:00 PM to 6:30 PM.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c032",
+        "c099"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c082",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Tramonti’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "cab-stand",
+          "tick": 4
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "cab-stand",
+          "tick": 5
+        }
+      ],
+      "text": "Stannard was at the cab stand from 8:00 PM to 8:30 PM and says Tramonti was not.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c031",
+        "c101",
+        "c126",
+        "c134"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c034",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Kessler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "chop-suey",
+          "tick": 5
+        }
+      ],
+      "text": "Coffin says Kessler was at the chop suey place at 8:30 PM.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c032",
+        "c118"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -6397,117 +5743,58 @@
         },
         {
           "kind": "personAt",
+          "personId": "p-s2",
+          "place": "chop-suey",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "chop-suey",
+          "tick": 7
+        }
+      ],
+      "text": "Coffin says Colquitt was at the chop suey place from 8:30 PM to 9:30 PM.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c099",
+        "c036",
+        "c097"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
           "personId": "p-s4",
           "place": "chop-suey",
           "tick": 5
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s4",
           "place": "chop-suey",
-          "tick": 5
+          "tick": 6
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s4",
           "place": "chop-suey",
-          "tick": 5
+          "tick": 7
         }
       ],
-      "text": "Isidore Feldman runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin, Rachel Kessler at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "chop-suey",
-      "leadsTo": [
-        "c133",
-        "c140"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c029",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Vincenzo Tramonti"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 3
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Thaddeus Coffin says Vincenzo Tramonti was at the cab stand outside the Hippodrome at 7:30 PM.",
+      "text": "Coffin says Tillman was at the chop suey place from 8:30 PM to 9:30 PM.",
       "place": "cab-stand",
       "leadsTo": [
-        "c126",
-        "c069",
-        "c124",
-        "c067",
-        "c109",
-        "c154"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c126",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Winthrop Fairbanks that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "chop-suey",
-          "tick": 4
-        }
-      ],
-      "text": "Isidore Feldman puts Winthrop Fairbanks at the chop suey place over the laundry in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "spine",
-      "anchorId": "theater-out"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Vincenzo Tramonti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 4
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "Edith Stannard was at the cab stand outside the Hippodrome from 8:00 PM to 8:30 PM and says Vincenzo Tramonti was not.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c128",
-        "c071"
+        "c053"
       ],
       "role": "spine"
     },
@@ -6517,7 +5804,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Michael Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -6533,33 +5820,51 @@
           "tick": 6
         }
       ],
-      "text": "Edith Stannard says Michael Mulcahy was at the cab stand outside the Hippodrome from 8:30 PM to 9:00 PM.",
+      "text": "Stannard says Mulcahy was at the cab stand from 8:30 PM to 9:00 PM.",
       "place": "cab-stand",
-      "leadsTo": [
-        "c087",
-        "c125",
-        "c034"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c087",
+      "id": "c099",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Fairbanks that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "chop-suey",
+          "tick": 4
+        }
+      ],
+      "text": "Feldman puts Fairbanks at the chop suey place in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c073"
+      ],
+      "role": "spine",
+      "anchorId": "theater-out"
+    },
+    {
+      "id": "c053",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-f1",
+        "topic": "Coffin"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "personId": "p-s5",
           "place": "chop-suey",
           "tick": 5
         },
@@ -6567,56 +5872,73 @@
           "kind": "personAt",
           "personId": "p-s5",
           "place": "chop-suey",
-          "tick": 5
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "chop-suey",
+          "tick": 7
         }
       ],
-      "text": "Rachel Kessler runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "corroboration"
+      "text": "Feldman says Coffin was at the chop suey place from 8:30 PM to 9:30 PM.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c081",
+        "c047",
+        "c121"
+      ],
+      "role": "spine"
     },
     {
-      "id": "c061",
+      "id": "c081",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Michael Mulcahy"
+        "topic": "Tramonti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "cab-stand",
           "tick": 5
         }
       ],
-      "text": "Giovanna Grasso says Michael Mulcahy was at the cab stand outside the Hippodrome at 8:30 PM.",
+      "text": "Grasso was at the cab stand at 8:30 PM and says Tramonti was not.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c128",
-      "kind": "document",
+      "id": "c036",
+      "kind": "observation",
       "source": {
-        "type": "place",
-        "placeId": "res-brownstone"
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Tramonti"
       },
       "establishes": [
         {
-          "kind": "hasMotive",
+          "kind": "personAt",
           "personId": "p-s1",
-          "motiveType": "property"
+          "place": "cab-stand",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "shot"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A lease assignment made out in Vincenzo Tramonti’s name, waiting only on Winthrop Fairbanks’s signature.",
-      "place": "res-brownstone",
+      "text": "Kessler says Tramonti was at the cab stand at 6:00 PM.",
+      "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c124",
+      "id": "c097",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6633,46 +5955,63 @@
           "methodId": "shot"
         }
       ],
-      "text": "A nickel-plated revolver is gone from the cab stand outside the Hippodrome. The drawer it was kept in is open and the oiled cloth is still in it.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c150"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c067",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Vincenzo Tramonti"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 3
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Edith Stannard says Vincenzo Tramonti was at the cab stand outside the Hippodrome at 7:30 PM.",
+      "text": "A nickel-plated revolver is gone from the cab stand. The drawer it was kept in is open and the oiled cloth is still in it.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c083",
+      "id": "c101",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-brownstone"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s1",
+          "motiveType": "property"
+        }
+      ],
+      "text": "Found at the brownstone: A lease assignment made out in Tramonti’s name, waiting only on Fairbanks’s signature.",
+      "place": "res-brownstone",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c073",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-f3",
+        "topic": "Kessler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "cab-stand",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "shot"
+        }
+      ],
+      "text": "Stannard says Kessler was at the cab stand at 6:00 PM.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Colquitt"
       },
       "establishes": [
         {
@@ -6680,6 +6019,51 @@
           "personId": "p-s2",
           "place": "chop-suey",
           "tick": 5
+        }
+      ],
+      "text": "Kessler says Colquitt was at the chop suey place at 8:30 PM.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "cab-stand",
+          "tick": 5
+        }
+      ],
+      "text": "The receiver at the cab stand would rather talk than be held: Mulcahy was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Mulcahy will take over this one.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
         },
         {
           "kind": "personAt",
@@ -6689,156 +6073,242 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s4",
           "place": "chop-suey",
-          "tick": 5
+          "tick": 6
         }
       ],
-      "text": "Thaddeus Coffin runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Rachel Kessler at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Vincenzo Tramonti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "Giovanna Grasso was at the cab stand outside the Hippodrome at 8:30 PM and says Vincenzo Tramonti was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c125",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Winthrop Fairbanks that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "chop-suey",
-          "tick": 4
-        }
-      ],
-      "text": "Roscoe Colquitt puts Winthrop Fairbanks at the chop suey place over the laundry in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.",
+      "text": "The goods turn up, tagged and dated, and the tag puts Tillman at the chop suey place from 8:30 PM to 9:00 PM with both hands full.",
       "place": "chop-suey",
-      "leadsTo": [
-        "c161"
-      ],
+      "leadsTo": [],
       "role": "corroboration",
-      "anchorId": "theater-out"
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c034",
+      "id": "c047",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Rachel Kessler"
+        "personId": "p-s6",
+        "topic": "Coffin"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s5",
           "place": "chop-suey",
           "tick": 5
         }
       ],
-      "text": "Thaddeus Coffin says Rachel Kessler was at the chop suey place over the laundry at 8:30 PM.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c071",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Thaddeus Coffin"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 4
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "shot"
-        }
+      "text": "Kessler says Coffin was at the chop suey place at 8:30 PM.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c114"
       ],
-      "text": "Edith Stannard says Thaddeus Coffin was at the cab stand outside the Hippodrome from 6:00 PM to 8:00 PM.",
-      "place": "cab-stand",
-      "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c154",
+      "id": "c121",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Thaddeus Coffin"
+        "personId": "p-s6",
+        "topic": "Tillman"
       },
       "establishes": [],
-      "text": "Roscoe Colquitt on Thaddeus Coffin: Thaddeus Coffin was carrying a parcel into the cab stand outside the Hippodrome and came out without it.",
-      "place": "chop-suey",
+      "text": "Kessler on Tillman: There is a man who meets people at the chop suey place and nobody will say his name out loud.",
+      "place": "square-benches",
       "leadsTo": [
-        "c159"
+        "c123"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s5",
+      "aboutSecretOf": "p-s4",
       "branchId": "b1"
     },
     {
-      "id": "c159",
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the chop suey place, and the shop it came from closed two years ago.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c120"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Stannard on Tillman: Tillman was carrying a parcel into the chop suey place and came out without it.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c125"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 6
+        }
+      ],
+      "text": "The receiver at the chop suey place would rather talk than be held: Tillman was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Tillman will take over this one.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c109",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the chop suey place, and the shop it came from closed two years ago.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c110"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b2"
+    },
+    {
+      "id": "c110",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the chop suey place in a name that does not exist, made out at the hour in question.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c107"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b2"
+    },
+    {
+      "id": "c107",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Colquitt"
+      },
+      "establishes": [],
+      "text": "Feldman on Colquitt: There is a man who meets people at the chop suey place and nobody will say his name out loud.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c111"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b2"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "chop-suey",
+          "tick": 5
+        }
+      ],
+      "text": "The receiver at the chop suey place would rather talk than be held: Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Colquitt will take over this one.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b2"
+    },
+    {
+      "id": "c114",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Mulcahy"
+      },
+      "establishes": [],
+      "text": "Stannard on Mulcahy: There is a man who meets people at the cab stand and nobody will say his name out loud.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c116",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the cab stand, and the shop it came from closed two years ago.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c119"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c119",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -6847,66 +6317,61 @@
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s5",
+          "personId": "p-s3",
           "secretType": "fence"
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s3",
           "place": "cab-stand",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 10
+          "tick": 5
         }
       ],
-      "text": "The receiver at the cab stand outside the Hippodrome would rather talk than be held: Thaddeus Coffin was there from 10:30 PM to 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Thaddeus Coffin will take over this one.",
+      "text": "The goods turn up, tagged and dated, and the tag puts Mulcahy at the cab stand from 8:30 PM with both hands full.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b1"
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
     },
     {
-      "id": "c161",
+      "id": "c134",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "Rachel Kessler"
+        "personId": "p-f1",
+        "topic": "Kessler"
       },
       "establishes": [],
-      "text": "Vincenzo Tramonti on Rachel Kessler: Rachel Kessler sends money out of every pay envelope and cannot say where it goes.",
-      "place": "cab-stand",
+      "text": "Feldman on Kessler: Kessler sends money out of every pay envelope and cannot say where it goes.",
+      "place": "chop-suey",
       "leadsTo": [
-        "c165"
+        "c136"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
-      "branchId": "b2"
+      "branchId": "b4"
     },
     {
-      "id": "c165",
-      "kind": "physical",
+      "id": "c136",
+      "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "square-benches"
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Kessler"
       },
       "establishes": [],
-      "text": "A child’s shoe at the benches at the north end of the square, and nobody at the benches at the north end of the square has any children.",
-      "place": "square-benches",
+      "text": "Colquitt on Kessler: Kessler keeps a photograph and will not be asked about it twice.",
+      "place": "chop-suey",
       "leadsTo": [
-        "c166"
+        "c139"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
-      "branchId": "b2"
+      "branchId": "b4"
     },
     {
-      "id": "c166",
+      "id": "c139",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -6925,198 +6390,23 @@
           "tick": 2
         }
       ],
-      "text": "The woman who keeps the child says it straight out: Rachel Kessler was at the benches at the north end of the square from 7:00 PM, the same as every week, and left with the same face as always.",
+      "text": "The woman who keeps the child says it straight out: Kessler was at the benches from 7:00 PM, the same as every week, and left with the same face as always.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s6",
-      "branchId": "b2"
-    },
-    {
-      "id": "c133",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Roscoe Colquitt"
-      },
-      "establishes": [],
-      "text": "Isidore Feldman on Roscoe Colquitt: Roscoe Colquitt was carrying a parcel into the chop suey place over the laundry and came out without it.",
-      "place": "chop-suey",
-      "leadsTo": [
-        "c134"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c134",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Roscoe Colquitt"
-      },
-      "establishes": [],
-      "text": "Edith Stannard on Roscoe Colquitt: There is a man who meets people at the chop suey place over the laundry and nobody will say his name out loud.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c138"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c138",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "chop-suey",
-          "tick": 5
-        }
-      ],
-      "text": "The receiver at the chop suey place over the laundry would rather talk than be held: Roscoe Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Roscoe Colquitt will take over this one.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c140",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Michael Mulcahy"
-      },
-      "establishes": [],
-      "text": "Edith Stannard on Michael Mulcahy: Michael Mulcahy was carrying a parcel into the cab stand outside the Hippodrome and came out without it.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c141"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
       "branchId": "b4"
-    },
-    {
-      "id": "c141",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Michael Mulcahy"
-      },
-      "establishes": [],
-      "text": "Rachel Kessler on Michael Mulcahy: There is a man who meets people at the cab stand outside the Hippodrome and nobody will say his name out loud.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c145"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c145",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "The receiver at the cab stand outside the Hippodrome would rather talk than be held: Michael Mulcahy was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Michael Mulcahy will take over this one.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c150",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the chop suey place over the laundry, and the shop it came from closed two years ago.",
-      "place": "chop-suey",
-      "leadsTo": [
-        "c152"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c152",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 6
-        }
-      ],
-      "text": "The receiver at the chop suey place over the laundry would rather talk than be held: Lorraine Tillman was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Lorraine Tillman will take over this one.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
     }
   ],
   "starting": [
-    "c122",
-    "c123",
-    "c132"
+    "c095",
+    "c096",
+    "c105"
   ],
   "clientId": "p-s5",
-  "par": 7,
-  "budget": 20,
+  "par": 10,
+  "slack": 6,
+  "budget": 16,
   "coronerWindow": [
     4,
     7
@@ -7130,10 +6420,9 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c123",
-      "c126",
-      "c125",
-      "c122"
+      "c096",
+      "c099",
+      "c095"
     ],
     "timeOfDeathAnchors": [
       "milk-wagon",
@@ -7141,48 +6430,44 @@
     ],
     "exculpations": {
       "p-s2": [
-        "c091",
-        "c087",
-        "c083",
-        "c138"
+        "c031",
+        "c038",
+        "c111"
       ],
       "p-s3": [
         "c069",
-        "c061",
-        "c145"
+        "c118",
+        "c119"
       ],
       "p-s4": [
-        "c091",
-        "c087",
-        "c083",
-        "c152"
+        "c032",
+        "c126",
+        "c125"
       ],
       "p-s5": [
-        "c091",
-        "c087"
+        "c053",
+        "c047"
       ],
       "p-s6": [
-        "c091",
-        "c083",
         "c034"
       ]
     },
     "inculpation": [
-      "c110",
-      "c109"
+      "c082",
+      "c081"
     ],
     "access": [
-      "c029",
-      "c067"
+      "c028",
+      "c036"
     ],
     "method": [
-      "c122",
-      "c123",
-      "c124"
+      "c095",
+      "c096",
+      "c097"
     ],
     "motive": [
-      "c132",
-      "c128"
+      "c105",
+      "c101"
     ]
   }
 }

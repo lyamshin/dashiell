@@ -8,6 +8,7 @@
     {
       "id": "office-over-tailor",
       "name": "the office over the tailor’s shop",
+      "shortName": "the office",
       "kind": "private",
       "objects": [
         "obj-bookend",
@@ -19,6 +20,7 @@
     {
       "id": "hotel-lobby",
       "name": "the lobby of the Wyckoff",
+      "shortName": "the Wyckoff",
       "kind": "semi",
       "objects": [
         "obj-revolver",
@@ -32,6 +34,7 @@
     {
       "id": "walkup-flat",
       "name": "the third-floor walk-up on Ninth",
+      "shortName": "the third floor",
       "kind": "private",
       "objects": [
         "obj-cord",
@@ -45,6 +48,7 @@
     {
       "id": "ferry-slip",
       "name": "the ferry slip at the foot of the street",
+      "shortName": "the ferry slip",
       "kind": "public",
       "objects": [
         "obj-timetable",
@@ -57,6 +61,7 @@
     {
       "id": "res-suite",
       "name": "the victim’s suite at the residential hotel",
+      "shortName": "the suite",
       "kind": "private",
       "objects": [
         "obj-cigarette-case"
@@ -67,6 +72,7 @@
     {
       "id": "pool-hall",
       "name": "Mancuso’s pool hall",
+      "shortName": "Mancuso’s",
       "kind": "semi",
       "objects": [
         "obj-ashtray",
@@ -153,6 +159,7 @@
     {
       "id": "p-victim",
       "name": "Morris Hurwitz",
+      "surname": "Hurwitz",
       "role": "a retired dry-goods wholesaler",
       "kind": "victim",
       "isKiller": false,
@@ -161,6 +168,7 @@
     {
       "id": "p-s1",
       "name": "Jacob Rosenbaum",
+      "surname": "Rosenbaum",
       "role": "a pawnbroker’s man",
       "kind": "suspect",
       "isKiller": false,
@@ -170,7 +178,7 @@
       "secret": {
         "type": "forged-identity",
         "label": "Forged identity",
-        "description": "Jacob Rosenbaum is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
+        "description": "Rosenbaum is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
         "cells": []
       },
       "motive": {
@@ -182,16 +190,17 @@
     {
       "id": "p-s2",
       "name": "Wendell Cheatham",
+      "surname": "Cheatham",
       "role": "a society columnist",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-society",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-neighbor",
+      "relationshipToVictim": "the victim’s neighbour across the airshaft",
       "secret": {
         "type": "blackmail",
         "label": "Blackmailing the victim",
-        "description": "Wendell Cheatham meets the victim alone at the office over the tailor’s shop from 7:00 PM and asks for money.",
+        "description": "Cheatham meets the victim alone at the office from 7:00 PM and asks for money.",
         "cells": [
           {
             "tick": 2,
@@ -206,6 +215,7 @@
     {
       "id": "p-s3",
       "name": "Wilhelm Vogel",
+      "surname": "Vogel",
       "role": "a longshoreman",
       "kind": "suspect",
       "isKiller": false,
@@ -215,7 +225,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Wilhelm Vogel hands a parcel of stolen goods to a man at Mancuso’s pool hall from 7:30 PM to 8:00 PM.",
+        "description": "Vogel hands a parcel of stolen goods to a man at Mancuso’s from 7:30 PM to 8:00 PM.",
         "cells": [
           {
             "tick": 3,
@@ -232,6 +242,7 @@
     {
       "id": "p-s4",
       "name": "Frieda Hauck",
+      "surname": "Hauck",
       "role": "a seamstress",
       "kind": "suspect",
       "isKiller": false,
@@ -241,7 +252,7 @@
       "secret": {
         "type": "union-organizing",
         "label": "Organizing the shop",
-        "description": "Frieda Hauck is at the ferry slip at the foot of the street from 10:30 PM to 11:00 PM signing men up, which is a firing offence and worse.",
+        "description": "Hauck is at the ferry slip from 10:30 PM to 11:00 PM signing men up, which is a firing offence and worse.",
         "cells": [
           {
             "tick": 9,
@@ -262,6 +273,7 @@
     {
       "id": "p-s5",
       "name": "Carmine Alfano",
+      "surname": "Alfano",
       "role": "a doorman at a club with no sign on it",
       "kind": "suspect",
       "isKiller": false,
@@ -271,7 +283,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Carmine Alfano slips off to Mancuso’s pool hall from 8:00 PM to 8:30 PM to settle with a bookmaker.",
+        "description": "Alfano slips off to Mancuso’s from 8:00 PM to 8:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 4,
@@ -288,6 +300,7 @@
     {
       "id": "p-s6",
       "name": "Konrad Brauer",
+      "surname": "Brauer",
       "role": "a lawyer with one clerk",
       "kind": "suspect",
       "isKiller": true,
@@ -297,7 +310,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Konrad Brauer is at the victim’s suite at the residential hotel from 8:00 PM, alone with Morris Hurwitz when it happens at 8:00 PM.",
+        "description": "Brauer is at the suite from 8:00 PM, alone with Hurwitz when it happens at 8:00 PM.",
         "cells": [
           {
             "tick": 4,
@@ -309,7 +322,7 @@
       "coverSecret": {
         "type": "blackmail",
         "label": "Blackmailing the victim",
-        "description": "Konrad Brauer meets the victim alone at the lobby of the Wyckoff from 6:30 PM and asks for money.",
+        "description": "Brauer meets the victim alone at the Wyckoff from 6:30 PM and asks for money.",
         "cells": [
           {
             "tick": 1,
@@ -326,6 +339,7 @@
     {
       "id": "p-f1",
       "name": "Nathan Kessler",
+      "surname": "Kessler",
       "role": "the doorman",
       "kind": "fixture",
       "isKiller": false,
@@ -335,6 +349,7 @@
     {
       "id": "p-f2",
       "name": "Lotte Kreuzer",
+      "surname": "Kreuzer",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -344,6 +359,7 @@
     {
       "id": "p-f3",
       "name": "Ezekiel Prentiss",
+      "surname": "Prentiss",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -372,10 +388,16 @@
       "traces": [
         {
           "kind": "sighting"
+        },
+        {
+          "kind": "knowledge",
+          "description": "the regular was drinking sherry, and said twice what he thought of the beer"
         }
       ],
       "timing": "when the regular came in for his seat",
-      "sceneTiming": "the regular sets his watch by it and it had not gone wrong that night",
+      "highTiming": "as the regular was settling on his stool",
+      "sceneFact": "The regular took his stool at {T}, which is the hour he takes it six nights a week.",
+      "masks": false,
       "placeId": "hotel-lobby"
     },
     {
@@ -393,7 +415,9 @@
         }
       ],
       "timing": "while the milk wagon was in the street",
-      "sceneTiming": "the driver keeps to his round and he was at the corner for it"
+      "highTiming": "while the milk wagon was in the street",
+      "sceneFact": "The milk wagon was at the corner at {T}, where the driver’s round puts him every night.",
+      "masks": false
     },
     {
       "templateId": "rain",
@@ -408,13 +432,16 @@
         }
       ],
       "timing": "just after the rain came on",
-      "sceneTiming": "the rain got in and the marks it left had stopped spreading by the time it was found"
+      "highTiming": "just after the rain came on",
+      "sceneFact": "The rain came on at {T}. It got in at the window, and the wet had stopped spreading by the time the body was found.",
+      "masks": false
     }
   ],
   "nearScene": [
     "ferry-slip",
     "pool-hall"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2510,7 +2537,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Morris Hurwitz"
+        "topic": "Hurwitz"
       },
       "establishes": [
         {
@@ -2526,7 +2553,7 @@
           "tick": 1
         }
       ],
-      "text": "Jacob Rosenbaum says Morris Hurwitz was at the lobby of the Wyckoff from 6:00 PM to 6:30 PM.",
+      "text": "Rosenbaum says Hurwitz was at the Wyckoff from 6:00 PM to 6:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2537,7 +2564,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -2547,7 +2574,7 @@
           "tick": 0
         }
       ],
-      "text": "Jacob Rosenbaum says Wendell Cheatham was at the lobby of the Wyckoff at 6:00 PM.",
+      "text": "Rosenbaum says Cheatham was at the Wyckoff at 6:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2558,7 +2585,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -2568,10 +2595,12 @@
           "tick": 4
         }
       ],
-      "text": "Jacob Rosenbaum says Wendell Cheatham was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Rosenbaum says Cheatham was at Mancuso’s at 8:00 PM.",
       "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c140"
+      ],
+      "role": "spine"
     },
     {
       "id": "c004",
@@ -2579,7 +2608,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -2589,7 +2618,7 @@
           "tick": 8
         }
       ],
-      "text": "Jacob Rosenbaum says Wendell Cheatham was at the ferry slip at the foot of the street at 10:00 PM.",
+      "text": "Rosenbaum says Cheatham was at the ferry slip at 10:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2600,7 +2629,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -2616,10 +2645,10 @@
           "tick": 5
         }
       ],
-      "text": "Jacob Rosenbaum says Wilhelm Vogel was at Mancuso’s pool hall from 8:00 PM to 8:30 PM.",
+      "text": "Rosenbaum says Vogel was at Mancuso’s from 8:00 PM to 8:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c006",
@@ -2627,7 +2656,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -2637,7 +2666,7 @@
           "tick": 6
         }
       ],
-      "text": "Jacob Rosenbaum says Wilhelm Vogel was at the ferry slip at the foot of the street at 9:00 PM.",
+      "text": "Rosenbaum says Vogel was at the ferry slip at 9:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2648,7 +2677,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -2658,7 +2687,7 @@
           "tick": 9
         }
       ],
-      "text": "Jacob Rosenbaum says Wilhelm Vogel was at the ferry slip at the foot of the street at 10:30 PM.",
+      "text": "Rosenbaum says Vogel was at the ferry slip at 10:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2669,7 +2698,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -2679,7 +2708,7 @@
           "tick": 11
         }
       ],
-      "text": "Jacob Rosenbaum says Wilhelm Vogel was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Rosenbaum says Vogel was at the ferry slip at 11:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2690,7 +2719,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -2706,7 +2735,7 @@
           "tick": 1
         }
       ],
-      "text": "Jacob Rosenbaum says Frieda Hauck was at the lobby of the Wyckoff from 6:00 PM to 6:30 PM.",
+      "text": "Rosenbaum says Hauck was at the Wyckoff from 6:00 PM to 6:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2717,7 +2746,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -2739,7 +2768,7 @@
           "tick": 11
         }
       ],
-      "text": "Jacob Rosenbaum says Frieda Hauck was at the ferry slip at the foot of the street from 10:30 PM to 11:30 PM.",
+      "text": "Rosenbaum says Hauck was at the ferry slip from 10:30 PM to 11:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2750,7 +2779,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -2766,7 +2795,7 @@
           "tick": 5
         }
       ],
-      "text": "Jacob Rosenbaum says Carmine Alfano was at Mancuso’s pool hall from 8:00 PM to 8:30 PM.",
+      "text": "Rosenbaum says Alfano was at Mancuso’s from 8:00 PM to 8:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2777,7 +2806,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -2787,7 +2816,7 @@
           "tick": 1
         }
       ],
-      "text": "Jacob Rosenbaum says Konrad Brauer was at the lobby of the Wyckoff at 6:30 PM.",
+      "text": "Rosenbaum says Brauer was at the Wyckoff at 6:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2798,7 +2827,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -2820,7 +2849,7 @@
           "tick": 10
         }
       ],
-      "text": "Jacob Rosenbaum says Konrad Brauer was at the ferry slip at the foot of the street from 10:00 PM to 11:00 PM.",
+      "text": "Rosenbaum says Brauer was at the ferry slip from 10:00 PM to 11:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -2831,7 +2860,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Morris Hurwitz"
+        "topic": "Hurwitz"
       },
       "establishes": [
         {
@@ -2841,7 +2870,7 @@
           "tick": 0
         }
       ],
-      "text": "Wendell Cheatham says Morris Hurwitz was at the lobby of the Wyckoff at 6:00 PM.",
+      "text": "Cheatham says Hurwitz was at the Wyckoff at 6:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -2852,7 +2881,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -2862,7 +2891,7 @@
           "tick": 0
         }
       ],
-      "text": "Wendell Cheatham says Jacob Rosenbaum was at the lobby of the Wyckoff at 6:00 PM.",
+      "text": "Cheatham says Rosenbaum was at the Wyckoff at 6:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -2873,7 +2902,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -2883,10 +2912,10 @@
           "tick": 4
         }
       ],
-      "text": "Wendell Cheatham says Jacob Rosenbaum was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Cheatham says Rosenbaum was at Mancuso’s at 8:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "spine"
     },
     {
       "id": "c017",
@@ -2894,7 +2923,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -2904,7 +2933,7 @@
           "tick": 8
         }
       ],
-      "text": "Wendell Cheatham says Jacob Rosenbaum was at the ferry slip at the foot of the street at 10:00 PM.",
+      "text": "Cheatham says Rosenbaum was at the ferry slip at 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -2915,7 +2944,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -2925,10 +2954,10 @@
           "tick": 4
         }
       ],
-      "text": "Wendell Cheatham says Wilhelm Vogel was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Cheatham says Vogel was at Mancuso’s at 8:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c019",
@@ -2936,7 +2965,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -2946,7 +2975,7 @@
           "tick": 10
         }
       ],
-      "text": "Wendell Cheatham says Wilhelm Vogel was at the lobby of the Wyckoff at 11:00 PM.",
+      "text": "Cheatham says Vogel was at the Wyckoff at 11:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -2957,7 +2986,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -2967,7 +2996,7 @@
           "tick": 0
         }
       ],
-      "text": "Wendell Cheatham says Frieda Hauck was at the lobby of the Wyckoff at 6:00 PM.",
+      "text": "Cheatham says Hauck was at the Wyckoff at 6:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -2978,7 +3007,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -2994,7 +3023,7 @@
           "tick": 6
         }
       ],
-      "text": "Wendell Cheatham says Frieda Hauck was at the lobby of the Wyckoff from 8:30 PM to 9:00 PM.",
+      "text": "Cheatham says Hauck was at the Wyckoff from 8:30 PM to 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3005,7 +3034,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3015,7 +3044,7 @@
           "tick": 7
         }
       ],
-      "text": "Wendell Cheatham says Frieda Hauck was at the third-floor walk-up on Ninth at 9:30 PM.",
+      "text": "Cheatham says Hauck was at the third floor at 9:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3026,7 +3055,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3036,10 +3065,16 @@
           "tick": 4
         }
       ],
-      "text": "Wendell Cheatham says Carmine Alfano was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Cheatham says Alfano was at Mancuso’s at 8:00 PM.",
       "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c016",
+        "c078",
+        "c003",
+        "c133",
+        "c145"
+      ],
+      "role": "spine"
     },
     {
       "id": "c024",
@@ -3047,7 +3082,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3057,7 +3092,7 @@
           "tick": 6
         }
       ],
-      "text": "Wendell Cheatham says Carmine Alfano was at the lobby of the Wyckoff at 9:00 PM.",
+      "text": "Cheatham says Alfano was at the Wyckoff at 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3068,7 +3103,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3078,7 +3113,7 @@
           "tick": 9
         }
       ],
-      "text": "Wendell Cheatham says Carmine Alfano was at the lobby of the Wyckoff at 10:30 PM.",
+      "text": "Cheatham says Alfano was at the Wyckoff at 10:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3089,7 +3124,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3099,7 +3134,7 @@
           "tick": 11
         }
       ],
-      "text": "Wendell Cheatham says Carmine Alfano was at the lobby of the Wyckoff at 11:30 PM.",
+      "text": "Cheatham says Alfano was at the Wyckoff at 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3110,7 +3145,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3120,7 +3155,7 @@
           "tick": 8
         }
       ],
-      "text": "Wendell Cheatham says Konrad Brauer was at the ferry slip at the foot of the street at 10:00 PM.",
+      "text": "Cheatham says Brauer was at the ferry slip at 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3131,7 +3166,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -3141,7 +3176,7 @@
           "tick": 5
         }
       ],
-      "text": "Wilhelm Vogel says Jacob Rosenbaum was at Mancuso’s pool hall at 8:30 PM.",
+      "text": "Vogel says Rosenbaum was at Mancuso’s at 8:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3152,7 +3187,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -3162,7 +3197,7 @@
           "tick": 6
         }
       ],
-      "text": "Wilhelm Vogel says Jacob Rosenbaum was at the ferry slip at the foot of the street at 9:00 PM.",
+      "text": "Vogel says Rosenbaum was at the ferry slip at 9:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3173,7 +3208,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -3183,7 +3218,7 @@
           "tick": 9
         }
       ],
-      "text": "Wilhelm Vogel says Jacob Rosenbaum was at the ferry slip at the foot of the street at 10:30 PM.",
+      "text": "Vogel says Rosenbaum was at the ferry slip at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3194,7 +3229,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -3204,7 +3239,7 @@
           "tick": 11
         }
       ],
-      "text": "Wilhelm Vogel says Jacob Rosenbaum was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Vogel says Rosenbaum was at the ferry slip at 11:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3215,7 +3250,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3225,7 +3260,7 @@
           "tick": 10
         }
       ],
-      "text": "Wilhelm Vogel says Wendell Cheatham was at the lobby of the Wyckoff at 11:00 PM.",
+      "text": "Vogel says Cheatham was at the Wyckoff at 11:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3236,7 +3271,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3246,7 +3281,7 @@
           "tick": 8
         }
       ],
-      "text": "Wilhelm Vogel says Frieda Hauck was at the lobby of the Wyckoff at 10:00 PM.",
+      "text": "Vogel says Hauck was at the Wyckoff at 10:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3257,7 +3292,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3267,7 +3302,7 @@
           "tick": 9
         }
       ],
-      "text": "Wilhelm Vogel says Frieda Hauck was at the ferry slip at the foot of the street at 10:30 PM.",
+      "text": "Vogel says Hauck was at the ferry slip at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3278,7 +3313,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3288,7 +3323,7 @@
           "tick": 11
         }
       ],
-      "text": "Wilhelm Vogel says Frieda Hauck was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Vogel says Hauck was at the ferry slip at 11:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3299,7 +3334,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3309,7 +3344,7 @@
           "tick": 5
         }
       ],
-      "text": "Wilhelm Vogel says Carmine Alfano was at Mancuso’s pool hall at 8:30 PM.",
+      "text": "Vogel says Alfano was at Mancuso’s at 8:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3320,7 +3355,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3336,7 +3371,7 @@
           "tick": 8
         }
       ],
-      "text": "Wilhelm Vogel says Carmine Alfano was at the lobby of the Wyckoff from 9:30 PM to 10:00 PM.",
+      "text": "Vogel says Alfano was at the Wyckoff from 9:30 PM to 10:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3347,7 +3382,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3357,7 +3392,7 @@
           "tick": 7
         }
       ],
-      "text": "Wilhelm Vogel says Konrad Brauer was at the lobby of the Wyckoff at 9:30 PM.",
+      "text": "Vogel says Brauer was at the Wyckoff at 9:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3368,7 +3403,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3378,7 +3413,7 @@
           "tick": 9
         }
       ],
-      "text": "Wilhelm Vogel says Konrad Brauer was at the ferry slip at the foot of the street at 10:30 PM.",
+      "text": "Vogel says Brauer was at the ferry slip at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3389,7 +3424,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Morris Hurwitz"
+        "topic": "Hurwitz"
       },
       "establishes": [
         {
@@ -3405,7 +3440,7 @@
           "tick": 1
         }
       ],
-      "text": "Frieda Hauck says Morris Hurwitz was at the lobby of the Wyckoff from 6:00 PM to 6:30 PM.",
+      "text": "Hauck says Hurwitz was at the Wyckoff from 6:00 PM to 6:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3416,7 +3451,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Morris Hurwitz"
+        "topic": "Hurwitz"
       },
       "establishes": [
         {
@@ -3426,7 +3461,7 @@
           "tick": 3
         }
       ],
-      "text": "Frieda Hauck says Morris Hurwitz was at the lobby of the Wyckoff at 7:30 PM.",
+      "text": "Hauck says Hurwitz was at the Wyckoff at 7:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3437,7 +3472,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -3453,7 +3488,7 @@
           "tick": 1
         }
       ],
-      "text": "Frieda Hauck says Jacob Rosenbaum was at the lobby of the Wyckoff from 6:00 PM to 6:30 PM.",
+      "text": "Hauck says Rosenbaum was at the Wyckoff from 6:00 PM to 6:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3464,7 +3499,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -3474,7 +3509,7 @@
           "tick": 11
         }
       ],
-      "text": "Frieda Hauck says Jacob Rosenbaum was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Hauck says Rosenbaum was at the ferry slip at 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3485,7 +3520,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3495,7 +3530,7 @@
           "tick": 0
         }
       ],
-      "text": "Frieda Hauck says Wendell Cheatham was at the lobby of the Wyckoff at 6:00 PM.",
+      "text": "Hauck says Cheatham was at the Wyckoff at 6:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3506,7 +3541,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3522,7 +3557,7 @@
           "tick": 6
         }
       ],
-      "text": "Frieda Hauck says Wendell Cheatham was at the lobby of the Wyckoff from 8:30 PM to 9:00 PM.",
+      "text": "Hauck says Cheatham was at the Wyckoff from 8:30 PM to 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3533,7 +3568,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3543,7 +3578,7 @@
           "tick": 7
         }
       ],
-      "text": "Frieda Hauck says Wendell Cheatham was at the third-floor walk-up on Ninth at 9:30 PM.",
+      "text": "Hauck says Cheatham was at the third floor at 9:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3554,7 +3589,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -3564,7 +3599,7 @@
           "tick": 8
         }
       ],
-      "text": "Frieda Hauck says Wilhelm Vogel was at the lobby of the Wyckoff at 10:00 PM.",
+      "text": "Hauck says Vogel was at the Wyckoff at 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3575,7 +3610,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -3585,7 +3620,7 @@
           "tick": 11
         }
       ],
-      "text": "Frieda Hauck says Wilhelm Vogel was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Hauck says Vogel was at the ferry slip at 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3596,7 +3631,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3606,7 +3641,7 @@
           "tick": 6
         }
       ],
-      "text": "Frieda Hauck says Carmine Alfano was at the lobby of the Wyckoff at 9:00 PM.",
+      "text": "Hauck says Alfano was at the Wyckoff at 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3617,7 +3652,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3627,7 +3662,7 @@
           "tick": 8
         }
       ],
-      "text": "Frieda Hauck says Carmine Alfano was at the lobby of the Wyckoff at 10:00 PM.",
+      "text": "Hauck says Alfano was at the Wyckoff at 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3638,7 +3673,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3654,7 +3689,7 @@
           "tick": 2
         }
       ],
-      "text": "Frieda Hauck says Konrad Brauer was at the lobby of the Wyckoff from 6:30 PM to 7:00 PM.",
+      "text": "Hauck says Brauer was at the Wyckoff from 6:30 PM to 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3665,7 +3700,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Morris Hurwitz"
+        "topic": "Hurwitz"
       },
       "establishes": [
         {
@@ -3675,7 +3710,7 @@
           "tick": 2
         }
       ],
-      "text": "Carmine Alfano says Morris Hurwitz was at the office over the tailor’s shop at 7:00 PM.",
+      "text": "Alfano says Hurwitz was at the office at 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3686,7 +3721,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3696,7 +3731,7 @@
           "tick": 2
         }
       ],
-      "text": "Carmine Alfano says Wendell Cheatham was at the office over the tailor’s shop at 7:00 PM.",
+      "text": "Alfano says Cheatham was at the office at 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3707,7 +3742,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3717,7 +3752,7 @@
           "tick": 6
         }
       ],
-      "text": "Carmine Alfano says Wendell Cheatham was at the lobby of the Wyckoff at 9:00 PM.",
+      "text": "Alfano says Cheatham was at the Wyckoff at 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3728,7 +3763,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3738,7 +3773,7 @@
           "tick": 9
         }
       ],
-      "text": "Carmine Alfano says Wendell Cheatham was at the lobby of the Wyckoff at 10:30 PM.",
+      "text": "Alfano says Cheatham was at the Wyckoff at 10:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3749,7 +3784,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3759,7 +3794,7 @@
           "tick": 11
         }
       ],
-      "text": "Carmine Alfano says Wendell Cheatham was at the lobby of the Wyckoff at 11:30 PM.",
+      "text": "Alfano says Cheatham was at the Wyckoff at 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3770,7 +3805,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -3786,7 +3821,7 @@
           "tick": 8
         }
       ],
-      "text": "Carmine Alfano says Wilhelm Vogel was at the lobby of the Wyckoff from 9:30 PM to 10:00 PM.",
+      "text": "Alfano says Vogel was at the Wyckoff from 9:30 PM to 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3797,7 +3832,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3807,7 +3842,7 @@
           "tick": 6
         }
       ],
-      "text": "Carmine Alfano says Frieda Hauck was at the lobby of the Wyckoff at 9:00 PM.",
+      "text": "Alfano says Hauck was at the Wyckoff at 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3818,7 +3853,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3828,7 +3863,7 @@
           "tick": 8
         }
       ],
-      "text": "Carmine Alfano says Frieda Hauck was at the lobby of the Wyckoff at 10:00 PM.",
+      "text": "Alfano says Hauck was at the Wyckoff at 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3839,7 +3874,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3854,11 +3889,10 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Carmine Alfano says Konrad Brauer was at the third-floor walk-up on Ninth at 6:00 PM.",
+      "text": "Alfano says Brauer was at the third floor at 6:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c090",
-        "c181"
+        "c120"
       ],
       "role": "spine"
     },
@@ -3868,7 +3902,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3878,7 +3912,7 @@
           "tick": 7
         }
       ],
-      "text": "Carmine Alfano says Konrad Brauer was at the lobby of the Wyckoff at 9:30 PM.",
+      "text": "Alfano says Brauer was at the Wyckoff at 9:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3889,7 +3923,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -3911,7 +3945,7 @@
           "tick": 10
         }
       ],
-      "text": "Konrad Brauer says Jacob Rosenbaum was at the ferry slip at the foot of the street from 10:00 PM to 11:00 PM.",
+      "text": "Brauer says Rosenbaum was at the ferry slip from 10:00 PM to 11:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3922,7 +3956,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3932,7 +3966,7 @@
           "tick": 8
         }
       ],
-      "text": "Konrad Brauer says Wendell Cheatham was at the ferry slip at the foot of the street at 10:00 PM.",
+      "text": "Brauer says Cheatham was at the ferry slip at 10:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3943,7 +3977,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -3953,7 +3987,7 @@
           "tick": 7
         }
       ],
-      "text": "Konrad Brauer says Wilhelm Vogel was at the lobby of the Wyckoff at 9:30 PM.",
+      "text": "Brauer says Vogel was at the Wyckoff at 9:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3964,7 +3998,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -3974,7 +4008,7 @@
           "tick": 9
         }
       ],
-      "text": "Konrad Brauer says Wilhelm Vogel was at the ferry slip at the foot of the street at 10:30 PM.",
+      "text": "Brauer says Vogel was at the ferry slip at 10:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3985,7 +4019,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3995,7 +4029,7 @@
           "tick": 2
         }
       ],
-      "text": "Konrad Brauer says Frieda Hauck was at the lobby of the Wyckoff at 7:00 PM.",
+      "text": "Brauer says Hauck was at the Wyckoff at 7:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -4006,7 +4040,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4022,7 +4056,7 @@
           "tick": 10
         }
       ],
-      "text": "Konrad Brauer says Frieda Hauck was at the ferry slip at the foot of the street from 10:30 PM to 11:00 PM.",
+      "text": "Brauer says Hauck was at the ferry slip from 10:30 PM to 11:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -4033,7 +4067,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4048,10 +4082,10 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Konrad Brauer says Carmine Alfano was at the third-floor walk-up on Ninth at 6:00 PM.",
+      "text": "Brauer says Alfano was at the third floor at 6:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c069",
@@ -4059,7 +4093,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4069,7 +4103,7 @@
           "tick": 7
         }
       ],
-      "text": "Konrad Brauer says Carmine Alfano was at the lobby of the Wyckoff at 9:30 PM.",
+      "text": "Brauer says Alfano was at the Wyckoff at 9:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -4080,7 +4114,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Morris Hurwitz"
+        "topic": "Hurwitz"
       },
       "establishes": [
         {
@@ -4096,7 +4130,7 @@
           "tick": 1
         }
       ],
-      "text": "Nathan Kessler says Morris Hurwitz was at the lobby of the Wyckoff from 6:00 PM to 6:30 PM.",
+      "text": "Kessler says Hurwitz was at the Wyckoff from 6:00 PM to 6:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4107,7 +4141,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Morris Hurwitz"
+        "topic": "Hurwitz"
       },
       "establishes": [
         {
@@ -4117,7 +4151,7 @@
           "tick": 3
         }
       ],
-      "text": "Nathan Kessler says Morris Hurwitz was at the lobby of the Wyckoff at 7:30 PM.",
+      "text": "Kessler says Hurwitz was at the Wyckoff at 7:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4128,7 +4162,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -4144,7 +4178,7 @@
           "tick": 1
         }
       ],
-      "text": "Nathan Kessler says Jacob Rosenbaum was at the lobby of the Wyckoff from 6:00 PM to 6:30 PM.",
+      "text": "Kessler says Rosenbaum was at the Wyckoff from 6:00 PM to 6:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4155,7 +4189,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4165,7 +4199,7 @@
           "tick": 0
         }
       ],
-      "text": "Nathan Kessler says Wendell Cheatham was at the lobby of the Wyckoff at 6:00 PM.",
+      "text": "Kessler says Cheatham was at the Wyckoff at 6:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4176,7 +4210,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4192,7 +4226,7 @@
           "tick": 6
         }
       ],
-      "text": "Nathan Kessler says Wendell Cheatham was at the lobby of the Wyckoff from 8:30 PM to 9:00 PM.",
+      "text": "Kessler says Cheatham was at the Wyckoff from 8:30 PM to 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4203,7 +4237,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4225,7 +4259,7 @@
           "tick": 11
         }
       ],
-      "text": "Nathan Kessler says Wendell Cheatham was at the lobby of the Wyckoff from 10:30 PM to 11:30 PM.",
+      "text": "Kessler says Cheatham was at the Wyckoff from 10:30 PM to 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4236,7 +4270,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -4252,7 +4286,7 @@
           "tick": 8
         }
       ],
-      "text": "Nathan Kessler says Wilhelm Vogel was at the lobby of the Wyckoff from 9:30 PM to 10:00 PM.",
+      "text": "Kessler says Vogel was at the Wyckoff from 9:30 PM to 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4263,7 +4297,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -4273,7 +4307,7 @@
           "tick": 10
         }
       ],
-      "text": "Nathan Kessler says Wilhelm Vogel was at the lobby of the Wyckoff at 11:00 PM.",
+      "text": "Kessler says Vogel was at the Wyckoff at 11:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4284,7 +4318,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4330,10 +4364,10 @@
           "tick": 6
         }
       ],
-      "text": "Nathan Kessler says Frieda Hauck was at the lobby of the Wyckoff from 6:00 PM to 9:00 PM.",
+      "text": "Kessler says Hauck was at the Wyckoff from 6:00 PM to 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c191"
+        "c158"
       ],
       "role": "spine"
     },
@@ -4343,7 +4377,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4353,7 +4387,7 @@
           "tick": 8
         }
       ],
-      "text": "Nathan Kessler says Frieda Hauck was at the lobby of the Wyckoff at 10:00 PM.",
+      "text": "Kessler says Hauck was at the Wyckoff at 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4364,7 +4398,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4392,7 +4426,7 @@
           "tick": 9
         }
       ],
-      "text": "Nathan Kessler says Carmine Alfano was at the lobby of the Wyckoff from 9:00 PM to 10:30 PM.",
+      "text": "Kessler says Alfano was at the Wyckoff from 9:00 PM to 10:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4403,7 +4437,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4413,7 +4447,7 @@
           "tick": 11
         }
       ],
-      "text": "Nathan Kessler says Carmine Alfano was at the lobby of the Wyckoff at 11:30 PM.",
+      "text": "Kessler says Alfano was at the Wyckoff at 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4424,7 +4458,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4440,7 +4474,7 @@
           "tick": 2
         }
       ],
-      "text": "Nathan Kessler says Konrad Brauer was at the lobby of the Wyckoff from 6:30 PM to 7:00 PM.",
+      "text": "Kessler says Brauer was at the Wyckoff from 6:30 PM to 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4451,7 +4485,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4461,7 +4495,7 @@
           "tick": 7
         }
       ],
-      "text": "Nathan Kessler says Konrad Brauer was at the lobby of the Wyckoff at 9:30 PM.",
+      "text": "Kessler says Brauer was at the Wyckoff at 9:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4472,7 +4506,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -4493,7 +4527,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Lotte Kreuzer says Jacob Rosenbaum was at the third-floor walk-up on Ninth from 7:00 PM to 7:30 PM.",
+      "text": "Kreuzer says Rosenbaum was at the third floor from 7:00 PM to 7:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4504,7 +4538,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4514,7 +4548,7 @@
           "tick": 7
         }
       ],
-      "text": "Lotte Kreuzer says Wendell Cheatham was at the third-floor walk-up on Ninth at 9:30 PM.",
+      "text": "Kreuzer says Cheatham was at the third floor at 9:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4525,7 +4559,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4535,7 +4569,7 @@
           "tick": 4
         }
       ],
-      "text": "Lotte Kreuzer says Frieda Hauck was at the lobby of the Wyckoff at 8:00 PM.",
+      "text": "Kreuzer says Hauck was at the Wyckoff at 8:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "corroboration"
@@ -4546,7 +4580,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4556,7 +4590,7 @@
           "tick": 7
         }
       ],
-      "text": "Lotte Kreuzer says Frieda Hauck was at the third-floor walk-up on Ninth at 9:30 PM.",
+      "text": "Kreuzer says Hauck was at the third floor at 9:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4567,7 +4601,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4588,10 +4622,10 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Lotte Kreuzer says Carmine Alfano was at the third-floor walk-up on Ninth from 6:00 PM to 6:30 PM.",
+      "text": "Kreuzer says Alfano was at the third floor from 6:00 PM to 6:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c089",
@@ -4599,7 +4633,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4609,7 +4643,7 @@
           "tick": 10
         }
       ],
-      "text": "Lotte Kreuzer says Carmine Alfano was at the third-floor walk-up on Ninth at 11:00 PM.",
+      "text": "Kreuzer says Alfano was at the third floor at 11:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4620,7 +4654,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4635,10 +4669,10 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Lotte Kreuzer says Konrad Brauer was at the third-floor walk-up on Ninth at 6:00 PM.",
+      "text": "Kreuzer says Brauer was at the third floor at 6:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [
-        "c208"
+        "c165"
       ],
       "role": "corroboration"
     },
@@ -4648,7 +4682,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4664,7 +4698,7 @@
           "tick": 6
         }
       ],
-      "text": "Lotte Kreuzer says Konrad Brauer was at the third-floor walk-up on Ninth from 8:30 PM to 9:00 PM.",
+      "text": "Kreuzer says Brauer was at the third floor from 8:30 PM to 9:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4675,7 +4709,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -4691,10 +4725,10 @@
           "tick": 5
         }
       ],
-      "text": "Ezekiel Prentiss says Jacob Rosenbaum was at Mancuso’s pool hall from 8:00 PM to 8:30 PM.",
+      "text": "Prentiss says Rosenbaum was at Mancuso’s from 8:00 PM to 8:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c093",
@@ -4702,7 +4736,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
@@ -4712,7 +4746,7 @@
           "tick": 10
         }
       ],
-      "text": "Ezekiel Prentiss says Jacob Rosenbaum was at the ferry slip at the foot of the street at 11:00 PM.",
+      "text": "Prentiss says Rosenbaum was at the ferry slip at 11:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4723,7 +4757,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4733,10 +4767,10 @@
           "tick": 4
         }
       ],
-      "text": "Ezekiel Prentiss says Wendell Cheatham was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Prentiss says Cheatham was at Mancuso’s at 8:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c095",
@@ -4744,7 +4778,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Wilhelm Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -4784,7 +4818,7 @@
           "tick": 5
         }
       ],
-      "text": "Ezekiel Prentiss says Wilhelm Vogel was at Mancuso’s pool hall from 6:00 PM to 8:30 PM.",
+      "text": "Prentiss says Vogel was at Mancuso’s from 6:00 PM to 8:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4795,7 +4829,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4805,7 +4839,7 @@
           "tick": 10
         }
       ],
-      "text": "Ezekiel Prentiss says Frieda Hauck was at the ferry slip at the foot of the street at 11:00 PM.",
+      "text": "Prentiss says Hauck was at the ferry slip at 11:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4816,7 +4850,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4832,7 +4866,7 @@
           "tick": 5
         }
       ],
-      "text": "Ezekiel Prentiss says Carmine Alfano was at Mancuso’s pool hall from 8:00 PM to 8:30 PM.",
+      "text": "Prentiss says Alfano was at Mancuso’s from 8:00 PM to 8:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4843,7 +4877,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4853,7 +4887,7 @@
           "tick": 10
         }
       ],
-      "text": "Ezekiel Prentiss says Konrad Brauer was at the ferry slip at the foot of the street at 11:00 PM.",
+      "text": "Prentiss says Brauer was at the ferry slip at 11:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4864,7 +4898,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4874,7 +4908,7 @@
           "tick": 11
         }
       ],
-      "text": "Ezekiel Prentiss says Konrad Brauer was at Mancuso’s pool hall at 11:30 PM.",
+      "text": "Prentiss says Brauer was at Mancuso’s at 11:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4884,25 +4918,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s3",
+        "topic": "Cheatham’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 0
+          "place": "pool-hall",
+          "tick": 2
         }
       ],
-      "text": "Jacob Rosenbaum runs through it: at 6:00 PM there were Wendell Cheatham, Frieda Hauck at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "ferry-slip",
+      "text": "Vogel was at Mancuso’s at 7:00 PM and says Cheatham was not.",
+      "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4911,1322 +4939,50 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-f3",
+        "topic": "Cheatham’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "pool-hall",
+          "tick": 2
         }
       ],
-      "text": "Jacob Rosenbaum runs through it: at 6:30 PM there were Frieda Hauck, Konrad Brauer at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "ferry-slip",
+      "text": "Prentiss was at Mancuso’s at 7:00 PM and says Cheatham was not.",
+      "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c102",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s4",
+        "topic": "Cheatham’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
           "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 4
+          "tick": 2
         }
       ],
-      "text": "Jacob Rosenbaum runs through it: at 8:00 PM there were Wendell Cheatham, Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "ferry-slip",
+      "text": "Cheatham names Hauck as the company for it. Hauck was at the Wyckoff at 7:00 PM, and says Cheatham was not there.",
+      "place": "hotel-lobby",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c103",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 5
-        }
-      ],
-      "text": "Jacob Rosenbaum runs through it: at 8:30 PM there were Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "ferry-slip",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "ferry-slip",
-          "tick": 8
-        }
-      ],
-      "text": "Jacob Rosenbaum runs through it: at 10:00 PM there were Wendell Cheatham, Konrad Brauer at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "ferry-slip",
-          "tick": 9
-        }
-      ],
-      "text": "Jacob Rosenbaum runs through it: at 10:30 PM there were Wilhelm Vogel, Frieda Hauck, Konrad Brauer at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "ferry-slip",
-          "tick": 10
-        }
-      ],
-      "text": "Jacob Rosenbaum runs through it: at 11:00 PM there were Frieda Hauck, Konrad Brauer at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "ferry-slip",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 11
-        }
-      ],
-      "text": "Jacob Rosenbaum runs through it: at 11:30 PM there were Wilhelm Vogel, Frieda Hauck at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 0
-        }
-      ],
-      "text": "Wendell Cheatham runs through it: at 6:00 PM there were Jacob Rosenbaum, Frieda Hauck at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Wendell Cheatham runs through it: at 8:00 PM there were Jacob Rosenbaum, Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 6
-        }
-      ],
-      "text": "Wendell Cheatham runs through it: at 9:00 PM there were Frieda Hauck, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "ferry-slip",
-          "tick": 8
-        }
-      ],
-      "text": "Wendell Cheatham runs through it: at 10:00 PM there were Jacob Rosenbaum, Konrad Brauer at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 5
-        }
-      ],
-      "text": "Wilhelm Vogel runs through it: at 8:30 PM there were Jacob Rosenbaum, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 7
-        }
-      ],
-      "text": "Wilhelm Vogel runs through it: at 9:30 PM there were Carmine Alfano, Konrad Brauer at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 8
-        }
-      ],
-      "text": "Wilhelm Vogel runs through it: at 10:00 PM there were Frieda Hauck, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "ferry-slip",
-          "tick": 9
-        }
-      ],
-      "text": "Wilhelm Vogel runs through it: at 10:30 PM there were Jacob Rosenbaum, Frieda Hauck, Konrad Brauer at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 11
-        }
-      ],
-      "text": "Wilhelm Vogel runs through it: at 11:30 PM there were Jacob Rosenbaum, Frieda Hauck at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 0
-        }
-      ],
-      "text": "Frieda Hauck runs through it: at 6:00 PM there were Jacob Rosenbaum, Wendell Cheatham at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 1
-        }
-      ],
-      "text": "Frieda Hauck runs through it: at 6:30 PM there were Jacob Rosenbaum, Konrad Brauer at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 6
-        }
-      ],
-      "text": "Frieda Hauck runs through it: at 9:00 PM there were Wendell Cheatham, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 8
-        }
-      ],
-      "text": "Frieda Hauck runs through it: at 10:00 PM there were Wilhelm Vogel, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "ferry-slip",
-          "tick": 11
-        }
-      ],
-      "text": "Frieda Hauck runs through it: at 11:30 PM there were Jacob Rosenbaum, Wilhelm Vogel at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 6
-        }
-      ],
-      "text": "Carmine Alfano runs through it: at 9:00 PM there were Wendell Cheatham, Frieda Hauck at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 7
-        }
-      ],
-      "text": "Carmine Alfano runs through it: at 9:30 PM there were Wilhelm Vogel, Konrad Brauer at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 8
-        }
-      ],
-      "text": "Carmine Alfano runs through it: at 10:00 PM there were Wilhelm Vogel, Frieda Hauck at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
         "personId": "p-s6",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 7
-        }
-      ],
-      "text": "Konrad Brauer runs through it: at 9:30 PM there were Wilhelm Vogel, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "ferry-slip",
-          "tick": 8
-        }
-      ],
-      "text": "Konrad Brauer runs through it: at 10:00 PM there were Jacob Rosenbaum, Wendell Cheatham at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 9
-        }
-      ],
-      "text": "Konrad Brauer runs through it: at 10:30 PM there were Jacob Rosenbaum, Wilhelm Vogel, Frieda Hauck at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 10
-        }
-      ],
-      "text": "Konrad Brauer runs through it: at 11:00 PM there were Jacob Rosenbaum, Frieda Hauck at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c129",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 0
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 6:00 PM there were Jacob Rosenbaum, Wendell Cheatham, Frieda Hauck at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c130",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 1
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 6:30 PM there were Jacob Rosenbaum, Frieda Hauck, Konrad Brauer at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 2
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 7:00 PM there were Frieda Hauck, Konrad Brauer at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c132",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 5
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 8:30 PM there were Wendell Cheatham, Frieda Hauck at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 6
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 9:00 PM there were Wendell Cheatham, Frieda Hauck, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c134",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 7
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 9:30 PM there were Wilhelm Vogel, Carmine Alfano, Konrad Brauer at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c135",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 8
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 10:00 PM there were Wilhelm Vogel, Frieda Hauck, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c136",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 9
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 10:30 PM there were Wendell Cheatham, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c137",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-lobby",
-          "tick": 10
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 11:00 PM there were Wendell Cheatham, Wilhelm Vogel at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c138",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 11
-        }
-      ],
-      "text": "Nathan Kessler runs through it: at 11:30 PM there were Wendell Cheatham, Carmine Alfano at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c139",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "walkup-flat",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "walkup-flat",
-          "tick": 0
-        }
-      ],
-      "text": "Lotte Kreuzer runs through it: at 6:00 PM there were Carmine Alfano, Konrad Brauer at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c140",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 7
-        }
-      ],
-      "text": "Lotte Kreuzer runs through it: at 9:30 PM there were Wendell Cheatham, Frieda Hauck at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c141",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Ezekiel Prentiss runs through it: at 8:00 PM there were Jacob Rosenbaum, Wendell Cheatham, Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c160",
-        "c078",
-        "c086",
-        "c164",
-        "c166"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c142",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 5
-        }
-      ],
-      "text": "Ezekiel Prentiss runs through it: at 8:30 PM there were Jacob Rosenbaum, Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c143",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "ferry-slip",
-          "tick": 10
-        }
-      ],
-      "text": "Ezekiel Prentiss runs through it: at 11:00 PM there were Jacob Rosenbaum, Frieda Hauck, Konrad Brauer at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c144",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Wendell Cheatham’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 2
-        }
-      ],
-      "text": "Wilhelm Vogel was at Mancuso’s pool hall at 7:00 PM and says Wendell Cheatham was not.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c145",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Wendell Cheatham’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 2
-        }
-      ],
-      "text": "Ezekiel Prentiss was at Mancuso’s pool hall at 7:00 PM and says Wendell Cheatham was not.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c146",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Wendell Cheatham’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 2
-        }
-      ],
-      "text": "Wendell Cheatham says Frieda Hauck was there for it. Frieda Hauck says otherwise: Frieda Hauck was at the lobby of the Wyckoff at 7:00 PM, nowhere near Mancuso’s pool hall.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c147",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Wilhelm Vogel’s account"
+        "topic": "Vogel’s account"
       },
       "establishes": [
         {
@@ -6236,18 +4992,18 @@
           "tick": 3
         }
       ],
-      "text": "Konrad Brauer was at the ferry slip at the foot of the street at 7:30 PM and says Wilhelm Vogel was not.",
+      "text": "Brauer was at the ferry slip at 7:30 PM and says Vogel was not.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c148",
+      "id": "c104",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Frieda Hauck’s account"
+        "topic": "Hauck’s account"
       },
       "establishes": [
         {
@@ -6263,18 +5019,18 @@
           "tick": 10
         }
       ],
-      "text": "Wendell Cheatham was at the lobby of the Wyckoff from 10:30 PM to 11:00 PM and says Frieda Hauck was not.",
+      "text": "Cheatham was at the Wyckoff from 10:30 PM to 11:00 PM and says Hauck was not.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c149",
+      "id": "c105",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Frieda Hauck’s account"
+        "topic": "Hauck’s account"
       },
       "establishes": [
         {
@@ -6284,18 +5040,18 @@
           "tick": 10
         }
       ],
-      "text": "Wilhelm Vogel was at the lobby of the Wyckoff at 11:00 PM and says Frieda Hauck was not.",
+      "text": "Vogel was at the Wyckoff at 11:00 PM and says Hauck was not.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c150",
+      "id": "c106",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Frieda Hauck’s account"
+        "topic": "Hauck’s account"
       },
       "establishes": [
         {
@@ -6305,18 +5061,18 @@
           "tick": 9
         }
       ],
-      "text": "Carmine Alfano was at the lobby of the Wyckoff at 10:30 PM and says Frieda Hauck was not.",
+      "text": "Alfano was at the Wyckoff at 10:30 PM and says Hauck was not.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c151",
+      "id": "c107",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Frieda Hauck’s account"
+        "topic": "Hauck’s account"
       },
       "establishes": [
         {
@@ -6332,18 +5088,18 @@
           "tick": 10
         }
       ],
-      "text": "Nathan Kessler was at the lobby of the Wyckoff from 10:30 PM to 11:00 PM and says Frieda Hauck was not.",
+      "text": "Kessler was at the Wyckoff from 10:30 PM to 11:00 PM and says Hauck was not.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c152",
+      "id": "c108",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Carmine Alfano’s account"
+        "topic": "Alfano’s account"
       },
       "establishes": [
         {
@@ -6353,18 +5109,18 @@
           "tick": 5
         }
       ],
-      "text": "Wendell Cheatham was at the lobby of the Wyckoff at 8:30 PM and says Carmine Alfano was not.",
+      "text": "Cheatham was at the Wyckoff at 8:30 PM and says Alfano was not.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c153",
+      "id": "c109",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Carmine Alfano’s account"
+        "topic": "Alfano’s account"
       },
       "establishes": [
         {
@@ -6380,18 +5136,18 @@
           "tick": 5
         }
       ],
-      "text": "Frieda Hauck was at the lobby of the Wyckoff from 8:00 PM to 8:30 PM and says Carmine Alfano was not.",
+      "text": "Hauck was at the Wyckoff from 8:00 PM to 8:30 PM and says Alfano was not.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c154",
+      "id": "c110",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Carmine Alfano’s account"
+        "topic": "Alfano’s account"
       },
       "establishes": [
         {
@@ -6407,18 +5163,18 @@
           "tick": 5
         }
       ],
-      "text": "Nathan Kessler was at the lobby of the Wyckoff from 8:00 PM to 8:30 PM and says Carmine Alfano was not.",
+      "text": "Kessler was at the Wyckoff from 8:00 PM to 8:30 PM and says Alfano was not.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c155",
+      "id": "c111",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Carmine Alfano’s account"
+        "topic": "Alfano’s account"
       },
       "establishes": [
         {
@@ -6428,18 +5184,18 @@
           "tick": 4
         }
       ],
-      "text": "Lotte Kreuzer was at the lobby of the Wyckoff at 8:00 PM and says Carmine Alfano was not.",
+      "text": "Kreuzer was at the Wyckoff at 8:00 PM and says Alfano was not.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c156",
-      "kind": "observation",
+      "id": "c112",
+      "kind": "denial",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Carmine Alfano’s account"
+        "topic": "Alfano’s account"
       },
       "establishes": [
         {
@@ -6455,18 +5211,18 @@
           "tick": 5
         }
       ],
-      "text": "Carmine Alfano says Jacob Rosenbaum was there for it. Jacob Rosenbaum says otherwise: Jacob Rosenbaum was at Mancuso’s pool hall from 8:00 PM to 8:30 PM, nowhere near the lobby of the Wyckoff.",
+      "text": "Alfano names Rosenbaum as the company for it. Rosenbaum was at Mancuso’s from 8:00 PM to 8:30 PM, and says Alfano was not there.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c157",
+      "id": "c113",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Konrad Brauer’s account"
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
@@ -6476,18 +5232,18 @@
           "tick": 1
         }
       ],
-      "text": "Wendell Cheatham was at the office over the tailor’s shop at 6:30 PM and says Konrad Brauer was not.",
+      "text": "Cheatham was at the office at 6:30 PM and says Brauer was not.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c158",
+      "id": "c114",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Konrad Brauer’s account"
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
@@ -6497,18 +5253,18 @@
           "tick": 4
         }
       ],
-      "text": "Jacob Rosenbaum was at Mancuso’s pool hall at 8:00 PM and says Konrad Brauer was not.",
+      "text": "Rosenbaum was at Mancuso’s at 8:00 PM and says Brauer was not.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c159",
+      "id": "c115",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Konrad Brauer’s account"
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
@@ -6518,59 +5274,60 @@
           "tick": 4
         }
       ],
-      "text": "Wendell Cheatham was at Mancuso’s pool hall at 8:00 PM and says Konrad Brauer was not.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c160",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Konrad Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Ezekiel Prentiss was at Mancuso’s pool hall at 8:00 PM and says Konrad Brauer was not.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c060",
-        "c016",
-        "c201"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c161",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Konrad Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Konrad Brauer says Frieda Hauck was there for it. Frieda Hauck says otherwise: Frieda Hauck was at the lobby of the Wyckoff at 8:00 PM, nowhere near Mancuso’s pool hall.",
+      "text": "Cheatham was at Mancuso’s at 8:00 PM and says Brauer was not.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c162",
+      "id": "c116",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Brauer’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Prentiss was at Mancuso’s at 8:00 PM and says Brauer was not.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c117",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brauer’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Brauer names Hauck as the company for it. Hauck was at the Wyckoff at 8:00 PM, and says Brauer was not there.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c023",
+        "c018",
+        "c060",
+        "c088"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c118",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -6586,19 +5343,18 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Morris Hurwitz was found at the victim’s suite at the residential hotel. His watch glass broke against the floor and the hands have not moved since. The milk wagon on its rounds came at 8:00 PM, and the driver keeps to his round and he was at the corner for it. That puts the killing in that half hour and no later.",
+      "text": "Hurwitz was found at the suite. His watch glass broke against the floor and the hands have not moved since. The milk wagon was at the corner at 8:00 PM, where the driver’s round puts him every night.",
       "place": "res-suite",
       "leadsTo": [
-        "c165",
-        "c078",
-        "c102",
-        "c177"
+        "c016",
+        "c094",
+        "c086"
       ],
       "role": "spine",
       "anchorId": "milk-wagon"
     },
     {
-      "id": "c163",
+      "id": "c119",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -6620,15 +5376,16 @@
       "text": "The coroner puts death between 7:00 PM and 8:30 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.",
       "place": "res-suite",
       "leadsTo": [
-        "c141",
-        "c165",
-        "c159",
-        "c068"
+        "c122",
+        "c023",
+        "c078",
+        "c090",
+        "c092"
       ],
       "role": "spine"
     },
     {
-      "id": "c164",
+      "id": "c120",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6645,18 +5402,18 @@
           "methodId": "strangle"
         }
       ],
-      "text": "A length of sash cord is gone from the third-floor walk-up on Ninth. A cut end of the same hemp is still tied to the fitting it was taken from.",
+      "text": "A length of sash cord is gone from the third floor. A cut end of the same hemp is still tied to the fitting it was taken from.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c165",
+      "id": "c121",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Morris Hurwitz that evening"
+        "topic": "Hurwitz that evening"
       },
       "establishes": [
         {
@@ -6670,44 +5427,45 @@
           "tick": 3
         }
       ],
-      "text": "Frieda Hauck puts Morris Hurwitz at the lobby of the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.",
+      "text": "Hauck puts Hurwitz at the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "regular-stool"
+    },
+    {
+      "id": "c122",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Hurwitz that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hotel-lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Kessler puts Hurwitz at the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c060"
+        "c117",
+        "c060",
+        "c003",
+        "c005"
       ],
       "role": "spine",
       "anchorId": "regular-stool"
     },
     {
-      "id": "c166",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Morris Hurwitz that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "hotel-lobby",
-          "tick": 3
-        }
-      ],
-      "text": "Nathan Kessler puts Morris Hurwitz at the lobby of the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c195"
-      ],
-      "role": "corroboration",
-      "anchorId": "regular-stool"
-    },
-    {
-      "id": "c167",
+      "id": "c123",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6729,14 +5487,14 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Jacob Rosenbaum was at Mancuso’s pool hall at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, while the milk wagon was in the street.",
+      "text": "Rosenbaum was at Mancuso’s at 8:00 PM and heard a scuffle and a chair dragging from the direction of the suite, while the milk wagon was in the street.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "milk-wagon"
     },
     {
-      "id": "c168",
+      "id": "c124",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6758,14 +5516,14 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Wendell Cheatham was at Mancuso’s pool hall at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, while the milk wagon was in the street.",
+      "text": "Cheatham was at Mancuso’s at 8:00 PM and heard a scuffle and a chair dragging from the direction of the suite, while the milk wagon was in the street.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "milk-wagon"
     },
     {
-      "id": "c169",
+      "id": "c125",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6787,14 +5545,14 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Ezekiel Prentiss was at Mancuso’s pool hall at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, while the milk wagon was in the street.",
+      "text": "Prentiss was at Mancuso’s at 8:00 PM and heard a scuffle and a chair dragging from the direction of the suite, while the milk wagon was in the street.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "corroboration",
+      "role": "noise",
       "anchorId": "milk-wagon"
     },
     {
-      "id": "c170",
+      "id": "c126",
       "kind": "anchor",
       "source": {
         "type": "place",
@@ -6808,14 +5566,14 @@
           "tick": 3
         }
       ],
-      "text": "The regular who takes the same seat every night at 7:30 PM puts Frieda Hauck at the lobby of the Wyckoff.",
+      "text": "The regular who takes the same seat every night was at 7:30 PM, and Hauck was at the Wyckoff for it.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "regular-stool"
     },
     {
-      "id": "c171",
+      "id": "c127",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6829,14 +5587,14 @@
           "tick": 8
         }
       ],
-      "text": "Jacob Rosenbaum carries the mark of it: a coat soaked through at the shoulders. That fixes Jacob Rosenbaum at the ferry slip at the foot of the street at 10:00 PM, when the rain starting happened.",
+      "text": "Rosenbaum still carries it: a coat soaked through at the shoulders. The rain starting was at 10:00 PM, at the ferry slip.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "rain"
     },
     {
-      "id": "c172",
+      "id": "c128",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6850,14 +5608,14 @@
           "tick": 8
         }
       ],
-      "text": "Wendell Cheatham carries the mark of it: a coat soaked through at the shoulders. That fixes Wendell Cheatham at the ferry slip at the foot of the street at 10:00 PM, when the rain starting happened.",
+      "text": "Cheatham still carries it: a coat soaked through at the shoulders. The rain starting was at 10:00 PM, at the ferry slip.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "rain"
     },
     {
-      "id": "c173",
+      "id": "c129",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6870,18 +5628,18 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A typed page of dates and sums in Morris Hurwitz’s file, headed with Jacob Rosenbaum’s name.",
+      "text": "Found at the suite: A typed page of dates and sums in Hurwitz’s file, headed with Rosenbaum’s name.",
       "place": "res-suite",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c174",
+      "id": "c130",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Jacob Rosenbaum and Morris Hurwitz"
+        "topic": "Rosenbaum and Hurwitz"
       },
       "establishes": [
         {
@@ -6890,13 +5648,13 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Wilhelm Vogel says Morris Hurwitz told Jacob Rosenbaum that the story would run whether Jacob Rosenbaum liked it or not.",
+      "text": "Vogel says Hurwitz told Rosenbaum that the story would run whether Rosenbaum liked it or not.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c175",
+      "id": "c131",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6909,18 +5667,18 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A clipping about the failure of Frieda Hauck’s business, with Morris Hurwitz’s name underlined twice in pencil.",
+      "text": "Found at the suite: A clipping about the failure of Hauck’s business, with Hurwitz’s name underlined twice in pencil.",
       "place": "res-suite",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c176",
+      "id": "c132",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Frieda Hauck and Morris Hurwitz"
+        "topic": "Hauck and Hurwitz"
       },
       "establishes": [
         {
@@ -6929,13 +5687,13 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Lotte Kreuzer says Frieda Hauck said Morris Hurwitz had taken everything and would be made to feel it.",
+      "text": "Kreuzer says Hauck said Hurwitz had taken everything and would be made to feel it.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c177",
+      "id": "c133",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6948,18 +5706,18 @@
           "motiveType": "property"
         }
       ],
-      "text": "Found at the office over the tailor’s shop: A lease assignment made out in Konrad Brauer’s name, waiting only on Morris Hurwitz’s signature.",
+      "text": "Found at the office: A lease assignment made out in Brauer’s name, waiting only on Hurwitz’s signature.",
       "place": "office-over-tailor",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c178",
+      "id": "c134",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Konrad Brauer and Morris Hurwitz"
+        "topic": "Brauer and Hurwitz"
       },
       "establishes": [
         {
@@ -6968,13 +5726,13 @@
           "motiveType": "property"
         }
       ],
-      "text": "Ezekiel Prentiss says Morris Hurwitz told Konrad Brauer the lease would go to somebody else at the quarter day.",
+      "text": "Prentiss says Hurwitz told Brauer the lease would go to somebody else at the quarter day.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c179",
+      "id": "c135",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6988,96 +5746,97 @@
           "motiveType": "property"
         }
       ],
-      "text": "Wendell Cheatham hired us. Wendell Cheatham wants it known that Konrad Brauer wanted the victim out of a lease, and would rather we started there.",
+      "text": "Cheatham hired us, and wants it known that Brauer wanted the victim out of a lease, and would rather we started there.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c141",
-        "c160",
-        "c169"
+        "c122",
+        "c117",
+        "c018",
+        "c116"
       ],
       "role": "spine"
     },
     {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Jacob Rosenbaum"
-      },
-      "establishes": [],
-      "text": "Carmine Alfano on Jacob Rosenbaum: Jacob Rosenbaum’s registration card gives an address on a street that does not exist.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c181",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Jacob Rosenbaum"
-      },
-      "establishes": [],
-      "text": "Nathan Kessler on Jacob Rosenbaum: Two signatures of Jacob Rosenbaum’s, a month apart, are in different hands.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c183"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c182",
+      "id": "c136",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Jacob Rosenbaum"
+        "topic": "Rosenbaum"
       },
       "establishes": [],
-      "text": "Ezekiel Prentiss on Jacob Rosenbaum: Jacob Rosenbaum answers to the name a half-second late, every time.",
+      "text": "Prentiss on Rosenbaum: Rosenbaum’s registration card gives an address on a street that does not exist.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c141"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Rosenbaum"
+      },
+      "establishes": [],
+      "text": "Vogel on Rosenbaum: Two signatures of Rosenbaum’s, a month apart, are in different hands.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c183",
-      "kind": "physical",
+      "id": "c138",
+      "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "ferry-slip"
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Rosenbaum"
       },
       "establishes": [],
-      "text": "A union card in Jacob Rosenbaum’s coat lining carries a different surname and a 1919 date.",
-      "place": "ferry-slip",
-      "leadsTo": [
-        "c185"
-      ],
+      "text": "Alfano on Rosenbaum: Rosenbaum answers to the name a half-second late, every time.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c184",
+      "id": "c139",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "ferry-slip"
       },
       "establishes": [],
-      "text": "A steamship ticket stub among Jacob Rosenbaum’s things, in the name of a man who died at Belleau Wood.",
+      "text": "A union card in Rosenbaum’s coat lining carries a different surname and a 1919 date.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c185",
+      "id": "c140",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A steamship ticket stub among Rosenbaum’s things, in the name of a man who died at Belleau Wood.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c136"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c141",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7090,15 +5849,15 @@
           "secretType": "forged-identity"
         }
       ],
-      "text": "The name Jacob Rosenbaum was born with turns up on a desertion warrant from 1918. Jacob Rosenbaum has been hiding from the Army for eleven years and from nobody else.",
+      "text": "The name Rosenbaum was born with turns up on a desertion warrant from 1918. Rosenbaum has been hiding from the Army for eleven years and from nobody else.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s1",
-      "branchId": "b1"
+      "branchId": "b4"
     },
     {
-      "id": "c186",
+      "id": "c142",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7111,507 +5870,512 @@
           "secretType": "forged-identity"
         }
       ],
-      "text": "The papers are forged and the reason is plain: Jacob Rosenbaum was put out of the country once already and does not mean to be put out twice.",
+      "text": "The papers are forged and the reason is plain: Rosenbaum was put out of the country once already and does not mean to be put out twice.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c187",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Wendell Cheatham"
-      },
-      "establishes": [],
-      "text": "Frieda Hauck on Wendell Cheatham: Wendell Cheatham and the victim were heard at the office over the tailor’s shop, and one of them was doing all the talking.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c188",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Wendell Cheatham"
-      },
-      "establishes": [],
-      "text": "Konrad Brauer on Wendell Cheatham: Wendell Cheatham has come into money lately and has no visible way of having come into money.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c189",
+      "id": "c143",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Wendell Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [],
-      "text": "Lotte Kreuzer on Wendell Cheatham: The victim had been drawing cash in amounts that did not match anything in the accounts.",
+      "text": "Kreuzer on Cheatham: Cheatham and the victim were heard at the office, and one of them was doing all the talking.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c190",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "office-over-tailor"
-      },
-      "establishes": [],
-      "text": "An envelope at the office over the tailor’s shop with nothing in it, addressed in the victim’s hand to no one.",
-      "place": "office-over-tailor",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c191",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "office-over-tailor"
-      },
-      "establishes": [],
-      "text": "A photograph at the office over the tailor’s shop, folded small, of something the victim would have paid to keep folded.",
-      "place": "office-over-tailor",
-      "leadsTo": [
-        "c192"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
-    },
-    {
-      "id": "c192",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "office-over-tailor"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "blackmail"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "office-over-tailor",
-          "tick": 2
-        }
-      ],
-      "text": "The victim’s bank book settles it: four payments, and Wendell Cheatham at the office over the tailor’s shop from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
-      "place": "office-over-tailor",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
-    },
-    {
-      "id": "c193",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "office-over-tailor"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "blackmail"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "office-over-tailor",
-          "tick": 2
-        }
-      ],
-      "text": "The thing Wendell Cheatham was holding over the victim turns up, and it was worth more to Wendell Cheatham every month than once.",
-      "place": "office-over-tailor",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c194",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Wilhelm Vogel"
-      },
-      "establishes": [],
-      "text": "Wendell Cheatham on Wilhelm Vogel: Wilhelm Vogel was carrying a parcel into Mancuso’s pool hall and came out without it.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c195",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Wilhelm Vogel"
-      },
-      "establishes": [],
-      "text": "Nathan Kessler on Wilhelm Vogel: There is a man who meets people at Mancuso’s pool hall and nobody will say his name out loud.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c199"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b2"
-    },
-    {
-      "id": "c196",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Wilhelm Vogel"
-      },
-      "establishes": [],
-      "text": "Ezekiel Prentiss on Wilhelm Vogel: Wilhelm Vogel has been selling things that were never Wilhelm Vogel’s to sell.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c197",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at Mancuso’s pool hall, and the shop it came from closed two years ago.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c198",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at Mancuso’s pool hall in a name that does not exist, made out at the hour in question.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c199",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "The receiver at Mancuso’s pool hall would rather talk than be held: Wilhelm Vogel was there from 7:30 PM to 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Wilhelm Vogel will take over this one.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b2"
-    },
-    {
-      "id": "c200",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Wilhelm Vogel at Mancuso’s pool hall from 7:30 PM to 8:00 PM with both hands full.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c201",
+      "id": "c144",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Frieda Hauck"
+        "topic": "Cheatham"
       },
       "establishes": [],
-      "text": "Jacob Rosenbaum on Frieda Hauck: Frieda Hauck has been seen with men from three different shops and none of them were drinking.",
+      "text": "Rosenbaum on Cheatham: Cheatham has come into money lately and has no visible way of having come into money.",
       "place": "ferry-slip",
-      "leadsTo": [
-        "c205"
-      ],
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c202",
+      "id": "c145",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "Frieda Hauck"
+        "personId": "p-s4",
+        "topic": "Cheatham"
       },
       "establishes": [],
-      "text": "Wilhelm Vogel on Frieda Hauck: There is a list going round and Frieda Hauck’s name is at the top of it.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c203",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Frieda Hauck"
-      },
-      "establishes": [],
-      "text": "Konrad Brauer on Frieda Hauck: A private agency has had a man on Frieda Hauck for a fortnight.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c204",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "ferry-slip"
-      },
-      "establishes": [],
-      "text": "A sheaf of signed cards at the ferry slip at the foot of the street, forty of them, in a strapped envelope.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c205",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "ferry-slip"
-      },
-      "establishes": [],
-      "text": "A hall rental receipt at the ferry slip at the foot of the street made out to a name that means nothing to anyone.",
-      "place": "ferry-slip",
-      "leadsTo": [
-        "c206"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
-    },
-    {
-      "id": "c206",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "ferry-slip"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "union-organizing"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 10
-        }
-      ],
-      "text": "Forty men will swear to it if they have to: Frieda Hauck was at the ferry slip at the foot of the street from 10:30 PM to 11:00 PM taking their names, and the only thing Frieda Hauck is guilty of is a charter.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
-    },
-    {
-      "id": "c207",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "ferry-slip"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "union-organizing"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 10
-        }
-      ],
-      "text": "The agency’s own operative confirms it. He was watching Frieda Hauck at the ferry slip at the foot of the street for the whole of it, from 10:30 PM to 11:00 PM, and wrote it up for his employer.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c208",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Carmine Alfano"
-      },
-      "establishes": [],
-      "text": "Nathan Kessler on Carmine Alfano: Carmine Alfano was asking around for a hundred dollars in a hurry earlier in the week.",
+      "text": "Hauck on Cheatham: The victim had been drawing cash in amounts that did not match anything in the accounts.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c211"
+        "c147"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b4"
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
     },
     {
-      "id": "c209",
+      "id": "c146",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "office-over-tailor"
+      },
+      "establishes": [],
+      "text": "An envelope at the office with nothing in it, addressed in the victim’s hand to no one.",
+      "place": "office-over-tailor",
+      "leadsTo": [
+        "c148"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c147",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "office-over-tailor"
+      },
+      "establishes": [],
+      "text": "A photograph at the office, folded small, of something the victim would have paid to keep folded.",
+      "place": "office-over-tailor",
+      "leadsTo": [
+        "c146"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c148",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "office-over-tailor"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "office-over-tailor",
+          "tick": 2
+        }
+      ],
+      "text": "The victim’s bank book settles it: four payments, and Cheatham at the office from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
+      "place": "office-over-tailor",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c149",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "office-over-tailor"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "office-over-tailor",
+          "tick": 2
+        }
+      ],
+      "text": "The thing Cheatham was holding over the victim turns up, and it was worth more to Cheatham every month than once.",
+      "place": "office-over-tailor",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c150",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Carmine Alfano"
+        "topic": "Vogel"
       },
       "establishes": [],
-      "text": "Ezekiel Prentiss on Carmine Alfano: A man nobody knew was waiting for Carmine Alfano at Mancuso’s pool hall and would not give a name.",
+      "text": "Prentiss on Vogel: Vogel was carrying a parcel into Mancuso’s and came out without it.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s3"
     },
     {
-      "id": "c210",
+      "id": "c151",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Carmine Alfano"
+        "topic": "Vogel"
       },
       "establishes": [],
-      "text": "Wendell Cheatham on Carmine Alfano: Carmine Alfano goes very quiet when the racing wire is mentioned.",
+      "text": "Cheatham on Vogel: There is a man who meets people at Mancuso’s and nobody will say his name out loud.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c152",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Vogel"
+      },
+      "establishes": [],
+      "text": "Kessler on Vogel: Vogel has been selling things that were never Vogel’s to sell.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c153",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at Mancuso’s, and the shop it came from closed two years ago.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c154",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at Mancuso’s in a name that does not exist, made out at the hour in question.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c155",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "The receiver at Mancuso’s would rather talk than be held: Vogel was there from 7:30 PM to 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Vogel will take over this one.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c156",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Vogel at Mancuso’s from 7:30 PM to 8:00 PM with both hands full.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c157",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Brauer on Hauck: Hauck has been seen with men from three different shops and none of them were drinking.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c162"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c158",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Kreuzer on Hauck: There is a list going round and Hauck’s name is at the top of it.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c157"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c159",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Rosenbaum on Hauck: A private agency has had a man on Hauck for a fortnight.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c160",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A sheaf of signed cards at the ferry slip, forty of them, in a strapped envelope.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c161",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A hall rental receipt at the ferry slip made out to a name that means nothing to anyone.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c162",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "union-organizing"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 10
+        }
+      ],
+      "text": "Forty men will swear to it if they have to: Hauck was at the ferry slip from 10:30 PM to 11:00 PM taking their names, and the only thing Hauck is guilty of is a charter.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c163",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "union-organizing"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 10
+        }
+      ],
+      "text": "The agency’s own operative confirms it. He was watching Hauck at the ferry slip for the whole of it, from 10:30 PM to 11:00 PM, and wrote it up for his employer.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c164",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Alfano"
+      },
+      "establishes": [],
+      "text": "Cheatham on Alfano: Alfano was asking around for a hundred dollars in a hurry earlier in the week.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s5"
     },
     {
-      "id": "c211",
-      "kind": "physical",
+      "id": "c165",
+      "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "pool-hall"
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Alfano"
       },
       "establishes": [],
-      "text": "Betting slips at Mancuso’s pool hall in Carmine Alfano’s pocketbook, all of them losers, all of them this month.",
-      "place": "pool-hall",
+      "text": "Kessler on Alfano: A man nobody knew was waiting for Alfano at Mancuso’s and would not give a name.",
+      "place": "hotel-lobby",
       "leadsTo": [
-        "c213"
+        "c168"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c212",
-      "kind": "physical",
+      "id": "c166",
+      "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "pool-hall"
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Alfano"
       },
       "establishes": [],
-      "text": "A book of markers at Mancuso’s pool hall with Carmine Alfano’s initials against four of them.",
+      "text": "Prentiss on Alfano: Alfano goes very quiet when the racing wire is mentioned.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s5"
     },
     {
-      "id": "c213",
+      "id": "c167",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "Betting slips at Mancuso’s in Alfano’s pocketbook, all of them losers, all of them this month.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c169"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b2"
+    },
+    {
+      "id": "c168",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "A book of markers at Mancuso’s with Alfano’s initials against four of them.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c167"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b2"
+    },
+    {
+      "id": "c169",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7636,15 +6400,15 @@
           "tick": 5
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Carmine Alfano was at Mancuso’s pool hall from 8:00 PM to 8:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Alfano was at Mancuso’s from 8:00 PM to 8:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s5",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c214",
+      "id": "c170",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7669,7 +6433,7 @@
           "tick": 5
         }
       ],
-      "text": "The book at Mancuso’s pool hall has the payment entered against Carmine Alfano’s name and the time beside it, from 8:00 PM to 8:30 PM, in the clerk’s own hand.",
+      "text": "The book at Mancuso’s has the payment entered against Alfano’s name and the time beside it, from 8:00 PM to 8:30 PM, in the clerk’s own hand.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise",
@@ -7678,7 +6442,7 @@
   ],
   "findable": [
     {
-      "id": "c162",
+      "id": "c118",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7694,19 +6458,18 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Morris Hurwitz was found at the victim’s suite at the residential hotel. His watch glass broke against the floor and the hands have not moved since. The milk wagon on its rounds came at 8:00 PM, and the driver keeps to his round and he was at the corner for it. That puts the killing in that half hour and no later.",
+      "text": "Hurwitz was found at the suite. His watch glass broke against the floor and the hands have not moved since. The milk wagon was at the corner at 8:00 PM, where the driver’s round puts him every night.",
       "place": "res-suite",
       "leadsTo": [
-        "c165",
-        "c078",
-        "c102",
-        "c177"
+        "c016",
+        "c094",
+        "c086"
       ],
       "role": "spine",
       "anchorId": "milk-wagon"
     },
     {
-      "id": "c163",
+      "id": "c119",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7728,15 +6491,16 @@
       "text": "The coroner puts death between 7:00 PM and 8:30 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.",
       "place": "res-suite",
       "leadsTo": [
-        "c141",
-        "c165",
-        "c159",
-        "c068"
+        "c122",
+        "c023",
+        "c078",
+        "c090",
+        "c092"
       ],
       "role": "spine"
     },
     {
-      "id": "c179",
+      "id": "c135",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7750,92 +6514,23 @@
           "motiveType": "property"
         }
       ],
-      "text": "Wendell Cheatham hired us. Wendell Cheatham wants it known that Konrad Brauer wanted the victim out of a lease, and would rather we started there.",
+      "text": "Cheatham hired us, and wants it known that Brauer wanted the victim out of a lease, and would rather we started there.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c141",
-        "c160",
-        "c169"
+        "c122",
+        "c117",
+        "c018",
+        "c116"
       ],
       "role": "spine"
     },
     {
-      "id": "c141",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Ezekiel Prentiss runs through it: at 8:00 PM there were Jacob Rosenbaum, Wendell Cheatham, Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c160",
-        "c078",
-        "c086",
-        "c164",
-        "c166"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c160",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Konrad Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Ezekiel Prentiss was at Mancuso’s pool hall at 8:00 PM and says Konrad Brauer was not.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c060",
-        "c016",
-        "c201"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c165",
+      "id": "c122",
       "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Morris Hurwitz that evening"
+        "personId": "p-f1",
+        "topic": "Hurwitz that evening"
       },
       "establishes": [
         {
@@ -7849,13 +6544,139 @@
           "tick": 3
         }
       ],
-      "text": "Frieda Hauck puts Morris Hurwitz at the lobby of the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.",
+      "text": "Kessler puts Hurwitz at the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c060"
+        "c117",
+        "c060",
+        "c003",
+        "c005"
       ],
       "role": "spine",
       "anchorId": "regular-stool"
+    },
+    {
+      "id": "c117",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brauer’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Brauer names Hauck as the company for it. Hauck was at the Wyckoff at 8:00 PM, and says Brauer was not there.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c023",
+        "c018",
+        "c060",
+        "c088"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Alfano"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Cheatham says Alfano was at Mancuso’s at 8:00 PM.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c016",
+        "c078",
+        "c003",
+        "c133",
+        "c145"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Rosenbaum"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Cheatham says Rosenbaum was at Mancuso’s at 8:00 PM.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Cheatham says Vogel was at Mancuso’s at 8:00 PM.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "walkup-flat",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Alfano says Brauer was at the third floor at 6:00 PM.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c120"
+      ],
+      "role": "spine"
     },
     {
       "id": "c078",
@@ -7863,7 +6684,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Frieda Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -7909,49 +6730,20 @@
           "tick": 6
         }
       ],
-      "text": "Nathan Kessler says Frieda Hauck was at the lobby of the Wyckoff from 6:00 PM to 9:00 PM.",
+      "text": "Kessler says Hauck was at the Wyckoff from 6:00 PM to 9:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c191"
+        "c158"
       ],
       "role": "spine"
     },
     {
-      "id": "c060",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Konrad Brauer"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "walkup-flat",
-          "tick": 0
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s6",
-          "methodId": "strangle"
-        }
-      ],
-      "text": "Carmine Alfano says Konrad Brauer was at the third-floor walk-up on Ninth at 6:00 PM.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c090",
-        "c181"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c102",
+      "id": "c003",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "who was there at 8:00 PM"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -7959,48 +6751,17 @@
           "personId": "p-s2",
           "place": "pool-hall",
           "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 4
         }
       ],
-      "text": "Jacob Rosenbaum runs through it: at 8:00 PM there were Wendell Cheatham, Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.",
+      "text": "Rosenbaum says Cheatham was at Mancuso’s at 8:00 PM.",
       "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c086",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Frieda Hauck"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 4
-        }
+      "leadsTo": [
+        "c140"
       ],
-      "text": "Lotte Kreuzer says Frieda Hauck was at the lobby of the Wyckoff at 8:00 PM.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "corroboration"
+      "role": "spine"
     },
     {
-      "id": "c177",
+      "id": "c133",
       "kind": "document",
       "source": {
         "type": "place",
@@ -8013,34 +6774,13 @@
           "motiveType": "property"
         }
       ],
-      "text": "Found at the office over the tailor’s shop: A lease assignment made out in Konrad Brauer’s name, waiting only on Morris Hurwitz’s signature.",
+      "text": "Found at the office: A lease assignment made out in Brauer’s name, waiting only on Hurwitz’s signature.",
       "place": "office-over-tailor",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c159",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Konrad Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Wendell Cheatham was at Mancuso’s pool hall at 8:00 PM and says Konrad Brauer was not.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c164",
+      "id": "c120",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -8057,8 +6797,29 @@
           "methodId": "strangle"
         }
       ],
-      "text": "A length of sash cord is gone from the third-floor walk-up on Ninth. A cut end of the same hemp is still tied to the fitting it was taken from.",
+      "text": "A length of sash cord is gone from the third floor. A cut end of the same hemp is still tied to the fitting it was taken from.",
       "place": "walkup-flat",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c116",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Brauer’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Prentiss was at Mancuso’s at 8:00 PM and says Brauer was not.",
+      "place": "pool-hall",
       "leadsTo": [],
       "role": "corroboration"
     },
@@ -8068,7 +6829,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Konrad Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -8083,329 +6844,274 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Lotte Kreuzer says Konrad Brauer was at the third-floor walk-up on Ninth at 6:00 PM.",
+      "text": "Kreuzer says Brauer was at the third floor at 6:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [
-        "c208"
+        "c165"
       ],
       "role": "corroboration"
     },
     {
-      "id": "c016",
+      "id": "c088",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Jacob Rosenbaum"
+        "personId": "p-f2",
+        "topic": "Alfano"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 4
+          "personId": "p-s5",
+          "place": "walkup-flat",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "walkup-flat",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
         }
       ],
-      "text": "Wendell Cheatham says Jacob Rosenbaum was at Mancuso’s pool hall at 8:00 PM.",
-      "place": "hotel-lobby",
+      "text": "Kreuzer says Alfano was at the third floor from 6:00 PM to 6:30 PM.",
+      "place": "walkup-flat",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c166",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Morris Hurwitz that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "hotel-lobby",
-          "tick": 3
-        }
-      ],
-      "text": "Nathan Kessler puts Morris Hurwitz at the lobby of the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c195"
-      ],
-      "role": "corroboration",
-      "anchorId": "regular-stool"
-    },
-    {
-      "id": "c169",
-      "kind": "anchor",
+      "id": "c092",
+      "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 4
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 4
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "strangle"
-        }
-      ],
-      "text": "Ezekiel Prentiss was at Mancuso’s pool hall at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, while the milk wagon was in the street.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "milk-wagon"
-    },
-    {
-      "id": "c068",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Carmine Alfano"
+        "topic": "Rosenbaum"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "place": "walkup-flat",
-          "tick": 0
+          "personId": "p-s1",
+          "place": "pool-hall",
+          "tick": 4
         },
         {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "strangle"
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "pool-hall",
+          "tick": 5
         }
       ],
-      "text": "Konrad Brauer says Carmine Alfano was at the third-floor walk-up on Ninth at 6:00 PM.",
+      "text": "Prentiss says Rosenbaum was at Mancuso’s from 8:00 PM to 8:30 PM.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c094",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Cheatham"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pool-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Prentiss says Cheatham was at Mancuso’s at 8:00 PM.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 5
+        }
+      ],
+      "text": "Rosenbaum says Vogel was at Mancuso’s from 8:00 PM to 8:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c181",
-      "kind": "overheard",
+      "id": "c086",
+      "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Jacob Rosenbaum"
-      },
-      "establishes": [],
-      "text": "Nathan Kessler on Jacob Rosenbaum: Two signatures of Jacob Rosenbaum’s, a month apart, are in different hands.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c183"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c183",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "ferry-slip"
-      },
-      "establishes": [],
-      "text": "A union card in Jacob Rosenbaum’s coat lining carries a different surname and a 1919 date.",
-      "place": "ferry-slip",
-      "leadsTo": [
-        "c185"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c185",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "ferry-slip"
+        "personId": "p-f2",
+        "topic": "Hauck"
       },
       "establishes": [
         {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "forged-identity"
-        }
-      ],
-      "text": "The name Jacob Rosenbaum was born with turns up on a desertion warrant from 1918. Jacob Rosenbaum has been hiding from the Army for eleven years and from nobody else.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c195",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Wilhelm Vogel"
-      },
-      "establishes": [],
-      "text": "Nathan Kessler on Wilhelm Vogel: There is a man who meets people at Mancuso’s pool hall and nobody will say his name out loud.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c199"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b2"
-    },
-    {
-      "id": "c199",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
           "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
+          "personId": "p-s4",
+          "place": "hotel-lobby",
           "tick": 4
         }
       ],
-      "text": "The receiver at Mancuso’s pool hall would rather talk than be held: Wilhelm Vogel was there from 7:30 PM to 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Wilhelm Vogel will take over this one.",
-      "place": "pool-hall",
+      "text": "Kreuzer says Hauck was at the Wyckoff at 8:00 PM.",
+      "place": "walkup-flat",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b2"
+      "role": "corroboration"
     },
     {
-      "id": "c201",
+      "id": "c145",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "Frieda Hauck"
+        "personId": "p-s4",
+        "topic": "Cheatham"
       },
       "establishes": [],
-      "text": "Jacob Rosenbaum on Frieda Hauck: Frieda Hauck has been seen with men from three different shops and none of them were drinking.",
-      "place": "ferry-slip",
+      "text": "Hauck on Cheatham: The victim had been drawing cash in amounts that did not match anything in the accounts.",
+      "place": "hotel-lobby",
       "leadsTo": [
-        "c205"
+        "c147"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
     },
     {
-      "id": "c205",
+      "id": "c147",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "ferry-slip"
+        "placeId": "office-over-tailor"
       },
       "establishes": [],
-      "text": "A hall rental receipt at the ferry slip at the foot of the street made out to a name that means nothing to anyone.",
-      "place": "ferry-slip",
+      "text": "A photograph at the office, folded small, of something the victim would have paid to keep folded.",
+      "place": "office-over-tailor",
       "leadsTo": [
-        "c206"
+        "c146"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
     },
     {
-      "id": "c206",
+      "id": "c146",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "office-over-tailor"
+      },
+      "establishes": [],
+      "text": "An envelope at the office with nothing in it, addressed in the victim’s hand to no one.",
+      "place": "office-over-tailor",
+      "leadsTo": [
+        "c148"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c148",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "ferry-slip"
+        "placeId": "office-over-tailor"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "union-organizing"
+          "personId": "p-s2",
+          "secretType": "blackmail"
         },
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "ferry-slip",
-          "tick": 10
+          "personId": "p-s2",
+          "place": "office-over-tailor",
+          "tick": 2
         }
       ],
-      "text": "Forty men will swear to it if they have to: Frieda Hauck was at the ferry slip at the foot of the street from 10:30 PM to 11:00 PM taking their names, and the only thing Frieda Hauck is guilty of is a charter.",
-      "place": "ferry-slip",
+      "text": "The victim’s bank book settles it: four payments, and Cheatham at the office from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
+      "place": "office-over-tailor",
       "leadsTo": [],
       "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
     },
     {
-      "id": "c208",
+      "id": "c165",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Carmine Alfano"
+        "topic": "Alfano"
       },
       "establishes": [],
-      "text": "Nathan Kessler on Carmine Alfano: Carmine Alfano was asking around for a hundred dollars in a hurry earlier in the week.",
+      "text": "Kessler on Alfano: A man nobody knew was waiting for Alfano at Mancuso’s and would not give a name.",
       "place": "hotel-lobby",
       "leadsTo": [
-        "c211"
+        "c168"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c211",
+      "id": "c168",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "pool-hall"
       },
       "establishes": [],
-      "text": "Betting slips at Mancuso’s pool hall in Carmine Alfano’s pocketbook, all of them losers, all of them this month.",
+      "text": "A book of markers at Mancuso’s with Alfano’s initials against four of them.",
       "place": "pool-hall",
       "leadsTo": [
-        "c213"
+        "c167"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c213",
+      "id": "c167",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "Betting slips at Mancuso’s in Alfano’s pocketbook, all of them losers, all of them this month.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c169"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b2"
+    },
+    {
+      "id": "c169",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8430,66 +7136,148 @@
           "tick": 5
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Carmine Alfano was at Mancuso’s pool hall from 8:00 PM to 8:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Alfano was at Mancuso’s from 8:00 PM to 8:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s5",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c191",
-      "kind": "physical",
+      "id": "c158",
+      "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "office-over-tailor"
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Hauck"
       },
       "establishes": [],
-      "text": "A photograph at the office over the tailor’s shop, folded small, of something the victim would have paid to keep folded.",
-      "place": "office-over-tailor",
+      "text": "Kreuzer on Hauck: There is a list going round and Hauck’s name is at the top of it.",
+      "place": "walkup-flat",
       "leadsTo": [
-        "c192"
+        "c157"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
     },
     {
-      "id": "c192",
+      "id": "c157",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Brauer on Hauck: Hauck has been seen with men from three different shops and none of them were drinking.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c162"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c162",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "office-over-tailor"
+        "placeId": "ferry-slip"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "blackmail"
+          "personId": "p-s4",
+          "secretType": "union-organizing"
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "office-over-tailor",
-          "tick": 2
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 10
         }
       ],
-      "text": "The victim’s bank book settles it: four payments, and Wendell Cheatham at the office over the tailor’s shop from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
-      "place": "office-over-tailor",
+      "text": "Forty men will swear to it if they have to: Hauck was at the ferry slip from 10:30 PM to 11:00 PM taking their names, and the only thing Hauck is guilty of is a charter.",
+      "place": "ferry-slip",
       "leadsTo": [],
       "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c140",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A steamship ticket stub among Rosenbaum’s things, in the name of a man who died at Belleau Wood.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c136"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c136",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Rosenbaum"
+      },
+      "establishes": [],
+      "text": "Prentiss on Rosenbaum: Rosenbaum’s registration card gives an address on a street that does not exist.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c141"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "forged-identity"
+        }
+      ],
+      "text": "The name Rosenbaum was born with turns up on a desertion warrant from 1918. Rosenbaum has been hiding from the Army for eleven years and from nobody else.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c162",
-    "c163",
-    "c179"
+    "c118",
+    "c119",
+    "c135"
   ],
   "clientId": "p-s2",
-  "par": 7,
-  "budget": 20,
+  "par": 10,
+  "slack": 6,
+  "budget": 16,
   "coronerWindow": [
     2,
     5
@@ -8503,11 +7291,9 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c163",
-      "c165",
-      "c166",
-      "c162",
-      "c169"
+      "c119",
+      "c122",
+      "c118"
     ],
     "timeOfDeathAnchors": [
       "milk-wagon",
@@ -8515,45 +7301,42 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c141",
-        "c016"
+        "c016",
+        "c092"
       ],
       "p-s2": [
-        "c141",
-        "c102"
+        "c003",
+        "c094"
       ],
       "p-s3": [
-        "c141",
-        "c102",
-        "c199"
+        "c018",
+        "c005"
       ],
       "p-s4": [
         "c078",
         "c086"
       ],
       "p-s5": [
-        "c141",
-        "c102",
-        "c213"
+        "c023",
+        "c169"
       ]
     },
     "inculpation": [
-      "c160",
-      "c159"
+      "c117",
+      "c116"
     ],
     "access": [
       "c060",
       "c090"
     ],
     "method": [
-      "c162",
-      "c163",
-      "c164",
-      "c169"
+      "c118",
+      "c119",
+      "c120"
     ],
     "motive": [
-      "c179",
-      "c177"
+      "c135",
+      "c133"
     ]
   }
 }

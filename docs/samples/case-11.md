@@ -1,58 +1,58 @@
 # the Tenderloin — case 11
 
-**Seed** 11 · **Difficulty** 2 · **Attempts** 2 · **Detective** Humphrey
+**Seed** 11 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
 
-**Par** 7 actions · **Budget** 20 · **Slack** 13 · **Findable** 31 (spine 8, corroboration 9, noise 9 + 5 disqualifiers) · **Noise ratio** 45% · **Candidate pool** 174
+**Par** 11 actions · **Slack** 6 · **Budget** 17 · **Findable** 34 (spine 12, corroboration 8, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 140
 
 ## 1. The Truth
 
-Hyman Zeldin, a policy runner, in the victim’s debt, killed Otto Vogel, a bail bondsman, with an ice pick at the drying yard behind the laundry at 8:00 PM. Hyman Zeldin blamed the victim for a ruin (revenge). Hyman Zeldin had been at Dolan’s Bar earlier in the evening, where the weapon lived, and was alone with Otto Vogel when it happened. Carmine Vitale hired us.
+Martin Corrigan, a private secretary, engaged to the victim’s daughter, killed Otto Vogel, a bail bondsman, with an ice pick at the drying yard at 8:30 PM. Corrigan was jealous of the victim (jealousy). Corrigan had been at Dolan’s earlier in the evening, where the weapon lived, and was alone with Vogel when it happened. Corrigan is also the client: the killer hired us.
 
 ## 2. Dramatis Personae
 
 | Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
 | --- | --- | --- | --- | --- | --- | --- |
 | Otto Vogel | a bail bondsman | the victim | — | — | — | — |
-| Agnes Doyle | a dentist with rooms on the third floor | the victim’s tenant | dope | — | the subway kiosk at the corner | — |
-| Carmine Vitale (client) | the owner of the block | the victim’s rival in trade | fence | property | Dolan’s Bar | — |
-| Ellsworth Crowninshield | a longshoreman | in the victim’s debt | fence | — | the subway kiosk at the corner | — |
-| Delia Corrigan | a private secretary | the victim’s former employee | blackmail | — | the Bijou picture house | — |
-| Assunta Moretti | a widow with rooms on the avenue | the victim’s cousin | hidden-family | — | the parlour of Mrs. Teague’s boarding house | — |
-| Hyman Zeldin | a policy runner | in the victim’s debt | murder (+ gambling-debt) | revenge | the subway kiosk at the corner | **YES** |
-| Althea Cheatham | the landlady | fixture (landlady) | — | — | the parlour of Mrs. Teague’s boarding house | — |
-| Meyer Rosenbaum | the ticket-taker | fixture (ticket-taker) | — | — | the Bijou picture house | — |
-| Rudolf Wehrle | the bartender | fixture (bartender) | — | — | Dolan’s Bar | — |
-| Rocco Carbone | the patrolman on the beat | fixture (beat-cop) | — | — | the subway kiosk at the corner | — |
+| Agnes Doyle | a dentist with rooms on the third floor | the victim’s tenant | forged-identity | property | the parlour | — |
+| Carmine Vitale | the owner of the block | the victim’s business partner | fence | — | the Bijou | — |
+| Ellsworth Crowninshield | a longshoreman | in the victim’s debt | gambling-debt | revenge | Dolan’s | — |
+| Martin Corrigan (client) | a private secretary | engaged to the victim’s daughter | murder (+ blackmail) | jealousy | Dolan’s | **YES** |
+| Lurline Bledsoe | a widow with rooms on the avenue | the victim’s neighbour across the airshaft | hidden-family | — | Dolan’s | — |
+| Ernst Schilling | a policy runner | a childhood friend of the victim’s from the same block | gambling-debt | debt | Dolan’s | — |
+| Concetta Moretti | the landlady | fixture (landlady) | — | — | the parlour | — |
+| Meyer Rosenbaum | the ticket-taker | fixture (ticket-taker) | — | — | the Bijou | — |
+| Rudolf Wehrle | the bartender | fixture (bartender) | — | — | Dolan’s | — |
+| Louis Zeldin | the patrolman on the beat | fixture (beat-cop) | — | — | the subway kiosk | — |
 
 ## 3. Places
 
-- **the parlour of Mrs. Teague’s boarding house** (semi) — watched by landlady (Althea Cheatham); objects: the roof-door key, a length of sash cord, a bronze bookend — within earshot of the scene
+- **the parlour of Mrs. Teague’s boarding house** (semi) — watched by landlady (Moretti); objects: the roof-door key, a length of sash cord, a bronze bookend — within earshot of the scene
 - **the subway kiosk at the corner** (public) — unwatched; objects: a folded stack of evening papers, a pasted-up timetable, a brass umbrella stand
-- **the Bijou picture house** (public) — watched by ticket-taker (Meyer Rosenbaum); objects: a standing ashtray, a silver cigarette case — within earshot of the scene
+- **the Bijou picture house** (public) — watched by ticket-taker (Rosenbaum); objects: a standing ashtray, a silver cigarette case — within earshot of the scene
 - **the drying yard behind the laundry** (private) — unwatched; objects: a mop and bucket — **THE SCENE**
 - **the victim’s rooms in the brownstone** (private) — unwatched; objects: a framed photograph, a bottle of chloral drops, a wall telephone — the victim’s address
-- **Dolan’s Bar** (semi) — watched by bartender (Rudolf Wehrle); objects: an ice pick, a seltzer siphon — where the weapon lived
+- **Dolan’s Bar** (semi) — watched by bartender (Wehrle); objects: an ice pick, a seltzer siphon — where the weapon lived
 
 ## 4. Anchors
 
-The coroner gives 8:00 PM–9:30 PM, four ticks wide. These are what close it: **drunk-singing** and **last-edition**.
+The coroner gives 7:00 PM–8:30 PM, four ticks wide. These are what close it: **drunk-singing** and **last-edition**.
 
-- **the drunk singing under the window** — at 7:30 PM; at the parlour of Mrs. Teague’s boarding house. You can time things by it: the same two verses until somebody threw a shoe. Only those present know that it was a shoe, and it was thrown by a woman, and it did not land.
-- **the last edition coming off the truck** — at 8:00 PM; at the Bijou picture house. Somebody reliable notes who was there. Those present carry it: ink still wet enough to come off on a glove.
-- **the beat cop’s pass** — at 6:30 PM, 8:00 PM, 9:30 PM, 11:00 PM; on a round through the subway kiosk at the corner → Dolan’s Bar → the parlour of Mrs. Teague’s boarding house → the Bijou picture house. Somebody reliable notes who was there.
+- **the drunk singing under the window** — at 8:00 PM; at the parlour. You can time things by it: the same two verses until somebody threw a shoe. Only those present know that it was a shoe, and it was thrown by a woman, and it did not land.
+- **the last edition coming off the truck** — at 8:30 PM; at the Bijou. Somebody reliable notes who was there. Only those present know that the late edition led with the bridge contract and not the hold-up. Those present carry it: ink still wet enough to come off on a glove.
+- **the beat cop’s pass** — at 6:30 PM, 8:00 PM, 9:30 PM, 11:00 PM; on a round through the subway kiosk → Dolan’s → the parlour → the Bijou. Somebody reliable notes who was there.
 
 ## 5. Timelines
 
-### Otto Vogel — the victim
+### Vogel — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
-| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 3 | 7:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 4 | 8:00 PM | the drying yard behind the laundry ☠ | the drying yard behind the laundry | — |
-| 5 | 8:30 PM | — | — | — |
+| 0 | 6:00 PM | the parlour | the parlour | — |
+| 1 | 6:30 PM | the brownstone | the brownstone | — |
+| 2 | 7:00 PM | the brownstone | the brownstone | — |
+| 3 | 7:30 PM | the brownstone | the brownstone | — |
+| 4 | 8:00 PM | the parlour | the parlour | — |
+| 5 | 8:30 PM | the drying yard ☠ | the drying yard | — |
 | 6 | 9:00 PM | — | — | — |
 | 7 | 9:30 PM | — | — | — |
 | 8 | 10:00 PM | — | — | — |
@@ -60,378 +60,394 @@ The coroner gives 8:00 PM–9:30 PM, four ticks wide. These are what close it: *
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Agnes Doyle
+### Doyle
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the Bijou picture house | the Bijou picture house | — |
-| 1 | 6:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 2 | 7:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 3 | 7:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 4 | 8:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 5 | 8:30 PM | the Bijou picture house | the Bijou picture house | — |
-| 6 | 9:00 PM | the subway kiosk at the corner | **Dolan’s Bar** | Ellsworth Crowninshield |
-| 7 | 9:30 PM | the subway kiosk at the corner | **Dolan’s Bar** | Ellsworth Crowninshield |
-| 8 | 10:00 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
-| 9 | 10:30 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
-| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 11 | 11:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 0 | 6:00 PM | the subway kiosk | the subway kiosk | — |
+| 1 | 6:30 PM | the Bijou | the Bijou | — |
+| 2 | 7:00 PM | the Bijou | the Bijou | — |
+| 3 | 7:30 PM | the Bijou | the Bijou | — |
+| 4 | 8:00 PM | the Bijou | the Bijou | — |
+| 5 | 8:30 PM | the parlour | the parlour | — |
+| 6 | 9:00 PM | the parlour | the parlour | — |
+| 7 | 9:30 PM | the parlour | the parlour | — |
+| 8 | 10:00 PM | the parlour | the parlour | — |
+| 9 | 10:30 PM | the parlour | the parlour | — |
+| 10 | 11:00 PM | the parlour | the parlour | — |
+| 11 | 11:30 PM | the brownstone | the brownstone | — |
 
-### Carmine Vitale
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 2 | 7:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 3 | 7:30 PM | Dolan’s Bar | **the subway kiosk at the corner** | — |
-| 4 | 8:00 PM | Dolan’s Bar | **the subway kiosk at the corner** | — |
-| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 9 | 10:30 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 11 | 11:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-
-### Ellsworth Crowninshield
+### Vitale
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
-| 1 | 6:30 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
-| 2 | 7:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
-| 3 | 7:30 PM | the Bijou picture house | the Bijou picture house | — |
-| 4 | 8:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 5 | 8:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 6 | 9:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 7 | 9:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 8 | 10:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 9 | 10:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 10 | 11:00 PM | the subway kiosk at the corner | **the parlour of Mrs. Teague’s boarding house** | — |
-| 11 | 11:30 PM | the subway kiosk at the corner | **the parlour of Mrs. Teague’s boarding house** | — |
+| 0 | 6:00 PM | the drying yard | the drying yard | — |
+| 1 | 6:30 PM | the Bijou | the Bijou | — |
+| 2 | 7:00 PM | the Bijou | the Bijou | — |
+| 3 | 7:30 PM | the subway kiosk | the subway kiosk | — |
+| 4 | 8:00 PM | the subway kiosk | the subway kiosk | — |
+| 5 | 8:30 PM | Dolan’s | **the parlour** | Corrigan |
+| 6 | 9:00 PM | Dolan’s | Dolan’s | — |
+| 7 | 9:30 PM | the Bijou | the Bijou | — |
+| 8 | 10:00 PM | the brownstone | the brownstone | — |
+| 9 | 10:30 PM | the brownstone | the brownstone | — |
+| 10 | 11:00 PM | Dolan’s | Dolan’s | — |
+| 11 | 11:30 PM | the parlour | the parlour | — |
 
-### Delia Corrigan
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the victim’s rooms in the brownstone | **the parlour of Mrs. Teague’s boarding house** | Assunta Moretti |
-| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 3 | 7:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 4 | 8:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 6 | 9:00 PM | the Bijou picture house | the Bijou picture house | — |
-| 7 | 9:30 PM | the Bijou picture house | the Bijou picture house | — |
-| 8 | 10:00 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
-| 9 | 10:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 10 | 11:00 PM | the Bijou picture house | the Bijou picture house | — |
-| 11 | 11:30 PM | the Bijou picture house | the Bijou picture house | — |
-
-### Assunta Moretti
+### Crowninshield
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the Bijou picture house | the Bijou picture house | — |
-| 1 | 6:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 2 | 7:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 4 | 8:00 PM | the parlour of Mrs. Teague’s boarding house | **the Bijou picture house** | — |
-| 5 | 8:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 6 | 9:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 7 | 9:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
-| 8 | 10:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 9 | 10:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 10 | 11:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 11 | 11:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 0 | 6:00 PM | Dolan’s | Dolan’s | — |
+| 1 | 6:30 PM | Dolan’s | Dolan’s | — |
+| 2 | 7:00 PM | Dolan’s | Dolan’s | — |
+| 3 | 7:30 PM | Dolan’s | **the subway kiosk** | — |
+| 4 | 8:00 PM | Dolan’s | **the subway kiosk** | — |
+| 5 | 8:30 PM | the parlour | the parlour | — |
+| 6 | 9:00 PM | the parlour | the parlour | — |
+| 7 | 9:30 PM | Dolan’s | Dolan’s | — |
+| 8 | 10:00 PM | Dolan’s | Dolan’s | — |
+| 9 | 10:30 PM | Dolan’s | Dolan’s | — |
+| 10 | 11:00 PM | Dolan’s | Dolan’s | — |
+| 11 | 11:30 PM | the parlour | the parlour | — |
 
-### Hyman Zeldin — the killer
+### Corrigan — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
-| 1 | 6:30 PM | the subway kiosk at the corner | **Dolan’s Bar** | — |
-| 2 | 7:00 PM | the subway kiosk at the corner | **Dolan’s Bar** | — |
-| 3 | 7:30 PM | the drying yard behind the laundry | **Dolan’s Bar** | Ellsworth Crowninshield |
-| 4 | 8:00 PM | the drying yard behind the laundry ☠ | **Dolan’s Bar** | Ellsworth Crowninshield |
-| 5 | 8:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 6 | 9:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 7 | 9:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 8 | 10:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 9 | 10:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 10 | 11:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
-| 11 | 11:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 0 | 6:00 PM | the drying yard | the drying yard | — |
+| 1 | 6:30 PM | the drying yard | the drying yard | — |
+| 2 | 7:00 PM | the drying yard | the drying yard | — |
+| 3 | 7:30 PM | the brownstone | **the parlour** | — |
+| 4 | 8:00 PM | Dolan’s | Dolan’s | — |
+| 5 | 8:30 PM | the drying yard ☠ | **the parlour** | Vitale |
+| 6 | 9:00 PM | the Bijou | the Bijou | — |
+| 7 | 9:30 PM | the brownstone | the brownstone | — |
+| 8 | 10:00 PM | the brownstone | the brownstone | — |
+| 9 | 10:30 PM | the brownstone | the brownstone | — |
+| 10 | 11:00 PM | the brownstone | the brownstone | — |
+| 11 | 11:30 PM | the brownstone | the brownstone | — |
+
+### Bledsoe
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the parlour | the parlour | — |
+| 1 | 6:30 PM | Dolan’s | Dolan’s | — |
+| 2 | 7:00 PM | Dolan’s | Dolan’s | — |
+| 3 | 7:30 PM | Dolan’s | Dolan’s | — |
+| 4 | 8:00 PM | the subway kiosk | the subway kiosk | — |
+| 5 | 8:30 PM | the parlour | **Dolan’s** | — |
+| 6 | 9:00 PM | Dolan’s | Dolan’s | — |
+| 7 | 9:30 PM | the Bijou | the Bijou | — |
+| 8 | 10:00 PM | the Bijou | the Bijou | — |
+| 9 | 10:30 PM | the brownstone | the brownstone | — |
+| 10 | 11:00 PM | the subway kiosk | the subway kiosk | — |
+| 11 | 11:30 PM | the Bijou | the Bijou | — |
+
+### Schilling
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the parlour | the parlour | — |
+| 1 | 6:30 PM | the brownstone | the brownstone | — |
+| 2 | 7:00 PM | the brownstone | the brownstone | — |
+| 3 | 7:30 PM | the brownstone | the brownstone | — |
+| 4 | 8:00 PM | the brownstone | the brownstone | — |
+| 5 | 8:30 PM | Dolan’s | **the parlour** | Corrigan |
+| 6 | 9:00 PM | Dolan’s | **the parlour** | Corrigan |
+| 7 | 9:30 PM | Dolan’s | Dolan’s | — |
+| 8 | 10:00 PM | Dolan’s | Dolan’s | — |
+| 9 | 10:30 PM | Dolan’s | Dolan’s | — |
+| 10 | 11:00 PM | the subway kiosk | the subway kiosk | — |
+| 11 | 11:30 PM | the subway kiosk | the subway kiosk | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Althea Cheatham (the landlady) | Meyer Rosenbaum (the ticket-taker) | Rudolf Wehrle (the bartender) | Rocco Carbone (the patrolman on the beat) |
+| Tick | Time | Moretti (the landlady) | Rosenbaum (the ticket-taker) | Wehrle (the bartender) | Zeldin (the patrolman on the beat) |
 | --- | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | — |
-| 1 | 6:30 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | the subway kiosk at the corner |
-| 2 | 7:00 PM | the parlour of Mrs. Teague’s boarding house | Dolan’s Bar | Dolan’s Bar | — |
-| 3 | 7:30 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | — |
-| 4 | 8:00 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | Dolan’s Bar |
-| 5 | 8:30 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | — |
-| 6 | 9:00 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | — |
-| 7 | 9:30 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | the parlour of Mrs. Teague’s boarding house |
-| 8 | 10:00 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | — |
-| 9 | 10:30 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | — |
-| 10 | 11:00 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | the Bijou picture house |
-| 11 | 11:30 PM | the parlour of Mrs. Teague’s boarding house | the Bijou picture house | Dolan’s Bar | — |
+| 0 | 6:00 PM | the parlour | the Bijou | Dolan’s | — |
+| 1 | 6:30 PM | the parlour | the Bijou | Dolan’s | the subway kiosk |
+| 2 | 7:00 PM | the parlour | the Bijou | Dolan’s | — |
+| 3 | 7:30 PM | the parlour | the Bijou | Dolan’s | — |
+| 4 | 8:00 PM | the parlour | the Bijou | Dolan’s | Dolan’s |
+| 5 | 8:30 PM | the parlour | Dolan’s | Dolan’s | — |
+| 6 | 9:00 PM | the parlour | the Bijou | Dolan’s | — |
+| 7 | 9:30 PM | the parlour | the Bijou | Dolan’s | the parlour |
+| 8 | 10:00 PM | the parlour | the Bijou | Dolan’s | — |
+| 9 | 10:30 PM | the parlour | the Bijou | Dolan’s | — |
+| 10 | 11:00 PM | the parlour | the Bijou | Dolan’s | the Bijou |
+| 11 | 11:30 PM | the parlour | the Bijou | Dolan’s | — |
 
 ## 6. Secrets in play
 
-- **Agnes Doyle** (dope): Agnes Doyle buys morphine at the subway kiosk at the corner from 9:00 PM to 9:30 PM and would rather be thought a murderer than a hop-head.
-- **Carmine Vitale** (fence): Carmine Vitale hands a parcel of stolen goods to a man at Dolan’s Bar from 7:30 PM to 8:00 PM.
-- **Ellsworth Crowninshield** (fence): Ellsworth Crowninshield hands a parcel of stolen goods to a man at the subway kiosk at the corner from 11:00 PM to 11:30 PM.
-- **Delia Corrigan** (blackmail): Delia Corrigan meets the victim alone at the victim’s rooms in the brownstone from 6:00 PM and asks for money.
-- **Assunta Moretti** (hidden-family): Assunta Moretti goes to the parlour of Mrs. Teague’s boarding house from 8:00 PM to see a child nobody is supposed to know about.
-- **Hyman Zeldin** (murder): Hyman Zeldin is at the drying yard behind the laundry from 7:30 PM to 8:00 PM, alone with Otto Vogel when it happens at 8:00 PM.
-- **Hyman Zeldin** also (gambling-debt): Hyman Zeldin slips off to the subway kiosk at the corner from 6:30 PM to 7:00 PM to settle with a bookmaker.
+- **Doyle** (forged-identity): Doyle is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.
+- **Vitale** (fence): Vitale hands a parcel of stolen goods to a man at Dolan’s from 8:30 PM.
+- **Crowninshield** (gambling-debt): Crowninshield slips off to Dolan’s from 7:30 PM to 8:00 PM to settle with a bookmaker.
+- **Corrigan** (murder): Corrigan is at the drying yard from 8:30 PM, alone with Vogel when it happens at 8:30 PM.
+- **Corrigan** also (blackmail): Corrigan meets the victim alone at the brownstone from 7:30 PM and asks for money.
+- **Bledsoe** (hidden-family): Bledsoe goes to the parlour from 8:30 PM to see a child nobody is supposed to know about.
+- **Schilling** (gambling-debt): Schilling slips off to Dolan’s from 8:30 PM to 9:00 PM to settle with a bookmaker.
 
-## 7. Clue list — the 31 findable
+## 7. Clue list — the 34 findable
 
-The opening three, free at the start: c122, c123, c139. Everything else has to be led to. The full candidate pool is in the companion file.
+The opening three, free at the start: c087, c088, c105. Everything else has to be led to. The full candidate pool is in the companion file.
 
-### At the parlour of Mrs. Teague’s boarding house
+### At the parlour
 
-- **c096** [spine] (observation; Althea Cheatham on who was there at 8:00 PM) → c070, c066, c120, c077, c128
-  - Althea Cheatham runs through it: at 8:00 PM there were Agnes Doyle, Ellsworth Crowninshield, Delia Corrigan, Assunta Moretti at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Agnes Doyle at the parlour of Mrs. Teague’s boarding house, 8:00 PM; Ellsworth Crowninshield at the parlour of Mrs. Teague’s boarding house, 8:00 PM; Delia Corrigan at the parlour of Mrs. Teague’s boarding house, 8:00 PM; Assunta Moretti at the parlour of Mrs. Teague’s boarding house, 8:00 PM_
-- **c125** [spine] (anchor; Althea Cheatham on Otto Vogel that evening) → c017
-  - Althea Cheatham puts Otto Vogel at the parlour of Mrs. Teague’s boarding house while the singing was still going on, which was 7:30 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 7:30 PM; Otto Vogel at the parlour of Mrs. Teague’s boarding house, 7:30 PM_
-- **c170** [noise {b1}] (overheard; Althea Cheatham on Assunta Moretti) → c168
-  - Althea Cheatham on Assunta Moretti: Assunta Moretti keeps a photograph and will not be asked about it twice.
+- **c090** [spine] (anchor; Moretti on Vogel that evening) → c069, c093
+  - Moretti puts Vogel at the parlour while the singing was still going on, which was 8:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 8:00 PM; Vogel at the parlour, 8:00 PM_
+- **c002** [spine] (observation; Doyle on Crowninshield) → (end)
+  - Doyle says Crowninshield was at the parlour from 8:30 PM to 9:00 PM.
+  - _establishes: Crowninshield at the parlour, 8:30 PM–9:00 PM_
+- **c093** [corroboration] (anchor; Moretti on the noise that evening) → c135
+  - Moretti was at the parlour at 8:30 PM and heard a struggle and something going over from the direction of the drying yard, as the last edition was coming up.
+  - _establishes: noise at the drying yard at 8:30 PM; the victim dead by 8:30 PM; how it was done_
+- **c077** [corroboration] (observation; Doyle on Corrigan’s account) → (end)
+  - Doyle was at the parlour at 8:30 PM and says Corrigan was not.
+  - _establishes: Corrigan not at the parlour, 8:30 PM_
+- **c044** [corroboration] (observation; Moretti on Doyle) → (end)
+  - Moretti says Doyle was at the parlour from 8:30 PM to 11:00 PM.
+  - _establishes: Doyle at the parlour, 8:30 PM–11:00 PM_
+- **c046** [corroboration] (observation; Moretti on Crowninshield) → (end)
+  - Moretti says Crowninshield was at the parlour from 8:30 PM to 9:00 PM.
+  - _establishes: Crowninshield at the parlour, 8:30 PM–9:00 PM_
+- **c131** [noise {b1}] (physical; the place itself) → c130
+  - A child’s shoe at the parlour, and nobody at the parlour has any children.
   - _establishes: context only_
-- **c173** [disqualifier {b1}] (overheard; the place itself) → (end)
-  - The woman who keeps the child says it straight out: Assunta Moretti was at the parlour of Mrs. Teague’s boarding house from 8:00 PM, the same as every week, and left with the same face as always.
-  - _establishes: Assunta Moretti’s hidden-family accounted for; Assunta Moretti at the parlour of Mrs. Teague’s boarding house, 8:00 PM_
-- **c149** [noise {b5}] (overheard; Althea Cheatham on Carmine Vitale) → c152
-  - Althea Cheatham on Carmine Vitale: Carmine Vitale has been selling things that were never Carmine Vitale’s to sell.
+- **c130** [noise {b1}] (physical; the place itself) → c132
+  - A board-and-keep receipt at the parlour, monthly, eight years of them.
   - _establishes: context only_
+- **c132** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The woman who keeps the child says it straight out: Bledsoe was at the parlour from 8:30 PM, the same as every week, and left with the same face as always.
+  - _establishes: Bledsoe’s hidden-family accounted for; Bledsoe at the parlour, 8:30 PM_
+- **c114** [noise {b2}] (overheard; Doyle on Vitale) → c115
+  - Doyle on Vitale: There is a man who meets people at Dolan’s and nobody will say his name out loud.
+  - _establishes: context only_
+- **c115** [noise {b2}] (overheard; Moretti on Vitale) → c119
+  - Moretti on Vitale: Vitale has been selling things that were never Vitale’s to sell.
+  - _establishes: context only_
+- **c109** [noise {b4}] (physical; the place itself) → c108
+  - A union card in Doyle’s coat lining carries a different surname and a 1919 date.
+  - _establishes: context only_
+- **c111** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The name Doyle was born with turns up on a desertion warrant from 1918. Doyle has been hiding from the Army for eleven years and from nobody else.
+  - _establishes: Doyle’s forged-identity accounted for_
 
-### At the subway kiosk at the corner
+### At the subway kiosk
 
-- **c077** [corroboration] (observation; Agnes Doyle on who was there at 8:00 PM) → (end)
-  - Agnes Doyle runs through it: at 8:00 PM there were Ellsworth Crowninshield, Delia Corrigan, Assunta Moretti at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Ellsworth Crowninshield at the parlour of Mrs. Teague’s boarding house, 8:00 PM; Delia Corrigan at the parlour of Mrs. Teague’s boarding house, 8:00 PM; Assunta Moretti at the parlour of Mrs. Teague’s boarding house, 8:00 PM_
-- **c019** [corroboration] (observation; Ellsworth Crowninshield on Agnes Doyle) → c154
-  - Ellsworth Crowninshield says Agnes Doyle was at the parlour of Mrs. Teague’s boarding house at 8:00 PM.
-  - _establishes: Agnes Doyle at the parlour of Mrs. Teague’s boarding house, 8:00 PM_
-- **c121** [corroboration] (observation; Rocco Carbone on Hyman Zeldin’s account) → (end)
-  - Rocco Carbone was at Dolan’s Bar at 8:00 PM and says Hyman Zeldin was not.
-  - _establishes: Hyman Zeldin not at Dolan’s Bar, 8:00 PM_
-- **c132** [corroboration] (anchor; Rocco Carbone on the 8:00 PM round) → c141
-  - The beat cop’s pass at 8:00 PM puts Carmine Vitale at Dolan’s Bar.
-  - _establishes: Carmine Vitale at Dolan’s Bar, 8:00 PM_
-- **c023** [corroboration] (observation; Ellsworth Crowninshield on Assunta Moretti) → (end)
-  - Ellsworth Crowninshield says Assunta Moretti was at the parlour of Mrs. Teague’s boarding house at 8:00 PM.
-  - _establishes: Assunta Moretti at the parlour of Mrs. Teague’s boarding house, 8:00 PM_
-- **c072** [corroboration] (observation; Rocco Carbone on Carmine Vitale) → c165
-  - Rocco Carbone says Carmine Vitale was at Dolan’s Bar at 8:00 PM.
-  - _establishes: Carmine Vitale at Dolan’s Bar, 8:00 PM_
-- **c168** [noise {b1}] (overheard; Rocco Carbone on Assunta Moretti) → c173
-  - Rocco Carbone on Assunta Moretti: Assunta Moretti sends money out of every pay envelope and cannot say where it goes.
-  - _establishes: context only_
-- **c140** [noise {b3}] (overheard; Hyman Zeldin on Agnes Doyle) → c145
-  - Hyman Zeldin on Agnes Doyle: Agnes Doyle’s sleeves are buttoned at the wrist in a warm room.
-  - _establishes: context only_
-- **c145** [disqualifier {b3}] (overheard; the place itself) → (end)
-  - The man who sells it at the subway kiosk at the corner gives it up rather than be held: Agnes Doyle was there from 9:00 PM to 9:30 PM, and stayed until it took hold.
-  - _establishes: Agnes Doyle’s dope accounted for; Agnes Doyle at the subway kiosk at the corner, 9:00 PM–9:30 PM_
-- **c154** [noise {b4}] (overheard; Agnes Doyle on Ellsworth Crowninshield) → c155
-  - Agnes Doyle on Ellsworth Crowninshield: Ellsworth Crowninshield was carrying a parcel into the subway kiosk at the corner and came out without it.
-  - _establishes: context only_
-- **c159** [disqualifier {b4}] (overheard; the place itself) → (end)
-  - The receiver at the subway kiosk at the corner would rather talk than be held: Ellsworth Crowninshield was there from 11:00 PM to 11:30 PM handing over a parcel of somebody else’s silver, which is a charge Ellsworth Crowninshield will take over this one.
-  - _establishes: Ellsworth Crowninshield’s fence accounted for; Ellsworth Crowninshield at the subway kiosk at the corner, 11:00 PM–11:30 PM_
+- **c069** [corroboration] (observation; Zeldin on Corrigan) → c116
+  - Zeldin says Corrigan was at Dolan’s at 8:00 PM.
+  - _establishes: Corrigan at Dolan’s, 8:00 PM; Corrigan could reach the weapon_
 
-### At the Bijou picture house
+### At the Bijou
 
-- **c128** [corroboration] (anchor; Delia Corrigan on the noise that evening) → (end)
-  - Delia Corrigan was at the parlour of Mrs. Teague’s boarding house at 8:00 PM and heard a struggle and something going over from the direction of the drying yard behind the laundry, when the last edition came up.
-  - _establishes: noise at the drying yard behind the laundry at 8:00 PM; the victim dead by 8:00 PM; how it was done_
-- **c141** [noise {b3}] (overheard; Meyer Rosenbaum on Agnes Doyle) → c140
-  - Meyer Rosenbaum on Agnes Doyle: Somebody at the subway kiosk at the corner sells what a druggist will not, and Agnes Doyle knows which door.
-  - _establishes: context only_
-- **c155** [noise {b4}] (overheard; Delia Corrigan on Ellsworth Crowninshield) → c159
-  - Delia Corrigan on Ellsworth Crowninshield: There is a man who meets people at the subway kiosk at the corner and nobody will say his name out loud.
+- **c101** [corroboration] (document; the place itself) → (end)
+  - Found at the Bijou: Three letters in Vogel’s hand to a woman Corrigan is engaged to, kept in a drawer, the last one opened.
+  - _establishes: Corrigan had a motive (jealousy)_
+- **c135** [noise {b3}] (overheard; Rosenbaum on Schilling) → c137
+  - Rosenbaum on Schilling: A man nobody knew was waiting for Schilling at Dolan’s and would not give a name.
   - _establishes: context only_
 
-### At the drying yard behind the laundry
+### At the drying yard
 
-- **c122** [spine ⟨opening⟩] (scene; the place itself) → c070, c125, c120, c137, c121, c023, c149
-  - Otto Vogel was found at the drying yard behind the laundry. The tap was left running and the basin had overflowed a clean ring onto the boards. The last edition coming off the truck came at 8:00 PM, and the truck run is timed to the minute and the papers were out on the stand. That puts the killing in that half hour and no later.
-  - _establishes: the victim dead by 8:00 PM; how it was done_
-- **c123** [spine ⟨opening⟩] (morgue; the place itself) → c096
-  - The coroner puts death between 8:00 PM and 9:30 PM — two hours of nothing useful. A single narrow puncture under the ribs. Very little blood outside the body.
-  - _establishes: death between 8:00 PM and 9:30 PM; how it was done_
+- **c087** [spine ⟨opening⟩] (scene; the place itself) → c063, c066, c059, c078, c090, c002, c077
+  - Vogel was found at the drying yard. The tap was left running and the basin had overflowed a clean ring onto the boards. The last edition came off the truck at 8:30 PM, and a paper from that run is here with the ink still wet.
+  - _establishes: the victim dead by 8:30 PM; how it was done_
+- **c088** [spine ⟨opening⟩] (morgue; the place itself) → c063, c066, c015, c101
+  - The coroner puts death between 7:00 PM and 8:30 PM — two hours of nothing useful. A single narrow puncture under the ribs. Very little blood outside the body.
+  - _establishes: death between 7:00 PM and 8:30 PM; how it was done_
 
-### At the victim’s rooms in the brownstone
+### At Dolan’s
 
-- **c137** [corroboration] (document; the place itself) → c170
-  - Found at the victim’s rooms in the brownstone: A clipping about the failure of Hyman Zeldin’s business, with Otto Vogel’s name underlined twice in pencil.
-  - _establishes: Hyman Zeldin had a motive (revenge)_
-- **c165** [noise {b2}] (physical; the place itself) → c161
-  - A photograph at the victim’s rooms in the brownstone, folded small, of something the victim would have paid to keep folded.
+- **c105** [spine ⟨opening⟩] (client; Corrigan on why I was hired) → c090, c044
+  - Corrigan hired us, and wants it known that Doyle wanted the victim out of a lease, and would rather we started there.
+  - _establishes: Doyle had a motive (property)_
+- **c063** [spine] (observation; Wehrle on Corrigan) → (end)
+  - Wehrle says Corrigan was at Dolan’s at 8:00 PM.
+  - _establishes: Corrigan at Dolan’s, 8:00 PM; Corrigan could reach the weapon_
+- **c066** [spine] (observation; Wehrle on Schilling) → c059, c019, c015, c002, c109
+  - Wehrle says Schilling was at Dolan’s from 8:30 PM to 10:30 PM.
+  - _establishes: Schilling at Dolan’s, 8:30 PM–10:30 PM_
+- **c059** [spine] (observation; Wehrle on Vitale) → c019, c078, c102
+  - Wehrle says Vitale was at Dolan’s from 8:30 PM to 9:00 PM.
+  - _establishes: Vitale at Dolan’s, 8:30 PM–9:00 PM_
+- **c019** [spine] (observation; Crowninshield on Bledsoe) → c102, c064, c118
+  - Crowninshield says Bledsoe was at the parlour at 8:30 PM.
+  - _establishes: Bledsoe at the parlour, 8:30 PM_
+- **c015** [spine] (observation; Crowninshield on Doyle) → c046
+  - Crowninshield says Doyle was at the parlour from 8:30 PM to 9:00 PM.
+  - _establishes: Doyle at the parlour, 8:30 PM–9:00 PM_
+- **c078** [spine] (observation; Crowninshield on Corrigan’s account) → c129
+  - Crowninshield was at the parlour at 8:30 PM and says Corrigan was not.
+  - _establishes: Corrigan not at the parlour, 8:30 PM_
+- **c102** [spine] (overheard; Wehrle on Corrigan and Vogel) → (end)
+  - Wehrle says Corrigan told Vogel to keep away, loud enough to turn heads.
+  - _establishes: Corrigan had a motive (jealousy)_
+- **c064** [corroboration] (observation; Wehrle on Bledsoe) → (end)
+  - Wehrle says Bledsoe was at Dolan’s from 6:30 PM to 7:30 PM.
+  - _establishes: Bledsoe at Dolan’s, 6:30 PM–7:30 PM; Bledsoe could reach the weapon_
+- **c118** [corroboration] (overheard; the place itself) → (end)
+  - The receiver at Dolan’s would rather talk than be held: Vitale was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Vitale will take over this one.
+  - _establishes: Vitale’s fence accounted for; Vitale at Dolan’s, 8:30 PM_
+- **c129** [noise {b1}] (overheard; Wehrle on Bledsoe) → c131
+  - Wehrle on Bledsoe: Bledsoe keeps a photograph and will not be asked about it twice.
   - _establishes: context only_
-- **c166** [disqualifier {b2}] (overheard; the place itself) → (end)
-  - The victim’s bank book settles it: four payments, and Delia Corrigan at the victim’s rooms in the brownstone from 6:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
-  - _establishes: Delia Corrigan’s blackmail accounted for; Delia Corrigan at the victim’s rooms in the brownstone, 6:00 PM_
-
-### At Dolan’s Bar
-
-- **c139** [spine ⟨opening⟩] (client; Carmine Vitale on why I was hired) → c096, c125, c019, c132, c072
-  - Carmine Vitale hired us. Carmine Vitale wants it known that Hyman Zeldin blamed the victim for a ruin, and would rather we started there.
-  - _establishes: Hyman Zeldin had a motive (revenge)_
-- **c070** [spine] (observation; Rudolf Wehrle on Hyman Zeldin) → c066
-  - Rudolf Wehrle says Hyman Zeldin was at Dolan’s Bar at 6:00 PM.
-  - _establishes: Hyman Zeldin at Dolan’s Bar, 6:00 PM; Hyman Zeldin could reach the weapon_
-- **c066** [spine] (observation; Rudolf Wehrle on Carmine Vitale) → (end)
-  - Rudolf Wehrle says Carmine Vitale was at Dolan’s Bar from 7:30 PM to 11:00 PM.
-  - _establishes: Carmine Vitale at Dolan’s Bar, 7:30 PM–11:00 PM; Carmine Vitale could reach the weapon_
-- **c120** [spine] (observation; Rudolf Wehrle on Hyman Zeldin’s account) → (end)
-  - Rudolf Wehrle was at Dolan’s Bar from 6:30 PM to 8:00 PM and says Hyman Zeldin was not.
-  - _establishes: Hyman Zeldin not at Dolan’s Bar, 6:30 PM–8:00 PM_
-- **c017** [corroboration] (observation; Carmine Vitale on Hyman Zeldin) → (end)
-  - Carmine Vitale says Hyman Zeldin was at Dolan’s Bar at 6:00 PM.
-  - _establishes: Hyman Zeldin at Dolan’s Bar, 6:00 PM; Hyman Zeldin could reach the weapon_
-- **c161** [noise {b2}] (overheard; Rudolf Wehrle on Delia Corrigan) → c166
-  - Rudolf Wehrle on Delia Corrigan: Delia Corrigan and the victim were heard at the victim’s rooms in the brownstone, and one of them was doing all the talking.
+- **c116** [noise {b2}] (physical; the place itself) → c114
+  - Wrapping paper and a cut string at Dolan’s, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c152** [disqualifier {b5}] (overheard; the place itself) → (end)
-  - The receiver at Dolan’s Bar would rather talk than be held: Carmine Vitale was there from 7:30 PM to 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Carmine Vitale will take over this one.
-  - _establishes: Carmine Vitale’s fence accounted for; Carmine Vitale at Dolan’s Bar, 7:30 PM–8:00 PM_
+- **c119** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The goods turn up, tagged and dated, and the tag puts Vitale at Dolan’s from 8:30 PM with both hands full.
+  - _establishes: Vitale’s fence accounted for; Vitale at Dolan’s, 8:30 PM_
+- **c137** [noise {b3}] (physical; the place itself) → c139
+  - Betting slips at Dolan’s in Schilling’s pocketbook, all of them losers, all of them this month.
+  - _establishes: context only_
+- **c139** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Schilling was at Dolan’s from 8:30 PM to 9:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Schilling’s gambling-debt accounted for; Schilling at Dolan’s, 8:30 PM–9:00 PM_
+- **c108** [noise {b4}] (overheard; Crowninshield on Doyle) → c111
+  - Crowninshield on Doyle: Doyle answers to the name a half-second late, every time.
+  - _establishes: context only_
 
 ## 8. Clue graph
 
 ```mermaid
 graph LR
-  subgraph P1["the parlour of Mrs. Teague’s boarding house"]
-    c096["c096 Althea Cheatham"]
-    c125["c125 Althea Cheatham"]
-    c170["c170 Althea Cheatham"]
-    c173["✗ c173 the place"]
-    c149["c149 Althea Cheatham"]
+  subgraph P1["the parlour"]
+    c090["c090 Moretti"]
+    c002["c002 Doyle"]
+    c093["c093 Moretti"]
+    c077["c077 Doyle"]
+    c044["c044 Moretti"]
+    c046["c046 Moretti"]
+    c131["c131 the place"]
+    c130["c130 the place"]
+    c132["✗ c132 the place"]
+    c114["c114 Doyle"]
+    c115["c115 Moretti"]
+    c109["c109 the place"]
+    c111["✗ c111 the place"]
   end
-  subgraph P2["the subway kiosk at the corner"]
-    c077["c077 Agnes Doyle"]
-    c019["c019 Ellsworth Crowninshield"]
-    c121["c121 Rocco Carbone"]
-    c132["c132 Rocco Carbone"]
-    c023["c023 Ellsworth Crowninshield"]
-    c072["c072 Rocco Carbone"]
-    c168["c168 Rocco Carbone"]
-    c140["c140 Hyman Zeldin"]
-    c145["✗ c145 the place"]
-    c154["c154 Agnes Doyle"]
-    c159["✗ c159 the place"]
+  subgraph P2["the subway kiosk"]
+    c069["c069 Zeldin"]
   end
-  subgraph P3["the Bijou picture house"]
-    c128["c128 Delia Corrigan"]
-    c141["c141 Meyer Rosenbaum"]
-    c155["c155 Delia Corrigan"]
+  subgraph P3["the Bijou"]
+    c101["c101 the place"]
+    c135["c135 Rosenbaum"]
   end
-  subgraph P4["the drying yard behind the laundry"]
-    c122["▶ c122 the place"]
-    c123["▶ c123 the place"]
+  subgraph P4["the drying yard"]
+    c087["▶ c087 the place"]
+    c088["▶ c088 the place"]
   end
-  subgraph P5["the victim’s rooms in the brownstone"]
+  subgraph P5["Dolan’s"]
+    c105["▶ c105 Corrigan"]
+    c063["c063 Wehrle"]
+    c066["c066 Wehrle"]
+    c059["c059 Wehrle"]
+    c019["c019 Crowninshield"]
+    c015["c015 Crowninshield"]
+    c078["c078 Crowninshield"]
+    c102["c102 Wehrle"]
+    c064["c064 Wehrle"]
+    c118["c118 the place"]
+    c129["c129 Wehrle"]
+    c116["c116 the place"]
+    c119["✗ c119 the place"]
     c137["c137 the place"]
-    c165["c165 the place"]
-    c166["✗ c166 the place"]
+    c139["✗ c139 the place"]
+    c108["c108 Crowninshield"]
   end
-  subgraph P6["Dolan’s Bar"]
-    c139["▶ c139 Carmine Vitale"]
-    c070["c070 Rudolf Wehrle"]
-    c066["c066 Rudolf Wehrle"]
-    c120["c120 Rudolf Wehrle"]
-    c017["c017 Carmine Vitale"]
-    c161["c161 Rudolf Wehrle"]
-    c152["✗ c152 the place"]
-  end
-  c122 --> c070
-  c122 --> c125
-  c122 --> c120
-  c122 --> c137
-  c122 --> c121
-  c122 --> c023
-  c122 -.-> c149
-  c123 --> c096
-  c139 --> c096
-  c139 --> c125
-  c139 --> c019
-  c139 --> c132
-  c139 --> c072
-  c096 --> c070
-  c096 --> c066
-  c096 --> c120
-  c096 --> c077
-  c096 --> c128
-  c070 --> c066
-  c125 --> c017
-  c137 -.-> c170
-  c019 -.-> c154
-  c132 -.-> c141
-  c072 -.-> c165
-  c170 -.-> c168
-  c168 --> c173
-  c165 -.-> c161
-  c161 --> c166
-  c141 -.-> c140
-  c140 --> c145
-  c154 -.-> c155
-  c155 --> c159
-  c149 --> c152
+  c087 --> c063
+  c087 --> c066
+  c087 --> c059
+  c087 --> c078
+  c087 --> c090
+  c087 --> c002
+  c087 --> c077
+  c088 --> c063
+  c088 --> c066
+  c088 --> c015
+  c088 --> c101
+  c105 --> c090
+  c105 --> c044
+  c066 --> c059
+  c066 --> c019
+  c066 --> c015
+  c066 --> c002
+  c066 -.-> c109
+  c059 --> c019
+  c059 --> c078
+  c059 --> c102
+  c019 --> c102
+  c019 --> c064
+  c019 --> c118
+  c015 --> c046
+  c078 -.-> c129
+  c090 --> c069
+  c090 --> c093
+  c069 -.-> c116
+  c093 -.-> c135
+  c129 -.-> c131
+  c131 -.-> c130
+  c130 --> c132
+  c116 -.-> c114
+  c114 -.-> c115
+  c115 --> c119
+  c135 -.-> c137
+  c137 --> c139
+  c109 -.-> c108
+  c108 --> c111
   classDef spine stroke-width:3px;
   classDef corrob stroke-width:1px;
   classDef noise stroke-dasharray: 4 3;
   classDef disq stroke-width:2px,stroke-dasharray: 1 0;
-  class c122,c123,c139,c096,c070,c125,c066,c120 spine;
-  class c077,c128,c137,c019,c121,c132,c017,c023,c072 corrob;
-  class c170,c168,c165,c161,c141,c140,c154,c155,c149 noise;
-  class c173,c166,c145,c159,c152 disq;
+  class c087,c088,c105,c063,c066,c059,c019,c015,c078,c102,c090,c002 spine;
+  class c069,c101,c093,c077,c064,c044,c118,c046 corrob;
+  class c129,c131,c130,c116,c114,c115,c135,c137,c109,c108 noise;
+  class c132,c119,c139,c111 disq;
 ```
 
 ## 9. Deduction path
 
-Par is **7 actions** against a budget of 20: 13 spare. Every id below is a spine clue.
+Par is **11 actions** and the budget is par plus 6: **17**. Every id below is a spine clue; the inference is the sheet’s, not the clue’s.
 
-**Time of death.** The coroner gives four ticks. The anchors close it to 8:00 PM: one puts Otto Vogel alive at 7:30 PM, the other times the scene at 8:00 PM. _(c123, c125, c122; + 1 corroborating)_
+**Time of death.** The coroner gives four ticks. The anchors close it to 8:30 PM: one puts Vogel alive at 8:00 PM, the other times the scene at 8:30 PM. _(c088, c090, c087; + 1 corroborating)_
 
 **Clearing the innocent.**
 
-- Agnes Doyle was not at the drying yard behind the laundry at 8:00 PM, on two independent sources. _(c096; + 1 corroborating)_
-- Carmine Vitale was not at the drying yard behind the laundry at 8:00 PM, on two independent sources. _(c066; + 3 corroborating)_
-- Ellsworth Crowninshield was not at the drying yard behind the laundry at 8:00 PM, on two independent sources. _(c096; + 1 corroborating)_
-- Delia Corrigan was not at the drying yard behind the laundry at 8:00 PM, on two independent sources. _(c096; + 1 corroborating)_
-- Assunta Moretti was not at the drying yard behind the laundry at 8:00 PM, on two independent sources. _(c096; + 3 corroborating)_
+- Doyle was not at the drying yard at 8:30 PM. _(c015; + 1 corroborating)_
+- Vitale was not at the drying yard at 8:30 PM. _(c059; + 2 corroborating)_
+- Crowninshield was not at the drying yard at 8:30 PM. _(c002; + 1 corroborating)_
+- Bledsoe was not at the drying yard at 8:30 PM. _(c019; + 1 corroborating)_
+- Schilling was not at the drying yard at 8:30 PM. _(c066; + 1 corroborating)_
 
-**Naming the killer.** Hyman Zeldin claims Dolan’s Bar at 8:00 PM. Two independent sources put that out of the question. _(c120; + 1 corroborating)_
+**Naming the killer.** Corrigan claims the parlour at 8:30 PM. Two independent sources put that out of the question. _(c078; + 1 corroborating)_
 
-**The weapon.** Hyman Zeldin was at Dolan’s Bar before 8:00 PM, where an ice pick was kept. _(c070; + 1 corroborating)_
+**The weapon.** Corrigan was at Dolan’s before 8:30 PM, where an ice pick was kept. _(c063; + 1 corroborating)_
 
-**Method.** An ice pick, on two physical sources. _(c122, c123; + 1 corroborating)_
+**Method.** An ice pick, on two physical sources. _(c087, c088; + 1 corroborating)_
 
-**Motive.** revenge, on two independent sources. _(c139; + 1 corroborating)_
+**Motive.** jealousy, on two independent sources. _(c102; + 1 corroborating)_
 
 ## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Carmine Vitale claims the subway kiosk at the corner at 8:00 PM and was really at Dolan’s Bar. Reason: Carmine Vitale hands a parcel of stolen goods to a man at Dolan’s Bar from 7:30 PM to 8:00 PM.
-- Assunta Moretti claims the Bijou picture house at 8:00 PM and was really at the parlour of Mrs. Teague’s boarding house. Reason: Assunta Moretti goes to the parlour of Mrs. Teague’s boarding house from 8:00 PM to see a child nobody is supposed to know about.
+- Vitale claims the parlour at 8:30 PM and was really at Dolan’s. Reason: Vitale hands a parcel of stolen goods to a man at Dolan’s from 8:30 PM.
+- Bledsoe claims Dolan’s at 8:30 PM and was really at the parlour. Reason: Bledsoe goes to the parlour from 8:30 PM to see a child nobody is supposed to know about.
+- Schilling claims the parlour at 8:30 PM and was really at Dolan’s. Reason: Schilling slips off to Dolan’s from 8:30 PM to 9:00 PM to settle with a bookmaker.
 
 **Innocents with a motive:**
 
-- Carmine Vitale — property: wanted the victim out of a lease.
+- Doyle — property: wanted the victim out of a lease.
+- Crowninshield — revenge: blamed the victim for a ruin.
+- Schilling — debt: owed the victim money.
 
 **Noise branches, and what knocks each one down:**
 
-- **b1** (Assunta Moretti, hidden-family): c170 → c168 → **c173** — The woman who keeps the child says it straight out: Assunta Moretti was at the parlour of Mrs. Teague’s boarding house from 8:00 PM, the same as every week, and left with the same face as always.
-- **b2** (Delia Corrigan, blackmail): c165 → c161 → **c166** — The victim’s bank book settles it: four payments, and Delia Corrigan at the victim’s rooms in the brownstone from 6:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
-- **b3** (Agnes Doyle, dope): c141 → c140 → **c145** — The man who sells it at the subway kiosk at the corner gives it up rather than be held: Agnes Doyle was there from 9:00 PM to 9:30 PM, and stayed until it took hold.
-- **b4** (Ellsworth Crowninshield, fence): c154 → c155 → **c159** — The receiver at the subway kiosk at the corner would rather talk than be held: Ellsworth Crowninshield was there from 11:00 PM to 11:30 PM handing over a parcel of somebody else’s silver, which is a charge Ellsworth Crowninshield will take over this one.
-- **b5** (Carmine Vitale, fence): c149 → **c152** — The receiver at Dolan’s Bar would rather talk than be held: Carmine Vitale was there from 7:30 PM to 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Carmine Vitale will take over this one.
+- **b1** (Bledsoe, hidden-family): c129 → c131 → c130 → **c132** — The woman who keeps the child says it straight out: Bledsoe was at the parlour from 8:30 PM, the same as every week, and left with the same face as always.
+- **b2** (Vitale, fence): c116 → c114 → c115 → **c119** — The goods turn up, tagged and dated, and the tag puts Vitale at Dolan’s from 8:30 PM with both hands full.
+- **b3** (Schilling, gambling-debt): c135 → c137 → **c139** — The bookmaker’s runner is found and will say it: Schilling was at Dolan’s from 8:30 PM to 9:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b4** (Doyle, forged-identity): c109 → c108 → **c111** — The name Doyle was born with turns up on a desertion warrant from 1918. Doyle has been hiding from the Army for eleven years and from nobody else.
 

@@ -18,6 +18,22 @@ import { MOTIVE_BY_TYPE } from './data/motives.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
 import type { Rng } from './rng.js';
 
+/**
+ * Deriving the candidate pool.
+ *
+ * Two rules from M2b govern everything below.
+ *
+ * **One subject per clue.** No roll call. A watcher who can name five people
+ * in his bar at half past nine is five questions, not one, and the clue for
+ * each of them names only that one. This is the change that makes the spine
+ * long enough for the budget to bite.
+ *
+ * **Clues state facts.** What somebody saw, heard or found; what a document
+ * says. Never what it adds up to. "The lesson overhead stopped at 9:30 PM" is
+ * a clue. "That puts the killing in that half hour" is the player's job, and
+ * the truth sheet's deduction path.
+ */
+
 export function deriveObservations(cast: Cast, build: ScheduleBuild): Observation[] {
   const out: Observation[] = [];
   for (let t = 0; t < TICKS; t++) {
@@ -58,13 +74,23 @@ function bareSpan(ticks: Tick[]): string {
  * Consecutive lied-about ticks that carry the same false alibi. A killer whose
  * cover secret abuts the murder block lies twice in a row about two different
  * rooms, and describing that as one run would put the denials in the wrong one.
+ *
+ * The companion splits a block too: two abutting lies can name the same room
+ * and only one of them name somebody who was supposedly there, and reading the
+ * companion off the first tick of the merged block loses the other one.
  */
-function claimBlocks(ticks: Tick[], claimed: (Id | null)[]): Tick[][] {
+function claimBlocks(
+  ticks: Tick[],
+  claimed: (Id | null)[],
+  companions: (Id | null)[],
+): Tick[][] {
   const out: Tick[][] = [];
   for (const t of ticks) {
     const last = out[out.length - 1];
     const prev = last?.[last.length - 1];
-    if (last && prev === t - 1 && claimed[prev] === claimed[t]) last.push(t);
+    const same =
+      prev !== undefined && claimed[prev] === claimed[t] && companions[prev] === companions[t];
+    if (last && prev === t - 1 && same) last.push(t);
     else out.push([t]);
   }
   return out;
@@ -76,9 +102,21 @@ function span(ticks: Tick[]): string {
   return first === last ? `at ${clock(first)}` : `from ${clock(first)} to ${clock(last)}`;
 }
 
+function cap(text: string): string {
+  return text.length === 0 ? text : `${text[0]?.toUpperCase()}${text.slice(1)}`;
+}
+
+/**
+ * The raw material for one noise branch: one secret *activity*, however many
+ * people are in it. An affair is one activity and one branch, with a single
+ * disqualifier that clears both partners at once.
+ */
 export interface SecretBranchMaterial {
-  personId: Id;
+  /** Everybody the activity covers. One entry, or two for an affair. */
+  personIds: Id[];
   secretType: string;
+  /** Leads worth opening a branch with, best first. Anchor knowledge tests. */
+  leadIns: Clue[];
   hints: Clue[];
   traces: Clue[];
   disqualifiers: Clue[];
@@ -107,6 +145,8 @@ export interface ClueContext {
   lowAnchor: Anchor;
   highAnchor: Anchor;
   coronerWindow: [Tick, Tick];
+  /** The scene-timing anchor buried the noise: nobody heard anything. */
+  soundMasked: boolean;
 }
 
 export function deriveCandidates(ctx: ClueContext): CandidateSet {
@@ -114,8 +154,11 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   const M = build.murderTick;
   const L = build.murderPlaceId;
 
-  const placeName = (id: Id): string => setting.places.find((p) => p.id === id)?.name ?? id;
+  /** Places are named short everywhere but the sheet's Places section. */
+  const placeName = (id: Id): string => setting.places.find((p) => p.id === id)?.shortName ?? id;
   const personById = (id: Id): Person => cast.people.find((p) => p.id === id) as Person;
+  /** People are named by surname everywhere but Dramatis Personae. */
+  const who = (id: Id): string => personById(id)?.surname ?? id;
   const foundAt = (id: Id): Id => (personById(id).foundAt ?? L) as Id;
   const truthful = (id: Id, t: Tick): boolean => !(build.lies[id] as Tick[]).includes(t);
   const at = (id: Id, t: Tick): Id | null => (build.truth[id] as (Id | null)[])[t] ?? null;
@@ -147,7 +190,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     return clue;
   };
 
-  /* 1. What people saw and will repeat. --------------------------------- */
+  /* 1. What people saw and will repeat. One subject per clue. ------------ */
   const reportable = cast.people.filter((p) => p.kind !== 'fixture');
   const witnesses = cast.people.filter((p) => p.kind !== 'victim');
   for (const observer of witnesses) {
@@ -176,32 +219,13 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
           }
           add(
             'observation',
-            { type: 'person', personId: observer.id, topic: subject.name },
+            { type: 'person', personId: observer.id, topic: who(subject.id) },
             foundAt(observer.id),
             facts,
-            `${observer.name} says ${subject.name} was at ${placeName(place)} ${span(run)}.`,
+            `${who(observer.id)} says ${who(subject.id)} was at ${placeName(place)} ${span(run)}.`,
           );
         }
       }
-    }
-  }
-
-  /* 1b. Roll calls: who was in the room, all at once. -------------------- */
-  for (const teller of cast.people) {
-    if (teller.kind === 'victim') continue;
-    for (let t = 0; t < TICKS; t++) {
-      if (!truthful(teller.id, t)) continue;
-      const where = at(teller.id, t);
-      if (!where) continue;
-      const present = cast.suspects.filter((p) => p.id !== teller.id && at(p.id, t) === where);
-      if (present.length < 2) continue;
-      add(
-        'observation',
-        { type: 'person', personId: teller.id, topic: `who was there at ${clock(t)}` },
-        foundAt(teller.id),
-        present.map((p) => ({ kind: 'personAt' as const, personId: p.id, place: where, tick: t })),
-        `${teller.name} runs through it: at ${clock(t)} there were ${present.map((p) => p.name).join(', ')} at ${placeName(where)}, and nobody else worth naming.`,
-      );
     }
   }
 
@@ -209,13 +233,19 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   for (const liar of cast.suspects) {
     const lieTicks = build.lies[liar.id] as Tick[];
     if (lieTicks.length === 0) continue;
-    for (const block of claimBlocks(lieTicks, build.claimed[liar.id] as (Id | null)[])) {
+    const blocks = claimBlocks(
+      lieTicks,
+      build.claimed[liar.id] as (Id | null)[],
+      build.companions[liar.id] as (Id | null)[],
+    );
+    for (const block of blocks) {
       const claimPlace = (build.claimed[liar.id] as (Id | null)[])[block[0] as Tick];
       if (!claimPlace) continue;
       const named = (build.companions[liar.id] as (Id | null)[])[block[0] as Tick];
 
       for (const denier of cast.people) {
         if (denier.id === liar.id || denier.id === cast.victim.id) continue;
+        if (denier.id === named) continue;
         const usable = block.filter(
           (t) => truthful(denier.id, t) && at(denier.id, t) === claimPlace && at(liar.id, t) !== claimPlace,
         );
@@ -229,43 +259,48 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
           }));
           add(
             'observation',
-            { type: 'person', personId: denier.id, topic: `${liar.name}’s account` },
+            { type: 'person', personId: denier.id, topic: `${who(liar.id)}’s account` },
             foundAt(denier.id),
             facts,
-            `${denier.name} was at ${placeName(claimPlace)} ${span(run)} and says ${liar.name} was not.`,
+            `${who(denier.id)} was at ${placeName(claimPlace)} ${span(run)} and says ${who(liar.id)} was not.`,
           );
         }
       }
 
-      if (named) {
-        const companion = personById(named);
-        const usable = block.filter(
-          (t) => truthful(named, t) && at(named, t) !== null && at(named, t) !== claimPlace,
-        );
+      /*
+       * The named companion. This is the strongest contradiction there is,
+       * because it comes out of the alibi itself — and it does not need the
+       * companion to be truthful about her own evening. Denying that you were
+       * with somebody admits nothing about where you were, so a liar will say
+       * it as readily as anybody. That is why this clue is a `denial` and not
+       * an `observation`: the observation rules do not apply to it.
+       */
+      if (named && named !== cast.victim.id) {
+        const usable = block.filter((t) => at(liar.id, t) !== claimPlace);
         if (usable.length > 0) {
-          const byPlace = new Map<Id, Tick[]>();
-          for (const t of usable) {
-            const cPlace = at(named, t) as Id;
-            const list = byPlace.get(cPlace) ?? [];
-            list.push(t);
-            byPlace.set(cPlace, list);
-          }
-          for (const [cPlace, ticks] of byPlace) {
-            for (const run of runs(ticks.slice().sort((a, b) => a - b))) {
-              const facts: Fact[] = run.map((t) => ({
-                kind: 'personNotAt' as const,
-                personId: liar.id,
-                place: claimPlace,
-                tick: t,
-              }));
-              add(
-                'observation',
-                { type: 'person', personId: named, topic: `${liar.name}’s account` },
-                foundAt(named),
-                facts,
-                `${liar.name} says ${companion.name} was there for it. ${companion.name} says otherwise: ${companion.name} was at ${placeName(cPlace)} ${span(run)}, nowhere near ${placeName(claimPlace)}.`,
-              );
-            }
+          for (const run of runs(usable.slice().sort((a, b) => a - b))) {
+            const facts: Fact[] = run.map((t) => ({
+              kind: 'personNotAt' as const,
+              personId: liar.id,
+              place: claimPlace,
+              tick: t,
+            }));
+            const elsewhere = run.every(
+              (t) => truthful(named, t) && at(named, t) !== null && at(named, t) !== claimPlace,
+            );
+            const cPlace = at(named, run[0] as Tick);
+            const text = elsewhere && cPlace
+              ? `${who(liar.id)} names ${who(named)} as the company for it. ${who(named)} was at ` +
+                `${placeName(cPlace)} ${span(run)}, and says ${who(liar.id)} was not there.`
+              : `${who(liar.id)} names ${who(named)} as the company for ${placeName(claimPlace)} ` +
+                `${span(run)}. ${who(named)} says they were not together that evening.`;
+            add(
+              'denial',
+              { type: 'person', personId: named, topic: `${who(liar.id)}’s account` },
+              foundAt(named),
+              facts,
+              text,
+            );
           }
         }
       }
@@ -282,7 +317,8 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       { kind: 'victimDeadBy', tick: M },
       { kind: 'methodEvidence', methodId: method.id },
     ],
-    `${cast.victim.name} was found at ${placeName(L)}. ${ctx.sceneTrace} ${high.name[0]?.toUpperCase()}${high.name.slice(1)} came at ${clock(M)}, and ${high.sceneTiming}. That puts the killing in that half hour and no later.`,
+    `${who(cast.victim.id)} was found at ${placeName(L)}. ${ctx.sceneTrace} ` +
+      `${high.sceneFact.split('{T}').join(clock(M))}`,
     { anchorId: high.templateId },
   );
 
@@ -307,7 +343,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       { kind: 'objectMissing', objectId: evidence.id, fromPlace: evidence.homePlace },
       { kind: 'methodEvidence', methodId: method.id },
     ],
-    `${evidence.name[0]?.toUpperCase()}${evidence.name.slice(1)} is gone from ${placeName(evidence.homePlace)}. ${ctx.methodEvidenceNote}`,
+    `${cap(evidence.name)} is gone from ${placeName(evidence.homePlace)}. ${ctx.methodEvidenceNote}`,
   );
 
   /* 5. The victim, alive, timed by an anchor. ---------------------------- */
@@ -322,67 +358,73 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   for (const w of lowWitnesses) {
     add(
       'anchor',
-      { type: 'person', personId: w.id, topic: `${cast.victim.name} that evening` },
+      { type: 'person', personId: w.id, topic: `${who(cast.victim.id)} that evening` },
       foundAt(w.id),
       [
         { kind: 'victimAliveAt', tick: build.victimSeenAt },
         { kind: 'personAt', personId: cast.victim.id, place: lowPlace, tick: build.victimSeenAt },
       ],
-      `${w.name} puts ${cast.victim.name} at ${placeName(lowPlace)} ${low.timing}, which was ${clock(build.victimSeenAt)}, and alive enough to argue about the weather.`,
+      `${who(w.id)} puts ${who(cast.victim.id)} at ${placeName(lowPlace)} ${low.timing}, which was ${clock(build.victimSeenAt)}, and alive enough to argue about the weather.`,
       { anchorId: low.templateId },
     );
   }
 
-  /* 6. What the neighbours heard, timed by the same anchor as the scene. -- */
-  const nearPlaces = new Set<Id>(setting.nearScene);
-  for (const p of cast.people) {
-    if (p.id === cast.killer.id || p.id === cast.victim.id) continue;
-    const place = at(p.id, M);
-    if (!place || !nearPlaces.has(place)) continue;
-    if (!truthful(p.id, M)) continue;
-    add(
-      'anchor',
-      { type: 'person', personId: p.id, topic: 'the noise that evening' },
-      foundAt(p.id),
-      [
-        { kind: 'noiseAt', place: L, tick: M },
-        { kind: 'victimDeadBy', tick: M },
-        { kind: 'methodEvidence', methodId: method.id },
-      ],
-      `${p.name} was at ${placeName(place)} at ${clock(M)} and heard ${ctx.soundNote} from the direction of ${placeName(L)}, ${high.timing}.`,
-      { anchorId: high.templateId },
-    );
+  /* 6. What the neighbours heard. ----------------------------------------
+   *
+   * Only when the anchor timing the scene did not bury it. A radio turned up
+   * for a fight card and five people hearing the shot through it cannot both
+   * be true, and M2 printed both in the same case.
+   */
+  if (!ctx.soundMasked) {
+    const nearPlaces = new Set<Id>(setting.nearScene);
+    for (const p of cast.people) {
+      if (p.id === cast.killer.id || p.id === cast.victim.id) continue;
+      const place = at(p.id, M);
+      if (!place || !nearPlaces.has(place)) continue;
+      if (!truthful(p.id, M)) continue;
+      add(
+        'anchor',
+        { type: 'person', personId: p.id, topic: 'the noise that evening' },
+        foundAt(p.id),
+        [
+          { kind: 'noiseAt', place: L, tick: M },
+          { kind: 'victimDeadBy', tick: M },
+          { kind: 'methodEvidence', methodId: method.id },
+        ],
+        `${who(p.id)} was at ${placeName(place)} at ${clock(M)} and heard ${ctx.soundNote} from the direction of ${placeName(L)}, ${high.highTiming}.`,
+        { anchorId: high.templateId },
+      );
+    }
   }
 
   /* 7. The anchors themselves. -------------------------------------------- */
+  /** Innocent liars caught out by an anchor, filed under whose branch they head. */
+  const knowledgeTests = new Map<Id, Clue[]>();
   for (const anchor of anchors) {
     for (const trace of anchor.traces) {
       if (trace.kind === 'sighting') {
         for (const [i, t] of anchor.ticks.entries()) {
           const place = anchor.route ? (anchor.route[i] as Id) : (anchor.placeId as Id | undefined);
           if (!place) continue;
-          const present = cast.people.filter(
-            (p) => p.kind === 'suspect' && at(p.id, t) === place,
-          );
-          if (present.length === 0) continue;
-          const facts: Fact[] = present.map((p) => ({
-            kind: 'personAt' as const,
-            personId: p.id,
-            place,
-            tick: t,
-          }));
+          const present = cast.people.filter((p) => p.kind === 'suspect' && at(p.id, t) === place);
           const reporter = cast.beatCop && anchor.route ? cast.beatCop : null;
-          const source: Clue['source'] = reporter
-            ? { type: 'person', personId: reporter.id, topic: `the ${clock(t)} round` }
-            : { type: 'place', placeId: place };
-          add(
-            'anchor',
-            source,
-            reporter ? foundAt(reporter.id) : place,
-            facts,
-            `${anchor.name[0]?.toUpperCase()}${anchor.name.slice(1)} at ${clock(t)} puts ${present.map((p) => p.name).join(', ')} at ${placeName(place)}.`,
-            { anchorId: anchor.templateId },
-          );
+          // One name per clue. The cop who walks past a bar and sees four
+          // people in it is four answers, and the player pays for each.
+          for (const subject of present) {
+            const source: Clue['source'] = reporter
+              ? { type: 'person', personId: reporter.id, topic: who(subject.id) }
+              : { type: 'place', placeId: place };
+            add(
+              'anchor',
+              source,
+              reporter ? foundAt(reporter.id) : place,
+              [{ kind: 'personAt', personId: subject.id, place, tick: t }],
+              reporter
+                ? `${who(reporter.id)} came round at ${clock(t)} and had ${who(subject.id)} at ${placeName(place)}.`
+                : `${cap(anchor.name)} was at ${clock(t)}, and ${who(subject.id)} was at ${placeName(place)} for it.`,
+              { anchorId: anchor.templateId },
+            );
+          }
         }
         continue;
       }
@@ -402,7 +444,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
               { type: 'place', placeId: where },
               where,
               [{ kind: 'personAt', personId: p.id, place: where, tick: t }],
-              `${p.name} carries the mark of it: ${trace.description}. That fixes ${p.name} at ${placeName(where)} at ${clock(t)}, when ${anchor.name} happened.`,
+              `${who(p.id)} still carries it: ${trace.description}. ${cap(anchor.name)} was at ${clock(t)}, at ${placeName(where)}.`,
               { anchorId: anchor.templateId },
             );
           }
@@ -415,14 +457,30 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
           for (const p of cast.suspects) {
             const claim = (build.claimed[p.id] as (Id | null)[])[t];
             if (claim !== place || at(p.id, t) === place) continue;
-            add(
+            // The payoff of the anchor system: a liar who claims a room with
+            // something memorable in it has to know the memorable thing.
+            //
+            // Against the killer this is a route to the contradiction, and the
+            // selector reaches for it on its own. Against an innocent it is
+            // the head of that innocent's noise branch: the most damning thing
+            // in the hand until the disqualifier says what the lie was for.
+            const innocent = p.id !== cast.killer.id;
+            const clue = add(
               'anchor',
-              { type: 'person', personId: p.id, topic: `${anchor.name}` },
+              { type: 'person', personId: p.id, topic: anchor.name },
               foundAt(p.id),
               [{ kind: 'personNotAt', personId: p.id, place, tick: t }],
-              `${p.name} claims to have been at ${placeName(place)} at ${clock(t)} but cannot say that ${trace.description}, which everybody there can.`,
-              { anchorId: anchor.templateId },
+              `${who(p.id)} claims ${placeName(place)} at ${clock(t)}, which is when ${anchor.name} was on. ` +
+                `Asked about it, ${who(p.id)} cannot say that ${trace.description} — and everybody who was there can.`,
+              innocent
+                ? { anchorId: anchor.templateId, aboutSecretOf: p.id }
+                : { anchorId: anchor.templateId },
             );
+            if (innocent) {
+              const list = knowledgeTests.get(p.id) ?? [];
+              list.push(clue);
+              knowledgeTests.set(p.id, list);
+            }
           }
         }
       }
@@ -435,7 +493,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     const template = MOTIVE_BY_TYPE[p.motive?.type as string];
     if (!template) continue;
     const fill = (s: string): string =>
-      s.split('{V}').join(cast.victim.name).split('{P}').join(p.name);
+      s.split('{V}').join(who(cast.victim.id)).split('{P}').join(who(p.id));
     const residence = setting.places.find((pl) => pl.isResidence)?.id ?? L;
     const letterPlace = rng.chance(0.6) ? residence : rng.pick(setting.places).id;
     add(
@@ -451,10 +509,10 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     const speaker = rng.pick(speakerPool);
     add(
       'overheard',
-      { type: 'person', personId: speaker.id, topic: `${p.name} and ${cast.victim.name}` },
+      { type: 'person', personId: speaker.id, topic: `${who(p.id)} and ${who(cast.victim.id)}` },
       foundAt(speaker.id),
       [{ kind: 'hasMotive', personId: p.id, motiveType: p.motive?.type as string }],
-      `${speaker.name} says ${fill(template.overheard)}`,
+      `${who(speaker.id)} says ${fill(template.overheard)}`,
     );
   }
 
@@ -468,29 +526,46 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     { type: 'person', personId: cast.client.id, topic: 'why I was hired' },
     foundAt(cast.client.id),
     [{ kind: 'hasMotive', personId: pointedAt.id, motiveType: pointedAt.motive?.type as string }],
-    `${cast.client.name} hired us. ${cast.client.name} wants it known that ${pointedAt.name} ${pointedAt.motive?.description ?? 'had reason'}, and would rather we started there.`,
+    `${who(cast.client.id)} hired us, and wants it known that ${who(pointedAt.id)} ${pointedAt.motive?.description ?? 'had reason'}, and would rather we started there.`,
   );
 
-  /* 10. Everything the innocents are hiding. ------------------------------- */
+  /* 10. Everything the innocents are hiding. -------------------------------
+   *
+   * One activity, one pile of material, however many people share it. M2 dealt
+   * an affair twice — once per partner — and the two branches ended in the
+   * same sentence with the names swapped.
+   */
   const material: SecretBranchMaterial[] = [];
+  const handled = new Set<Id>();
   for (const p of cast.innocents) {
+    if (handled.has(p.id)) continue;
     const secret = build.secrets[p.id];
     if (!secret) continue;
     const template = SECRET_BY_TYPE[secret.type];
     if (!template) continue;
+    handled.add(p.id);
+
+    // A partner who is another suspect shares the activity, so they share the
+    // branch. A partner who is the victim does not: he has no secret of his own.
+    const partner =
+      secret.partnerId && secret.partnerId !== cast.victim.id
+        ? (cast.innocents.find((q) => q.id === secret.partnerId) ?? null)
+        : null;
+    if (partner) handled.add(partner.id);
+    const personIds = partner ? [p.id, partner.id] : [p.id];
+
     const ticks = secret.cells.map((c) => c.tick);
     const place = (secret.cells[0]?.place ?? foundAt(p.id)) as Id;
-    const partner = secret.partnerId ? personById(secret.partnerId) : null;
     const fill = (s: string): string =>
       s
-        .split('{P}').join(p.name)
-        .split('{Q}').join(partner?.name ?? 'somebody')
+        .split('{P}').join(who(p.id))
+        .split('{Q}').join(partner ? who(partner.id) : secret.partnerId ? who(secret.partnerId) : 'somebody')
         .split('{L}').join(placeName(place))
         .split('{T}').join(ticks.length > 0 ? bareSpan(ticks) : 'that evening');
 
     const hintTellers = cast.people.filter(
       (q) =>
-        q.id !== p.id &&
+        !personIds.includes(q.id) &&
         q.kind !== 'victim' &&
         (q.kind === 'fixture' || ticks.every((t) => truthful(q.id, t))),
     );
@@ -498,10 +573,10 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       const teller = hintTellers[(i + counter) % Math.max(1, hintTellers.length)] as Person;
       return add(
         'overheard',
-        { type: 'person', personId: teller.id, topic: `${p.name}` },
+        { type: 'person', personId: teller.id, topic: who(p.id) },
         foundAt(teller.id),
         [],
-        `${teller.name} on ${p.name}: ${fill(h)}`,
+        `${who(teller.id)} on ${who(p.id)}: ${fill(h)}`,
         { aboutSecretOf: p.id },
       );
     });
@@ -510,16 +585,23 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
         aboutSecretOf: p.id,
       }),
     );
+    // Anything an anchor already caught this person out on belongs to their
+    // branch as well, and it is the best lead in it.
+    const caught: Clue[] = personIds.flatMap((id) => knowledgeTests.get(id) ?? []);
+    // One disqualifier, clearing everybody the activity covers.
     const disqualifiers: Clue[] = template.disqualifiers.map((d) => {
-      const facts: Fact[] = [{ kind: 'secretExplained', personId: p.id, secretType: secret.type }];
-      for (const cell of secret.cells) {
-        facts.push({ kind: 'personAt', personId: p.id, place: cell.place, tick: cell.tick });
+      const facts: Fact[] = [];
+      for (const id of personIds) {
+        facts.push({ kind: 'secretExplained', personId: id, secretType: secret.type });
+        for (const cell of (build.secrets[id]?.cells ?? secret.cells)) {
+          facts.push({ kind: 'personAt', personId: id, place: cell.place, tick: cell.tick });
+        }
       }
       return add('overheard', { type: 'place', placeId: place }, place, facts, fill(d), {
         aboutSecretOf: p.id,
       });
     });
-    material.push({ personId: p.id, secretType: secret.type, hints, traces, disqualifiers });
+    material.push({ personIds, secretType: secret.type, leadIns: caught, hints, traces, disqualifiers });
   }
 
   return { clues, scene, morgue, client, material };

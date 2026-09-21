@@ -1,605 +1,515 @@
 # the Upper West Side — case 9: the candidate pool
 
-265 true things about the evening. 30 of them are findable (marked ★); the rest are the truth the report is graded against, not the truth the player can reach.
+220 true things about the evening. 34 of them are findable (marked ★); the rest are the truth the report is graded against, not the truth the player can reach.
 
-## Delia Doyle
+## Doyle
 
-- **c001** [observation] — on Karl Lindemann Delia Doyle says Karl Lindemann was at the parlour of Mrs. Teague’s boarding house from 6:30 PM to 7:00 PM.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 6:30 PM–7:00 PM; Karl Lindemann could reach the weapon_
-- **c002** [observation] — on Karl Lindemann Delia Doyle says Karl Lindemann was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c003** [observation] — on Karl Lindemann Delia Doyle says Karl Lindemann was at the newsstand on the corner at 8:00 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 8:00 PM_
-- **c004** [observation] — on Anneliese Kreuzer Delia Doyle says Anneliese Kreuzer was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.
-  - _establishes: Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:00 PM–6:30 PM; Anneliese Kreuzer could reach the weapon_
-- **c005** [observation] — on Anneliese Kreuzer Delia Doyle says Anneliese Kreuzer was at the garage on Eleventh Avenue at 7:30 PM.
-  - _establishes: Anneliese Kreuzer at the garage on Eleventh Avenue, 7:30 PM_
-- **c006** [observation] — on Ellsworth Ellery Delia Doyle says Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 6:00 PM.
-  - _establishes: Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Ellsworth Ellery could reach the weapon_
-- **c007** [observation] — on Ellsworth Ellery Delia Doyle says Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c008** [observation] — on Ellsworth Ellery Delia Doyle says Ellsworth Ellery was at the newsstand on the corner at 8:00 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 8:00 PM_
-- **c009** [observation] — on Ellsworth Ellery Delia Doyle says Ellsworth Ellery was at the garage on Eleventh Avenue at 8:30 PM.
-  - _establishes: Ellsworth Ellery at the garage on Eleventh Avenue, 8:30 PM_
-- **c010** [observation] — on Rutherford Winslow Delia Doyle says Rutherford Winslow was at the garage on Eleventh Avenue at 7:30 PM.
-  - _establishes: Rutherford Winslow at the garage on Eleventh Avenue, 7:30 PM_
-- **c011** [observation] — on Rutherford Winslow Delia Doyle says Rutherford Winslow was at the garage on Eleventh Avenue at 8:30 PM.
-  - _establishes: Rutherford Winslow at the garage on Eleventh Avenue, 8:30 PM_
-- **c012** [observation] — on Rutherford Winslow Delia Doyle says Rutherford Winslow was at the newsstand on the corner at 11:30 PM.
-  - _establishes: Rutherford Winslow at the newsstand on the corner, 11:30 PM_
-- **c013** [observation] — on Rosaria Grasso Delia Doyle says Rosaria Grasso was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c134** [observation] — on who was there at 6:00 PM Delia Doyle runs through it: at 6:00 PM there were Anneliese Kreuzer, Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 6:00 PM_
-- **c135** [observation] — on who was there at 6:30 PM Delia Doyle runs through it: at 6:30 PM there were Karl Lindemann, Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 6:30 PM; Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:30 PM_
-- **c136** [observation] — on who was there at 7:30 PM Delia Doyle runs through it: at 7:30 PM there were Anneliese Kreuzer, Rutherford Winslow at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Anneliese Kreuzer at the garage on Eleventh Avenue, 7:30 PM; Rutherford Winslow at the garage on Eleventh Avenue, 7:30 PM_
-- **c137** [observation] — on who was there at 8:00 PM Delia Doyle runs through it: at 8:00 PM there were Karl Lindemann, Ellsworth Ellery at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 8:00 PM; Ellsworth Ellery at the newsstand on the corner, 8:00 PM_
-- **c138** [observation] — on who was there at 8:30 PM Delia Doyle runs through it: at 8:30 PM there were Ellsworth Ellery, Rutherford Winslow at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Ellsworth Ellery at the garage on Eleventh Avenue, 8:30 PM; Rutherford Winslow at the garage on Eleventh Avenue, 8:30 PM_
-- **c139** [observation] — on who was there at 11:00 PM Delia Doyle runs through it: at 11:00 PM there were Karl Lindemann, Ellsworth Ellery, Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c189** [observation] — on Anneliese Kreuzer’s account Delia Doyle was at the newsstand on the corner at 8:00 PM and says Anneliese Kreuzer was not.
-  - _establishes: Anneliese Kreuzer not at the newsstand on the corner, 8:00 PM_
-- **c260** [overheard] — on Rosaria Grasso Delia Doyle on Rosaria Grasso: There is a man who meets people at the El platform at Twenty-Third Street and nobody will say his name out loud.
+- **c001** [observation] — on Lindemann Doyle says Lindemann was at the parlour from 6:30 PM to 7:00 PM.
+  - _establishes: Lindemann at the parlour, 6:30 PM–7:00 PM; Lindemann could reach the weapon_
+- **c002** [observation] — on Lindemann Doyle says Lindemann was at the parlour at 11:00 PM.
+  - _establishes: Lindemann at the parlour, 11:00 PM_
+- **c003** [observation] — on Lindemann Doyle says Lindemann was at the newsstand at 8:00 PM.
+  - _establishes: Lindemann at the newsstand, 8:00 PM_
+- ★ **c004** [observation] — on Kreuzer Doyle says Kreuzer was at the parlour from 6:00 PM to 6:30 PM.
+  - _establishes: Kreuzer at the parlour, 6:00 PM–6:30 PM; Kreuzer could reach the weapon_
+- **c005** [observation] — on Kreuzer Doyle says Kreuzer was at the garage at 7:30 PM.
+  - _establishes: Kreuzer at the garage, 7:30 PM_
+- **c006** [observation] — on Ellery Doyle says Ellery was at the parlour at 6:00 PM.
+  - _establishes: Ellery at the parlour, 6:00 PM; Ellery could reach the weapon_
+- **c007** [observation] — on Ellery Doyle says Ellery was at the parlour at 11:00 PM.
+  - _establishes: Ellery at the parlour, 11:00 PM_
+- **c008** [observation] — on Ellery Doyle says Ellery was at the newsstand at 8:00 PM.
+  - _establishes: Ellery at the newsstand, 8:00 PM_
+- **c009** [observation] — on Ellery Doyle says Ellery was at the garage at 8:30 PM.
+  - _establishes: Ellery at the garage, 8:30 PM_
+- **c010** [observation] — on Winslow Doyle says Winslow was at the garage at 7:30 PM.
+  - _establishes: Winslow at the garage, 7:30 PM_
+- **c011** [observation] — on Winslow Doyle says Winslow was at the garage at 8:30 PM.
+  - _establishes: Winslow at the garage, 8:30 PM_
+- **c012** [observation] — on Winslow Doyle says Winslow was at the newsstand at 11:30 PM.
+  - _establishes: Winslow at the newsstand, 11:30 PM_
+- **c013** [observation] — on Grasso Doyle says Grasso was at the parlour at 11:00 PM.
+  - _establishes: Grasso at the parlour, 11:00 PM_
+- **c137** [observation] — on Kreuzer’s account Doyle was at the newsstand at 8:00 PM and says Kreuzer was not.
+  - _establishes: Kreuzer not at the newsstand, 8:00 PM_
+- ★ **c209** [overheard] — on Winslow Doyle on Winslow: Winslow goes very quiet when the racing wire is mentioned.
   - _establishes: context only_
 
-## Karl Lindemann
+## Lindemann
 
-- **c014** [observation] — on Martin Quill Karl Lindemann says Martin Quill was at the newsstand on the corner at 8:30 PM.
-  - _establishes: Martin Quill at the newsstand on the corner, 8:30 PM_
-- **c015** [observation] — on Delia Doyle Karl Lindemann says Delia Doyle was at the parlour of Mrs. Teague’s boarding house from 6:30 PM to 7:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:30 PM–7:00 PM; Delia Doyle could reach the weapon_
-- **c016** [observation] — on Delia Doyle Karl Lindemann says Delia Doyle was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c017** [observation] — on Delia Doyle Karl Lindemann says Delia Doyle was at the newsstand on the corner at 8:00 PM.
-  - _establishes: Delia Doyle at the newsstand on the corner, 8:00 PM_
-- ★ **c018** [observation] — on Anneliese Kreuzer Karl Lindemann says Anneliese Kreuzer was at the parlour of Mrs. Teague’s boarding house at 6:30 PM.
-  - _establishes: Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:30 PM; Anneliese Kreuzer could reach the weapon_
-- **c019** [observation] — on Anneliese Kreuzer Karl Lindemann says Anneliese Kreuzer was at the newsstand on the corner from 9:30 PM to 10:00 PM.
-  - _establishes: Anneliese Kreuzer at the newsstand on the corner, 9:30 PM–10:00 PM_
-- **c020** [observation] — on Anneliese Kreuzer Karl Lindemann says Anneliese Kreuzer was at the vestibule of the Hallam apartments at 10:30 PM.
-  - _establishes: Anneliese Kreuzer at the vestibule of the Hallam apartments, 10:30 PM_
-- **c021** [observation] — on Ellsworth Ellery Karl Lindemann says Ellsworth Ellery was at the newsstand on the corner at 8:00 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 8:00 PM_
-- **c022** [observation] — on Ellsworth Ellery Karl Lindemann says Ellsworth Ellery was at the newsstand on the corner from 9:00 PM to 9:30 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 9:00 PM–9:30 PM_
-- **c023** [observation] — on Ellsworth Ellery Karl Lindemann says Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c024** [observation] — on Rutherford Winslow Karl Lindemann says Rutherford Winslow was at the El platform at Twenty-Third Street at 6:00 PM.
-  - _establishes: Rutherford Winslow at the El platform at Twenty-Third Street, 6:00 PM_
-- **c025** [observation] — on Rutherford Winslow Karl Lindemann says Rutherford Winslow was at the newsstand on the corner at 9:00 PM.
-  - _establishes: Rutherford Winslow at the newsstand on the corner, 9:00 PM_
-- **c026** [observation] — on Rutherford Winslow Karl Lindemann says Rutherford Winslow was at the newsstand on the corner at 10:00 PM.
-  - _establishes: Rutherford Winslow at the newsstand on the corner, 10:00 PM_
-- **c027** [observation] — on Rosaria Grasso Karl Lindemann says Rosaria Grasso was at the El platform at Twenty-Third Street at 6:00 PM.
-  - _establishes: Rosaria Grasso at the El platform at Twenty-Third Street, 6:00 PM_
-- **c028** [observation] — on Rosaria Grasso Karl Lindemann says Rosaria Grasso was at the newsstand on the corner from 9:00 PM to 9:30 PM.
-  - _establishes: Rosaria Grasso at the newsstand on the corner, 9:00 PM–9:30 PM_
-- **c029** [observation] — on Rosaria Grasso Karl Lindemann says Rosaria Grasso was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c140** [observation] — on who was there at 6:00 PM Karl Lindemann runs through it: at 6:00 PM there were Rutherford Winslow, Rosaria Grasso at the El platform at Twenty-Third Street, and nobody else worth naming.
-  - _establishes: Rutherford Winslow at the El platform at Twenty-Third Street, 6:00 PM; Rosaria Grasso at the El platform at Twenty-Third Street, 6:00 PM_
-- **c141** [observation] — on who was there at 6:30 PM Karl Lindemann runs through it: at 6:30 PM there were Delia Doyle, Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:30 PM; Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:30 PM_
-- **c142** [observation] — on who was there at 8:00 PM Karl Lindemann runs through it: at 8:00 PM there were Delia Doyle, Ellsworth Ellery at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Delia Doyle at the newsstand on the corner, 8:00 PM; Ellsworth Ellery at the newsstand on the corner, 8:00 PM_
-- **c143** [observation] — on who was there at 9:00 PM Karl Lindemann runs through it: at 9:00 PM there were Ellsworth Ellery, Rutherford Winslow, Rosaria Grasso at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 9:00 PM; Rutherford Winslow at the newsstand on the corner, 9:00 PM; Rosaria Grasso at the newsstand on the corner, 9:00 PM_
-- **c144** [observation] — on who was there at 9:30 PM Karl Lindemann runs through it: at 9:30 PM there were Anneliese Kreuzer, Ellsworth Ellery, Rosaria Grasso at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Anneliese Kreuzer at the newsstand on the corner, 9:30 PM; Ellsworth Ellery at the newsstand on the corner, 9:30 PM; Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c145** [observation] — on who was there at 10:00 PM Karl Lindemann runs through it: at 10:00 PM there were Anneliese Kreuzer, Rutherford Winslow at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Anneliese Kreuzer at the newsstand on the corner, 10:00 PM; Rutherford Winslow at the newsstand on the corner, 10:00 PM_
-- **c146** [observation] — on who was there at 11:00 PM Karl Lindemann runs through it: at 11:00 PM there were Delia Doyle, Ellsworth Ellery, Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- ★ **c190** [observation] — on Anneliese Kreuzer’s account Karl Lindemann was at the newsstand on the corner from 8:00 PM to 9:00 PM and says Anneliese Kreuzer was not.
-  - _establishes: Anneliese Kreuzer not at the newsstand on the corner, 8:00 PM–9:00 PM_
-- **c198** [observation] — on Rutherford Winslow’s account Karl Lindemann was at the vestibule of the Hallam apartments at 10:30 PM and says Rutherford Winslow was not.
-  - _establishes: Rutherford Winslow not at the vestibule of the Hallam apartments, 10:30 PM_
-- ★ **c207** [anchor] — on Martin Quill that evening Karl Lindemann puts Martin Quill at the newsstand on the corner when the ice came, which was 8:30 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 8:30 PM; Martin Quill at the newsstand on the corner, 8:30 PM_
-- **c209** [anchor] — on the noise that evening Karl Lindemann was at the newsstand on the corner at 9:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, when the lights went.
-  - _establishes: noise at the victim’s suite at the residential hotel at 9:00 PM; the victim dead by 9:00 PM; how it was done_
-- ★ **c232** [overheard] — on Delia Doyle Karl Lindemann on Delia Doyle: A woman at the parlour of Mrs. Teague’s boarding house asked for Delia Doyle by a name Delia Doyle has not used in years.
-  - _establishes: context only_
-- **c247** [overheard] — on Ellsworth Ellery Karl Lindemann on Ellsworth Ellery: Ellsworth Ellery goes very quiet when the racing wire is mentioned.
-  - _establishes: context only_
-- ★ **c252** [overheard] — on Rutherford Winslow Karl Lindemann on Rutherford Winslow: Rutherford Winslow was asking around for a hundred dollars in a hurry earlier in the week.
-  - _establishes: context only_
+- **c014** [observation] — on Quill Lindemann says Quill was at the newsstand at 8:30 PM.
+  - _establishes: Quill at the newsstand, 8:30 PM_
+- **c015** [observation] — on Doyle Lindemann says Doyle was at the parlour from 6:30 PM to 7:00 PM.
+  - _establishes: Doyle at the parlour, 6:30 PM–7:00 PM; Doyle could reach the weapon_
+- **c016** [observation] — on Doyle Lindemann says Doyle was at the parlour at 11:00 PM.
+  - _establishes: Doyle at the parlour, 11:00 PM_
+- **c017** [observation] — on Doyle Lindemann says Doyle was at the newsstand at 8:00 PM.
+  - _establishes: Doyle at the newsstand, 8:00 PM_
+- **c018** [observation] — on Kreuzer Lindemann says Kreuzer was at the parlour at 6:30 PM.
+  - _establishes: Kreuzer at the parlour, 6:30 PM; Kreuzer could reach the weapon_
+- **c019** [observation] — on Kreuzer Lindemann says Kreuzer was at the newsstand from 9:30 PM to 10:00 PM.
+  - _establishes: Kreuzer at the newsstand, 9:30 PM–10:00 PM_
+- **c020** [observation] — on Kreuzer Lindemann says Kreuzer was at the Hallam at 10:30 PM.
+  - _establishes: Kreuzer at the Hallam, 10:30 PM_
+- **c021** [observation] — on Ellery Lindemann says Ellery was at the newsstand at 8:00 PM.
+  - _establishes: Ellery at the newsstand, 8:00 PM_
+- **c022** [observation] — on Ellery Lindemann says Ellery was at the newsstand from 9:00 PM to 9:30 PM.
+  - _establishes: Ellery at the newsstand, 9:00 PM–9:30 PM_
+- **c023** [observation] — on Ellery Lindemann says Ellery was at the parlour at 11:00 PM.
+  - _establishes: Ellery at the parlour, 11:00 PM_
+- **c024** [observation] — on Winslow Lindemann says Winslow was at the El platform at 6:00 PM.
+  - _establishes: Winslow at the El platform, 6:00 PM_
+- **c025** [observation] — on Winslow Lindemann says Winslow was at the newsstand at 9:00 PM.
+  - _establishes: Winslow at the newsstand, 9:00 PM_
+- **c026** [observation] — on Winslow Lindemann says Winslow was at the newsstand at 10:00 PM.
+  - _establishes: Winslow at the newsstand, 10:00 PM_
+- **c027** [observation] — on Grasso Lindemann says Grasso was at the El platform at 6:00 PM.
+  - _establishes: Grasso at the El platform, 6:00 PM_
+- **c028** [observation] — on Grasso Lindemann says Grasso was at the newsstand from 9:00 PM to 9:30 PM.
+  - _establishes: Grasso at the newsstand, 9:00 PM–9:30 PM_
+- **c029** [observation] — on Grasso Lindemann says Grasso was at the parlour at 11:00 PM.
+  - _establishes: Grasso at the parlour, 11:00 PM_
+- **c138** [observation] — on Kreuzer’s account Lindemann was at the newsstand from 8:00 PM to 9:00 PM and says Kreuzer was not.
+  - _establishes: Kreuzer not at the newsstand, 8:00 PM–9:00 PM_
+- **c145** [observation] — on Winslow’s account Lindemann was at the Hallam at 10:30 PM and says Winslow was not.
+  - _establishes: Winslow not at the Hallam, 10:30 PM_
+- **c153** [anchor] — on Quill that evening Lindemann puts Quill at the newsstand when the ice came, which was 8:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 8:30 PM; Quill at the newsstand, 8:30 PM_
+- **c155** [anchor] — on the noise that evening Lindemann was at the newsstand at 9:00 PM and heard a scuffle and a chair dragging from the direction of the suite, just after the lights went.
+  - _establishes: noise at the suite at 9:00 PM; the victim dead by 9:00 PM; how it was done_
 
-## Anneliese Kreuzer
+## Kreuzer
 
-- ★ **c030** [observation] — on Delia Doyle Anneliese Kreuzer says Delia Doyle was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:00 PM–6:30 PM; Delia Doyle could reach the weapon_
-- **c031** [observation] — on Delia Doyle Anneliese Kreuzer says Delia Doyle was at the garage on Eleventh Avenue at 7:30 PM.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 7:30 PM_
-- **c032** [observation] — on Karl Lindemann Anneliese Kreuzer says Karl Lindemann was at the parlour of Mrs. Teague’s boarding house at 6:30 PM.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 6:30 PM; Karl Lindemann could reach the weapon_
-- **c033** [observation] — on Karl Lindemann Anneliese Kreuzer says Karl Lindemann was at the newsstand on the corner from 9:30 PM to 10:00 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM–10:00 PM_
-- **c034** [observation] — on Karl Lindemann Anneliese Kreuzer says Karl Lindemann was at the vestibule of the Hallam apartments at 10:30 PM.
-  - _establishes: Karl Lindemann at the vestibule of the Hallam apartments, 10:30 PM_
-- **c035** [observation] — on Ellsworth Ellery Anneliese Kreuzer says Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 6:00 PM.
-  - _establishes: Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Ellsworth Ellery could reach the weapon_
-- **c036** [observation] — on Ellsworth Ellery Anneliese Kreuzer says Ellsworth Ellery was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 9:30 PM_
-- **c037** [observation] — on Ellsworth Ellery Anneliese Kreuzer says Ellsworth Ellery was at the El platform at Twenty-Third Street at 11:30 PM.
-  - _establishes: Ellsworth Ellery at the El platform at Twenty-Third Street, 11:30 PM_
-- **c038** [observation] — on Rutherford Winslow Anneliese Kreuzer says Rutherford Winslow was at the garage on Eleventh Avenue at 7:30 PM.
-  - _establishes: Rutherford Winslow at the garage on Eleventh Avenue, 7:30 PM_
-- **c039** [observation] — on Rutherford Winslow Anneliese Kreuzer says Rutherford Winslow was at the newsstand on the corner at 10:00 PM.
-  - _establishes: Rutherford Winslow at the newsstand on the corner, 10:00 PM_
-- **c040** [observation] — on Rosaria Grasso Anneliese Kreuzer says Rosaria Grasso was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c147** [observation] — on who was there at 6:00 PM Anneliese Kreuzer runs through it: at 6:00 PM there were Delia Doyle, Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 6:00 PM_
-- **c148** [observation] — on who was there at 6:30 PM Anneliese Kreuzer runs through it: at 6:30 PM there were Delia Doyle, Karl Lindemann at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:30 PM; Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 6:30 PM_
-- **c149** [observation] — on who was there at 7:30 PM Anneliese Kreuzer runs through it: at 7:30 PM there were Delia Doyle, Rutherford Winslow at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 7:30 PM; Rutherford Winslow at the garage on Eleventh Avenue, 7:30 PM_
-- **c150** [observation] — on who was there at 9:30 PM Anneliese Kreuzer runs through it: at 9:30 PM there were Karl Lindemann, Ellsworth Ellery, Rosaria Grasso at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM; Ellsworth Ellery at the newsstand on the corner, 9:30 PM; Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c151** [observation] — on who was there at 10:00 PM Anneliese Kreuzer runs through it: at 10:00 PM there were Karl Lindemann, Rutherford Winslow at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 10:00 PM; Rutherford Winslow at the newsstand on the corner, 10:00 PM_
-- **c199** [observation] — on Rutherford Winslow’s account Anneliese Kreuzer was at the vestibule of the Hallam apartments at 10:30 PM and says Rutherford Winslow was not.
-  - _establishes: Rutherford Winslow not at the vestibule of the Hallam apartments, 10:30 PM_
-- ★ **c230** [client] — on why I was hired Anneliese Kreuzer hired us. Anneliese Kreuzer wants it known that Ellsworth Ellery needed the victim silent, and would rather we started there.
-  - _establishes: Ellsworth Ellery had a motive (silence-a-witness)_
-- ★ **c240** [overheard] — on Karl Lindemann Anneliese Kreuzer on Karl Lindemann: Karl Lindemann has been selling things that were never Karl Lindemann’s to sell.
+- **c030** [observation] — on Doyle Kreuzer says Doyle was at the parlour from 6:00 PM to 6:30 PM.
+  - _establishes: Doyle at the parlour, 6:00 PM–6:30 PM; Doyle could reach the weapon_
+- **c031** [observation] — on Doyle Kreuzer says Doyle was at the garage at 7:30 PM.
+  - _establishes: Doyle at the garage, 7:30 PM_
+- **c032** [observation] — on Lindemann Kreuzer says Lindemann was at the parlour at 6:30 PM.
+  - _establishes: Lindemann at the parlour, 6:30 PM; Lindemann could reach the weapon_
+- **c033** [observation] — on Lindemann Kreuzer says Lindemann was at the newsstand from 9:30 PM to 10:00 PM.
+  - _establishes: Lindemann at the newsstand, 9:30 PM–10:00 PM_
+- **c034** [observation] — on Lindemann Kreuzer says Lindemann was at the Hallam at 10:30 PM.
+  - _establishes: Lindemann at the Hallam, 10:30 PM_
+- **c035** [observation] — on Ellery Kreuzer says Ellery was at the parlour at 6:00 PM.
+  - _establishes: Ellery at the parlour, 6:00 PM; Ellery could reach the weapon_
+- **c036** [observation] — on Ellery Kreuzer says Ellery was at the newsstand at 9:30 PM.
+  - _establishes: Ellery at the newsstand, 9:30 PM_
+- **c037** [observation] — on Ellery Kreuzer says Ellery was at the El platform at 11:30 PM.
+  - _establishes: Ellery at the El platform, 11:30 PM_
+- **c038** [observation] — on Winslow Kreuzer says Winslow was at the garage at 7:30 PM.
+  - _establishes: Winslow at the garage, 7:30 PM_
+- **c039** [observation] — on Winslow Kreuzer says Winslow was at the newsstand at 10:00 PM.
+  - _establishes: Winslow at the newsstand, 10:00 PM_
+- **c040** [observation] — on Grasso Kreuzer says Grasso was at the newsstand at 9:30 PM.
+  - _establishes: Grasso at the newsstand, 9:30 PM_
+- **c146** [observation] — on Winslow’s account Kreuzer was at the Hallam at 10:30 PM and says Winslow was not.
+  - _establishes: Winslow not at the Hallam, 10:30 PM_
+- **c162** [anchor] — on the ice being brought in Kreuzer claims the newsstand at 8:30 PM, which is when the ice being brought in was on. Asked about it, Kreuzer cannot say that the iceman dropped a block on the step and it went in three — and everybody who was there can.
+  - _establishes: Kreuzer not at the newsstand, 8:30 PM_
+- ★ **c185** [client] — on why I was hired Kreuzer hired us, and wants it known that Ellery needed the victim silent, and would rather we started there.
+  - _establishes: Ellery had a motive (silence-a-witness)_
+
+## Ellery
+
+- **c041** [observation] — on Doyle Ellery says Doyle was at the parlour at 6:00 PM.
+  - _establishes: Doyle at the parlour, 6:00 PM; Doyle could reach the weapon_
+- **c042** [observation] — on Doyle Ellery says Doyle was at the parlour at 11:00 PM.
+  - _establishes: Doyle at the parlour, 11:00 PM_
+- **c043** [observation] — on Doyle Ellery says Doyle was at the newsstand at 8:00 PM.
+  - _establishes: Doyle at the newsstand, 8:00 PM_
+- **c044** [observation] — on Doyle Ellery says Doyle was at the garage at 8:30 PM.
+  - _establishes: Doyle at the garage, 8:30 PM_
+- **c045** [observation] — on Lindemann Ellery says Lindemann was at the newsstand at 8:00 PM.
+  - _establishes: Lindemann at the newsstand, 8:00 PM_
+- **c046** [observation] — on Lindemann Ellery says Lindemann was at the newsstand at 9:30 PM.
+  - _establishes: Lindemann at the newsstand, 9:30 PM_
+- **c047** [observation] — on Lindemann Ellery says Lindemann was at the parlour at 11:00 PM.
+  - _establishes: Lindemann at the parlour, 11:00 PM_
+- **c048** [observation] — on Kreuzer Ellery says Kreuzer was at the parlour at 6:00 PM.
+  - _establishes: Kreuzer at the parlour, 6:00 PM; Kreuzer could reach the weapon_
+- **c049** [observation] — on Kreuzer Ellery says Kreuzer was at the El platform at 7:00 PM.
+  - _establishes: Kreuzer at the El platform, 7:00 PM_
+- **c050** [observation] — on Kreuzer Ellery says Kreuzer was at the El platform at 11:30 PM.
+  - _establishes: Kreuzer at the El platform, 11:30 PM_
+- **c051** [observation] — on Kreuzer Ellery says Kreuzer was at the newsstand at 9:30 PM.
+  - _establishes: Kreuzer at the newsstand, 9:30 PM_
+- **c052** [observation] — on Winslow Ellery says Winslow was at the El platform from 6:30 PM to 7:00 PM.
+  - _establishes: Winslow at the El platform, 6:30 PM–7:00 PM_
+- **c053** [observation] — on Winslow Ellery says Winslow was at the garage at 8:30 PM.
+  - _establishes: Winslow at the garage, 8:30 PM_
+- **c054** [observation] — on Winslow Ellery says Winslow was at the newsstand at 10:30 PM.
+  - _establishes: Winslow at the newsstand, 10:30 PM_
+- **c055** [observation] — on Grasso Ellery says Grasso was at the El platform at 6:30 PM.
+  - _establishes: Grasso at the El platform, 6:30 PM_
+- **c056** [observation] — on Grasso Ellery says Grasso was at the newsstand at 9:30 PM.
+  - _establishes: Grasso at the newsstand, 9:30 PM_
+- **c057** [observation] — on Grasso Ellery says Grasso was at the parlour at 11:00 PM.
+  - _establishes: Grasso at the parlour, 11:00 PM_
+- **c139** [observation] — on Kreuzer’s account Ellery was at the newsstand at 8:00 PM and says Kreuzer was not.
+  - _establishes: Kreuzer not at the newsstand, 8:00 PM_
+- **c149** [denial] — on Grasso’s account Grasso names Ellery as the company for it. Ellery was at the parlour from 6:00 PM to 6:30 PM, and says Grasso was not there.
+  - _establishes: Grasso not at the Hallam, 6:00 PM–6:30 PM_
+- ★ **c193** [overheard] — on Lindemann Ellery on Lindemann: Lindemann was carrying a parcel into the garage and came out without it.
   - _establishes: context only_
-- ★ **c261** [overheard] — on Rosaria Grasso Anneliese Kreuzer on Rosaria Grasso: Rosaria Grasso has been selling things that were never Rosaria Grasso’s to sell.
-  - _establishes: context only_
-
-## Ellsworth Ellery
-
-- **c041** [observation] — on Delia Doyle Ellsworth Ellery says Delia Doyle was at the parlour of Mrs. Teague’s boarding house at 6:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Delia Doyle could reach the weapon_
-- **c042** [observation] — on Delia Doyle Ellsworth Ellery says Delia Doyle was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c043** [observation] — on Delia Doyle Ellsworth Ellery says Delia Doyle was at the newsstand on the corner at 8:00 PM.
-  - _establishes: Delia Doyle at the newsstand on the corner, 8:00 PM_
-- **c044** [observation] — on Delia Doyle Ellsworth Ellery says Delia Doyle was at the garage on Eleventh Avenue at 8:30 PM.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 8:30 PM_
-- **c045** [observation] — on Karl Lindemann Ellsworth Ellery says Karl Lindemann was at the newsstand on the corner at 8:00 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 8:00 PM_
-- **c046** [observation] — on Karl Lindemann Ellsworth Ellery says Karl Lindemann was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM_
-- **c047** [observation] — on Karl Lindemann Ellsworth Ellery says Karl Lindemann was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- ★ **c048** [observation] — on Anneliese Kreuzer Ellsworth Ellery says Anneliese Kreuzer was at the parlour of Mrs. Teague’s boarding house at 6:00 PM.
-  - _establishes: Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Anneliese Kreuzer could reach the weapon_
-- **c049** [observation] — on Anneliese Kreuzer Ellsworth Ellery says Anneliese Kreuzer was at the El platform at Twenty-Third Street at 7:00 PM.
-  - _establishes: Anneliese Kreuzer at the El platform at Twenty-Third Street, 7:00 PM_
-- **c050** [observation] — on Anneliese Kreuzer Ellsworth Ellery says Anneliese Kreuzer was at the El platform at Twenty-Third Street at 11:30 PM.
-  - _establishes: Anneliese Kreuzer at the El platform at Twenty-Third Street, 11:30 PM_
-- **c051** [observation] — on Anneliese Kreuzer Ellsworth Ellery says Anneliese Kreuzer was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Anneliese Kreuzer at the newsstand on the corner, 9:30 PM_
-- **c052** [observation] — on Rutherford Winslow Ellsworth Ellery says Rutherford Winslow was at the El platform at Twenty-Third Street from 6:30 PM to 7:00 PM.
-  - _establishes: Rutherford Winslow at the El platform at Twenty-Third Street, 6:30 PM–7:00 PM_
-- **c053** [observation] — on Rutherford Winslow Ellsworth Ellery says Rutherford Winslow was at the garage on Eleventh Avenue at 8:30 PM.
-  - _establishes: Rutherford Winslow at the garage on Eleventh Avenue, 8:30 PM_
-- **c054** [observation] — on Rutherford Winslow Ellsworth Ellery says Rutherford Winslow was at the newsstand on the corner at 10:30 PM.
-  - _establishes: Rutherford Winslow at the newsstand on the corner, 10:30 PM_
-- **c055** [observation] — on Rosaria Grasso Ellsworth Ellery says Rosaria Grasso was at the El platform at Twenty-Third Street at 6:30 PM.
-  - _establishes: Rosaria Grasso at the El platform at Twenty-Third Street, 6:30 PM_
-- **c056** [observation] — on Rosaria Grasso Ellsworth Ellery says Rosaria Grasso was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c057** [observation] — on Rosaria Grasso Ellsworth Ellery says Rosaria Grasso was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c152** [observation] — on who was there at 6:00 PM Ellsworth Ellery runs through it: at 6:00 PM there were Delia Doyle, Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:00 PM_
-- **c153** [observation] — on who was there at 6:30 PM Ellsworth Ellery runs through it: at 6:30 PM there were Rutherford Winslow, Rosaria Grasso at the El platform at Twenty-Third Street, and nobody else worth naming.
-  - _establishes: Rutherford Winslow at the El platform at Twenty-Third Street, 6:30 PM; Rosaria Grasso at the El platform at Twenty-Third Street, 6:30 PM_
-- **c154** [observation] — on who was there at 7:00 PM Ellsworth Ellery runs through it: at 7:00 PM there were Anneliese Kreuzer, Rutherford Winslow at the El platform at Twenty-Third Street, and nobody else worth naming.
-  - _establishes: Anneliese Kreuzer at the El platform at Twenty-Third Street, 7:00 PM; Rutherford Winslow at the El platform at Twenty-Third Street, 7:00 PM_
-- **c155** [observation] — on who was there at 8:00 PM Ellsworth Ellery runs through it: at 8:00 PM there were Delia Doyle, Karl Lindemann at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Delia Doyle at the newsstand on the corner, 8:00 PM; Karl Lindemann at the newsstand on the corner, 8:00 PM_
-- **c156** [observation] — on who was there at 8:30 PM Ellsworth Ellery runs through it: at 8:30 PM there were Delia Doyle, Rutherford Winslow at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 8:30 PM; Rutherford Winslow at the garage on Eleventh Avenue, 8:30 PM_
-- **c157** [observation] — on who was there at 9:30 PM Ellsworth Ellery runs through it: at 9:30 PM there were Karl Lindemann, Anneliese Kreuzer, Rosaria Grasso at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM; Anneliese Kreuzer at the newsstand on the corner, 9:30 PM; Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c158** [observation] — on who was there at 11:00 PM Ellsworth Ellery runs through it: at 11:00 PM there were Delia Doyle, Karl Lindemann, Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c191** [observation] — on Anneliese Kreuzer’s account Ellsworth Ellery was at the newsstand on the corner at 8:00 PM and says Anneliese Kreuzer was not.
-  - _establishes: Anneliese Kreuzer not at the newsstand on the corner, 8:00 PM_
-- **c202** [observation] — on Rosaria Grasso’s account Rosaria Grasso says Ellsworth Ellery was there for it. Ellsworth Ellery says otherwise: Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 6:00 PM, nowhere near the vestibule of the Hallam apartments.
-  - _establishes: Rosaria Grasso not at the vestibule of the Hallam apartments, 6:00 PM_
-- **c203** [observation] — on Rosaria Grasso’s account Rosaria Grasso says Ellsworth Ellery was there for it. Ellsworth Ellery says otherwise: Ellsworth Ellery was at the El platform at Twenty-Third Street at 6:30 PM, nowhere near the vestibule of the Hallam apartments.
-  - _establishes: Rosaria Grasso not at the vestibule of the Hallam apartments, 6:30 PM_
-- **c253** [overheard] — on Rutherford Winslow Ellsworth Ellery on Rutherford Winslow: A man nobody knew was waiting for Rutherford Winslow at the newsstand on the corner and would not give a name.
+- **c214** [overheard] — on Grasso Ellery on Grasso: Grasso was carrying a parcel into the El platform and came out without it.
   - _establishes: context only_
 
-## Rutherford Winslow
+## Winslow
 
-- **c058** [observation] — on Martin Quill Rutherford Winslow says Martin Quill was at the garage on Eleventh Avenue at 8:00 PM.
-  - _establishes: Martin Quill at the garage on Eleventh Avenue, 8:00 PM_
-- **c059** [observation] — on Delia Doyle Rutherford Winslow says Delia Doyle was at the garage on Eleventh Avenue at 7:30 PM.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 7:30 PM_
-- **c060** [observation] — on Delia Doyle Rutherford Winslow says Delia Doyle was at the garage on Eleventh Avenue at 8:30 PM.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 8:30 PM_
-- **c061** [observation] — on Delia Doyle Rutherford Winslow says Delia Doyle was at the newsstand on the corner at 11:30 PM.
-  - _establishes: Delia Doyle at the newsstand on the corner, 11:30 PM_
-- **c062** [observation] — on Karl Lindemann Rutherford Winslow says Karl Lindemann was at the El platform at Twenty-Third Street at 6:00 PM.
-  - _establishes: Karl Lindemann at the El platform at Twenty-Third Street, 6:00 PM_
-- **c063** [observation] — on Karl Lindemann Rutherford Winslow says Karl Lindemann was at the newsstand on the corner at 9:00 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:00 PM_
-- **c064** [observation] — on Karl Lindemann Rutherford Winslow says Karl Lindemann was at the newsstand on the corner at 10:00 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 10:00 PM_
-- **c065** [observation] — on Anneliese Kreuzer Rutherford Winslow says Anneliese Kreuzer was at the El platform at Twenty-Third Street at 7:00 PM.
-  - _establishes: Anneliese Kreuzer at the El platform at Twenty-Third Street, 7:00 PM_
-- **c066** [observation] — on Anneliese Kreuzer Rutherford Winslow says Anneliese Kreuzer was at the garage on Eleventh Avenue at 7:30 PM.
-  - _establishes: Anneliese Kreuzer at the garage on Eleventh Avenue, 7:30 PM_
-- **c067** [observation] — on Anneliese Kreuzer Rutherford Winslow says Anneliese Kreuzer was at the newsstand on the corner at 10:00 PM.
-  - _establishes: Anneliese Kreuzer at the newsstand on the corner, 10:00 PM_
-- **c068** [observation] — on Ellsworth Ellery Rutherford Winslow says Ellsworth Ellery was at the El platform at Twenty-Third Street from 6:30 PM to 7:00 PM.
-  - _establishes: Ellsworth Ellery at the El platform at Twenty-Third Street, 6:30 PM–7:00 PM_
-- **c069** [observation] — on Ellsworth Ellery Rutherford Winslow says Ellsworth Ellery was at the garage on Eleventh Avenue at 8:30 PM.
-  - _establishes: Ellsworth Ellery at the garage on Eleventh Avenue, 8:30 PM_
-- **c070** [observation] — on Ellsworth Ellery Rutherford Winslow says Ellsworth Ellery was at the newsstand on the corner at 9:00 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 9:00 PM_
-- **c071** [observation] — on Rosaria Grasso Rutherford Winslow says Rosaria Grasso was at the El platform at Twenty-Third Street from 6:00 PM to 6:30 PM.
-  - _establishes: Rosaria Grasso at the El platform at Twenty-Third Street, 6:00 PM–6:30 PM_
-- **c072** [observation] — on Rosaria Grasso Rutherford Winslow says Rosaria Grasso was at the newsstand on the corner at 9:00 PM.
-  - _establishes: Rosaria Grasso at the newsstand on the corner, 9:00 PM_
-- **c159** [observation] — on who was there at 6:00 PM Rutherford Winslow runs through it: at 6:00 PM there were Karl Lindemann, Rosaria Grasso at the El platform at Twenty-Third Street, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the El platform at Twenty-Third Street, 6:00 PM; Rosaria Grasso at the El platform at Twenty-Third Street, 6:00 PM_
-- **c160** [observation] — on who was there at 6:30 PM Rutherford Winslow runs through it: at 6:30 PM there were Ellsworth Ellery, Rosaria Grasso at the El platform at Twenty-Third Street, and nobody else worth naming.
-  - _establishes: Ellsworth Ellery at the El platform at Twenty-Third Street, 6:30 PM; Rosaria Grasso at the El platform at Twenty-Third Street, 6:30 PM_
-- **c161** [observation] — on who was there at 7:00 PM Rutherford Winslow runs through it: at 7:00 PM there were Anneliese Kreuzer, Ellsworth Ellery at the El platform at Twenty-Third Street, and nobody else worth naming.
-  - _establishes: Anneliese Kreuzer at the El platform at Twenty-Third Street, 7:00 PM; Ellsworth Ellery at the El platform at Twenty-Third Street, 7:00 PM_
-- **c162** [observation] — on who was there at 7:30 PM Rutherford Winslow runs through it: at 7:30 PM there were Delia Doyle, Anneliese Kreuzer at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 7:30 PM; Anneliese Kreuzer at the garage on Eleventh Avenue, 7:30 PM_
-- **c163** [observation] — on who was there at 8:30 PM Rutherford Winslow runs through it: at 8:30 PM there were Delia Doyle, Ellsworth Ellery at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 8:30 PM; Ellsworth Ellery at the garage on Eleventh Avenue, 8:30 PM_
-- ★ **c164** [observation] — on who was there at 9:00 PM Rutherford Winslow runs through it: at 9:00 PM there were Karl Lindemann, Ellsworth Ellery, Rosaria Grasso at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:00 PM; Ellsworth Ellery at the newsstand on the corner, 9:00 PM; Rosaria Grasso at the newsstand on the corner, 9:00 PM_
-- **c165** [observation] — on who was there at 10:00 PM Rutherford Winslow runs through it: at 10:00 PM there were Karl Lindemann, Anneliese Kreuzer at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 10:00 PM; Anneliese Kreuzer at the newsstand on the corner, 10:00 PM_
-- ★ **c192** [observation] — on Anneliese Kreuzer’s account Rutherford Winslow was at the newsstand on the corner at 9:00 PM and says Anneliese Kreuzer was not.
-  - _establishes: Anneliese Kreuzer not at the newsstand on the corner, 9:00 PM_
-- **c210** [anchor] — on the noise that evening Rutherford Winslow was at the newsstand on the corner at 9:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, when the lights went.
-  - _establishes: noise at the victim’s suite at the residential hotel at 9:00 PM; the victim dead by 9:00 PM; how it was done_
-
-## Rosaria Grasso
-
-- **c073** [observation] — on Martin Quill Rosaria Grasso says Martin Quill was at the garage on Eleventh Avenue at 7:00 PM.
-  - _establishes: Martin Quill at the garage on Eleventh Avenue, 7:00 PM_
-- **c074** [observation] — on Martin Quill Rosaria Grasso says Martin Quill was at the newsstand on the corner at 7:30 PM.
-  - _establishes: Martin Quill at the newsstand on the corner, 7:30 PM_
-- **c075** [observation] — on Delia Doyle Rosaria Grasso says Delia Doyle was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c076** [observation] — on Karl Lindemann Rosaria Grasso says Karl Lindemann was at the newsstand on the corner from 9:00 PM to 9:30 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:00 PM–9:30 PM_
-- **c077** [observation] — on Karl Lindemann Rosaria Grasso says Karl Lindemann was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c078** [observation] — on Karl Lindemann Rosaria Grasso says Karl Lindemann was at the garage on Eleventh Avenue at 11:30 PM.
-  - _establishes: Karl Lindemann at the garage on Eleventh Avenue, 11:30 PM_
-- **c079** [observation] — on Anneliese Kreuzer Rosaria Grasso says Anneliese Kreuzer was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Anneliese Kreuzer at the newsstand on the corner, 9:30 PM_
-- **c080** [observation] — on Ellsworth Ellery Rosaria Grasso says Ellsworth Ellery was at the newsstand on the corner from 9:00 PM to 9:30 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 9:00 PM–9:30 PM_
-- **c081** [observation] — on Ellsworth Ellery Rosaria Grasso says Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c082** [observation] — on Rutherford Winslow Rosaria Grasso says Rutherford Winslow was at the newsstand on the corner at 9:00 PM.
-  - _establishes: Rutherford Winslow at the newsstand on the corner, 9:00 PM_
-- ★ **c166** [observation] — on who was there at 9:00 PM Rosaria Grasso runs through it: at 9:00 PM there were Karl Lindemann, Ellsworth Ellery, Rutherford Winslow at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:00 PM; Ellsworth Ellery at the newsstand on the corner, 9:00 PM; Rutherford Winslow at the newsstand on the corner, 9:00 PM_
-- **c167** [observation] — on who was there at 9:30 PM Rosaria Grasso runs through it: at 9:30 PM there were Karl Lindemann, Anneliese Kreuzer, Ellsworth Ellery at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM; Anneliese Kreuzer at the newsstand on the corner, 9:30 PM; Ellsworth Ellery at the newsstand on the corner, 9:30 PM_
-- **c168** [observation] — on who was there at 11:00 PM Rosaria Grasso runs through it: at 11:00 PM there were Delia Doyle, Karl Lindemann, Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c193** [observation] — on Anneliese Kreuzer’s account Rosaria Grasso was at the newsstand on the corner at 9:00 PM and says Anneliese Kreuzer was not.
-  - _establishes: Anneliese Kreuzer not at the newsstand on the corner, 9:00 PM_
-- **c195** [observation] — on Anneliese Kreuzer’s account Anneliese Kreuzer says Rosaria Grasso was there for it. Rosaria Grasso says otherwise: Rosaria Grasso was at the El platform at Twenty-Third Street from 8:00 PM to 8:30 PM, nowhere near the newsstand on the corner.
-  - _establishes: Anneliese Kreuzer not at the newsstand on the corner, 8:00 PM–8:30 PM_
-- **c211** [anchor] — on the noise that evening Rosaria Grasso was at the newsstand on the corner at 9:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, when the lights went.
-  - _establishes: noise at the victim’s suite at the residential hotel at 9:00 PM; the victim dead by 9:00 PM; how it was done_
-- **c233** [overheard] — on Delia Doyle Rosaria Grasso on Delia Doyle: Delia Doyle keeps a photograph and will not be asked about it twice.
+- **c058** [observation] — on Quill Winslow says Quill was at the garage at 8:00 PM.
+  - _establishes: Quill at the garage, 8:00 PM_
+- **c059** [observation] — on Doyle Winslow says Doyle was at the garage at 7:30 PM.
+  - _establishes: Doyle at the garage, 7:30 PM_
+- **c060** [observation] — on Doyle Winslow says Doyle was at the garage at 8:30 PM.
+  - _establishes: Doyle at the garage, 8:30 PM_
+- **c061** [observation] — on Doyle Winslow says Doyle was at the newsstand at 11:30 PM.
+  - _establishes: Doyle at the newsstand, 11:30 PM_
+- **c062** [observation] — on Lindemann Winslow says Lindemann was at the El platform at 6:00 PM.
+  - _establishes: Lindemann at the El platform, 6:00 PM_
+- ★ **c063** [observation] — on Lindemann Winslow says Lindemann was at the newsstand at 9:00 PM.
+  - _establishes: Lindemann at the newsstand, 9:00 PM_
+- **c064** [observation] — on Lindemann Winslow says Lindemann was at the newsstand at 10:00 PM.
+  - _establishes: Lindemann at the newsstand, 10:00 PM_
+- **c065** [observation] — on Kreuzer Winslow says Kreuzer was at the El platform at 7:00 PM.
+  - _establishes: Kreuzer at the El platform, 7:00 PM_
+- **c066** [observation] — on Kreuzer Winslow says Kreuzer was at the garage at 7:30 PM.
+  - _establishes: Kreuzer at the garage, 7:30 PM_
+- **c067** [observation] — on Kreuzer Winslow says Kreuzer was at the newsstand at 10:00 PM.
+  - _establishes: Kreuzer at the newsstand, 10:00 PM_
+- **c068** [observation] — on Ellery Winslow says Ellery was at the El platform from 6:30 PM to 7:00 PM.
+  - _establishes: Ellery at the El platform, 6:30 PM–7:00 PM_
+- **c069** [observation] — on Ellery Winslow says Ellery was at the garage at 8:30 PM.
+  - _establishes: Ellery at the garage, 8:30 PM_
+- ★ **c070** [observation] — on Ellery Winslow says Ellery was at the newsstand at 9:00 PM.
+  - _establishes: Ellery at the newsstand, 9:00 PM_
+- **c071** [observation] — on Grasso Winslow says Grasso was at the El platform from 6:00 PM to 6:30 PM.
+  - _establishes: Grasso at the El platform, 6:00 PM–6:30 PM_
+- ★ **c072** [observation] — on Grasso Winslow says Grasso was at the newsstand at 9:00 PM.
+  - _establishes: Grasso at the newsstand, 9:00 PM_
+- ★ **c140** [observation] — on Kreuzer’s account Winslow was at the newsstand at 9:00 PM and says Kreuzer was not.
+  - _establishes: Kreuzer not at the newsstand, 9:00 PM_
+- ★ **c156** [anchor] — on the noise that evening Winslow was at the newsstand at 9:00 PM and heard a scuffle and a chair dragging from the direction of the suite, just after the lights went.
+  - _establishes: noise at the suite at 9:00 PM; the victim dead by 9:00 PM; how it was done_
+- **c186** [overheard] — on Doyle Winslow on Doyle: Doyle sends money out of every pay envelope and cannot say where it goes.
+  - _establishes: context only_
+- ★ **c201** [overheard] — on Ellery Winslow on Ellery: A man nobody knew was waiting for Ellery at the newsstand and would not give a name.
   - _establishes: context only_
 
-## Lurline Mosley
+## Grasso
 
-- **c083** [observation] — on Delia Doyle Lurline Mosley says Delia Doyle was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 7:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:00 PM–7:00 PM; Delia Doyle could reach the weapon_
-- ★ **c084** [observation] — on Delia Doyle Lurline Mosley says Delia Doyle was at the parlour of Mrs. Teague’s boarding house at 9:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 9:00 PM_
-- **c085** [observation] — on Delia Doyle Lurline Mosley says Delia Doyle was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c086** [observation] — on Delia Doyle Lurline Mosley says Delia Doyle was at the El platform at Twenty-Third Street at 10:00 PM.
-  - _establishes: Delia Doyle at the El platform at Twenty-Third Street, 10:00 PM_
-- **c087** [observation] — on Karl Lindemann Lurline Mosley says Karl Lindemann was at the parlour of Mrs. Teague’s boarding house from 6:30 PM to 7:30 PM.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 6:30 PM–7:30 PM; Karl Lindemann could reach the weapon_
-- **c088** [observation] — on Karl Lindemann Lurline Mosley says Karl Lindemann was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c089** [observation] — on Anneliese Kreuzer Lurline Mosley says Anneliese Kreuzer was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.
-  - _establishes: Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:00 PM–6:30 PM; Anneliese Kreuzer could reach the weapon_
-- **c090** [observation] — on Ellsworth Ellery Lurline Mosley says Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 6:00 PM.
-  - _establishes: Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Ellsworth Ellery could reach the weapon_
-- **c091** [observation] — on Ellsworth Ellery Lurline Mosley says Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c092** [observation] — on Rutherford Winslow Lurline Mosley says Rutherford Winslow was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.
-  - _establishes: Rutherford Winslow at the parlour of Mrs. Teague’s boarding house, 9:30 PM_
-- **c093** [observation] — on Rosaria Grasso Lurline Mosley says Rosaria Grasso was at the parlour of Mrs. Teague’s boarding house from 10:30 PM to 11:00 PM.
-  - _establishes: Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 10:30 PM–11:00 PM_
-- **c169** [observation] — on who was there at 6:00 PM Lurline Mosley runs through it: at 6:00 PM there were Delia Doyle, Anneliese Kreuzer, Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 6:00 PM_
-- **c170** [observation] — on who was there at 6:30 PM Lurline Mosley runs through it: at 6:30 PM there were Delia Doyle, Karl Lindemann, Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 6:30 PM; Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 6:30 PM; Anneliese Kreuzer at the parlour of Mrs. Teague’s boarding house, 6:30 PM_
-- **c171** [observation] — on who was there at 7:00 PM Lurline Mosley runs through it: at 7:00 PM there were Delia Doyle, Karl Lindemann at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 7:00 PM; Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 7:00 PM_
-- **c172** [observation] — on who was there at 11:00 PM Lurline Mosley runs through it: at 11:00 PM there were Delia Doyle, Karl Lindemann, Ellsworth Ellery, Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c196** [observation] — on Ellsworth Ellery’s account Lurline Mosley was at the parlour of Mrs. Teague’s boarding house at 9:00 PM and says Ellsworth Ellery was not.
-  - _establishes: Ellsworth Ellery not at the parlour of Mrs. Teague’s boarding house, 9:00 PM_
-- **c212** [anchor] — on the noise that evening Lurline Mosley was at the parlour of Mrs. Teague’s boarding house at 9:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, when the lights went.
-  - _establishes: noise at the victim’s suite at the residential hotel at 9:00 PM; the victim dead by 9:00 PM; how it was done_
-- **c229** [overheard] — on Rosaria Grasso and Martin Quill Lurline Mosley says Martin Quill told Rosaria Grasso that Friday was the end of it, one way or the other.
-  - _establishes: Rosaria Grasso had a motive (debt)_
-- **c254** [overheard] — on Rutherford Winslow Lurline Mosley on Rutherford Winslow: Rutherford Winslow goes very quiet when the racing wire is mentioned.
+- **c073** [observation] — on Quill Grasso says Quill was at the garage at 7:00 PM.
+  - _establishes: Quill at the garage, 7:00 PM_
+- **c074** [observation] — on Quill Grasso says Quill was at the newsstand at 7:30 PM.
+  - _establishes: Quill at the newsstand, 7:30 PM_
+- **c075** [observation] — on Doyle Grasso says Doyle was at the parlour at 11:00 PM.
+  - _establishes: Doyle at the parlour, 11:00 PM_
+- **c076** [observation] — on Lindemann Grasso says Lindemann was at the newsstand from 9:00 PM to 9:30 PM.
+  - _establishes: Lindemann at the newsstand, 9:00 PM–9:30 PM_
+- **c077** [observation] — on Lindemann Grasso says Lindemann was at the parlour at 11:00 PM.
+  - _establishes: Lindemann at the parlour, 11:00 PM_
+- **c078** [observation] — on Lindemann Grasso says Lindemann was at the garage at 11:30 PM.
+  - _establishes: Lindemann at the garage, 11:30 PM_
+- **c079** [observation] — on Kreuzer Grasso says Kreuzer was at the newsstand at 9:30 PM.
+  - _establishes: Kreuzer at the newsstand, 9:30 PM_
+- **c080** [observation] — on Ellery Grasso says Ellery was at the newsstand from 9:00 PM to 9:30 PM.
+  - _establishes: Ellery at the newsstand, 9:00 PM–9:30 PM_
+- **c081** [observation] — on Ellery Grasso says Ellery was at the parlour at 11:00 PM.
+  - _establishes: Ellery at the parlour, 11:00 PM_
+- **c082** [observation] — on Winslow Grasso says Winslow was at the newsstand at 9:00 PM.
+  - _establishes: Winslow at the newsstand, 9:00 PM_
+- ★ **c142** [denial] — on Kreuzer’s account Kreuzer names Grasso as the company for the newsstand from 8:00 PM to 9:00 PM. Grasso says they were not together that evening.
+  - _establishes: Kreuzer not at the newsstand, 8:00 PM–9:00 PM_
+- **c157** [anchor] — on the noise that evening Grasso was at the newsstand at 9:00 PM and heard a scuffle and a chair dragging from the direction of the suite, just after the lights went.
+  - _establishes: noise at the suite at 9:00 PM; the victim dead by 9:00 PM; how it was done_
+- **c194** [overheard] — on Lindemann Grasso on Lindemann: There is a man who meets people at the garage and nobody will say his name out loud.
   - _establishes: context only_
 
-## Concetta Carbone
+## Mosley
 
-- **c094** [observation] — on Martin Quill Concetta Carbone says Martin Quill was at the newsstand on the corner from 6:00 PM to 6:30 PM.
-  - _establishes: Martin Quill at the newsstand on the corner, 6:00 PM–6:30 PM_
-- **c095** [observation] — on Martin Quill Concetta Carbone says Martin Quill was at the newsstand on the corner at 7:30 PM.
-  - _establishes: Martin Quill at the newsstand on the corner, 7:30 PM_
-- **c096** [observation] — on Martin Quill Concetta Carbone says Martin Quill was at the newsstand on the corner at 8:30 PM.
-  - _establishes: Martin Quill at the newsstand on the corner, 8:30 PM_
-- **c097** [observation] — on Delia Doyle Concetta Carbone says Delia Doyle was at the newsstand on the corner at 8:00 PM.
-  - _establishes: Delia Doyle at the newsstand on the corner, 8:00 PM_
-- **c098** [observation] — on Delia Doyle Concetta Carbone says Delia Doyle was at the newsstand on the corner at 11:30 PM.
-  - _establishes: Delia Doyle at the newsstand on the corner, 11:30 PM_
-- **c099** [observation] — on Karl Lindemann Concetta Carbone says Karl Lindemann was at the newsstand on the corner from 8:00 PM to 10:00 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 8:00 PM–10:00 PM_
-- **c100** [observation] — on Anneliese Kreuzer Concetta Carbone says Anneliese Kreuzer was at the newsstand on the corner from 9:30 PM to 10:00 PM.
-  - _establishes: Anneliese Kreuzer at the newsstand on the corner, 9:30 PM–10:00 PM_
-- **c101** [observation] — on Ellsworth Ellery Concetta Carbone says Ellsworth Ellery was at the newsstand on the corner at 8:00 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 8:00 PM_
-- **c102** [observation] — on Ellsworth Ellery Concetta Carbone says Ellsworth Ellery was at the newsstand on the corner from 9:00 PM to 9:30 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 9:00 PM–9:30 PM_
-- **c103** [observation] — on Ellsworth Ellery Concetta Carbone says Ellsworth Ellery was at the newsstand on the corner at 10:30 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 10:30 PM_
-- **c104** [observation] — on Rutherford Winslow Concetta Carbone says Rutherford Winslow was at the newsstand on the corner at 9:00 PM.
-  - _establishes: Rutherford Winslow at the newsstand on the corner, 9:00 PM_
-- **c105** [observation] — on Rutherford Winslow Concetta Carbone says Rutherford Winslow was at the newsstand on the corner from 10:00 PM to 11:30 PM.
-  - _establishes: Rutherford Winslow at the newsstand on the corner, 10:00 PM–11:30 PM_
-- **c106** [observation] — on Rosaria Grasso Concetta Carbone says Rosaria Grasso was at the newsstand on the corner at 7:30 PM.
-  - _establishes: Rosaria Grasso at the newsstand on the corner, 7:30 PM_
-- **c107** [observation] — on Rosaria Grasso Concetta Carbone says Rosaria Grasso was at the newsstand on the corner from 9:00 PM to 9:30 PM.
-  - _establishes: Rosaria Grasso at the newsstand on the corner, 9:00 PM–9:30 PM_
-- **c173** [observation] — on who was there at 8:00 PM Concetta Carbone runs through it: at 8:00 PM there were Delia Doyle, Karl Lindemann, Ellsworth Ellery at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Delia Doyle at the newsstand on the corner, 8:00 PM; Karl Lindemann at the newsstand on the corner, 8:00 PM; Ellsworth Ellery at the newsstand on the corner, 8:00 PM_
-- ★ **c174** [observation] — on who was there at 9:00 PM Concetta Carbone runs through it: at 9:00 PM there were Karl Lindemann, Ellsworth Ellery, Rutherford Winslow, Rosaria Grasso at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:00 PM; Ellsworth Ellery at the newsstand on the corner, 9:00 PM; Rutherford Winslow at the newsstand on the corner, 9:00 PM; Rosaria Grasso at the newsstand on the corner, 9:00 PM_
-- **c175** [observation] — on who was there at 9:30 PM Concetta Carbone runs through it: at 9:30 PM there were Karl Lindemann, Anneliese Kreuzer, Ellsworth Ellery, Rosaria Grasso at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM; Anneliese Kreuzer at the newsstand on the corner, 9:30 PM; Ellsworth Ellery at the newsstand on the corner, 9:30 PM; Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c176** [observation] — on who was there at 10:00 PM Concetta Carbone runs through it: at 10:00 PM there were Karl Lindemann, Anneliese Kreuzer, Rutherford Winslow at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 10:00 PM; Anneliese Kreuzer at the newsstand on the corner, 10:00 PM; Rutherford Winslow at the newsstand on the corner, 10:00 PM_
-- **c177** [observation] — on who was there at 10:30 PM Concetta Carbone runs through it: at 10:30 PM there were Ellsworth Ellery, Rutherford Winslow at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 10:30 PM; Rutherford Winslow at the newsstand on the corner, 10:30 PM_
-- **c178** [observation] — on who was there at 11:30 PM Concetta Carbone runs through it: at 11:30 PM there were Delia Doyle, Rutherford Winslow at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Delia Doyle at the newsstand on the corner, 11:30 PM; Rutherford Winslow at the newsstand on the corner, 11:30 PM_
-- **c188** [observation] — on Anneliese Kreuzer’s account Concetta Carbone was at the newsstand on the corner at 7:00 PM and says Anneliese Kreuzer was not.
-  - _establishes: Anneliese Kreuzer not at the newsstand on the corner, 7:00 PM_
-- **c194** [observation] — on Anneliese Kreuzer’s account Concetta Carbone was at the newsstand on the corner from 8:00 PM to 9:00 PM and says Anneliese Kreuzer was not.
-  - _establishes: Anneliese Kreuzer not at the newsstand on the corner, 8:00 PM–9:00 PM_
-- ★ **c208** [anchor] — on Martin Quill that evening Concetta Carbone puts Martin Quill at the newsstand on the corner when the ice came, which was 8:30 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 8:30 PM; Martin Quill at the newsstand on the corner, 8:30 PM_
-- **c213** [anchor] — on the noise that evening Concetta Carbone was at the newsstand on the corner at 9:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, when the lights went.
-  - _establishes: noise at the victim’s suite at the residential hotel at 9:00 PM; the victim dead by 9:00 PM; how it was done_
-- **c245** [overheard] — on Ellsworth Ellery Concetta Carbone on Ellsworth Ellery: Ellsworth Ellery was asking around for a hundred dollars in a hurry earlier in the week.
+- **c083** [observation] — on Doyle Mosley says Doyle was at the parlour from 6:00 PM to 7:00 PM.
+  - _establishes: Doyle at the parlour, 6:00 PM–7:00 PM; Doyle could reach the weapon_
+- ★ **c084** [observation] — on Doyle Mosley says Doyle was at the parlour at 9:00 PM.
+  - _establishes: Doyle at the parlour, 9:00 PM_
+- **c085** [observation] — on Doyle Mosley says Doyle was at the parlour at 11:00 PM.
+  - _establishes: Doyle at the parlour, 11:00 PM_
+- **c086** [observation] — on Doyle Mosley says Doyle was at the El platform at 10:00 PM.
+  - _establishes: Doyle at the El platform, 10:00 PM_
+- **c087** [observation] — on Lindemann Mosley says Lindemann was at the parlour from 6:30 PM to 7:30 PM.
+  - _establishes: Lindemann at the parlour, 6:30 PM–7:30 PM; Lindemann could reach the weapon_
+- **c088** [observation] — on Lindemann Mosley says Lindemann was at the parlour at 11:00 PM.
+  - _establishes: Lindemann at the parlour, 11:00 PM_
+- ★ **c089** [observation] — on Kreuzer Mosley says Kreuzer was at the parlour from 6:00 PM to 6:30 PM.
+  - _establishes: Kreuzer at the parlour, 6:00 PM–6:30 PM; Kreuzer could reach the weapon_
+- ★ **c090** [observation] — on Ellery Mosley says Ellery was at the parlour at 6:00 PM.
+  - _establishes: Ellery at the parlour, 6:00 PM; Ellery could reach the weapon_
+- **c091** [observation] — on Ellery Mosley says Ellery was at the parlour at 11:00 PM.
+  - _establishes: Ellery at the parlour, 11:00 PM_
+- **c092** [observation] — on Winslow Mosley says Winslow was at the parlour at 9:30 PM.
+  - _establishes: Winslow at the parlour, 9:30 PM_
+- **c093** [observation] — on Grasso Mosley says Grasso was at the parlour from 10:30 PM to 11:00 PM.
+  - _establishes: Grasso at the parlour, 10:30 PM–11:00 PM_
+- **c143** [observation] — on Ellery’s account Mosley was at the parlour at 9:00 PM and says Ellery was not.
+  - _establishes: Ellery not at the parlour, 9:00 PM_
+- **c158** [anchor] — on the noise that evening Mosley was at the parlour at 9:00 PM and heard a scuffle and a chair dragging from the direction of the suite, just after the lights went.
+  - _establishes: noise at the suite at 9:00 PM; the victim dead by 9:00 PM; how it was done_
+- **c184** [overheard] — on Grasso and Quill Mosley says Quill told Grasso that Friday was the end of it, one way or the other.
+  - _establishes: Grasso had a motive (debt)_
+- **c187** [overheard] — on Doyle Mosley on Doyle: A woman at the parlour asked for Doyle by a name Doyle has not used in years.
+  - _establishes: context only_
+- **c202** [overheard] — on Ellery Mosley on Ellery: Ellery goes very quiet when the racing wire is mentioned.
+  - _establishes: context only_
+- **c215** [overheard] — on Grasso Mosley on Grasso: There is a man who meets people at the El platform and nobody will say his name out loud.
   - _establishes: context only_
 
-## Nunzio Lanza
+## Carbone
 
-- **c108** [observation] — on Karl Lindemann Nunzio Lanza says Karl Lindemann was at the vestibule of the Hallam apartments at 10:30 PM.
-  - _establishes: Karl Lindemann at the vestibule of the Hallam apartments, 10:30 PM_
-- **c109** [observation] — on Anneliese Kreuzer Nunzio Lanza says Anneliese Kreuzer was at the vestibule of the Hallam apartments from 10:30 PM to 11:00 PM.
-  - _establishes: Anneliese Kreuzer at the vestibule of the Hallam apartments, 10:30 PM–11:00 PM_
-- **c179** [observation] — on who was there at 10:30 PM Nunzio Lanza runs through it: at 10:30 PM there were Karl Lindemann, Anneliese Kreuzer at the vestibule of the Hallam apartments, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the vestibule of the Hallam apartments, 10:30 PM; Anneliese Kreuzer at the vestibule of the Hallam apartments, 10:30 PM_
-- **c186** [observation] — on Delia Doyle’s account Nunzio Lanza was at the vestibule of the Hallam apartments at 9:00 PM and says Delia Doyle was not.
-  - _establishes: Delia Doyle not at the vestibule of the Hallam apartments, 9:00 PM_
-- **c187** [observation] — on Karl Lindemann’s account Nunzio Lanza was at the vestibule of the Hallam apartments at 11:30 PM and says Karl Lindemann was not.
-  - _establishes: Karl Lindemann not at the vestibule of the Hallam apartments, 11:30 PM_
-- **c200** [observation] — on Rutherford Winslow’s account Nunzio Lanza was at the vestibule of the Hallam apartments at 10:30 PM and says Rutherford Winslow was not.
-  - _establishes: Rutherford Winslow not at the vestibule of the Hallam apartments, 10:30 PM_
-- **c201** [observation] — on Rosaria Grasso’s account Nunzio Lanza was at the vestibule of the Hallam apartments from 6:00 PM to 6:30 PM and says Rosaria Grasso was not.
-  - _establishes: Rosaria Grasso not at the vestibule of the Hallam apartments, 6:00 PM–6:30 PM_
-- **c225** [overheard] — on Ellsworth Ellery and Martin Quill Nunzio Lanza says Martin Quill said to Ellsworth Ellery that a man who testifies sleeps better.
-  - _establishes: Ellsworth Ellery had a motive (silence-a-witness)_
-- **c238** [overheard] — on Karl Lindemann Nunzio Lanza on Karl Lindemann: Karl Lindemann was carrying a parcel into the garage on Eleventh Avenue and came out without it.
+- **c094** [observation] — on Quill Carbone says Quill was at the newsstand from 6:00 PM to 6:30 PM.
+  - _establishes: Quill at the newsstand, 6:00 PM–6:30 PM_
+- **c095** [observation] — on Quill Carbone says Quill was at the newsstand at 7:30 PM.
+  - _establishes: Quill at the newsstand, 7:30 PM_
+- **c096** [observation] — on Quill Carbone says Quill was at the newsstand at 8:30 PM.
+  - _establishes: Quill at the newsstand, 8:30 PM_
+- **c097** [observation] — on Doyle Carbone says Doyle was at the newsstand at 8:00 PM.
+  - _establishes: Doyle at the newsstand, 8:00 PM_
+- **c098** [observation] — on Doyle Carbone says Doyle was at the newsstand at 11:30 PM.
+  - _establishes: Doyle at the newsstand, 11:30 PM_
+- ★ **c099** [observation] — on Lindemann Carbone says Lindemann was at the newsstand from 8:00 PM to 10:00 PM.
+  - _establishes: Lindemann at the newsstand, 8:00 PM–10:00 PM_
+- **c100** [observation] — on Kreuzer Carbone says Kreuzer was at the newsstand from 9:30 PM to 10:00 PM.
+  - _establishes: Kreuzer at the newsstand, 9:30 PM–10:00 PM_
+- **c101** [observation] — on Ellery Carbone says Ellery was at the newsstand at 8:00 PM.
+  - _establishes: Ellery at the newsstand, 8:00 PM_
+- **c102** [observation] — on Ellery Carbone says Ellery was at the newsstand from 9:00 PM to 9:30 PM.
+  - _establishes: Ellery at the newsstand, 9:00 PM–9:30 PM_
+- **c103** [observation] — on Ellery Carbone says Ellery was at the newsstand at 10:30 PM.
+  - _establishes: Ellery at the newsstand, 10:30 PM_
+- ★ **c104** [observation] — on Winslow Carbone says Winslow was at the newsstand at 9:00 PM.
+  - _establishes: Winslow at the newsstand, 9:00 PM_
+- **c105** [observation] — on Winslow Carbone says Winslow was at the newsstand from 10:00 PM to 11:30 PM.
+  - _establishes: Winslow at the newsstand, 10:00 PM–11:30 PM_
+- **c106** [observation] — on Grasso Carbone says Grasso was at the newsstand at 7:30 PM.
+  - _establishes: Grasso at the newsstand, 7:30 PM_
+- **c107** [observation] — on Grasso Carbone says Grasso was at the newsstand from 9:00 PM to 9:30 PM.
+  - _establishes: Grasso at the newsstand, 9:00 PM–9:30 PM_
+- **c136** [observation] — on Kreuzer’s account Carbone was at the newsstand at 7:00 PM and says Kreuzer was not.
+  - _establishes: Kreuzer not at the newsstand, 7:00 PM_
+- **c141** [observation] — on Kreuzer’s account Carbone was at the newsstand from 8:00 PM to 9:00 PM and says Kreuzer was not.
+  - _establishes: Kreuzer not at the newsstand, 8:00 PM–9:00 PM_
+- ★ **c154** [anchor] — on Quill that evening Carbone puts Quill at the newsstand when the ice came, which was 8:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 8:30 PM; Quill at the newsstand, 8:30 PM_
+- **c159** [anchor] — on the noise that evening Carbone was at the newsstand at 9:00 PM and heard a scuffle and a chair dragging from the direction of the suite, just after the lights went.
+  - _establishes: noise at the suite at 9:00 PM; the victim dead by 9:00 PM; how it was done_
+- ★ **c195** [overheard] — on Lindemann Carbone on Lindemann: Lindemann has been selling things that were never Lindemann’s to sell.
+  - _establishes: context only_
+- **c207** [overheard] — on Winslow Carbone on Winslow: Winslow was asking around for a hundred dollars in a hurry earlier in the week.
   - _establishes: context only_
 
-## Althea Dandridge
+## Lanza
 
-- **c110** [observation] — on Martin Quill Althea Dandridge says Martin Quill was at the garage on Eleventh Avenue at 7:00 PM.
-  - _establishes: Martin Quill at the garage on Eleventh Avenue, 7:00 PM_
-- **c111** [observation] — on Martin Quill Althea Dandridge says Martin Quill was at the garage on Eleventh Avenue at 8:00 PM.
-  - _establishes: Martin Quill at the garage on Eleventh Avenue, 8:00 PM_
-- **c112** [observation] — on Delia Doyle Althea Dandridge says Delia Doyle was at the garage on Eleventh Avenue at 7:30 PM.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 7:30 PM_
-- **c113** [observation] — on Delia Doyle Althea Dandridge says Delia Doyle was at the garage on Eleventh Avenue at 8:30 PM.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 8:30 PM_
-- ★ **c114** [observation] — on Delia Doyle Althea Dandridge says Delia Doyle was at the parlour of Mrs. Teague’s boarding house at 9:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 9:00 PM_
-- **c115** [observation] — on Karl Lindemann Althea Dandridge says Karl Lindemann was at the garage on Eleventh Avenue at 11:30 PM.
-  - _establishes: Karl Lindemann at the garage on Eleventh Avenue, 11:30 PM_
-- **c116** [observation] — on Anneliese Kreuzer Althea Dandridge says Anneliese Kreuzer was at the garage on Eleventh Avenue at 7:30 PM.
-  - _establishes: Anneliese Kreuzer at the garage on Eleventh Avenue, 7:30 PM_
-- **c117** [observation] — on Ellsworth Ellery Althea Dandridge says Ellsworth Ellery was at the garage on Eleventh Avenue at 8:30 PM.
-  - _establishes: Ellsworth Ellery at the garage on Eleventh Avenue, 8:30 PM_
-- **c118** [observation] — on Rutherford Winslow Althea Dandridge says Rutherford Winslow was at the garage on Eleventh Avenue from 7:30 PM to 8:30 PM.
-  - _establishes: Rutherford Winslow at the garage on Eleventh Avenue, 7:30 PM–8:30 PM_
-- **c119** [observation] — on Rosaria Grasso Althea Dandridge says Rosaria Grasso was at the garage on Eleventh Avenue at 7:00 PM.
-  - _establishes: Rosaria Grasso at the garage on Eleventh Avenue, 7:00 PM_
-- **c120** [observation] — on Rosaria Grasso Althea Dandridge says Rosaria Grasso was at the garage on Eleventh Avenue at 11:30 PM.
-  - _establishes: Rosaria Grasso at the garage on Eleventh Avenue, 11:30 PM_
-- **c180** [observation] — on who was there at 7:30 PM Althea Dandridge runs through it: at 7:30 PM there were Delia Doyle, Anneliese Kreuzer, Rutherford Winslow at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 7:30 PM; Anneliese Kreuzer at the garage on Eleventh Avenue, 7:30 PM; Rutherford Winslow at the garage on Eleventh Avenue, 7:30 PM_
-- **c181** [observation] — on who was there at 8:30 PM Althea Dandridge runs through it: at 8:30 PM there were Delia Doyle, Ellsworth Ellery, Rutherford Winslow at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Delia Doyle at the garage on Eleventh Avenue, 8:30 PM; Ellsworth Ellery at the garage on Eleventh Avenue, 8:30 PM; Rutherford Winslow at the garage on Eleventh Avenue, 8:30 PM_
-- **c182** [observation] — on who was there at 11:30 PM Althea Dandridge runs through it: at 11:30 PM there were Karl Lindemann, Rosaria Grasso at the garage on Eleventh Avenue, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the garage on Eleventh Avenue, 11:30 PM; Rosaria Grasso at the garage on Eleventh Avenue, 11:30 PM_
-- **c197** [observation] — on Ellsworth Ellery’s account Althea Dandridge was at the parlour of Mrs. Teague’s boarding house at 9:00 PM and says Ellsworth Ellery was not.
-  - _establishes: Ellsworth Ellery not at the parlour of Mrs. Teague’s boarding house, 9:00 PM_
-- ★ **c214** [anchor] — on the noise that evening Althea Dandridge was at the parlour of Mrs. Teague’s boarding house at 9:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, when the lights went.
-  - _establishes: noise at the victim’s suite at the residential hotel at 9:00 PM; the victim dead by 9:00 PM; how it was done_
-- ★ **c223** [overheard] — on Anneliese Kreuzer and Martin Quill Althea Dandridge says Anneliese Kreuzer said Martin Quill had taken everything and would be made to feel it.
-  - _establishes: Anneliese Kreuzer had a motive (revenge)_
-- **c227** [overheard] — on Rutherford Winslow and Martin Quill Althea Dandridge says Martin Quill told Rutherford Winslow that the story would run whether Rutherford Winslow liked it or not.
-  - _establishes: Rutherford Winslow had a motive (exposure)_
-- **c231** [overheard] — on Delia Doyle Althea Dandridge on Delia Doyle: Delia Doyle sends money out of every pay envelope and cannot say where it goes.
+- **c108** [observation] — on Lindemann Lanza says Lindemann was at the Hallam at 10:30 PM.
+  - _establishes: Lindemann at the Hallam, 10:30 PM_
+- **c109** [observation] — on Kreuzer Lanza says Kreuzer was at the Hallam from 10:30 PM to 11:00 PM.
+  - _establishes: Kreuzer at the Hallam, 10:30 PM–11:00 PM_
+- **c134** [observation] — on Doyle’s account Lanza was at the Hallam at 9:00 PM and says Doyle was not.
+  - _establishes: Doyle not at the Hallam, 9:00 PM_
+- **c135** [observation] — on Lindemann’s account Lanza was at the Hallam at 11:30 PM and says Lindemann was not.
+  - _establishes: Lindemann not at the Hallam, 11:30 PM_
+- **c147** [observation] — on Winslow’s account Lanza was at the Hallam at 10:30 PM and says Winslow was not.
+  - _establishes: Winslow not at the Hallam, 10:30 PM_
+- **c148** [observation] — on Grasso’s account Lanza was at the Hallam from 6:00 PM to 6:30 PM and says Grasso was not.
+  - _establishes: Grasso not at the Hallam, 6:00 PM–6:30 PM_
+- **c180** [overheard] — on Ellery and Quill Lanza says Quill said to Ellery that a man who testifies sleeps better.
+  - _establishes: Ellery had a motive (silence-a-witness)_
+- ★ **c188** [overheard] — on Doyle Lanza on Doyle: Doyle keeps a photograph and will not be asked about it twice.
   - _establishes: context only_
-- **c246** [overheard] — on Ellsworth Ellery Althea Dandridge on Ellsworth Ellery: A man nobody knew was waiting for Ellsworth Ellery at the newsstand on the corner and would not give a name.
-  - _establishes: context only_
-- **c259** [overheard] — on Rosaria Grasso Althea Dandridge on Rosaria Grasso: Rosaria Grasso was carrying a parcel into the El platform at Twenty-Third Street and came out without it.
+- **c216** [overheard] — on Grasso Lanza on Grasso: Grasso has been selling things that were never Grasso’s to sell.
   - _establishes: context only_
 
-## Louis Lefkowitz
+## Dandridge
 
-- **c121** [observation] — on Martin Quill Louis Lefkowitz says Martin Quill was at the garage on Eleventh Avenue at 8:00 PM.
-  - _establishes: Martin Quill at the garage on Eleventh Avenue, 8:00 PM_
-- **c122** [observation] — on Delia Doyle Louis Lefkowitz says Delia Doyle was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c123** [observation] — on Karl Lindemann Louis Lefkowitz says Karl Lindemann was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM_
-- **c124** [observation] — on Karl Lindemann Louis Lefkowitz says Karl Lindemann was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c125** [observation] — on Anneliese Kreuzer Louis Lefkowitz says Anneliese Kreuzer was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Anneliese Kreuzer at the newsstand on the corner, 9:30 PM_
-- **c126** [observation] — on Ellsworth Ellery Louis Lefkowitz says Ellsworth Ellery was at the El platform at Twenty-Third Street at 6:30 PM.
-  - _establishes: Ellsworth Ellery at the El platform at Twenty-Third Street, 6:30 PM_
-- **c127** [observation] — on Ellsworth Ellery Louis Lefkowitz says Ellsworth Ellery was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Ellsworth Ellery at the newsstand on the corner, 9:30 PM_
-- **c128** [observation] — on Ellsworth Ellery Louis Lefkowitz says Ellsworth Ellery was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c129** [observation] — on Rutherford Winslow Louis Lefkowitz says Rutherford Winslow was at the El platform at Twenty-Third Street at 6:30 PM.
-  - _establishes: Rutherford Winslow at the El platform at Twenty-Third Street, 6:30 PM_
-- **c130** [observation] — on Rutherford Winslow Louis Lefkowitz says Rutherford Winslow was at the garage on Eleventh Avenue at 8:00 PM.
-  - _establishes: Rutherford Winslow at the garage on Eleventh Avenue, 8:00 PM_
-- **c131** [observation] — on Rosaria Grasso Louis Lefkowitz says Rosaria Grasso was at the El platform at Twenty-Third Street at 6:30 PM.
-  - _establishes: Rosaria Grasso at the El platform at Twenty-Third Street, 6:30 PM_
-- **c132** [observation] — on Rosaria Grasso Louis Lefkowitz says Rosaria Grasso was at the newsstand on the corner at 9:30 PM.
-  - _establishes: Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c133** [observation] — on Rosaria Grasso Louis Lefkowitz says Rosaria Grasso was at the parlour of Mrs. Teague’s boarding house at 11:00 PM.
-  - _establishes: Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c183** [observation] — on who was there at 6:30 PM Louis Lefkowitz runs through it: at 6:30 PM there were Ellsworth Ellery, Rutherford Winslow, Rosaria Grasso at the El platform at Twenty-Third Street, and nobody else worth naming.
-  - _establishes: Ellsworth Ellery at the El platform at Twenty-Third Street, 6:30 PM; Rutherford Winslow at the El platform at Twenty-Third Street, 6:30 PM; Rosaria Grasso at the El platform at Twenty-Third Street, 6:30 PM_
-- **c184** [observation] — on who was there at 9:30 PM Louis Lefkowitz runs through it: at 9:30 PM there were Karl Lindemann, Anneliese Kreuzer, Ellsworth Ellery, Rosaria Grasso at the newsstand on the corner, and nobody else worth naming.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM; Anneliese Kreuzer at the newsstand on the corner, 9:30 PM; Ellsworth Ellery at the newsstand on the corner, 9:30 PM; Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c185** [observation] — on who was there at 11:00 PM Louis Lefkowitz runs through it: at 11:00 PM there were Delia Doyle, Karl Lindemann, Ellsworth Ellery, Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c218** [anchor] — on the 6:30 PM round The beat cop’s pass at 6:30 PM puts Ellsworth Ellery, Rutherford Winslow, Rosaria Grasso at the El platform at Twenty-Third Street.
-  - _establishes: Ellsworth Ellery at the El platform at Twenty-Third Street, 6:30 PM; Rutherford Winslow at the El platform at Twenty-Third Street, 6:30 PM; Rosaria Grasso at the El platform at Twenty-Third Street, 6:30 PM_
-- **c219** [anchor] — on the 8:00 PM round The beat cop’s pass at 8:00 PM puts Rutherford Winslow at the garage on Eleventh Avenue.
-  - _establishes: Rutherford Winslow at the garage on Eleventh Avenue, 8:00 PM_
-- **c220** [anchor] — on the 9:30 PM round The beat cop’s pass at 9:30 PM puts Karl Lindemann, Anneliese Kreuzer, Ellsworth Ellery, Rosaria Grasso at the newsstand on the corner.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 9:30 PM; Anneliese Kreuzer at the newsstand on the corner, 9:30 PM; Ellsworth Ellery at the newsstand on the corner, 9:30 PM; Rosaria Grasso at the newsstand on the corner, 9:30 PM_
-- **c221** [anchor] — on the 11:00 PM round The beat cop’s pass at 11:00 PM puts Delia Doyle, Karl Lindemann, Ellsworth Ellery, Rosaria Grasso at the parlour of Mrs. Teague’s boarding house.
-  - _establishes: Delia Doyle at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Karl Lindemann at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Ellsworth Ellery at the parlour of Mrs. Teague’s boarding house, 11:00 PM; Rosaria Grasso at the parlour of Mrs. Teague’s boarding house, 11:00 PM_
-- **c239** [overheard] — on Karl Lindemann Louis Lefkowitz on Karl Lindemann: There is a man who meets people at the garage on Eleventh Avenue and nobody will say his name out loud.
+- **c110** [observation] — on Quill Dandridge says Quill was at the garage at 7:00 PM.
+  - _establishes: Quill at the garage, 7:00 PM_
+- **c111** [observation] — on Quill Dandridge says Quill was at the garage at 8:00 PM.
+  - _establishes: Quill at the garage, 8:00 PM_
+- **c112** [observation] — on Doyle Dandridge says Doyle was at the garage at 7:30 PM.
+  - _establishes: Doyle at the garage, 7:30 PM_
+- **c113** [observation] — on Doyle Dandridge says Doyle was at the garage at 8:30 PM.
+  - _establishes: Doyle at the garage, 8:30 PM_
+- **c114** [observation] — on Doyle Dandridge says Doyle was at the parlour at 9:00 PM.
+  - _establishes: Doyle at the parlour, 9:00 PM_
+- **c115** [observation] — on Lindemann Dandridge says Lindemann was at the garage at 11:30 PM.
+  - _establishes: Lindemann at the garage, 11:30 PM_
+- **c116** [observation] — on Kreuzer Dandridge says Kreuzer was at the garage at 7:30 PM.
+  - _establishes: Kreuzer at the garage, 7:30 PM_
+- **c117** [observation] — on Ellery Dandridge says Ellery was at the garage at 8:30 PM.
+  - _establishes: Ellery at the garage, 8:30 PM_
+- **c118** [observation] — on Winslow Dandridge says Winslow was at the garage from 7:30 PM to 8:30 PM.
+  - _establishes: Winslow at the garage, 7:30 PM–8:30 PM_
+- **c119** [observation] — on Grasso Dandridge says Grasso was at the garage at 7:00 PM.
+  - _establishes: Grasso at the garage, 7:00 PM_
+- **c120** [observation] — on Grasso Dandridge says Grasso was at the garage at 11:30 PM.
+  - _establishes: Grasso at the garage, 11:30 PM_
+- **c144** [observation] — on Ellery’s account Dandridge was at the parlour at 9:00 PM and says Ellery was not.
+  - _establishes: Ellery not at the parlour, 9:00 PM_
+- **c160** [anchor] — on the noise that evening Dandridge was at the parlour at 9:00 PM and heard a scuffle and a chair dragging from the direction of the suite, just after the lights went.
+  - _establishes: noise at the suite at 9:00 PM; the victim dead by 9:00 PM; how it was done_
+- ★ **c178** [overheard] — on Kreuzer and Quill Dandridge says Kreuzer said Quill had taken everything and would be made to feel it.
+  - _establishes: Kreuzer had a motive (revenge)_
+- **c182** [overheard] — on Winslow and Quill Dandridge says Quill told Winslow that the story would run whether Winslow liked it or not.
+  - _establishes: Winslow had a motive (exposure)_
+- **c208** [overheard] — on Winslow Dandridge on Winslow: A man nobody knew was waiting for Winslow at the newsstand and would not give a name.
   - _establishes: context only_
 
-## the victim’s suite at the residential hotel (the place itself)
+## Lefkowitz
 
-- ★ **c204** [scene] Martin Quill was found at the victim’s suite at the residential hotel. His watch glass broke against the floor and the hands have not moved since. The fuse going in the building came at 9:00 PM, and the lights on that riser were dead from then until the morning. That puts the killing in that half hour and no later.
+- **c121** [observation] — on Quill Lefkowitz says Quill was at the garage at 8:00 PM.
+  - _establishes: Quill at the garage, 8:00 PM_
+- **c122** [observation] — on Doyle Lefkowitz says Doyle was at the parlour at 11:00 PM.
+  - _establishes: Doyle at the parlour, 11:00 PM_
+- **c123** [observation] — on Lindemann Lefkowitz says Lindemann was at the newsstand at 9:30 PM.
+  - _establishes: Lindemann at the newsstand, 9:30 PM_
+- **c124** [observation] — on Lindemann Lefkowitz says Lindemann was at the parlour at 11:00 PM.
+  - _establishes: Lindemann at the parlour, 11:00 PM_
+- **c125** [observation] — on Kreuzer Lefkowitz says Kreuzer was at the newsstand at 9:30 PM.
+  - _establishes: Kreuzer at the newsstand, 9:30 PM_
+- **c126** [observation] — on Ellery Lefkowitz says Ellery was at the El platform at 6:30 PM.
+  - _establishes: Ellery at the El platform, 6:30 PM_
+- **c127** [observation] — on Ellery Lefkowitz says Ellery was at the newsstand at 9:30 PM.
+  - _establishes: Ellery at the newsstand, 9:30 PM_
+- **c128** [observation] — on Ellery Lefkowitz says Ellery was at the parlour at 11:00 PM.
+  - _establishes: Ellery at the parlour, 11:00 PM_
+- **c129** [observation] — on Winslow Lefkowitz says Winslow was at the El platform at 6:30 PM.
+  - _establishes: Winslow at the El platform, 6:30 PM_
+- **c130** [observation] — on Winslow Lefkowitz says Winslow was at the garage at 8:00 PM.
+  - _establishes: Winslow at the garage, 8:00 PM_
+- **c131** [observation] — on Grasso Lefkowitz says Grasso was at the El platform at 6:30 PM.
+  - _establishes: Grasso at the El platform, 6:30 PM_
+- **c132** [observation] — on Grasso Lefkowitz says Grasso was at the newsstand at 9:30 PM.
+  - _establishes: Grasso at the newsstand, 9:30 PM_
+- **c133** [observation] — on Grasso Lefkowitz says Grasso was at the parlour at 11:00 PM.
+  - _establishes: Grasso at the parlour, 11:00 PM_
+- **c165** [anchor] — on Ellery Lefkowitz came round at 6:30 PM and had Ellery at the El platform.
+  - _establishes: Ellery at the El platform, 6:30 PM_
+- **c166** [anchor] — on Winslow Lefkowitz came round at 6:30 PM and had Winslow at the El platform.
+  - _establishes: Winslow at the El platform, 6:30 PM_
+- **c167** [anchor] — on Grasso Lefkowitz came round at 6:30 PM and had Grasso at the El platform.
+  - _establishes: Grasso at the El platform, 6:30 PM_
+- **c168** [anchor] — on Winslow Lefkowitz came round at 8:00 PM and had Winslow at the garage.
+  - _establishes: Winslow at the garage, 8:00 PM_
+- **c169** [anchor] — on Lindemann Lefkowitz came round at 9:30 PM and had Lindemann at the newsstand.
+  - _establishes: Lindemann at the newsstand, 9:30 PM_
+- **c170** [anchor] — on Kreuzer Lefkowitz came round at 9:30 PM and had Kreuzer at the newsstand.
+  - _establishes: Kreuzer at the newsstand, 9:30 PM_
+- **c171** [anchor] — on Ellery Lefkowitz came round at 9:30 PM and had Ellery at the newsstand.
+  - _establishes: Ellery at the newsstand, 9:30 PM_
+- **c172** [anchor] — on Grasso Lefkowitz came round at 9:30 PM and had Grasso at the newsstand.
+  - _establishes: Grasso at the newsstand, 9:30 PM_
+- **c173** [anchor] — on Doyle Lefkowitz came round at 11:00 PM and had Doyle at the parlour.
+  - _establishes: Doyle at the parlour, 11:00 PM_
+- **c174** [anchor] — on Lindemann Lefkowitz came round at 11:00 PM and had Lindemann at the parlour.
+  - _establishes: Lindemann at the parlour, 11:00 PM_
+- **c175** [anchor] — on Ellery Lefkowitz came round at 11:00 PM and had Ellery at the parlour.
+  - _establishes: Ellery at the parlour, 11:00 PM_
+- **c176** [anchor] — on Grasso Lefkowitz came round at 11:00 PM and had Grasso at the parlour.
+  - _establishes: Grasso at the parlour, 11:00 PM_
+- **c200** [overheard] — on Ellery Lefkowitz on Ellery: Ellery was asking around for a hundred dollars in a hurry earlier in the week.
+  - _establishes: context only_
+
+## the suite (the place itself)
+
+- ★ **c150** [scene] Quill was found at the suite. His watch glass broke against the floor and the hands have not moved since. The fuse went at 9:00 PM and the lights on that riser were dead from then until the morning.
   - _establishes: the victim dead by 9:00 PM; how it was done_
-- ★ **c205** [morgue] The coroner puts death between 9:00 PM and 10:30 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.
+- ★ **c151** [morgue] The coroner puts death between 9:00 PM and 10:30 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.
   - _establishes: death between 9:00 PM and 10:30 PM; how it was done_
-- **c217** [physical] Anneliese Kreuzer carries the mark of it: candle smoke on the ceilings of everyone who sat it out. That fixes Anneliese Kreuzer at the victim’s suite at the residential hotel at 9:00 PM, when the fuse going in the building happened.
-  - _establishes: Anneliese Kreuzer at the victim’s suite at the residential hotel, 9:00 PM_
-- **c226** [document] Found at the victim’s suite at the residential hotel: A typed page of dates and sums in Martin Quill’s file, headed with Rutherford Winslow’s name.
-  - _establishes: Rutherford Winslow had a motive (exposure)_
+- **c164** [physical] Kreuzer still carries it: candle smoke on the ceilings of everyone who sat it out. The fuse going in the building was at 9:00 PM, at the suite.
+  - _establishes: Kreuzer at the suite, 9:00 PM_
+- **c181** [document] Found at the suite: A typed page of dates and sums in Quill’s file, headed with Winslow’s name.
+  - _establishes: Winslow had a motive (exposure)_
 
-## the parlour of Mrs. Teague’s boarding house (the place itself)
+## the parlour (the place itself)
 
-- **c206** [physical] A length of sash cord is gone from the parlour of Mrs. Teague’s boarding house. A cut end of the same hemp is still tied to the fitting it was taken from.
-  - _establishes: something gone from the parlour of Mrs. Teague’s boarding house; how it was done_
-- ★ **c222** [document] Found at the parlour of Mrs. Teague’s boarding house: A clipping about the failure of Anneliese Kreuzer’s business, with Martin Quill’s name underlined twice in pencil.
-  - _establishes: Anneliese Kreuzer had a motive (revenge)_
-- **c234** [physical] A board-and-keep receipt at the parlour of Mrs. Teague’s boarding house, monthly, eight years of them.
+- **c152** [physical] A length of sash cord is gone from the parlour. A cut end of the same hemp is still tied to the fitting it was taken from.
+  - _establishes: something gone from the parlour; how it was done_
+- ★ **c177** [document] Found at the parlour: A clipping about the failure of Kreuzer’s business, with Quill’s name underlined twice in pencil.
+  - _establishes: Kreuzer had a motive (revenge)_
+- ★ **c189** [physical] A board-and-keep receipt at the parlour, monthly, eight years of them.
   - _establishes: context only_
-- **c235** [physical] A child’s shoe at the parlour of Mrs. Teague’s boarding house, and nobody at the parlour of Mrs. Teague’s boarding house has any children.
+- **c190** [physical] A child’s shoe at the parlour, and nobody at the parlour has any children.
   - _establishes: context only_
-- ★ **c236** [overheard] The woman who keeps the child says it straight out: Delia Doyle was at the parlour of Mrs. Teague’s boarding house from 9:00 PM, the same as every week, and left with the same face as always.
-  - _establishes: Delia Doyle’s hidden-family accounted for; Delia Doyle at the parlour of Mrs. Teague’s boarding house, 9:00 PM_
-- **c237** [overheard] The parish register at the parlour of Mrs. Teague’s boarding house has the christening in it, and the board money receipted through the evening in question.
-  - _establishes: Delia Doyle’s hidden-family accounted for; Delia Doyle at the parlour of Mrs. Teague’s boarding house, 9:00 PM_
+- ★ **c191** [overheard] The woman who keeps the child says it straight out: Doyle was at the parlour from 9:00 PM, the same as every week, and left with the same face as always.
+  - _establishes: Doyle’s hidden-family accounted for; Doyle at the parlour, 9:00 PM_
+- ★ **c192** [overheard] The parish register at the parlour has the christening in it, and the board money receipted through the evening in question.
+  - _establishes: Doyle’s hidden-family accounted for; Doyle at the parlour, 9:00 PM_
 
-## the newsstand on the corner (the place itself)
+## the newsstand (the place itself)
 
-- **c215** [anchor] The ice being brought in at 8:30 PM puts Karl Lindemann at the newsstand on the corner.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 8:30 PM_
-- **c216** [physical] Karl Lindemann carries the mark of it: a wet patch down one side of a coat. That fixes Karl Lindemann at the newsstand on the corner at 8:30 PM, when the ice being brought in happened.
-  - _establishes: Karl Lindemann at the newsstand on the corner, 8:30 PM_
-- **c228** [document] Found at the newsstand on the corner: A promissory note for $4,000 signed by Rosaria Grasso, endorsed to Martin Quill, three months past due.
-  - _establishes: Rosaria Grasso had a motive (debt)_
-- ★ **c248** [physical] Betting slips at the newsstand on the corner in Ellsworth Ellery’s pocketbook, all of them losers, all of them this month.
+- **c161** [anchor] The ice being brought in was at 8:30 PM, and Lindemann was at the newsstand for it.
+  - _establishes: Lindemann at the newsstand, 8:30 PM_
+- **c163** [physical] Lindemann still carries it: a wet patch down one side of a coat. The ice being brought in was at 8:30 PM, at the newsstand.
+  - _establishes: Lindemann at the newsstand, 8:30 PM_
+- **c183** [document] Found at the newsstand: A promissory note for $4,000 signed by Grasso, endorsed to Quill, three months past due.
+  - _establishes: Grasso had a motive (debt)_
+- ★ **c203** [physical] Betting slips at the newsstand in Ellery’s pocketbook, all of them losers, all of them this month.
   - _establishes: context only_
-- **c249** [physical] A book of markers at the newsstand on the corner with Ellsworth Ellery’s initials against four of them.
+- ★ **c204** [physical] A book of markers at the newsstand with Ellery’s initials against four of them.
   - _establishes: context only_
-- ★ **c250** [overheard] The bookmaker’s runner is found and will say it: Ellsworth Ellery was at the newsstand on the corner from 9:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
-  - _establishes: Ellsworth Ellery’s gambling-debt accounted for; Ellsworth Ellery at the newsstand on the corner, 9:00 PM_
-- **c251** [overheard] The book at the newsstand on the corner has the payment entered against Ellsworth Ellery’s name and the time beside it, from 9:00 PM, in the clerk’s own hand.
-  - _establishes: Ellsworth Ellery’s gambling-debt accounted for; Ellsworth Ellery at the newsstand on the corner, 9:00 PM_
-- **c255** [physical] Betting slips at the newsstand on the corner in Rutherford Winslow’s pocketbook, all of them losers, all of them this month.
+- ★ **c205** [overheard] The bookmaker’s runner is found and will say it: Ellery was at the newsstand from 9:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Ellery’s gambling-debt accounted for; Ellery at the newsstand, 9:00 PM_
+- ★ **c206** [overheard] The book at the newsstand has the payment entered against Ellery’s name and the time beside it, from 9:00 PM, in the clerk’s own hand.
+  - _establishes: Ellery’s gambling-debt accounted for; Ellery at the newsstand, 9:00 PM_
+- ★ **c210** [physical] Betting slips at the newsstand in Winslow’s pocketbook, all of them losers, all of them this month.
   - _establishes: context only_
-- **c256** [physical] A book of markers at the newsstand on the corner with Rutherford Winslow’s initials against four of them.
+- **c211** [physical] A book of markers at the newsstand with Winslow’s initials against four of them.
   - _establishes: context only_
-- ★ **c257** [overheard] The bookmaker’s runner is found and will say it: Rutherford Winslow was at the newsstand on the corner from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
-  - _establishes: Rutherford Winslow’s gambling-debt accounted for; Rutherford Winslow at the newsstand on the corner, 10:30 PM_
-- **c258** [overheard] The book at the newsstand on the corner has the payment entered against Rutherford Winslow’s name and the time beside it, from 10:30 PM, in the clerk’s own hand.
-  - _establishes: Rutherford Winslow’s gambling-debt accounted for; Rutherford Winslow at the newsstand on the corner, 10:30 PM_
+- ★ **c212** [overheard] The bookmaker’s runner is found and will say it: Winslow was at the newsstand from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Winslow’s gambling-debt accounted for; Winslow at the newsstand, 10:30 PM_
+- **c213** [overheard] The book at the newsstand has the payment entered against Winslow’s name and the time beside it, from 10:30 PM, in the clerk’s own hand.
+  - _establishes: Winslow’s gambling-debt accounted for; Winslow at the newsstand, 10:30 PM_
 
-## the vestibule of the Hallam apartments (the place itself)
+## the Hallam (the place itself)
 
-- **c224** [document] Found at the vestibule of the Hallam apartments: A subpoena naming Martin Quill before the grand jury, with Ellsworth Ellery’s name written in the margin.
-  - _establishes: Ellsworth Ellery had a motive (silence-a-witness)_
+- **c179** [document] Found at the Hallam: A subpoena naming Quill before the grand jury, with Ellery’s name written in the margin.
+  - _establishes: Ellery had a motive (silence-a-witness)_
 
-## the garage on Eleventh Avenue (the place itself)
+## the garage (the place itself)
 
-- **c241** [physical] Wrapping paper and a cut string at the garage on Eleventh Avenue, and the shop it came from closed two years ago.
+- **c196** [physical] Wrapping paper and a cut string at the garage, and the shop it came from closed two years ago.
   - _establishes: context only_
-- ★ **c242** [physical] A pawn ticket at the garage on Eleventh Avenue in a name that does not exist, made out at the hour in question.
+- ★ **c197** [physical] A pawn ticket at the garage in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- ★ **c243** [overheard] The receiver at the garage on Eleventh Avenue would rather talk than be held: Karl Lindemann was there from 11:30 PM handing over a parcel of somebody else’s silver, which is a charge Karl Lindemann will take over this one.
-  - _establishes: Karl Lindemann’s fence accounted for; Karl Lindemann at the garage on Eleventh Avenue, 11:30 PM_
-- **c244** [overheard] The goods turn up, tagged and dated, and the tag puts Karl Lindemann at the garage on Eleventh Avenue from 11:30 PM with both hands full.
-  - _establishes: Karl Lindemann’s fence accounted for; Karl Lindemann at the garage on Eleventh Avenue, 11:30 PM_
+- ★ **c198** [overheard] The receiver at the garage would rather talk than be held: Lindemann was there from 11:30 PM handing over a parcel of somebody else’s silver, which is a charge Lindemann will take over this one.
+  - _establishes: Lindemann’s fence accounted for; Lindemann at the garage, 11:30 PM_
+- **c199** [overheard] The goods turn up, tagged and dated, and the tag puts Lindemann at the garage from 11:30 PM with both hands full.
+  - _establishes: Lindemann’s fence accounted for; Lindemann at the garage, 11:30 PM_
 
-## the El platform at Twenty-Third Street (the place itself)
+## the El platform (the place itself)
 
-- ★ **c262** [physical] Wrapping paper and a cut string at the El platform at Twenty-Third Street, and the shop it came from closed two years ago.
+- **c217** [physical] Wrapping paper and a cut string at the El platform, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c263** [physical] A pawn ticket at the El platform at Twenty-Third Street in a name that does not exist, made out at the hour in question.
+- **c218** [physical] A pawn ticket at the El platform in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- ★ **c264** [overheard] The receiver at the El platform at Twenty-Third Street would rather talk than be held: Rosaria Grasso was there from 6:00 PM to 6:30 PM handing over a parcel of somebody else’s silver, which is a charge Rosaria Grasso will take over this one.
-  - _establishes: Rosaria Grasso’s fence accounted for; Rosaria Grasso at the El platform at Twenty-Third Street, 6:00 PM–6:30 PM_
-- **c265** [overheard] The goods turn up, tagged and dated, and the tag puts Rosaria Grasso at the El platform at Twenty-Third Street from 6:00 PM to 6:30 PM with both hands full.
-  - _establishes: Rosaria Grasso’s fence accounted for; Rosaria Grasso at the El platform at Twenty-Third Street, 6:00 PM–6:30 PM_
+- **c219** [overheard] The receiver at the El platform would rather talk than be held: Grasso was there from 6:00 PM to 6:30 PM handing over a parcel of somebody else’s silver, which is a charge Grasso will take over this one.
+  - _establishes: Grasso’s fence accounted for; Grasso at the El platform, 6:00 PM–6:30 PM_
+- **c220** [overheard] The goods turn up, tagged and dated, and the tag puts Grasso at the El platform from 6:00 PM to 6:30 PM with both hands full.
+  - _establishes: Grasso’s fence accounted for; Grasso at the El platform, 6:00 PM–6:30 PM_
 
 ## Withheld observations
 
-- ~~Rosaria Grasso saw Karl Lindemann at the El platform at Twenty-Third Street, 6:00 PM~~ — lying about that time, will not say.
-- ~~Rosaria Grasso saw Rutherford Winslow at the El platform at Twenty-Third Street, 6:00 PM, 6:30 PM~~ — lying about that time, will not say.
-- ~~Rosaria Grasso saw Ellsworth Ellery at the El platform at Twenty-Third Street, 6:30 PM~~ — lying about that time, will not say.
-- ~~Rosaria Grasso saw Louis Lefkowitz at the El platform at Twenty-Third Street, 6:30 PM~~ — lying about that time, will not say.
-- ~~Anneliese Kreuzer saw Ellsworth Ellery at the El platform at Twenty-Third Street, 7:00 PM~~ — lying about that time, will not say.
-- ~~Anneliese Kreuzer saw Rutherford Winslow at the El platform at Twenty-Third Street, 7:00 PM~~ — lying about that time, will not say.
-- ~~Delia Doyle saw Lurline Mosley at the parlour of Mrs. Teague’s boarding house, 9:00 PM~~ — lying about that time, will not say.
-- ~~Delia Doyle saw Althea Dandridge at the parlour of Mrs. Teague’s boarding house, 9:00 PM~~ — lying about that time, will not say.
-- ~~Anneliese Kreuzer saw Martin Quill at the victim’s suite at the residential hotel, 9:00 PM~~ — lying about that time, will not say.
-- ~~Ellsworth Ellery saw Karl Lindemann at the newsstand on the corner, 9:00 PM~~ — lying about that time, will not say.
-- ~~Ellsworth Ellery saw Rutherford Winslow at the newsstand on the corner, 9:00 PM~~ — lying about that time, will not say.
-- ~~Ellsworth Ellery saw Rosaria Grasso at the newsstand on the corner, 9:00 PM~~ — lying about that time, will not say.
-- ~~Ellsworth Ellery saw Concetta Carbone at the newsstand on the corner, 9:00 PM~~ — lying about that time, will not say.
-- ~~Rutherford Winslow saw Ellsworth Ellery at the newsstand on the corner, 10:30 PM~~ — lying about that time, will not say.
-- ~~Rutherford Winslow saw Concetta Carbone at the newsstand on the corner, 10:30 PM~~ — lying about that time, will not say.
-- ~~Karl Lindemann saw Rosaria Grasso at the garage on Eleventh Avenue, 11:30 PM~~ — lying about that time, will not say.
-- ~~Karl Lindemann saw Althea Dandridge at the garage on Eleventh Avenue, 11:30 PM~~ — lying about that time, will not say.
+- ~~Grasso saw Lindemann at the El platform, 6:00 PM~~ — lying about that time, will not say.
+- ~~Grasso saw Winslow at the El platform, 6:00 PM, 6:30 PM~~ — lying about that time, will not say.
+- ~~Grasso saw Ellery at the El platform, 6:30 PM~~ — lying about that time, will not say.
+- ~~Grasso saw Lefkowitz at the El platform, 6:30 PM~~ — lying about that time, will not say.
+- ~~Kreuzer saw Ellery at the El platform, 7:00 PM~~ — lying about that time, will not say.
+- ~~Kreuzer saw Winslow at the El platform, 7:00 PM~~ — lying about that time, will not say.
+- ~~Doyle saw Mosley at the parlour, 9:00 PM~~ — lying about that time, will not say.
+- ~~Doyle saw Dandridge at the parlour, 9:00 PM~~ — lying about that time, will not say.
+- ~~Kreuzer saw Quill at the suite, 9:00 PM~~ — lying about that time, will not say.
+- ~~Ellery saw Lindemann at the newsstand, 9:00 PM~~ — lying about that time, will not say.
+- ~~Ellery saw Winslow at the newsstand, 9:00 PM~~ — lying about that time, will not say.
+- ~~Ellery saw Grasso at the newsstand, 9:00 PM~~ — lying about that time, will not say.
+- ~~Ellery saw Carbone at the newsstand, 9:00 PM~~ — lying about that time, will not say.
+- ~~Winslow saw Ellery at the newsstand, 10:30 PM~~ — lying about that time, will not say.
+- ~~Winslow saw Carbone at the newsstand, 10:30 PM~~ — lying about that time, will not say.
+- ~~Lindemann saw Grasso at the garage, 11:30 PM~~ — lying about that time, will not say.
+- ~~Lindemann saw Dandridge at the garage, 11:30 PM~~ — lying about that time, will not say.
 

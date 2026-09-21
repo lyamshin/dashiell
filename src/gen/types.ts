@@ -1,5 +1,5 @@
 /**
- * Humphrey — Milestone 2 data model.
+ * Humphrey — Milestone 2b data model.
  *
  * Everything here is JSON-serializable. No classes, no functions, no undefined
  * that matters: a `Case` round-trips through `JSON.stringify` unchanged.
@@ -8,6 +8,10 @@
  * adjacency between them; what matters is whether a place is watched. Time is
  * pinned by anchors rather than by the coroner. Clues are selected into a
  * small findable graph rather than dumped.
+ *
+ * Changes from M2: no clue names two subjects, so the spine is longer and the
+ * hand is bigger; the budget is computed from par rather than fixed; a secret
+ * activity gets one branch however many people share it.
  */
 
 /** 0..11. Tick 0 is 6:00 PM, tick 11 is 11:30 PM. Half-hour steps. */
@@ -35,7 +39,10 @@ export type FixtureRole =
 
 export interface Place {
   id: Id;
+  /** The full name. Printed once, in the Places section of the sheet. */
   name: string;
+  /** "the speakeasy", "Kaplan's", "the benches". Everything else uses this. */
+  shortName: string;
   kind: PlaceKind;
   /** Who is posted here and sees everyone. Absent means unwatched. */
   watcher?: FixtureRole;
@@ -70,7 +77,10 @@ export interface Motive {
 
 export interface Person {
   id: Id;
+  /** Given name and surname. Printed once, in Dramatis Personae. */
   name: string;
+  /** What everything after the first mention calls them. */
+  surname: string;
   role: string;
   kind: 'victim' | 'suspect' | 'fixture';
   /** Which archetype card this person was drawn from. Suspects and victim. */
@@ -125,8 +135,18 @@ export interface Anchor {
   traces: AnchorTrace[];
   /** "just as the El went over" — how a clue times something against this. */
   timing: string;
-  /** How it reads when it is the thing that times the scene. */
-  sceneTiming: string;
+  /** "just after the lesson stopped" — at the moment the anchor marks. */
+  highTiming: string;
+  /**
+   * A plain fact about the anchor at the murder tick, for the scene report.
+   * States what happened and when; never what it means. `{T}` is the time.
+   */
+  sceneFact: string;
+  /**
+   * The anchor is loud enough to bury a noise. When the anchor that times the
+   * scene masks, nobody hears the killing and no clue claims anybody did.
+   */
+  masks: boolean;
 }
 
 export interface Schedule {
@@ -151,6 +171,10 @@ export type ClueSource =
 
 export type ClueKind =
   | 'observation'
+  /** A named alibi companion refusing the alibi. The one clue kind whose
+   *  source may be lying about that tick themselves: denying that you were
+   *  with somebody costs you nothing and admits nothing. */
+  | 'denial'
   | 'physical'
   | 'morgue'
   | 'document'
@@ -229,25 +253,34 @@ export interface Case {
   anchors: Anchor[];
   /** The two places within earshot of the scene. */
   nearScene: Id[];
+  /**
+   * The anchor that times the scene was loud enough to bury the killing. When
+   * true no clue reports hearing it; when false no clue says it was covered.
+   */
+  soundMasked: boolean;
   schedules: Schedule[];
   observations: Observation[];
   /** The full pool. This is the truth, and what a report is graded against. */
   candidates: Clue[];
-  /** Exactly what the player can find. 30 ± 2. */
+  /** Exactly what the player can find. 34 ± 2. */
   findable: Clue[];
   /** The three opening clues, always in the spine. */
   starting: Id[];
   clientId: Id;
   par: number;
+  /** Spare actions over par, by difficulty. */
+  slack: number;
+  /** Always `par + slack`. */
   budget: number;
   coronerWindow: [Tick, Tick];
   solution: Solution;
   deduction: DeductionPath;
 }
 
-/** "at the Automat", "in Dolan's Bar", "on the El platform". */
-export function placePhrase(name: string): string {
-  return name;
+/** "Salvatore Vitale" -> "Vitale". Names are always given-then-family. */
+export function surnameOf(fullName: string): string {
+  const parts = fullName.trim().split(/\s+/);
+  return (parts[parts.length - 1] ?? fullName) as string;
 }
 
 /** "6:00 PM" .. "11:30 PM" */
@@ -259,15 +292,40 @@ export function clock(tick: Tick): string {
   return `${h12}:${m === 0 ? '00' : String(m)} PM`;
 }
 
-/** Budget in actions, by difficulty. */
-export const BUDGETS: Record<Difficulty, number> = { 1: 22, 2: 20, 3: 18 };
+/**
+ * Spare actions over par, by difficulty. The budget is `par + slack`: a case
+ * that costs more to solve is given more room to solve it in, and the dial is
+ * how little room that is.
+ */
+export const SLACK: Record<Difficulty, number> = { 1: 8, 2: 6, 3: 4 };
 
-/** How deep a noise branch runs, by difficulty. */
+/** Par outside this range is not a case: too small, or too long an evening. */
+export const PAR_FLOOR = 9;
+export const PAR_CEILING = 18;
+
+/** How many findable clues a case deals, and the tolerance on it. */
+export const FINDABLE_TARGET = 34;
+export const FINDABLE_TOLERANCE = 2;
+
+/** The spine may not be longer than this, opening three included. */
+export const SPINE_CAP = 15;
+
+/** Noise, disqualifiers included, as a share of the findable set. */
+export const NOISE_RATIO: [number, number] = [0.35, 0.45];
+
+/** How deep a noise branch runs — noise clues before its disqualifier. */
 export const BRANCH_DEPTH: Record<Difficulty, [number, number]> = {
-  1: [1, 1],
-  2: [1, 2],
+  1: [1, 2],
+  2: [1, 3],
   3: [2, 3],
 };
+
+/**
+ * How many branches a case wants, by difficulty: shallow and many at 1, deep
+ * and few at 3. Never fewer than three, which is a cast rejection instead.
+ */
+export const BRANCH_COUNT: Record<Difficulty, number> = { 1: 5, 2: 4, 3: 3 };
+export const BRANCH_COUNT_FLOOR = 3;
 
 /** How many innocents lie about the murder tick, by difficulty. */
 export const M_LIARS: Record<Difficulty, [number, number]> = {

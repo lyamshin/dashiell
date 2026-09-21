@@ -255,14 +255,64 @@ describe('the solvability check bites', () => {
     );
   });
 
-  it('rejects a hand that is not thirty clues', () => {
+  it('rejects a hand that is not thirty-four clues', () => {
     const result = checkSolvability(
       damaged(3, (c) => {
         c.findable = c.findable.slice(0, 20);
       }),
     );
     expect(result.ok).toBe(false);
-    expect(result.failures.some((f) => f.includes('not 30 ± 2'))).toBe(true);
+    expect(result.failures.some((f) => f.includes('not 34 \u00b1 2'))).toBe(true);
+  });
+
+  it('rejects a roll call', () => {
+    const result = checkSolvability(
+      damaged(3, (c) => {
+        const target = c.findable.find(
+          (cl) => cl.kind === 'observation' && cl.establishes.some((f) => f.kind === 'personAt'),
+        );
+        const other = innocentsOf(c)[0] as { id: Id };
+        target?.establishes.push({
+          kind: 'personAt',
+          personId: other.id,
+          place: c.solution.murderPlaceId,
+          tick: 0,
+        });
+      }),
+    );
+    expect(result.ok).toBe(false);
+    expect(result.failures.some((f) => f.includes('roll call'))).toBe(true);
+  });
+
+  it('rejects a case that both hears the killing and says it was masked', () => {
+    const result = checkSolvability(
+      damaged(3, (c) => {
+        c.soundMasked = true;
+        const any = c.candidates[0] as { establishes: unknown[] };
+        any.establishes.push({
+          kind: 'noiseAt',
+          place: c.solution.murderPlaceId,
+          tick: c.solution.murderTick,
+        });
+      }),
+    );
+    expect(result.ok).toBe(false);
+    expect(result.failures.some((f) => f.includes('loud enough to bury'))).toBe(true);
+  });
+
+  it('rejects a secret dealt as two branches', () => {
+    const result = checkSolvability(
+      damaged(3, (c) => {
+        const branches = [...new Set(c.findable.map((cl) => cl.branchId).filter(Boolean))];
+        const [first, second] = branches as [string, string];
+        const owner = c.findable.find((cl) => cl.branchId === first)?.aboutSecretOf;
+        for (const cl of c.findable) {
+          if (cl.branchId === second && owner) cl.aboutSecretOf = owner;
+        }
+      }),
+    );
+    expect(result.ok).toBe(false);
+    expect(result.failures.some((f) => f.includes('the same secret twice'))).toBe(true);
   });
 
   it('rejects noise that does not come out of a secret', () => {
@@ -299,13 +349,33 @@ describe('the solvability check bites', () => {
     expect(result.failures.some((f) => f.includes('cannot be reached from the opening'))).toBe(true);
   });
 
-  it('rejects a par that eats the slack', () => {
+  it('rejects a budget that is not par plus slack', () => {
     const result = checkSolvability(
       damaged(3, (c) => {
-        c.par = c.budget - 1;
+        c.budget = c.par + c.slack + 1;
       }),
     );
     expect(result.ok).toBe(false);
-    expect(result.failures.some((f) => f.includes('less than six actions of slack'))).toBe(true);
+    expect(result.failures.some((f) => f.includes('is not par'))).toBe(true);
+  });
+
+  it('rejects a par under the floor and a par over the ceiling', () => {
+    const low = checkSolvability(
+      damaged(3, (c) => {
+        c.par = 4;
+        c.budget = c.par + c.slack;
+      }),
+    );
+    expect(low.ok).toBe(false);
+    expect(low.failures.some((f) => f.includes('under the floor'))).toBe(true);
+
+    const high = checkSolvability(
+      damaged(3, (c) => {
+        c.par = 25;
+        c.budget = c.par + c.slack;
+      }),
+    );
+    expect(high.ok).toBe(false);
+    expect(high.failures.some((f) => f.includes('over the ceiling'))).toBe(true);
   });
 });

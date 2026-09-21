@@ -19,10 +19,12 @@ import {
  * can actually get hold of. The full candidate pool goes to its own file.
  */
 export function renderTruthSheet(c: Case): string {
+  /** Short name. The full name of a place is printed once, in section 3. */
   const PL = (id: Id | null | undefined): string =>
-    id ? (c.places.find((p) => p.id === id)?.name ?? id) : '—';
+    id ? (c.places.find((p) => p.id === id)?.shortName ?? id) : '—';
+  /** Surname. The full name of a person is printed once, in section 2. */
   const P = (id: Id | null | undefined): string =>
-    id ? (c.people.find((p) => p.id === id)?.name ?? id) : '—';
+    id ? (c.people.find((p) => p.id === id)?.surname ?? id) : '—';
   const person = (id: Id): Person => c.people.find((p) => p.id === id) as Person;
   const schedule = (id: Id) => c.schedules.find((s) => s.personId === id);
 
@@ -47,7 +49,7 @@ export function renderTruthSheet(c: Case): string {
   );
   out.push('');
   out.push(
-    `**Par** ${c.par} actions · **Budget** ${c.budget} · **Slack** ${c.budget - c.par} · ` +
+    `**Par** ${c.par} actions · **Slack** ${c.slack} · **Budget** ${c.budget} · ` +
       `**Findable** ${findable.length} (spine ${byRole('spine').length}, corroboration ${byRole('corroboration').length}, ` +
       `noise ${byRole('noise').length} + ${byRole('disqualifier').length} disqualifiers) · ` +
       `**Noise ratio** ${Math.round((noiseCount / findable.length) * 100)}% · ` +
@@ -61,10 +63,10 @@ export function renderTruthSheet(c: Case): string {
   out.push(
     `${killer.name}, ${killer.role}, ${killer.relationshipToVictim ?? 'known to the victim'}, killed ` +
       `${victim.name}, ${victim.role}, with ${c.method.name} at ${PL(ML)} at ${clock(M)}. ` +
-      `${killer.name} ${killer.motive?.description ?? 'had an unstated reason'} (${c.solution.motiveType}). ` +
-      `${killer.name} had been at ${PL(c.method.accessRequirement.place)} earlier in the evening, where the weapon lived, ` +
-      `and was alone with ${victim.name} when it happened. ` +
-      `${c.clientId === killer.id ? `${killer.name} is also the client: the killer hired us.` : `${P(c.clientId)} hired us.`}`,
+      `${killer.surname} ${killer.motive?.description ?? 'had an unstated reason'} (${c.solution.motiveType}). ` +
+      `${killer.surname} had been at ${PL(c.method.accessRequirement.place)} earlier in the evening, where the weapon lived, ` +
+      `and was alone with ${victim.surname} when it happened. ` +
+      `${c.clientId === killer.id ? `${killer.surname} is also the client: the killer hired us.` : `${P(c.clientId)} hired us.`}`,
   );
   out.push('');
 
@@ -128,7 +130,7 @@ export function renderTruthSheet(c: Case): string {
     const s = schedule(p.id);
     if (!s) continue;
     out.push(
-      `### ${p.name}${p.isKiller ? ' — the killer' : ''}${p.kind === 'victim' ? ' — the victim' : ''}`,
+      `### ${p.surname}${p.isKiller ? ' — the killer' : ''}${p.kind === 'victim' ? ' — the victim' : ''}`,
     );
     out.push('');
     out.push('| Tick | Time | Truth | Claimed | Companion claimed |');
@@ -146,7 +148,7 @@ export function renderTruthSheet(c: Case): string {
   }
   out.push('### Fixtures (never lie, never withhold)');
   out.push('');
-  out.push(`| Tick | Time | ${fixtures.map((f) => `${f.name} (${f.role})`).join(' | ')} |`);
+  out.push(`| Tick | Time | ${fixtures.map((f) => `${f.surname} (${f.role})`).join(' | ')} |`);
   out.push(`| --- | --- | ${fixtures.map(() => '---').join(' | ')} |`);
   for (let t = 0; t < TICKS; t++) {
     const cells = fixtures.map((f) => PL(schedule(f.id)?.truth[t]));
@@ -158,9 +160,9 @@ export function renderTruthSheet(c: Case): string {
   out.push('## 6. Secrets in play');
   out.push('');
   for (const p of suspects) {
-    if (p.secret) out.push(`- **${p.name}** (${p.secret.type}): ${p.secret.description}`);
+    if (p.secret) out.push(`- **${p.surname}** (${p.secret.type}): ${p.secret.description}`);
     if (p.coverSecret) {
-      out.push(`- **${p.name}** also (${p.coverSecret.type}): ${p.coverSecret.description}`);
+      out.push(`- **${p.surname}** also (${p.coverSecret.type}): ${p.coverSecret.description}`);
     }
   }
   out.push('');
@@ -176,7 +178,7 @@ export function renderTruthSheet(c: Case): string {
   for (const place of c.places) {
     const mine = findable.filter((cl) => cl.place === place.id);
     if (mine.length === 0) continue;
-    out.push(`### At ${place.name}`);
+    out.push(`### At ${place.shortName}`);
     out.push('');
     for (const cl of mine) out.push(clueLine(c, cl));
     out.push('');
@@ -192,8 +194,8 @@ export function renderTruthSheet(c: Case): string {
   out.push('## 9. Deduction path');
   out.push('');
   out.push(
-    `Par is **${c.par} actions** against a budget of ${c.budget}: ${c.budget - c.par} spare. ` +
-      'Every id below is a spine clue.',
+    `Par is **${c.par} actions** and the budget is par plus ${c.slack}: **${c.budget}**. ` +
+      'Every id below is a spine clue; the inference is the sheet\u2019s, not the clue\u2019s.',
   );
   out.push('');
   const spineIds = new Set(byRole('spine').map((cl) => cl.id));
@@ -206,7 +208,7 @@ export function renderTruthSheet(c: Case): string {
     return `_(${body}${rest > 0 ? `; + ${rest} corroborating` : ''})_`;
   };
   out.push(
-    `**Time of death.** The coroner gives four ticks. The anchors close it to ${clock(M)}: one puts ${victim.name} alive at ${clock(M - 1)}, the other times the scene at ${clock(M)}. ${(spineOnly(c.deduction.timeOfDeath))}`,
+    `**Time of death.** The coroner gives four ticks. The anchors close it to ${clock(M)}: one puts ${victim.surname} alive at ${clock(M - 1)}, the other times the scene at ${clock(M)}. ${(spineOnly(c.deduction.timeOfDeath))}`,
   );
   out.push('');
   out.push('**Clearing the innocent.**');
@@ -214,17 +216,17 @@ export function renderTruthSheet(c: Case): string {
   for (const p of suspects) {
     if (p.isKiller) continue;
     out.push(
-      `- ${p.name} was not at ${PL(ML)} at ${clock(M)}, on two independent sources. ${(spineOnly(c.deduction.exculpations[p.id] ?? []))}`,
+      `- ${p.surname} was not at ${PL(ML)} at ${clock(M)}. ${(spineOnly(c.deduction.exculpations[p.id] ?? []))}`,
     );
   }
   out.push('');
   out.push(
-    `**Naming the killer.** ${killer.name} claims ${PL(schedule(killer.id)?.claimed[M])} at ${clock(M)}. ` +
+    `**Naming the killer.** ${killer.surname} claims ${PL(schedule(killer.id)?.claimed[M])} at ${clock(M)}. ` +
       `Two independent sources put that out of the question. ${(spineOnly(c.deduction.inculpation))}`,
   );
   out.push('');
   out.push(
-    `**The weapon.** ${killer.name} was at ${PL(c.method.accessRequirement.place)} before ${clock(M)}, where ${c.objects.find((o) => o.id === c.method.evidenceObjectId)?.name ?? 'the weapon'} was kept. ${(spineOnly(c.deduction.access))}`,
+    `**The weapon.** ${killer.surname} was at ${PL(c.method.accessRequirement.place)} before ${clock(M)}, where ${c.objects.find((o) => o.id === c.method.evidenceObjectId)?.name ?? 'the weapon'} was kept. ${(spineOnly(c.deduction.access))}`,
   );
   out.push('');
   out.push(
@@ -244,7 +246,7 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
   for (const p of liars) {
     out.push(
-      `- ${p.name} claims ${PL(schedule(p.id)?.claimed[M])} at ${clock(M)} and was really at ${PL(schedule(p.id)?.truth[M])}. Reason: ${p.secret?.description ?? 'unknown'}`,
+      `- ${p.surname} claims ${PL(schedule(p.id)?.claimed[M])} at ${clock(M)} and was really at ${PL(schedule(p.id)?.truth[M])}. Reason: ${p.secret?.description ?? 'unknown'}`,
     );
   }
   if (liars.length === 0) out.push('- None.');
@@ -252,7 +254,7 @@ export function renderTruthSheet(c: Case): string {
   const motived = suspects.filter((p) => !p.isKiller && p.motive);
   out.push('**Innocents with a motive:**');
   out.push('');
-  for (const p of motived) out.push(`- ${p.name} — ${p.motive?.type}: ${p.motive?.description}.`);
+  for (const p of motived) out.push(`- ${p.surname} — ${p.motive?.type}: ${p.motive?.description}.`);
   if (motived.length === 0) out.push('- None.');
   out.push('');
   out.push('**Noise branches, and what knocks each one down:**');
@@ -316,14 +318,14 @@ function clueLine(c: Case, clue: Clue): string {
   const start = c.starting.includes(clue.id) ? ' ⟨opening⟩' : '';
   const src =
     clue.source.type === 'person'
-      ? `${c.people.find((p) => p.id === (clue.source as { personId: Id }).personId)?.name ?? '?'} on ${(clue.source as { topic: string }).topic}`
+      ? `${c.people.find((p) => p.id === (clue.source as { personId: Id }).personId)?.surname ?? '?'} on ${(clue.source as { topic: string }).topic}`
       : `the place itself`;
   return `- **${clue.id}** [${clue.role}${branch}${start}] (${clue.kind}; ${src})${leads}\n  - ${clue.text}\n  - _establishes: ${facts}_`;
 }
 
 function summarizeFacts(c: Case, facts: Fact[]): string {
-  const PL = (id: Id): string => c.places.find((p) => p.id === id)?.name ?? id;
-  const P = (id: Id): string => c.people.find((p) => p.id === id)?.name ?? id;
+  const PL = (id: Id): string => c.places.find((p) => p.id === id)?.shortName ?? id;
+  const P = (id: Id): string => c.people.find((p) => p.id === id)?.surname ?? id;
 
   const parts: string[] = [];
   let i = 0;
@@ -388,7 +390,7 @@ function mermaid(c: Case): string[] {
   const label = (cl: Clue): string => {
     const who =
       cl.source.type === 'person'
-        ? (c.people.find((p) => p.id === (cl.source as { personId: Id }).personId)?.name ?? '?')
+        ? (c.people.find((p) => p.id === (cl.source as { personId: Id }).personId)?.surname ?? '?')
         : 'the place';
     const mark = cl.role === 'disqualifier' ? '✗ ' : c.starting.includes(cl.id) ? '▶ ' : '';
     return `${mark}${cl.id} ${who}`.replace(/["[\]()]/g, '');
@@ -399,7 +401,7 @@ function mermaid(c: Case): string[] {
     const mine = c.findable.filter((cl) => cl.place === place.id);
     if (mine.length === 0) continue;
     n++;
-    out.push(`  subgraph P${n}["${place.name.replace(/["[\]()]/g, '')}"]`);
+    out.push(`  subgraph P${n}["${place.shortName.replace(/["[\]()]/g, '')}"]`);
     for (const cl of mine) out.push(`    ${cl.id}["${label(cl)}"]`);
     out.push('  end');
   }
@@ -442,8 +444,8 @@ export function renderCandidateSheet(c: Case): string {
     const src = cl.source;
     const key =
       src.type === 'person'
-        ? (c.people.find((p) => p.id === src.personId)?.name ?? src.personId)
-        : `${c.places.find((p) => p.id === src.placeId)?.name ?? src.placeId} (the place itself)`;
+        ? (c.people.find((p) => p.id === src.personId)?.surname ?? src.personId)
+        : `${c.places.find((p) => p.id === src.placeId)?.shortName ?? src.placeId} (the place itself)`;
     const list = bySource.get(key) ?? [];
     list.push(cl);
     bySource.set(key, list);
@@ -473,8 +475,8 @@ export function renderCandidateSheet(c: Case): string {
   }
   for (const [key, ticks] of grouped) {
     const [observerId, subjectId, place] = key.split('|') as [Id, Id, Id];
-    const name = (id: Id): string => c.people.find((p) => p.id === id)?.name ?? id;
-    const placeName = c.places.find((p) => p.id === place)?.name ?? place;
+    const name = (id: Id): string => c.people.find((p) => p.id === id)?.surname ?? id;
+    const placeName = c.places.find((p) => p.id === place)?.shortName ?? place;
     const sorted = ticks.slice().sort((a, b) => a - b);
     out.push(
       `- ~~${name(observerId)} saw ${name(subjectId)} at ${placeName}, ${sorted.map((t) => clock(t)).join(', ')}~~ — lying about that time, will not say.`,

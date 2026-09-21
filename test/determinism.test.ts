@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { BRANCH_DEPTH, generateCase } from '../src/gen/index.js';
+import {
+  BRANCH_COUNT_FLOOR,
+  BRANCH_DEPTH,
+  FINDABLE_TARGET,
+  FINDABLE_TOLERANCE,
+  PAR_CEILING,
+  PAR_FLOOR,
+  SLACK,
+  generateCase,
+} from '../src/gen/index.js';
 
 describe('determinism', () => {
   it('produces byte-identical JSON for the same seed and difficulty', () => {
@@ -42,19 +51,27 @@ describe('determinism', () => {
 });
 
 describe('the difficulty dials', () => {
-  it('sets the budget from the difficulty', () => {
-    expect(generateCase(4, { difficulty: 1 }).budget).toBe(22);
-    expect(generateCase(4, { difficulty: 2 }).budget).toBe(20);
-    expect(generateCase(4, { difficulty: 3 }).budget).toBe(18);
+  it('sets the budget to par plus the slack the difficulty allows', () => {
+    // M2b: the budget is no longer a fixed number. The same case is worth the
+    // same par at every difficulty; what changes is the room it is given.
+    for (const difficulty of [1, 2, 3] as const) {
+      const c = generateCase(4, { difficulty });
+      expect(c.slack).toBe(SLACK[difficulty]);
+      expect(c.budget).toBe(c.par + SLACK[difficulty]);
+    }
+    expect(SLACK[1]).toBeGreaterThan(SLACK[2]);
+    expect(SLACK[2]).toBeGreaterThan(SLACK[3]);
   });
 
   it('holds every rule at every difficulty', () => {
     for (const difficulty of [1, 3] as const) {
       for (let seed = 1; seed <= 40; seed++) {
         const c = generateCase(seed, { difficulty });
-        expect(c.findable.length).toBeGreaterThanOrEqual(28);
-        expect(c.findable.length).toBeLessThanOrEqual(32);
-        expect(c.budget - c.par).toBeGreaterThanOrEqual(6);
+        expect(c.findable.length).toBeGreaterThanOrEqual(FINDABLE_TARGET - FINDABLE_TOLERANCE);
+        expect(c.findable.length).toBeLessThanOrEqual(FINDABLE_TARGET + FINDABLE_TOLERANCE);
+        expect(c.budget - c.par).toBe(SLACK[difficulty]);
+        expect(c.par).toBeGreaterThanOrEqual(PAR_FLOOR);
+        expect(c.par).toBeLessThanOrEqual(PAR_CEILING);
         const innocents = c.people.filter(
           (p) => p.kind === 'suspect' && p.id !== c.solution.killerId,
         );
@@ -70,9 +87,10 @@ describe('the difficulty dials', () => {
           depths.set(cl.branchId, (depths.get(cl.branchId) ?? 0) + 1);
         }
         for (const [, depth] of depths) {
-          expect(depth).toBeGreaterThanOrEqual(1);
+          expect(depth).toBeGreaterThanOrEqual(BRANCH_DEPTH[difficulty][0]);
           expect(depth).toBeLessThanOrEqual(BRANCH_DEPTH[difficulty][1]);
         }
+        expect(depths.size).toBeGreaterThanOrEqual(BRANCH_COUNT_FLOOR);
       }
     }
   });

@@ -8,6 +8,7 @@
     {
       "id": "speakeasy",
       "name": "the speakeasy under the hat shop",
+      "shortName": "the speakeasy",
       "kind": "semi",
       "objects": [
         "obj-revolver",
@@ -21,6 +22,7 @@
     {
       "id": "boarding-parlor",
       "name": "the parlour of Mrs. Teague’s boarding house",
+      "shortName": "the parlour",
       "kind": "semi",
       "objects": [
         "obj-telephone",
@@ -34,6 +36,7 @@
     {
       "id": "laundry-yard",
       "name": "the drying yard behind the laundry",
+      "shortName": "the drying yard",
       "kind": "private",
       "objects": [
         "obj-icepick",
@@ -45,6 +48,7 @@
     {
       "id": "res-brownstone",
       "name": "the victim’s rooms in the brownstone",
+      "shortName": "the brownstone",
       "kind": "private",
       "objects": [
         "obj-bookend"
@@ -55,6 +59,7 @@
     {
       "id": "square-benches",
       "name": "the benches at the north end of the square",
+      "shortName": "the benches",
       "kind": "public",
       "objects": [
         "obj-umbrella",
@@ -66,6 +71,7 @@
     {
       "id": "automat",
       "name": "the Automat on the corner",
+      "shortName": "the Automat",
       "kind": "public",
       "objects": [],
       "isResidence": false,
@@ -134,6 +140,7 @@
     {
       "id": "p-victim",
       "name": "Vivian Dandridge",
+      "surname": "Dandridge",
       "role": "an heiress between marriages",
       "kind": "victim",
       "isKiller": false,
@@ -142,7 +149,8 @@
     {
       "id": "p-s1",
       "name": "Ezekiel Hargrove",
-      "role": "the victim’s nephew, at loose ends",
+      "surname": "Hargrove",
+      "role": "a young man living on expectations",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heir",
@@ -151,7 +159,7 @@
       "secret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "Ezekiel Hargrove drinks alone at the speakeasy under the hat shop from 7:30 PM to 8:00 PM and will claim to have been anywhere else.",
+        "description": "Hargrove drinks alone at the speakeasy from 7:30 PM to 8:00 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 3,
@@ -173,6 +181,7 @@
     {
       "id": "p-s2",
       "name": "Thomas Hanrahan",
+      "surname": "Hanrahan",
       "role": "a ward heeler",
       "kind": "suspect",
       "isKiller": true,
@@ -182,7 +191,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Thomas Hanrahan is at the victim’s rooms in the brownstone from 8:30 PM to 9:30 PM, alone with Vivian Dandridge when it happens at 9:30 PM.",
+        "description": "Hanrahan is at the brownstone from 8:30 PM to 9:30 PM, alone with Dandridge when it happens at 9:30 PM.",
         "cells": [
           {
             "tick": 5,
@@ -208,16 +217,17 @@
     {
       "id": "p-s3",
       "name": "Concetta Petrosino",
+      "surname": "Petrosino",
       "role": "the owner of the block",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-blockowner",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-partner",
+      "relationshipToVictim": "the victim’s business partner",
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Concetta Petrosino hands a parcel of stolen goods to a man at the drying yard behind the laundry from 6:30 PM.",
+        "description": "Petrosino hands a parcel of stolen goods to a man at the drying yard from 6:30 PM.",
         "cells": [
           {
             "tick": 1,
@@ -226,14 +236,15 @@
         ]
       },
       "motive": {
-        "type": "revenge",
-        "description": "blamed the victim for a ruin"
+        "type": "property",
+        "description": "wanted the victim out of a lease"
       },
       "foundAt": "speakeasy"
     },
     {
       "id": "p-s4",
       "name": "Verity Coffin",
+      "surname": "Coffin",
       "role": "a private nurse",
       "kind": "suspect",
       "isKiller": false,
@@ -243,7 +254,7 @@
       "secret": {
         "type": "hidden-family",
         "label": "A child boarded out",
-        "description": "Verity Coffin goes to the Automat on the corner from 9:30 PM to see a child nobody is supposed to know about.",
+        "description": "Coffin goes to the Automat from 9:30 PM to see a child nobody is supposed to know about.",
         "cells": [
           {
             "tick": 7,
@@ -256,6 +267,7 @@
     {
       "id": "p-s5",
       "name": "Albrecht Lindemann",
+      "surname": "Lindemann",
       "role": "a doorman at a club with no sign on it",
       "kind": "suspect",
       "isKiller": false,
@@ -265,7 +277,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Albrecht Lindemann hands a parcel of stolen goods to a man at the speakeasy under the hat shop from 9:30 PM.",
+        "description": "Lindemann hands a parcel of stolen goods to a man at the speakeasy from 9:30 PM.",
         "cells": [
           {
             "tick": 7,
@@ -282,6 +294,7 @@
     {
       "id": "p-s6",
       "name": "Mary Brennan",
+      "surname": "Brennan",
       "role": "a switchboard operator",
       "kind": "suspect",
       "isKiller": false,
@@ -291,7 +304,7 @@
       "secret": {
         "type": "hidden-family",
         "label": "A child boarded out",
-        "description": "Mary Brennan goes to the Automat on the corner from 6:30 PM to 7:00 PM to see a child nobody is supposed to know about.",
+        "description": "Brennan goes to the Automat from 6:30 PM to 7:00 PM to see a child nobody is supposed to know about.",
         "cells": [
           {
             "tick": 1,
@@ -308,6 +321,7 @@
     {
       "id": "p-f1",
       "name": "Ilse Hochstetter",
+      "surname": "Hochstetter",
       "role": "the bartender",
       "kind": "fixture",
       "isKiller": false,
@@ -317,6 +331,7 @@
     {
       "id": "p-f2",
       "name": "Constance Pickering",
+      "surname": "Pickering",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -326,6 +341,7 @@
     {
       "id": "p-f3",
       "name": "Meyer Sirkin",
+      "surname": "Sirkin",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -362,7 +378,9 @@
         }
       ],
       "timing": "while the fight was on the radio",
-      "sceneTiming": "the set was loud enough to cover it, and it was only loud for that half hour",
+      "highTiming": "while the fight was on the radio",
+      "sceneFact": "The fight card was on the bar radio at {T}, turned up loud enough to carry into the street, and off when the card ended.",
+      "masks": true,
       "placeId": "speakeasy"
     },
     {
@@ -383,13 +401,16 @@
         }
       ],
       "timing": "as the bells were going",
-      "sceneTiming": "the bells fix it: the sexton rings them off the sacristy clock and it keeps good time"
+      "highTiming": "while the bells were going",
+      "sceneFact": "The bells rang the half hour at {T}. The sexton rings them off the sacristy clock and it keeps good time.",
+      "masks": false
     }
   ],
   "nearScene": [
     "speakeasy",
     "square-benches"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2641,7 +2662,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -2669,7 +2690,7 @@
           "tick": 11
         }
       ],
-      "text": "Ezekiel Hargrove says Thomas Hanrahan was at the Automat on the corner from 10:00 PM to 11:30 PM.",
+      "text": "Hargrove says Hanrahan was at the Automat from 10:00 PM to 11:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -2680,7 +2701,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -2695,7 +2716,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ezekiel Hargrove says Concetta Petrosino was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Hargrove says Petrosino was at the speakeasy at 8:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -2706,7 +2727,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -2734,10 +2755,14 @@
           "tick": 10
         }
       ],
-      "text": "Ezekiel Hargrove says Concetta Petrosino was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Hargrove says Petrosino was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c009",
+        "c051",
+        "c061"
+      ],
+      "role": "spine"
     },
     {
       "id": "c004",
@@ -2745,7 +2770,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2760,7 +2785,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ezekiel Hargrove says Verity Coffin was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Hargrove says Coffin was at the speakeasy at 8:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -2771,7 +2796,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2781,7 +2806,7 @@
           "tick": 6
         }
       ],
-      "text": "Ezekiel Hargrove says Verity Coffin was at the benches at the north end of the square at 9:00 PM.",
+      "text": "Hargrove says Coffin was at the benches at 9:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -2792,7 +2817,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2826,10 +2851,10 @@
           "tick": 11
         }
       ],
-      "text": "Ezekiel Hargrove says Verity Coffin was at the Automat on the corner from 9:30 PM to 11:30 PM.",
+      "text": "Hargrove says Coffin was at the Automat from 9:30 PM to 11:30 PM.",
       "place": "automat",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c007",
@@ -2837,7 +2862,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Albrecht Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -2847,7 +2872,7 @@
           "tick": 1
         }
       ],
-      "text": "Ezekiel Hargrove says Albrecht Lindemann was at the parlour of Mrs. Teague’s boarding house at 6:30 PM.",
+      "text": "Hargrove says Lindemann was at the parlour at 6:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -2858,7 +2883,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -2868,7 +2893,7 @@
           "tick": 2
         }
       ],
-      "text": "Ezekiel Hargrove says Mary Brennan was at the Automat on the corner at 7:00 PM.",
+      "text": "Hargrove says Brennan was at the Automat at 7:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -2879,7 +2904,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -2907,10 +2932,12 @@
           "tick": 10
         }
       ],
-      "text": "Ezekiel Hargrove says Mary Brennan was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Hargrove says Brennan was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c082"
+      ],
+      "role": "spine"
     },
     {
       "id": "c010",
@@ -2918,7 +2945,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -2939,7 +2966,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Thomas Hanrahan says Ezekiel Hargrove was at the speakeasy under the hat shop from 7:30 PM to 8:00 PM.",
+      "text": "Hanrahan says Hargrove was at the speakeasy from 7:30 PM to 8:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -2950,7 +2977,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -2978,7 +3005,7 @@
           "tick": 11
         }
       ],
-      "text": "Thomas Hanrahan says Ezekiel Hargrove was at the Automat on the corner from 10:00 PM to 11:30 PM.",
+      "text": "Hanrahan says Hargrove was at the Automat from 10:00 PM to 11:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -2989,7 +3016,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -3010,10 +3037,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Thomas Hanrahan says Concetta Petrosino was at the speakeasy under the hat shop from 7:30 PM to 8:00 PM.",
+      "text": "Hanrahan says Petrosino was at the speakeasy from 7:30 PM to 8:00 PM.",
       "place": "automat",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c013",
@@ -3021,7 +3048,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -3043,7 +3070,7 @@
           "tick": 10
         }
       ],
-      "text": "Thomas Hanrahan says Concetta Petrosino was at the Automat on the corner from 10:00 PM to 11:00 PM.",
+      "text": "Hanrahan says Petrosino was at the Automat from 10:00 PM to 11:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -3054,7 +3081,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3076,7 +3103,7 @@
           "tick": 2
         }
       ],
-      "text": "Thomas Hanrahan says Verity Coffin was at the benches at the north end of the square from 6:00 PM to 7:00 PM.",
+      "text": "Hanrahan says Coffin was at the benches from 6:00 PM to 7:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -3087,7 +3114,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3102,7 +3129,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Thomas Hanrahan says Verity Coffin was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Hanrahan says Coffin was at the speakeasy at 8:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -3113,7 +3140,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3141,7 +3168,7 @@
           "tick": 11
         }
       ],
-      "text": "Thomas Hanrahan says Verity Coffin was at the Automat on the corner from 10:00 PM to 11:30 PM.",
+      "text": "Hanrahan says Coffin was at the Automat from 10:00 PM to 11:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -3152,7 +3179,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3167,7 +3194,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Thomas Hanrahan says Mary Brennan was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Hanrahan says Brennan was at the speakeasy at 7:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -3178,7 +3205,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3200,7 +3227,7 @@
           "tick": 10
         }
       ],
-      "text": "Thomas Hanrahan says Mary Brennan was at the Automat on the corner from 10:00 PM to 11:00 PM.",
+      "text": "Hanrahan says Brennan was at the Automat from 10:00 PM to 11:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -3211,7 +3238,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Vivian Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3221,7 +3248,7 @@
           "tick": 0
         }
       ],
-      "text": "Concetta Petrosino says Vivian Dandridge was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Petrosino says Dandridge was at the speakeasy at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3232,7 +3259,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Vivian Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3242,7 +3269,7 @@
           "tick": 6
         }
       ],
-      "text": "Concetta Petrosino says Vivian Dandridge was at the speakeasy under the hat shop at 9:00 PM.",
+      "text": "Petrosino says Dandridge was at the speakeasy at 9:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3253,7 +3280,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -3280,7 +3307,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Concetta Petrosino says Ezekiel Hargrove was at the speakeasy under the hat shop from 7:30 PM to 8:30 PM.",
+      "text": "Petrosino says Hargrove was at the speakeasy from 7:30 PM to 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3291,7 +3318,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -3319,10 +3346,10 @@
           "tick": 10
         }
       ],
-      "text": "Concetta Petrosino says Ezekiel Hargrove was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Petrosino says Hargrove was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c023",
@@ -3330,7 +3357,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3351,7 +3378,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Concetta Petrosino says Thomas Hanrahan was at the speakeasy under the hat shop from 7:30 PM to 8:00 PM.",
+      "text": "Petrosino says Hanrahan was at the speakeasy from 7:30 PM to 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3362,7 +3389,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3384,7 +3411,7 @@
           "tick": 10
         }
       ],
-      "text": "Concetta Petrosino says Thomas Hanrahan was at the Automat on the corner from 10:00 PM to 11:00 PM.",
+      "text": "Petrosino says Hanrahan was at the Automat from 10:00 PM to 11:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3395,7 +3422,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3416,7 +3443,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Concetta Petrosino says Verity Coffin was at the speakeasy under the hat shop from 8:00 PM to 8:30 PM.",
+      "text": "Petrosino says Coffin was at the speakeasy from 8:00 PM to 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3427,7 +3454,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3455,7 +3482,7 @@
           "tick": 10
         }
       ],
-      "text": "Concetta Petrosino says Verity Coffin was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Petrosino says Coffin was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3466,7 +3493,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Albrecht Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -3476,7 +3503,7 @@
           "tick": 11
         }
       ],
-      "text": "Concetta Petrosino says Albrecht Lindemann was at the benches at the north end of the square at 11:30 PM.",
+      "text": "Petrosino says Lindemann was at the benches at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3487,7 +3514,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3502,7 +3529,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Concetta Petrosino says Mary Brennan was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Petrosino says Brennan was at the speakeasy at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3513,7 +3540,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3528,7 +3555,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Concetta Petrosino says Mary Brennan was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Petrosino says Brennan was at the speakeasy at 7:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3539,7 +3566,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3567,7 +3594,7 @@
           "tick": 10
         }
       ],
-      "text": "Concetta Petrosino says Mary Brennan was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Petrosino says Brennan was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3578,7 +3605,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -3599,10 +3626,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Verity Coffin says Ezekiel Hargrove was at the speakeasy under the hat shop from 8:00 PM to 8:30 PM.",
+      "text": "Coffin says Hargrove was at the speakeasy from 8:00 PM to 8:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c032",
@@ -3610,7 +3637,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -3620,7 +3647,7 @@
           "tick": 6
         }
       ],
-      "text": "Verity Coffin says Ezekiel Hargrove was at the benches at the north end of the square at 9:00 PM.",
+      "text": "Coffin says Hargrove was at the benches at 9:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3631,7 +3658,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -3659,7 +3686,7 @@
           "tick": 11
         }
       ],
-      "text": "Verity Coffin says Ezekiel Hargrove was at the Automat on the corner from 10:00 PM to 11:30 PM.",
+      "text": "Coffin says Hargrove was at the Automat from 10:00 PM to 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3670,7 +3697,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3692,7 +3719,7 @@
           "tick": 2
         }
       ],
-      "text": "Verity Coffin says Thomas Hanrahan was at the benches at the north end of the square from 6:00 PM to 7:00 PM.",
+      "text": "Coffin says Hanrahan was at the benches from 6:00 PM to 7:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3703,7 +3730,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3718,7 +3745,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Verity Coffin says Thomas Hanrahan was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Coffin says Hanrahan was at the speakeasy at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration"
@@ -3729,7 +3756,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3757,7 +3784,7 @@
           "tick": 11
         }
       ],
-      "text": "Verity Coffin says Thomas Hanrahan was at the Automat on the corner from 10:00 PM to 11:30 PM.",
+      "text": "Coffin says Hanrahan was at the Automat from 10:00 PM to 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3768,7 +3795,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -3789,7 +3816,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Verity Coffin says Concetta Petrosino was at the speakeasy under the hat shop from 8:00 PM to 8:30 PM.",
+      "text": "Coffin says Petrosino was at the speakeasy from 8:00 PM to 8:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3800,7 +3827,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -3822,7 +3849,7 @@
           "tick": 10
         }
       ],
-      "text": "Verity Coffin says Concetta Petrosino was at the Automat on the corner from 10:00 PM to 11:00 PM.",
+      "text": "Coffin says Petrosino was at the Automat from 10:00 PM to 11:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3833,7 +3860,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3855,7 +3882,7 @@
           "tick": 10
         }
       ],
-      "text": "Verity Coffin says Mary Brennan was at the Automat on the corner from 10:00 PM to 11:00 PM.",
+      "text": "Coffin says Brennan was at the Automat from 10:00 PM to 11:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3866,7 +3893,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Vivian Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3888,7 +3915,7 @@
           "tick": 4
         }
       ],
-      "text": "Albrecht Lindemann says Vivian Dandridge was at the victim’s rooms in the brownstone from 7:00 PM to 8:00 PM.",
+      "text": "Lindemann says Dandridge was at the brownstone from 7:00 PM to 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3899,7 +3926,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -3909,7 +3936,7 @@
           "tick": 1
         }
       ],
-      "text": "Albrecht Lindemann says Ezekiel Hargrove was at the parlour of Mrs. Teague’s boarding house at 6:30 PM.",
+      "text": "Lindemann says Hargrove was at the parlour at 6:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3920,7 +3947,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -3930,7 +3957,7 @@
           "tick": 11
         }
       ],
-      "text": "Albrecht Lindemann says Concetta Petrosino was at the benches at the north end of the square at 11:30 PM.",
+      "text": "Lindemann says Petrosino was at the benches at 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3941,7 +3968,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Vivian Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3951,7 +3978,7 @@
           "tick": 0
         }
       ],
-      "text": "Mary Brennan says Vivian Dandridge was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Brennan says Dandridge was at the speakeasy at 6:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -3962,7 +3989,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -3977,7 +4004,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Mary Brennan says Ezekiel Hargrove was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Brennan says Hargrove was at the speakeasy at 7:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -3988,7 +4015,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -4016,7 +4043,7 @@
           "tick": 10
         }
       ],
-      "text": "Mary Brennan says Ezekiel Hargrove was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Brennan says Hargrove was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4027,7 +4054,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -4042,12 +4069,11 @@
           "methodId": "shot"
         }
       ],
-      "text": "Mary Brennan says Thomas Hanrahan was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Brennan says Hanrahan was at the speakeasy at 7:30 PM.",
       "place": "automat",
       "leadsTo": [
-        "c061",
-        "c122",
-        "c160"
+        "c105",
+        "c012"
       ],
       "role": "spine"
     },
@@ -4057,7 +4083,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -4079,7 +4105,7 @@
           "tick": 10
         }
       ],
-      "text": "Mary Brennan says Thomas Hanrahan was at the Automat on the corner from 10:00 PM to 11:00 PM.",
+      "text": "Brennan says Hanrahan was at the Automat from 10:00 PM to 11:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4090,7 +4116,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -4105,7 +4131,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Mary Brennan says Concetta Petrosino was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Brennan says Petrosino was at the speakeasy at 6:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4116,7 +4142,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -4131,7 +4157,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Mary Brennan says Concetta Petrosino was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Brennan says Petrosino was at the speakeasy at 7:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4142,7 +4168,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -4170,10 +4196,10 @@
           "tick": 10
         }
       ],
-      "text": "Mary Brennan says Concetta Petrosino was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Brennan says Petrosino was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "automat",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c051",
@@ -4181,7 +4207,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4209,10 +4235,13 @@
           "tick": 10
         }
       ],
-      "text": "Mary Brennan says Verity Coffin was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Brennan says Coffin was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c046",
+        "c097"
+      ],
+      "role": "spine"
     },
     {
       "id": "c052",
@@ -4220,7 +4249,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Vivian Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4230,7 +4259,7 @@
           "tick": 0
         }
       ],
-      "text": "Ilse Hochstetter says Vivian Dandridge was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Hochstetter says Dandridge was at the speakeasy at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4241,7 +4270,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Vivian Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4251,7 +4280,7 @@
           "tick": 6
         }
       ],
-      "text": "Ilse Hochstetter says Vivian Dandridge was at the speakeasy under the hat shop at 9:00 PM.",
+      "text": "Hochstetter says Dandridge was at the speakeasy at 9:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4262,7 +4291,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -4272,7 +4301,7 @@
           "tick": 1
         }
       ],
-      "text": "Ilse Hochstetter says Ezekiel Hargrove was at the parlour of Mrs. Teague’s boarding house at 6:30 PM.",
+      "text": "Hochstetter says Hargrove was at the parlour at 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4283,7 +4312,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -4310,7 +4339,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ilse Hochstetter says Ezekiel Hargrove was at the speakeasy under the hat shop from 7:30 PM to 8:30 PM.",
+      "text": "Hochstetter says Hargrove was at the speakeasy from 7:30 PM to 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4321,7 +4350,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -4342,7 +4371,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ilse Hochstetter says Thomas Hanrahan was at the speakeasy under the hat shop from 7:30 PM to 8:00 PM.",
+      "text": "Hochstetter says Hanrahan was at the speakeasy from 7:30 PM to 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4353,7 +4382,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -4368,7 +4397,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ilse Hochstetter says Concetta Petrosino was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Hochstetter says Petrosino was at the speakeasy at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4379,7 +4408,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -4412,7 +4441,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ilse Hochstetter says Concetta Petrosino was at the speakeasy under the hat shop from 7:30 PM to 9:00 PM.",
+      "text": "Hochstetter says Petrosino was at the speakeasy from 7:30 PM to 9:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4423,7 +4452,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4444,7 +4473,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ilse Hochstetter says Verity Coffin was at the speakeasy under the hat shop from 8:00 PM to 8:30 PM.",
+      "text": "Hochstetter says Coffin was at the speakeasy from 8:00 PM to 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4455,7 +4484,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Albrecht Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4465,7 +4494,7 @@
           "tick": 1
         }
       ],
-      "text": "Ilse Hochstetter says Albrecht Lindemann was at the parlour of Mrs. Teague’s boarding house at 6:30 PM.",
+      "text": "Hochstetter says Lindemann was at the parlour at 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4476,7 +4505,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Albrecht Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4498,12 +4527,9 @@
           "tick": 9
         }
       ],
-      "text": "Ilse Hochstetter says Albrecht Lindemann was at the speakeasy under the hat shop from 9:30 PM to 10:30 PM.",
+      "text": "Hochstetter says Lindemann was at the speakeasy from 9:30 PM to 10:30 PM.",
       "place": "speakeasy",
-      "leadsTo": [
-        "c140",
-        "c152"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
@@ -4512,7 +4538,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4527,7 +4553,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ilse Hochstetter says Mary Brennan was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Hochstetter says Brennan was at the speakeasy at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4538,7 +4564,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4553,7 +4579,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ilse Hochstetter says Mary Brennan was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Hochstetter says Brennan was at the speakeasy at 7:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4564,7 +4590,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -4580,7 +4606,7 @@
           "tick": 1
         }
       ],
-      "text": "Constance Pickering says Ezekiel Hargrove was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Pickering says Hargrove was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4591,7 +4617,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Albrecht Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4601,7 +4627,7 @@
           "tick": 1
         }
       ],
-      "text": "Constance Pickering says Albrecht Lindemann was at the parlour of Mrs. Teague’s boarding house at 6:30 PM.",
+      "text": "Pickering says Lindemann was at the parlour at 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4612,7 +4638,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Albrecht Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4622,13 +4648,10 @@
           "tick": 7
         }
       ],
-      "text": "Constance Pickering says Albrecht Lindemann was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Pickering says Lindemann was at the speakeasy at 9:30 PM.",
       "place": "boarding-parlor",
-      "leadsTo": [
-        "c180",
-        "c175"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c067",
@@ -4636,7 +4659,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4646,7 +4669,7 @@
           "tick": 11
         }
       ],
-      "text": "Constance Pickering says Mary Brennan was at the parlour of Mrs. Teague’s boarding house at 11:30 PM.",
+      "text": "Pickering says Brennan was at the parlour at 11:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4657,7 +4680,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -4667,7 +4690,7 @@
           "tick": 2
         }
       ],
-      "text": "Meyer Sirkin says Ezekiel Hargrove was at the Automat on the corner at 7:00 PM.",
+      "text": "Sirkin says Hargrove was at the Automat at 7:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4678,7 +4701,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Ezekiel Hargrove"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -4712,10 +4735,14 @@
           "tick": 11
         }
       ],
-      "text": "Meyer Sirkin says Ezekiel Hargrove was at the Automat on the corner from 9:30 PM to 11:30 PM.",
+      "text": "Sirkin says Hargrove was at the Automat from 9:30 PM to 11:30 PM.",
       "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c003",
+        "c082",
+        "c142"
+      ],
+      "role": "spine"
     },
     {
       "id": "c070",
@@ -4723,7 +4750,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -4751,7 +4778,7 @@
           "tick": 11
         }
       ],
-      "text": "Meyer Sirkin says Thomas Hanrahan was at the Automat on the corner from 10:00 PM to 11:30 PM.",
+      "text": "Sirkin says Hanrahan was at the Automat from 10:00 PM to 11:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4762,7 +4789,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Concetta Petrosino"
+        "topic": "Petrosino"
       },
       "establishes": [
         {
@@ -4790,7 +4817,7 @@
           "tick": 10
         }
       ],
-      "text": "Meyer Sirkin says Concetta Petrosino was at the Automat on the corner from 9:30 PM to 11:00 PM.",
+      "text": "Sirkin says Petrosino was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4801,7 +4828,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4835,7 +4862,7 @@
           "tick": 11
         }
       ],
-      "text": "Meyer Sirkin says Verity Coffin was at the Automat on the corner from 9:30 PM to 11:30 PM.",
+      "text": "Sirkin says Coffin was at the Automat from 9:30 PM to 11:30 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4846,7 +4873,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4862,7 +4889,7 @@
           "tick": 2
         }
       ],
-      "text": "Meyer Sirkin says Mary Brennan was at the Automat on the corner from 6:30 PM to 7:00 PM.",
+      "text": "Sirkin says Brennan was at the Automat from 6:30 PM to 7:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4873,7 +4900,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Mary Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4919,7 +4946,7 @@
           "tick": 10
         }
       ],
-      "text": "Meyer Sirkin says Mary Brennan was at the Automat on the corner from 8:00 PM to 11:00 PM.",
+      "text": "Sirkin says Brennan was at the Automat from 8:00 PM to 11:00 PM.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4929,24 +4956,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s6",
+        "topic": "Hargrove’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "automat",
+          "tick": 4
         }
       ],
-      "text": "Ezekiel Hargrove runs through it: at 8:30 PM there were Concetta Petrosino, Verity Coffin at the speakeasy under the hat shop, and nobody else worth naming.",
+      "text": "Brennan was at the Automat at 8:00 PM and says Hargrove was not.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4956,30 +4977,24 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f3",
+        "topic": "Hargrove’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "automat",
-          "tick": 7
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 7
+          "tick": 4
         }
       ],
-      "text": "Ezekiel Hargrove runs through it: at 9:30 PM there were Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
+      "text": "Sirkin was at the Automat from 7:30 PM to 8:00 PM and says Hargrove was not.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -4990,35 +5005,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "who was there at 10:00 PM"
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 8
+          "place": "speakeasy",
+          "tick": 5
         }
       ],
-      "text": "Ezekiel Hargrove runs through it: at 10:00 PM there were Thomas Hanrahan, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
+      "text": "Hargrove was at the speakeasy at 8:30 PM and says Hanrahan was not.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -5028,37 +5025,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s3",
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "automat",
-          "tick": 9
+          "place": "speakeasy",
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 6
         }
       ],
-      "text": "Ezekiel Hargrove runs through it: at 10:30 PM there were Thomas Hanrahan, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
+      "text": "Petrosino was at the speakeasy from 8:30 PM to 9:00 PM and says Hanrahan was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5067,37 +5052,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s4",
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 10
+          "place": "speakeasy",
+          "tick": 5
         }
       ],
-      "text": "Ezekiel Hargrove runs through it: at 11:00 PM there were Thomas Hanrahan, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
+      "text": "Coffin was at the speakeasy at 8:30 PM and says Hanrahan was not.",
+      "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5106,25 +5073,31 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f1",
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "automat",
-          "tick": 11
+          "place": "speakeasy",
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 7
         }
       ],
-      "text": "Ezekiel Hargrove runs through it: at 11:30 PM there were Thomas Hanrahan, Verity Coffin at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
+      "text": "Hochstetter was at the speakeasy from 8:30 PM to 9:30 PM and says Hanrahan was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5133,103 +5106,75 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-f2",
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 3
+          "tick": 7
         }
       ],
-      "text": "Thomas Hanrahan runs through it: at 7:30 PM there were Ezekiel Hargrove, Concetta Petrosino, Mary Brennan at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "automat",
+      "text": "Pickering was at the speakeasy at 9:30 PM and says Hanrahan was not.",
+      "place": "boarding-parlor",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c082",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s6",
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "speakeasy",
-          "tick": 4
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "speakeasy",
-          "tick": 4
+          "tick": 6
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "speakeasy",
-          "tick": 4
+          "tick": 7
         }
       ],
-      "text": "Thomas Hanrahan runs through it: at 8:00 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin at the speakeasy under the hat shop, and nobody else worth naming.",
+      "text": "Hanrahan names Brennan as the company for it. Brennan was at the Automat from 8:30 PM to 9:30 PM, and says Hanrahan was not there.",
       "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c133"
+      ],
+      "role": "spine"
     },
     {
       "id": "c083",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-f1",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s4",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 8
+          "place": "speakeasy",
+          "tick": 7
         }
       ],
-      "text": "Thomas Hanrahan runs through it: at 10:00 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
+      "text": "Hochstetter was at the speakeasy at 9:30 PM and says Coffin was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5238,37 +5183,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-f2",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s4",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 9
+          "place": "speakeasy",
+          "tick": 7
         }
       ],
-      "text": "Thomas Hanrahan runs through it: at 10:30 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
+      "text": "Pickering was at the speakeasy at 9:30 PM and says Coffin was not.",
+      "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5277,36 +5204,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s1",
+        "topic": "Lindemann’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 10
+          "tick": 7
         }
       ],
-      "text": "Thomas Hanrahan runs through it: at 11:00 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
+      "text": "Hargrove was at the Automat at 9:30 PM and says Lindemann was not.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
@@ -5316,25 +5225,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-s3",
+        "topic": "Lindemann’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "automat",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 11
+          "tick": 7
         }
       ],
-      "text": "Thomas Hanrahan runs through it: at 11:30 PM there were Ezekiel Hargrove, Verity Coffin at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
+      "text": "Petrosino was at the Automat at 9:30 PM and says Lindemann was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5343,31 +5246,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-s6",
+        "topic": "Lindemann’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 3
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "automat",
+          "tick": 7
         }
       ],
-      "text": "Concetta Petrosino runs through it: at 7:30 PM there were Ezekiel Hargrove, Thomas Hanrahan, Mary Brennan at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Brennan was at the Automat at 9:30 PM and says Lindemann was not.",
+      "place": "automat",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5376,58 +5267,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f3",
+        "topic": "Lindemann’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "automat",
+          "tick": 7
         }
       ],
-      "text": "Concetta Petrosino runs through it: at 8:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Verity Coffin at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Sirkin was at the Automat at 9:30 PM and says Lindemann was not.",
+      "place": "automat",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c089",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s2",
+        "topic": "Lindemann’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "automat",
+          "tick": 7
         }
       ],
-      "text": "Concetta Petrosino runs through it: at 8:30 PM there were Ezekiel Hargrove, Verity Coffin at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Lindemann names Hanrahan as the company for the Automat at 9:30 PM. Hanrahan says they were not together that evening.",
+      "place": "automat",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5436,70 +5309,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-s1",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
-          "place": "automat",
-          "tick": 7
+          "place": "boarding-parlor",
+          "tick": 1
         }
       ],
-      "text": "Concetta Petrosino runs through it: at 9:30 PM there were Ezekiel Hargrove, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Hargrove was at the parlour at 6:30 PM and says Brennan was not.",
+      "place": "automat",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c091",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-s5",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
-          "place": "automat",
-          "tick": 8
+          "place": "boarding-parlor",
+          "tick": 1
         }
       ],
-      "text": "Concetta Petrosino runs through it: at 10:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Lindemann was at the parlour at 6:30 PM and says Brennan was not.",
+      "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5508,36 +5351,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-f1",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
-          "place": "automat",
-          "tick": 9
+          "place": "boarding-parlor",
+          "tick": 1
         }
       ],
-      "text": "Concetta Petrosino runs through it: at 10:30 PM there were Ezekiel Hargrove, Thomas Hanrahan, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
+      "text": "Hochstetter was at the parlour at 6:30 PM and says Brennan was not.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5547,1282 +5372,30 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-f2",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
-          "place": "automat",
-          "tick": 10
+          "place": "boarding-parlor",
+          "tick": 1
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "boarding-parlor",
+          "tick": 2
         }
       ],
-      "text": "Concetta Petrosino runs through it: at 11:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Pickering was at the parlour from 6:30 PM to 7:00 PM and says Brennan was not.",
+      "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c094",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 4
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 8:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c095",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 8:30 PM there were Ezekiel Hargrove, Concetta Petrosino at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c096",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 8
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 10:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c097",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 9
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 10:30 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 10
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 11:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 11
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 11:30 PM there were Ezekiel Hargrove, Thomas Hanrahan at the Automat on the corner, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 3
-        }
-      ],
-      "text": "Mary Brennan runs through it: at 7:30 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "Mary Brennan runs through it: at 9:30 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 8
-        }
-      ],
-      "text": "Mary Brennan runs through it: at 10:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Verity Coffin at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 9
-        }
-      ],
-      "text": "Mary Brennan runs through it: at 10:30 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Verity Coffin at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 10
-        }
-      ],
-      "text": "Mary Brennan runs through it: at 11:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Verity Coffin at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 0
-        }
-      ],
-      "text": "Ilse Hochstetter runs through it: at 6:00 PM there were Concetta Petrosino, Mary Brennan at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 1
-        }
-      ],
-      "text": "Ilse Hochstetter runs through it: at 6:30 PM there were Ezekiel Hargrove, Albrecht Lindemann at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 3
-        }
-      ],
-      "text": "Ilse Hochstetter runs through it: at 7:30 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Mary Brennan at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 4
-        }
-      ],
-      "text": "Ilse Hochstetter runs through it: at 8:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Verity Coffin at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "Ilse Hochstetter runs through it: at 8:30 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 1
-        }
-      ],
-      "text": "Constance Pickering runs through it: at 6:30 PM there were Ezekiel Hargrove, Albrecht Lindemann at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 2
-        }
-      ],
-      "text": "Meyer Sirkin runs through it: at 7:00 PM there were Ezekiel Hargrove, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "Meyer Sirkin runs through it: at 9:30 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [
-        "c124",
-        "c137",
-        "c031"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 8
-        }
-      ],
-      "text": "Meyer Sirkin runs through it: at 10:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 9
-        }
-      ],
-      "text": "Meyer Sirkin runs through it: at 10:30 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "automat",
-          "tick": 10
-        }
-      ],
-      "text": "Meyer Sirkin runs through it: at 11:00 PM there were Ezekiel Hargrove, Thomas Hanrahan, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "automat",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 11
-        }
-      ],
-      "text": "Meyer Sirkin runs through it: at 11:30 PM there were Ezekiel Hargrove, Thomas Hanrahan, Verity Coffin at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Ezekiel Hargrove’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 4
-        }
-      ],
-      "text": "Mary Brennan was at the Automat on the corner at 8:00 PM and says Ezekiel Hargrove was not.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Ezekiel Hargrove’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 4
-        }
-      ],
-      "text": "Meyer Sirkin was at the Automat on the corner from 7:30 PM to 8:00 PM and says Ezekiel Hargrove was not.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Thomas Hanrahan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "Ezekiel Hargrove was at the speakeasy under the hat shop at 8:30 PM and says Thomas Hanrahan was not.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Thomas Hanrahan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 6
-        }
-      ],
-      "text": "Concetta Petrosino was at the speakeasy under the hat shop from 8:30 PM to 9:00 PM and says Thomas Hanrahan was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Thomas Hanrahan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "Verity Coffin was at the speakeasy under the hat shop at 8:30 PM and says Thomas Hanrahan was not.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Thomas Hanrahan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Ilse Hochstetter was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM and says Thomas Hanrahan was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Thomas Hanrahan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Constance Pickering was at the speakeasy under the hat shop at 9:30 PM and says Thomas Hanrahan was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Thomas Hanrahan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Thomas Hanrahan says Mary Brennan was there for it. Mary Brennan says otherwise: Mary Brennan was at the Automat on the corner from 8:30 PM to 9:30 PM, nowhere near the speakeasy under the hat shop.",
-      "place": "automat",
-      "leadsTo": [
-        "c101",
-        "c035"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Verity Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Ilse Hochstetter was at the speakeasy under the hat shop at 9:30 PM and says Verity Coffin was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Verity Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Constance Pickering was at the speakeasy under the hat shop at 9:30 PM and says Verity Coffin was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Albrecht Lindemann’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "Ezekiel Hargrove was at the Automat on the corner at 9:30 PM and says Albrecht Lindemann was not.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Albrecht Lindemann’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "Concetta Petrosino was at the Automat on the corner at 9:30 PM and says Albrecht Lindemann was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c129",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Albrecht Lindemann’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "Mary Brennan was at the Automat on the corner at 9:30 PM and says Albrecht Lindemann was not.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c130",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Albrecht Lindemann’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "Meyer Sirkin was at the Automat on the corner at 9:30 PM and says Albrecht Lindemann was not.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Mary Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 1
-        }
-      ],
-      "text": "Ezekiel Hargrove was at the parlour of Mrs. Teague’s boarding house at 6:30 PM and says Mary Brennan was not.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c132",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Mary Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 1
-        }
-      ],
-      "text": "Albrecht Lindemann was at the parlour of Mrs. Teague’s boarding house at 6:30 PM and says Mary Brennan was not.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Mary Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 1
-        }
-      ],
-      "text": "Ilse Hochstetter was at the parlour of Mrs. Teague’s boarding house at 6:30 PM and says Mary Brennan was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c134",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Mary Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 1
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 2
-        }
-      ],
-      "text": "Constance Pickering was at the parlour of Mrs. Teague’s boarding house from 6:30 PM to 7:00 PM and says Mary Brennan was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c135",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -6838,16 +5411,19 @@
           "methodId": "shot"
         }
       ],
-      "text": "Vivian Dandridge was found at the victim’s rooms in the brownstone. The cigarette he had going burned itself out on the sill where it fell. The bells at St. Malachy’s came at 9:30 PM, and the bells fix it: the sexton rings them off the sacristy clock and it keeps good time. That puts the killing in that half hour and no later.",
+      "text": "Dandridge was found at the brownstone. The cigarette he had going burned itself out on the sill where it fell. The bells rang the half hour at 9:30 PM. The sexton rings them off the sacristy clock and it keeps good time.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c090"
+        "c069",
+        "c051",
+        "c097",
+        "c081"
       ],
       "role": "spine",
       "anchorId": "church-bells"
     },
     {
-      "id": "c136",
+      "id": "c095",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -6869,17 +5445,15 @@
       "text": "The coroner puts death between 8:30 PM and 10:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c112",
-        "c124",
-        "c046",
-        "c139",
-        "c145",
-        "c138"
+        "c003",
+        "c061",
+        "c006",
+        "c137"
       ],
       "role": "spine"
     },
     {
-      "id": "c137",
+      "id": "c096",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6896,18 +5470,20 @@
           "methodId": "shot"
         }
       ],
-      "text": "A nickel-plated revolver is gone from the speakeasy under the hat shop. The drawer it was kept in is open and the oiled cloth is still in it.",
+      "text": "A nickel-plated revolver is gone from the speakeasy. The drawer it was kept in is open and the oiled cloth is still in it.",
       "place": "speakeasy",
-      "leadsTo": [],
+      "leadsTo": [
+        "c111"
+      ],
       "role": "corroboration"
     },
     {
-      "id": "c138",
+      "id": "c097",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Vivian Dandridge that evening"
+        "topic": "Dandridge that evening"
       },
       "establishes": [
         {
@@ -6921,40 +5497,43 @@
           "tick": 6
         }
       ],
-      "text": "Concetta Petrosino puts Vivian Dandridge at the speakeasy under the hat shop while the fight was on the radio, which was 9:00 PM, and alive enough to argue about the weather.",
+      "text": "Petrosino puts Dandridge at the speakeasy while the fight was on the radio, which was 9:00 PM, and alive enough to argue about the weather.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c139",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Vivian Dandridge that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "speakeasy",
-          "tick": 6
-        }
+      "leadsTo": [
+        "c035",
+        "c050"
       ],
-      "text": "Ilse Hochstetter puts Vivian Dandridge at the speakeasy under the hat shop while the fight was on the radio, which was 9:00 PM, and alive enough to argue about the weather.",
-      "place": "speakeasy",
-      "leadsTo": [],
       "role": "spine",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c140",
+      "id": "c098",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Dandridge that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "speakeasy",
+          "tick": 6
+        }
+      ],
+      "text": "Hochstetter puts Dandridge at the speakeasy while the fight was on the radio, which was 9:00 PM, and alive enough to argue about the weather.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "bar-radio"
+    },
+    {
+      "id": "c099",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6976,14 +5555,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Ilse Hochstetter was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, as the bells were going.",
+      "text": "Hochstetter was at the speakeasy at 9:30 PM and heard a shot from the direction of the brownstone, while the bells were going.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "corroboration",
+      "role": "noise",
       "anchorId": "church-bells"
     },
     {
-      "id": "c141",
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -7005,14 +5584,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Constance Pickering was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, as the bells were going.",
+      "text": "Pickering was at the speakeasy at 9:30 PM and heard a shot from the direction of the brownstone, while the bells were going.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "church-bells"
     },
     {
-      "id": "c142",
+      "id": "c101",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -7027,14 +5606,14 @@
           "tick": 6
         }
       ],
-      "text": "Thomas Hanrahan claims to have been at the speakeasy under the hat shop at 9:00 PM but cannot say that the challenger went down in the fourth and the crowd booed it, which everybody there can.",
+      "text": "Hanrahan claims the speakeasy at 9:00 PM, which is when the fight card on the bar radio was on. Asked about it, Hanrahan cannot say that the challenger went down in the fourth and the crowd booed it — and everybody who was there can.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c143",
+      "id": "c102",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7047,18 +5626,18 @@
           "motiveType": "inheritance"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A draft codicil in Vivian Dandridge’s hand striking Ezekiel Hargrove out of the will, dated last Tuesday and unsigned.",
+      "text": "Found at the brownstone: A draft codicil in Dandridge’s hand striking Hargrove out of the will, dated last Tuesday and unsigned.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c144",
+      "id": "c103",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Ezekiel Hargrove and Vivian Dandridge"
+        "topic": "Hargrove and Dandridge"
       },
       "establishes": [
         {
@@ -7067,13 +5646,13 @@
           "motiveType": "inheritance"
         }
       ],
-      "text": "Verity Coffin says Vivian Dandridge told Ezekiel Hargrove the lawyer was coming Thursday and that the arrangement would be changed.",
+      "text": "Coffin says Dandridge told Hargrove the lawyer was coming Thursday and that the arrangement would be changed.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c145",
+      "id": "c104",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7086,20 +5665,18 @@
           "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A subpoena naming Vivian Dandridge before the grand jury, with Thomas Hanrahan’s name written in the margin.",
+      "text": "Found at the brownstone: A subpoena naming Dandridge before the grand jury, with Hanrahan’s name written in the margin.",
       "place": "res-brownstone",
-      "leadsTo": [
-        "c169"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
-      "id": "c146",
+      "id": "c105",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Thomas Hanrahan and Vivian Dandridge"
+        "topic": "Hanrahan and Dandridge"
       },
       "establishes": [
         {
@@ -7108,13 +5685,13 @@
           "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Concetta Petrosino says Vivian Dandridge said to Thomas Hanrahan that a man who testifies sleeps better.",
+      "text": "Petrosino says Dandridge said to Hanrahan that a man who testifies sleeps better.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
-      "id": "c147",
+      "id": "c106",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7124,36 +5701,36 @@
         {
           "kind": "hasMotive",
           "personId": "p-s3",
-          "motiveType": "revenge"
+          "motiveType": "property"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A clipping about the failure of Concetta Petrosino’s business, with Vivian Dandridge’s name underlined twice in pencil.",
+      "text": "Found at the brownstone: A lease assignment made out in Petrosino’s name, waiting only on Dandridge’s signature.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c148",
+      "id": "c107",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Concetta Petrosino and Vivian Dandridge"
+        "topic": "Petrosino and Dandridge"
       },
       "establishes": [
         {
           "kind": "hasMotive",
           "personId": "p-s3",
-          "motiveType": "revenge"
+          "motiveType": "property"
         }
       ],
-      "text": "Ezekiel Hargrove says Concetta Petrosino said Vivian Dandridge had taken everything and would be made to feel it.",
+      "text": "Hargrove says Dandridge told Petrosino the lease would go to somebody else at the quarter day.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c149",
+      "id": "c108",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7166,18 +5743,18 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A promissory note for $4,000 signed by Albrecht Lindemann, endorsed to Vivian Dandridge, three months past due.",
+      "text": "Found at the brownstone: A promissory note for $4,000 signed by Lindemann, endorsed to Dandridge, three months past due.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c150",
+      "id": "c109",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Albrecht Lindemann and Vivian Dandridge"
+        "topic": "Lindemann and Dandridge"
       },
       "establishes": [
         {
@@ -7186,13 +5763,13 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Concetta Petrosino says Vivian Dandridge told Albrecht Lindemann that Friday was the end of it, one way or the other.",
+      "text": "Petrosino says Dandridge told Lindemann that Friday was the end of it, one way or the other.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c151",
+      "id": "c110",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7206,98 +5783,98 @@
           "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Ezekiel Hargrove hired us. Ezekiel Hargrove wants it known that Thomas Hanrahan needed the victim silent, and would rather we started there.",
+      "text": "Hargrove hired us, and wants it known that Hanrahan needed the victim silent, and would rather we started there.",
       "place": "automat",
       "leadsTo": [
-        "c112",
+        "c069",
+        "c009",
         "c046",
-        "c139",
-        "c061",
-        "c066"
+        "c096",
+        "c022"
       ],
       "role": "spine"
     },
     {
-      "id": "c152",
+      "id": "c111",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "Ezekiel Hargrove"
+        "personId": "p-f2",
+        "topic": "Hargrove"
       },
       "establishes": [],
-      "text": "Meyer Sirkin on Ezekiel Hargrove: Ezekiel Hargrove had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "automat",
+      "text": "Pickering on Hargrove: Hargrove had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "boarding-parlor",
       "leadsTo": [
-        "c156"
+        "c114"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s1",
-      "branchId": "b5"
+      "branchId": "b3"
     },
     {
-      "id": "c153",
+      "id": "c112",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "Ezekiel Hargrove"
+        "personId": "p-s2",
+        "topic": "Hargrove"
       },
       "establishes": [],
-      "text": "Concetta Petrosino on Ezekiel Hargrove: Ezekiel Hargrove is on a temperance pledge that Ezekiel Hargrove mentions before anybody asks.",
-      "place": "speakeasy",
+      "text": "Hanrahan on Hargrove: Hargrove is on a temperance pledge that Hargrove mentions before anybody asks.",
+      "place": "automat",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c154",
+      "id": "c113",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Ezekiel Hargrove"
+        "personId": "p-s4",
+        "topic": "Hargrove"
       },
       "establishes": [],
-      "text": "Albrecht Lindemann on Ezekiel Hargrove: Somebody at the speakeasy under the hat shop says Ezekiel Hargrove is in more often than Ezekiel Hargrove lets on.",
+      "text": "Coffin on Hargrove: Somebody at the speakeasy says Hargrove is in more often than Hargrove lets on.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c155",
+      "id": "c114",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "speakeasy"
       },
       "establishes": [],
-      "text": "A bottle at the speakeasy under the hat shop pushed behind the pipes, the seal broken and the level down.",
+      "text": "A bottle at the speakeasy pushed behind the pipes, the seal broken and the level down.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b3"
+    },
+    {
+      "id": "c115",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A tab at the speakeasy in a name that is not Hargrove’s, in Hargrove’s handwriting.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c156",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A tab at the speakeasy under the hat shop in a name that is not Ezekiel Hargrove’s, in Ezekiel Hargrove’s handwriting.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c157"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b5"
-    },
-    {
-      "id": "c157",
+      "id": "c116",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7322,15 +5899,15 @@
           "tick": 4
         }
       ],
-      "text": "The man behind the counter at the speakeasy under the hat shop knows exactly: Ezekiel Hargrove was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "text": "The man behind the counter at the speakeasy knows exactly: Hargrove was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s1",
-      "branchId": "b5"
+      "branchId": "b3"
     },
     {
-      "id": "c158",
+      "id": "c117",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7355,480 +5932,490 @@
           "tick": 4
         }
       ],
-      "text": "The tab at the speakeasy under the hat shop is dated and timed, from 7:30 PM to 8:00 PM, and Ezekiel Hargrove was there to run it up.",
+      "text": "The tab at the speakeasy is dated and timed, from 7:30 PM to 8:00 PM, and Hargrove was there to run it up.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Concetta Petrosino"
-      },
-      "establishes": [],
-      "text": "Ilse Hochstetter on Concetta Petrosino: Concetta Petrosino was carrying a parcel into the drying yard behind the laundry and came out without it.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c164"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Concetta Petrosino"
-      },
-      "establishes": [],
-      "text": "Meyer Sirkin on Concetta Petrosino: There is a man who meets people at the drying yard behind the laundry and nobody will say his name out loud.",
-      "place": "automat",
-      "leadsTo": [
-        "c159"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c161",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Concetta Petrosino"
-      },
-      "establishes": [],
-      "text": "Thomas Hanrahan on Concetta Petrosino: Concetta Petrosino has been selling things that were never Concetta Petrosino’s to sell.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c162",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "laundry-yard"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the drying yard behind the laundry, and the shop it came from closed two years ago.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c163",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "laundry-yard"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the drying yard behind the laundry in a name that does not exist, made out at the hour in question.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c164",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "laundry-yard"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "laundry-yard",
-          "tick": 1
-        }
-      ],
-      "text": "The receiver at the drying yard behind the laundry would rather talk than be held: Concetta Petrosino was there from 6:30 PM handing over a parcel of somebody else’s silver, which is a charge Concetta Petrosino will take over this one.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c165",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "laundry-yard"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "laundry-yard",
-          "tick": 1
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Concetta Petrosino at the drying yard behind the laundry from 6:30 PM with both hands full.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Verity Coffin"
-      },
-      "establishes": [],
-      "text": "Ilse Hochstetter on Verity Coffin: Verity Coffin sends money out of every pay envelope and cannot say where it goes.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Verity Coffin"
-      },
-      "establishes": [],
-      "text": "Meyer Sirkin on Verity Coffin: A woman at the Automat on the corner asked for Verity Coffin by a name Verity Coffin has not used in years.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c168",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Verity Coffin"
-      },
-      "establishes": [],
-      "text": "Concetta Petrosino on Verity Coffin: Verity Coffin keeps a photograph and will not be asked about it twice.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "automat"
-      },
-      "establishes": [],
-      "text": "A board-and-keep receipt at the Automat on the corner, monthly, eight years of them.",
-      "place": "automat",
-      "leadsTo": [
-        "c171"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
-    },
-    {
-      "id": "c170",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "automat"
-      },
-      "establishes": [],
-      "text": "A child’s shoe at the Automat on the corner, and nobody at the Automat on the corner has any children.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "automat"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "The woman who keeps the child says it straight out: Verity Coffin was at the Automat on the corner from 9:30 PM, the same as every week, and left with the same face as always.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
-    },
-    {
-      "id": "c172",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "automat"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "The parish register at the Automat on the corner has the christening in it, and the board money receipted through the evening in question.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c173",
+      "id": "c118",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Albrecht Lindemann"
+        "topic": "Petrosino"
       },
       "establishes": [],
-      "text": "Constance Pickering on Albrecht Lindemann: Albrecht Lindemann was carrying a parcel into the speakeasy under the hat shop and came out without it.",
+      "text": "Pickering on Petrosino: Petrosino was carrying a parcel into the drying yard and came out without it.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s3"
     },
     {
-      "id": "c174",
+      "id": "c119",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Albrecht Lindemann"
+        "topic": "Petrosino"
       },
       "establishes": [],
-      "text": "Ezekiel Hargrove on Albrecht Lindemann: There is a man who meets people at the speakeasy under the hat shop and nobody will say his name out loud.",
+      "text": "Hargrove on Petrosino: There is a man who meets people at the drying yard and nobody will say his name out loud.",
+      "place": "automat",
+      "leadsTo": [
+        "c120"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Petrosino"
+      },
+      "establishes": [],
+      "text": "Coffin on Petrosino: Petrosino has been selling things that were never Petrosino’s to sell.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c121"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c121",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the drying yard, and the shop it came from closed two years ago.",
+      "place": "laundry-yard",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the drying yard in a name that does not exist, made out at the hour in question.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 1
+        }
+      ],
+      "text": "The receiver at the drying yard would rather talk than be held: Petrosino was there from 6:30 PM handing over a parcel of somebody else’s silver, which is a charge Petrosino will take over this one.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 1
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Petrosino at the drying yard from 6:30 PM with both hands full.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Pickering on Coffin: Coffin sends money out of every pay envelope and cannot say where it goes.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Hargrove on Coffin: A woman at the Automat asked for Coffin by a name Coffin has not used in years.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c175",
+      "id": "c127",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Albrecht Lindemann"
+        "topic": "Coffin"
       },
       "establishes": [],
-      "text": "Mary Brennan on Albrecht Lindemann: Albrecht Lindemann has been selling things that were never Albrecht Lindemann’s to sell.",
+      "text": "Brennan on Coffin: Coffin keeps a photograph and will not be asked about it twice.",
       "place": "automat",
-      "leadsTo": [
-        "c178"
-      ],
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b2"
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c176",
+      "id": "c128",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "speakeasy"
+        "placeId": "automat"
       },
       "establishes": [],
-      "text": "Wrapping paper and a cut string at the speakeasy under the hat shop, and the shop it came from closed two years ago.",
-      "place": "speakeasy",
+      "text": "A board-and-keep receipt at the Automat, monthly, eight years of them.",
+      "place": "automat",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c177",
+      "id": "c129",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "speakeasy"
+        "placeId": "automat"
       },
       "establishes": [],
-      "text": "A pawn ticket at the speakeasy under the hat shop in a name that does not exist, made out at the hour in question.",
-      "place": "speakeasy",
+      "text": "A child’s shoe at the Automat, and nobody at the Automat has any children.",
+      "place": "automat",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c178",
+      "id": "c130",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "speakeasy"
+        "placeId": "automat"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "fence"
+          "personId": "p-s4",
+          "secretType": "hidden-family"
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
+          "personId": "p-s4",
+          "place": "automat",
           "tick": 7
         }
       ],
-      "text": "The receiver at the speakeasy under the hat shop would rather talk than be held: Albrecht Lindemann was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Albrecht Lindemann will take over this one.",
-      "place": "speakeasy",
+      "text": "The woman who keeps the child says it straight out: Coffin was at the Automat from 9:30 PM, the same as every week, and left with the same face as always.",
+      "place": "automat",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b2"
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c179",
+      "id": "c131",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "speakeasy"
+        "placeId": "automat"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "fence"
+          "personId": "p-s4",
+          "secretType": "hidden-family"
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
+          "personId": "p-s4",
+          "place": "automat",
           "tick": 7
         }
       ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Albrecht Lindemann at the speakeasy under the hat shop from 9:30 PM with both hands full.",
-      "place": "speakeasy",
+      "text": "The parish register at the Automat has the christening in it, and the board money receipted through the evening in question.",
+      "place": "automat",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Mary Brennan"
-      },
-      "establishes": [],
-      "text": "Ilse Hochstetter on Mary Brennan: Mary Brennan sends money out of every pay envelope and cannot say where it goes.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c185"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b1"
-    },
-    {
-      "id": "c181",
+      "id": "c132",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Mary Brennan"
+        "topic": "Lindemann"
       },
       "establishes": [],
-      "text": "Meyer Sirkin on Mary Brennan: A woman at the Automat on the corner asked for Mary Brennan by a name Mary Brennan has not used in years.",
+      "text": "Sirkin on Lindemann: Lindemann was carrying a parcel into the speakeasy and came out without it.",
       "place": "automat",
-      "leadsTo": [],
+      "leadsTo": [
+        "c138"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s6"
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
     },
     {
-      "id": "c182",
+      "id": "c133",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Mary Brennan"
+        "personId": "p-s3",
+        "topic": "Lindemann"
       },
       "establishes": [],
-      "text": "Thomas Hanrahan on Mary Brennan: Mary Brennan keeps a photograph and will not be asked about it twice.",
+      "text": "Petrosino on Lindemann: There is a man who meets people at the speakeasy and nobody will say his name out loud.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Lindemann"
+      },
+      "establishes": [],
+      "text": "Hochstetter on Lindemann: Lindemann has been selling things that were never Lindemann’s to sell.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c135",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the speakeasy, and the shop it came from closed two years ago.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c136",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the speakeasy in a name that does not exist, made out at the hour in question.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "The receiver at the speakeasy would rather talk than be held: Lindemann was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Lindemann will take over this one.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c119"
+      ],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Lindemann at the speakeasy from 9:30 PM with both hands full.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Pickering on Brennan: Brennan sends money out of every pay envelope and cannot say where it goes.",
+      "place": "boarding-parlor",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Hargrove on Brennan: A woman at the Automat asked for Brennan by a name Brennan has not used in years.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c183",
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Coffin on Brennan: Brennan keeps a photograph and will not be asked about it twice.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c139"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c142",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "automat"
       },
       "establishes": [],
-      "text": "A board-and-keep receipt at the Automat on the corner, monthly, eight years of them.",
+      "text": "A board-and-keep receipt at the Automat, monthly, eight years of them.",
       "place": "automat",
-      "leadsTo": [],
+      "leadsTo": [
+        "c141"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s6"
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
     },
     {
-      "id": "c184",
+      "id": "c143",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "automat"
       },
       "establishes": [],
-      "text": "A child’s shoe at the Automat on the corner, and nobody at the Automat on the corner has any children.",
+      "text": "A child’s shoe at the Automat, and nobody at the Automat has any children.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c185",
+      "id": "c144",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7853,7 +6440,7 @@
           "tick": 2
         }
       ],
-      "text": "The woman who keeps the child says it straight out: Mary Brennan was at the Automat on the corner from 6:30 PM to 7:00 PM, the same as every week, and left with the same face as always.",
+      "text": "The woman who keeps the child says it straight out: Brennan was at the Automat from 6:30 PM to 7:00 PM, the same as every week, and left with the same face as always.",
       "place": "automat",
       "leadsTo": [],
       "role": "disqualifier",
@@ -7861,7 +6448,7 @@
       "branchId": "b1"
     },
     {
-      "id": "c186",
+      "id": "c145",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7886,7 +6473,7 @@
           "tick": 2
         }
       ],
-      "text": "The parish register at the Automat on the corner has the christening in it, and the board money receipted through the evening in question.",
+      "text": "The parish register at the Automat has the christening in it, and the board money receipted through the evening in question.",
       "place": "automat",
       "leadsTo": [],
       "role": "noise",
@@ -7895,7 +6482,7 @@
   ],
   "findable": [
     {
-      "id": "c135",
+      "id": "c094",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7911,16 +6498,19 @@
           "methodId": "shot"
         }
       ],
-      "text": "Vivian Dandridge was found at the victim’s rooms in the brownstone. The cigarette he had going burned itself out on the sill where it fell. The bells at St. Malachy’s came at 9:30 PM, and the bells fix it: the sexton rings them off the sacristy clock and it keeps good time. That puts the killing in that half hour and no later.",
+      "text": "Dandridge was found at the brownstone. The cigarette he had going burned itself out on the sill where it fell. The bells rang the half hour at 9:30 PM. The sexton rings them off the sacristy clock and it keeps good time.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c090"
+        "c069",
+        "c051",
+        "c097",
+        "c081"
       ],
       "role": "spine",
       "anchorId": "church-bells"
     },
     {
-      "id": "c136",
+      "id": "c095",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7942,17 +6532,15 @@
       "text": "The coroner puts death between 8:30 PM and 10:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c112",
-        "c124",
-        "c046",
-        "c139",
-        "c145",
-        "c138"
+        "c003",
+        "c061",
+        "c006",
+        "c137"
       ],
       "role": "spine"
     },
     {
-      "id": "c151",
+      "id": "c110",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7966,24 +6554,24 @@
           "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Ezekiel Hargrove hired us. Ezekiel Hargrove wants it known that Thomas Hanrahan needed the victim silent, and would rather we started there.",
+      "text": "Hargrove hired us, and wants it known that Hanrahan needed the victim silent, and would rather we started there.",
       "place": "automat",
       "leadsTo": [
-        "c112",
+        "c069",
+        "c009",
         "c046",
-        "c139",
-        "c061",
-        "c066"
+        "c096",
+        "c022"
       ],
       "role": "spine"
     },
     {
-      "id": "c112",
+      "id": "c069",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "who was there at 9:30 PM"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -7994,10 +6582,131 @@
         },
         {
           "kind": "personAt",
+          "personId": "p-s1",
+          "place": "automat",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "automat",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "automat",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "automat",
+          "tick": 11
+        }
+      ],
+      "text": "Sirkin says Hargrove was at the Automat from 9:30 PM to 11:30 PM.",
+      "place": "automat",
+      "leadsTo": [
+        "c003",
+        "c082",
+        "c142"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
           "personId": "p-s3",
           "place": "automat",
           "tick": 7
         },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "automat",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "automat",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "automat",
+          "tick": 10
+        }
+      ],
+      "text": "Hargrove says Petrosino was at the Automat from 9:30 PM to 11:00 PM.",
+      "place": "automat",
+      "leadsTo": [
+        "c009",
+        "c051",
+        "c061"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "automat",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "automat",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "automat",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "automat",
+          "tick": 10
+        }
+      ],
+      "text": "Hargrove says Brennan was at the Automat from 9:30 PM to 11:00 PM.",
+      "place": "automat",
+      "leadsTo": [
+        "c082"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Coffin"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
@@ -8006,27 +6715,67 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s4",
           "place": "automat",
-          "tick": 7
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "automat",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "automat",
+          "tick": 10
         }
       ],
-      "text": "Meyer Sirkin runs through it: at 9:30 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
+      "text": "Brennan says Coffin was at the Automat from 9:30 PM to 11:00 PM.",
       "place": "automat",
       "leadsTo": [
-        "c124",
-        "c137",
-        "c031"
+        "c046",
+        "c097"
       ],
       "role": "spine"
     },
     {
-      "id": "c124",
+      "id": "c046",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thomas Hanrahan’s account"
+        "topic": "Hanrahan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "shot"
+        }
+      ],
+      "text": "Brennan says Hanrahan was at the speakeasy at 7:30 PM.",
+      "place": "automat",
+      "leadsTo": [
+        "c105",
+        "c012"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c082",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
@@ -8048,51 +6797,20 @@
           "tick": 7
         }
       ],
-      "text": "Thomas Hanrahan says Mary Brennan was there for it. Mary Brennan says otherwise: Mary Brennan was at the Automat on the corner from 8:30 PM to 9:30 PM, nowhere near the speakeasy under the hat shop.",
+      "text": "Hanrahan names Brennan as the company for it. Brennan was at the Automat from 8:30 PM to 9:30 PM, and says Hanrahan was not there.",
       "place": "automat",
       "leadsTo": [
-        "c101",
-        "c035"
+        "c133"
       ],
       "role": "spine"
     },
     {
-      "id": "c046",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Thomas Hanrahan"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s2",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Mary Brennan says Thomas Hanrahan was at the speakeasy under the hat shop at 7:30 PM.",
-      "place": "automat",
-      "leadsTo": [
-        "c061",
-        "c122",
-        "c160"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c139",
+      "id": "c097",
       "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Vivian Dandridge that evening"
+        "personId": "p-s3",
+        "topic": "Dandridge that evening"
       },
       "establishes": [
         {
@@ -8106,9 +6824,12 @@
           "tick": 6
         }
       ],
-      "text": "Ilse Hochstetter puts Vivian Dandridge at the speakeasy under the hat shop while the fight was on the radio, which was 9:00 PM, and alive enough to argue about the weather.",
+      "text": "Petrosino puts Dandridge at the speakeasy while the fight was on the radio, which was 9:00 PM, and alive enough to argue about the weather.",
       "place": "speakeasy",
-      "leadsTo": [],
+      "leadsTo": [
+        "c035",
+        "c050"
+      ],
       "role": "spine",
       "anchorId": "bar-radio"
     },
@@ -8118,7 +6839,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Albrecht Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -8140,44 +6861,29 @@
           "tick": 9
         }
       ],
-      "text": "Ilse Hochstetter says Albrecht Lindemann was at the speakeasy under the hat shop from 9:30 PM to 10:30 PM.",
+      "text": "Hochstetter says Lindemann was at the speakeasy from 9:30 PM to 10:30 PM.",
       "place": "speakeasy",
-      "leadsTo": [
-        "c140",
-        "c152"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c101",
+      "id": "c081",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f2",
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "automat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
           "tick": 7
         }
       ],
-      "text": "Mary Brennan runs through it: at 9:30 PM there were Ezekiel Hargrove, Concetta Petrosino, Verity Coffin at the Automat on the corner, and nobody else worth naming.",
-      "place": "automat",
+      "text": "Pickering was at the speakeasy at 9:30 PM and says Hanrahan was not.",
+      "place": "boarding-parlor",
       "leadsTo": [],
       "role": "corroboration"
     },
@@ -8187,7 +6893,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Thomas Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -8202,74 +6908,18 @@
           "methodId": "shot"
         }
       ],
-      "text": "Verity Coffin says Thomas Hanrahan was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Coffin says Hanrahan was at the speakeasy at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c066",
-      "kind": "observation",
+      "id": "c105",
+      "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "Albrecht Lindemann"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Constance Pickering says Albrecht Lindemann was at the speakeasy under the hat shop at 9:30 PM.",
-      "place": "boarding-parlor",
-      "leadsTo": [
-        "c180",
-        "c175"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Thomas Hanrahan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Ilse Hochstetter was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM and says Thomas Hanrahan was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c145",
-      "kind": "document",
-      "source": {
-        "type": "place",
-        "placeId": "res-brownstone"
+        "personId": "p-s3",
+        "topic": "Hanrahan and Dandridge"
       },
       "establishes": [
         {
@@ -8278,15 +6928,13 @@
           "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A subpoena naming Vivian Dandridge before the grand jury, with Thomas Hanrahan’s name written in the margin.",
-      "place": "res-brownstone",
-      "leadsTo": [
-        "c169"
-      ],
+      "text": "Petrosino says Dandridge said to Hanrahan that a man who testifies sleeps better.",
+      "place": "speakeasy",
+      "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c137",
+      "id": "c096",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -8303,18 +6951,52 @@
           "methodId": "shot"
         }
       ],
-      "text": "A nickel-plated revolver is gone from the speakeasy under the hat shop. The drawer it was kept in is open and the oiled cloth is still in it.",
+      "text": "A nickel-plated revolver is gone from the speakeasy. The drawer it was kept in is open and the oiled cloth is still in it.",
       "place": "speakeasy",
+      "leadsTo": [
+        "c111"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "shot"
+        }
+      ],
+      "text": "Hanrahan says Petrosino was at the speakeasy from 7:30 PM to 8:00 PM.",
+      "place": "automat",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c090",
+      "id": "c022",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "who was there at 9:30 PM"
+        "topic": "Hargrove"
       },
       "establishes": [
         {
@@ -8323,6 +7005,78 @@
           "place": "automat",
           "tick": 7
         },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "automat",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "automat",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "automat",
+          "tick": 10
+        }
+      ],
+      "text": "Petrosino says Hargrove was at the Automat from 9:30 PM to 11:00 PM.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "automat",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "automat",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "automat",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "automat",
+          "tick": 10
+        }
+      ],
+      "text": "Brennan says Petrosino was at the Automat from 9:30 PM to 11:00 PM.",
+      "place": "automat",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Coffin"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
@@ -8331,123 +7085,117 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s4",
           "place": "automat",
-          "tick": 7
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "automat",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "automat",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "automat",
+          "tick": 11
         }
       ],
-      "text": "Concetta Petrosino runs through it: at 9:30 PM there were Ezekiel Hargrove, Verity Coffin, Mary Brennan at the Automat on the corner, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Hargrove says Coffin was at the Automat from 9:30 PM to 11:30 PM.",
+      "place": "automat",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c138",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Vivian Dandridge that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "speakeasy",
-          "tick": 6
-        }
-      ],
-      "text": "Concetta Petrosino puts Vivian Dandridge at the speakeasy under the hat shop while the fight was on the radio, which was 9:00 PM, and alive enough to argue about the weather.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c140",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-brownstone",
-          "tick": 7
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 7
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Ilse Hochstetter was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, as the bells were going.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "church-bells"
-    },
-    {
-      "id": "c031",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Ezekiel Hargrove"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Verity Coffin says Ezekiel Hargrove was at the speakeasy under the hat shop from 8:00 PM to 8:30 PM.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c180",
+      "id": "c137",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Mary Brennan"
+        "type": "place",
+        "placeId": "speakeasy"
       },
-      "establishes": [],
-      "text": "Ilse Hochstetter on Mary Brennan: Mary Brennan sends money out of every pay envelope and cannot say where it goes.",
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "The receiver at the speakeasy would rather talk than be held: Lindemann was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Lindemann will take over this one.",
       "place": "speakeasy",
       "leadsTo": [
-        "c185"
+        "c119"
+      ],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c142",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "automat"
+      },
+      "establishes": [],
+      "text": "A board-and-keep receipt at the Automat, monthly, eight years of them.",
+      "place": "automat",
+      "leadsTo": [
+        "c141"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
       "branchId": "b1"
     },
     {
-      "id": "c185",
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Coffin on Brennan: Brennan keeps a photograph and will not be asked about it twice.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c139"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Pickering on Brennan: Brennan sends money out of every pay envelope and cannot say where it goes.",
+      "place": "boarding-parlor",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c144",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8472,7 +7220,7 @@
           "tick": 2
         }
       ],
-      "text": "The woman who keeps the child says it straight out: Mary Brennan was at the Automat on the corner from 6:30 PM to 7:00 PM, the same as every week, and left with the same face as always.",
+      "text": "The woman who keeps the child says it straight out: Brennan was at the Automat from 6:30 PM to 7:00 PM, the same as every week, and left with the same face as always.",
       "place": "automat",
       "leadsTo": [],
       "role": "disqualifier",
@@ -8480,132 +7228,60 @@
       "branchId": "b1"
     },
     {
-      "id": "c175",
+      "id": "c119",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "Albrecht Lindemann"
+        "personId": "p-s1",
+        "topic": "Petrosino"
       },
       "establishes": [],
-      "text": "Mary Brennan on Albrecht Lindemann: Albrecht Lindemann has been selling things that were never Albrecht Lindemann’s to sell.",
+      "text": "Hargrove on Petrosino: There is a man who meets people at the drying yard and nobody will say his name out loud.",
       "place": "automat",
       "leadsTo": [
-        "c178"
+        "c120"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s5",
+      "aboutSecretOf": "p-s3",
       "branchId": "b2"
     },
     {
-      "id": "c178",
+      "id": "c120",
       "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "speakeasy"
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Petrosino"
       },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        }
+      "establishes": [],
+      "text": "Coffin on Petrosino: Petrosino has been selling things that were never Petrosino’s to sell.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c121"
       ],
-      "text": "The receiver at the speakeasy under the hat shop would rather talk than be held: Albrecht Lindemann was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Albrecht Lindemann will take over this one.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
       "branchId": "b2"
     },
     {
-      "id": "c169",
+      "id": "c121",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "automat"
+        "placeId": "laundry-yard"
       },
       "establishes": [],
-      "text": "A board-and-keep receipt at the Automat on the corner, monthly, eight years of them.",
-      "place": "automat",
+      "text": "Wrapping paper and a cut string at the drying yard, and the shop it came from closed two years ago.",
+      "place": "laundry-yard",
       "leadsTo": [
-        "c171"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "automat"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "automat",
-          "tick": 7
-        }
-      ],
-      "text": "The woman who keeps the child says it straight out: Verity Coffin was at the Automat on the corner from 9:30 PM, the same as every week, and left with the same face as always.",
-      "place": "automat",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b3"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Concetta Petrosino"
-      },
-      "establishes": [],
-      "text": "Meyer Sirkin on Concetta Petrosino: There is a man who meets people at the drying yard behind the laundry and nobody will say his name out loud.",
-      "place": "automat",
-      "leadsTo": [
-        "c159"
+        "c123"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Concetta Petrosino"
-      },
-      "establishes": [],
-      "text": "Ilse Hochstetter on Concetta Petrosino: Concetta Petrosino was carrying a parcel into the drying yard behind the laundry and came out without it.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c164"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c164",
+      "id": "c123",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8624,50 +7300,50 @@
           "tick": 1
         }
       ],
-      "text": "The receiver at the drying yard behind the laundry would rather talk than be held: Concetta Petrosino was there from 6:30 PM handing over a parcel of somebody else’s silver, which is a charge Concetta Petrosino will take over this one.",
+      "text": "The receiver at the drying yard would rather talk than be held: Petrosino was there from 6:30 PM handing over a parcel of somebody else’s silver, which is a charge Petrosino will take over this one.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c152",
+      "id": "c111",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "Ezekiel Hargrove"
+        "personId": "p-f2",
+        "topic": "Hargrove"
       },
       "establishes": [],
-      "text": "Meyer Sirkin on Ezekiel Hargrove: Ezekiel Hargrove had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "automat",
+      "text": "Pickering on Hargrove: Hargrove had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "boarding-parlor",
       "leadsTo": [
-        "c156"
+        "c114"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s1",
-      "branchId": "b5"
+      "branchId": "b3"
     },
     {
-      "id": "c156",
+      "id": "c114",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "speakeasy"
       },
       "establishes": [],
-      "text": "A tab at the speakeasy under the hat shop in a name that is not Ezekiel Hargrove’s, in Ezekiel Hargrove’s handwriting.",
+      "text": "A bottle at the speakeasy pushed behind the pipes, the seal broken and the level down.",
       "place": "speakeasy",
       "leadsTo": [
-        "c157"
+        "c116"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s1",
-      "branchId": "b5"
+      "branchId": "b3"
     },
     {
-      "id": "c157",
+      "id": "c116",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8692,22 +7368,86 @@
           "tick": 4
         }
       ],
-      "text": "The man behind the counter at the speakeasy under the hat shop knows exactly: Ezekiel Hargrove was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "text": "The man behind the counter at the speakeasy knows exactly: Hargrove was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s1",
-      "branchId": "b5"
+      "branchId": "b3"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Lindemann"
+      },
+      "establishes": [],
+      "text": "Petrosino on Lindemann: There is a man who meets people at the speakeasy and nobody will say his name out loud.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Lindemann"
+      },
+      "establishes": [],
+      "text": "Sirkin on Lindemann: Lindemann was carrying a parcel into the speakeasy and came out without it.",
+      "place": "automat",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Lindemann at the speakeasy from 9:30 PM with both hands full.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c135",
-    "c136",
-    "c151"
+    "c094",
+    "c095",
+    "c110"
   ],
   "clientId": "p-s1",
-  "par": 7,
-  "budget": 20,
+  "par": 10,
+  "slack": 6,
+  "budget": 16,
   "coronerWindow": [
     5,
     8
@@ -8721,11 +7461,9 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c136",
-      "c139",
-      "c138",
-      "c135",
-      "c140"
+      "c095",
+      "c097",
+      "c094"
     ],
     "timeOfDeathAnchors": [
       "bar-radio",
@@ -8733,47 +7471,42 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c112",
-        "c101",
-        "c090"
+        "c069",
+        "c022"
       ],
       "p-s3": [
-        "c112",
-        "c101"
+        "c003",
+        "c050"
       ],
       "p-s4": [
-        "c112",
-        "c101",
-        "c090",
-        "c171"
+        "c051",
+        "c006"
       ],
       "p-s5": [
         "c061",
-        "c066",
-        "c178"
+        "c137",
+        "c138"
       ],
       "p-s6": [
-        "c112",
-        "c090"
+        "c009"
       ]
     },
     "inculpation": [
-      "c124",
-      "c122"
+      "c082",
+      "c081"
     ],
     "access": [
       "c046",
       "c035"
     ],
     "method": [
-      "c135",
-      "c136",
-      "c137",
-      "c140"
+      "c094",
+      "c095",
+      "c096"
     ],
     "motive": [
-      "c151",
-      "c145"
+      "c110",
+      "c105"
     ]
   }
 }

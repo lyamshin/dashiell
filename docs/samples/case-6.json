@@ -8,6 +8,7 @@
     {
       "id": "drugstore",
       "name": "Kaplan’s drugstore with the soda fountain",
+      "shortName": "Kaplan’s",
       "kind": "public",
       "objects": [
         "obj-icepick",
@@ -20,6 +21,7 @@
     {
       "id": "corner-newsstand",
       "name": "the newsstand on the corner",
+      "shortName": "the newsstand",
       "kind": "public",
       "objects": [
         "obj-pawn-ticket",
@@ -32,6 +34,7 @@
     {
       "id": "rooming-house-room",
       "name": "the back room at Mrs. Teague’s",
+      "shortName": "Mrs. Teague’s",
       "kind": "private",
       "objects": [
         "obj-suitcase",
@@ -44,6 +47,7 @@
     {
       "id": "res-brownstone",
       "name": "the victim’s rooms in the brownstone",
+      "shortName": "the brownstone",
       "kind": "private",
       "objects": [
         "obj-cord",
@@ -55,6 +59,7 @@
     {
       "id": "ferry-slip",
       "name": "the ferry slip at the foot of the street",
+      "shortName": "the ferry slip",
       "kind": "public",
       "objects": [
         "obj-newspapers",
@@ -66,6 +71,7 @@
     {
       "id": "speakeasy",
       "name": "the speakeasy under the hat shop",
+      "shortName": "the speakeasy",
       "kind": "semi",
       "objects": [
         "obj-chloral",
@@ -154,6 +160,7 @@
     {
       "id": "p-victim",
       "name": "Gustav Lindemann",
+      "surname": "Lindemann",
       "role": "a bootlegger with the lease on the top floor",
       "kind": "victim",
       "isKiller": false,
@@ -162,6 +169,7 @@
     {
       "id": "p-s1",
       "name": "Lyman Coffin",
+      "surname": "Coffin",
       "role": "a policy runner",
       "kind": "suspect",
       "isKiller": false,
@@ -171,7 +179,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Lyman Coffin hands a parcel of stolen goods to a man at the newsstand on the corner from 11:00 PM.",
+        "description": "Coffin hands a parcel of stolen goods to a man at the newsstand from 11:00 PM.",
         "cells": [
           {
             "tick": 10,
@@ -188,7 +196,8 @@
     {
       "id": "p-s2",
       "name": "Bernard Bernstein",
-      "role": "the victim’s nephew, at loose ends",
+      "surname": "Bernstein",
+      "role": "a young man living on expectations",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heir",
@@ -197,7 +206,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Bernard Bernstein slips off to the newsstand on the corner from 11:00 PM to settle with a bookmaker.",
+        "description": "Bernstein slips off to the newsstand from 11:00 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 10,
@@ -210,6 +219,7 @@
     {
       "id": "p-s3",
       "name": "Winthrop Ainsworth",
+      "surname": "Ainsworth",
       "role": "a hack driver",
       "kind": "suspect",
       "isKiller": false,
@@ -219,7 +229,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Winthrop Ainsworth hands a parcel of stolen goods to a man at the speakeasy under the hat shop from 8:30 PM.",
+        "description": "Ainsworth hands a parcel of stolen goods to a man at the speakeasy from 8:30 PM.",
         "cells": [
           {
             "tick": 5,
@@ -233,6 +243,7 @@
     {
       "id": "p-s4",
       "name": "Hedwig Hauck",
+      "surname": "Hauck",
       "role": "a dentist with rooms on the third floor",
       "kind": "suspect",
       "isKiller": false,
@@ -242,7 +253,7 @@
       "secret": {
         "type": "forged-identity",
         "label": "Forged identity",
-        "description": "Hedwig Hauck is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
+        "description": "Hauck is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
         "cells": []
       },
       "foundAt": "speakeasy"
@@ -250,6 +261,7 @@
     {
       "id": "p-s5",
       "name": "Grafton Stannard",
+      "surname": "Stannard",
       "role": "a tailor",
       "kind": "suspect",
       "isKiller": false,
@@ -259,7 +271,7 @@
       "secret": {
         "type": "hidden-family",
         "label": "A child boarded out",
-        "description": "Grafton Stannard goes to the ferry slip at the foot of the street from 10:00 PM to see a child nobody is supposed to know about.",
+        "description": "Stannard goes to the ferry slip from 10:00 PM to see a child nobody is supposed to know about.",
         "cells": [
           {
             "tick": 8,
@@ -276,16 +288,17 @@
     {
       "id": "p-s6",
       "name": "Hyman Kessler",
+      "surname": "Kessler",
       "role": "an insurance adjuster",
       "kind": "suspect",
       "isKiller": true,
       "archetypeId": "arch-adjuster",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people the victim worked for",
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Hyman Kessler is at the victim’s rooms in the brownstone from 10:30 PM to 11:00 PM, alone with Gustav Lindemann when it happens at 11:00 PM.",
+        "description": "Kessler is at the brownstone from 10:30 PM to 11:00 PM, alone with Lindemann when it happens at 11:00 PM.",
         "cells": [
           {
             "tick": 9,
@@ -301,7 +314,7 @@
       "coverSecret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Hyman Kessler slips off to the newsstand on the corner from 6:30 PM to 7:00 PM to settle with a bookmaker.",
+        "description": "Kessler slips off to the newsstand from 6:30 PM to 7:00 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 1,
@@ -322,6 +335,7 @@
     {
       "id": "p-f1",
       "name": "Rosaria Marchetti",
+      "surname": "Marchetti",
       "role": "the druggist",
       "kind": "fixture",
       "isKiller": false,
@@ -331,6 +345,7 @@
     {
       "id": "p-f2",
       "name": "Klara Obermann",
+      "surname": "Obermann",
       "role": "the news dealer",
       "kind": "fixture",
       "isKiller": false,
@@ -340,6 +355,7 @@
     {
       "id": "p-f3",
       "name": "Clementine Tillman",
+      "surname": "Tillman",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -349,6 +365,7 @@
     {
       "id": "p-f4",
       "name": "Giuseppe Bellucci",
+      "surname": "Bellucci",
       "role": "the bartender",
       "kind": "fixture",
       "isKiller": false,
@@ -379,12 +396,18 @@
           "kind": "sighting"
         },
         {
+          "kind": "knowledge",
+          "description": "the late edition led with the bridge contract and not the hold-up"
+        },
+        {
           "kind": "mark",
           "description": "ink still wet enough to come off on a glove"
         }
       ],
       "timing": "when the last edition came up",
-      "sceneTiming": "the truck run is timed to the minute and the papers were out on the stand",
+      "highTiming": "as the last edition was coming up",
+      "sceneFact": "The last edition came off the truck at {T}, and a paper from that run is here with the ink still wet.",
+      "masks": false,
       "placeId": "corner-newsstand"
     },
     {
@@ -398,12 +421,18 @@
           "kind": "sighting"
         },
         {
+          "kind": "knowledge",
+          "description": "the iceman dropped a block on the step and it went in three"
+        },
+        {
           "kind": "mark",
           "description": "a wet patch down one side of a coat"
         }
       ],
       "timing": "when the ice came",
-      "sceneTiming": "the iceman’s book has the delivery timed and signed for",
+      "highTiming": "as the ice was being brought in",
+      "sceneFact": "The ice was brought in at {T} and the iceman’s book has the delivery timed and signed for.",
+      "masks": false,
       "placeId": "corner-newsstand"
     }
   ],
@@ -411,6 +440,7 @@
     "corner-newsstand",
     "ferry-slip"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2859,7 +2889,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -2869,7 +2899,7 @@
           "tick": 2
         }
       ],
-      "text": "Lyman Coffin says Gustav Lindemann was at the speakeasy under the hat shop at 7:00 PM.",
+      "text": "Coffin says Lindemann was at the speakeasy at 7:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2880,7 +2910,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -2895,7 +2925,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Lyman Coffin says Bernard Bernstein was at the speakeasy under the hat shop at 7:00 PM.",
+      "text": "Coffin says Bernstein was at the speakeasy at 7:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2906,7 +2936,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -2921,7 +2951,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Lyman Coffin says Bernard Bernstein was at the speakeasy under the hat shop at 10:30 PM.",
+      "text": "Coffin says Bernstein was at the speakeasy at 10:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2932,7 +2962,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -2942,7 +2972,7 @@
           "tick": 11
         }
       ],
-      "text": "Lyman Coffin says Bernard Bernstein was at the newsstand on the corner at 11:30 PM.",
+      "text": "Coffin says Bernstein was at the newsstand at 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2953,7 +2983,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -2963,7 +2993,7 @@
           "tick": 7
         }
       ],
-      "text": "Lyman Coffin says Winthrop Ainsworth was at the back room at Mrs. Teague’s at 9:30 PM.",
+      "text": "Coffin says Ainsworth was at Mrs. Teague’s at 9:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2974,7 +3004,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -2984,7 +3014,7 @@
           "tick": 11
         }
       ],
-      "text": "Lyman Coffin says Winthrop Ainsworth was at the newsstand on the corner at 11:30 PM.",
+      "text": "Coffin says Ainsworth was at the newsstand at 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2995,7 +3025,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3016,7 +3046,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Lyman Coffin says Hedwig Hauck was at the speakeasy under the hat shop from 10:00 PM to 10:30 PM.",
+      "text": "Coffin says Hauck was at the speakeasy from 10:00 PM to 10:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3027,7 +3057,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3037,7 +3067,7 @@
           "tick": 11
         }
       ],
-      "text": "Lyman Coffin says Hedwig Hauck was at the newsstand on the corner at 11:30 PM.",
+      "text": "Coffin says Hauck was at the newsstand at 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3048,7 +3078,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3064,7 +3094,7 @@
           "tick": 1
         }
       ],
-      "text": "Lyman Coffin says Hyman Kessler was at the newsstand on the corner from 6:00 PM to 6:30 PM.",
+      "text": "Coffin says Kessler was at the newsstand from 6:00 PM to 6:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3075,7 +3105,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3090,7 +3120,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Lyman Coffin says Hyman Kessler was at the speakeasy under the hat shop at 10:00 PM.",
+      "text": "Coffin says Kessler was at the speakeasy at 10:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "spine"
@@ -3101,7 +3131,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -3135,7 +3165,7 @@
           "tick": 5
         }
       ],
-      "text": "Bernard Bernstein says Gustav Lindemann was at the speakeasy under the hat shop from 6:30 PM to 8:30 PM.",
+      "text": "Bernstein says Lindemann was at the speakeasy from 6:30 PM to 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3146,7 +3176,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -3162,7 +3192,7 @@
           "tick": 8
         }
       ],
-      "text": "Bernard Bernstein says Gustav Lindemann was at the victim’s rooms in the brownstone from 9:30 PM to 10:00 PM.",
+      "text": "Bernstein says Lindemann was at the brownstone from 9:30 PM to 10:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3173,7 +3203,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3188,7 +3218,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Bernard Bernstein says Lyman Coffin was at the speakeasy under the hat shop at 7:00 PM.",
+      "text": "Bernstein says Coffin was at the speakeasy at 7:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3199,7 +3229,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3214,7 +3244,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Bernard Bernstein says Lyman Coffin was at the speakeasy under the hat shop at 10:30 PM.",
+      "text": "Bernstein says Coffin was at the speakeasy at 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3225,7 +3255,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3235,7 +3265,7 @@
           "tick": 11
         }
       ],
-      "text": "Bernard Bernstein says Lyman Coffin was at the newsstand on the corner at 11:30 PM.",
+      "text": "Bernstein says Coffin was at the newsstand at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3246,7 +3276,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3256,7 +3286,7 @@
           "tick": 0
         }
       ],
-      "text": "Bernard Bernstein says Winthrop Ainsworth was at Kaplan’s drugstore with the soda fountain at 6:00 PM.",
+      "text": "Bernstein says Ainsworth was at Kaplan’s at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3267,7 +3297,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3282,7 +3312,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Bernard Bernstein says Winthrop Ainsworth was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Bernstein says Ainsworth was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3293,7 +3323,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3303,7 +3333,7 @@
           "tick": 11
         }
       ],
-      "text": "Bernard Bernstein says Winthrop Ainsworth was at the newsstand on the corner at 11:30 PM.",
+      "text": "Bernstein says Ainsworth was at the newsstand at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3314,7 +3344,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3329,7 +3359,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Bernard Bernstein says Hedwig Hauck was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Bernstein says Hauck was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3340,7 +3370,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3355,7 +3385,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Bernard Bernstein says Hedwig Hauck was at the speakeasy under the hat shop at 10:30 PM.",
+      "text": "Bernstein says Hauck was at the speakeasy at 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3366,7 +3396,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3376,7 +3406,7 @@
           "tick": 11
         }
       ],
-      "text": "Bernard Bernstein says Hedwig Hauck was at the newsstand on the corner at 11:30 PM.",
+      "text": "Bernstein says Hauck was at the newsstand at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3387,7 +3417,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3397,7 +3427,7 @@
           "tick": 0
         }
       ],
-      "text": "Bernard Bernstein says Grafton Stannard was at Kaplan’s drugstore with the soda fountain at 6:00 PM.",
+      "text": "Bernstein says Stannard was at Kaplan’s at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3408,7 +3438,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3423,7 +3453,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Bernard Bernstein says Grafton Stannard was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Bernstein says Stannard was at the speakeasy at 7:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3434,7 +3464,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3449,7 +3479,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Bernard Bernstein says Grafton Stannard was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Bernstein says Stannard was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3460,7 +3490,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3475,12 +3505,10 @@
           "methodId": "poison"
         }
       ],
-      "text": "Bernard Bernstein says Hyman Kessler was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Bernstein says Kessler was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
-      "leadsTo": [
-        "c183"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c026",
@@ -3488,7 +3516,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3498,7 +3526,7 @@
           "tick": 7
         }
       ],
-      "text": "Winthrop Ainsworth says Lyman Coffin was at the back room at Mrs. Teague’s at 9:30 PM.",
+      "text": "Ainsworth says Coffin was at Mrs. Teague’s at 9:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3509,7 +3537,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3525,10 +3553,14 @@
           "tick": 11
         }
       ],
-      "text": "Winthrop Ainsworth says Lyman Coffin was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Ainsworth says Coffin was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c122",
+        "c137",
+        "c153"
+      ],
+      "role": "spine"
     },
     {
       "id": "c028",
@@ -3536,7 +3568,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -3546,7 +3578,7 @@
           "tick": 0
         }
       ],
-      "text": "Winthrop Ainsworth says Bernard Bernstein was at Kaplan’s drugstore with the soda fountain at 6:00 PM.",
+      "text": "Ainsworth says Bernstein was at Kaplan’s at 6:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3557,7 +3589,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -3573,10 +3605,12 @@
           "tick": 11
         }
       ],
-      "text": "Winthrop Ainsworth says Bernard Bernstein was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Ainsworth says Bernstein was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c046"
+      ],
+      "role": "spine"
     },
     {
       "id": "c030",
@@ -3584,7 +3618,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3594,7 +3628,7 @@
           "tick": 1
         }
       ],
-      "text": "Winthrop Ainsworth says Hedwig Hauck was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Ainsworth says Hauck was at Kaplan’s at 6:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3605,7 +3639,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3621,10 +3655,13 @@
           "tick": 11
         }
       ],
-      "text": "Winthrop Ainsworth says Hedwig Hauck was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Ainsworth says Hauck was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c027",
+        "c010"
+      ],
+      "role": "spine"
     },
     {
       "id": "c032",
@@ -3632,7 +3669,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3654,7 +3691,7 @@
           "tick": 2
         }
       ],
-      "text": "Winthrop Ainsworth says Grafton Stannard was at Kaplan’s drugstore with the soda fountain from 6:00 PM to 7:00 PM.",
+      "text": "Ainsworth says Stannard was at Kaplan’s from 6:00 PM to 7:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3665,7 +3702,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -3675,7 +3712,7 @@
           "tick": 0
         }
       ],
-      "text": "Hedwig Hauck says Gustav Lindemann was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Hauck says Lindemann was at the speakeasy at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3686,7 +3723,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -3702,7 +3739,7 @@
           "tick": 6
         }
       ],
-      "text": "Hedwig Hauck says Gustav Lindemann was at the speakeasy under the hat shop from 8:30 PM to 9:00 PM.",
+      "text": "Hauck says Lindemann was at the speakeasy from 8:30 PM to 9:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3713,7 +3750,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3734,7 +3771,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hedwig Hauck says Lyman Coffin was at the speakeasy under the hat shop from 10:00 PM to 10:30 PM.",
+      "text": "Hauck says Coffin was at the speakeasy from 10:00 PM to 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3745,7 +3782,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3761,7 +3798,7 @@
           "tick": 11
         }
       ],
-      "text": "Hedwig Hauck says Lyman Coffin was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Hauck says Coffin was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3772,7 +3809,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -3787,7 +3824,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hedwig Hauck says Bernard Bernstein was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Hauck says Bernstein was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3798,7 +3835,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -3813,7 +3850,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hedwig Hauck says Bernard Bernstein was at the speakeasy under the hat shop at 10:30 PM.",
+      "text": "Hauck says Bernstein was at the speakeasy at 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3824,7 +3861,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -3840,7 +3877,7 @@
           "tick": 11
         }
       ],
-      "text": "Hedwig Hauck says Bernard Bernstein was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Hauck says Bernstein was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3851,7 +3888,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3861,7 +3898,7 @@
           "tick": 1
         }
       ],
-      "text": "Hedwig Hauck says Winthrop Ainsworth was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Hauck says Ainsworth was at Kaplan’s at 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3872,7 +3909,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3887,7 +3924,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hedwig Hauck says Winthrop Ainsworth was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Hauck says Ainsworth was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3898,7 +3935,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3914,10 +3951,10 @@
           "tick": 11
         }
       ],
-      "text": "Hedwig Hauck says Winthrop Ainsworth was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Hauck says Ainsworth was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c043",
@@ -3925,7 +3962,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3935,7 +3972,7 @@
           "tick": 1
         }
       ],
-      "text": "Hedwig Hauck says Grafton Stannard was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Hauck says Stannard was at Kaplan’s at 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3946,7 +3983,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3956,7 +3993,7 @@
           "tick": 4
         }
       ],
-      "text": "Hedwig Hauck says Grafton Stannard was at the ferry slip at the foot of the street at 8:00 PM.",
+      "text": "Hauck says Stannard was at the ferry slip at 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3967,7 +4004,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3994,7 +4031,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hedwig Hauck says Grafton Stannard was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM.",
+      "text": "Hauck says Stannard was at the speakeasy from 8:30 PM to 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4005,7 +4042,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -4038,10 +4075,10 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hedwig Hauck says Hyman Kessler was at the speakeasy under the hat shop from 8:30 PM to 10:00 PM.",
+      "text": "Hauck says Kessler was at the speakeasy from 8:30 PM to 10:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c047",
@@ -4049,7 +4086,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4059,7 +4096,7 @@
           "tick": 3
         }
       ],
-      "text": "Grafton Stannard says Gustav Lindemann was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Stannard says Lindemann was at the speakeasy at 7:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4070,7 +4107,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4086,7 +4123,7 @@
           "tick": 6
         }
       ],
-      "text": "Grafton Stannard says Gustav Lindemann was at the speakeasy under the hat shop from 8:30 PM to 9:00 PM.",
+      "text": "Stannard says Lindemann was at the speakeasy from 8:30 PM to 9:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4097,7 +4134,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -4107,7 +4144,7 @@
           "tick": 0
         }
       ],
-      "text": "Grafton Stannard says Bernard Bernstein was at Kaplan’s drugstore with the soda fountain at 6:00 PM.",
+      "text": "Stannard says Bernstein was at Kaplan’s at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4118,7 +4155,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -4133,10 +4170,10 @@
           "methodId": "poison"
         }
       ],
-      "text": "Grafton Stannard says Bernard Bernstein was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Stannard says Bernstein was at the speakeasy at 7:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c051",
@@ -4144,7 +4181,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -4159,7 +4196,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Grafton Stannard says Bernard Bernstein was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Stannard says Bernstein was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4170,7 +4207,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4192,7 +4229,7 @@
           "tick": 2
         }
       ],
-      "text": "Grafton Stannard says Winthrop Ainsworth was at Kaplan’s drugstore with the soda fountain from 6:00 PM to 7:00 PM.",
+      "text": "Stannard says Ainsworth was at Kaplan’s from 6:00 PM to 7:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4203,7 +4240,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4218,7 +4255,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Grafton Stannard says Winthrop Ainsworth was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Stannard says Ainsworth was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4229,7 +4266,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4239,7 +4276,7 @@
           "tick": 1
         }
       ],
-      "text": "Grafton Stannard says Hedwig Hauck was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Stannard says Hauck was at Kaplan’s at 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4250,7 +4287,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4260,7 +4297,7 @@
           "tick": 4
         }
       ],
-      "text": "Grafton Stannard says Hedwig Hauck was at the ferry slip at the foot of the street at 8:00 PM.",
+      "text": "Stannard says Hauck was at the ferry slip at 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4271,7 +4308,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4298,7 +4335,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Grafton Stannard says Hedwig Hauck was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM.",
+      "text": "Stannard says Hauck was at the speakeasy from 8:30 PM to 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4309,7 +4346,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -4336,13 +4373,10 @@
           "methodId": "poison"
         }
       ],
-      "text": "Grafton Stannard says Hyman Kessler was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM.",
+      "text": "Stannard says Kessler was at the speakeasy from 8:30 PM to 9:30 PM.",
       "place": "speakeasy",
-      "leadsTo": [
-        "c192",
-        "c197"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c058",
@@ -4350,7 +4384,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4366,7 +4400,7 @@
           "tick": 6
         }
       ],
-      "text": "Hyman Kessler says Gustav Lindemann was at the speakeasy under the hat shop from 8:30 PM to 9:00 PM.",
+      "text": "Kessler says Lindemann was at the speakeasy from 8:30 PM to 9:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4377,7 +4411,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4387,7 +4421,7 @@
           "tick": 0
         }
       ],
-      "text": "Hyman Kessler says Lyman Coffin was at the newsstand on the corner at 6:00 PM.",
+      "text": "Kessler says Coffin was at the newsstand at 6:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4398,7 +4432,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4413,7 +4447,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Kessler says Lyman Coffin was at the speakeasy under the hat shop at 10:00 PM.",
+      "text": "Kessler says Coffin was at the speakeasy at 10:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4424,7 +4458,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -4439,7 +4473,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Kessler says Bernard Bernstein was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Kessler says Bernstein was at the speakeasy at 8:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4450,7 +4484,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4465,7 +4499,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Kessler says Winthrop Ainsworth was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Kessler says Ainsworth was at the speakeasy at 8:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4476,7 +4510,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4509,7 +4543,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Kessler says Hedwig Hauck was at the speakeasy under the hat shop from 8:30 PM to 10:00 PM.",
+      "text": "Kessler says Hauck was at the speakeasy from 8:30 PM to 10:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4520,7 +4554,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -4547,7 +4581,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Kessler says Grafton Stannard was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM.",
+      "text": "Kessler says Stannard was at the speakeasy from 8:30 PM to 9:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4558,7 +4592,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -4568,7 +4602,7 @@
           "tick": 0
         }
       ],
-      "text": "Rosaria Marchetti says Bernard Bernstein was at Kaplan’s drugstore with the soda fountain at 6:00 PM.",
+      "text": "Marchetti says Bernstein was at Kaplan’s at 6:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4579,7 +4613,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4613,7 +4647,7 @@
           "tick": 4
         }
       ],
-      "text": "Rosaria Marchetti says Winthrop Ainsworth was at Kaplan’s drugstore with the soda fountain from 6:00 PM to 8:00 PM.",
+      "text": "Marchetti says Ainsworth was at Kaplan’s from 6:00 PM to 8:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4624,7 +4658,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4634,7 +4668,7 @@
           "tick": 6
         }
       ],
-      "text": "Rosaria Marchetti says Winthrop Ainsworth was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Marchetti says Ainsworth was at Kaplan’s at 9:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4645,7 +4679,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4655,7 +4689,7 @@
           "tick": 8
         }
       ],
-      "text": "Rosaria Marchetti says Winthrop Ainsworth was at Kaplan’s drugstore with the soda fountain at 10:00 PM.",
+      "text": "Marchetti says Ainsworth was at Kaplan’s at 10:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4666,7 +4700,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4676,7 +4710,7 @@
           "tick": 1
         }
       ],
-      "text": "Rosaria Marchetti says Hedwig Hauck was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Marchetti says Hauck was at Kaplan’s at 6:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4687,7 +4721,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -4709,7 +4743,7 @@
           "tick": 2
         }
       ],
-      "text": "Rosaria Marchetti says Grafton Stannard was at Kaplan’s drugstore with the soda fountain from 6:00 PM to 7:00 PM.",
+      "text": "Marchetti says Stannard was at Kaplan’s from 6:00 PM to 7:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4720,7 +4754,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -4730,9 +4764,12 @@
           "tick": 10
         }
       ],
-      "text": "Rosaria Marchetti says Grafton Stannard was at the speakeasy under the hat shop at 11:00 PM.",
+      "text": "Marchetti says Stannard was at the speakeasy at 11:00 PM.",
       "place": "drugstore",
-      "leadsTo": [],
+      "leadsTo": [
+        "c116",
+        "c136"
+      ],
       "role": "spine"
     },
     {
@@ -4741,7 +4778,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -4751,7 +4788,7 @@
           "tick": 11
         }
       ],
-      "text": "Rosaria Marchetti says Hyman Kessler was at Kaplan’s drugstore with the soda fountain at 11:30 PM.",
+      "text": "Marchetti says Kessler was at Kaplan’s at 11:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4762,7 +4799,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4772,7 +4809,7 @@
           "tick": 4
         }
       ],
-      "text": "Klara Obermann says Gustav Lindemann was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Obermann says Lindemann was at the speakeasy at 8:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4783,7 +4820,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -4793,7 +4830,7 @@
           "tick": 9
         }
       ],
-      "text": "Klara Obermann says Gustav Lindemann was at the newsstand on the corner at 10:30 PM.",
+      "text": "Obermann says Lindemann was at the newsstand at 10:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4804,7 +4841,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4820,7 +4857,7 @@
           "tick": 1
         }
       ],
-      "text": "Klara Obermann says Lyman Coffin was at the newsstand on the corner from 6:00 PM to 6:30 PM.",
+      "text": "Obermann says Coffin was at the newsstand from 6:00 PM to 6:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4831,7 +4868,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4841,7 +4878,7 @@
           "tick": 6
         }
       ],
-      "text": "Klara Obermann says Lyman Coffin was at the newsstand on the corner at 9:00 PM.",
+      "text": "Obermann says Coffin was at the newsstand at 9:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4852,7 +4889,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4868,7 +4905,7 @@
           "tick": 11
         }
       ],
-      "text": "Klara Obermann says Lyman Coffin was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Obermann says Coffin was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4879,7 +4916,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -4894,7 +4931,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Klara Obermann says Bernard Bernstein was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Obermann says Bernstein was at the speakeasy at 8:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4905,7 +4942,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -4921,12 +4958,10 @@
           "tick": 11
         }
       ],
-      "text": "Klara Obermann says Bernard Bernstein was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Obermann says Bernstein was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
-      "leadsTo": [
-        "c202"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c080",
@@ -4934,7 +4969,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4950,7 +4985,7 @@
           "tick": 11
         }
       ],
-      "text": "Klara Obermann says Winthrop Ainsworth was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Obermann says Ainsworth was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4961,7 +4996,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4977,7 +5012,7 @@
           "tick": 11
         }
       ],
-      "text": "Klara Obermann says Hedwig Hauck was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Obermann says Hauck was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4988,7 +5023,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -5010,7 +5045,7 @@
           "tick": 2
         }
       ],
-      "text": "Klara Obermann says Hyman Kessler was at the newsstand on the corner from 6:00 PM to 7:00 PM.",
+      "text": "Obermann says Kessler was at the newsstand from 6:00 PM to 7:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -5021,7 +5056,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -5037,7 +5072,7 @@
           "tick": 5
         }
       ],
-      "text": "Clementine Tillman says Lyman Coffin was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
+      "text": "Tillman says Coffin was at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -5048,7 +5083,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -5058,7 +5093,7 @@
           "tick": 7
         }
       ],
-      "text": "Clementine Tillman says Lyman Coffin was at the back room at Mrs. Teague’s at 9:30 PM.",
+      "text": "Tillman says Coffin was at Mrs. Teague’s at 9:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -5069,7 +5104,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -5079,7 +5114,7 @@
           "tick": 7
         }
       ],
-      "text": "Clementine Tillman says Winthrop Ainsworth was at the back room at Mrs. Teague’s at 9:30 PM.",
+      "text": "Tillman says Ainsworth was at Mrs. Teague’s at 9:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -5090,7 +5125,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -5100,7 +5135,7 @@
           "tick": 9
         }
       ],
-      "text": "Clementine Tillman says Winthrop Ainsworth was at the back room at Mrs. Teague’s at 10:30 PM.",
+      "text": "Tillman says Ainsworth was at Mrs. Teague’s at 10:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -5111,7 +5146,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -5121,7 +5156,7 @@
           "tick": 3
         }
       ],
-      "text": "Clementine Tillman says Hyman Kessler was at the back room at Mrs. Teague’s at 7:30 PM.",
+      "text": "Tillman says Kessler was at Mrs. Teague’s at 7:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -5132,7 +5167,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Gustav Lindemann"
+        "topic": "Lindemann"
       },
       "establishes": [
         {
@@ -5178,7 +5213,7 @@
           "tick": 6
         }
       ],
-      "text": "Giuseppe Bellucci says Gustav Lindemann was at the speakeasy under the hat shop from 6:00 PM to 9:00 PM.",
+      "text": "Bellucci says Lindemann was at the speakeasy from 6:00 PM to 9:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5189,7 +5224,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -5204,10 +5239,12 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Lyman Coffin was at the speakeasy under the hat shop at 7:00 PM.",
+      "text": "Bellucci says Coffin was at the speakeasy at 7:00 PM.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c170"
+      ],
+      "role": "corroboration"
     },
     {
       "id": "c090",
@@ -5215,7 +5252,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -5236,7 +5273,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Lyman Coffin was at the speakeasy under the hat shop from 10:00 PM to 10:30 PM.",
+      "text": "Bellucci says Coffin was at the speakeasy from 10:00 PM to 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5247,7 +5284,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -5286,7 +5323,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Bernard Bernstein was at the speakeasy under the hat shop from 6:30 PM to 8:30 PM.",
+      "text": "Bellucci says Bernstein was at the speakeasy from 6:30 PM to 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5297,7 +5334,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [
         {
@@ -5312,7 +5349,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Bernard Bernstein was at the speakeasy under the hat shop at 10:30 PM.",
+      "text": "Bellucci says Bernstein was at the speakeasy at 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5323,7 +5360,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Winthrop Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -5338,7 +5375,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Winthrop Ainsworth was at the speakeasy under the hat shop at 8:30 PM.",
+      "text": "Bellucci says Ainsworth was at the speakeasy at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5349,7 +5386,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -5364,7 +5401,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Hedwig Hauck was at the speakeasy under the hat shop at 6:00 PM.",
+      "text": "Bellucci says Hauck was at the speakeasy at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5375,7 +5412,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Hedwig Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -5414,7 +5451,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Hedwig Hauck was at the speakeasy under the hat shop from 8:30 PM to 10:30 PM.",
+      "text": "Bellucci says Hauck was at the speakeasy from 8:30 PM to 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5425,7 +5462,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -5440,7 +5477,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Grafton Stannard was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Bellucci says Stannard was at the speakeasy at 7:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5451,7 +5488,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -5478,7 +5515,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Grafton Stannard was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM.",
+      "text": "Bellucci says Stannard was at the speakeasy from 8:30 PM to 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5489,7 +5526,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -5505,10 +5542,10 @@
           "tick": 11
         }
       ],
-      "text": "Giuseppe Bellucci says Grafton Stannard was at the speakeasy under the hat shop from 11:00 PM to 11:30 PM.",
+      "text": "Bellucci says Stannard was at the speakeasy from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c099",
@@ -5516,7 +5553,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -5549,7 +5586,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Giuseppe Bellucci says Hyman Kessler was at the speakeasy under the hat shop from 8:30 PM to 10:00 PM.",
+      "text": "Bellucci says Kessler was at the speakeasy from 8:30 PM to 10:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5559,25 +5596,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-s5",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "speakeasy",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 8
+          "tick": 10
         }
       ],
-      "text": "Lyman Coffin runs through it: at 10:00 PM there were Hedwig Hauck, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Stannard was at the speakeasy at 11:00 PM and says Coffin was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5586,25 +5617,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-f1",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "speakeasy",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 9
+          "tick": 10
         }
       ],
-      "text": "Lyman Coffin runs through it: at 10:30 PM there were Bernard Bernstein, Hedwig Hauck at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Marchetti was at the speakeasy at 11:00 PM and says Coffin was not.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5613,31 +5638,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f4",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 10
         }
       ],
-      "text": "Lyman Coffin runs through it: at 11:30 PM there were Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Bellucci was at the speakeasy at 11:00 PM and says Coffin was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5646,25 +5659,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f3",
+        "topic": "Bernstein’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 10
         }
       ],
-      "text": "Bernard Bernstein runs through it: at 6:00 PM there were Winthrop Ainsworth, Grafton Stannard at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Tillman was at Mrs. Teague’s at 11:00 PM and says Bernstein was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5673,37 +5680,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-f1",
+        "topic": "Ainsworth’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
+          "place": "drugstore",
           "tick": 5
         }
       ],
-      "text": "Bernard Bernstein runs through it: at 8:30 PM there were Winthrop Ainsworth, Hedwig Hauck, Grafton Stannard, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Marchetti was at Kaplan’s at 8:30 PM and says Ainsworth was not.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5712,25 +5701,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s1",
+        "topic": "Stannard’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "speakeasy",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 9
+          "tick": 8
         }
       ],
-      "text": "Bernard Bernstein runs through it: at 10:30 PM there were Lyman Coffin, Hedwig Hauck at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Coffin was at the speakeasy at 10:00 PM and says Stannard was not.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5739,30 +5722,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-s4",
+        "topic": "Stannard’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 8
         }
       ],
-      "text": "Bernard Bernstein runs through it: at 11:30 PM there were Lyman Coffin, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner, and nobody else worth naming.",
+      "text": "Hauck was at the speakeasy at 10:00 PM and says Stannard was not.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5772,25 +5743,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s6",
+        "topic": "Stannard’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 0
+          "place": "speakeasy",
+          "tick": 8
         }
       ],
-      "text": "Winthrop Ainsworth runs through it: at 6:00 PM there were Bernard Bernstein, Grafton Stannard at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Kessler was at the speakeasy at 10:00 PM and says Stannard was not.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5799,25 +5764,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-f4",
+        "topic": "Stannard’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
+          "place": "speakeasy",
+          "tick": 8
         }
       ],
-      "text": "Winthrop Ainsworth runs through it: at 6:30 PM there were Hedwig Hauck, Grafton Stannard at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Bellucci was at the speakeasy at 10:00 PM and says Stannard was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5826,31 +5785,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s1",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 10
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 2
         }
       ],
-      "text": "Winthrop Ainsworth runs through it: at 11:00 PM there were Lyman Coffin, Bernard Bernstein, Hedwig Hauck at the newsstand on the corner, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Coffin was at the speakeasy at 7:00 PM and says Kessler was not.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5859,31 +5806,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-s2",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 1
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 2
         }
       ],
-      "text": "Winthrop Ainsworth runs through it: at 11:30 PM there were Lyman Coffin, Bernard Bernstein, Hedwig Hauck at the newsstand on the corner, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Bernstein was at the speakeasy from 6:30 PM to 7:00 PM and says Kessler was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5892,63 +5833,51 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-f4",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
           "tick": 1
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 2
         }
       ],
-      "text": "Hedwig Hauck runs through it: at 6:30 PM there were Winthrop Ainsworth, Grafton Stannard at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
+      "text": "Bellucci was at the speakeasy from 6:30 PM to 7:00 PM and says Kessler was not.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c112",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "who was there at 8:30 PM"
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
           "place": "speakeasy",
-          "tick": 5
+          "tick": 1
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 2
         }
       ],
-      "text": "Hedwig Hauck runs through it: at 8:30 PM there were Bernard Bernstein, Winthrop Ainsworth, Grafton Stannard, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
+      "text": "Kessler names Hauck as the company for it. Hauck was at Kaplan’s from 6:30 PM to 7:00 PM, and says Kessler was not there.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -5958,25 +5887,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-s1",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
           "place": "speakeasy",
-          "tick": 6
+          "tick": 9
         }
       ],
-      "text": "Hedwig Hauck runs through it: at 9:00 PM there were Grafton Stannard, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Coffin was at the speakeasy at 10:30 PM and says Kessler was not.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5985,24 +5908,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-s2",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
           "place": "speakeasy",
-          "tick": 7
+          "tick": 9
         }
       ],
-      "text": "Hedwig Hauck runs through it: at 9:30 PM there were Grafton Stannard, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
+      "text": "Bernstein was at the speakeasy at 10:30 PM and says Kessler was not.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -6013,23 +5930,17 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "who was there at 10:00 PM"
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
           "place": "speakeasy",
-          "tick": 8
+          "tick": 9
         }
       ],
-      "text": "Hedwig Hauck runs through it: at 10:00 PM there were Lyman Coffin, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
+      "text": "Hauck was at the speakeasy at 10:30 PM and says Kessler was not.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -6039,1310 +5950,81 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-f1",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s6",
           "place": "speakeasy",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 9
+          "tick": 10
         }
       ],
-      "text": "Hedwig Hauck runs through it: at 10:30 PM there were Lyman Coffin, Bernard Bernstein at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
+      "text": "Marchetti was at the speakeasy at 11:00 PM and says Kessler was not.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c029",
+        "c010"
+      ],
+      "role": "spine"
     },
     {
       "id": "c117",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-f4",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 10
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 9
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
           "tick": 10
         }
       ],
-      "text": "Hedwig Hauck runs through it: at 11:00 PM there were Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth at the newsstand on the corner, and nobody else worth naming.",
+      "text": "Bellucci was at the speakeasy from 10:30 PM to 11:00 PM and says Kessler was not.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c118",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-s5",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 9
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 10
         }
       ],
-      "text": "Hedwig Hauck runs through it: at 11:30 PM there were Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth at the newsstand on the corner, and nobody else worth naming.",
+      "text": "Kessler names Stannard as the company for the speakeasy from 10:30 PM to 11:00 PM. Stannard says they were not together that evening.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 0
-        }
-      ],
-      "text": "Grafton Stannard runs through it: at 6:00 PM there were Bernard Bernstein, Winthrop Ainsworth at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Grafton Stannard runs through it: at 6:30 PM there were Winthrop Ainsworth, Hedwig Hauck at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "Grafton Stannard runs through it: at 8:30 PM there were Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 6
-        }
-      ],
-      "text": "Grafton Stannard runs through it: at 9:00 PM there were Hedwig Hauck, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Grafton Stannard runs through it: at 9:30 PM there were Hedwig Hauck, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "Hyman Kessler runs through it: at 8:30 PM there were Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck, Grafton Stannard at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 6
-        }
-      ],
-      "text": "Hyman Kessler runs through it: at 9:00 PM there were Hedwig Hauck, Grafton Stannard at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Hyman Kessler runs through it: at 9:30 PM there were Hedwig Hauck, Grafton Stannard at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "Hyman Kessler runs through it: at 10:00 PM there were Lyman Coffin, Hedwig Hauck at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 0
-        }
-      ],
-      "text": "Rosaria Marchetti runs through it: at 6:00 PM there were Bernard Bernstein, Winthrop Ainsworth, Grafton Stannard at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c129",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Rosaria Marchetti runs through it: at 6:30 PM there were Winthrop Ainsworth, Hedwig Hauck, Grafton Stannard at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c130",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 2
-        }
-      ],
-      "text": "Rosaria Marchetti runs through it: at 7:00 PM there were Winthrop Ainsworth, Grafton Stannard at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "corner-newsstand",
-          "tick": 0
-        }
-      ],
-      "text": "Klara Obermann runs through it: at 6:00 PM there were Lyman Coffin, Hyman Kessler at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c132",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "corner-newsstand",
-          "tick": 1
-        }
-      ],
-      "text": "Klara Obermann runs through it: at 6:30 PM there were Lyman Coffin, Hyman Kessler at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 10
-        }
-      ],
-      "text": "Klara Obermann runs through it: at 11:00 PM there were Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c134",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 11
-        }
-      ],
-      "text": "Klara Obermann runs through it: at 11:30 PM there were Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c135",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "rooming-house-room",
-          "tick": 7
-        }
-      ],
-      "text": "Clementine Tillman runs through it: at 9:30 PM there were Lyman Coffin, Winthrop Ainsworth at the back room at Mrs. Teague’s, and nobody else worth naming.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c136",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 2
-        }
-      ],
-      "text": "Giuseppe Bellucci runs through it: at 7:00 PM there were Lyman Coffin, Bernard Bernstein at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c137",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 3
-        }
-      ],
-      "text": "Giuseppe Bellucci runs through it: at 7:30 PM there were Bernard Bernstein, Grafton Stannard at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c138",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "Giuseppe Bellucci runs through it: at 8:30 PM there were Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck, Grafton Stannard, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c139",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 6
-        }
-      ],
-      "text": "Giuseppe Bellucci runs through it: at 9:00 PM there were Hedwig Hauck, Grafton Stannard, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c140",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Giuseppe Bellucci runs through it: at 9:30 PM there were Hedwig Hauck, Grafton Stannard, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c141",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "Giuseppe Bellucci runs through it: at 10:00 PM there were Lyman Coffin, Hedwig Hauck, Hyman Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c142",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 9
-        }
-      ],
-      "text": "Giuseppe Bellucci runs through it: at 10:30 PM there were Lyman Coffin, Bernard Bernstein, Hedwig Hauck at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c143",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Lyman Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 10
-        }
-      ],
-      "text": "Grafton Stannard was at the speakeasy under the hat shop at 11:00 PM and says Lyman Coffin was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c144",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Lyman Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 10
-        }
-      ],
-      "text": "Rosaria Marchetti was at the speakeasy under the hat shop at 11:00 PM and says Lyman Coffin was not.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c145",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Lyman Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 10
-        }
-      ],
-      "text": "Giuseppe Bellucci was at the speakeasy under the hat shop at 11:00 PM and says Lyman Coffin was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c146",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Bernard Bernstein’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 10
-        }
-      ],
-      "text": "Clementine Tillman was at the back room at Mrs. Teague’s at 11:00 PM and says Bernard Bernstein was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c147",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Winthrop Ainsworth’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 5
-        }
-      ],
-      "text": "Rosaria Marchetti was at Kaplan’s drugstore with the soda fountain at 8:30 PM and says Winthrop Ainsworth was not.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c148",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Grafton Stannard’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "Lyman Coffin was at the speakeasy under the hat shop at 10:00 PM and says Grafton Stannard was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c149",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Grafton Stannard’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "Hedwig Hauck was at the speakeasy under the hat shop at 10:00 PM and says Grafton Stannard was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c150",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Grafton Stannard’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "Hyman Kessler was at the speakeasy under the hat shop at 10:00 PM and says Grafton Stannard was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c151",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Grafton Stannard’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "Giuseppe Bellucci was at the speakeasy under the hat shop at 10:00 PM and says Grafton Stannard was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c152",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 2
-        }
-      ],
-      "text": "Lyman Coffin was at the speakeasy under the hat shop at 7:00 PM and says Hyman Kessler was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c153",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 1
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 2
-        }
-      ],
-      "text": "Bernard Bernstein was at the speakeasy under the hat shop from 6:30 PM to 7:00 PM and says Hyman Kessler was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c154",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 1
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 2
-        }
-      ],
-      "text": "Giuseppe Bellucci was at the speakeasy under the hat shop from 6:30 PM to 7:00 PM and says Hyman Kessler was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c155",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 1
-        }
-      ],
-      "text": "Hyman Kessler says Hedwig Hauck was there for it. Hedwig Hauck says otherwise: Hedwig Hauck was at Kaplan’s drugstore with the soda fountain at 6:30 PM, nowhere near the speakeasy under the hat shop.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c156",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 2
-        }
-      ],
-      "text": "Hyman Kessler says Hedwig Hauck was there for it. Hedwig Hauck says otherwise: Hedwig Hauck was at the ferry slip at the foot of the street at 7:00 PM, nowhere near the speakeasy under the hat shop.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c157",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 9
-        }
-      ],
-      "text": "Lyman Coffin was at the speakeasy under the hat shop at 10:30 PM and says Hyman Kessler was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c158",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 9
-        }
-      ],
-      "text": "Bernard Bernstein was at the speakeasy under the hat shop at 10:30 PM and says Hyman Kessler was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c159",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 9
-        }
-      ],
-      "text": "Hedwig Hauck was at the speakeasy under the hat shop at 10:30 PM and says Hyman Kessler was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c160",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 10
-        }
-      ],
-      "text": "Grafton Stannard was at the speakeasy under the hat shop at 11:00 PM and says Hyman Kessler was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c161",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 10
-        }
-      ],
-      "text": "Rosaria Marchetti was at the speakeasy under the hat shop at 11:00 PM and says Hyman Kessler was not.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c178",
-        "c169",
-        "c025",
-        "c050"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c162",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 9
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 10
-        }
-      ],
-      "text": "Giuseppe Bellucci was at the speakeasy under the hat shop from 10:30 PM to 11:00 PM and says Hyman Kessler was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c163",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Hyman Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 9
-        }
-      ],
-      "text": "Hyman Kessler says Grafton Stannard was there for it. Grafton Stannard says otherwise: Grafton Stannard was at the ferry slip at the foot of the street at 10:30 PM, nowhere near the speakeasy under the hat shop.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c164",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7358,23 +6040,20 @@
           "methodId": "poison"
         }
       ],
-      "text": "Gustav Lindemann was found at the victim’s rooms in the brownstone. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The ice being brought in came at 11:00 PM, and the iceman’s book has the delivery timed and signed for. That puts the killing in that half hour and no later.",
+      "text": "Lindemann was found at the brownstone. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The ice was brought in at 11:00 PM and the iceman’s book has the delivery timed and signed for.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c171",
-        "c161",
-        "c167",
-        "c010",
-        "c179",
-        "c133",
-        "c162",
-        "c079"
+        "c031",
+        "c027",
+        "c071",
+        "c116",
+        "c029"
       ],
       "role": "spine",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c165",
+      "id": "c120",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7396,14 +6075,13 @@
       "text": "The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c171",
-        "c161",
-        "c098"
+        "c128",
+        "c117"
       ],
       "role": "spine"
     },
     {
-      "id": "c166",
+      "id": "c121",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -7420,18 +6098,18 @@
           "methodId": "poison"
         }
       ],
-      "text": "A bottle of chloral drops is gone from the speakeasy under the hat shop. The bottle is gone from the shelf and the ring of dust it stood in is still there.",
+      "text": "A bottle of chloral drops is gone from the speakeasy. The bottle is gone from the shelf and the ring of dust it stood in is still there.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c167",
+      "id": "c122",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Gustav Lindemann that evening"
+        "topic": "Lindemann that evening"
       },
       "establishes": [
         {
@@ -7445,14 +6123,16 @@
           "tick": 9
         }
       ],
-      "text": "Klara Obermann puts Gustav Lindemann at the newsstand on the corner when the last edition came up, which was 10:30 PM, and alive enough to argue about the weather.",
+      "text": "Obermann puts Lindemann at the newsstand when the last edition came up, which was 10:30 PM, and alive enough to argue about the weather.",
       "place": "corner-newsstand",
-      "leadsTo": [],
+      "leadsTo": [
+        "c136"
+      ],
       "role": "spine",
       "anchorId": "last-edition"
     },
     {
-      "id": "c168",
+      "id": "c123",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -7474,14 +6154,14 @@
           "methodId": "poison"
         }
       ],
-      "text": "Winthrop Ainsworth was at the newsstand on the corner at 11:00 PM and heard a chair going over from the direction of the victim’s rooms in the brownstone, when the ice came.",
+      "text": "Ainsworth was at the newsstand at 11:00 PM and heard a chair going over from the direction of the brownstone, as the ice was being brought in.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c169",
+      "id": "c124",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -7503,14 +6183,14 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hedwig Hauck was at the newsstand on the corner at 11:00 PM and heard a chair going over from the direction of the victim’s rooms in the brownstone, when the ice came.",
+      "text": "Hauck was at the newsstand at 11:00 PM and heard a chair going over from the direction of the brownstone, as the ice was being brought in.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "corroboration",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c170",
+      "id": "c125",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -7532,14 +6212,14 @@
           "methodId": "poison"
         }
       ],
-      "text": "Klara Obermann was at the newsstand on the corner at 11:00 PM and heard a chair going over from the direction of the victim’s rooms in the brownstone, when the ice came.",
+      "text": "Obermann was at the newsstand at 11:00 PM and heard a chair going over from the direction of the brownstone, as the ice was being brought in.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c171",
+      "id": "c126",
       "kind": "anchor",
       "source": {
         "type": "place",
@@ -7551,19 +6231,68 @@
           "personId": "p-s1",
           "place": "corner-newsstand",
           "tick": 10
-        },
+        }
+      ],
+      "text": "The ice being brought in was at 11:00 PM, and Coffin was at the newsstand for it.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c127",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s2",
           "place": "corner-newsstand",
           "tick": 10
-        },
+        }
+      ],
+      "text": "The ice being brought in was at 11:00 PM, and Bernstein was at the newsstand for it.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c128",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s3",
           "place": "corner-newsstand",
           "tick": 10
-        },
+        }
+      ],
+      "text": "The ice being brought in was at 11:00 PM, and Ainsworth was at the newsstand for it.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c089",
+        "c127",
+        "c142"
+      ],
+      "role": "spine",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c129",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
@@ -7571,18 +6300,14 @@
           "tick": 10
         }
       ],
-      "text": "The ice being brought in at 11:00 PM puts Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner.",
+      "text": "The ice being brought in was at 11:00 PM, and Hauck was at the newsstand for it.",
       "place": "corner-newsstand",
-      "leadsTo": [
-        "c071",
-        "c010",
-        "c057"
-      ],
-      "role": "spine",
+      "leadsTo": [],
+      "role": "noise",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c172",
+      "id": "c130",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -7596,14 +6321,14 @@
           "tick": 10
         }
       ],
-      "text": "Lyman Coffin carries the mark of it: a wet patch down one side of a coat. That fixes Lyman Coffin at the newsstand on the corner at 11:00 PM, when the ice being brought in happened.",
+      "text": "Coffin still carries it: a wet patch down one side of a coat. The ice being brought in was at 11:00 PM, at the newsstand.",
       "place": "corner-newsstand",
       "leadsTo": [],
-      "role": "noise",
+      "role": "corroboration",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c173",
+      "id": "c131",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -7617,14 +6342,14 @@
           "tick": 10
         }
       ],
-      "text": "Bernard Bernstein carries the mark of it: a wet patch down one side of a coat. That fixes Bernard Bernstein at the newsstand on the corner at 11:00 PM, when the ice being brought in happened.",
+      "text": "Bernstein still carries it: a wet patch down one side of a coat. The ice being brought in was at 11:00 PM, at the newsstand.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c174",
+      "id": "c132",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7637,18 +6362,18 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the newsstand on the corner: A promissory note for $4,000 signed by Lyman Coffin, endorsed to Gustav Lindemann, three months past due.",
+      "text": "Found at the newsstand: A promissory note for $4,000 signed by Coffin, endorsed to Lindemann, three months past due.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c175",
+      "id": "c133",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Lyman Coffin and Gustav Lindemann"
+        "topic": "Coffin and Lindemann"
       },
       "establishes": [
         {
@@ -7657,13 +6382,13 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Giuseppe Bellucci says Gustav Lindemann told Lyman Coffin that Friday was the end of it, one way or the other.",
+      "text": "Bellucci says Lindemann told Coffin that Friday was the end of it, one way or the other.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c176",
+      "id": "c134",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7676,18 +6401,18 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A clipping about the failure of Grafton Stannard’s business, with Gustav Lindemann’s name underlined twice in pencil.",
+      "text": "Found at the brownstone: A clipping about the failure of Stannard’s business, with Lindemann’s name underlined twice in pencil.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c177",
+      "id": "c135",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Grafton Stannard and Gustav Lindemann"
+        "topic": "Stannard and Lindemann"
       },
       "establishes": [
         {
@@ -7696,13 +6421,13 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Klara Obermann says Grafton Stannard said Gustav Lindemann had taken everything and would be made to feel it.",
+      "text": "Obermann says Stannard said Lindemann had taken everything and would be made to feel it.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c178",
+      "id": "c136",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7715,18 +6440,20 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Found at the ferry slip at the foot of the street: A typed page of dates and sums in Gustav Lindemann’s file, headed with Hyman Kessler’s name.",
+      "text": "Found at the ferry slip: A typed page of dates and sums in Lindemann’s file, headed with Kessler’s name.",
       "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "spine"
     },
     {
-      "id": "c179",
+      "id": "c137",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Hyman Kessler and Gustav Lindemann"
+        "topic": "Kessler and Lindemann"
       },
       "establishes": [
         {
@@ -7735,15 +6462,13 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Giuseppe Bellucci says Gustav Lindemann told Hyman Kessler that the story would run whether Hyman Kessler liked it or not.",
+      "text": "Bellucci says Lindemann told Kessler that the story would run whether Kessler liked it or not.",
       "place": "speakeasy",
-      "leadsTo": [
-        "c210"
-      ],
-      "role": "spine"
+      "leadsTo": [],
+      "role": "corroboration"
     },
     {
-      "id": "c180",
+      "id": "c138",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7757,93 +6482,100 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Winthrop Ainsworth hired us. Winthrop Ainsworth wants it known that Lyman Coffin owed the victim money, and would rather we started there.",
+      "text": "Ainsworth hired us, and wants it known that Coffin owed the victim money, and would rather we started there.",
       "place": "drugstore",
       "leadsTo": [
+        "c031",
         "c071",
-        "c167",
-        "c179"
+        "c122",
+        "c128",
+        "c130",
+        "c042",
+        "c146"
       ],
       "role": "spine"
     },
     {
-      "id": "c181",
+      "id": "c139",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [],
-      "text": "Clementine Tillman on Lyman Coffin: Lyman Coffin was carrying a parcel into the newsstand on the corner and came out without it.",
+      "text": "Tillman on Coffin: Coffin was carrying a parcel into the newsstand and came out without it.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c182",
+      "id": "c140",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [],
-      "text": "Winthrop Ainsworth on Lyman Coffin: There is a man who meets people at the newsstand on the corner and nobody will say his name out loud.",
+      "text": "Ainsworth on Coffin: There is a man who meets people at the newsstand and nobody will say his name out loud.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c183",
+      "id": "c141",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Lyman Coffin"
+        "topic": "Coffin"
       },
       "establishes": [],
-      "text": "Grafton Stannard on Lyman Coffin: Lyman Coffin has been selling things that were never Lyman Coffin’s to sell.",
+      "text": "Stannard on Coffin: Coffin has been selling things that were never Coffin’s to sell.",
       "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c142",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the newsstand, and the shop it came from closed two years ago.",
+      "place": "corner-newsstand",
       "leadsTo": [
-        "c186"
+        "c143"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s1",
-      "branchId": "b1"
+      "branchId": "b3"
     },
     {
-      "id": "c184",
+      "id": "c143",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "corner-newsstand"
       },
       "establishes": [],
-      "text": "Wrapping paper and a cut string at the newsstand on the corner, and the shop it came from closed two years ago.",
+      "text": "A pawn ticket at the newsstand in a name that does not exist, made out at the hour in question.",
       "place": "corner-newsstand",
-      "leadsTo": [],
+      "leadsTo": [
+        "c144"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s1"
+      "aboutSecretOf": "p-s1",
+      "branchId": "b3"
     },
     {
-      "id": "c185",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the newsstand on the corner in a name that does not exist, made out at the hour in question.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c186",
+      "id": "c144",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7862,15 +6594,15 @@
           "tick": 10
         }
       ],
-      "text": "The receiver at the newsstand on the corner would rather talk than be held: Lyman Coffin was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Lyman Coffin will take over this one.",
+      "text": "The receiver at the newsstand would rather talk than be held: Coffin was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Coffin will take over this one.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s1",
-      "branchId": "b1"
+      "branchId": "b3"
     },
     {
-      "id": "c187",
+      "id": "c145",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7889,93 +6621,93 @@
           "tick": 10
         }
       ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Lyman Coffin at the newsstand on the corner from 11:00 PM with both hands full.",
+      "text": "The goods turn up, tagged and dated, and the tag puts Coffin at the newsstand from 11:00 PM with both hands full.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c188",
+      "id": "c146",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [],
-      "text": "Clementine Tillman on Bernard Bernstein: Bernard Bernstein was asking around for a hundred dollars in a hurry earlier in the week.",
+      "text": "Tillman on Bernstein: Bernstein was asking around for a hundred dollars in a hurry earlier in the week.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c193"
+        "c147"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s2",
-      "branchId": "b2"
+      "branchId": "b4"
     },
     {
-      "id": "c189",
+      "id": "c147",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [],
-      "text": "Winthrop Ainsworth on Bernard Bernstein: A man nobody knew was waiting for Bernard Bernstein at the newsstand on the corner and would not give a name.",
+      "text": "Ainsworth on Bernstein: A man nobody knew was waiting for Bernstein at the newsstand and would not give a name.",
       "place": "drugstore",
-      "leadsTo": [],
+      "leadsTo": [
+        "c151"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
     },
     {
-      "id": "c190",
+      "id": "c148",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Bernard Bernstein"
+        "topic": "Bernstein"
       },
       "establishes": [],
-      "text": "Grafton Stannard on Bernard Bernstein: Bernard Bernstein goes very quiet when the racing wire is mentioned.",
+      "text": "Stannard on Bernstein: Bernstein goes very quiet when the racing wire is mentioned.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c191",
+      "id": "c149",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "corner-newsstand"
       },
       "establishes": [],
-      "text": "Betting slips at the newsstand on the corner in Bernard Bernstein’s pocketbook, all of them losers, all of them this month.",
+      "text": "Betting slips at the newsstand in Bernstein’s pocketbook, all of them losers, all of them this month.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c192",
+      "id": "c150",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "corner-newsstand"
       },
       "establishes": [],
-      "text": "A book of markers at the newsstand on the corner with Bernard Bernstein’s initials against four of them.",
+      "text": "A book of markers at the newsstand with Bernstein’s initials against four of them.",
       "place": "corner-newsstand",
-      "leadsTo": [
-        "c188"
-      ],
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
+      "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c193",
+      "id": "c151",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7994,15 +6726,15 @@
           "tick": 10
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Bernard Bernstein was at the newsstand on the corner from 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Bernstein was at the newsstand from 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s2",
-      "branchId": "b2"
+      "branchId": "b4"
     },
     {
-      "id": "c194",
+      "id": "c152",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8021,339 +6753,344 @@
           "tick": 10
         }
       ],
-      "text": "The book at the newsstand on the corner has the payment entered against Bernard Bernstein’s name and the time beside it, from 11:00 PM, in the clerk’s own hand.",
+      "text": "The book at the newsstand has the payment entered against Bernstein’s name and the time beside it, from 11:00 PM, in the clerk’s own hand.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c195",
+      "id": "c153",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Winthrop Ainsworth"
+        "personId": "p-f4",
+        "topic": "Ainsworth"
       },
       "establishes": [],
-      "text": "Rosaria Marchetti on Winthrop Ainsworth: Winthrop Ainsworth was carrying a parcel into the speakeasy under the hat shop and came out without it.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c196",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Winthrop Ainsworth"
-      },
-      "establishes": [],
-      "text": "Clementine Tillman on Winthrop Ainsworth: There is a man who meets people at the speakeasy under the hat shop and nobody will say his name out loud.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c197",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Winthrop Ainsworth"
-      },
-      "establishes": [],
-      "text": "Lyman Coffin on Winthrop Ainsworth: Winthrop Ainsworth has been selling things that were never Winthrop Ainsworth’s to sell.",
-      "place": "corner-newsstand",
+      "text": "Bellucci on Ainsworth: Ainsworth was carrying a parcel into the speakeasy and came out without it.",
+      "place": "speakeasy",
       "leadsTo": [
-        "c199"
+        "c156"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "branchId": "b1"
     },
     {
-      "id": "c198",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the speakeasy under the hat shop, and the shop it came from closed two years ago.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c199",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the speakeasy under the hat shop in a name that does not exist, made out at the hour in question.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c200"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c200",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "The receiver at the speakeasy under the hat shop would rather talk than be held: Winthrop Ainsworth was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Winthrop Ainsworth will take over this one.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c201",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Winthrop Ainsworth at the speakeasy under the hat shop from 8:30 PM with both hands full.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c202",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Hedwig Hauck"
-      },
-      "establishes": [],
-      "text": "Grafton Stannard on Hedwig Hauck: Hedwig Hauck’s registration card gives an address on a street that does not exist.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c207"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c203",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Hedwig Hauck"
-      },
-      "establishes": [],
-      "text": "Rosaria Marchetti on Hedwig Hauck: Two signatures of Hedwig Hauck’s, a month apart, are in different hands.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c204",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Hedwig Hauck"
-      },
-      "establishes": [],
-      "text": "Clementine Tillman on Hedwig Hauck: Hedwig Hauck answers to the name a half-second late, every time.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c205",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A union card in Hedwig Hauck’s coat lining carries a different surname and a 1919 date.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c206",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A steamship ticket stub among Hedwig Hauck’s things, in the name of a man who died at Belleau Wood.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c207",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "forged-identity"
-        }
-      ],
-      "text": "The name Hedwig Hauck was born with turns up on a desertion warrant from 1918. Hedwig Hauck has been hiding from the Army for eleven years and from nobody else.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c208",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "forged-identity"
-        }
-      ],
-      "text": "The papers are forged and the reason is plain: Hedwig Hauck was put out of the country once already and does not mean to be put out twice.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c209",
+      "id": "c154",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Grafton Stannard"
+        "topic": "Ainsworth"
       },
       "establishes": [],
-      "text": "Bernard Bernstein on Grafton Stannard: Grafton Stannard sends money out of every pay envelope and cannot say where it goes.",
+      "text": "Bernstein on Ainsworth: There is a man who meets people at the speakeasy and nobody will say his name out loud.",
       "place": "speakeasy",
-      "leadsTo": [],
+      "leadsTo": [
+        "c158"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
     },
     {
-      "id": "c210",
+      "id": "c155",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Grafton Stannard"
+        "personId": "p-s5",
+        "topic": "Ainsworth"
       },
       "establishes": [],
-      "text": "Hedwig Hauck on Grafton Stannard: A woman at the ferry slip at the foot of the street asked for Grafton Stannard by a name Grafton Stannard has not used in years.",
+      "text": "Stannard on Ainsworth: Ainsworth has been selling things that were never Ainsworth’s to sell.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c156",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the speakeasy, and the shop it came from closed two years ago.",
       "place": "speakeasy",
       "leadsTo": [
-        "c214"
+        "c154"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c157",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the speakeasy in a name that does not exist, made out at the hour in question.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c158",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 5
+        }
+      ],
+      "text": "The receiver at the speakeasy would rather talk than be held: Ainsworth was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Ainsworth will take over this one.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c159",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 5
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Ainsworth at the speakeasy from 8:30 PM with both hands full.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c160",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Obermann on Hauck: Hauck’s registration card gives an address on a street that does not exist.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c161",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Bellucci on Hauck: Two signatures of Hauck’s, a month apart, are in different hands.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c162",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Bernstein on Hauck: Hauck answers to the name a half-second late, every time.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c163",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A union card in Hauck’s coat lining carries a different surname and a 1919 date.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c164",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A steamship ticket stub among Hauck’s things, in the name of a man who died at Belleau Wood.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c165",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "forged-identity"
+        }
+      ],
+      "text": "The name Hauck was born with turns up on a desertion warrant from 1918. Hauck has been hiding from the Army for eleven years and from nobody else.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c166",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "forged-identity"
+        }
+      ],
+      "text": "The papers are forged and the reason is plain: Hauck was put out of the country once already and does not mean to be put out twice.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c167",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Kessler on Stannard: Stannard sends money out of every pay envelope and cannot say where it goes.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c171"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
-      "branchId": "b3"
+      "branchId": "b2"
     },
     {
-      "id": "c211",
+      "id": "c168",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Grafton Stannard"
+        "personId": "p-f2",
+        "topic": "Stannard"
       },
       "establishes": [],
-      "text": "Rosaria Marchetti on Grafton Stannard: Grafton Stannard keeps a photograph and will not be asked about it twice.",
-      "place": "drugstore",
+      "text": "Obermann on Stannard: A woman at the ferry slip asked for Stannard by a name Stannard has not used in years.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s5"
     },
     {
-      "id": "c212",
+      "id": "c169",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Bellucci on Stannard: Stannard keeps a photograph and will not be asked about it twice.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c170",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "ferry-slip"
       },
       "establishes": [],
-      "text": "A board-and-keep receipt at the ferry slip at the foot of the street, monthly, eight years of them.",
+      "text": "A board-and-keep receipt at the ferry slip, monthly, eight years of them.",
       "place": "ferry-slip",
-      "leadsTo": [],
+      "leadsTo": [
+        "c167"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s5",
+      "branchId": "b2"
     },
     {
-      "id": "c213",
+      "id": "c171",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "ferry-slip"
       },
       "establishes": [],
-      "text": "A child’s shoe at the ferry slip at the foot of the street, and nobody at the ferry slip at the foot of the street has any children.",
+      "text": "A child’s shoe at the ferry slip, and nobody at the ferry slip has any children.",
       "place": "ferry-slip",
-      "leadsTo": [],
+      "leadsTo": [
+        "c172"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s5",
+      "branchId": "b2"
     },
     {
-      "id": "c214",
+      "id": "c172",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8372,15 +7109,15 @@
           "tick": 8
         }
       ],
-      "text": "The woman who keeps the child says it straight out: Grafton Stannard was at the ferry slip at the foot of the street from 10:00 PM, the same as every week, and left with the same face as always.",
+      "text": "The woman who keeps the child says it straight out: Stannard was at the ferry slip from 10:00 PM, the same as every week, and left with the same face as always.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s5",
-      "branchId": "b3"
+      "branchId": "b2"
     },
     {
-      "id": "c215",
+      "id": "c173",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8399,7 +7136,7 @@
           "tick": 8
         }
       ],
-      "text": "The parish register at the ferry slip at the foot of the street has the christening in it, and the board money receipted through the evening in question.",
+      "text": "The parish register at the ferry slip has the christening in it, and the board money receipted through the evening in question.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise",
@@ -8408,7 +7145,7 @@
   ],
   "findable": [
     {
-      "id": "c164",
+      "id": "c119",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -8424,23 +7161,20 @@
           "methodId": "poison"
         }
       ],
-      "text": "Gustav Lindemann was found at the victim’s rooms in the brownstone. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The ice being brought in came at 11:00 PM, and the iceman’s book has the delivery timed and signed for. That puts the killing in that half hour and no later.",
+      "text": "Lindemann was found at the brownstone. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The ice was brought in at 11:00 PM and the iceman’s book has the delivery timed and signed for.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c171",
-        "c161",
-        "c167",
-        "c010",
-        "c179",
-        "c133",
-        "c162",
-        "c079"
+        "c031",
+        "c027",
+        "c071",
+        "c116",
+        "c029"
       ],
       "role": "spine",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c165",
+      "id": "c120",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -8462,14 +7196,13 @@
       "text": "The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c171",
-        "c161",
-        "c098"
+        "c128",
+        "c117"
       ],
       "role": "spine"
     },
     {
-      "id": "c180",
+      "id": "c138",
       "kind": "client",
       "source": {
         "type": "person",
@@ -8483,21 +7216,56 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Winthrop Ainsworth hired us. Winthrop Ainsworth wants it known that Lyman Coffin owed the victim money, and would rather we started there.",
+      "text": "Ainsworth hired us, and wants it known that Coffin owed the victim money, and would rather we started there.",
       "place": "drugstore",
       "leadsTo": [
+        "c031",
         "c071",
-        "c167",
-        "c179"
+        "c122",
+        "c128",
+        "c130",
+        "c042",
+        "c146"
       ],
       "role": "spine"
     },
     {
-      "id": "c171",
-      "kind": "anchor",
+      "id": "c031",
+      "kind": "observation",
       "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Hauck"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "corner-newsstand",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "corner-newsstand",
+          "tick": 11
+        }
+      ],
+      "text": "Ainsworth says Hauck was at the newsstand from 11:00 PM to 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c027",
+        "c010"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c027",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -8508,32 +7276,19 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
+          "personId": "p-s1",
           "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 10
+          "tick": 11
         }
       ],
-      "text": "The ice being brought in at 11:00 PM puts Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner.",
-      "place": "corner-newsstand",
+      "text": "Ainsworth says Coffin was at the newsstand from 11:00 PM to 11:30 PM.",
+      "place": "drugstore",
       "leadsTo": [
-        "c071",
-        "c010",
-        "c057"
+        "c122",
+        "c137",
+        "c153"
       ],
-      "role": "spine",
-      "anchorId": "ice-delivery"
+      "role": "spine"
     },
     {
       "id": "c071",
@@ -8541,7 +7296,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Grafton Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -8551,18 +7306,21 @@
           "tick": 10
         }
       ],
-      "text": "Rosaria Marchetti says Grafton Stannard was at the speakeasy under the hat shop at 11:00 PM.",
+      "text": "Marchetti says Stannard was at the speakeasy at 11:00 PM.",
       "place": "drugstore",
-      "leadsTo": [],
+      "leadsTo": [
+        "c116",
+        "c136"
+      ],
       "role": "spine"
     },
     {
-      "id": "c161",
+      "id": "c116",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Hyman Kessler’s account"
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
@@ -8572,23 +7330,50 @@
           "tick": 10
         }
       ],
-      "text": "Rosaria Marchetti was at the speakeasy under the hat shop at 11:00 PM and says Hyman Kessler was not.",
+      "text": "Marchetti was at the speakeasy at 11:00 PM and says Kessler was not.",
       "place": "drugstore",
       "leadsTo": [
-        "c178",
-        "c169",
-        "c025",
-        "c050"
+        "c029",
+        "c010"
       ],
       "role": "spine"
     },
     {
-      "id": "c167",
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Bernstein"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 11
+        }
+      ],
+      "text": "Ainsworth says Bernstein was at the newsstand from 11:00 PM to 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c046"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c122",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Gustav Lindemann that evening"
+        "topic": "Lindemann that evening"
       },
       "establishes": [
         {
@@ -8602,11 +7387,38 @@
           "tick": 9
         }
       ],
-      "text": "Klara Obermann puts Gustav Lindemann at the newsstand on the corner when the last edition came up, which was 10:30 PM, and alive enough to argue about the weather.",
+      "text": "Obermann puts Lindemann at the newsstand when the last edition came up, which was 10:30 PM, and alive enough to argue about the weather.",
       "place": "corner-newsstand",
-      "leadsTo": [],
+      "leadsTo": [
+        "c136"
+      ],
       "role": "spine",
       "anchorId": "last-edition"
+    },
+    {
+      "id": "c128",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 10
+        }
+      ],
+      "text": "The ice being brought in was at 11:00 PM, and Ainsworth was at the newsstand for it.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c089",
+        "c127",
+        "c142"
+      ],
+      "role": "spine",
+      "anchorId": "ice-delivery"
     },
     {
       "id": "c010",
@@ -8614,7 +7426,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Hyman Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -8629,74 +7441,13 @@
           "methodId": "poison"
         }
       ],
-      "text": "Lyman Coffin says Hyman Kessler was at the speakeasy under the hat shop at 10:00 PM.",
+      "text": "Coffin says Kessler was at the speakeasy at 10:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c179",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Hyman Kessler and Gustav Lindemann"
-      },
-      "establishes": [
-        {
-          "kind": "hasMotive",
-          "personId": "p-s6",
-          "motiveType": "exposure"
-        }
-      ],
-      "text": "Giuseppe Bellucci says Gustav Lindemann told Hyman Kessler that the story would run whether Hyman Kessler liked it or not.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c210"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 10
-        }
-      ],
-      "text": "Klara Obermann runs through it: at 11:00 PM there were Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c178",
+      "id": "c136",
       "kind": "document",
       "source": {
         "type": "place",
@@ -8709,47 +7460,20 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Found at the ferry slip at the foot of the street: A typed page of dates and sums in Gustav Lindemann’s file, headed with Hyman Kessler’s name.",
+      "text": "Found at the ferry slip: A typed page of dates and sums in Lindemann’s file, headed with Kessler’s name.",
       "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c169",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-brownstone",
-          "tick": 10
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 10
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
-        }
+      "leadsTo": [
+        "c124"
       ],
-      "text": "Hedwig Hauck was at the newsstand on the corner at 11:00 PM and heard a chair going over from the direction of the victim’s rooms in the brownstone, when the ice came.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "ice-delivery"
+      "role": "spine"
     },
     {
-      "id": "c057",
+      "id": "c046",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Hyman Kessler"
+        "personId": "p-s4",
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -8771,53 +7495,29 @@
           "tick": 7
         },
         {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 8
+        },
+        {
           "kind": "hadAccess",
           "personId": "p-s6",
           "methodId": "poison"
         }
       ],
-      "text": "Grafton Stannard says Hyman Kessler was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c192",
-        "c197"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Grafton Stannard"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 11
-        }
-      ],
-      "text": "Giuseppe Bellucci says Grafton Stannard was at the speakeasy under the hat shop from 11:00 PM to 11:30 PM.",
+      "text": "Hauck says Kessler was at the speakeasy from 8:30 PM to 10:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c162",
+      "id": "c117",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Hyman Kessler’s account"
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
@@ -8833,187 +7533,117 @@
           "tick": 10
         }
       ],
-      "text": "Giuseppe Bellucci was at the speakeasy under the hat shop from 10:30 PM to 11:00 PM and says Hyman Kessler was not.",
+      "text": "Bellucci was at the speakeasy from 10:30 PM to 11:00 PM and says Kessler was not.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c025",
-      "kind": "observation",
+      "id": "c124",
+      "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Hyman Kessler"
+        "personId": "p-s4",
+        "topic": "the noise that evening"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s6",
-          "methodId": "poison"
-        }
-      ],
-      "text": "Bernard Bernstein says Hyman Kessler was at the speakeasy under the hat shop at 8:30 PM.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c183"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c079",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Bernard Bernstein"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
+          "kind": "noiseAt",
+          "place": "res-brownstone",
           "tick": 10
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 11
-        }
-      ],
-      "text": "Klara Obermann says Bernard Bernstein was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c202"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c050",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Bernard Bernstein"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 3
+          "kind": "victimDeadBy",
+          "tick": 10
         },
         {
-          "kind": "hadAccess",
-          "personId": "p-s2",
+          "kind": "methodEvidence",
           "methodId": "poison"
         }
       ],
-      "text": "Grafton Stannard says Bernard Bernstein was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Hauck was at the newsstand at 11:00 PM and heard a chair going over from the direction of the brownstone, as the ice was being brought in.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Kessler and Lindemann"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s6",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Bellucci says Lindemann told Kessler that the story would run whether Kessler liked it or not.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c183",
-      "kind": "overheard",
+      "id": "c089",
+      "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Lyman Coffin"
-      },
-      "establishes": [],
-      "text": "Grafton Stannard on Lyman Coffin: Lyman Coffin has been selling things that were never Lyman Coffin’s to sell.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c186"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c186",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
+        "personId": "p-f4",
+        "topic": "Coffin"
       },
       "establishes": [
         {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "fence"
-        },
-        {
           "kind": "personAt",
           "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 10
+          "place": "speakeasy",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "poison"
         }
       ],
-      "text": "The receiver at the newsstand on the corner would rather talk than be held: Lyman Coffin was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Lyman Coffin will take over this one.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
+      "text": "Bellucci says Coffin was at the speakeasy at 7:00 PM.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c170"
+      ],
+      "role": "corroboration"
     },
     {
-      "id": "c192",
+      "id": "c130",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "corner-newsstand"
       },
-      "establishes": [],
-      "text": "A book of markers at the newsstand on the corner with Bernard Bernstein’s initials against four of them.",
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "corner-newsstand",
+          "tick": 10
+        }
+      ],
+      "text": "Coffin still carries it: a wet patch down one side of a coat. The ice being brought in was at 11:00 PM, at the newsstand.",
       "place": "corner-newsstand",
-      "leadsTo": [
-        "c188"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "ice-delivery"
     },
     {
-      "id": "c188",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Bernard Bernstein"
-      },
-      "establishes": [],
-      "text": "Clementine Tillman on Bernard Bernstein: Bernard Bernstein was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "rooming-house-room",
-      "leadsTo": [
-        "c193"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
-    },
-    {
-      "id": "c193",
-      "kind": "overheard",
+      "id": "c127",
+      "kind": "anchor",
       "source": {
         "type": "place",
         "placeId": "corner-newsstand"
       },
       "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "gambling-debt"
-        },
         {
           "kind": "personAt",
           "personId": "p-s2",
@@ -9021,33 +7651,173 @@
           "tick": 10
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Bernard Bernstein was at the newsstand on the corner from 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The ice being brought in was at 11:00 PM, and Bernstein was at the newsstand for it.",
       "place": "corner-newsstand",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
+      "role": "corroboration",
+      "anchorId": "ice-delivery"
     },
     {
-      "id": "c210",
-      "kind": "overheard",
+      "id": "c042",
+      "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Grafton Stannard"
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 11
+        }
+      ],
+      "text": "Hauck says Ainsworth was at the newsstand from 11:00 PM to 11:30 PM.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c153",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Ainsworth"
       },
       "establishes": [],
-      "text": "Hedwig Hauck on Grafton Stannard: A woman at the ferry slip at the foot of the street asked for Grafton Stannard by a name Grafton Stannard has not used in years.",
+      "text": "Bellucci on Ainsworth: Ainsworth was carrying a parcel into the speakeasy and came out without it.",
       "place": "speakeasy",
       "leadsTo": [
-        "c214"
+        "c156"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c156",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the speakeasy, and the shop it came from closed two years ago.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c154"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c154",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Bernstein on Ainsworth: There is a man who meets people at the speakeasy and nobody will say his name out loud.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c158"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c158",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 5
+        }
+      ],
+      "text": "The receiver at the speakeasy would rather talk than be held: Ainsworth was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Ainsworth will take over this one.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c170",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A board-and-keep receipt at the ferry slip, monthly, eight years of them.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c167"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
-      "branchId": "b3"
+      "branchId": "b2"
     },
     {
-      "id": "c214",
+      "id": "c167",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Kessler on Stannard: Stannard sends money out of every pay envelope and cannot say where it goes.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c171"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b2"
+    },
+    {
+      "id": "c171",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A child’s shoe at the ferry slip, and nobody at the ferry slip has any children.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c172"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b2"
+    },
+    {
+      "id": "c172",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -9066,123 +7836,147 @@
           "tick": 8
         }
       ],
-      "text": "The woman who keeps the child says it straight out: Grafton Stannard was at the ferry slip at the foot of the street from 10:00 PM, the same as every week, and left with the same face as always.",
+      "text": "The woman who keeps the child says it straight out: Stannard was at the ferry slip from 10:00 PM, the same as every week, and left with the same face as always.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s5",
-      "branchId": "b3"
+      "branchId": "b2"
     },
     {
-      "id": "c197",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Winthrop Ainsworth"
-      },
-      "establishes": [],
-      "text": "Lyman Coffin on Winthrop Ainsworth: Winthrop Ainsworth has been selling things that were never Winthrop Ainsworth’s to sell.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c199"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c199",
+      "id": "c142",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "speakeasy"
+        "placeId": "corner-newsstand"
       },
       "establishes": [],
-      "text": "A pawn ticket at the speakeasy under the hat shop in a name that does not exist, made out at the hour in question.",
-      "place": "speakeasy",
+      "text": "Wrapping paper and a cut string at the newsstand, and the shop it came from closed two years ago.",
+      "place": "corner-newsstand",
       "leadsTo": [
-        "c200"
+        "c143"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "aboutSecretOf": "p-s1",
+      "branchId": "b3"
     },
     {
-      "id": "c200",
+      "id": "c143",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the newsstand in a name that does not exist, made out at the hour in question.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b3"
+    },
+    {
+      "id": "c144",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "speakeasy"
+        "placeId": "corner-newsstand"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s3",
+          "personId": "p-s1",
           "secretType": "fence"
         },
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
+          "personId": "p-s1",
+          "place": "corner-newsstand",
+          "tick": 10
         }
       ],
-      "text": "The receiver at the speakeasy under the hat shop would rather talk than be held: Winthrop Ainsworth was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Winthrop Ainsworth will take over this one.",
-      "place": "speakeasy",
+      "text": "The receiver at the newsstand would rather talk than be held: Coffin was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Coffin will take over this one.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "aboutSecretOf": "p-s1",
+      "branchId": "b3"
     },
     {
-      "id": "c202",
+      "id": "c146",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Hedwig Hauck"
+        "personId": "p-f3",
+        "topic": "Bernstein"
       },
       "establishes": [],
-      "text": "Grafton Stannard on Hedwig Hauck: Hedwig Hauck’s registration card gives an address on a street that does not exist.",
-      "place": "speakeasy",
+      "text": "Tillman on Bernstein: Bernstein was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "rooming-house-room",
       "leadsTo": [
-        "c207"
+        "c147"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
     },
     {
-      "id": "c207",
+      "id": "c147",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Bernstein"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Bernstein: A man nobody knew was waiting for Bernstein at the newsstand and would not give a name.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c151"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c151",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "speakeasy"
+        "placeId": "corner-newsstand"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "forged-identity"
+          "personId": "p-s2",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 10
         }
       ],
-      "text": "The name Hedwig Hauck was born with turns up on a desertion warrant from 1918. Hedwig Hauck has been hiding from the Army for eleven years and from nobody else.",
-      "place": "speakeasy",
+      "text": "The bookmaker’s runner is found and will say it: Bernstein was at the newsstand from 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c164",
-    "c165",
-    "c180"
+    "c119",
+    "c120",
+    "c138"
   ],
   "clientId": "p-s3",
-  "par": 9,
-  "budget": 20,
+  "par": 12,
+  "slack": 6,
+  "budget": 18,
   "coronerWindow": [
     8,
     11
@@ -9196,10 +7990,10 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c165",
-      "c167",
-      "c164",
-      "c169"
+      "c120",
+      "c122",
+      "c119",
+      "c124"
     ],
     "timeOfDeathAnchors": [
       "ice-delivery",
@@ -9207,46 +8001,42 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c171",
-        "c133",
-        "c186"
+        "c027",
+        "c130",
+        "c144"
       ],
       "p-s2": [
-        "c171",
-        "c133",
-        "c079",
-        "c193"
+        "c029",
+        "c127",
+        "c151"
       ],
       "p-s3": [
-        "c171",
-        "c133"
+        "c128",
+        "c042"
       ],
       "p-s4": [
-        "c171",
-        "c133"
+        "c031"
       ],
       "p-s5": [
-        "c071",
-        "c098"
+        "c071"
       ]
     },
     "inculpation": [
-      "c161",
-      "c162"
+      "c116",
+      "c117"
     ],
     "access": [
       "c010",
-      "c057",
-      "c025"
+      "c046"
     ],
     "method": [
-      "c164",
-      "c165",
-      "c169"
+      "c119",
+      "c120",
+      "c124"
     ],
     "motive": [
-      "c179",
-      "c178"
+      "c136",
+      "c137"
     ]
   }
 }

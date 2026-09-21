@@ -8,6 +8,7 @@
     {
       "id": "pawnshop",
       "name": "Zelinsky’s pawnshop, the back room",
+      "shortName": "Zelinsky’s",
       "kind": "semi",
       "objects": [
         "obj-cigarette-case",
@@ -20,6 +21,7 @@
     {
       "id": "office-over-tailor",
       "name": "the office over the tailor’s shop",
+      "shortName": "the office",
       "kind": "private",
       "objects": [
         "obj-cashbox",
@@ -31,6 +33,7 @@
     {
       "id": "hallam-vestibule",
       "name": "the vestibule of the Hallam apartments",
+      "shortName": "the Hallam",
       "kind": "private",
       "objects": [
         "obj-revolver",
@@ -44,6 +47,7 @@
     {
       "id": "movie-house",
       "name": "the Bijou picture house",
+      "shortName": "the Bijou",
       "kind": "public",
       "objects": [
         "obj-ashtray",
@@ -56,6 +60,7 @@
     {
       "id": "res-backhouse",
       "name": "the victim’s house on the back lot",
+      "shortName": "the back lot",
       "kind": "private",
       "objects": [
         "obj-roofkey",
@@ -67,6 +72,7 @@
     {
       "id": "el-platform",
       "name": "the El platform at Twenty-Third Street",
+      "shortName": "the El platform",
       "kind": "public",
       "objects": [
         "obj-timetable",
@@ -147,6 +153,7 @@
     {
       "id": "p-victim",
       "name": "Karl Brauer",
+      "surname": "Brauer",
       "role": "a buildings inspector",
       "kind": "victim",
       "isKiller": false,
@@ -155,6 +162,7 @@
     {
       "id": "p-s1",
       "name": "Rivka Zeldin",
+      "surname": "Zeldin",
       "role": "a switchboard operator",
       "kind": "suspect",
       "isKiller": false,
@@ -164,7 +172,7 @@
       "secret": {
         "type": "affair",
         "label": "Affair",
-        "description": "Rivka Zeldin is with Booker Bledsoe at the vestibule of the Hallam apartments from 10:30 PM to 11:30 PM, and both will say they were somewhere else.",
+        "description": "Zeldin is with Bledsoe at the Hallam from 10:30 PM to 11:30 PM, and both will say they were somewhere else.",
         "cells": [
           {
             "tick": 9,
@@ -186,6 +194,7 @@
     {
       "id": "p-s2",
       "name": "Fannie Feldman",
+      "surname": "Feldman",
       "role": "a chambermaid",
       "kind": "suspect",
       "isKiller": false,
@@ -195,7 +204,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Fannie Feldman hands a parcel of stolen goods to a man at Zelinsky’s pawnshop, the back room from 10:00 PM to 10:30 PM.",
+        "description": "Feldman hands a parcel of stolen goods to a man at Zelinsky’s from 10:00 PM to 10:30 PM.",
         "cells": [
           {
             "tick": 8,
@@ -216,6 +225,7 @@
     {
       "id": "p-s3",
       "name": "Booker Bledsoe",
+      "surname": "Bledsoe",
       "role": "a dentist with rooms on the third floor",
       "kind": "suspect",
       "isKiller": false,
@@ -225,7 +235,7 @@
       "secret": {
         "type": "affair",
         "label": "Affair",
-        "description": "Booker Bledsoe is with Rivka Zeldin at the vestibule of the Hallam apartments from 10:30 PM to 11:30 PM, and both will say they were somewhere else.",
+        "description": "Bledsoe is with Zeldin at the Hallam from 10:30 PM to 11:30 PM, and both will say they were somewhere else.",
         "cells": [
           {
             "tick": 9,
@@ -247,6 +257,7 @@
     {
       "id": "p-s4",
       "name": "Edward Doyle",
+      "surname": "Doyle",
       "role": "a doorman at a club with no sign on it",
       "kind": "suspect",
       "isKiller": false,
@@ -256,7 +267,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Edward Doyle hands a parcel of stolen goods to a man at Zelinsky’s pawnshop, the back room from 9:30 PM to 10:00 PM.",
+        "description": "Doyle hands a parcel of stolen goods to a man at Zelinsky’s from 9:30 PM to 10:00 PM.",
         "cells": [
           {
             "tick": 7,
@@ -277,6 +288,7 @@
     {
       "id": "p-s5",
       "name": "Michael Feeney",
+      "surname": "Feeney",
       "role": "a curb broker",
       "kind": "suspect",
       "isKiller": true,
@@ -286,7 +298,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Michael Feeney is at the office over the tailor’s shop from 9:30 PM to 10:00 PM, alone with Karl Brauer when it happens at 10:00 PM.",
+        "description": "Feeney is at the office from 9:30 PM to 10:00 PM, alone with Brauer when it happens at 10:00 PM.",
         "cells": [
           {
             "tick": 7,
@@ -302,7 +314,7 @@
       "coverSecret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Michael Feeney slips off to Zelinsky’s pawnshop, the back room from 7:30 PM to 8:00 PM to settle with a bookmaker.",
+        "description": "Feeney slips off to Zelinsky’s from 7:30 PM to 8:00 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 3,
@@ -323,7 +335,8 @@
     {
       "id": "p-s6",
       "name": "Abraham Margolis",
-      "role": "the victim’s nephew, at loose ends",
+      "surname": "Margolis",
+      "role": "a young man living on expectations",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heir",
@@ -332,7 +345,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Abraham Margolis slips off to Zelinsky’s pawnshop, the back room from 10:00 PM to settle with a bookmaker.",
+        "description": "Margolis slips off to Zelinsky’s from 10:00 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 8,
@@ -346,6 +359,7 @@
     {
       "id": "p-f1",
       "name": "Elsa Schilling",
+      "surname": "Schilling",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -355,6 +369,7 @@
     {
       "id": "p-f2",
       "name": "Wilhelm Reinhardt",
+      "surname": "Reinhardt",
       "role": "the elevator man",
       "kind": "fixture",
       "isKiller": false,
@@ -364,6 +379,7 @@
     {
       "id": "p-f3",
       "name": "Gittel Hurwitz",
+      "surname": "Hurwitz",
       "role": "the ticket-taker",
       "kind": "fixture",
       "isKiller": false,
@@ -373,6 +389,7 @@
     {
       "id": "p-cop",
       "name": "Rutherford Stannard",
+      "surname": "Stannard",
       "role": "the patrolman on the beat",
       "kind": "fixture",
       "isKiller": false,
@@ -403,12 +420,18 @@
           "kind": "sighting"
         },
         {
+          "kind": "knowledge",
+          "description": "the iceman dropped a block on the step and it went in three"
+        },
+        {
           "kind": "mark",
           "description": "a wet patch down one side of a coat"
         }
       ],
       "timing": "when the ice came",
-      "sceneTiming": "the iceman’s book has the delivery timed and signed for",
+      "highTiming": "as the ice was being brought in",
+      "sceneFact": "The ice was brought in at {T} and the iceman’s book has the delivery timed and signed for.",
+      "masks": false,
       "placeId": "pawnshop"
     },
     {
@@ -426,7 +449,9 @@
         }
       ],
       "timing": "when the whistle went off the river",
-      "sceneTiming": "the boat keeps a schedule and the whistle is logged"
+      "highTiming": "as the whistle went off the river",
+      "sceneFact": "The whistle went off the river at {T}, two long and one short, and the boat’s log has the hour.",
+      "masks": false
     },
     {
       "templateId": "cop-pass",
@@ -443,7 +468,9 @@
         }
       ],
       "timing": "when the cop came round",
-      "sceneTiming": "the patrolman was two streets off on his round and heard it",
+      "highTiming": "as the cop was coming round",
+      "sceneFact": "The patrolman’s round brought him two streets off at {T}.",
+      "masks": false,
       "route": [
         "movie-house",
         "pawnshop",
@@ -456,6 +483,7 @@
     "pawnshop",
     "el-platform"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2660,7 +2688,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -2670,7 +2698,7 @@
           "tick": 7
         }
       ],
-      "text": "Rivka Zeldin says Karl Brauer was at Zelinsky’s pawnshop, the back room at 9:30 PM.",
+      "text": "Zeldin says Brauer was at Zelinsky’s at 9:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -2681,7 +2709,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -2691,7 +2719,7 @@
           "tick": 3
         }
       ],
-      "text": "Rivka Zeldin says Fannie Feldman was at Zelinsky’s pawnshop, the back room at 7:30 PM.",
+      "text": "Zeldin says Feldman was at Zelinsky’s at 7:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -2702,7 +2730,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -2712,10 +2740,12 @@
           "tick": 8
         }
       ],
-      "text": "Rivka Zeldin says Fannie Feldman was at Zelinsky’s pawnshop, the back room at 10:00 PM.",
+      "text": "Zeldin says Feldman was at Zelinsky’s at 10:00 PM.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c136"
+      ],
+      "role": "spine"
     },
     {
       "id": "c004",
@@ -2723,7 +2753,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -2739,7 +2769,7 @@
           "tick": 4
         }
       ],
-      "text": "Rivka Zeldin says Booker Bledsoe was at Zelinsky’s pawnshop, the back room from 7:30 PM to 8:00 PM.",
+      "text": "Zeldin says Bledsoe was at Zelinsky’s from 7:30 PM to 8:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -2750,7 +2780,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -2772,10 +2802,12 @@
           "tick": 8
         }
       ],
-      "text": "Rivka Zeldin says Booker Bledsoe was at Zelinsky’s pawnshop, the back room from 9:00 PM to 10:00 PM.",
+      "text": "Zeldin says Bledsoe was at Zelinsky’s from 9:00 PM to 10:00 PM.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c036"
+      ],
+      "role": "spine"
     },
     {
       "id": "c006",
@@ -2783,7 +2815,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -2805,10 +2837,12 @@
           "tick": 8
         }
       ],
-      "text": "Rivka Zeldin says Edward Doyle was at Zelinsky’s pawnshop, the back room from 9:00 PM to 10:00 PM.",
+      "text": "Zeldin says Doyle was at Zelinsky’s from 9:00 PM to 10:00 PM.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "spine"
     },
     {
       "id": "c007",
@@ -2816,7 +2850,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -2837,10 +2871,13 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rivka Zeldin says Michael Feeney was at the vestibule of the Hallam apartments from 6:00 PM to 6:30 PM.",
+      "text": "Zeldin says Feeney was at the Hallam from 6:00 PM to 6:30 PM.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c095",
+        "c005"
+      ],
+      "role": "spine"
     },
     {
       "id": "c008",
@@ -2848,7 +2885,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -2864,7 +2901,7 @@
           "tick": 4
         }
       ],
-      "text": "Rivka Zeldin says Michael Feeney was at Zelinsky’s pawnshop, the back room from 7:30 PM to 8:00 PM.",
+      "text": "Zeldin says Feeney was at Zelinsky’s from 7:30 PM to 8:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -2875,7 +2912,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -2885,7 +2922,7 @@
           "tick": 6
         }
       ],
-      "text": "Rivka Zeldin says Michael Feeney was at Zelinsky’s pawnshop, the back room at 9:00 PM.",
+      "text": "Zeldin says Feeney was at Zelinsky’s at 9:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -2896,7 +2933,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Abraham Margolis"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -2906,10 +2943,12 @@
           "tick": 8
         }
       ],
-      "text": "Rivka Zeldin says Abraham Margolis was at Zelinsky’s pawnshop, the back room at 10:00 PM.",
+      "text": "Zeldin says Margolis was at Zelinsky’s at 10:00 PM.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c005"
+      ],
+      "role": "spine"
     },
     {
       "id": "c011",
@@ -2917,7 +2956,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -2933,7 +2972,7 @@
           "tick": 5
         }
       ],
-      "text": "Fannie Feldman says Karl Brauer was at the El platform at Twenty-Third Street from 8:00 PM to 8:30 PM.",
+      "text": "Feldman says Brauer was at the El platform from 8:00 PM to 8:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -2944,7 +2983,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -2954,7 +2993,7 @@
           "tick": 3
         }
       ],
-      "text": "Fannie Feldman says Rivka Zeldin was at Zelinsky’s pawnshop, the back room at 7:30 PM.",
+      "text": "Feldman says Zeldin was at Zelinsky’s at 7:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -2965,7 +3004,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -2975,7 +3014,7 @@
           "tick": 10
         }
       ],
-      "text": "Fannie Feldman says Rivka Zeldin was at the vestibule of the Hallam apartments at 11:00 PM.",
+      "text": "Feldman says Zeldin was at the Hallam at 11:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -2986,7 +3025,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3002,7 +3041,7 @@
           "tick": 3
         }
       ],
-      "text": "Fannie Feldman says Booker Bledsoe was at Zelinsky’s pawnshop, the back room from 7:00 PM to 7:30 PM.",
+      "text": "Feldman says Bledsoe was at Zelinsky’s from 7:00 PM to 7:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3013,7 +3052,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3023,7 +3062,7 @@
           "tick": 10
         }
       ],
-      "text": "Fannie Feldman says Booker Bledsoe was at the vestibule of the Hallam apartments at 11:00 PM.",
+      "text": "Feldman says Bledsoe was at the Hallam at 11:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3034,7 +3073,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -3044,7 +3083,7 @@
           "tick": 0
         }
       ],
-      "text": "Fannie Feldman says Edward Doyle was at the El platform at Twenty-Third Street at 6:00 PM.",
+      "text": "Feldman says Doyle was at the El platform at 6:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3055,7 +3094,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -3071,7 +3110,7 @@
           "tick": 5
         }
       ],
-      "text": "Fannie Feldman says Edward Doyle was at the El platform at Twenty-Third Street from 8:00 PM to 8:30 PM.",
+      "text": "Feldman says Doyle was at the El platform from 8:00 PM to 8:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3082,7 +3121,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -3092,7 +3131,7 @@
           "tick": 3
         }
       ],
-      "text": "Fannie Feldman says Michael Feeney was at Zelinsky’s pawnshop, the back room at 7:30 PM.",
+      "text": "Feldman says Feeney was at Zelinsky’s at 7:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3103,7 +3142,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3113,7 +3152,7 @@
           "tick": 7
         }
       ],
-      "text": "Booker Bledsoe says Karl Brauer was at Zelinsky’s pawnshop, the back room at 9:30 PM.",
+      "text": "Bledsoe says Brauer was at Zelinsky’s at 9:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3124,7 +3163,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3140,7 +3179,7 @@
           "tick": 4
         }
       ],
-      "text": "Booker Bledsoe says Rivka Zeldin was at Zelinsky’s pawnshop, the back room from 7:30 PM to 8:00 PM.",
+      "text": "Bledsoe says Zeldin was at Zelinsky’s from 7:30 PM to 8:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3151,7 +3190,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3173,10 +3212,12 @@
           "tick": 8
         }
       ],
-      "text": "Booker Bledsoe says Rivka Zeldin was at Zelinsky’s pawnshop, the back room from 9:00 PM to 10:00 PM.",
+      "text": "Bledsoe says Zeldin was at Zelinsky’s from 9:00 PM to 10:00 PM.",
       "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c058"
+      ],
+      "role": "spine"
     },
     {
       "id": "c022",
@@ -3184,7 +3225,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3200,7 +3241,7 @@
           "tick": 3
         }
       ],
-      "text": "Booker Bledsoe says Fannie Feldman was at Zelinsky’s pawnshop, the back room from 7:00 PM to 7:30 PM.",
+      "text": "Bledsoe says Feldman was at Zelinsky’s from 7:00 PM to 7:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3211,7 +3252,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3221,7 +3262,7 @@
           "tick": 8
         }
       ],
-      "text": "Booker Bledsoe says Fannie Feldman was at Zelinsky’s pawnshop, the back room at 10:00 PM.",
+      "text": "Bledsoe says Feldman was at Zelinsky’s at 10:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3232,7 +3273,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -3254,7 +3295,7 @@
           "tick": 8
         }
       ],
-      "text": "Booker Bledsoe says Edward Doyle was at Zelinsky’s pawnshop, the back room from 9:00 PM to 10:00 PM.",
+      "text": "Bledsoe says Doyle was at Zelinsky’s from 9:00 PM to 10:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3265,7 +3306,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -3293,7 +3334,7 @@
           "tick": 6
         }
       ],
-      "text": "Booker Bledsoe says Michael Feeney was at Zelinsky’s pawnshop, the back room from 7:30 PM to 9:00 PM.",
+      "text": "Bledsoe says Feeney was at Zelinsky’s from 7:30 PM to 9:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3304,7 +3345,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Abraham Margolis"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -3314,7 +3355,7 @@
           "tick": 8
         }
       ],
-      "text": "Booker Bledsoe says Abraham Margolis was at Zelinsky’s pawnshop, the back room at 10:00 PM.",
+      "text": "Bledsoe says Margolis was at Zelinsky’s at 10:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3325,7 +3366,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3335,7 +3376,7 @@
           "tick": 1
         }
       ],
-      "text": "Edward Doyle says Karl Brauer was at the Bijou picture house at 6:30 PM.",
+      "text": "Doyle says Brauer was at the Bijou at 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3346,7 +3387,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3362,7 +3403,7 @@
           "tick": 5
         }
       ],
-      "text": "Edward Doyle says Karl Brauer was at the El platform at Twenty-Third Street from 8:00 PM to 8:30 PM.",
+      "text": "Doyle says Brauer was at the El platform from 8:00 PM to 8:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3373,7 +3414,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3383,7 +3424,7 @@
           "tick": 6
         }
       ],
-      "text": "Edward Doyle says Rivka Zeldin was at Zelinsky’s pawnshop, the back room at 9:00 PM.",
+      "text": "Doyle says Zeldin was at Zelinsky’s at 9:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3394,7 +3435,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3404,7 +3445,7 @@
           "tick": 11
         }
       ],
-      "text": "Edward Doyle says Rivka Zeldin was at the vestibule of the Hallam apartments at 11:30 PM.",
+      "text": "Doyle says Zeldin was at the Hallam at 11:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3415,7 +3456,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3425,7 +3466,7 @@
           "tick": 0
         }
       ],
-      "text": "Edward Doyle says Fannie Feldman was at the El platform at Twenty-Third Street at 6:00 PM.",
+      "text": "Doyle says Feldman was at the El platform at 6:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3436,7 +3477,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3452,7 +3493,7 @@
           "tick": 5
         }
       ],
-      "text": "Edward Doyle says Fannie Feldman was at the El platform at Twenty-Third Street from 8:00 PM to 8:30 PM.",
+      "text": "Doyle says Feldman was at the El platform from 8:00 PM to 8:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3463,7 +3504,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3473,7 +3514,7 @@
           "tick": 9
         }
       ],
-      "text": "Edward Doyle says Fannie Feldman was at Zelinsky’s pawnshop, the back room at 10:30 PM.",
+      "text": "Doyle says Feldman was at Zelinsky’s at 10:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3484,7 +3525,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3494,7 +3535,7 @@
           "tick": 6
         }
       ],
-      "text": "Edward Doyle says Booker Bledsoe was at Zelinsky’s pawnshop, the back room at 9:00 PM.",
+      "text": "Doyle says Bledsoe was at Zelinsky’s at 9:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3505,7 +3546,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3515,7 +3556,7 @@
           "tick": 11
         }
       ],
-      "text": "Edward Doyle says Booker Bledsoe was at the vestibule of the Hallam apartments at 11:30 PM.",
+      "text": "Doyle says Bledsoe was at the Hallam at 11:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3526,7 +3567,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -3541,13 +3582,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Edward Doyle says Michael Feeney was at the vestibule of the Hallam apartments at 7:00 PM.",
+      "text": "Doyle says Feeney was at the Hallam at 7:00 PM.",
       "place": "pawnshop",
-      "leadsTo": [
-        "c126",
-        "c085"
-      ],
-      "role": "spine"
+      "leadsTo": [],
+      "role": "corroboration"
     },
     {
       "id": "c037",
@@ -3555,7 +3593,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -3565,7 +3603,7 @@
           "tick": 6
         }
       ],
-      "text": "Edward Doyle says Michael Feeney was at Zelinsky’s pawnshop, the back room at 9:00 PM.",
+      "text": "Doyle says Feeney was at Zelinsky’s at 9:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3576,7 +3614,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3597,7 +3635,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Michael Feeney says Rivka Zeldin was at the vestibule of the Hallam apartments from 6:00 PM to 6:30 PM.",
+      "text": "Feeney says Zeldin was at the Hallam from 6:00 PM to 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3608,7 +3646,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3618,7 +3656,7 @@
           "tick": 6
         }
       ],
-      "text": "Michael Feeney says Rivka Zeldin was at Zelinsky’s pawnshop, the back room at 9:00 PM.",
+      "text": "Feeney says Zeldin was at Zelinsky’s at 9:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3629,7 +3667,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3645,7 +3683,7 @@
           "tick": 6
         }
       ],
-      "text": "Michael Feeney says Booker Bledsoe was at Zelinsky’s pawnshop, the back room from 8:30 PM to 9:00 PM.",
+      "text": "Feeney says Bledsoe was at Zelinsky’s from 8:30 PM to 9:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3656,7 +3694,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -3671,10 +3709,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Michael Feeney says Edward Doyle was at the vestibule of the Hallam apartments at 7:00 PM.",
+      "text": "Feeney says Doyle was at the Hallam at 7:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c042",
@@ -3682,7 +3720,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -3692,7 +3730,7 @@
           "tick": 6
         }
       ],
-      "text": "Michael Feeney says Edward Doyle was at Zelinsky’s pawnshop, the back room at 9:00 PM.",
+      "text": "Feeney says Doyle was at Zelinsky’s at 9:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3703,7 +3741,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Abraham Margolis"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -3719,7 +3757,7 @@
           "tick": 11
         }
       ],
-      "text": "Michael Feeney says Abraham Margolis was at the El platform at Twenty-Third Street from 11:00 PM to 11:30 PM.",
+      "text": "Feeney says Margolis was at the El platform from 11:00 PM to 11:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3730,7 +3768,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3746,7 +3784,7 @@
           "tick": 3
         }
       ],
-      "text": "Abraham Margolis says Karl Brauer was at the Bijou picture house from 7:00 PM to 7:30 PM.",
+      "text": "Margolis says Brauer was at the Bijou from 7:00 PM to 7:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3757,7 +3795,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -3773,7 +3811,7 @@
           "tick": 11
         }
       ],
-      "text": "Abraham Margolis says Michael Feeney was at the El platform at Twenty-Third Street from 11:00 PM to 11:30 PM.",
+      "text": "Margolis says Feeney was at the El platform from 11:00 PM to 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3784,7 +3822,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3794,7 +3832,7 @@
           "tick": 7
         }
       ],
-      "text": "Elsa Schilling says Karl Brauer was at Zelinsky’s pawnshop, the back room at 9:30 PM.",
+      "text": "Schilling says Brauer was at Zelinsky’s at 9:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3805,7 +3843,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3815,7 +3853,7 @@
           "tick": 2
         }
       ],
-      "text": "Elsa Schilling says Rivka Zeldin was at the El platform at Twenty-Third Street at 7:00 PM.",
+      "text": "Schilling says Zeldin was at the El platform at 7:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3826,7 +3864,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3842,7 +3880,7 @@
           "tick": 4
         }
       ],
-      "text": "Elsa Schilling says Rivka Zeldin was at Zelinsky’s pawnshop, the back room from 7:30 PM to 8:00 PM.",
+      "text": "Schilling says Zeldin was at Zelinsky’s from 7:30 PM to 8:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3853,7 +3891,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -3875,10 +3913,10 @@
           "tick": 8
         }
       ],
-      "text": "Elsa Schilling says Rivka Zeldin was at Zelinsky’s pawnshop, the back room from 9:00 PM to 10:00 PM.",
+      "text": "Schilling says Zeldin was at Zelinsky’s from 9:00 PM to 10:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c050",
@@ -3886,7 +3924,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3896,7 +3934,7 @@
           "tick": 3
         }
       ],
-      "text": "Elsa Schilling says Fannie Feldman was at Zelinsky’s pawnshop, the back room at 7:30 PM.",
+      "text": "Schilling says Feldman was at Zelinsky’s at 7:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3907,7 +3945,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3923,7 +3961,7 @@
           "tick": 9
         }
       ],
-      "text": "Elsa Schilling says Fannie Feldman was at Zelinsky’s pawnshop, the back room from 10:00 PM to 10:30 PM.",
+      "text": "Schilling says Feldman was at Zelinsky’s from 10:00 PM to 10:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3934,7 +3972,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3944,7 +3982,7 @@
           "tick": 11
         }
       ],
-      "text": "Elsa Schilling says Fannie Feldman was at Zelinsky’s pawnshop, the back room at 11:30 PM.",
+      "text": "Schilling says Feldman was at Zelinsky’s at 11:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3955,7 +3993,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3971,7 +4009,7 @@
           "tick": 1
         }
       ],
-      "text": "Elsa Schilling says Booker Bledsoe was at Zelinsky’s pawnshop, the back room from 6:00 PM to 6:30 PM.",
+      "text": "Schilling says Bledsoe was at Zelinsky’s from 6:00 PM to 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3982,7 +4020,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -4022,10 +4060,10 @@
           "tick": 8
         }
       ],
-      "text": "Elsa Schilling says Booker Bledsoe was at Zelinsky’s pawnshop, the back room from 7:30 PM to 10:00 PM.",
+      "text": "Schilling says Bledsoe was at Zelinsky’s from 7:30 PM to 10:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c055",
@@ -4033,7 +4071,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -4067,7 +4105,7 @@
           "tick": 10
         }
       ],
-      "text": "Elsa Schilling says Edward Doyle was at Zelinsky’s pawnshop, the back room from 9:00 PM to 11:00 PM.",
+      "text": "Schilling says Doyle was at Zelinsky’s from 9:00 PM to 11:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -4078,7 +4116,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -4106,7 +4144,7 @@
           "tick": 6
         }
       ],
-      "text": "Elsa Schilling says Michael Feeney was at Zelinsky’s pawnshop, the back room from 7:30 PM to 9:00 PM.",
+      "text": "Schilling says Feeney was at Zelinsky’s from 7:30 PM to 9:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -4117,7 +4155,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Abraham Margolis"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -4127,7 +4165,7 @@
           "tick": 8
         }
       ],
-      "text": "Elsa Schilling says Abraham Margolis was at Zelinsky’s pawnshop, the back room at 10:00 PM.",
+      "text": "Schilling says Margolis was at Zelinsky’s at 10:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -4138,7 +4176,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -4159,10 +4197,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Wilhelm Reinhardt says Rivka Zeldin was at the vestibule of the Hallam apartments from 6:00 PM to 6:30 PM.",
+      "text": "Reinhardt says Zeldin was at the Hallam from 6:00 PM to 6:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c059",
@@ -4170,7 +4208,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
@@ -4192,7 +4230,7 @@
           "tick": 11
         }
       ],
-      "text": "Wilhelm Reinhardt says Rivka Zeldin was at the vestibule of the Hallam apartments from 10:30 PM to 11:30 PM.",
+      "text": "Reinhardt says Zeldin was at the Hallam from 10:30 PM to 11:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4203,7 +4241,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Fannie Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -4213,7 +4251,7 @@
           "tick": 10
         }
       ],
-      "text": "Wilhelm Reinhardt says Fannie Feldman was at the vestibule of the Hallam apartments at 11:00 PM.",
+      "text": "Reinhardt says Feldman was at the Hallam at 11:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4224,7 +4262,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -4246,7 +4284,7 @@
           "tick": 11
         }
       ],
-      "text": "Wilhelm Reinhardt says Booker Bledsoe was at the vestibule of the Hallam apartments from 10:30 PM to 11:30 PM.",
+      "text": "Reinhardt says Bledsoe was at the Hallam from 10:30 PM to 11:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4257,7 +4295,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -4272,7 +4310,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Wilhelm Reinhardt says Edward Doyle was at the vestibule of the Hallam apartments at 7:00 PM.",
+      "text": "Reinhardt says Doyle was at the Hallam at 7:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4283,7 +4321,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -4293,7 +4331,7 @@
           "tick": 11
         }
       ],
-      "text": "Wilhelm Reinhardt says Edward Doyle was at the vestibule of the Hallam apartments at 11:30 PM.",
+      "text": "Reinhardt says Doyle was at the Hallam at 11:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4304,7 +4342,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -4331,7 +4369,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Wilhelm Reinhardt says Michael Feeney was at the vestibule of the Hallam apartments from 6:00 PM to 7:00 PM.",
+      "text": "Reinhardt says Feeney was at the Hallam from 6:00 PM to 7:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4342,7 +4380,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Abraham Margolis"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -4357,7 +4395,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Wilhelm Reinhardt says Abraham Margolis was at the vestibule of the Hallam apartments at 9:30 PM.",
+      "text": "Reinhardt says Margolis was at the Hallam at 9:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4368,7 +4406,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4396,7 +4434,7 @@
           "tick": 3
         }
       ],
-      "text": "Gittel Hurwitz says Karl Brauer was at the Bijou picture house from 6:00 PM to 7:30 PM.",
+      "text": "Hurwitz says Brauer was at the Bijou from 6:00 PM to 7:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4407,7 +4445,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -4417,7 +4455,7 @@
           "tick": 1
         }
       ],
-      "text": "Gittel Hurwitz says Edward Doyle was at the Bijou picture house at 6:30 PM.",
+      "text": "Hurwitz says Doyle was at the Bijou at 6:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4428,7 +4466,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Abraham Margolis"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -4462,7 +4500,7 @@
           "tick": 6
         }
       ],
-      "text": "Gittel Hurwitz says Abraham Margolis was at the Bijou picture house from 7:00 PM to 9:00 PM.",
+      "text": "Hurwitz says Margolis was at the Bijou from 7:00 PM to 9:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4473,7 +4511,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Abraham Margolis"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -4483,7 +4521,7 @@
           "tick": 9
         }
       ],
-      "text": "Gittel Hurwitz says Abraham Margolis was at the Bijou picture house at 10:30 PM.",
+      "text": "Hurwitz says Margolis was at the Bijou at 10:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4494,7 +4532,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Karl Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4504,7 +4542,7 @@
           "tick": 2
         }
       ],
-      "text": "Rutherford Stannard says Karl Brauer was at the Bijou picture house at 7:00 PM.",
+      "text": "Stannard says Brauer was at the Bijou at 7:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4515,7 +4553,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -4525,7 +4563,7 @@
           "tick": 5
         }
       ],
-      "text": "Rutherford Stannard says Booker Bledsoe was at Zelinsky’s pawnshop, the back room at 8:30 PM.",
+      "text": "Stannard says Bledsoe was at Zelinsky’s at 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4536,7 +4574,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -4546,7 +4584,7 @@
           "tick": 5
         }
       ],
-      "text": "Rutherford Stannard says Michael Feeney was at Zelinsky’s pawnshop, the back room at 8:30 PM.",
+      "text": "Stannard says Feeney was at Zelinsky’s at 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4557,7 +4595,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Abraham Margolis"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -4567,7 +4605,7 @@
           "tick": 2
         }
       ],
-      "text": "Rutherford Stannard says Abraham Margolis was at the Bijou picture house at 7:00 PM.",
+      "text": "Stannard says Margolis was at the Bijou at 7:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4577,31 +4615,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-s2",
+        "topic": "Zeldin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 3
+          "tick": 11
         }
       ],
-      "text": "Rivka Zeldin runs through it: at 7:30 PM there were Fannie Feldman, Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "hallam-vestibule",
+      "text": "Feldman was at Zelinsky’s at 11:30 PM and says Zeldin was not.",
+      "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4610,25 +4636,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s4",
+        "topic": "Zeldin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "pawnshop",
-          "tick": 4
+          "tick": 9
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "pawnshop",
-          "tick": 4
+          "tick": 10
         }
       ],
-      "text": "Rivka Zeldin runs through it: at 8:00 PM there were Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "hallam-vestibule",
+      "text": "Doyle was at Zelinsky’s from 10:30 PM to 11:00 PM and says Zeldin was not.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4637,31 +4663,31 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f1",
+        "topic": "Zeldin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "pawnshop",
-          "tick": 6
+          "tick": 9
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "pawnshop",
-          "tick": 6
+          "tick": 10
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "pawnshop",
-          "tick": 6
+          "tick": 11
         }
       ],
-      "text": "Rivka Zeldin runs through it: at 9:00 PM there were Booker Bledsoe, Edward Doyle, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "hallam-vestibule",
+      "text": "Schilling was at Zelinsky’s from 10:30 PM to 11:30 PM and says Zeldin was not.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4670,25 +4696,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-s5",
+        "topic": "Feldman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "el-platform",
+          "tick": 9
         }
       ],
-      "text": "Rivka Zeldin runs through it: at 9:30 PM there were Booker Bledsoe, Edward Doyle at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "hallam-vestibule",
+      "text": "Feeney was at the El platform at 10:30 PM and says Feldman was not.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4697,37 +4717,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-cop",
+        "topic": "Feldman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
+          "place": "el-platform",
           "tick": 8
         }
       ],
-      "text": "Rivka Zeldin runs through it: at 10:00 PM there were Fannie Feldman, Booker Bledsoe, Edward Doyle, Abraham Margolis at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "hallam-vestibule",
+      "text": "Stannard was at the El platform at 10:00 PM and says Feldman was not.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4736,31 +4738,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-s6",
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 3
+          "place": "movie-house",
+          "tick": 9
         }
       ],
-      "text": "Fannie Feldman runs through it: at 7:30 PM there were Rivka Zeldin, Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "el-platform",
+      "text": "Margolis was at the Bijou at 10:30 PM and says Bledsoe was not.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4769,25 +4759,31 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-f3",
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "movie-house",
           "tick": 10
         },
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 10
+          "place": "movie-house",
+          "tick": 11
         }
       ],
-      "text": "Fannie Feldman runs through it: at 11:00 PM there were Rivka Zeldin, Booker Bledsoe at the vestibule of the Hallam apartments, and nobody else worth naming.",
-      "place": "el-platform",
+      "text": "Hurwitz was at the Bijou from 10:30 PM to 11:30 PM and says Bledsoe was not.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4796,31 +4792,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-cop",
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 3
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 11
         }
       ],
-      "text": "Booker Bledsoe runs through it: at 7:30 PM there were Rivka Zeldin, Fannie Feldman, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
+      "text": "Stannard was at the Bijou at 11:30 PM and says Bledsoe was not.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4829,58 +4813,52 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f3",
+        "topic": "Doyle’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
         }
       ],
-      "text": "Booker Bledsoe runs through it: at 8:00 PM there were Rivka Zeldin, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
+      "text": "Hurwitz was at the Bijou from 9:30 PM to 10:00 PM and says Doyle was not.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c083",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-s1",
+        "topic": "Doyle’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 6
+          "place": "movie-house",
+          "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
         }
       ],
-      "text": "Booker Bledsoe runs through it: at 9:00 PM there were Rivka Zeldin, Edward Doyle, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
+      "text": "Doyle names Zeldin as the company for it. Zeldin was at Zelinsky’s from 9:30 PM to 10:00 PM, and says Doyle was not there.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4889,25 +4867,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-s2",
+        "topic": "Feeney’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "el-platform",
+          "tick": 4
         }
       ],
-      "text": "Booker Bledsoe runs through it: at 9:30 PM there were Rivka Zeldin, Edward Doyle at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
+      "text": "Feldman was at the El platform at 8:00 PM and says Feeney was not.",
+      "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4916,96 +4888,75 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-s4",
+        "topic": "Feeney’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 8
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "el-platform",
+          "tick": 4
         }
       ],
-      "text": "Booker Bledsoe runs through it: at 10:00 PM there were Rivka Zeldin, Fannie Feldman, Edward Doyle, Abraham Margolis at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
+      "text": "Doyle was at the El platform at 8:00 PM and says Feeney was not.",
       "place": "pawnshop",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c086",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-s1",
+        "topic": "Feeney’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
           "place": "pawnshop",
-          "tick": 6
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "pawnshop",
+          "tick": 8
         }
       ],
-      "text": "Edward Doyle runs through it: at 9:00 PM there were Rivka Zeldin, Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
+      "text": "Zeldin was at Zelinsky’s from 9:30 PM to 10:00 PM and says Feeney was not.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c003",
+        "c089"
+      ],
+      "role": "spine"
     },
     {
       "id": "c087",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-s3",
+        "topic": "Feeney’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "pawnshop",
+          "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "pawnshop",
+          "tick": 8
         }
       ],
-      "text": "Edward Doyle runs through it: at 11:30 PM there were Rivka Zeldin, Booker Bledsoe at the vestibule of the Hallam apartments, and nobody else worth naming.",
+      "text": "Bledsoe was at Zelinsky’s from 9:30 PM to 10:00 PM and says Feeney was not.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -5015,922 +4966,99 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f1",
+        "topic": "Feeney’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "pawnshop",
-          "tick": 6
+          "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "pawnshop",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 6
+          "tick": 8
         }
       ],
-      "text": "Michael Feeney runs through it: at 9:00 PM there were Rivka Zeldin, Booker Bledsoe, Edward Doyle at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
+      "text": "Schilling was at Zelinsky’s from 9:30 PM to 10:00 PM and says Feeney was not.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c089",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-s2",
+        "topic": "Feeney’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
           "place": "pawnshop",
-          "tick": 3
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "pawnshop",
+          "tick": 8
         }
       ],
-      "text": "Elsa Schilling runs through it: at 7:30 PM there were Rivka Zeldin, Fannie Feldman, Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
+      "text": "Feeney names Feldman as the company for Zelinsky’s from 9:30 PM to 10:00 PM. Feldman says they were not together that evening.",
+      "place": "el-platform",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c090",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f2",
+        "topic": "Margolis’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 8
         }
       ],
-      "text": "Elsa Schilling runs through it: at 8:00 PM there were Rivka Zeldin, Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
+      "text": "Reinhardt was at the Hallam at 10:00 PM and says Margolis was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c091",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s3",
+        "topic": "Margolis’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 8
         }
       ],
-      "text": "Elsa Schilling runs through it: at 8:30 PM there were Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
+      "text": "Margolis names Bledsoe as the company for it. Bledsoe was at Zelinsky’s at 10:00 PM, and says Margolis was not there.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c092",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 6
-        }
-      ],
-      "text": "Elsa Schilling runs through it: at 9:00 PM there were Rivka Zeldin, Booker Bledsoe, Edward Doyle, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c093",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 7
-        }
-      ],
-      "text": "Elsa Schilling runs through it: at 9:30 PM there were Rivka Zeldin, Booker Bledsoe, Edward Doyle at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c094",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Elsa Schilling runs through it: at 10:00 PM there were Rivka Zeldin, Fannie Feldman, Booker Bledsoe, Edward Doyle, Abraham Margolis at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "spine"
-    },
-    {
-      "id": "c095",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 9
-        }
-      ],
-      "text": "Elsa Schilling runs through it: at 10:30 PM there were Fannie Feldman, Edward Doyle at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c096",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hallam-vestibule",
-          "tick": 0
-        }
-      ],
-      "text": "Wilhelm Reinhardt runs through it: at 6:00 PM there were Rivka Zeldin, Michael Feeney at the vestibule of the Hallam apartments, and nobody else worth naming.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c097",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hallam-vestibule",
-          "tick": 1
-        }
-      ],
-      "text": "Wilhelm Reinhardt runs through it: at 6:30 PM there were Rivka Zeldin, Michael Feeney at the vestibule of the Hallam apartments, and nobody else worth naming.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hallam-vestibule",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hallam-vestibule",
-          "tick": 2
-        }
-      ],
-      "text": "Wilhelm Reinhardt runs through it: at 7:00 PM there were Edward Doyle, Michael Feeney at the vestibule of the Hallam apartments, and nobody else worth naming.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 9
-        }
-      ],
-      "text": "Wilhelm Reinhardt runs through it: at 10:30 PM there were Rivka Zeldin, Booker Bledsoe at the vestibule of the Hallam apartments, and nobody else worth naming.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hallam-vestibule",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 10
-        }
-      ],
-      "text": "Wilhelm Reinhardt runs through it: at 11:00 PM there were Rivka Zeldin, Fannie Feldman, Booker Bledsoe at the vestibule of the Hallam apartments, and nobody else worth naming.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hallam-vestibule",
-          "tick": 11
-        }
-      ],
-      "text": "Wilhelm Reinhardt runs through it: at 11:30 PM there were Rivka Zeldin, Booker Bledsoe, Edward Doyle at the vestibule of the Hallam apartments, and nobody else worth naming.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 5
-        }
-      ],
-      "text": "Rutherford Stannard runs through it: at 8:30 PM there were Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Rivka Zeldin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 11
-        }
-      ],
-      "text": "Fannie Feldman was at Zelinsky’s pawnshop, the back room at 11:30 PM and says Rivka Zeldin was not.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Rivka Zeldin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 9
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 10
-        }
-      ],
-      "text": "Edward Doyle was at Zelinsky’s pawnshop, the back room from 10:30 PM to 11:00 PM and says Rivka Zeldin was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Rivka Zeldin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 9
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 10
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 11
-        }
-      ],
-      "text": "Elsa Schilling was at Zelinsky’s pawnshop, the back room from 10:30 PM to 11:30 PM and says Rivka Zeldin was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Fannie Feldman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "el-platform",
-          "tick": 9
-        }
-      ],
-      "text": "Michael Feeney was at the El platform at Twenty-Third Street at 10:30 PM and says Fannie Feldman was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Fannie Feldman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "el-platform",
-          "tick": 8
-        }
-      ],
-      "text": "Rutherford Stannard was at the El platform at Twenty-Third Street at 10:00 PM and says Fannie Feldman was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Booker Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 9
-        }
-      ],
-      "text": "Abraham Margolis was at the Bijou picture house at 10:30 PM and says Booker Bledsoe was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Booker Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 9
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 10
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 11
-        }
-      ],
-      "text": "Gittel Hurwitz was at the Bijou picture house from 10:30 PM to 11:30 PM and says Booker Bledsoe was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Booker Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 11
-        }
-      ],
-      "text": "Rutherford Stannard was at the Bijou picture house at 11:30 PM and says Booker Bledsoe was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Edward Doyle’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 8
-        }
-      ],
-      "text": "Gittel Hurwitz was at the Bijou picture house from 9:30 PM to 10:00 PM and says Edward Doyle was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Edward Doyle’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 8
-        }
-      ],
-      "text": "Edward Doyle says Rivka Zeldin was there for it. Rivka Zeldin says otherwise: Rivka Zeldin was at Zelinsky’s pawnshop, the back room from 9:30 PM to 10:00 PM, nowhere near the Bijou picture house.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Michael Feeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "el-platform",
-          "tick": 4
-        }
-      ],
-      "text": "Fannie Feldman was at the El platform at Twenty-Third Street at 8:00 PM and says Michael Feeney was not.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Michael Feeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "el-platform",
-          "tick": 4
-        }
-      ],
-      "text": "Edward Doyle was at the El platform at Twenty-Third Street at 8:00 PM and says Michael Feeney was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Michael Feeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Rivka Zeldin was at Zelinsky’s pawnshop, the back room from 9:30 PM to 10:00 PM and says Michael Feeney was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c154"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Michael Feeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Booker Bledsoe was at Zelinsky’s pawnshop, the back room from 9:30 PM to 10:00 PM and says Michael Feeney was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Michael Feeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Elsa Schilling was at Zelinsky’s pawnshop, the back room from 9:30 PM to 10:00 PM and says Michael Feeney was not.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c041"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Michael Feeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 7
-        }
-      ],
-      "text": "Michael Feeney says Fannie Feldman was there for it. Fannie Feldman says otherwise: Fannie Feldman was at the El platform at Twenty-Third Street at 9:30 PM, nowhere near Zelinsky’s pawnshop, the back room.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Abraham Margolis’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hallam-vestibule",
-          "tick": 8
-        }
-      ],
-      "text": "Wilhelm Reinhardt was at the vestibule of the Hallam apartments at 10:00 PM and says Abraham Margolis was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Abraham Margolis’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hallam-vestibule",
-          "tick": 8
-        }
-      ],
-      "text": "Abraham Margolis says Booker Bledsoe was there for it. Booker Bledsoe says otherwise: Booker Bledsoe was at Zelinsky’s pawnshop, the back room at 10:00 PM, nowhere near the vestibule of the Hallam apartments.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -5946,19 +5074,19 @@
           "methodId": "shot"
         }
       ],
-      "text": "Karl Brauer was found at the office over the tailor’s shop. The cigarette he had going burned itself out on the sill where it fell. The whistle off the river came at 10:00 PM, and the boat keeps a schedule and the whistle is logged. That puts the killing in that half hour and no later.",
+      "text": "Brauer was found at the office. The cigarette he had going burned itself out on the sill where it fell. The whistle went off the river at 10:00 PM, two long and one short, and the boat’s log has the hour.",
       "place": "office-over-tailor",
       "leadsTo": [
-        "c094",
-        "c036",
-        "c141",
-        "c170"
+        "c116",
+        "c086",
+        "c010",
+        "c100"
       ],
       "role": "spine",
       "anchorId": "steam-whistle"
     },
     {
-      "id": "c122",
+      "id": "c093",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -5980,14 +5108,14 @@
       "text": "The coroner puts death between 9:30 PM and 11:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "office-over-tailor",
       "leadsTo": [
-        "c117",
-        "c036",
-        "c005"
+        "c007",
+        "c116",
+        "c054"
       ],
       "role": "spine"
     },
     {
-      "id": "c123",
+      "id": "c094",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6004,20 +5132,18 @@
           "methodId": "shot"
         }
       ],
-      "text": "A nickel-plated revolver is gone from the vestibule of the Hallam apartments. The drawer it was kept in is open and the oiled cloth is still in it.",
+      "text": "A nickel-plated revolver is gone from the Hallam. The drawer it was kept in is open and the oiled cloth is still in it.",
       "place": "hallam-vestibule",
-      "leadsTo": [
-        "c160"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
-      "id": "c124",
+      "id": "c095",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Karl Brauer that evening"
+        "topic": "Brauer that evening"
       },
       "establishes": [
         {
@@ -6031,74 +5157,68 @@
           "tick": 7
         }
       ],
-      "text": "Rivka Zeldin puts Karl Brauer at Zelinsky’s pawnshop, the back room when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
+      "text": "Zeldin puts Brauer at Zelinsky’s when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "ice-delivery"
-    },
-    {
-      "id": "c125",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Karl Brauer that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "pawnshop",
-          "tick": 7
-        }
-      ],
-      "text": "Booker Bledsoe puts Karl Brauer at Zelinsky’s pawnshop, the back room when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
-      "place": "pawnshop",
       "leadsTo": [
-        "c146"
-      ],
-      "role": "corroboration",
-      "anchorId": "ice-delivery"
-    },
-    {
-      "id": "c126",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Karl Brauer that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "pawnshop",
-          "tick": 7
-        }
-      ],
-      "text": "Elsa Schilling puts Karl Brauer at Zelinsky’s pawnshop, the back room when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c141",
-        "c123",
-        "c007",
-        "c125",
-        "c128"
+        "c121"
       ],
       "role": "spine",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c127",
+      "id": "c096",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Brauer that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "pawnshop",
+          "tick": 7
+        }
+      ],
+      "text": "Bledsoe puts Brauer at Zelinsky’s when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c097",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Brauer that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "pawnshop",
+          "tick": 7
+        }
+      ],
+      "text": "Schilling puts Brauer at Zelinsky’s when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c098",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6120,14 +5240,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rivka Zeldin was at Zelinsky’s pawnshop, the back room at 10:00 PM and heard a shot from the direction of the office over the tailor’s shop, when the whistle went off the river.",
+      "text": "Zeldin was at Zelinsky’s at 10:00 PM and heard a shot from the direction of the office, as the whistle went off the river.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "steam-whistle"
     },
     {
-      "id": "c128",
+      "id": "c099",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6149,14 +5269,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Booker Bledsoe was at Zelinsky’s pawnshop, the back room at 10:00 PM and heard a shot from the direction of the office over the tailor’s shop, when the whistle went off the river.",
+      "text": "Bledsoe was at Zelinsky’s at 10:00 PM and heard a shot from the direction of the office, as the whistle went off the river.",
       "place": "pawnshop",
       "leadsTo": [],
-      "role": "corroboration",
+      "role": "noise",
       "anchorId": "steam-whistle"
     },
     {
-      "id": "c129",
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6178,14 +5298,16 @@
           "methodId": "shot"
         }
       ],
-      "text": "Elsa Schilling was at Zelinsky’s pawnshop, the back room at 10:00 PM and heard a shot from the direction of the office over the tailor’s shop, when the whistle went off the river.",
+      "text": "Schilling was at Zelinsky’s at 10:00 PM and heard a shot from the direction of the office, as the whistle went off the river.",
       "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "corroboration",
       "anchorId": "steam-whistle"
     },
     {
-      "id": "c130",
+      "id": "c101",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6207,14 +5329,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rutherford Stannard was at the El platform at Twenty-Third Street at 10:00 PM and heard a shot from the direction of the office over the tailor’s shop, when the whistle went off the river.",
+      "text": "Stannard was at the El platform at 10:00 PM and heard a shot from the direction of the office, as the whistle went off the river.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "steam-whistle"
     },
     {
-      "id": "c131",
+      "id": "c102",
       "kind": "anchor",
       "source": {
         "type": "place",
@@ -6226,13 +5348,43 @@
           "personId": "p-s1",
           "place": "pawnshop",
           "tick": 7
-        },
+        }
+      ],
+      "text": "The ice being brought in was at 9:30 PM, and Zeldin was at Zelinsky’s for it.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c103",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s3",
           "place": "pawnshop",
           "tick": 7
-        },
+        }
+      ],
+      "text": "The ice being brought in was at 9:30 PM, and Bledsoe was at Zelinsky’s for it.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c104",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
@@ -6240,14 +5392,36 @@
           "tick": 7
         }
       ],
-      "text": "The ice being brought in at 9:30 PM puts Rivka Zeldin, Booker Bledsoe, Edward Doyle at Zelinsky’s pawnshop, the back room.",
+      "text": "The ice being brought in was at 9:30 PM, and Doyle was at Zelinsky’s for it.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c132",
+      "id": "c105",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "the ice being brought in"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "pawnshop",
+          "tick": 7
+        }
+      ],
+      "text": "Feeney claims Zelinsky’s at 9:30 PM, which is when the ice being brought in was on. Asked about it, Feeney cannot say that the iceman dropped a block on the step and it went in three — and everybody who was there can.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c106",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6261,14 +5435,14 @@
           "tick": 7
         }
       ],
-      "text": "Rivka Zeldin carries the mark of it: a wet patch down one side of a coat. That fixes Rivka Zeldin at Zelinsky’s pawnshop, the back room at 9:30 PM, when the ice being brought in happened.",
+      "text": "Zeldin still carries it: a wet patch down one side of a coat. The ice being brought in was at 9:30 PM, at Zelinsky’s.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c133",
+      "id": "c107",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6282,19 +5456,19 @@
           "tick": 7
         }
       ],
-      "text": "Booker Bledsoe carries the mark of it: a wet patch down one side of a coat. That fixes Booker Bledsoe at Zelinsky’s pawnshop, the back room at 9:30 PM, when the ice being brought in happened.",
+      "text": "Bledsoe still carries it: a wet patch down one side of a coat. The ice being brought in was at 9:30 PM, at Zelinsky’s.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c134",
+      "id": "c108",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 7:00 PM round"
+        "topic": "Margolis"
       },
       "establishes": [
         {
@@ -6304,19 +5478,19 @@
           "tick": 2
         }
       ],
-      "text": "The beat cop’s pass at 7:00 PM puts Abraham Margolis at the Bijou picture house.",
+      "text": "Stannard came round at 7:00 PM and had Margolis at the Bijou.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c135",
+      "id": "c109",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 8:30 PM round"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -6324,7 +5498,23 @@
           "personId": "p-s3",
           "place": "pawnshop",
           "tick": 5
-        },
+        }
+      ],
+      "text": "Stannard came round at 8:30 PM and had Bledsoe at Zelinsky’s.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c110",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feeney"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s5",
@@ -6332,14 +5522,14 @@
           "tick": 5
         }
       ],
-      "text": "The beat cop’s pass at 8:30 PM puts Booker Bledsoe, Michael Feeney at Zelinsky’s pawnshop, the back room.",
+      "text": "Stannard came round at 8:30 PM and had Feeney at Zelinsky’s.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c136",
+      "id": "c111",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6352,18 +5542,18 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Found at the victim’s house on the back lot: A clipping about the failure of Fannie Feldman’s business, with Karl Brauer’s name underlined twice in pencil.",
+      "text": "Found at the back lot: A clipping about the failure of Feldman’s business, with Brauer’s name underlined twice in pencil.",
       "place": "res-backhouse",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c137",
+      "id": "c112",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Fannie Feldman and Karl Brauer"
+        "topic": "Feldman and Brauer"
       },
       "establishes": [
         {
@@ -6372,13 +5562,13 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Wilhelm Reinhardt says Fannie Feldman said Karl Brauer had taken everything and would be made to feel it.",
+      "text": "Reinhardt says Feldman said Brauer had taken everything and would be made to feel it.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c138",
+      "id": "c113",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6391,18 +5581,18 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s house on the back lot: A promissory note for $4,000 signed by Edward Doyle, endorsed to Karl Brauer, three months past due.",
+      "text": "Found at the back lot: A promissory note for $4,000 signed by Doyle, endorsed to Brauer, three months past due.",
       "place": "res-backhouse",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c139",
+      "id": "c114",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Edward Doyle and Karl Brauer"
+        "topic": "Doyle and Brauer"
       },
       "establishes": [
         {
@@ -6411,13 +5601,13 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Rutherford Stannard says Karl Brauer told Edward Doyle that Friday was the end of it, one way or the other.",
+      "text": "Stannard says Brauer told Doyle that Friday was the end of it, one way or the other.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c140",
+      "id": "c115",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6430,20 +5620,20 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Found at the victim’s house on the back lot: A typed page of dates and sums in Karl Brauer’s file, headed with Michael Feeney’s name.",
+      "text": "Found at the back lot: A typed page of dates and sums in Brauer’s file, headed with Feeney’s name.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c175"
+        "c140"
       ],
       "role": "corroboration"
     },
     {
-      "id": "c141",
+      "id": "c116",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Michael Feeney and Karl Brauer"
+        "topic": "Feeney and Brauer"
       },
       "establishes": [
         {
@@ -6452,15 +5642,19 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Rivka Zeldin says Karl Brauer told Michael Feeney that the story would run whether Michael Feeney liked it or not.",
+      "text": "Zeldin says Brauer told Feeney that the story would run whether Feeney liked it or not.",
       "place": "hallam-vestibule",
       "leadsTo": [
-        "c006"
+        "c086",
+        "c010",
+        "c006",
+        "c021",
+        "c115"
       ],
       "role": "spine"
     },
     {
-      "id": "c142",
+      "id": "c117",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6474,717 +5668,636 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Abraham Margolis hired us. Abraham Margolis wants it known that Fannie Feldman blamed the victim for a ruin, and would rather we started there.",
+      "text": "Margolis hired us, and wants it known that Feldman blamed the victim for a ruin, and would rather we started there.",
       "place": "movie-house",
       "leadsTo": [
-        "c094",
-        "c117",
-        "c126",
-        "c140",
-        "c115"
+        "c007",
+        "c095",
+        "c003",
+        "c006",
+        "c021",
+        "c049"
       ],
       "role": "spine"
     },
     {
-      "id": "c143",
+      "id": "c118",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "Rivka Zeldin"
+        "personId": "p-f3",
+        "topic": "Zeldin"
       },
       "establishes": [],
-      "text": "Abraham Margolis on Rivka Zeldin: Rivka Zeldin was seen going into the vestibule of the Hallam apartments alone and came out with somebody half an hour later.",
+      "text": "Hurwitz on Zeldin: Zeldin was seen going into the Hallam alone and came out with somebody half an hour later.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c144",
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Zeldin"
+      },
+      "establishes": [],
+      "text": "Doyle on Zeldin: Somebody asked Zeldin a plain question about the evening and got three different answers.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Zeldin"
+      },
+      "establishes": [],
+      "text": "Margolis on Zeldin: Bledsoe answers for Zeldin before Zeldin can answer, and neither of them likes being asked twice.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c121",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [],
+      "text": "Two glasses at the Hallam, one of them with a lip print on it, and only one of them paid for.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [],
+      "text": "A note in a woman’s hand at the Hallam, no name on it, naming a time and nothing else.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [],
+      "text": "A man’s hat at the Hallam that fits nobody who admits to being there.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 11
+        },
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 11
+        }
+      ],
+      "text": "Bledsoe breaks and says it plainly: Bledsoe was with Zeldin at the Hallam for the whole of it, from 10:30 PM to 11:30 PM, and it is a marriage they are hiding, not a killing.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 11
+        },
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 11
+        }
+      ],
+      "text": "The keeper at the Hallam knows them both by sight and says the pair of them were there from 10:30 PM to 11:30 PM, and that it is nobody’s business but theirs.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c126",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Rivka Zeldin"
+        "topic": "Feldman"
       },
       "establishes": [],
-      "text": "Wilhelm Reinhardt on Rivka Zeldin: Somebody asked Rivka Zeldin a plain question about the evening and got three different answers.",
+      "text": "Reinhardt on Feldman: Feldman was carrying a parcel into Zelinsky’s and came out without it.",
       "place": "hallam-vestibule",
       "leadsTo": [
-        "c149"
+        "c131"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s1",
+      "aboutSecretOf": "p-s2",
       "branchId": "b1"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Stannard on Feldman: There is a man who meets people at Zelinsky’s and nobody will say his name out loud.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Reinhardt on Feldman: Feldman has been selling things that were never Feldman’s to sell.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at Zelinsky’s, and the shop it came from closed two years ago.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at Zelinsky’s in a name that does not exist, made out at the hour in question.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c127"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 9
+        }
+      ],
+      "text": "The receiver at Zelinsky’s would rather talk than be held: Feldman was there from 10:00 PM to 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Feldman will take over this one.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 9
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Feldman at Zelinsky’s from 10:00 PM to 10:30 PM with both hands full.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Doyle"
+      },
+      "establishes": [],
+      "text": "Zeldin on Doyle: Doyle was carrying a parcel into Zelinsky’s and came out without it.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Doyle"
+      },
+      "establishes": [],
+      "text": "Schilling on Doyle: There is a man who meets people at Zelinsky’s and nobody will say his name out loud.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c135",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Doyle"
+      },
+      "establishes": [],
+      "text": "Hurwitz on Doyle: Doyle has been selling things that were never Doyle’s to sell.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c136",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at Zelinsky’s, and the shop it came from closed two years ago.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c134"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c137",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at Zelinsky’s in a name that does not exist, made out at the hour in question.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "pawnshop",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "pawnshop",
+          "tick": 8
+        }
+      ],
+      "text": "The receiver at Zelinsky’s would rather talk than be held: Doyle was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Doyle will take over this one.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "pawnshop",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "pawnshop",
+          "tick": 8
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Doyle at Zelinsky’s from 9:30 PM to 10:00 PM with both hands full.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Margolis"
+      },
+      "establishes": [],
+      "text": "Bledsoe on Margolis: Margolis was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c141"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Margolis"
+      },
+      "establishes": [],
+      "text": "Reinhardt on Margolis: A man nobody knew was waiting for Margolis at Zelinsky’s and would not give a name.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c142"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c142",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Margolis"
+      },
+      "establishes": [],
+      "text": "Stannard on Margolis: Margolis goes very quiet when the racing wire is mentioned.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c145"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c143",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [],
+      "text": "Betting slips at Zelinsky’s in Margolis’s pocketbook, all of them losers, all of them this month.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c144",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [],
+      "text": "A book of markers at Zelinsky’s with Margolis’s initials against four of them.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
     },
     {
       "id": "c145",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Rivka Zeldin"
+        "type": "place",
+        "placeId": "pawnshop"
       },
-      "establishes": [],
-      "text": "Rutherford Stannard on Rivka Zeldin: Booker Bledsoe answers for Rivka Zeldin before Rivka Zeldin can answer, and neither of them likes being asked twice.",
-      "place": "movie-house",
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "pawnshop",
+          "tick": 8
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Margolis was at Zelinsky’s from 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "pawnshop",
       "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
     },
     {
       "id": "c146",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [],
-      "text": "Two glasses at the vestibule of the Hallam apartments, one of them with a lip print on it, and only one of them paid for.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c144"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c147",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [],
-      "text": "A note in a woman’s hand at the vestibule of the Hallam apartments, no name on it, naming a time and nothing else.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c148",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [],
-      "text": "A man’s hat at the vestibule of the Hallam apartments that fits nobody who admits to being there.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c149",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 11
-        }
-      ],
-      "text": "Booker Bledsoe breaks and says it plainly: Booker Bledsoe was with Rivka Zeldin at the vestibule of the Hallam apartments for the whole of it, from 10:30 PM to 11:30 PM, and it is a marriage they are hiding, not a killing.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c150",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 11
-        }
-      ],
-      "text": "The keeper at the vestibule of the Hallam apartments knows them both by sight and says the pair of them were there from 10:30 PM to 11:30 PM, and that it is nobody’s business but theirs.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c151",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Fannie Feldman"
-      },
-      "establishes": [],
-      "text": "Gittel Hurwitz on Fannie Feldman: Fannie Feldman was carrying a parcel into Zelinsky’s pawnshop, the back room and came out without it.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c152",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Fannie Feldman"
-      },
-      "establishes": [],
-      "text": "Elsa Schilling on Fannie Feldman: There is a man who meets people at Zelinsky’s pawnshop, the back room and nobody will say his name out loud.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c153",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Fannie Feldman"
-      },
-      "establishes": [],
-      "text": "Gittel Hurwitz on Fannie Feldman: Fannie Feldman has been selling things that were never Fannie Feldman’s to sell.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c154",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at Zelinsky’s pawnshop, the back room, and the shop it came from closed two years ago.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c156"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
-    },
-    {
-      "id": "c155",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at Zelinsky’s pawnshop, the back room in a name that does not exist, made out at the hour in question.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 9
-        }
-      ],
-      "text": "The receiver at Zelinsky’s pawnshop, the back room would rather talk than be held: Fannie Feldman was there from 10:00 PM to 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Fannie Feldman will take over this one.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
-    },
-    {
-      "id": "c157",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 9
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Fannie Feldman at Zelinsky’s pawnshop, the back room from 10:00 PM to 10:30 PM with both hands full.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c158",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Booker Bledsoe"
-      },
-      "establishes": [],
-      "text": "Elsa Schilling on Booker Bledsoe: Booker Bledsoe was seen going into the vestibule of the Hallam apartments alone and came out with somebody half an hour later.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Booker Bledsoe"
-      },
-      "establishes": [],
-      "text": "Gittel Hurwitz on Booker Bledsoe: Somebody asked Booker Bledsoe a plain question about the evening and got three different answers.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Booker Bledsoe"
-      },
-      "establishes": [],
-      "text": "Edward Doyle on Booker Bledsoe: Rivka Zeldin answers for Booker Bledsoe before Booker Bledsoe can answer, and neither of them likes being asked twice.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c164"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b3"
-    },
-    {
-      "id": "c161",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [],
-      "text": "Two glasses at the vestibule of the Hallam apartments, one of them with a lip print on it, and only one of them paid for.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c162",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [],
-      "text": "A note in a woman’s hand at the vestibule of the Hallam apartments, no name on it, naming a time and nothing else.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c163",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [],
-      "text": "A man’s hat at the vestibule of the Hallam apartments that fits nobody who admits to being there.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c164",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 11
-        }
-      ],
-      "text": "Rivka Zeldin breaks and says it plainly: Rivka Zeldin was with Booker Bledsoe at the vestibule of the Hallam apartments for the whole of it, from 10:30 PM to 11:30 PM, and it is a marriage they are hiding, not a killing.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b3"
-    },
-    {
-      "id": "c165",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 11
-        }
-      ],
-      "text": "The keeper at the vestibule of the Hallam apartments knows them both by sight and says the pair of them were there from 10:30 PM to 11:30 PM, and that it is nobody’s business but theirs.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Edward Doyle"
-      },
-      "establishes": [],
-      "text": "Wilhelm Reinhardt on Edward Doyle: Edward Doyle was carrying a parcel into Zelinsky’s pawnshop, the back room and came out without it.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Edward Doyle"
-      },
-      "establishes": [],
-      "text": "Rutherford Stannard on Edward Doyle: There is a man who meets people at Zelinsky’s pawnshop, the back room and nobody will say his name out loud.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c168",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Edward Doyle"
-      },
-      "establishes": [],
-      "text": "Booker Bledsoe on Edward Doyle: Edward Doyle has been selling things that were never Edward Doyle’s to sell.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at Zelinsky’s pawnshop, the back room, and the shop it came from closed two years ago.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c170",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at Zelinsky’s pawnshop, the back room in a name that does not exist, made out at the hour in question.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c171"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b4"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "The receiver at Zelinsky’s pawnshop, the back room would rather talk than be held: Edward Doyle was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Edward Doyle will take over this one.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b4"
-    },
-    {
-      "id": "c172",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Edward Doyle at Zelinsky’s pawnshop, the back room from 9:30 PM to 10:00 PM with both hands full.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Abraham Margolis"
-      },
-      "establishes": [],
-      "text": "Gittel Hurwitz on Abraham Margolis: Abraham Margolis was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c174",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Abraham Margolis"
-      },
-      "establishes": [],
-      "text": "Rivka Zeldin on Abraham Margolis: A man nobody knew was waiting for Abraham Margolis at Zelinsky’s pawnshop, the back room and would not give a name.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c175",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Abraham Margolis"
-      },
-      "establishes": [],
-      "text": "Elsa Schilling on Abraham Margolis: Abraham Margolis goes very quiet when the racing wire is mentioned.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c177"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b2"
-    },
-    {
-      "id": "c176",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [],
-      "text": "Betting slips at Zelinsky’s pawnshop, the back room in Abraham Margolis’s pocketbook, all of them losers, all of them this month.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c177",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [],
-      "text": "A book of markers at Zelinsky’s pawnshop, the back room with Abraham Margolis’s initials against four of them.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c178"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b2"
-    },
-    {
-      "id": "c178",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7203,34 +6316,7 @@
           "tick": 8
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Abraham Margolis was at Zelinsky’s pawnshop, the back room from 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b2"
-    },
-    {
-      "id": "c179",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "The book at Zelinsky’s pawnshop, the back room has the payment entered against Abraham Margolis’s name and the time beside it, from 10:00 PM, in the clerk’s own hand.",
+      "text": "The book at Zelinsky’s has the payment entered against Margolis’s name and the time beside it, from 10:00 PM, in the clerk’s own hand.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
@@ -7239,7 +6325,7 @@
   ],
   "findable": [
     {
-      "id": "c121",
+      "id": "c092",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7255,19 +6341,19 @@
           "methodId": "shot"
         }
       ],
-      "text": "Karl Brauer was found at the office over the tailor’s shop. The cigarette he had going burned itself out on the sill where it fell. The whistle off the river came at 10:00 PM, and the boat keeps a schedule and the whistle is logged. That puts the killing in that half hour and no later.",
+      "text": "Brauer was found at the office. The cigarette he had going burned itself out on the sill where it fell. The whistle went off the river at 10:00 PM, two long and one short, and the boat’s log has the hour.",
       "place": "office-over-tailor",
       "leadsTo": [
-        "c094",
-        "c036",
-        "c141",
-        "c170"
+        "c116",
+        "c086",
+        "c010",
+        "c100"
       ],
       "role": "spine",
       "anchorId": "steam-whistle"
     },
     {
-      "id": "c122",
+      "id": "c093",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7289,14 +6375,14 @@
       "text": "The coroner puts death between 9:30 PM and 11:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "office-over-tailor",
       "leadsTo": [
-        "c117",
-        "c036",
-        "c005"
+        "c007",
+        "c116",
+        "c054"
       ],
       "role": "spine"
     },
     {
-      "id": "c142",
+      "id": "c117",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7310,258 +6396,17 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Abraham Margolis hired us. Abraham Margolis wants it known that Fannie Feldman blamed the victim for a ruin, and would rather we started there.",
+      "text": "Margolis hired us, and wants it known that Feldman blamed the victim for a ruin, and would rather we started there.",
       "place": "movie-house",
       "leadsTo": [
-        "c094",
-        "c117",
-        "c126",
-        "c140",
-        "c115"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c094",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Elsa Schilling runs through it: at 10:00 PM there were Rivka Zeldin, Fannie Feldman, Booker Bledsoe, Edward Doyle, Abraham Margolis at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "spine"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Michael Feeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Elsa Schilling was at Zelinsky’s pawnshop, the back room from 9:30 PM to 10:00 PM and says Michael Feeney was not.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c041"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c036",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Michael Feeney"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hallam-vestibule",
-          "tick": 2
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Edward Doyle says Michael Feeney was at the vestibule of the Hallam apartments at 7:00 PM.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c126",
-        "c085"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c126",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Karl Brauer that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "pawnshop",
-          "tick": 7
-        }
-      ],
-      "text": "Elsa Schilling puts Karl Brauer at Zelinsky’s pawnshop, the back room when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c141",
-        "c123",
         "c007",
-        "c125",
-        "c128"
-      ],
-      "role": "spine",
-      "anchorId": "ice-delivery"
-    },
-    {
-      "id": "c141",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Michael Feeney and Karl Brauer"
-      },
-      "establishes": [
-        {
-          "kind": "hasMotive",
-          "personId": "p-s5",
-          "motiveType": "exposure"
-        }
-      ],
-      "text": "Rivka Zeldin says Karl Brauer told Michael Feeney that the story would run whether Michael Feeney liked it or not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c006"
+        "c095",
+        "c003",
+        "c006",
+        "c021",
+        "c049"
       ],
       "role": "spine"
-    },
-    {
-      "id": "c085",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Booker Bledsoe runs through it: at 10:00 PM there were Rivka Zeldin, Fannie Feldman, Edward Doyle, Abraham Margolis at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c140",
-      "kind": "document",
-      "source": {
-        "type": "place",
-        "placeId": "res-backhouse"
-      },
-      "establishes": [
-        {
-          "kind": "hasMotive",
-          "personId": "p-s5",
-          "motiveType": "exposure"
-        }
-      ],
-      "text": "Found at the victim’s house on the back lot: A typed page of dates and sums in Karl Brauer’s file, headed with Michael Feeney’s name.",
-      "place": "res-backhouse",
-      "leadsTo": [
-        "c175"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c123",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [
-        {
-          "kind": "objectMissing",
-          "objectId": "obj-revolver",
-          "fromPlace": "hallam-vestibule"
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
-        }
-      ],
-      "text": "A nickel-plated revolver is gone from the vestibule of the Hallam apartments. The drawer it was kept in is open and the oiled cloth is still in it.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c160"
-      ],
-      "role": "corroboration"
     },
     {
       "id": "c007",
@@ -7569,7 +6414,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Michael Feeney"
+        "topic": "Feeney"
       },
       "establishes": [
         {
@@ -7590,18 +6435,75 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rivka Zeldin says Michael Feeney was at the vestibule of the Hallam apartments from 6:00 PM to 6:30 PM.",
+      "text": "Zeldin says Feeney was at the Hallam from 6:00 PM to 6:30 PM.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c095",
+        "c005"
+      ],
+      "role": "spine"
     },
     {
-      "id": "c115",
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Feeney and Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Zeldin says Brauer told Feeney that the story would run whether Feeney liked it or not.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c086",
+        "c010",
+        "c006",
+        "c021",
+        "c115"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c095",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brauer that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "pawnshop",
+          "tick": 7
+        }
+      ],
+      "text": "Zeldin puts Brauer at Zelinsky’s when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c121"
+      ],
+      "role": "spine",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c086",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Michael Feeney’s account"
+        "topic": "Feeney’s account"
       },
       "establishes": [
         {
@@ -7617,12 +6519,94 @@
           "tick": 8
         }
       ],
-      "text": "Rivka Zeldin was at Zelinsky’s pawnshop, the back room from 9:30 PM to 10:00 PM and says Michael Feeney was not.",
+      "text": "Zeldin was at Zelinsky’s from 9:30 PM to 10:00 PM and says Feeney was not.",
       "place": "hallam-vestibule",
       "leadsTo": [
-        "c154"
+        "c003",
+        "c089"
       ],
-      "role": "corroboration"
+      "role": "spine"
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 8
+        }
+      ],
+      "text": "Zeldin says Feldman was at Zelinsky’s at 10:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c136"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c010",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Margolis"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "pawnshop",
+          "tick": 8
+        }
+      ],
+      "text": "Zeldin says Margolis was at Zelinsky’s at 10:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c005"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Doyle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "pawnshop",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "pawnshop",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "pawnshop",
+          "tick": 8
+        }
+      ],
+      "text": "Zeldin says Doyle was at Zelinsky’s from 9:00 PM to 10:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "spine"
     },
     {
       "id": "c005",
@@ -7630,7 +6614,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Booker Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -7652,45 +6636,102 @@
           "tick": 8
         }
       ],
-      "text": "Rivka Zeldin says Booker Bledsoe was at Zelinsky’s pawnshop, the back room from 9:00 PM to 10:00 PM.",
+      "text": "Zeldin says Bledsoe was at Zelinsky’s from 9:00 PM to 10:00 PM.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c036"
+      ],
+      "role": "spine"
     },
     {
-      "id": "c125",
-      "kind": "anchor",
+      "id": "c021",
+      "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Karl Brauer that evening"
+        "topic": "Zeldin"
       },
       "establishes": [
         {
-          "kind": "victimAliveAt",
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "pawnshop",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "pawnshop",
           "tick": 7
         },
         {
           "kind": "personAt",
-          "personId": "p-victim",
+          "personId": "p-s1",
           "place": "pawnshop",
-          "tick": 7
+          "tick": 8
         }
       ],
-      "text": "Booker Bledsoe puts Karl Brauer at Zelinsky’s pawnshop, the back room when the ice came, which was 9:30 PM, and alive enough to argue about the weather.",
+      "text": "Bledsoe says Zeldin was at Zelinsky’s from 9:00 PM to 10:00 PM.",
       "place": "pawnshop",
       "leadsTo": [
-        "c146"
+        "c058"
       ],
-      "role": "corroboration",
-      "anchorId": "ice-delivery"
+      "role": "spine"
     },
     {
-      "id": "c128",
+      "id": "c089",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Feeney’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "pawnshop",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "pawnshop",
+          "tick": 8
+        }
+      ],
+      "text": "Feeney names Feldman as the company for Zelinsky’s from 9:30 PM to 10:00 PM. Feldman says they were not together that evening.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c115",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-backhouse"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Found at the back lot: A typed page of dates and sums in Brauer’s file, headed with Feeney’s name.",
+      "place": "res-backhouse",
+      "leadsTo": [
+        "c140"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-s3",
+        "personId": "p-f1",
         "topic": "the noise that evening"
       },
       "establishes": [
@@ -7708,182 +6749,330 @@
           "methodId": "shot"
         }
       ],
-      "text": "Booker Bledsoe was at Zelinsky’s pawnshop, the back room at 10:00 PM and heard a shot from the direction of the office over the tailor’s shop, when the whistle went off the river.",
+      "text": "Schilling was at Zelinsky’s at 10:00 PM and heard a shot from the direction of the office, as the whistle went off the river.",
       "place": "pawnshop",
-      "leadsTo": [],
+      "leadsTo": [
+        "c130"
+      ],
       "role": "corroboration",
       "anchorId": "steam-whistle"
     },
     {
-      "id": "c006",
+      "id": "c036",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "Edward Doyle"
+        "personId": "p-s4",
+        "topic": "Feeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Rivka Zeldin says Edward Doyle was at Zelinsky’s pawnshop, the back room from 9:00 PM to 10:00 PM.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c041",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Edward Doyle"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "personId": "p-s5",
           "place": "hallam-vestibule",
           "tick": 2
         },
         {
           "kind": "hadAccess",
-          "personId": "p-s4",
+          "personId": "p-s5",
           "methodId": "shot"
         }
       ],
-      "text": "Michael Feeney says Edward Doyle was at the vestibule of the Hallam apartments at 7:00 PM.",
+      "text": "Doyle says Feeney was at the Hallam at 7:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c146",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [],
-      "text": "Two glasses at the vestibule of the Hallam apartments, one of them with a lip print on it, and only one of them paid for.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c144"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c144",
-      "kind": "overheard",
+      "id": "c058",
+      "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Rivka Zeldin"
+        "topic": "Zeldin"
       },
-      "establishes": [],
-      "text": "Wilhelm Reinhardt on Rivka Zeldin: Somebody asked Rivka Zeldin a plain question about the evening and got three different answers.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c149"
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "shot"
+        }
       ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
+      "text": "Reinhardt says Zeldin was at the Hallam from 6:00 PM to 6:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "corroboration"
     },
     {
-      "id": "c149",
+      "id": "c049",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Zeldin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "pawnshop",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "pawnshop",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "pawnshop",
+          "tick": 8
+        }
+      ],
+      "text": "Schilling says Zeldin was at Zelinsky’s from 9:00 PM to 10:00 PM.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c132",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "hallam-vestibule"
+        "placeId": "pawnshop"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "affair"
+          "personId": "p-s2",
+          "secretType": "fence"
         },
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
           "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hallam-vestibule",
-          "tick": 11
         }
       ],
-      "text": "Booker Bledsoe breaks and says it plainly: Booker Bledsoe was with Rivka Zeldin at the vestibule of the Hallam apartments for the whole of it, from 10:30 PM to 11:30 PM, and it is a marriage they are hiding, not a killing.",
-      "place": "hallam-vestibule",
+      "text": "The goods turn up, tagged and dated, and the tag puts Feldman at Zelinsky’s from 10:00 PM to 10:30 PM with both hands full.",
+      "place": "pawnshop",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
+      "role": "corroboration",
+      "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c175",
-      "kind": "overheard",
+      "id": "c054",
+      "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Abraham Margolis"
+        "topic": "Bledsoe"
       },
-      "establishes": [],
-      "text": "Elsa Schilling on Abraham Margolis: Abraham Margolis goes very quiet when the racing wire is mentioned.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c177"
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 8
+        }
       ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b2"
+      "text": "Schilling says Bledsoe was at Zelinsky’s from 7:30 PM to 10:00 PM.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "corroboration"
     },
     {
-      "id": "c177",
+      "id": "c130",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "pawnshop"
       },
       "establishes": [],
-      "text": "A book of markers at Zelinsky’s pawnshop, the back room with Abraham Margolis’s initials against four of them.",
+      "text": "A pawn ticket at Zelinsky’s in a name that does not exist, made out at the hour in question.",
       "place": "pawnshop",
       "leadsTo": [
-        "c178"
+        "c127"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Stannard on Feldman: There is a man who meets people at Zelinsky’s and nobody will say his name out loud.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Reinhardt on Feldman: Feldman was carrying a parcel into Zelinsky’s and came out without it.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c131"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 9
+        }
+      ],
+      "text": "The receiver at Zelinsky’s would rather talk than be held: Feldman was there from 10:00 PM to 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Feldman will take over this one.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Margolis"
+      },
+      "establishes": [],
+      "text": "Bledsoe on Margolis: Margolis was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c141"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
       "branchId": "b2"
     },
     {
-      "id": "c178",
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Margolis"
+      },
+      "establishes": [],
+      "text": "Reinhardt on Margolis: A man nobody knew was waiting for Margolis at Zelinsky’s and would not give a name.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c142"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c142",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Margolis"
+      },
+      "establishes": [],
+      "text": "Stannard on Margolis: Margolis goes very quiet when the racing wire is mentioned.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c145"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c145",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7902,7 +7091,7 @@
           "tick": 8
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Abraham Margolis was at Zelinsky’s pawnshop, the back room from 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Margolis was at Zelinsky’s from 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "disqualifier",
@@ -7910,81 +7099,42 @@
       "branchId": "b2"
     },
     {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Booker Bledsoe"
-      },
-      "establishes": [],
-      "text": "Edward Doyle on Booker Bledsoe: Rivka Zeldin answers for Booker Bledsoe before Booker Bledsoe can answer, and neither of them likes being asked twice.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c164"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b3"
-    },
-    {
-      "id": "c164",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 11
-        }
-      ],
-      "text": "Rivka Zeldin breaks and says it plainly: Rivka Zeldin was with Booker Bledsoe at the vestibule of the Hallam apartments for the whole of it, from 10:30 PM to 11:30 PM, and it is a marriage they are hiding, not a killing.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b3"
-    },
-    {
-      "id": "c170",
+      "id": "c136",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "pawnshop"
       },
       "establishes": [],
-      "text": "A pawn ticket at Zelinsky’s pawnshop, the back room in a name that does not exist, made out at the hour in question.",
+      "text": "Wrapping paper and a cut string at Zelinsky’s, and the shop it came from closed two years ago.",
       "place": "pawnshop",
       "leadsTo": [
-        "c171"
+        "c134"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s4",
-      "branchId": "b4"
+      "branchId": "b3"
     },
     {
-      "id": "c171",
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Doyle"
+      },
+      "establishes": [],
+      "text": "Schilling on Doyle: There is a man who meets people at Zelinsky’s and nobody will say his name out loud.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c138",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8009,72 +7159,119 @@
           "tick": 8
         }
       ],
-      "text": "The receiver at Zelinsky’s pawnshop, the back room would rather talk than be held: Edward Doyle was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Edward Doyle will take over this one.",
+      "text": "The receiver at Zelinsky’s would rather talk than be held: Doyle was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Doyle will take over this one.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s4",
-      "branchId": "b4"
+      "branchId": "b3"
     },
     {
-      "id": "c154",
+      "id": "c121",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "pawnshop"
+        "placeId": "hallam-vestibule"
       },
       "establishes": [],
-      "text": "Wrapping paper and a cut string at Zelinsky’s pawnshop, the back room, and the shop it came from closed two years ago.",
-      "place": "pawnshop",
+      "text": "Two glasses at the Hallam, one of them with a lip print on it, and only one of them paid for.",
+      "place": "hallam-vestibule",
       "leadsTo": [
-        "c156"
+        "c123"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
     },
     {
-      "id": "c156",
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [],
+      "text": "A man’s hat at the Hallam that fits nobody who admits to being there.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c124",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "pawnshop"
+        "placeId": "hallam-vestibule"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "fence"
+          "personId": "p-s1",
+          "secretType": "affair"
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
           "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "hallam-vestibule",
+          "tick": 11
+        },
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 11
         }
       ],
-      "text": "The receiver at Zelinsky’s pawnshop, the back room would rather talk than be held: Fannie Feldman was there from 10:00 PM to 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Fannie Feldman will take over this one.",
-      "place": "pawnshop",
+      "text": "Bledsoe breaks and says it plainly: Bledsoe was with Zeldin at the Hallam for the whole of it, from 10:30 PM to 11:30 PM, and it is a marriage they are hiding, not a killing.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c121",
-    "c122",
-    "c142"
+    "c092",
+    "c093",
+    "c117"
   ],
   "clientId": "p-s6",
-  "par": 7,
-  "budget": 20,
+  "par": 11,
+  "slack": 6,
+  "budget": 17,
   "coronerWindow": [
     7,
     10
@@ -8088,11 +7285,10 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c122",
-      "c126",
-      "c125",
-      "c121",
-      "c128"
+      "c093",
+      "c095",
+      "c092",
+      "c100"
     ],
     "timeOfDeathAnchors": [
       "ice-delivery",
@@ -8100,47 +7296,43 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c094",
-        "c085"
+        "c021",
+        "c049"
       ],
       "p-s2": [
-        "c094",
-        "c085",
-        "c156"
+        "c003",
+        "c132",
+        "c131"
       ],
       "p-s3": [
-        "c094",
-        "c005"
+        "c005",
+        "c054"
       ],
       "p-s4": [
-        "c094",
-        "c085",
         "c006",
-        "c171"
+        "c138"
       ],
       "p-s6": [
-        "c094",
-        "c085",
-        "c178"
+        "c010",
+        "c145"
       ]
     },
     "inculpation": [
-      "c117",
-      "c115"
+      "c086",
+      "c089"
     ],
     "access": [
-      "c036",
-      "c007"
+      "c007",
+      "c036"
     ],
     "method": [
-      "c121",
-      "c122",
-      "c123",
-      "c128"
+      "c092",
+      "c093",
+      "c100"
     ],
     "motive": [
-      "c141",
-      "c140"
+      "c116",
+      "c115"
     ]
   }
 }

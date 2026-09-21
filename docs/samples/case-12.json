@@ -8,6 +8,7 @@
     {
       "id": "pool-hall",
       "name": "Mancuso’s pool hall",
+      "shortName": "Mancuso’s",
       "kind": "semi",
       "objects": [
         "obj-cigarette-case",
@@ -21,6 +22,7 @@
     {
       "id": "res-suite",
       "name": "the victim’s suite at the residential hotel",
+      "shortName": "the suite",
       "kind": "private",
       "objects": [
         "obj-ledger",
@@ -32,6 +34,7 @@
     {
       "id": "dolans-bar",
       "name": "Dolan’s Bar",
+      "shortName": "Dolan’s",
       "kind": "semi",
       "objects": [
         "obj-chloral",
@@ -44,6 +47,7 @@
     {
       "id": "square-benches",
       "name": "the benches at the north end of the square",
+      "shortName": "the benches",
       "kind": "public",
       "objects": [
         "obj-newspapers",
@@ -55,6 +59,7 @@
     {
       "id": "rooming-house-room",
       "name": "the back room at Mrs. Teague’s",
+      "shortName": "Mrs. Teague’s",
       "kind": "private",
       "objects": [
         "obj-cord",
@@ -68,6 +73,7 @@
     {
       "id": "hallam-vestibule",
       "name": "the vestibule of the Hallam apartments",
+      "shortName": "the Hallam",
       "kind": "private",
       "objects": [],
       "isResidence": false,
@@ -141,6 +147,7 @@
     {
       "id": "p-victim",
       "name": "Vincenzo Grasso",
+      "surname": "Grasso",
       "role": "a buildings inspector",
       "kind": "victim",
       "isKiller": false,
@@ -149,6 +156,7 @@
     {
       "id": "p-s1",
       "name": "Klara Hochstetter",
+      "surname": "Hochstetter",
       "role": "a piano teacher",
       "kind": "suspect",
       "isKiller": false,
@@ -158,7 +166,7 @@
       "secret": {
         "type": "hidden-family",
         "label": "A child boarded out",
-        "description": "Klara Hochstetter goes to the back room at Mrs. Teague’s from 7:30 PM to see a child nobody is supposed to know about.",
+        "description": "Hochstetter goes to Mrs. Teague’s from 7:30 PM to see a child nobody is supposed to know about.",
         "cells": [
           {
             "tick": 3,
@@ -172,6 +180,7 @@
     {
       "id": "p-s2",
       "name": "Odessa Tillman",
+      "surname": "Tillman",
       "role": "a curb broker",
       "kind": "suspect",
       "isKiller": false,
@@ -181,7 +190,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Odessa Tillman hands a parcel of stolen goods to a man at Mancuso’s pool hall from 9:00 PM to 9:30 PM.",
+        "description": "Tillman hands a parcel of stolen goods to a man at Mancuso’s from 9:00 PM to 9:30 PM.",
         "cells": [
           {
             "tick": 6,
@@ -202,6 +211,7 @@
     {
       "id": "p-s3",
       "name": "Roscoe Dandridge",
+      "surname": "Dandridge",
       "role": "a ward heeler",
       "kind": "suspect",
       "isKiller": true,
@@ -211,7 +221,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Roscoe Dandridge is at the victim’s suite at the residential hotel from 10:30 PM, alone with Vincenzo Grasso when it happens at 10:30 PM.",
+        "description": "Dandridge is at the suite from 10:30 PM, alone with Grasso when it happens at 10:30 PM.",
         "cells": [
           {
             "tick": 9,
@@ -223,7 +233,7 @@
       "coverSecret": {
         "type": "blackmail",
         "label": "Blackmailing the victim",
-        "description": "Roscoe Dandridge meets the victim alone at the vestibule of the Hallam apartments from 8:30 PM and asks for money.",
+        "description": "Dandridge meets the victim alone at the Hallam from 8:30 PM and asks for money.",
         "cells": [
           {
             "tick": 5,
@@ -240,6 +250,7 @@
     {
       "id": "p-s4",
       "name": "Teresa Salerno",
+      "surname": "Salerno",
       "role": "a dentist with rooms on the third floor",
       "kind": "suspect",
       "isKiller": false,
@@ -249,7 +260,7 @@
       "secret": {
         "type": "forged-identity",
         "label": "Forged identity",
-        "description": "Teresa Salerno is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
+        "description": "Salerno is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
         "cells": []
       },
       "foundAt": "square-benches"
@@ -257,6 +268,7 @@
     {
       "id": "p-s5",
       "name": "Nunzio Lanza",
+      "surname": "Lanza",
       "role": "a longshoreman",
       "kind": "suspect",
       "isKiller": false,
@@ -266,7 +278,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Nunzio Lanza slips off to Mancuso’s pool hall from 10:00 PM to 10:30 PM to settle with a bookmaker.",
+        "description": "Lanza slips off to Mancuso’s from 10:00 PM to 10:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 8,
@@ -287,6 +299,7 @@
     {
       "id": "p-s6",
       "name": "Gretchen Steinbach",
+      "surname": "Steinbach",
       "role": "a lawyer with one clerk",
       "kind": "suspect",
       "isKiller": false,
@@ -296,7 +309,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Gretchen Steinbach slips off to Mancuso’s pool hall from 10:30 PM to settle with a bookmaker.",
+        "description": "Steinbach slips off to Mancuso’s from 10:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 9,
@@ -309,6 +322,7 @@
     {
       "id": "p-f1",
       "name": "Nathan Sirkin",
+      "surname": "Sirkin",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -318,6 +332,7 @@
     {
       "id": "p-f2",
       "name": "Hyman Shapiro",
+      "surname": "Shapiro",
       "role": "the bartender",
       "kind": "fixture",
       "isKiller": false,
@@ -327,6 +342,7 @@
     {
       "id": "p-f3",
       "name": "Lorraine Prentiss",
+      "surname": "Prentiss",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -336,6 +352,7 @@
     {
       "id": "p-f4",
       "name": "Prescott Pickering",
+      "surname": "Pickering",
       "role": "the elevator man",
       "kind": "fixture",
       "isKiller": false,
@@ -345,6 +362,7 @@
     {
       "id": "p-cop",
       "name": "Karl Lindemann",
+      "surname": "Lindemann",
       "role": "the patrolman on the beat",
       "kind": "fixture",
       "isKiller": false,
@@ -376,12 +394,18 @@
           "description": "a crack in the cellar and every light on the riser out at once"
         },
         {
+          "kind": "knowledge",
+          "description": "it was the second floor that went dark and not the whole house"
+        },
+        {
           "kind": "mark",
           "description": "candle smoke on the ceilings of everyone who sat it out"
         }
       ],
       "timing": "when the lights went",
-      "sceneTiming": "the lights on that riser were dead from then until the morning",
+      "highTiming": "just after the lights went",
+      "sceneFact": "The fuse went at {T} and the lights on that riser were dead from then until the morning.",
+      "masks": false,
       "placeId": "hallam-vestibule"
     },
     {
@@ -402,7 +426,9 @@
         }
       ],
       "timing": "just as the El went over",
-      "sceneTiming": "the El was running to timetable and it covers the half hour exactly"
+      "highTiming": "just as the El went over",
+      "sceneFact": "The El went over at {T}, running to timetable, and for twenty seconds nothing under the structure can be heard at all.",
+      "masks": true
     },
     {
       "templateId": "cop-pass",
@@ -419,7 +445,9 @@
         }
       ],
       "timing": "when the cop came round",
-      "sceneTiming": "the patrolman was two streets off on his round and heard it",
+      "highTiming": "as the cop was coming round",
+      "sceneFact": "The patrolman’s round brought him two streets off at {T}.",
+      "masks": false,
       "route": [
         "pool-hall",
         "dolans-bar",
@@ -432,6 +460,7 @@
     "pool-hall",
     "dolans-bar"
   ],
+  "soundMasked": true,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2590,7 +2619,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -2600,7 +2629,7 @@
           "tick": 2
         }
       ],
-      "text": "Klara Hochstetter says Vincenzo Grasso was at Dolan’s Bar at 7:00 PM.",
+      "text": "Hochstetter says Grasso was at Dolan’s at 7:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2611,7 +2640,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -2621,7 +2650,7 @@
           "tick": 6
         }
       ],
-      "text": "Klara Hochstetter says Vincenzo Grasso was at Mancuso’s pool hall at 9:00 PM.",
+      "text": "Hochstetter says Grasso was at Mancuso’s at 9:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2632,7 +2661,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -2642,7 +2671,7 @@
           "tick": 6
         }
       ],
-      "text": "Klara Hochstetter says Odessa Tillman was at Mancuso’s pool hall at 9:00 PM.",
+      "text": "Hochstetter says Tillman was at Mancuso’s at 9:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2653,7 +2682,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -2663,10 +2692,14 @@
           "tick": 9
         }
       ],
-      "text": "Klara Hochstetter says Odessa Tillman was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Hochstetter says Tillman was at Mancuso’s at 10:30 PM.",
       "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c012",
+        "c031",
+        "c053"
+      ],
+      "role": "spine"
     },
     {
       "id": "c005",
@@ -2674,7 +2707,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -2690,7 +2723,7 @@
           "tick": 11
         }
       ],
-      "text": "Klara Hochstetter says Odessa Tillman was at Dolan’s Bar from 11:00 PM to 11:30 PM.",
+      "text": "Hochstetter says Tillman was at Dolan’s from 11:00 PM to 11:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2701,7 +2734,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2711,7 +2744,7 @@
           "tick": 0
         }
       ],
-      "text": "Klara Hochstetter says Roscoe Dandridge was at Mancuso’s pool hall at 6:00 PM.",
+      "text": "Hochstetter says Dandridge was at Mancuso’s at 6:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2722,7 +2755,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -2732,7 +2765,7 @@
           "tick": 1
         }
       ],
-      "text": "Klara Hochstetter says Teresa Salerno was at the benches at the north end of the square at 6:30 PM.",
+      "text": "Hochstetter says Salerno was at the benches at 6:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2743,7 +2776,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -2753,10 +2786,13 @@
           "tick": 9
         }
       ],
-      "text": "Klara Hochstetter says Teresa Salerno was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Hochstetter says Salerno was at Mancuso’s at 10:30 PM.",
       "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c012",
+        "c137"
+      ],
+      "role": "spine"
     },
     {
       "id": "c009",
@@ -2764,7 +2800,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -2774,7 +2810,7 @@
           "tick": 6
         }
       ],
-      "text": "Klara Hochstetter says Nunzio Lanza was at Mancuso’s pool hall at 9:00 PM.",
+      "text": "Hochstetter says Lanza was at Mancuso’s at 9:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2785,7 +2821,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -2795,10 +2831,15 @@
           "tick": 9
         }
       ],
-      "text": "Klara Hochstetter says Nunzio Lanza was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Hochstetter says Lanza was at Mancuso’s at 10:30 PM.",
       "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c004",
+        "c059",
+        "c104",
+        "c126"
+      ],
+      "role": "spine"
     },
     {
       "id": "c011",
@@ -2806,7 +2847,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -2816,7 +2857,7 @@
           "tick": 8
         }
       ],
-      "text": "Klara Hochstetter says Gretchen Steinbach was at the benches at the north end of the square at 10:00 PM.",
+      "text": "Hochstetter says Steinbach was at the benches at 10:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2827,7 +2868,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -2837,10 +2878,13 @@
           "tick": 9
         }
       ],
-      "text": "Klara Hochstetter says Gretchen Steinbach was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Hochstetter says Steinbach was at Mancuso’s at 10:30 PM.",
       "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c031",
+        "c027"
+      ],
+      "role": "spine"
     },
     {
       "id": "c013",
@@ -2848,7 +2892,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -2858,7 +2902,7 @@
           "tick": 9
         }
       ],
-      "text": "Odessa Tillman says Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Tillman says Hochstetter was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2869,7 +2913,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -2885,7 +2929,7 @@
           "tick": 11
         }
       ],
-      "text": "Odessa Tillman says Klara Hochstetter was at Dolan’s Bar from 11:00 PM to 11:30 PM.",
+      "text": "Tillman says Hochstetter was at Dolan’s from 11:00 PM to 11:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2896,7 +2940,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -2906,7 +2950,7 @@
           "tick": 2
         }
       ],
-      "text": "Odessa Tillman says Teresa Salerno was at the victim’s suite at the residential hotel at 7:00 PM.",
+      "text": "Tillman says Salerno was at the suite at 7:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2917,7 +2961,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -2927,7 +2971,7 @@
           "tick": 5
         }
       ],
-      "text": "Odessa Tillman says Teresa Salerno was at the benches at the north end of the square at 8:30 PM.",
+      "text": "Tillman says Salerno was at the benches at 8:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2938,7 +2982,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -2948,10 +2992,10 @@
           "tick": 9
         }
       ],
-      "text": "Odessa Tillman says Teresa Salerno was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Tillman says Salerno was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c018",
@@ -2959,7 +3003,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -2975,7 +3019,7 @@
           "tick": 9
         }
       ],
-      "text": "Odessa Tillman says Nunzio Lanza was at Mancuso’s pool hall from 10:00 PM to 10:30 PM.",
+      "text": "Tillman says Lanza was at Mancuso’s from 10:00 PM to 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2986,7 +3030,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3001,7 +3045,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Odessa Tillman says Gretchen Steinbach was at Dolan’s Bar at 6:00 PM.",
+      "text": "Tillman says Steinbach was at Dolan’s at 6:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3012,7 +3056,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3022,7 +3066,7 @@
           "tick": 9
         }
       ],
-      "text": "Odessa Tillman says Gretchen Steinbach was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Tillman says Steinbach was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3033,7 +3077,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3043,7 +3087,7 @@
           "tick": 0
         }
       ],
-      "text": "Roscoe Dandridge says Klara Hochstetter was at Mancuso’s pool hall at 6:00 PM.",
+      "text": "Dandridge says Hochstetter was at Mancuso’s at 6:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3054,7 +3098,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -3081,12 +3125,10 @@
           "methodId": "poison"
         }
       ],
-      "text": "Roscoe Dandridge says Teresa Salerno was at Dolan’s Bar from 9:00 PM to 10:00 PM.",
+      "text": "Dandridge says Salerno was at Dolan’s from 9:00 PM to 10:00 PM.",
       "place": "pool-hall",
-      "leadsTo": [
-        "c155"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c023",
@@ -3094,7 +3136,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -3122,7 +3164,7 @@
           "tick": 4
         }
       ],
-      "text": "Roscoe Dandridge says Nunzio Lanza was at Mancuso’s pool hall from 6:30 PM to 8:00 PM.",
+      "text": "Dandridge says Lanza was at Mancuso’s from 6:30 PM to 8:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3133,7 +3175,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3143,7 +3185,7 @@
           "tick": 4
         }
       ],
-      "text": "Roscoe Dandridge says Gretchen Steinbach was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Dandridge says Steinbach was at Mancuso’s at 8:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3154,7 +3196,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3164,7 +3206,7 @@
           "tick": 4
         }
       ],
-      "text": "Teresa Salerno says Vincenzo Grasso was at the victim’s suite at the residential hotel at 8:00 PM.",
+      "text": "Salerno says Grasso was at the suite at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3175,7 +3217,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3185,7 +3227,7 @@
           "tick": 1
         }
       ],
-      "text": "Teresa Salerno says Klara Hochstetter was at the benches at the north end of the square at 6:30 PM.",
+      "text": "Salerno says Hochstetter was at the benches at 6:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3196,7 +3238,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3206,10 +3248,10 @@
           "tick": 9
         }
       ],
-      "text": "Teresa Salerno says Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Salerno says Hochstetter was at Mancuso’s at 10:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c028",
@@ -3217,7 +3259,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3227,7 +3269,7 @@
           "tick": 2
         }
       ],
-      "text": "Teresa Salerno says Odessa Tillman was at the victim’s suite at the residential hotel at 7:00 PM.",
+      "text": "Salerno says Tillman was at the suite at 7:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3238,7 +3280,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3248,7 +3290,7 @@
           "tick": 5
         }
       ],
-      "text": "Teresa Salerno says Odessa Tillman was at the benches at the north end of the square at 8:30 PM.",
+      "text": "Salerno says Tillman was at the benches at 8:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3259,7 +3301,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3269,7 +3311,7 @@
           "tick": 9
         }
       ],
-      "text": "Teresa Salerno says Odessa Tillman was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Salerno says Tillman was at Mancuso’s at 10:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3280,7 +3322,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3307,12 +3349,9 @@
           "methodId": "poison"
         }
       ],
-      "text": "Teresa Salerno says Roscoe Dandridge was at Dolan’s Bar from 9:00 PM to 10:00 PM.",
+      "text": "Salerno says Dandridge was at Dolan’s from 9:00 PM to 10:00 PM.",
       "place": "square-benches",
-      "leadsTo": [
-        "c080",
-        "c148"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
@@ -3321,7 +3360,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -3331,7 +3370,7 @@
           "tick": 9
         }
       ],
-      "text": "Teresa Salerno says Nunzio Lanza was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Salerno says Lanza was at Mancuso’s at 10:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration"
@@ -3342,7 +3381,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -3352,7 +3391,7 @@
           "tick": 11
         }
       ],
-      "text": "Teresa Salerno says Nunzio Lanza was at the benches at the north end of the square at 11:30 PM.",
+      "text": "Salerno says Lanza was at the benches at 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3363,7 +3402,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3373,7 +3412,7 @@
           "tick": 9
         }
       ],
-      "text": "Teresa Salerno says Gretchen Steinbach was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Salerno says Steinbach was at Mancuso’s at 10:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3384,7 +3423,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3394,7 +3433,7 @@
           "tick": 11
         }
       ],
-      "text": "Teresa Salerno says Gretchen Steinbach was at the benches at the north end of the square at 11:30 PM.",
+      "text": "Salerno says Steinbach was at the benches at 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3405,7 +3444,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3427,7 +3466,7 @@
           "tick": 7
         }
       ],
-      "text": "Nunzio Lanza says Vincenzo Grasso was at Mancuso’s pool hall from 8:30 PM to 9:30 PM.",
+      "text": "Lanza says Grasso was at Mancuso’s from 8:30 PM to 9:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3438,7 +3477,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3448,7 +3487,7 @@
           "tick": 6
         }
       ],
-      "text": "Nunzio Lanza says Klara Hochstetter was at Mancuso’s pool hall at 9:00 PM.",
+      "text": "Lanza says Hochstetter was at Mancuso’s at 9:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3459,7 +3498,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3475,7 +3514,7 @@
           "tick": 7
         }
       ],
-      "text": "Nunzio Lanza says Odessa Tillman was at Mancuso’s pool hall from 9:00 PM to 9:30 PM.",
+      "text": "Lanza says Tillman was at Mancuso’s from 9:00 PM to 9:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3486,7 +3525,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3514,7 +3553,7 @@
           "tick": 4
         }
       ],
-      "text": "Nunzio Lanza says Roscoe Dandridge was at Mancuso’s pool hall from 6:30 PM to 8:00 PM.",
+      "text": "Lanza says Dandridge was at Mancuso’s from 6:30 PM to 8:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3525,7 +3564,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -3535,7 +3574,7 @@
           "tick": 11
         }
       ],
-      "text": "Nunzio Lanza says Teresa Salerno was at the benches at the north end of the square at 11:30 PM.",
+      "text": "Lanza says Salerno was at the benches at 11:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3546,7 +3585,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3556,7 +3595,7 @@
           "tick": 4
         }
       ],
-      "text": "Nunzio Lanza says Gretchen Steinbach was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Lanza says Steinbach was at Mancuso’s at 8:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3567,7 +3606,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3583,7 +3622,7 @@
           "tick": 11
         }
       ],
-      "text": "Nunzio Lanza says Gretchen Steinbach was at the benches at the north end of the square from 11:00 PM to 11:30 PM.",
+      "text": "Lanza says Steinbach was at the benches from 11:00 PM to 11:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3594,7 +3633,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3604,7 +3643,7 @@
           "tick": 3
         }
       ],
-      "text": "Gretchen Steinbach says Klara Hochstetter was at the back room at Mrs. Teague’s at 7:30 PM.",
+      "text": "Steinbach says Hochstetter was at Mrs. Teague’s at 7:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3615,7 +3654,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3625,7 +3664,7 @@
           "tick": 8
         }
       ],
-      "text": "Gretchen Steinbach says Klara Hochstetter was at the benches at the north end of the square at 10:00 PM.",
+      "text": "Steinbach says Hochstetter was at the benches at 10:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3636,7 +3675,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3651,7 +3690,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Gretchen Steinbach says Odessa Tillman was at Dolan’s Bar at 6:00 PM.",
+      "text": "Steinbach says Tillman was at Dolan’s at 6:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3662,7 +3701,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3672,7 +3711,7 @@
           "tick": 4
         }
       ],
-      "text": "Gretchen Steinbach says Roscoe Dandridge was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Steinbach says Dandridge was at Mancuso’s at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3683,7 +3722,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -3693,7 +3732,7 @@
           "tick": 11
         }
       ],
-      "text": "Gretchen Steinbach says Teresa Salerno was at the benches at the north end of the square at 11:30 PM.",
+      "text": "Steinbach says Salerno was at the benches at 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3704,7 +3743,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -3714,7 +3753,7 @@
           "tick": 4
         }
       ],
-      "text": "Gretchen Steinbach says Nunzio Lanza was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Steinbach says Lanza was at Mancuso’s at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3725,7 +3764,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -3741,7 +3780,7 @@
           "tick": 11
         }
       ],
-      "text": "Gretchen Steinbach says Nunzio Lanza was at the benches at the north end of the square from 11:00 PM to 11:30 PM.",
+      "text": "Steinbach says Lanza was at the benches from 11:00 PM to 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3752,7 +3791,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3774,7 +3813,7 @@
           "tick": 7
         }
       ],
-      "text": "Nathan Sirkin says Vincenzo Grasso was at Mancuso’s pool hall from 8:30 PM to 9:30 PM.",
+      "text": "Sirkin says Grasso was at Mancuso’s from 8:30 PM to 9:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3785,7 +3824,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3795,7 +3834,7 @@
           "tick": 0
         }
       ],
-      "text": "Nathan Sirkin says Klara Hochstetter was at Mancuso’s pool hall at 6:00 PM.",
+      "text": "Sirkin says Hochstetter was at Mancuso’s at 6:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3806,7 +3845,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3816,7 +3855,7 @@
           "tick": 6
         }
       ],
-      "text": "Nathan Sirkin says Klara Hochstetter was at Mancuso’s pool hall at 9:00 PM.",
+      "text": "Sirkin says Hochstetter was at Mancuso’s at 9:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3827,7 +3866,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -3837,10 +3876,10 @@
           "tick": 9
         }
       ],
-      "text": "Nathan Sirkin says Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Sirkin says Hochstetter was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c054",
@@ -3848,7 +3887,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3876,7 +3915,7 @@
           "tick": 9
         }
       ],
-      "text": "Nathan Sirkin says Odessa Tillman was at Mancuso’s pool hall from 9:00 PM to 10:30 PM.",
+      "text": "Sirkin says Tillman was at Mancuso’s from 9:00 PM to 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3887,7 +3926,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3897,7 +3936,7 @@
           "tick": 0
         }
       ],
-      "text": "Nathan Sirkin says Roscoe Dandridge was at Mancuso’s pool hall at 6:00 PM.",
+      "text": "Sirkin says Dandridge was at Mancuso’s at 6:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3908,7 +3947,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3930,7 +3969,7 @@
           "tick": 4
         }
       ],
-      "text": "Nathan Sirkin says Roscoe Dandridge was at Mancuso’s pool hall from 7:00 PM to 8:00 PM.",
+      "text": "Sirkin says Dandridge was at Mancuso’s from 7:00 PM to 8:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3941,7 +3980,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -3957,7 +3996,7 @@
           "tick": 10
         }
       ],
-      "text": "Nathan Sirkin says Teresa Salerno was at Mancuso’s pool hall from 10:30 PM to 11:00 PM.",
+      "text": "Sirkin says Salerno was at Mancuso’s from 10:30 PM to 11:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3968,7 +4007,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -4020,7 +4059,7 @@
           "tick": 9
         }
       ],
-      "text": "Nathan Sirkin says Nunzio Lanza was at Mancuso’s pool hall from 7:00 PM to 10:30 PM.",
+      "text": "Sirkin says Lanza was at Mancuso’s from 7:00 PM to 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4031,7 +4070,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4046,10 +4085,10 @@
           "methodId": "poison"
         }
       ],
-      "text": "Nathan Sirkin says Gretchen Steinbach was at Dolan’s Bar at 6:30 PM.",
+      "text": "Sirkin says Steinbach was at Dolan’s at 6:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c060",
@@ -4057,7 +4096,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4067,7 +4106,7 @@
           "tick": 4
         }
       ],
-      "text": "Nathan Sirkin says Gretchen Steinbach was at Mancuso’s pool hall at 8:00 PM.",
+      "text": "Sirkin says Steinbach was at Mancuso’s at 8:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4078,7 +4117,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4088,7 +4127,7 @@
           "tick": 9
         }
       ],
-      "text": "Nathan Sirkin says Gretchen Steinbach was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Sirkin says Steinbach was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4099,7 +4138,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -4115,7 +4154,7 @@
           "tick": 3
         }
       ],
-      "text": "Hyman Shapiro says Vincenzo Grasso was at Dolan’s Bar from 7:00 PM to 7:30 PM.",
+      "text": "Shapiro says Grasso was at Dolan’s from 7:00 PM to 7:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4126,7 +4165,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -4141,7 +4180,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Shapiro says Klara Hochstetter was at Dolan’s Bar at 7:00 PM.",
+      "text": "Shapiro says Hochstetter was at Dolan’s at 7:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4152,7 +4191,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -4168,7 +4207,7 @@
           "tick": 11
         }
       ],
-      "text": "Hyman Shapiro says Klara Hochstetter was at Dolan’s Bar from 11:00 PM to 11:30 PM.",
+      "text": "Shapiro says Hochstetter was at Dolan’s from 11:00 PM to 11:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4179,7 +4218,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4194,7 +4233,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Shapiro says Odessa Tillman was at Dolan’s Bar at 6:00 PM.",
+      "text": "Shapiro says Tillman was at Dolan’s at 6:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4205,7 +4244,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4221,7 +4260,7 @@
           "tick": 11
         }
       ],
-      "text": "Hyman Shapiro says Odessa Tillman was at Dolan’s Bar from 11:00 PM to 11:30 PM.",
+      "text": "Shapiro says Tillman was at Dolan’s from 11:00 PM to 11:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4232,7 +4271,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4259,10 +4298,10 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Shapiro says Roscoe Dandridge was at Dolan’s Bar from 9:00 PM to 10:00 PM.",
+      "text": "Shapiro says Dandridge was at Dolan’s from 9:00 PM to 10:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [
-        "c170"
+        "c120"
       ],
       "role": "corroboration"
     },
@@ -4272,7 +4311,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -4299,7 +4338,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Shapiro says Teresa Salerno was at Dolan’s Bar from 9:00 PM to 10:00 PM.",
+      "text": "Shapiro says Salerno was at Dolan’s from 9:00 PM to 10:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4310,7 +4349,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4331,7 +4370,7 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Shapiro says Gretchen Steinbach was at Dolan’s Bar from 6:00 PM to 6:30 PM.",
+      "text": "Shapiro says Steinbach was at Dolan’s from 6:00 PM to 6:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4342,7 +4381,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -4364,7 +4403,7 @@
           "tick": 5
         }
       ],
-      "text": "Lorraine Prentiss says Klara Hochstetter was at the back room at Mrs. Teague’s from 7:30 PM to 8:30 PM.",
+      "text": "Prentiss says Hochstetter was at Mrs. Teague’s from 7:30 PM to 8:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -4375,7 +4414,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -4385,7 +4424,7 @@
           "tick": 7
         }
       ],
-      "text": "Lorraine Prentiss says Klara Hochstetter was at the back room at Mrs. Teague’s at 9:30 PM.",
+      "text": "Prentiss says Hochstetter was at Mrs. Teague’s at 9:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -4396,7 +4435,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4406,7 +4445,7 @@
           "tick": 10
         }
       ],
-      "text": "Lorraine Prentiss says Roscoe Dandridge was at the back room at Mrs. Teague’s at 11:00 PM.",
+      "text": "Prentiss says Dandridge was at Mrs. Teague’s at 11:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -4417,7 +4456,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4433,7 +4472,7 @@
           "tick": 3
         }
       ],
-      "text": "Lorraine Prentiss says Gretchen Steinbach was at the back room at Mrs. Teague’s from 7:00 PM to 7:30 PM.",
+      "text": "Prentiss says Steinbach was at Mrs. Teague’s from 7:00 PM to 7:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -4444,7 +4483,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -4460,7 +4499,7 @@
           "tick": 1
         }
       ],
-      "text": "Prescott Pickering says Vincenzo Grasso was at the vestibule of the Hallam apartments from 6:00 PM to 6:30 PM.",
+      "text": "Pickering says Grasso was at the Hallam from 6:00 PM to 6:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4471,7 +4510,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -4481,7 +4520,7 @@
           "tick": 8
         }
       ],
-      "text": "Prescott Pickering says Vincenzo Grasso was at the vestibule of the Hallam apartments at 10:00 PM.",
+      "text": "Pickering says Grasso was at the Hallam at 10:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4492,7 +4531,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4502,7 +4541,7 @@
           "tick": 5
         }
       ],
-      "text": "Prescott Pickering says Roscoe Dandridge was at the vestibule of the Hallam apartments at 8:30 PM.",
+      "text": "Pickering says Dandridge was at the Hallam at 8:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4513,7 +4552,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4523,7 +4562,7 @@
           "tick": 11
         }
       ],
-      "text": "Prescott Pickering says Roscoe Dandridge was at the vestibule of the Hallam apartments at 11:30 PM.",
+      "text": "Pickering says Dandridge was at the Hallam at 11:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4534,7 +4573,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -4544,7 +4583,7 @@
           "tick": 3
         }
       ],
-      "text": "Karl Lindemann says Vincenzo Grasso was at Dolan’s Bar at 7:30 PM.",
+      "text": "Lindemann says Grasso was at Dolan’s at 7:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4555,7 +4594,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -4565,7 +4604,7 @@
           "tick": 0
         }
       ],
-      "text": "Karl Lindemann says Klara Hochstetter was at Mancuso’s pool hall at 6:00 PM.",
+      "text": "Lindemann says Hochstetter was at Mancuso’s at 6:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4576,7 +4615,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Klara Hochstetter"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -4586,10 +4625,10 @@
           "tick": 9
         }
       ],
-      "text": "Karl Lindemann says Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Lindemann says Hochstetter was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c081",
@@ -4597,7 +4636,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4607,7 +4646,7 @@
           "tick": 9
         }
       ],
-      "text": "Karl Lindemann says Odessa Tillman was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Lindemann says Tillman was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4618,7 +4657,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4628,7 +4667,7 @@
           "tick": 0
         }
       ],
-      "text": "Karl Lindemann says Roscoe Dandridge was at Mancuso’s pool hall at 6:00 PM.",
+      "text": "Lindemann says Dandridge was at Mancuso’s at 6:00 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4639,7 +4678,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Teresa Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -4649,7 +4688,7 @@
           "tick": 9
         }
       ],
-      "text": "Karl Lindemann says Teresa Salerno was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Lindemann says Salerno was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4660,7 +4699,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [
         {
@@ -4670,7 +4709,7 @@
           "tick": 9
         }
       ],
-      "text": "Karl Lindemann says Nunzio Lanza was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Lindemann says Lanza was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4681,7 +4720,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4691,7 +4730,7 @@
           "tick": 9
         }
       ],
-      "text": "Karl Lindemann says Gretchen Steinbach was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Lindemann says Steinbach was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4701,25 +4740,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f2",
+        "topic": "Hochstetter’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 3
         }
       ],
-      "text": "Klara Hochstetter runs through it: at 9:00 PM there were Odessa Tillman, Nunzio Lanza at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "rooming-house-room",
+      "text": "Shapiro was at Dolan’s at 7:30 PM and says Hochstetter was not.",
+      "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4728,37 +4761,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-cop",
+        "topic": "Hochstetter’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 3
         }
       ],
-      "text": "Klara Hochstetter runs through it: at 10:30 PM there were Odessa Tillman, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "rooming-house-room",
+      "text": "Lindemann was at Dolan’s at 7:30 PM and says Hochstetter was not.",
+      "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4767,37 +4782,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s1",
+        "topic": "Tillman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 7
         }
       ],
-      "text": "Odessa Tillman runs through it: at 10:30 PM there were Klara Hochstetter, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
+      "text": "Hochstetter was at Mrs. Teague’s at 9:30 PM and says Tillman was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4806,25 +4803,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f3",
+        "topic": "Tillman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 6
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 7
         }
       ],
-      "text": "Roscoe Dandridge runs through it: at 8:00 PM there were Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
+      "text": "Prentiss was at Mrs. Teague’s from 9:00 PM to 9:30 PM and says Tillman was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4833,37 +4830,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s1",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "rooming-house-room",
+          "tick": 5
         }
       ],
-      "text": "Teresa Salerno runs through it: at 10:30 PM there were Klara Hochstetter, Odessa Tillman, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Hochstetter was at Mrs. Teague’s at 8:30 PM and says Dandridge was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4872,52 +4851,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f3",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "square-benches",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "rooming-house-room",
+          "tick": 5
         }
       ],
-      "text": "Teresa Salerno runs through it: at 11:30 PM there were Nunzio Lanza, Gretchen Steinbach at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Prentiss was at Mrs. Teague’s at 8:30 PM and says Dandridge was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c092",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s6",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 4
+          "place": "rooming-house-room",
+          "tick": 5
         }
       ],
-      "text": "Nunzio Lanza runs through it: at 8:00 PM there were Roscoe Dandridge, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
+      "text": "Dandridge names Steinbach as the company for it. Steinbach was at the suite at 8:30 PM, and says Dandridge was not there.",
+      "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4926,51 +4893,39 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-s1",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s3",
           "place": "pool-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 6
+          "tick": 9
         }
       ],
-      "text": "Nunzio Lanza runs through it: at 9:00 PM there were Klara Hochstetter, Odessa Tillman at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
+      "text": "Hochstetter was at Mancuso’s at 10:30 PM and says Dandridge was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c094",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-s2",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "square-benches",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 9
         }
       ],
-      "text": "Nunzio Lanza runs through it: at 11:30 PM there were Teresa Salerno, Gretchen Steinbach at the benches at the north end of the square, and nobody else worth naming.",
+      "text": "Tillman was at Mancuso’s at 10:30 PM and says Dandridge was not.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4980,24 +4935,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s4",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
           "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 4
+          "tick": 9
         }
       ],
-      "text": "Gretchen Steinbach runs through it: at 8:00 PM there were Roscoe Dandridge, Nunzio Lanza at Mancuso’s pool hall, and nobody else worth naming.",
+      "text": "Salerno was at Mancuso’s at 10:30 PM and says Dandridge was not.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -5007,51 +4956,39 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f1",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "pool-hall",
+          "tick": 9
         }
       ],
-      "text": "Gretchen Steinbach runs through it: at 11:30 PM there were Teresa Salerno, Nunzio Lanza at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Sirkin was at Mancuso’s at 10:30 PM and says Dandridge was not.",
+      "place": "pool-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c097",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-cop",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
           "place": "pool-hall",
-          "tick": 0
+          "tick": 9
         }
       ],
-      "text": "Nathan Sirkin runs through it: at 6:00 PM there were Klara Hochstetter, Roscoe Dandridge at Mancuso’s pool hall, and nobody else worth naming.",
+      "text": "Lindemann was at Mancuso’s at 10:30 PM and says Dandridge was not.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
@@ -5061,25 +4998,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-f4",
+        "topic": "Lanza’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 2
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 8
         },
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 2
+          "place": "hallam-vestibule",
+          "tick": 9
         }
       ],
-      "text": "Nathan Sirkin runs through it: at 7:00 PM there were Roscoe Dandridge, Nunzio Lanza at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
+      "text": "Pickering was at the Hallam from 10:00 PM to 10:30 PM and says Lanza was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5088,772 +5025,24 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-f4",
+        "topic": "Steinbach’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 3
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 9
         }
       ],
-      "text": "Nathan Sirkin runs through it: at 7:30 PM there were Roscoe Dandridge, Nunzio Lanza at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
+      "text": "Pickering was at the Hallam at 10:30 PM and says Steinbach was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Nathan Sirkin runs through it: at 8:00 PM there were Roscoe Dandridge, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 6
-        }
-      ],
-      "text": "Nathan Sirkin runs through it: at 9:00 PM there were Klara Hochstetter, Odessa Tillman, Nunzio Lanza at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 7
-        }
-      ],
-      "text": "Nathan Sirkin runs through it: at 9:30 PM there were Odessa Tillman, Nunzio Lanza at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 8
-        }
-      ],
-      "text": "Nathan Sirkin runs through it: at 10:00 PM there were Odessa Tillman, Nunzio Lanza at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Nathan Sirkin runs through it: at 10:30 PM there were Klara Hochstetter, Odessa Tillman, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 0
-        }
-      ],
-      "text": "Hyman Shapiro runs through it: at 6:00 PM there were Odessa Tillman, Gretchen Steinbach at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 6
-        }
-      ],
-      "text": "Hyman Shapiro runs through it: at 9:00 PM there were Roscoe Dandridge, Teresa Salerno at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 7
-        }
-      ],
-      "text": "Hyman Shapiro runs through it: at 9:30 PM there were Roscoe Dandridge, Teresa Salerno at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 8
-        }
-      ],
-      "text": "Hyman Shapiro runs through it: at 10:00 PM there were Roscoe Dandridge, Teresa Salerno at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 10
-        }
-      ],
-      "text": "Hyman Shapiro runs through it: at 11:00 PM there were Klara Hochstetter, Odessa Tillman at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 11
-        }
-      ],
-      "text": "Hyman Shapiro runs through it: at 11:30 PM there were Klara Hochstetter, Odessa Tillman at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 3
-        }
-      ],
-      "text": "Lorraine Prentiss runs through it: at 7:30 PM there were Klara Hochstetter, Gretchen Steinbach at the back room at Mrs. Teague’s, and nobody else worth naming.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 0
-        }
-      ],
-      "text": "Karl Lindemann runs through it: at 6:00 PM there were Klara Hochstetter, Roscoe Dandridge at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Karl Lindemann runs through it: at 10:30 PM there were Klara Hochstetter, Odessa Tillman, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c131",
-        "c067",
-        "c179"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Klara Hochstetter’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 3
-        }
-      ],
-      "text": "Hyman Shapiro was at Dolan’s Bar at 7:30 PM and says Klara Hochstetter was not.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Klara Hochstetter’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 3
-        }
-      ],
-      "text": "Karl Lindemann was at Dolan’s Bar at 7:30 PM and says Klara Hochstetter was not.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Odessa Tillman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 7
-        }
-      ],
-      "text": "Klara Hochstetter was at the back room at Mrs. Teague’s at 9:30 PM and says Odessa Tillman was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Odessa Tillman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 6
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 7
-        }
-      ],
-      "text": "Lorraine Prentiss was at the back room at Mrs. Teague’s from 9:00 PM to 9:30 PM and says Odessa Tillman was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Roscoe Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "rooming-house-room",
-          "tick": 5
-        }
-      ],
-      "text": "Klara Hochstetter was at the back room at Mrs. Teague’s at 8:30 PM and says Roscoe Dandridge was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Roscoe Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "rooming-house-room",
-          "tick": 5
-        }
-      ],
-      "text": "Lorraine Prentiss was at the back room at Mrs. Teague’s at 8:30 PM and says Roscoe Dandridge was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Roscoe Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "rooming-house-room",
-          "tick": 5
-        }
-      ],
-      "text": "Roscoe Dandridge says Gretchen Steinbach was there for it. Gretchen Steinbach says otherwise: Gretchen Steinbach was at the victim’s suite at the residential hotel at 8:30 PM, nowhere near the back room at Mrs. Teague’s.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Roscoe Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [
-        "c142",
-        "c135",
-        "c162"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Roscoe Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Odessa Tillman was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c165"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Roscoe Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Teresa Salerno was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Roscoe Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Nathan Sirkin was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Roscoe Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Karl Lindemann was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Nunzio Lanza’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "hallam-vestibule",
-          "tick": 8
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "hallam-vestibule",
-          "tick": 9
-        }
-      ],
-      "text": "Prescott Pickering was at the vestibule of the Hallam apartments from 10:00 PM to 10:30 PM and says Nunzio Lanza was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Gretchen Steinbach’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hallam-vestibule",
-          "tick": 9
-        }
-      ],
-      "text": "Prescott Pickering was at the vestibule of the Hallam apartments at 10:30 PM and says Gretchen Steinbach was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -5869,20 +5058,19 @@
           "methodId": "poison"
         }
       ],
-      "text": "Vincenzo Grasso was found at the victim’s suite at the residential hotel. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The El going over came at 10:30 PM, and the El was running to timetable and it covers the half hour exactly. That puts the killing in that half hour and no later.",
+      "text": "Grasso was found at the suite. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The El went over at 10:30 PM, running to timetable, and for twenty seconds nothing under the structure can be heard at all.",
       "place": "res-suite",
       "leadsTo": [
-        "c113",
-        "c131",
-        "c031",
-        "c122",
-        "c134"
+        "c010",
+        "c093",
+        "c027",
+        "c103"
       ],
       "role": "spine",
       "anchorId": "el-train"
     },
     {
-      "id": "c129",
+      "id": "c101",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -5904,14 +5092,19 @@
       "text": "The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle.",
       "place": "res-suite",
       "leadsTo": [
-        "c113",
-        "c121",
-        "c022"
+        "c010",
+        "c004",
+        "c008",
+        "c102",
+        "c096",
+        "c067",
+        "c108",
+        "c017"
       ],
       "role": "spine"
     },
     {
-      "id": "c130",
+      "id": "c102",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -5928,18 +5121,18 @@
           "methodId": "poison"
         }
       ],
-      "text": "A bottle of chloral drops is gone from Dolan’s Bar. The bottle is gone from the shelf and the ring of dust it stood in is still there.",
+      "text": "A bottle of chloral drops is gone from Dolan’s. The bottle is gone from the shelf and the ring of dust it stood in is still there.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c131",
+      "id": "c103",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Vincenzo Grasso that evening"
+        "topic": "Grasso that evening"
       },
       "establishes": [
         {
@@ -5953,195 +5146,45 @@
           "tick": 8
         }
       ],
-      "text": "Prescott Pickering puts Vincenzo Grasso at the vestibule of the Hallam apartments when the lights went, which was 10:00 PM, and alive enough to argue about the weather.",
+      "text": "Pickering puts Grasso at the Hallam when the lights went, which was 10:00 PM, and alive enough to argue about the weather.",
       "place": "hallam-vestibule",
-      "leadsTo": [
-        "c031"
-      ],
+      "leadsTo": [],
       "role": "spine",
       "anchorId": "fuse"
     },
     {
-      "id": "c132",
+      "id": "c104",
       "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "the noise that evening"
+        "personId": "p-s5",
+        "topic": "the fuse going in the building"
       },
       "establishes": [
         {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 8
         }
       ],
-      "text": "Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c133",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
-        }
-      ],
-      "text": "Odessa Tillman was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
+      "text": "Lanza claims the Hallam at 10:00 PM, which is when the fuse going in the building was on. Asked about it, Lanza cannot say that it was the second floor that went dark and not the whole house — and everybody who was there can.",
       "place": "pool-hall",
-      "leadsTo": [],
+      "leadsTo": [
+        "c140"
+      ],
       "role": "noise",
-      "anchorId": "el-train"
+      "anchorId": "fuse",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
     },
     {
-      "id": "c134",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
-        }
-      ],
-      "text": "Teresa Salerno was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c135",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
-        }
-      ],
-      "text": "Nathan Sirkin was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c136",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
-        }
-      ],
-      "text": "Hyman Shapiro was at Dolan’s Bar at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c137",
+      "id": "c105",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
-        }
-      ],
-      "text": "Karl Lindemann was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c138",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "the 6:00 PM round"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -6149,7 +5192,23 @@
           "personId": "p-s1",
           "place": "pool-hall",
           "tick": 0
-        },
+        }
+      ],
+      "text": "Lindemann came round at 6:00 PM and had Hochstetter at Mancuso’s.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c106",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Dandridge"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s3",
@@ -6157,19 +5216,19 @@
           "tick": 0
         }
       ],
-      "text": "The beat cop’s pass at 6:00 PM puts Klara Hochstetter, Roscoe Dandridge at Mancuso’s pool hall.",
+      "text": "Lindemann came round at 6:00 PM and had Dandridge at Mancuso’s.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c139",
+      "id": "c107",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 10:30 PM round"
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -6177,25 +5236,89 @@
           "personId": "p-s1",
           "place": "pool-hall",
           "tick": 9
-        },
+        }
+      ],
+      "text": "Lindemann came round at 10:30 PM and had Hochstetter at Mancuso’s.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c108",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Tillman"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s2",
           "place": "pool-hall",
           "tick": 9
-        },
+        }
+      ],
+      "text": "Lindemann came round at 10:30 PM and had Tillman at Mancuso’s.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c109",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Salerno"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
           "place": "pool-hall",
           "tick": 9
-        },
+        }
+      ],
+      "text": "Lindemann came round at 10:30 PM and had Salerno at Mancuso’s.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c110",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Lanza"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s5",
           "place": "pool-hall",
           "tick": 9
-        },
+        }
+      ],
+      "text": "Lindemann came round at 10:30 PM and had Lanza at Mancuso’s.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c111",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Steinbach"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s6",
@@ -6203,14 +5326,14 @@
           "tick": 9
         }
       ],
-      "text": "The beat cop’s pass at 10:30 PM puts Klara Hochstetter, Odessa Tillman, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall.",
+      "text": "Lindemann came round at 10:30 PM and had Steinbach at Mancuso’s.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c140",
+      "id": "c112",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6223,18 +5346,18 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A typed page of dates and sums in Vincenzo Grasso’s file, headed with Odessa Tillman’s name.",
+      "text": "Found at the suite: A typed page of dates and sums in Grasso’s file, headed with Tillman’s name.",
       "place": "res-suite",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c141",
+      "id": "c113",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Odessa Tillman and Vincenzo Grasso"
+        "topic": "Tillman and Grasso"
       },
       "establishes": [
         {
@@ -6243,13 +5366,13 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Teresa Salerno says Vincenzo Grasso told Odessa Tillman that the story would run whether Odessa Tillman liked it or not.",
+      "text": "Salerno says Grasso told Tillman that the story would run whether Tillman liked it or not.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c142",
+      "id": "c114",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6262,18 +5385,18 @@
           "motiveType": "property"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A lease assignment made out in Roscoe Dandridge’s name, waiting only on Vincenzo Grasso’s signature.",
+      "text": "Found at the suite: A lease assignment made out in Dandridge’s name, waiting only on Grasso’s signature.",
       "place": "res-suite",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
-      "id": "c143",
+      "id": "c115",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Roscoe Dandridge and Vincenzo Grasso"
+        "topic": "Dandridge and Grasso"
       },
       "establishes": [
         {
@@ -6282,13 +5405,13 @@
           "motiveType": "property"
         }
       ],
-      "text": "Karl Lindemann says Vincenzo Grasso told Roscoe Dandridge the lease would go to somebody else at the quarter day.",
+      "text": "Lindemann says Grasso told Dandridge the lease would go to somebody else at the quarter day.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
-      "id": "c144",
+      "id": "c116",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6301,18 +5424,18 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Found at the back room at Mrs. Teague’s: A clipping about the failure of Nunzio Lanza’s business, with Vincenzo Grasso’s name underlined twice in pencil.",
+      "text": "Found at Mrs. Teague’s: A clipping about the failure of Lanza’s business, with Grasso’s name underlined twice in pencil.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c145",
+      "id": "c117",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Nunzio Lanza and Vincenzo Grasso"
+        "topic": "Lanza and Grasso"
       },
       "establishes": [
         {
@@ -6321,13 +5444,13 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Odessa Tillman says Nunzio Lanza said Vincenzo Grasso had taken everything and would be made to feel it.",
+      "text": "Tillman says Lanza said Grasso had taken everything and would be made to feel it.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c146",
+      "id": "c118",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6341,627 +5464,635 @@
           "motiveType": "property"
         }
       ],
-      "text": "Klara Hochstetter hired us. Klara Hochstetter wants it known that Roscoe Dandridge wanted the victim out of a lease, and would rather we started there.",
+      "text": "Hochstetter hired us, and wants it known that Dandridge wanted the victim out of a lease, and would rather we started there.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c121",
-        "c104",
-        "c130",
-        "c032",
-        "c136"
+        "c093",
+        "c008",
+        "c103",
+        "c115",
+        "c032"
       ],
       "role": "spine"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Hochstetter"
+      },
+      "establishes": [],
+      "text": "Pickering on Hochstetter: Hochstetter sends money out of every pay envelope and cannot say where it goes.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Hochstetter"
+      },
+      "establishes": [],
+      "text": "Tillman on Hochstetter: A woman at Mrs. Teague’s asked for Hochstetter by a name Hochstetter has not used in years.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c121",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Hochstetter"
+      },
+      "establishes": [],
+      "text": "Salerno on Hochstetter: Hochstetter keeps a photograph and will not be asked about it twice.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A board-and-keep receipt at Mrs. Teague’s, monthly, eight years of them.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A child’s shoe at Mrs. Teague’s, and nobody at Mrs. Teague’s has any children.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 3
+        }
+      ],
+      "text": "The woman who keeps the child says it straight out: Hochstetter was at Mrs. Teague’s from 7:30 PM, the same as every week, and left with the same face as always.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 3
+        }
+      ],
+      "text": "The parish register at Mrs. Teague’s has the christening in it, and the board money receipted through the evening in question.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Sirkin on Tillman: Tillman was carrying a parcel into Mancuso’s and came out without it.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Prentiss on Tillman: There is a man who meets people at Mancuso’s and nobody will say his name out loud.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Lindemann on Tillman: Tillman has been selling things that were never Tillman’s to sell.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at Mancuso’s, and the shop it came from closed two years ago.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at Mancuso’s in a name that does not exist, made out at the hour in question.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c131"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pool-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pool-hall",
+          "tick": 7
+        }
+      ],
+      "text": "The receiver at Mancuso’s would rather talk than be held: Tillman was there from 9:00 PM to 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Tillman will take over this one.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pool-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pool-hall",
+          "tick": 7
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Tillman at Mancuso’s from 9:00 PM to 9:30 PM with both hands full.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Salerno"
+      },
+      "establishes": [],
+      "text": "Dandridge on Salerno: Salerno’s registration card gives an address on a street that does not exist.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Salerno"
+      },
+      "establishes": [],
+      "text": "Steinbach on Salerno: Two signatures of Salerno’s, a month apart, are in different hands.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c135",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Salerno"
+      },
+      "establishes": [],
+      "text": "Shapiro on Salerno: Salerno answers to the name a half-second late, every time.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c136",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "A union card in Salerno’s coat lining carries a different surname and a 1919 date.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c137",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "A steamship ticket stub among Salerno’s things, in the name of a man who died at Belleau Wood.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c134"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "forged-identity"
+        }
+      ],
+      "text": "The name Salerno was born with turns up on a desertion warrant from 1918. Salerno has been hiding from the Army for eleven years and from nobody else.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "forged-identity"
+        }
+      ],
+      "text": "The papers are forged and the reason is plain: Salerno was put out of the country once already and does not mean to be put out twice.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Lanza"
+      },
+      "establishes": [],
+      "text": "Sirkin on Lanza: Lanza was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Lanza"
+      },
+      "establishes": [],
+      "text": "Prentiss on Lanza: A man nobody knew was waiting for Lanza at Mancuso’s and would not give a name.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c142",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Lanza"
+      },
+      "establishes": [],
+      "text": "Lindemann on Lanza: Lanza goes very quiet when the racing wire is mentioned.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c143",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "Betting slips at Mancuso’s in Lanza’s pocketbook, all of them losers, all of them this month.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c144",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "A book of markers at Mancuso’s with Lanza’s initials against four of them.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c145"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c145",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "pool-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "pool-hall",
+          "tick": 9
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Lanza was at Mancuso’s from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c146",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "pool-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "pool-hall",
+          "tick": 9
+        }
+      ],
+      "text": "The book at Mancuso’s has the payment entered against Lanza’s name and the time beside it, from 10:00 PM to 10:30 PM, in the clerk’s own hand.",
+      "place": "pool-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
     },
     {
       "id": "c147",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "Klara Hochstetter"
+        "personId": "p-s4",
+        "topic": "Steinbach"
       },
       "establishes": [],
-      "text": "Hyman Shapiro on Klara Hochstetter: Klara Hochstetter sends money out of every pay envelope and cannot say where it goes.",
-      "place": "dolans-bar",
+      "text": "Salerno on Steinbach: Steinbach was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "square-benches",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s1"
+      "aboutSecretOf": "p-s6"
     },
     {
       "id": "c148",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f4",
-        "topic": "Klara Hochstetter"
+        "personId": "p-f2",
+        "topic": "Steinbach"
       },
       "establishes": [],
-      "text": "Prescott Pickering on Klara Hochstetter: A woman at the back room at Mrs. Teague’s asked for Klara Hochstetter by a name Klara Hochstetter has not used in years.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c152"
-      ],
+      "text": "Shapiro on Steinbach: A man nobody knew was waiting for Steinbach at Mancuso’s and would not give a name.",
+      "place": "dolans-bar",
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s6"
     },
     {
       "id": "c149",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Klara Hochstetter"
-      },
-      "establishes": [],
-      "text": "Odessa Tillman on Klara Hochstetter: Klara Hochstetter keeps a photograph and will not be asked about it twice.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c150",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [],
-      "text": "A board-and-keep receipt at the back room at Mrs. Teague’s, monthly, eight years of them.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c151",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [],
-      "text": "A child’s shoe at the back room at Mrs. Teague’s, and nobody at the back room at Mrs. Teague’s has any children.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c152",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 3
-        }
-      ],
-      "text": "The woman who keeps the child says it straight out: Klara Hochstetter was at the back room at Mrs. Teague’s from 7:30 PM, the same as every week, and left with the same face as always.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b5"
-    },
-    {
-      "id": "c153",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 3
-        }
-      ],
-      "text": "The parish register at the back room at Mrs. Teague’s has the christening in it, and the board money receipted through the evening in question.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c154",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Odessa Tillman"
-      },
-      "establishes": [],
-      "text": "Nunzio Lanza on Odessa Tillman: Odessa Tillman was carrying a parcel into Mancuso’s pool hall and came out without it.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c155",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Odessa Tillman"
-      },
-      "establishes": [],
-      "text": "Nathan Sirkin on Odessa Tillman: There is a man who meets people at Mancuso’s pool hall and nobody will say his name out loud.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c159"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Odessa Tillman"
-      },
-      "establishes": [],
-      "text": "Lorraine Prentiss on Odessa Tillman: Odessa Tillman has been selling things that were never Odessa Tillman’s to sell.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c157",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at Mancuso’s pool hall, and the shop it came from closed two years ago.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c158",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at Mancuso’s pool hall in a name that does not exist, made out at the hour in question.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 7
-        }
-      ],
-      "text": "The receiver at Mancuso’s pool hall would rather talk than be held: Odessa Tillman was there from 9:00 PM to 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Odessa Tillman will take over this one.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 7
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Odessa Tillman at Mancuso’s pool hall from 9:00 PM to 9:30 PM with both hands full.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c161",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Teresa Salerno"
-      },
-      "establishes": [],
-      "text": "Klara Hochstetter on Teresa Salerno: Teresa Salerno’s registration card gives an address on a street that does not exist.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c162",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Teresa Salerno"
-      },
-      "establishes": [],
-      "text": "Roscoe Dandridge on Teresa Salerno: Two signatures of Teresa Salerno’s, a month apart, are in different hands.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c167"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b6"
-    },
-    {
-      "id": "c163",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Teresa Salerno"
-      },
-      "establishes": [],
-      "text": "Gretchen Steinbach on Teresa Salerno: Teresa Salerno answers to the name a half-second late, every time.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c164",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A union card in Teresa Salerno’s coat lining carries a different surname and a 1919 date.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c165",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A steamship ticket stub among Teresa Salerno’s things, in the name of a man who died at Belleau Wood.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c166"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "forged-identity"
-        }
-      ],
-      "text": "The name Teresa Salerno was born with turns up on a desertion warrant from 1918. Teresa Salerno has been hiding from the Army for eleven years and from nobody else.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "forged-identity"
-        }
-      ],
-      "text": "The papers are forged and the reason is plain: Teresa Salerno was put out of the country once already and does not mean to be put out twice.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b6"
-    },
-    {
-      "id": "c168",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Nunzio Lanza"
-      },
-      "establishes": [],
-      "text": "Karl Lindemann on Nunzio Lanza: Nunzio Lanza was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c169",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Nunzio Lanza"
-      },
-      "establishes": [],
-      "text": "Odessa Tillman on Nunzio Lanza: A man nobody knew was waiting for Nunzio Lanza at Mancuso’s pool hall and would not give a name.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Nunzio Lanza"
-      },
-      "establishes": [],
-      "text": "Nathan Sirkin on Nunzio Lanza: Nunzio Lanza goes very quiet when the racing wire is mentioned.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c173"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b2"
-    },
-    {
-      "id": "c171",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [],
-      "text": "Betting slips at Mancuso’s pool hall in Nunzio Lanza’s pocketbook, all of them losers, all of them this month.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c172",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [],
-      "text": "A book of markers at Mancuso’s pool hall with Nunzio Lanza’s initials against four of them.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "The bookmaker’s runner is found and will say it: Nunzio Lanza was at Mancuso’s pool hall from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b2"
-    },
-    {
-      "id": "c174",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "The book at Mancuso’s pool hall has the payment entered against Nunzio Lanza’s name and the time beside it, from 10:00 PM to 10:30 PM, in the clerk’s own hand.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c175",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
         "personId": "p-f4",
-        "topic": "Gretchen Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [],
-      "text": "Prescott Pickering on Gretchen Steinbach: Gretchen Steinbach was asking around for a hundred dollars in a hurry earlier in the week.",
+      "text": "Pickering on Steinbach: Steinbach goes very quiet when the racing wire is mentioned.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c176",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Gretchen Steinbach"
-      },
-      "establishes": [],
-      "text": "Klara Hochstetter on Gretchen Steinbach: A man nobody knew was waiting for Gretchen Steinbach at Mancuso’s pool hall and would not give a name.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c177",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Gretchen Steinbach"
-      },
-      "establishes": [],
-      "text": "Teresa Salerno on Gretchen Steinbach: Gretchen Steinbach goes very quiet when the racing wire is mentioned.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c178",
+      "id": "c150",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "pool-hall"
       },
       "establishes": [],
-      "text": "Betting slips at Mancuso’s pool hall in Gretchen Steinbach’s pocketbook, all of them losers, all of them this month.",
+      "text": "Betting slips at Mancuso’s in Steinbach’s pocketbook, all of them losers, all of them this month.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c179",
+      "id": "c151",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "pool-hall"
       },
       "establishes": [],
-      "text": "A book of markers at Mancuso’s pool hall with Gretchen Steinbach’s initials against four of them.",
+      "text": "A book of markers at Mancuso’s with Steinbach’s initials against four of them.",
       "place": "pool-hall",
-      "leadsTo": [
-        "c180"
-      ],
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b4"
+      "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c180",
+      "id": "c152",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -6980,15 +6111,14 @@
           "tick": 9
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Gretchen Steinbach was at Mancuso’s pool hall from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Steinbach was at Mancuso’s from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "pool-hall",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b4"
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c181",
+      "id": "c153",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7007,7 +6137,7 @@
           "tick": 9
         }
       ],
-      "text": "The book at Mancuso’s pool hall has the payment entered against Gretchen Steinbach’s name and the time beside it, from 10:30 PM, in the clerk’s own hand.",
+      "text": "The book at Mancuso’s has the payment entered against Steinbach’s name and the time beside it, from 10:30 PM, in the clerk’s own hand.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "noise",
@@ -7016,7 +6146,7 @@
   ],
   "findable": [
     {
-      "id": "c128",
+      "id": "c100",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7032,20 +6162,19 @@
           "methodId": "poison"
         }
       ],
-      "text": "Vincenzo Grasso was found at the victim’s suite at the residential hotel. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The El going over came at 10:30 PM, and the El was running to timetable and it covers the half hour exactly. That puts the killing in that half hour and no later.",
+      "text": "Grasso was found at the suite. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The El went over at 10:30 PM, running to timetable, and for twenty seconds nothing under the structure can be heard at all.",
       "place": "res-suite",
       "leadsTo": [
-        "c113",
-        "c131",
-        "c031",
-        "c122",
-        "c134"
+        "c010",
+        "c093",
+        "c027",
+        "c103"
       ],
       "role": "spine",
       "anchorId": "el-train"
     },
     {
-      "id": "c129",
+      "id": "c101",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7067,14 +6196,19 @@
       "text": "The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle.",
       "place": "res-suite",
       "leadsTo": [
-        "c113",
-        "c121",
-        "c022"
+        "c010",
+        "c004",
+        "c008",
+        "c102",
+        "c096",
+        "c067",
+        "c108",
+        "c017"
       ],
       "role": "spine"
     },
     {
-      "id": "c146",
+      "id": "c118",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7088,73 +6222,75 @@
           "motiveType": "property"
         }
       ],
-      "text": "Klara Hochstetter hired us. Klara Hochstetter wants it known that Roscoe Dandridge wanted the victim out of a lease, and would rather we started there.",
+      "text": "Hochstetter hired us, and wants it known that Dandridge wanted the victim out of a lease, and would rather we started there.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c121",
-        "c104",
-        "c130",
-        "c032",
-        "c136"
+        "c093",
+        "c008",
+        "c103",
+        "c115",
+        "c032"
       ],
       "role": "spine"
     },
     {
-      "id": "c113",
+      "id": "c010",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-cop",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s1",
+        "topic": "Lanza"
       },
       "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pool-hall",
-          "tick": 9
-        },
         {
           "kind": "personAt",
           "personId": "p-s5",
           "place": "pool-hall",
           "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 9
         }
       ],
-      "text": "Karl Lindemann runs through it: at 10:30 PM there were Klara Hochstetter, Odessa Tillman, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
+      "text": "Hochstetter says Lanza was at Mancuso’s at 10:30 PM.",
+      "place": "rooming-house-room",
       "leadsTo": [
-        "c131",
-        "c067",
-        "c179"
+        "c004",
+        "c059",
+        "c104",
+        "c126"
       ],
       "role": "spine"
     },
     {
-      "id": "c121",
+      "id": "c004",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Roscoe Dandridge’s account"
+        "topic": "Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pool-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Hochstetter says Tillman was at Mancuso’s at 10:30 PM.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c012",
+        "c031",
+        "c053"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c093",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
@@ -7164,42 +6300,58 @@
           "tick": 9
         }
       ],
-      "text": "Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.",
+      "text": "Hochstetter was at Mancuso’s at 10:30 PM and says Dandridge was not.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "pool-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Hochstetter says Salerno was at Mancuso’s at 10:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c142",
-        "c135",
-        "c162"
+        "c012",
+        "c137"
       ],
       "role": "spine"
     },
     {
-      "id": "c131",
-      "kind": "anchor",
+      "id": "c012",
+      "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f4",
-        "topic": "Vincenzo Grasso that evening"
+        "personId": "p-s1",
+        "topic": "Steinbach"
       },
       "establishes": [
         {
-          "kind": "victimAliveAt",
-          "tick": 8
-        },
-        {
           "kind": "personAt",
-          "personId": "p-victim",
-          "place": "hallam-vestibule",
-          "tick": 8
+          "personId": "p-s6",
+          "place": "pool-hall",
+          "tick": 9
         }
       ],
-      "text": "Prescott Pickering puts Vincenzo Grasso at the vestibule of the Hallam apartments when the lights went, which was 10:00 PM, and alive enough to argue about the weather.",
-      "place": "hallam-vestibule",
+      "text": "Hochstetter says Steinbach was at Mancuso’s at 10:30 PM.",
+      "place": "rooming-house-room",
       "leadsTo": [
-        "c031"
+        "c031",
+        "c027"
       ],
-      "role": "spine",
-      "anchorId": "fuse"
+      "role": "spine"
     },
     {
       "id": "c031",
@@ -7207,7 +6359,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -7234,21 +6386,18 @@
           "methodId": "poison"
         }
       ],
-      "text": "Teresa Salerno says Roscoe Dandridge was at Dolan’s Bar from 9:00 PM to 10:00 PM.",
+      "text": "Salerno says Dandridge was at Dolan’s from 9:00 PM to 10:00 PM.",
       "place": "square-benches",
-      "leadsTo": [
-        "c080",
-        "c148"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c104",
+      "id": "c027",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s4",
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -7256,39 +6405,41 @@
           "personId": "p-s1",
           "place": "pool-hall",
           "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 9
         }
       ],
-      "text": "Nathan Sirkin runs through it: at 10:30 PM there were Klara Hochstetter, Odessa Tillman, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.",
-      "place": "pool-hall",
+      "text": "Salerno says Hochstetter was at Mancuso’s at 10:30 PM.",
+      "place": "square-benches",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "spine"
     },
     {
-      "id": "c130",
+      "id": "c103",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Grasso that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 8
+        }
+      ],
+      "text": "Pickering puts Grasso at the Hallam when the lights went, which was 10:00 PM, and alive enough to argue about the weather.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine",
+      "anchorId": "fuse"
+    },
+    {
+      "id": "c102",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -7305,17 +6456,18 @@
           "methodId": "poison"
         }
       ],
-      "text": "A bottle of chloral drops is gone from Dolan’s Bar. The bottle is gone from the shelf and the ring of dust it stood in is still there.",
+      "text": "A bottle of chloral drops is gone from Dolan’s. The bottle is gone from the shelf and the ring of dust it stood in is still there.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c142",
-      "kind": "document",
+      "id": "c115",
+      "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "res-suite"
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Dandridge and Grasso"
       },
       "establishes": [
         {
@@ -7324,18 +6476,18 @@
           "motiveType": "property"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A lease assignment made out in Roscoe Dandridge’s name, waiting only on Vincenzo Grasso’s signature.",
-      "place": "res-suite",
+      "text": "Lindemann says Grasso told Dandridge the lease would go to somebody else at the quarter day.",
+      "place": "pool-hall",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c122",
+      "id": "c096",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Roscoe Dandridge’s account"
+        "personId": "p-f1",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
@@ -7345,11 +6497,9 @@
           "tick": 9
         }
       ],
-      "text": "Odessa Tillman was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.",
+      "text": "Sirkin was at Mancuso’s at 10:30 PM and says Dandridge was not.",
       "place": "pool-hall",
-      "leadsTo": [
-        "c165"
-      ],
+      "leadsTo": [],
       "role": "corroboration"
     },
     {
@@ -7358,7 +6508,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Roscoe Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -7385,99 +6535,46 @@
           "methodId": "poison"
         }
       ],
-      "text": "Hyman Shapiro says Roscoe Dandridge was at Dolan’s Bar from 9:00 PM to 10:00 PM.",
+      "text": "Shapiro says Dandridge was at Dolan’s from 9:00 PM to 10:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [
-        "c170"
+        "c120"
       ],
       "role": "corroboration"
     },
     {
-      "id": "c135",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
-        }
-      ],
-      "text": "Nathan Sirkin was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c032",
+      "id": "c059",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Nunzio Lanza"
+        "personId": "p-f1",
+        "topic": "Steinbach"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "place": "pool-hall",
-          "tick": 9
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "poison"
         }
       ],
-      "text": "Teresa Salerno says Nunzio Lanza was at Mancuso’s pool hall at 10:30 PM.",
-      "place": "square-benches",
+      "text": "Sirkin says Steinbach was at Dolan’s at 6:30 PM.",
+      "place": "pool-hall",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c134",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
-        }
-      ],
-      "text": "Teresa Salerno was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c080",
+      "id": "c053",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-cop",
-        "topic": "Klara Hochstetter"
+        "personId": "p-f1",
+        "topic": "Hochstetter"
       },
       "establishes": [
         {
@@ -7487,138 +6584,138 @@
           "tick": 9
         }
       ],
-      "text": "Karl Lindemann says Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM.",
+      "text": "Sirkin says Hochstetter was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c136",
+      "id": "c108",
       "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "the noise that evening"
+        "personId": "p-cop",
+        "topic": "Tillman"
       },
       "establishes": [
         {
-          "kind": "noiseAt",
-          "place": "res-suite",
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pool-hall",
           "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "poison"
         }
       ],
-      "text": "Hyman Shapiro was at Dolan’s Bar at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "dolans-bar",
+      "text": "Lindemann came round at 10:30 PM and had Tillman at Mancuso’s.",
+      "place": "pool-hall",
       "leadsTo": [],
       "role": "corroboration",
-      "anchorId": "el-train"
+      "anchorId": "cop-pass"
     },
     {
-      "id": "c022",
+      "id": "c017",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "Teresa Salerno"
+        "personId": "p-s2",
+        "topic": "Salerno"
       },
       "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 8
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s4",
-          "methodId": "poison"
+          "place": "pool-hall",
+          "tick": 9
         }
       ],
-      "text": "Roscoe Dandridge says Teresa Salerno was at Dolan’s Bar from 9:00 PM to 10:00 PM.",
+      "text": "Tillman says Salerno was at Mancuso’s at 10:30 PM.",
       "place": "pool-hall",
-      "leadsTo": [
-        "c155"
-      ],
+      "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c165",
-      "kind": "physical",
+      "id": "c032",
+      "kind": "observation",
       "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A steamship ticket stub among Teresa Salerno’s things, in the name of a man who died at Belleau Wood.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c166"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Lanza"
       },
       "establishes": [
         {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "forged-identity"
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "pool-hall",
+          "tick": 9
         }
       ],
-      "text": "The name Teresa Salerno was born with turns up on a desertion warrant from 1918. Teresa Salerno has been hiding from the Army for eleven years and from nobody else.",
+      "text": "Salerno says Lanza was at Mancuso’s at 10:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
+      "role": "corroboration"
+    },
+    {
+      "id": "c104",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "the fuse going in the building"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 8
+        }
+      ],
+      "text": "Lanza claims the Hallam at 10:00 PM, which is when the fuse going in the building was on. Asked about it, Lanza cannot say that it was the second floor that went dark and not the whole house — and everybody who was there can.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c140"
+      ],
+      "role": "noise",
+      "anchorId": "fuse",
+      "aboutSecretOf": "p-s5",
       "branchId": "b1"
     },
     {
-      "id": "c170",
+      "id": "c140",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Nunzio Lanza"
+        "topic": "Lanza"
       },
       "establishes": [],
-      "text": "Nathan Sirkin on Nunzio Lanza: Nunzio Lanza goes very quiet when the racing wire is mentioned.",
+      "text": "Sirkin on Lanza: Lanza was asking around for a hundred dollars in a hurry earlier in the week.",
       "place": "pool-hall",
       "leadsTo": [
-        "c173"
+        "c144"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
-      "branchId": "b2"
+      "branchId": "b1"
     },
     {
-      "id": "c173",
+      "id": "c144",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "A book of markers at Mancuso’s with Lanza’s initials against four of them.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c145"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c145",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7643,33 +6740,185 @@
           "tick": 9
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Nunzio Lanza was at Mancuso’s pool hall from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Lanza was at Mancuso’s from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Hochstetter"
+      },
+      "establishes": [],
+      "text": "Tillman on Hochstetter: A woman at Mrs. Teague’s asked for Hochstetter by a name Hochstetter has not used in years.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
       "branchId": "b2"
     },
     {
-      "id": "c155",
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A board-and-keep receipt at Mrs. Teague’s, monthly, eight years of them.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A child’s shoe at Mrs. Teague’s, and nobody at Mrs. Teague’s has any children.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 3
+        }
+      ],
+      "text": "The woman who keeps the child says it straight out: Hochstetter was at Mrs. Teague’s from 7:30 PM, the same as every week, and left with the same face as always.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c137",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "A steamship ticket stub among Salerno’s things, in the name of a man who died at Belleau Wood.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c134"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Salerno"
+      },
+      "establishes": [],
+      "text": "Steinbach on Salerno: Two signatures of Salerno’s, a month apart, are in different hands.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "forged-identity"
+        }
+      ],
+      "text": "The name Salerno was born with turns up on a desertion warrant from 1918. Salerno has been hiding from the Army for eleven years and from nobody else.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c126",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Odessa Tillman"
+        "topic": "Tillman"
       },
       "establishes": [],
-      "text": "Nathan Sirkin on Odessa Tillman: There is a man who meets people at Mancuso’s pool hall and nobody will say his name out loud.",
+      "text": "Sirkin on Tillman: Tillman was carrying a parcel into Mancuso’s and came out without it.",
       "place": "pool-hall",
       "leadsTo": [
-        "c159"
+        "c130"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "branchId": "b4"
     },
     {
-      "id": "c159",
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pool-hall"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at Mancuso’s in a name that does not exist, made out at the hour in question.",
+      "place": "pool-hall",
+      "leadsTo": [
+        "c131"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c131",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7694,150 +6943,23 @@
           "tick": 7
         }
       ],
-      "text": "The receiver at Mancuso’s pool hall would rather talk than be held: Odessa Tillman was there from 9:00 PM to 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Odessa Tillman will take over this one.",
+      "text": "The receiver at Mancuso’s would rather talk than be held: Tillman was there from 9:00 PM to 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Tillman will take over this one.",
       "place": "pool-hall",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c179",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [],
-      "text": "A book of markers at Mancuso’s pool hall with Gretchen Steinbach’s initials against four of them.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c180"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
       "branchId": "b4"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pool-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pool-hall",
-          "tick": 9
-        }
-      ],
-      "text": "The bookmaker’s runner is found and will say it: Gretchen Steinbach was at Mancuso’s pool hall from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "pool-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b4"
-    },
-    {
-      "id": "c148",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Klara Hochstetter"
-      },
-      "establishes": [],
-      "text": "Prescott Pickering on Klara Hochstetter: A woman at the back room at Mrs. Teague’s asked for Klara Hochstetter by a name Klara Hochstetter has not used in years.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c152"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b5"
-    },
-    {
-      "id": "c152",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 3
-        }
-      ],
-      "text": "The woman who keeps the child says it straight out: Klara Hochstetter was at the back room at Mrs. Teague’s from 7:30 PM, the same as every week, and left with the same face as always.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b5"
-    },
-    {
-      "id": "c162",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Teresa Salerno"
-      },
-      "establishes": [],
-      "text": "Roscoe Dandridge on Teresa Salerno: Two signatures of Teresa Salerno’s, a month apart, are in different hands.",
-      "place": "pool-hall",
-      "leadsTo": [
-        "c167"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b6"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "forged-identity"
-        }
-      ],
-      "text": "The papers are forged and the reason is plain: Teresa Salerno was put out of the country once already and does not mean to be put out twice.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b6"
     }
   ],
   "starting": [
-    "c128",
-    "c129",
-    "c146"
+    "c100",
+    "c101",
+    "c118"
   ],
   "clientId": "p-s1",
-  "par": 8,
-  "budget": 20,
+  "par": 11,
+  "slack": 6,
+  "budget": 17,
   "coronerWindow": [
     8,
     11
@@ -7851,12 +6973,9 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c129",
-      "c131",
-      "c128",
-      "c135",
-      "c134",
-      "c136"
+      "c101",
+      "c103",
+      "c100"
     ],
     "timeOfDeathAnchors": [
       "el-train",
@@ -7864,49 +6983,42 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c113",
-        "c104",
-        "c080"
+        "c027",
+        "c053"
       ],
       "p-s2": [
-        "c113",
-        "c104"
+        "c004",
+        "c108"
       ],
       "p-s4": [
-        "c113",
-        "c104"
+        "c008",
+        "c017"
       ],
       "p-s5": [
-        "c113",
-        "c104",
+        "c010",
         "c032",
-        "c173"
+        "c145"
       ],
       "p-s6": [
-        "c113",
-        "c104",
-        "c180"
+        "c012"
       ]
     },
     "inculpation": [
-      "c121",
-      "c122"
+      "c093",
+      "c096"
     ],
     "access": [
       "c031",
       "c067"
     ],
     "method": [
-      "c128",
-      "c129",
-      "c130",
-      "c135",
-      "c134",
-      "c136"
+      "c100",
+      "c101",
+      "c102"
     ],
     "motive": [
-      "c146",
-      "c142"
+      "c118",
+      "c115"
     ]
   }
 }

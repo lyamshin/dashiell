@@ -8,6 +8,7 @@
     {
       "id": "res-walkup",
       "name": "the victim’s walk-up over the drugstore",
+      "shortName": "the walk-up",
       "kind": "private",
       "objects": [
         "obj-bookend",
@@ -20,6 +21,7 @@
     {
       "id": "movie-house",
       "name": "the Bijou picture house",
+      "shortName": "the Bijou",
       "kind": "public",
       "objects": [
         "obj-cigarette-case",
@@ -33,6 +35,7 @@
     {
       "id": "ferry-slip",
       "name": "the ferry slip at the foot of the street",
+      "shortName": "the ferry slip",
       "kind": "public",
       "objects": [
         "obj-suitcase",
@@ -44,6 +47,7 @@
     {
       "id": "hallam-vestibule",
       "name": "the vestibule of the Hallam apartments",
+      "shortName": "the Hallam",
       "kind": "private",
       "objects": [
         "obj-overcoat",
@@ -57,6 +61,7 @@
     {
       "id": "dolans-bar",
       "name": "Dolan’s Bar",
+      "shortName": "Dolan’s",
       "kind": "semi",
       "objects": [
         "obj-seltzer",
@@ -69,6 +74,7 @@
     {
       "id": "pier-shed",
       "name": "Pier 46, under the shed",
+      "shortName": "Pier 46",
       "kind": "private",
       "objects": [
         "obj-toolbox"
@@ -153,6 +159,7 @@
     {
       "id": "p-victim",
       "name": "Edward Corrigan",
+      "surname": "Corrigan",
       "role": "a retired dry-goods wholesaler",
       "kind": "victim",
       "isKiller": false,
@@ -161,6 +168,7 @@
     {
       "id": "p-s1",
       "name": "Esther Sirkin",
+      "surname": "Sirkin",
       "role": "an insurance adjuster",
       "kind": "suspect",
       "isKiller": false,
@@ -170,7 +178,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Esther Sirkin slips off to Dolan’s Bar from 7:30 PM to 8:00 PM to settle with a bookmaker.",
+        "description": "Sirkin slips off to Dolan’s from 7:30 PM to 8:00 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 3,
@@ -187,16 +195,17 @@
     {
       "id": "p-s2",
       "name": "Bella Abramowitz",
+      "surname": "Abramowitz",
       "role": "the night manager at the hotel",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-nightman",
-      "relationshipId": "rel-partner",
-      "relationshipToVictim": "the victim’s business partner",
+      "relationshipId": "rel-inlaw",
+      "relationshipToVictim": "the victim’s brother-in-law",
       "secret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "Bella Abramowitz drinks alone at the Bijou picture house from 7:30 PM to 8:00 PM and will claim to have been anywhere else.",
+        "description": "Abramowitz drinks alone at the Bijou from 7:30 PM to 8:00 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 3,
@@ -213,16 +222,17 @@
     {
       "id": "p-s3",
       "name": "Ilse Reinhardt",
+      "surname": "Reinhardt",
       "role": "a society columnist",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-society",
-      "relationshipId": "rel-neighbor",
-      "relationshipToVictim": "the victim’s neighbour across the airshaft",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people the victim worked for",
       "secret": {
         "type": "dope",
         "label": "Buying morphine",
-        "description": "Ilse Reinhardt buys morphine at the Bijou picture house from 6:30 PM and would rather be thought a murderer than a hop-head.",
+        "description": "Reinhardt buys morphine at the Bijou from 6:30 PM and would rather be thought a murderer than a hop-head.",
         "cells": [
           {
             "tick": 1,
@@ -235,6 +245,7 @@
     {
       "id": "p-s4",
       "name": "Thaddeus Ainsworth",
+      "surname": "Ainsworth",
       "role": "a doorman at a club with no sign on it",
       "kind": "suspect",
       "isKiller": false,
@@ -244,7 +255,7 @@
       "secret": {
         "type": "dope",
         "label": "Buying morphine",
-        "description": "Thaddeus Ainsworth buys morphine at the Bijou picture house from 10:00 PM to 10:30 PM and would rather be thought a murderer than a hop-head.",
+        "description": "Ainsworth buys morphine at the Bijou from 10:00 PM to 10:30 PM and would rather be thought a murderer than a hop-head.",
         "cells": [
           {
             "tick": 8,
@@ -265,16 +276,17 @@
     {
       "id": "p-s5",
       "name": "Percival Prentiss",
+      "surname": "Prentiss",
       "role": "a ward heeler",
       "kind": "suspect",
       "isKiller": true,
       "archetypeId": "arch-heeler",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people the victim worked for",
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Percival Prentiss is at Pier 46, under the shed from 7:00 PM to 8:00 PM, alone with Edward Corrigan when it happens at 8:00 PM.",
+        "description": "Prentiss is at Pier 46 from 7:00 PM to 8:00 PM, alone with Corrigan when it happens at 8:00 PM.",
         "cells": [
           {
             "tick": 2,
@@ -294,7 +306,7 @@
       "coverSecret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Percival Prentiss slips off to Dolan’s Bar from 6:30 PM to settle with a bookmaker.",
+        "description": "Prentiss slips off to Dolan’s from 6:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 1,
@@ -303,8 +315,8 @@
         ]
       },
       "motive": {
-        "type": "exposure",
-        "description": "was about to be exposed by the victim"
+        "type": "silence-a-witness",
+        "description": "needed the victim silent"
       },
       "foundAt": "dolans-bar",
       "isClient": true
@@ -312,16 +324,17 @@
     {
       "id": "p-s6",
       "name": "Wilhelm Brauer",
+      "surname": "Brauer",
       "role": "a lawyer with one clerk",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-lawyer",
-      "relationshipId": "rel-partner",
-      "relationshipToVictim": "the victim’s business partner",
+      "relationshipId": "rel-creditor",
+      "relationshipToVictim": "the victim’s creditor",
       "secret": {
         "type": "blackmail",
         "label": "Blackmailing the victim",
-        "description": "Wilhelm Brauer meets the victim alone at the vestibule of the Hallam apartments from 6:00 PM and asks for money.",
+        "description": "Brauer meets the victim alone at the Hallam from 6:00 PM and asks for money.",
         "cells": [
           {
             "tick": 0,
@@ -335,6 +348,7 @@
     {
       "id": "p-f1",
       "name": "Angelina Tramonti",
+      "surname": "Tramonti",
       "role": "the ticket-taker",
       "kind": "fixture",
       "isKiller": false,
@@ -344,6 +358,7 @@
     {
       "id": "p-f2",
       "name": "Rudolf Dettweiler",
+      "surname": "Dettweiler",
       "role": "the elevator man",
       "kind": "fixture",
       "isKiller": false,
@@ -353,6 +368,7 @@
     {
       "id": "p-f3",
       "name": "Augustus Mosley",
+      "surname": "Mosley",
       "role": "the bartender",
       "kind": "fixture",
       "isKiller": false,
@@ -384,12 +400,18 @@
           "description": "a crack in the cellar and every light on the riser out at once"
         },
         {
+          "kind": "knowledge",
+          "description": "it was the second floor that went dark and not the whole house"
+        },
+        {
           "kind": "mark",
           "description": "candle smoke on the ceilings of everyone who sat it out"
         }
       ],
       "timing": "when the lights went",
-      "sceneTiming": "the lights on that riser were dead from then until the morning",
+      "highTiming": "just after the lights went",
+      "sceneFact": "The fuse went at {T} and the lights on that riser were dead from then until the morning.",
+      "masks": false,
       "placeId": "hallam-vestibule"
     },
     {
@@ -410,13 +432,16 @@
         }
       ],
       "timing": "as the bells were going",
-      "sceneTiming": "the bells fix it: the sexton rings them off the sacristy clock and it keeps good time"
+      "highTiming": "while the bells were going",
+      "sceneFact": "The bells rang the half hour at {T}. The sexton rings them off the sacristy clock and it keeps good time.",
+      "masks": false
     }
   ],
   "nearScene": [
     "ferry-slip",
     "movie-house"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2642,7 +2667,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -2657,7 +2682,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Esther Sirkin says Bella Abramowitz was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Sirkin says Abramowitz was at the walk-up at 6:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -2668,7 +2693,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -2678,7 +2703,7 @@
           "tick": 10
         }
       ],
-      "text": "Esther Sirkin says Bella Abramowitz was at Dolan’s Bar at 11:00 PM.",
+      "text": "Sirkin says Abramowitz was at Dolan’s at 11:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -2689,7 +2714,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -2704,7 +2729,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Esther Sirkin says Ilse Reinhardt was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Sirkin says Reinhardt was at the walk-up at 6:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -2715,7 +2740,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -2742,7 +2767,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Esther Sirkin says Thaddeus Ainsworth was at the victim’s walk-up over the drugstore from 6:00 PM to 7:00 PM.",
+      "text": "Sirkin says Ainsworth was at the walk-up from 6:00 PM to 7:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -2753,7 +2778,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -2763,7 +2788,7 @@
           "tick": 5
         }
       ],
-      "text": "Esther Sirkin says Thaddeus Ainsworth was at Dolan’s Bar at 8:30 PM.",
+      "text": "Sirkin says Ainsworth was at Dolan’s at 8:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -2774,7 +2799,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -2789,12 +2814,9 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Esther Sirkin says Percival Prentiss was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Sirkin says Prentiss was at the walk-up at 6:00 PM.",
       "place": "dolans-bar",
-      "leadsTo": [
-        "c068",
-        "c160"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
@@ -2803,7 +2825,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -2843,7 +2865,7 @@
           "tick": 10
         }
       ],
-      "text": "Esther Sirkin says Percival Prentiss was at Dolan’s Bar from 8:30 PM to 11:00 PM.",
+      "text": "Sirkin says Prentiss was at Dolan’s from 8:30 PM to 11:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -2854,7 +2876,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -2864,7 +2886,7 @@
           "tick": 5
         }
       ],
-      "text": "Esther Sirkin says Wilhelm Brauer was at Dolan’s Bar at 8:30 PM.",
+      "text": "Sirkin says Brauer was at Dolan’s at 8:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -2875,7 +2897,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -2897,7 +2919,7 @@
           "tick": 9
         }
       ],
-      "text": "Esther Sirkin says Wilhelm Brauer was at Dolan’s Bar from 9:30 PM to 10:30 PM.",
+      "text": "Sirkin says Brauer was at Dolan’s from 9:30 PM to 10:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -2908,7 +2930,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -2923,7 +2945,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Bella Abramowitz says Esther Sirkin was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Abramowitz says Sirkin was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -2934,7 +2956,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -2944,7 +2966,7 @@
           "tick": 10
         }
       ],
-      "text": "Bella Abramowitz says Esther Sirkin was at Dolan’s Bar at 11:00 PM.",
+      "text": "Abramowitz says Sirkin was at Dolan’s at 11:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -2955,7 +2977,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -2970,7 +2992,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Bella Abramowitz says Ilse Reinhardt was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Abramowitz says Reinhardt was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -2981,7 +3003,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -2991,7 +3013,7 @@
           "tick": 1
         }
       ],
-      "text": "Bella Abramowitz says Ilse Reinhardt was at the Bijou picture house at 6:30 PM.",
+      "text": "Abramowitz says Reinhardt was at the Bijou at 6:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3002,7 +3024,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -3018,7 +3040,7 @@
           "tick": 9
         }
       ],
-      "text": "Bella Abramowitz says Ilse Reinhardt was at the Bijou picture house from 10:00 PM to 10:30 PM.",
+      "text": "Abramowitz says Reinhardt was at the Bijou from 10:00 PM to 10:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3029,7 +3051,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -3039,7 +3061,7 @@
           "tick": 5
         }
       ],
-      "text": "Bella Abramowitz says Ilse Reinhardt was at the ferry slip at the foot of the street at 8:30 PM.",
+      "text": "Abramowitz says Reinhardt was at the ferry slip at 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3050,7 +3072,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3065,7 +3087,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Bella Abramowitz says Thaddeus Ainsworth was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Abramowitz says Ainsworth was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3076,7 +3098,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3098,7 +3120,7 @@
           "tick": 9
         }
       ],
-      "text": "Bella Abramowitz says Thaddeus Ainsworth was at the Bijou picture house from 9:30 PM to 10:30 PM.",
+      "text": "Abramowitz says Ainsworth was at the Bijou from 9:30 PM to 10:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3109,7 +3131,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3119,7 +3141,7 @@
           "tick": 11
         }
       ],
-      "text": "Bella Abramowitz says Thaddeus Ainsworth was at Dolan’s Bar at 11:30 PM.",
+      "text": "Abramowitz says Ainsworth was at Dolan’s at 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3130,7 +3152,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -3145,13 +3167,10 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Bella Abramowitz says Percival Prentiss was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Abramowitz says Prentiss was at the walk-up at 6:00 PM.",
       "place": "movie-house",
-      "leadsTo": [
-        "c206",
-        "c190"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c020",
@@ -3159,7 +3178,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -3175,7 +3194,7 @@
           "tick": 11
         }
       ],
-      "text": "Bella Abramowitz says Percival Prentiss was at Dolan’s Bar from 11:00 PM to 11:30 PM.",
+      "text": "Abramowitz says Prentiss was at Dolan’s from 11:00 PM to 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3186,7 +3205,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Edward Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -3196,7 +3215,7 @@
           "tick": 2
         }
       ],
-      "text": "Ilse Reinhardt says Edward Corrigan was at Dolan’s Bar at 7:00 PM.",
+      "text": "Reinhardt says Corrigan was at Dolan’s at 7:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3207,7 +3226,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -3222,10 +3241,10 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Ilse Reinhardt says Esther Sirkin was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Reinhardt says Sirkin was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c023",
@@ -3233,7 +3252,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -3249,7 +3268,7 @@
           "tick": 4
         }
       ],
-      "text": "Ilse Reinhardt says Esther Sirkin was at Dolan’s Bar from 7:30 PM to 8:00 PM.",
+      "text": "Reinhardt says Sirkin was at Dolan’s from 7:30 PM to 8:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3260,7 +3279,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -3275,7 +3294,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Ilse Reinhardt says Bella Abramowitz was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Reinhardt says Abramowitz was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3286,7 +3305,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -3296,7 +3315,7 @@
           "tick": 5
         }
       ],
-      "text": "Ilse Reinhardt says Bella Abramowitz was at the ferry slip at the foot of the street at 8:30 PM.",
+      "text": "Reinhardt says Abramowitz was at the ferry slip at 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3307,7 +3326,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -3323,7 +3342,7 @@
           "tick": 9
         }
       ],
-      "text": "Ilse Reinhardt says Bella Abramowitz was at the Bijou picture house from 10:00 PM to 10:30 PM.",
+      "text": "Reinhardt says Abramowitz was at the Bijou from 10:00 PM to 10:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3334,7 +3353,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3349,7 +3368,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Ilse Reinhardt says Thaddeus Ainsworth was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Reinhardt says Ainsworth was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3360,7 +3379,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3370,7 +3389,7 @@
           "tick": 4
         }
       ],
-      "text": "Ilse Reinhardt says Thaddeus Ainsworth was at Dolan’s Bar at 8:00 PM.",
+      "text": "Reinhardt says Ainsworth was at Dolan’s at 8:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3381,7 +3400,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -3403,7 +3422,7 @@
           "tick": 10
         }
       ],
-      "text": "Ilse Reinhardt says Thaddeus Ainsworth was at the Bijou picture house from 10:00 PM to 11:00 PM.",
+      "text": "Reinhardt says Ainsworth was at the Bijou from 10:00 PM to 11:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3414,7 +3433,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -3429,10 +3448,10 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Ilse Reinhardt says Percival Prentiss was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Reinhardt says Prentiss was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c031",
@@ -3440,7 +3459,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3462,7 +3481,7 @@
           "tick": 4
         }
       ],
-      "text": "Ilse Reinhardt says Wilhelm Brauer was at Dolan’s Bar from 7:00 PM to 8:00 PM.",
+      "text": "Reinhardt says Brauer was at Dolan’s from 7:00 PM to 8:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3473,7 +3492,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3483,7 +3502,7 @@
           "tick": 6
         }
       ],
-      "text": "Ilse Reinhardt says Wilhelm Brauer was at the vestibule of the Hallam apartments at 9:00 PM.",
+      "text": "Reinhardt says Brauer was at the Hallam at 9:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3494,7 +3513,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3510,7 +3529,7 @@
           "tick": 11
         }
       ],
-      "text": "Ilse Reinhardt says Wilhelm Brauer was at the Bijou picture house from 11:00 PM to 11:30 PM.",
+      "text": "Reinhardt says Brauer was at the Bijou from 11:00 PM to 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3521,7 +3540,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -3548,7 +3567,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Thaddeus Ainsworth says Esther Sirkin was at the victim’s walk-up over the drugstore from 6:00 PM to 7:00 PM.",
+      "text": "Ainsworth says Sirkin was at the walk-up from 6:00 PM to 7:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3559,7 +3578,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -3575,10 +3594,10 @@
           "tick": 5
         }
       ],
-      "text": "Thaddeus Ainsworth says Esther Sirkin was at Dolan’s Bar from 8:00 PM to 8:30 PM.",
+      "text": "Ainsworth says Sirkin was at Dolan’s from 8:00 PM to 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c036",
@@ -3586,7 +3605,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -3601,7 +3620,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Thaddeus Ainsworth says Bella Abramowitz was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Ainsworth says Abramowitz was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3612,7 +3631,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -3622,7 +3641,7 @@
           "tick": 7
         }
       ],
-      "text": "Thaddeus Ainsworth says Bella Abramowitz was at the Bijou picture house at 9:30 PM.",
+      "text": "Ainsworth says Abramowitz was at the Bijou at 9:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3633,7 +3652,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -3643,7 +3662,7 @@
           "tick": 11
         }
       ],
-      "text": "Thaddeus Ainsworth says Bella Abramowitz was at Dolan’s Bar at 11:30 PM.",
+      "text": "Ainsworth says Abramowitz was at Dolan’s at 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3654,7 +3673,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -3669,12 +3688,10 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Thaddeus Ainsworth says Ilse Reinhardt was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Ainsworth says Reinhardt was at the walk-up at 6:00 PM.",
       "place": "movie-house",
-      "leadsTo": [
-        "c196"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c040",
@@ -3682,7 +3699,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -3692,10 +3709,10 @@
           "tick": 4
         }
       ],
-      "text": "Thaddeus Ainsworth says Ilse Reinhardt was at Dolan’s Bar at 8:00 PM.",
+      "text": "Ainsworth says Reinhardt was at Dolan’s at 8:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c041",
@@ -3703,7 +3720,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -3713,7 +3730,7 @@
           "tick": 10
         }
       ],
-      "text": "Thaddeus Ainsworth says Ilse Reinhardt was at the Bijou picture house at 11:00 PM.",
+      "text": "Ainsworth says Reinhardt was at the Bijou at 11:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3724,7 +3741,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -3739,7 +3756,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Thaddeus Ainsworth says Percival Prentiss was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Ainsworth says Prentiss was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3750,7 +3767,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -3760,7 +3777,7 @@
           "tick": 5
         }
       ],
-      "text": "Thaddeus Ainsworth says Percival Prentiss was at Dolan’s Bar at 8:30 PM.",
+      "text": "Ainsworth says Prentiss was at Dolan’s at 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3771,7 +3788,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -3781,7 +3798,7 @@
           "tick": 11
         }
       ],
-      "text": "Thaddeus Ainsworth says Percival Prentiss was at Dolan’s Bar at 11:30 PM.",
+      "text": "Ainsworth says Prentiss was at Dolan’s at 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3792,7 +3809,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3808,7 +3825,7 @@
           "tick": 5
         }
       ],
-      "text": "Thaddeus Ainsworth says Wilhelm Brauer was at Dolan’s Bar from 8:00 PM to 8:30 PM.",
+      "text": "Ainsworth says Brauer was at Dolan’s from 8:00 PM to 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3819,7 +3836,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3829,7 +3846,7 @@
           "tick": 10
         }
       ],
-      "text": "Thaddeus Ainsworth says Wilhelm Brauer was at the Bijou picture house at 11:00 PM.",
+      "text": "Ainsworth says Brauer was at the Bijou at 11:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3840,7 +3857,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -3855,7 +3872,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Percival Prentiss says Esther Sirkin was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Prentiss says Sirkin was at the walk-up at 6:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -3866,7 +3883,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -3906,7 +3923,7 @@
           "tick": 10
         }
       ],
-      "text": "Percival Prentiss says Esther Sirkin was at Dolan’s Bar from 8:30 PM to 11:00 PM.",
+      "text": "Prentiss says Sirkin was at Dolan’s from 8:30 PM to 11:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -3917,7 +3934,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -3932,7 +3949,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Percival Prentiss says Bella Abramowitz was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Prentiss says Abramowitz was at the walk-up at 6:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -3943,7 +3960,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -3959,7 +3976,7 @@
           "tick": 11
         }
       ],
-      "text": "Percival Prentiss says Bella Abramowitz was at Dolan’s Bar from 11:00 PM to 11:30 PM.",
+      "text": "Prentiss says Abramowitz was at Dolan’s from 11:00 PM to 11:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -3970,7 +3987,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -3985,7 +4002,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Percival Prentiss says Ilse Reinhardt was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Prentiss says Reinhardt was at the walk-up at 6:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -3996,7 +4013,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4011,7 +4028,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Percival Prentiss says Thaddeus Ainsworth was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Prentiss says Ainsworth was at the walk-up at 6:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4022,7 +4039,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4032,7 +4049,7 @@
           "tick": 5
         }
       ],
-      "text": "Percival Prentiss says Thaddeus Ainsworth was at Dolan’s Bar at 8:30 PM.",
+      "text": "Prentiss says Ainsworth was at Dolan’s at 8:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4043,7 +4060,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4053,7 +4070,7 @@
           "tick": 11
         }
       ],
-      "text": "Percival Prentiss says Thaddeus Ainsworth was at Dolan’s Bar at 11:30 PM.",
+      "text": "Prentiss says Ainsworth was at Dolan’s at 11:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4064,7 +4081,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4074,7 +4091,7 @@
           "tick": 5
         }
       ],
-      "text": "Percival Prentiss says Wilhelm Brauer was at Dolan’s Bar at 8:30 PM.",
+      "text": "Prentiss says Brauer was at Dolan’s at 8:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4085,7 +4102,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4107,7 +4124,7 @@
           "tick": 9
         }
       ],
-      "text": "Percival Prentiss says Wilhelm Brauer was at Dolan’s Bar from 9:30 PM to 10:30 PM.",
+      "text": "Prentiss says Brauer was at Dolan’s from 9:30 PM to 10:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4118,7 +4135,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Edward Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4134,7 +4151,7 @@
           "tick": 2
         }
       ],
-      "text": "Wilhelm Brauer says Edward Corrigan was at Dolan’s Bar from 6:30 PM to 7:00 PM.",
+      "text": "Brauer says Corrigan was at Dolan’s from 6:30 PM to 7:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4145,7 +4162,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -4167,7 +4184,7 @@
           "tick": 5
         }
       ],
-      "text": "Wilhelm Brauer says Esther Sirkin was at Dolan’s Bar from 7:30 PM to 8:30 PM.",
+      "text": "Brauer says Sirkin was at Dolan’s from 7:30 PM to 8:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4178,7 +4195,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -4200,7 +4217,7 @@
           "tick": 9
         }
       ],
-      "text": "Wilhelm Brauer says Esther Sirkin was at Dolan’s Bar from 9:30 PM to 10:30 PM.",
+      "text": "Brauer says Sirkin was at Dolan’s from 9:30 PM to 10:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4211,7 +4228,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -4233,7 +4250,7 @@
           "tick": 4
         }
       ],
-      "text": "Wilhelm Brauer says Ilse Reinhardt was at Dolan’s Bar from 7:00 PM to 8:00 PM.",
+      "text": "Brauer says Reinhardt was at Dolan’s from 7:00 PM to 8:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4244,7 +4261,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -4254,7 +4271,7 @@
           "tick": 6
         }
       ],
-      "text": "Wilhelm Brauer says Ilse Reinhardt was at the vestibule of the Hallam apartments at 9:00 PM.",
+      "text": "Brauer says Reinhardt was at the Hallam at 9:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4265,7 +4282,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -4281,7 +4298,7 @@
           "tick": 11
         }
       ],
-      "text": "Wilhelm Brauer says Ilse Reinhardt was at the Bijou picture house from 11:00 PM to 11:30 PM.",
+      "text": "Brauer says Reinhardt was at the Bijou from 11:00 PM to 11:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4292,7 +4309,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4308,10 +4325,10 @@
           "tick": 5
         }
       ],
-      "text": "Wilhelm Brauer says Thaddeus Ainsworth was at Dolan’s Bar from 8:00 PM to 8:30 PM.",
+      "text": "Brauer says Ainsworth was at Dolan’s from 8:00 PM to 8:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c064",
@@ -4319,7 +4336,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4329,7 +4346,7 @@
           "tick": 10
         }
       ],
-      "text": "Wilhelm Brauer says Thaddeus Ainsworth was at the Bijou picture house at 11:00 PM.",
+      "text": "Brauer says Ainsworth was at the Bijou at 11:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4340,7 +4357,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -4350,7 +4367,7 @@
           "tick": 1
         }
       ],
-      "text": "Wilhelm Brauer says Percival Prentiss was at Dolan’s Bar at 6:30 PM.",
+      "text": "Brauer says Prentiss was at Dolan’s at 6:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4361,7 +4378,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -4371,7 +4388,7 @@
           "tick": 5
         }
       ],
-      "text": "Wilhelm Brauer says Percival Prentiss was at Dolan’s Bar at 8:30 PM.",
+      "text": "Brauer says Prentiss was at Dolan’s at 8:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4382,7 +4399,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -4404,7 +4421,7 @@
           "tick": 9
         }
       ],
-      "text": "Wilhelm Brauer says Percival Prentiss was at Dolan’s Bar from 9:30 PM to 10:30 PM.",
+      "text": "Brauer says Prentiss was at Dolan’s from 9:30 PM to 10:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4415,7 +4432,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -4443,10 +4460,10 @@
           "tick": 4
         }
       ],
-      "text": "Angelina Tramonti says Bella Abramowitz was at the Bijou picture house from 6:30 PM to 8:00 PM.",
+      "text": "Tramonti says Abramowitz was at the Bijou from 6:30 PM to 8:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
-      "role": "spine"
+      "role": "noise"
     },
     {
       "id": "c069",
@@ -4454,7 +4471,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -4476,7 +4493,7 @@
           "tick": 9
         }
       ],
-      "text": "Angelina Tramonti says Bella Abramowitz was at the Bijou picture house from 9:30 PM to 10:30 PM.",
+      "text": "Tramonti says Abramowitz was at the Bijou from 9:30 PM to 10:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4487,7 +4504,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -4497,7 +4514,7 @@
           "tick": 1
         }
       ],
-      "text": "Angelina Tramonti says Ilse Reinhardt was at the Bijou picture house at 6:30 PM.",
+      "text": "Tramonti says Reinhardt was at the Bijou at 6:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4508,7 +4525,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -4536,7 +4553,7 @@
           "tick": 11
         }
       ],
-      "text": "Angelina Tramonti says Ilse Reinhardt was at the Bijou picture house from 10:00 PM to 11:30 PM.",
+      "text": "Tramonti says Reinhardt was at the Bijou from 10:00 PM to 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4547,7 +4564,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4581,7 +4598,7 @@
           "tick": 10
         }
       ],
-      "text": "Angelina Tramonti says Thaddeus Ainsworth was at the Bijou picture house from 9:00 PM to 11:00 PM.",
+      "text": "Tramonti says Ainsworth was at the Bijou from 9:00 PM to 11:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4592,7 +4609,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4608,7 +4625,7 @@
           "tick": 11
         }
       ],
-      "text": "Angelina Tramonti says Wilhelm Brauer was at the Bijou picture house from 11:00 PM to 11:30 PM.",
+      "text": "Tramonti says Brauer was at the Bijou from 11:00 PM to 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4619,7 +4636,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4629,7 +4646,7 @@
           "tick": 0
         }
       ],
-      "text": "Rudolf Dettweiler says Edward Corrigan was at the vestibule of the Hallam apartments at 6:00 PM.",
+      "text": "Dettweiler says Corrigan was at the Hallam at 6:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4640,7 +4657,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4650,7 +4667,7 @@
           "tick": 3
         }
       ],
-      "text": "Rudolf Dettweiler says Edward Corrigan was at the vestibule of the Hallam apartments at 7:30 PM.",
+      "text": "Dettweiler says Corrigan was at the Hallam at 7:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4661,7 +4678,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -4671,7 +4688,7 @@
           "tick": 11
         }
       ],
-      "text": "Rudolf Dettweiler says Esther Sirkin was at the vestibule of the Hallam apartments at 11:30 PM.",
+      "text": "Dettweiler says Sirkin was at the Hallam at 11:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4682,7 +4699,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -4692,10 +4709,14 @@
           "tick": 4
         }
       ],
-      "text": "Rudolf Dettweiler says Bella Abramowitz was at the Bijou picture house at 8:00 PM.",
+      "text": "Dettweiler says Abramowitz was at the Bijou at 8:00 PM.",
       "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c030",
+        "c111",
+        "c136"
+      ],
+      "role": "spine"
     },
     {
       "id": "c078",
@@ -4703,7 +4724,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -4719,7 +4740,7 @@
           "tick": 7
         }
       ],
-      "text": "Rudolf Dettweiler says Ilse Reinhardt was at the vestibule of the Hallam apartments from 9:00 PM to 9:30 PM.",
+      "text": "Dettweiler says Reinhardt was at the Hallam from 9:00 PM to 9:30 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4730,7 +4751,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4740,7 +4761,7 @@
           "tick": 0
         }
       ],
-      "text": "Rudolf Dettweiler says Wilhelm Brauer was at the vestibule of the Hallam apartments at 6:00 PM.",
+      "text": "Dettweiler says Brauer was at the Hallam at 6:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4751,7 +4772,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4761,7 +4782,7 @@
           "tick": 6
         }
       ],
-      "text": "Rudolf Dettweiler says Wilhelm Brauer was at the vestibule of the Hallam apartments at 9:00 PM.",
+      "text": "Dettweiler says Brauer was at the Hallam at 9:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4772,7 +4793,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Edward Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4788,7 +4809,7 @@
           "tick": 2
         }
       ],
-      "text": "Augustus Mosley says Edward Corrigan was at Dolan’s Bar from 6:30 PM to 7:00 PM.",
+      "text": "Mosley says Corrigan was at Dolan’s from 6:30 PM to 7:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4799,7 +4820,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Esther Sirkin"
+        "topic": "Sirkin"
       },
       "establishes": [
         {
@@ -4845,10 +4866,14 @@
           "tick": 9
         }
       ],
-      "text": "Augustus Mosley says Esther Sirkin was at Dolan’s Bar from 7:30 PM to 10:30 PM.",
+      "text": "Mosley says Sirkin was at Dolan’s from 7:30 PM to 10:30 PM.",
       "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c085",
+        "c112",
+        "c118"
+      ],
+      "role": "spine"
     },
     {
       "id": "c083",
@@ -4856,7 +4881,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Bella Abramowitz"
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
@@ -4866,7 +4891,7 @@
           "tick": 11
         }
       ],
-      "text": "Augustus Mosley says Bella Abramowitz was at Dolan’s Bar at 11:30 PM.",
+      "text": "Mosley says Abramowitz was at Dolan’s at 11:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4877,7 +4902,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Ilse Reinhardt"
+        "topic": "Reinhardt"
       },
       "establishes": [
         {
@@ -4899,10 +4924,13 @@
           "tick": 4
         }
       ],
-      "text": "Augustus Mosley says Ilse Reinhardt was at Dolan’s Bar from 7:00 PM to 8:00 PM.",
+      "text": "Mosley says Reinhardt was at Dolan’s from 7:00 PM to 8:00 PM.",
       "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c006",
+        "c141"
+      ],
+      "role": "spine"
     },
     {
       "id": "c085",
@@ -4910,7 +4938,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4926,10 +4954,13 @@
           "tick": 5
         }
       ],
-      "text": "Augustus Mosley says Thaddeus Ainsworth was at Dolan’s Bar from 8:00 PM to 8:30 PM.",
+      "text": "Mosley says Ainsworth was at Dolan’s from 8:00 PM to 8:30 PM.",
       "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c090",
+        "c117"
+      ],
+      "role": "spine"
     },
     {
       "id": "c086",
@@ -4937,7 +4968,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Thaddeus Ainsworth"
+        "topic": "Ainsworth"
       },
       "establishes": [
         {
@@ -4947,7 +4978,7 @@
           "tick": 11
         }
       ],
-      "text": "Augustus Mosley says Thaddeus Ainsworth was at Dolan’s Bar at 11:30 PM.",
+      "text": "Mosley says Ainsworth was at Dolan’s at 11:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4958,7 +4989,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -4968,7 +4999,7 @@
           "tick": 1
         }
       ],
-      "text": "Augustus Mosley says Percival Prentiss was at Dolan’s Bar at 6:30 PM.",
+      "text": "Mosley says Prentiss was at Dolan’s at 6:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -4979,7 +5010,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -5013,7 +5044,7 @@
           "tick": 9
         }
       ],
-      "text": "Augustus Mosley says Percival Prentiss was at Dolan’s Bar from 8:30 PM to 10:30 PM.",
+      "text": "Mosley says Prentiss was at Dolan’s from 8:30 PM to 10:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -5024,7 +5055,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -5034,7 +5065,7 @@
           "tick": 11
         }
       ],
-      "text": "Augustus Mosley says Percival Prentiss was at Dolan’s Bar at 11:30 PM.",
+      "text": "Mosley says Prentiss was at Dolan’s at 11:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -5045,7 +5076,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -5079,10 +5110,16 @@
           "tick": 5
         }
       ],
-      "text": "Augustus Mosley says Wilhelm Brauer was at Dolan’s Bar from 6:30 PM to 8:30 PM.",
+      "text": "Mosley says Brauer was at Dolan’s from 6:30 PM to 8:30 PM.",
       "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c112",
+        "c077",
+        "c118",
+        "c035",
+        "c133"
+      ],
+      "role": "spine"
     },
     {
       "id": "c091",
@@ -5090,7 +5127,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Wilhelm Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -5112,7 +5149,7 @@
           "tick": 9
         }
       ],
-      "text": "Augustus Mosley says Wilhelm Brauer was at Dolan’s Bar from 9:30 PM to 10:30 PM.",
+      "text": "Mosley says Brauer was at Dolan’s from 9:30 PM to 10:30 PM.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -5122,37 +5159,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f1",
+        "topic": "Sirkin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "res-walkup",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "res-walkup",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 4
         }
       ],
-      "text": "Esther Sirkin runs through it: at 6:00 PM there were Bella Abramowitz, Ilse Reinhardt, Thaddeus Ainsworth, Percival Prentiss at the victim’s walk-up over the drugstore, and nobody else worth naming.",
-      "place": "dolans-bar",
+      "text": "Tramonti was at the Bijou from 7:30 PM to 8:00 PM and says Sirkin was not.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5161,58 +5186,46 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-f2",
+        "topic": "Sirkin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 4
         }
       ],
-      "text": "Esther Sirkin runs through it: at 8:30 PM there were Thaddeus Ainsworth, Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
+      "text": "Dettweiler was at the Bijou at 8:00 PM and says Sirkin was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c094",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-s4",
+        "topic": "Sirkin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 4
         }
       ],
-      "text": "Esther Sirkin runs through it: at 9:30 PM there were Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
+      "text": "Sirkin names Ainsworth as the company for it. Ainsworth was at the walk-up from 7:30 PM to 8:00 PM, and says Sirkin was not there.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5221,25 +5234,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-s3",
+        "topic": "Abramowitz’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "dolans-bar",
-          "tick": 8
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "dolans-bar",
-          "tick": 8
+          "tick": 4
         }
       ],
-      "text": "Esther Sirkin runs through it: at 10:00 PM there were Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
+      "text": "Reinhardt was at Dolan’s from 7:30 PM to 8:00 PM and says Abramowitz was not.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5248,24 +5261,24 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s6",
+        "topic": "Abramowitz’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "dolans-bar",
-          "tick": 9
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "dolans-bar",
-          "tick": 9
+          "tick": 4
         }
       ],
-      "text": "Esther Sirkin runs through it: at 10:30 PM there were Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
+      "text": "Brauer was at Dolan’s from 7:30 PM to 8:00 PM and says Abramowitz was not.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
@@ -5275,63 +5288,51 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-f3",
+        "topic": "Abramowitz’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
           "place": "dolans-bar",
-          "tick": 10
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "dolans-bar",
-          "tick": 10
+          "tick": 4
         }
       ],
-      "text": "Esther Sirkin runs through it: at 11:00 PM there were Bella Abramowitz, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
+      "text": "Mosley was at Dolan’s from 7:30 PM to 8:00 PM and says Abramowitz was not.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c098",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s4",
+        "topic": "Abramowitz’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "res-walkup",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "res-walkup",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 4
         }
       ],
-      "text": "Bella Abramowitz runs through it: at 6:00 PM there were Esther Sirkin, Ilse Reinhardt, Thaddeus Ainsworth, Percival Prentiss at the victim’s walk-up over the drugstore, and nobody else worth naming.",
+      "text": "Abramowitz names Ainsworth as the company for Dolan’s from 7:30 PM to 8:00 PM. Ainsworth says they were not together that evening.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -5341,52 +5342,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-f2",
+        "topic": "Reinhardt’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 8
+          "place": "hallam-vestibule",
+          "tick": 1
         }
       ],
-      "text": "Bella Abramowitz runs through it: at 10:00 PM there were Ilse Reinhardt, Thaddeus Ainsworth at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
+      "text": "Dettweiler was at the Hallam at 6:30 PM and says Reinhardt was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c100",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s1",
+        "topic": "Reinhardt’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 9
+          "place": "hallam-vestibule",
+          "tick": 1
         }
       ],
-      "text": "Bella Abramowitz runs through it: at 10:30 PM there were Ilse Reinhardt, Thaddeus Ainsworth at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
+      "text": "Reinhardt names Sirkin as the company for it. Sirkin was at the walk-up at 6:30 PM, and says Reinhardt was not there.",
+      "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5395,25 +5384,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-f2",
+        "topic": "Ainsworth’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 10
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "hallam-vestibule",
+          "tick": 8
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 10
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "hallam-vestibule",
+          "tick": 9
         }
       ],
-      "text": "Bella Abramowitz runs through it: at 11:00 PM there were Esther Sirkin, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "movie-house",
+      "text": "Dettweiler was at the Hallam from 10:00 PM to 10:30 PM and says Ainsworth was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5422,64 +5411,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f2",
+        "topic": "Prentiss’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 11
+          "place": "hallam-vestibule",
+          "tick": 1
         }
       ],
-      "text": "Bella Abramowitz runs through it: at 11:30 PM there were Thaddeus Ainsworth, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "movie-house",
+      "text": "Dettweiler was at the Hallam at 6:30 PM and says Prentiss was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c103",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s6",
+        "topic": "Prentiss’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "res-walkup",
-          "tick": 0
+          "place": "hallam-vestibule",
+          "tick": 1
         }
       ],
-      "text": "Ilse Reinhardt runs through it: at 6:00 PM there were Esther Sirkin, Bella Abramowitz, Thaddeus Ainsworth, Percival Prentiss at the victim’s walk-up over the drugstore, and nobody else worth naming.",
-      "place": "movie-house",
+      "text": "Prentiss names Brauer as the company for it. Brauer was at Dolan’s at 6:30 PM, and says Prentiss was not there.",
+      "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5488,24 +5453,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-s2",
+        "topic": "Prentiss’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 3
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 2
         }
       ],
-      "text": "Ilse Reinhardt runs through it: at 7:30 PM there were Esther Sirkin, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
+      "text": "Abramowitz was at the Bijou at 7:00 PM and says Prentiss was not.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -5515,30 +5474,30 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f1",
+        "topic": "Prentiss’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 2
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "movie-house",
           "tick": 4
         }
       ],
-      "text": "Ilse Reinhardt runs through it: at 8:00 PM there were Esther Sirkin, Thaddeus Ainsworth, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
+      "text": "Tramonti was at the Bijou from 7:00 PM to 8:00 PM and says Prentiss was not.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -5548,1630 +5507,81 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-f2",
+        "topic": "Prentiss’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "movie-house",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 8
+          "tick": 4
         }
       ],
-      "text": "Ilse Reinhardt runs through it: at 10:00 PM there were Bella Abramowitz, Thaddeus Ainsworth at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
+      "text": "Dettweiler was at the Bijou at 8:00 PM and says Prentiss was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c107",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s1",
+        "topic": "Prentiss’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "movie-house",
-          "tick": 9
+          "tick": 2
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "movie-house",
-          "tick": 9
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
         }
       ],
-      "text": "Ilse Reinhardt runs through it: at 10:30 PM there were Bella Abramowitz, Thaddeus Ainsworth at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
+      "text": "Prentiss names Sirkin as the company for the Bijou from 7:00 PM to 8:00 PM. Sirkin says they were not together that evening.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c022",
+        "c131"
+      ],
+      "role": "spine"
     },
     {
       "id": "c108",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-f1",
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
           "place": "movie-house",
-          "tick": 10
+          "tick": 0
         }
       ],
-      "text": "Ilse Reinhardt runs through it: at 11:00 PM there were Thaddeus Ainsworth, Wilhelm Brauer at the Bijou picture house, and nobody else worth naming.",
+      "text": "Tramonti was at the Bijou at 6:00 PM and says Brauer was not.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "res-walkup",
-          "tick": 0
-        }
-      ],
-      "text": "Thaddeus Ainsworth runs through it: at 6:00 PM there were Esther Sirkin, Bella Abramowitz, Ilse Reinhardt, Percival Prentiss at the victim’s walk-up over the drugstore, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "Thaddeus Ainsworth runs through it: at 8:00 PM there were Esther Sirkin, Ilse Reinhardt, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 5
-        }
-      ],
-      "text": "Thaddeus Ainsworth runs through it: at 8:30 PM there were Esther Sirkin, Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 10
-        }
-      ],
-      "text": "Thaddeus Ainsworth runs through it: at 11:00 PM there were Ilse Reinhardt, Wilhelm Brauer at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 11
-        }
-      ],
-      "text": "Thaddeus Ainsworth runs through it: at 11:30 PM there were Bella Abramowitz, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "res-walkup",
-          "tick": 0
-        }
-      ],
-      "text": "Percival Prentiss runs through it: at 6:00 PM there were Esther Sirkin, Bella Abramowitz, Ilse Reinhardt, Thaddeus Ainsworth at the victim’s walk-up over the drugstore, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 5
-        }
-      ],
-      "text": "Percival Prentiss runs through it: at 8:30 PM there were Esther Sirkin, Thaddeus Ainsworth, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 7
-        }
-      ],
-      "text": "Percival Prentiss runs through it: at 9:30 PM there were Esther Sirkin, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 8
-        }
-      ],
-      "text": "Percival Prentiss runs through it: at 10:00 PM there were Esther Sirkin, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 9
-        }
-      ],
-      "text": "Percival Prentiss runs through it: at 10:30 PM there were Esther Sirkin, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 10
-        }
-      ],
-      "text": "Percival Prentiss runs through it: at 11:00 PM there were Esther Sirkin, Bella Abramowitz at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 11
-        }
-      ],
-      "text": "Percival Prentiss runs through it: at 11:30 PM there were Bella Abramowitz, Thaddeus Ainsworth at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 3
-        }
-      ],
-      "text": "Wilhelm Brauer runs through it: at 7:30 PM there were Esther Sirkin, Ilse Reinhardt at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "Wilhelm Brauer runs through it: at 8:00 PM there were Esther Sirkin, Ilse Reinhardt, Thaddeus Ainsworth at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 5
-        }
-      ],
-      "text": "Wilhelm Brauer runs through it: at 8:30 PM there were Esther Sirkin, Thaddeus Ainsworth, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 7
-        }
-      ],
-      "text": "Wilhelm Brauer runs through it: at 9:30 PM there were Esther Sirkin, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 8
-        }
-      ],
-      "text": "Wilhelm Brauer runs through it: at 10:00 PM there were Esther Sirkin, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 9
-        }
-      ],
-      "text": "Wilhelm Brauer runs through it: at 10:30 PM there were Esther Sirkin, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 10
-        }
-      ],
-      "text": "Wilhelm Brauer runs through it: at 11:00 PM there were Ilse Reinhardt, Thaddeus Ainsworth at the Bijou picture house, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 1
-        }
-      ],
-      "text": "Angelina Tramonti runs through it: at 6:30 PM there were Bella Abramowitz, Ilse Reinhardt at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c129",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 7
-        }
-      ],
-      "text": "Angelina Tramonti runs through it: at 9:30 PM there were Bella Abramowitz, Thaddeus Ainsworth at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c130",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 8
-        }
-      ],
-      "text": "Angelina Tramonti runs through it: at 10:00 PM there were Bella Abramowitz, Ilse Reinhardt, Thaddeus Ainsworth at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 9
-        }
-      ],
-      "text": "Angelina Tramonti runs through it: at 10:30 PM there were Bella Abramowitz, Ilse Reinhardt, Thaddeus Ainsworth at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c132",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 10
-        }
-      ],
-      "text": "Angelina Tramonti runs through it: at 11:00 PM there were Ilse Reinhardt, Thaddeus Ainsworth, Wilhelm Brauer at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 11
-        }
-      ],
-      "text": "Angelina Tramonti runs through it: at 11:30 PM there were Ilse Reinhardt, Wilhelm Brauer at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c134",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hallam-vestibule",
-          "tick": 6
-        }
-      ],
-      "text": "Rudolf Dettweiler runs through it: at 9:00 PM there were Ilse Reinhardt, Wilhelm Brauer at the vestibule of the Hallam apartments, and nobody else worth naming.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c135",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 1
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 6:30 PM there were Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c136",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 2
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 7:00 PM there were Ilse Reinhardt, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c137",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 3
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 7:30 PM there were Esther Sirkin, Ilse Reinhardt, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c138",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 8:00 PM there were Esther Sirkin, Ilse Reinhardt, Thaddeus Ainsworth, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [
-        "c006",
-        "c167",
-        "c077"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c139",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 5
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 8:30 PM there were Esther Sirkin, Thaddeus Ainsworth, Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c140",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 6
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 9:00 PM there were Esther Sirkin, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c141",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 7
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 9:30 PM there were Esther Sirkin, Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c142",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 8
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 10:00 PM there were Esther Sirkin, Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c143",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
-          "tick": 9
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 10:30 PM there were Esther Sirkin, Percival Prentiss, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c144",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dolans-bar",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dolans-bar",
-          "tick": 11
-        }
-      ],
-      "text": "Augustus Mosley runs through it: at 11:30 PM there were Bella Abramowitz, Thaddeus Ainsworth, Percival Prentiss at Dolan’s Bar, and nobody else worth naming.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c145",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Esther Sirkin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "movie-house",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "movie-house",
-          "tick": 4
-        }
-      ],
-      "text": "Angelina Tramonti was at the Bijou picture house from 7:30 PM to 8:00 PM and says Esther Sirkin was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c146",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Esther Sirkin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "movie-house",
-          "tick": 4
-        }
-      ],
-      "text": "Rudolf Dettweiler was at the Bijou picture house at 8:00 PM and says Esther Sirkin was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c147",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Esther Sirkin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "movie-house",
-          "tick": 3
-        }
-      ],
-      "text": "Esther Sirkin says Thaddeus Ainsworth was there for it. Thaddeus Ainsworth says otherwise: Thaddeus Ainsworth was at the victim’s walk-up over the drugstore at 7:30 PM, nowhere near the Bijou picture house.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c148",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Esther Sirkin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "movie-house",
-          "tick": 4
-        }
-      ],
-      "text": "Esther Sirkin says Thaddeus Ainsworth was there for it. Thaddeus Ainsworth says otherwise: Thaddeus Ainsworth was at Dolan’s Bar at 8:00 PM, nowhere near the Bijou picture house.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c149",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Bella Abramowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "Ilse Reinhardt was at Dolan’s Bar from 7:30 PM to 8:00 PM and says Bella Abramowitz was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c150",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Bella Abramowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "Thaddeus Ainsworth was at Dolan’s Bar at 8:00 PM and says Bella Abramowitz was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c151",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Bella Abramowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "Wilhelm Brauer was at Dolan’s Bar from 7:30 PM to 8:00 PM and says Bella Abramowitz was not.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c152",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Bella Abramowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "Augustus Mosley was at Dolan’s Bar from 7:30 PM to 8:00 PM and says Bella Abramowitz was not.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c153",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Bella Abramowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "dolans-bar",
-          "tick": 3
-        }
-      ],
-      "text": "Bella Abramowitz says Thaddeus Ainsworth was there for it. Thaddeus Ainsworth says otherwise: Thaddeus Ainsworth was at the victim’s walk-up over the drugstore at 7:30 PM, nowhere near Dolan’s Bar.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c154",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Ilse Reinhardt’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 1
-        }
-      ],
-      "text": "Rudolf Dettweiler was at the vestibule of the Hallam apartments at 6:30 PM and says Ilse Reinhardt was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c155",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Ilse Reinhardt’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "hallam-vestibule",
-          "tick": 1
-        }
-      ],
-      "text": "Ilse Reinhardt says Esther Sirkin was there for it. Esther Sirkin says otherwise: Esther Sirkin was at the victim’s walk-up over the drugstore at 6:30 PM, nowhere near the vestibule of the Hallam apartments.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c156",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Thaddeus Ainsworth’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hallam-vestibule",
-          "tick": 8
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hallam-vestibule",
-          "tick": 9
-        }
-      ],
-      "text": "Rudolf Dettweiler was at the vestibule of the Hallam apartments from 10:00 PM to 10:30 PM and says Thaddeus Ainsworth was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c157",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Percival Prentiss’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "hallam-vestibule",
-          "tick": 1
-        }
-      ],
-      "text": "Rudolf Dettweiler was at the vestibule of the Hallam apartments at 6:30 PM and says Percival Prentiss was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c158",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Percival Prentiss’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "hallam-vestibule",
-          "tick": 1
-        }
-      ],
-      "text": "Percival Prentiss says Wilhelm Brauer was there for it. Wilhelm Brauer says otherwise: Wilhelm Brauer was at Dolan’s Bar at 6:30 PM, nowhere near the vestibule of the Hallam apartments.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c159",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Percival Prentiss’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 2
-        }
-      ],
-      "text": "Bella Abramowitz was at the Bijou picture house at 7:00 PM and says Percival Prentiss was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c160",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Percival Prentiss’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 2
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 4
-        }
-      ],
-      "text": "Angelina Tramonti was at the Bijou picture house from 7:00 PM to 8:00 PM and says Percival Prentiss was not.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c172",
-        "c169"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c161",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Percival Prentiss’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 4
-        }
-      ],
-      "text": "Rudolf Dettweiler was at the Bijou picture house at 8:00 PM and says Percival Prentiss was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c162",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Percival Prentiss’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 2
-        }
-      ],
-      "text": "Percival Prentiss says Esther Sirkin was there for it. Esther Sirkin says otherwise: Esther Sirkin was at the victim’s walk-up over the drugstore at 7:00 PM, nowhere near the Bijou picture house.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c163",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Wilhelm Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 0
-        }
-      ],
-      "text": "Angelina Tramonti was at the Bijou picture house at 6:00 PM and says Wilhelm Brauer was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c164",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7187,21 +5597,18 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Edward Corrigan was found at Pier 46, under the shed. The lamp came down with him and the bulb is still warm in its socket, unbroken. The bells at St. Malachy’s came at 8:00 PM, and the bells fix it: the sexton rings them off the sacristy clock and it keeps good time. That puts the killing in that half hour and no later.",
+      "text": "Corrigan was found at Pier 46. The lamp came down with him and the bulb is still warm in its socket, unbroken. The bells rang the half hour at 8:00 PM. The sexton rings them off the sacristy clock and it keeps good time.",
       "place": "pier-shed",
       "leadsTo": [
-        "c138",
-        "c006",
-        "c173",
-        "c167",
-        "c063",
-        "c019"
+        "c082",
+        "c107",
+        "c040"
       ],
       "role": "spine",
       "anchorId": "church-bells"
     },
     {
-      "id": "c165",
+      "id": "c110",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7223,13 +5630,14 @@
       "text": "The coroner puts death between 7:00 PM and 8:30 PM — two hours of nothing useful. One depressed fracture at the back of the skull. Death was not instant.",
       "place": "pier-shed",
       "leadsTo": [
-        "c138",
-        "c160"
+        "c084",
+        "c090",
+        "c106"
       ],
       "role": "spine"
     },
     {
-      "id": "c166",
+      "id": "c111",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -7246,18 +5654,18 @@
           "methodId": "blunt"
         }
       ],
-      "text": "A bronze bookend is gone from the victim’s walk-up over the drugstore. There is a clean square in the dust where it stood.",
+      "text": "A bronze bookend is gone from the walk-up. There is a clean square in the dust where it stood.",
       "place": "res-walkup",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c167",
+      "id": "c112",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Corrigan that evening"
+        "topic": "Corrigan that evening"
       },
       "establishes": [
         {
@@ -7271,19 +5679,16 @@
           "tick": 3
         }
       ],
-      "text": "Rudolf Dettweiler puts Edward Corrigan at the vestibule of the Hallam apartments when the lights went, which was 7:30 PM, and alive enough to argue about the weather.",
+      "text": "Dettweiler puts Corrigan at the Hallam when the lights went, which was 7:30 PM, and alive enough to argue about the weather.",
       "place": "hallam-vestibule",
       "leadsTo": [
-        "c110",
-        "c166",
-        "c039",
-        "c182"
+        "c077"
       ],
       "role": "spine",
       "anchorId": "fuse"
     },
     {
-      "id": "c168",
+      "id": "c113",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -7305,14 +5710,14 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Angelina Tramonti was at the Bijou picture house at 8:00 PM and heard a heavy fall and a cry cut short from the direction of Pier 46, under the shed, as the bells were going.",
+      "text": "Tramonti was at the Bijou at 8:00 PM and heard a heavy fall and a cry cut short from the direction of Pier 46, while the bells were going.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "church-bells"
     },
     {
-      "id": "c169",
+      "id": "c114",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -7334,14 +5739,14 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Rudolf Dettweiler was at the Bijou picture house at 8:00 PM and heard a heavy fall and a cry cut short from the direction of Pier 46, under the shed, as the bells were going.",
+      "text": "Dettweiler was at the Bijou at 8:00 PM and heard a heavy fall and a cry cut short from the direction of Pier 46, while the bells were going.",
       "place": "hallam-vestibule",
       "leadsTo": [],
-      "role": "corroboration",
+      "role": "noise",
       "anchorId": "church-bells"
     },
     {
-      "id": "c170",
+      "id": "c115",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7354,18 +5759,18 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s walk-up over the drugstore: A promissory note for $4,000 signed by Thaddeus Ainsworth, endorsed to Edward Corrigan, three months past due.",
+      "text": "Found at the walk-up: A promissory note for $4,000 signed by Ainsworth, endorsed to Corrigan, three months past due.",
       "place": "res-walkup",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c171",
+      "id": "c116",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Thaddeus Ainsworth and Edward Corrigan"
+        "topic": "Ainsworth and Corrigan"
       },
       "establishes": [
         {
@@ -7374,13 +5779,13 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Wilhelm Brauer says Edward Corrigan told Thaddeus Ainsworth that Friday was the end of it, one way or the other.",
+      "text": "Brauer says Corrigan told Ainsworth that Friday was the end of it, one way or the other.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c172",
+      "id": "c117",
       "kind": "document",
       "source": {
         "type": "place",
@@ -7390,36 +5795,38 @@
         {
           "kind": "hasMotive",
           "personId": "p-s5",
-          "motiveType": "exposure"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Found at the victim’s walk-up over the drugstore: A typed page of dates and sums in Edward Corrigan’s file, headed with Percival Prentiss’s name.",
+      "text": "Found at the walk-up: A subpoena naming Corrigan before the grand jury, with Prentiss’s name written in the margin.",
       "place": "res-walkup",
-      "leadsTo": [],
+      "leadsTo": [
+        "c151"
+      ],
       "role": "corroboration"
     },
     {
-      "id": "c173",
+      "id": "c118",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Percival Prentiss and Edward Corrigan"
+        "topic": "Prentiss and Corrigan"
       },
       "establishes": [
         {
           "kind": "hasMotive",
           "personId": "p-s5",
-          "motiveType": "exposure"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Thaddeus Ainsworth says Edward Corrigan told Percival Prentiss that the story would run whether Percival Prentiss liked it or not.",
+      "text": "Ainsworth says Corrigan said to Prentiss that a man who testifies sleeps better.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c174",
+      "id": "c119",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7433,652 +5840,661 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Percival Prentiss hired us. Percival Prentiss wants it known that Thaddeus Ainsworth owed the victim money, and would rather we started there.",
+      "text": "Prentiss hired us, and wants it known that Ainsworth owed the victim money, and would rather we started there.",
       "place": "dolans-bar",
       "leadsTo": [
-        "c173",
-        "c068",
-        "c161",
-        "c175"
+        "c082",
+        "c085",
+        "c084",
+        "c006",
+        "c107"
       ],
       "role": "spine"
     },
     {
-      "id": "c175",
+      "id": "c120",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "Esther Sirkin"
+        "personId": "p-f3",
+        "topic": "Sirkin"
       },
       "establishes": [],
-      "text": "Ilse Reinhardt on Esther Sirkin: Esther Sirkin was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c177"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c176",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Esther Sirkin"
-      },
-      "establishes": [],
-      "text": "Wilhelm Brauer on Esther Sirkin: A man nobody knew was waiting for Esther Sirkin at Dolan’s Bar and would not give a name.",
+      "text": "Mosley on Sirkin: Sirkin was asking around for a hundred dollars in a hurry earlier in the week.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c177",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Esther Sirkin"
-      },
-      "establishes": [],
-      "text": "Rudolf Dettweiler on Esther Sirkin: Esther Sirkin goes very quiet when the racing wire is mentioned.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c180"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c178",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dolans-bar"
-      },
-      "establishes": [],
-      "text": "Betting slips at Dolan’s Bar in Esther Sirkin’s pocketbook, all of them losers, all of them this month.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c179",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dolans-bar"
-      },
-      "establishes": [],
-      "text": "A book of markers at Dolan’s Bar with Esther Sirkin’s initials against four of them.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dolans-bar"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "The bookmaker’s runner is found and will say it: Esther Sirkin was at Dolan’s Bar from 7:30 PM to 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c181",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dolans-bar"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "The book at Dolan’s Bar has the payment entered against Esther Sirkin’s name and the time beside it, from 7:30 PM to 8:00 PM, in the clerk’s own hand.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c182",
+      "id": "c121",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bella Abramowitz"
+        "topic": "Sirkin"
       },
       "establishes": [],
-      "text": "Thaddeus Ainsworth on Bella Abramowitz: Bella Abramowitz had taken a drink and had gone to some trouble about the smell of it.",
+      "text": "Ainsworth on Sirkin: A man nobody knew was waiting for Sirkin at Dolan’s and would not give a name.",
       "place": "movie-house",
-      "leadsTo": [
-        "c187"
-      ],
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c183",
+      "id": "c122",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Bella Abramowitz"
+        "topic": "Sirkin"
       },
       "establishes": [],
-      "text": "Angelina Tramonti on Bella Abramowitz: Bella Abramowitz is on a temperance pledge that Bella Abramowitz mentions before anybody asks.",
+      "text": "Tramonti on Sirkin: Sirkin goes very quiet when the racing wire is mentioned.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c184",
-      "kind": "overheard",
+      "id": "c123",
+      "kind": "physical",
       "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Bella Abramowitz"
+        "type": "place",
+        "placeId": "dolans-bar"
       },
       "establishes": [],
-      "text": "Augustus Mosley on Bella Abramowitz: Somebody at the Bijou picture house says Bella Abramowitz is in more often than Bella Abramowitz lets on.",
+      "text": "Betting slips at Dolan’s in Sirkin’s pocketbook, all of them losers, all of them this month.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c185",
+      "id": "c124",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "movie-house"
+        "placeId": "dolans-bar"
       },
       "establishes": [],
-      "text": "A bottle at the Bijou picture house pushed behind the pipes, the seal broken and the level down.",
-      "place": "movie-house",
+      "text": "A book of markers at Dolan’s with Sirkin’s initials against four of them.",
+      "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c186",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [],
-      "text": "A tab at the Bijou picture house in a name that is not Bella Abramowitz’s, in Bella Abramowitz’s handwriting.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c187",
+      "id": "c125",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "movie-house"
+        "placeId": "dolans-bar"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "secret-drinking"
+          "personId": "p-s1",
+          "secretType": "gambling-debt"
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
+          "personId": "p-s1",
+          "place": "dolans-bar",
           "tick": 3
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
+          "personId": "p-s1",
+          "place": "dolans-bar",
           "tick": 4
         }
       ],
-      "text": "The man behind the counter at the Bijou picture house knows exactly: Bella Abramowitz was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "movie-house",
+      "text": "The bookmaker’s runner is found and will say it: Sirkin was at Dolan’s from 7:30 PM to 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "dolans-bar",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c188",
+      "id": "c126",
       "kind": "overheard",
       "source": {
         "type": "place",
-        "placeId": "movie-house"
+        "placeId": "dolans-bar"
       },
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "secret-drinking"
+          "personId": "p-s1",
+          "secretType": "gambling-debt"
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
+          "personId": "p-s1",
+          "place": "dolans-bar",
           "tick": 3
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
+          "personId": "p-s1",
+          "place": "dolans-bar",
           "tick": 4
         }
       ],
-      "text": "The tab at the Bijou picture house is dated and timed, from 7:30 PM to 8:00 PM, and Bella Abramowitz was there to run it up.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c189",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Ilse Reinhardt"
-      },
-      "establishes": [],
-      "text": "Augustus Mosley on Ilse Reinhardt: Ilse Reinhardt’s sleeves are buttoned at the wrist in a warm room.",
+      "text": "The book at Dolan’s has the payment entered against Sirkin’s name and the time beside it, from 7:30 PM to 8:00 PM, in the clerk’s own hand.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s3"
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c190",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Ilse Reinhardt"
-      },
-      "establishes": [],
-      "text": "Bella Abramowitz on Ilse Reinhardt: Somebody at the Bijou picture house sells what a druggist will not, and Ilse Reinhardt knows which door.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c194"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c191",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Ilse Reinhardt"
-      },
-      "establishes": [],
-      "text": "Wilhelm Brauer on Ilse Reinhardt: Ilse Reinhardt was steady at nine and shaking at seven, and it was not nerves about the police.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c192",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [],
-      "text": "A paper of powder at the Bijou picture house, folded the way one particular hand folds them.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c193",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [],
-      "text": "A prescription blank at the Bijou picture house signed by a doctor who has been dead since the spring.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c194",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 1
-        }
-      ],
-      "text": "The man who sells it at the Bijou picture house gives it up rather than be held: Ilse Reinhardt was there from 6:30 PM, and stayed until it took hold.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c195",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 1
-        }
-      ],
-      "text": "The doctor Ilse Reinhardt used to see confirms the habit and the hour: Ilse Reinhardt was at the Bijou picture house from 6:30 PM, and could not have crossed the street unhelped.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c196",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Thaddeus Ainsworth"
-      },
-      "establishes": [],
-      "text": "Percival Prentiss on Thaddeus Ainsworth: Thaddeus Ainsworth’s sleeves are buttoned at the wrist in a warm room.",
-      "place": "dolans-bar",
-      "leadsTo": [
-        "c197"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c197",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Thaddeus Ainsworth"
-      },
-      "establishes": [],
-      "text": "Angelina Tramonti on Thaddeus Ainsworth: Somebody at the Bijou picture house sells what a druggist will not, and Thaddeus Ainsworth knows which door.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c201"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c198",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Thaddeus Ainsworth"
-      },
-      "establishes": [],
-      "text": "Augustus Mosley on Thaddeus Ainsworth: Thaddeus Ainsworth was steady at nine and shaking at seven, and it was not nerves about the police.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c199",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [],
-      "text": "A paper of powder at the Bijou picture house, folded the way one particular hand folds them.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c200",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [],
-      "text": "A prescription blank at the Bijou picture house signed by a doctor who has been dead since the spring.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c201",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 9
-        }
-      ],
-      "text": "The man who sells it at the Bijou picture house gives it up rather than be held: Thaddeus Ainsworth was there from 10:00 PM to 10:30 PM, and stayed until it took hold.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c202",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 9
-        }
-      ],
-      "text": "The doctor Thaddeus Ainsworth used to see confirms the habit and the hour: Thaddeus Ainsworth was at the Bijou picture house from 10:00 PM to 10:30 PM, and could not have crossed the street unhelped.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c203",
+      "id": "c127",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Wilhelm Brauer"
+        "topic": "Abramowitz"
       },
       "establishes": [],
-      "text": "Ilse Reinhardt on Wilhelm Brauer: Wilhelm Brauer and the victim were heard at the vestibule of the Hallam apartments, and one of them was doing all the talking.",
+      "text": "Reinhardt on Abramowitz: Abramowitz had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Abramowitz"
+      },
+      "establishes": [],
+      "text": "Brauer on Abramowitz: Abramowitz is on a temperance pledge that Abramowitz mentions before anybody asks.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c129",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Abramowitz"
+      },
+      "establishes": [],
+      "text": "Dettweiler on Abramowitz: Somebody at the Bijou says Abramowitz is in more often than Abramowitz lets on.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A bottle at the Bijou pushed behind the pipes, the seal broken and the level down.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c131",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A tab at the Bijou in a name that is not Abramowitz’s, in Abramowitz’s handwriting.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "movie-house",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "The man behind the counter at the Bijou knows exactly: Abramowitz was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "movie-house",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "The tab at the Bijou is dated and timed, from 7:30 PM to 8:00 PM, and Abramowitz was there to run it up.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Sirkin on Reinhardt: Reinhardt’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c135",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Reinhardt: Somebody at the Bijou sells what a druggist will not, and Reinhardt knows which door.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c136",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Tramonti on Reinhardt: Reinhardt was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c135"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c137",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Bijou, folded the way one particular hand folds them.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c138",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Bijou signed by a doctor who has been dead since the spring.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c139"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 1
+        }
+      ],
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Reinhardt was there from 6:30 PM, and stayed until it took hold.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 1
+        }
+      ],
+      "text": "The doctor Reinhardt used to see confirms the habit and the hour: Reinhardt was at the Bijou from 6:30 PM, and could not have crossed the street unhelped.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Brauer on Ainsworth: Ainsworth’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c142",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Dettweiler on Ainsworth: Somebody at the Bijou sells what a druggist will not, and Ainsworth knows which door.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c143",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Sirkin on Ainsworth: Ainsworth was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c146"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c144",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Bijou, folded the way one particular hand folds them.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c143"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c145",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Bijou signed by a doctor who has been dead since the spring.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c146",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        }
+      ],
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Ainsworth was there from 10:00 PM to 10:30 PM, and stayed until it took hold.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c147",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        }
+      ],
+      "text": "The doctor Ainsworth used to see confirms the habit and the hour: Ainsworth was at the Bijou from 10:00 PM to 10:30 PM, and could not have crossed the street unhelped.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c148",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brauer"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Brauer: Brauer and the victim were heard at the Hallam, and one of them was doing all the talking.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c204",
+      "id": "c149",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Wilhelm Brauer"
+        "personId": "p-f1",
+        "topic": "Brauer"
       },
       "establishes": [],
-      "text": "Percival Prentiss on Wilhelm Brauer: Wilhelm Brauer has come into money lately and has no visible way of having come into money.",
+      "text": "Tramonti on Brauer: Brauer has come into money lately and has no visible way of having come into money.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c153"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c150",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Brauer"
+      },
+      "establishes": [],
+      "text": "Mosley on Brauer: The victim had been drawing cash in amounts that did not match anything in the accounts.",
       "place": "dolans-bar",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c205",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Wilhelm Brauer"
-      },
-      "establishes": [],
-      "text": "Rudolf Dettweiler on Wilhelm Brauer: The victim had been drawing cash in amounts that did not match anything in the accounts.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c206",
+      "id": "c151",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "hallam-vestibule"
       },
       "establishes": [],
-      "text": "An envelope at the vestibule of the Hallam apartments with nothing in it, addressed in the victim’s hand to no one.",
+      "text": "An envelope at the Hallam with nothing in it, addressed in the victim’s hand to no one.",
       "place": "hallam-vestibule",
       "leadsTo": [
-        "c208"
+        "c149"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
-      "branchId": "b1"
+      "branchId": "b3"
     },
     {
-      "id": "c207",
+      "id": "c152",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "hallam-vestibule"
       },
       "establishes": [],
-      "text": "A photograph at the vestibule of the Hallam apartments, folded small, of something the victim would have paid to keep folded.",
+      "text": "A photograph at the Hallam, folded small, of something the victim would have paid to keep folded.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c208",
+      "id": "c153",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8097,15 +6513,15 @@
           "tick": 0
         }
       ],
-      "text": "The victim’s bank book settles it: four payments, and Wilhelm Brauer at the vestibule of the Hallam apartments from 6:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
+      "text": "The victim’s bank book settles it: four payments, and Brauer at the Hallam from 6:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s6",
-      "branchId": "b1"
+      "branchId": "b3"
     },
     {
-      "id": "c209",
+      "id": "c154",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8124,7 +6540,7 @@
           "tick": 0
         }
       ],
-      "text": "The thing Wilhelm Brauer was holding over the victim turns up, and it was worth more to Wilhelm Brauer every month than once.",
+      "text": "The thing Brauer was holding over the victim turns up, and it was worth more to Brauer every month than once.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise",
@@ -8133,7 +6549,7 @@
   ],
   "findable": [
     {
-      "id": "c164",
+      "id": "c109",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -8149,21 +6565,18 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Edward Corrigan was found at Pier 46, under the shed. The lamp came down with him and the bulb is still warm in its socket, unbroken. The bells at St. Malachy’s came at 8:00 PM, and the bells fix it: the sexton rings them off the sacristy clock and it keeps good time. That puts the killing in that half hour and no later.",
+      "text": "Corrigan was found at Pier 46. The lamp came down with him and the bulb is still warm in its socket, unbroken. The bells rang the half hour at 8:00 PM. The sexton rings them off the sacristy clock and it keeps good time.",
       "place": "pier-shed",
       "leadsTo": [
-        "c138",
-        "c006",
-        "c173",
-        "c167",
-        "c063",
-        "c019"
+        "c082",
+        "c107",
+        "c040"
       ],
       "role": "spine",
       "anchorId": "church-bells"
     },
     {
-      "id": "c165",
+      "id": "c110",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -8185,13 +6598,14 @@
       "text": "The coroner puts death between 7:00 PM and 8:30 PM — two hours of nothing useful. One depressed fracture at the back of the skull. Death was not instant.",
       "place": "pier-shed",
       "leadsTo": [
-        "c138",
-        "c160"
+        "c084",
+        "c090",
+        "c106"
       ],
       "role": "spine"
     },
     {
-      "id": "c174",
+      "id": "c119",
       "kind": "client",
       "source": {
         "type": "person",
@@ -8205,25 +6619,32 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Percival Prentiss hired us. Percival Prentiss wants it known that Thaddeus Ainsworth owed the victim money, and would rather we started there.",
+      "text": "Prentiss hired us, and wants it known that Ainsworth owed the victim money, and would rather we started there.",
       "place": "dolans-bar",
       "leadsTo": [
-        "c173",
-        "c068",
-        "c161",
-        "c175"
+        "c082",
+        "c085",
+        "c084",
+        "c006",
+        "c107"
       ],
       "role": "spine"
     },
     {
-      "id": "c138",
+      "id": "c082",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "who was there at 8:00 PM"
+        "topic": "Sirkin"
       },
       "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 3
+        },
         {
           "kind": "personAt",
           "personId": "p-s1",
@@ -8232,10 +6653,53 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s3",
+          "personId": "p-s1",
           "place": "dolans-bar",
-          "tick": 4
+          "tick": 5
         },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 9
+        }
+      ],
+      "text": "Mosley says Sirkin was at Dolan’s from 7:30 PM to 10:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c085",
+        "c112",
+        "c118"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c085",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
@@ -8244,17 +6708,52 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 5
+        }
+      ],
+      "text": "Mosley says Ainsworth was at Dolan’s from 8:00 PM to 8:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c090",
+        "c117"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
           "place": "dolans-bar",
           "tick": 4
         }
       ],
-      "text": "Augustus Mosley runs through it: at 8:00 PM there were Esther Sirkin, Ilse Reinhardt, Thaddeus Ainsworth, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
+      "text": "Mosley says Reinhardt was at Dolan’s from 7:00 PM to 8:00 PM.",
       "place": "dolans-bar",
       "leadsTo": [
         "c006",
-        "c167",
-        "c077"
+        "c141"
       ],
       "role": "spine"
     },
@@ -8264,7 +6763,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Percival Prentiss"
+        "topic": "Prentiss"
       },
       "establishes": [
         {
@@ -8279,80 +6778,69 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Esther Sirkin says Percival Prentiss was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Sirkin says Prentiss was at the walk-up at 6:00 PM.",
       "place": "dolans-bar",
-      "leadsTo": [
-        "c068",
-        "c160"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Percival Prentiss and Edward Corrigan"
-      },
-      "establishes": [
-        {
-          "kind": "hasMotive",
-          "personId": "p-s5",
-          "motiveType": "exposure"
-        }
-      ],
-      "text": "Thaddeus Ainsworth says Edward Corrigan told Percival Prentiss that the story would run whether Percival Prentiss liked it or not.",
-      "place": "movie-house",
       "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c068",
+      "id": "c090",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Bella Abramowitz"
+        "personId": "p-f3",
+        "topic": "Brauer"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
+          "personId": "p-s6",
+          "place": "dolans-bar",
           "tick": 1
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
+          "personId": "p-s6",
+          "place": "dolans-bar",
           "tick": 2
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
+          "personId": "p-s6",
+          "place": "dolans-bar",
           "tick": 3
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
+          "personId": "p-s6",
+          "place": "dolans-bar",
           "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 5
         }
       ],
-      "text": "Angelina Tramonti says Bella Abramowitz was at the Bijou picture house from 6:30 PM to 8:00 PM.",
-      "place": "movie-house",
-      "leadsTo": [],
+      "text": "Mosley says Brauer was at Dolan’s from 6:30 PM to 8:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c112",
+        "c077",
+        "c118",
+        "c035",
+        "c133"
+      ],
       "role": "spine"
     },
     {
-      "id": "c160",
-      "kind": "observation",
+      "id": "c107",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Percival Prentiss’s account"
+        "personId": "p-s1",
+        "topic": "Prentiss’s account"
       },
       "establishes": [
         {
@@ -8374,21 +6862,21 @@
           "tick": 4
         }
       ],
-      "text": "Angelina Tramonti was at the Bijou picture house from 7:00 PM to 8:00 PM and says Percival Prentiss was not.",
-      "place": "movie-house",
+      "text": "Prentiss names Sirkin as the company for the Bijou from 7:00 PM to 8:00 PM. Sirkin says they were not together that evening.",
+      "place": "dolans-bar",
       "leadsTo": [
-        "c172",
-        "c169"
+        "c022",
+        "c131"
       ],
       "role": "spine"
     },
     {
-      "id": "c167",
+      "id": "c112",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Corrigan that evening"
+        "topic": "Corrigan that evening"
       },
       "establishes": [
         {
@@ -8402,52 +6890,129 @@
           "tick": 3
         }
       ],
-      "text": "Rudolf Dettweiler puts Edward Corrigan at the vestibule of the Hallam apartments when the lights went, which was 7:30 PM, and alive enough to argue about the weather.",
+      "text": "Dettweiler puts Corrigan at the Hallam when the lights went, which was 7:30 PM, and alive enough to argue about the weather.",
       "place": "hallam-vestibule",
       "leadsTo": [
-        "c110",
-        "c166",
-        "c039",
-        "c182"
+        "c077"
       ],
       "role": "spine",
       "anchorId": "fuse"
     },
     {
-      "id": "c110",
+      "id": "c077",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f2",
+        "topic": "Abramowitz"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dolans-bar",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dolans-bar",
+          "personId": "p-s2",
+          "place": "movie-house",
           "tick": 4
         }
       ],
-      "text": "Thaddeus Ainsworth runs through it: at 8:00 PM there were Esther Sirkin, Ilse Reinhardt, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.",
+      "text": "Dettweiler says Abramowitz was at the Bijou at 8:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c030",
+        "c111",
+        "c136"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Prentiss and Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Ainsworth says Corrigan said to Prentiss that a man who testifies sleeps better.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c117",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Found at the walk-up: A subpoena naming Corrigan before the grand jury, with Prentiss’s name written in the margin.",
+      "place": "res-walkup",
+      "leadsTo": [
+        "c151"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c106",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Dettweiler was at the Bijou at 8:00 PM and says Prentiss was not.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "res-walkup",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Reinhardt says Prentiss was at the walk-up at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c166",
+      "id": "c111",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -8464,318 +7029,66 @@
           "methodId": "blunt"
         }
       ],
-      "text": "A bronze bookend is gone from the victim’s walk-up over the drugstore. There is a clean square in the dust where it stood.",
+      "text": "A bronze bookend is gone from the walk-up. There is a clean square in the dust where it stood.",
       "place": "res-walkup",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c063",
+      "id": "c022",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "Thaddeus Ainsworth"
+        "personId": "p-s3",
+        "topic": "Sirkin"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Reinhardt says Sirkin was at the walk-up at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
           "place": "dolans-bar",
           "tick": 4
         },
         {
           "kind": "personAt",
-          "personId": "p-s4",
+          "personId": "p-s1",
           "place": "dolans-bar",
           "tick": 5
         }
       ],
-      "text": "Wilhelm Brauer says Thaddeus Ainsworth was at Dolan’s Bar from 8:00 PM to 8:30 PM.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c161",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Percival Prentiss’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 4
-        }
-      ],
-      "text": "Rudolf Dettweiler was at the Bijou picture house at 8:00 PM and says Percival Prentiss was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c019",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Percival Prentiss"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "blunt"
-        }
-      ],
-      "text": "Bella Abramowitz says Percival Prentiss was at the victim’s walk-up over the drugstore at 6:00 PM.",
+      "text": "Ainsworth says Sirkin was at Dolan’s from 8:00 PM to 8:30 PM.",
       "place": "movie-house",
-      "leadsTo": [
-        "c206",
-        "c190"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c172",
-      "kind": "document",
-      "source": {
-        "type": "place",
-        "placeId": "res-walkup"
-      },
-      "establishes": [
-        {
-          "kind": "hasMotive",
-          "personId": "p-s5",
-          "motiveType": "exposure"
-        }
-      ],
-      "text": "Found at the victim’s walk-up over the drugstore: A typed page of dates and sums in Edward Corrigan’s file, headed with Percival Prentiss’s name.",
-      "place": "res-walkup",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c077",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Bella Abramowitz"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 4
-        }
-      ],
-      "text": "Rudolf Dettweiler says Bella Abramowitz was at the Bijou picture house at 8:00 PM.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c169",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "pier-shed",
-          "tick": 4
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 4
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "blunt"
-        }
-      ],
-      "text": "Rudolf Dettweiler was at the Bijou picture house at 8:00 PM and heard a heavy fall and a cry cut short from the direction of Pier 46, under the shed, as the bells were going.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "church-bells"
-    },
-    {
-      "id": "c039",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Ilse Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "res-walkup",
-          "tick": 0
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s3",
-          "methodId": "blunt"
-        }
-      ],
-      "text": "Thaddeus Ainsworth says Ilse Reinhardt was at the victim’s walk-up over the drugstore at 6:00 PM.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c196"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c206",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [],
-      "text": "An envelope at the vestibule of the Hallam apartments with nothing in it, addressed in the victim’s hand to no one.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c208"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b1"
-    },
-    {
-      "id": "c208",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hallam-vestibule"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "blackmail"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hallam-vestibule",
-          "tick": 0
-        }
-      ],
-      "text": "The victim’s bank book settles it: four payments, and Wilhelm Brauer at the vestibule of the Hallam apartments from 6:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b1"
-    },
-    {
-      "id": "c175",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Esther Sirkin"
-      },
-      "establishes": [],
-      "text": "Ilse Reinhardt on Esther Sirkin: Esther Sirkin was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c177"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c177",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Esther Sirkin"
-      },
-      "establishes": [],
-      "text": "Rudolf Dettweiler on Esther Sirkin: Esther Sirkin goes very quiet when the racing wire is mentioned.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c180"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dolans-bar"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dolans-bar",
-          "tick": 4
-        }
-      ],
-      "text": "The bookmaker’s runner is found and will say it: Esther Sirkin was at Dolan’s Bar from 7:30 PM to 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "dolans-bar",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c182",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Bella Abramowitz"
-      },
-      "establishes": [],
-      "text": "Thaddeus Ainsworth on Bella Abramowitz: Bella Abramowitz had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c187"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c187",
+      "id": "c133",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8800,33 +7113,88 @@
           "tick": 4
         }
       ],
-      "text": "The man behind the counter at the Bijou picture house knows exactly: Bella Abramowitz was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "text": "The tab at the Bijou is dated and timed, from 7:30 PM to 8:00 PM, and Abramowitz was there to run it up.",
       "place": "movie-house",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "role": "corroboration",
+      "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c190",
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Ainsworth says Reinhardt was at Dolan’s at 8:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c136",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Ilse Reinhardt"
+        "personId": "p-f1",
+        "topic": "Reinhardt"
       },
       "establishes": [],
-      "text": "Bella Abramowitz on Ilse Reinhardt: Somebody at the Bijou picture house sells what a druggist will not, and Ilse Reinhardt knows which door.",
+      "text": "Tramonti on Reinhardt: Reinhardt was steady at nine and shaking at seven, and it was not nerves about the police.",
       "place": "movie-house",
       "leadsTo": [
-        "c194"
+        "c135"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "branchId": "b1"
     },
     {
-      "id": "c194",
+      "id": "c135",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Reinhardt: Somebody at the Bijou sells what a druggist will not, and Reinhardt knows which door.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c138",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Bijou signed by a doctor who has been dead since the spring.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c139"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c139",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8845,51 +7213,68 @@
           "tick": 1
         }
       ],
-      "text": "The man who sells it at the Bijou picture house gives it up rather than be held: Ilse Reinhardt was there from 6:30 PM, and stayed until it took hold.",
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Reinhardt was there from 6:30 PM, and stayed until it took hold.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "branchId": "b1"
     },
     {
-      "id": "c196",
+      "id": "c141",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Thaddeus Ainsworth"
+        "personId": "p-s6",
+        "topic": "Ainsworth"
       },
       "establishes": [],
-      "text": "Percival Prentiss on Thaddeus Ainsworth: Thaddeus Ainsworth’s sleeves are buttoned at the wrist in a warm room.",
+      "text": "Brauer on Ainsworth: Ainsworth’s sleeves are buttoned at the wrist in a warm room.",
       "place": "dolans-bar",
       "leadsTo": [
-        "c197"
+        "c144"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s4",
-      "branchId": "b5"
+      "branchId": "b2"
     },
     {
-      "id": "c197",
+      "id": "c144",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Bijou, folded the way one particular hand folds them.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c143"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c143",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Thaddeus Ainsworth"
+        "personId": "p-s1",
+        "topic": "Ainsworth"
       },
       "establishes": [],
-      "text": "Angelina Tramonti on Thaddeus Ainsworth: Somebody at the Bijou picture house sells what a druggist will not, and Thaddeus Ainsworth knows which door.",
-      "place": "movie-house",
+      "text": "Sirkin on Ainsworth: Ainsworth was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "dolans-bar",
       "leadsTo": [
-        "c201"
+        "c146"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s4",
-      "branchId": "b5"
+      "branchId": "b2"
     },
     {
-      "id": "c201",
+      "id": "c146",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8914,22 +7299,152 @@
           "tick": 9
         }
       ],
-      "text": "The man who sells it at the Bijou picture house gives it up rather than be held: Thaddeus Ainsworth was there from 10:00 PM to 10:30 PM, and stayed until it took hold.",
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Ainsworth was there from 10:00 PM to 10:30 PM, and stayed until it took hold.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s4",
-      "branchId": "b5"
+      "branchId": "b2"
+    },
+    {
+      "id": "c151",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [],
+      "text": "An envelope at the Hallam with nothing in it, addressed in the victim’s hand to no one.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c149"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c149",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Brauer"
+      },
+      "establishes": [],
+      "text": "Tramonti on Brauer: Brauer has come into money lately and has no visible way of having come into money.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c153"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c153",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 0
+        }
+      ],
+      "text": "The victim’s bank book settles it: four payments, and Brauer at the Hallam from 6:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c131",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A tab at the Bijou in a name that is not Abramowitz’s, in Abramowitz’s handwriting.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A bottle at the Bijou pushed behind the pipes, the seal broken and the level down.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "movie-house",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "The man behind the counter at the Bijou knows exactly: Abramowitz was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c164",
-    "c165",
-    "c174"
+    "c109",
+    "c110",
+    "c119"
   ],
   "clientId": "p-s5",
-  "par": 9,
-  "budget": 20,
+  "par": 12,
+  "slack": 6,
+  "budget": 18,
   "coronerWindow": [
     2,
     5
@@ -8937,16 +7452,15 @@
   "solution": {
     "killerId": "p-s5",
     "methodId": "blunt",
-    "motiveType": "exposure",
+    "motiveType": "silence-a-witness",
     "murderTick": 4,
     "murderPlaceId": "pier-shed"
   },
   "deduction": {
     "timeOfDeath": [
-      "c165",
-      "c167",
-      "c164",
-      "c169"
+      "c110",
+      "c112",
+      "c109"
     ],
     "timeOfDeathAnchors": [
       "church-bells",
@@ -8954,45 +7468,41 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c138",
-        "c110",
-        "c180"
+        "c082",
+        "c035"
       ],
       "p-s2": [
-        "c068",
         "c077",
-        "c187"
+        "c133",
+        "c132"
       ],
       "p-s3": [
-        "c138",
-        "c110"
+        "c084",
+        "c040"
       ],
       "p-s4": [
-        "c138",
-        "c063"
+        "c085"
       ],
       "p-s6": [
-        "c138",
-        "c110"
+        "c090"
       ]
     },
     "inculpation": [
-      "c160",
-      "c161"
+      "c107",
+      "c106"
     ],
     "access": [
       "c006",
-      "c019"
+      "c030"
     ],
     "method": [
-      "c164",
-      "c165",
-      "c166",
-      "c169"
+      "c109",
+      "c110",
+      "c111"
     ],
     "motive": [
-      "c173",
-      "c172"
+      "c118",
+      "c117"
     ]
   }
 }

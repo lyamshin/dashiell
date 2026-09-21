@@ -1,396 +1,342 @@
 # Greenwich Village — case 19: the candidate pool
 
-167 true things about the evening. 31 of them are findable (marked ★); the rest are the truth the report is graded against, not the truth the player can reach.
+140 true things about the evening. 34 of them are findable (marked ★); the rest are the truth the report is graded against, not the truth the player can reach.
 
-## Vincenzo Tramonti
+## Tramonti
 
-- **c001** [observation] — on Winthrop Fairbanks Vincenzo Tramonti says Winthrop Fairbanks was at the cab stand outside the Hippodrome from 6:00 PM to 6:30 PM.
-  - _establishes: Winthrop Fairbanks at the cab stand outside the Hippodrome, 6:00 PM–6:30 PM_
-- **c002** [observation] — on Roscoe Colquitt Vincenzo Tramonti says Roscoe Colquitt was at the Bijou picture house at 11:00 PM.
-  - _establishes: Roscoe Colquitt at the Bijou picture house, 11:00 PM_
-- **c003** [observation] — on Michael Mulcahy Vincenzo Tramonti says Michael Mulcahy was at the chop suey place over the laundry at 7:00 PM.
-  - _establishes: Michael Mulcahy at the chop suey place over the laundry, 7:00 PM_
-- **c004** [observation] — on Michael Mulcahy Vincenzo Tramonti says Michael Mulcahy was at the benches at the north end of the square at 10:30 PM.
-  - _establishes: Michael Mulcahy at the benches at the north end of the square, 10:30 PM_
-- **c005** [observation] — on Thaddeus Coffin Vincenzo Tramonti says Thaddeus Coffin was at the cab stand outside the Hippodrome from 6:00 PM to 6:30 PM.
-  - _establishes: Thaddeus Coffin at the cab stand outside the Hippodrome, 6:00 PM–6:30 PM; Thaddeus Coffin could reach the weapon_
-- **c006** [observation] — on Thaddeus Coffin Vincenzo Tramonti says Thaddeus Coffin was at the Bijou picture house at 10:00 PM.
-  - _establishes: Thaddeus Coffin at the Bijou picture house, 10:00 PM_
-- **c007** [observation] — on Rachel Kessler Vincenzo Tramonti says Rachel Kessler was at the cab stand outside the Hippodrome at 6:00 PM.
-  - _establishes: Rachel Kessler at the cab stand outside the Hippodrome, 6:00 PM; Rachel Kessler could reach the weapon_
-- **c008** [observation] — on Rachel Kessler Vincenzo Tramonti says Rachel Kessler was at the benches at the north end of the square at 9:30 PM.
-  - _establishes: Rachel Kessler at the benches at the north end of the square, 9:30 PM_
-- **c077** [observation] — on who was there at 6:00 PM Vincenzo Tramonti runs through it: at 6:00 PM there were Thaddeus Coffin, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Thaddeus Coffin at the cab stand outside the Hippodrome, 6:00 PM; Rachel Kessler at the cab stand outside the Hippodrome, 6:00 PM_
-- **c116** [observation] — on Lorraine Tillman’s account Vincenzo Tramonti was at the benches at the north end of the square at 9:00 PM and says Lorraine Tillman was not.
-  - _establishes: Lorraine Tillman not at the benches at the north end of the square, 9:00 PM_
-- **c117** [observation] — on Thaddeus Coffin’s account Vincenzo Tramonti was at the benches at the north end of the square at 10:30 PM and says Thaddeus Coffin was not.
-  - _establishes: Thaddeus Coffin not at the benches at the north end of the square, 10:30 PM_
-- **c119** [observation] — on Rachel Kessler’s account Vincenzo Tramonti was at the chop suey place over the laundry at 7:00 PM and says Rachel Kessler was not.
-  - _establishes: Rachel Kessler not at the chop suey place over the laundry, 7:00 PM_
-- **c131** [overheard] — on Roscoe Colquitt and Winthrop Fairbanks Vincenzo Tramonti says Winthrop Fairbanks told Roscoe Colquitt that Friday was the end of it, one way or the other.
-  - _establishes: Roscoe Colquitt had a motive (debt)_
-- ★ **c161** [overheard] — on Rachel Kessler Vincenzo Tramonti on Rachel Kessler: Rachel Kessler sends money out of every pay envelope and cannot say where it goes.
+- **c001** [observation] — on Fairbanks Tramonti says Fairbanks was at the cab stand from 6:00 PM to 6:30 PM.
+  - _establishes: Fairbanks at the cab stand, 6:00 PM–6:30 PM_
+- **c002** [observation] — on Colquitt Tramonti says Colquitt was at the Bijou at 11:00 PM.
+  - _establishes: Colquitt at the Bijou, 11:00 PM_
+- **c003** [observation] — on Mulcahy Tramonti says Mulcahy was at the chop suey place at 7:00 PM.
+  - _establishes: Mulcahy at the chop suey place, 7:00 PM_
+- **c004** [observation] — on Mulcahy Tramonti says Mulcahy was at the benches at 10:30 PM.
+  - _establishes: Mulcahy at the benches, 10:30 PM_
+- **c005** [observation] — on Coffin Tramonti says Coffin was at the cab stand from 6:00 PM to 6:30 PM.
+  - _establishes: Coffin at the cab stand, 6:00 PM–6:30 PM; Coffin could reach the weapon_
+- **c006** [observation] — on Coffin Tramonti says Coffin was at the Bijou at 10:00 PM.
+  - _establishes: Coffin at the Bijou, 10:00 PM_
+- **c007** [observation] — on Kessler Tramonti says Kessler was at the cab stand at 6:00 PM.
+  - _establishes: Kessler at the cab stand, 6:00 PM; Kessler could reach the weapon_
+- **c008** [observation] — on Kessler Tramonti says Kessler was at the benches at 9:30 PM.
+  - _establishes: Kessler at the benches, 9:30 PM_
+- **c088** [denial] — on Mulcahy’s account Mulcahy names Tramonti as the company for the chop suey place at 8:30 PM. Tramonti says they were not together that evening.
+  - _establishes: Mulcahy not at the chop suey place, 8:30 PM_
+- **c089** [observation] — on Tillman’s account Tramonti was at the benches at 9:00 PM and says Tillman was not.
+  - _establishes: Tillman not at the benches, 9:00 PM_
+- **c090** [observation] — on Coffin’s account Tramonti was at the benches at 10:30 PM and says Coffin was not.
+  - _establishes: Coffin not at the benches, 10:30 PM_
+- **c092** [observation] — on Kessler’s account Tramonti was at the chop suey place at 7:00 PM and says Kessler was not.
+  - _establishes: Kessler not at the chop suey place, 7:00 PM_
+- **c104** [overheard] — on Colquitt and Fairbanks Tramonti says Fairbanks told Colquitt that Friday was the end of it, one way or the other.
+  - _establishes: Colquitt had a motive (debt)_
+- **c128** [overheard] — on Coffin Tramonti on Coffin: There is a man who meets people at the cab stand and nobody will say his name out loud.
   - _establishes: context only_
 
-## Roscoe Colquitt
+## Colquitt
 
-- **c009** [observation] — on Winthrop Fairbanks Roscoe Colquitt says Winthrop Fairbanks was at the chop suey place over the laundry at 8:00 PM.
-  - _establishes: Winthrop Fairbanks at the chop suey place over the laundry, 8:00 PM_
-- **c010** [observation] — on Vincenzo Tramonti Roscoe Colquitt says Vincenzo Tramonti was at the Bijou picture house at 11:00 PM.
-  - _establishes: Vincenzo Tramonti at the Bijou picture house, 11:00 PM_
-- **c011** [observation] — on Michael Mulcahy Roscoe Colquitt says Michael Mulcahy was at the chop suey place over the laundry at 7:30 PM.
-  - _establishes: Michael Mulcahy at the chop suey place over the laundry, 7:30 PM_
-- **c012** [observation] — on Lorraine Tillman Roscoe Colquitt says Lorraine Tillman was at the roof over the Dover at 7:00 PM.
-  - _establishes: Lorraine Tillman at the roof over the Dover, 7:00 PM_
-- **c013** [observation] — on Lorraine Tillman Roscoe Colquitt says Lorraine Tillman was at the chop suey place over the laundry from 9:00 PM to 10:30 PM.
-  - _establishes: Lorraine Tillman at the chop suey place over the laundry, 9:00 PM–10:30 PM_
-- **c014** [observation] — on Thaddeus Coffin Roscoe Colquitt says Thaddeus Coffin was at the chop suey place over the laundry from 9:00 PM to 9:30 PM.
-  - _establishes: Thaddeus Coffin at the chop suey place over the laundry, 9:00 PM–9:30 PM_
-- **c015** [observation] — on Rachel Kessler Roscoe Colquitt says Rachel Kessler was at the Bijou picture house at 11:30 PM.
-  - _establishes: Rachel Kessler at the Bijou picture house, 11:30 PM_
-- **c078** [observation] — on who was there at 9:00 PM Roscoe Colquitt runs through it: at 9:00 PM there were Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Lorraine Tillman at the chop suey place over the laundry, 9:00 PM; Thaddeus Coffin at the chop suey place over the laundry, 9:00 PM_
-- **c079** [observation] — on who was there at 9:30 PM Roscoe Colquitt runs through it: at 9:30 PM there were Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Lorraine Tillman at the chop suey place over the laundry, 9:30 PM; Thaddeus Coffin at the chop suey place over the laundry, 9:30 PM_
-- **c105** [observation] — on Vincenzo Tramonti’s account Roscoe Colquitt was at the chop suey place over the laundry at 7:30 PM and says Vincenzo Tramonti was not.
-  - _establishes: Vincenzo Tramonti not at the chop suey place over the laundry, 7:30 PM_
-- ★ **c125** [anchor] — on Winthrop Fairbanks that evening Roscoe Colquitt puts Winthrop Fairbanks at the chop suey place over the laundry in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 8:00 PM; Winthrop Fairbanks at the chop suey place over the laundry, 8:00 PM_
-- ★ **c154** [overheard] — on Thaddeus Coffin Roscoe Colquitt on Thaddeus Coffin: Thaddeus Coffin was carrying a parcel into the cab stand outside the Hippodrome and came out without it.
+- **c009** [observation] — on Fairbanks Colquitt says Fairbanks was at the chop suey place at 8:00 PM.
+  - _establishes: Fairbanks at the chop suey place, 8:00 PM_
+- **c010** [observation] — on Tramonti Colquitt says Tramonti was at the Bijou at 11:00 PM.
+  - _establishes: Tramonti at the Bijou, 11:00 PM_
+- **c011** [observation] — on Mulcahy Colquitt says Mulcahy was at the chop suey place at 7:30 PM.
+  - _establishes: Mulcahy at the chop suey place, 7:30 PM_
+- **c012** [observation] — on Tillman Colquitt says Tillman was at the roof at 7:00 PM.
+  - _establishes: Tillman at the roof, 7:00 PM_
+- **c013** [observation] — on Tillman Colquitt says Tillman was at the chop suey place from 9:00 PM to 10:30 PM.
+  - _establishes: Tillman at the chop suey place, 9:00 PM–10:30 PM_
+- **c014** [observation] — on Coffin Colquitt says Coffin was at the chop suey place from 9:00 PM to 9:30 PM.
+  - _establishes: Coffin at the chop suey place, 9:00 PM–9:30 PM_
+- **c015** [observation] — on Kessler Colquitt says Kessler was at the Bijou at 11:30 PM.
+  - _establishes: Kessler at the Bijou, 11:30 PM_
+- **c077** [observation] — on Tramonti’s account Colquitt was at the chop suey place at 7:30 PM and says Tramonti was not.
+  - _establishes: Tramonti not at the chop suey place, 7:30 PM_
+- **c098** [anchor] — on Fairbanks that evening Colquitt puts Fairbanks at the chop suey place in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 8:00 PM; Fairbanks at the chop suey place, 8:00 PM_
+- ★ **c136** [overheard] — on Kessler Colquitt on Kessler: Kessler keeps a photograph and will not be asked about it twice.
   - _establishes: context only_
 
-## Michael Mulcahy
+## Mulcahy
 
-- **c016** [observation] — on Vincenzo Tramonti Michael Mulcahy says Vincenzo Tramonti was at the chop suey place over the laundry at 7:00 PM.
-  - _establishes: Vincenzo Tramonti at the chop suey place over the laundry, 7:00 PM_
-- **c017** [observation] — on Vincenzo Tramonti Michael Mulcahy says Vincenzo Tramonti was at the benches at the north end of the square at 10:30 PM.
-  - _establishes: Vincenzo Tramonti at the benches at the north end of the square, 10:30 PM_
-- **c018** [observation] — on Roscoe Colquitt Michael Mulcahy says Roscoe Colquitt was at the chop suey place over the laundry at 7:30 PM.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 7:30 PM_
-- **c019** [observation] — on Thaddeus Coffin Michael Mulcahy says Thaddeus Coffin was at the cab stand outside the Hippodrome at 11:00 PM.
-  - _establishes: Thaddeus Coffin at the cab stand outside the Hippodrome, 11:00 PM_
-- **c020** [observation] — on Rachel Kessler Michael Mulcahy says Rachel Kessler was at the cab stand outside the Hippodrome at 9:00 PM.
-  - _establishes: Rachel Kessler at the cab stand outside the Hippodrome, 9:00 PM_
-- **c021** [observation] — on Rachel Kessler Michael Mulcahy says Rachel Kessler was at the cab stand outside the Hippodrome at 11:00 PM.
-  - _establishes: Rachel Kessler at the cab stand outside the Hippodrome, 11:00 PM_
-- **c022** [observation] — on Rachel Kessler Michael Mulcahy says Rachel Kessler was at the benches at the north end of the square at 10:00 PM.
-  - _establishes: Rachel Kessler at the benches at the north end of the square, 10:00 PM_
-- **c080** [observation] — on who was there at 11:00 PM Michael Mulcahy runs through it: at 11:00 PM there were Thaddeus Coffin, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Thaddeus Coffin at the cab stand outside the Hippodrome, 11:00 PM; Rachel Kessler at the cab stand outside the Hippodrome, 11:00 PM_
-- **c106** [observation] — on Vincenzo Tramonti’s account Michael Mulcahy was at the chop suey place over the laundry at 7:30 PM and says Vincenzo Tramonti was not.
-  - _establishes: Vincenzo Tramonti not at the chop suey place over the laundry, 7:30 PM_
-- **c118** [observation] — on Thaddeus Coffin’s account Michael Mulcahy was at the benches at the north end of the square at 10:30 PM and says Thaddeus Coffin was not.
-  - _establishes: Thaddeus Coffin not at the benches at the north end of the square, 10:30 PM_
-- **c120** [observation] — on Rachel Kessler’s account Michael Mulcahy was at the chop suey place over the laundry at 7:00 PM and says Rachel Kessler was not.
-  - _establishes: Rachel Kessler not at the chop suey place over the laundry, 7:00 PM_
-- **c129** [overheard] — on Vincenzo Tramonti and Winthrop Fairbanks Michael Mulcahy says Winthrop Fairbanks told Vincenzo Tramonti the lease would go to somebody else at the quarter day.
-  - _establishes: Vincenzo Tramonti had a motive (property)_
-- **c162** [overheard] — on Rachel Kessler Michael Mulcahy on Rachel Kessler: A woman at the benches at the north end of the square asked for Rachel Kessler by a name Rachel Kessler has not used in years.
+- **c016** [observation] — on Tramonti Mulcahy says Tramonti was at the chop suey place at 7:00 PM.
+  - _establishes: Tramonti at the chop suey place, 7:00 PM_
+- **c017** [observation] — on Tramonti Mulcahy says Tramonti was at the benches at 10:30 PM.
+  - _establishes: Tramonti at the benches, 10:30 PM_
+- **c018** [observation] — on Colquitt Mulcahy says Colquitt was at the chop suey place at 7:30 PM.
+  - _establishes: Colquitt at the chop suey place, 7:30 PM_
+- **c019** [observation] — on Coffin Mulcahy says Coffin was at the cab stand at 11:00 PM.
+  - _establishes: Coffin at the cab stand, 11:00 PM_
+- **c020** [observation] — on Kessler Mulcahy says Kessler was at the cab stand at 9:00 PM.
+  - _establishes: Kessler at the cab stand, 9:00 PM_
+- **c021** [observation] — on Kessler Mulcahy says Kessler was at the cab stand at 11:00 PM.
+  - _establishes: Kessler at the cab stand, 11:00 PM_
+- **c022** [observation] — on Kessler Mulcahy says Kessler was at the benches at 10:00 PM.
+  - _establishes: Kessler at the benches, 10:00 PM_
+- **c078** [observation] — on Tramonti’s account Mulcahy was at the chop suey place at 7:30 PM and says Tramonti was not.
+  - _establishes: Tramonti not at the chop suey place, 7:30 PM_
+- **c091** [observation] — on Coffin’s account Mulcahy was at the benches at 10:30 PM and says Coffin was not.
+  - _establishes: Coffin not at the benches, 10:30 PM_
+- **c093** [observation] — on Kessler’s account Mulcahy was at the chop suey place at 7:00 PM and says Kessler was not.
+  - _establishes: Kessler not at the chop suey place, 7:00 PM_
+- **c102** [overheard] — on Tramonti and Fairbanks Mulcahy says Fairbanks told Tramonti the lease would go to somebody else at the quarter day.
+  - _establishes: Tramonti had a motive (property)_
+- **c129** [overheard] — on Coffin Mulcahy on Coffin: Coffin has been selling things that were never Coffin’s to sell.
   - _establishes: context only_
 
-## Lorraine Tillman
+## Tillman
 
-- **c023** [observation] — on Roscoe Colquitt Lorraine Tillman says Roscoe Colquitt was at the roof over the Dover at 7:00 PM.
-  - _establishes: Roscoe Colquitt at the roof over the Dover, 7:00 PM_
-- **c024** [observation] — on Roscoe Colquitt Lorraine Tillman says Roscoe Colquitt was at the chop suey place over the laundry from 9:30 PM to 10:30 PM.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 9:30 PM–10:30 PM_
-- **c025** [observation] — on Thaddeus Coffin Lorraine Tillman says Thaddeus Coffin was at the chop suey place over the laundry at 9:30 PM.
-  - _establishes: Thaddeus Coffin at the chop suey place over the laundry, 9:30 PM_
-- **c026** [observation] — on Rachel Kessler Lorraine Tillman says Rachel Kessler was at the benches at the north end of the square at 6:30 PM.
-  - _establishes: Rachel Kessler at the benches at the north end of the square, 6:30 PM_
-- **c081** [observation] — on who was there at 9:30 PM Lorraine Tillman runs through it: at 9:30 PM there were Roscoe Colquitt, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 9:30 PM; Thaddeus Coffin at the chop suey place over the laundry, 9:30 PM_
-- **c155** [overheard] — on Thaddeus Coffin Lorraine Tillman on Thaddeus Coffin: There is a man who meets people at the cab stand outside the Hippodrome and nobody will say his name out loud.
+- **c023** [observation] — on Colquitt Tillman says Colquitt was at the roof at 7:00 PM.
+  - _establishes: Colquitt at the roof, 7:00 PM_
+- **c024** [observation] — on Colquitt Tillman says Colquitt was at the chop suey place from 9:30 PM to 10:30 PM.
+  - _establishes: Colquitt at the chop suey place, 9:30 PM–10:30 PM_
+- **c025** [observation] — on Coffin Tillman says Coffin was at the chop suey place at 9:30 PM.
+  - _establishes: Coffin at the chop suey place, 9:30 PM_
+- **c026** [observation] — on Kessler Tillman says Kessler was at the benches at 6:30 PM.
+  - _establishes: Kessler at the benches, 6:30 PM_
+
+## Coffin
+
+- **c027** [observation] — on Fairbanks Coffin says Fairbanks was at the cab stand from 6:00 PM to 7:00 PM.
+  - _establishes: Fairbanks at the cab stand, 6:00 PM–7:00 PM_
+- ★ **c028** [observation] — on Tramonti Coffin says Tramonti was at the cab stand from 6:00 PM to 6:30 PM.
+  - _establishes: Tramonti at the cab stand, 6:00 PM–6:30 PM; Tramonti could reach the weapon_
+- **c029** [observation] — on Tramonti Coffin says Tramonti was at the cab stand at 7:30 PM.
+  - _establishes: Tramonti at the cab stand, 7:30 PM; Tramonti could reach the weapon_
+- **c030** [observation] — on Tramonti Coffin says Tramonti was at the Bijou at 10:00 PM.
+  - _establishes: Tramonti at the Bijou, 10:00 PM_
+- ★ **c031** [observation] — on Colquitt Coffin says Colquitt was at the chop suey place from 8:30 PM to 9:30 PM.
+  - _establishes: Colquitt at the chop suey place, 8:30 PM–9:30 PM_
+- ★ **c032** [observation] — on Tillman Coffin says Tillman was at the chop suey place from 8:30 PM to 9:30 PM.
+  - _establishes: Tillman at the chop suey place, 8:30 PM–9:30 PM_
+- **c033** [observation] — on Kessler Coffin says Kessler was at the cab stand at 6:00 PM.
+  - _establishes: Kessler at the cab stand, 6:00 PM; Kessler could reach the weapon_
+- ★ **c034** [observation] — on Kessler Coffin says Kessler was at the chop suey place at 8:30 PM.
+  - _establishes: Kessler at the chop suey place, 8:30 PM_
+- **c080** [observation] — on Tramonti’s account Coffin was at the cab stand at 8:00 PM and says Tramonti was not.
+  - _establishes: Tramonti not at the cab stand, 8:00 PM_
+- **c085** [observation] — on Mulcahy’s account Coffin was at the chop suey place at 8:30 PM and says Mulcahy was not.
+  - _establishes: Mulcahy not at the chop suey place, 8:30 PM_
+- ★ **c105** [client] — on why I was hired Coffin hired us, and wants it known that Tramonti wanted the victim out of a lease, and would rather we started there.
+  - _establishes: Tramonti had a motive (property)_
+- **c106** [overheard] — on Colquitt Coffin on Colquitt: Colquitt was carrying a parcel into the chop suey place and came out without it.
   - _establishes: context only_
 
-## Thaddeus Coffin
+## Kessler
 
-- **c027** [observation] — on Winthrop Fairbanks Thaddeus Coffin says Winthrop Fairbanks was at the cab stand outside the Hippodrome from 6:00 PM to 7:00 PM.
-  - _establishes: Winthrop Fairbanks at the cab stand outside the Hippodrome, 6:00 PM–7:00 PM_
-- **c028** [observation] — on Vincenzo Tramonti Thaddeus Coffin says Vincenzo Tramonti was at the cab stand outside the Hippodrome from 6:00 PM to 6:30 PM.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 6:00 PM–6:30 PM; Vincenzo Tramonti could reach the weapon_
-- ★ **c029** [observation] — on Vincenzo Tramonti Thaddeus Coffin says Vincenzo Tramonti was at the cab stand outside the Hippodrome at 7:30 PM.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 7:30 PM; Vincenzo Tramonti could reach the weapon_
-- **c030** [observation] — on Vincenzo Tramonti Thaddeus Coffin says Vincenzo Tramonti was at the Bijou picture house at 10:00 PM.
-  - _establishes: Vincenzo Tramonti at the Bijou picture house, 10:00 PM_
-- **c031** [observation] — on Roscoe Colquitt Thaddeus Coffin says Roscoe Colquitt was at the chop suey place over the laundry from 8:30 PM to 9:30 PM.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 8:30 PM–9:30 PM_
-- **c032** [observation] — on Lorraine Tillman Thaddeus Coffin says Lorraine Tillman was at the chop suey place over the laundry from 8:30 PM to 9:30 PM.
-  - _establishes: Lorraine Tillman at the chop suey place over the laundry, 8:30 PM–9:30 PM_
-- **c033** [observation] — on Rachel Kessler Thaddeus Coffin says Rachel Kessler was at the cab stand outside the Hippodrome at 6:00 PM.
-  - _establishes: Rachel Kessler at the cab stand outside the Hippodrome, 6:00 PM; Rachel Kessler could reach the weapon_
-- ★ **c034** [observation] — on Rachel Kessler Thaddeus Coffin says Rachel Kessler was at the chop suey place over the laundry at 8:30 PM.
-  - _establishes: Rachel Kessler at the chop suey place over the laundry, 8:30 PM_
-- **c082** [observation] — on who was there at 6:00 PM Thaddeus Coffin runs through it: at 6:00 PM there were Vincenzo Tramonti, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 6:00 PM; Rachel Kessler at the cab stand outside the Hippodrome, 6:00 PM_
-- ★ **c083** [observation] — on who was there at 8:30 PM Thaddeus Coffin runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Rachel Kessler at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 8:30 PM; Lorraine Tillman at the chop suey place over the laundry, 8:30 PM; Rachel Kessler at the chop suey place over the laundry, 8:30 PM_
-- **c084** [observation] — on who was there at 9:00 PM Thaddeus Coffin runs through it: at 9:00 PM there were Roscoe Colquitt, Lorraine Tillman at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 9:00 PM; Lorraine Tillman at the chop suey place over the laundry, 9:00 PM_
-- **c085** [observation] — on who was there at 9:30 PM Thaddeus Coffin runs through it: at 9:30 PM there were Roscoe Colquitt, Lorraine Tillman at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 9:30 PM; Lorraine Tillman at the chop suey place over the laundry, 9:30 PM_
-- **c108** [observation] — on Vincenzo Tramonti’s account Thaddeus Coffin was at the cab stand outside the Hippodrome at 8:00 PM and says Vincenzo Tramonti was not.
-  - _establishes: Vincenzo Tramonti not at the cab stand outside the Hippodrome, 8:00 PM_
-- **c113** [observation] — on Michael Mulcahy’s account Thaddeus Coffin was at the chop suey place over the laundry at 8:30 PM and says Michael Mulcahy was not.
-  - _establishes: Michael Mulcahy not at the chop suey place over the laundry, 8:30 PM_
-- ★ **c132** [client] — on why I was hired Thaddeus Coffin hired us. Thaddeus Coffin wants it known that Vincenzo Tramonti wanted the victim out of a lease, and would rather we started there.
-  - _establishes: Vincenzo Tramonti had a motive (property)_
-- **c149** [overheard] — on Lorraine Tillman Thaddeus Coffin on Lorraine Tillman: Lorraine Tillman has been selling things that were never Lorraine Tillman’s to sell.
+- **c035** [observation] — on Fairbanks Kessler says Fairbanks was at the cab stand at 6:00 PM.
+  - _establishes: Fairbanks at the cab stand, 6:00 PM_
+- ★ **c036** [observation] — on Tramonti Kessler says Tramonti was at the cab stand at 6:00 PM.
+  - _establishes: Tramonti at the cab stand, 6:00 PM; Tramonti could reach the weapon_
+- **c037** [observation] — on Tramonti Kessler says Tramonti was at the benches at 9:30 PM.
+  - _establishes: Tramonti at the benches, 9:30 PM_
+- ★ **c038** [observation] — on Colquitt Kessler says Colquitt was at the chop suey place at 8:30 PM.
+  - _establishes: Colquitt at the chop suey place, 8:30 PM_
+- **c039** [observation] — on Colquitt Kessler says Colquitt was at the Bijou at 11:30 PM.
+  - _establishes: Colquitt at the Bijou, 11:30 PM_
+- **c040** [observation] — on Mulcahy Kessler says Mulcahy was at the cab stand at 9:00 PM.
+  - _establishes: Mulcahy at the cab stand, 9:00 PM_
+- **c041** [observation] — on Mulcahy Kessler says Mulcahy was at the cab stand at 11:00 PM.
+  - _establishes: Mulcahy at the cab stand, 11:00 PM_
+- **c042** [observation] — on Mulcahy Kessler says Mulcahy was at the benches at 10:00 PM.
+  - _establishes: Mulcahy at the benches, 10:00 PM_
+- **c043** [observation] — on Tillman Kessler says Tillman was at the benches at 6:30 PM.
+  - _establishes: Tillman at the benches, 6:30 PM_
+- **c044** [observation] — on Tillman Kessler says Tillman was at the chop suey place at 8:30 PM.
+  - _establishes: Tillman at the chop suey place, 8:30 PM_
+- **c045** [observation] — on Coffin Kessler says Coffin was at the cab stand at 6:00 PM.
+  - _establishes: Coffin at the cab stand, 6:00 PM; Coffin could reach the weapon_
+- **c046** [observation] — on Coffin Kessler says Coffin was at the cab stand at 11:00 PM.
+  - _establishes: Coffin at the cab stand, 11:00 PM_
+- ★ **c047** [observation] — on Coffin Kessler says Coffin was at the chop suey place at 8:30 PM.
+  - _establishes: Coffin at the chop suey place, 8:30 PM_
+- **c086** [observation] — on Mulcahy’s account Kessler was at the chop suey place at 8:30 PM and says Mulcahy was not.
+  - _establishes: Mulcahy not at the chop suey place, 8:30 PM_
+- **c115** [overheard] — on Mulcahy Kessler on Mulcahy: Mulcahy has been selling things that were never Mulcahy’s to sell.
   - _establishes: context only_
-- **c163** [overheard] — on Rachel Kessler Thaddeus Coffin on Rachel Kessler: Rachel Kessler keeps a photograph and will not be asked about it twice.
+- ★ **c121** [overheard] — on Tillman Kessler on Tillman: There is a man who meets people at the chop suey place and nobody will say his name out loud.
   - _establishes: context only_
 
-## Rachel Kessler
+## Feldman
 
-- **c035** [observation] — on Winthrop Fairbanks Rachel Kessler says Winthrop Fairbanks was at the cab stand outside the Hippodrome at 6:00 PM.
-  - _establishes: Winthrop Fairbanks at the cab stand outside the Hippodrome, 6:00 PM_
-- **c036** [observation] — on Vincenzo Tramonti Rachel Kessler says Vincenzo Tramonti was at the cab stand outside the Hippodrome at 6:00 PM.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 6:00 PM; Vincenzo Tramonti could reach the weapon_
-- **c037** [observation] — on Vincenzo Tramonti Rachel Kessler says Vincenzo Tramonti was at the benches at the north end of the square at 9:30 PM.
-  - _establishes: Vincenzo Tramonti at the benches at the north end of the square, 9:30 PM_
-- **c038** [observation] — on Roscoe Colquitt Rachel Kessler says Roscoe Colquitt was at the chop suey place over the laundry at 8:30 PM.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 8:30 PM_
-- **c039** [observation] — on Roscoe Colquitt Rachel Kessler says Roscoe Colquitt was at the Bijou picture house at 11:30 PM.
-  - _establishes: Roscoe Colquitt at the Bijou picture house, 11:30 PM_
-- **c040** [observation] — on Michael Mulcahy Rachel Kessler says Michael Mulcahy was at the cab stand outside the Hippodrome at 9:00 PM.
-  - _establishes: Michael Mulcahy at the cab stand outside the Hippodrome, 9:00 PM_
-- **c041** [observation] — on Michael Mulcahy Rachel Kessler says Michael Mulcahy was at the cab stand outside the Hippodrome at 11:00 PM.
-  - _establishes: Michael Mulcahy at the cab stand outside the Hippodrome, 11:00 PM_
-- **c042** [observation] — on Michael Mulcahy Rachel Kessler says Michael Mulcahy was at the benches at the north end of the square at 10:00 PM.
-  - _establishes: Michael Mulcahy at the benches at the north end of the square, 10:00 PM_
-- **c043** [observation] — on Lorraine Tillman Rachel Kessler says Lorraine Tillman was at the benches at the north end of the square at 6:30 PM.
-  - _establishes: Lorraine Tillman at the benches at the north end of the square, 6:30 PM_
-- **c044** [observation] — on Lorraine Tillman Rachel Kessler says Lorraine Tillman was at the chop suey place over the laundry at 8:30 PM.
-  - _establishes: Lorraine Tillman at the chop suey place over the laundry, 8:30 PM_
-- **c045** [observation] — on Thaddeus Coffin Rachel Kessler says Thaddeus Coffin was at the cab stand outside the Hippodrome at 6:00 PM.
-  - _establishes: Thaddeus Coffin at the cab stand outside the Hippodrome, 6:00 PM; Thaddeus Coffin could reach the weapon_
-- **c046** [observation] — on Thaddeus Coffin Rachel Kessler says Thaddeus Coffin was at the cab stand outside the Hippodrome at 11:00 PM.
-  - _establishes: Thaddeus Coffin at the cab stand outside the Hippodrome, 11:00 PM_
-- **c047** [observation] — on Thaddeus Coffin Rachel Kessler says Thaddeus Coffin was at the chop suey place over the laundry at 8:30 PM.
-  - _establishes: Thaddeus Coffin at the chop suey place over the laundry, 8:30 PM_
-- **c086** [observation] — on who was there at 6:00 PM Rachel Kessler runs through it: at 6:00 PM there were Vincenzo Tramonti, Thaddeus Coffin at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 6:00 PM; Thaddeus Coffin at the cab stand outside the Hippodrome, 6:00 PM_
-- ★ **c087** [observation] — on who was there at 8:30 PM Rachel Kessler runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 8:30 PM; Lorraine Tillman at the chop suey place over the laundry, 8:30 PM; Thaddeus Coffin at the chop suey place over the laundry, 8:30 PM_
-- **c088** [observation] — on who was there at 11:00 PM Rachel Kessler runs through it: at 11:00 PM there were Michael Mulcahy, Thaddeus Coffin at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Michael Mulcahy at the cab stand outside the Hippodrome, 11:00 PM; Thaddeus Coffin at the cab stand outside the Hippodrome, 11:00 PM_
-- **c114** [observation] — on Michael Mulcahy’s account Rachel Kessler was at the chop suey place over the laundry at 8:30 PM and says Michael Mulcahy was not.
-  - _establishes: Michael Mulcahy not at the chop suey place over the laundry, 8:30 PM_
-- **c135** [overheard] — on Roscoe Colquitt Rachel Kessler on Roscoe Colquitt: Roscoe Colquitt has been selling things that were never Roscoe Colquitt’s to sell.
+- **c048** [observation] — on Fairbanks Feldman says Fairbanks was at the chop suey place at 8:00 PM.
+  - _establishes: Fairbanks at the chop suey place, 8:00 PM_
+- **c049** [observation] — on Tramonti Feldman says Tramonti was at the chop suey place at 7:00 PM.
+  - _establishes: Tramonti at the chop suey place, 7:00 PM_
+- **c050** [observation] — on Colquitt Feldman says Colquitt was at the chop suey place from 7:30 PM to 10:30 PM.
+  - _establishes: Colquitt at the chop suey place, 7:30 PM–10:30 PM_
+- **c051** [observation] — on Mulcahy Feldman says Mulcahy was at the chop suey place from 6:00 PM to 7:30 PM.
+  - _establishes: Mulcahy at the chop suey place, 6:00 PM–7:30 PM_
+- **c052** [observation] — on Tillman Feldman says Tillman was at the chop suey place from 8:30 PM to 11:30 PM.
+  - _establishes: Tillman at the chop suey place, 8:30 PM–11:30 PM_
+- ★ **c053** [observation] — on Coffin Feldman says Coffin was at the chop suey place from 8:30 PM to 9:30 PM.
+  - _establishes: Coffin at the chop suey place, 8:30 PM–9:30 PM_
+- **c054** [observation] — on Kessler Feldman says Kessler was at the chop suey place at 8:30 PM.
+  - _establishes: Kessler at the chop suey place, 8:30 PM_
+- **c079** [observation] — on Tramonti’s account Feldman was at the chop suey place at 7:30 PM and says Tramonti was not.
+  - _establishes: Tramonti not at the chop suey place, 7:30 PM_
+- **c087** [observation] — on Mulcahy’s account Feldman was at the chop suey place at 8:30 PM and says Mulcahy was not.
+  - _establishes: Mulcahy not at the chop suey place, 8:30 PM_
+- **c094** [observation] — on Kessler’s account Feldman was at the chop suey place at 7:00 PM and says Kessler was not.
+  - _establishes: Kessler not at the chop suey place, 7:00 PM_
+- ★ **c099** [anchor] — on Fairbanks that evening Feldman puts Fairbanks at the chop suey place in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 8:00 PM; Fairbanks at the chop suey place, 8:00 PM_
+- ★ **c107** [overheard] — on Colquitt Feldman on Colquitt: There is a man who meets people at the chop suey place and nobody will say his name out loud.
   - _establishes: context only_
-- ★ **c141** [overheard] — on Michael Mulcahy Rachel Kessler on Michael Mulcahy: There is a man who meets people at the cab stand outside the Hippodrome and nobody will say his name out loud.
+- **c113** [overheard] — on Mulcahy Feldman on Mulcahy: Mulcahy was carrying a parcel into the cab stand and came out without it.
   - _establishes: context only_
-- **c147** [overheard] — on Lorraine Tillman Rachel Kessler on Lorraine Tillman: Lorraine Tillman was carrying a parcel into the chop suey place over the laundry and came out without it.
+- ★ **c134** [overheard] — on Kessler Feldman on Kessler: Kessler sends money out of every pay envelope and cannot say where it goes.
   - _establishes: context only_
 
-## Isidore Feldman
+## Grasso
 
-- **c048** [observation] — on Winthrop Fairbanks Isidore Feldman says Winthrop Fairbanks was at the chop suey place over the laundry at 8:00 PM.
-  - _establishes: Winthrop Fairbanks at the chop suey place over the laundry, 8:00 PM_
-- **c049** [observation] — on Vincenzo Tramonti Isidore Feldman says Vincenzo Tramonti was at the chop suey place over the laundry at 7:00 PM.
-  - _establishes: Vincenzo Tramonti at the chop suey place over the laundry, 7:00 PM_
-- **c050** [observation] — on Roscoe Colquitt Isidore Feldman says Roscoe Colquitt was at the chop suey place over the laundry from 7:30 PM to 10:30 PM.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 7:30 PM–10:30 PM_
-- **c051** [observation] — on Michael Mulcahy Isidore Feldman says Michael Mulcahy was at the chop suey place over the laundry from 6:00 PM to 7:30 PM.
-  - _establishes: Michael Mulcahy at the chop suey place over the laundry, 6:00 PM–7:30 PM_
-- **c052** [observation] — on Lorraine Tillman Isidore Feldman says Lorraine Tillman was at the chop suey place over the laundry from 8:30 PM to 11:30 PM.
-  - _establishes: Lorraine Tillman at the chop suey place over the laundry, 8:30 PM–11:30 PM_
-- **c053** [observation] — on Thaddeus Coffin Isidore Feldman says Thaddeus Coffin was at the chop suey place over the laundry from 8:30 PM to 9:30 PM.
-  - _establishes: Thaddeus Coffin at the chop suey place over the laundry, 8:30 PM–9:30 PM_
-- **c054** [observation] — on Rachel Kessler Isidore Feldman says Rachel Kessler was at the chop suey place over the laundry at 8:30 PM.
-  - _establishes: Rachel Kessler at the chop suey place over the laundry, 8:30 PM_
-- **c089** [observation] — on who was there at 7:00 PM Isidore Feldman runs through it: at 7:00 PM there were Vincenzo Tramonti, Michael Mulcahy at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the chop suey place over the laundry, 7:00 PM; Michael Mulcahy at the chop suey place over the laundry, 7:00 PM_
-- **c090** [observation] — on who was there at 7:30 PM Isidore Feldman runs through it: at 7:30 PM there were Roscoe Colquitt, Michael Mulcahy at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 7:30 PM; Michael Mulcahy at the chop suey place over the laundry, 7:30 PM_
-- ★ **c091** [observation] — on who was there at 8:30 PM Isidore Feldman runs through it: at 8:30 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin, Rachel Kessler at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 8:30 PM; Lorraine Tillman at the chop suey place over the laundry, 8:30 PM; Thaddeus Coffin at the chop suey place over the laundry, 8:30 PM; Rachel Kessler at the chop suey place over the laundry, 8:30 PM_
-- **c092** [observation] — on who was there at 9:00 PM Isidore Feldman runs through it: at 9:00 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 9:00 PM; Lorraine Tillman at the chop suey place over the laundry, 9:00 PM; Thaddeus Coffin at the chop suey place over the laundry, 9:00 PM_
-- **c093** [observation] — on who was there at 9:30 PM Isidore Feldman runs through it: at 9:30 PM there were Roscoe Colquitt, Lorraine Tillman, Thaddeus Coffin at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 9:30 PM; Lorraine Tillman at the chop suey place over the laundry, 9:30 PM; Thaddeus Coffin at the chop suey place over the laundry, 9:30 PM_
-- **c094** [observation] — on who was there at 10:00 PM Isidore Feldman runs through it: at 10:00 PM there were Roscoe Colquitt, Lorraine Tillman at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 10:00 PM; Lorraine Tillman at the chop suey place over the laundry, 10:00 PM_
-- **c095** [observation] — on who was there at 10:30 PM Isidore Feldman runs through it: at 10:30 PM there were Roscoe Colquitt, Lorraine Tillman at the chop suey place over the laundry, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 10:30 PM; Lorraine Tillman at the chop suey place over the laundry, 10:30 PM_
-- **c107** [observation] — on Vincenzo Tramonti’s account Isidore Feldman was at the chop suey place over the laundry at 7:30 PM and says Vincenzo Tramonti was not.
-  - _establishes: Vincenzo Tramonti not at the chop suey place over the laundry, 7:30 PM_
-- **c115** [observation] — on Michael Mulcahy’s account Isidore Feldman was at the chop suey place over the laundry at 8:30 PM and says Michael Mulcahy was not.
-  - _establishes: Michael Mulcahy not at the chop suey place over the laundry, 8:30 PM_
-- **c121** [observation] — on Rachel Kessler’s account Isidore Feldman was at the chop suey place over the laundry at 7:00 PM and says Rachel Kessler was not.
-  - _establishes: Rachel Kessler not at the chop suey place over the laundry, 7:00 PM_
-- ★ **c126** [anchor] — on Winthrop Fairbanks that evening Isidore Feldman puts Winthrop Fairbanks at the chop suey place over the laundry in the crush when the theatre let out, which was 8:00 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 8:00 PM; Winthrop Fairbanks at the chop suey place over the laundry, 8:00 PM_
-- ★ **c133** [overheard] — on Roscoe Colquitt Isidore Feldman on Roscoe Colquitt: Roscoe Colquitt was carrying a parcel into the chop suey place over the laundry and came out without it.
+- **c055** [observation] — on Fairbanks Grasso says Fairbanks was at the Bijou at 7:30 PM.
+  - _establishes: Fairbanks at the Bijou, 7:30 PM_
+- **c056** [observation] — on Tramonti Grasso says Tramonti was at the Bijou at 10:00 PM.
+  - _establishes: Tramonti at the Bijou, 10:00 PM_
+- **c057** [observation] — on Tramonti Grasso says Tramonti was at the Bijou at 11:00 PM.
+  - _establishes: Tramonti at the Bijou, 11:00 PM_
+- **c058** [observation] — on Colquitt Grasso says Colquitt was at the Bijou at 6:30 PM.
+  - _establishes: Colquitt at the Bijou, 6:30 PM_
+- **c059** [observation] — on Colquitt Grasso says Colquitt was at the Bijou from 11:00 PM to 11:30 PM.
+  - _establishes: Colquitt at the Bijou, 11:00 PM–11:30 PM_
+- **c060** [observation] — on Mulcahy Grasso says Mulcahy was at the Bijou at 8:00 PM.
+  - _establishes: Mulcahy at the Bijou, 8:00 PM_
+- **c061** [observation] — on Mulcahy Grasso says Mulcahy was at the cab stand at 8:30 PM.
+  - _establishes: Mulcahy at the cab stand, 8:30 PM_
+- **c062** [observation] — on Coffin Grasso says Coffin was at the Bijou at 10:00 PM.
+  - _establishes: Coffin at the Bijou, 10:00 PM_
+- **c063** [observation] — on Kessler Grasso says Kessler was at the Bijou at 10:30 PM.
+  - _establishes: Kessler at the Bijou, 10:30 PM_
+- **c064** [observation] — on Kessler Grasso says Kessler was at the Bijou at 11:30 PM.
+  - _establishes: Kessler at the Bijou, 11:30 PM_
+- ★ **c081** [observation] — on Tramonti’s account Grasso was at the cab stand at 8:30 PM and says Tramonti was not.
+  - _establishes: Tramonti not at the cab stand, 8:30 PM_
+- **c083** [observation] — on Colquitt’s account Grasso was at the cab stand at 8:30 PM and says Colquitt was not.
+  - _establishes: Colquitt not at the cab stand, 8:30 PM_
+- **c122** [overheard] — on Tillman Grasso on Tillman: Tillman has been selling things that were never Tillman’s to sell.
   - _establishes: context only_
-- **c156** [overheard] — on Thaddeus Coffin Isidore Feldman on Thaddeus Coffin: Thaddeus Coffin has been selling things that were never Thaddeus Coffin’s to sell.
+- **c127** [overheard] — on Coffin Grasso on Coffin: Coffin was carrying a parcel into the cab stand and came out without it.
   - _establishes: context only_
 
-## Giovanna Grasso
+## Stannard
 
-- **c055** [observation] — on Winthrop Fairbanks Giovanna Grasso says Winthrop Fairbanks was at the Bijou picture house at 7:30 PM.
-  - _establishes: Winthrop Fairbanks at the Bijou picture house, 7:30 PM_
-- **c056** [observation] — on Vincenzo Tramonti Giovanna Grasso says Vincenzo Tramonti was at the Bijou picture house at 10:00 PM.
-  - _establishes: Vincenzo Tramonti at the Bijou picture house, 10:00 PM_
-- **c057** [observation] — on Vincenzo Tramonti Giovanna Grasso says Vincenzo Tramonti was at the Bijou picture house at 11:00 PM.
-  - _establishes: Vincenzo Tramonti at the Bijou picture house, 11:00 PM_
-- **c058** [observation] — on Roscoe Colquitt Giovanna Grasso says Roscoe Colquitt was at the Bijou picture house at 6:30 PM.
-  - _establishes: Roscoe Colquitt at the Bijou picture house, 6:30 PM_
-- **c059** [observation] — on Roscoe Colquitt Giovanna Grasso says Roscoe Colquitt was at the Bijou picture house from 11:00 PM to 11:30 PM.
-  - _establishes: Roscoe Colquitt at the Bijou picture house, 11:00 PM–11:30 PM_
-- **c060** [observation] — on Michael Mulcahy Giovanna Grasso says Michael Mulcahy was at the Bijou picture house at 8:00 PM.
-  - _establishes: Michael Mulcahy at the Bijou picture house, 8:00 PM_
-- ★ **c061** [observation] — on Michael Mulcahy Giovanna Grasso says Michael Mulcahy was at the cab stand outside the Hippodrome at 8:30 PM.
-  - _establishes: Michael Mulcahy at the cab stand outside the Hippodrome, 8:30 PM_
-- **c062** [observation] — on Thaddeus Coffin Giovanna Grasso says Thaddeus Coffin was at the Bijou picture house at 10:00 PM.
-  - _establishes: Thaddeus Coffin at the Bijou picture house, 10:00 PM_
-- **c063** [observation] — on Rachel Kessler Giovanna Grasso says Rachel Kessler was at the Bijou picture house at 10:30 PM.
-  - _establishes: Rachel Kessler at the Bijou picture house, 10:30 PM_
-- **c064** [observation] — on Rachel Kessler Giovanna Grasso says Rachel Kessler was at the Bijou picture house at 11:30 PM.
-  - _establishes: Rachel Kessler at the Bijou picture house, 11:30 PM_
-- **c096** [observation] — on who was there at 10:00 PM Giovanna Grasso runs through it: at 10:00 PM there were Vincenzo Tramonti, Thaddeus Coffin at the Bijou picture house, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the Bijou picture house, 10:00 PM; Thaddeus Coffin at the Bijou picture house, 10:00 PM_
-- **c097** [observation] — on who was there at 11:00 PM Giovanna Grasso runs through it: at 11:00 PM there were Vincenzo Tramonti, Roscoe Colquitt at the Bijou picture house, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the Bijou picture house, 11:00 PM; Roscoe Colquitt at the Bijou picture house, 11:00 PM_
-- **c098** [observation] — on who was there at 11:30 PM Giovanna Grasso runs through it: at 11:30 PM there were Roscoe Colquitt, Rachel Kessler at the Bijou picture house, and nobody else worth naming.
-  - _establishes: Roscoe Colquitt at the Bijou picture house, 11:30 PM; Rachel Kessler at the Bijou picture house, 11:30 PM_
-- ★ **c109** [observation] — on Vincenzo Tramonti’s account Giovanna Grasso was at the cab stand outside the Hippodrome at 8:30 PM and says Vincenzo Tramonti was not.
-  - _establishes: Vincenzo Tramonti not at the cab stand outside the Hippodrome, 8:30 PM_
-- **c111** [observation] — on Roscoe Colquitt’s account Giovanna Grasso was at the cab stand outside the Hippodrome at 8:30 PM and says Roscoe Colquitt was not.
-  - _establishes: Roscoe Colquitt not at the cab stand outside the Hippodrome, 8:30 PM_
-- **c142** [overheard] — on Michael Mulcahy Giovanna Grasso on Michael Mulcahy: Michael Mulcahy has been selling things that were never Michael Mulcahy’s to sell.
+- **c065** [observation] — on Fairbanks Stannard says Fairbanks was at the cab stand from 6:00 PM to 7:00 PM.
+  - _establishes: Fairbanks at the cab stand, 6:00 PM–7:00 PM_
+- **c066** [observation] — on Tramonti Stannard says Tramonti was at the cab stand from 6:00 PM to 6:30 PM.
+  - _establishes: Tramonti at the cab stand, 6:00 PM–6:30 PM; Tramonti could reach the weapon_
+- **c067** [observation] — on Tramonti Stannard says Tramonti was at the cab stand at 7:30 PM.
+  - _establishes: Tramonti at the cab stand, 7:30 PM; Tramonti could reach the weapon_
+- **c068** [observation] — on Tramonti Stannard says Tramonti was at the benches at 9:30 PM.
+  - _establishes: Tramonti at the benches, 9:30 PM_
+- ★ **c069** [observation] — on Mulcahy Stannard says Mulcahy was at the cab stand from 8:30 PM to 9:00 PM.
+  - _establishes: Mulcahy at the cab stand, 8:30 PM–9:00 PM_
+- **c070** [observation] — on Mulcahy Stannard says Mulcahy was at the cab stand at 11:00 PM.
+  - _establishes: Mulcahy at the cab stand, 11:00 PM_
+- **c071** [observation] — on Coffin Stannard says Coffin was at the cab stand from 6:00 PM to 8:00 PM.
+  - _establishes: Coffin at the cab stand, 6:00 PM–8:00 PM; Coffin could reach the weapon_
+- **c072** [observation] — on Coffin Stannard says Coffin was at the cab stand from 10:30 PM to 11:30 PM.
+  - _establishes: Coffin at the cab stand, 10:30 PM–11:30 PM_
+- ★ **c073** [observation] — on Kessler Stannard says Kessler was at the cab stand at 6:00 PM.
+  - _establishes: Kessler at the cab stand, 6:00 PM; Kessler could reach the weapon_
+- **c074** [observation] — on Kessler Stannard says Kessler was at the cab stand at 9:00 PM.
+  - _establishes: Kessler at the cab stand, 9:00 PM_
+- **c075** [observation] — on Kessler Stannard says Kessler was at the cab stand at 11:00 PM.
+  - _establishes: Kessler at the cab stand, 11:00 PM_
+- **c076** [observation] — on Kessler Stannard says Kessler was at the benches at 9:30 PM.
+  - _establishes: Kessler at the benches, 9:30 PM_
+- ★ **c082** [observation] — on Tramonti’s account Stannard was at the cab stand from 8:00 PM to 8:30 PM and says Tramonti was not.
+  - _establishes: Tramonti not at the cab stand, 8:00 PM–8:30 PM_
+- **c084** [observation] — on Colquitt’s account Stannard was at the cab stand at 8:30 PM and says Colquitt was not.
+  - _establishes: Colquitt not at the cab stand, 8:30 PM_
+- **c108** [overheard] — on Colquitt Stannard on Colquitt: Colquitt has been selling things that were never Colquitt’s to sell.
   - _establishes: context only_
-- **c148** [overheard] — on Lorraine Tillman Giovanna Grasso on Lorraine Tillman: There is a man who meets people at the chop suey place over the laundry and nobody will say his name out loud.
+- ★ **c114** [overheard] — on Mulcahy Stannard on Mulcahy: There is a man who meets people at the cab stand and nobody will say his name out loud.
   - _establishes: context only_
-
-## Edith Stannard
-
-- **c065** [observation] — on Winthrop Fairbanks Edith Stannard says Winthrop Fairbanks was at the cab stand outside the Hippodrome from 6:00 PM to 7:00 PM.
-  - _establishes: Winthrop Fairbanks at the cab stand outside the Hippodrome, 6:00 PM–7:00 PM_
-- **c066** [observation] — on Vincenzo Tramonti Edith Stannard says Vincenzo Tramonti was at the cab stand outside the Hippodrome from 6:00 PM to 6:30 PM.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 6:00 PM–6:30 PM; Vincenzo Tramonti could reach the weapon_
-- ★ **c067** [observation] — on Vincenzo Tramonti Edith Stannard says Vincenzo Tramonti was at the cab stand outside the Hippodrome at 7:30 PM.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 7:30 PM; Vincenzo Tramonti could reach the weapon_
-- **c068** [observation] — on Vincenzo Tramonti Edith Stannard says Vincenzo Tramonti was at the benches at the north end of the square at 9:30 PM.
-  - _establishes: Vincenzo Tramonti at the benches at the north end of the square, 9:30 PM_
-- ★ **c069** [observation] — on Michael Mulcahy Edith Stannard says Michael Mulcahy was at the cab stand outside the Hippodrome from 8:30 PM to 9:00 PM.
-  - _establishes: Michael Mulcahy at the cab stand outside the Hippodrome, 8:30 PM–9:00 PM_
-- **c070** [observation] — on Michael Mulcahy Edith Stannard says Michael Mulcahy was at the cab stand outside the Hippodrome at 11:00 PM.
-  - _establishes: Michael Mulcahy at the cab stand outside the Hippodrome, 11:00 PM_
-- ★ **c071** [observation] — on Thaddeus Coffin Edith Stannard says Thaddeus Coffin was at the cab stand outside the Hippodrome from 6:00 PM to 8:00 PM.
-  - _establishes: Thaddeus Coffin at the cab stand outside the Hippodrome, 6:00 PM–8:00 PM; Thaddeus Coffin could reach the weapon_
-- **c072** [observation] — on Thaddeus Coffin Edith Stannard says Thaddeus Coffin was at the cab stand outside the Hippodrome from 10:30 PM to 11:30 PM.
-  - _establishes: Thaddeus Coffin at the cab stand outside the Hippodrome, 10:30 PM–11:30 PM_
-- **c073** [observation] — on Rachel Kessler Edith Stannard says Rachel Kessler was at the cab stand outside the Hippodrome at 6:00 PM.
-  - _establishes: Rachel Kessler at the cab stand outside the Hippodrome, 6:00 PM; Rachel Kessler could reach the weapon_
-- **c074** [observation] — on Rachel Kessler Edith Stannard says Rachel Kessler was at the cab stand outside the Hippodrome at 9:00 PM.
-  - _establishes: Rachel Kessler at the cab stand outside the Hippodrome, 9:00 PM_
-- **c075** [observation] — on Rachel Kessler Edith Stannard says Rachel Kessler was at the cab stand outside the Hippodrome at 11:00 PM.
-  - _establishes: Rachel Kessler at the cab stand outside the Hippodrome, 11:00 PM_
-- **c076** [observation] — on Rachel Kessler Edith Stannard says Rachel Kessler was at the benches at the north end of the square at 9:30 PM.
-  - _establishes: Rachel Kessler at the benches at the north end of the square, 9:30 PM_
-- **c099** [observation] — on who was there at 6:00 PM Edith Stannard runs through it: at 6:00 PM there were Vincenzo Tramonti, Thaddeus Coffin, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 6:00 PM; Thaddeus Coffin at the cab stand outside the Hippodrome, 6:00 PM; Rachel Kessler at the cab stand outside the Hippodrome, 6:00 PM_
-- **c100** [observation] — on who was there at 6:30 PM Edith Stannard runs through it: at 6:30 PM there were Vincenzo Tramonti, Thaddeus Coffin at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 6:30 PM; Thaddeus Coffin at the cab stand outside the Hippodrome, 6:30 PM_
-- **c101** [observation] — on who was there at 7:30 PM Edith Stannard runs through it: at 7:30 PM there were Vincenzo Tramonti, Thaddeus Coffin at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the cab stand outside the Hippodrome, 7:30 PM; Thaddeus Coffin at the cab stand outside the Hippodrome, 7:30 PM_
-- **c102** [observation] — on who was there at 9:00 PM Edith Stannard runs through it: at 9:00 PM there were Michael Mulcahy, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Michael Mulcahy at the cab stand outside the Hippodrome, 9:00 PM; Rachel Kessler at the cab stand outside the Hippodrome, 9:00 PM_
-- **c103** [observation] — on who was there at 9:30 PM Edith Stannard runs through it: at 9:30 PM there were Vincenzo Tramonti, Rachel Kessler at the benches at the north end of the square, and nobody else worth naming.
-  - _establishes: Vincenzo Tramonti at the benches at the north end of the square, 9:30 PM; Rachel Kessler at the benches at the north end of the square, 9:30 PM_
-- **c104** [observation] — on who was there at 11:00 PM Edith Stannard runs through it: at 11:00 PM there were Michael Mulcahy, Thaddeus Coffin, Rachel Kessler at the cab stand outside the Hippodrome, and nobody else worth naming.
-  - _establishes: Michael Mulcahy at the cab stand outside the Hippodrome, 11:00 PM; Thaddeus Coffin at the cab stand outside the Hippodrome, 11:00 PM; Rachel Kessler at the cab stand outside the Hippodrome, 11:00 PM_
-- ★ **c110** [observation] — on Vincenzo Tramonti’s account Edith Stannard was at the cab stand outside the Hippodrome from 8:00 PM to 8:30 PM and says Vincenzo Tramonti was not.
-  - _establishes: Vincenzo Tramonti not at the cab stand outside the Hippodrome, 8:00 PM–8:30 PM_
-- **c112** [observation] — on Roscoe Colquitt’s account Edith Stannard was at the cab stand outside the Hippodrome at 8:30 PM and says Roscoe Colquitt was not.
-  - _establishes: Roscoe Colquitt not at the cab stand outside the Hippodrome, 8:30 PM_
-- ★ **c134** [overheard] — on Roscoe Colquitt Edith Stannard on Roscoe Colquitt: There is a man who meets people at the chop suey place over the laundry and nobody will say his name out loud.
+- ★ **c120** [overheard] — on Tillman Stannard on Tillman: Tillman was carrying a parcel into the chop suey place and came out without it.
   - _establishes: context only_
-- ★ **c140** [overheard] — on Michael Mulcahy Edith Stannard on Michael Mulcahy: Michael Mulcahy was carrying a parcel into the cab stand outside the Hippodrome and came out without it.
+- **c135** [overheard] — on Kessler Stannard on Kessler: A woman at the benches asked for Kessler by a name Kessler has not used in years.
   - _establishes: context only_
 
-## the victim’s rooms in the brownstone (the place itself)
+## the brownstone (the place itself)
 
-- ★ **c122** [scene] Winthrop Fairbanks was found at the victim’s rooms in the brownstone. The cigarette he had going burned itself out on the sill where it fell. The milk wagon on its rounds came at 8:30 PM, and the driver keeps to his round and he was at the corner for it. That puts the killing in that half hour and no later.
+- ★ **c095** [scene] Fairbanks was found at the brownstone. The cigarette he had going burned itself out on the sill where it fell. The milk wagon was at the corner at 8:30 PM, where the driver’s round puts him every night.
   - _establishes: the victim dead by 8:30 PM; how it was done_
-- ★ **c123** [morgue] The coroner puts death between 8:00 PM and 9:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
+- ★ **c096** [morgue] The coroner puts death between 8:00 PM and 9:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
   - _establishes: death between 8:00 PM and 9:30 PM; how it was done_
-- ★ **c128** [document] Found at the victim’s rooms in the brownstone: A lease assignment made out in Vincenzo Tramonti’s name, waiting only on Winthrop Fairbanks’s signature.
-  - _establishes: Vincenzo Tramonti had a motive (property)_
-- **c130** [document] Found at the victim’s rooms in the brownstone: A promissory note for $4,000 signed by Roscoe Colquitt, endorsed to Winthrop Fairbanks, three months past due.
-  - _establishes: Roscoe Colquitt had a motive (debt)_
+- ★ **c101** [document] Found at the brownstone: A lease assignment made out in Tramonti’s name, waiting only on Fairbanks’s signature.
+  - _establishes: Tramonti had a motive (property)_
+- **c103** [document] Found at the brownstone: A promissory note for $4,000 signed by Colquitt, endorsed to Fairbanks, three months past due.
+  - _establishes: Colquitt had a motive (debt)_
 
-## the cab stand outside the Hippodrome (the place itself)
+## the cab stand (the place itself)
 
-- ★ **c124** [physical] A nickel-plated revolver is gone from the cab stand outside the Hippodrome. The drawer it was kept in is open and the oiled cloth is still in it.
-  - _establishes: something gone from the cab stand outside the Hippodrome; how it was done_
-- **c143** [physical] Wrapping paper and a cut string at the cab stand outside the Hippodrome, and the shop it came from closed two years ago.
+- ★ **c097** [physical] A nickel-plated revolver is gone from the cab stand. The drawer it was kept in is open and the oiled cloth is still in it.
+  - _establishes: something gone from the cab stand; how it was done_
+- ★ **c116** [physical] Wrapping paper and a cut string at the cab stand, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c144** [physical] A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.
+- **c117** [physical] A pawn ticket at the cab stand in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- ★ **c145** [overheard] The receiver at the cab stand outside the Hippodrome would rather talk than be held: Michael Mulcahy was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Michael Mulcahy will take over this one.
-  - _establishes: Michael Mulcahy’s fence accounted for; Michael Mulcahy at the cab stand outside the Hippodrome, 8:30 PM_
-- **c146** [overheard] The goods turn up, tagged and dated, and the tag puts Michael Mulcahy at the cab stand outside the Hippodrome from 8:30 PM with both hands full.
-  - _establishes: Michael Mulcahy’s fence accounted for; Michael Mulcahy at the cab stand outside the Hippodrome, 8:30 PM_
-- **c157** [physical] Wrapping paper and a cut string at the cab stand outside the Hippodrome, and the shop it came from closed two years ago.
+- ★ **c118** [overheard] The receiver at the cab stand would rather talk than be held: Mulcahy was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Mulcahy will take over this one.
+  - _establishes: Mulcahy’s fence accounted for; Mulcahy at the cab stand, 8:30 PM_
+- ★ **c119** [overheard] The goods turn up, tagged and dated, and the tag puts Mulcahy at the cab stand from 8:30 PM with both hands full.
+  - _establishes: Mulcahy’s fence accounted for; Mulcahy at the cab stand, 8:30 PM_
+- **c130** [physical] Wrapping paper and a cut string at the cab stand, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c158** [physical] A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.
+- **c131** [physical] A pawn ticket at the cab stand in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- ★ **c159** [overheard] The receiver at the cab stand outside the Hippodrome would rather talk than be held: Thaddeus Coffin was there from 10:30 PM to 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Thaddeus Coffin will take over this one.
-  - _establishes: Thaddeus Coffin’s fence accounted for; Thaddeus Coffin at the cab stand outside the Hippodrome, 10:30 PM–11:00 PM_
-- **c160** [overheard] The goods turn up, tagged and dated, and the tag puts Thaddeus Coffin at the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM with both hands full.
-  - _establishes: Thaddeus Coffin’s fence accounted for; Thaddeus Coffin at the cab stand outside the Hippodrome, 10:30 PM–11:00 PM_
+- **c132** [overheard] The receiver at the cab stand would rather talk than be held: Coffin was there from 10:30 PM to 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Coffin will take over this one.
+  - _establishes: Coffin’s fence accounted for; Coffin at the cab stand, 10:30 PM–11:00 PM_
+- **c133** [overheard] The goods turn up, tagged and dated, and the tag puts Coffin at the cab stand from 10:30 PM to 11:00 PM with both hands full.
+  - _establishes: Coffin’s fence accounted for; Coffin at the cab stand, 10:30 PM–11:00 PM_
 
-## the chop suey place over the laundry (the place itself)
+## the chop suey place (the place itself)
 
-- **c127** [anchor] The theatre letting out at 8:00 PM puts Roscoe Colquitt at the chop suey place over the laundry.
-  - _establishes: Roscoe Colquitt at the chop suey place over the laundry, 8:00 PM_
-- **c136** [physical] Wrapping paper and a cut string at the chop suey place over the laundry, and the shop it came from closed two years ago.
+- **c100** [anchor] The theatre letting out was at 8:00 PM, and Colquitt was at the chop suey place for it.
+  - _establishes: Colquitt at the chop suey place, 8:00 PM_
+- ★ **c109** [physical] Wrapping paper and a cut string at the chop suey place, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c137** [physical] A pawn ticket at the chop suey place over the laundry in a name that does not exist, made out at the hour in question.
+- ★ **c110** [physical] A pawn ticket at the chop suey place in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- ★ **c138** [overheard] The receiver at the chop suey place over the laundry would rather talk than be held: Roscoe Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Roscoe Colquitt will take over this one.
-  - _establishes: Roscoe Colquitt’s fence accounted for; Roscoe Colquitt at the chop suey place over the laundry, 8:30 PM_
-- **c139** [overheard] The goods turn up, tagged and dated, and the tag puts Roscoe Colquitt at the chop suey place over the laundry from 8:30 PM with both hands full.
-  - _establishes: Roscoe Colquitt’s fence accounted for; Roscoe Colquitt at the chop suey place over the laundry, 8:30 PM_
-- ★ **c150** [physical] Wrapping paper and a cut string at the chop suey place over the laundry, and the shop it came from closed two years ago.
+- ★ **c111** [overheard] The receiver at the chop suey place would rather talk than be held: Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Colquitt will take over this one.
+  - _establishes: Colquitt’s fence accounted for; Colquitt at the chop suey place, 8:30 PM_
+- **c112** [overheard] The goods turn up, tagged and dated, and the tag puts Colquitt at the chop suey place from 8:30 PM with both hands full.
+  - _establishes: Colquitt’s fence accounted for; Colquitt at the chop suey place, 8:30 PM_
+- ★ **c123** [physical] Wrapping paper and a cut string at the chop suey place, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c151** [physical] A pawn ticket at the chop suey place over the laundry in a name that does not exist, made out at the hour in question.
+- **c124** [physical] A pawn ticket at the chop suey place in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- ★ **c152** [overheard] The receiver at the chop suey place over the laundry would rather talk than be held: Lorraine Tillman was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Lorraine Tillman will take over this one.
-  - _establishes: Lorraine Tillman’s fence accounted for; Lorraine Tillman at the chop suey place over the laundry, 8:30 PM–9:00 PM_
-- **c153** [overheard] The goods turn up, tagged and dated, and the tag puts Lorraine Tillman at the chop suey place over the laundry from 8:30 PM to 9:00 PM with both hands full.
-  - _establishes: Lorraine Tillman’s fence accounted for; Lorraine Tillman at the chop suey place over the laundry, 8:30 PM–9:00 PM_
+- ★ **c125** [overheard] The receiver at the chop suey place would rather talk than be held: Tillman was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Tillman will take over this one.
+  - _establishes: Tillman’s fence accounted for; Tillman at the chop suey place, 8:30 PM–9:00 PM_
+- ★ **c126** [overheard] The goods turn up, tagged and dated, and the tag puts Tillman at the chop suey place from 8:30 PM to 9:00 PM with both hands full.
+  - _establishes: Tillman’s fence accounted for; Tillman at the chop suey place, 8:30 PM–9:00 PM_
 
-## the benches at the north end of the square (the place itself)
+## the benches (the place itself)
 
-- **c164** [physical] A board-and-keep receipt at the benches at the north end of the square, monthly, eight years of them.
+- **c137** [physical] A board-and-keep receipt at the benches, monthly, eight years of them.
   - _establishes: context only_
-- ★ **c165** [physical] A child’s shoe at the benches at the north end of the square, and nobody at the benches at the north end of the square has any children.
+- **c138** [physical] A child’s shoe at the benches, and nobody at the benches has any children.
   - _establishes: context only_
-- ★ **c166** [overheard] The woman who keeps the child says it straight out: Rachel Kessler was at the benches at the north end of the square from 7:00 PM, the same as every week, and left with the same face as always.
-  - _establishes: Rachel Kessler’s hidden-family accounted for; Rachel Kessler at the benches at the north end of the square, 7:00 PM_
-- **c167** [overheard] The parish register at the benches at the north end of the square has the christening in it, and the board money receipted through the evening in question.
-  - _establishes: Rachel Kessler’s hidden-family accounted for; Rachel Kessler at the benches at the north end of the square, 7:00 PM_
+- ★ **c139** [overheard] The woman who keeps the child says it straight out: Kessler was at the benches from 7:00 PM, the same as every week, and left with the same face as always.
+  - _establishes: Kessler’s hidden-family accounted for; Kessler at the benches, 7:00 PM_
+- **c140** [overheard] The parish register at the benches has the christening in it, and the board money receipted through the evening in question.
+  - _establishes: Kessler’s hidden-family accounted for; Kessler at the benches, 7:00 PM_
 
 ## Withheld observations
 
-- ~~Vincenzo Tramonti saw Thaddeus Coffin at the cab stand outside the Hippodrome, 7:30 PM~~ — lying about that time, will not say.
-- ~~Vincenzo Tramonti saw Edith Stannard at the cab stand outside the Hippodrome, 7:30 PM~~ — lying about that time, will not say.
-- ~~Vincenzo Tramonti saw Winthrop Fairbanks at the victim’s rooms in the brownstone, 8:30 PM~~ — lying about that time, will not say.
-- ~~Roscoe Colquitt saw Lorraine Tillman at the chop suey place over the laundry, 8:30 PM~~ — lying about that time, will not say.
-- ~~Roscoe Colquitt saw Thaddeus Coffin at the chop suey place over the laundry, 8:30 PM~~ — lying about that time, will not say.
-- ~~Roscoe Colquitt saw Rachel Kessler at the chop suey place over the laundry, 8:30 PM~~ — lying about that time, will not say.
-- ~~Roscoe Colquitt saw Isidore Feldman at the chop suey place over the laundry, 8:30 PM~~ — lying about that time, will not say.
-- ~~Michael Mulcahy saw Giovanna Grasso at the cab stand outside the Hippodrome, 8:30 PM~~ — lying about that time, will not say.
-- ~~Michael Mulcahy saw Edith Stannard at the cab stand outside the Hippodrome, 8:30 PM~~ — lying about that time, will not say.
-- ~~Lorraine Tillman saw Roscoe Colquitt at the chop suey place over the laundry, 8:30 PM, 9:00 PM~~ — lying about that time, will not say.
-- ~~Lorraine Tillman saw Thaddeus Coffin at the chop suey place over the laundry, 8:30 PM, 9:00 PM~~ — lying about that time, will not say.
-- ~~Lorraine Tillman saw Rachel Kessler at the chop suey place over the laundry, 8:30 PM~~ — lying about that time, will not say.
-- ~~Lorraine Tillman saw Isidore Feldman at the chop suey place over the laundry, 8:30 PM, 9:00 PM~~ — lying about that time, will not say.
-- ~~Thaddeus Coffin saw Edith Stannard at the cab stand outside the Hippodrome, 10:30 PM, 11:00 PM~~ — lying about that time, will not say.
-- ~~Thaddeus Coffin saw Michael Mulcahy at the cab stand outside the Hippodrome, 11:00 PM~~ — lying about that time, will not say.
-- ~~Thaddeus Coffin saw Rachel Kessler at the cab stand outside the Hippodrome, 11:00 PM~~ — lying about that time, will not say.
+- ~~Tramonti saw Coffin at the cab stand, 7:30 PM~~ — lying about that time, will not say.
+- ~~Tramonti saw Stannard at the cab stand, 7:30 PM~~ — lying about that time, will not say.
+- ~~Tramonti saw Fairbanks at the brownstone, 8:30 PM~~ — lying about that time, will not say.
+- ~~Colquitt saw Tillman at the chop suey place, 8:30 PM~~ — lying about that time, will not say.
+- ~~Colquitt saw Coffin at the chop suey place, 8:30 PM~~ — lying about that time, will not say.
+- ~~Colquitt saw Kessler at the chop suey place, 8:30 PM~~ — lying about that time, will not say.
+- ~~Colquitt saw Feldman at the chop suey place, 8:30 PM~~ — lying about that time, will not say.
+- ~~Mulcahy saw Grasso at the cab stand, 8:30 PM~~ — lying about that time, will not say.
+- ~~Mulcahy saw Stannard at the cab stand, 8:30 PM~~ — lying about that time, will not say.
+- ~~Tillman saw Colquitt at the chop suey place, 8:30 PM, 9:00 PM~~ — lying about that time, will not say.
+- ~~Tillman saw Coffin at the chop suey place, 8:30 PM, 9:00 PM~~ — lying about that time, will not say.
+- ~~Tillman saw Kessler at the chop suey place, 8:30 PM~~ — lying about that time, will not say.
+- ~~Tillman saw Feldman at the chop suey place, 8:30 PM, 9:00 PM~~ — lying about that time, will not say.
+- ~~Coffin saw Stannard at the cab stand, 10:30 PM, 11:00 PM~~ — lying about that time, will not say.
+- ~~Coffin saw Mulcahy at the cab stand, 11:00 PM~~ — lying about that time, will not say.
+- ~~Coffin saw Kessler at the cab stand, 11:00 PM~~ — lying about that time, will not say.
 

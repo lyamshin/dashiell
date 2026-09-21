@@ -8,6 +8,7 @@
     {
       "id": "el-platform",
       "name": "the El platform at Twenty-Third Street",
+      "shortName": "the El platform",
       "kind": "public",
       "objects": [
         "obj-newspapers",
@@ -19,6 +20,7 @@
     {
       "id": "res-brownstone",
       "name": "the victim’s rooms in the brownstone",
+      "shortName": "the brownstone",
       "kind": "private",
       "objects": [
         "obj-telephone",
@@ -31,6 +33,7 @@
     {
       "id": "pawnshop",
       "name": "Zelinsky’s pawnshop, the back room",
+      "shortName": "Zelinsky’s",
       "kind": "semi",
       "objects": [
         "obj-revolver",
@@ -44,6 +47,7 @@
     {
       "id": "drugstore",
       "name": "Kaplan’s drugstore with the soda fountain",
+      "shortName": "Kaplan’s",
       "kind": "public",
       "objects": [
         "obj-chloral",
@@ -56,6 +60,7 @@
     {
       "id": "movie-house",
       "name": "the Bijou picture house",
+      "shortName": "the Bijou",
       "kind": "public",
       "objects": [
         "obj-ashtray"
@@ -67,6 +72,7 @@
     {
       "id": "rooming-house-room",
       "name": "the back room at Mrs. Teague’s",
+      "shortName": "Mrs. Teague’s",
       "kind": "private",
       "objects": [
         "obj-bookend",
@@ -148,6 +154,7 @@
     {
       "id": "p-victim",
       "name": "Gretchen Vogel",
+      "surname": "Vogel",
       "role": "a theatrical agent",
       "kind": "victim",
       "isKiller": false,
@@ -156,16 +163,17 @@
     {
       "id": "p-s1",
       "name": "Daniel Sweeney",
+      "surname": "Sweeney",
       "role": "a ward heeler",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heeler",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people the victim worked for",
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Daniel Sweeney slips off to the El platform at Twenty-Third Street from 7:00 PM to settle with a bookmaker.",
+        "description": "Sweeney slips off to the El platform from 7:00 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 2,
@@ -174,8 +182,8 @@
         ]
       },
       "motive": {
-        "type": "property",
-        "description": "wanted the victim out of a lease"
+        "type": "silence-a-witness",
+        "description": "needed the victim silent"
       },
       "foundAt": "pawnshop",
       "isClient": true
@@ -183,6 +191,7 @@
     {
       "id": "p-s2",
       "name": "Isidore Lefkowitz",
+      "surname": "Lefkowitz",
       "role": "an insurance adjuster",
       "kind": "suspect",
       "isKiller": false,
@@ -192,7 +201,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Isidore Lefkowitz slips off to Zelinsky’s pawnshop, the back room from 6:30 PM to settle with a bookmaker.",
+        "description": "Lefkowitz slips off to Zelinsky’s from 6:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 1,
@@ -205,6 +214,7 @@
     {
       "id": "p-s3",
       "name": "Clementine Cheatham",
+      "surname": "Cheatham",
       "role": "a seamstress",
       "kind": "suspect",
       "isKiller": false,
@@ -214,7 +224,7 @@
       "secret": {
         "type": "hidden-family",
         "label": "A child boarded out",
-        "description": "Clementine Cheatham goes to Kaplan’s drugstore with the soda fountain from 6:30 PM to see a child nobody is supposed to know about.",
+        "description": "Cheatham goes to Kaplan’s from 6:30 PM to see a child nobody is supposed to know about.",
         "cells": [
           {
             "tick": 1,
@@ -227,6 +237,7 @@
     {
       "id": "p-s4",
       "name": "Rachel Feldman",
+      "surname": "Feldman",
       "role": "a piano teacher",
       "kind": "suspect",
       "isKiller": false,
@@ -236,7 +247,7 @@
       "secret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "Rachel Feldman drinks alone at the Bijou picture house from 8:30 PM to 9:00 PM and will claim to have been anywhere else.",
+        "description": "Feldman drinks alone at the Bijou from 8:30 PM to 9:00 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 5,
@@ -253,7 +264,8 @@
     {
       "id": "p-s5",
       "name": "Salvatore Alfano",
-      "role": "the victim’s nephew, at loose ends",
+      "surname": "Alfano",
+      "role": "a young man living on expectations",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heir",
@@ -262,7 +274,7 @@
       "secret": {
         "type": "dope",
         "label": "Buying morphine",
-        "description": "Salvatore Alfano buys morphine at Kaplan’s drugstore with the soda fountain from 7:00 PM to 7:30 PM and would rather be thought a murderer than a hop-head.",
+        "description": "Alfano buys morphine at Kaplan’s from 7:00 PM to 7:30 PM and would rather be thought a murderer than a hop-head.",
         "cells": [
           {
             "tick": 2,
@@ -283,6 +295,7 @@
     {
       "id": "p-s6",
       "name": "Grafton Thorndike",
+      "surname": "Thorndike",
       "role": "a bookkeeper",
       "kind": "suspect",
       "isKiller": true,
@@ -292,7 +305,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Grafton Thorndike is at the victim’s rooms in the brownstone from 6:30 PM, alone with Gretchen Vogel when it happens at 6:30 PM.",
+        "description": "Thorndike is at the brownstone from 6:30 PM, alone with Vogel when it happens at 6:30 PM.",
         "cells": [
           {
             "tick": 1,
@@ -304,7 +317,7 @@
       "coverSecret": {
         "type": "forged-identity",
         "label": "Forged identity",
-        "description": "Grafton Thorndike is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
+        "description": "Thorndike is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
         "cells": []
       },
       "motive": {
@@ -316,6 +329,7 @@
     {
       "id": "p-f1",
       "name": "Winthrop Lathrop",
+      "surname": "Lathrop",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -325,6 +339,7 @@
     {
       "id": "p-f2",
       "name": "Isaiah Hargrove",
+      "surname": "Hargrove",
       "role": "the druggist",
       "kind": "fixture",
       "isKiller": false,
@@ -334,6 +349,7 @@
     {
       "id": "p-f3",
       "name": "Prescott Fairbanks",
+      "surname": "Fairbanks",
       "role": "the ticket-taker",
       "kind": "fixture",
       "isKiller": false,
@@ -343,6 +359,7 @@
     {
       "id": "p-f4",
       "name": "Hedwig Schilling",
+      "surname": "Schilling",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -352,6 +369,7 @@
     {
       "id": "p-cop",
       "name": "Booker Colquitt",
+      "surname": "Colquitt",
       "role": "the patrolman on the beat",
       "kind": "fixture",
       "isKiller": false,
@@ -388,7 +406,9 @@
         }
       ],
       "timing": "while the lesson was still going on overhead",
-      "sceneTiming": "the piano stopped and what was heard next was heard against silence",
+      "highTiming": "just after the lesson overhead stopped",
+      "sceneFact": "The lesson overhead stopped at {T} and nothing was played after it.",
+      "masks": false,
       "placeId": "rooming-house-room"
     },
     {
@@ -402,12 +422,18 @@
           "kind": "sighting"
         },
         {
+          "kind": "knowledge",
+          "description": "the late edition led with the bridge contract and not the hold-up"
+        },
+        {
           "kind": "mark",
           "description": "ink still wet enough to come off on a glove"
         }
       ],
       "timing": "when the last edition came up",
-      "sceneTiming": "the truck run is timed to the minute and the papers were out on the stand",
+      "highTiming": "as the last edition was coming up",
+      "sceneFact": "The last edition came off the truck at {T}, and a paper from that run is here with the ink still wet.",
+      "masks": false,
       "placeId": "drugstore"
     },
     {
@@ -425,7 +451,9 @@
         }
       ],
       "timing": "when the cop came round",
-      "sceneTiming": "the patrolman was two streets off on his round and heard it",
+      "highTiming": "as the cop was coming round",
+      "sceneFact": "The patrolman’s round brought him two streets off at {T}.",
+      "masks": false,
       "route": [
         "pawnshop",
         "drugstore",
@@ -438,6 +466,7 @@
     "drugstore",
     "pawnshop"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2429,7 +2458,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -2439,7 +2468,7 @@
           "tick": 11
         }
       ],
-      "text": "Daniel Sweeney says Isidore Lefkowitz was at Kaplan’s drugstore with the soda fountain at 11:30 PM.",
+      "text": "Sweeney says Lefkowitz was at Kaplan’s at 11:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -2450,7 +2479,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -2460,10 +2489,15 @@
           "tick": 1
         }
       ],
-      "text": "Daniel Sweeney says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Sweeney says Cheatham was at Kaplan’s at 6:30 PM.",
       "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c026",
+        "c115",
+        "c057",
+        "c101"
+      ],
+      "role": "spine"
     },
     {
       "id": "c003",
@@ -2471,7 +2505,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -2481,10 +2515,10 @@
           "tick": 1
         }
       ],
-      "text": "Daniel Sweeney says Rachel Feldman was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Sweeney says Feldman was at Kaplan’s at 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c004",
@@ -2492,7 +2526,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -2502,7 +2536,7 @@
           "tick": 4
         }
       ],
-      "text": "Daniel Sweeney says Rachel Feldman was at Zelinsky’s pawnshop, the back room at 8:00 PM.",
+      "text": "Sweeney says Feldman was at Zelinsky’s at 8:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -2513,7 +2547,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -2535,7 +2569,7 @@
           "tick": 10
         }
       ],
-      "text": "Daniel Sweeney says Rachel Feldman was at Zelinsky’s pawnshop, the back room from 10:00 PM to 11:00 PM.",
+      "text": "Sweeney says Feldman was at Zelinsky’s from 10:00 PM to 11:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -2546,7 +2580,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -2556,7 +2590,7 @@
           "tick": 0
         }
       ],
-      "text": "Daniel Sweeney says Salvatore Alfano was at the Bijou picture house at 6:00 PM.",
+      "text": "Sweeney says Alfano was at the Bijou at 6:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -2567,7 +2601,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -2577,10 +2611,13 @@
           "tick": 1
         }
       ],
-      "text": "Daniel Sweeney says Salvatore Alfano was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Sweeney says Alfano was at Kaplan’s at 6:30 PM.",
       "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c095",
+        "c141"
+      ],
+      "role": "spine"
     },
     {
       "id": "c008",
@@ -2588,7 +2625,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2598,7 +2635,7 @@
           "tick": 3
         }
       ],
-      "text": "Daniel Sweeney says Grafton Thorndike was at the El platform at Twenty-Third Street at 7:30 PM.",
+      "text": "Sweeney says Thorndike was at the El platform at 7:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -2609,7 +2646,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -2619,7 +2656,7 @@
           "tick": 11
         }
       ],
-      "text": "Isidore Lefkowitz says Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 11:30 PM.",
+      "text": "Lefkowitz says Sweeney was at Kaplan’s at 11:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2630,7 +2667,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -2645,7 +2682,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Isidore Lefkowitz says Clementine Cheatham was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Lefkowitz says Cheatham was at Zelinsky’s at 6:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2656,7 +2693,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -2672,7 +2709,7 @@
           "tick": 3
         }
       ],
-      "text": "Isidore Lefkowitz says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain from 7:00 PM to 7:30 PM.",
+      "text": "Lefkowitz says Cheatham was at Kaplan’s from 7:00 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2683,7 +2720,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -2699,7 +2736,7 @@
           "tick": 7
         }
       ],
-      "text": "Isidore Lefkowitz says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain from 9:00 PM to 9:30 PM.",
+      "text": "Lefkowitz says Cheatham was at Kaplan’s from 9:00 PM to 9:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2710,7 +2747,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -2725,7 +2762,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Isidore Lefkowitz says Rachel Feldman was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Lefkowitz says Feldman was at Zelinsky’s at 6:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2736,7 +2773,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -2752,7 +2789,7 @@
           "tick": 3
         }
       ],
-      "text": "Isidore Lefkowitz says Salvatore Alfano was at Kaplan’s drugstore with the soda fountain from 7:00 PM to 7:30 PM.",
+      "text": "Lefkowitz says Alfano was at Kaplan’s from 7:00 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2763,7 +2800,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -2773,7 +2810,7 @@
           "tick": 9
         }
       ],
-      "text": "Isidore Lefkowitz says Salvatore Alfano was at the Bijou picture house at 10:30 PM.",
+      "text": "Lefkowitz says Alfano was at the Bijou at 10:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2784,7 +2821,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2799,7 +2836,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Isidore Lefkowitz says Grafton Thorndike was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Lefkowitz says Thorndike was at Zelinsky’s at 6:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2810,7 +2847,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2820,7 +2857,7 @@
           "tick": 5
         }
       ],
-      "text": "Isidore Lefkowitz says Grafton Thorndike was at the El platform at Twenty-Third Street at 8:30 PM.",
+      "text": "Lefkowitz says Thorndike was at the El platform at 8:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2831,7 +2868,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2847,7 +2884,7 @@
           "tick": 9
         }
       ],
-      "text": "Isidore Lefkowitz says Grafton Thorndike was at the Bijou picture house from 10:00 PM to 10:30 PM.",
+      "text": "Lefkowitz says Thorndike was at the Bijou from 10:00 PM to 10:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2858,7 +2895,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -2873,7 +2910,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Clementine Cheatham says Isidore Lefkowitz was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Cheatham says Lefkowitz was at Zelinsky’s at 6:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2884,7 +2921,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -2900,7 +2937,7 @@
           "tick": 3
         }
       ],
-      "text": "Clementine Cheatham says Isidore Lefkowitz was at Kaplan’s drugstore with the soda fountain from 7:00 PM to 7:30 PM.",
+      "text": "Cheatham says Lefkowitz was at Kaplan’s from 7:00 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2911,7 +2948,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -2927,7 +2964,7 @@
           "tick": 7
         }
       ],
-      "text": "Clementine Cheatham says Isidore Lefkowitz was at Kaplan’s drugstore with the soda fountain from 9:00 PM to 9:30 PM.",
+      "text": "Cheatham says Lefkowitz was at Kaplan’s from 9:00 PM to 9:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2938,7 +2975,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -2953,7 +2990,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Clementine Cheatham says Rachel Feldman was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Cheatham says Feldman was at Zelinsky’s at 6:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2964,7 +3001,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -2980,7 +3017,7 @@
           "tick": 3
         }
       ],
-      "text": "Clementine Cheatham says Salvatore Alfano was at Kaplan’s drugstore with the soda fountain from 7:00 PM to 7:30 PM.",
+      "text": "Cheatham says Alfano was at Kaplan’s from 7:00 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -2991,7 +3028,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3006,10 +3043,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Clementine Cheatham says Grafton Thorndike was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Cheatham says Thorndike was at Zelinsky’s at 6:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c025",
@@ -3017,7 +3054,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3027,7 +3064,7 @@
           "tick": 11
         }
       ],
-      "text": "Clementine Cheatham says Grafton Thorndike was at the Bijou picture house at 11:30 PM.",
+      "text": "Cheatham says Thorndike was at the Bijou at 11:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3038,7 +3075,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3048,10 +3085,13 @@
           "tick": 1
         }
       ],
-      "text": "Rachel Feldman says Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Feldman says Sweeney was at Kaplan’s at 6:30 PM.",
       "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c095",
+        "c030"
+      ],
+      "role": "spine"
     },
     {
       "id": "c027",
@@ -3059,7 +3099,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3069,7 +3109,7 @@
           "tick": 4
         }
       ],
-      "text": "Rachel Feldman says Daniel Sweeney was at Zelinsky’s pawnshop, the back room at 8:00 PM.",
+      "text": "Feldman says Sweeney was at Zelinsky’s at 8:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3080,7 +3120,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3102,7 +3142,7 @@
           "tick": 10
         }
       ],
-      "text": "Rachel Feldman says Daniel Sweeney was at Zelinsky’s pawnshop, the back room from 10:00 PM to 11:00 PM.",
+      "text": "Feldman says Sweeney was at Zelinsky’s from 10:00 PM to 11:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3113,7 +3153,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3128,7 +3168,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rachel Feldman says Isidore Lefkowitz was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Feldman says Lefkowitz was at Zelinsky’s at 6:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3139,7 +3179,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3154,10 +3194,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rachel Feldman says Clementine Cheatham was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Feldman says Cheatham was at Zelinsky’s at 6:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c031",
@@ -3165,7 +3205,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3175,7 +3215,7 @@
           "tick": 1
         }
       ],
-      "text": "Rachel Feldman says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Feldman says Cheatham was at Kaplan’s at 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3186,7 +3226,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3196,7 +3236,7 @@
           "tick": 1
         }
       ],
-      "text": "Rachel Feldman says Salvatore Alfano was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Feldman says Alfano was at Kaplan’s at 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3207,7 +3247,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3222,12 +3262,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rachel Feldman says Grafton Thorndike was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Feldman says Thorndike was at Zelinsky’s at 6:00 PM.",
       "place": "pawnshop",
-      "leadsTo": [
-        "c052"
-      ],
-      "role": "spine"
+      "leadsTo": [],
+      "role": "corroboration"
     },
     {
       "id": "c034",
@@ -3235,7 +3273,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3245,7 +3283,7 @@
           "tick": 0
         }
       ],
-      "text": "Salvatore Alfano says Daniel Sweeney was at the Bijou picture house at 6:00 PM.",
+      "text": "Alfano says Sweeney was at the Bijou at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3256,7 +3294,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3266,7 +3304,7 @@
           "tick": 1
         }
       ],
-      "text": "Salvatore Alfano says Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Alfano says Sweeney was at Kaplan’s at 6:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3277,7 +3315,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3287,7 +3325,7 @@
           "tick": 9
         }
       ],
-      "text": "Salvatore Alfano says Isidore Lefkowitz was at the Bijou picture house at 10:30 PM.",
+      "text": "Alfano says Lefkowitz was at the Bijou at 10:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3298,7 +3336,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3308,7 +3346,7 @@
           "tick": 1
         }
       ],
-      "text": "Salvatore Alfano says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Alfano says Cheatham was at Kaplan’s at 6:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3319,7 +3357,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3329,7 +3367,7 @@
           "tick": 1
         }
       ],
-      "text": "Salvatore Alfano says Rachel Feldman was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Alfano says Feldman was at Kaplan’s at 6:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3340,7 +3378,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3350,7 +3388,7 @@
           "tick": 5
         }
       ],
-      "text": "Salvatore Alfano says Rachel Feldman was at the Bijou picture house at 8:30 PM.",
+      "text": "Alfano says Feldman was at the Bijou at 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3361,7 +3399,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3377,7 +3415,7 @@
           "tick": 7
         }
       ],
-      "text": "Salvatore Alfano says Grafton Thorndike was at the El platform at Twenty-Third Street from 9:00 PM to 9:30 PM.",
+      "text": "Alfano says Thorndike was at the El platform from 9:00 PM to 9:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3388,7 +3426,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3404,7 +3442,7 @@
           "tick": 10
         }
       ],
-      "text": "Salvatore Alfano says Grafton Thorndike was at the Bijou picture house from 10:30 PM to 11:00 PM.",
+      "text": "Alfano says Thorndike was at the Bijou from 10:30 PM to 11:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -3415,7 +3453,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3431,7 +3469,7 @@
           "tick": 3
         }
       ],
-      "text": "Grafton Thorndike says Daniel Sweeney was at the El platform at Twenty-Third Street from 7:00 PM to 7:30 PM.",
+      "text": "Thorndike says Sweeney was at the El platform from 7:00 PM to 7:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3442,7 +3480,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3457,7 +3495,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Grafton Thorndike says Isidore Lefkowitz was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Thorndike says Lefkowitz was at Zelinsky’s at 6:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3468,7 +3506,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3478,7 +3516,7 @@
           "tick": 5
         }
       ],
-      "text": "Grafton Thorndike says Isidore Lefkowitz was at the El platform at Twenty-Third Street at 8:30 PM.",
+      "text": "Thorndike says Lefkowitz was at the El platform at 8:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3489,7 +3527,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3505,7 +3543,7 @@
           "tick": 9
         }
       ],
-      "text": "Grafton Thorndike says Isidore Lefkowitz was at the Bijou picture house from 10:00 PM to 10:30 PM.",
+      "text": "Thorndike says Lefkowitz was at the Bijou from 10:00 PM to 10:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3516,7 +3554,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3531,7 +3569,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Grafton Thorndike says Clementine Cheatham was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Thorndike says Cheatham was at Zelinsky’s at 6:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3542,7 +3580,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3552,7 +3590,7 @@
           "tick": 11
         }
       ],
-      "text": "Grafton Thorndike says Clementine Cheatham was at the Bijou picture house at 11:30 PM.",
+      "text": "Thorndike says Cheatham was at the Bijou at 11:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3563,7 +3601,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3578,7 +3616,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Grafton Thorndike says Rachel Feldman was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Thorndike says Feldman was at Zelinsky’s at 6:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3589,7 +3627,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3605,7 +3643,7 @@
           "tick": 7
         }
       ],
-      "text": "Grafton Thorndike says Salvatore Alfano was at the El platform at Twenty-Third Street from 9:00 PM to 9:30 PM.",
+      "text": "Thorndike says Alfano was at the El platform from 9:00 PM to 9:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3616,7 +3654,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -3632,7 +3670,7 @@
           "tick": 10
         }
       ],
-      "text": "Grafton Thorndike says Salvatore Alfano was at the Bijou picture house from 10:30 PM to 11:00 PM.",
+      "text": "Thorndike says Alfano was at the Bijou from 10:30 PM to 11:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3643,7 +3681,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3689,7 +3727,7 @@
           "tick": 10
         }
       ],
-      "text": "Winthrop Lathrop says Daniel Sweeney was at Zelinsky’s pawnshop, the back room from 8:00 PM to 11:00 PM.",
+      "text": "Lathrop says Sweeney was at Zelinsky’s from 8:00 PM to 11:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3700,7 +3738,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3721,7 +3759,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Winthrop Lathrop says Isidore Lefkowitz was at Zelinsky’s pawnshop, the back room from 6:00 PM to 6:30 PM.",
+      "text": "Lathrop says Lefkowitz was at Zelinsky’s from 6:00 PM to 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "corroboration"
@@ -3732,7 +3770,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -3747,7 +3785,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Winthrop Lathrop says Clementine Cheatham was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Lathrop says Cheatham was at Zelinsky’s at 6:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3758,7 +3796,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3773,7 +3811,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Winthrop Lathrop says Rachel Feldman was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Lathrop says Feldman was at Zelinsky’s at 6:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3784,7 +3822,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3806,7 +3844,7 @@
           "tick": 4
         }
       ],
-      "text": "Winthrop Lathrop says Rachel Feldman was at Zelinsky’s pawnshop, the back room from 7:00 PM to 8:00 PM.",
+      "text": "Lathrop says Feldman was at Zelinsky’s from 7:00 PM to 8:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3817,7 +3855,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -3845,7 +3883,7 @@
           "tick": 11
         }
       ],
-      "text": "Winthrop Lathrop says Rachel Feldman was at Zelinsky’s pawnshop, the back room from 10:00 PM to 11:30 PM.",
+      "text": "Lathrop says Feldman was at Zelinsky’s from 10:00 PM to 11:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -3856,7 +3894,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3871,10 +3909,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Winthrop Lathrop says Grafton Thorndike was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Lathrop says Thorndike was at Zelinsky’s at 6:00 PM.",
       "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c003",
+        "c106",
+        "c064"
+      ],
+      "role": "spine"
     },
     {
       "id": "c058",
@@ -3882,7 +3924,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3892,7 +3934,7 @@
           "tick": 1
         }
       ],
-      "text": "Isaiah Hargrove says Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Hargrove says Sweeney was at Kaplan’s at 6:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3903,7 +3945,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3913,7 +3955,7 @@
           "tick": 11
         }
       ],
-      "text": "Isaiah Hargrove says Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 11:30 PM.",
+      "text": "Hargrove says Sweeney was at Kaplan’s at 11:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3924,7 +3966,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3940,7 +3982,7 @@
           "tick": 3
         }
       ],
-      "text": "Isaiah Hargrove says Isidore Lefkowitz was at Kaplan’s drugstore with the soda fountain from 7:00 PM to 7:30 PM.",
+      "text": "Hargrove says Lefkowitz was at Kaplan’s from 7:00 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3951,7 +3993,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3967,7 +4009,7 @@
           "tick": 7
         }
       ],
-      "text": "Isaiah Hargrove says Isidore Lefkowitz was at Kaplan’s drugstore with the soda fountain from 9:00 PM to 9:30 PM.",
+      "text": "Hargrove says Lefkowitz was at Kaplan’s from 9:00 PM to 9:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3978,7 +4020,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -3988,7 +4030,7 @@
           "tick": 11
         }
       ],
-      "text": "Isaiah Hargrove says Isidore Lefkowitz was at Kaplan’s drugstore with the soda fountain at 11:30 PM.",
+      "text": "Hargrove says Lefkowitz was at Kaplan’s at 11:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3999,7 +4041,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -4009,7 +4051,7 @@
           "tick": 4
         }
       ],
-      "text": "Isaiah Hargrove says Isidore Lefkowitz was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Hargrove says Lefkowitz was at Mrs. Teague’s at 8:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4020,7 +4062,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4042,7 +4084,7 @@
           "tick": 3
         }
       ],
-      "text": "Isaiah Hargrove says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain from 6:30 PM to 7:30 PM.",
+      "text": "Hargrove says Cheatham was at Kaplan’s from 6:30 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "corroboration"
@@ -4053,7 +4095,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4093,7 +4135,7 @@
           "tick": 10
         }
       ],
-      "text": "Isaiah Hargrove says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain from 8:30 PM to 11:00 PM.",
+      "text": "Hargrove says Cheatham was at Kaplan’s from 8:30 PM to 11:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4104,7 +4146,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -4114,10 +4156,10 @@
           "tick": 1
         }
       ],
-      "text": "Isaiah Hargrove says Rachel Feldman was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Hargrove says Feldman was at Kaplan’s at 6:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c067",
@@ -4125,7 +4167,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4147,7 +4189,7 @@
           "tick": 3
         }
       ],
-      "text": "Isaiah Hargrove says Salvatore Alfano was at Kaplan’s drugstore with the soda fountain from 6:30 PM to 7:30 PM.",
+      "text": "Hargrove says Alfano was at Kaplan’s from 6:30 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4158,7 +4200,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Daniel Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -4168,7 +4210,7 @@
           "tick": 0
         }
       ],
-      "text": "Prescott Fairbanks says Daniel Sweeney was at the Bijou picture house at 6:00 PM.",
+      "text": "Fairbanks says Sweeney was at the Bijou at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4179,7 +4221,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -4189,7 +4231,7 @@
           "tick": 8
         }
       ],
-      "text": "Prescott Fairbanks says Isidore Lefkowitz was at the Bijou picture house at 10:00 PM.",
+      "text": "Fairbanks says Lefkowitz was at the Bijou at 10:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4200,7 +4242,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4210,7 +4252,7 @@
           "tick": 11
         }
       ],
-      "text": "Prescott Fairbanks says Clementine Cheatham was at the Bijou picture house at 11:30 PM.",
+      "text": "Fairbanks says Cheatham was at the Bijou at 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4221,7 +4263,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -4243,7 +4285,7 @@
           "tick": 7
         }
       ],
-      "text": "Prescott Fairbanks says Rachel Feldman was at the Bijou picture house from 8:30 PM to 9:30 PM.",
+      "text": "Fairbanks says Feldman was at the Bijou from 8:30 PM to 9:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4254,7 +4296,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4264,7 +4306,7 @@
           "tick": 0
         }
       ],
-      "text": "Prescott Fairbanks says Salvatore Alfano was at the Bijou picture house at 6:00 PM.",
+      "text": "Fairbanks says Alfano was at the Bijou at 6:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4275,7 +4317,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4291,7 +4333,7 @@
           "tick": 5
         }
       ],
-      "text": "Prescott Fairbanks says Salvatore Alfano was at the Bijou picture house from 8:00 PM to 8:30 PM.",
+      "text": "Fairbanks says Alfano was at the Bijou from 8:00 PM to 8:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4302,7 +4344,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Salvatore Alfano"
+        "topic": "Alfano"
       },
       "establishes": [
         {
@@ -4312,7 +4354,7 @@
           "tick": 10
         }
       ],
-      "text": "Prescott Fairbanks says Salvatore Alfano was at the Bijou picture house at 11:00 PM.",
+      "text": "Fairbanks says Alfano was at the Bijou at 11:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4323,7 +4365,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -4333,7 +4375,7 @@
           "tick": 8
         }
       ],
-      "text": "Prescott Fairbanks says Grafton Thorndike was at the Bijou picture house at 10:00 PM.",
+      "text": "Fairbanks says Thorndike was at the Bijou at 10:00 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4344,7 +4386,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Grafton Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -4360,7 +4402,7 @@
           "tick": 11
         }
       ],
-      "text": "Prescott Fairbanks says Grafton Thorndike was at the Bijou picture house from 11:00 PM to 11:30 PM.",
+      "text": "Fairbanks says Thorndike was at the Bijou from 11:00 PM to 11:30 PM.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
@@ -4371,7 +4413,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Gretchen Vogel"
+        "topic": "Vogel"
       },
       "establishes": [
         {
@@ -4381,7 +4423,7 @@
           "tick": 0
         }
       ],
-      "text": "Hedwig Schilling says Gretchen Vogel was at the back room at Mrs. Teague’s at 6:00 PM.",
+      "text": "Schilling says Vogel was at Mrs. Teague’s at 6:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -4392,7 +4434,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -4402,7 +4444,7 @@
           "tick": 4
         }
       ],
-      "text": "Hedwig Schilling says Isidore Lefkowitz was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Schilling says Lefkowitz was at Mrs. Teague’s at 8:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -4413,7 +4455,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -4423,7 +4465,7 @@
           "tick": 10
         }
       ],
-      "text": "Hedwig Schilling says Isidore Lefkowitz was at the back room at Mrs. Teague’s at 11:00 PM.",
+      "text": "Schilling says Lefkowitz was at Mrs. Teague’s at 11:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -4434,7 +4476,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -4444,7 +4486,7 @@
           "tick": 1
         }
       ],
-      "text": "Booker Colquitt says Isidore Lefkowitz was at Zelinsky’s pawnshop, the back room at 6:30 PM.",
+      "text": "Colquitt says Lefkowitz was at Zelinsky’s at 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -4455,7 +4497,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -4465,7 +4507,7 @@
           "tick": 4
         }
       ],
-      "text": "Booker Colquitt says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain at 8:00 PM.",
+      "text": "Colquitt says Cheatham was at Kaplan’s at 8:00 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -4476,7 +4518,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Rachel Feldman"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -4486,7 +4528,7 @@
           "tick": 7
         }
       ],
-      "text": "Booker Colquitt says Rachel Feldman was at the Bijou picture house at 9:30 PM.",
+      "text": "Colquitt says Feldman was at the Bijou at 9:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
@@ -4496,63 +4538,39 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-f4",
+        "topic": "Sweeney’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 2
         }
       ],
-      "text": "Daniel Sweeney runs through it: at 6:30 PM there were Clementine Cheatham, Rachel Feldman, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "pawnshop",
+      "text": "Schilling was at Mrs. Teague’s at 7:00 PM and says Sweeney was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c084",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "who was there at 6:00 PM"
+        "topic": "Sweeney’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 2
         }
       ],
-      "text": "Isidore Lefkowitz runs through it: at 6:00 PM there were Clementine Cheatham, Rachel Feldman, Grafton Thorndike at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
+      "text": "Sweeney names Lefkowitz as the company for it. Lefkowitz was at Kaplan’s at 7:00 PM, and says Sweeney was not there.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4562,25 +4580,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-s1",
+        "topic": "Lefkowitz’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "drugstore",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 2
+          "tick": 1
         }
       ],
-      "text": "Isidore Lefkowitz runs through it: at 7:00 PM there were Clementine Cheatham, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Sweeney was at Kaplan’s at 6:30 PM and says Lefkowitz was not.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4589,25 +4601,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-s4",
+        "topic": "Lefkowitz’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "drugstore",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 3
+          "tick": 1
         }
       ],
-      "text": "Isidore Lefkowitz runs through it: at 7:30 PM there were Clementine Cheatham, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Feldman was at Kaplan’s at 6:30 PM and says Lefkowitz was not.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4616,25 +4622,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s5",
+        "topic": "Lefkowitz’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 1
         }
       ],
-      "text": "Isidore Lefkowitz runs through it: at 10:30 PM there were Salvatore Alfano, Grafton Thorndike at the Bijou picture house, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Alfano was at Kaplan’s at 6:30 PM and says Lefkowitz was not.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4643,30 +4643,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f2",
+        "topic": "Lefkowitz’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 0
+          "place": "drugstore",
+          "tick": 1
         }
       ],
-      "text": "Clementine Cheatham runs through it: at 6:00 PM there were Isidore Lefkowitz, Rachel Feldman, Grafton Thorndike at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
+      "text": "Hargrove was at Kaplan’s at 6:30 PM and says Lefkowitz was not.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4676,25 +4664,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-f1",
+        "topic": "Cheatham’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 2
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 1
         }
       ],
-      "text": "Clementine Cheatham runs through it: at 7:00 PM there were Isidore Lefkowitz, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Lathrop was at Zelinsky’s at 6:30 PM and says Cheatham was not.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4703,25 +4685,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-cop",
+        "topic": "Cheatham’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 3
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 1
         }
       ],
-      "text": "Clementine Cheatham runs through it: at 7:30 PM there were Isidore Lefkowitz, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
+      "text": "Colquitt was at Zelinsky’s at 6:30 PM and says Cheatham was not.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4730,126 +4706,106 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f4",
+        "topic": "Feldman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "rooming-house-room",
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "rooming-house-room",
+          "tick": 6
         }
       ],
-      "text": "Rachel Feldman runs through it: at 6:00 PM there were Isidore Lefkowitz, Clementine Cheatham, Grafton Thorndike at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
+      "text": "Schilling was at Mrs. Teague’s from 8:30 PM to 9:00 PM and says Feldman was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c092",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-s1",
+        "topic": "Feldman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "rooming-house-room",
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "rooming-house-room",
+          "tick": 6
         }
       ],
-      "text": "Rachel Feldman runs through it: at 6:30 PM there were Daniel Sweeney, Clementine Cheatham, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
+      "text": "Feldman names Sweeney as the company for it. Sweeney was at Zelinsky’s from 8:30 PM to 9:00 PM, and says Feldman was not there.",
       "place": "pawnshop",
-      "leadsTo": [
-        "c151"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c093",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-f3",
+        "topic": "Alfano’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 2
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 3
         }
       ],
-      "text": "Salvatore Alfano runs through it: at 6:30 PM there were Daniel Sweeney, Clementine Cheatham, Rachel Feldman at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
+      "text": "Fairbanks was at the Bijou from 7:00 PM to 7:30 PM and says Alfano was not.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c094",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s1",
+        "topic": "Alfano’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "movie-house",
-          "tick": 9
+          "tick": 2
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "movie-house",
-          "tick": 9
+          "tick": 3
         }
       ],
-      "text": "Salvatore Alfano runs through it: at 10:30 PM there were Isidore Lefkowitz, Grafton Thorndike at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
+      "text": "Alfano names Sweeney as the company for the Bijou from 7:00 PM to 7:30 PM. Sweeney says they were not together that evening.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4858,870 +4814,70 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f1",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s6",
           "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 0
+          "tick": 1
         }
       ],
-      "text": "Grafton Thorndike runs through it: at 6:00 PM there were Isidore Lefkowitz, Clementine Cheatham, Rachel Feldman at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise"
+      "text": "Lathrop was at Zelinsky’s at 6:30 PM and says Thorndike was not.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c057",
+        "c101",
+        "c066"
+      ],
+      "role": "spine"
     },
     {
       "id": "c096",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-cop",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "pawnshop",
+          "tick": 1
         }
       ],
-      "text": "Grafton Thorndike runs through it: at 10:30 PM there were Isidore Lefkowitz, Salvatore Alfano at the Bijou picture house, and nobody else worth naming.",
-      "place": "el-platform",
+      "text": "Colquitt was at Zelinsky’s at 6:30 PM and says Thorndike was not.",
+      "place": "pawnshop",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c097",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s1",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
           "place": "pawnshop",
-          "tick": 0
+          "tick": 1
         }
       ],
-      "text": "Winthrop Lathrop runs through it: at 6:00 PM there were Isidore Lefkowitz, Clementine Cheatham, Rachel Feldman, Grafton Thorndike at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
+      "text": "Thorndike names Sweeney as the company for it. Sweeney was at Kaplan’s at 6:30 PM, and says Thorndike was not there.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 4
-        }
-      ],
-      "text": "Winthrop Lathrop runs through it: at 8:00 PM there were Daniel Sweeney, Rachel Feldman at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 8
-        }
-      ],
-      "text": "Winthrop Lathrop runs through it: at 10:00 PM there were Daniel Sweeney, Rachel Feldman at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 9
-        }
-      ],
-      "text": "Winthrop Lathrop runs through it: at 10:30 PM there were Daniel Sweeney, Rachel Feldman at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "pawnshop",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "pawnshop",
-          "tick": 10
-        }
-      ],
-      "text": "Winthrop Lathrop runs through it: at 11:00 PM there were Daniel Sweeney, Rachel Feldman at Zelinsky’s pawnshop, the back room, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Isaiah Hargrove runs through it: at 6:30 PM there were Daniel Sweeney, Clementine Cheatham, Rachel Feldman, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c160"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 2
-        }
-      ],
-      "text": "Isaiah Hargrove runs through it: at 7:00 PM there were Isidore Lefkowitz, Clementine Cheatham, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 3
-        }
-      ],
-      "text": "Isaiah Hargrove runs through it: at 7:30 PM there were Isidore Lefkowitz, Clementine Cheatham, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 6
-        }
-      ],
-      "text": "Isaiah Hargrove runs through it: at 9:00 PM there were Isidore Lefkowitz, Clementine Cheatham at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 7
-        }
-      ],
-      "text": "Isaiah Hargrove runs through it: at 9:30 PM there were Isidore Lefkowitz, Clementine Cheatham at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 11
-        }
-      ],
-      "text": "Isaiah Hargrove runs through it: at 11:30 PM there were Daniel Sweeney, Isidore Lefkowitz at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "movie-house",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 0
-        }
-      ],
-      "text": "Prescott Fairbanks runs through it: at 6:00 PM there were Daniel Sweeney, Salvatore Alfano at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 5
-        }
-      ],
-      "text": "Prescott Fairbanks runs through it: at 8:30 PM there were Rachel Feldman, Salvatore Alfano at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "movie-house",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 8
-        }
-      ],
-      "text": "Prescott Fairbanks runs through it: at 10:00 PM there were Isidore Lefkowitz, Grafton Thorndike at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 10
-        }
-      ],
-      "text": "Prescott Fairbanks runs through it: at 11:00 PM there were Salvatore Alfano, Grafton Thorndike at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "movie-house",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "movie-house",
-          "tick": 11
-        }
-      ],
-      "text": "Prescott Fairbanks runs through it: at 11:30 PM there were Clementine Cheatham, Grafton Thorndike at the Bijou picture house, and nobody else worth naming.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Daniel Sweeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 2
-        }
-      ],
-      "text": "Hedwig Schilling was at the back room at Mrs. Teague’s at 7:00 PM and says Daniel Sweeney was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Daniel Sweeney’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 2
-        }
-      ],
-      "text": "Daniel Sweeney says Isidore Lefkowitz was there for it. Isidore Lefkowitz says otherwise: Isidore Lefkowitz was at Kaplan’s drugstore with the soda fountain at 7:00 PM, nowhere near the back room at Mrs. Teague’s.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Isidore Lefkowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 6:30 PM and says Isidore Lefkowitz was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Isidore Lefkowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Rachel Feldman was at Kaplan’s drugstore with the soda fountain at 6:30 PM and says Isidore Lefkowitz was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Isidore Lefkowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Salvatore Alfano was at Kaplan’s drugstore with the soda fountain at 6:30 PM and says Isidore Lefkowitz was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Isidore Lefkowitz’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Isaiah Hargrove was at Kaplan’s drugstore with the soda fountain at 6:30 PM and says Isidore Lefkowitz was not.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Clementine Cheatham’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 1
-        }
-      ],
-      "text": "Winthrop Lathrop was at Zelinsky’s pawnshop, the back room at 6:30 PM and says Clementine Cheatham was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Clementine Cheatham’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "pawnshop",
-          "tick": 1
-        }
-      ],
-      "text": "Booker Colquitt was at Zelinsky’s pawnshop, the back room at 6:30 PM and says Clementine Cheatham was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Rachel Feldman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 6
-        }
-      ],
-      "text": "Hedwig Schilling was at the back room at Mrs. Teague’s from 8:30 PM to 9:00 PM and says Rachel Feldman was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Rachel Feldman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 6
-        }
-      ],
-      "text": "Rachel Feldman says Daniel Sweeney was there for it. Daniel Sweeney says otherwise: Daniel Sweeney was at Zelinsky’s pawnshop, the back room from 8:30 PM to 9:00 PM, nowhere near the back room at Mrs. Teague’s.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Salvatore Alfano’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 2
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 3
-        }
-      ],
-      "text": "Prescott Fairbanks was at the Bijou picture house from 7:00 PM to 7:30 PM and says Salvatore Alfano was not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Salvatore Alfano’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "movie-house",
-          "tick": 3
-        }
-      ],
-      "text": "Salvatore Alfano says Daniel Sweeney was there for it. Daniel Sweeney says otherwise: Daniel Sweeney was at the El platform at Twenty-Third Street at 7:30 PM, nowhere near the Bijou picture house.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Grafton Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 1
-        }
-      ],
-      "text": "Winthrop Lathrop was at Zelinsky’s pawnshop, the back room at 6:30 PM and says Grafton Thorndike was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Grafton Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 1
-        }
-      ],
-      "text": "Booker Colquitt was at Zelinsky’s pawnshop, the back room at 6:30 PM and says Grafton Thorndike was not.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Grafton Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
-          "tick": 1
-        }
-      ],
-      "text": "Grafton Thorndike says Daniel Sweeney was there for it. Daniel Sweeney says otherwise: Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 6:30 PM, nowhere near Zelinsky’s pawnshop, the back room.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c134",
-        "c125",
-        "c174"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c128",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -5737,21 +4893,20 @@
           "methodId": "shot"
         }
       ],
-      "text": "Gretchen Vogel was found at the victim’s rooms in the brownstone. The cigarette he had going burned itself out on the sill where it fell. The last edition coming off the truck came at 6:30 PM, and the truck run is timed to the minute and the papers were out on the stand. That puts the killing in that half hour and no later.",
+      "text": "Vogel was found at the brownstone. The cigarette he had going burned itself out on the sill where it fell. The last edition came off the truck at 6:30 PM, and a paper from that run is here with the ink still wet.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c138",
-        "c141",
-        "c127",
-        "c131",
-        "c102",
-        "c181"
+        "c002",
+        "c007",
+        "c026",
+        "c115",
+        "c052"
       ],
       "role": "spine",
       "anchorId": "last-edition"
     },
     {
-      "id": "c129",
+      "id": "c099",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -5773,12 +4928,17 @@
       "text": "The coroner puts death between 6:00 PM and 7:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c138"
+        "c002",
+        "c096",
+        "c033",
+        "c108",
+        "c112",
+        "c128"
       ],
       "role": "spine"
     },
     {
-      "id": "c130",
+      "id": "c100",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -5795,18 +4955,18 @@
           "methodId": "shot"
         }
       ],
-      "text": "A nickel-plated revolver is gone from Zelinsky’s pawnshop, the back room. The drawer it was kept in is open and the oiled cloth is still in it.",
+      "text": "A nickel-plated revolver is gone from Zelinsky’s. The drawer it was kept in is open and the oiled cloth is still in it.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c131",
+      "id": "c101",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Gretchen Vogel that evening"
+        "topic": "Vogel that evening"
       },
       "establishes": [
         {
@@ -5820,14 +4980,14 @@
           "tick": 0
         }
       ],
-      "text": "Hedwig Schilling puts Gretchen Vogel at the back room at Mrs. Teague’s while the lesson was still going on overhead, which was 6:00 PM, and alive enough to argue about the weather.",
+      "text": "Schilling puts Vogel at Mrs. Teague’s while the lesson was still going on overhead, which was 6:00 PM, and alive enough to argue about the weather.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "spine",
       "anchorId": "piano-lesson"
     },
     {
-      "id": "c132",
+      "id": "c102",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -5849,14 +5009,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 6:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, when the last edition came up.",
+      "text": "Sweeney was at Kaplan’s at 6:30 PM and heard a shot from the direction of the brownstone, as the last edition was coming up.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c133",
+      "id": "c103",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -5878,14 +5038,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rachel Feldman was at Kaplan’s drugstore with the soda fountain at 6:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, when the last edition came up.",
+      "text": "Feldman was at Kaplan’s at 6:30 PM and heard a shot from the direction of the brownstone, as the last edition was coming up.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c134",
+      "id": "c104",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -5907,14 +5067,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Salvatore Alfano was at Kaplan’s drugstore with the soda fountain at 6:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, when the last edition came up.",
+      "text": "Alfano was at Kaplan’s at 6:30 PM and heard a shot from the direction of the brownstone, as the last edition was coming up.",
       "place": "movie-house",
       "leadsTo": [],
-      "role": "corroboration",
+      "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c135",
+      "id": "c105",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -5936,16 +5096,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Winthrop Lathrop was at Zelinsky’s pawnshop, the back room at 6:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, when the last edition came up.",
+      "text": "Lathrop was at Zelinsky’s at 6:30 PM and heard a shot from the direction of the brownstone, as the last edition was coming up.",
       "place": "pawnshop",
-      "leadsTo": [
-        "c169"
-      ],
-      "role": "corroboration",
+      "leadsTo": [],
+      "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c136",
+      "id": "c106",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -5967,14 +5125,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Isaiah Hargrove was at Kaplan’s drugstore with the soda fountain at 6:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, when the last edition came up.",
+      "text": "Hargrove was at Kaplan’s at 6:30 PM and heard a shot from the direction of the brownstone, as the last edition was coming up.",
       "place": "drugstore",
       "leadsTo": [],
-      "role": "noise",
+      "role": "corroboration",
       "anchorId": "last-edition"
     },
     {
-      "id": "c137",
+      "id": "c107",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -5996,14 +5154,14 @@
           "methodId": "shot"
         }
       ],
-      "text": "Booker Colquitt was at Zelinsky’s pawnshop, the back room at 6:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, when the last edition came up.",
+      "text": "Colquitt was at Zelinsky’s at 6:30 PM and heard a shot from the direction of the brownstone, as the last edition was coming up.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c138",
+      "id": "c108",
       "kind": "anchor",
       "source": {
         "type": "place",
@@ -6015,19 +5173,66 @@
           "personId": "p-s1",
           "place": "drugstore",
           "tick": 1
-        },
+        }
+      ],
+      "text": "The last edition coming off the truck was at 6:30 PM, and Sweeney was at Kaplan’s for it.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c153"
+      ],
+      "role": "corroboration",
+      "anchorId": "last-edition"
+    },
+    {
+      "id": "c109",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s3",
           "place": "drugstore",
           "tick": 1
-        },
+        }
+      ],
+      "text": "The last edition coming off the truck was at 6:30 PM, and Cheatham was at Kaplan’s for it.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "last-edition"
+    },
+    {
+      "id": "c110",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
           "place": "drugstore",
           "tick": 1
-        },
+        }
+      ],
+      "text": "The last edition coming off the truck was at 6:30 PM, and Feldman was at Kaplan’s for it.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "last-edition"
+    },
+    {
+      "id": "c111",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s5",
@@ -6035,17 +5240,40 @@
           "tick": 1
         }
       ],
-      "text": "The last edition coming off the truck at 6:30 PM puts Daniel Sweeney, Clementine Cheatham, Rachel Feldman, Salvatore Alfano at Kaplan’s drugstore with the soda fountain.",
+      "text": "The last edition coming off the truck was at 6:30 PM, and Alfano was at Kaplan’s for it.",
       "place": "drugstore",
-      "leadsTo": [
-        "c131",
-        "c064"
-      ],
-      "role": "spine",
+      "leadsTo": [],
+      "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c139",
+      "id": "c112",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "the last edition coming off the truck"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Lefkowitz claims Kaplan’s at 6:30 PM, which is when the last edition coming off the truck was on. Asked about it, Lefkowitz cannot say that the late edition led with the bridge contract and not the hold-up — and everybody who was there can.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c135"
+      ],
+      "role": "noise",
+      "anchorId": "last-edition",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c113",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6059,14 +5287,14 @@
           "tick": 1
         }
       ],
-      "text": "Daniel Sweeney carries the mark of it: ink still wet enough to come off on a glove. That fixes Daniel Sweeney at Kaplan’s drugstore with the soda fountain at 6:30 PM, when the last edition coming off the truck happened.",
+      "text": "Sweeney still carries it: ink still wet enough to come off on a glove. The last edition coming off the truck was at 6:30 PM, at Kaplan’s.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c140",
+      "id": "c114",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6080,19 +5308,19 @@
           "tick": 1
         }
       ],
-      "text": "Clementine Cheatham carries the mark of it: ink still wet enough to come off on a glove. That fixes Clementine Cheatham at Kaplan’s drugstore with the soda fountain at 6:30 PM, when the last edition coming off the truck happened.",
+      "text": "Cheatham still carries it: ink still wet enough to come off on a glove. The last edition coming off the truck was at 6:30 PM, at Kaplan’s.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c141",
+      "id": "c115",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 6:30 PM round"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -6102,24 +5330,21 @@
           "tick": 1
         }
       ],
-      "text": "The beat cop’s pass at 6:30 PM puts Isidore Lefkowitz at Zelinsky’s pawnshop, the back room.",
+      "text": "Colquitt came round at 6:30 PM and had Lefkowitz at Zelinsky’s.",
       "place": "pawnshop",
       "leadsTo": [
-        "c033",
-        "c127",
-        "c149",
-        "c135"
+        "c003"
       ],
       "role": "spine",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c142",
+      "id": "c116",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 8:00 PM round"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -6129,19 +5354,19 @@
           "tick": 4
         }
       ],
-      "text": "The beat cop’s pass at 8:00 PM puts Clementine Cheatham at Kaplan’s drugstore with the soda fountain.",
+      "text": "Colquitt came round at 8:00 PM and had Cheatham at Kaplan’s.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c143",
+      "id": "c117",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 9:30 PM round"
+        "topic": "Feldman"
       },
       "establishes": [
         {
@@ -6151,14 +5376,14 @@
           "tick": 7
         }
       ],
-      "text": "The beat cop’s pass at 9:30 PM puts Rachel Feldman at the Bijou picture house.",
+      "text": "Colquitt came round at 9:30 PM and had Feldman at the Bijou.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c144",
+      "id": "c118",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6168,36 +5393,36 @@
         {
           "kind": "hasMotive",
           "personId": "p-s1",
-          "motiveType": "property"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A lease assignment made out in Daniel Sweeney’s name, waiting only on Gretchen Vogel’s signature.",
+      "text": "Found at the brownstone: A subpoena naming Vogel before the grand jury, with Sweeney’s name written in the margin.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c145",
+      "id": "c119",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Daniel Sweeney and Gretchen Vogel"
+        "topic": "Sweeney and Vogel"
       },
       "establishes": [
         {
           "kind": "hasMotive",
           "personId": "p-s1",
-          "motiveType": "property"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Winthrop Lathrop says Gretchen Vogel told Daniel Sweeney the lease would go to somebody else at the quarter day.",
+      "text": "Lathrop says Vogel said to Sweeney that a man who testifies sleeps better.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c146",
+      "id": "c120",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6210,18 +5435,18 @@
           "motiveType": "jealousy"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: Three letters in Gretchen Vogel’s hand to a woman Salvatore Alfano is engaged to, kept in a drawer, the last one opened.",
+      "text": "Found at the brownstone: Three letters in Vogel’s hand to a woman Alfano is engaged to, kept in a drawer, the last one opened.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c147",
+      "id": "c121",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Salvatore Alfano and Gretchen Vogel"
+        "topic": "Alfano and Vogel"
       },
       "establishes": [
         {
@@ -6230,13 +5455,13 @@
           "motiveType": "jealousy"
         }
       ],
-      "text": "Winthrop Lathrop says Salvatore Alfano told Gretchen Vogel to keep away, loud enough to turn heads.",
+      "text": "Lathrop says Alfano told Vogel to keep away, loud enough to turn heads.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c148",
+      "id": "c122",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6249,18 +5474,18 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Found at the victim’s rooms in the brownstone: A typed page of dates and sums in Gretchen Vogel’s file, headed with Grafton Thorndike’s name.",
+      "text": "Found at the brownstone: A typed page of dates and sums in Vogel’s file, headed with Thorndike’s name.",
       "place": "res-brownstone",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c149",
+      "id": "c123",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Grafton Thorndike and Gretchen Vogel"
+        "topic": "Thorndike and Vogel"
       },
       "establishes": [
         {
@@ -6269,13 +5494,13 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Salvatore Alfano says Gretchen Vogel told Grafton Thorndike that the story would run whether Grafton Thorndike liked it or not.",
+      "text": "Alfano says Vogel told Thorndike that the story would run whether Thorndike liked it or not.",
       "place": "movie-house",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c150",
+      "id": "c124",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6289,633 +5514,666 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Daniel Sweeney hired us. Daniel Sweeney wants it known that Grafton Thorndike was about to be exposed by the victim, and would rather we started there.",
+      "text": "Sweeney hired us, and wants it known that Thorndike was about to be exposed by the victim, and would rather we started there.",
       "place": "pawnshop",
       "leadsTo": [
-        "c141",
-        "c033",
-        "c024",
-        "c092"
+        "c007",
+        "c123"
       ],
       "role": "spine"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Sweeney"
+      },
+      "establishes": [],
+      "text": "Schilling on Sweeney: Sweeney was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Sweeney"
+      },
+      "establishes": [],
+      "text": "Lefkowitz on Sweeney: A man nobody knew was waiting for Sweeney at the El platform and would not give a name.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c129"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Sweeney"
+      },
+      "establishes": [],
+      "text": "Feldman on Sweeney: Sweeney goes very quiet when the racing wire is mentioned.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c128",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [],
+      "text": "Betting slips at the El platform in Sweeney’s pocketbook, all of them losers, all of them this month.",
+      "place": "el-platform",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [],
+      "text": "A book of markers at the El platform with Sweeney’s initials against four of them.",
+      "place": "el-platform",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "el-platform",
+          "tick": 2
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Sweeney was at the El platform from 7:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "el-platform",
+          "tick": 2
+        }
+      ],
+      "text": "The book at the El platform has the payment entered against Sweeney’s name and the time beside it, from 7:00 PM, in the clerk’s own hand.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Lathrop on Lefkowitz: Lefkowitz was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Fairbanks on Lefkowitz: A man nobody knew was waiting for Lefkowitz at Zelinsky’s and would not give a name.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Colquitt on Lefkowitz: Lefkowitz goes very quiet when the racing wire is mentioned.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c137"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c135",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [],
+      "text": "Betting slips at Zelinsky’s in Lefkowitz’s pocketbook, all of them losers, all of them this month.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c134"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c136",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [],
+      "text": "A book of markers at Zelinsky’s with Lefkowitz’s initials against four of them.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 1
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Lefkowitz was at Zelinsky’s from 6:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "pawnshop"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pawnshop",
+          "tick": 1
+        }
+      ],
+      "text": "The book at Zelinsky’s has the payment entered against Lefkowitz’s name and the time beside it, from 6:30 PM, in the clerk’s own hand.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Cheatham"
+      },
+      "establishes": [],
+      "text": "Alfano on Cheatham: Cheatham sends money out of every pay envelope and cannot say where it goes.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Cheatham"
+      },
+      "establishes": [],
+      "text": "Hargrove on Cheatham: A woman at Kaplan’s asked for Cheatham by a name Cheatham has not used in years.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Cheatham"
+      },
+      "establishes": [],
+      "text": "Schilling on Cheatham: Cheatham keeps a photograph and will not be asked about it twice.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c143"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c142",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "A board-and-keep receipt at Kaplan’s, monthly, eight years of them.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c143",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "A child’s shoe at Kaplan’s, and nobody at Kaplan’s has any children.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c144",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "The woman who keeps the child says it straight out: Cheatham was at Kaplan’s from 6:30 PM, the same as every week, and left with the same face as always.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c145",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "The parish register at Kaplan’s has the christening in it, and the board money receipted through the evening in question.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c146",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Lathrop on Feldman: Feldman had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c147",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Fairbanks on Feldman: Feldman is on a temperance pledge that Feldman mentions before anybody asks.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c148",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Colquitt on Feldman: Somebody at the Bijou says Feldman is in more often than Feldman lets on.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c149",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A bottle at the Bijou pushed behind the pipes, the seal broken and the level down.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c150",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A tab at the Bijou in a name that is not Feldman’s, in Feldman’s handwriting.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
     },
     {
       "id": "c151",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Daniel Sweeney"
+        "type": "place",
+        "placeId": "movie-house"
       },
-      "establishes": [],
-      "text": "Prescott Fairbanks on Daniel Sweeney: Daniel Sweeney was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c156"
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 6
+        }
       ],
+      "text": "The man behind the counter at the Bijou knows exactly: Feldman was on the same stool from 8:30 PM to 9:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "movie-house",
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b4"
+      "aboutSecretOf": "p-s4"
     },
     {
       "id": "c152",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Daniel Sweeney"
+        "type": "place",
+        "placeId": "movie-house"
       },
-      "establishes": [],
-      "text": "Booker Colquitt on Daniel Sweeney: A man nobody knew was waiting for Daniel Sweeney at the El platform at Twenty-Third Street and would not give a name.",
-      "place": "pawnshop",
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 6
+        }
+      ],
+      "text": "The tab at the Bijou is dated and timed, from 8:30 PM to 9:00 PM, and Feldman was there to run it up.",
+      "place": "movie-house",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s1"
+      "aboutSecretOf": "p-s4"
     },
     {
       "id": "c153",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "Daniel Sweeney"
+        "personId": "p-cop",
+        "topic": "Alfano"
       },
       "establishes": [],
-      "text": "Clementine Cheatham on Daniel Sweeney: Daniel Sweeney goes very quiet when the racing wire is mentioned.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c154",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [],
-      "text": "Betting slips at the El platform at Twenty-Third Street in Daniel Sweeney’s pocketbook, all of them losers, all of them this month.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c155",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [],
-      "text": "A book of markers at the El platform at Twenty-Third Street with Daniel Sweeney’s initials against four of them.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "el-platform",
-          "tick": 2
-        }
+      "text": "Colquitt on Alfano: Alfano’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c155"
       ],
-      "text": "The bookmaker’s runner is found and will say it: Daniel Sweeney was at the El platform at Twenty-Third Street from 7:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
       "branchId": "b4"
     },
     {
-      "id": "c157",
+      "id": "c154",
       "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "el-platform"
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Alfano"
       },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "el-platform",
-          "tick": 2
-        }
-      ],
-      "text": "The book at the El platform at Twenty-Third Street has the payment entered against Daniel Sweeney’s name and the time beside it, from 7:00 PM, in the clerk’s own hand.",
-      "place": "el-platform",
+      "establishes": [],
+      "text": "Cheatham on Alfano: Somebody at Kaplan’s sells what a druggist will not, and Alfano knows which door.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s1"
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c155",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Alfano"
+      },
+      "establishes": [],
+      "text": "Thorndike on Alfano: Alfano was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "el-platform",
+      "leadsTo": [
+        "c158"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c156",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "A paper of powder at Kaplan’s, folded the way one particular hand folds them.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c157",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "A prescription blank at Kaplan’s signed by a doctor who has been dead since the spring.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
     },
     {
       "id": "c158",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Isidore Lefkowitz"
+        "type": "place",
+        "placeId": "drugstore"
       },
-      "establishes": [],
-      "text": "Prescott Fairbanks on Isidore Lefkowitz: Isidore Lefkowitz was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "movie-house",
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 3
+        }
+      ],
+      "text": "The man who sells it at Kaplan’s gives it up rather than be held: Alfano was there from 7:00 PM to 7:30 PM, and stayed until it took hold.",
+      "place": "drugstore",
       "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
     },
     {
       "id": "c159",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Isidore Lefkowitz"
-      },
-      "establishes": [],
-      "text": "Booker Colquitt on Isidore Lefkowitz: A man nobody knew was waiting for Isidore Lefkowitz at Zelinsky’s pawnshop, the back room and would not give a name.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Isidore Lefkowitz"
-      },
-      "establishes": [],
-      "text": "Rachel Feldman on Isidore Lefkowitz: Isidore Lefkowitz goes very quiet when the racing wire is mentioned.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c163"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c161",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [],
-      "text": "Betting slips at Zelinsky’s pawnshop, the back room in Isidore Lefkowitz’s pocketbook, all of them losers, all of them this month.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c162",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [],
-      "text": "A book of markers at Zelinsky’s pawnshop, the back room with Isidore Lefkowitz’s initials against four of them.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c163",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 1
-        }
-      ],
-      "text": "The bookmaker’s runner is found and will say it: Isidore Lefkowitz was at Zelinsky’s pawnshop, the back room from 6:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c164",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "pawnshop"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "pawnshop",
-          "tick": 1
-        }
-      ],
-      "text": "The book at Zelinsky’s pawnshop, the back room has the payment entered against Isidore Lefkowitz’s name and the time beside it, from 6:30 PM, in the clerk’s own hand.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c165",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Clementine Cheatham"
-      },
-      "establishes": [],
-      "text": "Isaiah Hargrove on Clementine Cheatham: Clementine Cheatham sends money out of every pay envelope and cannot say where it goes.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c170"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b1"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Clementine Cheatham"
-      },
-      "establishes": [],
-      "text": "Hedwig Schilling on Clementine Cheatham: A woman at Kaplan’s drugstore with the soda fountain asked for Clementine Cheatham by a name Clementine Cheatham has not used in years.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Clementine Cheatham"
-      },
-      "establishes": [],
-      "text": "Daniel Sweeney on Clementine Cheatham: Clementine Cheatham keeps a photograph and will not be asked about it twice.",
-      "place": "pawnshop",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c168",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [],
-      "text": "A board-and-keep receipt at Kaplan’s drugstore with the soda fountain, monthly, eight years of them.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [],
-      "text": "A child’s shoe at Kaplan’s drugstore with the soda fountain, and nobody at Kaplan’s drugstore with the soda fountain has any children.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c165"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b1"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "The woman who keeps the child says it straight out: Clementine Cheatham was at Kaplan’s drugstore with the soda fountain from 6:30 PM, the same as every week, and left with the same face as always.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b1"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "The parish register at Kaplan’s drugstore with the soda fountain has the christening in it, and the board money receipted through the evening in question.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c172",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Rachel Feldman"
-      },
-      "establishes": [],
-      "text": "Isidore Lefkowitz on Rachel Feldman: Rachel Feldman had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Rachel Feldman"
-      },
-      "establishes": [],
-      "text": "Salvatore Alfano on Rachel Feldman: Rachel Feldman is on a temperance pledge that Rachel Feldman mentions before anybody asks.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c177"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c174",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Rachel Feldman"
-      },
-      "establishes": [],
-      "text": "Winthrop Lathrop on Rachel Feldman: Somebody at the Bijou picture house says Rachel Feldman is in more often than Rachel Feldman lets on.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c173"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c175",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [],
-      "text": "A bottle at the Bijou picture house pushed behind the pipes, the seal broken and the level down.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c176",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [],
-      "text": "A tab at the Bijou picture house in a name that is not Rachel Feldman’s, in Rachel Feldman’s handwriting.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c177",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 6
-        }
-      ],
-      "text": "The man behind the counter at the Bijou picture house knows exactly: Rachel Feldman was on the same stool from 8:30 PM to 9:00 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c178",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 6
-        }
-      ],
-      "text": "The tab at the Bijou picture house is dated and timed, from 8:30 PM to 9:00 PM, and Rachel Feldman was there to run it up.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c179",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Salvatore Alfano"
-      },
-      "establishes": [],
-      "text": "Hedwig Schilling on Salvatore Alfano: Salvatore Alfano’s sleeves are buttoned at the wrist in a warm room.",
-      "place": "rooming-house-room",
-      "leadsTo": [
-        "c184"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Salvatore Alfano"
-      },
-      "establishes": [],
-      "text": "Isidore Lefkowitz on Salvatore Alfano: Somebody at Kaplan’s drugstore with the soda fountain sells what a druggist will not, and Salvatore Alfano knows which door.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c181",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Salvatore Alfano"
-      },
-      "establishes": [],
-      "text": "Rachel Feldman on Salvatore Alfano: Salvatore Alfano was steady at nine and shaking at seven, and it was not nerves about the police.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c179"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c182",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [],
-      "text": "A paper of powder at Kaplan’s drugstore with the soda fountain, folded the way one particular hand folds them.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c183",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [],
-      "text": "A prescription blank at Kaplan’s drugstore with the soda fountain signed by a doctor who has been dead since the spring.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c184",
-      "kind": "overheard",
-      "source": {
         "type": "place",
         "placeId": "drugstore"
       },
@@ -6938,40 +6196,7 @@
           "tick": 3
         }
       ],
-      "text": "The man who sells it at Kaplan’s drugstore with the soda fountain gives it up rather than be held: Salvatore Alfano was there from 7:00 PM to 7:30 PM, and stayed until it took hold.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c185",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 3
-        }
-      ],
-      "text": "The doctor Salvatore Alfano used to see confirms the habit and the hour: Salvatore Alfano was at Kaplan’s drugstore with the soda fountain from 7:00 PM to 7:30 PM, and could not have crossed the street unhelped.",
+      "text": "The doctor Alfano used to see confirms the habit and the hour: Alfano was at Kaplan’s from 7:00 PM to 7:30 PM, and could not have crossed the street unhelped.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise",
@@ -6980,7 +6205,7 @@
   ],
   "findable": [
     {
-      "id": "c128",
+      "id": "c098",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -6996,21 +6221,20 @@
           "methodId": "shot"
         }
       ],
-      "text": "Gretchen Vogel was found at the victim’s rooms in the brownstone. The cigarette he had going burned itself out on the sill where it fell. The last edition coming off the truck came at 6:30 PM, and the truck run is timed to the minute and the papers were out on the stand. That puts the killing in that half hour and no later.",
+      "text": "Vogel was found at the brownstone. The cigarette he had going burned itself out on the sill where it fell. The last edition came off the truck at 6:30 PM, and a paper from that run is here with the ink still wet.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c138",
-        "c141",
-        "c127",
-        "c131",
-        "c102",
-        "c181"
+        "c002",
+        "c007",
+        "c026",
+        "c115",
+        "c052"
       ],
       "role": "spine",
       "anchorId": "last-edition"
     },
     {
-      "id": "c129",
+      "id": "c099",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7032,12 +6256,17 @@
       "text": "The coroner puts death between 6:00 PM and 7:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "res-brownstone",
       "leadsTo": [
-        "c138"
+        "c002",
+        "c096",
+        "c033",
+        "c108",
+        "c112",
+        "c128"
       ],
       "role": "spine"
     },
     {
-      "id": "c150",
+      "id": "c124",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7051,42 +6280,49 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Daniel Sweeney hired us. Daniel Sweeney wants it known that Grafton Thorndike was about to be exposed by the victim, and would rather we started there.",
+      "text": "Sweeney hired us, and wants it known that Thorndike was about to be exposed by the victim, and would rather we started there.",
       "place": "pawnshop",
       "leadsTo": [
-        "c141",
-        "c033",
-        "c024",
-        "c092"
+        "c007",
+        "c123"
       ],
       "role": "spine"
     },
     {
-      "id": "c138",
-      "kind": "anchor",
+      "id": "c002",
+      "kind": "observation",
       "source": {
-        "type": "place",
-        "placeId": "drugstore"
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Cheatham"
       },
       "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 1
-        },
         {
           "kind": "personAt",
           "personId": "p-s3",
           "place": "drugstore",
           "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 1
-        },
+        }
+      ],
+      "text": "Sweeney says Cheatham was at Kaplan’s at 6:30 PM.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c026",
+        "c115",
+        "c057",
+        "c101"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Alfano"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s5",
@@ -7094,22 +6330,70 @@
           "tick": 1
         }
       ],
-      "text": "The last edition coming off the truck at 6:30 PM puts Daniel Sweeney, Clementine Cheatham, Rachel Feldman, Salvatore Alfano at Kaplan’s drugstore with the soda fountain.",
-      "place": "drugstore",
+      "text": "Sweeney says Alfano was at Kaplan’s at 6:30 PM.",
+      "place": "pawnshop",
       "leadsTo": [
-        "c131",
-        "c064"
+        "c095",
+        "c141"
       ],
-      "role": "spine",
-      "anchorId": "last-edition"
+      "role": "spine"
     },
     {
-      "id": "c141",
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Feldman says Sweeney was at Kaplan’s at 6:30 PM.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c095",
+        "c030"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c095",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Thorndike’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "pawnshop",
+          "tick": 1
+        }
+      ],
+      "text": "Lathrop was at Zelinsky’s at 6:30 PM and says Thorndike was not.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c057",
+        "c101",
+        "c066"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c115",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 6:30 PM round"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -7119,24 +6403,21 @@
           "tick": 1
         }
       ],
-      "text": "The beat cop’s pass at 6:30 PM puts Isidore Lefkowitz at Zelinsky’s pawnshop, the back room.",
+      "text": "Colquitt came round at 6:30 PM and had Lefkowitz at Zelinsky’s.",
       "place": "pawnshop",
       "leadsTo": [
-        "c033",
-        "c127",
-        "c149",
-        "c135"
+        "c003"
       ],
       "role": "spine",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c033",
+      "id": "c057",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Grafton Thorndike"
+        "personId": "p-f1",
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -7151,45 +6432,43 @@
           "methodId": "shot"
         }
       ],
-      "text": "Rachel Feldman says Grafton Thorndike was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
+      "text": "Lathrop says Thorndike was at Zelinsky’s at 6:00 PM.",
       "place": "pawnshop",
       "leadsTo": [
-        "c052"
+        "c003",
+        "c106",
+        "c064"
       ],
       "role": "spine"
     },
     {
-      "id": "c127",
+      "id": "c003",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Grafton Thorndike’s account"
+        "topic": "Feldman"
       },
       "establishes": [
         {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "pawnshop",
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "drugstore",
           "tick": 1
         }
       ],
-      "text": "Grafton Thorndike says Daniel Sweeney was there for it. Daniel Sweeney says otherwise: Daniel Sweeney was at Kaplan’s drugstore with the soda fountain at 6:30 PM, nowhere near Zelinsky’s pawnshop, the back room.",
+      "text": "Sweeney says Feldman was at Kaplan’s at 6:30 PM.",
       "place": "pawnshop",
-      "leadsTo": [
-        "c134",
-        "c125",
-        "c174"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c131",
+      "id": "c101",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Gretchen Vogel that evening"
+        "topic": "Vogel that evening"
       },
       "establishes": [
         {
@@ -7203,59 +6482,18 @@
           "tick": 0
         }
       ],
-      "text": "Hedwig Schilling puts Gretchen Vogel at the back room at Mrs. Teague’s while the lesson was still going on overhead, which was 6:00 PM, and alive enough to argue about the weather.",
+      "text": "Schilling puts Vogel at Mrs. Teague’s while the lesson was still going on overhead, which was 6:00 PM, and alive enough to argue about the weather.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "spine",
       "anchorId": "piano-lesson"
     },
     {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Isaiah Hargrove runs through it: at 6:30 PM there were Daniel Sweeney, Clementine Cheatham, Rachel Feldman, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c160"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c134",
+      "id": "c106",
       "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-s5",
+        "personId": "p-f2",
         "topic": "the noise that evening"
       },
       "establishes": [
@@ -7273,19 +6511,39 @@
           "methodId": "shot"
         }
       ],
-      "text": "Salvatore Alfano was at Kaplan’s drugstore with the soda fountain at 6:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, when the last edition came up.",
-      "place": "movie-house",
+      "text": "Hargrove was at Kaplan’s at 6:30 PM and heard a shot from the direction of the brownstone, as the last edition was coming up.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "corroboration",
       "anchorId": "last-edition"
     },
     {
-      "id": "c125",
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Thorndike and Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s6",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Alfano says Vogel told Thorndike that the story would run whether Thorndike liked it or not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c096",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Grafton Thorndike’s account"
+        "personId": "p-cop",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
@@ -7295,38 +6553,18 @@
           "tick": 1
         }
       ],
-      "text": "Winthrop Lathrop was at Zelinsky’s pawnshop, the back room at 6:30 PM and says Grafton Thorndike was not.",
+      "text": "Colquitt was at Zelinsky’s at 6:30 PM and says Thorndike was not.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c149",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Grafton Thorndike and Gretchen Vogel"
-      },
-      "establishes": [
-        {
-          "kind": "hasMotive",
-          "personId": "p-s6",
-          "motiveType": "exposure"
-        }
-      ],
-      "text": "Salvatore Alfano says Gretchen Vogel told Grafton Thorndike that the story would run whether Grafton Thorndike liked it or not.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c024",
+      "id": "c033",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "Grafton Thorndike"
+        "personId": "p-s4",
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -7341,10 +6579,59 @@
           "methodId": "shot"
         }
       ],
-      "text": "Clementine Cheatham says Grafton Thorndike was at Zelinsky’s pawnshop, the back room at 6:00 PM.",
-      "place": "drugstore",
+      "text": "Feldman says Thorndike was at Zelinsky’s at 6:00 PM.",
+      "place": "pawnshop",
       "leadsTo": [],
       "role": "corroboration"
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Cheatham"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "pawnshop",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "shot"
+        }
+      ],
+      "text": "Feldman says Cheatham was at Zelinsky’s at 6:00 PM.",
+      "place": "pawnshop",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c108",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "The last edition coming off the truck was at 6:30 PM, and Sweeney was at Kaplan’s for it.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c153"
+      ],
+      "role": "corroboration",
+      "anchorId": "last-edition"
     },
     {
       "id": "c052",
@@ -7352,7 +6639,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Isidore Lefkowitz"
+        "topic": "Lefkowitz"
       },
       "establishes": [
         {
@@ -7373,41 +6660,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Winthrop Lathrop says Isidore Lefkowitz was at Zelinsky’s pawnshop, the back room from 6:00 PM to 6:30 PM.",
+      "text": "Lathrop says Lefkowitz was at Zelinsky’s from 6:00 PM to 6:30 PM.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "corroboration"
-    },
-    {
-      "id": "c135",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-brownstone",
-          "tick": 1
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 1
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Winthrop Lathrop was at Zelinsky’s pawnshop, the back room at 6:30 PM and heard a shot from the direction of the victim’s rooms in the brownstone, when the last edition came up.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c169"
-      ],
-      "role": "corroboration",
-      "anchorId": "last-edition"
     },
     {
       "id": "c064",
@@ -7415,7 +6671,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Clementine Cheatham"
+        "topic": "Cheatham"
       },
       "establishes": [
         {
@@ -7437,197 +6693,95 @@
           "tick": 3
         }
       ],
-      "text": "Isaiah Hargrove says Clementine Cheatham was at Kaplan’s drugstore with the soda fountain from 6:30 PM to 7:30 PM.",
+      "text": "Hargrove says Cheatham was at Kaplan’s from 6:30 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c092",
+      "id": "c066",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-f2",
+        "topic": "Feldman"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s4",
           "place": "drugstore",
           "tick": 1
         }
       ],
-      "text": "Rachel Feldman runs through it: at 6:30 PM there were Daniel Sweeney, Clementine Cheatham, Salvatore Alfano at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c151"
-      ],
+      "text": "Hargrove says Feldman was at Kaplan’s at 6:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [],
-      "text": "A child’s shoe at Kaplan’s drugstore with the soda fountain, and nobody at Kaplan’s drugstore with the soda fountain has any children.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c165"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b1"
-    },
-    {
-      "id": "c165",
-      "kind": "overheard",
+      "id": "c112",
+      "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "Clementine Cheatham"
-      },
-      "establishes": [],
-      "text": "Isaiah Hargrove on Clementine Cheatham: Clementine Cheatham sends money out of every pay envelope and cannot say where it goes.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c170"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b1"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
+        "personId": "p-s2",
+        "topic": "the last edition coming off the truck"
       },
       "establishes": [
         {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s2",
           "place": "drugstore",
           "tick": 1
         }
       ],
-      "text": "The woman who keeps the child says it straight out: Clementine Cheatham was at Kaplan’s drugstore with the soda fountain from 6:30 PM, the same as every week, and left with the same face as always.",
+      "text": "Lefkowitz claims Kaplan’s at 6:30 PM, which is when the last edition coming off the truck was on. Asked about it, Lefkowitz cannot say that the late edition led with the bridge contract and not the hold-up — and everybody who was there can.",
       "place": "drugstore",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
+      "leadsTo": [
+        "c135"
+      ],
+      "role": "noise",
+      "anchorId": "last-edition",
+      "aboutSecretOf": "p-s2",
       "branchId": "b1"
     },
     {
-      "id": "c174",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Rachel Feldman"
-      },
-      "establishes": [],
-      "text": "Winthrop Lathrop on Rachel Feldman: Somebody at the Bijou picture house says Rachel Feldman is in more often than Rachel Feldman lets on.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c173"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Rachel Feldman"
-      },
-      "establishes": [],
-      "text": "Salvatore Alfano on Rachel Feldman: Rachel Feldman is on a temperance pledge that Rachel Feldman mentions before anybody asks.",
-      "place": "movie-house",
-      "leadsTo": [
-        "c177"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c177",
-      "kind": "overheard",
+      "id": "c135",
+      "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "movie-house"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "movie-house",
-          "tick": 6
-        }
-      ],
-      "text": "The man behind the counter at the Bijou picture house knows exactly: Rachel Feldman was on the same stool from 8:30 PM to 9:00 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "movie-house",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Isidore Lefkowitz"
+        "placeId": "pawnshop"
       },
       "establishes": [],
-      "text": "Rachel Feldman on Isidore Lefkowitz: Isidore Lefkowitz goes very quiet when the racing wire is mentioned.",
+      "text": "Betting slips at Zelinsky’s in Lefkowitz’s pocketbook, all of them losers, all of them this month.",
       "place": "pawnshop",
       "leadsTo": [
-        "c163"
+        "c134"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "branchId": "b1"
     },
     {
-      "id": "c163",
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Colquitt on Lefkowitz: Lefkowitz goes very quiet when the racing wire is mentioned.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c137"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c137",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7646,33 +6800,67 @@
           "tick": 1
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Isidore Lefkowitz was at Zelinsky’s pawnshop, the back room from 6:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Lefkowitz was at Zelinsky’s from 6:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "pawnshop",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "branchId": "b1"
     },
     {
-      "id": "c151",
-      "kind": "overheard",
+      "id": "c128",
+      "kind": "physical",
       "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Daniel Sweeney"
+        "type": "place",
+        "placeId": "el-platform"
       },
       "establishes": [],
-      "text": "Prescott Fairbanks on Daniel Sweeney: Daniel Sweeney was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "movie-house",
+      "text": "Betting slips at the El platform in Sweeney’s pocketbook, all of them losers, all of them this month.",
+      "place": "el-platform",
       "leadsTo": [
-        "c156"
+        "c126"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s1",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c156",
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Sweeney"
+      },
+      "establishes": [],
+      "text": "Lefkowitz on Sweeney: A man nobody knew was waiting for Sweeney at the El platform and would not give a name.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c129"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [],
+      "text": "A book of markers at the El platform with Sweeney’s initials against four of them.",
+      "place": "el-platform",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c130",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7691,51 +6879,113 @@
           "tick": 2
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Daniel Sweeney was at the El platform at Twenty-Third Street from 7:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Sweeney was at the El platform from 7:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s1",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c181",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Salvatore Alfano"
-      },
-      "establishes": [],
-      "text": "Rachel Feldman on Salvatore Alfano: Salvatore Alfano was steady at nine and shaking at seven, and it was not nerves about the police.",
-      "place": "pawnshop",
-      "leadsTo": [
-        "c179"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c179",
+      "id": "c141",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Salvatore Alfano"
+        "topic": "Cheatham"
       },
       "establishes": [],
-      "text": "Hedwig Schilling on Salvatore Alfano: Salvatore Alfano’s sleeves are buttoned at the wrist in a warm room.",
+      "text": "Schilling on Cheatham: Cheatham keeps a photograph and will not be asked about it twice.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c184"
+        "c143"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c143",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "A child’s shoe at Kaplan’s, and nobody at Kaplan’s has any children.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c144",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "The woman who keeps the child says it straight out: Cheatham was at Kaplan’s from 6:30 PM, the same as every week, and left with the same face as always.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c153",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Alfano"
+      },
+      "establishes": [],
+      "text": "Colquitt on Alfano: Alfano’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "pawnshop",
+      "leadsTo": [
+        "c155"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
-      "branchId": "b5"
+      "branchId": "b4"
     },
     {
-      "id": "c184",
+      "id": "c155",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Alfano"
+      },
+      "establishes": [],
+      "text": "Thorndike on Alfano: Alfano was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "el-platform",
+      "leadsTo": [
+        "c158"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c158",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7760,22 +7010,23 @@
           "tick": 3
         }
       ],
-      "text": "The man who sells it at Kaplan’s drugstore with the soda fountain gives it up rather than be held: Salvatore Alfano was there from 7:00 PM to 7:30 PM, and stayed until it took hold.",
+      "text": "The man who sells it at Kaplan’s gives it up rather than be held: Alfano was there from 7:00 PM to 7:30 PM, and stayed until it took hold.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s5",
-      "branchId": "b5"
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c128",
-    "c129",
-    "c150"
+    "c098",
+    "c099",
+    "c124"
   ],
   "clientId": "p-s1",
-  "par": 8,
-  "budget": 20,
+  "par": 10,
+  "slack": 6,
+  "budget": 16,
   "coronerWindow": [
     0,
     3
@@ -7789,11 +7040,10 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c129",
-      "c131",
-      "c128",
-      "c134",
-      "c135"
+      "c099",
+      "c101",
+      "c098",
+      "c106"
     ],
     "timeOfDeathAnchors": [
       "last-edition",
@@ -7801,49 +7051,43 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c138",
-        "c102",
-        "c092"
+        "c026",
+        "c108"
       ],
       "p-s2": [
-        "c141",
+        "c115",
         "c052",
-        "c163"
+        "c137"
       ],
       "p-s3": [
-        "c138",
-        "c102",
+        "c002",
         "c064",
-        "c092",
-        "c170"
+        "c144"
       ],
       "p-s4": [
-        "c138",
-        "c102"
+        "c003",
+        "c066"
       ],
       "p-s5": [
-        "c138",
-        "c102",
-        "c092"
+        "c007"
       ]
     },
     "inculpation": [
-      "c127",
-      "c125"
+      "c095",
+      "c096"
     ],
     "access": [
-      "c033",
-      "c024"
+      "c057",
+      "c033"
     ],
     "method": [
-      "c128",
-      "c129",
-      "c134",
-      "c135"
+      "c098",
+      "c099",
+      "c106"
     ],
     "motive": [
-      "c150",
-      "c149"
+      "c124",
+      "c123"
     ]
   }
 }

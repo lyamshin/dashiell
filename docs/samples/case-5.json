@@ -8,6 +8,7 @@
     {
       "id": "hotel-lobby",
       "name": "the lobby of the Wyckoff",
+      "shortName": "the Wyckoff",
       "kind": "semi",
       "objects": [
         "obj-umbrella",
@@ -20,6 +21,7 @@
     {
       "id": "rooming-house-room",
       "name": "the back room at Mrs. Teague’s",
+      "shortName": "Mrs. Teague’s",
       "kind": "private",
       "objects": [
         "obj-roofkey",
@@ -33,6 +35,7 @@
     {
       "id": "el-platform",
       "name": "the El platform at Twenty-Third Street",
+      "shortName": "the El platform",
       "kind": "public",
       "objects": [
         "obj-newspapers",
@@ -44,6 +47,7 @@
     {
       "id": "corner-newsstand",
       "name": "the newsstand on the corner",
+      "shortName": "the newsstand",
       "kind": "public",
       "objects": [
         "obj-pawn-ticket"
@@ -55,6 +59,7 @@
     {
       "id": "res-suite",
       "name": "the victim’s suite at the residential hotel",
+      "shortName": "the suite",
       "kind": "private",
       "objects": [
         "obj-overcoat",
@@ -66,6 +71,7 @@
     {
       "id": "hotel-garage",
       "name": "the garage on Eleventh Avenue",
+      "shortName": "the garage",
       "kind": "semi",
       "objects": [
         "obj-icepick",
@@ -142,6 +148,7 @@
     {
       "id": "p-victim",
       "name": "Friedrich Kreuzer",
+      "surname": "Kreuzer",
       "role": "a theatrical agent",
       "kind": "victim",
       "isKiller": false,
@@ -150,16 +157,17 @@
     {
       "id": "p-s1",
       "name": "Eunice Bledsoe",
+      "surname": "Bledsoe",
       "role": "a stringer for the evening papers",
       "kind": "suspect",
       "isKiller": true,
       "archetypeId": "arch-reporter",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people the victim worked for",
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Eunice Bledsoe is at the victim’s suite at the residential hotel from 7:30 PM to 8:00 PM, alone with Friedrich Kreuzer when it happens at 8:00 PM.",
+        "description": "Bledsoe is at the suite from 7:30 PM to 8:00 PM, alone with Kreuzer when it happens at 8:00 PM.",
         "cells": [
           {
             "tick": 3,
@@ -175,7 +183,7 @@
       "coverSecret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Eunice Bledsoe slips off to the El platform at Twenty-Third Street from 6:30 PM to 7:00 PM to settle with a bookmaker.",
+        "description": "Bledsoe slips off to the El platform from 6:30 PM to 7:00 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 1,
@@ -188,14 +196,15 @@
         ]
       },
       "motive": {
-        "type": "revenge",
-        "description": "blamed the victim for a ruin"
+        "type": "silence-a-witness",
+        "description": "needed the victim silent"
       },
       "foundAt": "corner-newsstand"
     },
     {
       "id": "p-s2",
       "name": "Lurline Dandridge",
+      "surname": "Dandridge",
       "role": "a chambermaid",
       "kind": "suspect",
       "isKiller": false,
@@ -205,7 +214,7 @@
       "secret": {
         "type": "hidden-family",
         "label": "A child boarded out",
-        "description": "Lurline Dandridge goes to the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM to see a child nobody is supposed to know about.",
+        "description": "Dandridge goes to Mrs. Teague’s from 8:00 PM to 8:30 PM to see a child nobody is supposed to know about.",
         "cells": [
           {
             "tick": 4,
@@ -222,6 +231,7 @@
     {
       "id": "p-s3",
       "name": "Emilio Marchetti",
+      "surname": "Marchetti",
       "role": "a policy runner",
       "kind": "suspect",
       "isKiller": false,
@@ -231,7 +241,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Emilio Marchetti hands a parcel of stolen goods to a man at the newsstand on the corner from 9:30 PM.",
+        "description": "Marchetti hands a parcel of stolen goods to a man at the newsstand from 9:30 PM.",
         "cells": [
           {
             "tick": 7,
@@ -245,16 +255,17 @@
     {
       "id": "p-s4",
       "name": "Verity Thorndike",
+      "surname": "Thorndike",
       "role": "a curb broker",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-broker",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-inlaw",
+      "relationshipToVictim": "the victim’s brother-in-law",
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Verity Thorndike hands a parcel of stolen goods to a man at the El platform at Twenty-Third Street from 9:30 PM to 10:00 PM.",
+        "description": "Thorndike hands a parcel of stolen goods to a man at the El platform from 9:30 PM to 10:00 PM.",
         "cells": [
           {
             "tick": 7,
@@ -267,24 +278,25 @@
         ]
       },
       "motive": {
-        "type": "exposure",
-        "description": "was about to be exposed by the victim"
+        "type": "debt",
+        "description": "owed the victim money"
       },
       "foundAt": "el-platform"
     },
     {
       "id": "p-s5",
       "name": "Lucia Salerno",
+      "surname": "Salerno",
       "role": "an insurance adjuster",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-adjuster",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-creditor",
+      "relationshipToVictim": "the victim’s creditor",
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Lucia Salerno slips off to the newsstand on the corner from 8:00 PM to settle with a bookmaker.",
+        "description": "Salerno slips off to the newsstand from 8:00 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 4,
@@ -297,7 +309,8 @@
     {
       "id": "p-s6",
       "name": "James Rafferty",
-      "role": "the victim’s nephew, at loose ends",
+      "surname": "Rafferty",
+      "role": "a young man living on expectations",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heir",
@@ -306,7 +319,7 @@
       "secret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "James Rafferty drinks alone at the back room at Mrs. Teague’s from 6:00 PM to 6:30 PM and will claim to have been anywhere else.",
+        "description": "Rafferty drinks alone at Mrs. Teague’s from 6:00 PM to 6:30 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 0,
@@ -327,6 +340,7 @@
     {
       "id": "p-f1",
       "name": "Sol Feldman",
+      "surname": "Feldman",
       "role": "the doorman",
       "kind": "fixture",
       "isKiller": false,
@@ -336,6 +350,7 @@
     {
       "id": "p-f2",
       "name": "Rachel Kessler",
+      "surname": "Kessler",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -345,6 +360,7 @@
     {
       "id": "p-f3",
       "name": "Klara Steinbach",
+      "surname": "Steinbach",
       "role": "the news dealer",
       "kind": "fixture",
       "isKiller": false,
@@ -354,6 +370,7 @@
     {
       "id": "p-f4",
       "name": "Carmine Carbone",
+      "surname": "Carbone",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -384,12 +401,18 @@
           "kind": "sighting"
         },
         {
+          "kind": "knowledge",
+          "description": "the late edition led with the bridge contract and not the hold-up"
+        },
+        {
           "kind": "mark",
           "description": "ink still wet enough to come off on a glove"
         }
       ],
       "timing": "when the last edition came up",
-      "sceneTiming": "the truck run is timed to the minute and the papers were out on the stand",
+      "highTiming": "as the last edition was coming up",
+      "sceneFact": "The last edition came off the truck at {T}, and a paper from that run is here with the ink still wet.",
+      "masks": false,
       "placeId": "corner-newsstand"
     },
     {
@@ -409,7 +432,9 @@
         }
       ],
       "timing": "while the singing was still going on",
-      "sceneTiming": "the singing stopped when the shoe came down, and that was the half hour",
+      "highTiming": "just as the singing stopped",
+      "sceneFact": "The singing under the window stopped at {T}, when the shoe came down.",
+      "masks": false,
       "placeId": "res-suite"
     },
     {
@@ -423,12 +448,18 @@
           "kind": "sighting"
         },
         {
+          "kind": "knowledge",
+          "description": "the foreman was two men short and said in front of everybody what he thought of it"
+        },
+        {
           "kind": "mark",
           "description": "cylinder oil on a cuff"
         }
       ],
       "timing": "at the shift change",
-      "sceneTiming": "the night men were punching in and the yard was full of witnesses to the hour",
+      "highTiming": "as the night men were punching in",
+      "sceneFact": "The night men punched in at {T} and the yard was full of them for the half hour.",
+      "masks": false,
       "placeId": "hotel-garage"
     }
   ],
@@ -436,6 +467,7 @@
     "el-platform",
     "hotel-garage"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2287,7 +2319,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2302,7 +2334,7 @@
           "methodId": "stab"
         }
       ],
-      "text": "Eunice Bledsoe says Lurline Dandridge was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Bledsoe says Dandridge was at the garage at 6:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2313,7 +2345,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2323,7 +2355,7 @@
           "tick": 6
         }
       ],
-      "text": "Eunice Bledsoe says Lurline Dandridge was at the newsstand on the corner at 9:00 PM.",
+      "text": "Bledsoe says Dandridge was at the newsstand at 9:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2334,7 +2366,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2344,7 +2376,7 @@
           "tick": 9
         }
       ],
-      "text": "Eunice Bledsoe says Lurline Dandridge was at the lobby of the Wyckoff at 10:30 PM.",
+      "text": "Bledsoe says Dandridge was at the Wyckoff at 10:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2355,7 +2387,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -2371,7 +2403,7 @@
           "tick": 8
         }
       ],
-      "text": "Eunice Bledsoe says Emilio Marchetti was at the newsstand on the corner from 9:30 PM to 10:00 PM.",
+      "text": "Bledsoe says Marchetti was at the newsstand from 9:30 PM to 10:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2382,7 +2414,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -2397,7 +2429,7 @@
           "methodId": "stab"
         }
       ],
-      "text": "Eunice Bledsoe says Lucia Salerno was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Bledsoe says Salerno was at the garage at 6:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2408,7 +2440,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -2418,7 +2450,7 @@
           "tick": 5
         }
       ],
-      "text": "Eunice Bledsoe says Lucia Salerno was at the newsstand on the corner at 8:30 PM.",
+      "text": "Bledsoe says Salerno was at the newsstand at 8:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2429,7 +2461,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -2444,11 +2476,12 @@
           "methodId": "stab"
         }
       ],
-      "text": "Lurline Dandridge says Eunice Bledsoe was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Dandridge says Bledsoe was at the garage at 6:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [
+        "c024",
         "c035",
-        "c106"
+        "c045"
       ],
       "role": "spine"
     },
@@ -2458,7 +2491,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -2468,7 +2501,7 @@
           "tick": 6
         }
       ],
-      "text": "Lurline Dandridge says Eunice Bledsoe was at the newsstand on the corner at 9:00 PM.",
+      "text": "Dandridge says Bledsoe was at the newsstand at 9:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2479,7 +2512,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -2489,7 +2522,7 @@
           "tick": 9
         }
       ],
-      "text": "Lurline Dandridge says Eunice Bledsoe was at the lobby of the Wyckoff at 10:30 PM.",
+      "text": "Dandridge says Bledsoe was at the Wyckoff at 10:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2500,7 +2533,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -2510,7 +2543,7 @@
           "tick": 1
         }
       ],
-      "text": "Lurline Dandridge says Emilio Marchetti was at the newsstand on the corner at 6:30 PM.",
+      "text": "Dandridge says Marchetti was at the newsstand at 6:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2521,7 +2554,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -2537,7 +2570,7 @@
           "tick": 11
         }
       ],
-      "text": "Lurline Dandridge says Emilio Marchetti was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Dandridge says Marchetti was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2548,7 +2581,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -2558,7 +2591,7 @@
           "tick": 2
         }
       ],
-      "text": "Lurline Dandridge says Emilio Marchetti was at the victim’s suite at the residential hotel at 7:00 PM.",
+      "text": "Dandridge says Marchetti was at the suite at 7:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2569,7 +2602,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2585,7 +2618,7 @@
           "tick": 11
         }
       ],
-      "text": "Lurline Dandridge says Verity Thorndike was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Dandridge says Thorndike was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2596,7 +2629,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -2611,7 +2644,7 @@
           "methodId": "stab"
         }
       ],
-      "text": "Lurline Dandridge says Lucia Salerno was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Dandridge says Salerno was at the garage at 6:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2622,7 +2655,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "James Rafferty"
+        "topic": "Rafferty"
       },
       "establishes": [
         {
@@ -2632,7 +2665,7 @@
           "tick": 3
         }
       ],
-      "text": "Lurline Dandridge says James Rafferty was at the lobby of the Wyckoff at 7:30 PM.",
+      "text": "Dandridge says Rafferty was at the Wyckoff at 7:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2643,7 +2676,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "James Rafferty"
+        "topic": "Rafferty"
       },
       "establishes": [
         {
@@ -2653,7 +2686,7 @@
           "tick": 7
         }
       ],
-      "text": "Lurline Dandridge says James Rafferty was at the garage on Eleventh Avenue at 9:30 PM.",
+      "text": "Dandridge says Rafferty was at the garage at 9:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2664,7 +2697,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Friedrich Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -2674,7 +2707,7 @@
           "tick": 0
         }
       ],
-      "text": "Emilio Marchetti says Friedrich Kreuzer was at the El platform at Twenty-Third Street at 6:00 PM.",
+      "text": "Marchetti says Kreuzer was at the El platform at 6:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2685,7 +2718,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Friedrich Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -2695,7 +2728,7 @@
           "tick": 3
         }
       ],
-      "text": "Emilio Marchetti says Friedrich Kreuzer was at the newsstand on the corner at 7:30 PM.",
+      "text": "Marchetti says Kreuzer was at the newsstand at 7:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2706,7 +2739,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -2716,7 +2749,7 @@
           "tick": 8
         }
       ],
-      "text": "Emilio Marchetti says Eunice Bledsoe was at the newsstand on the corner at 10:00 PM.",
+      "text": "Marchetti says Bledsoe was at the newsstand at 10:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2727,7 +2760,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2737,7 +2770,7 @@
           "tick": 1
         }
       ],
-      "text": "Emilio Marchetti says Lurline Dandridge was at the newsstand on the corner at 6:30 PM.",
+      "text": "Marchetti says Dandridge was at the newsstand at 6:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2748,7 +2781,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2764,7 +2797,7 @@
           "tick": 11
         }
       ],
-      "text": "Emilio Marchetti says Lurline Dandridge was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Marchetti says Dandridge was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2775,7 +2808,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2785,7 +2818,7 @@
           "tick": 2
         }
       ],
-      "text": "Emilio Marchetti says Lurline Dandridge was at the victim’s suite at the residential hotel at 7:00 PM.",
+      "text": "Marchetti says Dandridge was at the suite at 7:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2796,7 +2829,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2812,10 +2845,10 @@
           "tick": 5
         }
       ],
-      "text": "Emilio Marchetti says Lurline Dandridge was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
+      "text": "Marchetti says Dandridge was at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c024",
@@ -2823,7 +2856,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2833,10 +2866,13 @@
           "tick": 4
         }
       ],
-      "text": "Emilio Marchetti says Verity Thorndike was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Marchetti says Thorndike was at Mrs. Teague’s at 8:00 PM.",
       "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c105",
+        "c096"
+      ],
+      "role": "spine"
     },
     {
       "id": "c025",
@@ -2844,7 +2880,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2860,7 +2896,7 @@
           "tick": 11
         }
       ],
-      "text": "Emilio Marchetti says Verity Thorndike was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Marchetti says Thorndike was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -2871,7 +2907,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "James Rafferty"
+        "topic": "Rafferty"
       },
       "establishes": [
         {
@@ -2881,10 +2917,10 @@
           "tick": 4
         }
       ],
-      "text": "Emilio Marchetti says James Rafferty was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Marchetti says Rafferty was at Mrs. Teague’s at 8:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c027",
@@ -2892,7 +2928,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2902,7 +2938,7 @@
           "tick": 4
         }
       ],
-      "text": "Verity Thorndike says Lurline Dandridge was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Thorndike says Dandridge was at Mrs. Teague’s at 8:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -2913,7 +2949,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2929,7 +2965,7 @@
           "tick": 11
         }
       ],
-      "text": "Verity Thorndike says Lurline Dandridge was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Thorndike says Dandridge was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -2940,7 +2976,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -2950,10 +2986,10 @@
           "tick": 4
         }
       ],
-      "text": "Verity Thorndike says Emilio Marchetti was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Thorndike says Marchetti was at Mrs. Teague’s at 8:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c030",
@@ -2961,7 +2997,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -2977,7 +3013,7 @@
           "tick": 11
         }
       ],
-      "text": "Verity Thorndike says Emilio Marchetti was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Thorndike says Marchetti was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -2988,7 +3024,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -3009,7 +3045,7 @@
           "methodId": "stab"
         }
       ],
-      "text": "Verity Thorndike says Lucia Salerno was at the garage on Eleventh Avenue from 7:00 PM to 7:30 PM.",
+      "text": "Thorndike says Salerno was at the garage from 7:00 PM to 7:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3020,7 +3056,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -3030,7 +3066,7 @@
           "tick": 6
         }
       ],
-      "text": "Verity Thorndike says Lucia Salerno was at the El platform at Twenty-Third Street at 9:00 PM.",
+      "text": "Thorndike says Salerno was at the El platform at 9:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3041,7 +3077,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -3051,7 +3087,7 @@
           "tick": 9
         }
       ],
-      "text": "Verity Thorndike says Lucia Salerno was at the El platform at Twenty-Third Street at 10:30 PM.",
+      "text": "Thorndike says Salerno was at the El platform at 10:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3062,7 +3098,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "James Rafferty"
+        "topic": "Rafferty"
       },
       "establishes": [
         {
@@ -3072,10 +3108,10 @@
           "tick": 4
         }
       ],
-      "text": "Verity Thorndike says James Rafferty was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Thorndike says Rafferty was at Mrs. Teague’s at 8:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c035",
@@ -3083,7 +3119,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3098,9 +3134,11 @@
           "methodId": "stab"
         }
       ],
-      "text": "Lucia Salerno says Eunice Bledsoe was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Salerno says Bledsoe was at the garage at 6:00 PM.",
       "place": "el-platform",
-      "leadsTo": [],
+      "leadsTo": [
+        "c111"
+      ],
       "role": "corroboration"
     },
     {
@@ -3109,7 +3147,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3119,7 +3157,7 @@
           "tick": 5
         }
       ],
-      "text": "Lucia Salerno says Eunice Bledsoe was at the newsstand on the corner at 8:30 PM.",
+      "text": "Salerno says Bledsoe was at the newsstand at 8:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3130,7 +3168,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3145,7 +3183,7 @@
           "methodId": "stab"
         }
       ],
-      "text": "Lucia Salerno says Lurline Dandridge was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Salerno says Dandridge was at the garage at 6:00 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3156,7 +3194,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3177,7 +3215,7 @@
           "methodId": "stab"
         }
       ],
-      "text": "Lucia Salerno says Verity Thorndike was at the garage on Eleventh Avenue from 7:00 PM to 7:30 PM.",
+      "text": "Salerno says Thorndike was at the garage from 7:00 PM to 7:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3188,7 +3226,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3216,7 +3254,7 @@
           "tick": 9
         }
       ],
-      "text": "Lucia Salerno says Verity Thorndike was at the El platform at Twenty-Third Street from 9:00 PM to 10:30 PM.",
+      "text": "Salerno says Thorndike was at the El platform from 9:00 PM to 10:30 PM.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
@@ -3227,7 +3265,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Friedrich Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3237,7 +3275,7 @@
           "tick": 2
         }
       ],
-      "text": "James Rafferty says Friedrich Kreuzer was at the back room at Mrs. Teague’s at 7:00 PM.",
+      "text": "Rafferty says Kreuzer was at Mrs. Teague’s at 7:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -3248,7 +3286,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3258,7 +3296,7 @@
           "tick": 3
         }
       ],
-      "text": "James Rafferty says Lurline Dandridge was at the lobby of the Wyckoff at 7:30 PM.",
+      "text": "Rafferty says Dandridge was at the Wyckoff at 7:30 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -3269,7 +3307,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3279,7 +3317,7 @@
           "tick": 4
         }
       ],
-      "text": "James Rafferty says Lurline Dandridge was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Rafferty says Dandridge was at Mrs. Teague’s at 8:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -3290,7 +3328,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3300,7 +3338,7 @@
           "tick": 7
         }
       ],
-      "text": "James Rafferty says Lurline Dandridge was at the garage on Eleventh Avenue at 9:30 PM.",
+      "text": "Rafferty says Dandridge was at the garage at 9:30 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -3311,7 +3349,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -3321,7 +3359,7 @@
           "tick": 4
         }
       ],
-      "text": "James Rafferty says Emilio Marchetti was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Rafferty says Marchetti was at Mrs. Teague’s at 8:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -3332,7 +3370,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3342,10 +3380,10 @@
           "tick": 4
         }
       ],
-      "text": "James Rafferty says Verity Thorndike was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Rafferty says Thorndike was at Mrs. Teague’s at 8:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c046",
@@ -3353,7 +3391,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3375,7 +3413,7 @@
           "tick": 11
         }
       ],
-      "text": "Sol Feldman says Eunice Bledsoe was at the lobby of the Wyckoff from 10:30 PM to 11:30 PM.",
+      "text": "Feldman says Bledsoe was at the Wyckoff from 10:30 PM to 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3386,7 +3424,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3396,7 +3434,7 @@
           "tick": 3
         }
       ],
-      "text": "Sol Feldman says Lurline Dandridge was at the lobby of the Wyckoff at 7:30 PM.",
+      "text": "Feldman says Dandridge was at the Wyckoff at 7:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3407,7 +3445,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3423,7 +3461,7 @@
           "tick": 9
         }
       ],
-      "text": "Sol Feldman says Lurline Dandridge was at the lobby of the Wyckoff from 10:00 PM to 10:30 PM.",
+      "text": "Feldman says Dandridge was at the Wyckoff from 10:00 PM to 10:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3434,7 +3472,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3444,7 +3482,7 @@
           "tick": 0
         }
       ],
-      "text": "Sol Feldman says Verity Thorndike was at the lobby of the Wyckoff at 6:00 PM.",
+      "text": "Feldman says Thorndike was at the Wyckoff at 6:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3455,7 +3493,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3465,7 +3503,7 @@
           "tick": 5
         }
       ],
-      "text": "Sol Feldman says Verity Thorndike was at the lobby of the Wyckoff at 8:30 PM.",
+      "text": "Feldman says Thorndike was at the Wyckoff at 8:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3476,7 +3514,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "James Rafferty"
+        "topic": "Rafferty"
       },
       "establishes": [
         {
@@ -3486,7 +3524,7 @@
           "tick": 3
         }
       ],
-      "text": "Sol Feldman says James Rafferty was at the lobby of the Wyckoff at 7:30 PM.",
+      "text": "Feldman says Rafferty was at the Wyckoff at 7:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3497,7 +3535,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Friedrich Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3507,7 +3545,7 @@
           "tick": 2
         }
       ],
-      "text": "Rachel Kessler says Friedrich Kreuzer was at the back room at Mrs. Teague’s at 7:00 PM.",
+      "text": "Kessler says Kreuzer was at Mrs. Teague’s at 7:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3518,7 +3556,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3534,7 +3572,7 @@
           "tick": 5
         }
       ],
-      "text": "Rachel Kessler says Lurline Dandridge was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
+      "text": "Kessler says Dandridge was at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3545,7 +3583,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -3561,10 +3599,10 @@
           "tick": 5
         }
       ],
-      "text": "Rachel Kessler says Emilio Marchetti was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
+      "text": "Kessler says Marchetti was at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c055",
@@ -3572,7 +3610,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3582,7 +3620,7 @@
           "tick": 4
         }
       ],
-      "text": "Rachel Kessler says Verity Thorndike was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Kessler says Thorndike was at Mrs. Teague’s at 8:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3593,7 +3631,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "James Rafferty"
+        "topic": "Rafferty"
       },
       "establishes": [
         {
@@ -3615,7 +3653,7 @@
           "tick": 2
         }
       ],
-      "text": "Rachel Kessler says James Rafferty was at the back room at Mrs. Teague’s from 6:00 PM to 7:00 PM.",
+      "text": "Kessler says Rafferty was at Mrs. Teague’s from 6:00 PM to 7:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3626,7 +3664,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "James Rafferty"
+        "topic": "Rafferty"
       },
       "establishes": [
         {
@@ -3636,7 +3674,7 @@
           "tick": 4
         }
       ],
-      "text": "Rachel Kessler says James Rafferty was at the back room at Mrs. Teague’s at 8:00 PM.",
+      "text": "Kessler says Rafferty was at Mrs. Teague’s at 8:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3647,7 +3685,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Friedrich Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3657,7 +3695,7 @@
           "tick": 3
         }
       ],
-      "text": "Klara Steinbach says Friedrich Kreuzer was at the newsstand on the corner at 7:30 PM.",
+      "text": "Steinbach says Kreuzer was at the newsstand at 7:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3668,7 +3706,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3696,7 +3734,7 @@
           "tick": 8
         }
       ],
-      "text": "Klara Steinbach says Eunice Bledsoe was at the newsstand on the corner from 8:30 PM to 10:00 PM.",
+      "text": "Steinbach says Bledsoe was at the newsstand from 8:30 PM to 10:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3707,7 +3745,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3717,7 +3755,7 @@
           "tick": 1
         }
       ],
-      "text": "Klara Steinbach says Lurline Dandridge was at the newsstand on the corner at 6:30 PM.",
+      "text": "Steinbach says Dandridge was at the newsstand at 6:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3728,7 +3766,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3738,7 +3776,7 @@
           "tick": 6
         }
       ],
-      "text": "Klara Steinbach says Lurline Dandridge was at the newsstand on the corner at 9:00 PM.",
+      "text": "Steinbach says Dandridge was at the newsstand at 9:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3749,7 +3787,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3765,7 +3803,7 @@
           "tick": 11
         }
       ],
-      "text": "Klara Steinbach says Lurline Dandridge was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Steinbach says Dandridge was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3776,7 +3814,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -3786,7 +3824,7 @@
           "tick": 1
         }
       ],
-      "text": "Klara Steinbach says Emilio Marchetti was at the newsstand on the corner at 6:30 PM.",
+      "text": "Steinbach says Marchetti was at the newsstand at 6:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3797,7 +3835,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -3807,7 +3845,7 @@
           "tick": 3
         }
       ],
-      "text": "Klara Steinbach says Emilio Marchetti was at the newsstand on the corner at 7:30 PM.",
+      "text": "Steinbach says Marchetti was at the newsstand at 7:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3818,7 +3856,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Emilio Marchetti"
+        "topic": "Marchetti"
       },
       "establishes": [
         {
@@ -3852,7 +3890,7 @@
           "tick": 11
         }
       ],
-      "text": "Klara Steinbach says Emilio Marchetti was at the newsstand on the corner from 9:30 PM to 11:30 PM.",
+      "text": "Steinbach says Marchetti was at the newsstand from 9:30 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3863,7 +3901,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3879,7 +3917,7 @@
           "tick": 11
         }
       ],
-      "text": "Klara Steinbach says Verity Thorndike was at the newsstand on the corner from 11:00 PM to 11:30 PM.",
+      "text": "Steinbach says Thorndike was at the newsstand from 11:00 PM to 11:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3890,7 +3928,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -3906,11 +3944,10 @@
           "tick": 5
         }
       ],
-      "text": "Klara Steinbach says Lucia Salerno was at the newsstand on the corner from 8:00 PM to 8:30 PM.",
+      "text": "Steinbach says Salerno was at the newsstand from 8:00 PM to 8:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c125",
-        "c073"
+        "c079"
       ],
       "role": "spine"
     },
@@ -3920,7 +3957,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -3935,7 +3972,7 @@
           "methodId": "stab"
         }
       ],
-      "text": "Carmine Carbone says Eunice Bledsoe was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Carbone says Bledsoe was at the garage at 6:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -3946,7 +3983,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3961,10 +3998,10 @@
           "methodId": "stab"
         }
       ],
-      "text": "Carmine Carbone says Lurline Dandridge was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Carbone says Dandridge was at the garage at 6:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c070",
@@ -3972,7 +4009,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Lurline Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3982,7 +4019,7 @@
           "tick": 7
         }
       ],
-      "text": "Carmine Carbone says Lurline Dandridge was at the garage on Eleventh Avenue at 9:30 PM.",
+      "text": "Carbone says Dandridge was at the garage at 9:30 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -3993,7 +4030,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Verity Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -4014,10 +4051,12 @@
           "methodId": "stab"
         }
       ],
-      "text": "Carmine Carbone says Verity Thorndike was at the garage on Eleventh Avenue from 7:00 PM to 7:30 PM.",
+      "text": "Carbone says Thorndike was at the garage from 7:00 PM to 7:30 PM.",
       "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c120"
+      ],
+      "role": "corroboration"
     },
     {
       "id": "c072",
@@ -4025,7 +4064,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -4058,7 +4097,7 @@
           "methodId": "stab"
         }
       ],
-      "text": "Carmine Carbone says Lucia Salerno was at the garage on Eleventh Avenue from 6:00 PM to 7:30 PM.",
+      "text": "Carbone says Salerno was at the garage from 6:00 PM to 7:30 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -4069,7 +4108,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -4079,7 +4118,7 @@
           "tick": 4
         }
       ],
-      "text": "Carmine Carbone says Lucia Salerno was at the newsstand on the corner at 8:00 PM.",
+      "text": "Carbone says Salerno was at the newsstand at 8:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "corroboration"
@@ -4090,7 +4129,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "James Rafferty"
+        "topic": "Rafferty"
       },
       "establishes": [
         {
@@ -4136,7 +4175,7 @@
           "tick": 11
         }
       ],
-      "text": "Carmine Carbone says James Rafferty was at the garage on Eleventh Avenue from 8:30 PM to 11:30 PM.",
+      "text": "Carbone says Rafferty was at the garage from 8:30 PM to 11:30 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -4146,25 +4185,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s6",
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-garage",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-garage",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 2
         }
       ],
-      "text": "Eunice Bledsoe runs through it: at 6:00 PM there were Lurline Dandridge, Lucia Salerno at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Rafferty was at Mrs. Teague’s at 7:00 PM and says Bledsoe was not.",
+      "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4173,25 +4206,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f2",
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s1",
-          "place": "hotel-garage",
-          "tick": 0
+          "place": "rooming-house-room",
+          "tick": 1
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-garage",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 2
         }
       ],
-      "text": "Lurline Dandridge runs through it: at 6:00 PM there were Eunice Bledsoe, Lucia Salerno at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Kessler was at Mrs. Teague’s from 6:30 PM to 7:00 PM and says Bledsoe was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4200,24 +4233,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s3",
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 10
+          "tick": 3
         }
       ],
-      "text": "Lurline Dandridge runs through it: at 11:00 PM there were Emilio Marchetti, Verity Thorndike at the newsstand on the corner, and nobody else worth naming.",
+      "text": "Marchetti was at the newsstand at 7:30 PM and says Bledsoe was not.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4227,61 +4254,49 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f3",
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "corner-newsstand",
-          "tick": 11
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "corner-newsstand",
-          "tick": 11
+          "tick": 4
         }
       ],
-      "text": "Lurline Dandridge runs through it: at 11:30 PM there were Emilio Marchetti, Verity Thorndike at the newsstand on the corner, and nobody else worth naming.",
+      "text": "Steinbach was at the newsstand from 7:30 PM to 8:00 PM and says Bledsoe was not.",
       "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c026"
+      ],
+      "role": "spine"
     },
     {
       "id": "c079",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f4",
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "corner-newsstand",
           "tick": 4
         }
       ],
-      "text": "Emilio Marchetti runs through it: at 8:00 PM there were Lurline Dandridge, Verity Thorndike, James Rafferty at the back room at Mrs. Teague’s, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c137"
-      ],
+      "text": "Carbone was at the newsstand at 8:00 PM and says Bledsoe was not.",
+      "place": "hotel-garage",
+      "leadsTo": [],
       "role": "corroboration"
     },
     {
@@ -4289,25 +4304,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s6",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 10
+          "place": "hotel-garage",
+          "tick": 5
         }
       ],
-      "text": "Emilio Marchetti runs through it: at 11:00 PM there were Lurline Dandridge, Verity Thorndike at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Rafferty was at the garage at 8:30 PM and says Dandridge was not.",
+      "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4316,58 +4325,46 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f4",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 11
+          "place": "hotel-garage",
+          "tick": 5
         }
       ],
-      "text": "Emilio Marchetti runs through it: at 11:30 PM there were Lurline Dandridge, Verity Thorndike at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Carbone was at the garage at 8:30 PM and says Dandridge was not.",
+      "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c082",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s1",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "rooming-house-room",
+          "place": "hotel-garage",
           "tick": 4
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "hotel-garage",
+          "tick": 5
         }
       ],
-      "text": "Verity Thorndike runs through it: at 8:00 PM there were Lurline Dandridge, Emilio Marchetti, James Rafferty at the back room at Mrs. Teague’s, and nobody else worth naming.",
-      "place": "el-platform",
+      "text": "Dandridge names Bledsoe as the company for the garage from 8:00 PM to 8:30 PM. Bledsoe says they were not together that evening.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4376,52 +4373,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s5",
+        "topic": "Marchetti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 10
+          "place": "el-platform",
+          "tick": 7
         }
       ],
-      "text": "Verity Thorndike runs through it: at 11:00 PM there were Lurline Dandridge, Emilio Marchetti at the newsstand on the corner, and nobody else worth naming.",
+      "text": "Salerno was at the El platform at 9:30 PM and says Marchetti was not.",
       "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c084",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-s1",
+        "topic": "Marchetti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 11
+          "place": "el-platform",
+          "tick": 7
         }
       ],
-      "text": "Verity Thorndike runs through it: at 11:30 PM there were Lurline Dandridge, Emilio Marchetti at the newsstand on the corner, and nobody else worth naming.",
-      "place": "el-platform",
+      "text": "Marchetti names Bledsoe as the company for it. Bledsoe was at the newsstand at 9:30 PM, and says Marchetti was not there.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4430,25 +4415,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s2",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s4",
           "place": "hotel-garage",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-garage",
-          "tick": 0
+          "tick": 7
         }
       ],
-      "text": "Lucia Salerno runs through it: at 6:00 PM there were Eunice Bledsoe, Lurline Dandridge at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "el-platform",
+      "text": "Dandridge was at the garage at 9:30 PM and says Thorndike was not.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4458,84 +4437,78 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "who was there at 8:00 PM"
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 4
+          "place": "hotel-garage",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "hotel-garage",
+          "tick": 8
         }
       ],
-      "text": "James Rafferty runs through it: at 8:00 PM there were Lurline Dandridge, Emilio Marchetti, Verity Thorndike at the back room at Mrs. Teague’s, and nobody else worth naming.",
+      "text": "Rafferty was at the garage from 9:30 PM to 10:00 PM and says Thorndike was not.",
       "place": "hotel-garage",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c087",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:30 PM"
+        "personId": "p-f4",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 3
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "hotel-garage",
+          "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 3
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "hotel-garage",
+          "tick": 8
         }
       ],
-      "text": "Sol Feldman runs through it: at 7:30 PM there were Lurline Dandridge, James Rafferty at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
+      "text": "Carbone was at the garage from 9:30 PM to 10:00 PM and says Thorndike was not.",
+      "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c088",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s5",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "hotel-garage",
+          "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-lobby",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "hotel-garage",
+          "tick": 8
         }
       ],
-      "text": "Sol Feldman runs through it: at 10:30 PM there were Eunice Bledsoe, Lurline Dandridge at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
+      "text": "Thorndike names Salerno as the company for it. Salerno was at the El platform from 9:30 PM to 10:00 PM, and says Thorndike was not there.",
+      "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4544,67 +4517,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f1",
+        "topic": "Salerno’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "hotel-lobby",
           "tick": 4
         }
       ],
-      "text": "Rachel Kessler runs through it: at 8:00 PM there were Lurline Dandridge, Emilio Marchetti, Verity Thorndike, James Rafferty at the back room at Mrs. Teague’s, and nobody else worth naming.",
-      "place": "rooming-house-room",
-      "leadsTo": [
-        "c105",
-        "c086"
-      ],
-      "role": "spine"
+      "text": "Feldman was at the Wyckoff at 8:00 PM and says Salerno was not.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c090",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s1",
+        "topic": "Rafferty’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "rooming-house-room",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hotel-garage",
+          "tick": 0
         }
       ],
-      "text": "Rachel Kessler runs through it: at 8:30 PM there were Lurline Dandridge, Emilio Marchetti at the back room at Mrs. Teague’s, and nobody else worth naming.",
-      "place": "rooming-house-room",
+      "text": "Bledsoe was at the garage at 6:00 PM and says Rafferty was not.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4613,24 +4559,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-s2",
+        "topic": "Rafferty’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hotel-garage",
+          "tick": 0
         }
       ],
-      "text": "Klara Steinbach runs through it: at 6:30 PM there were Lurline Dandridge, Emilio Marchetti at the newsstand on the corner, and nobody else worth naming.",
+      "text": "Dandridge was at the garage at 6:00 PM and says Rafferty was not.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4640,25 +4580,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s5",
+        "topic": "Rafferty’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hotel-garage",
+          "tick": 0
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "corner-newsstand",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hotel-garage",
+          "tick": 1
         }
       ],
-      "text": "Klara Steinbach runs through it: at 8:30 PM there were Eunice Bledsoe, Lucia Salerno at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Salerno was at the garage from 6:00 PM to 6:30 PM and says Rafferty was not.",
+      "place": "el-platform",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4667,711 +4607,30 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f4",
+        "topic": "Rafferty’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hotel-garage",
+          "tick": 0
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hotel-garage",
+          "tick": 1
         }
       ],
-      "text": "Klara Steinbach runs through it: at 9:00 PM there were Eunice Bledsoe, Lurline Dandridge at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
+      "text": "Carbone was at the garage from 6:00 PM to 6:30 PM and says Rafferty was not.",
+      "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c094",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 7
-        }
-      ],
-      "text": "Klara Steinbach runs through it: at 9:30 PM there were Eunice Bledsoe, Emilio Marchetti at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c095",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 8
-        }
-      ],
-      "text": "Klara Steinbach runs through it: at 10:00 PM there were Eunice Bledsoe, Emilio Marchetti at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c096",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 10
-        }
-      ],
-      "text": "Klara Steinbach runs through it: at 11:00 PM there were Lurline Dandridge, Emilio Marchetti, Verity Thorndike at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c097",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "corner-newsstand",
-          "tick": 11
-        }
-      ],
-      "text": "Klara Steinbach runs through it: at 11:30 PM there were Lurline Dandridge, Emilio Marchetti, Verity Thorndike at the newsstand on the corner, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-garage",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-garage",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-garage",
-          "tick": 0
-        }
-      ],
-      "text": "Carmine Carbone runs through it: at 6:00 PM there were Eunice Bledsoe, Lurline Dandridge, Lucia Salerno at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-garage",
-          "tick": 2
-        }
-      ],
-      "text": "Carmine Carbone runs through it: at 7:00 PM there were Verity Thorndike, Lucia Salerno at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-garage",
-          "tick": 3
-        }
-      ],
-      "text": "Carmine Carbone runs through it: at 7:30 PM there were Verity Thorndike, Lucia Salerno at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "hotel-garage",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 7
-        }
-      ],
-      "text": "Carmine Carbone runs through it: at 9:30 PM there were Lurline Dandridge, James Rafferty at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Eunice Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 2
-        }
-      ],
-      "text": "James Rafferty was at the back room at Mrs. Teague’s at 7:00 PM and says Eunice Bledsoe was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Eunice Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 1
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 2
-        }
-      ],
-      "text": "Rachel Kessler was at the back room at Mrs. Teague’s from 6:30 PM to 7:00 PM and says Eunice Bledsoe was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Eunice Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 3
-        }
-      ],
-      "text": "Emilio Marchetti was at the newsstand on the corner at 7:30 PM and says Eunice Bledsoe was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Eunice Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "Klara Steinbach was at the newsstand on the corner from 7:30 PM to 8:00 PM and says Eunice Bledsoe was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c067",
-        "c125",
-        "c007",
-        "c131",
-        "c034"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Eunice Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "Carmine Carbone was at the newsstand on the corner at 8:00 PM and says Eunice Bledsoe was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Lurline Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "hotel-garage",
-          "tick": 5
-        }
-      ],
-      "text": "James Rafferty was at the garage on Eleventh Avenue at 8:30 PM and says Lurline Dandridge was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Lurline Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "hotel-garage",
-          "tick": 5
-        }
-      ],
-      "text": "Carmine Carbone was at the garage on Eleventh Avenue at 8:30 PM and says Lurline Dandridge was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Lurline Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "hotel-garage",
-          "tick": 5
-        }
-      ],
-      "text": "Lurline Dandridge says Eunice Bledsoe was there for it. Eunice Bledsoe says otherwise: Eunice Bledsoe was at the newsstand on the corner at 8:30 PM, nowhere near the garage on Eleventh Avenue.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Emilio Marchetti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "el-platform",
-          "tick": 7
-        }
-      ],
-      "text": "Lucia Salerno was at the El platform at Twenty-Third Street at 9:30 PM and says Emilio Marchetti was not.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Emilio Marchetti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "el-platform",
-          "tick": 7
-        }
-      ],
-      "text": "Emilio Marchetti says Eunice Bledsoe was there for it. Eunice Bledsoe says otherwise: Eunice Bledsoe was at the newsstand on the corner at 9:30 PM, nowhere near the El platform at Twenty-Third Street.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Verity Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 7
-        }
-      ],
-      "text": "Lurline Dandridge was at the garage on Eleventh Avenue at 9:30 PM and says Verity Thorndike was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Verity Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 8
-        }
-      ],
-      "text": "James Rafferty was at the garage on Eleventh Avenue from 9:30 PM to 10:00 PM and says Verity Thorndike was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Verity Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 8
-        }
-      ],
-      "text": "Carmine Carbone was at the garage on Eleventh Avenue from 9:30 PM to 10:00 PM and says Verity Thorndike was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Verity Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 8
-        }
-      ],
-      "text": "Verity Thorndike says Lucia Salerno was there for it. Lucia Salerno says otherwise: Lucia Salerno was at the El platform at Twenty-Third Street from 9:30 PM to 10:00 PM, nowhere near the garage on Eleventh Avenue.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Lucia Salerno’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 4
-        }
-      ],
-      "text": "Sol Feldman was at the lobby of the Wyckoff at 8:00 PM and says Lucia Salerno was not.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "James Rafferty’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 0
-        }
-      ],
-      "text": "Eunice Bledsoe was at the garage on Eleventh Avenue at 6:00 PM and says James Rafferty was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "James Rafferty’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 0
-        }
-      ],
-      "text": "Lurline Dandridge was at the garage on Eleventh Avenue at 6:00 PM and says James Rafferty was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "James Rafferty’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 0
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 1
-        }
-      ],
-      "text": "Lucia Salerno was at the garage on Eleventh Avenue from 6:00 PM to 6:30 PM and says James Rafferty was not.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "James Rafferty’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 0
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 1
-        }
-      ],
-      "text": "Carmine Carbone was at the garage on Eleventh Avenue from 6:00 PM to 6:30 PM and says James Rafferty was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -5387,20 +4646,19 @@
           "methodId": "stab"
         }
       ],
-      "text": "Friedrich Kreuzer was found at the victim’s suite at the residential hotel. The tap was left running and the basin had overflowed a clean ring onto the boards. The drunk singing under the window came at 8:00 PM, and the singing stopped when the shoe came down, and that was the half hour. That puts the killing in that half hour and no later.",
+      "text": "Kreuzer was found at the suite. The tap was left running and the basin had overflowed a clean ring onto the boards. The singing under the window stopped at 8:00 PM, when the shoe came down.",
       "place": "res-suite",
       "leadsTo": [
-        "c089",
-        "c105",
-        "c069",
-        "c154",
-        "c144"
+        "c023",
+        "c007",
+        "c067",
+        "c054"
       ],
       "role": "spine",
       "anchorId": "drunk-singing"
     },
     {
-      "id": "c122",
+      "id": "c095",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -5422,13 +4680,22 @@
       "text": "The coroner puts death between 6:30 PM and 8:00 PM — two hours of nothing useful. A single narrow puncture under the ribs. Very little blood outside the body.",
       "place": "res-suite",
       "leadsTo": [
-        "c089",
-        "c067"
+        "c098",
+        "c023",
+        "c007",
+        "c067",
+        "c024",
+        "c078",
+        "c026",
+        "c054",
+        "c071",
+        "c029",
+        "c127"
       ],
       "role": "spine"
     },
     {
-      "id": "c123",
+      "id": "c096",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -5445,18 +4712,18 @@
           "methodId": "stab"
         }
       ],
-      "text": "An ice pick is gone from the garage on Eleventh Avenue. The block is out and half melted and the pick that belongs with it is gone.",
+      "text": "An ice pick is gone from the garage. The block is out and half melted and the pick that belongs with it is gone.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c124",
+      "id": "c097",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Friedrich Kreuzer that evening"
+        "topic": "Kreuzer that evening"
       },
       "establishes": [
         {
@@ -5470,21 +4737,19 @@
           "tick": 3
         }
       ],
-      "text": "Emilio Marchetti puts Friedrich Kreuzer at the newsstand on the corner when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.",
+      "text": "Marchetti puts Kreuzer at the newsstand when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.",
       "place": "corner-newsstand",
-      "leadsTo": [
-        "c158"
-      ],
-      "role": "corroboration",
+      "leadsTo": [],
+      "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c125",
+      "id": "c098",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Friedrich Kreuzer that evening"
+        "topic": "Kreuzer that evening"
       },
       "establishes": [
         {
@@ -5498,17 +4763,17 @@
           "tick": 3
         }
       ],
-      "text": "Klara Steinbach puts Friedrich Kreuzer at the newsstand on the corner when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.",
+      "text": "Steinbach puts Kreuzer at the newsstand when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c124",
-        "c079"
+        "c078",
+        "c117"
       ],
       "role": "spine",
       "anchorId": "last-edition"
     },
     {
-      "id": "c126",
+      "id": "c099",
       "kind": "anchor",
       "source": {
         "type": "place",
@@ -5522,14 +4787,36 @@
           "tick": 3
         }
       ],
-      "text": "The last edition coming off the truck at 7:30 PM puts Emilio Marchetti at the newsstand on the corner.",
+      "text": "The last edition coming off the truck was at 7:30 PM, and Marchetti was at the newsstand for it.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c127",
+      "id": "c100",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "the last edition coming off the truck"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "corner-newsstand",
+          "tick": 3
+        }
+      ],
+      "text": "Bledsoe claims the newsstand at 7:30 PM, which is when the last edition coming off the truck was on. Asked about it, Bledsoe cannot say that the late edition led with the bridge contract and not the hold-up — and everybody who was there can.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "last-edition"
+    },
+    {
+      "id": "c101",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -5543,14 +4830,14 @@
           "tick": 3
         }
       ],
-      "text": "Emilio Marchetti carries the mark of it: ink still wet enough to come off on a glove. That fixes Emilio Marchetti at the newsstand on the corner at 7:30 PM, when the last edition coming off the truck happened.",
+      "text": "Marchetti still carries it: ink still wet enough to come off on a glove. The last edition coming off the truck was at 7:30 PM, at the newsstand.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "last-edition"
     },
     {
-      "id": "c128",
+      "id": "c102",
       "kind": "anchor",
       "source": {
         "type": "place",
@@ -5564,14 +4851,14 @@
           "tick": 10
         }
       ],
-      "text": "The shift change at the garage at 11:00 PM puts James Rafferty at the garage on Eleventh Avenue.",
+      "text": "The shift change at the garage was at 11:00 PM, and Rafferty was at the garage for it.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "garage-shift"
     },
     {
-      "id": "c129",
+      "id": "c103",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -5585,14 +4872,14 @@
           "tick": 10
         }
       ],
-      "text": "James Rafferty carries the mark of it: cylinder oil on a cuff. That fixes James Rafferty at the garage on Eleventh Avenue at 11:00 PM, when the shift change at the garage happened.",
+      "text": "Rafferty still carries it: cylinder oil on a cuff. The shift change at the garage was at 11:00 PM, at the garage.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "garage-shift"
     },
     {
-      "id": "c130",
+      "id": "c104",
       "kind": "document",
       "source": {
         "type": "place",
@@ -5602,36 +4889,38 @@
         {
           "kind": "hasMotive",
           "personId": "p-s1",
-          "motiveType": "revenge"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Found at the newsstand on the corner: A clipping about the failure of Eunice Bledsoe’s business, with Friedrich Kreuzer’s name underlined twice in pencil.",
+      "text": "Found at the newsstand: A subpoena naming Kreuzer before the grand jury, with Bledsoe’s name written in the margin.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c131",
+      "id": "c105",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Eunice Bledsoe and Friedrich Kreuzer"
+        "topic": "Bledsoe and Kreuzer"
       },
       "establishes": [
         {
           "kind": "hasMotive",
           "personId": "p-s1",
-          "motiveType": "revenge"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Sol Feldman says Eunice Bledsoe said Friedrich Kreuzer had taken everything and would be made to feel it.",
+      "text": "Feldman says Kreuzer said to Bledsoe that a man who testifies sleeps better.",
       "place": "hotel-lobby",
-      "leadsTo": [],
+      "leadsTo": [
+        "c143"
+      ],
       "role": "corroboration"
     },
     {
-      "id": "c132",
+      "id": "c106",
       "kind": "document",
       "source": {
         "type": "place",
@@ -5641,36 +4930,36 @@
         {
           "kind": "hasMotive",
           "personId": "p-s4",
-          "motiveType": "exposure"
+          "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A typed page of dates and sums in Friedrich Kreuzer’s file, headed with Verity Thorndike’s name.",
+      "text": "Found at the suite: A promissory note for $4,000 signed by Thorndike, endorsed to Kreuzer, three months past due.",
       "place": "res-suite",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c133",
+      "id": "c107",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Verity Thorndike and Friedrich Kreuzer"
+        "topic": "Thorndike and Kreuzer"
       },
       "establishes": [
         {
           "kind": "hasMotive",
           "personId": "p-s4",
-          "motiveType": "exposure"
+          "motiveType": "debt"
         }
       ],
-      "text": "Eunice Bledsoe says Friedrich Kreuzer told Verity Thorndike that the story would run whether Verity Thorndike liked it or not.",
+      "text": "Bledsoe says Kreuzer told Thorndike that Friday was the end of it, one way or the other.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c134",
+      "id": "c108",
       "kind": "document",
       "source": {
         "type": "place",
@@ -5683,18 +4972,18 @@
           "motiveType": "inheritance"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A draft codicil in Friedrich Kreuzer’s hand striking James Rafferty out of the will, dated last Tuesday and unsigned.",
+      "text": "Found at the suite: A draft codicil in Kreuzer’s hand striking Rafferty out of the will, dated last Tuesday and unsigned.",
       "place": "res-suite",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c135",
+      "id": "c109",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "James Rafferty and Friedrich Kreuzer"
+        "topic": "Rafferty and Kreuzer"
       },
       "establishes": [
         {
@@ -5703,13 +4992,13 @@
           "motiveType": "inheritance"
         }
       ],
-      "text": "Carmine Carbone says Friedrich Kreuzer told James Rafferty the lawyer was coming Thursday and that the arrangement would be changed.",
+      "text": "Carbone says Kreuzer told Rafferty the lawyer was coming Thursday and that the arrangement would be changed.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c136",
+      "id": "c110",
       "kind": "client",
       "source": {
         "type": "person",
@@ -5720,644 +5009,684 @@
         {
           "kind": "hasMotive",
           "personId": "p-s1",
-          "motiveType": "revenge"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Emilio Marchetti hired us. Emilio Marchetti wants it known that Eunice Bledsoe blamed the victim for a ruin, and would rather we started there.",
+      "text": "Marchetti hired us, and wants it known that Bledsoe needed the victim silent, and would rather we started there.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c007",
-        "c123",
-        "c167"
+        "c098",
+        "c073"
       ],
       "role": "spine"
     },
     {
-      "id": "c137",
+      "id": "c111",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Lurline Dandridge"
+        "personId": "p-f3",
+        "topic": "Dandridge"
       },
       "establishes": [],
-      "text": "Sol Feldman on Lurline Dandridge: Lurline Dandridge sends money out of every pay envelope and cannot say where it goes.",
-      "place": "hotel-lobby",
+      "text": "Steinbach on Dandridge: Dandridge sends money out of every pay envelope and cannot say where it goes.",
+      "place": "corner-newsstand",
       "leadsTo": [
-        "c139"
+        "c114"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s2",
       "branchId": "b4"
     },
     {
-      "id": "c138",
+      "id": "c112",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "Lurline Dandridge"
+        "personId": "p-s3",
+        "topic": "Dandridge"
       },
       "establishes": [],
-      "text": "Klara Steinbach on Lurline Dandridge: A woman at the back room at Mrs. Teague’s asked for Lurline Dandridge by a name Lurline Dandridge has not used in years.",
+      "text": "Marchetti on Dandridge: A woman at Mrs. Teague’s asked for Dandridge by a name Dandridge has not used in years.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c113",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dandridge"
+      },
+      "establishes": [],
+      "text": "Rafferty on Dandridge: Dandridge keeps a photograph and will not be asked about it twice.",
+      "place": "hotel-garage",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c114",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A board-and-keep receipt at Mrs. Teague’s, monthly, eight years of them.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c115",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A child’s shoe at Mrs. Teague’s, and nobody at Mrs. Teague’s has any children.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 5
+        }
+      ],
+      "text": "The woman who keeps the child says it straight out: Dandridge was at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 5
+        }
+      ],
+      "text": "The parish register at Mrs. Teague’s has the christening in it, and the board money receipted through the evening in question.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Marchetti"
+      },
+      "establishes": [],
+      "text": "Kessler on Marchetti: Marchetti was carrying a parcel into the newsstand and came out without it.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Marchetti"
+      },
+      "establishes": [],
+      "text": "Carbone on Marchetti: There is a man who meets people at the newsstand and nobody will say his name out loud.",
+      "place": "hotel-garage",
+      "leadsTo": [
+        "c121"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Marchetti"
+      },
+      "establishes": [],
+      "text": "Dandridge on Marchetti: Marchetti has been selling things that were never Marchetti’s to sell.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c119"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c121",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the newsstand, and the shop it came from closed two years ago.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the newsstand in a name that does not exist, made out at the hour in question.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 7
+        }
+      ],
+      "text": "The receiver at the newsstand would rather talk than be held: Marchetti was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Marchetti will take over this one.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 7
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Marchetti at the newsstand from 9:30 PM with both hands full.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Thorndike"
+      },
+      "establishes": [],
+      "text": "Feldman on Thorndike: Thorndike was carrying a parcel into the El platform and came out without it.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Thorndike"
+      },
+      "establishes": [],
+      "text": "Steinbach on Thorndike: There is a man who meets people at the El platform and nobody will say his name out loud.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c125"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Thorndike"
+      },
+      "establishes": [],
+      "text": "Bledsoe on Thorndike: Thorndike has been selling things that were never Thorndike’s to sell.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c128",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the El platform, and the shop it came from closed two years ago.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the El platform in a name that does not exist, made out at the hour in question.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "el-platform",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "el-platform",
+          "tick": 8
+        }
+      ],
+      "text": "The receiver at the El platform would rather talk than be held: Thorndike was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Thorndike will take over this one.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "el-platform",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "el-platform",
+          "tick": 8
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Thorndike at the El platform from 9:30 PM to 10:00 PM with both hands full.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Salerno"
+      },
+      "establishes": [],
+      "text": "Steinbach on Salerno: Salerno was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Salerno"
+      },
+      "establishes": [],
+      "text": "Marchetti on Salerno: A man nobody knew was waiting for Salerno at the newsstand and would not give a name.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Salerno"
+      },
+      "establishes": [],
+      "text": "Rafferty on Salerno: Salerno goes very quiet when the racing wire is mentioned.",
+      "place": "hotel-garage",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c135",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "Betting slips at the newsstand in Salerno’s pocketbook, all of them losers, all of them this month.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c136",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "A book of markers at the newsstand with Salerno’s initials against four of them.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 4
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Salerno was at the newsstand from 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 4
+        }
+      ],
+      "text": "The book at the newsstand has the payment entered against Salerno’s name and the time beside it, from 8:00 PM, in the clerk’s own hand.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
     },
     {
       "id": "c139",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "Lurline Dandridge"
+        "personId": "p-s4",
+        "topic": "Rafferty"
       },
       "establishes": [],
-      "text": "Emilio Marchetti on Lurline Dandridge: Lurline Dandridge keeps a photograph and will not be asked about it twice.",
+      "text": "Thorndike on Rafferty: Rafferty had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Rafferty"
+      },
+      "establishes": [],
+      "text": "Feldman on Rafferty: Rafferty is on a temperance pledge that Rafferty mentions before anybody asks.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Rafferty"
+      },
+      "establishes": [],
+      "text": "Steinbach on Rafferty: Somebody at Mrs. Teague’s says Rafferty is in more often than Rafferty lets on.",
       "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c142",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A bottle at Mrs. Teague’s pushed behind the pipes, the seal broken and the level down.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c143",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A tab at Mrs. Teague’s in a name that is not Rafferty’s, in Rafferty’s handwriting.",
+      "place": "rooming-house-room",
       "leadsTo": [
         "c142"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b4"
-    },
-    {
-      "id": "c140",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [],
-      "text": "A board-and-keep receipt at the back room at Mrs. Teague’s, monthly, eight years of them.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c141",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [],
-      "text": "A child’s shoe at the back room at Mrs. Teague’s, and nobody at the back room at Mrs. Teague’s has any children.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c142",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 5
-        }
-      ],
-      "text": "The woman who keeps the child says it straight out: Lurline Dandridge was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b4"
-    },
-    {
-      "id": "c143",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "hidden-family"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 5
-        }
-      ],
-      "text": "The parish register at the back room at Mrs. Teague’s has the christening in it, and the board money receipted through the evening in question.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
     },
     {
       "id": "c144",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Emilio Marchetti"
+        "type": "place",
+        "placeId": "rooming-house-room"
       },
-      "establishes": [],
-      "text": "Carmine Carbone on Emilio Marchetti: Emilio Marchetti was carrying a parcel into the newsstand on the corner and came out without it.",
-      "place": "hotel-garage",
-      "leadsTo": [
-        "c149"
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 1
+        }
       ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b2"
+      "text": "The man behind the counter at Mrs. Teague’s knows exactly: Rafferty was on the same stool from 6:00 PM to 6:30 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
     },
     {
       "id": "c145",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Emilio Marchetti"
-      },
-      "establishes": [],
-      "text": "Lurline Dandridge on Emilio Marchetti: There is a man who meets people at the newsstand on the corner and nobody will say his name out loud.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c146",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Emilio Marchetti"
-      },
-      "establishes": [],
-      "text": "James Rafferty on Emilio Marchetti: Emilio Marchetti has been selling things that were never Emilio Marchetti’s to sell.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c147",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the newsstand on the corner, and the shop it came from closed two years ago.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c148",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the newsstand on the corner in a name that does not exist, made out at the hour in question.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c149",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 7
-        }
-      ],
-      "text": "The receiver at the newsstand on the corner would rather talk than be held: Emilio Marchetti was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Emilio Marchetti will take over this one.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b2"
-    },
-    {
-      "id": "c150",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 7
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Emilio Marchetti at the newsstand on the corner from 9:30 PM with both hands full.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c151",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Verity Thorndike"
-      },
-      "establishes": [],
-      "text": "Klara Steinbach on Verity Thorndike: Verity Thorndike was carrying a parcel into the El platform at Twenty-Third Street and came out without it.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c152",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Verity Thorndike"
-      },
-      "establishes": [],
-      "text": "Eunice Bledsoe on Verity Thorndike: There is a man who meets people at the El platform at Twenty-Third Street and nobody will say his name out loud.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c153",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Verity Thorndike"
-      },
-      "establishes": [],
-      "text": "Lucia Salerno on Verity Thorndike: Verity Thorndike has been selling things that were never Verity Thorndike’s to sell.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c154",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the El platform at Twenty-Third Street, and the shop it came from closed two years ago.",
-      "place": "el-platform",
-      "leadsTo": [
-        "c156"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c155",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the El platform at Twenty-Third Street in a name that does not exist, made out at the hour in question.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "el-platform",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "el-platform",
-          "tick": 8
-        }
-      ],
-      "text": "The receiver at the El platform at Twenty-Third Street would rather talk than be held: Verity Thorndike was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Verity Thorndike will take over this one.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c157",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "el-platform",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "el-platform",
-          "tick": 8
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Verity Thorndike at the El platform at Twenty-Third Street from 9:30 PM to 10:00 PM with both hands full.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c158",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Lucia Salerno"
-      },
-      "establishes": [],
-      "text": "Sol Feldman on Lucia Salerno: Lucia Salerno was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c159"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Lucia Salerno"
-      },
-      "establishes": [],
-      "text": "Klara Steinbach on Lucia Salerno: A man nobody knew was waiting for Lucia Salerno at the newsstand on the corner and would not give a name.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c163"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Lucia Salerno"
-      },
-      "establishes": [],
-      "text": "Emilio Marchetti on Lucia Salerno: Lucia Salerno goes very quiet when the racing wire is mentioned.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c161",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [],
-      "text": "Betting slips at the newsstand on the corner in Lucia Salerno’s pocketbook, all of them losers, all of them this month.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c162",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [],
-      "text": "A book of markers at the newsstand on the corner with Lucia Salerno’s initials against four of them.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c163",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "The bookmaker’s runner is found and will say it: Lucia Salerno was at the newsstand on the corner from 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c164",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "The book at the newsstand on the corner has the payment entered against Lucia Salerno’s name and the time beside it, from 8:00 PM, in the clerk’s own hand.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c165",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "James Rafferty"
-      },
-      "establishes": [],
-      "text": "Sol Feldman on James Rafferty: James Rafferty had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "James Rafferty"
-      },
-      "establishes": [],
-      "text": "Klara Steinbach on James Rafferty: James Rafferty is on a temperance pledge that James Rafferty mentions before anybody asks.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "James Rafferty"
-      },
-      "establishes": [],
-      "text": "Lurline Dandridge on James Rafferty: Somebody at the back room at Mrs. Teague’s says James Rafferty is in more often than James Rafferty lets on.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c170"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b3"
-    },
-    {
-      "id": "c168",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [],
-      "text": "A bottle at the back room at Mrs. Teague’s pushed behind the pipes, the seal broken and the level down.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [],
-      "text": "A tab at the back room at Mrs. Teague’s in a name that is not James Rafferty’s, in James Rafferty’s handwriting.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
         "type": "place",
         "placeId": "rooming-house-room"
       },
@@ -6380,40 +5709,7 @@
           "tick": 1
         }
       ],
-      "text": "The man behind the counter at the back room at Mrs. Teague’s knows exactly: James Rafferty was on the same stool from 6:00 PM to 6:30 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b3"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 1
-        }
-      ],
-      "text": "The tab at the back room at Mrs. Teague’s is dated and timed, from 6:00 PM to 6:30 PM, and James Rafferty was there to run it up.",
+      "text": "The tab at Mrs. Teague’s is dated and timed, from 6:00 PM to 6:30 PM, and Rafferty was there to run it up.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise",
@@ -6422,7 +5718,7 @@
   ],
   "findable": [
     {
-      "id": "c121",
+      "id": "c094",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -6438,20 +5734,19 @@
           "methodId": "stab"
         }
       ],
-      "text": "Friedrich Kreuzer was found at the victim’s suite at the residential hotel. The tap was left running and the basin had overflowed a clean ring onto the boards. The drunk singing under the window came at 8:00 PM, and the singing stopped when the shoe came down, and that was the half hour. That puts the killing in that half hour and no later.",
+      "text": "Kreuzer was found at the suite. The tap was left running and the basin had overflowed a clean ring onto the boards. The singing under the window stopped at 8:00 PM, when the shoe came down.",
       "place": "res-suite",
       "leadsTo": [
-        "c089",
-        "c105",
-        "c069",
-        "c154",
-        "c144"
+        "c023",
+        "c007",
+        "c067",
+        "c054"
       ],
       "role": "spine",
       "anchorId": "drunk-singing"
     },
     {
-      "id": "c122",
+      "id": "c095",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -6473,13 +5768,22 @@
       "text": "The coroner puts death between 6:30 PM and 8:00 PM — two hours of nothing useful. A single narrow puncture under the ribs. Very little blood outside the body.",
       "place": "res-suite",
       "leadsTo": [
-        "c089",
-        "c067"
+        "c098",
+        "c023",
+        "c007",
+        "c067",
+        "c024",
+        "c078",
+        "c026",
+        "c054",
+        "c071",
+        "c029",
+        "c127"
       ],
       "role": "spine"
     },
     {
-      "id": "c136",
+      "id": "c110",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6490,25 +5794,53 @@
         {
           "kind": "hasMotive",
           "personId": "p-s1",
-          "motiveType": "revenge"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Emilio Marchetti hired us. Emilio Marchetti wants it known that Eunice Bledsoe blamed the victim for a ruin, and would rather we started there.",
+      "text": "Marchetti hired us, and wants it known that Bledsoe needed the victim silent, and would rather we started there.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c007",
-        "c123",
-        "c167"
+        "c098",
+        "c073"
       ],
       "role": "spine"
     },
     {
-      "id": "c089",
+      "id": "c098",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Kreuzer that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "corner-newsstand",
+          "tick": 3
+        }
+      ],
+      "text": "Steinbach puts Kreuzer at the newsstand when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c078",
+        "c117"
+      ],
+      "role": "spine",
+      "anchorId": "last-edition"
+    },
+    {
+      "id": "c023",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s3",
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -6519,61 +5851,43 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s3",
+          "personId": "p-s2",
           "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 4
+          "tick": 5
         }
       ],
-      "text": "Rachel Kessler runs through it: at 8:00 PM there were Lurline Dandridge, Emilio Marchetti, Verity Thorndike, James Rafferty at the back room at Mrs. Teague’s, and nobody else worth naming.",
-      "place": "rooming-house-room",
-      "leadsTo": [
-        "c105",
-        "c086"
-      ],
+      "text": "Marchetti says Dandridge was at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c105",
+      "id": "c007",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "Eunice Bledsoe’s account"
+        "personId": "p-s2",
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
-          "kind": "personNotAt",
+          "kind": "personAt",
           "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 3
+          "place": "hotel-garage",
+          "tick": 0
         },
         {
-          "kind": "personNotAt",
+          "kind": "hadAccess",
           "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 4
+          "methodId": "stab"
         }
       ],
-      "text": "Klara Steinbach was at the newsstand on the corner from 7:30 PM to 8:00 PM and says Eunice Bledsoe was not.",
+      "text": "Dandridge says Bledsoe was at the garage at 6:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c067",
-        "c125",
-        "c007",
-        "c131",
-        "c034"
+        "c024",
+        "c035",
+        "c045"
       ],
       "role": "spine"
     },
@@ -6583,7 +5897,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Lucia Salerno"
+        "topic": "Salerno"
       },
       "establishes": [
         {
@@ -6599,87 +5913,96 @@
           "tick": 5
         }
       ],
-      "text": "Klara Steinbach says Lucia Salerno was at the newsstand on the corner from 8:00 PM to 8:30 PM.",
+      "text": "Steinbach says Salerno was at the newsstand from 8:00 PM to 8:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c125",
-        "c073"
+        "c079"
       ],
       "role": "spine"
     },
     {
-      "id": "c125",
-      "kind": "anchor",
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "rooming-house-room",
+          "tick": 4
+        }
+      ],
+      "text": "Marchetti says Thorndike was at Mrs. Teague’s at 8:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c105",
+        "c096"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c078",
+      "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Friedrich Kreuzer that evening"
+        "topic": "Bledsoe’s account"
       },
       "establishes": [
         {
-          "kind": "victimAliveAt",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "corner-newsstand",
           "tick": 3
-        }
-      ],
-      "text": "Klara Steinbach puts Friedrich Kreuzer at the newsstand on the corner when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c124",
-        "c079"
-      ],
-      "role": "spine",
-      "anchorId": "last-edition"
-    },
-    {
-      "id": "c007",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Eunice Bledsoe"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-garage",
-          "tick": 0
         },
         {
-          "kind": "hadAccess",
+          "kind": "personNotAt",
           "personId": "p-s1",
-          "methodId": "stab"
+          "place": "corner-newsstand",
+          "tick": 4
         }
       ],
-      "text": "Lurline Dandridge says Eunice Bledsoe was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Steinbach was at the newsstand from 7:30 PM to 8:00 PM and says Bledsoe was not.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c035",
-        "c106"
+        "c026"
       ],
       "role": "spine"
     },
     {
-      "id": "c086",
+      "id": "c026",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s3",
+        "topic": "Rafferty"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
+          "personId": "p-s6",
           "place": "rooming-house-room",
           "tick": 4
-        },
+        }
+      ],
+      "text": "Marchetti says Rafferty was at Mrs. Teague’s at 8:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Marchetti"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s3",
@@ -6688,12 +6011,33 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s4",
+          "personId": "p-s3",
           "place": "rooming-house-room",
+          "tick": 5
+        }
+      ],
+      "text": "Kessler says Marchetti was at Mrs. Teague’s from 8:00 PM to 8:30 PM.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c079",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Bledsoe’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "corner-newsstand",
           "tick": 4
         }
       ],
-      "text": "James Rafferty runs through it: at 8:00 PM there were Lurline Dandridge, Emilio Marchetti, Verity Thorndike at the back room at Mrs. Teague’s, and nobody else worth naming.",
+      "text": "Carbone was at the newsstand at 8:00 PM and says Bledsoe was not.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "corroboration"
@@ -6704,7 +6048,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Eunice Bledsoe"
+        "topic": "Bledsoe"
       },
       "establishes": [
         {
@@ -6719,96 +6063,37 @@
           "methodId": "stab"
         }
       ],
-      "text": "Lucia Salerno says Eunice Bledsoe was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Salerno says Bledsoe was at the garage at 6:00 PM.",
       "place": "el-platform",
-      "leadsTo": [],
+      "leadsTo": [
+        "c111"
+      ],
       "role": "corroboration"
     },
     {
-      "id": "c131",
+      "id": "c105",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Eunice Bledsoe and Friedrich Kreuzer"
+        "topic": "Bledsoe and Kreuzer"
       },
       "establishes": [
         {
           "kind": "hasMotive",
           "personId": "p-s1",
-          "motiveType": "revenge"
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Sol Feldman says Eunice Bledsoe said Friedrich Kreuzer had taken everything and would be made to feel it.",
+      "text": "Feldman says Kreuzer said to Bledsoe that a man who testifies sleeps better.",
       "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c073",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Lucia Salerno"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
+      "leadsTo": [
+        "c143"
       ],
-      "text": "Carmine Carbone says Lucia Salerno was at the newsstand on the corner at 8:00 PM.",
-      "place": "hotel-garage",
-      "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c034",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "James Rafferty"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 4
-        }
-      ],
-      "text": "Verity Thorndike says James Rafferty was at the back room at Mrs. Teague’s at 8:00 PM.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Eunice Bledsoe’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "Carmine Carbone was at the newsstand on the corner at 8:00 PM and says Eunice Bledsoe was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c123",
+      "id": "c096",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6825,284 +6110,47 @@
           "methodId": "stab"
         }
       ],
-      "text": "An ice pick is gone from the garage on Eleventh Avenue. The block is out and half melted and the pick that belongs with it is gone.",
+      "text": "An ice pick is gone from the garage. The block is out and half melted and the pick that belongs with it is gone.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c124",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Friedrich Kreuzer that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "corner-newsstand",
-          "tick": 3
-        }
-      ],
-      "text": "Emilio Marchetti puts Friedrich Kreuzer at the newsstand on the corner when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c158"
-      ],
-      "role": "corroboration",
-      "anchorId": "last-edition"
-    },
-    {
-      "id": "c079",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "rooming-house-room",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 4
-        }
-      ],
-      "text": "Emilio Marchetti runs through it: at 8:00 PM there were Lurline Dandridge, Verity Thorndike, James Rafferty at the back room at Mrs. Teague’s, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c137"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c069",
+      "id": "c071",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Lurline Dandridge"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
+          "personId": "p-s4",
           "place": "hotel-garage",
-          "tick": 0
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "hotel-garage",
+          "tick": 3
         },
         {
           "kind": "hadAccess",
-          "personId": "p-s2",
+          "personId": "p-s4",
           "methodId": "stab"
         }
       ],
-      "text": "Carmine Carbone says Lurline Dandridge was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Carbone says Thorndike was at the garage from 7:00 PM to 7:30 PM.",
       "place": "hotel-garage",
-      "leadsTo": [],
+      "leadsTo": [
+        "c120"
+      ],
       "role": "corroboration"
     },
     {
-      "id": "c154",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the El platform at Twenty-Third Street, and the shop it came from closed two years ago.",
-      "place": "el-platform",
-      "leadsTo": [
-        "c156"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "el-platform"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "el-platform",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "el-platform",
-          "tick": 8
-        }
-      ],
-      "text": "The receiver at the El platform at Twenty-Third Street would rather talk than be held: Verity Thorndike was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Verity Thorndike will take over this one.",
-      "place": "el-platform",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c144",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Emilio Marchetti"
-      },
-      "establishes": [],
-      "text": "Carmine Carbone on Emilio Marchetti: Emilio Marchetti was carrying a parcel into the newsstand on the corner and came out without it.",
-      "place": "hotel-garage",
-      "leadsTo": [
-        "c149"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b2"
-    },
-    {
-      "id": "c149",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 7
-        }
-      ],
-      "text": "The receiver at the newsstand on the corner would rather talk than be held: Emilio Marchetti was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Emilio Marchetti will take over this one.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b2"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "James Rafferty"
-      },
-      "establishes": [],
-      "text": "Lurline Dandridge on James Rafferty: Somebody at the back room at Mrs. Teague’s says James Rafferty is in more often than James Rafferty lets on.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c170"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b3"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "rooming-house-room"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 1
-        }
-      ],
-      "text": "The man behind the counter at the back room at Mrs. Teague’s knows exactly: James Rafferty was on the same stool from 6:00 PM to 6:30 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b3"
-    },
-    {
-      "id": "c137",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Lurline Dandridge"
-      },
-      "establishes": [],
-      "text": "Sol Feldman on Lurline Dandridge: Lurline Dandridge sends money out of every pay envelope and cannot say where it goes.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c139"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b4"
-    },
-    {
-      "id": "c139",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Lurline Dandridge"
-      },
-      "establishes": [],
-      "text": "Emilio Marchetti on Lurline Dandridge: Lurline Dandridge keeps a photograph and will not be asked about it twice.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c142"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b4"
-    },
-    {
-      "id": "c142",
+      "id": "c117",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7127,51 +6175,130 @@
           "tick": 5
         }
       ],
-      "text": "The woman who keeps the child says it straight out: Lurline Dandridge was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.",
+      "text": "The parish register at Mrs. Teague’s has the christening in it, and the board money receipted through the evening in question.",
       "place": "rooming-house-room",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b4"
+      "role": "corroboration",
+      "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c158",
-      "kind": "overheard",
+      "id": "c029",
+      "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Lucia Salerno"
+        "personId": "p-s4",
+        "topic": "Marchetti"
       },
-      "establishes": [],
-      "text": "Sol Feldman on Lucia Salerno: Lucia Salerno was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c159"
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "rooming-house-room",
+          "tick": 4
+        }
       ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
+      "text": "Thorndike says Marchetti was at Mrs. Teague’s at 8:00 PM.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "corroboration"
     },
     {
-      "id": "c159",
+      "id": "c045",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "rooming-house-room",
+          "tick": 4
+        }
+      ],
+      "text": "Rafferty says Thorndike was at Mrs. Teague’s at 8:00 PM.",
+      "place": "hotel-garage",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c073",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 4
+        }
+      ],
+      "text": "Carbone says Salerno was at the newsstand at 8:00 PM.",
+      "place": "hotel-garage",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c120",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "Lucia Salerno"
+        "personId": "p-s2",
+        "topic": "Marchetti"
       },
       "establishes": [],
-      "text": "Klara Steinbach on Lucia Salerno: A man nobody knew was waiting for Lucia Salerno at the newsstand on the corner and would not give a name.",
+      "text": "Dandridge on Marchetti: Marchetti has been selling things that were never Marchetti’s to sell.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c163"
+        "c119"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
     },
     {
-      "id": "c163",
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Marchetti"
+      },
+      "establishes": [],
+      "text": "Carbone on Marchetti: There is a man who meets people at the newsstand and nobody will say his name out loud.",
+      "place": "hotel-garage",
+      "leadsTo": [
+        "c121"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c121",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the newsstand, and the shop it came from closed two years ago.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c123",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7180,32 +6307,255 @@
       "establishes": [
         {
           "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "gambling-debt"
+          "personId": "p-s3",
+          "secretType": "fence"
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s3",
           "place": "corner-newsstand",
-          "tick": 4
+          "tick": 7
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Lucia Salerno was at the newsstand on the corner from 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The receiver at the newsstand would rather talk than be held: Marchetti was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Marchetti will take over this one.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
+      "aboutSecretOf": "p-s3",
+      "branchId": "b1"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Thorndike"
+      },
+      "establishes": [],
+      "text": "Bledsoe on Thorndike: Thorndike has been selling things that were never Thorndike’s to sell.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Thorndike"
+      },
+      "establishes": [],
+      "text": "Steinbach on Thorndike: There is a man who meets people at the El platform and nobody will say his name out loud.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c125"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Thorndike"
+      },
+      "establishes": [],
+      "text": "Feldman on Thorndike: Thorndike was carrying a parcel into the El platform and came out without it.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "el-platform"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "el-platform",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "el-platform",
+          "tick": 8
+        }
+      ],
+      "text": "The receiver at the El platform would rather talk than be held: Thorndike was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Thorndike will take over this one.",
+      "place": "el-platform",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c143",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A tab at Mrs. Teague’s in a name that is not Rafferty’s, in Rafferty’s handwriting.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c142"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c142",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A bottle at Mrs. Teague’s pushed behind the pipes, the seal broken and the level down.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c144",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 1
+        }
+      ],
+      "text": "The man behind the counter at Mrs. Teague’s knows exactly: Rafferty was on the same stool from 6:00 PM to 6:30 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Dandridge"
+      },
+      "establishes": [],
+      "text": "Steinbach on Dandridge: Dandridge sends money out of every pay envelope and cannot say where it goes.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c114",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [],
+      "text": "A board-and-keep receipt at Mrs. Teague’s, monthly, eight years of them.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "rooming-house-room"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 5
+        }
+      ],
+      "text": "The woman who keeps the child says it straight out: Dandridge was at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.",
+      "place": "rooming-house-room",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c121",
-    "c122",
-    "c136"
+    "c094",
+    "c095",
+    "c110"
   ],
   "clientId": "p-s3",
-  "par": 7,
-  "budget": 20,
+  "par": 10,
+  "slack": 6,
+  "budget": 16,
   "coronerWindow": [
     1,
     4
@@ -7213,16 +6563,15 @@
   "solution": {
     "killerId": "p-s1",
     "methodId": "stab",
-    "motiveType": "revenge",
+    "motiveType": "silence-a-witness",
     "murderTick": 4,
     "murderPlaceId": "res-suite"
   },
   "deduction": {
     "timeOfDeath": [
-      "c122",
-      "c125",
-      "c124",
-      "c121"
+      "c095",
+      "c098",
+      "c094"
     ],
     "timeOfDeathAnchors": [
       "drunk-singing",
@@ -7230,47 +6579,42 @@
     ],
     "exculpations": {
       "p-s2": [
-        "c089",
-        "c086",
-        "c079",
-        "c142"
+        "c023",
+        "c117",
+        "c116"
       ],
       "p-s3": [
-        "c089",
-        "c086"
+        "c054",
+        "c029"
       ],
       "p-s4": [
-        "c089",
-        "c086",
-        "c079"
+        "c024",
+        "c045"
       ],
       "p-s5": [
         "c067",
-        "c073",
-        "c163"
+        "c073"
       ],
       "p-s6": [
-        "c089",
-        "c034",
-        "c079"
+        "c026"
       ]
     },
     "inculpation": [
-      "c105",
-      "c106"
+      "c078",
+      "c079"
     ],
     "access": [
       "c007",
       "c035"
     ],
     "method": [
-      "c121",
-      "c122",
-      "c123"
+      "c094",
+      "c095",
+      "c096"
     ],
     "motive": [
-      "c136",
-      "c131"
+      "c110",
+      "c105"
     ]
   }
 }
