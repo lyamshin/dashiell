@@ -187,7 +187,7 @@ The coroner gives 8:00 PM–9:30 PM, four ticks wide. These are what close it: *
 - **Thaddeus Coffin** (fence): Thaddeus Coffin hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM.
 - **Rachel Kessler** (hidden-family): Rachel Kessler goes to the benches at the north end of the square from 7:00 PM to see a child nobody is supposed to know about.
 
-## 7. Clue list — the 30 findable
+## 7. Clue list — the 31 findable
 
 The opening three, free at the start: c122, c123, c132. Everything else has to be led to. The full candidate pool is in the companion file.
 

@@ -166,7 +166,7 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
 
   /* 8. Clue list -------------------------------------------------------- */
-  out.push('## 7. Clue list — the 30 findable');
+  out.push(`## 7. Clue list — the ${findable.length} findable`);
   out.push('');
   out.push(
     `The opening three, free at the start: ${c.starting.join(', ')}. ` +

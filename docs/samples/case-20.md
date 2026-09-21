@@ -187,7 +187,7 @@ The coroner gives 10:00 PM–11:30 PM, four ticks wide. These are what close it:
 - **Angelina Alfano** (blackmail): Angelina Alfano meets the victim alone at the lobby of the Wyckoff from 7:30 PM to 8:00 PM and asks for money.
 - **Sol Shapiro** (secret-drinking): Sol Shapiro drinks alone at Dolan’s Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
 
-## 7. Clue list — the 30 findable
+## 7. Clue list — the 31 findable
 
 The opening three, free at the start: c131, c132, c144. Everything else has to be led to. The full candidate pool is in the companion file.
 

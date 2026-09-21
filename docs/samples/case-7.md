@@ -188,7 +188,7 @@ The coroner gives 9:00 PM–10:30 PM, four ticks wide. These are what close it: 
 - **Beatrice Thorndike** (affair): Beatrice Thorndike is with Nathan Kessler at the benches at the north end of the square from 10:00 PM to 10:30 PM, and both will say they were somewhere else.
 - **Roscoe Mosley** (fence): Roscoe Mosley hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 8:30 PM to 9:00 PM.
 
-## 7. Clue list — the 30 findable
+## 7. Clue list — the 31 findable
 
 The opening three, free at the start: c132, c133, c150. Everything else has to be led to. The full candidate pool is in the companion file.
 

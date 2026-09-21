@@ -188,7 +188,7 @@ The coroner gives 7:30 PM–9:00 PM, four ticks wide. These are what close it: *
 - **Maureen Sweeney** (fence): Maureen Sweeney hands a parcel of stolen goods to a man at Ruggiero’s barber shop from 8:30 PM.
 - **Teresa Marchetti** (secret-drinking): Teresa Marchetti drinks alone at Dolan’s Bar from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
 
-## 7. Clue list — the 30 findable
+## 7. Clue list — the 31 findable
 
 The opening three, free at the start: c164, c165, c184. Everything else has to be led to. The full candidate pool is in the companion file.
 

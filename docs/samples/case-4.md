@@ -188,7 +188,7 @@ The coroner gives 7:00 PM–8:30 PM, four ticks wide. These are what close it: *
 - **Konrad Brauer** (murder): Konrad Brauer is at the victim’s suite at the residential hotel from 8:00 PM, alone with Morris Hurwitz when it happens at 8:00 PM.
 - **Konrad Brauer** also (blackmail): Konrad Brauer meets the victim alone at the lobby of the Wyckoff from 6:30 PM and asks for money.
 
-## 7. Clue list — the 30 findable
+## 7. Clue list — the 31 findable
 
 The opening three, free at the start: c162, c163, c179. Everything else has to be led to. The full candidate pool is in the companion file.
 

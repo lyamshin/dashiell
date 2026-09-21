@@ -189,7 +189,7 @@ The coroner gives 8:00 PM–9:30 PM, four ticks wide. These are what close it: *
 - **Hyman Zeldin** (murder): Hyman Zeldin is at the drying yard behind the laundry from 7:30 PM to 8:00 PM, alone with Otto Vogel when it happens at 8:00 PM.
 - **Hyman Zeldin** also (gambling-debt): Hyman Zeldin slips off to the subway kiosk at the corner from 6:30 PM to 7:00 PM to settle with a bookmaker.
 
-## 7. Clue list — the 30 findable
+## 7. Clue list — the 31 findable
 
 The opening three, free at the start: c122, c123, c139. Everything else has to be led to. The full candidate pool is in the companion file.
 
