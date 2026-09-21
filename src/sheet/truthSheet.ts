@@ -1,6 +1,7 @@
 import {
   TICKS,
   clock,
+  placePhrase,
   type Case,
   type Clue,
   type Fact,
@@ -20,6 +21,8 @@ export function renderTruthSheet(c: Case): string {
     id ? (c.locations.find((l) => l.id === id)?.name ?? id) : '—';
   const P = (id: Id | null | undefined): string =>
     id ? (c.people.find((p) => p.id === id)?.name ?? id) : '—';
+  const W = (id: Id | null | undefined): string =>
+    id ? placePhrase(id, L(id)) : '—';
   const person = (id: Id): Person => c.people.find((p) => p.id === id) as Person;
   const schedule = (id: Id) => c.schedules.find((s) => s.personId === id);
 
@@ -45,8 +48,8 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
   out.push(
     `${killer.name}, ${killer.role}, ${killer.relationshipToVictim ?? 'known to the victim'}, killed ` +
-      `${victim.name}, ${victim.role}, with ${c.method.name} in the ${L(ML)} at ${clock(M)}. ` +
-      `The reason was ${killer.motive?.description ?? 'unstated'} (${c.solution.motiveType}). ` +
+      `${victim.name}, ${victim.role}, with ${c.method.name} ${W(ML)} at ${clock(M)}. ` +
+      `${killer.name} ${killer.motive?.description ?? 'had an unstated reason'} (${c.solution.motiveType}). ` +
       `${killer.name} ${describeAccess(c)} and was alone with ${victim.name} when it happened.`,
   );
   out.push('');
@@ -205,7 +208,7 @@ export function renderTruthSheet(c: Case): string {
     if (p.isKiller) continue;
     const list = c.deduction.exculpations[p.id] ?? [];
     out.push(
-      `- ${p.name} was somewhere other than the ${L(ML)} at ${clock(M)}, on two independent sources. ${cite(list)}`,
+      `- ${p.name} was not ${W(ML)} at ${clock(M)}, on two independent sources. ${cite(list)}`,
     );
   }
   out.push('');
@@ -215,7 +218,9 @@ export function renderTruthSheet(c: Case): string {
       `Two independent sources put that out of the question, and one ties ${killer.name} to ${c.method.name}. ${cite(c.deduction.inculpation)}`,
   );
   out.push('');
-  out.push(`**Method.** ${c.method.name}, on two physical sources. ${cite(c.deduction.method)}`);
+  out.push(
+    `**Method.** ${sentenceCase(c.method.name)}, on two physical sources. ${cite(c.deduction.method)}`,
+  );
   out.push('');
   out.push(
     `**Motive.** ${c.solution.motiveType}, on two independent sources. ${cite(c.deduction.motive)}`,
@@ -247,11 +252,15 @@ export function renderTruthSheet(c: Case): string {
   return out.join('\n');
 }
 
+function sentenceCase(text: string): string {
+  return text.length === 0 ? text : `${text[0]?.toUpperCase()}${text.slice(1)}`;
+}
+
 function describeAccess(c: Case): string {
   const req = c.method.accessRequirement;
   if (!req) return 'needed nothing in particular to do it';
   const loc = c.locations.find((l) => l.id === req.location)?.name ?? req.location;
-  return `had been in the ${loc} earlier in the evening, before ${clock(req.beforeTick)}`;
+  return `had been ${placePhrase(req.location, loc)} earlier in the evening, before ${clock(req.beforeTick)}`;
 }
 
 function cite(clueIds: Id[]): string {
@@ -286,7 +295,7 @@ function summarizeFacts(c: Case, facts: Fact[]): string {
           ? clock(ticks[0] as Tick)
           : `${clock(ticks[0] as Tick)}–${clock(ticks[ticks.length - 1] as Tick)}`;
       parts.push(
-        `${P(f.personId)} ${f.kind === 'personAt' ? 'in' : 'not in'} the ${L(f.location)}, ${range}`,
+        `${P(f.personId)} ${f.kind === 'personAt' ? '' : 'not '}${placePhrase(f.location, L(f.location))}, ${range}`,
       );
       i = j;
       continue;
@@ -296,7 +305,7 @@ function summarizeFacts(c: Case, facts: Fact[]): string {
         parts.push(`an object gone from the ${L(f.fromLocation)}`);
         break;
       case 'noiseAt':
-        parts.push(`noise in the ${L(f.location)} at ${clock(f.tick)}`);
+        parts.push(`noise ${placePhrase(f.location, L(f.location))} at ${clock(f.tick)}`);
         break;
       case 'timeOfDeath':
         parts.push(`death between ${clock(f.ticks[0] as Tick)} and ${clock(f.ticks[1] as Tick)}`);
@@ -338,7 +347,7 @@ function renderWithheld(c: Case): string[] {
         const b = ticks[i - 1] as Tick;
         const range = a === b ? clock(a) : `${clock(a)}–${clock(b)}`;
         lines.push(
-          `- ~~${P(observerId)} saw ${P(subjectId)} in the ${L(location)}, ${range}~~ — ${P(observerId)} is lying about that time and will not say.`,
+          `- ~~${P(observerId)} saw ${P(subjectId)} ${placePhrase(location, L(location))}, ${range}~~ — ${P(observerId)} is lying about that time and will not say.`,
         );
         start = i;
       }

@@ -1,4 +1,4 @@
-import type { Environment, Id, Location, Tick } from './types.js';
+import { placePhrase, type Environment, type Id, type Location, type Tick } from './types.js';
 import { ELEVATOR_EDGES } from './data/locations.js';
 
 /**
@@ -30,6 +30,11 @@ export class MapGraph {
 
   name(id: Id): string {
     return this.loc(id).name;
+  }
+
+  /** "in the Bar", "at the Front Desk", "on the Street". */
+  where(id: Id): string {
+    return placePhrase(id, this.loc(id).name);
   }
 
   private elevatorDownAt(tick: Tick): boolean {

@@ -164,6 +164,17 @@ export interface Case {
   deduction: DeductionPath;
 }
 
+const PREPOSITIONS: Record<Id, string> = {
+  'front-desk': 'at',
+  street: 'on',
+  'service-stairs': 'on',
+};
+
+/** "in the Bar", "at the Front Desk", "on the Street". */
+export function placePhrase(locationId: Id, locationName: string): string {
+  return `${PREPOSITIONS[locationId] ?? 'in'} the ${locationName}`;
+}
+
 /** "6:00 PM" .. "11:30 PM" */
 export function clock(tick: Tick): string {
   const minutes = 18 * 60 + tick * 30;
