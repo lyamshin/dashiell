@@ -2,7 +2,7 @@
 
 ## The numbers
 
-Over seeds 1..200: **median 2 attempts, max 16**, mean 2.52, p90 5, p99 14. 96 of 200 seeds are accepted on the first attempt; 305 attempts are discarded in total. 44 tests pass. A case carries on average 169 clues, 374 observations (20 of them withheld), 2.17 innocents lying about the murder tick, and 1.91 innocents with a motive. The killer carries a second, non-murder secret in 61 of 200 cases.
+Over seeds 1..200: **median 2 attempts, max 16**, mean 2.52, p90 5, p99 14. 96 of 200 seeds are accepted on the first attempt; 305 attempts are discarded in total. 45 tests pass. A case carries on average 172 clues, 374 observations (20 of them withheld), 2.17 innocents lying about the murder tick, and 1.91 innocents with a motive. The killer carries a second, non-murder secret in 61 of 200 cases.
 
 ## What was hard
 
@@ -34,7 +34,7 @@ That the check never fires is the intended outcome of constraint-first generatio
 
 ## What I would change
 
-1. **Clue volume.** 169 clues and 374 observations per case is far more than a player can read. M2 needs salience — most observation runs are noise, and the truth sheet is 700 lines because of it.
+1. **Clue volume.** 172 clues and 374 observations per case is far more than a player can read. M2 needs salience — most observation runs are noise, and the truth sheet is 700 lines because of it.
 2. **The killer's alibi is predictable.** Lobby or Bar, nearly always, because they are the only rooms guaranteed two truthful witnesses. A third fixture (a night clerk, an elevator operator) would widen the choice and make the contradiction less mechanical.
 3. **The Roof Garden is the scene 56% of the time** — four of five methods allow it. `murderLocations` needs rebalancing, and the Kitchen (11/200) needs more methods that suit it.
 4. **Time of death is established the same way nearly every case:** coroner's window plus two people who saw the victim alive at M−1. The [M, M+1] variant only fires for loud methods with two hearers. More independent ways to pin the tick would make the opening of a case less repetitive.
@@ -42,6 +42,13 @@ That the check never fires is the intended outcome of constraint-first generatio
 6. **Map variation is thin.** One optional edge and shuffled objects. The adjacency graph is effectively identical every run.
 7. **The dead-weight heuristic does not catch forged identity.** A suspect with that secret has no hidden movements, so they can end up never lying and with no motive. The spec's test ("no lie, no motive, no secret") passes because they do have a secret, and they do generate a document clue — but on the page they are the quietest person in the hotel.
 
-## Two bugs worth recording
+## Four bugs worth recording
 
-Both were found by tests over the 200-seed corpus rather than by reading the code. A fixture could take two excursions on back-to-back ticks and step straight from the front desk to the street. And, more seriously, the killer's lies stopped at the murder tick, so they truthfully told the detective they had been standing in the room with the body half an hour after it became one — and a fixture on an excursion could walk in and find it. The killer now leaves the scene on the next tick, and nobody, fixtures included, goes back in.
+All four were found by tests over the 200-seed corpus or by reading a generated sheet, not by reading the code.
+
+- A fixture could take two excursions on back-to-back ticks and step straight from the front desk to the street.
+- Observation clues were sourced from the victim, who is not available for interview.
+- The killer's lies stopped at the murder tick, so they truthfully told the detective they had been standing in the room with the body half an hour after it became one — and a fixture on an excursion could walk in and find it. The killer now leaves the scene on the next tick, and nobody goes back in.
+- A denial run could straddle a tick where the denier themselves moved, putting them in one room for a span they spent in two.
+
+The pattern is that every one of them is a statement about *who can say what*, which is the part of this milestone the data model makes easiest to get subtly wrong.
