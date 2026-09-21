@@ -1,0 +1,7897 @@
+{
+  "seed": 16,
+  "attempts": 1,
+  "detectiveName": "Humphrey",
+  "hotelName": "The Tarleton",
+  "locations": [
+    {
+      "id": "lobby",
+      "name": "Lobby",
+      "adjacent": [
+        "front-desk",
+        "street",
+        "bar",
+        "service-stairs",
+        "suite",
+        "roof"
+      ],
+      "sightlines": [
+        "front-desk",
+        "street",
+        "bar"
+      ],
+      "noiseCarriesTo": [
+        "front-desk",
+        "street",
+        "bar",
+        "service-stairs"
+      ],
+      "isPublic": true,
+      "objects": []
+    },
+    {
+      "id": "front-desk",
+      "name": "Front Desk",
+      "adjacent": [
+        "lobby"
+      ],
+      "sightlines": [
+        "lobby"
+      ],
+      "noiseCarriesTo": [
+        "lobby"
+      ],
+      "isPublic": true,
+      "objects": [
+        "obj-roofkey",
+        "obj-guest-register",
+        "obj-ledger"
+      ]
+    },
+    {
+      "id": "bar",
+      "name": "Bar",
+      "adjacent": [
+        "lobby",
+        "kitchen"
+      ],
+      "sightlines": [
+        "lobby",
+        "kitchen"
+      ],
+      "noiseCarriesTo": [
+        "lobby",
+        "kitchen"
+      ],
+      "isPublic": true,
+      "objects": [
+        "obj-cigarette-case",
+        "obj-decanter",
+        "obj-seltzer"
+      ]
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "adjacent": [
+        "bar",
+        "service-stairs",
+        "street"
+      ],
+      "sightlines": [
+        "bar"
+      ],
+      "noiseCarriesTo": [
+        "bar",
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-icepick"
+      ]
+    },
+    {
+      "id": "service-stairs",
+      "name": "Service Stairs",
+      "adjacent": [
+        "kitchen",
+        "lobby",
+        "suite",
+        "roof"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "kitchen",
+        "lobby"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-mop-bucket"
+      ]
+    },
+    {
+      "id": "suite",
+      "name": "Victim's Suite",
+      "adjacent": [
+        "service-stairs",
+        "lobby"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-steamer-trunk"
+      ]
+    },
+    {
+      "id": "roof",
+      "name": "Roof Garden",
+      "adjacent": [
+        "service-stairs",
+        "lobby"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-flowerpot"
+      ]
+    },
+    {
+      "id": "street",
+      "name": "Street",
+      "adjacent": [
+        "lobby",
+        "kitchen"
+      ],
+      "sightlines": [
+        "lobby"
+      ],
+      "noiseCarriesTo": [
+        "lobby"
+      ],
+      "isPublic": true,
+      "objects": []
+    }
+  ],
+  "objects": [
+    {
+      "id": "obj-roofkey",
+      "name": "the roof door key",
+      "homeLocation": "front-desk"
+    },
+    {
+      "id": "obj-flowerpot",
+      "name": "a terracotta flower pot",
+      "homeLocation": "roof"
+    },
+    {
+      "id": "obj-guest-register",
+      "name": "the guest register",
+      "homeLocation": "front-desk"
+    },
+    {
+      "id": "obj-icepick",
+      "name": "an ice pick",
+      "homeLocation": "kitchen"
+    },
+    {
+      "id": "obj-ledger",
+      "name": "the house ledger",
+      "homeLocation": "front-desk"
+    },
+    {
+      "id": "obj-cigarette-case",
+      "name": "a silver cigarette case",
+      "homeLocation": "bar"
+    },
+    {
+      "id": "obj-mop-bucket",
+      "name": "a mop and bucket",
+      "homeLocation": "service-stairs"
+    },
+    {
+      "id": "obj-steamer-trunk",
+      "name": "a steamer trunk",
+      "homeLocation": "suite"
+    },
+    {
+      "id": "obj-decanter",
+      "name": "a cut-glass decanter",
+      "homeLocation": "bar"
+    },
+    {
+      "id": "obj-seltzer",
+      "name": "a seltzer siphon",
+      "homeLocation": "bar"
+    }
+  ],
+  "people": [
+    {
+      "id": "p-victim",
+      "name": "Nora Kavanagh",
+      "role": "a society columnist",
+      "kind": "victim",
+      "isKiller": false
+    },
+    {
+      "id": "p-s1",
+      "name": "Rachel Feldman",
+      "role": "a dentist with rooms on the third floor",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "engaged to the victim's daughter",
+      "secret": {
+        "type": "gambling-debt",
+        "description": "Rachel Feldman slips out to the Street from 7:30 PM to 8:00 PM to settle with a bookmaker.",
+        "cells": [
+          {
+            "tick": 3,
+            "location": "street"
+          },
+          {
+            "tick": 4,
+            "location": "street"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s2",
+      "name": "Heinrich Vogel",
+      "role": "a travelling salesman in patent medicines",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's creditor",
+      "secret": {
+        "type": "fence",
+        "description": "Heinrich Vogel hands a parcel of stolen goods to a man at the Kitchen at 8:00 PM.",
+        "cells": [
+          {
+            "tick": 4,
+            "location": "kitchen"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s3",
+      "name": "Roscoe Tillman",
+      "role": "a longshoreman",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's estranged spouse",
+      "secret": {
+        "type": "forged-identity",
+        "description": "Roscoe Tillman is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.",
+        "cells": []
+      },
+      "motive": {
+        "type": "silence-a-witness",
+        "description": "needed the victim silent"
+      }
+    },
+    {
+      "id": "p-s4",
+      "name": "Rosaria Petrosino",
+      "role": "a chambermaid",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's lawyer",
+      "secret": {
+        "type": "embezzling",
+        "description": "Rosaria Petrosino goes through the papers in the Victim's Suite from 6:30 PM while the victim is downstairs.",
+        "cells": [
+          {
+            "tick": 1,
+            "location": "suite"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s5",
+      "name": "Augustus Bledsoe",
+      "role": "a bookkeeper",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's former employee",
+      "secret": {
+        "type": "secret-drinking",
+        "description": "Augustus Bledsoe drinks alone in the Bar from 7:30 PM to 8:00 PM and will claim to have been anywhere else.",
+        "cells": [
+          {
+            "tick": 3,
+            "location": "bar"
+          },
+          {
+            "tick": 4,
+            "location": "bar"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s6",
+      "name": "Domenico Salerno",
+      "role": "a stagehand at the Selwyn",
+      "kind": "suspect",
+      "isKiller": true,
+      "relationshipToVictim": "the victim's cousin",
+      "secret": {
+        "type": "murder",
+        "description": "Domenico Salerno is alone with Nora Kavanagh in the Roof Garden from 8:00 PM, and kills Nora Kavanagh at 8:00 PM.",
+        "cells": [
+          {
+            "tick": 4,
+            "location": "roof"
+          }
+        ],
+        "partnerId": "p-victim"
+      },
+      "coverSecret": {
+        "type": "secret-drinking",
+        "description": "Domenico Salerno drinks alone in the Bar from 9:30 PM to 10:00 PM and will claim to have been anywhere else.",
+        "cells": [
+          {
+            "tick": 7,
+            "location": "bar"
+          },
+          {
+            "tick": 8,
+            "location": "bar"
+          }
+        ]
+      },
+      "motive": {
+        "type": "inheritance",
+        "description": "stands to inherit"
+      }
+    },
+    {
+      "id": "p-doorman",
+      "name": "Concetta Ruggiero",
+      "role": "the doorman",
+      "kind": "fixture",
+      "isKiller": false
+    },
+    {
+      "id": "p-bartender",
+      "name": "Margaret Rafferty",
+      "role": "the bartender",
+      "kind": "fixture",
+      "isKiller": false
+    }
+  ],
+  "method": {
+    "id": "push",
+    "name": "a push from the roof garden",
+    "noise": 1,
+    "evidenceObjectId": "obj-roofkey",
+    "bodyEvidence": "Fractures consistent with a fall of six storeys. Two fingernails torn back.",
+    "accessRequirement": {
+      "location": "front-desk",
+      "beforeTick": 4
+    }
+  },
+  "environment": {
+    "rainStartsAt": 5
+  },
+  "schedules": [
+    {
+      "personId": "p-victim",
+      "truth": [
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "lobby",
+        "roof",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "claimed": [
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "lobby",
+        "roof",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s1",
+      "truth": [
+        "street",
+        "street",
+        "street",
+        "street",
+        "street",
+        "street",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "street"
+      ],
+      "claimed": [
+        "street",
+        "street",
+        "street",
+        "lobby",
+        "lobby",
+        "street",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "street"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        3,
+        4
+      ]
+    },
+    {
+      "personId": "p-s2",
+      "truth": [
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "bar"
+      ],
+      "claimed": [
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        4
+      ]
+    },
+    {
+      "personId": "p-s3",
+      "truth": [
+        "kitchen",
+        "bar",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "bar"
+      ],
+      "claimed": [
+        "kitchen",
+        "bar",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s4",
+      "truth": [
+        "service-stairs",
+        "suite",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "kitchen",
+        "service-stairs",
+        "service-stairs",
+        "kitchen",
+        "kitchen",
+        "bar"
+      ],
+      "claimed": [
+        "service-stairs",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "kitchen",
+        "service-stairs",
+        "service-stairs",
+        "kitchen",
+        "kitchen",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        "p-s6",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        1
+      ]
+    },
+    {
+      "personId": "p-s5",
+      "truth": [
+        "front-desk",
+        "front-desk",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "front-desk"
+      ],
+      "claimed": [
+        "front-desk",
+        "front-desk",
+        "lobby",
+        "lobby",
+        "lobby",
+        "bar",
+        "lobby",
+        "lobby",
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "front-desk"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        3,
+        4
+      ]
+    },
+    {
+      "personId": "p-s6",
+      "truth": [
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "lobby",
+        "roof",
+        "lobby",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimed": [
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "lobby",
+        "bar",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        "p-s1",
+        null,
+        null,
+        "p-s3",
+        "p-s3",
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        4,
+        7,
+        8
+      ]
+    },
+    {
+      "personId": "p-doorman",
+      "truth": [
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "street",
+        "lobby"
+      ],
+      "claimed": [
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "street",
+        "lobby"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-bartender",
+      "truth": [
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "kitchen",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimed": [
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "kitchen",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    }
+  ],
+  "observations": [
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "roof",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "roof",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "street",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "street",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "front-desk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    }
+  ],
+  "clues": [
+    {
+      "id": "c001",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Rachel Feldman says Heinrich Vogel was in the Bar at 9:00 PM."
+    },
+    {
+      "id": "c002",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Rachel Feldman says Roscoe Tillman was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Rachel Feldman says Roscoe Tillman was in the Bar from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c004",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Rachel Feldman says Rosaria Petrosino was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 6
+        }
+      ],
+      "text": "Rachel Feldman says Rosaria Petrosino was in the Kitchen at 9:00 PM."
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Rachel Feldman says Rosaria Petrosino was in the Kitchen from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Rachel Feldman says Augustus Bledsoe was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        }
+      ],
+      "text": "Rachel Feldman says Domenico Salerno was in the Lobby at 8:30 PM."
+    },
+    {
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        }
+      ],
+      "text": "Rachel Feldman says Domenico Salerno was in the Bar from 9:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c010",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 6
+        }
+      ],
+      "text": "Heinrich Vogel says Rachel Feldman was in the Kitchen at 9:00 PM."
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 0
+        }
+      ],
+      "text": "Heinrich Vogel says Roscoe Tillman was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 1
+        }
+      ],
+      "text": "Heinrich Vogel says Roscoe Tillman was in the Bar at 6:30 PM."
+    },
+    {
+      "id": "c013",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Heinrich Vogel says Roscoe Tillman was in the Bar at 7:30 PM."
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Heinrich Vogel says Roscoe Tillman was in the Bar from 8:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c015",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Heinrich Vogel says Roscoe Tillman was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Heinrich Vogel says Roscoe Tillman was in the Lobby from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c017",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 6
+        }
+      ],
+      "text": "Heinrich Vogel says Rosaria Petrosino was in the Kitchen at 9:00 PM."
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Heinrich Vogel says Rosaria Petrosino was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c019",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Heinrich Vogel says Augustus Bledsoe was in the Bar at 7:30 PM."
+    },
+    {
+      "id": "c020",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Heinrich Vogel says Augustus Bledsoe was in the Bar at 8:30 PM."
+    },
+    {
+      "id": "c021",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Heinrich Vogel says Augustus Bledsoe was in the Lobby from 9:00 PM to 9:30 PM."
+    },
+    {
+      "id": "c022",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 10
+        }
+      ],
+      "text": "Heinrich Vogel says Augustus Bledsoe was at the Front Desk from 10:00 PM to 11:00 PM."
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Heinrich Vogel says Domenico Salerno was in the Lobby from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Heinrich Vogel says Domenico Salerno was in the Bar from 9:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c025",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Roscoe Tillman says Nora Kavanagh was at the Front Desk at 7:00 PM."
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        }
+      ],
+      "text": "Roscoe Tillman says Nora Kavanagh was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c027",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 2
+        }
+      ],
+      "text": "Roscoe Tillman says Rachel Feldman was on the Street at 7:00 PM."
+    },
+    {
+      "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 8
+        }
+      ],
+      "text": "Roscoe Tillman says Rachel Feldman was in the Kitchen from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 1
+        }
+      ],
+      "text": "Roscoe Tillman says Heinrich Vogel was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 4
+        }
+      ],
+      "text": "Roscoe Tillman says Heinrich Vogel was in the Kitchen from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Roscoe Tillman says Heinrich Vogel was in the Bar from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Roscoe Tillman says Heinrich Vogel was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c033",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Roscoe Tillman says Heinrich Vogel was in the Lobby from 9:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c034",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Roscoe Tillman says Rosaria Petrosino was in the Lobby from 7:00 PM to 8:00 PM."
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 6
+        }
+      ],
+      "text": "Roscoe Tillman says Rosaria Petrosino was in the Kitchen at 9:00 PM."
+    },
+    {
+      "id": "c036",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Roscoe Tillman says Rosaria Petrosino was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c037",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Roscoe Tillman says Augustus Bledsoe was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Roscoe Tillman says Augustus Bledsoe was in the Lobby from 9:00 PM to 9:30 PM."
+    },
+    {
+      "id": "c039",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Roscoe Tillman says Augustus Bledsoe was in the Bar from 7:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 10
+        }
+      ],
+      "text": "Roscoe Tillman says Augustus Bledsoe was at the Front Desk from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "push"
+        }
+      ],
+      "text": "Roscoe Tillman says Domenico Salerno was at the Front Desk at 7:00 PM."
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Roscoe Tillman says Domenico Salerno was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Roscoe Tillman says Domenico Salerno was in the Lobby from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c044",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Roscoe Tillman says Domenico Salerno was in the Bar from 9:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c045",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Rosaria Petrosino says Nora Kavanagh was at the Front Desk at 7:00 PM."
+    },
+    {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        }
+      ],
+      "text": "Rosaria Petrosino says Nora Kavanagh was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c047",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 4
+        }
+      ],
+      "text": "Rosaria Petrosino says Rachel Feldman was on the Street from 7:00 PM to 8:00 PM."
+    },
+    {
+      "id": "c048",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 6
+        }
+      ],
+      "text": "Rosaria Petrosino says Rachel Feldman was in the Kitchen at 9:00 PM."
+    },
+    {
+      "id": "c049",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Rosaria Petrosino says Rachel Feldman was in the Kitchen from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Rosaria Petrosino says Heinrich Vogel was in the Bar at 9:00 PM."
+    },
+    {
+      "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Rosaria Petrosino says Heinrich Vogel was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c052",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Rosaria Petrosino says Roscoe Tillman was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c053",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Rosaria Petrosino says Roscoe Tillman was in the Bar from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Rosaria Petrosino says Roscoe Tillman was in the Bar at 9:00 PM."
+    },
+    {
+      "id": "c055",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Rosaria Petrosino says Roscoe Tillman was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Rosaria Petrosino says Augustus Bledsoe was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c057",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Rosaria Petrosino says Augustus Bledsoe was in the Bar from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "push"
+        }
+      ],
+      "text": "Rosaria Petrosino says Domenico Salerno was at the Front Desk at 7:00 PM."
+    },
+    {
+      "id": "c059",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Rosaria Petrosino says Domenico Salerno was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Rosaria Petrosino says Domenico Salerno was in the Bar from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c061",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Augustus Bledsoe says Nora Kavanagh was at the Front Desk from 6:00 PM to 7:00 PM."
+    },
+    {
+      "id": "c062",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 2
+        }
+      ],
+      "text": "Augustus Bledsoe says Rachel Feldman was on the Street at 7:00 PM."
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Augustus Bledsoe says Heinrich Vogel was in the Bar from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Augustus Bledsoe says Heinrich Vogel was in the Lobby from 9:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c065",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Augustus Bledsoe says Roscoe Tillman was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c066",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Augustus Bledsoe says Roscoe Tillman was in the Lobby from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c067",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Augustus Bledsoe says Roscoe Tillman was in the Bar from 8:30 PM to 9:30 PM."
+    },
+    {
+      "id": "c068",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Augustus Bledsoe says Rosaria Petrosino was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c069",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "push"
+        }
+      ],
+      "text": "Augustus Bledsoe says Domenico Salerno was at the Front Desk from 6:00 PM to 7:00 PM."
+    },
+    {
+      "id": "c070",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Augustus Bledsoe says Domenico Salerno was in the Lobby from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c071",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Augustus Bledsoe says Domenico Salerno was in the Bar at 9:30 PM."
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Domenico Salerno says Nora Kavanagh was at the Front Desk from 6:00 PM to 7:00 PM."
+    },
+    {
+      "id": "c073",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        }
+      ],
+      "text": "Domenico Salerno says Nora Kavanagh was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c074",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 3
+        }
+      ],
+      "text": "Domenico Salerno says Rachel Feldman was on the Street at 7:30 PM."
+    },
+    {
+      "id": "c075",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 5
+        }
+      ],
+      "text": "Domenico Salerno says Rachel Feldman was on the Street at 8:30 PM."
+    },
+    {
+      "id": "c076",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Domenico Salerno says Rachel Feldman was in the Kitchen from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c077",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Domenico Salerno says Heinrich Vogel was in the Bar from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c078",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Domenico Salerno says Heinrich Vogel was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c079",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Domenico Salerno says Heinrich Vogel was in the Lobby from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c080",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Domenico Salerno says Roscoe Tillman was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c081",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Domenico Salerno says Roscoe Tillman was in the Lobby from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c082",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Domenico Salerno says Roscoe Tillman was in the Bar at 7:30 PM."
+    },
+    {
+      "id": "c083",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Domenico Salerno says Roscoe Tillman was in the Bar from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Domenico Salerno says Roscoe Tillman was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c085",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Domenico Salerno says Rosaria Petrosino was in the Lobby from 7:00 PM to 7:30 PM."
+    },
+    {
+      "id": "c086",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Domenico Salerno says Rosaria Petrosino was in the Kitchen from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c087",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Domenico Salerno says Rosaria Petrosino was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c088",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "push"
+        }
+      ],
+      "text": "Domenico Salerno says Augustus Bledsoe was at the Front Desk from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c089",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Domenico Salerno says Augustus Bledsoe was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c090",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Domenico Salerno says Augustus Bledsoe was in the Lobby at 9:00 PM."
+    },
+    {
+      "id": "c091",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Domenico Salerno says Augustus Bledsoe was in the Bar at 7:30 PM."
+    },
+    {
+      "id": "c092",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Domenico Salerno says Augustus Bledsoe was in the Bar at 8:30 PM."
+    },
+    {
+      "id": "c093",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Concetta Ruggiero says Nora Kavanagh was at the Front Desk from 6:00 PM to 7:00 PM."
+    },
+    {
+      "id": "c094",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        }
+      ],
+      "text": "Concetta Ruggiero says Nora Kavanagh was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c095",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 5
+        }
+      ],
+      "text": "Concetta Ruggiero says Rachel Feldman was on the Street from 6:00 PM to 8:30 PM."
+    },
+    {
+      "id": "c096",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 11
+        }
+      ],
+      "text": "Concetta Ruggiero says Rachel Feldman was on the Street at 11:30 PM."
+    },
+    {
+      "id": "c097",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Concetta Ruggiero says Heinrich Vogel was in the Bar from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c098",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Concetta Ruggiero says Heinrich Vogel was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c099",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Concetta Ruggiero says Heinrich Vogel was in the Lobby from 9:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c100",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 1
+        }
+      ],
+      "text": "Concetta Ruggiero says Roscoe Tillman was in the Bar at 6:30 PM."
+    },
+    {
+      "id": "c101",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Concetta Ruggiero says Roscoe Tillman was in the Bar from 7:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c102",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Concetta Ruggiero says Roscoe Tillman was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c103",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Concetta Ruggiero says Roscoe Tillman was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c104",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Concetta Ruggiero says Roscoe Tillman was in the Lobby from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c105",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Concetta Ruggiero says Rosaria Petrosino was in the Lobby from 7:00 PM to 8:00 PM."
+    },
+    {
+      "id": "c106",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Concetta Ruggiero says Rosaria Petrosino was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c107",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "push"
+        }
+      ],
+      "text": "Concetta Ruggiero says Augustus Bledsoe was at the Front Desk from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c108",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 9
+        }
+      ],
+      "text": "Concetta Ruggiero says Augustus Bledsoe was at the Front Desk from 10:00 PM to 10:30 PM."
+    },
+    {
+      "id": "c109",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "front-desk",
+          "tick": 11
+        }
+      ],
+      "text": "Concetta Ruggiero says Augustus Bledsoe was at the Front Desk at 11:30 PM."
+    },
+    {
+      "id": "c110",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Concetta Ruggiero says Augustus Bledsoe was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c111",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Concetta Ruggiero says Augustus Bledsoe was in the Lobby from 9:00 PM to 9:30 PM."
+    },
+    {
+      "id": "c112",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Concetta Ruggiero says Augustus Bledsoe was in the Bar from 7:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c113",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "push"
+        }
+      ],
+      "text": "Concetta Ruggiero says Domenico Salerno was at the Front Desk from 6:00 PM to 7:00 PM."
+    },
+    {
+      "id": "c114",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Concetta Ruggiero says Domenico Salerno was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c115",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Concetta Ruggiero says Domenico Salerno was in the Lobby from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c116",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        }
+      ],
+      "text": "Concetta Ruggiero says Domenico Salerno was in the Bar from 9:30 PM to 10:30 PM."
+    },
+    {
+      "id": "c117",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Concetta Ruggiero says Domenico Salerno was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c118",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        }
+      ],
+      "text": "Margaret Rafferty says Nora Kavanagh was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c119",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Rachel Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Margaret Rafferty says Rachel Feldman was in the Kitchen from 9:00 PM to 11:00 PM."
+    },
+    {
+      "id": "c120",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 4
+        }
+      ],
+      "text": "Margaret Rafferty says Heinrich Vogel was in the Kitchen from 6:00 PM to 8:00 PM."
+    },
+    {
+      "id": "c121",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Margaret Rafferty says Heinrich Vogel was in the Bar from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c122",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Margaret Rafferty says Heinrich Vogel was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c123",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Heinrich Vogel"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Margaret Rafferty says Heinrich Vogel was in the Lobby from 9:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c124",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 0
+        }
+      ],
+      "text": "Margaret Rafferty says Roscoe Tillman was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c125",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 1
+        }
+      ],
+      "text": "Margaret Rafferty says Roscoe Tillman was in the Bar at 6:30 PM."
+    },
+    {
+      "id": "c126",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Margaret Rafferty says Roscoe Tillman was in the Bar from 7:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c127",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Margaret Rafferty says Roscoe Tillman was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c128",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Margaret Rafferty says Roscoe Tillman was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c129",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Roscoe Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Margaret Rafferty says Roscoe Tillman was in the Lobby from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c130",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Margaret Rafferty says Rosaria Petrosino was in the Lobby from 7:00 PM to 8:00 PM."
+    },
+    {
+      "id": "c131",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 6
+        }
+      ],
+      "text": "Margaret Rafferty says Rosaria Petrosino was in the Kitchen at 9:00 PM."
+    },
+    {
+      "id": "c132",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Margaret Rafferty says Rosaria Petrosino was in the Kitchen from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c133",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Rosaria Petrosino"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Margaret Rafferty says Rosaria Petrosino was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c134",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Margaret Rafferty says Augustus Bledsoe was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c135",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Margaret Rafferty says Augustus Bledsoe was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c136",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Augustus Bledsoe"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Margaret Rafferty says Augustus Bledsoe was in the Bar from 7:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c137",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Margaret Rafferty says Domenico Salerno was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c138",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        }
+      ],
+      "text": "Margaret Rafferty says Domenico Salerno was in the Lobby at 8:30 PM."
+    },
+    {
+      "id": "c139",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Domenico Salerno"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Margaret Rafferty says Domenico Salerno was in the Bar from 9:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c140",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Rachel Feldman's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Roscoe Tillman was in the Bar from 7:30 PM to 8:00 PM and says Rachel Feldman was not in the Lobby."
+    },
+    {
+      "id": "c141",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Rachel Feldman's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Rosaria Petrosino was in the Lobby from 7:30 PM to 8:00 PM and says Rachel Feldman was not in the Lobby."
+    },
+    {
+      "id": "c142",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Rachel Feldman's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Domenico Salerno was in the Lobby at 7:30 PM and says Rachel Feldman was not in the Lobby."
+    },
+    {
+      "id": "c143",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Rachel Feldman's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Concetta Ruggiero was in the Lobby from 7:30 PM to 8:00 PM and says Rachel Feldman was not in the Lobby."
+    },
+    {
+      "id": "c144",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Rachel Feldman's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Margaret Rafferty was in the Bar from 7:30 PM to 8:00 PM and says Rachel Feldman was not in the Lobby."
+    },
+    {
+      "id": "c145",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Heinrich Vogel's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Roscoe Tillman was in the Bar at 8:00 PM and says Heinrich Vogel was not in the Bar."
+    },
+    {
+      "id": "c146",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Heinrich Vogel's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Rosaria Petrosino was in the Lobby at 8:00 PM and says Heinrich Vogel was not in the Bar."
+    },
+    {
+      "id": "c147",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Heinrich Vogel's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Concetta Ruggiero was in the Lobby at 8:00 PM and says Heinrich Vogel was not in the Bar."
+    },
+    {
+      "id": "c148",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Heinrich Vogel's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Margaret Rafferty was in the Bar at 8:00 PM and says Heinrich Vogel was not in the Bar."
+    },
+    {
+      "id": "c149",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Rosaria Petrosino's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Rachel Feldman was on the Street at 6:30 PM and says Rosaria Petrosino was not in the Lobby."
+    },
+    {
+      "id": "c150",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Rosaria Petrosino's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Roscoe Tillman was in the Bar at 6:30 PM and says Rosaria Petrosino was not in the Lobby."
+    },
+    {
+      "id": "c151",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Rosaria Petrosino's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Augustus Bledsoe was at the Front Desk at 6:30 PM and says Rosaria Petrosino was not in the Lobby."
+    },
+    {
+      "id": "c152",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Rosaria Petrosino's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Domenico Salerno was at the Front Desk at 6:30 PM and says Rosaria Petrosino was not in the Lobby."
+    },
+    {
+      "id": "c153",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Rosaria Petrosino's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Concetta Ruggiero was in the Lobby at 6:30 PM and says Rosaria Petrosino was not in the Lobby."
+    },
+    {
+      "id": "c154",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Rosaria Petrosino's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Margaret Rafferty was in the Bar at 6:30 PM and says Rosaria Petrosino was not in the Lobby."
+    },
+    {
+      "id": "c155",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Augustus Bledsoe's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Roscoe Tillman was in the Bar from 7:30 PM to 8:00 PM and says Augustus Bledsoe was not in the Lobby."
+    },
+    {
+      "id": "c156",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Augustus Bledsoe's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Rosaria Petrosino was in the Lobby from 7:30 PM to 8:00 PM and says Augustus Bledsoe was not in the Lobby."
+    },
+    {
+      "id": "c157",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Augustus Bledsoe's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Domenico Salerno was in the Lobby at 7:30 PM and says Augustus Bledsoe was not in the Lobby."
+    },
+    {
+      "id": "c158",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Augustus Bledsoe's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Concetta Ruggiero was in the Lobby from 7:30 PM to 8:00 PM and says Augustus Bledsoe was not in the Lobby."
+    },
+    {
+      "id": "c159",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Augustus Bledsoe's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Margaret Rafferty was in the Bar from 7:30 PM to 8:00 PM and says Augustus Bledsoe was not in the Lobby."
+    },
+    {
+      "id": "c160",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Roscoe Tillman was in the Bar at 8:00 PM and says Domenico Salerno was not in the Bar."
+    },
+    {
+      "id": "c161",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Rosaria Petrosino was in the Lobby at 8:00 PM and says Domenico Salerno was not in the Bar."
+    },
+    {
+      "id": "c162",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Concetta Ruggiero was in the Lobby at 8:00 PM and says Domenico Salerno was not in the Bar."
+    },
+    {
+      "id": "c163",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Margaret Rafferty was in the Bar at 8:00 PM and says Domenico Salerno was not in the Bar."
+    },
+    {
+      "id": "c164",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Heinrich Vogel was in the Lobby from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby."
+    },
+    {
+      "id": "c165",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Roscoe Tillman was in the Bar from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby."
+    },
+    {
+      "id": "c166",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Augustus Bledsoe was in the Lobby at 9:30 PM and says Domenico Salerno was not in the Lobby."
+    },
+    {
+      "id": "c167",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Augustus Bledsoe was at the Front Desk at 10:00 PM and says Domenico Salerno was not in the Lobby."
+    },
+    {
+      "id": "c168",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Concetta Ruggiero was in the Lobby from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby."
+    },
+    {
+      "id": "c169",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Domenico Salerno's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Margaret Rafferty was in the Bar from 9:30 PM to 10:00 PM and says Domenico Salerno was not in the Lobby."
+    },
+    {
+      "id": "c170",
+      "kind": "morgue",
+      "source": {
+        "type": "location",
+        "locationId": "roof"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            3,
+            4
+          ]
+        }
+      ],
+      "text": "Nora Kavanagh was found in the Roof Garden. The coroner puts death between 7:30 PM and 8:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
+    },
+    {
+      "id": "c171",
+      "kind": "physical",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-roofkey",
+          "fromLocation": "front-desk"
+        }
+      ],
+      "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
+    },
+    {
+      "id": "c172",
+      "kind": "environment",
+      "source": {
+        "type": "location",
+        "locationId": "street"
+      },
+      "establishes": [],
+      "text": "Rain began at 8:30 PM and did not let up. Anyone out on the street after that came back in wet."
+    },
+    {
+      "id": "c173",
+      "kind": "environment",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "the rain"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 5
+        }
+      ],
+      "text": "Heinrich Vogel says Rachel Feldman came in off the street at 9:00 PM with a soaked coat, so Rachel Feldman was outside at 8:30 PM."
+    },
+    {
+      "id": "c174",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [],
+      "text": "Roscoe Tillman's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date."
+    },
+    {
+      "id": "c175",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Found in the Front Desk: A subpoena naming Nora Kavanagh as a witness before the grand jury, with Roscoe Tillman's name written in the margin."
+    },
+    {
+      "id": "c176",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Roscoe Tillman and Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Margaret Rafferty says Nora Kavanagh said to Roscoe Tillman that a man who testifies sleeps better."
+    },
+    {
+      "id": "c177",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s6",
+          "motiveType": "inheritance"
+        }
+      ],
+      "text": "Found in the Front Desk: A draft codicil in Nora Kavanagh's hand striking Domenico Salerno out of the will, dated last Tuesday and unsigned."
+    },
+    {
+      "id": "c178",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Domenico Salerno and Nora Kavanagh"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s6",
+          "motiveType": "inheritance"
+        }
+      ],
+      "text": "Margaret Rafferty says Nora Kavanagh told Domenico Salerno the lawyer was coming Thursday and that the arrangement would be changed."
+    }
+  ],
+  "solution": {
+    "killerId": "p-s6",
+    "methodId": "push",
+    "motiveType": "inheritance",
+    "murderTick": 4,
+    "murderLocationId": "roof"
+  },
+  "deduction": {
+    "timeOfDeath": [
+      "c170",
+      "c026",
+      "c046",
+      "c073",
+      "c094",
+      "c118"
+    ],
+    "exculpations": {
+      "p-s1": [
+        "c047",
+        "c095"
+      ],
+      "p-s2": [
+        "c030",
+        "c120"
+      ],
+      "p-s3": [
+        "c053",
+        "c101",
+        "c126"
+      ],
+      "p-s4": [
+        "c034",
+        "c105",
+        "c130"
+      ],
+      "p-s5": [
+        "c039",
+        "c057",
+        "c112",
+        "c136"
+      ]
+    },
+    "inculpation": [
+      "c160",
+      "c161",
+      "c162",
+      "c163",
+      "c041",
+      "c058",
+      "c069",
+      "c113"
+    ],
+    "method": [
+      "c170",
+      "c171"
+    ],
+    "motive": [
+      "c177",
+      "c178"
+    ]
+  }
+}

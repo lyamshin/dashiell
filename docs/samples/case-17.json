@@ -1,0 +1,8126 @@
+{
+  "seed": 17,
+  "attempts": 3,
+  "detectiveName": "Humphrey",
+  "hotelName": "The Wexford Arms",
+  "locations": [
+    {
+      "id": "lobby",
+      "name": "Lobby",
+      "adjacent": [
+        "front-desk",
+        "street",
+        "bar",
+        "service-stairs",
+        "suite",
+        "roof"
+      ],
+      "sightlines": [
+        "front-desk",
+        "street",
+        "bar"
+      ],
+      "noiseCarriesTo": [
+        "front-desk",
+        "street",
+        "bar",
+        "service-stairs"
+      ],
+      "isPublic": true,
+      "objects": [
+        "obj-newsstand"
+      ]
+    },
+    {
+      "id": "front-desk",
+      "name": "Front Desk",
+      "adjacent": [
+        "lobby"
+      ],
+      "sightlines": [
+        "lobby"
+      ],
+      "noiseCarriesTo": [
+        "lobby"
+      ],
+      "isPublic": true,
+      "objects": [
+        "obj-revolver",
+        "obj-bookend"
+      ]
+    },
+    {
+      "id": "bar",
+      "name": "Bar",
+      "adjacent": [
+        "lobby",
+        "kitchen"
+      ],
+      "sightlines": [
+        "lobby",
+        "kitchen"
+      ],
+      "noiseCarriesTo": [
+        "lobby",
+        "kitchen"
+      ],
+      "isPublic": true,
+      "objects": [
+        "obj-seltzer"
+      ]
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "adjacent": [
+        "bar",
+        "service-stairs"
+      ],
+      "sightlines": [
+        "bar"
+      ],
+      "noiseCarriesTo": [
+        "bar",
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-decanter",
+        "obj-cord",
+        "obj-mop-bucket",
+        "obj-icepick"
+      ]
+    },
+    {
+      "id": "service-stairs",
+      "name": "Service Stairs",
+      "adjacent": [
+        "kitchen",
+        "lobby",
+        "suite",
+        "roof"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "kitchen",
+        "lobby"
+      ],
+      "isPublic": false,
+      "objects": []
+    },
+    {
+      "id": "suite",
+      "name": "Victim's Suite",
+      "adjacent": [
+        "service-stairs",
+        "lobby",
+        "roof"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": []
+    },
+    {
+      "id": "roof",
+      "name": "Roof Garden",
+      "adjacent": [
+        "service-stairs",
+        "lobby",
+        "suite"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": []
+    },
+    {
+      "id": "street",
+      "name": "Street",
+      "adjacent": [
+        "lobby"
+      ],
+      "sightlines": [
+        "lobby"
+      ],
+      "noiseCarriesTo": [
+        "lobby"
+      ],
+      "isPublic": true,
+      "objects": []
+    }
+  ],
+  "objects": [
+    {
+      "id": "obj-decanter",
+      "name": "a cut-glass decanter",
+      "homeLocation": "kitchen"
+    },
+    {
+      "id": "obj-revolver",
+      "name": "a nickel-plated revolver",
+      "homeLocation": "front-desk"
+    },
+    {
+      "id": "obj-cord",
+      "name": "a length of sash cord",
+      "homeLocation": "kitchen"
+    },
+    {
+      "id": "obj-mop-bucket",
+      "name": "a mop and bucket",
+      "homeLocation": "kitchen"
+    },
+    {
+      "id": "obj-seltzer",
+      "name": "a seltzer siphon",
+      "homeLocation": "bar"
+    },
+    {
+      "id": "obj-newsstand",
+      "name": "a folded stack of evening papers",
+      "homeLocation": "lobby"
+    },
+    {
+      "id": "obj-bookend",
+      "name": "a bronze bookend",
+      "homeLocation": "front-desk"
+    },
+    {
+      "id": "obj-icepick",
+      "name": "an ice pick",
+      "homeLocation": "kitchen"
+    }
+  ],
+  "people": [
+    {
+      "id": "p-victim",
+      "name": "Concetta Marchetti",
+      "role": "a shipping clerk who had come into money",
+      "kind": "victim",
+      "isKiller": false
+    },
+    {
+      "id": "p-s1",
+      "name": "Filomena Vitale",
+      "role": "a switchboard operator",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's former employee",
+      "secret": {
+        "type": "gambling-debt",
+        "description": "Filomena Vitale slips out to the Street from 7:30 PM to 8:00 PM to settle with a bookmaker.",
+        "cells": [
+          {
+            "tick": 3,
+            "location": "street"
+          },
+          {
+            "tick": 4,
+            "location": "street"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s2",
+      "name": "Kathleen Sweeney",
+      "role": "the night manager",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's creditor",
+      "secret": {
+        "type": "forged-identity",
+        "description": "Kathleen Sweeney is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.",
+        "cells": []
+      }
+    },
+    {
+      "id": "p-s3",
+      "name": "Adelaide Lathrop",
+      "role": "a chambermaid",
+      "kind": "suspect",
+      "isKiller": true,
+      "relationshipToVictim": "the victim's estranged spouse",
+      "secret": {
+        "type": "murder",
+        "description": "Adelaide Lathrop is alone with Concetta Marchetti in the Victim's Suite from 7:30 PM, and kills Concetta Marchetti at 7:30 PM.",
+        "cells": [
+          {
+            "tick": 3,
+            "location": "suite"
+          }
+        ],
+        "partnerId": "p-victim"
+      },
+      "motive": {
+        "type": "jealousy",
+        "description": "jealous of the victim"
+      }
+    },
+    {
+      "id": "p-s4",
+      "name": "Dennis Brennan",
+      "role": "a bookmaker in a small way",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's brother-in-law",
+      "secret": {
+        "type": "secret-drinking",
+        "description": "Dennis Brennan drinks alone in the Bar from 7:00 PM to 7:30 PM and will claim to have been anywhere else.",
+        "cells": [
+          {
+            "tick": 2,
+            "location": "bar"
+          },
+          {
+            "tick": 3,
+            "location": "bar"
+          }
+        ]
+      },
+      "motive": {
+        "type": "silence-a-witness",
+        "description": "needed the victim silent"
+      }
+    },
+    {
+      "id": "p-s5",
+      "name": "Constance Stannard",
+      "role": "a chorus girl between engagements",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "a childhood friend of the victim from the same block",
+      "secret": {
+        "type": "affair",
+        "description": "Constance Stannard is with Thaddeus Havemeyer in the Service Stairs from 10:00 PM to 10:30 PM, and both will say they were somewhere else.",
+        "cells": [
+          {
+            "tick": 8,
+            "location": "service-stairs"
+          },
+          {
+            "tick": 9,
+            "location": "service-stairs"
+          }
+        ],
+        "partnerId": "p-s6"
+      }
+    },
+    {
+      "id": "p-s6",
+      "name": "Thaddeus Havemeyer",
+      "role": "a photographer for the rotogravure section",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's rival in trade",
+      "secret": {
+        "type": "affair",
+        "description": "Thaddeus Havemeyer is with Constance Stannard in the Service Stairs from 10:00 PM to 10:30 PM, and both will say they were somewhere else.",
+        "cells": [
+          {
+            "tick": 8,
+            "location": "service-stairs"
+          },
+          {
+            "tick": 9,
+            "location": "service-stairs"
+          }
+        ],
+        "partnerId": "p-s5"
+      },
+      "motive": {
+        "type": "property",
+        "description": "wanted the victim out of a lease"
+      }
+    },
+    {
+      "id": "p-doorman",
+      "name": "Morris Zeldin",
+      "role": "the doorman",
+      "kind": "fixture",
+      "isKiller": false
+    },
+    {
+      "id": "p-bartender",
+      "name": "Lotte Obermann",
+      "role": "the bartender",
+      "kind": "fixture",
+      "isKiller": false
+    }
+  ],
+  "method": {
+    "id": "poison",
+    "name": "poison in a drink",
+    "noise": 0,
+    "evidenceObjectId": "obj-decanter",
+    "bodyEvidence": "Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle.",
+    "accessRequirement": {
+      "location": "kitchen",
+      "beforeTick": 3
+    }
+  },
+  "environment": {
+    "rainStartsAt": 5
+  },
+  "schedules": [
+    {
+      "personId": "p-victim",
+      "truth": [
+        "lobby",
+        "lobby",
+        "lobby",
+        "suite",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "claimed": [
+        "lobby",
+        "lobby",
+        "lobby",
+        "suite",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s1",
+      "truth": [
+        "street",
+        "street",
+        "street",
+        "street",
+        "street",
+        "street",
+        "street",
+        "lobby",
+        "lobby",
+        "street",
+        "street",
+        "lobby"
+      ],
+      "claimed": [
+        "street",
+        "street",
+        "street",
+        "lobby",
+        "lobby",
+        "street",
+        "street",
+        "lobby",
+        "lobby",
+        "street",
+        "street",
+        "lobby"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        3,
+        4
+      ]
+    },
+    {
+      "personId": "p-s2",
+      "truth": [
+        "kitchen",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimed": [
+        "kitchen",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s3",
+      "truth": [
+        "kitchen",
+        "kitchen",
+        "service-stairs",
+        "suite",
+        "service-stairs",
+        "roof",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "front-desk",
+        "front-desk"
+      ],
+      "claimed": [
+        "kitchen",
+        "kitchen",
+        "service-stairs",
+        "bar",
+        "service-stairs",
+        "roof",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "front-desk",
+        "front-desk"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        "p-s1",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        3
+      ]
+    },
+    {
+      "personId": "p-s4",
+      "truth": [
+        "kitchen",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "lobby",
+        "street"
+      ],
+      "claimed": [
+        "kitchen",
+        "bar",
+        "lobby",
+        "lobby",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "lobby",
+        "street"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        2,
+        3
+      ]
+    },
+    {
+      "personId": "p-s5",
+      "truth": [
+        "kitchen",
+        "kitchen",
+        "service-stairs",
+        "lobby",
+        "street",
+        "street",
+        "street",
+        "lobby",
+        "service-stairs",
+        "service-stairs",
+        "service-stairs",
+        "roof"
+      ],
+      "claimed": [
+        "kitchen",
+        "kitchen",
+        "service-stairs",
+        "lobby",
+        "street",
+        "street",
+        "street",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "roof"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "p-s2",
+        "p-s2",
+        null,
+        null
+      ],
+      "lies": [
+        8,
+        9
+      ]
+    },
+    {
+      "personId": "p-s6",
+      "truth": [
+        "bar",
+        "kitchen",
+        "kitchen",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "service-stairs",
+        "service-stairs",
+        "service-stairs",
+        "roof"
+      ],
+      "claimed": [
+        "bar",
+        "kitchen",
+        "kitchen",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "roof"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "p-s5",
+        "p-s5",
+        null,
+        null
+      ],
+      "lies": [
+        8,
+        9
+      ]
+    },
+    {
+      "personId": "p-doorman",
+      "truth": [
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "street",
+        "lobby",
+        "lobby"
+      ],
+      "claimed": [
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "street",
+        "lobby",
+        "lobby"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-bartender",
+      "truth": [
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "kitchen",
+        "bar"
+      ],
+      "claimed": [
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "kitchen",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    }
+  ],
+  "observations": [
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "suite",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "suite",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "street",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "street",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "front-desk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "front-desk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "front-desk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "roof",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "roof",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "front-desk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    }
+  ],
+  "clues": [
+    {
+      "id": "c001",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Filomena Vitale says Concetta Marchetti was in the Lobby from 6:00 PM to 7:00 PM."
+    },
+    {
+      "id": "c002",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Filomena Vitale says Kathleen Sweeney was in the Bar from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Filomena Vitale says Kathleen Sweeney was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c004",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Filomena Vitale says Adelaide Lathrop was in the Lobby from 9:00 PM to 10:30 PM."
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "front-desk",
+          "tick": 11
+        }
+      ],
+      "text": "Filomena Vitale says Adelaide Lathrop was at the Front Desk at 11:30 PM."
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Filomena Vitale says Dennis Brennan was in the Lobby from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Filomena Vitale says Dennis Brennan was in the Lobby at 11:00 PM."
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 11
+        }
+      ],
+      "text": "Filomena Vitale says Dennis Brennan was on the Street at 11:30 PM."
+    },
+    {
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Filomena Vitale says Constance Stannard was on the Street from 8:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c010",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Filomena Vitale says Constance Stannard was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Filomena Vitale says Thaddeus Havemeyer was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Kathleen Sweeney says Concetta Marchetti was in the Lobby from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c013",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 4
+        }
+      ],
+      "text": "Kathleen Sweeney says Filomena Vitale was on the Street from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Kathleen Sweeney says Filomena Vitale was in the Lobby from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c015",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Kathleen Sweeney says Filomena Vitale was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Kathleen Sweeney says Adelaide Lathrop was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c017",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Kathleen Sweeney says Adelaide Lathrop was in the Lobby from 9:00 PM to 10:30 PM."
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Kathleen Sweeney says Dennis Brennan was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c019",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Kathleen Sweeney says Dennis Brennan was in the Bar from 6:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c020",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Kathleen Sweeney says Dennis Brennan was in the Lobby from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c021",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Kathleen Sweeney says Dennis Brennan was in the Lobby at 11:00 PM."
+    },
+    {
+      "id": "c022",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Kathleen Sweeney says Constance Stannard was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Kathleen Sweeney says Constance Stannard was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Kathleen Sweeney says Constance Stannard was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c025",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 4
+        }
+      ],
+      "text": "Kathleen Sweeney says Constance Stannard was on the Street at 8:00 PM."
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 0
+        }
+      ],
+      "text": "Kathleen Sweeney says Thaddeus Havemeyer was in the Bar at 6:00 PM."
+    },
+    {
+      "id": "c027",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Kathleen Sweeney says Thaddeus Havemeyer was in the Bar from 7:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Kathleen Sweeney says Thaddeus Havemeyer was in the Kitchen from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Kathleen Sweeney says Thaddeus Havemeyer was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Adelaide Lathrop says Filomena Vitale was on the Street at 9:00 PM."
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 9
+        }
+      ],
+      "text": "Adelaide Lathrop says Filomena Vitale was on the Street at 10:30 PM."
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Adelaide Lathrop says Filomena Vitale was in the Lobby from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c033",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Adelaide Lathrop says Filomena Vitale was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c034",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Adelaide Lathrop says Kathleen Sweeney was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 1
+        }
+      ],
+      "text": "Adelaide Lathrop says Kathleen Sweeney was in the Bar at 6:30 PM."
+    },
+    {
+      "id": "c036",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 9
+        }
+      ],
+      "text": "Adelaide Lathrop says Kathleen Sweeney was in the Bar from 9:00 PM to 10:30 PM."
+    },
+    {
+      "id": "c037",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Adelaide Lathrop says Dennis Brennan was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 1
+        }
+      ],
+      "text": "Adelaide Lathrop says Dennis Brennan was in the Bar at 6:30 PM."
+    },
+    {
+      "id": "c039",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Adelaide Lathrop says Dennis Brennan was in the Lobby from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Adelaide Lathrop says Dennis Brennan was in the Lobby at 11:00 PM."
+    },
+    {
+      "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Adelaide Lathrop says Constance Stannard was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 2
+        }
+      ],
+      "text": "Adelaide Lathrop says Constance Stannard was on the Service Stairs at 7:00 PM."
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Adelaide Lathrop says Constance Stannard was on the Street at 9:00 PM."
+    },
+    {
+      "id": "c044",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Adelaide Lathrop says Constance Stannard was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c045",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 0
+        }
+      ],
+      "text": "Adelaide Lathrop says Thaddeus Havemeyer was in the Bar at 6:00 PM."
+    },
+    {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Adelaide Lathrop says Thaddeus Havemeyer was in the Bar at 9:00 PM."
+    },
+    {
+      "id": "c047",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Adelaide Lathrop says Thaddeus Havemeyer was in the Kitchen at 6:30 PM."
+    },
+    {
+      "id": "c048",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Adelaide Lathrop says Thaddeus Havemeyer was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c049",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        }
+      ],
+      "text": "Dennis Brennan says Concetta Marchetti was in the Lobby at 6:30 PM."
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Dennis Brennan says Filomena Vitale was on the Street at 9:00 PM."
+    },
+    {
+      "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 10
+        }
+      ],
+      "text": "Dennis Brennan says Filomena Vitale was on the Street at 11:00 PM."
+    },
+    {
+      "id": "c052",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Dennis Brennan says Filomena Vitale was in the Lobby from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c053",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Dennis Brennan says Filomena Vitale was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Dennis Brennan says Kathleen Sweeney was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c055",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 1
+        }
+      ],
+      "text": "Dennis Brennan says Kathleen Sweeney was in the Bar at 6:30 PM."
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Dennis Brennan says Kathleen Sweeney was in the Bar from 8:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c057",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 10
+        }
+      ],
+      "text": "Dennis Brennan says Kathleen Sweeney was in the Bar at 11:00 PM."
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Dennis Brennan says Kathleen Sweeney was in the Lobby at 8:00 PM."
+    },
+    {
+      "id": "c059",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Dennis Brennan says Adelaide Lathrop was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Dennis Brennan says Adelaide Lathrop was in the Lobby from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c061",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "front-desk",
+          "tick": 10
+        }
+      ],
+      "text": "Dennis Brennan says Adelaide Lathrop was at the Front Desk at 11:00 PM."
+    },
+    {
+      "id": "c062",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Dennis Brennan says Constance Stannard was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Dennis Brennan says Constance Stannard was on the Street at 9:00 PM."
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Dennis Brennan says Constance Stannard was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c065",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 9
+        }
+      ],
+      "text": "Dennis Brennan says Constance Stannard was on the Service Stairs at 10:30 PM."
+    },
+    {
+      "id": "c066",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 0
+        }
+      ],
+      "text": "Dennis Brennan says Thaddeus Havemeyer was in the Bar at 6:00 PM."
+    },
+    {
+      "id": "c067",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Dennis Brennan says Thaddeus Havemeyer was in the Bar from 8:00 PM to 9:00 PM."
+    },
+    {
+      "id": "c068",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Dennis Brennan says Thaddeus Havemeyer was in the Kitchen at 6:30 PM."
+    },
+    {
+      "id": "c069",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Dennis Brennan says Thaddeus Havemeyer was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c070",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "service-stairs",
+          "tick": 9
+        }
+      ],
+      "text": "Dennis Brennan says Thaddeus Havemeyer was on the Service Stairs at 10:30 PM."
+    },
+    {
+      "id": "c071",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Constance Stannard says Filomena Vitale was on the Street from 7:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Constance Stannard says Filomena Vitale was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c073",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Constance Stannard says Kathleen Sweeney was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c074",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 1
+        }
+      ],
+      "text": "Constance Stannard says Kathleen Sweeney was in the Bar at 6:30 PM."
+    },
+    {
+      "id": "c075",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Constance Stannard says Kathleen Sweeney was in the Bar at 9:30 PM."
+    },
+    {
+      "id": "c076",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Constance Stannard says Kathleen Sweeney was in the Lobby from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c077",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Constance Stannard says Adelaide Lathrop was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c078",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 2
+        }
+      ],
+      "text": "Constance Stannard says Adelaide Lathrop was on the Service Stairs at 7:00 PM."
+    },
+    {
+      "id": "c079",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Constance Stannard says Adelaide Lathrop was in the Lobby from 9:00 PM to 9:30 PM."
+    },
+    {
+      "id": "c080",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Constance Stannard says Dennis Brennan was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c081",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 1
+        }
+      ],
+      "text": "Constance Stannard says Dennis Brennan was in the Bar at 6:30 PM."
+    },
+    {
+      "id": "c082",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Constance Stannard says Dennis Brennan was in the Bar at 7:30 PM."
+    },
+    {
+      "id": "c083",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Constance Stannard says Dennis Brennan was in the Lobby from 9:00 PM to 9:30 PM."
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 0
+        }
+      ],
+      "text": "Constance Stannard says Thaddeus Havemeyer was in the Bar at 6:00 PM."
+    },
+    {
+      "id": "c085",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Constance Stannard says Thaddeus Havemeyer was in the Bar at 7:30 PM."
+    },
+    {
+      "id": "c086",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Constance Stannard says Thaddeus Havemeyer was in the Kitchen at 6:30 PM."
+    },
+    {
+      "id": "c087",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Constance Stannard says Thaddeus Havemeyer was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c088",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "service-stairs",
+          "tick": 10
+        }
+      ],
+      "text": "Constance Stannard says Thaddeus Havemeyer was on the Service Stairs at 11:00 PM."
+    },
+    {
+      "id": "c089",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "roof",
+          "tick": 11
+        }
+      ],
+      "text": "Constance Stannard says Thaddeus Havemeyer was in the Roof Garden at 11:30 PM."
+    },
+    {
+      "id": "c090",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Concetta Marchetti was in the Lobby at 6:00 PM."
+    },
+    {
+      "id": "c091",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Filomena Vitale was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c092",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Kathleen Sweeney was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c093",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 2
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Kathleen Sweeney was in the Bar from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c094",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Kathleen Sweeney was in the Bar from 8:30 PM to 9:30 PM."
+    },
+    {
+      "id": "c095",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Kathleen Sweeney was in the Lobby from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c096",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Adelaide Lathrop was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c097",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Adelaide Lathrop was in the Lobby from 9:00 PM to 9:30 PM."
+    },
+    {
+      "id": "c098",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Dennis Brennan was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c099",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Dennis Brennan was in the Bar from 6:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c100",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Dennis Brennan was in the Lobby from 9:00 PM to 9:30 PM."
+    },
+    {
+      "id": "c101",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Constance Stannard was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c102",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Constance Stannard was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c103",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Constance Stannard was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c104",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 10
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Constance Stannard was on the Service Stairs at 11:00 PM."
+    },
+    {
+      "id": "c105",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "roof",
+          "tick": 11
+        }
+      ],
+      "text": "Thaddeus Havemeyer says Constance Stannard was in the Roof Garden at 11:30 PM."
+    },
+    {
+      "id": "c106",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Morris Zeldin says Concetta Marchetti was in the Lobby from 6:00 PM to 7:00 PM."
+    },
+    {
+      "id": "c107",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Morris Zeldin says Filomena Vitale was on the Street from 6:00 PM to 9:00 PM."
+    },
+    {
+      "id": "c108",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 10
+        }
+      ],
+      "text": "Morris Zeldin says Filomena Vitale was on the Street from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c109",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Morris Zeldin says Filomena Vitale was in the Lobby from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c110",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Morris Zeldin says Filomena Vitale was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c111",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 2
+        }
+      ],
+      "text": "Morris Zeldin says Kathleen Sweeney was in the Bar from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c112",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Morris Zeldin says Kathleen Sweeney was in the Bar from 8:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c113",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Morris Zeldin says Kathleen Sweeney was in the Bar from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c114",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Morris Zeldin says Kathleen Sweeney was in the Lobby from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c115",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Morris Zeldin says Adelaide Lathrop was in the Lobby from 9:00 PM to 10:30 PM."
+    },
+    {
+      "id": "c116",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "front-desk",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "front-desk",
+          "tick": 11
+        }
+      ],
+      "text": "Morris Zeldin says Adelaide Lathrop was at the Front Desk from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c117",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Morris Zeldin says Dennis Brennan was in the Bar from 6:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c118",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Morris Zeldin says Dennis Brennan was in the Lobby from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c119",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Morris Zeldin says Dennis Brennan was in the Lobby at 11:00 PM."
+    },
+    {
+      "id": "c120",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 11
+        }
+      ],
+      "text": "Morris Zeldin says Dennis Brennan was on the Street at 11:30 PM."
+    },
+    {
+      "id": "c121",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Morris Zeldin says Constance Stannard was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c122",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Morris Zeldin says Constance Stannard was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c123",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Morris Zeldin says Constance Stannard was on the Street from 8:00 PM to 9:00 PM."
+    },
+    {
+      "id": "c124",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 0
+        }
+      ],
+      "text": "Morris Zeldin says Thaddeus Havemeyer was in the Bar at 6:00 PM."
+    },
+    {
+      "id": "c125",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Morris Zeldin says Thaddeus Havemeyer was in the Bar from 7:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c126",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Morris Zeldin says Thaddeus Havemeyer was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c127",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        }
+      ],
+      "text": "Lotte Obermann says Concetta Marchetti was in the Lobby from 6:00 PM to 7:00 PM."
+    },
+    {
+      "id": "c128",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Lotte Obermann says Filomena Vitale was in the Lobby from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c129",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Filomena Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Lotte Obermann says Filomena Vitale was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c130",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Lotte Obermann says Kathleen Sweeney was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c131",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 2
+        }
+      ],
+      "text": "Lotte Obermann says Kathleen Sweeney was in the Bar from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c132",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Lotte Obermann says Kathleen Sweeney was in the Bar from 8:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c133",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Kathleen Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Lotte Obermann says Kathleen Sweeney was in the Lobby from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c134",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Lotte Obermann says Adelaide Lathrop was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c135",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Adelaide Lathrop"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Lotte Obermann says Adelaide Lathrop was in the Lobby from 9:00 PM to 10:30 PM."
+    },
+    {
+      "id": "c136",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Lotte Obermann says Dennis Brennan was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c137",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Lotte Obermann says Dennis Brennan was in the Bar from 6:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c138",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Dennis Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Lotte Obermann says Dennis Brennan was in the Lobby from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c139",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Lotte Obermann says Constance Stannard was in the Kitchen from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c140",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Lotte Obermann says Constance Stannard was in the Lobby at 7:30 PM."
+    },
+    {
+      "id": "c141",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Lotte Obermann says Constance Stannard was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c142",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 0
+        }
+      ],
+      "text": "Lotte Obermann says Thaddeus Havemeyer was in the Bar at 6:00 PM."
+    },
+    {
+      "id": "c143",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        }
+      ],
+      "text": "Lotte Obermann says Thaddeus Havemeyer was in the Bar from 7:30 PM to 9:00 PM."
+    },
+    {
+      "id": "c144",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "poison"
+        }
+      ],
+      "text": "Lotte Obermann says Thaddeus Havemeyer was in the Kitchen from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c145",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Thaddeus Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Lotte Obermann says Thaddeus Havemeyer was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c146",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Filomena Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Kathleen Sweeney was in the Lobby from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby."
+    },
+    {
+      "id": "c147",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Filomena Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Dennis Brennan was in the Bar at 8:00 PM and says Filomena Vitale was not in the Lobby."
+    },
+    {
+      "id": "c148",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Filomena Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Constance Stannard was in the Lobby at 7:30 PM and says Filomena Vitale was not in the Lobby."
+    },
+    {
+      "id": "c149",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Filomena Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Constance Stannard was on the Street at 8:00 PM and says Filomena Vitale was not in the Lobby."
+    },
+    {
+      "id": "c150",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Filomena Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Thaddeus Havemeyer was in the Bar from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby."
+    },
+    {
+      "id": "c151",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Filomena Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Morris Zeldin was in the Lobby from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby."
+    },
+    {
+      "id": "c152",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Filomena Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Lotte Obermann was in the Bar from 7:30 PM to 8:00 PM and says Filomena Vitale was not in the Lobby."
+    },
+    {
+      "id": "c153",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Adelaide Lathrop's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Kathleen Sweeney was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar."
+    },
+    {
+      "id": "c154",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Adelaide Lathrop's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Constance Stannard was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar."
+    },
+    {
+      "id": "c155",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Adelaide Lathrop's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Thaddeus Havemeyer was in the Bar at 7:30 PM and says Adelaide Lathrop was not in the Bar."
+    },
+    {
+      "id": "c156",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Adelaide Lathrop's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Morris Zeldin was in the Lobby at 7:30 PM and says Adelaide Lathrop was not in the Bar."
+    },
+    {
+      "id": "c157",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Adelaide Lathrop's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 3
+        }
+      ],
+      "text": "Lotte Obermann was in the Bar at 7:30 PM and says Adelaide Lathrop was not in the Bar."
+    },
+    {
+      "id": "c158",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Dennis Brennan's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Filomena Vitale was on the Street at 7:00 PM and says Dennis Brennan was not in the Lobby."
+    },
+    {
+      "id": "c159",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Dennis Brennan's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Kathleen Sweeney was in the Bar at 7:00 PM and says Dennis Brennan was not in the Lobby."
+    },
+    {
+      "id": "c160",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Dennis Brennan's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Kathleen Sweeney was in the Lobby at 7:30 PM and says Dennis Brennan was not in the Lobby."
+    },
+    {
+      "id": "c161",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Dennis Brennan's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Constance Stannard was in the Lobby at 7:30 PM and says Dennis Brennan was not in the Lobby."
+    },
+    {
+      "id": "c162",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dennis Brennan's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Thaddeus Havemeyer was in the Bar at 7:30 PM and says Dennis Brennan was not in the Lobby."
+    },
+    {
+      "id": "c163",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Dennis Brennan's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Morris Zeldin was in the Lobby from 7:00 PM to 7:30 PM and says Dennis Brennan was not in the Lobby."
+    },
+    {
+      "id": "c164",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Dennis Brennan's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Lotte Obermann was in the Bar from 7:00 PM to 7:30 PM and says Dennis Brennan was not in the Lobby."
+    },
+    {
+      "id": "c165",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Filomena Vitale was in the Lobby at 10:00 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c166",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Filomena Vitale was on the Street at 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c167",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Kathleen Sweeney was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c168",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Adelaide Lathrop was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c169",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Dennis Brennan was in the Lobby at 10:00 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c170",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Morris Zeldin was in the Lobby at 10:00 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c171",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Morris Zeldin was on the Street at 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c172",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Lotte Obermann was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c173",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Thaddeus Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Filomena Vitale was in the Lobby at 10:00 PM and says Thaddeus Havemeyer was not in the Lobby."
+    },
+    {
+      "id": "c174",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Thaddeus Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Filomena Vitale was on the Street at 10:30 PM and says Thaddeus Havemeyer was not in the Lobby."
+    },
+    {
+      "id": "c175",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Thaddeus Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Kathleen Sweeney was in the Bar from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby."
+    },
+    {
+      "id": "c176",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Thaddeus Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Adelaide Lathrop was in the Lobby from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby."
+    },
+    {
+      "id": "c177",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Thaddeus Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Dennis Brennan was in the Lobby at 10:00 PM and says Thaddeus Havemeyer was not in the Lobby."
+    },
+    {
+      "id": "c178",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Thaddeus Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Morris Zeldin was in the Lobby at 10:00 PM and says Thaddeus Havemeyer was not in the Lobby."
+    },
+    {
+      "id": "c179",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Thaddeus Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Morris Zeldin was on the Street at 10:30 PM and says Thaddeus Havemeyer was not in the Lobby."
+    },
+    {
+      "id": "c180",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Thaddeus Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Lotte Obermann was in the Bar from 10:00 PM to 10:30 PM and says Thaddeus Havemeyer was not in the Lobby."
+    },
+    {
+      "id": "c181",
+      "kind": "morgue",
+      "source": {
+        "type": "location",
+        "locationId": "suite"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            2,
+            3
+          ]
+        }
+      ],
+      "text": "Concetta Marchetti was found in the Victim's Suite. The coroner puts death between 7:00 PM and 7:30 PM. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle."
+    },
+    {
+      "id": "c182",
+      "kind": "physical",
+      "source": {
+        "type": "location",
+        "locationId": "kitchen"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-decanter",
+          "fromLocation": "kitchen"
+        }
+      ],
+      "text": "A cut-glass decanter is missing from the Kitchen. The stopper has been wiped and the dregs test positive for chloral."
+    },
+    {
+      "id": "c183",
+      "kind": "environment",
+      "source": {
+        "type": "location",
+        "locationId": "street"
+      },
+      "establishes": [],
+      "text": "Rain began at 8:30 PM and did not let up. Anyone out on the street after that came back in wet."
+    },
+    {
+      "id": "c184",
+      "kind": "environment",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "the rain"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Kathleen Sweeney says Filomena Vitale came in off the street at 9:30 PM with a soaked coat, so Filomena Vitale was outside at 9:00 PM."
+    },
+    {
+      "id": "c185",
+      "kind": "environment",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "the rain"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Filomena Vitale says Constance Stannard came in off the street at 9:30 PM with a soaked coat, so Constance Stannard was outside at 9:00 PM."
+    },
+    {
+      "id": "c186",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [],
+      "text": "Kathleen Sweeney's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo."
+    },
+    {
+      "id": "c187",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "suite"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "jealousy"
+        }
+      ],
+      "text": "Found in the Victim's Suite: Three letters in Concetta Marchetti's hand to a woman Adelaide Lathrop is engaged to, kept in the drawer, the last one opened."
+    },
+    {
+      "id": "c188",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Adelaide Lathrop and Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "jealousy"
+        }
+      ],
+      "text": "Lotte Obermann says Adelaide Lathrop told Concetta Marchetti to keep away, loud enough to turn heads."
+    },
+    {
+      "id": "c189",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Found in the Front Desk: A subpoena naming Concetta Marchetti as a witness before the grand jury, with Dennis Brennan's name written in the margin."
+    },
+    {
+      "id": "c190",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Dennis Brennan and Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Lotte Obermann says Concetta Marchetti said to Dennis Brennan that a man who testifies sleeps better."
+    },
+    {
+      "id": "c191",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s6",
+          "motiveType": "property"
+        }
+      ],
+      "text": "Found in the Front Desk: A lease assignment made out in Thaddeus Havemeyer's name, waiting only on Concetta Marchetti's signature."
+    },
+    {
+      "id": "c192",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Thaddeus Havemeyer and Concetta Marchetti"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s6",
+          "motiveType": "property"
+        }
+      ],
+      "text": "Morris Zeldin says Concetta Marchetti told Thaddeus Havemeyer the lease would go to somebody else at the quarter day."
+    }
+  ],
+  "solution": {
+    "killerId": "p-s3",
+    "methodId": "poison",
+    "motiveType": "jealousy",
+    "murderTick": 3,
+    "murderLocationId": "suite"
+  },
+  "deduction": {
+    "timeOfDeath": [
+      "c181",
+      "c001",
+      "c012",
+      "c106",
+      "c127"
+    ],
+    "exculpations": {
+      "p-s1": [
+        "c013",
+        "c071",
+        "c107"
+      ],
+      "p-s2": [
+        "c076",
+        "c095",
+        "c114",
+        "c133"
+      ],
+      "p-s4": [
+        "c019",
+        "c082",
+        "c099",
+        "c117",
+        "c137"
+      ],
+      "p-s5": [
+        "c023",
+        "c102",
+        "c121",
+        "c140"
+      ],
+      "p-s6": [
+        "c027",
+        "c085",
+        "c125",
+        "c143"
+      ]
+    },
+    "inculpation": [
+      "c153",
+      "c154",
+      "c155",
+      "c156",
+      "c157",
+      "c016",
+      "c059",
+      "c077",
+      "c096",
+      "c134"
+    ],
+    "method": [
+      "c181",
+      "c182"
+    ],
+    "motive": [
+      "c187",
+      "c188"
+    ]
+  }
+}

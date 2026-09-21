@@ -1,0 +1,6160 @@
+{
+  "seed": 15,
+  "attempts": 2,
+  "detectiveName": "Humphrey",
+  "hotelName": "The Rensselaer",
+  "locations": [
+    {
+      "id": "lobby",
+      "name": "Lobby",
+      "adjacent": [
+        "front-desk",
+        "street",
+        "bar",
+        "service-stairs",
+        "suite",
+        "roof"
+      ],
+      "sightlines": [
+        "front-desk",
+        "street",
+        "bar"
+      ],
+      "noiseCarriesTo": [
+        "front-desk",
+        "street",
+        "bar",
+        "service-stairs"
+      ],
+      "isPublic": true,
+      "objects": []
+    },
+    {
+      "id": "front-desk",
+      "name": "Front Desk",
+      "adjacent": [
+        "lobby"
+      ],
+      "sightlines": [
+        "lobby"
+      ],
+      "noiseCarriesTo": [
+        "lobby"
+      ],
+      "isPublic": true,
+      "objects": [
+        "obj-ledger"
+      ]
+    },
+    {
+      "id": "bar",
+      "name": "Bar",
+      "adjacent": [
+        "lobby",
+        "kitchen"
+      ],
+      "sightlines": [
+        "lobby",
+        "kitchen"
+      ],
+      "noiseCarriesTo": [
+        "lobby",
+        "kitchen"
+      ],
+      "isPublic": true,
+      "objects": [
+        "obj-cigarette-case"
+      ]
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "adjacent": [
+        "bar",
+        "service-stairs",
+        "street"
+      ],
+      "sightlines": [
+        "bar"
+      ],
+      "noiseCarriesTo": [
+        "bar",
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-cord",
+        "obj-decanter"
+      ]
+    },
+    {
+      "id": "service-stairs",
+      "name": "Service Stairs",
+      "adjacent": [
+        "kitchen",
+        "lobby",
+        "suite",
+        "roof"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "kitchen",
+        "lobby"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-coat"
+      ]
+    },
+    {
+      "id": "suite",
+      "name": "Victim's Suite",
+      "adjacent": [
+        "service-stairs",
+        "lobby"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-steamer-trunk"
+      ]
+    },
+    {
+      "id": "roof",
+      "name": "Roof Garden",
+      "adjacent": [
+        "service-stairs",
+        "lobby"
+      ],
+      "sightlines": [],
+      "noiseCarriesTo": [
+        "service-stairs"
+      ],
+      "isPublic": false,
+      "objects": [
+        "obj-flowerpot"
+      ]
+    },
+    {
+      "id": "street",
+      "name": "Street",
+      "adjacent": [
+        "lobby",
+        "kitchen"
+      ],
+      "sightlines": [
+        "lobby"
+      ],
+      "noiseCarriesTo": [
+        "lobby"
+      ],
+      "isPublic": true,
+      "objects": [
+        "obj-newsstand"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "obj-cord",
+      "name": "a length of sash cord",
+      "homeLocation": "kitchen"
+    },
+    {
+      "id": "obj-decanter",
+      "name": "a cut-glass decanter",
+      "homeLocation": "kitchen"
+    },
+    {
+      "id": "obj-coat",
+      "name": "a camel-hair overcoat on a hook",
+      "homeLocation": "service-stairs"
+    },
+    {
+      "id": "obj-ledger",
+      "name": "the house ledger",
+      "homeLocation": "front-desk"
+    },
+    {
+      "id": "obj-steamer-trunk",
+      "name": "a steamer trunk",
+      "homeLocation": "suite"
+    },
+    {
+      "id": "obj-flowerpot",
+      "name": "a terracotta flower pot",
+      "homeLocation": "roof"
+    },
+    {
+      "id": "obj-newsstand",
+      "name": "a folded stack of evening papers",
+      "homeLocation": "street"
+    },
+    {
+      "id": "obj-cigarette-case",
+      "name": "a silver cigarette case",
+      "homeLocation": "bar"
+    }
+  ],
+  "people": [
+    {
+      "id": "p-victim",
+      "name": "Bella Hurwitz",
+      "role": "an heiress between marriages",
+      "kind": "victim",
+      "isKiller": false
+    },
+    {
+      "id": "p-s1",
+      "name": "Lavinia Thorndike",
+      "role": "a piano teacher",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's secretary",
+      "secret": {
+        "type": "affair",
+        "description": "Lavinia Thorndike is with Abraham Sirkin in the Roof Garden from 7:00 PM to 8:00 PM, and both will say they were somewhere else.",
+        "cells": [
+          {
+            "tick": 2,
+            "location": "roof"
+          },
+          {
+            "tick": 3,
+            "location": "roof"
+          },
+          {
+            "tick": 4,
+            "location": "roof"
+          }
+        ],
+        "partnerId": "p-s5"
+      }
+    },
+    {
+      "id": "p-s2",
+      "name": "Constance Stannard",
+      "role": "a chorus girl between engagements",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "a childhood friend of the victim from the same block",
+      "secret": {
+        "type": "gambling-debt",
+        "description": "Constance Stannard slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.",
+        "cells": [
+          {
+            "tick": 8,
+            "location": "street"
+          },
+          {
+            "tick": 9,
+            "location": "street"
+          }
+        ]
+      },
+      "motive": {
+        "type": "inheritance",
+        "description": "stands to inherit"
+      }
+    },
+    {
+      "id": "p-s3",
+      "name": "Emilio Vitale",
+      "role": "a dentist with rooms on the third floor",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's rival in trade",
+      "secret": {
+        "type": "blackmail",
+        "description": "Emilio Vitale meets the victim alone in the Victim's Suite from 9:00 PM and asks for money.",
+        "cells": [
+          {
+            "tick": 6,
+            "location": "suite"
+          }
+        ],
+        "partnerId": "p-victim"
+      }
+    },
+    {
+      "id": "p-s4",
+      "name": "Pasquale Grasso",
+      "role": "a ward heeler",
+      "kind": "suspect",
+      "isKiller": true,
+      "relationshipToVictim": "the victim's private nurse",
+      "secret": {
+        "type": "murder",
+        "description": "Pasquale Grasso is alone with Bella Hurwitz in the Service Stairs from 10:30 PM, and kills Bella Hurwitz at 10:30 PM.",
+        "cells": [
+          {
+            "tick": 9,
+            "location": "service-stairs"
+          }
+        ],
+        "partnerId": "p-victim"
+      },
+      "coverSecret": {
+        "type": "forged-identity",
+        "description": "Pasquale Grasso is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.",
+        "cells": []
+      },
+      "motive": {
+        "type": "exposure",
+        "description": "was about to be exposed by the victim"
+      }
+    },
+    {
+      "id": "p-s5",
+      "name": "Abraham Sirkin",
+      "role": "a bookmaker in a small way",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "engaged to the victim's daughter",
+      "secret": {
+        "type": "affair",
+        "description": "Abraham Sirkin is with Lavinia Thorndike in the Roof Garden from 7:00 PM to 8:00 PM, and both will say they were somewhere else.",
+        "cells": [
+          {
+            "tick": 2,
+            "location": "roof"
+          },
+          {
+            "tick": 3,
+            "location": "roof"
+          },
+          {
+            "tick": 4,
+            "location": "roof"
+          }
+        ],
+        "partnerId": "p-s1"
+      },
+      "motive": {
+        "type": "debt",
+        "description": "owed the victim money"
+      }
+    },
+    {
+      "id": "p-s6",
+      "name": "Nunzio Tramonti",
+      "role": "a stagehand at the Selwyn",
+      "kind": "suspect",
+      "isKiller": false,
+      "relationshipToVictim": "the victim's brother-in-law",
+      "secret": {
+        "type": "secret-drinking",
+        "description": "Nunzio Tramonti drinks alone in the Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.",
+        "cells": [
+          {
+            "tick": 9,
+            "location": "bar"
+          },
+          {
+            "tick": 10,
+            "location": "bar"
+          }
+        ]
+      },
+      "motive": {
+        "type": "jealousy",
+        "description": "jealous of the victim"
+      }
+    },
+    {
+      "id": "p-doorman",
+      "name": "Heinrich Obermann",
+      "role": "the doorman",
+      "kind": "fixture",
+      "isKiller": false
+    },
+    {
+      "id": "p-bartender",
+      "name": "Friedrich Kreuzer",
+      "role": "the bartender",
+      "kind": "fixture",
+      "isKiller": false
+    }
+  ],
+  "method": {
+    "id": "strangle",
+    "name": "strangling with a cord",
+    "noise": 0,
+    "evidenceObjectId": "obj-cord",
+    "bodyEvidence": "A ligature furrow across the throat. Three fibres of hemp in the skin.",
+    "accessRequirement": {
+      "location": "kitchen",
+      "beforeTick": 9
+    }
+  },
+  "environment": {
+    "rainStartsAt": 2,
+    "elevatorOut": [
+      6,
+      8
+    ]
+  },
+  "schedules": [
+    {
+      "personId": "p-victim",
+      "truth": [
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "lobby",
+        "service-stairs",
+        "suite",
+        "service-stairs",
+        "lobby",
+        "service-stairs",
+        null,
+        null
+      ],
+      "claimed": [
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "front-desk",
+        "lobby",
+        "service-stairs",
+        "suite",
+        "service-stairs",
+        "lobby",
+        "service-stairs",
+        null,
+        null
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s1",
+      "truth": [
+        "roof",
+        "roof",
+        "roof",
+        "roof",
+        "roof",
+        "roof",
+        "roof",
+        "service-stairs",
+        "service-stairs",
+        "kitchen",
+        "kitchen",
+        "street"
+      ],
+      "claimed": [
+        "roof",
+        "roof",
+        "lobby",
+        "lobby",
+        "lobby",
+        "roof",
+        "roof",
+        "service-stairs",
+        "service-stairs",
+        "kitchen",
+        "kitchen",
+        "street"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        "p-s5",
+        "p-s5",
+        "p-s5",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "personId": "p-s2",
+      "truth": [
+        "lobby",
+        "service-stairs",
+        "service-stairs",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "street",
+        "street",
+        "street",
+        "street",
+        "street",
+        "lobby"
+      ],
+      "claimed": [
+        "lobby",
+        "service-stairs",
+        "service-stairs",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "street",
+        "street",
+        "lobby",
+        "lobby",
+        "street",
+        "lobby"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        8,
+        9
+      ]
+    },
+    {
+      "personId": "p-s3",
+      "truth": [
+        "street",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "service-stairs",
+        "suite",
+        "service-stairs",
+        "service-stairs",
+        "lobby",
+        "bar",
+        "bar"
+      ],
+      "claimed": [
+        "street",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "service-stairs",
+        "lobby",
+        "service-stairs",
+        "service-stairs",
+        "lobby",
+        "bar",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        6
+      ]
+    },
+    {
+      "personId": "p-s4",
+      "truth": [
+        "street",
+        "street",
+        "street",
+        "street",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "service-stairs",
+        "kitchen",
+        "kitchen"
+      ],
+      "claimed": [
+        "street",
+        "street",
+        "street",
+        "street",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "bar",
+        "kitchen",
+        "kitchen"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "p-s2",
+        null,
+        null
+      ],
+      "lies": [
+        9
+      ]
+    },
+    {
+      "personId": "p-s5",
+      "truth": [
+        "roof",
+        "roof",
+        "roof",
+        "roof",
+        "roof",
+        "service-stairs",
+        "service-stairs",
+        "service-stairs",
+        "kitchen",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimed": [
+        "roof",
+        "roof",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
+        "service-stairs",
+        "service-stairs",
+        "kitchen",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        "p-s6",
+        "p-s6",
+        "p-s6",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "personId": "p-s6",
+      "truth": [
+        "kitchen",
+        "service-stairs",
+        "service-stairs",
+        "service-stairs",
+        "service-stairs",
+        "lobby",
+        "front-desk",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimed": [
+        "kitchen",
+        "service-stairs",
+        "service-stairs",
+        "service-stairs",
+        "service-stairs",
+        "lobby",
+        "front-desk",
+        "lobby",
+        "bar",
+        "lobby",
+        "lobby",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        9,
+        10
+      ]
+    },
+    {
+      "personId": "p-doorman",
+      "truth": [
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby"
+      ],
+      "claimed": [
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-bartender",
+      "truth": [
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimed": [
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "lobby",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    }
+  ],
+  "observations": [
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "roof",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "roof",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "roof",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "roof",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "service-stairs",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "roof",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "roof",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "service-stairs",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "roof",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "roof",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "roof",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "roof",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "kitchen",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "suite",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "suite",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "service-stairs",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "kitchen",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 10,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 10,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": true
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "kitchen",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    }
+  ],
+  "clues": [
+    {
+      "id": "c001",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "service-stairs",
+          "tick": 7
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 7
+        }
+      ],
+      "text": "Lavinia Thorndike says Bella Hurwitz was on the Service Stairs at 9:30 PM."
+    },
+    {
+      "id": "c002",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Lavinia Thorndike says Constance Stannard was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 8
+        }
+      ],
+      "text": "Lavinia Thorndike says Emilio Vitale was on the Service Stairs from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c004",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 10
+        }
+      ],
+      "text": "Lavinia Thorndike says Emilio Vitale was in the Bar at 11:00 PM."
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Lavinia Thorndike says Pasquale Grasso was in the Kitchen at 11:00 PM."
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "roof",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "roof",
+          "tick": 1
+        }
+      ],
+      "text": "Lavinia Thorndike says Abraham Sirkin was in the Roof Garden from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 7
+        }
+      ],
+      "text": "Lavinia Thorndike says Abraham Sirkin was on the Service Stairs at 9:30 PM."
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 10
+        }
+      ],
+      "text": "Lavinia Thorndike says Abraham Sirkin was in the Bar from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        }
+      ],
+      "text": "Lavinia Thorndike says Nunzio Tramonti was in the Bar from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c010",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        }
+      ],
+      "text": "Constance Stannard says Bella Hurwitz was at the Front Desk at 6:00 PM."
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 11
+        }
+      ],
+      "text": "Constance Stannard says Lavinia Thorndike was on the Street at 11:30 PM."
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "street",
+          "tick": 0
+        }
+      ],
+      "text": "Constance Stannard says Emilio Vitale was on the Street at 6:00 PM."
+    },
+    {
+      "id": "c013",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Constance Stannard says Emilio Vitale was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 0
+        }
+      ],
+      "text": "Constance Stannard says Pasquale Grasso was on the Street at 6:00 PM."
+    },
+    {
+      "id": "c015",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 5
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Constance Stannard says Pasquale Grasso was in the Kitchen from 8:00 PM to 8:30 PM."
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Constance Stannard says Abraham Sirkin was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c017",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "service-stairs",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "service-stairs",
+          "tick": 2
+        }
+      ],
+      "text": "Constance Stannard says Nunzio Tramonti was on the Service Stairs from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Constance Stannard says Nunzio Tramonti was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c019",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Constance Stannard says Nunzio Tramonti was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c020",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        }
+      ],
+      "text": "Emilio Vitale says Bella Hurwitz was at the Front Desk from 6:30 PM to 7:30 PM."
+    },
+    {
+      "id": "c021",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "service-stairs",
+          "tick": 5
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 5
+        }
+      ],
+      "text": "Emilio Vitale says Bella Hurwitz was on the Service Stairs at 8:30 PM."
+    },
+    {
+      "id": "c022",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "service-stairs",
+          "tick": 7
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 7
+        }
+      ],
+      "text": "Emilio Vitale says Bella Hurwitz was on the Service Stairs at 9:30 PM."
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "service-stairs",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "service-stairs",
+          "tick": 8
+        }
+      ],
+      "text": "Emilio Vitale says Lavinia Thorndike was on the Service Stairs from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Emilio Vitale says Lavinia Thorndike was in the Kitchen at 11:00 PM."
+    },
+    {
+      "id": "c025",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 0
+        }
+      ],
+      "text": "Emilio Vitale says Constance Stannard was in the Lobby at 6:00 PM."
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Emilio Vitale says Constance Stannard was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c027",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 9
+        }
+      ],
+      "text": "Emilio Vitale says Constance Stannard was on the Street at 10:30 PM."
+    },
+    {
+      "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 3
+        }
+      ],
+      "text": "Emilio Vitale says Pasquale Grasso was on the Street from 6:00 PM to 7:30 PM."
+    },
+    {
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 11
+        }
+      ],
+      "text": "Emilio Vitale says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 5
+        }
+      ],
+      "text": "Emilio Vitale says Abraham Sirkin was on the Service Stairs at 8:30 PM."
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 7
+        }
+      ],
+      "text": "Emilio Vitale says Abraham Sirkin was on the Service Stairs at 9:30 PM."
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Emilio Vitale says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c033",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "service-stairs",
+          "tick": 4
+        }
+      ],
+      "text": "Emilio Vitale says Nunzio Tramonti was on the Service Stairs at 8:00 PM."
+    },
+    {
+      "id": "c034",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Emilio Vitale says Nunzio Tramonti was in the Bar from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Pasquale Grasso says Lavinia Thorndike was in the Kitchen at 11:00 PM."
+    },
+    {
+      "id": "c036",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 0
+        }
+      ],
+      "text": "Pasquale Grasso says Constance Stannard was in the Lobby at 6:00 PM."
+    },
+    {
+      "id": "c037",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 5
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Pasquale Grasso says Constance Stannard was in the Kitchen from 8:00 PM to 8:30 PM."
+    },
+    {
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "street",
+          "tick": 0
+        }
+      ],
+      "text": "Pasquale Grasso says Emilio Vitale was on the Street at 6:00 PM."
+    },
+    {
+      "id": "c039",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Pasquale Grasso says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM."
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Pasquale Grasso says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 8
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Pasquale Grasso says Abraham Sirkin was in the Kitchen at 10:00 PM."
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Pasquale Grasso says Abraham Sirkin was in the Bar from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Pasquale Grasso says Nunzio Tramonti was in the Bar at 10:00 PM."
+    },
+    {
+      "id": "c044",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Pasquale Grasso says Nunzio Tramonti was in the Bar from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c045",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "service-stairs",
+          "tick": 5
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 5
+        }
+      ],
+      "text": "Abraham Sirkin says Bella Hurwitz was on the Service Stairs at 8:30 PM."
+    },
+    {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "service-stairs",
+          "tick": 7
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 7
+        }
+      ],
+      "text": "Abraham Sirkin says Bella Hurwitz was on the Service Stairs at 9:30 PM."
+    },
+    {
+      "id": "c047",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "roof",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "roof",
+          "tick": 1
+        }
+      ],
+      "text": "Abraham Sirkin says Lavinia Thorndike was in the Roof Garden from 6:00 PM to 6:30 PM."
+    },
+    {
+      "id": "c048",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "service-stairs",
+          "tick": 7
+        }
+      ],
+      "text": "Abraham Sirkin says Lavinia Thorndike was on the Service Stairs at 9:30 PM."
+    },
+    {
+      "id": "c049",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Abraham Sirkin says Lavinia Thorndike was in the Kitchen from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Abraham Sirkin says Constance Stannard was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 5
+        }
+      ],
+      "text": "Abraham Sirkin says Emilio Vitale was on the Service Stairs at 8:30 PM."
+    },
+    {
+      "id": "c052",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 7
+        }
+      ],
+      "text": "Abraham Sirkin says Emilio Vitale was on the Service Stairs at 9:30 PM."
+    },
+    {
+      "id": "c053",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Abraham Sirkin says Emilio Vitale was in the Lobby at 10:30 PM."
+    },
+    {
+      "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Abraham Sirkin says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c055",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 8
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Abraham Sirkin says Pasquale Grasso was in the Kitchen at 10:00 PM."
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 11
+        }
+      ],
+      "text": "Abraham Sirkin says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c057",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Abraham Sirkin says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 8
+        }
+      ],
+      "text": "Nunzio Tramonti says Bella Hurwitz was in the Lobby at 10:00 PM."
+    },
+    {
+      "id": "c059",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "service-stairs",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "service-stairs",
+          "tick": 2
+        }
+      ],
+      "text": "Nunzio Tramonti says Constance Stannard was on the Service Stairs from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 7
+        }
+      ],
+      "text": "Nunzio Tramonti says Constance Stannard was on the Street at 9:30 PM."
+    },
+    {
+      "id": "c061",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Nunzio Tramonti says Constance Stannard was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c062",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 4
+        }
+      ],
+      "text": "Nunzio Tramonti says Emilio Vitale was on the Service Stairs at 8:00 PM."
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Nunzio Tramonti says Emilio Vitale was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 8
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Nunzio Tramonti says Pasquale Grasso was in the Kitchen at 10:00 PM."
+    },
+    {
+      "id": "c065",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 11
+        }
+      ],
+      "text": "Nunzio Tramonti says Pasquale Grasso was in the Kitchen at 11:30 PM."
+    },
+    {
+      "id": "c066",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 8
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Nunzio Tramonti says Abraham Sirkin was in the Kitchen at 10:00 PM."
+    },
+    {
+      "id": "c067",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Nunzio Tramonti says Abraham Sirkin was in the Bar at 11:30 PM."
+    },
+    {
+      "id": "c068",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 2
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        }
+      ],
+      "text": "Heinrich Obermann says Bella Hurwitz was at the Front Desk from 6:00 PM to 7:30 PM."
+    },
+    {
+      "id": "c069",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 4
+        }
+      ],
+      "text": "Heinrich Obermann says Bella Hurwitz was in the Lobby at 8:00 PM."
+    },
+    {
+      "id": "c070",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 8
+        }
+      ],
+      "text": "Heinrich Obermann says Bella Hurwitz was in the Lobby at 10:00 PM."
+    },
+    {
+      "id": "c071",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 11
+        }
+      ],
+      "text": "Heinrich Obermann says Lavinia Thorndike was on the Street at 11:30 PM."
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 0
+        }
+      ],
+      "text": "Heinrich Obermann says Constance Stannard was in the Lobby at 6:00 PM."
+    },
+    {
+      "id": "c073",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Heinrich Obermann says Constance Stannard was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c074",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 10
+        }
+      ],
+      "text": "Heinrich Obermann says Constance Stannard was on the Street from 9:00 PM to 11:00 PM."
+    },
+    {
+      "id": "c075",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "street",
+          "tick": 0
+        }
+      ],
+      "text": "Heinrich Obermann says Emilio Vitale was on the Street at 6:00 PM."
+    },
+    {
+      "id": "c076",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Heinrich Obermann says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM."
+    },
+    {
+      "id": "c077",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Heinrich Obermann says Emilio Vitale was in the Lobby at 10:30 PM."
+    },
+    {
+      "id": "c078",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Heinrich Obermann says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c079",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 3
+        }
+      ],
+      "text": "Heinrich Obermann says Pasquale Grasso was on the Street from 6:00 PM to 7:30 PM."
+    },
+    {
+      "id": "c080",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Heinrich Obermann says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c081",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        }
+      ],
+      "text": "Heinrich Obermann says Nunzio Tramonti was in the Lobby at 8:30 PM."
+    },
+    {
+      "id": "c082",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Heinrich Obermann says Nunzio Tramonti was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c083",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 6
+        }
+      ],
+      "text": "Heinrich Obermann says Nunzio Tramonti was at the Front Desk at 9:00 PM."
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Heinrich Obermann says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c085",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 4
+        }
+      ],
+      "text": "Friedrich Kreuzer says Bella Hurwitz was in the Lobby at 8:00 PM."
+    },
+    {
+      "id": "c086",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 8
+        }
+      ],
+      "text": "Friedrich Kreuzer says Bella Hurwitz was in the Lobby at 10:00 PM."
+    },
+    {
+      "id": "c087",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Lavinia Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 10
+        }
+      ],
+      "text": "Friedrich Kreuzer says Lavinia Thorndike was in the Kitchen from 10:30 PM to 11:00 PM."
+    },
+    {
+      "id": "c088",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 0
+        }
+      ],
+      "text": "Friedrich Kreuzer says Constance Stannard was in the Lobby at 6:00 PM."
+    },
+    {
+      "id": "c089",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Friedrich Kreuzer says Constance Stannard was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c090",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Constance Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "kitchen",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Friedrich Kreuzer says Constance Stannard was in the Kitchen from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c091",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Friedrich Kreuzer says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM."
+    },
+    {
+      "id": "c092",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Friedrich Kreuzer says Emilio Vitale was in the Lobby at 10:30 PM."
+    },
+    {
+      "id": "c093",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Emilio Vitale"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Friedrich Kreuzer says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c094",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Friedrich Kreuzer says Pasquale Grasso was in the Kitchen at 8:00 PM."
+    },
+    {
+      "id": "c095",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 8
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Friedrich Kreuzer says Pasquale Grasso was in the Kitchen from 9:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c096",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Pasquale Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "kitchen",
+          "tick": 11
+        }
+      ],
+      "text": "Friedrich Kreuzer says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c097",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "kitchen",
+          "tick": 8
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Friedrich Kreuzer says Abraham Sirkin was in the Kitchen at 10:00 PM."
+    },
+    {
+      "id": "c098",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Abraham Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Friedrich Kreuzer says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c099",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Friedrich Kreuzer says Nunzio Tramonti was in the Kitchen at 6:00 PM."
+    },
+    {
+      "id": "c100",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        }
+      ],
+      "text": "Friedrich Kreuzer says Nunzio Tramonti was in the Lobby at 8:30 PM."
+    },
+    {
+      "id": "c101",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Friedrich Kreuzer says Nunzio Tramonti was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c102",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Nunzio Tramonti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Friedrich Kreuzer says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c103",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Lavinia Thorndike's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Emilio Vitale was in the Lobby from 7:00 PM to 7:30 PM and says Lavinia Thorndike was not in the Lobby."
+    },
+    {
+      "id": "c104",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Lavinia Thorndike's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Pasquale Grasso was on the Street from 7:00 PM to 7:30 PM and says Lavinia Thorndike was not in the Lobby."
+    },
+    {
+      "id": "c105",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Lavinia Thorndike's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Heinrich Obermann was in the Lobby from 7:00 PM to 8:00 PM and says Lavinia Thorndike was not in the Lobby."
+    },
+    {
+      "id": "c106",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Lavinia Thorndike's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Friedrich Kreuzer was in the Bar from 7:00 PM to 8:00 PM and says Lavinia Thorndike was not in the Lobby."
+    },
+    {
+      "id": "c107",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Emilio Vitale was in the Lobby at 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c108",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Abraham Sirkin was in the Bar at 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c109",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Nunzio Tramonti was in the Bar at 10:00 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c110",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Heinrich Obermann was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c111",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Constance Stannard's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Friedrich Kreuzer was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby."
+    },
+    {
+      "id": "c112",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Emilio Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Constance Stannard was on the Street at 9:00 PM and says Emilio Vitale was not in the Lobby."
+    },
+    {
+      "id": "c113",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Emilio Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Nunzio Tramonti was at the Front Desk at 9:00 PM and says Emilio Vitale was not in the Lobby."
+    },
+    {
+      "id": "c114",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Emilio Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Heinrich Obermann was in the Lobby at 9:00 PM and says Emilio Vitale was not in the Lobby."
+    },
+    {
+      "id": "c115",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Emilio Vitale's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Friedrich Kreuzer was in the Bar at 9:00 PM and says Emilio Vitale was not in the Lobby."
+    },
+    {
+      "id": "c116",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Pasquale Grasso's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 9
+        }
+      ],
+      "text": "Lavinia Thorndike was in the Kitchen at 10:30 PM and says Pasquale Grasso was not in the Bar."
+    },
+    {
+      "id": "c117",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Pasquale Grasso's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 9
+        }
+      ],
+      "text": "Emilio Vitale was in the Lobby at 10:30 PM and says Pasquale Grasso was not in the Bar."
+    },
+    {
+      "id": "c118",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Pasquale Grasso's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 9
+        }
+      ],
+      "text": "Abraham Sirkin was in the Bar at 10:30 PM and says Pasquale Grasso was not in the Bar."
+    },
+    {
+      "id": "c119",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Pasquale Grasso's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 9
+        }
+      ],
+      "text": "Heinrich Obermann was in the Lobby at 10:30 PM and says Pasquale Grasso was not in the Bar."
+    },
+    {
+      "id": "c120",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Pasquale Grasso's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 9
+        }
+      ],
+      "text": "Friedrich Kreuzer was in the Bar at 10:30 PM and says Pasquale Grasso was not in the Bar."
+    },
+    {
+      "id": "c121",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Abraham Sirkin's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Emilio Vitale was in the Lobby from 7:00 PM to 7:30 PM and says Abraham Sirkin was not in the Lobby."
+    },
+    {
+      "id": "c122",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Abraham Sirkin's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Pasquale Grasso was on the Street from 7:00 PM to 7:30 PM and says Abraham Sirkin was not in the Lobby."
+    },
+    {
+      "id": "c123",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Abraham Sirkin's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Heinrich Obermann was in the Lobby from 7:00 PM to 8:00 PM and says Abraham Sirkin was not in the Lobby."
+    },
+    {
+      "id": "c124",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Abraham Sirkin's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Friedrich Kreuzer was in the Bar from 7:00 PM to 8:00 PM and says Abraham Sirkin was not in the Lobby."
+    },
+    {
+      "id": "c125",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Abraham Sirkin's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Abraham Sirkin says Nunzio Tramonti was there. Nunzio Tramonti says otherwise: Nunzio Tramonti was on the Service Stairs from 7:00 PM to 8:00 PM, not in the Lobby."
+    },
+    {
+      "id": "c126",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Nunzio Tramonti's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Constance Stannard was on the Street at 11:00 PM and says Nunzio Tramonti was not in the Lobby."
+    },
+    {
+      "id": "c127",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Nunzio Tramonti's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Emilio Vitale was in the Lobby at 10:30 PM and says Nunzio Tramonti was not in the Lobby."
+    },
+    {
+      "id": "c128",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Nunzio Tramonti's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Emilio Vitale was in the Bar at 11:00 PM and says Nunzio Tramonti was not in the Lobby."
+    },
+    {
+      "id": "c129",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Nunzio Tramonti's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Abraham Sirkin was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby."
+    },
+    {
+      "id": "c130",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Nunzio Tramonti's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Heinrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby."
+    },
+    {
+      "id": "c131",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Nunzio Tramonti's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 10
+        }
+      ],
+      "text": "Friedrich Kreuzer was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby."
+    },
+    {
+      "id": "c132",
+      "kind": "morgue",
+      "source": {
+        "type": "location",
+        "locationId": "service-stairs"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            8,
+            9
+          ]
+        }
+      ],
+      "text": "Bella Hurwitz was found on the Service Stairs. The coroner puts death between 10:00 PM and 10:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin."
+    },
+    {
+      "id": "c133",
+      "kind": "physical",
+      "source": {
+        "type": "location",
+        "locationId": "kitchen"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-cord",
+          "fromLocation": "kitchen"
+        }
+      ],
+      "text": "A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from."
+    },
+    {
+      "id": "c134",
+      "kind": "environment",
+      "source": {
+        "type": "location",
+        "locationId": "street"
+      },
+      "establishes": [],
+      "text": "Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet."
+    },
+    {
+      "id": "c135",
+      "kind": "environment",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "the rain"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 10
+        }
+      ],
+      "text": "Lavinia Thorndike says Constance Stannard came in off the street at 11:30 PM with a soaked coat, so Constance Stannard was outside at 11:00 PM."
+    },
+    {
+      "id": "c136",
+      "kind": "environment",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "the rain"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 3
+        }
+      ],
+      "text": "Constance Stannard says Pasquale Grasso came in off the street at 8:00 PM with a soaked coat, so Pasquale Grasso was outside at 7:30 PM."
+    },
+    {
+      "id": "c137",
+      "kind": "environment",
+      "source": {
+        "type": "location",
+        "locationId": "lobby"
+      },
+      "establishes": [],
+      "text": "The passenger elevator was out of order from 9:00 PM to 10:00 PM. Anyone changing floors in that time used the service stairs."
+    },
+    {
+      "id": "c138",
+      "kind": "physical",
+      "source": {
+        "type": "location",
+        "locationId": "service-stairs"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "service-stairs",
+          "tick": 7
+        }
+      ],
+      "text": "The service stairs were whitewashed that afternoon. There is whitewash on Bella Hurwitz's sleeve; Bella Hurwitz was on the stairs at 9:30 PM."
+    },
+    {
+      "id": "c139",
+      "kind": "physical",
+      "source": {
+        "type": "location",
+        "locationId": "service-stairs"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "service-stairs",
+          "tick": 7
+        }
+      ],
+      "text": "The service stairs were whitewashed that afternoon. There is whitewash on Lavinia Thorndike's sleeve; Lavinia Thorndike was on the stairs at 9:30 PM."
+    },
+    {
+      "id": "c140",
+      "kind": "physical",
+      "source": {
+        "type": "location",
+        "locationId": "service-stairs"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 7
+        }
+      ],
+      "text": "The service stairs were whitewashed that afternoon. There is whitewash on Emilio Vitale's sleeve; Emilio Vitale was on the stairs at 9:30 PM."
+    },
+    {
+      "id": "c141",
+      "kind": "physical",
+      "source": {
+        "type": "location",
+        "locationId": "service-stairs"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 6
+        }
+      ],
+      "text": "The service stairs were whitewashed that afternoon. There is whitewash on Abraham Sirkin's sleeve; Abraham Sirkin was on the stairs at 9:00 PM."
+    },
+    {
+      "id": "c142",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [],
+      "text": "Pasquale Grasso's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date."
+    },
+    {
+      "id": "c143",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "suite"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s2",
+          "motiveType": "inheritance"
+        }
+      ],
+      "text": "Found in the Victim's Suite: A draft codicil in Bella Hurwitz's hand striking Constance Stannard out of the will, dated last Tuesday and unsigned."
+    },
+    {
+      "id": "c144",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Constance Stannard and Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s2",
+          "motiveType": "inheritance"
+        }
+      ],
+      "text": "Pasquale Grasso says Bella Hurwitz told Constance Stannard the lawyer was coming Thursday and that the arrangement would be changed."
+    },
+    {
+      "id": "c145",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Found in the Front Desk: A typed page of dates and sums in Bella Hurwitz's file, headed with Pasquale Grasso's name."
+    },
+    {
+      "id": "c146",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Pasquale Grasso and Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Constance Stannard says Bella Hurwitz told Pasquale Grasso that the story would run whether Pasquale Grasso liked it or not."
+    },
+    {
+      "id": "c147",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Found in the Front Desk: A promissory note for $4,000 signed by Abraham Sirkin, endorsed to Bella Hurwitz, three months past due."
+    },
+    {
+      "id": "c148",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Abraham Sirkin and Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Emilio Vitale says Bella Hurwitz told Abraham Sirkin that Friday was the end of it, one way or the other."
+    },
+    {
+      "id": "c149",
+      "kind": "document",
+      "source": {
+        "type": "location",
+        "locationId": "front-desk"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s6",
+          "motiveType": "jealousy"
+        }
+      ],
+      "text": "Found in the Front Desk: Three letters in Bella Hurwitz's hand to a woman Nunzio Tramonti is engaged to, kept in the drawer, the last one opened."
+    },
+    {
+      "id": "c150",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Nunzio Tramonti and Bella Hurwitz"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s6",
+          "motiveType": "jealousy"
+        }
+      ],
+      "text": "Heinrich Obermann says Nunzio Tramonti told Bella Hurwitz to keep away, loud enough to turn heads."
+    }
+  ],
+  "solution": {
+    "killerId": "p-s4",
+    "methodId": "strangle",
+    "motiveType": "exposure",
+    "murderTick": 9,
+    "murderLocationId": "service-stairs"
+  },
+  "deduction": {
+    "timeOfDeath": [
+      "c132",
+      "c058",
+      "c070",
+      "c086"
+    ],
+    "exculpations": {
+      "p-s1": [
+        "c049",
+        "c087"
+      ],
+      "p-s2": [
+        "c027",
+        "c074"
+      ],
+      "p-s3": [
+        "c053",
+        "c077",
+        "c092"
+      ],
+      "p-s5": [
+        "c008",
+        "c032",
+        "c080",
+        "c098"
+      ],
+      "p-s6": [
+        "c009",
+        "c034",
+        "c057",
+        "c084",
+        "c102"
+      ]
+    },
+    "inculpation": [
+      "c116",
+      "c117",
+      "c118",
+      "c119",
+      "c120",
+      "c015",
+      "c055",
+      "c064",
+      "c094",
+      "c095"
+    ],
+    "method": [
+      "c132",
+      "c133"
+    ],
+    "motive": [
+      "c145",
+      "c146"
+    ]
+  }
+}
