@@ -1,637 +1,426 @@
-# Hotel Saint Clair — case 1
+# Chelsea — case 1
 
-**Seed** 1 · **Attempts** 6 · **Detective** Humphrey
+**Seed** 1 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 9 actions · **Budget** 20 · **Slack** 11 · **Findable** 30 (spine 9, corroboration 9, noise 7 + 5 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 209
 
 ## 1. The Truth
 
-Antonio Marchetti, a photographer for the rotogravure section, the victim's rival in trade, killed Maureen Quill, a society columnist, with strangling with a cord in the Roof Garden at 9:00 PM. Antonio Marchetti needed the victim silent (silence-a-witness). Antonio Marchetti had been in the Kitchen earlier in the evening, before 9:00 PM and was alone with Maureen Quill when it happened.
+Percival Prentiss, a ward heeler, the victim’s rival in trade, killed Edward Corrigan, a retired dry-goods wholesaler, with a blunt object at Pier 46, under the shed at 8:00 PM. Percival Prentiss was about to be exposed by the victim (exposure). Percival Prentiss had been at the victim’s walk-up over the drugstore earlier in the evening, where the weapon lived, and was alone with Edward Corrigan when it happened. Percival Prentiss is also the client: the killer hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Maureen Quill | a society columnist | the victim | — | — | — |
-| Antonio Marchetti | a photographer for the rotogravure section | the victim's rival in trade | murder | silence-a-witness | **YES** |
-| Willa Prentiss | a stagehand at the Selwyn | the victim's private nurse | fence | debt | — |
-| Delia Mulcahy | a piano teacher | engaged to the victim's daughter | gambling-debt | — | — |
-| Marion Winslow | a wine steward out of work since the Act | the victim's business partner | forged-identity | — | — |
-| Lorraine Ashby | a stringer for the evening papers | named in the victim's will | embezzling | jealousy | — |
-| Beatrice Ellery | a chorus girl between engagements | a childhood friend of the victim from the same block | secret-drinking | — | — |
-| Martin Feeney | the doorman | fixture | — | — | — |
-| Harriet Havemeyer | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Edward Corrigan | a retired dry-goods wholesaler | the victim | — | — | — | — |
+| Esther Sirkin | an insurance adjuster | a witness against the people the victim worked for | gambling-debt | — | Dolan’s Bar | — |
+| Bella Abramowitz | the night manager at the hotel | the victim’s business partner | secret-drinking | — | the Bijou picture house | — |
+| Ilse Reinhardt | a society columnist | the victim’s neighbour across the airshaft | dope | — | the Bijou picture house | — |
+| Thaddeus Ainsworth | a doorman at a club with no sign on it | a childhood friend of the victim’s from the same block | dope | debt | the Bijou picture house | — |
+| Percival Prentiss (client) | a ward heeler | the victim’s rival in trade | murder (+ gambling-debt) | exposure | Dolan’s Bar | **YES** |
+| Wilhelm Brauer | a lawyer with one clerk | the victim’s business partner | blackmail | — | Dolan’s Bar | — |
+| Angelina Tramonti | the ticket-taker | fixture (ticket-taker) | — | — | the Bijou picture house | — |
+| Rudolf Dettweiler | the elevator man | fixture (elevator-man) | — | — | the vestibule of the Hallam apartments | — |
+| Augustus Mosley | the bartender | fixture (bartender) | — | — | Dolan’s Bar | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: none
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: none
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a seltzer siphon
-- **Kitchen** (private) — adjacent: Bar, Service Stairs; sees: Bar; noise carries to: Bar, Service Stairs; objects: a length of sash cord, a galvanised watering can
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a steamer trunk, a mop and bucket
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby, Roof Garden; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby, Victim's Suite; sees: nothing; noise carries to: Service Stairs; objects: a terracotta flower pot
-- **Street** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a folded stack of evening papers, a brass umbrella stand
+- **the victim’s walk-up over the drugstore** (private) — unwatched; objects: a bronze bookend, a bottle of chloral drops, a stack of hatboxes — the victim’s address; where the weapon lived
+- **the Bijou picture house** (public) — watched by ticket-taker (Angelina Tramonti); objects: a silver cigarette case, a standing ashtray, a length of sash cord — within earshot of the scene
+- **the ferry slip at the foot of the street** (public) — unwatched; objects: a strapped suitcase, a pasted-up timetable — within earshot of the scene
+- **the vestibule of the Hallam apartments** (private) — watched by elevator-man (Rudolf Dettweiler); objects: a camel-hair overcoat on a hook, a brass umbrella stand, a day ledger
+- **Dolan’s Bar** (semi) — watched by bartender (Augustus Mosley); objects: a seltzer siphon, an ice pick
+- **Pier 46, under the shed** (private) — unwatched; objects: a mechanic’s toolbox — **THE SCENE**
 
-**Environment:** Rain from 9:30 PM.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 7:00 PM–8:30 PM, four ticks wide. These are what close it: **church-bells** and **fuse**.
 
-### Maureen Quill — the victim
+- **the fuse going in the building** — at 7:30 PM; at the vestibule of the Hallam apartments. You can time things by it: a crack in the cellar and every light on the riser out at once. Those present carry it: candle smoke on the ceilings of everyone who sat it out.
+- **the bells at St. Malachy’s** — at 6:00 PM, 7:00 PM, 8:00 PM, 9:00 PM, 10:00 PM, 11:00 PM; across the whole neighbourhood. You can time things by it: the half hours are rung and the whole hours are rung twice.
+
+## 5. Timelines
+
+### Edward Corrigan — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Bar | Bar | — |
-| 1 | 6:30 PM | Bar | Bar | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Roof Garden ☠ | Roof Garden | — |
+| 0 | 6:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 4 | 8:00 PM | Pier 46, under the shed ☠ | Pier 46, under the shed | — |
+| 5 | 8:30 PM | — | — | — |
+| 6 | 9:00 PM | — | — | — |
 | 7 | 9:30 PM | — | — | — |
 | 8 | 10:00 PM | — | — | — |
 | 9 | 10:30 PM | — | — | — |
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Antonio Marchetti — the killer
+### Esther Sirkin
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Roof Garden | **Lobby** | Lorraine Ashby |
-| 6 | 9:00 PM | Roof Garden ☠ | **Lobby** | Lorraine Ashby |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Front Desk | Front Desk | — |
-| 9 | 10:30 PM | Front Desk | Front Desk | — |
-| 10 | 11:00 PM | Front Desk | Front Desk | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 1 | 6:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 2 | 7:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 3 | 7:30 PM | Dolan’s Bar | **the Bijou picture house** | Thaddeus Ainsworth |
+| 4 | 8:00 PM | Dolan’s Bar | **the Bijou picture house** | Thaddeus Ainsworth |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 9 | 10:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
 
-### Willa Prentiss
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Kitchen | **Bar** | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
-
-### Delia Mulcahy
+### Bella Abramowitz
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Street | Street | — |
-| 2 | 7:00 PM | Street | Street | — |
-| 3 | 7:30 PM | Street | Street | — |
-| 4 | 8:00 PM | Street | Street | — |
-| 5 | 8:30 PM | Street | **Lobby** | Antonio Marchetti |
-| 6 | 9:00 PM | Street | **Lobby** | Antonio Marchetti |
-| 7 | 9:30 PM | Street | Street | — |
-| 8 | 10:00 PM | Street | Street | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 1 | 6:30 PM | the Bijou picture house | the Bijou picture house | — |
+| 2 | 7:00 PM | the Bijou picture house | the Bijou picture house | — |
+| 3 | 7:30 PM | the Bijou picture house | **Dolan’s Bar** | Thaddeus Ainsworth |
+| 4 | 8:00 PM | the Bijou picture house | **Dolan’s Bar** | Thaddeus Ainsworth |
+| 5 | 8:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 6 | 9:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 7 | 9:30 PM | the Bijou picture house | the Bijou picture house | — |
+| 8 | 10:00 PM | the Bijou picture house | the Bijou picture house | — |
+| 9 | 10:30 PM | the Bijou picture house | the Bijou picture house | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | Dolan’s Bar | Dolan’s Bar | — |
 
-### Marion Winslow
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Roof Garden | Roof Garden | — |
-| 3 | 7:30 PM | Roof Garden | Roof Garden | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Front Desk | Front Desk | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
-
-### Lorraine Ashby
+### Ilse Reinhardt
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Victim's Suite | **Lobby** | — |
-| 3 | 7:30 PM | Victim's Suite | **Lobby** | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Street | Street | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
+| 0 | 6:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 1 | 6:30 PM | the Bijou picture house | **the vestibule of the Hallam apartments** | Esther Sirkin |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 6 | 9:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 7 | 9:30 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 8 | 10:00 PM | the Bijou picture house | the Bijou picture house | — |
+| 9 | 10:30 PM | the Bijou picture house | the Bijou picture house | — |
+| 10 | 11:00 PM | the Bijou picture house | the Bijou picture house | — |
+| 11 | 11:30 PM | the Bijou picture house | the Bijou picture house | — |
 
-### Beatrice Ellery
+### Thaddeus Ainsworth
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Bar | **Lobby** | — |
-| 6 | 9:00 PM | Bar | **Lobby** | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 1 | 6:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 2 | 7:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 3 | 7:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | the Bijou picture house | the Bijou picture house | — |
+| 7 | 9:30 PM | the Bijou picture house | the Bijou picture house | — |
+| 8 | 10:00 PM | the Bijou picture house | **the vestibule of the Hallam apartments** | — |
+| 9 | 10:30 PM | the Bijou picture house | **the vestibule of the Hallam apartments** | — |
+| 10 | 11:00 PM | the Bijou picture house | the Bijou picture house | — |
+| 11 | 11:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+
+### Percival Prentiss — the killer
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 1 | 6:30 PM | Dolan’s Bar | **the vestibule of the Hallam apartments** | Wilhelm Brauer |
+| 2 | 7:00 PM | Pier 46, under the shed | **the Bijou picture house** | Esther Sirkin |
+| 3 | 7:30 PM | Pier 46, under the shed | **the Bijou picture house** | Esther Sirkin |
+| 4 | 8:00 PM | Pier 46, under the shed ☠ | **the Bijou picture house** | Esther Sirkin |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 9 | 10:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+
+### Wilhelm Brauer
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the vestibule of the Hallam apartments | **the Bijou picture house** | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 9 | 10:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 10 | 11:00 PM | the Bijou picture house | the Bijou picture house | — |
+| 11 | 11:30 PM | the Bijou picture house | the Bijou picture house | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Martin Feeney (the doorman) | Harriet Havemeyer (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Street | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Lobby | Kitchen |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Bar |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Antonio Marchetti** (murder): Antonio Marchetti is alone with Maureen Quill in the Roof Garden from 8:30 PM to 9:00 PM, and kills Maureen Quill at 9:00 PM.
-- **Willa Prentiss** (fence): Willa Prentiss hands a parcel of stolen goods to a man at the Kitchen at 9:00 PM.
-- **Delia Mulcahy** (gambling-debt): Delia Mulcahy slips out to the Street from 8:30 PM to 9:00 PM to settle with a bookmaker.
-- **Marion Winslow** (forged-identity): Marion Winslow is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.
-- **Lorraine Ashby** (embezzling): Lorraine Ashby goes through the papers in the Victim's Suite from 7:00 PM to 7:30 PM while the victim is downstairs.
-- **Beatrice Ellery** (secret-drinking): Beatrice Ellery drinks alone in the Bar from 8:30 PM to 9:00 PM and will claim to have been anywhere else.
-
-## 6. Clue list
-
-### From Antonio Marchetti (a photographer for the rotogravure section)
-
-On Maureen Quill:
-
-- **c001** [observation] Antonio Marchetti says Maureen Quill was in the Bar from 6:00 PM to 6:30 PM. — _establishes: Maureen Quill in the Bar, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-
-On Delia Mulcahy:
-
-- **c002** [observation] Antonio Marchetti says Delia Mulcahy was on the Street at 9:30 PM. — _establishes: Delia Mulcahy on the Street, 9:30 PM_
-- **c003** [observation] Antonio Marchetti says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
-
-On Marion Winslow:
-
-- **c004** [observation] Antonio Marchetti says Marion Winslow was in the Bar at 9:30 PM. — _establishes: Marion Winslow in the Bar, 9:30 PM_
-- **c005** [observation] Antonio Marchetti says Marion Winslow was in the Lobby at 10:30 PM. — _establishes: Marion Winslow in the Lobby, 10:30 PM_
-- **c006** [observation] Antonio Marchetti says Marion Winslow was in the Lobby at 11:30 PM. — _establishes: Marion Winslow in the Lobby, 11:30 PM_
-- **c007** [observation] Antonio Marchetti says Marion Winslow was at the Front Desk at 11:00 PM. — _establishes: Marion Winslow at the Front Desk, 11:00 PM_
-
-On Lorraine Ashby:
-
-- **c008** [observation] Antonio Marchetti says Lorraine Ashby was in the Kitchen at 6:00 PM. — _establishes: Lorraine Ashby in the Kitchen, 6:00 PM; Lorraine Ashby had access to the method_
-- **c009** [observation] Antonio Marchetti says Lorraine Ashby was in the Lobby at 9:30 PM. — _establishes: Lorraine Ashby in the Lobby, 9:30 PM_
-- **c010** [observation] Antonio Marchetti says Lorraine Ashby was on the Street at 11:30 PM. — _establishes: Lorraine Ashby on the Street, 11:30 PM_
-
-On Beatrice Ellery:
-
-- **c011** [observation] Antonio Marchetti says Beatrice Ellery was in the Bar at 9:30 PM. — _establishes: Beatrice Ellery in the Bar, 9:30 PM_
-- **c012** [observation] Antonio Marchetti says Beatrice Ellery was in the Bar at 11:30 PM. — _establishes: Beatrice Ellery in the Bar, 11:30 PM_
-
-On the rain:
-
-- **c145** [environment] Antonio Marchetti says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM_
-
-### From Willa Prentiss (a stagehand at the Selwyn)
-
-On Maureen Quill:
-
-- **c013** [observation] Willa Prentiss says Maureen Quill was in the Bar at 6:30 PM. — _establishes: Maureen Quill in the Bar, 6:30 PM; the victim alive at 6:30 PM_
-- **c014** [observation] Willa Prentiss says Maureen Quill was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Maureen Quill in the Lobby, 7:00 PM–8:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-
-On Delia Mulcahy:
-
-- **c015** [observation] Willa Prentiss says Delia Mulcahy was on the Street from 6:30 PM to 7:30 PM. — _establishes: Delia Mulcahy on the Street, 6:30 PM–7:30 PM_
-
-On Marion Winslow:
-
-- **c016** [observation] Willa Prentiss says Marion Winslow was in the Lobby at 8:00 PM. — _establishes: Marion Winslow in the Lobby, 8:00 PM_
-- **c017** [observation] Willa Prentiss says Marion Winslow was in the Bar at 8:30 PM. — _establishes: Marion Winslow in the Bar, 8:30 PM_
-- **c018** [observation] Willa Prentiss says Marion Winslow was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Marion Winslow in the Bar, 9:30 PM–10:00 PM_
-
-On Beatrice Ellery:
-
-- **c019** [observation] Willa Prentiss says Beatrice Ellery was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Beatrice Ellery in the Lobby, 6:30 PM–8:00 PM_
-- **c020** [observation] Willa Prentiss says Beatrice Ellery was in the Bar at 8:30 PM. — _establishes: Beatrice Ellery in the Bar, 8:30 PM_
-- **c021** [observation] Willa Prentiss says Beatrice Ellery was in the Bar at 9:30 PM. — _establishes: Beatrice Ellery in the Bar, 9:30 PM_
-- **c022** [observation] Willa Prentiss says Beatrice Ellery was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Beatrice Ellery in the Bar, 11:00 PM–11:30 PM_
-- **c023** [observation] Willa Prentiss says Beatrice Ellery was in the Kitchen from 10:00 PM to 10:30 PM. — _establishes: Beatrice Ellery in the Kitchen, 10:00 PM–10:30 PM_
-
-On Antonio Marchetti's account:
-
-- **c116** [observation] Willa Prentiss was in the Bar at 8:30 PM and says Antonio Marchetti was not in the Lobby. — _establishes: Antonio Marchetti not in the Lobby, 8:30 PM_
-
-On Delia Mulcahy's account:
-
-- **c126** [observation] Willa Prentiss was in the Bar at 8:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 8:30 PM_
-
-On Lorraine Ashby's account:
-
-- **c131** [observation] Willa Prentiss was in the Lobby from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM–7:30 PM_
-
-On Beatrice Ellery's account:
-
-- **c137** [observation] Willa Prentiss was in the Bar at 8:30 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM_
-
-On Lorraine Ashby and Maureen Quill:
-
-- **c152** [overheard] Willa Prentiss says Lorraine Ashby told Maureen Quill to keep away, loud enough to turn heads. — _establishes: Lorraine Ashby had a motive (jealousy)_
-
-### From Delia Mulcahy (a piano teacher)
-
-On Maureen Quill:
-
-- **c024** [observation] Delia Mulcahy says Maureen Quill was in the Bar at 6:00 PM. — _establishes: Maureen Quill in the Bar, 6:00 PM; the victim alive at 6:00 PM_
-- **c025** [observation] Delia Mulcahy says Maureen Quill was in the Lobby from 7:00 PM to 8:00 PM. — _establishes: Maureen Quill in the Lobby, 7:00 PM–8:00 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM_
-
-On Antonio Marchetti:
-
-- **c026** [observation] Delia Mulcahy says Antonio Marchetti was in the Lobby at 9:30 PM. — _establishes: Antonio Marchetti in the Lobby, 9:30 PM_
-- **c027** [observation] Delia Mulcahy says Antonio Marchetti was in the Lobby at 11:30 PM. — _establishes: Antonio Marchetti in the Lobby, 11:30 PM_
-
-On Willa Prentiss:
-
-- **c028** [observation] Delia Mulcahy says Willa Prentiss was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Willa Prentiss in the Lobby, 6:30 PM–7:30 PM_
-
-On Marion Winslow:
-
-- **c029** [observation] Delia Mulcahy says Marion Winslow was in the Lobby at 8:00 PM. — _establishes: Marion Winslow in the Lobby, 8:00 PM_
-- **c030** [observation] Delia Mulcahy says Marion Winslow was in the Lobby at 10:30 PM. — _establishes: Marion Winslow in the Lobby, 10:30 PM_
-- **c031** [observation] Delia Mulcahy says Marion Winslow was in the Lobby at 11:30 PM. — _establishes: Marion Winslow in the Lobby, 11:30 PM_
-
-On Lorraine Ashby:
-
-- **c032** [observation] Delia Mulcahy says Lorraine Ashby was in the Lobby at 9:30 PM. — _establishes: Lorraine Ashby in the Lobby, 9:30 PM_
-- **c033** [observation] Delia Mulcahy says Lorraine Ashby was on the Street from 10:00 PM to 11:30 PM. — _establishes: Lorraine Ashby on the Street, 10:00 PM–11:30 PM_
-
-On Beatrice Ellery:
-
-- **c034** [observation] Delia Mulcahy says Beatrice Ellery was in the Lobby from 6:00 PM to 8:00 PM. — _establishes: Beatrice Ellery in the Lobby, 6:00 PM–8:00 PM_
-- **c035** [observation] Delia Mulcahy says Beatrice Ellery was in the Bar at 11:30 PM. — _establishes: Beatrice Ellery in the Bar, 11:30 PM_
-
-On Lorraine Ashby's account:
-
-- **c132** [observation] Delia Mulcahy was on the Street from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM–7:30 PM_
-
-### From Marion Winslow (a wine steward out of work since the Act)
-
-On Maureen Quill:
-
-- **c036** [observation] Marion Winslow says Maureen Quill was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Maureen Quill in the Lobby, 8:00 PM–8:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-
-On Antonio Marchetti:
-
-- **c037** [observation] Marion Winslow says Antonio Marchetti was in the Lobby at 9:30 PM. — _establishes: Antonio Marchetti in the Lobby, 9:30 PM_
-- **c038** [observation] Marion Winslow says Antonio Marchetti was in the Lobby at 11:30 PM. — _establishes: Antonio Marchetti in the Lobby, 11:30 PM_
-- **c039** [observation] Marion Winslow says Antonio Marchetti was at the Front Desk from 10:30 PM to 11:00 PM. — _establishes: Antonio Marchetti at the Front Desk, 10:30 PM–11:00 PM_
-
-On Willa Prentiss:
-
-- **c040** [observation] Marion Winslow says Willa Prentiss was in the Bar from 8:00 PM to 8:30 PM. — _establishes: Willa Prentiss in the Bar, 8:00 PM–8:30 PM_
-- **c041** [observation] Marion Winslow says Willa Prentiss was in the Kitchen from 9:00 PM to 10:00 PM. — _establishes: Willa Prentiss in the Kitchen, 9:00 PM–10:00 PM_
-
-On Delia Mulcahy:
-
-- **c042** [observation] Marion Winslow says Delia Mulcahy was on the Street at 8:00 PM. — _establishes: Delia Mulcahy on the Street, 8:00 PM_
-- **c043** [observation] Marion Winslow says Delia Mulcahy was on the Street at 10:30 PM. — _establishes: Delia Mulcahy on the Street, 10:30 PM_
-- **c044** [observation] Marion Winslow says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
-
-On Lorraine Ashby:
-
-- **c045** [observation] Marion Winslow says Lorraine Ashby was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Lorraine Ashby in the Lobby, 9:00 PM–9:30 PM_
-- **c046** [observation] Marion Winslow says Lorraine Ashby was on the Street at 10:30 PM. — _establishes: Lorraine Ashby on the Street, 10:30 PM_
-- **c047** [observation] Marion Winslow says Lorraine Ashby was on the Street at 11:30 PM. — _establishes: Lorraine Ashby on the Street, 11:30 PM_
-
-On Beatrice Ellery:
-
-- **c048** [observation] Marion Winslow says Beatrice Ellery was in the Lobby at 8:00 PM. — _establishes: Beatrice Ellery in the Lobby, 8:00 PM_
-- **c049** [observation] Marion Winslow says Beatrice Ellery was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Beatrice Ellery in the Bar, 8:30 PM–9:30 PM_
-- **c050** [observation] Marion Winslow says Beatrice Ellery was in the Bar at 11:30 PM. — _establishes: Beatrice Ellery in the Bar, 11:30 PM_
-- **c051** [observation] Marion Winslow says Beatrice Ellery was in the Kitchen at 10:00 PM. — _establishes: Beatrice Ellery in the Kitchen, 10:00 PM_
-
-On Antonio Marchetti's account:
-
-- **c117** [observation] Marion Winslow was in the Bar from 8:30 PM to 9:00 PM and says Antonio Marchetti was not in the Lobby. — _establishes: Antonio Marchetti not in the Lobby, 8:30 PM–9:00 PM_
-
-On Willa Prentiss's account:
-
-- **c122** [observation] Marion Winslow was in the Bar at 9:00 PM and says Willa Prentiss was not in the Bar. — _establishes: Willa Prentiss not in the Bar, 9:00 PM_
-
-On Delia Mulcahy's account:
-
-- **c127** [observation] Marion Winslow was in the Bar from 8:30 PM to 9:00 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 8:30 PM–9:00 PM_
-
-On Beatrice Ellery's account:
-
-- **c138** [observation] Marion Winslow was in the Bar from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
-
-### From Lorraine Ashby (a stringer for the evening papers)
-
-On Maureen Quill:
-
-- **c052** [observation] Lorraine Ashby says Maureen Quill was in the Bar at 6:00 PM. — _establishes: Maureen Quill in the Bar, 6:00 PM; the victim alive at 6:00 PM_
-
-On Antonio Marchetti:
-
-- **c053** [observation] Lorraine Ashby says Antonio Marchetti was in the Kitchen at 6:00 PM. — _establishes: Antonio Marchetti in the Kitchen, 6:00 PM; Antonio Marchetti had access to the method_
-- **c054** [observation] Lorraine Ashby says Antonio Marchetti was in the Lobby at 9:30 PM. — _establishes: Antonio Marchetti in the Lobby, 9:30 PM_
-- **c055** [observation] Lorraine Ashby says Antonio Marchetti was in the Lobby at 11:30 PM. — _establishes: Antonio Marchetti in the Lobby, 11:30 PM_
-
-On Delia Mulcahy:
-
-- **c056** [observation] Lorraine Ashby says Delia Mulcahy was on the Street from 9:00 PM to 11:00 PM. — _establishes: Delia Mulcahy on the Street, 9:00 PM–11:00 PM_
-- **c057** [observation] Lorraine Ashby says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
-
-On Marion Winslow:
-
-- **c058** [observation] Lorraine Ashby says Marion Winslow was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Marion Winslow in the Bar, 9:00 PM–9:30 PM_
-- **c059** [observation] Lorraine Ashby says Marion Winslow was in the Lobby at 10:30 PM. — _establishes: Marion Winslow in the Lobby, 10:30 PM_
-- **c060** [observation] Lorraine Ashby says Marion Winslow was in the Lobby at 11:30 PM. — _establishes: Marion Winslow in the Lobby, 11:30 PM_
-
-On Beatrice Ellery:
-
-- **c061** [observation] Lorraine Ashby says Beatrice Ellery was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Beatrice Ellery in the Bar, 9:00 PM–9:30 PM_
-
-On Antonio Marchetti's account:
-
-- **c118** [observation] Lorraine Ashby was in the Lobby at 9:00 PM and says Antonio Marchetti was not in the Lobby. — _establishes: Antonio Marchetti not in the Lobby, 9:00 PM_
-- **c121** [observation] Antonio Marchetti says Lorraine Ashby was there. Lorraine Ashby says otherwise: Lorraine Ashby was on the Service Stairs at 8:30 PM, not in the Lobby. — _establishes: Antonio Marchetti not in the Lobby, 8:30 PM_
-
-On Willa Prentiss's account:
-
-- **c123** [observation] Lorraine Ashby was in the Lobby at 9:00 PM and says Willa Prentiss was not in the Bar. — _establishes: Willa Prentiss not in the Bar, 9:00 PM_
-
-On Delia Mulcahy's account:
-
-- **c128** [observation] Lorraine Ashby was in the Lobby at 9:00 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:00 PM_
-
-On Beatrice Ellery's account:
-
-- **c139** [observation] Lorraine Ashby was in the Lobby at 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 9:00 PM_
-
-### From Beatrice Ellery (a chorus girl between engagements)
-
-On Maureen Quill:
-
-- **c062** [observation] Beatrice Ellery says Maureen Quill was in the Bar from 6:00 PM to 6:30 PM. — _establishes: Maureen Quill in the Bar, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-- **c063** [observation] Beatrice Ellery says Maureen Quill was in the Lobby from 7:00 PM to 8:00 PM. — _establishes: Maureen Quill in the Lobby, 7:00 PM–8:00 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM_
-
-On Antonio Marchetti:
-
-- **c064** [observation] Beatrice Ellery says Antonio Marchetti was in the Lobby at 9:30 PM. — _establishes: Antonio Marchetti in the Lobby, 9:30 PM_
-- **c065** [observation] Beatrice Ellery says Antonio Marchetti was in the Lobby at 11:30 PM. — _establishes: Antonio Marchetti in the Lobby, 11:30 PM_
-
-On Willa Prentiss:
-
-- **c066** [observation] Beatrice Ellery says Willa Prentiss was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Willa Prentiss in the Lobby, 6:30 PM–7:30 PM_
-- **c067** [observation] Beatrice Ellery says Willa Prentiss was in the Bar at 8:00 PM. — _establishes: Willa Prentiss in the Bar, 8:00 PM_
-- **c068** [observation] Beatrice Ellery says Willa Prentiss was in the Kitchen from 9:30 PM to 11:30 PM. — _establishes: Willa Prentiss in the Kitchen, 9:30 PM–11:30 PM_
-
-On Delia Mulcahy:
-
-- **c069** [observation] Beatrice Ellery says Delia Mulcahy was in the Lobby at 6:00 PM. — _establishes: Delia Mulcahy in the Lobby, 6:00 PM_
-- **c070** [observation] Beatrice Ellery says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
-- **c071** [observation] Beatrice Ellery says Delia Mulcahy was on the Street from 6:30 PM to 8:00 PM. — _establishes: Delia Mulcahy on the Street, 6:30 PM–8:00 PM_
-
-On Marion Winslow:
-
-- **c072** [observation] Beatrice Ellery says Marion Winslow was in the Lobby at 8:00 PM. — _establishes: Marion Winslow in the Lobby, 8:00 PM_
-- **c073** [observation] Beatrice Ellery says Marion Winslow was in the Lobby at 11:30 PM. — _establishes: Marion Winslow in the Lobby, 11:30 PM_
-- **c074** [observation] Beatrice Ellery says Marion Winslow was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Marion Winslow in the Bar, 9:30 PM–10:00 PM_
-
-On Lorraine Ashby:
-
-- **c075** [observation] Beatrice Ellery says Lorraine Ashby was in the Lobby at 9:30 PM. — _establishes: Lorraine Ashby in the Lobby, 9:30 PM_
-
-On Lorraine Ashby's account:
-
-- **c133** [observation] Beatrice Ellery was in the Lobby from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM–7:30 PM_
-
-### From Martin Feeney (the doorman)
-
-On Maureen Quill:
-
-- **c076** [observation] Martin Feeney says Maureen Quill was in the Bar from 6:00 PM to 6:30 PM. — _establishes: Maureen Quill in the Bar, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-- **c077** [observation] Martin Feeney says Maureen Quill was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Maureen Quill in the Lobby, 7:00 PM–8:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-
-On Antonio Marchetti:
-
-- **c078** [observation] Martin Feeney says Antonio Marchetti was in the Lobby at 9:30 PM. — _establishes: Antonio Marchetti in the Lobby, 9:30 PM_
-- **c079** [observation] Martin Feeney says Antonio Marchetti was in the Lobby at 11:30 PM. — _establishes: Antonio Marchetti in the Lobby, 11:30 PM_
-- **c080** [observation] Martin Feeney says Antonio Marchetti was at the Front Desk from 10:00 PM to 11:00 PM. — _establishes: Antonio Marchetti at the Front Desk, 10:00 PM–11:00 PM_
-
-On Willa Prentiss:
-
-- **c081** [observation] Martin Feeney says Willa Prentiss was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Willa Prentiss in the Lobby, 6:30 PM–7:30 PM_
-- **c082** [observation] Martin Feeney says Willa Prentiss was in the Bar from 8:00 PM to 8:30 PM. — _establishes: Willa Prentiss in the Bar, 8:00 PM–8:30 PM_
-
-On Delia Mulcahy:
-
-- **c083** [observation] Martin Feeney says Delia Mulcahy was in the Lobby at 6:00 PM. — _establishes: Delia Mulcahy in the Lobby, 6:00 PM_
-- **c084** [observation] Martin Feeney says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
-- **c085** [observation] Martin Feeney says Delia Mulcahy was on the Street from 6:30 PM to 11:00 PM. — _establishes: Delia Mulcahy on the Street, 6:30 PM–11:00 PM_
-
-On Marion Winslow:
-
-- **c086** [observation] Martin Feeney says Marion Winslow was in the Lobby at 8:00 PM. — _establishes: Marion Winslow in the Lobby, 8:00 PM_
-- **c087** [observation] Martin Feeney says Marion Winslow was in the Lobby at 10:30 PM. — _establishes: Marion Winslow in the Lobby, 10:30 PM_
-- **c088** [observation] Martin Feeney says Marion Winslow was in the Lobby at 11:30 PM. — _establishes: Marion Winslow in the Lobby, 11:30 PM_
-- **c089** [observation] Martin Feeney says Marion Winslow was in the Bar from 8:30 PM to 10:00 PM. — _establishes: Marion Winslow in the Bar, 8:30 PM–10:00 PM_
-- **c090** [observation] Martin Feeney says Marion Winslow was at the Front Desk at 11:00 PM. — _establishes: Marion Winslow at the Front Desk, 11:00 PM_
-
-On Lorraine Ashby:
-
-- **c091** [observation] Martin Feeney says Lorraine Ashby was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Lorraine Ashby in the Lobby, 9:00 PM–9:30 PM_
-- **c092** [observation] Martin Feeney says Lorraine Ashby was on the Street from 10:00 PM to 11:30 PM. — _establishes: Lorraine Ashby on the Street, 10:00 PM–11:30 PM_
-
-On Beatrice Ellery:
-
-- **c093** [observation] Martin Feeney says Beatrice Ellery was in the Lobby from 6:00 PM to 8:00 PM. — _establishes: Beatrice Ellery in the Lobby, 6:00 PM–8:00 PM_
-- **c094** [observation] Martin Feeney says Beatrice Ellery was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Beatrice Ellery in the Bar, 8:30 PM–9:30 PM_
-- **c095** [observation] Martin Feeney says Beatrice Ellery was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Beatrice Ellery in the Bar, 11:00 PM–11:30 PM_
-
-On Antonio Marchetti's account:
-
-- **c119** [observation] Martin Feeney was in the Lobby from 8:30 PM to 9:00 PM and says Antonio Marchetti was not in the Lobby. — _establishes: Antonio Marchetti not in the Lobby, 8:30 PM–9:00 PM_
-
-On Willa Prentiss's account:
-
-- **c124** [observation] Martin Feeney was in the Lobby at 9:00 PM and says Willa Prentiss was not in the Bar. — _establishes: Willa Prentiss not in the Bar, 9:00 PM_
-
-On Delia Mulcahy's account:
-
-- **c129** [observation] Martin Feeney was in the Lobby from 8:30 PM to 9:00 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 8:30 PM–9:00 PM_
-
-On Lorraine Ashby's account:
-
-- **c134** [observation] Martin Feeney was on the Street at 7:00 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM_
-- **c135** [observation] Martin Feeney was in the Lobby at 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:30 PM_
-
-On Beatrice Ellery's account:
-
-- **c140** [observation] Martin Feeney was in the Lobby from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
-
-On Antonio Marchetti and Maureen Quill:
-
-- **c148** [overheard] Martin Feeney says Maureen Quill said to Antonio Marchetti that a man who testifies sleeps better. — _establishes: Antonio Marchetti had a motive (silence-a-witness)_
-
-On Willa Prentiss and Maureen Quill:
-
-- **c150** [overheard] Martin Feeney says Maureen Quill told Willa Prentiss that Friday was the end of it, one way or the other. — _establishes: Willa Prentiss had a motive (debt)_
-
-### From Harriet Havemeyer (the bartender)
-
-On Maureen Quill:
-
-- **c096** [observation] Harriet Havemeyer says Maureen Quill was in the Bar from 6:00 PM to 6:30 PM. — _establishes: Maureen Quill in the Bar, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-- **c097** [observation] Harriet Havemeyer says Maureen Quill was in the Lobby from 7:00 PM to 7:30 PM. — _establishes: Maureen Quill in the Lobby, 7:00 PM–7:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c098** [observation] Harriet Havemeyer says Maureen Quill was in the Lobby at 8:30 PM. — _establishes: Maureen Quill in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Antonio Marchetti:
-
-- **c099** [observation] Harriet Havemeyer says Antonio Marchetti was in the Kitchen from 6:00 PM to 7:30 PM. — _establishes: Antonio Marchetti in the Kitchen, 6:00 PM–7:30 PM; Antonio Marchetti had access to the method_
-- **c100** [observation] Harriet Havemeyer says Antonio Marchetti was in the Lobby at 9:30 PM. — _establishes: Antonio Marchetti in the Lobby, 9:30 PM_
-- **c101** [observation] Harriet Havemeyer says Antonio Marchetti was in the Lobby at 11:30 PM. — _establishes: Antonio Marchetti in the Lobby, 11:30 PM_
-
-On Willa Prentiss:
-
-- **c102** [observation] Harriet Havemeyer says Willa Prentiss was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Willa Prentiss in the Lobby, 6:30 PM–7:30 PM_
-- **c103** [observation] Harriet Havemeyer says Willa Prentiss was in the Bar from 8:00 PM to 8:30 PM. — _establishes: Willa Prentiss in the Bar, 8:00 PM–8:30 PM_
-- **c104** [observation] Harriet Havemeyer says Willa Prentiss was in the Kitchen from 9:00 PM to 11:30 PM. — _establishes: Willa Prentiss in the Kitchen, 9:00 PM–11:30 PM_
-
-On Delia Mulcahy:
-
-- **c105** [observation] Harriet Havemeyer says Delia Mulcahy was in the Lobby at 6:00 PM. — _establishes: Delia Mulcahy in the Lobby, 6:00 PM_
-- **c106** [observation] Harriet Havemeyer says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
-
-On Marion Winslow:
-
-- **c107** [observation] Harriet Havemeyer says Marion Winslow was in the Bar from 8:30 PM to 10:00 PM. — _establishes: Marion Winslow in the Bar, 8:30 PM–10:00 PM_
-- **c108** [observation] Harriet Havemeyer says Marion Winslow was in the Lobby at 10:30 PM. — _establishes: Marion Winslow in the Lobby, 10:30 PM_
-- **c109** [observation] Harriet Havemeyer says Marion Winslow was in the Lobby at 11:30 PM. — _establishes: Marion Winslow in the Lobby, 11:30 PM_
-
-On Lorraine Ashby:
-
-- **c110** [observation] Harriet Havemeyer says Lorraine Ashby was in the Kitchen at 6:00 PM. — _establishes: Lorraine Ashby in the Kitchen, 6:00 PM; Lorraine Ashby had access to the method_
-- **c111** [observation] Harriet Havemeyer says Lorraine Ashby was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Lorraine Ashby in the Lobby, 9:00 PM–9:30 PM_
-
-On Beatrice Ellery:
-
-- **c112** [observation] Harriet Havemeyer says Beatrice Ellery was in the Lobby from 6:00 PM to 7:30 PM. — _establishes: Beatrice Ellery in the Lobby, 6:00 PM–7:30 PM_
-- **c113** [observation] Harriet Havemeyer says Beatrice Ellery was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Beatrice Ellery in the Bar, 8:30 PM–9:30 PM_
-- **c114** [observation] Harriet Havemeyer says Beatrice Ellery was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Beatrice Ellery in the Bar, 11:00 PM–11:30 PM_
-- **c115** [observation] Harriet Havemeyer says Beatrice Ellery was in the Kitchen from 10:00 PM to 10:30 PM. — _establishes: Beatrice Ellery in the Kitchen, 10:00 PM–10:30 PM_
-
-On Antonio Marchetti's account:
-
-- **c120** [observation] Harriet Havemeyer was in the Bar from 8:30 PM to 9:00 PM and says Antonio Marchetti was not in the Lobby. — _establishes: Antonio Marchetti not in the Lobby, 8:30 PM–9:00 PM_
-
-On Willa Prentiss's account:
-
-- **c125** [observation] Harriet Havemeyer was in the Bar at 9:00 PM and says Willa Prentiss was not in the Bar. — _establishes: Willa Prentiss not in the Bar, 9:00 PM_
-
-On Delia Mulcahy's account:
-
-- **c130** [observation] Harriet Havemeyer was in the Bar from 8:30 PM to 9:00 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 8:30 PM–9:00 PM_
-
-On Lorraine Ashby's account:
-
-- **c136** [observation] Harriet Havemeyer was in the Bar from 7:00 PM to 7:30 PM and says Lorraine Ashby was not in the Lobby. — _establishes: Lorraine Ashby not in the Lobby, 7:00 PM–7:30 PM_
-
-On Beatrice Ellery's account:
-
-- **c141** [observation] Harriet Havemeyer was in the Bar from 8:30 PM to 9:00 PM and says Beatrice Ellery was not in the Lobby. — _establishes: Beatrice Ellery not in the Lobby, 8:30 PM–9:00 PM_
-
-### From the Front Desk
-
-- **c146** [document] Marion Winslow's papers do not hold up. A steamship ticket stub in the name of a man who died at Belleau Wood. — _establishes: context only_
-- **c149** [document] Found in the Front Desk: A promissory note for $4,000 signed by Willa Prentiss, endorsed to Maureen Quill, three months past due. — _establishes: Willa Prentiss had a motive (debt)_
-- **c151** [document] Found in the Front Desk: Three letters in Maureen Quill's hand to a woman Lorraine Ashby is engaged to, kept in the drawer, the last one opened. — _establishes: Lorraine Ashby had a motive (jealousy)_
-
-### From the Kitchen
-
-- **c143** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
-
-### From the Victim's Suite
-
-- **c147** [document] Found in the Victim's Suite: A subpoena naming Maureen Quill as a witness before the grand jury, with Antonio Marchetti's name written in the margin. — _establishes: Antonio Marchetti had a motive (silence-a-witness)_
-
-### From the Roof Garden
-
-- **c142** [morgue] Maureen Quill was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 8:30 PM and 9:00 PM_
-
-### From the Street
-
-- **c144** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
-
-### Withheld — the player cannot get these
-
-- ~~Delia Mulcahy saw Maureen Quill in the Lobby, 8:30 PM~~ — Delia Mulcahy is lying about that time and will not say.
-- ~~Delia Mulcahy saw Martin Feeney in the Lobby, 8:30 PM–9:00 PM~~ — Delia Mulcahy is lying about that time and will not say.
-- ~~Beatrice Ellery saw Maureen Quill in the Lobby, 8:30 PM~~ — Beatrice Ellery is lying about that time and will not say.
-- ~~Beatrice Ellery saw Willa Prentiss in the Bar, 8:30 PM~~ — Beatrice Ellery is lying about that time and will not say.
-- ~~Beatrice Ellery saw Marion Winslow in the Bar, 8:30 PM–9:00 PM~~ — Beatrice Ellery is lying about that time and will not say.
-- ~~Beatrice Ellery saw Martin Feeney in the Lobby, 8:30 PM–9:00 PM~~ — Beatrice Ellery is lying about that time and will not say.
-- ~~Beatrice Ellery saw Harriet Havemeyer in the Bar, 8:30 PM–9:00 PM~~ — Beatrice Ellery is lying about that time and will not say.
-- ~~Antonio Marchetti saw Maureen Quill in the Roof Garden, 9:00 PM~~ — Antonio Marchetti is lying about that time and will not say.
-- ~~Willa Prentiss saw Marion Winslow in the Bar, 9:00 PM~~ — Willa Prentiss is lying about that time and will not say.
-- ~~Willa Prentiss saw Beatrice Ellery in the Bar, 9:00 PM~~ — Willa Prentiss is lying about that time and will not say.
-- ~~Willa Prentiss saw Harriet Havemeyer in the Bar, 9:00 PM~~ — Willa Prentiss is lying about that time and will not say.
-- ~~Delia Mulcahy saw Lorraine Ashby in the Lobby, 9:00 PM~~ — Delia Mulcahy is lying about that time and will not say.
-- ~~Beatrice Ellery saw Willa Prentiss in the Kitchen, 9:00 PM~~ — Beatrice Ellery is lying about that time and will not say.
-- ~~Beatrice Ellery saw Lorraine Ashby in the Lobby, 9:00 PM~~ — Beatrice Ellery is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c142, c014, c036, c077, c098)_
+| Tick | Time | Angelina Tramonti (the ticket-taker) | Rudolf Dettweiler (the elevator man) | Augustus Mosley (the bartender) |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 1 | 6:30 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 2 | 7:00 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 3 | 7:30 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 4 | 8:00 PM | the Bijou picture house | the Bijou picture house | Dolan’s Bar |
+| 5 | 8:30 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 6 | 9:00 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 7 | 9:30 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 8 | 10:00 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 9 | 10:30 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 10 | 11:00 PM | the Bijou picture house | the vestibule of the Hallam apartments | the victim’s walk-up over the drugstore |
+| 11 | 11:30 PM | the Bijou picture house | the vestibule of the Hallam apartments | Dolan’s Bar |
+
+## 6. Secrets in play
+
+- **Esther Sirkin** (gambling-debt): Esther Sirkin slips off to Dolan’s Bar from 7:30 PM to 8:00 PM to settle with a bookmaker.
+- **Bella Abramowitz** (secret-drinking): Bella Abramowitz drinks alone at the Bijou picture house from 7:30 PM to 8:00 PM and will claim to have been anywhere else.
+- **Ilse Reinhardt** (dope): Ilse Reinhardt buys morphine at the Bijou picture house from 6:30 PM and would rather be thought a murderer than a hop-head.
+- **Thaddeus Ainsworth** (dope): Thaddeus Ainsworth buys morphine at the Bijou picture house from 10:00 PM to 10:30 PM and would rather be thought a murderer than a hop-head.
+- **Percival Prentiss** (murder): Percival Prentiss is at Pier 46, under the shed from 7:00 PM to 8:00 PM, alone with Edward Corrigan when it happens at 8:00 PM.
+- **Percival Prentiss** also (gambling-debt): Percival Prentiss slips off to Dolan’s Bar from 6:30 PM to settle with a bookmaker.
+- **Wilhelm Brauer** (blackmail): Wilhelm Brauer meets the victim alone at the vestibule of the Hallam apartments from 6:00 PM and asks for money.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c164, c165, c174. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At the victim’s walk-up over the drugstore
+
+- **c166** [corroboration] (physical; the place itself) → (end)
+  - A bronze bookend is gone from the victim’s walk-up over the drugstore. There is a clean square in the dust where it stood.
+  - _establishes: something gone from the victim’s walk-up over the drugstore; how it was done_
+- **c172** [corroboration] (document; the place itself) → (end)
+  - Found at the victim’s walk-up over the drugstore: A typed page of dates and sums in Edward Corrigan’s file, headed with Percival Prentiss’s name.
+  - _establishes: Percival Prentiss had a motive (exposure)_
+
+### At the Bijou picture house
+
+- **c173** [spine] (overheard; Thaddeus Ainsworth on Percival Prentiss and Edward Corrigan) → (end)
+  - Thaddeus Ainsworth says Edward Corrigan told Percival Prentiss that the story would run whether Percival Prentiss liked it or not.
+  - _establishes: Percival Prentiss had a motive (exposure)_
+- **c068** [spine] (observation; Angelina Tramonti on Bella Abramowitz) → (end)
+  - Angelina Tramonti says Bella Abramowitz was at the Bijou picture house from 6:30 PM to 8:00 PM.
+  - _establishes: Bella Abramowitz at the Bijou picture house, 6:30 PM–8:00 PM_
+- **c160** [spine] (observation; Angelina Tramonti on Percival Prentiss’s account) → c172, c169
+  - Angelina Tramonti was at the Bijou picture house from 7:00 PM to 8:00 PM and says Percival Prentiss was not.
+  - _establishes: Percival Prentiss not at the Bijou picture house, 7:00 PM–8:00 PM_
+- **c110** [corroboration] (observation; Thaddeus Ainsworth on who was there at 8:00 PM) → (end)
+  - Thaddeus Ainsworth runs through it: at 8:00 PM there were Esther Sirkin, Ilse Reinhardt, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.
+  - _establishes: Esther Sirkin at Dolan’s Bar, 8:00 PM; Ilse Reinhardt at Dolan’s Bar, 8:00 PM; Wilhelm Brauer at Dolan’s Bar, 8:00 PM_
+- **c019** [corroboration] (observation; Bella Abramowitz on Percival Prentiss) → c206, c190
+  - Bella Abramowitz says Percival Prentiss was at the victim’s walk-up over the drugstore at 6:00 PM.
+  - _establishes: Percival Prentiss at the victim’s walk-up over the drugstore, 6:00 PM; Percival Prentiss could reach the weapon_
+- **c039** [corroboration] (observation; Thaddeus Ainsworth on Ilse Reinhardt) → c196
+  - Thaddeus Ainsworth says Ilse Reinhardt was at the victim’s walk-up over the drugstore at 6:00 PM.
+  - _establishes: Ilse Reinhardt at the victim’s walk-up over the drugstore, 6:00 PM; Ilse Reinhardt could reach the weapon_
+- **c175** [noise {b2}] (overheard; Ilse Reinhardt on Esther Sirkin) → c177
+  - Ilse Reinhardt on Esther Sirkin: Esther Sirkin was asking around for a hundred dollars in a hurry earlier in the week.
+  - _establishes: context only_
+- **c182** [noise {b3}] (overheard; Thaddeus Ainsworth on Bella Abramowitz) → c187
+  - Thaddeus Ainsworth on Bella Abramowitz: Bella Abramowitz had taken a drink and had gone to some trouble about the smell of it.
+  - _establishes: context only_
+- **c187** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The man behind the counter at the Bijou picture house knows exactly: Bella Abramowitz was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Bella Abramowitz’s secret-drinking accounted for; Bella Abramowitz at the Bijou picture house, 7:30 PM–8:00 PM_
+- **c190** [noise {b4}] (overheard; Bella Abramowitz on Ilse Reinhardt) → c194
+  - Bella Abramowitz on Ilse Reinhardt: Somebody at the Bijou picture house sells what a druggist will not, and Ilse Reinhardt knows which door.
+  - _establishes: context only_
+- **c194** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The man who sells it at the Bijou picture house gives it up rather than be held: Ilse Reinhardt was there from 6:30 PM, and stayed until it took hold.
+  - _establishes: Ilse Reinhardt’s dope accounted for; Ilse Reinhardt at the Bijou picture house, 6:30 PM_
+- **c197** [noise {b5}] (overheard; Angelina Tramonti on Thaddeus Ainsworth) → c201
+  - Angelina Tramonti on Thaddeus Ainsworth: Somebody at the Bijou picture house sells what a druggist will not, and Thaddeus Ainsworth knows which door.
+  - _establishes: context only_
+- **c201** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The man who sells it at the Bijou picture house gives it up rather than be held: Thaddeus Ainsworth was there from 10:00 PM to 10:30 PM, and stayed until it took hold.
+  - _establishes: Thaddeus Ainsworth’s dope accounted for; Thaddeus Ainsworth at the Bijou picture house, 10:00 PM–10:30 PM_
+
+### At the vestibule of the Hallam apartments
+
+- **c167** [spine] (anchor; Rudolf Dettweiler on Edward Corrigan that evening) → c110, c166, c039, c182
+  - Rudolf Dettweiler puts Edward Corrigan at the vestibule of the Hallam apartments when the lights went, which was 7:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 7:30 PM; Edward Corrigan at the vestibule of the Hallam apartments, 7:30 PM_
+- **c161** [corroboration] (observation; Rudolf Dettweiler on Percival Prentiss’s account) → (end)
+  - Rudolf Dettweiler was at the Bijou picture house at 8:00 PM and says Percival Prentiss was not.
+  - _establishes: Percival Prentiss not at the Bijou picture house, 8:00 PM_
+- **c077** [corroboration] (observation; Rudolf Dettweiler on Bella Abramowitz) → (end)
+  - Rudolf Dettweiler says Bella Abramowitz was at the Bijou picture house at 8:00 PM.
+  - _establishes: Bella Abramowitz at the Bijou picture house, 8:00 PM_
+- **c169** [corroboration] (anchor; Rudolf Dettweiler on the noise that evening) → (end)
+  - Rudolf Dettweiler was at the Bijou picture house at 8:00 PM and heard a heavy fall and a cry cut short from the direction of Pier 46, under the shed, as the bells were going.
+  - _establishes: noise at Pier 46, under the shed at 8:00 PM; the victim dead by 8:00 PM; how it was done_
+- **c206** [noise {b1}] (physical; the place itself) → c208
+  - An envelope at the vestibule of the Hallam apartments with nothing in it, addressed in the victim’s hand to no one.
+  - _establishes: context only_
+- **c208** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The victim’s bank book settles it: four payments, and Wilhelm Brauer at the vestibule of the Hallam apartments from 6:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
+  - _establishes: Wilhelm Brauer’s blackmail accounted for; Wilhelm Brauer at the vestibule of the Hallam apartments, 6:00 PM_
+- **c177** [noise {b2}] (overheard; Rudolf Dettweiler on Esther Sirkin) → c180
+  - Rudolf Dettweiler on Esther Sirkin: Esther Sirkin goes very quiet when the racing wire is mentioned.
+  - _establishes: context only_
+
+### At Dolan’s Bar
+
+- **c174** [spine ⟨opening⟩] (client; Percival Prentiss on why I was hired) → c173, c068, c161, c175
+  - Percival Prentiss hired us. Percival Prentiss wants it known that Thaddeus Ainsworth owed the victim money, and would rather we started there.
+  - _establishes: Thaddeus Ainsworth had a motive (debt)_
+- **c138** [spine] (observation; Augustus Mosley on who was there at 8:00 PM) → c006, c167, c077
+  - Augustus Mosley runs through it: at 8:00 PM there were Esther Sirkin, Ilse Reinhardt, Thaddeus Ainsworth, Wilhelm Brauer at Dolan’s Bar, and nobody else worth naming.
+  - _establishes: Esther Sirkin at Dolan’s Bar, 8:00 PM; Ilse Reinhardt at Dolan’s Bar, 8:00 PM; Thaddeus Ainsworth at Dolan’s Bar, 8:00 PM; Wilhelm Brauer at Dolan’s Bar, 8:00 PM_
+- **c006** [spine] (observation; Esther Sirkin on Percival Prentiss) → c068, c160
+  - Esther Sirkin says Percival Prentiss was at the victim’s walk-up over the drugstore at 6:00 PM.
+  - _establishes: Percival Prentiss at the victim’s walk-up over the drugstore, 6:00 PM; Percival Prentiss could reach the weapon_
+- **c063** [corroboration] (observation; Wilhelm Brauer on Thaddeus Ainsworth) → (end)
+  - Wilhelm Brauer says Thaddeus Ainsworth was at Dolan’s Bar from 8:00 PM to 8:30 PM.
+  - _establishes: Thaddeus Ainsworth at Dolan’s Bar, 8:00 PM–8:30 PM_
+- **c180** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Esther Sirkin was at Dolan’s Bar from 7:30 PM to 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Esther Sirkin’s gambling-debt accounted for; Esther Sirkin at Dolan’s Bar, 7:30 PM–8:00 PM_
+- **c196** [noise {b5}] (overheard; Percival Prentiss on Thaddeus Ainsworth) → c197
+  - Percival Prentiss on Thaddeus Ainsworth: Thaddeus Ainsworth’s sleeves are buttoned at the wrist in a warm room.
+  - _establishes: context only_
+
+### At Pier 46, under the shed
+
+- **c164** [spine ⟨opening⟩] (scene; the place itself) → c138, c006, c173, c167, c063, c019
+  - Edward Corrigan was found at Pier 46, under the shed. The lamp came down with him and the bulb is still warm in its socket, unbroken. The bells at St. Malachy’s came at 8:00 PM, and the bells fix it: the sexton rings them off the sacristy clock and it keeps good time. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 8:00 PM; how it was done_
+- **c165** [spine ⟨opening⟩] (morgue; the place itself) → c138, c160
+  - The coroner puts death between 7:00 PM and 8:30 PM — two hours of nothing useful. One depressed fracture at the back of the skull. Death was not instant.
+  - _establishes: death between 7:00 PM and 8:30 PM; how it was done_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["the victim’s walk-up over the drugstore"]
+    c166["c166 the place"]
+    c172["c172 the place"]
+  end
+  subgraph P2["the Bijou picture house"]
+    c173["c173 Thaddeus Ainsworth"]
+    c068["c068 Angelina Tramonti"]
+    c160["c160 Angelina Tramonti"]
+    c110["c110 Thaddeus Ainsworth"]
+    c019["c019 Bella Abramowitz"]
+    c039["c039 Thaddeus Ainsworth"]
+    c175["c175 Ilse Reinhardt"]
+    c182["c182 Thaddeus Ainsworth"]
+    c187["✗ c187 the place"]
+    c190["c190 Bella Abramowitz"]
+    c194["✗ c194 the place"]
+    c197["c197 Angelina Tramonti"]
+    c201["✗ c201 the place"]
+  end
+  subgraph P3["the vestibule of the Hallam apartments"]
+    c167["c167 Rudolf Dettweiler"]
+    c161["c161 Rudolf Dettweiler"]
+    c077["c077 Rudolf Dettweiler"]
+    c169["c169 Rudolf Dettweiler"]
+    c206["c206 the place"]
+    c208["✗ c208 the place"]
+    c177["c177 Rudolf Dettweiler"]
+  end
+  subgraph P4["Dolan’s Bar"]
+    c174["▶ c174 Percival Prentiss"]
+    c138["c138 Augustus Mosley"]
+    c006["c006 Esther Sirkin"]
+    c063["c063 Wilhelm Brauer"]
+    c180["✗ c180 the place"]
+    c196["c196 Percival Prentiss"]
+  end
+  subgraph P5["Pier 46, under the shed"]
+    c164["▶ c164 the place"]
+    c165["▶ c165 the place"]
+  end
+  c164 --> c138
+  c164 --> c006
+  c164 --> c173
+  c164 --> c167
+  c164 --> c063
+  c164 --> c019
+  c165 --> c138
+  c165 --> c160
+  c174 --> c173
+  c174 --> c068
+  c174 --> c161
+  c174 -.-> c175
+  c138 --> c006
+  c138 --> c167
+  c138 --> c077
+  c006 --> c068
+  c006 --> c160
+  c160 --> c172
+  c160 --> c169
+  c167 --> c110
+  c167 --> c166
+  c167 --> c039
+  c167 -.-> c182
+  c019 -.-> c206
+  c019 -.-> c190
+  c039 -.-> c196
+  c206 --> c208
+  c175 -.-> c177
+  c177 --> c180
+  c182 --> c187
+  c190 --> c194
+  c196 -.-> c197
+  c197 --> c201
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c164,c165,c174,c138,c006,c173,c068,c160,c167 spine;
+  class c110,c166,c063,c161,c019,c172,c077,c169,c039 corrob;
+  class c206,c175,c177,c182,c190,c196,c197 noise;
+  class c208,c180,c187,c194,c201 disq;
+```
+
+## 9. Deduction path
+
+Par is **9 actions** against a budget of 20: 11 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 8:00 PM: one puts Edward Corrigan alive at 7:30 PM, the other times the scene at 8:00 PM. _(c165, c167, c164; + 1 corroborating)_
 
 **Clearing the innocent.**
 
-- Willa Prentiss was not in the Roof Garden at 9:00 PM, on two independent sources. _(c041, c104)_
-- Delia Mulcahy was not in the Roof Garden at 9:00 PM, on two independent sources. _(c056, c085)_
-- Marion Winslow was not in the Roof Garden at 9:00 PM, on two independent sources. _(c058, c089, c107)_
-- Lorraine Ashby was not in the Roof Garden at 9:00 PM, on two independent sources. _(c045, c091, c111)_
-- Beatrice Ellery was not in the Roof Garden at 9:00 PM, on two independent sources. _(c049, c061, c094, c113)_
+- Esther Sirkin was not at Pier 46, under the shed at 8:00 PM, on two independent sources. _(c138; + 2 corroborating)_
+- Bella Abramowitz was not at Pier 46, under the shed at 8:00 PM, on two independent sources. _(c068; + 2 corroborating)_
+- Ilse Reinhardt was not at Pier 46, under the shed at 8:00 PM, on two independent sources. _(c138; + 1 corroborating)_
+- Thaddeus Ainsworth was not at Pier 46, under the shed at 8:00 PM, on two independent sources. _(c138; + 1 corroborating)_
+- Wilhelm Brauer was not at Pier 46, under the shed at 8:00 PM, on two independent sources. _(c138; + 1 corroborating)_
 
-**Naming the killer.** Antonio Marchetti claims the Lobby at 9:00 PM. Two independent sources put that out of the question, and one ties Antonio Marchetti to strangling with a cord. _(c117, c118, c119, c120, c053, c099)_
+**Naming the killer.** Percival Prentiss claims the Bijou picture house at 8:00 PM. Two independent sources put that out of the question. _(c160; + 1 corroborating)_
 
-**Method.** Strangling with a cord, on two physical sources. _(c142, c143)_
+**The weapon.** Percival Prentiss was at the victim’s walk-up over the drugstore before 8:00 PM, where a bronze bookend was kept. _(c006; + 1 corroborating)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c147, c148)_
+**Method.** A blunt object, on two physical sources. _(c164, c165; + 2 corroborating)_
 
-## 8. Red herrings
+**Motive.** exposure, on two independent sources. _(c173; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Willa Prentiss claims the Bar at 9:00 PM and was really in the Kitchen. Reason: Willa Prentiss hands a parcel of stolen goods to a man at the Kitchen at 9:00 PM.
-- Delia Mulcahy claims the Lobby at 9:00 PM and was really in the Street. Reason: Delia Mulcahy slips out to the Street from 8:30 PM to 9:00 PM to settle with a bookmaker.
-- Beatrice Ellery claims the Lobby at 9:00 PM and was really in the Bar. Reason: Beatrice Ellery drinks alone in the Bar from 8:30 PM to 9:00 PM and will claim to have been anywhere else.
+- Esther Sirkin claims the Bijou picture house at 8:00 PM and was really at Dolan’s Bar. Reason: Esther Sirkin slips off to Dolan’s Bar from 7:30 PM to 8:00 PM to settle with a bookmaker.
+- Bella Abramowitz claims Dolan’s Bar at 8:00 PM and was really at the Bijou picture house. Reason: Bella Abramowitz drinks alone at the Bijou picture house from 7:30 PM to 8:00 PM and will claim to have been anywhere else.
 
 **Innocents with a motive:**
 
-- Willa Prentiss — debt: owed the victim money.
-- Lorraine Ashby — jealousy: jealous of the victim.
+- Thaddeus Ainsworth — debt: owed the victim money.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Wilhelm Brauer, blackmail): c206 → **c208** — The victim’s bank book settles it: four payments, and Wilhelm Brauer at the vestibule of the Hallam apartments from 6:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
+- **b2** (Esther Sirkin, gambling-debt): c175 → c177 → **c180** — The bookmaker’s runner is found and will say it: Esther Sirkin was at Dolan’s Bar from 7:30 PM to 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b3** (Bella Abramowitz, secret-drinking): c182 → **c187** — The man behind the counter at the Bijou picture house knows exactly: Bella Abramowitz was on the same stool from 7:30 PM to 8:00 PM and was in no condition to walk anywhere, let alone do this.
+- **b4** (Ilse Reinhardt, dope): c190 → **c194** — The man who sells it at the Bijou picture house gives it up rather than be held: Ilse Reinhardt was there from 6:30 PM, and stayed until it took hold.
+- **b5** (Thaddeus Ainsworth, dope): c196 → c197 → **c201** — The man who sells it at the Bijou picture house gives it up rather than be held: Thaddeus Ainsworth was there from 10:00 PM to 10:30 PM, and stayed until it took hold.
 

@@ -1,669 +1,431 @@
-# The Wexford Arms — case 10
+# Yorkville — case 10
 
-**Seed** 10 · **Attempts** 1 · **Detective** Humphrey
+**Seed** 10 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 6 actions · **Budget** 20 · **Slack** 14 · **Findable** 30 (spine 7, corroboration 11, noise 8 + 4 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 217
 
 ## 1. The Truth
 
-Margaret Rafferty, a wine steward out of work since the Act, the victim's rival in trade, killed Beatrice Crowninshield, a pawnbroker, with a gunshot in the Victim's Suite at 10:00 PM. Margaret Rafferty was about to be exposed by the victim (exposure). Margaret Rafferty had been at the Front Desk earlier in the evening, before 10:00 PM and was alone with Beatrice Crowninshield when it happened.
+Hattie Dandridge, a switchboard operator, the victim’s former employee, killed Alonzo Ashby, a pawnbroker, with strangling with a cord at the office over the tailor’s shop at 11:00 PM. Hattie Dandridge was about to be exposed by the victim (exposure). Hattie Dandridge had been at the victim’s walk-up over the drugstore earlier in the evening, where the weapon lived, and was alone with Alonzo Ashby when it happened. Harrison Thorndike hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Beatrice Crowninshield | a pawnbroker | the victim | — | — | — |
-| Hedwig Kreuzer | a bookmaker in a small way | the victim's former employee | gambling-debt | revenge | — |
-| Grafton Havemeyer | a private nurse | named in the victim's will | affair | — | — |
-| Delia Brennan | a dentist with rooms on the third floor | engaged to the victim's daughter | affair | silence-a-witness | — |
-| Eunice Prentiss | a photographer for the rotogravure section | the victim's creditor | blackmail | property | — |
-| Ezekiel Hargrove | an insurance adjuster | the victim's private nurse | fence | — | — |
-| Margaret Rafferty | a wine steward out of work since the Act | the victim's rival in trade | murder | exposure | **YES** |
-| Ellsworth Coffin | the doorman | fixture | — | — | — |
-| Winthrop Winslow | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Alonzo Ashby | a pawnbroker | the victim | — | — | — | — |
+| Cornelius Mulcahy | the victim’s nephew, at loose ends | the victim’s brother-in-law | dope | — | Dolan’s Bar | — |
+| Harrison Thorndike (client) | a stringer for the evening papers | a witness against the people the victim worked for | gambling-debt | — | Dolan’s Bar | — |
+| Carmela Vitale | a widow with rooms on the avenue | the victim’s cousin | hidden-family | inheritance | the cab stand outside the Hippodrome | — |
+| Hattie Dandridge | a switchboard operator | the victim’s former employee | murder | exposure | the El platform at Twenty-Third Street | **YES** |
+| Rudolf Reinhardt | a bookmaker in a small way | in the victim’s debt | forged-identity | revenge | the El platform at Twenty-Third Street | — |
+| Anneliese Hauck | a bookkeeper | the victim’s former employee | gambling-debt | debt | the cab stand outside the Hippodrome | — |
+| Emilio Petrosino | the hackman on the stand | fixture (cabbie) | — | — | the cab stand outside the Hippodrome | — |
+| Augustus Tillman | the druggist | fixture (druggist) | — | — | Kaplan’s drugstore with the soda fountain | — |
+| Margarethe Vogel | the bartender | fixture (bartender) | — | — | Dolan’s Bar | — |
+| Pasquale Moretti | the patrolman on the beat | fixture (beat-cop) | — | — | the El platform at Twenty-Third Street | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: a brass umbrella stand
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a nickel-plated revolver, the roof door key
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a seltzer siphon
-- **Kitchen** (private) — adjacent: Bar, Service Stairs; sees: Bar; noise carries to: Bar, Service Stairs; objects: a galvanised watering can, a cut-glass decanter
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a camel-hair overcoat on a hook
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a writing desk with a locked drawer, a bronze bookend
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Street** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: none
+- **the office over the tailor’s shop** (private) — unwatched; objects: a japanned cash box, a bronze bookend — **THE SCENE**
+- **the cab stand outside the Hippodrome** (public) — watched by cabbie (Emilio Petrosino); objects: a nickel-plated revolver, a pasted-up timetable
+- **Kaplan’s drugstore with the soda fountain** (public) — watched by druggist (Augustus Tillman); objects: an ice pick, a bottle of chloral drops
+- **the El platform at Twenty-Third Street** (public) — unwatched; objects: a folded stack of evening papers — within earshot of the scene
+- **the victim’s walk-up over the drugstore** (private) — unwatched; objects: a length of sash cord, a stack of hatboxes, a strapped suitcase — the victim’s address; where the weapon lived
+- **Dolan’s Bar** (semi) — watched by bartender (Margarethe Vogel); objects: a seltzer siphon, a silver cigarette case — within earshot of the scene
 
-**Environment:** Passenger elevator out of order 6:30 PM–7:00 PM.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 9:30 PM–11:00 PM, four ticks wide. These are what close it: **ice-delivery** and **last-edition**.
 
-### Beatrice Crowninshield — the victim
+- **the last edition coming off the truck** — at 10:30 PM; at the cab stand outside the Hippodrome. Somebody reliable notes who was there. Those present carry it: ink still wet enough to come off on a glove.
+- **the ice being brought in** — at 11:00 PM; at Dolan’s Bar. Somebody reliable notes who was there. Those present carry it: a wet patch down one side of a coat.
+- **the beat cop’s pass** — at 7:00 PM, 8:30 PM, 10:00 PM, 11:30 PM; on a round through the El platform at Twenty-Third Street → Kaplan’s drugstore with the soda fountain → Dolan’s Bar → the cab stand outside the Hippodrome. Somebody reliable notes who was there.
+
+## 5. Timelines
+
+### Alonzo Ashby — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Roof Garden | Roof Garden | — |
-| 3 | 7:30 PM | Roof Garden | Roof Garden | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Victim's Suite ☠ | Victim's Suite | — |
-| 9 | 10:30 PM | — | — | — |
-| 10 | 11:00 PM | — | — | — |
+| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 1 | 6:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 2 | 7:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 3 | 7:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 4 | 8:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 5 | 8:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 6 | 9:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 7 | 9:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 8 | 10:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 9 | 10:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 10 | 11:00 PM | the office over the tailor’s shop ☠ | the office over the tailor’s shop | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Hedwig Kreuzer
+### Cornelius Mulcahy
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Street | **Lobby** | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | the office over the tailor’s shop | the office over the tailor’s shop | — |
+| 7 | 9:30 PM | the office over the tailor’s shop | the office over the tailor’s shop | — |
+| 8 | 10:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 9 | 10:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 10 | 11:00 PM | Kaplan’s drugstore with the soda fountain | **the cab stand outside the Hippodrome** | — |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | **the cab stand outside the Hippodrome** | — |
 
-### Grafton Havemeyer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Service Stairs | **Lobby** | — |
-| 3 | 7:30 PM | Service Stairs | **Lobby** | — |
-| 4 | 8:00 PM | Service Stairs | **Lobby** | — |
-| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
-| 6 | 9:00 PM | Roof Garden | Roof Garden | — |
-| 7 | 9:30 PM | Roof Garden | Roof Garden | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
-
-### Delia Brennan
+### Harrison Thorndike
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Service Stairs | **Lobby** | — |
-| 3 | 7:30 PM | Service Stairs | **Lobby** | — |
-| 4 | 8:00 PM | Service Stairs | **Lobby** | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Front Desk | Front Desk | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 6 | 9:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | Dolan’s Bar | **the cab stand outside the Hippodrome** | Rudolf Reinhardt |
+| 9 | 10:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 10 | 11:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 11 | 11:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
 
-### Eunice Prentiss
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Roof Garden | **Lobby** | Delia Brennan |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
-
-### Ezekiel Hargrove
+### Carmela Vitale
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Kitchen | **Bar** | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 4 | 8:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 5 | 8:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 6 | 9:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 7 | 9:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 8 | 10:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 9 | 10:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 10 | 11:00 PM | Kaplan’s drugstore with the soda fountain | **Dolan’s Bar** | — |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | **Dolan’s Bar** | — |
 
-### Margaret Rafferty — the killer
+### Hattie Dandridge — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Victim's Suite | **Front Desk** | Eunice Prentiss |
-| 7 | 9:30 PM | Victim's Suite | **Front Desk** | Eunice Prentiss |
-| 8 | 10:00 PM | Victim's Suite ☠ | **Front Desk** | Eunice Prentiss |
-| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 1 | 6:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 2 | 7:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 3 | 7:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 4 | 8:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 7 | 9:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 8 | 10:00 PM | the office over the tailor’s shop | **Kaplan’s drugstore with the soda fountain** | Carmela Vitale |
+| 9 | 10:30 PM | the office over the tailor’s shop | **Kaplan’s drugstore with the soda fountain** | Carmela Vitale |
+| 10 | 11:00 PM | the office over the tailor’s shop ☠ | **Kaplan’s drugstore with the soda fountain** | Carmela Vitale |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+
+### Rudolf Reinhardt
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 1 | 6:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 2 | 7:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | the office over the tailor’s shop | the office over the tailor’s shop | — |
+| 6 | 9:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 7 | 9:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 8 | 10:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 9 | 10:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 10 | 11:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+
+### Anneliese Hauck
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 1 | 6:30 PM | the cab stand outside the Hippodrome | **Kaplan’s drugstore with the soda fountain** | — |
+| 2 | 7:00 PM | the cab stand outside the Hippodrome | **Kaplan’s drugstore with the soda fountain** | — |
+| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 5 | 8:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 6 | 9:00 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 7 | 9:30 PM | the victim’s walk-up over the drugstore | the victim’s walk-up over the drugstore | — |
+| 8 | 10:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 9 | 10:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 10 | 11:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 11 | 11:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Ellsworth Coffin (the doorman) | Winthrop Winslow (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Front Desk | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Front Desk | Kitchen |
-| 4 | 8:00 PM | Lobby | Bar |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Bar |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Hedwig Kreuzer** (gambling-debt): Hedwig Kreuzer slips out to the Street from 10:00 PM to settle with a bookmaker.
-- **Grafton Havemeyer** (affair): Grafton Havemeyer is with Delia Brennan in the Service Stairs from 7:00 PM to 8:00 PM, and both will say they were somewhere else.
-- **Delia Brennan** (affair): Delia Brennan is with Grafton Havemeyer in the Service Stairs from 7:00 PM to 8:00 PM, and both will say they were somewhere else.
-- **Eunice Prentiss** (blackmail): Eunice Prentiss meets the victim alone in the Roof Garden from 7:00 PM and asks for money.
-- **Ezekiel Hargrove** (fence): Ezekiel Hargrove hands a parcel of stolen goods to a man at the Kitchen at 10:00 PM.
-- **Margaret Rafferty** (murder): Margaret Rafferty is alone with Beatrice Crowninshield in the Victim's Suite from 9:00 PM to 10:00 PM, and kills Beatrice Crowninshield at 10:00 PM.
-
-## 6. Clue list
-
-### From Hedwig Kreuzer (a bookmaker in a small way)
-
-On Beatrice Crowninshield:
-
-- **c001** [observation] Hedwig Kreuzer says Beatrice Crowninshield was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Beatrice Crowninshield in the Lobby, 8:30 PM–9:30 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM; the victim alive at 9:30 PM_
-
-On Delia Brennan:
-
-- **c002** [observation] Hedwig Kreuzer says Delia Brennan was in the Lobby at 9:30 PM. — _establishes: Delia Brennan in the Lobby, 9:30 PM_
-- **c003** [observation] Hedwig Kreuzer says Delia Brennan was in the Lobby at 10:30 PM. — _establishes: Delia Brennan in the Lobby, 10:30 PM_
-- **c004** [observation] Hedwig Kreuzer says Delia Brennan was in the Lobby at 11:30 PM. — _establishes: Delia Brennan in the Lobby, 11:30 PM_
-
-On Eunice Prentiss:
-
-- **c005** [observation] Hedwig Kreuzer says Eunice Prentiss was in the Lobby at 9:30 PM. — _establishes: Eunice Prentiss in the Lobby, 9:30 PM_
-- **c006** [observation] Hedwig Kreuzer says Eunice Prentiss was in the Lobby at 11:30 PM. — _establishes: Eunice Prentiss in the Lobby, 11:30 PM_
-- **c007** [observation] Hedwig Kreuzer says Eunice Prentiss was on the Street from 10:30 PM to 11:00 PM. — _establishes: Eunice Prentiss on the Street, 10:30 PM–11:00 PM_
-
-On Ezekiel Hargrove:
-
-- **c008** [observation] Hedwig Kreuzer says Ezekiel Hargrove was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Ezekiel Hargrove at the Front Desk, 6:00 PM–6:30 PM; Ezekiel Hargrove had access to the method_
-- **c009** [observation] Hedwig Kreuzer says Ezekiel Hargrove was in the Lobby from 7:00 PM to 9:00 PM. — _establishes: Ezekiel Hargrove in the Lobby, 7:00 PM–9:00 PM_
-- **c010** [observation] Hedwig Kreuzer says Ezekiel Hargrove was in the Bar at 9:30 PM. — _establishes: Ezekiel Hargrove in the Bar, 9:30 PM_
-
-On Margaret Rafferty:
-
-- **c011** [observation] Hedwig Kreuzer says Margaret Rafferty was in the Lobby at 6:00 PM. — _establishes: Margaret Rafferty in the Lobby, 6:00 PM_
-- **c012** [observation] Hedwig Kreuzer says Margaret Rafferty was in the Lobby at 8:30 PM. — _establishes: Margaret Rafferty in the Lobby, 8:30 PM_
-- **c013** [observation] Hedwig Kreuzer says Margaret Rafferty was at the Front Desk from 6:30 PM to 8:00 PM. — _establishes: Margaret Rafferty at the Front Desk, 6:30 PM–8:00 PM; Margaret Rafferty had access to the method_
-
-On Grafton Havemeyer's account:
-
-- **c117** [observation] Hedwig Kreuzer was at the Front Desk from 7:00 PM to 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM–8:00 PM_
-
-On Delia Brennan's account:
-
-- **c125** [observation] Hedwig Kreuzer was at the Front Desk from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
-
-On Eunice Prentiss's account:
-
-- **c133** [observation] Hedwig Kreuzer was at the Front Desk at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
-
-On Margaret Rafferty's account:
-
-- **c143** [observation] Hedwig Kreuzer was in the Lobby from 9:00 PM to 9:30 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM–9:30 PM_
-
-### From Grafton Havemeyer (a private nurse)
-
-On Hedwig Kreuzer:
-
-- **c014** [observation] Grafton Havemeyer says Hedwig Kreuzer was on the Street at 10:00 PM. — _establishes: Hedwig Kreuzer on the Street, 10:00 PM_
-
-On Delia Brennan:
-
-- **c015** [observation] Grafton Havemeyer says Delia Brennan was in the Bar at 10:00 PM. — _establishes: Delia Brennan in the Bar, 10:00 PM_
-- **c016** [observation] Grafton Havemeyer says Delia Brennan was in the Lobby at 10:30 PM. — _establishes: Delia Brennan in the Lobby, 10:30 PM_
-- **c017** [observation] Grafton Havemeyer says Delia Brennan was in the Lobby at 11:30 PM. — _establishes: Delia Brennan in the Lobby, 11:30 PM_
-
-On Eunice Prentiss:
-
-- **c018** [observation] Grafton Havemeyer says Eunice Prentiss was in the Roof Garden from 6:00 PM to 6:30 PM. — _establishes: Eunice Prentiss in the Roof Garden, 6:00 PM–6:30 PM_
-- **c019** [observation] Grafton Havemeyer says Eunice Prentiss was in the Lobby at 10:00 PM. — _establishes: Eunice Prentiss in the Lobby, 10:00 PM_
-- **c020** [observation] Grafton Havemeyer says Eunice Prentiss was in the Lobby at 11:30 PM. — _establishes: Eunice Prentiss in the Lobby, 11:30 PM_
-
-On Ezekiel Hargrove:
-
-- **c021** [observation] Grafton Havemeyer says Ezekiel Hargrove was in the Kitchen from 10:30 PM to 11:30 PM. — _establishes: Ezekiel Hargrove in the Kitchen, 10:30 PM–11:30 PM_
-
-On Margaret Rafferty:
-
-- **c022** [observation] Grafton Havemeyer says Margaret Rafferty was in the Kitchen at 11:00 PM. — _establishes: Margaret Rafferty in the Kitchen, 11:00 PM_
-- **c023** [observation] Grafton Havemeyer says Margaret Rafferty was in the Bar at 11:30 PM. — _establishes: Margaret Rafferty in the Bar, 11:30 PM_
-
-On Hedwig Kreuzer's account:
-
-- **c112** [observation] Grafton Havemeyer was in the Lobby at 10:00 PM and says Hedwig Kreuzer was not in the Lobby. — _establishes: Hedwig Kreuzer not in the Lobby, 10:00 PM_
-
-On Ezekiel Hargrove's account:
-
-- **c138** [observation] Grafton Havemeyer was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
-
-On Margaret Rafferty's account:
-
-- **c144** [observation] Grafton Havemeyer was in the Lobby at 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 10:00 PM_
-
-On Hedwig Kreuzer and Beatrice Crowninshield:
-
-- **c157** [overheard] Grafton Havemeyer says Hedwig Kreuzer said Beatrice Crowninshield had taken everything and would be made to feel it. — _establishes: Hedwig Kreuzer had a motive (revenge)_
-
-On Margaret Rafferty and Beatrice Crowninshield:
-
-- **c163** [overheard] Grafton Havemeyer says Beatrice Crowninshield told Margaret Rafferty that the story would run whether Margaret Rafferty liked it or not. — _establishes: Margaret Rafferty had a motive (exposure)_
-
-### From Delia Brennan (a dentist with rooms on the third floor)
-
-On Beatrice Crowninshield:
-
-- **c024** [observation] Delia Brennan says Beatrice Crowninshield was on the Service Stairs from 6:00 PM to 6:30 PM. — _establishes: Beatrice Crowninshield on the Service Stairs, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-- **c025** [observation] Delia Brennan says Beatrice Crowninshield was in the Lobby at 9:30 PM. — _establishes: Beatrice Crowninshield in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-
-On Hedwig Kreuzer:
-
-- **c026** [observation] Delia Brennan says Hedwig Kreuzer was in the Lobby at 9:30 PM. — _establishes: Hedwig Kreuzer in the Lobby, 9:30 PM_
-- **c027** [observation] Delia Brennan says Hedwig Kreuzer was on the Street at 10:30 PM. — _establishes: Hedwig Kreuzer on the Street, 10:30 PM_
-- **c028** [observation] Delia Brennan says Hedwig Kreuzer was on the Street at 11:30 PM. — _establishes: Hedwig Kreuzer on the Street, 11:30 PM_
-
-On Grafton Havemeyer:
-
-- **c029** [observation] Delia Brennan says Grafton Havemeyer was in the Lobby at 10:00 PM. — _establishes: Grafton Havemeyer in the Lobby, 10:00 PM_
-- **c030** [observation] Delia Brennan says Grafton Havemeyer was in the Bar at 10:30 PM. — _establishes: Grafton Havemeyer in the Bar, 10:30 PM_
-- **c031** [observation] Delia Brennan says Grafton Havemeyer was in the Bar at 11:30 PM. — _establishes: Grafton Havemeyer in the Bar, 11:30 PM_
-
-On Eunice Prentiss:
-
-- **c032** [observation] Delia Brennan says Eunice Prentiss was on the Service Stairs from 8:30 PM to 9:00 PM. — _establishes: Eunice Prentiss on the Service Stairs, 8:30 PM–9:00 PM_
-- **c033** [observation] Delia Brennan says Eunice Prentiss was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Eunice Prentiss in the Lobby, 9:30 PM–10:00 PM_
-- **c034** [observation] Delia Brennan says Eunice Prentiss was in the Lobby at 11:30 PM. — _establishes: Eunice Prentiss in the Lobby, 11:30 PM_
-- **c035** [observation] Delia Brennan says Eunice Prentiss was on the Street at 10:30 PM. — _establishes: Eunice Prentiss on the Street, 10:30 PM_
-
-On Ezekiel Hargrove:
-
-- **c036** [observation] Delia Brennan says Ezekiel Hargrove was in the Bar at 9:30 PM. — _establishes: Ezekiel Hargrove in the Bar, 9:30 PM_
-- **c037** [observation] Delia Brennan says Ezekiel Hargrove was in the Kitchen at 10:00 PM. — _establishes: Ezekiel Hargrove in the Kitchen, 10:00 PM_
-
-On Margaret Rafferty:
-
-- **c038** [observation] Delia Brennan says Margaret Rafferty was in the Bar at 11:30 PM. — _establishes: Margaret Rafferty in the Bar, 11:30 PM_
-
-On Hedwig Kreuzer's account:
-
-- **c113** [observation] Delia Brennan was in the Bar at 10:00 PM and says Hedwig Kreuzer was not in the Lobby. — _establishes: Hedwig Kreuzer not in the Lobby, 10:00 PM_
-
-On Ezekiel Hargrove's account:
-
-- **c139** [observation] Delia Brennan was in the Bar at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
-
-On Margaret Rafferty's account:
-
-- **c145** [observation] Delia Brennan was in the Lobby at 9:30 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:30 PM_
-
-### From Eunice Prentiss (a photographer for the rotogravure section)
-
-On Beatrice Crowninshield:
-
-- **c039** [observation] Eunice Prentiss says Beatrice Crowninshield was in the Lobby at 9:30 PM. — _establishes: Beatrice Crowninshield in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-
-On Hedwig Kreuzer:
-
-- **c040** [observation] Eunice Prentiss says Hedwig Kreuzer was in the Lobby at 9:30 PM. — _establishes: Hedwig Kreuzer in the Lobby, 9:30 PM_
-- **c041** [observation] Eunice Prentiss says Hedwig Kreuzer was on the Street from 10:00 PM to 11:30 PM. — _establishes: Hedwig Kreuzer on the Street, 10:00 PM–11:30 PM_
-
-On Grafton Havemeyer:
-
-- **c042** [observation] Eunice Prentiss says Grafton Havemeyer was in the Roof Garden from 6:00 PM to 6:30 PM. — _establishes: Grafton Havemeyer in the Roof Garden, 6:00 PM–6:30 PM_
-- **c043** [observation] Eunice Prentiss says Grafton Havemeyer was on the Service Stairs from 7:30 PM to 8:00 PM. — _establishes: Grafton Havemeyer on the Service Stairs, 7:30 PM–8:00 PM_
-- **c044** [observation] Eunice Prentiss says Grafton Havemeyer was in the Lobby at 10:00 PM. — _establishes: Grafton Havemeyer in the Lobby, 10:00 PM_
-- **c045** [observation] Eunice Prentiss says Grafton Havemeyer was in the Bar at 11:30 PM. — _establishes: Grafton Havemeyer in the Bar, 11:30 PM_
-
-On Delia Brennan:
-
-- **c046** [observation] Eunice Prentiss says Delia Brennan was on the Service Stairs from 7:30 PM to 9:00 PM. — _establishes: Delia Brennan on the Service Stairs, 7:30 PM–9:00 PM_
-- **c047** [observation] Eunice Prentiss says Delia Brennan was in the Lobby at 9:30 PM. — _establishes: Delia Brennan in the Lobby, 9:30 PM_
-- **c048** [observation] Eunice Prentiss says Delia Brennan was in the Lobby at 10:30 PM. — _establishes: Delia Brennan in the Lobby, 10:30 PM_
-- **c049** [observation] Eunice Prentiss says Delia Brennan was in the Lobby at 11:30 PM. — _establishes: Delia Brennan in the Lobby, 11:30 PM_
-- **c050** [observation] Eunice Prentiss says Delia Brennan was in the Bar at 10:00 PM. — _establishes: Delia Brennan in the Bar, 10:00 PM_
-
-On Ezekiel Hargrove:
-
-- **c051** [observation] Eunice Prentiss says Ezekiel Hargrove was in the Bar at 9:30 PM. — _establishes: Ezekiel Hargrove in the Bar, 9:30 PM_
-
-On Margaret Rafferty:
-
-- **c052** [observation] Eunice Prentiss says Margaret Rafferty was in the Bar at 11:30 PM. — _establishes: Margaret Rafferty in the Bar, 11:30 PM_
-
-On Hedwig Kreuzer's account:
-
-- **c114** [observation] Eunice Prentiss was in the Lobby at 10:00 PM and says Hedwig Kreuzer was not in the Lobby. — _establishes: Hedwig Kreuzer not in the Lobby, 10:00 PM_
-
-On Ezekiel Hargrove's account:
-
-- **c140** [observation] Eunice Prentiss was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
-
-On Margaret Rafferty's account:
-
-- **c146** [observation] Eunice Prentiss was in the Lobby from 9:30 PM to 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:30 PM–10:00 PM_
-- **c149** [observation] Margaret Rafferty says Eunice Prentiss was there. Eunice Prentiss says otherwise: Eunice Prentiss was on the Service Stairs at 9:00 PM, not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM_
-
-### From Ezekiel Hargrove (an insurance adjuster)
-
-On Beatrice Crowninshield:
-
-- **c053** [observation] Ezekiel Hargrove says Beatrice Crowninshield was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Beatrice Crowninshield in the Lobby, 8:30 PM–9:30 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM; the victim alive at 9:30 PM_
-
-On Hedwig Kreuzer:
-
-- **c054** [observation] Ezekiel Hargrove says Hedwig Kreuzer was at the Front Desk from 6:00 PM to 8:00 PM. — _establishes: Hedwig Kreuzer at the Front Desk, 6:00 PM–8:00 PM; Hedwig Kreuzer had access to the method_
-- **c055** [observation] Ezekiel Hargrove says Hedwig Kreuzer was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Hedwig Kreuzer in the Lobby, 8:30 PM–9:30 PM_
-
-On Grafton Havemeyer:
-
-- **c056** [observation] Ezekiel Hargrove says Grafton Havemeyer was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Grafton Havemeyer in the Bar, 10:30 PM–11:30 PM_
-
-On Delia Brennan:
-
-- **c057** [observation] Ezekiel Hargrove says Delia Brennan was in the Lobby at 9:30 PM. — _establishes: Delia Brennan in the Lobby, 9:30 PM_
-
-On Eunice Prentiss:
-
-- **c058** [observation] Ezekiel Hargrove says Eunice Prentiss was in the Lobby at 9:30 PM. — _establishes: Eunice Prentiss in the Lobby, 9:30 PM_
-
-On Margaret Rafferty:
-
-- **c059** [observation] Ezekiel Hargrove says Margaret Rafferty was in the Lobby at 6:00 PM. — _establishes: Margaret Rafferty in the Lobby, 6:00 PM_
-- **c060** [observation] Ezekiel Hargrove says Margaret Rafferty was in the Lobby at 8:30 PM. — _establishes: Margaret Rafferty in the Lobby, 8:30 PM_
-- **c061** [observation] Ezekiel Hargrove says Margaret Rafferty was at the Front Desk from 6:30 PM to 8:00 PM. — _establishes: Margaret Rafferty at the Front Desk, 6:30 PM–8:00 PM; Margaret Rafferty had access to the method_
-- **c062** [observation] Ezekiel Hargrove says Margaret Rafferty was in the Kitchen at 11:00 PM. — _establishes: Margaret Rafferty in the Kitchen, 11:00 PM_
-- **c063** [observation] Ezekiel Hargrove says Margaret Rafferty was in the Bar at 11:30 PM. — _establishes: Margaret Rafferty in the Bar, 11:30 PM_
-
-On Grafton Havemeyer's account:
-
-- **c118** [observation] Ezekiel Hargrove was in the Lobby from 7:00 PM to 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM–8:00 PM_
-
-On Delia Brennan's account:
-
-- **c126** [observation] Ezekiel Hargrove was in the Lobby from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
-
-On Eunice Prentiss's account:
-
-- **c134** [observation] Ezekiel Hargrove was in the Lobby at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
-
-On Margaret Rafferty's account:
-
-- **c147** [observation] Ezekiel Hargrove was in the Lobby at 9:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM_
-
-### From Margaret Rafferty (a wine steward out of work since the Act)
-
-On Beatrice Crowninshield:
-
-- **c064** [observation] Margaret Rafferty says Beatrice Crowninshield was in the Lobby at 8:30 PM. — _establishes: Beatrice Crowninshield in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Hedwig Kreuzer:
-
-- **c065** [observation] Margaret Rafferty says Hedwig Kreuzer was at the Front Desk from 6:00 PM to 8:00 PM. — _establishes: Hedwig Kreuzer at the Front Desk, 6:00 PM–8:00 PM; Hedwig Kreuzer had access to the method_
-- **c066** [observation] Margaret Rafferty says Hedwig Kreuzer was in the Lobby at 8:30 PM. — _establishes: Hedwig Kreuzer in the Lobby, 8:30 PM_
-
-On Grafton Havemeyer:
-
-- **c067** [observation] Margaret Rafferty says Grafton Havemeyer was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Grafton Havemeyer in the Bar, 11:00 PM–11:30 PM_
-
-On Delia Brennan:
-
-- **c068** [observation] Margaret Rafferty says Delia Brennan was in the Lobby at 11:30 PM. — _establishes: Delia Brennan in the Lobby, 11:30 PM_
-
-On Eunice Prentiss:
-
-- **c069** [observation] Margaret Rafferty says Eunice Prentiss was in the Lobby at 11:30 PM. — _establishes: Eunice Prentiss in the Lobby, 11:30 PM_
-
-On Ezekiel Hargrove:
-
-- **c070** [observation] Margaret Rafferty says Ezekiel Hargrove was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Ezekiel Hargrove at the Front Desk, 6:00 PM–6:30 PM; Ezekiel Hargrove had access to the method_
-- **c071** [observation] Margaret Rafferty says Ezekiel Hargrove was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Ezekiel Hargrove in the Lobby, 7:00 PM–8:30 PM_
-- **c072** [observation] Margaret Rafferty says Ezekiel Hargrove was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Ezekiel Hargrove in the Kitchen, 11:00 PM–11:30 PM_
-
-On Grafton Havemeyer's account:
-
-- **c119** [observation] Margaret Rafferty was at the Front Desk from 7:00 PM to 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM–8:00 PM_
-
-On Delia Brennan's account:
-
-- **c127** [observation] Margaret Rafferty was at the Front Desk from 7:00 PM to 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM–8:00 PM_
-
-On Eunice Prentiss's account:
-
-- **c135** [observation] Margaret Rafferty was at the Front Desk at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
-
-### From Ellsworth Coffin (the doorman)
-
-On Beatrice Crowninshield:
-
-- **c073** [observation] Ellsworth Coffin says Beatrice Crowninshield was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Beatrice Crowninshield in the Lobby, 8:30 PM–9:30 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM; the victim alive at 9:30 PM_
-
-On Hedwig Kreuzer:
-
-- **c074** [observation] Ellsworth Coffin says Hedwig Kreuzer was at the Front Desk from 6:00 PM to 8:00 PM. — _establishes: Hedwig Kreuzer at the Front Desk, 6:00 PM–8:00 PM; Hedwig Kreuzer had access to the method_
-- **c075** [observation] Ellsworth Coffin says Hedwig Kreuzer was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Hedwig Kreuzer in the Lobby, 8:30 PM–9:30 PM_
-- **c076** [observation] Ellsworth Coffin says Hedwig Kreuzer was on the Street from 10:00 PM to 11:30 PM. — _establishes: Hedwig Kreuzer on the Street, 10:00 PM–11:30 PM_
-
-On Grafton Havemeyer:
-
-- **c077** [observation] Ellsworth Coffin says Grafton Havemeyer was in the Lobby at 10:00 PM. — _establishes: Grafton Havemeyer in the Lobby, 10:00 PM_
-- **c078** [observation] Ellsworth Coffin says Grafton Havemeyer was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Grafton Havemeyer in the Bar, 10:30 PM–11:30 PM_
-
-On Delia Brennan:
-
-- **c079** [observation] Ellsworth Coffin says Delia Brennan was in the Lobby at 9:30 PM. — _establishes: Delia Brennan in the Lobby, 9:30 PM_
-- **c080** [observation] Ellsworth Coffin says Delia Brennan was in the Lobby at 10:30 PM. — _establishes: Delia Brennan in the Lobby, 10:30 PM_
-- **c081** [observation] Ellsworth Coffin says Delia Brennan was in the Lobby at 11:30 PM. — _establishes: Delia Brennan in the Lobby, 11:30 PM_
-- **c082** [observation] Ellsworth Coffin says Delia Brennan was in the Bar at 10:00 PM. — _establishes: Delia Brennan in the Bar, 10:00 PM_
-- **c083** [observation] Ellsworth Coffin says Delia Brennan was at the Front Desk at 11:00 PM. — _establishes: Delia Brennan at the Front Desk, 11:00 PM_
-
-On Eunice Prentiss:
-
-- **c084** [observation] Ellsworth Coffin says Eunice Prentiss was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Eunice Prentiss in the Lobby, 9:30 PM–10:00 PM_
-- **c085** [observation] Ellsworth Coffin says Eunice Prentiss was in the Lobby at 11:30 PM. — _establishes: Eunice Prentiss in the Lobby, 11:30 PM_
-- **c086** [observation] Ellsworth Coffin says Eunice Prentiss was on the Street from 10:30 PM to 11:00 PM. — _establishes: Eunice Prentiss on the Street, 10:30 PM–11:00 PM_
-
-On Ezekiel Hargrove:
-
-- **c087** [observation] Ellsworth Coffin says Ezekiel Hargrove was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Ezekiel Hargrove at the Front Desk, 6:00 PM–6:30 PM; Ezekiel Hargrove had access to the method_
-- **c088** [observation] Ellsworth Coffin says Ezekiel Hargrove was in the Lobby from 7:00 PM to 9:00 PM. — _establishes: Ezekiel Hargrove in the Lobby, 7:00 PM–9:00 PM_
-- **c089** [observation] Ellsworth Coffin says Ezekiel Hargrove was in the Bar at 9:30 PM. — _establishes: Ezekiel Hargrove in the Bar, 9:30 PM_
-
-On Margaret Rafferty:
-
-- **c090** [observation] Ellsworth Coffin says Margaret Rafferty was in the Lobby at 6:00 PM. — _establishes: Margaret Rafferty in the Lobby, 6:00 PM_
-- **c091** [observation] Ellsworth Coffin says Margaret Rafferty was in the Lobby at 8:30 PM. — _establishes: Margaret Rafferty in the Lobby, 8:30 PM_
-- **c092** [observation] Ellsworth Coffin says Margaret Rafferty was at the Front Desk from 6:30 PM to 8:00 PM. — _establishes: Margaret Rafferty at the Front Desk, 6:30 PM–8:00 PM; Margaret Rafferty had access to the method_
-- **c093** [observation] Ellsworth Coffin says Margaret Rafferty was in the Bar at 11:30 PM. — _establishes: Margaret Rafferty in the Bar, 11:30 PM_
-
-On Hedwig Kreuzer's account:
-
-- **c115** [observation] Ellsworth Coffin was in the Lobby at 10:00 PM and says Hedwig Kreuzer was not in the Lobby. — _establishes: Hedwig Kreuzer not in the Lobby, 10:00 PM_
-
-On Grafton Havemeyer's account:
-
-- **c120** [observation] Ellsworth Coffin was in the Lobby at 7:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM_
-- **c121** [observation] Ellsworth Coffin was in the Lobby at 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 8:00 PM_
-- **c122** [observation] Ellsworth Coffin was at the Front Desk at 7:30 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:30 PM_
-
-On Delia Brennan's account:
-
-- **c128** [observation] Ellsworth Coffin was in the Lobby at 7:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM_
-- **c129** [observation] Ellsworth Coffin was in the Lobby at 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 8:00 PM_
-- **c130** [observation] Ellsworth Coffin was at the Front Desk at 7:30 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:30 PM_
-
-On Eunice Prentiss's account:
-
-- **c136** [observation] Ellsworth Coffin was in the Lobby at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
-
-On Ezekiel Hargrove's account:
-
-- **c141** [observation] Ellsworth Coffin was in the Lobby at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
-
-On Margaret Rafferty's account:
-
-- **c148** [observation] Ellsworth Coffin was in the Lobby from 9:00 PM to 10:00 PM and says Margaret Rafferty was not at the Front Desk. — _establishes: Margaret Rafferty not at the Front Desk, 9:00 PM–10:00 PM_
-
-On Eunice Prentiss and Beatrice Crowninshield:
-
-- **c161** [overheard] Ellsworth Coffin says Beatrice Crowninshield told Eunice Prentiss the lease would go to somebody else at the quarter day. — _establishes: Eunice Prentiss had a motive (property)_
-
-### From Winthrop Winslow (the bartender)
-
-On Beatrice Crowninshield:
-
-- **c094** [observation] Winthrop Winslow says Beatrice Crowninshield was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Beatrice Crowninshield in the Lobby, 8:30 PM–9:30 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM; the victim alive at 9:30 PM_
-
-On Hedwig Kreuzer:
-
-- **c095** [observation] Winthrop Winslow says Hedwig Kreuzer was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Hedwig Kreuzer in the Lobby, 8:30 PM–9:30 PM_
-
-On Grafton Havemeyer:
-
-- **c096** [observation] Winthrop Winslow says Grafton Havemeyer was in the Lobby at 10:00 PM. — _establishes: Grafton Havemeyer in the Lobby, 10:00 PM_
-- **c097** [observation] Winthrop Winslow says Grafton Havemeyer was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Grafton Havemeyer in the Bar, 10:30 PM–11:30 PM_
-
-On Delia Brennan:
-
-- **c098** [observation] Winthrop Winslow says Delia Brennan was in the Lobby at 9:30 PM. — _establishes: Delia Brennan in the Lobby, 9:30 PM_
-- **c099** [observation] Winthrop Winslow says Delia Brennan was in the Lobby at 10:30 PM. — _establishes: Delia Brennan in the Lobby, 10:30 PM_
-- **c100** [observation] Winthrop Winslow says Delia Brennan was in the Lobby at 11:30 PM. — _establishes: Delia Brennan in the Lobby, 11:30 PM_
-- **c101** [observation] Winthrop Winslow says Delia Brennan was in the Bar at 10:00 PM. — _establishes: Delia Brennan in the Bar, 10:00 PM_
-
-On Eunice Prentiss:
-
-- **c102** [observation] Winthrop Winslow says Eunice Prentiss was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Eunice Prentiss in the Lobby, 9:30 PM–10:00 PM_
-- **c103** [observation] Winthrop Winslow says Eunice Prentiss was in the Lobby at 11:30 PM. — _establishes: Eunice Prentiss in the Lobby, 11:30 PM_
-
-On Ezekiel Hargrove:
-
-- **c104** [observation] Winthrop Winslow says Ezekiel Hargrove was in the Lobby at 7:00 PM. — _establishes: Ezekiel Hargrove in the Lobby, 7:00 PM_
-- **c105** [observation] Winthrop Winslow says Ezekiel Hargrove was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Ezekiel Hargrove in the Lobby, 8:00 PM–9:00 PM_
-- **c106** [observation] Winthrop Winslow says Ezekiel Hargrove was in the Bar at 9:30 PM. — _establishes: Ezekiel Hargrove in the Bar, 9:30 PM_
-- **c107** [observation] Winthrop Winslow says Ezekiel Hargrove was in the Kitchen from 10:00 PM to 11:30 PM. — _establishes: Ezekiel Hargrove in the Kitchen, 10:00 PM–11:30 PM_
-
-On Margaret Rafferty:
-
-- **c108** [observation] Winthrop Winslow says Margaret Rafferty was in the Lobby at 6:00 PM. — _establishes: Margaret Rafferty in the Lobby, 6:00 PM_
-- **c109** [observation] Winthrop Winslow says Margaret Rafferty was in the Lobby at 8:30 PM. — _establishes: Margaret Rafferty in the Lobby, 8:30 PM_
-- **c110** [observation] Winthrop Winslow says Margaret Rafferty was in the Kitchen at 11:00 PM. — _establishes: Margaret Rafferty in the Kitchen, 11:00 PM_
-- **c111** [observation] Winthrop Winslow says Margaret Rafferty was in the Bar at 11:30 PM. — _establishes: Margaret Rafferty in the Bar, 11:30 PM_
-
-On Hedwig Kreuzer's account:
-
-- **c116** [observation] Winthrop Winslow was in the Bar at 10:00 PM and says Hedwig Kreuzer was not in the Lobby. — _establishes: Hedwig Kreuzer not in the Lobby, 10:00 PM_
-
-On Grafton Havemeyer's account:
-
-- **c123** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 7:00 PM_
-- **c124** [observation] Winthrop Winslow was in the Bar at 8:00 PM and says Grafton Havemeyer was not in the Lobby. — _establishes: Grafton Havemeyer not in the Lobby, 8:00 PM_
-
-On Delia Brennan's account:
-
-- **c131** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 7:00 PM_
-- **c132** [observation] Winthrop Winslow was in the Bar at 8:00 PM and says Delia Brennan was not in the Lobby. — _establishes: Delia Brennan not in the Lobby, 8:00 PM_
-
-On Eunice Prentiss's account:
-
-- **c137** [observation] Winthrop Winslow was in the Bar at 7:00 PM and says Eunice Prentiss was not in the Lobby. — _establishes: Eunice Prentiss not in the Lobby, 7:00 PM_
-
-On Ezekiel Hargrove's account:
-
-- **c142** [observation] Winthrop Winslow was in the Bar at 10:00 PM and says Ezekiel Hargrove was not in the Bar. — _establishes: Ezekiel Hargrove not in the Bar, 10:00 PM_
-
-On Delia Brennan and Beatrice Crowninshield:
-
-- **c159** [overheard] Winthrop Winslow says Beatrice Crowninshield said to Delia Brennan that a man who testifies sleeps better. — _establishes: Delia Brennan had a motive (silence-a-witness)_
-
-### From the Lobby
-
-- **c152** [environment] The passenger elevator was out of order from 6:30 PM to 7:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
-
-### From the Front Desk
-
-- **c151** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c156** [document] Found in the Front Desk: A clipping about the failure of Hedwig Kreuzer's business, with Beatrice Crowninshield's name underlined twice in pencil. — _establishes: Hedwig Kreuzer had a motive (revenge)_
-- **c160** [document] Found in the Front Desk: A lease assignment made out in Eunice Prentiss's name, waiting only on Beatrice Crowninshield's signature. — _establishes: Eunice Prentiss had a motive (property)_
-- **c162** [document] Found in the Front Desk: A typed page of dates and sums in Beatrice Crowninshield's file, headed with Margaret Rafferty's name. — _establishes: Margaret Rafferty had a motive (exposure)_
-
-### From the Service Stairs
-
-- **c153** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Beatrice Crowninshield's sleeve; Beatrice Crowninshield was on the stairs at 6:30 PM. — _establishes: Beatrice Crowninshield on the Service Stairs, 6:30 PM_
-- **c154** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Grafton Havemeyer's sleeve; Grafton Havemeyer was on the stairs at 7:00 PM. — _establishes: Grafton Havemeyer on the Service Stairs, 7:00 PM_
-- **c155** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Delia Brennan's sleeve; Delia Brennan was on the stairs at 6:30 PM. — _establishes: Delia Brennan on the Service Stairs, 6:30 PM_
-
-### From the Victim's Suite
-
-- **c150** [morgue] Beatrice Crowninshield was found in the Victim's Suite. The coroner puts death between 9:30 PM and 10:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:30 PM and 10:00 PM_
-- **c158** [document] Found in the Victim's Suite: A subpoena naming Beatrice Crowninshield as a witness before the grand jury, with Delia Brennan's name written in the margin. — _establishes: Delia Brennan had a motive (silence-a-witness)_
-
-### Withheld — the player cannot get these
-
-- ~~Grafton Havemeyer saw Delia Brennan on the Service Stairs, 7:00 PM–8:00 PM~~ — Grafton Havemeyer is lying about that time and will not say.
-- ~~Delia Brennan saw Grafton Havemeyer on the Service Stairs, 7:00 PM–8:00 PM~~ — Delia Brennan is lying about that time and will not say.
-- ~~Eunice Prentiss saw Beatrice Crowninshield in the Roof Garden, 7:00 PM~~ — Eunice Prentiss is lying about that time and will not say.
-- ~~Grafton Havemeyer saw Eunice Prentiss on the Service Stairs, 7:30 PM–8:00 PM~~ — Grafton Havemeyer is lying about that time and will not say.
-- ~~Delia Brennan saw Eunice Prentiss on the Service Stairs, 7:30 PM–8:00 PM~~ — Delia Brennan is lying about that time and will not say.
-- ~~Hedwig Kreuzer saw Grafton Havemeyer in the Lobby, 10:00 PM~~ — Hedwig Kreuzer is lying about that time and will not say.
-- ~~Hedwig Kreuzer saw Eunice Prentiss in the Lobby, 10:00 PM~~ — Hedwig Kreuzer is lying about that time and will not say.
-- ~~Hedwig Kreuzer saw Ellsworth Coffin in the Lobby, 10:00 PM~~ — Hedwig Kreuzer is lying about that time and will not say.
-- ~~Ezekiel Hargrove saw Delia Brennan in the Bar, 10:00 PM~~ — Ezekiel Hargrove is lying about that time and will not say.
-- ~~Ezekiel Hargrove saw Winthrop Winslow in the Bar, 10:00 PM~~ — Ezekiel Hargrove is lying about that time and will not say.
-- ~~Margaret Rafferty saw Beatrice Crowninshield in the Victim's Suite, 10:00 PM~~ — Margaret Rafferty is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c150, c001, c025, c039, c053, c073, c094)_
+| Tick | Time | Emilio Petrosino (the hackman on the stand) | Augustus Tillman (the druggist) | Margarethe Vogel (the bartender) | Pasquale Moretti (the patrolman on the beat) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | — |
+| 1 | 6:30 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | — |
+| 2 | 7:00 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | the El platform at Twenty-Third Street |
+| 3 | 7:30 PM | the cab stand outside the Hippodrome | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | — |
+| 5 | 8:30 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | Kaplan’s drugstore with the soda fountain |
+| 6 | 9:00 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | — |
+| 7 | 9:30 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | — |
+| 8 | 10:00 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | the El platform at Twenty-Third Street | Dolan’s Bar |
+| 9 | 10:30 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | — |
+| 10 | 11:00 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | — |
+| 11 | 11:30 PM | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | Dolan’s Bar | the cab stand outside the Hippodrome |
+
+## 6. Secrets in play
+
+- **Cornelius Mulcahy** (dope): Cornelius Mulcahy buys morphine at Kaplan’s drugstore with the soda fountain from 11:00 PM to 11:30 PM and would rather be thought a murderer than a hop-head.
+- **Harrison Thorndike** (gambling-debt): Harrison Thorndike slips off to Dolan’s Bar from 10:00 PM to settle with a bookmaker.
+- **Carmela Vitale** (hidden-family): Carmela Vitale goes to Kaplan’s drugstore with the soda fountain from 11:00 PM to 11:30 PM to see a child nobody is supposed to know about.
+- **Hattie Dandridge** (murder): Hattie Dandridge is at the office over the tailor’s shop from 10:00 PM to 11:00 PM, alone with Alonzo Ashby when it happens at 11:00 PM.
+- **Rudolf Reinhardt** (forged-identity): Rudolf Reinhardt is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.
+- **Anneliese Hauck** (gambling-debt): Anneliese Hauck slips off to the cab stand outside the Hippodrome from 6:30 PM to 7:00 PM to settle with a bookmaker.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c160, c161, c182. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At the office over the tailor’s shop
+
+- **c160** [spine ⟨opening⟩] (scene; the place itself) → c013, c154, c163, c127, c166
+  - Alonzo Ashby was found at the office over the tailor’s shop. His watch glass broke against the floor and the hands have not moved since. The ice being brought in came at 11:00 PM, and the iceman’s book has the delivery timed and signed for. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 11:00 PM; how it was done_
+- **c161** [spine ⟨opening⟩] (morgue; the place itself) → c138, c167, c177
+  - The coroner puts death between 9:30 PM and 11:00 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.
+  - _establishes: death between 9:30 PM and 11:00 PM; how it was done_
+
+### At the cab stand outside the Hippodrome
+
+- **c069** [corroboration] (observation; Anneliese Hauck on Hattie Dandridge) → c194
+  - Anneliese Hauck says Hattie Dandridge was at the victim’s walk-up over the drugstore at 9:00 PM.
+  - _establishes: Hattie Dandridge at the victim’s walk-up over the drugstore, 9:00 PM; Hattie Dandridge could reach the weapon_
+- **c133** [corroboration] (observation; Anneliese Hauck on who was there at 11:00 PM) → c205
+  - Anneliese Hauck runs through it: at 11:00 PM there were Cornelius Mulcahy, Harrison Thorndike, Carmela Vitale, Rudolf Reinhardt at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.
+  - _establishes: Cornelius Mulcahy at Kaplan’s drugstore with the soda fountain, 11:00 PM; Harrison Thorndike at Kaplan’s drugstore with the soda fountain, 11:00 PM; Carmela Vitale at Kaplan’s drugstore with the soda fountain, 11:00 PM; Rudolf Reinhardt at Kaplan’s drugstore with the soda fountain, 11:00 PM_
+- **c166** [corroboration] (anchor; Emilio Petrosino on Alonzo Ashby that evening) → (end)
+  - Emilio Petrosino puts Alonzo Ashby at the cab stand outside the Hippodrome when the last edition came up, which was 10:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:30 PM; Alonzo Ashby at the cab stand outside the Hippodrome, 10:30 PM_
+- **c164** [corroboration] (anchor; Carmela Vitale on Alonzo Ashby that evening) → (end)
+  - Carmela Vitale puts Alonzo Ashby at the cab stand outside the Hippodrome when the last edition came up, which was 10:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:30 PM; Alonzo Ashby at the cab stand outside the Hippodrome, 10:30 PM_
+- **c214** [noise {b3}] (physical; the place itself) → c213
+  - Betting slips at the cab stand outside the Hippodrome in Anneliese Hauck’s pocketbook, all of them losers, all of them this month.
+  - _establishes: context only_
+- **c216** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Anneliese Hauck was at the cab stand outside the Hippodrome from 6:30 PM to 7:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Anneliese Hauck’s gambling-debt accounted for; Anneliese Hauck at the cab stand outside the Hippodrome, 6:30 PM–7:00 PM_
+
+### At Kaplan’s drugstore with the soda fountain
+
+- **c138** [spine] (observation; Augustus Tillman on who was there at 11:00 PM) → c154, c069
+  - Augustus Tillman runs through it: at 11:00 PM there were Cornelius Mulcahy, Harrison Thorndike, Carmela Vitale, Rudolf Reinhardt, Anneliese Hauck at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.
+  - _establishes: Cornelius Mulcahy at Kaplan’s drugstore with the soda fountain, 11:00 PM; Harrison Thorndike at Kaplan’s drugstore with the soda fountain, 11:00 PM; Carmela Vitale at Kaplan’s drugstore with the soda fountain, 11:00 PM; Rudolf Reinhardt at Kaplan’s drugstore with the soda fountain, 11:00 PM; Anneliese Hauck at Kaplan’s drugstore with the soda fountain, 11:00 PM_
+- **c157** [corroboration] (observation; Augustus Tillman on Hattie Dandridge’s account) → (end)
+  - Augustus Tillman was at Kaplan’s drugstore with the soda fountain from 10:00 PM to 11:00 PM and says Hattie Dandridge was not.
+  - _establishes: Hattie Dandridge not at Kaplan’s drugstore with the soda fountain, 10:00 PM–11:00 PM_
+- **c201** [noise {b1}] (physical; the place itself) → c202
+  - A child’s shoe at Kaplan’s drugstore with the soda fountain, and nobody at Kaplan’s drugstore with the soda fountain has any children.
+  - _establishes: context only_
+- **c202** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The woman who keeps the child says it straight out: Carmela Vitale was at Kaplan’s drugstore with the soda fountain from 11:00 PM to 11:30 PM, the same as every week, and left with the same face as always.
+  - _establishes: Carmela Vitale’s hidden-family accounted for; Carmela Vitale at Kaplan’s drugstore with the soda fountain, 11:00 PM–11:30 PM_
+
+### At the El platform at Twenty-Third Street
+
+- **c127** [corroboration] (observation; Rudolf Reinhardt on who was there at 11:00 PM) → (end)
+  - Rudolf Reinhardt runs through it: at 11:00 PM there were Cornelius Mulcahy, Harrison Thorndike, Carmela Vitale, Anneliese Hauck at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.
+  - _establishes: Cornelius Mulcahy at Kaplan’s drugstore with the soda fountain, 11:00 PM; Harrison Thorndike at Kaplan’s drugstore with the soda fountain, 11:00 PM; Carmela Vitale at Kaplan’s drugstore with the soda fountain, 11:00 PM; Anneliese Hauck at Kaplan’s drugstore with the soda fountain, 11:00 PM_
+- **c032** [corroboration] (observation; Hattie Dandridge on Harrison Thorndike) → c197
+  - Hattie Dandridge says Harrison Thorndike was at the victim’s walk-up over the drugstore at 9:00 PM.
+  - _establishes: Harrison Thorndike at the victim’s walk-up over the drugstore, 9:00 PM; Harrison Thorndike could reach the weapon_
+- **c208** [noise {b2}] (physical; the place itself) → c209
+  - A steamship ticket stub among Rudolf Reinhardt’s things, in the name of a man who died at Belleau Wood.
+  - _establishes: context only_
+- **c209** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The name Rudolf Reinhardt was born with turns up on a desertion warrant from 1918. Rudolf Reinhardt has been hiding from the Army for eleven years and from nobody else.
+  - _establishes: Rudolf Reinhardt’s forged-identity accounted for_
+
+### At the victim’s walk-up over the drugstore
+
+- **c176** [corroboration] (document; the place itself) → (end)
+  - Found at the victim’s walk-up over the drugstore: A typed page of dates and sums in Alonzo Ashby’s file, headed with Hattie Dandridge’s name.
+  - _establishes: Hattie Dandridge had a motive (exposure)_
+
+### At Dolan’s Bar
+
+- **c182** [spine ⟨opening⟩] (client; Harrison Thorndike on why I was hired) → c138, c013, c020
+  - Harrison Thorndike hired us. Harrison Thorndike wants it known that Hattie Dandridge was about to be exposed by the victim, and would rather we started there.
+  - _establishes: Hattie Dandridge had a motive (exposure)_
+- **c013** [spine] (observation; Harrison Thorndike on Hattie Dandridge) → c163, c176, c157, c133, c164
+  - Harrison Thorndike says Hattie Dandridge was at the victim’s walk-up over the drugstore at 9:00 PM.
+  - _establishes: Hattie Dandridge at the victim’s walk-up over the drugstore, 9:00 PM; Hattie Dandridge could reach the weapon_
+- **c154** [spine] (observation; Harrison Thorndike on Hattie Dandridge’s account) → c032, c214
+  - Harrison Thorndike was at Kaplan’s drugstore with the soda fountain at 11:00 PM and says Hattie Dandridge was not.
+  - _establishes: Hattie Dandridge not at Kaplan’s drugstore with the soda fountain, 11:00 PM_
+- **c163** [spine] (anchor; Cornelius Mulcahy on Alonzo Ashby that evening) → (end)
+  - Cornelius Mulcahy puts Alonzo Ashby at the cab stand outside the Hippodrome when the last edition came up, which was 10:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:30 PM; Alonzo Ashby at the cab stand outside the Hippodrome, 10:30 PM_
+- **c167** [corroboration] (anchor; Margarethe Vogel on the noise that evening) → (end)
+  - Margarethe Vogel was at Dolan’s Bar at 11:00 PM and heard a scuffle and a chair dragging from the direction of the office over the tailor’s shop, when the ice came.
+  - _establishes: noise at the office over the tailor’s shop at 11:00 PM; the victim dead by 11:00 PM; how it was done_
+- **c177** [corroboration] (overheard; Cornelius Mulcahy on Hattie Dandridge and Alonzo Ashby) → (end)
+  - Cornelius Mulcahy says Alonzo Ashby told Hattie Dandridge that the story would run whether Hattie Dandridge liked it or not.
+  - _establishes: Hattie Dandridge had a motive (exposure)_
+- **c020** [corroboration] (observation; Harrison Thorndike on Anneliese Hauck) → (end)
+  - Harrison Thorndike says Anneliese Hauck was at Kaplan’s drugstore with the soda fountain at 11:00 PM.
+  - _establishes: Anneliese Hauck at Kaplan’s drugstore with the soda fountain, 11:00 PM_
+- **c197** [noise {b1}] (overheard; Harrison Thorndike on Carmela Vitale) → c201
+  - Harrison Thorndike on Carmela Vitale: Carmela Vitale sends money out of every pay envelope and cannot say where it goes.
+  - _establishes: context only_
+- **c205** [noise {b2}] (overheard; Margarethe Vogel on Rudolf Reinhardt) → c208
+  - Margarethe Vogel on Rudolf Reinhardt: Two signatures of Rudolf Reinhardt’s, a month apart, are in different hands.
+  - _establishes: context only_
+- **c213** [noise {b3}] (overheard; Margarethe Vogel on Anneliese Hauck) → c216
+  - Margarethe Vogel on Anneliese Hauck: Anneliese Hauck goes very quiet when the racing wire is mentioned.
+  - _establishes: context only_
+- **c194** [noise {b4}] (physical; the place itself) → c193
+  - A book of markers at Dolan’s Bar with Harrison Thorndike’s initials against four of them.
+  - _establishes: context only_
+- **c193** [noise {b4}] (physical; the place itself) → c195
+  - Betting slips at Dolan’s Bar in Harrison Thorndike’s pocketbook, all of them losers, all of them this month.
+  - _establishes: context only_
+- **c195** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Harrison Thorndike was at Dolan’s Bar from 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Harrison Thorndike’s gambling-debt accounted for; Harrison Thorndike at Dolan’s Bar, 10:00 PM_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["the office over the tailor’s shop"]
+    c160["▶ c160 the place"]
+    c161["▶ c161 the place"]
+  end
+  subgraph P2["the cab stand outside the Hippodrome"]
+    c069["c069 Anneliese Hauck"]
+    c133["c133 Anneliese Hauck"]
+    c166["c166 Emilio Petrosino"]
+    c164["c164 Carmela Vitale"]
+    c214["c214 the place"]
+    c216["✗ c216 the place"]
+  end
+  subgraph P3["Kaplan’s drugstore with the soda fountain"]
+    c138["c138 Augustus Tillman"]
+    c157["c157 Augustus Tillman"]
+    c201["c201 the place"]
+    c202["✗ c202 the place"]
+  end
+  subgraph P4["the El platform at Twenty-Third Street"]
+    c127["c127 Rudolf Reinhardt"]
+    c032["c032 Hattie Dandridge"]
+    c208["c208 the place"]
+    c209["✗ c209 the place"]
+  end
+  subgraph P5["the victim’s walk-up over the drugstore"]
+    c176["c176 the place"]
+  end
+  subgraph P6["Dolan’s Bar"]
+    c182["▶ c182 Harrison Thorndike"]
+    c013["c013 Harrison Thorndike"]
+    c154["c154 Harrison Thorndike"]
+    c163["c163 Cornelius Mulcahy"]
+    c167["c167 Margarethe Vogel"]
+    c177["c177 Cornelius Mulcahy"]
+    c020["c020 Harrison Thorndike"]
+    c197["c197 Harrison Thorndike"]
+    c205["c205 Margarethe Vogel"]
+    c213["c213 Margarethe Vogel"]
+    c194["c194 the place"]
+    c193["c193 the place"]
+    c195["✗ c195 the place"]
+  end
+  c160 --> c013
+  c160 --> c154
+  c160 --> c163
+  c160 --> c127
+  c160 --> c166
+  c161 --> c138
+  c161 --> c167
+  c161 --> c177
+  c182 --> c138
+  c182 --> c013
+  c182 --> c020
+  c138 --> c154
+  c138 --> c069
+  c013 --> c163
+  c013 --> c176
+  c013 --> c157
+  c013 --> c133
+  c013 --> c164
+  c154 --> c032
+  c154 -.-> c214
+  c069 -.-> c194
+  c133 -.-> c205
+  c032 -.-> c197
+  c197 -.-> c201
+  c201 --> c202
+  c205 -.-> c208
+  c208 --> c209
+  c214 -.-> c213
+  c213 --> c216
+  c194 -.-> c193
+  c193 --> c195
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c160,c161,c182,c138,c013,c154,c163 spine;
+  class c127,c176,c069,c157,c133,c167,c166,c177,c020,c164,c032 corrob;
+  class c197,c201,c205,c208,c214,c213,c194,c193 noise;
+  class c202,c209,c216,c195 disq;
+```
+
+## 9. Deduction path
+
+Par is **6 actions** against a budget of 20: 14 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 11:00 PM: one puts Alonzo Ashby alive at 10:30 PM, the other times the scene at 11:00 PM. _(c161, c163, c160; + 3 corroborating)_
 
 **Clearing the innocent.**
 
-- Hedwig Kreuzer was not in the Victim's Suite at 10:00 PM, on two independent sources. _(c014, c041, c076)_
-- Grafton Havemeyer was not in the Victim's Suite at 10:00 PM, on two independent sources. _(c029, c044, c077, c096)_
-- Delia Brennan was not in the Victim's Suite at 10:00 PM, on two independent sources. _(c015, c050, c082, c101)_
-- Eunice Prentiss was not in the Victim's Suite at 10:00 PM, on two independent sources. _(c019, c033, c084, c102)_
-- Ezekiel Hargrove was not in the Victim's Suite at 10:00 PM, on two independent sources. _(c037, c107)_
+- Cornelius Mulcahy was not at the office over the tailor’s shop at 11:00 PM, on two independent sources. _(c138; + 2 corroborating)_
+- Harrison Thorndike was not at the office over the tailor’s shop at 11:00 PM, on two independent sources. _(c138; + 2 corroborating)_
+- Carmela Vitale was not at the office over the tailor’s shop at 11:00 PM, on two independent sources. _(c138; + 3 corroborating)_
+- Rudolf Reinhardt was not at the office over the tailor’s shop at 11:00 PM, on two independent sources. _(c138; + 1 corroborating)_
+- Anneliese Hauck was not at the office over the tailor’s shop at 11:00 PM, on two independent sources. _(c138; + 2 corroborating)_
 
-**Naming the killer.** Margaret Rafferty claims the Front Desk at 10:00 PM. Two independent sources put that out of the question, and one ties Margaret Rafferty to a gunshot. _(c144, c146, c148, c013, c061, c092)_
+**Naming the killer.** Hattie Dandridge claims Kaplan’s drugstore with the soda fountain at 11:00 PM. Two independent sources put that out of the question. _(c154; + 1 corroborating)_
 
-**Method.** A gunshot, on two physical sources. _(c150, c151)_
+**The weapon.** Hattie Dandridge was at the victim’s walk-up over the drugstore before 11:00 PM, where a length of sash cord was kept. _(c013; + 1 corroborating)_
 
-**Motive.** exposure, on two independent sources. _(c162, c163)_
+**Method.** Strangling with a cord, on two physical sources. _(c160, c161; + 1 corroborating)_
 
-## 8. Red herrings
+**Motive.** exposure, on two independent sources. _(c182; + 2 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Hedwig Kreuzer claims the Lobby at 10:00 PM and was really in the Street. Reason: Hedwig Kreuzer slips out to the Street from 10:00 PM to settle with a bookmaker.
-- Ezekiel Hargrove claims the Bar at 10:00 PM and was really in the Kitchen. Reason: Ezekiel Hargrove hands a parcel of stolen goods to a man at the Kitchen at 10:00 PM.
+- Cornelius Mulcahy claims the cab stand outside the Hippodrome at 11:00 PM and was really at Kaplan’s drugstore with the soda fountain. Reason: Cornelius Mulcahy buys morphine at Kaplan’s drugstore with the soda fountain from 11:00 PM to 11:30 PM and would rather be thought a murderer than a hop-head.
+- Carmela Vitale claims Dolan’s Bar at 11:00 PM and was really at Kaplan’s drugstore with the soda fountain. Reason: Carmela Vitale goes to Kaplan’s drugstore with the soda fountain from 11:00 PM to 11:30 PM to see a child nobody is supposed to know about.
 
 **Innocents with a motive:**
 
-- Hedwig Kreuzer — revenge: blamed the victim for a ruin.
-- Delia Brennan — silence-a-witness: needed the victim silent.
-- Eunice Prentiss — property: wanted the victim out of a lease.
+- Carmela Vitale — inheritance: stands to inherit.
+- Rudolf Reinhardt — revenge: blamed the victim for a ruin.
+- Anneliese Hauck — debt: owed the victim money.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Carmela Vitale, hidden-family): c197 → c201 → **c202** — The woman who keeps the child says it straight out: Carmela Vitale was at Kaplan’s drugstore with the soda fountain from 11:00 PM to 11:30 PM, the same as every week, and left with the same face as always.
+- **b2** (Rudolf Reinhardt, forged-identity): c205 → c208 → **c209** — The name Rudolf Reinhardt was born with turns up on a desertion warrant from 1918. Rudolf Reinhardt has been hiding from the Army for eleven years and from nobody else.
+- **b3** (Anneliese Hauck, gambling-debt): c214 → c213 → **c216** — The bookmaker’s runner is found and will say it: Anneliese Hauck was at the cab stand outside the Hippodrome from 6:30 PM to 7:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b4** (Harrison Thorndike, gambling-debt): c194 → c193 → **c195** — The bookmaker’s runner is found and will say it: Harrison Thorndike was at Dolan’s Bar from 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
 

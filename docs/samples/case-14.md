@@ -1,694 +1,439 @@
-# The Wexford Arms — case 14
+# Harlem — case 14
 
-**Seed** 14 · **Attempts** 2 · **Detective** Humphrey
+**Seed** 14 · **Difficulty** 2 · **Attempts** 2 · **Detective** Humphrey
+
+**Par** 7 actions · **Budget** 20 · **Slack** 13 · **Findable** 31 (spine 8, corroboration 10, noise 8 + 5 disqualifiers) · **Noise ratio** 42% · **Candidate pool** 219
 
 ## 1. The Truth
 
-Rachel Kessler, a photographer for the rotogravure section, the victim's secretary, killed Sadie Lefkowitz, a union treasurer, with a push from the roof garden in the Roof Garden at 10:00 PM. Rachel Kessler wanted the victim out of a lease (property). Rachel Kessler had been at the Front Desk earlier in the evening, before 10:00 PM and was alone with Sadie Lefkowitz when it happened.
+Gretchen Vogel, a pawnbroker’s man, a customer of the victim’s, killed Roscoe Whitfield, a bootlegger with the lease on the top floor, with a gunshot at the roof over the Dover at 8:30 PM. Gretchen Vogel blamed the victim for a ruin (revenge). Gretchen Vogel had been at the victim’s apartment on the fourth floor earlier in the evening, where the weapon lived, and was alone with Roscoe Whitfield when it happened. Filomena Vitale hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Sadie Lefkowitz | a union treasurer | the victim | — | — | — |
-| Gustav Wehrle | a private secretary | the victim's lawyer | secret-drinking | exposure | — |
-| Daniel Hanrahan | a travelling salesman in patent medicines | the victim's rival in trade | affair | — | — |
-| Percival Dandridge | a longshoreman | the victim's landlord | fence | — | — |
-| Mary Kavanagh | a wine steward out of work since the Act | the victim's cousin | affair | — | — |
-| Hyman Hurwitz | a dentist with rooms on the third floor | named in the victim's will | blackmail | — | — |
-| Rachel Kessler | a photographer for the rotogravure section | the victim's secretary | murder | property | **YES** |
-| Wilhelm Obermann | the doorman | fixture | — | — | — |
-| Antonio Grasso | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Roscoe Whitfield | a bootlegger with the lease on the top floor | the victim | — | — | — | — |
+| Alonzo Colquitt | a policy runner | a childhood friend of the victim’s from the same block | fence | — | the vestibule of the Hallam apartments | — |
+| Gretchen Vogel | a pawnbroker’s man | a customer of the victim’s | murder | revenge | the ferry slip at the foot of the street | **YES** |
+| Augustus Dandridge | a society columnist | a witness against the people the victim worked for | blackmail | silence-a-witness | Dolan’s Bar | — |
+| Filomena Vitale (client) | a switchboard operator | the victim’s neighbour across the airshaft | hidden-family | — | Ruggiero’s barber shop | — |
+| Maureen Sweeney | a chambermaid | the victim’s former employee | fence | debt | the ferry slip at the foot of the street | — |
+| Teresa Marchetti | a widow with rooms on the avenue | the victim’s estranged spouse | secret-drinking | jealousy | Dolan’s Bar | — |
+| Thaddeus Thorndike | the bartender | fixture (bartender) | — | — | Dolan’s Bar | — |
+| Pasquale Moretti | the elevator man | fixture (elevator-man) | — | — | the vestibule of the Hallam apartments | — |
+| Lucia Ruggiero | the man behind the counter | fixture (counterman) | — | — | Ruggiero’s barber shop | — |
+| Friedrich Brauer | the patrolman on the beat | fixture (beat-cop) | — | — | the ferry slip at the foot of the street | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: a folded stack of evening papers, a camel-hair overcoat on a hook
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: the roof door key
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a silver cigarette case, a seltzer siphon
-- **Kitchen** (private) — adjacent: Bar, Service Stairs, Street; sees: Bar; noise carries to: Bar, Service Stairs; objects: none
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a mop and bucket, a steamer trunk
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a nickel-plated revolver, a bronze bookend
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a terracotta flower pot
-- **Street** (public) — adjacent: Lobby, Kitchen; sees: Lobby; noise carries to: Lobby; objects: a brass umbrella stand
+- **Dolan’s Bar** (semi) — watched by bartender (Thaddeus Thorndike); objects: a silver cigarette case, a seltzer siphon, a bottle of chloral drops — within earshot of the scene
+- **the victim’s apartment on the fourth floor** (private) — unwatched; objects: a nickel-plated revolver, a bronze bookend, a length of sash cord, a framed photograph — the victim’s address; where the weapon lived
+- **the ferry slip at the foot of the street** (public) — unwatched; objects: a folded stack of evening papers, a strapped suitcase
+- **the vestibule of the Hallam apartments** (private) — watched by elevator-man (Pasquale Moretti); objects: a brass umbrella stand, a day ledger, a camel-hair overcoat on a hook
+- **Ruggiero’s barber shop** (semi) — watched by counterman (Lucia Ruggiero); objects: an ice pick — within earshot of the scene
+- **the roof over the Dover** (private) — unwatched; objects: a terracotta flower pot, the roof-door key — **THE SCENE**
 
-**Environment:** Rain from 8:00 PM. Bar radio at 8:30 PM: a six-day bicycle race from the Velodrome — a rider fell at the bank and the lead changed hands.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 7:30 PM–9:00 PM, four ticks wide. These are what close it: **church-bells** and **regular-stool**.
 
-### Sadie Lefkowitz — the victim
+- **the regular who takes the same seat every night** — at 8:00 PM; at Ruggiero’s barber shop. Somebody reliable notes who was there.
+- **the bells at St. Malachy’s** — at 6:30 PM, 7:30 PM, 8:30 PM, 9:30 PM, 10:30 PM, 11:30 PM; across the whole neighbourhood. You can time things by it: the half hours are rung and the whole hours are rung twice.
+- **the beat cop’s pass** — at 7:00 PM, 8:30 PM, 10:00 PM, 11:30 PM; on a round through the ferry slip at the foot of the street → Dolan’s Bar → Ruggiero’s barber shop. Somebody reliable notes who was there.
+
+## 5. Timelines
+
+### Roscoe Whitfield — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Victim's Suite | Victim's Suite | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Roof Garden ☠ | Roof Garden | — |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 3 | 7:30 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 4 | 8:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 5 | 8:30 PM | the roof over the Dover ☠ | the roof over the Dover | — |
+| 6 | 9:00 PM | — | — | — |
+| 7 | 9:30 PM | — | — | — |
+| 8 | 10:00 PM | — | — | — |
 | 9 | 10:30 PM | — | — | — |
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Gustav Wehrle
+### Alonzo Colquitt
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Bar | **Lobby** | Daniel Hanrahan |
-| 8 | 10:00 PM | Bar | **Lobby** | Daniel Hanrahan |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
+| 0 | 6:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 1 | 6:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | Ruggiero’s barber shop | **Dolan’s Bar** | — |
+| 6 | 9:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 7 | 9:30 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 8 | 10:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 10 | 11:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 11 | 11:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
 
-### Daniel Hanrahan
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Service Stairs | **Street** | Mary Kavanagh |
-| 2 | 7:00 PM | Service Stairs | **Street** | Mary Kavanagh |
-| 3 | 7:30 PM | Service Stairs | **Street** | Mary Kavanagh |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Bar | Bar | — |
-
-### Percival Dandridge
+### Gretchen Vogel — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Bar | Bar | — |
-| 1 | 6:30 PM | Bar | Bar | — |
-| 2 | 7:00 PM | Bar | Bar | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Kitchen | Kitchen | — |
-| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
-| 7 | 9:30 PM | Service Stairs | Service Stairs | — |
-| 8 | 10:00 PM | Kitchen | **Lobby** | — |
-| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 1 | 6:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 2 | 7:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 3 | 7:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 4 | 8:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 5 | 8:30 PM | the roof over the Dover ☠ | **Dolan’s Bar** | — |
+| 6 | 9:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 7 | 9:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 8 | 10:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | Dolan’s Bar | Dolan’s Bar | — |
 
-### Mary Kavanagh
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Service Stairs | **Street** | Rachel Kessler |
-| 2 | 7:00 PM | Service Stairs | **Street** | Rachel Kessler |
-| 3 | 7:30 PM | Service Stairs | **Street** | Rachel Kessler |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Street | Street | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
-
-### Hyman Hurwitz
+### Augustus Dandridge
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Victim's Suite | **Lobby** | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 3 | 7:30 PM | the vestibule of the Hallam apartments | **Ruggiero’s barber shop** | — |
+| 4 | 8:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 10 | 11:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 11 | 11:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
 
-### Rachel Kessler — the killer
+### Filomena Vitale
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Roof Garden | **Street** | Mary Kavanagh |
-| 7 | 9:30 PM | Roof Garden | **Street** | Mary Kavanagh |
-| 8 | 10:00 PM | Roof Garden ☠ | **Street** | Mary Kavanagh |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 1 | 6:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 3 | 7:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 4 | 8:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | **the vestibule of the Hallam apartments** | Alonzo Colquitt |
+| 10 | 11:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 11 | 11:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+
+### Maureen Sweeney
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 1 | 6:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 2 | 7:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 3 | 7:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 4 | 8:00 PM | the roof over the Dover | the roof over the Dover | — |
+| 5 | 8:30 PM | Ruggiero’s barber shop | **Dolan’s Bar** | Gretchen Vogel |
+| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 7 | 9:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 8 | 10:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 10 | 11:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 11 | 11:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+
+### Teresa Marchetti
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 1 | 6:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 2 | 7:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 3 | 7:30 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 4 | 8:00 PM | Dolan’s Bar | **the vestibule of the Hallam apartments** | — |
+| 5 | 8:30 PM | Dolan’s Bar | **the vestibule of the Hallam apartments** | — |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 9 | 10:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | Dolan’s Bar | Dolan’s Bar | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Wilhelm Obermann (the doorman) | Antonio Grasso (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Lobby | Bar |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Bar |
-| 9 | 10:30 PM | Front Desk | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Gustav Wehrle** (secret-drinking): Gustav Wehrle drinks alone in the Bar from 9:30 PM to 10:00 PM and will claim to have been anywhere else.
-- **Daniel Hanrahan** (affair): Daniel Hanrahan is with Mary Kavanagh in the Service Stairs from 6:30 PM to 7:30 PM, and both will say they were somewhere else.
-- **Percival Dandridge** (fence): Percival Dandridge hands a parcel of stolen goods to a man at the Kitchen at 10:00 PM.
-- **Mary Kavanagh** (affair): Mary Kavanagh is with Daniel Hanrahan in the Service Stairs from 6:30 PM to 7:30 PM, and both will say they were somewhere else.
-- **Hyman Hurwitz** (blackmail): Hyman Hurwitz meets the victim alone in the Victim's Suite from 7:30 PM and asks for money.
-- **Rachel Kessler** (murder): Rachel Kessler is alone with Sadie Lefkowitz in the Roof Garden from 9:00 PM to 10:00 PM, and kills Sadie Lefkowitz at 10:00 PM.
-
-## 6. Clue list
-
-### From Gustav Wehrle (a private secretary)
-
-On Sadie Lefkowitz:
-
-- **c001** [observation] Gustav Wehrle says Sadie Lefkowitz was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Sadie Lefkowitz in the Lobby, 6:00 PM–7:00 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM_
-- **c002** [observation] Gustav Wehrle says Sadie Lefkowitz was in the Lobby from 8:30 PM to 9:00 PM. — _establishes: Sadie Lefkowitz in the Lobby, 8:30 PM–9:00 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM_
-
-On Daniel Hanrahan:
-
-- **c003** [observation] Gustav Wehrle says Daniel Hanrahan was in the Lobby at 10:30 PM. — _establishes: Daniel Hanrahan in the Lobby, 10:30 PM_
-- **c004** [observation] Gustav Wehrle says Daniel Hanrahan was in the Bar at 11:30 PM. — _establishes: Daniel Hanrahan in the Bar, 11:30 PM_
-
-On Percival Dandridge:
-
-- **c005** [observation] Gustav Wehrle says Percival Dandridge was in the Bar at 6:00 PM. — _establishes: Percival Dandridge in the Bar, 6:00 PM_
-- **c006** [observation] Gustav Wehrle says Percival Dandridge was in the Bar at 7:30 PM. — _establishes: Percival Dandridge in the Bar, 7:30 PM_
-- **c007** [observation] Gustav Wehrle says Percival Dandridge was in the Bar at 11:30 PM. — _establishes: Percival Dandridge in the Bar, 11:30 PM_
-
-On Mary Kavanagh:
-
-- **c008** [observation] Gustav Wehrle says Mary Kavanagh was in the Lobby at 6:00 PM. — _establishes: Mary Kavanagh in the Lobby, 6:00 PM_
-- **c009** [observation] Gustav Wehrle says Mary Kavanagh was in the Lobby at 9:00 PM. — _establishes: Mary Kavanagh in the Lobby, 9:00 PM_
-
-On Hyman Hurwitz:
-
-- **c010** [observation] Gustav Wehrle says Hyman Hurwitz was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Hyman Hurwitz at the Front Desk, 6:00 PM–6:30 PM; Hyman Hurwitz had access to the method_
-- **c011** [observation] Gustav Wehrle says Hyman Hurwitz was in the Lobby at 7:00 PM. — _establishes: Hyman Hurwitz in the Lobby, 7:00 PM_
-- **c012** [observation] Gustav Wehrle says Hyman Hurwitz was in the Lobby at 9:00 PM. — _establishes: Hyman Hurwitz in the Lobby, 9:00 PM_
-- **c013** [observation] Gustav Wehrle says Hyman Hurwitz was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Hyman Hurwitz in the Bar, 10:30 PM–11:30 PM_
-
-On Rachel Kessler:
-
-- **c014** [observation] Gustav Wehrle says Rachel Kessler was at the Front Desk at 6:00 PM. — _establishes: Rachel Kessler at the Front Desk, 6:00 PM; Rachel Kessler had access to the method_
-- **c015** [observation] Gustav Wehrle says Rachel Kessler was at the Front Desk from 7:00 PM to 8:00 PM. — _establishes: Rachel Kessler at the Front Desk, 7:00 PM–8:00 PM; Rachel Kessler had access to the method_
-- **c016** [observation] Gustav Wehrle says Rachel Kessler was in the Lobby at 6:30 PM. — _establishes: Rachel Kessler in the Lobby, 6:30 PM_
-- **c017** [observation] Gustav Wehrle says Rachel Kessler was in the Lobby at 8:30 PM. — _establishes: Rachel Kessler in the Lobby, 8:30 PM_
-- **c018** [observation] Gustav Wehrle says Rachel Kessler was in the Lobby at 10:30 PM. — _establishes: Rachel Kessler in the Lobby, 10:30 PM_
-
-On Daniel Hanrahan's account:
-
-- **c159** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 7:30 PM_
-
-On Mary Kavanagh's account:
-
-- **c168** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:30 PM_
-
-On Hyman Hurwitz's account:
-
-- **c173** [observation] Gustav Wehrle was in the Lobby at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
-
-On Rachel Kessler's account:
-
-- **c178** [observation] Gustav Wehrle was in the Lobby at 9:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM_
-
-### From Daniel Hanrahan (a travelling salesman in patent medicines)
-
-On Sadie Lefkowitz:
-
-- **c019** [observation] Daniel Hanrahan says Sadie Lefkowitz was on the Service Stairs at 8:00 PM. — _establishes: Sadie Lefkowitz on the Service Stairs, 8:00 PM; the victim alive at 8:00 PM_
-- **c020** [observation] Daniel Hanrahan says Sadie Lefkowitz was in the Lobby at 9:30 PM. — _establishes: Sadie Lefkowitz in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-
-On Gustav Wehrle:
-
-- **c021** [observation] Daniel Hanrahan says Gustav Wehrle was in the Bar from 9:30 PM to 10:30 PM. — _establishes: Gustav Wehrle in the Bar, 9:30 PM–10:30 PM_
-- **c022** [observation] Daniel Hanrahan says Gustav Wehrle was in the Kitchen at 11:30 PM. — _establishes: Gustav Wehrle in the Kitchen, 11:30 PM_
-
-On Percival Dandridge:
-
-- **c023** [observation] Daniel Hanrahan says Percival Dandridge was in the Bar at 6:00 PM. — _establishes: Percival Dandridge in the Bar, 6:00 PM_
-- **c024** [observation] Daniel Hanrahan says Percival Dandridge was in the Bar at 11:30 PM. — _establishes: Percival Dandridge in the Bar, 11:30 PM_
-- **c025** [observation] Daniel Hanrahan says Percival Dandridge was in the Lobby at 11:00 PM. — _establishes: Percival Dandridge in the Lobby, 11:00 PM_
-
-On Mary Kavanagh:
-
-- **c026** [observation] Daniel Hanrahan says Mary Kavanagh was on the Service Stairs at 8:30 PM. — _establishes: Mary Kavanagh on the Service Stairs, 8:30 PM_
-- **c027** [observation] Daniel Hanrahan says Mary Kavanagh was in the Lobby at 9:30 PM. — _establishes: Mary Kavanagh in the Lobby, 9:30 PM_
-- **c028** [observation] Daniel Hanrahan says Mary Kavanagh was on the Street from 10:00 PM to 11:00 PM. — _establishes: Mary Kavanagh on the Street, 10:00 PM–11:00 PM_
-
-On Hyman Hurwitz:
-
-- **c029** [observation] Daniel Hanrahan says Hyman Hurwitz was on the Service Stairs from 8:00 PM to 8:30 PM. — _establishes: Hyman Hurwitz on the Service Stairs, 8:00 PM–8:30 PM_
-- **c030** [observation] Daniel Hanrahan says Hyman Hurwitz was in the Lobby at 9:30 PM. — _establishes: Hyman Hurwitz in the Lobby, 9:30 PM_
-- **c031** [observation] Daniel Hanrahan says Hyman Hurwitz was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Hyman Hurwitz in the Bar, 10:00 PM–11:30 PM_
-
-On Rachel Kessler:
-
-- **c032** [observation] Daniel Hanrahan says Rachel Kessler was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Rachel Kessler in the Lobby, 10:30 PM–11:00 PM_
-
-On Gustav Wehrle's account:
-
-- **c151** [observation] Daniel Hanrahan was in the Bar at 9:30 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM_
-- **c152** [observation] Daniel Hanrahan was in the Lobby at 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 10:00 PM_
-
-On Percival Dandridge's account:
-
-- **c163** [observation] Daniel Hanrahan was in the Lobby at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
-
-On Rachel Kessler's account:
-
-- **c179** [observation] Daniel Hanrahan was in the Lobby at 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 10:00 PM_
-
-### From Percival Dandridge (a longshoreman)
-
-On Sadie Lefkowitz:
-
-- **c033** [observation] Percival Dandridge says Sadie Lefkowitz was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Sadie Lefkowitz in the Lobby, 6:00 PM–7:00 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM_
-
-On Gustav Wehrle:
-
-- **c034** [observation] Percival Dandridge says Gustav Wehrle was in the Lobby at 6:00 PM. — _establishes: Gustav Wehrle in the Lobby, 6:00 PM_
-- **c035** [observation] Percival Dandridge says Gustav Wehrle was in the Lobby at 7:30 PM. — _establishes: Gustav Wehrle in the Lobby, 7:30 PM_
-- **c036** [observation] Percival Dandridge says Gustav Wehrle was in the Kitchen at 11:30 PM. — _establishes: Gustav Wehrle in the Kitchen, 11:30 PM_
-
-On Daniel Hanrahan:
-
-- **c037** [observation] Percival Dandridge says Daniel Hanrahan was in the Kitchen at 6:00 PM. — _establishes: Daniel Hanrahan in the Kitchen, 6:00 PM_
-- **c038** [observation] Percival Dandridge says Daniel Hanrahan was in the Lobby at 11:00 PM. — _establishes: Daniel Hanrahan in the Lobby, 11:00 PM_
-- **c039** [observation] Percival Dandridge says Daniel Hanrahan was in the Bar at 11:30 PM. — _establishes: Daniel Hanrahan in the Bar, 11:30 PM_
-
-On Mary Kavanagh:
-
-- **c040** [observation] Percival Dandridge says Mary Kavanagh was in the Lobby at 6:00 PM. — _establishes: Mary Kavanagh in the Lobby, 6:00 PM_
-- **c041** [observation] Percival Dandridge says Mary Kavanagh was in the Kitchen at 8:00 PM. — _establishes: Mary Kavanagh in the Kitchen, 8:00 PM_
-- **c042** [observation] Percival Dandridge says Mary Kavanagh was on the Street at 11:00 PM. — _establishes: Mary Kavanagh on the Street, 11:00 PM_
-
-On Hyman Hurwitz:
-
-- **c043** [observation] Percival Dandridge says Hyman Hurwitz was in the Lobby at 7:00 PM. — _establishes: Hyman Hurwitz in the Lobby, 7:00 PM_
-- **c044** [observation] Percival Dandridge says Hyman Hurwitz was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Hyman Hurwitz in the Bar, 11:00 PM–11:30 PM_
-
-On Rachel Kessler:
-
-- **c045** [observation] Percival Dandridge says Rachel Kessler was in the Lobby at 6:30 PM. — _establishes: Rachel Kessler in the Lobby, 6:30 PM_
-- **c046** [observation] Percival Dandridge says Rachel Kessler was in the Lobby at 11:00 PM. — _establishes: Rachel Kessler in the Lobby, 11:00 PM_
-
-On Hyman Hurwitz's account:
-
-- **c174** [observation] Percival Dandridge was in the Bar at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
-
-### From Mary Kavanagh (a wine steward out of work since the Act)
-
-On Sadie Lefkowitz:
-
-- **c047** [observation] Mary Kavanagh says Sadie Lefkowitz was in the Lobby at 6:00 PM. — _establishes: Sadie Lefkowitz in the Lobby, 6:00 PM; the victim alive at 6:00 PM_
-- **c048** [observation] Mary Kavanagh says Sadie Lefkowitz was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Sadie Lefkowitz in the Lobby, 9:00 PM–9:30 PM; the victim alive at 9:00 PM; the victim alive at 9:30 PM_
-
-On Gustav Wehrle:
-
-- **c049** [observation] Mary Kavanagh says Gustav Wehrle was in the Lobby at 6:00 PM. — _establishes: Gustav Wehrle in the Lobby, 6:00 PM_
-- **c050** [observation] Mary Kavanagh says Gustav Wehrle was in the Lobby at 9:00 PM. — _establishes: Gustav Wehrle in the Lobby, 9:00 PM_
-- **c051** [observation] Mary Kavanagh says Gustav Wehrle was in the Bar at 9:30 PM. — _establishes: Gustav Wehrle in the Bar, 9:30 PM_
-
-On Daniel Hanrahan:
-
-- **c052** [observation] Mary Kavanagh says Daniel Hanrahan was on the Service Stairs at 8:30 PM. — _establishes: Daniel Hanrahan on the Service Stairs, 8:30 PM_
-- **c053** [observation] Mary Kavanagh says Daniel Hanrahan was in the Bar at 9:30 PM. — _establishes: Daniel Hanrahan in the Bar, 9:30 PM_
-- **c054** [observation] Mary Kavanagh says Daniel Hanrahan was in the Lobby from 10:00 PM to 11:00 PM. — _establishes: Daniel Hanrahan in the Lobby, 10:00 PM–11:00 PM_
-
-On Percival Dandridge:
-
-- **c055** [observation] Mary Kavanagh says Percival Dandridge was in the Bar at 6:00 PM. — _establishes: Percival Dandridge in the Bar, 6:00 PM_
-- **c056** [observation] Mary Kavanagh says Percival Dandridge was in the Kitchen at 8:00 PM. — _establishes: Percival Dandridge in the Kitchen, 8:00 PM_
-- **c057** [observation] Mary Kavanagh says Percival Dandridge was in the Lobby at 11:00 PM. — _establishes: Percival Dandridge in the Lobby, 11:00 PM_
-
-On Hyman Hurwitz:
-
-- **c058** [observation] Mary Kavanagh says Hyman Hurwitz was at the Front Desk at 6:00 PM. — _establishes: Hyman Hurwitz at the Front Desk, 6:00 PM; Hyman Hurwitz had access to the method_
-- **c059** [observation] Mary Kavanagh says Hyman Hurwitz was on the Service Stairs at 8:30 PM. — _establishes: Hyman Hurwitz on the Service Stairs, 8:30 PM_
-- **c060** [observation] Mary Kavanagh says Hyman Hurwitz was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Hyman Hurwitz in the Lobby, 9:00 PM–9:30 PM_
-
-On Rachel Kessler:
-
-- **c061** [observation] Mary Kavanagh says Rachel Kessler was at the Front Desk at 6:00 PM. — _establishes: Rachel Kessler at the Front Desk, 6:00 PM; Rachel Kessler had access to the method_
-- **c062** [observation] Mary Kavanagh says Rachel Kessler was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Rachel Kessler in the Lobby, 10:30 PM–11:00 PM_
-
-On Gustav Wehrle's account:
-
-- **c153** [observation] Mary Kavanagh was in the Lobby at 9:30 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM_
-- **c154** [observation] Mary Kavanagh was on the Street at 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 10:00 PM_
-
-On Percival Dandridge's account:
-
-- **c164** [observation] Mary Kavanagh was on the Street at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
-
-On Rachel Kessler's account:
-
-- **c180** [observation] Mary Kavanagh was in the Lobby from 9:00 PM to 9:30 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–9:30 PM_
-- **c181** [observation] Mary Kavanagh was on the Street at 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 10:00 PM_
-
-### From Hyman Hurwitz (a dentist with rooms on the third floor)
-
-On Sadie Lefkowitz:
-
-- **c063** [observation] Hyman Hurwitz says Sadie Lefkowitz was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Sadie Lefkowitz in the Lobby, 6:00 PM–7:00 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM_
-- **c064** [observation] Hyman Hurwitz says Sadie Lefkowitz was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Sadie Lefkowitz in the Lobby, 9:00 PM–9:30 PM; the victim alive at 9:00 PM; the victim alive at 9:30 PM_
-- **c065** [observation] Hyman Hurwitz says Sadie Lefkowitz was on the Service Stairs at 8:00 PM. — _establishes: Sadie Lefkowitz on the Service Stairs, 8:00 PM; the victim alive at 8:00 PM_
-
-On Gustav Wehrle:
-
-- **c066** [observation] Hyman Hurwitz says Gustav Wehrle was in the Lobby at 6:00 PM. — _establishes: Gustav Wehrle in the Lobby, 6:00 PM_
-- **c067** [observation] Hyman Hurwitz says Gustav Wehrle was in the Lobby at 9:00 PM. — _establishes: Gustav Wehrle in the Lobby, 9:00 PM_
-- **c068** [observation] Hyman Hurwitz says Gustav Wehrle was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Gustav Wehrle at the Front Desk, 6:30 PM–7:00 PM; Gustav Wehrle had access to the method_
-- **c069** [observation] Hyman Hurwitz says Gustav Wehrle was in the Bar from 9:30 PM to 10:30 PM. — _establishes: Gustav Wehrle in the Bar, 9:30 PM–10:30 PM_
-- **c070** [observation] Hyman Hurwitz says Gustav Wehrle was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Gustav Wehrle in the Kitchen, 11:00 PM–11:30 PM_
-
-On Daniel Hanrahan:
-
-- **c071** [observation] Hyman Hurwitz says Daniel Hanrahan was on the Service Stairs from 8:00 PM to 8:30 PM. — _establishes: Daniel Hanrahan on the Service Stairs, 8:00 PM–8:30 PM_
-- **c072** [observation] Hyman Hurwitz says Daniel Hanrahan was in the Bar at 9:30 PM. — _establishes: Daniel Hanrahan in the Bar, 9:30 PM_
-- **c073** [observation] Hyman Hurwitz says Daniel Hanrahan was in the Bar at 11:30 PM. — _establishes: Daniel Hanrahan in the Bar, 11:30 PM_
-- **c074** [observation] Hyman Hurwitz says Daniel Hanrahan was in the Lobby from 10:00 PM to 11:00 PM. — _establishes: Daniel Hanrahan in the Lobby, 10:00 PM–11:00 PM_
-
-On Percival Dandridge:
-
-- **c075** [observation] Hyman Hurwitz says Percival Dandridge was in the Bar at 7:00 PM. — _establishes: Percival Dandridge in the Bar, 7:00 PM_
-- **c076** [observation] Hyman Hurwitz says Percival Dandridge was in the Bar at 11:30 PM. — _establishes: Percival Dandridge in the Bar, 11:30 PM_
-- **c077** [observation] Hyman Hurwitz says Percival Dandridge was in the Kitchen at 10:00 PM. — _establishes: Percival Dandridge in the Kitchen, 10:00 PM_
-- **c078** [observation] Hyman Hurwitz says Percival Dandridge was in the Lobby at 11:00 PM. — _establishes: Percival Dandridge in the Lobby, 11:00 PM_
-
-On Mary Kavanagh:
-
-- **c079** [observation] Hyman Hurwitz says Mary Kavanagh was in the Lobby at 6:00 PM. — _establishes: Mary Kavanagh in the Lobby, 6:00 PM_
-- **c080** [observation] Hyman Hurwitz says Mary Kavanagh was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Mary Kavanagh in the Lobby, 9:00 PM–9:30 PM_
-- **c081** [observation] Hyman Hurwitz says Mary Kavanagh was on the Service Stairs at 8:30 PM. — _establishes: Mary Kavanagh on the Service Stairs, 8:30 PM_
-
-On Rachel Kessler:
-
-- **c082** [observation] Hyman Hurwitz says Rachel Kessler was at the Front Desk at 6:00 PM. — _establishes: Rachel Kessler at the Front Desk, 6:00 PM; Rachel Kessler had access to the method_
-- **c083** [observation] Hyman Hurwitz says Rachel Kessler was at the Front Desk at 7:00 PM. — _establishes: Rachel Kessler at the Front Desk, 7:00 PM; Rachel Kessler had access to the method_
-- **c084** [observation] Hyman Hurwitz says Rachel Kessler was in the Lobby at 6:30 PM. — _establishes: Rachel Kessler in the Lobby, 6:30 PM_
-- **c085** [observation] Hyman Hurwitz says Rachel Kessler was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Rachel Kessler in the Lobby, 10:30 PM–11:00 PM_
-
-On Gustav Wehrle's account:
-
-- **c155** [observation] Hyman Hurwitz was in the Lobby at 9:30 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM_
-- **c156** [observation] Hyman Hurwitz was in the Bar at 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 10:00 PM_
-
-On Daniel Hanrahan's account:
-
-- **c160** [observation] Hyman Hurwitz was in the Lobby at 7:00 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 7:00 PM_
-
-On Percival Dandridge's account:
-
-- **c165** [observation] Hyman Hurwitz was in the Bar at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
-
-On Mary Kavanagh's account:
-
-- **c169** [observation] Hyman Hurwitz was in the Lobby at 7:00 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:00 PM_
-
-On Rachel Kessler's account:
-
-- **c182** [observation] Hyman Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–9:30 PM_
-
-### From Rachel Kessler (a photographer for the rotogravure section)
-
-On Sadie Lefkowitz:
-
-- **c086** [observation] Rachel Kessler says Sadie Lefkowitz was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Sadie Lefkowitz in the Lobby, 6:00 PM–7:00 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM_
-- **c087** [observation] Rachel Kessler says Sadie Lefkowitz was in the Lobby at 8:30 PM. — _establishes: Sadie Lefkowitz in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Gustav Wehrle:
-
-- **c088** [observation] Rachel Kessler says Gustav Wehrle was in the Lobby at 6:00 PM. — _establishes: Gustav Wehrle in the Lobby, 6:00 PM_
-- **c089** [observation] Rachel Kessler says Gustav Wehrle was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Gustav Wehrle in the Lobby, 7:30 PM–8:30 PM_
-- **c090** [observation] Rachel Kessler says Gustav Wehrle was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Gustav Wehrle at the Front Desk, 6:30 PM–7:00 PM; Gustav Wehrle had access to the method_
-- **c091** [observation] Rachel Kessler says Gustav Wehrle was in the Bar at 10:30 PM. — _establishes: Gustav Wehrle in the Bar, 10:30 PM_
-
-On Daniel Hanrahan:
-
-- **c092** [observation] Rachel Kessler says Daniel Hanrahan was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Daniel Hanrahan in the Lobby, 10:30 PM–11:00 PM_
-
-On Percival Dandridge:
-
-- **c093** [observation] Rachel Kessler says Percival Dandridge was in the Bar at 6:30 PM. — _establishes: Percival Dandridge in the Bar, 6:30 PM_
-- **c094** [observation] Rachel Kessler says Percival Dandridge was in the Lobby at 11:00 PM. — _establishes: Percival Dandridge in the Lobby, 11:00 PM_
-
-On Mary Kavanagh:
-
-- **c095** [observation] Rachel Kessler says Mary Kavanagh was in the Lobby at 6:00 PM. — _establishes: Mary Kavanagh in the Lobby, 6:00 PM_
-- **c096** [observation] Rachel Kessler says Mary Kavanagh was on the Street from 10:30 PM to 11:00 PM. — _establishes: Mary Kavanagh on the Street, 10:30 PM–11:00 PM_
-
-On Hyman Hurwitz:
-
-- **c097** [observation] Rachel Kessler says Hyman Hurwitz was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Hyman Hurwitz at the Front Desk, 6:00 PM–6:30 PM; Hyman Hurwitz had access to the method_
-- **c098** [observation] Rachel Kessler says Hyman Hurwitz was in the Lobby at 7:00 PM. — _establishes: Hyman Hurwitz in the Lobby, 7:00 PM_
-- **c099** [observation] Rachel Kessler says Hyman Hurwitz was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Hyman Hurwitz in the Bar, 10:30 PM–11:00 PM_
-
-On Daniel Hanrahan's account:
-
-- **c161** [observation] Rachel Kessler was in the Lobby at 6:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 6:30 PM_
-
-On Mary Kavanagh's account:
-
-- **c170** [observation] Rachel Kessler was in the Lobby at 6:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 6:30 PM_
-- **c172** [observation] Mary Kavanagh says Rachel Kessler was there. Rachel Kessler says otherwise: Rachel Kessler was at the Front Desk from 7:00 PM to 7:30 PM, not on the Street. — _establishes: Mary Kavanagh not on the Street, 7:00 PM–7:30 PM_
-
-On Hyman Hurwitz's account:
-
-- **c175** [observation] Rachel Kessler was at the Front Desk at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
-
-### From Wilhelm Obermann (the doorman)
-
-On Sadie Lefkowitz:
-
-- **c100** [observation] Wilhelm Obermann says Sadie Lefkowitz was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Sadie Lefkowitz in the Lobby, 6:00 PM–7:00 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM_
-- **c101** [observation] Wilhelm Obermann says Sadie Lefkowitz was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Sadie Lefkowitz in the Lobby, 8:30 PM–9:30 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM; the victim alive at 9:30 PM_
-
-On Gustav Wehrle:
-
-- **c102** [observation] Wilhelm Obermann says Gustav Wehrle was in the Lobby at 6:00 PM. — _establishes: Gustav Wehrle in the Lobby, 6:00 PM_
-- **c103** [observation] Wilhelm Obermann says Gustav Wehrle was in the Lobby from 7:30 PM to 9:00 PM. — _establishes: Gustav Wehrle in the Lobby, 7:30 PM–9:00 PM_
-- **c104** [observation] Wilhelm Obermann says Gustav Wehrle was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Gustav Wehrle at the Front Desk, 6:30 PM–7:00 PM; Gustav Wehrle had access to the method_
-- **c105** [observation] Wilhelm Obermann says Gustav Wehrle was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Gustav Wehrle in the Bar, 9:30 PM–10:00 PM_
-
-On Daniel Hanrahan:
-
-- **c106** [observation] Wilhelm Obermann says Daniel Hanrahan was in the Bar at 9:30 PM. — _establishes: Daniel Hanrahan in the Bar, 9:30 PM_
-- **c107** [observation] Wilhelm Obermann says Daniel Hanrahan was in the Bar at 11:30 PM. — _establishes: Daniel Hanrahan in the Bar, 11:30 PM_
-- **c108** [observation] Wilhelm Obermann says Daniel Hanrahan was in the Lobby from 10:00 PM to 11:00 PM. — _establishes: Daniel Hanrahan in the Lobby, 10:00 PM–11:00 PM_
-
-On Percival Dandridge:
-
-- **c109** [observation] Wilhelm Obermann says Percival Dandridge was in the Bar from 6:00 PM to 7:30 PM. — _establishes: Percival Dandridge in the Bar, 6:00 PM–7:30 PM_
-- **c110** [observation] Wilhelm Obermann says Percival Dandridge was in the Bar at 11:30 PM. — _establishes: Percival Dandridge in the Bar, 11:30 PM_
-- **c111** [observation] Wilhelm Obermann says Percival Dandridge was in the Lobby at 11:00 PM. — _establishes: Percival Dandridge in the Lobby, 11:00 PM_
-
-On Mary Kavanagh:
-
-- **c112** [observation] Wilhelm Obermann says Mary Kavanagh was in the Lobby at 6:00 PM. — _establishes: Mary Kavanagh in the Lobby, 6:00 PM_
-- **c113** [observation] Wilhelm Obermann says Mary Kavanagh was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Mary Kavanagh in the Lobby, 9:00 PM–9:30 PM_
-- **c114** [observation] Wilhelm Obermann says Mary Kavanagh was on the Street at 10:00 PM. — _establishes: Mary Kavanagh on the Street, 10:00 PM_
-- **c115** [observation] Wilhelm Obermann says Mary Kavanagh was on the Street from 11:00 PM to 11:30 PM. — _establishes: Mary Kavanagh on the Street, 11:00 PM–11:30 PM_
-
-On Hyman Hurwitz:
-
-- **c116** [observation] Wilhelm Obermann says Hyman Hurwitz was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Hyman Hurwitz at the Front Desk, 6:00 PM–6:30 PM; Hyman Hurwitz had access to the method_
-- **c117** [observation] Wilhelm Obermann says Hyman Hurwitz was in the Lobby at 7:00 PM. — _establishes: Hyman Hurwitz in the Lobby, 7:00 PM_
-- **c118** [observation] Wilhelm Obermann says Hyman Hurwitz was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Hyman Hurwitz in the Lobby, 9:00 PM–9:30 PM_
-- **c119** [observation] Wilhelm Obermann says Hyman Hurwitz was in the Bar at 10:00 PM. — _establishes: Hyman Hurwitz in the Bar, 10:00 PM_
-- **c120** [observation] Wilhelm Obermann says Hyman Hurwitz was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Hyman Hurwitz in the Bar, 11:00 PM–11:30 PM_
-
-On Rachel Kessler:
-
-- **c121** [observation] Wilhelm Obermann says Rachel Kessler was at the Front Desk at 6:00 PM. — _establishes: Rachel Kessler at the Front Desk, 6:00 PM; Rachel Kessler had access to the method_
-- **c122** [observation] Wilhelm Obermann says Rachel Kessler was at the Front Desk from 7:00 PM to 8:00 PM. — _establishes: Rachel Kessler at the Front Desk, 7:00 PM–8:00 PM; Rachel Kessler had access to the method_
-- **c123** [observation] Wilhelm Obermann says Rachel Kessler was in the Lobby at 6:30 PM. — _establishes: Rachel Kessler in the Lobby, 6:30 PM_
-- **c124** [observation] Wilhelm Obermann says Rachel Kessler was in the Lobby at 8:30 PM. — _establishes: Rachel Kessler in the Lobby, 8:30 PM_
-- **c125** [observation] Wilhelm Obermann says Rachel Kessler was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Rachel Kessler in the Lobby, 10:30 PM–11:00 PM_
-
-On Gustav Wehrle's account:
-
-- **c157** [observation] Wilhelm Obermann was in the Lobby from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
-
-On Daniel Hanrahan's account:
-
-- **c162** [observation] Wilhelm Obermann was in the Lobby from 6:30 PM to 7:30 PM and says Daniel Hanrahan was not on the Street. — _establishes: Daniel Hanrahan not on the Street, 6:30 PM–7:30 PM_
-
-On Percival Dandridge's account:
-
-- **c166** [observation] Wilhelm Obermann was in the Lobby at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
-
-On Mary Kavanagh's account:
-
-- **c171** [observation] Wilhelm Obermann was in the Lobby from 6:30 PM to 7:30 PM and says Mary Kavanagh was not on the Street. — _establishes: Mary Kavanagh not on the Street, 6:30 PM–7:30 PM_
-
-On Hyman Hurwitz's account:
-
-- **c176** [observation] Wilhelm Obermann was in the Lobby at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
-
-On Rachel Kessler's account:
-
-- **c183** [observation] Wilhelm Obermann was in the Lobby from 9:00 PM to 10:00 PM and says Rachel Kessler was not on the Street. — _establishes: Rachel Kessler not on the Street, 9:00 PM–10:00 PM_
-
-On Gustav Wehrle and Sadie Lefkowitz:
-
-- **c189** [overheard] Wilhelm Obermann says Sadie Lefkowitz told Gustav Wehrle that the story would run whether Gustav Wehrle liked it or not. — _establishes: Gustav Wehrle had a motive (exposure)_
-
-### From Antonio Grasso (the bartender)
-
-On Sadie Lefkowitz:
-
-- **c126** [observation] Antonio Grasso says Sadie Lefkowitz was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Sadie Lefkowitz in the Lobby, 6:00 PM–7:00 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM_
-- **c127** [observation] Antonio Grasso says Sadie Lefkowitz was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Sadie Lefkowitz in the Lobby, 8:30 PM–9:30 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM; the victim alive at 9:30 PM_
-
-On Gustav Wehrle:
-
-- **c128** [observation] Antonio Grasso says Gustav Wehrle was in the Lobby at 6:00 PM. — _establishes: Gustav Wehrle in the Lobby, 6:00 PM_
-- **c129** [observation] Antonio Grasso says Gustav Wehrle was in the Lobby from 7:30 PM to 9:00 PM. — _establishes: Gustav Wehrle in the Lobby, 7:30 PM–9:00 PM_
-- **c130** [observation] Antonio Grasso says Gustav Wehrle was in the Bar from 9:30 PM to 10:30 PM. — _establishes: Gustav Wehrle in the Bar, 9:30 PM–10:30 PM_
-- **c131** [observation] Antonio Grasso says Gustav Wehrle was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Gustav Wehrle in the Kitchen, 11:00 PM–11:30 PM_
-
-On Daniel Hanrahan:
-
-- **c132** [observation] Antonio Grasso says Daniel Hanrahan was in the Kitchen at 6:00 PM. — _establishes: Daniel Hanrahan in the Kitchen, 6:00 PM_
-- **c133** [observation] Antonio Grasso says Daniel Hanrahan was in the Kitchen at 9:00 PM. — _establishes: Daniel Hanrahan in the Kitchen, 9:00 PM_
-- **c134** [observation] Antonio Grasso says Daniel Hanrahan was in the Bar at 9:30 PM. — _establishes: Daniel Hanrahan in the Bar, 9:30 PM_
-- **c135** [observation] Antonio Grasso says Daniel Hanrahan was in the Bar at 11:30 PM. — _establishes: Daniel Hanrahan in the Bar, 11:30 PM_
-- **c136** [observation] Antonio Grasso says Daniel Hanrahan was in the Lobby from 10:00 PM to 11:00 PM. — _establishes: Daniel Hanrahan in the Lobby, 10:00 PM–11:00 PM_
-
-On Percival Dandridge:
-
-- **c137** [observation] Antonio Grasso says Percival Dandridge was in the Bar from 6:00 PM to 7:30 PM. — _establishes: Percival Dandridge in the Bar, 6:00 PM–7:30 PM_
-- **c138** [observation] Antonio Grasso says Percival Dandridge was in the Bar at 11:30 PM. — _establishes: Percival Dandridge in the Bar, 11:30 PM_
-- **c139** [observation] Antonio Grasso says Percival Dandridge was in the Kitchen from 8:00 PM to 8:30 PM. — _establishes: Percival Dandridge in the Kitchen, 8:00 PM–8:30 PM_
-- **c140** [observation] Antonio Grasso says Percival Dandridge was in the Kitchen at 10:00 PM. — _establishes: Percival Dandridge in the Kitchen, 10:00 PM_
-- **c141** [observation] Antonio Grasso says Percival Dandridge was in the Lobby at 11:00 PM. — _establishes: Percival Dandridge in the Lobby, 11:00 PM_
-
-On Mary Kavanagh:
-
-- **c142** [observation] Antonio Grasso says Mary Kavanagh was in the Lobby at 6:00 PM. — _establishes: Mary Kavanagh in the Lobby, 6:00 PM_
-- **c143** [observation] Antonio Grasso says Mary Kavanagh was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Mary Kavanagh in the Lobby, 9:00 PM–9:30 PM_
-- **c144** [observation] Antonio Grasso says Mary Kavanagh was in the Kitchen at 8:00 PM. — _establishes: Mary Kavanagh in the Kitchen, 8:00 PM_
-
-On Hyman Hurwitz:
-
-- **c145** [observation] Antonio Grasso says Hyman Hurwitz was in the Lobby at 7:00 PM. — _establishes: Hyman Hurwitz in the Lobby, 7:00 PM_
-- **c146** [observation] Antonio Grasso says Hyman Hurwitz was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Hyman Hurwitz in the Lobby, 9:00 PM–9:30 PM_
-- **c147** [observation] Antonio Grasso says Hyman Hurwitz was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Hyman Hurwitz in the Bar, 10:00 PM–11:30 PM_
-
-On Rachel Kessler:
-
-- **c148** [observation] Antonio Grasso says Rachel Kessler was in the Lobby at 6:30 PM. — _establishes: Rachel Kessler in the Lobby, 6:30 PM_
-- **c149** [observation] Antonio Grasso says Rachel Kessler was in the Lobby at 8:30 PM. — _establishes: Rachel Kessler in the Lobby, 8:30 PM_
-- **c150** [observation] Antonio Grasso says Rachel Kessler was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Rachel Kessler in the Lobby, 10:30 PM–11:00 PM_
-
-On Gustav Wehrle's account:
-
-- **c158** [observation] Antonio Grasso was in the Bar from 9:30 PM to 10:00 PM and says Gustav Wehrle was not in the Lobby. — _establishes: Gustav Wehrle not in the Lobby, 9:30 PM–10:00 PM_
-
-On Percival Dandridge's account:
-
-- **c167** [observation] Antonio Grasso was in the Bar at 10:00 PM and says Percival Dandridge was not in the Lobby. — _establishes: Percival Dandridge not in the Lobby, 10:00 PM_
-
-On Hyman Hurwitz's account:
-
-- **c177** [observation] Antonio Grasso was in the Bar at 7:30 PM and says Hyman Hurwitz was not in the Lobby. — _establishes: Hyman Hurwitz not in the Lobby, 7:30 PM_
-
-On the radio:
-
-- **c187** [radio] Antonio Grasso says the bar radio carried a six-day bicycle race from the Velodrome at 8:30 PM, and that a rider fell at the bank and the lead changed hands. Anyone in the bar could tell you that. — _establishes: context only_
-
-On Rachel Kessler and Sadie Lefkowitz:
-
-- **c191** [overheard] Antonio Grasso says Sadie Lefkowitz told Rachel Kessler the lease would go to somebody else at the quarter day. — _establishes: Rachel Kessler had a motive (property)_
-
-### From the Front Desk
-
-- **c185** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-
-### From the Victim's Suite
-
-- **c188** [document] Found in the Victim's Suite: A typed page of dates and sums in Sadie Lefkowitz's file, headed with Gustav Wehrle's name. — _establishes: Gustav Wehrle had a motive (exposure)_
-- **c190** [document] Found in the Victim's Suite: A lease assignment made out in Rachel Kessler's name, waiting only on Sadie Lefkowitz's signature. — _establishes: Rachel Kessler had a motive (property)_
-
-### From the Roof Garden
-
-- **c184** [morgue] Sadie Lefkowitz was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:30 PM and 10:00 PM_
-
-### From the Street
-
-- **c186** [environment] Rain began at 8:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
-
-### Withheld — the player cannot get these
-
-- ~~Daniel Hanrahan saw Mary Kavanagh on the Service Stairs, 6:30 PM–7:30 PM~~ — Daniel Hanrahan is lying about that time and will not say.
-- ~~Mary Kavanagh saw Daniel Hanrahan on the Service Stairs, 6:30 PM–7:30 PM~~ — Mary Kavanagh is lying about that time and will not say.
-- ~~Hyman Hurwitz saw Sadie Lefkowitz in the Victim's Suite, 7:30 PM~~ — Hyman Hurwitz is lying about that time and will not say.
-- ~~Gustav Wehrle saw Sadie Lefkowitz in the Lobby, 9:30 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Gustav Wehrle saw Daniel Hanrahan in the Bar, 9:30 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Gustav Wehrle saw Mary Kavanagh in the Lobby, 9:30 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Gustav Wehrle saw Hyman Hurwitz in the Lobby, 9:30 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Gustav Wehrle saw Wilhelm Obermann in the Lobby, 9:30 PM–10:00 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Gustav Wehrle saw Antonio Grasso in the Bar, 9:30 PM–10:00 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Gustav Wehrle saw Daniel Hanrahan in the Lobby, 10:00 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Gustav Wehrle saw Percival Dandridge in the Kitchen, 10:00 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Gustav Wehrle saw Hyman Hurwitz in the Bar, 10:00 PM~~ — Gustav Wehrle is lying about that time and will not say.
-- ~~Percival Dandridge saw Gustav Wehrle in the Bar, 10:00 PM~~ — Percival Dandridge is lying about that time and will not say.
-- ~~Percival Dandridge saw Hyman Hurwitz in the Bar, 10:00 PM~~ — Percival Dandridge is lying about that time and will not say.
-- ~~Percival Dandridge saw Antonio Grasso in the Bar, 10:00 PM~~ — Percival Dandridge is lying about that time and will not say.
-- ~~Rachel Kessler saw Sadie Lefkowitz in the Roof Garden, 10:00 PM~~ — Rachel Kessler is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c184, c020, c048, c064, c101, c127)_
+| Tick | Time | Thaddeus Thorndike (the bartender) | Pasquale Moretti (the elevator man) | Lucia Ruggiero (the man behind the counter) | Friedrich Brauer (the patrolman on the beat) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | — |
+| 1 | 6:30 PM | the victim’s apartment on the fourth floor | the vestibule of the Hallam apartments | Ruggiero’s barber shop | — |
+| 2 | 7:00 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | the ferry slip at the foot of the street |
+| 3 | 7:30 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | — |
+| 4 | 8:00 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | — |
+| 5 | 8:30 PM | Dolan’s Bar | Ruggiero’s barber shop | Ruggiero’s barber shop | Dolan’s Bar |
+| 6 | 9:00 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | — |
+| 7 | 9:30 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | — |
+| 8 | 10:00 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | Ruggiero’s barber shop |
+| 9 | 10:30 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | — |
+| 10 | 11:00 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | — |
+| 11 | 11:30 PM | Dolan’s Bar | the vestibule of the Hallam apartments | Ruggiero’s barber shop | the ferry slip at the foot of the street |
+
+## 6. Secrets in play
+
+- **Alonzo Colquitt** (fence): Alonzo Colquitt hands a parcel of stolen goods to a man at Ruggiero’s barber shop from 8:30 PM.
+- **Gretchen Vogel** (murder): Gretchen Vogel is at the roof over the Dover from 8:30 PM, alone with Roscoe Whitfield when it happens at 8:30 PM.
+- **Augustus Dandridge** (blackmail): Augustus Dandridge meets the victim alone at the vestibule of the Hallam apartments from 7:30 PM and asks for money.
+- **Filomena Vitale** (hidden-family): Filomena Vitale goes to the ferry slip at the foot of the street from 10:30 PM to see a child nobody is supposed to know about.
+- **Maureen Sweeney** (fence): Maureen Sweeney hands a parcel of stolen goods to a man at Ruggiero’s barber shop from 8:30 PM.
+- **Teresa Marchetti** (secret-drinking): Teresa Marchetti drinks alone at Dolan’s Bar from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c164, c165, c184. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At Dolan’s Bar
+
+- **c136** [corroboration] (observation; Thaddeus Thorndike on who was there at 8:30 PM) → c186
+  - Thaddeus Thorndike runs through it: at 8:30 PM there were Augustus Dandridge, Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
+  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM; Filomena Vitale at Dolan’s Bar, 8:30 PM; Teresa Marchetti at Dolan’s Bar, 8:30 PM_
+- **c056** [corroboration] (observation; Teresa Marchetti on Gretchen Vogel) → (end)
+  - Teresa Marchetti says Gretchen Vogel was at the victim’s apartment on the fourth floor from 6:30 PM to 7:30 PM.
+  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM–7:30 PM; Gretchen Vogel could reach the weapon_
+- **c153** [corroboration] (observation; Thaddeus Thorndike on Gretchen Vogel’s account) → (end)
+  - Thaddeus Thorndike was at Dolan’s Bar at 8:30 PM and says Gretchen Vogel was not.
+  - _establishes: Gretchen Vogel not at Dolan’s Bar, 8:30 PM_
+- **c072** [corroboration] (observation; Thaddeus Thorndike on Filomena Vitale) → (end)
+  - Thaddeus Thorndike says Filomena Vitale was at Dolan’s Bar from 8:30 PM to 9:30 PM.
+  - _establishes: Filomena Vitale at Dolan’s Bar, 8:30 PM–9:30 PM_
+- **c216** [noise {b1}] (physical; the place itself) → c215
+  - A bottle at Dolan’s Bar pushed behind the pipes, the seal broken and the level down.
+  - _establishes: context only_
+- **c215** [noise {b1}] (overheard; Augustus Dandridge on Teresa Marchetti) → c218
+  - Augustus Dandridge on Teresa Marchetti: Somebody at Dolan’s Bar says Teresa Marchetti is in more often than Teresa Marchetti lets on.
+  - _establishes: context only_
+- **c218** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The man behind the counter at Dolan’s Bar knows exactly: Teresa Marchetti was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Teresa Marchetti’s secret-drinking accounted for; Teresa Marchetti at Dolan’s Bar, 8:00 PM–8:30 PM_
+- **c186** [noise {b3}] (overheard; Augustus Dandridge on Alonzo Colquitt) → c185
+  - Augustus Dandridge on Alonzo Colquitt: There is a man who meets people at Ruggiero’s barber shop and nobody will say his name out loud.
+  - _establishes: context only_
+- **c193** [noise {b4}] (overheard; Teresa Marchetti on Augustus Dandridge) → c197
+  - Teresa Marchetti on Augustus Dandridge: Augustus Dandridge has come into money lately and has no visible way of having come into money.
+  - _establishes: context only_
+- **c200** [noise {b5}] (overheard; Augustus Dandridge on Filomena Vitale) → c204
+  - Augustus Dandridge on Filomena Vitale: A woman at the ferry slip at the foot of the street asked for Filomena Vitale by a name Filomena Vitale has not used in years.
+  - _establishes: context only_
+
+### At the victim’s apartment on the fourth floor
+
+- **c176** [corroboration] (document; the place itself) → c206, c194
+  - Found at the victim’s apartment on the fourth floor: A clipping about the failure of Gretchen Vogel’s business, with Roscoe Whitfield’s name underlined twice in pencil.
+  - _establishes: Gretchen Vogel had a motive (revenge)_
+- **c166** [corroboration] (physical; the place itself) → (end)
+  - A nickel-plated revolver is gone from the victim’s apartment on the fourth floor. The drawer it was kept in is open and the oiled cloth is still in it.
+  - _establishes: something gone from the victim’s apartment on the fourth floor; how it was done_
+
+### At the ferry slip at the foot of the street
+
+- **c145** [spine] (observation; Friedrich Brauer on who was there at 8:30 PM) → c153
+  - Friedrich Brauer runs through it: at 8:30 PM there were Augustus Dandridge, Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
+  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM; Filomena Vitale at Dolan’s Bar, 8:30 PM; Teresa Marchetti at Dolan’s Bar, 8:30 PM_
+- **c204** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The woman who keeps the child says it straight out: Filomena Vitale was at the ferry slip at the foot of the street from 10:30 PM, the same as every week, and left with the same face as always.
+  - _establishes: Filomena Vitale’s hidden-family accounted for; Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM_
+
+### At the vestibule of the Hallam apartments
+
+- **c141** [corroboration] (observation; Pasquale Moretti on who was there at 8:30 PM) → (end)
+  - Pasquale Moretti runs through it: at 8:30 PM there were Alonzo Colquitt, Maureen Sweeney at Ruggiero’s barber shop, and nobody else worth naming.
+  - _establishes: Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM; Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM_
+- **c009** [corroboration] (observation; Alonzo Colquitt on Teresa Marchetti) → (end)
+  - Alonzo Colquitt says Teresa Marchetti was at the victim’s apartment on the fourth floor at 6:30 PM.
+  - _establishes: Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti could reach the weapon_
+- **c194** [noise {b4}] (overheard; Pasquale Moretti on Augustus Dandridge) → c193
+  - Pasquale Moretti on Augustus Dandridge: The victim had been drawing cash in amounts that did not match anything in the accounts.
+  - _establishes: context only_
+- **c197** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The victim’s bank book settles it: four payments, and Augustus Dandridge at the vestibule of the Hallam apartments from 7:30 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
+  - _establishes: Augustus Dandridge’s blackmail accounted for; Augustus Dandridge at the vestibule of the Hallam apartments, 7:30 PM_
+
+### At Ruggiero’s barber shop
+
+- **c184** [spine ⟨opening⟩] (client; Filomena Vitale on why I was hired) → c145, c143, c152, c167, c141, c072
+  - Filomena Vitale hired us. Filomena Vitale wants it known that Gretchen Vogel blamed the victim for a ruin, and would rather we started there.
+  - _establishes: Gretchen Vogel had a motive (revenge)_
+- **c143** [spine] (observation; Lucia Ruggiero on who was there at 8:30 PM) → c152, c038, c009
+  - Lucia Ruggiero runs through it: at 8:30 PM there were Alonzo Colquitt, Maureen Sweeney at Ruggiero’s barber shop, and nobody else worth naming.
+  - _establishes: Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM; Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM_
+- **c152** [spine] (observation; Filomena Vitale on Gretchen Vogel’s account) → c136
+  - Filomena Vitale was at Dolan’s Bar at 8:30 PM and says Gretchen Vogel was not.
+  - _establishes: Gretchen Vogel not at Dolan’s Bar, 8:30 PM_
+- **c038** [spine] (observation; Filomena Vitale on Gretchen Vogel) → c056, c085
+  - Filomena Vitale says Gretchen Vogel was at the victim’s apartment on the fourth floor from 6:00 PM to 6:30 PM.
+  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:00 PM–6:30 PM; Gretchen Vogel could reach the weapon_
+- **c167** [spine] (anchor; Lucia Ruggiero on Roscoe Whitfield that evening) → c166
+  - Lucia Ruggiero puts Roscoe Whitfield at Ruggiero’s barber shop when the regular came in for his seat, which was 8:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 8:00 PM; Roscoe Whitfield at Ruggiero’s barber shop, 8:00 PM_
+- **c172** [corroboration] (anchor; Lucia Ruggiero on the noise that evening) → c200
+  - Lucia Ruggiero was at Ruggiero’s barber shop at 8:30 PM and heard a shot from the direction of the roof over the Dover, as the bells were going.
+  - _establishes: noise at the roof over the Dover at 8:30 PM; the victim dead by 8:30 PM; how it was done_
+- **c085** [corroboration] (observation; Lucia Ruggiero on Alonzo Colquitt) → c216
+  - Lucia Ruggiero says Alonzo Colquitt was at Ruggiero’s barber shop at 8:30 PM.
+  - _establishes: Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM_
+- **c206** [noise {b2}] (overheard; Filomena Vitale on Maureen Sweeney) → c211
+  - Filomena Vitale on Maureen Sweeney: Maureen Sweeney was carrying a parcel into Ruggiero’s barber shop and came out without it.
+  - _establishes: context only_
+- **c211** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The receiver at Ruggiero’s barber shop would rather talk than be held: Maureen Sweeney was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Maureen Sweeney will take over this one.
+  - _establishes: Maureen Sweeney’s fence accounted for; Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM_
+- **c185** [noise {b3}] (overheard; Lucia Ruggiero on Alonzo Colquitt) → c190
+  - Lucia Ruggiero on Alonzo Colquitt: Alonzo Colquitt was carrying a parcel into Ruggiero’s barber shop and came out without it.
+  - _establishes: context only_
+- **c190** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The receiver at Ruggiero’s barber shop would rather talk than be held: Alonzo Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Alonzo Colquitt will take over this one.
+  - _establishes: Alonzo Colquitt’s fence accounted for; Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM_
+
+### At the roof over the Dover
+
+- **c164** [spine ⟨opening⟩] (scene; the place itself) → c145, c143, c176
+  - Roscoe Whitfield was found at the roof over the Dover. The cigarette he had going burned itself out on the sill where it fell. The bells at St. Malachy’s came at 8:30 PM, and the bells fix it: the sexton rings them off the sacristy clock and it keeps good time. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 8:30 PM; how it was done_
+- **c165** [spine ⟨opening⟩] (morgue; the place itself) → c038, c167, c172
+  - The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
+  - _establishes: death between 7:30 PM and 9:00 PM; how it was done_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["Dolan’s Bar"]
+    c136["c136 Thaddeus Thorndike"]
+    c056["c056 Teresa Marchetti"]
+    c153["c153 Thaddeus Thorndike"]
+    c072["c072 Thaddeus Thorndike"]
+    c216["c216 the place"]
+    c215["c215 Augustus Dandridge"]
+    c218["✗ c218 the place"]
+    c186["c186 Augustus Dandridge"]
+    c193["c193 Teresa Marchetti"]
+    c200["c200 Augustus Dandridge"]
+  end
+  subgraph P2["the victim’s apartment on the fourth floor"]
+    c176["c176 the place"]
+    c166["c166 the place"]
+  end
+  subgraph P3["the ferry slip at the foot of the street"]
+    c145["c145 Friedrich Brauer"]
+    c204["✗ c204 the place"]
+  end
+  subgraph P4["the vestibule of the Hallam apartments"]
+    c141["c141 Pasquale Moretti"]
+    c009["c009 Alonzo Colquitt"]
+    c194["c194 Pasquale Moretti"]
+    c197["✗ c197 the place"]
+  end
+  subgraph P5["Ruggiero’s barber shop"]
+    c184["▶ c184 Filomena Vitale"]
+    c143["c143 Lucia Ruggiero"]
+    c152["c152 Filomena Vitale"]
+    c038["c038 Filomena Vitale"]
+    c167["c167 Lucia Ruggiero"]
+    c172["c172 Lucia Ruggiero"]
+    c085["c085 Lucia Ruggiero"]
+    c206["c206 Filomena Vitale"]
+    c211["✗ c211 the place"]
+    c185["c185 Lucia Ruggiero"]
+    c190["✗ c190 the place"]
+  end
+  subgraph P6["the roof over the Dover"]
+    c164["▶ c164 the place"]
+    c165["▶ c165 the place"]
+  end
+  c164 --> c145
+  c164 --> c143
+  c164 --> c176
+  c165 --> c038
+  c165 --> c167
+  c165 --> c172
+  c184 --> c145
+  c184 --> c143
+  c184 --> c152
+  c184 --> c167
+  c184 --> c141
+  c184 --> c072
+  c145 --> c153
+  c143 --> c152
+  c143 --> c038
+  c143 --> c009
+  c152 --> c136
+  c038 --> c056
+  c038 --> c085
+  c167 --> c166
+  c136 -.-> c186
+  c176 -.-> c206
+  c176 -.-> c194
+  c172 -.-> c200
+  c085 -.-> c216
+  c216 -.-> c215
+  c215 --> c218
+  c206 --> c211
+  c186 -.-> c185
+  c185 --> c190
+  c194 -.-> c193
+  c193 --> c197
+  c200 --> c204
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c164,c165,c184,c145,c143,c152,c038,c167 spine;
+  class c136,c141,c176,c056,c172,c153,c072,c085,c166,c009 corrob;
+  class c216,c215,c206,c186,c185,c194,c193,c200 noise;
+  class c218,c211,c190,c197,c204 disq;
+```
+
+## 9. Deduction path
+
+Par is **7 actions** against a budget of 20: 13 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 8:30 PM: one puts Roscoe Whitfield alive at 8:00 PM, the other times the scene at 8:30 PM. _(c165, c167, c164; + 1 corroborating)_
 
 **Clearing the innocent.**
 
-- Gustav Wehrle was not in the Roof Garden at 10:00 PM, on two independent sources. _(c021, c069, c105, c130)_
-- Daniel Hanrahan was not in the Roof Garden at 10:00 PM, on two independent sources. _(c054, c074, c108, c136)_
-- Percival Dandridge was not in the Roof Garden at 10:00 PM, on two independent sources. _(c077, c140)_
-- Mary Kavanagh was not in the Roof Garden at 10:00 PM, on two independent sources. _(c028, c114)_
-- Hyman Hurwitz was not in the Roof Garden at 10:00 PM, on two independent sources. _(c031, c119, c147)_
+- Alonzo Colquitt was not at the roof over the Dover at 8:30 PM, on two independent sources. _(c143; + 3 corroborating)_
+- Augustus Dandridge was not at the roof over the Dover at 8:30 PM, on two independent sources. _(c145; + 1 corroborating)_
+- Filomena Vitale was not at the roof over the Dover at 8:30 PM, on two independent sources. _(c145; + 2 corroborating)_
+- Maureen Sweeney was not at the roof over the Dover at 8:30 PM, on two independent sources. _(c143; + 2 corroborating)_
+- Teresa Marchetti was not at the roof over the Dover at 8:30 PM, on two independent sources. _(c145; + 2 corroborating)_
 
-**Naming the killer.** Rachel Kessler claims the Street at 10:00 PM. Two independent sources put that out of the question, and one ties Rachel Kessler to a push from the roof garden. _(c179, c181, c183, c014, c015, c061, c082, c083, c121, c122)_
+**Naming the killer.** Gretchen Vogel claims Dolan’s Bar at 8:30 PM. Two independent sources put that out of the question. _(c152; + 1 corroborating)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c184, c185)_
+**The weapon.** Gretchen Vogel was at the victim’s apartment on the fourth floor before 8:30 PM, where a nickel-plated revolver was kept. _(c038; + 1 corroborating)_
 
-**Motive.** property, on two independent sources. _(c190, c191)_
+**Method.** A gunshot, on two physical sources. _(c164, c165; + 2 corroborating)_
 
-## 8. Red herrings
+**Motive.** revenge, on two independent sources. _(c184; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Gustav Wehrle claims the Lobby at 10:00 PM and was really in the Bar. Reason: Gustav Wehrle drinks alone in the Bar from 9:30 PM to 10:00 PM and will claim to have been anywhere else.
-- Percival Dandridge claims the Lobby at 10:00 PM and was really in the Kitchen. Reason: Percival Dandridge hands a parcel of stolen goods to a man at the Kitchen at 10:00 PM.
+- Alonzo Colquitt claims Dolan’s Bar at 8:30 PM and was really at Ruggiero’s barber shop. Reason: Alonzo Colquitt hands a parcel of stolen goods to a man at Ruggiero’s barber shop from 8:30 PM.
+- Maureen Sweeney claims Dolan’s Bar at 8:30 PM and was really at Ruggiero’s barber shop. Reason: Maureen Sweeney hands a parcel of stolen goods to a man at Ruggiero’s barber shop from 8:30 PM.
+- Teresa Marchetti claims the vestibule of the Hallam apartments at 8:30 PM and was really at Dolan’s Bar. Reason: Teresa Marchetti drinks alone at Dolan’s Bar from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
 
 **Innocents with a motive:**
 
-- Gustav Wehrle — exposure: was about to be exposed by the victim.
+- Augustus Dandridge — silence-a-witness: needed the victim silent.
+- Maureen Sweeney — debt: owed the victim money.
+- Teresa Marchetti — jealousy: was jealous of the victim.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Teresa Marchetti, secret-drinking): c216 → c215 → **c218** — The man behind the counter at Dolan’s Bar knows exactly: Teresa Marchetti was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.
+- **b2** (Maureen Sweeney, fence): c206 → **c211** — The receiver at Ruggiero’s barber shop would rather talk than be held: Maureen Sweeney was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Maureen Sweeney will take over this one.
+- **b3** (Alonzo Colquitt, fence): c186 → c185 → **c190** — The receiver at Ruggiero’s barber shop would rather talk than be held: Alonzo Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Alonzo Colquitt will take over this one.
+- **b4** (Augustus Dandridge, blackmail): c194 → c193 → **c197** — The victim’s bank book settles it: four payments, and Augustus Dandridge at the vestibule of the Hallam apartments from 7:30 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
+- **b5** (Filomena Vitale, hidden-family): c200 → **c204** — The woman who keeps the child says it straight out: Filomena Vitale was at the ferry slip at the foot of the street from 10:30 PM, the same as every week, and left with the same face as always.
 

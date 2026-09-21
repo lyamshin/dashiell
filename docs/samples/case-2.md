@@ -1,50 +1,58 @@
-# The Calloway — case 2
+# the Gas House District — case 2
 
-**Seed** 2 · **Attempts** 2 · **Detective** Humphrey
+**Seed** 2 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 8 actions · **Budget** 20 · **Slack** 12 · **Findable** 30 (spine 8, corroboration 10, noise 7 + 5 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 195
 
 ## 1. The Truth
 
-Maureen Corrigan, a photographer for the rotogravure section, a childhood friend of the victim from the same block, killed Giuseppe Lanza, a shipping clerk who had come into money, with strangling with a cord on the Service Stairs at 8:30 PM. Maureen Corrigan needed the victim silent (silence-a-witness). Maureen Corrigan had been in the Kitchen earlier in the evening, before 8:30 PM and was alone with Giuseppe Lanza when it happened.
+Sadie Shapiro, a chorus girl between engagements, a customer of the victim’s, killed Edward Doyle, a theatrical agent, with strangling with a cord at the victim’s apartment on the fourth floor at 8:00 PM. Sadie Shapiro owed the victim money (debt). Sadie Shapiro had been at the drying yard behind the laundry earlier in the evening, where the weapon lived, and was alone with Edward Doyle when it happened. Marion Stannard hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Giuseppe Lanza | a shipping clerk who had come into money | the victim | — | — | — |
-| Rutherford Bidwell | a bookmaker in a small way | the victim's tenant | fence | — | — |
-| Assunta Grasso | a bookkeeper | the victim's estranged spouse | affair | inheritance | — |
-| Marion Ellery | a piano teacher | the victim's private nurse | secret-drinking | — | — |
-| Maureen Corrigan | a photographer for the rotogravure section | a childhood friend of the victim from the same block | murder (+ secret-drinking) | silence-a-witness | **YES** |
-| Wilhelm Brauer | a longshoreman | the victim's lawyer | affair | — | — |
-| Edith Winslow | the night manager | the victim's brother-in-law | blackmail | — | — |
-| Gittel Sirkin | the doorman | fixture | — | — | — |
-| Chandler Thorndike | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Edward Doyle | a theatrical agent | the victim | — | — | — | — |
+| Patrick Corrigan | a doorman at a club with no sign on it | in the victim’s debt | fence | — | the Arcadia dance hall | — |
+| Bridget Brennan | a society columnist | a witness against the people the victim worked for | dope | — | the Arcadia dance hall | — |
+| Alonzo Broadnax | a hack driver | a childhood friend of the victim’s from the same block | fence | revenge | the drying yard behind the laundry | — |
+| Marion Stannard (client) | a dentist with rooms on the third floor | the victim’s neighbour across the airshaft | dope | property | the Arcadia dance hall | — |
+| Sadie Shapiro | a chorus girl between engagements | a customer of the victim’s | murder (+ secret-drinking) | debt | the drying yard behind the laundry | **YES** |
+| Wilhelm Steinbach | the night manager at the hotel | the victim’s tenant | secret-drinking | — | Kaplan’s drugstore with the soda fountain | — |
+| Ernst Brauer | the news dealer | fixture (newsstand) | — | — | the newsstand on the corner | — |
+| Bernard Feldman | the druggist | fixture (druggist) | — | — | Kaplan’s drugstore with the soda fountain | — |
+| Rosaria Petrosino | the ticket-taker | fixture (ticket-taker) | — | — | the Arcadia dance hall | — |
+| Louis Bernstein | the patrolman on the beat | fixture (beat-cop) | — | — | the newsstand on the corner | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: a writing desk with a locked drawer, a camel-hair overcoat on a hook
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: the house ledger, the roof door key
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a seltzer siphon, an ice pick
-- **Kitchen** (private) — adjacent: Bar, Service Stairs; sees: Bar; noise carries to: Bar, Service Stairs; objects: a length of sash cord, a cut-glass decanter
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a mop and bucket
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Street** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a folded stack of evening papers
+- **the newsstand on the corner** (public) — watched by newsstand (Ernst Brauer); objects: a folded stack of evening papers, the roof-door key, a pasted-up timetable — within earshot of the scene
+- **the subway kiosk at the corner** (public) — unwatched; objects: a brass umbrella stand — within earshot of the scene
+- **Kaplan’s drugstore with the soda fountain** (public) — watched by druggist (Bernard Feldman); objects: a wall telephone, a bottle of chloral drops, an ice pick
+- **the victim’s apartment on the fourth floor** (private) — unwatched; objects: a nickel-plated revolver, a framed photograph, a japanned cash box — **THE SCENE**; the victim’s address
+- **the Arcadia dance hall** (public) — watched by ticket-taker (Rosaria Petrosino); objects: a standing ashtray, a silver cigarette case
+- **the drying yard behind the laundry** (private) — unwatched; objects: a length of sash cord, a mop and bucket — where the weapon lived
 
-**Environment:** Rain from 10:00 PM. Bar radio at 7:30 PM: a serial about a lost heiress — the episode ended with the lawyer arrested, not the brother.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 7:30 PM–9:00 PM, four ticks wide. These are what close it: **dumbwaiter** and **ice-delivery**.
 
-### Giuseppe Lanza — the victim
+- **the ice being brought in** — at 7:30 PM; at Kaplan’s drugstore with the soda fountain. Somebody reliable notes who was there. Those present carry it: a wet patch down one side of a coat.
+- **the dumbwaiter squeal** — at 6:30 PM, 8:00 PM, 9:30 PM, 11:00 PM; at the victim’s apartment on the fourth floor. You can time things by it: a noise the whole shaft hears and nobody in the building can sleep through.
+- **the beat cop’s pass** — at 6:30 PM, 8:00 PM, 9:30 PM, 11:00 PM; on a round through the newsstand on the corner → the subway kiosk at the corner → Kaplan’s drugstore with the soda fountain → the Arcadia dance hall. Somebody reliable notes who was there.
+
+## 5. Timelines
+
+### Edward Doyle — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Roof Garden | Roof Garden | — |
-| 3 | 7:30 PM | Roof Garden | Roof Garden | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Service Stairs ☠ | Service Stairs | — |
+| 0 | 6:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 1 | 6:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 2 | 7:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 3 | 7:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 4 | 8:00 PM | the victim’s apartment on the fourth floor ☠ | the victim’s apartment on the fourth floor | — |
+| 5 | 8:30 PM | — | — | — |
 | 6 | 9:00 PM | — | — | — |
 | 7 | 9:30 PM | — | — | — |
 | 8 | 10:00 PM | — | — | — |
@@ -52,667 +60,375 @@ Maureen Corrigan, a photographer for the rotogravure section, a childhood friend
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Rutherford Bidwell
+### Patrick Corrigan
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Kitchen | **Bar** | Maureen Corrigan |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 1 | 6:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 2 | 7:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 3 | 7:30 PM | the subway kiosk at the corner | **Kaplan’s drugstore with the soda fountain** | — |
+| 4 | 8:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 5 | 8:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 6 | 9:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 7 | 9:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 8 | 10:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 9 | 10:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 10 | 11:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 11 | 11:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
 
-### Assunta Grasso
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Bar | Bar | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Roof Garden | **Street** | — |
-| 9 | 10:30 PM | Roof Garden | **Street** | — |
-| 10 | 11:00 PM | Roof Garden | **Street** | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
-
-### Marion Ellery
+### Bridget Brennan
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Street | Street | — |
-| 1 | 6:30 PM | Street | Street | — |
-| 2 | 7:00 PM | Street | Street | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Bar | **Lobby** | — |
-| 5 | 8:30 PM | Bar | **Lobby** | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Roof Garden | Roof Garden | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Roof Garden | Roof Garden | — |
-| 11 | 11:30 PM | Roof Garden | Roof Garden | — |
+| 0 | 6:00 PM | the victim’s apartment on the fourth floor | the victim’s apartment on the fourth floor | — |
+| 1 | 6:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 2 | 7:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 3 | 7:30 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 4 | 8:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 5 | 8:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 6 | 9:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 7 | 9:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 8 | 10:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 9 | 10:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 10 | 11:00 PM | the Arcadia dance hall | **the drying yard behind the laundry** | Wilhelm Steinbach |
+| 11 | 11:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
 
-### Maureen Corrigan — the killer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Bar | **Front Desk** | — |
-| 2 | 7:00 PM | Bar | **Front Desk** | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Service Stairs | **Lobby** | Edith Winslow |
-| 5 | 8:30 PM | Service Stairs ☠ | **Lobby** | Edith Winslow |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Bar | Bar | — |
-
-### Wilhelm Brauer
+### Alonzo Broadnax
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Street | Street | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Roof Garden | **Street** | Rutherford Bidwell |
-| 9 | 10:30 PM | Roof Garden | **Street** | Rutherford Bidwell |
-| 10 | 11:00 PM | Roof Garden | **Street** | Rutherford Bidwell |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 1 | 6:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 2 | 7:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 3 | 7:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 4 | 8:00 PM | the newsstand on the corner | **the Arcadia dance hall** | — |
+| 5 | 8:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 6 | 9:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 7 | 9:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 8 | 10:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 9 | 10:30 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 10 | 11:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
 
-### Edith Winslow
+### Marion Stannard
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | **Lobby** | Maureen Corrigan |
-| 2 | 7:00 PM | Roof Garden | **Lobby** | Maureen Corrigan |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Roof Garden | Roof Garden | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Roof Garden | Roof Garden | — |
+| 0 | 6:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 1 | 6:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 2 | 7:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 3 | 7:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 4 | 8:00 PM | the Arcadia dance hall | **the subway kiosk at the corner** | — |
+| 5 | 8:30 PM | the Arcadia dance hall | **the subway kiosk at the corner** | — |
+| 6 | 9:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 7 | 9:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 8 | 10:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 9 | 10:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 10 | 11:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 11 | 11:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+
+### Sadie Shapiro — the killer
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the Arcadia dance hall | **Kaplan’s drugstore with the soda fountain** | — |
+| 1 | 6:30 PM | the Arcadia dance hall | **Kaplan’s drugstore with the soda fountain** | — |
+| 2 | 7:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 3 | 7:30 PM | the victim’s apartment on the fourth floor | **the Arcadia dance hall** | Patrick Corrigan |
+| 4 | 8:00 PM | the victim’s apartment on the fourth floor ☠ | **the Arcadia dance hall** | Patrick Corrigan |
+| 5 | 8:30 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 6 | 9:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 7 | 9:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 8 | 10:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 9 | 10:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 10 | 11:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+
+### Wilhelm Steinbach
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 1 | 6:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 2 | 7:00 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 3 | 7:30 PM | the drying yard behind the laundry | the drying yard behind the laundry | — |
+| 4 | 8:00 PM | the Arcadia dance hall | **the newsstand on the corner** | — |
+| 5 | 8:30 PM | the Arcadia dance hall | **the newsstand on the corner** | — |
+| 6 | 9:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 7 | 9:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 8 | 10:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 9 | 10:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 10 | 11:00 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
+| 11 | 11:30 PM | the subway kiosk at the corner | the subway kiosk at the corner | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Gittel Sirkin (the doorman) | Chandler Thorndike (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Front Desk | Bar |
-| 4 | 8:00 PM | Lobby | Bar |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Lobby |
-| 8 | 10:00 PM | Front Desk | Bar |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Rutherford Bidwell** (fence): Rutherford Bidwell hands a parcel of stolen goods to a man at the Kitchen at 8:30 PM.
-- **Assunta Grasso** (affair): Assunta Grasso is with Wilhelm Brauer in the Roof Garden from 10:00 PM to 11:00 PM, and both will say they were somewhere else.
-- **Marion Ellery** (secret-drinking): Marion Ellery drinks alone in the Bar from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
-- **Maureen Corrigan** (murder): Maureen Corrigan is alone with Giuseppe Lanza in the Service Stairs from 8:00 PM to 8:30 PM, and kills Giuseppe Lanza at 8:30 PM.
-- **Maureen Corrigan** also (secret-drinking): Maureen Corrigan drinks alone in the Bar from 6:30 PM to 7:00 PM and will claim to have been anywhere else.
-- **Wilhelm Brauer** (affair): Wilhelm Brauer is with Assunta Grasso in the Roof Garden from 10:00 PM to 11:00 PM, and both will say they were somewhere else.
-- **Edith Winslow** (blackmail): Edith Winslow meets the victim alone in the Roof Garden from 6:30 PM to 7:00 PM and asks for money.
-
-## 6. Clue list
-
-### From Rutherford Bidwell (a bookmaker in a small way)
-
-On Assunta Grasso:
-
-- **c001** [observation] Rutherford Bidwell says Assunta Grasso was in the Bar at 6:00 PM. — _establishes: Assunta Grasso in the Bar, 6:00 PM_
-- **c002** [observation] Rutherford Bidwell says Assunta Grasso was in the Bar at 7:30 PM. — _establishes: Assunta Grasso in the Bar, 7:30 PM_
-- **c003** [observation] Rutherford Bidwell says Assunta Grasso was in the Kitchen from 6:30 PM to 7:00 PM. — _establishes: Assunta Grasso in the Kitchen, 6:30 PM–7:00 PM; Assunta Grasso had access to the method_
-- **c004** [observation] Rutherford Bidwell says Assunta Grasso was in the Kitchen at 8:00 PM. — _establishes: Assunta Grasso in the Kitchen, 8:00 PM; Assunta Grasso had access to the method_
-- **c005** [observation] Rutherford Bidwell says Assunta Grasso was in the Lobby at 9:30 PM. — _establishes: Assunta Grasso in the Lobby, 9:30 PM_
-- **c006** [observation] Rutherford Bidwell says Assunta Grasso was in the Lobby at 11:30 PM. — _establishes: Assunta Grasso in the Lobby, 11:30 PM_
-
-On Marion Ellery:
-
-- **c007** [observation] Rutherford Bidwell says Marion Ellery was in the Bar at 8:00 PM. — _establishes: Marion Ellery in the Bar, 8:00 PM_
-- **c008** [observation] Rutherford Bidwell says Marion Ellery was in the Bar at 9:00 PM. — _establishes: Marion Ellery in the Bar, 9:00 PM_
-- **c009** [observation] Rutherford Bidwell says Marion Ellery was in the Lobby at 9:30 PM. — _establishes: Marion Ellery in the Lobby, 9:30 PM_
-- **c010** [observation] Rutherford Bidwell says Marion Ellery was in the Lobby at 10:30 PM. — _establishes: Marion Ellery in the Lobby, 10:30 PM_
-
-On Maureen Corrigan:
-
-- **c011** [observation] Rutherford Bidwell says Maureen Corrigan was in the Kitchen at 6:00 PM. — _establishes: Maureen Corrigan in the Kitchen, 6:00 PM; Maureen Corrigan had access to the method_
-- **c012** [observation] Rutherford Bidwell says Maureen Corrigan was in the Kitchen at 7:30 PM. — _establishes: Maureen Corrigan in the Kitchen, 7:30 PM; Maureen Corrigan had access to the method_
-- **c013** [observation] Rutherford Bidwell says Maureen Corrigan was in the Bar from 6:30 PM to 7:00 PM. — _establishes: Maureen Corrigan in the Bar, 6:30 PM–7:00 PM_
-- **c014** [observation] Rutherford Bidwell says Maureen Corrigan was in the Bar at 11:30 PM. — _establishes: Maureen Corrigan in the Bar, 11:30 PM_
-- **c015** [observation] Rutherford Bidwell says Maureen Corrigan was in the Lobby from 9:30 PM to 11:00 PM. — _establishes: Maureen Corrigan in the Lobby, 9:30 PM–11:00 PM_
-
-On Wilhelm Brauer:
-
-- **c016** [observation] Rutherford Bidwell says Wilhelm Brauer was in the Bar at 9:00 PM. — _establishes: Wilhelm Brauer in the Bar, 9:00 PM_
-- **c017** [observation] Rutherford Bidwell says Wilhelm Brauer was in the Lobby at 9:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 9:30 PM_
-- **c018** [observation] Rutherford Bidwell says Wilhelm Brauer was in the Lobby at 11:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 11:30 PM_
-
-On Edith Winslow:
-
-- **c019** [observation] Rutherford Bidwell says Edith Winslow was in the Kitchen at 8:00 PM. — _establishes: Edith Winslow in the Kitchen, 8:00 PM; Edith Winslow had access to the method_
-- **c020** [observation] Rutherford Bidwell says Edith Winslow was in the Bar at 9:00 PM. — _establishes: Edith Winslow in the Bar, 9:00 PM_
-- **c021** [observation] Rutherford Bidwell says Edith Winslow was in the Lobby at 9:30 PM. — _establishes: Edith Winslow in the Lobby, 9:30 PM_
-- **c022** [observation] Rutherford Bidwell says Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Edith Winslow in the Lobby, 10:30 PM–11:00 PM_
-
-On Assunta Grasso's account:
-
-- **c169** [observation] Rutherford Bidwell was in the Lobby from 10:30 PM to 11:00 PM and says Assunta Grasso was not on the Street. — _establishes: Assunta Grasso not on the Street, 10:30 PM–11:00 PM_
-
-On Wilhelm Brauer's account:
-
-- **c189** [observation] Rutherford Bidwell was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
-- **c194** [observation] Wilhelm Brauer says Rutherford Bidwell was there. Rutherford Bidwell says otherwise: Rutherford Bidwell was in the Bar at 10:00 PM, not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:00 PM_
-
-### From Assunta Grasso (a bookkeeper)
-
-On Rutherford Bidwell:
-
-- **c023** [observation] Assunta Grasso says Rutherford Bidwell was in the Kitchen from 6:00 PM to 8:30 PM. — _establishes: Rutherford Bidwell in the Kitchen, 6:00 PM–8:30 PM; Rutherford Bidwell had access to the method_
-- **c024** [observation] Assunta Grasso says Rutherford Bidwell was in the Bar at 9:30 PM. — _establishes: Rutherford Bidwell in the Bar, 9:30 PM_
-- **c025** [observation] Assunta Grasso says Rutherford Bidwell was in the Lobby at 11:30 PM. — _establishes: Rutherford Bidwell in the Lobby, 11:30 PM_
-
-On Marion Ellery:
-
-- **c026** [observation] Assunta Grasso says Marion Ellery was in the Lobby at 7:30 PM. — _establishes: Marion Ellery in the Lobby, 7:30 PM_
-- **c027** [observation] Assunta Grasso says Marion Ellery was in the Lobby at 9:30 PM. — _establishes: Marion Ellery in the Lobby, 9:30 PM_
-- **c028** [observation] Assunta Grasso says Marion Ellery was in the Bar from 8:00 PM to 9:00 PM. — _establishes: Marion Ellery in the Bar, 8:00 PM–9:00 PM_
-
-On Maureen Corrigan:
-
-- **c029** [observation] Assunta Grasso says Maureen Corrigan was in the Kitchen at 6:00 PM. — _establishes: Maureen Corrigan in the Kitchen, 6:00 PM; Maureen Corrigan had access to the method_
-- **c030** [observation] Assunta Grasso says Maureen Corrigan was in the Kitchen at 7:30 PM. — _establishes: Maureen Corrigan in the Kitchen, 7:30 PM; Maureen Corrigan had access to the method_
-- **c031** [observation] Assunta Grasso says Maureen Corrigan was in the Bar from 6:30 PM to 7:00 PM. — _establishes: Maureen Corrigan in the Bar, 6:30 PM–7:00 PM_
-- **c032** [observation] Assunta Grasso says Maureen Corrigan was in the Bar at 11:30 PM. — _establishes: Maureen Corrigan in the Bar, 11:30 PM_
-- **c033** [observation] Assunta Grasso says Maureen Corrigan was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Maureen Corrigan in the Lobby, 9:00 PM–9:30 PM_
-
-On Wilhelm Brauer:
-
-- **c034** [observation] Assunta Grasso says Wilhelm Brauer was in the Lobby at 7:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 7:30 PM_
-- **c035** [observation] Assunta Grasso says Wilhelm Brauer was in the Lobby at 9:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 9:30 PM_
-- **c036** [observation] Assunta Grasso says Wilhelm Brauer was in the Lobby at 11:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 11:30 PM_
-- **c037** [observation] Assunta Grasso says Wilhelm Brauer was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Wilhelm Brauer in the Bar, 8:30 PM–9:00 PM_
-
-On Edith Winslow:
-
-- **c038** [observation] Assunta Grasso says Edith Winslow was in the Kitchen at 8:00 PM. — _establishes: Edith Winslow in the Kitchen, 8:00 PM; Edith Winslow had access to the method_
-- **c039** [observation] Assunta Grasso says Edith Winslow was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Edith Winslow in the Bar, 8:30 PM–9:00 PM_
-- **c040** [observation] Assunta Grasso says Edith Winslow was in the Lobby at 9:30 PM. — _establishes: Edith Winslow in the Lobby, 9:30 PM_
-
-On Rutherford Bidwell's account:
-
-- **c164** [observation] Assunta Grasso was in the Bar at 8:30 PM and says Rutherford Bidwell was not in the Bar. — _establishes: Rutherford Bidwell not in the Bar, 8:30 PM_
-
-On Marion Ellery's account:
-
-- **c174** [observation] Assunta Grasso was in the Bar at 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:30 PM_
-
-On Maureen Corrigan's account:
-
-- **c182** [observation] Assunta Grasso was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:30 PM_
-
-### From Marion Ellery (a piano teacher)
-
-On Rutherford Bidwell:
-
-- **c041** [observation] Marion Ellery says Rutherford Bidwell was in the Kitchen at 9:00 PM. — _establishes: Rutherford Bidwell in the Kitchen, 9:00 PM_
-- **c042** [observation] Marion Ellery says Rutherford Bidwell was in the Bar at 9:30 PM. — _establishes: Rutherford Bidwell in the Bar, 9:30 PM_
-- **c043** [observation] Marion Ellery says Rutherford Bidwell was in the Lobby at 10:30 PM. — _establishes: Rutherford Bidwell in the Lobby, 10:30 PM_
-
-On Assunta Grasso:
-
-- **c044** [observation] Marion Ellery says Assunta Grasso was in the Bar at 7:30 PM. — _establishes: Assunta Grasso in the Bar, 7:30 PM_
-- **c045** [observation] Marion Ellery says Assunta Grasso was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Assunta Grasso in the Lobby, 9:00 PM–9:30 PM_
-- **c046** [observation] Marion Ellery says Assunta Grasso was in the Roof Garden at 10:00 PM. — _establishes: Assunta Grasso in the Roof Garden, 10:00 PM_
-- **c047** [observation] Marion Ellery says Assunta Grasso was in the Roof Garden at 11:00 PM. — _establishes: Assunta Grasso in the Roof Garden, 11:00 PM_
-
-On Maureen Corrigan:
-
-- **c048** [observation] Marion Ellery says Maureen Corrigan was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Maureen Corrigan in the Lobby, 9:00 PM–9:30 PM_
-- **c049** [observation] Marion Ellery says Maureen Corrigan was in the Lobby at 10:30 PM. — _establishes: Maureen Corrigan in the Lobby, 10:30 PM_
-
-On Wilhelm Brauer:
-
-- **c050** [observation] Marion Ellery says Wilhelm Brauer was on the Street at 6:00 PM. — _establishes: Wilhelm Brauer on the Street, 6:00 PM_
-- **c051** [observation] Marion Ellery says Wilhelm Brauer was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 6:30 PM–7:30 PM_
-- **c052** [observation] Marion Ellery says Wilhelm Brauer was in the Lobby at 9:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 9:30 PM_
-- **c053** [observation] Marion Ellery says Wilhelm Brauer was in the Bar at 9:00 PM. — _establishes: Wilhelm Brauer in the Bar, 9:00 PM_
-- **c054** [observation] Marion Ellery says Wilhelm Brauer was in the Roof Garden at 10:00 PM. — _establishes: Wilhelm Brauer in the Roof Garden, 10:00 PM_
-- **c055** [observation] Marion Ellery says Wilhelm Brauer was in the Roof Garden at 11:00 PM. — _establishes: Wilhelm Brauer in the Roof Garden, 11:00 PM_
-
-On Edith Winslow:
-
-- **c056** [observation] Marion Ellery says Edith Winslow was in the Bar at 9:00 PM. — _establishes: Edith Winslow in the Bar, 9:00 PM_
-- **c057** [observation] Marion Ellery says Edith Winslow was in the Lobby at 9:30 PM. — _establishes: Edith Winslow in the Lobby, 9:30 PM_
-- **c058** [observation] Marion Ellery says Edith Winslow was in the Lobby at 10:30 PM. — _establishes: Edith Winslow in the Lobby, 10:30 PM_
-- **c059** [observation] Marion Ellery says Edith Winslow was in the Roof Garden at 10:00 PM. — _establishes: Edith Winslow in the Roof Garden, 10:00 PM_
-- **c060** [observation] Marion Ellery says Edith Winslow was in the Roof Garden at 11:30 PM. — _establishes: Edith Winslow in the Roof Garden, 11:30 PM_
-
-On Assunta Grasso's account:
-
-- **c170** [observation] Marion Ellery was in the Lobby at 10:30 PM and says Assunta Grasso was not on the Street. — _establishes: Assunta Grasso not on the Street, 10:30 PM_
-
-On Wilhelm Brauer's account:
-
-- **c190** [observation] Marion Ellery was in the Lobby at 10:30 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM_
-
-On Edith Winslow's account:
-
-- **c195** [observation] Marion Ellery was on the Street from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
-
-### From Maureen Corrigan (a photographer for the rotogravure section)
-
-On Rutherford Bidwell:
-
-- **c061** [observation] Maureen Corrigan says Rutherford Bidwell was in the Kitchen at 6:00 PM. — _establishes: Rutherford Bidwell in the Kitchen, 6:00 PM; Rutherford Bidwell had access to the method_
-- **c062** [observation] Maureen Corrigan says Rutherford Bidwell was in the Kitchen at 7:30 PM. — _establishes: Rutherford Bidwell in the Kitchen, 7:30 PM; Rutherford Bidwell had access to the method_
-- **c063** [observation] Maureen Corrigan says Rutherford Bidwell was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Rutherford Bidwell in the Bar, 9:30 PM–10:00 PM_
-- **c064** [observation] Maureen Corrigan says Rutherford Bidwell was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Rutherford Bidwell in the Lobby, 10:30 PM–11:30 PM_
-
-On Assunta Grasso:
-
-- **c065** [observation] Maureen Corrigan says Assunta Grasso was in the Bar at 6:00 PM. — _establishes: Assunta Grasso in the Bar, 6:00 PM_
-- **c066** [observation] Maureen Corrigan says Assunta Grasso was in the Bar at 7:30 PM. — _establishes: Assunta Grasso in the Bar, 7:30 PM_
-- **c067** [observation] Maureen Corrigan says Assunta Grasso was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Assunta Grasso in the Lobby, 9:00 PM–9:30 PM_
-- **c068** [observation] Maureen Corrigan says Assunta Grasso was in the Lobby at 11:30 PM. — _establishes: Assunta Grasso in the Lobby, 11:30 PM_
-
-On Marion Ellery:
-
-- **c069** [observation] Maureen Corrigan says Marion Ellery was in the Bar at 9:00 PM. — _establishes: Marion Ellery in the Bar, 9:00 PM_
-- **c070** [observation] Maureen Corrigan says Marion Ellery was in the Lobby at 9:30 PM. — _establishes: Marion Ellery in the Lobby, 9:30 PM_
-- **c071** [observation] Maureen Corrigan says Marion Ellery was in the Lobby at 10:30 PM. — _establishes: Marion Ellery in the Lobby, 10:30 PM_
-
-On Wilhelm Brauer:
-
-- **c072** [observation] Maureen Corrigan says Wilhelm Brauer was in the Bar at 9:00 PM. — _establishes: Wilhelm Brauer in the Bar, 9:00 PM_
-- **c073** [observation] Maureen Corrigan says Wilhelm Brauer was in the Lobby at 9:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 9:30 PM_
-- **c074** [observation] Maureen Corrigan says Wilhelm Brauer was in the Lobby at 11:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 11:30 PM_
-
-On Edith Winslow:
-
-- **c075** [observation] Maureen Corrigan says Edith Winslow was in the Bar at 9:00 PM. — _establishes: Edith Winslow in the Bar, 9:00 PM_
-- **c076** [observation] Maureen Corrigan says Edith Winslow was in the Lobby at 9:30 PM. — _establishes: Edith Winslow in the Lobby, 9:30 PM_
-- **c077** [observation] Maureen Corrigan says Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Edith Winslow in the Lobby, 10:30 PM–11:00 PM_
-
-On Assunta Grasso's account:
-
-- **c171** [observation] Maureen Corrigan was in the Lobby from 10:00 PM to 11:00 PM and says Assunta Grasso was not on the Street. — _establishes: Assunta Grasso not on the Street, 10:00 PM–11:00 PM_
-
-On Wilhelm Brauer's account:
-
-- **c191** [observation] Maureen Corrigan was in the Lobby from 10:00 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:00 PM–11:00 PM_
-
-### From Wilhelm Brauer (a longshoreman)
-
-On Giuseppe Lanza:
-
-- **c078** [observation] Wilhelm Brauer says Giuseppe Lanza was in the Lobby at 8:00 PM. — _establishes: Giuseppe Lanza in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-
-On Rutherford Bidwell:
-
-- **c079** [observation] Wilhelm Brauer says Rutherford Bidwell was in the Kitchen from 8:30 PM to 9:00 PM. — _establishes: Rutherford Bidwell in the Kitchen, 8:30 PM–9:00 PM_
-- **c080** [observation] Wilhelm Brauer says Rutherford Bidwell was in the Bar at 9:30 PM. — _establishes: Rutherford Bidwell in the Bar, 9:30 PM_
-- **c081** [observation] Wilhelm Brauer says Rutherford Bidwell was in the Lobby at 11:30 PM. — _establishes: Rutherford Bidwell in the Lobby, 11:30 PM_
-
-On Assunta Grasso:
-
-- **c082** [observation] Wilhelm Brauer says Assunta Grasso was in the Bar at 7:30 PM. — _establishes: Assunta Grasso in the Bar, 7:30 PM_
-- **c083** [observation] Wilhelm Brauer says Assunta Grasso was in the Bar at 8:30 PM. — _establishes: Assunta Grasso in the Bar, 8:30 PM_
-- **c084** [observation] Wilhelm Brauer says Assunta Grasso was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Assunta Grasso in the Lobby, 9:00 PM–9:30 PM_
-- **c085** [observation] Wilhelm Brauer says Assunta Grasso was in the Lobby at 11:30 PM. — _establishes: Assunta Grasso in the Lobby, 11:30 PM_
-
-On Marion Ellery:
-
-- **c086** [observation] Wilhelm Brauer says Marion Ellery was on the Street from 6:00 PM to 7:00 PM. — _establishes: Marion Ellery on the Street, 6:00 PM–7:00 PM_
-- **c087** [observation] Wilhelm Brauer says Marion Ellery was in the Lobby at 7:30 PM. — _establishes: Marion Ellery in the Lobby, 7:30 PM_
-- **c088** [observation] Wilhelm Brauer says Marion Ellery was in the Lobby at 9:30 PM. — _establishes: Marion Ellery in the Lobby, 9:30 PM_
-- **c089** [observation] Wilhelm Brauer says Marion Ellery was in the Bar from 8:00 PM to 9:00 PM. — _establishes: Marion Ellery in the Bar, 8:00 PM–9:00 PM_
-
-On Maureen Corrigan:
-
-- **c090** [observation] Wilhelm Brauer says Maureen Corrigan was in the Bar from 6:30 PM to 7:00 PM. — _establishes: Maureen Corrigan in the Bar, 6:30 PM–7:00 PM_
-- **c091** [observation] Wilhelm Brauer says Maureen Corrigan was in the Bar at 11:30 PM. — _establishes: Maureen Corrigan in the Bar, 11:30 PM_
-- **c092** [observation] Wilhelm Brauer says Maureen Corrigan was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Maureen Corrigan in the Lobby, 9:00 PM–9:30 PM_
-
-On Edith Winslow:
-
-- **c093** [observation] Wilhelm Brauer says Edith Winslow was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Edith Winslow in the Bar, 8:30 PM–9:00 PM_
-- **c094** [observation] Wilhelm Brauer says Edith Winslow was in the Lobby at 9:30 PM. — _establishes: Edith Winslow in the Lobby, 9:30 PM_
-
-On Rutherford Bidwell's account:
-
-- **c165** [observation] Wilhelm Brauer was in the Bar at 8:30 PM and says Rutherford Bidwell was not in the Bar. — _establishes: Rutherford Bidwell not in the Bar, 8:30 PM_
-
-On Marion Ellery's account:
-
-- **c175** [observation] Wilhelm Brauer was in the Lobby at 8:00 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM_
-- **c176** [observation] Wilhelm Brauer was in the Bar at 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:30 PM_
-
-On Maureen Corrigan's account:
-
-- **c180** [observation] Wilhelm Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Maureen Corrigan was not at the Front Desk. — _establishes: Maureen Corrigan not at the Front Desk, 6:30 PM–7:00 PM_
-- **c183** [observation] Wilhelm Brauer was in the Lobby at 8:00 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM_
-- **c184** [observation] Wilhelm Brauer was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:30 PM_
-
-On Edith Winslow's account:
-
-- **c196** [observation] Wilhelm Brauer was in the Lobby from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
-
-### From Edith Winslow (the night manager)
-
-On Giuseppe Lanza:
-
-- **c095** [observation] Edith Winslow says Giuseppe Lanza was in the Roof Garden at 6:00 PM. — _establishes: Giuseppe Lanza in the Roof Garden, 6:00 PM; the victim alive at 6:00 PM_
-
-On Rutherford Bidwell:
-
-- **c096** [observation] Edith Winslow says Rutherford Bidwell was in the Kitchen from 8:00 PM to 9:00 PM. — _establishes: Rutherford Bidwell in the Kitchen, 8:00 PM–9:00 PM; Rutherford Bidwell had access to the method_
-- **c097** [observation] Edith Winslow says Rutherford Bidwell was in the Bar at 9:30 PM. — _establishes: Rutherford Bidwell in the Bar, 9:30 PM_
-- **c098** [observation] Edith Winslow says Rutherford Bidwell was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Rutherford Bidwell in the Lobby, 10:30 PM–11:00 PM_
-
-On Assunta Grasso:
-
-- **c099** [observation] Edith Winslow says Assunta Grasso was in the Kitchen at 8:00 PM. — _establishes: Assunta Grasso in the Kitchen, 8:00 PM; Assunta Grasso had access to the method_
-- **c100** [observation] Edith Winslow says Assunta Grasso was in the Bar at 8:30 PM. — _establishes: Assunta Grasso in the Bar, 8:30 PM_
-- **c101** [observation] Edith Winslow says Assunta Grasso was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Assunta Grasso in the Lobby, 9:00 PM–9:30 PM_
-- **c102** [observation] Edith Winslow says Assunta Grasso was in the Roof Garden at 10:00 PM. — _establishes: Assunta Grasso in the Roof Garden, 10:00 PM_
-
-On Marion Ellery:
-
-- **c103** [observation] Edith Winslow says Marion Ellery was in the Bar from 8:00 PM to 9:00 PM. — _establishes: Marion Ellery in the Bar, 8:00 PM–9:00 PM_
-- **c104** [observation] Edith Winslow says Marion Ellery was in the Lobby at 9:30 PM. — _establishes: Marion Ellery in the Lobby, 9:30 PM_
-- **c105** [observation] Edith Winslow says Marion Ellery was in the Lobby at 10:30 PM. — _establishes: Marion Ellery in the Lobby, 10:30 PM_
-- **c106** [observation] Edith Winslow says Marion Ellery was in the Roof Garden at 10:00 PM. — _establishes: Marion Ellery in the Roof Garden, 10:00 PM_
-- **c107** [observation] Edith Winslow says Marion Ellery was in the Roof Garden at 11:30 PM. — _establishes: Marion Ellery in the Roof Garden, 11:30 PM_
-
-On Maureen Corrigan:
-
-- **c108** [observation] Edith Winslow says Maureen Corrigan was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Maureen Corrigan in the Lobby, 9:00 PM–9:30 PM_
-- **c109** [observation] Edith Winslow says Maureen Corrigan was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Maureen Corrigan in the Lobby, 10:30 PM–11:00 PM_
-
-On Wilhelm Brauer:
-
-- **c110** [observation] Edith Winslow says Wilhelm Brauer was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Wilhelm Brauer in the Bar, 8:30 PM–9:00 PM_
-- **c111** [observation] Edith Winslow says Wilhelm Brauer was in the Lobby at 9:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 9:30 PM_
-- **c112** [observation] Edith Winslow says Wilhelm Brauer was in the Roof Garden at 10:00 PM. — _establishes: Wilhelm Brauer in the Roof Garden, 10:00 PM_
-
-On Rutherford Bidwell's account:
-
-- **c166** [observation] Edith Winslow was in the Bar at 8:30 PM and says Rutherford Bidwell was not in the Bar. — _establishes: Rutherford Bidwell not in the Bar, 8:30 PM_
-
-On Assunta Grasso's account:
-
-- **c172** [observation] Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM and says Assunta Grasso was not on the Street. — _establishes: Assunta Grasso not on the Street, 10:30 PM–11:00 PM_
-
-On Marion Ellery's account:
-
-- **c177** [observation] Edith Winslow was in the Bar at 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:30 PM_
-
-On Maureen Corrigan's account:
-
-- **c185** [observation] Edith Winslow was in the Bar at 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:30 PM_
-- **c188** [observation] Maureen Corrigan says Edith Winslow was there. Edith Winslow says otherwise: Edith Winslow was in the Kitchen at 8:00 PM, not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM_
-
-On Wilhelm Brauer's account:
-
-- **c192** [observation] Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
-
-### From Gittel Sirkin (the doorman)
-
-On Giuseppe Lanza:
-
-- **c113** [observation] Gittel Sirkin says Giuseppe Lanza was in the Lobby at 8:00 PM. — _establishes: Giuseppe Lanza in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-
-On Rutherford Bidwell:
-
-- **c114** [observation] Gittel Sirkin says Rutherford Bidwell was in the Bar at 9:30 PM. — _establishes: Rutherford Bidwell in the Bar, 9:30 PM_
-- **c115** [observation] Gittel Sirkin says Rutherford Bidwell was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Rutherford Bidwell in the Lobby, 10:30 PM–11:30 PM_
-
-On Assunta Grasso:
-
-- **c116** [observation] Gittel Sirkin says Assunta Grasso was in the Bar at 6:00 PM. — _establishes: Assunta Grasso in the Bar, 6:00 PM_
-- **c117** [observation] Gittel Sirkin says Assunta Grasso was in the Bar at 8:30 PM. — _establishes: Assunta Grasso in the Bar, 8:30 PM_
-- **c118** [observation] Gittel Sirkin says Assunta Grasso was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Assunta Grasso in the Lobby, 9:00 PM–9:30 PM_
-- **c119** [observation] Gittel Sirkin says Assunta Grasso was in the Lobby at 11:30 PM. — _establishes: Assunta Grasso in the Lobby, 11:30 PM_
-
-On Marion Ellery:
-
-- **c120** [observation] Gittel Sirkin says Marion Ellery was on the Street from 6:00 PM to 7:00 PM. — _establishes: Marion Ellery on the Street, 6:00 PM–7:00 PM_
-- **c121** [observation] Gittel Sirkin says Marion Ellery was in the Lobby at 7:30 PM. — _establishes: Marion Ellery in the Lobby, 7:30 PM_
-- **c122** [observation] Gittel Sirkin says Marion Ellery was in the Lobby at 9:30 PM. — _establishes: Marion Ellery in the Lobby, 9:30 PM_
-- **c123** [observation] Gittel Sirkin says Marion Ellery was in the Lobby at 10:30 PM. — _establishes: Marion Ellery in the Lobby, 10:30 PM_
-- **c124** [observation] Gittel Sirkin says Marion Ellery was in the Bar from 8:00 PM to 9:00 PM. — _establishes: Marion Ellery in the Bar, 8:00 PM–9:00 PM_
-
-On Maureen Corrigan:
-
-- **c125** [observation] Gittel Sirkin says Maureen Corrigan was in the Bar from 6:30 PM to 7:00 PM. — _establishes: Maureen Corrigan in the Bar, 6:30 PM–7:00 PM_
-- **c126** [observation] Gittel Sirkin says Maureen Corrigan was in the Bar at 11:30 PM. — _establishes: Maureen Corrigan in the Bar, 11:30 PM_
-- **c127** [observation] Gittel Sirkin says Maureen Corrigan was in the Lobby from 9:00 PM to 11:00 PM. — _establishes: Maureen Corrigan in the Lobby, 9:00 PM–11:00 PM_
-
-On Wilhelm Brauer:
-
-- **c128** [observation] Gittel Sirkin says Wilhelm Brauer was on the Street at 6:00 PM. — _establishes: Wilhelm Brauer on the Street, 6:00 PM_
-- **c129** [observation] Gittel Sirkin says Wilhelm Brauer was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Wilhelm Brauer in the Lobby, 6:30 PM–8:00 PM_
-- **c130** [observation] Gittel Sirkin says Wilhelm Brauer was in the Lobby at 9:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 9:30 PM_
-- **c131** [observation] Gittel Sirkin says Wilhelm Brauer was in the Lobby at 11:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 11:30 PM_
-- **c132** [observation] Gittel Sirkin says Wilhelm Brauer was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Wilhelm Brauer in the Bar, 8:30 PM–9:00 PM_
-
-On Edith Winslow:
-
-- **c133** [observation] Gittel Sirkin says Edith Winslow was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Edith Winslow in the Bar, 8:30 PM–9:00 PM_
-- **c134** [observation] Gittel Sirkin says Edith Winslow was in the Lobby at 9:30 PM. — _establishes: Edith Winslow in the Lobby, 9:30 PM_
-- **c135** [observation] Gittel Sirkin says Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Edith Winslow in the Lobby, 10:30 PM–11:00 PM_
-
-On Rutherford Bidwell's account:
-
-- **c167** [observation] Gittel Sirkin was in the Lobby at 8:30 PM and says Rutherford Bidwell was not in the Bar. — _establishes: Rutherford Bidwell not in the Bar, 8:30 PM_
-
-On Assunta Grasso's account:
-
-- **c173** [observation] Gittel Sirkin was in the Lobby from 10:30 PM to 11:00 PM and says Assunta Grasso was not on the Street. — _establishes: Assunta Grasso not on the Street, 10:30 PM–11:00 PM_
-
-On Marion Ellery's account:
-
-- **c178** [observation] Gittel Sirkin was in the Lobby from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM–8:30 PM_
-
-On Maureen Corrigan's account:
-
-- **c181** [observation] Gittel Sirkin was in the Lobby from 6:30 PM to 7:00 PM and says Maureen Corrigan was not at the Front Desk. — _establishes: Maureen Corrigan not at the Front Desk, 6:30 PM–7:00 PM_
-- **c186** [observation] Gittel Sirkin was in the Lobby from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM–8:30 PM_
-
-On Wilhelm Brauer's account:
-
-- **c193** [observation] Gittel Sirkin was in the Lobby from 10:30 PM to 11:00 PM and says Wilhelm Brauer was not on the Street. — _establishes: Wilhelm Brauer not on the Street, 10:30 PM–11:00 PM_
-
-On Edith Winslow's account:
-
-- **c197** [observation] Gittel Sirkin was in the Lobby from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
-
-On Maureen Corrigan and Giuseppe Lanza:
-
-- **c206** [overheard] Gittel Sirkin says Giuseppe Lanza said to Maureen Corrigan that a man who testifies sleeps better. — _establishes: Maureen Corrigan had a motive (silence-a-witness)_
-
-### From Chandler Thorndike (the bartender)
-
-On Giuseppe Lanza:
-
-- **c136** [observation] Chandler Thorndike says Giuseppe Lanza was in the Lobby at 8:00 PM. — _establishes: Giuseppe Lanza in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-
-On Rutherford Bidwell:
-
-- **c137** [observation] Chandler Thorndike says Rutherford Bidwell was in the Kitchen from 6:00 PM to 9:00 PM. — _establishes: Rutherford Bidwell in the Kitchen, 6:00 PM–9:00 PM; Rutherford Bidwell had access to the method_
-- **c138** [observation] Chandler Thorndike says Rutherford Bidwell was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Rutherford Bidwell in the Bar, 9:30 PM–10:00 PM_
-- **c139** [observation] Chandler Thorndike says Rutherford Bidwell was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Rutherford Bidwell in the Lobby, 10:30 PM–11:30 PM_
-
-On Assunta Grasso:
-
-- **c140** [observation] Chandler Thorndike says Assunta Grasso was in the Bar at 6:00 PM. — _establishes: Assunta Grasso in the Bar, 6:00 PM_
-- **c141** [observation] Chandler Thorndike says Assunta Grasso was in the Bar at 7:30 PM. — _establishes: Assunta Grasso in the Bar, 7:30 PM_
-- **c142** [observation] Chandler Thorndike says Assunta Grasso was in the Bar at 8:30 PM. — _establishes: Assunta Grasso in the Bar, 8:30 PM_
-- **c143** [observation] Chandler Thorndike says Assunta Grasso was in the Kitchen from 6:30 PM to 7:00 PM. — _establishes: Assunta Grasso in the Kitchen, 6:30 PM–7:00 PM; Assunta Grasso had access to the method_
-- **c144** [observation] Chandler Thorndike says Assunta Grasso was in the Kitchen at 8:00 PM. — _establishes: Assunta Grasso in the Kitchen, 8:00 PM; Assunta Grasso had access to the method_
-- **c145** [observation] Chandler Thorndike says Assunta Grasso was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Assunta Grasso in the Lobby, 9:00 PM–9:30 PM_
-- **c146** [observation] Chandler Thorndike says Assunta Grasso was in the Lobby at 11:30 PM. — _establishes: Assunta Grasso in the Lobby, 11:30 PM_
-
-On Marion Ellery:
-
-- **c147** [observation] Chandler Thorndike says Marion Ellery was in the Lobby at 7:30 PM. — _establishes: Marion Ellery in the Lobby, 7:30 PM_
-- **c148** [observation] Chandler Thorndike says Marion Ellery was in the Lobby at 9:30 PM. — _establishes: Marion Ellery in the Lobby, 9:30 PM_
-- **c149** [observation] Chandler Thorndike says Marion Ellery was in the Lobby at 10:30 PM. — _establishes: Marion Ellery in the Lobby, 10:30 PM_
-- **c150** [observation] Chandler Thorndike says Marion Ellery was in the Bar from 8:00 PM to 9:00 PM. — _establishes: Marion Ellery in the Bar, 8:00 PM–9:00 PM_
-
-On Maureen Corrigan:
-
-- **c151** [observation] Chandler Thorndike says Maureen Corrigan was in the Kitchen at 6:00 PM. — _establishes: Maureen Corrigan in the Kitchen, 6:00 PM; Maureen Corrigan had access to the method_
-- **c152** [observation] Chandler Thorndike says Maureen Corrigan was in the Kitchen at 7:30 PM. — _establishes: Maureen Corrigan in the Kitchen, 7:30 PM; Maureen Corrigan had access to the method_
-- **c153** [observation] Chandler Thorndike says Maureen Corrigan was in the Bar from 6:30 PM to 7:00 PM. — _establishes: Maureen Corrigan in the Bar, 6:30 PM–7:00 PM_
-- **c154** [observation] Chandler Thorndike says Maureen Corrigan was in the Bar at 11:30 PM. — _establishes: Maureen Corrigan in the Bar, 11:30 PM_
-- **c155** [observation] Chandler Thorndike says Maureen Corrigan was in the Lobby from 9:00 PM to 11:00 PM. — _establishes: Maureen Corrigan in the Lobby, 9:00 PM–11:00 PM_
-
-On Wilhelm Brauer:
-
-- **c156** [observation] Chandler Thorndike says Wilhelm Brauer was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Wilhelm Brauer in the Lobby, 6:30 PM–8:00 PM_
-- **c157** [observation] Chandler Thorndike says Wilhelm Brauer was in the Lobby at 9:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 9:30 PM_
-- **c158** [observation] Chandler Thorndike says Wilhelm Brauer was in the Lobby at 11:30 PM. — _establishes: Wilhelm Brauer in the Lobby, 11:30 PM_
-- **c159** [observation] Chandler Thorndike says Wilhelm Brauer was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Wilhelm Brauer in the Bar, 8:30 PM–9:00 PM_
-
-On Edith Winslow:
-
-- **c160** [observation] Chandler Thorndike says Edith Winslow was in the Kitchen at 8:00 PM. — _establishes: Edith Winslow in the Kitchen, 8:00 PM; Edith Winslow had access to the method_
-- **c161** [observation] Chandler Thorndike says Edith Winslow was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Edith Winslow in the Bar, 8:30 PM–9:00 PM_
-- **c162** [observation] Chandler Thorndike says Edith Winslow was in the Lobby at 9:30 PM. — _establishes: Edith Winslow in the Lobby, 9:30 PM_
-- **c163** [observation] Chandler Thorndike says Edith Winslow was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Edith Winslow in the Lobby, 10:30 PM–11:00 PM_
-
-On Rutherford Bidwell's account:
-
-- **c168** [observation] Chandler Thorndike was in the Bar at 8:30 PM and says Rutherford Bidwell was not in the Bar. — _establishes: Rutherford Bidwell not in the Bar, 8:30 PM_
-
-On Marion Ellery's account:
-
-- **c179** [observation] Chandler Thorndike was in the Bar from 8:00 PM to 8:30 PM and says Marion Ellery was not in the Lobby. — _establishes: Marion Ellery not in the Lobby, 8:00 PM–8:30 PM_
-
-On Maureen Corrigan's account:
-
-- **c187** [observation] Chandler Thorndike was in the Bar from 8:00 PM to 8:30 PM and says Maureen Corrigan was not in the Lobby. — _establishes: Maureen Corrigan not in the Lobby, 8:00 PM–8:30 PM_
-
-On Edith Winslow's account:
-
-- **c198** [observation] Chandler Thorndike was in the Bar from 6:30 PM to 7:00 PM and says Edith Winslow was not in the Lobby. — _establishes: Edith Winslow not in the Lobby, 6:30 PM–7:00 PM_
-
-On the radio:
-
-- **c202** [radio] Chandler Thorndike says the bar radio carried a serial about a lost heiress at 7:30 PM, and that the episode ended with the lawyer arrested, not the brother. Anyone in the bar could tell you that. — _establishes: context only_
-
-On Assunta Grasso and Giuseppe Lanza:
-
-- **c204** [overheard] Chandler Thorndike says Giuseppe Lanza told Assunta Grasso the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Assunta Grasso had a motive (inheritance)_
-
-### From the Front Desk
-
-- **c203** [document] Found in the Front Desk: A draft codicil in Giuseppe Lanza's hand striking Assunta Grasso out of the will, dated last Tuesday and unsigned. — _establishes: Assunta Grasso had a motive (inheritance)_
-
-### From the Kitchen
-
-- **c200** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
-
-### From the Service Stairs
-
-- **c199** [morgue] Giuseppe Lanza was found on the Service Stairs. The coroner puts death between 8:00 PM and 8:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 8:00 PM and 8:30 PM_
-
-### From the Victim's Suite
-
-- **c205** [document] Found in the Victim's Suite: A subpoena naming Giuseppe Lanza as a witness before the grand jury, with Maureen Corrigan's name written in the margin. — _establishes: Maureen Corrigan had a motive (silence-a-witness)_
-
-### From the Street
-
-- **c201** [environment] Rain began at 10:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
-
-### Withheld — the player cannot get these
-
-- ~~Maureen Corrigan saw Rutherford Bidwell in the Kitchen, 6:30 PM–7:00 PM~~ — Maureen Corrigan is lying about that time and will not say.
-- ~~Maureen Corrigan saw Assunta Grasso in the Kitchen, 6:30 PM–7:00 PM~~ — Maureen Corrigan is lying about that time and will not say.
-- ~~Maureen Corrigan saw Wilhelm Brauer in the Lobby, 6:30 PM–7:00 PM~~ — Maureen Corrigan is lying about that time and will not say.
-- ~~Maureen Corrigan saw Gittel Sirkin in the Lobby, 6:30 PM–7:00 PM~~ — Maureen Corrigan is lying about that time and will not say.
-- ~~Maureen Corrigan saw Chandler Thorndike in the Bar, 6:30 PM–7:00 PM~~ — Maureen Corrigan is lying about that time and will not say.
-- ~~Edith Winslow saw Giuseppe Lanza in the Roof Garden, 6:30 PM–7:00 PM~~ — Edith Winslow is lying about that time and will not say.
-- ~~Marion Ellery saw Giuseppe Lanza in the Lobby, 8:00 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Marion Ellery saw Rutherford Bidwell in the Kitchen, 8:00 PM–8:30 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Marion Ellery saw Assunta Grasso in the Kitchen, 8:00 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Marion Ellery saw Wilhelm Brauer in the Lobby, 8:00 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Marion Ellery saw Edith Winslow in the Kitchen, 8:00 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Marion Ellery saw Gittel Sirkin in the Lobby, 8:00 PM–8:30 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Marion Ellery saw Chandler Thorndike in the Bar, 8:00 PM–8:30 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Rutherford Bidwell saw Assunta Grasso in the Bar, 8:30 PM~~ — Rutherford Bidwell is lying about that time and will not say.
-- ~~Rutherford Bidwell saw Marion Ellery in the Bar, 8:30 PM~~ — Rutherford Bidwell is lying about that time and will not say.
-- ~~Rutherford Bidwell saw Wilhelm Brauer in the Bar, 8:30 PM~~ — Rutherford Bidwell is lying about that time and will not say.
-- ~~Rutherford Bidwell saw Edith Winslow in the Bar, 8:30 PM~~ — Rutherford Bidwell is lying about that time and will not say.
-- ~~Rutherford Bidwell saw Chandler Thorndike in the Bar, 8:30 PM~~ — Rutherford Bidwell is lying about that time and will not say.
-- ~~Marion Ellery saw Assunta Grasso in the Bar, 8:30 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Marion Ellery saw Wilhelm Brauer in the Bar, 8:30 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Marion Ellery saw Edith Winslow in the Bar, 8:30 PM~~ — Marion Ellery is lying about that time and will not say.
-- ~~Maureen Corrigan saw Giuseppe Lanza on the Service Stairs, 8:30 PM~~ — Maureen Corrigan is lying about that time and will not say.
-- ~~Assunta Grasso saw Marion Ellery in the Roof Garden, 10:00 PM~~ — Assunta Grasso is lying about that time and will not say.
-- ~~Assunta Grasso saw Marion Ellery in the Roof Garden, 11:00 PM~~ — Assunta Grasso is lying about that time and will not say.
-- ~~Assunta Grasso saw Wilhelm Brauer in the Roof Garden, 10:00 PM–11:00 PM~~ — Assunta Grasso is lying about that time and will not say.
-- ~~Assunta Grasso saw Edith Winslow in the Roof Garden, 10:00 PM~~ — Assunta Grasso is lying about that time and will not say.
-- ~~Wilhelm Brauer saw Assunta Grasso in the Roof Garden, 10:00 PM–11:00 PM~~ — Wilhelm Brauer is lying about that time and will not say.
-- ~~Wilhelm Brauer saw Marion Ellery in the Roof Garden, 10:00 PM~~ — Wilhelm Brauer is lying about that time and will not say.
-- ~~Wilhelm Brauer saw Marion Ellery in the Roof Garden, 11:00 PM~~ — Wilhelm Brauer is lying about that time and will not say.
-- ~~Wilhelm Brauer saw Edith Winslow in the Roof Garden, 10:00 PM~~ — Wilhelm Brauer is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 8:30 PM. _(c199, c078, c113, c136)_
+| Tick | Time | Ernst Brauer (the news dealer) | Bernard Feldman (the druggist) | Rosaria Petrosino (the ticket-taker) | Louis Bernstein (the patrolman on the beat) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | — |
+| 1 | 6:30 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | the newsstand on the corner |
+| 2 | 7:00 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | — |
+| 3 | 7:30 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | — |
+| 4 | 8:00 PM | the newsstand on the corner | the newsstand on the corner | the Arcadia dance hall | the subway kiosk at the corner |
+| 5 | 8:30 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | — |
+| 6 | 9:00 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | — |
+| 7 | 9:30 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | Kaplan’s drugstore with the soda fountain |
+| 8 | 10:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | — |
+| 9 | 10:30 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | — |
+| 10 | 11:00 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | the Arcadia dance hall |
+| 11 | 11:30 PM | the newsstand on the corner | Kaplan’s drugstore with the soda fountain | the Arcadia dance hall | — |
+
+## 6. Secrets in play
+
+- **Patrick Corrigan** (fence): Patrick Corrigan hands a parcel of stolen goods to a man at the subway kiosk at the corner from 7:30 PM.
+- **Bridget Brennan** (dope): Bridget Brennan buys morphine at the Arcadia dance hall from 11:00 PM and would rather be thought a murderer than a hop-head.
+- **Alonzo Broadnax** (fence): Alonzo Broadnax hands a parcel of stolen goods to a man at the newsstand on the corner from 8:00 PM.
+- **Marion Stannard** (dope): Marion Stannard buys morphine at the Arcadia dance hall from 8:00 PM to 8:30 PM and would rather be thought a murderer than a hop-head.
+- **Sadie Shapiro** (murder): Sadie Shapiro is at the victim’s apartment on the fourth floor from 7:30 PM to 8:00 PM, alone with Edward Doyle when it happens at 8:00 PM.
+- **Sadie Shapiro** also (secret-drinking): Sadie Shapiro drinks alone at the Arcadia dance hall from 6:00 PM to 6:30 PM and will claim to have been anywhere else.
+- **Wilhelm Steinbach** (secret-drinking): Wilhelm Steinbach drinks alone at the Arcadia dance hall from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c144, c145, c160. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At the newsstand on the corner
+
+- **c062** [spine] (observation; Ernst Brauer on Alonzo Broadnax) → (end)
+  - Ernst Brauer says Alonzo Broadnax was at the newsstand on the corner from 8:00 PM to 8:30 PM.
+  - _establishes: Alonzo Broadnax at the newsstand on the corner, 8:00 PM–8:30 PM_
+- **c168** [noise {b3}] (overheard; Ernst Brauer on Bridget Brennan) → c173
+  - Ernst Brauer on Bridget Brennan: Bridget Brennan’s sleeves are buttoned at the wrist in a warm room.
+  - _establishes: context only_
+- **c178** [noise {b4}] (physical; the place itself) → c180
+  - Wrapping paper and a cut string at the newsstand on the corner, and the shop it came from closed two years ago.
+  - _establishes: context only_
+- **c180** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The receiver at the newsstand on the corner would rather talk than be held: Alonzo Broadnax was there from 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Alonzo Broadnax will take over this one.
+  - _establishes: Alonzo Broadnax’s fence accounted for; Alonzo Broadnax at the newsstand on the corner, 8:00 PM_
+
+### At the subway kiosk at the corner
+
+- **c164** [noise {b2}] (physical; the place itself) → c166
+  - Wrapping paper and a cut string at the subway kiosk at the corner, and the shop it came from closed two years ago.
+  - _establishes: context only_
+- **c166** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The receiver at the subway kiosk at the corner would rather talk than be held: Patrick Corrigan was there from 7:30 PM handing over a parcel of somebody else’s silver, which is a charge Patrick Corrigan will take over this one.
+  - _establishes: Patrick Corrigan’s fence accounted for; Patrick Corrigan at the subway kiosk at the corner, 7:30 PM_
+
+### At Kaplan’s drugstore with the soda fountain
+
+- **c147** [spine] (anchor; Bernard Feldman on Edward Doyle that evening) → c149, c140
+  - Bernard Feldman puts Edward Doyle at Kaplan’s drugstore with the soda fountain when the ice came, which was 7:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 7:30 PM; Edward Doyle at Kaplan’s drugstore with the soda fountain, 7:30 PM_
+- **c149** [corroboration] (anchor; Bernard Feldman on the noise that evening) → (end)
+  - Bernard Feldman was at the newsstand on the corner at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s apartment on the fourth floor, when the dumbwaiter went up.
+  - _establishes: noise at the victim’s apartment on the fourth floor at 8:00 PM; the victim dead by 8:00 PM; how it was done_
+- **c065** [corroboration] (observation; Bernard Feldman on Alonzo Broadnax) → (end)
+  - Bernard Feldman says Alonzo Broadnax was at the newsstand on the corner at 8:00 PM.
+  - _establishes: Alonzo Broadnax at the newsstand on the corner, 8:00 PM_
+- **c183** [noise {b1}] (overheard; Bernard Feldman on Marion Stannard) → c187
+  - Bernard Feldman on Marion Stannard: Somebody at the Arcadia dance hall sells what a druggist will not, and Marion Stannard knows which door.
+  - _establishes: context only_
+
+### At the victim’s apartment on the fourth floor
+
+- **c144** [spine ⟨opening⟩] (scene; the place itself) → c120, c062, c158, c162
+  - Edward Doyle was found at the victim’s apartment on the fourth floor. His watch glass broke against the floor and the hands have not moved since. The dumbwaiter squeal came at 8:00 PM, and the shaft carries and the car was worked on the hour and the half hour. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 8:00 PM; how it was done_
+- **c145** [spine ⟨opening⟩] (morgue; the place itself) → c120, c138
+  - The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.
+  - _establishes: death between 7:30 PM and 9:00 PM; how it was done_
+- **c158** [corroboration] (document; the place itself) → (end)
+  - Found at the victim’s apartment on the fourth floor: A promissory note for $4,000 signed by Sadie Shapiro, endorsed to Edward Doyle, three months past due.
+  - _establishes: Sadie Shapiro had a motive (debt)_
+
+### At the Arcadia dance hall
+
+- **c160** [spine ⟨opening⟩] (client; Marion Stannard on why I was hired) → c138, c019, c029, c011, c137, c046
+  - Marion Stannard hired us. Marion Stannard wants it known that Sadie Shapiro owed the victim money, and would rather we started there.
+  - _establishes: Sadie Shapiro had a motive (debt)_
+- **c120** [spine] (observation; Rosaria Petrosino on who was there at 8:00 PM) → c019, c147, c002
+  - Rosaria Petrosino runs through it: at 8:00 PM there were Patrick Corrigan, Bridget Brennan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.
+  - _establishes: Patrick Corrigan at the Arcadia dance hall, 8:00 PM; Bridget Brennan at the Arcadia dance hall, 8:00 PM; Marion Stannard at the Arcadia dance hall, 8:00 PM; Wilhelm Steinbach at the Arcadia dance hall, 8:00 PM_
+- **c138** [spine] (observation; Bridget Brennan on Sadie Shapiro’s account) → c062, c147, c099, c183, c178
+  - Bridget Brennan was at the Arcadia dance hall at 8:00 PM and says Sadie Shapiro was not.
+  - _establishes: Sadie Shapiro not at the Arcadia dance hall, 8:00 PM_
+- **c019** [spine] (observation; Bridget Brennan on Sadie Shapiro) → c065
+  - Bridget Brennan says Sadie Shapiro was at the drying yard behind the laundry at 7:00 PM.
+  - _establishes: Sadie Shapiro at the drying yard behind the laundry, 7:00 PM; Sadie Shapiro could reach the weapon_
+- **c099** [corroboration] (observation; Bridget Brennan on who was there at 8:00 PM) → (end)
+  - Bridget Brennan runs through it: at 8:00 PM there were Patrick Corrigan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.
+  - _establishes: Patrick Corrigan at the Arcadia dance hall, 8:00 PM; Marion Stannard at the Arcadia dance hall, 8:00 PM; Wilhelm Steinbach at the Arcadia dance hall, 8:00 PM_
+- **c002** [corroboration] (observation; Patrick Corrigan on Bridget Brennan) → (end)
+  - Patrick Corrigan says Bridget Brennan was at the Arcadia dance hall from 8:00 PM to 8:30 PM.
+  - _establishes: Bridget Brennan at the Arcadia dance hall, 8:00 PM–8:30 PM_
+- **c140** [corroboration] (observation; Rosaria Petrosino on Sadie Shapiro’s account) → (end)
+  - Rosaria Petrosino was at the Arcadia dance hall from 7:30 PM to 8:00 PM and says Sadie Shapiro was not.
+  - _establishes: Sadie Shapiro not at the Arcadia dance hall, 7:30 PM–8:00 PM_
+- **c011** [corroboration] (observation; Bridget Brennan on Patrick Corrigan) → c168
+  - Bridget Brennan says Patrick Corrigan was at the Arcadia dance hall from 8:00 PM to 8:30 PM.
+  - _establishes: Patrick Corrigan at the Arcadia dance hall, 8:00 PM–8:30 PM_
+- **c137** [corroboration] (observation; Patrick Corrigan on Sadie Shapiro’s account) → (end)
+  - Patrick Corrigan was at the Arcadia dance hall at 8:00 PM and says Sadie Shapiro was not.
+  - _establishes: Sadie Shapiro not at the Arcadia dance hall, 8:00 PM_
+- **c187** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The man who sells it at the Arcadia dance hall gives it up rather than be held: Marion Stannard was there from 8:00 PM to 8:30 PM, and stayed until it took hold.
+  - _establishes: Marion Stannard’s dope accounted for; Marion Stannard at the Arcadia dance hall, 8:00 PM–8:30 PM_
+- **c162** [noise {b2}] (overheard; Marion Stannard on Patrick Corrigan) → c164
+  - Marion Stannard on Patrick Corrigan: There is a man who meets people at the subway kiosk at the corner and nobody will say his name out loud.
+  - _establishes: context only_
+- **c173** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The man who sells it at the Arcadia dance hall gives it up rather than be held: Bridget Brennan was there from 11:00 PM, and stayed until it took hold.
+  - _establishes: Bridget Brennan’s dope accounted for; Bridget Brennan at the Arcadia dance hall, 11:00 PM_
+- **c191** [noise {b5}] (overheard; Patrick Corrigan on Wilhelm Steinbach) → c193
+  - Patrick Corrigan on Wilhelm Steinbach: Somebody at the Arcadia dance hall says Wilhelm Steinbach is in more often than Wilhelm Steinbach lets on.
+  - _establishes: context only_
+- **c193** [noise {b5}] (physical; the place itself) → c194
+  - A tab at the Arcadia dance hall in a name that is not Wilhelm Steinbach’s, in Wilhelm Steinbach’s handwriting.
+  - _establishes: context only_
+- **c194** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The man behind the counter at the Arcadia dance hall knows exactly: Wilhelm Steinbach was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Wilhelm Steinbach’s secret-drinking accounted for; Wilhelm Steinbach at the Arcadia dance hall, 8:00 PM–8:30 PM_
+
+### At the drying yard behind the laundry
+
+- **c029** [corroboration] (observation; Alonzo Broadnax on Sadie Shapiro) → (end)
+  - Alonzo Broadnax says Sadie Shapiro was at the drying yard behind the laundry at 7:00 PM.
+  - _establishes: Sadie Shapiro at the drying yard behind the laundry, 7:00 PM; Sadie Shapiro could reach the weapon_
+- **c046** [corroboration] (observation; Sadie Shapiro on Alonzo Broadnax) → c191
+  - Sadie Shapiro says Alonzo Broadnax was at the drying yard behind the laundry at 7:00 PM.
+  - _establishes: Alonzo Broadnax at the drying yard behind the laundry, 7:00 PM; Alonzo Broadnax could reach the weapon_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["the newsstand on the corner"]
+    c062["c062 Ernst Brauer"]
+    c168["c168 Ernst Brauer"]
+    c178["c178 the place"]
+    c180["✗ c180 the place"]
+  end
+  subgraph P2["the subway kiosk at the corner"]
+    c164["c164 the place"]
+    c166["✗ c166 the place"]
+  end
+  subgraph P3["Kaplan’s drugstore with the soda fountain"]
+    c147["c147 Bernard Feldman"]
+    c149["c149 Bernard Feldman"]
+    c065["c065 Bernard Feldman"]
+    c183["c183 Bernard Feldman"]
+  end
+  subgraph P4["the victim’s apartment on the fourth floor"]
+    c144["▶ c144 the place"]
+    c145["▶ c145 the place"]
+    c158["c158 the place"]
+  end
+  subgraph P5["the Arcadia dance hall"]
+    c160["▶ c160 Marion Stannard"]
+    c120["c120 Rosaria Petrosino"]
+    c138["c138 Bridget Brennan"]
+    c019["c019 Bridget Brennan"]
+    c099["c099 Bridget Brennan"]
+    c002["c002 Patrick Corrigan"]
+    c140["c140 Rosaria Petrosino"]
+    c011["c011 Bridget Brennan"]
+    c137["c137 Patrick Corrigan"]
+    c187["✗ c187 the place"]
+    c162["c162 Marion Stannard"]
+    c173["✗ c173 the place"]
+    c191["c191 Patrick Corrigan"]
+    c193["c193 the place"]
+    c194["✗ c194 the place"]
+  end
+  subgraph P6["the drying yard behind the laundry"]
+    c029["c029 Alonzo Broadnax"]
+    c046["c046 Sadie Shapiro"]
+  end
+  c144 --> c120
+  c144 --> c062
+  c144 --> c158
+  c144 -.-> c162
+  c145 --> c120
+  c145 --> c138
+  c160 --> c138
+  c160 --> c019
+  c160 --> c029
+  c160 --> c011
+  c160 --> c137
+  c160 --> c046
+  c120 --> c019
+  c120 --> c147
+  c120 --> c002
+  c138 --> c062
+  c138 --> c147
+  c138 --> c099
+  c138 -.-> c183
+  c138 -.-> c178
+  c019 --> c065
+  c147 --> c149
+  c147 --> c140
+  c011 -.-> c168
+  c046 -.-> c191
+  c183 --> c187
+  c162 -.-> c164
+  c164 --> c166
+  c168 --> c173
+  c178 --> c180
+  c191 -.-> c193
+  c193 --> c194
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c144,c145,c160,c120,c138,c019,c062,c147 spine;
+  class c099,c029,c149,c002,c140,c158,c065,c011,c137,c046 corrob;
+  class c183,c162,c164,c168,c178,c191,c193 noise;
+  class c187,c166,c173,c180,c194 disq;
+```
+
+## 9. Deduction path
+
+Par is **8 actions** against a budget of 20: 12 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 8:00 PM: one puts Edward Doyle alive at 7:30 PM, the other times the scene at 8:00 PM. _(c145, c147, c144; + 1 corroborating)_
 
 **Clearing the innocent.**
 
-- Rutherford Bidwell was not on the Service Stairs at 8:30 PM, on two independent sources. _(c023, c079, c096, c137)_
-- Assunta Grasso was not on the Service Stairs at 8:30 PM, on two independent sources. _(c083, c100, c117, c142)_
-- Marion Ellery was not on the Service Stairs at 8:30 PM, on two independent sources. _(c028, c089, c103, c124, c150)_
-- Wilhelm Brauer was not on the Service Stairs at 8:30 PM, on two independent sources. _(c037, c110, c132, c159)_
-- Edith Winslow was not on the Service Stairs at 8:30 PM, on two independent sources. _(c039, c093, c133, c161)_
+- Patrick Corrigan was not at the victim’s apartment on the fourth floor at 8:00 PM, on two independent sources. _(c120; + 2 corroborating)_
+- Bridget Brennan was not at the victim’s apartment on the fourth floor at 8:00 PM, on two independent sources. _(c120; + 1 corroborating)_
+- Alonzo Broadnax was not at the victim’s apartment on the fourth floor at 8:00 PM, on two independent sources. _(c062; + 2 corroborating)_
+- Marion Stannard was not at the victim’s apartment on the fourth floor at 8:00 PM, on two independent sources. _(c120; + 2 corroborating)_
+- Wilhelm Steinbach was not at the victim’s apartment on the fourth floor at 8:00 PM, on two independent sources. _(c120; + 2 corroborating)_
 
-**Naming the killer.** Maureen Corrigan claims the Lobby at 8:30 PM. Two independent sources put that out of the question, and one ties Maureen Corrigan to strangling with a cord. _(c182, c184, c185, c186, c187, c011, c012, c029, c030, c151, c152)_
+**Naming the killer.** Sadie Shapiro claims the Arcadia dance hall at 8:00 PM. Two independent sources put that out of the question. _(c138; + 2 corroborating)_
 
-**Method.** Strangling with a cord, on two physical sources. _(c199, c200)_
+**The weapon.** Sadie Shapiro was at the drying yard behind the laundry before 8:00 PM, where a length of sash cord was kept. _(c019; + 1 corroborating)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c205, c206)_
+**Method.** Strangling with a cord, on two physical sources. _(c144, c145; + 1 corroborating)_
 
-## 8. Red herrings
+**Motive.** debt, on two independent sources. _(c160; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Rutherford Bidwell claims the Bar at 8:30 PM and was really in the Kitchen. Reason: Rutherford Bidwell hands a parcel of stolen goods to a man at the Kitchen at 8:30 PM.
-- Marion Ellery claims the Lobby at 8:30 PM and was really in the Bar. Reason: Marion Ellery drinks alone in the Bar from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
+- Alonzo Broadnax claims the Arcadia dance hall at 8:00 PM and was really at the newsstand on the corner. Reason: Alonzo Broadnax hands a parcel of stolen goods to a man at the newsstand on the corner from 8:00 PM.
+- Marion Stannard claims the subway kiosk at the corner at 8:00 PM and was really at the Arcadia dance hall. Reason: Marion Stannard buys morphine at the Arcadia dance hall from 8:00 PM to 8:30 PM and would rather be thought a murderer than a hop-head.
+- Wilhelm Steinbach claims the newsstand on the corner at 8:00 PM and was really at the Arcadia dance hall. Reason: Wilhelm Steinbach drinks alone at the Arcadia dance hall from 8:00 PM to 8:30 PM and will claim to have been anywhere else.
 
 **Innocents with a motive:**
 
-- Assunta Grasso — inheritance: stands to inherit.
+- Alonzo Broadnax — revenge: blamed the victim for a ruin.
+- Marion Stannard — property: wanted the victim out of a lease.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Marion Stannard, dope): c183 → **c187** — The man who sells it at the Arcadia dance hall gives it up rather than be held: Marion Stannard was there from 8:00 PM to 8:30 PM, and stayed until it took hold.
+- **b2** (Patrick Corrigan, fence): c162 → c164 → **c166** — The receiver at the subway kiosk at the corner would rather talk than be held: Patrick Corrigan was there from 7:30 PM handing over a parcel of somebody else’s silver, which is a charge Patrick Corrigan will take over this one.
+- **b3** (Bridget Brennan, dope): c168 → **c173** — The man who sells it at the Arcadia dance hall gives it up rather than be held: Bridget Brennan was there from 11:00 PM, and stayed until it took hold.
+- **b4** (Alonzo Broadnax, fence): c178 → **c180** — The receiver at the newsstand on the corner would rather talk than be held: Alonzo Broadnax was there from 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Alonzo Broadnax will take over this one.
+- **b5** (Wilhelm Steinbach, secret-drinking): c191 → c193 → **c194** — The man behind the counter at the Arcadia dance hall knows exactly: Wilhelm Steinbach was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.
 

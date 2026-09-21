@@ -1,579 +1,434 @@
-# The Penwick — case 12
+# Chelsea — case 12
 
-**Seed** 12 · **Attempts** 3 · **Detective** Humphrey
+**Seed** 12 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 8 actions · **Budget** 20 · **Slack** 12 · **Findable** 30 (spine 7, corroboration 11, noise 6 + 6 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 181
 
 ## 1. The Truth
 
-Hedwig Hochstetter, an insurance adjuster, the victim's cousin, killed Maureen Donnelly, a theatrical agent, with a gunshot in the Roof Garden at 9:30 PM. Hedwig Hochstetter stands to inherit (inheritance). Hedwig Hochstetter had been at the Front Desk earlier in the evening, before 9:30 PM and was alone with Maureen Donnelly when it happened.
+Roscoe Dandridge, a ward heeler, the victim’s business partner, killed Vincenzo Grasso, a buildings inspector, with poison in a drink at the victim’s suite at the residential hotel at 10:30 PM. Roscoe Dandridge wanted the victim out of a lease (property). Roscoe Dandridge had been at Dolan’s Bar earlier in the evening, where the weapon lived, and was alone with Vincenzo Grasso when it happened. Klara Hochstetter hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Maureen Donnelly | a theatrical agent | the victim | — | — | — |
-| Booker Bledsoe | a travelling salesman in patent medicines | the victim's estranged spouse | embezzling | debt | — |
-| Hedwig Hochstetter | an insurance adjuster | the victim's cousin | murder (+ fence) | inheritance | **YES** |
-| Fannie Feldman | a dentist with rooms on the third floor | engaged to the victim's daughter | fence | — | — |
-| Sol Rosenbaum | a piano teacher | a childhood friend of the victim from the same block | blackmail | — | — |
-| Margarethe Kreuzer | a seamstress | the victim's former employee | forged-identity | — | — |
-| Lurline Mosley | a chambermaid | the victim's rival in trade | secret-drinking | — | — |
-| Giovanna Alfano | the doorman | fixture | — | — | — |
-| Lyman Ainsworth | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Vincenzo Grasso | a buildings inspector | the victim | — | — | — | — |
+| Klara Hochstetter (client) | a piano teacher | the victim’s tenant | hidden-family | — | the back room at Mrs. Teague’s | — |
+| Odessa Tillman | a curb broker | in the victim’s debt | fence | exposure | Mancuso’s pool hall | — |
+| Roscoe Dandridge | a ward heeler | the victim’s business partner | murder (+ blackmail) | property | Mancuso’s pool hall | **YES** |
+| Teresa Salerno | a dentist with rooms on the third floor | in the victim’s debt | forged-identity | — | the benches at the north end of the square | — |
+| Nunzio Lanza | a longshoreman | the victim’s tenant | gambling-debt | revenge | Mancuso’s pool hall | — |
+| Gretchen Steinbach | a lawyer with one clerk | the victim’s lawyer | gambling-debt | — | the benches at the north end of the square | — |
+| Nathan Sirkin | the man behind the counter | fixture (counterman) | — | — | Mancuso’s pool hall | — |
+| Hyman Shapiro | the bartender | fixture (bartender) | — | — | Dolan’s Bar | — |
+| Lorraine Prentiss | the landlady | fixture (landlady) | — | — | the back room at Mrs. Teague’s | — |
+| Prescott Pickering | the elevator man | fixture (elevator-man) | — | — | the vestibule of the Hallam apartments | — |
+| Karl Lindemann | the patrolman on the beat | fixture (beat-cop) | — | — | Mancuso’s pool hall | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: a camel-hair overcoat on a hook, a folded stack of evening papers
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a nickel-plated revolver, a bronze bookend
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: an ice pick, a seltzer siphon
-- **Kitchen** (private) — adjacent: Bar, Service Stairs; sees: Bar; noise carries to: Bar, Service Stairs; objects: none
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: none
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a steamer trunk
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a galvanised watering can, a terracotta flower pot
-- **Street** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a brass umbrella stand
+- **Mancuso’s pool hall** (semi) — watched by counterman (Nathan Sirkin); objects: a silver cigarette case, an ice pick, a nickel-plated revolver — within earshot of the scene
+- **the victim’s suite at the residential hotel** (private) — unwatched; objects: a day ledger, a camel-hair overcoat on a hook — **THE SCENE**; the victim’s address
+- **Dolan’s Bar** (semi) — watched by bartender (Hyman Shapiro); objects: a bottle of chloral drops, a seltzer siphon — where the weapon lived; within earshot of the scene
+- **the benches at the north end of the square** (public) — unwatched; objects: a folded stack of evening papers, a brass umbrella stand
+- **the back room at Mrs. Teague’s** (private) — watched by landlady (Lorraine Prentiss); objects: a length of sash cord, a bronze bookend, the roof-door key
+- **the vestibule of the Hallam apartments** (private) — watched by elevator-man (Prescott Pickering); objects: none
 
-**Environment:** nothing out of the ordinary.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 10:00 PM–11:30 PM, four ticks wide. These are what close it: **el-train** and **fuse**.
 
-### Maureen Donnelly — the victim
+- **the fuse going in the building** — at 10:00 PM; at the vestibule of the Hallam apartments. You can time things by it: a crack in the cellar and every light on the riser out at once. Those present carry it: candle smoke on the ceilings of everyone who sat it out.
+- **the El going over** — at 6:30 PM, 7:30 PM, 8:30 PM, 9:30 PM, 10:30 PM, 11:30 PM; across the whole neighbourhood. You can time things by it: everything under the structure stops being audible for twenty seconds.
+- **the beat cop’s pass** — at 6:00 PM, 7:30 PM, 9:00 PM, 10:30 PM; on a round through Mancuso’s pool hall → Dolan’s Bar → the benches at the north end of the square. Somebody reliable notes who was there.
+
+## 5. Timelines
+
+### Vincenzo Grasso — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Victim's Suite | Victim's Suite | — |
-| 1 | 6:30 PM | Victim's Suite | Victim's Suite | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Roof Garden | Roof Garden | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Roof Garden ☠ | Roof Garden | — |
-| 8 | 10:00 PM | — | — | — |
-| 9 | 10:30 PM | — | — | — |
+| 0 | 6:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 1 | 6:30 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 4 | 8:00 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 5 | 8:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 6 | 9:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 7 | 9:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 8 | 10:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 9 | 10:30 PM | the victim’s suite at the residential hotel ☠ | the victim’s suite at the residential hotel | — |
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Booker Bledsoe
+### Klara Hochstetter
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Kitchen | Kitchen | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Victim's Suite | **Front Desk** | — |
+| 0 | 6:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 1 | 6:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | the back room at Mrs. Teague’s | **Dolan’s Bar** | — |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 5 | 8:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 6 | 9:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 7 | 9:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 8 | 10:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 9 | 10:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | Dolan’s Bar | Dolan’s Bar | — |
 
-### Hedwig Hochstetter — the killer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Kitchen | **Lobby** | — |
-| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
-| 7 | 9:30 PM | Roof Garden ☠ | **Front Desk** | — |
-| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
-| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
-
-### Fannie Feldman
+### Odessa Tillman
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Kitchen | **Bar** | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 2 | 7:00 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 3 | 7:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 4 | 8:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 5 | 8:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 6 | 9:00 PM | Mancuso’s pool hall | **the back room at Mrs. Teague’s** | — |
+| 7 | 9:30 PM | Mancuso’s pool hall | **the back room at Mrs. Teague’s** | — |
+| 8 | 10:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 9 | 10:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | Dolan’s Bar | Dolan’s Bar | — |
 
-### Sol Rosenbaum
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Victim's Suite | **Lobby** | — |
-| 1 | 6:30 PM | Victim's Suite | **Lobby** | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Front Desk | Front Desk | — |
-| 8 | 10:00 PM | Front Desk | Front Desk | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Street | Street | — |
-
-### Margarethe Kreuzer
+### Roscoe Dandridge — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Roof Garden | Roof Garden | — |
-| 3 | 7:30 PM | Roof Garden | Roof Garden | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 1 | 6:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 2 | 7:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 3 | 7:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 4 | 8:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 5 | 8:30 PM | the vestibule of the Hallam apartments | **the back room at Mrs. Teague’s** | Gretchen Steinbach |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 9 | 10:30 PM | the victim’s suite at the residential hotel ☠ | **Mancuso’s pool hall** | — |
+| 10 | 11:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 11 | 11:30 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
 
-### Lurline Mosley
+### Teresa Salerno
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Front Desk | Front Desk | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Bar | **Lobby** | — |
-| 8 | 10:00 PM | Bar | **Lobby** | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 1 | 6:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 2 | 7:00 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 3 | 7:30 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 4 | 8:00 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 5 | 8:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 9 | 10:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 10 | 11:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+
+### Nunzio Lanza
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 1 | 6:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 2 | 7:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 3 | 7:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 4 | 8:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 5 | 8:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 6 | 9:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 7 | 9:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 8 | 10:00 PM | Mancuso’s pool hall | **the vestibule of the Hallam apartments** | — |
+| 9 | 10:30 PM | Mancuso’s pool hall | **the vestibule of the Hallam apartments** | — |
+| 10 | 11:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+
+### Gretchen Steinbach
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 3 | 7:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 4 | 8:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 5 | 8:30 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 6 | 9:00 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 7 | 9:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 8 | 10:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 9 | 10:30 PM | Mancuso’s pool hall | **the vestibule of the Hallam apartments** | — |
+| 10 | 11:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Giovanna Alfano (the doorman) | Lyman Ainsworth (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Lobby | Kitchen |
-| 5 | 8:30 PM | Street | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Front Desk | Bar |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Booker Bledsoe** (embezzling): Booker Bledsoe goes through the papers in the Victim's Suite from 11:30 PM while the victim is downstairs.
-- **Hedwig Hochstetter** (murder): Hedwig Hochstetter is alone with Maureen Donnelly in the Roof Garden from 9:30 PM, and kills Maureen Donnelly at 9:30 PM.
-- **Hedwig Hochstetter** also (fence): Hedwig Hochstetter hands a parcel of stolen goods to a man at the Kitchen at 8:30 PM.
-- **Fannie Feldman** (fence): Fannie Feldman hands a parcel of stolen goods to a man at the Kitchen at 9:30 PM.
-- **Sol Rosenbaum** (blackmail): Sol Rosenbaum meets the victim alone in the Victim's Suite from 6:00 PM to 6:30 PM and asks for money.
-- **Margarethe Kreuzer** (forged-identity): Margarethe Kreuzer is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.
-- **Lurline Mosley** (secret-drinking): Lurline Mosley drinks alone in the Bar from 9:30 PM to 10:00 PM and will claim to have been anywhere else.
-
-## 6. Clue list
-
-### From Booker Bledsoe (a travelling salesman in patent medicines)
-
-On Hedwig Hochstetter:
-
-- **c001** [observation] Booker Bledsoe says Hedwig Hochstetter was in the Lobby at 7:30 PM. — _establishes: Hedwig Hochstetter in the Lobby, 7:30 PM_
-- **c002** [observation] Booker Bledsoe says Hedwig Hochstetter was in the Bar at 8:00 PM. — _establishes: Hedwig Hochstetter in the Bar, 8:00 PM_
-- **c003** [observation] Booker Bledsoe says Hedwig Hochstetter was in the Kitchen at 8:30 PM. — _establishes: Hedwig Hochstetter in the Kitchen, 8:30 PM_
-
-On Fannie Feldman:
-
-- **c004** [observation] Booker Bledsoe says Fannie Feldman was in the Kitchen from 6:00 PM to 6:30 PM. — _establishes: Fannie Feldman in the Kitchen, 6:00 PM–6:30 PM_
-- **c005** [observation] Booker Bledsoe says Fannie Feldman was in the Kitchen from 9:00 PM to 10:30 PM. — _establishes: Fannie Feldman in the Kitchen, 9:00 PM–10:30 PM_
-
-On Sol Rosenbaum:
-
-- **c006** [observation] Booker Bledsoe says Sol Rosenbaum was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 10:30 PM–11:00 PM_
-
-On Margarethe Kreuzer:
-
-- **c007** [observation] Booker Bledsoe says Margarethe Kreuzer was in the Lobby at 9:30 PM. — _establishes: Margarethe Kreuzer in the Lobby, 9:30 PM_
-- **c008** [observation] Booker Bledsoe says Margarethe Kreuzer was in the Bar from 10:00 PM to 11:00 PM. — _establishes: Margarethe Kreuzer in the Bar, 10:00 PM–11:00 PM_
-
-On Lurline Mosley:
-
-- **c009** [observation] Booker Bledsoe says Lurline Mosley was in the Bar from 9:30 PM to 11:00 PM. — _establishes: Lurline Mosley in the Bar, 9:30 PM–11:00 PM_
-
-On Fannie Feldman's account:
-
-- **c107** [observation] Booker Bledsoe was in the Bar at 9:30 PM and says Fannie Feldman was not in the Bar. — _establishes: Fannie Feldman not in the Bar, 9:30 PM_
-
-On Lurline Mosley's account:
-
-- **c116** [observation] Booker Bledsoe was in the Bar from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
-
-On Hedwig Hochstetter and Maureen Donnelly:
-
-- **c129** [overheard] Booker Bledsoe says Maureen Donnelly told Hedwig Hochstetter the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Hedwig Hochstetter had a motive (inheritance)_
-
-### From Hedwig Hochstetter (an insurance adjuster)
-
-On Booker Bledsoe:
-
-- **c010** [observation] Hedwig Hochstetter says Booker Bledsoe was in the Bar from 7:30 PM to 8:00 PM. — _establishes: Booker Bledsoe in the Bar, 7:30 PM–8:00 PM_
-
-On Fannie Feldman:
-
-- **c011** [observation] Hedwig Hochstetter says Fannie Feldman was in the Kitchen at 11:30 PM. — _establishes: Fannie Feldman in the Kitchen, 11:30 PM_
-
-On Margarethe Kreuzer:
-
-- **c012** [observation] Hedwig Hochstetter says Margarethe Kreuzer was in the Bar at 11:30 PM. — _establishes: Margarethe Kreuzer in the Bar, 11:30 PM_
-
-On Lurline Mosley:
-
-- **c013** [observation] Hedwig Hochstetter says Lurline Mosley was at the Front Desk at 6:00 PM. — _establishes: Lurline Mosley at the Front Desk, 6:00 PM; Lurline Mosley had access to the method_
-- **c014** [observation] Hedwig Hochstetter says Lurline Mosley was at the Front Desk from 7:00 PM to 7:30 PM. — _establishes: Lurline Mosley at the Front Desk, 7:00 PM–7:30 PM; Lurline Mosley had access to the method_
-- **c015** [observation] Hedwig Hochstetter says Lurline Mosley was in the Lobby at 6:30 PM. — _establishes: Lurline Mosley in the Lobby, 6:30 PM_
-- **c016** [observation] Hedwig Hochstetter says Lurline Mosley was in the Bar at 11:30 PM. — _establishes: Lurline Mosley in the Bar, 11:30 PM_
-
-On Sol Rosenbaum's account:
-
-- **c111** [observation] Hedwig Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM–6:30 PM_
-
-### From Fannie Feldman (a dentist with rooms on the third floor)
-
-On Maureen Donnelly:
-
-- **c017** [observation] Fannie Feldman says Maureen Donnelly was on the Service Stairs at 7:00 PM. — _establishes: Maureen Donnelly on the Service Stairs, 7:00 PM; the victim alive at 7:00 PM_
-
-On Booker Bledsoe:
-
-- **c018** [observation] Fannie Feldman says Booker Bledsoe was in the Kitchen from 6:00 PM to 6:30 PM. — _establishes: Booker Bledsoe in the Kitchen, 6:00 PM–6:30 PM_
-- **c019** [observation] Fannie Feldman says Booker Bledsoe was in the Kitchen at 9:00 PM. — _establishes: Booker Bledsoe in the Kitchen, 9:00 PM_
-- **c020** [observation] Fannie Feldman says Booker Bledsoe was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Booker Bledsoe in the Bar, 10:00 PM–10:30 PM_
-
-On Hedwig Hochstetter:
-
-- **c021** [observation] Fannie Feldman says Hedwig Hochstetter was in the Kitchen at 11:30 PM. — _establishes: Hedwig Hochstetter in the Kitchen, 11:30 PM_
-
-On Sol Rosenbaum:
-
-- **c022** [observation] Fannie Feldman says Sol Rosenbaum was on the Service Stairs from 7:00 PM to 7:30 PM. — _establishes: Sol Rosenbaum on the Service Stairs, 7:00 PM–7:30 PM_
-
-On Margarethe Kreuzer:
-
-- **c023** [observation] Fannie Feldman says Margarethe Kreuzer was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Margarethe Kreuzer in the Bar, 10:00 PM–11:30 PM_
-
-On Lurline Mosley:
-
-- **c024** [observation] Fannie Feldman says Lurline Mosley was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Lurline Mosley in the Bar, 10:00 PM–11:30 PM_
-
-### From Sol Rosenbaum (a piano teacher)
-
-On Maureen Donnelly:
-
-- **c025** [observation] Sol Rosenbaum says Maureen Donnelly was on the Service Stairs at 7:00 PM. — _establishes: Maureen Donnelly on the Service Stairs, 7:00 PM; the victim alive at 7:00 PM_
-- **c026** [observation] Sol Rosenbaum says Maureen Donnelly was in the Roof Garden from 8:00 PM to 8:30 PM. — _establishes: Maureen Donnelly in the Roof Garden, 8:00 PM–8:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c027** [observation] Sol Rosenbaum says Maureen Donnelly was in the Lobby at 9:00 PM. — _establishes: Maureen Donnelly in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Booker Bledsoe:
-
-- **c028** [observation] Sol Rosenbaum says Booker Bledsoe was in the Bar at 10:30 PM. — _establishes: Booker Bledsoe in the Bar, 10:30 PM_
-- **c029** [observation] Sol Rosenbaum says Booker Bledsoe was in the Lobby at 11:00 PM. — _establishes: Booker Bledsoe in the Lobby, 11:00 PM_
-
-On Fannie Feldman:
-
-- **c030** [observation] Sol Rosenbaum says Fannie Feldman was on the Service Stairs from 7:00 PM to 7:30 PM. — _establishes: Fannie Feldman on the Service Stairs, 7:00 PM–7:30 PM_
-
-On Margarethe Kreuzer:
-
-- **c031** [observation] Sol Rosenbaum says Margarethe Kreuzer was in the Roof Garden at 8:00 PM. — _establishes: Margarethe Kreuzer in the Roof Garden, 8:00 PM_
-- **c032** [observation] Sol Rosenbaum says Margarethe Kreuzer was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Margarethe Kreuzer in the Lobby, 9:00 PM–9:30 PM_
-- **c033** [observation] Sol Rosenbaum says Margarethe Kreuzer was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Margarethe Kreuzer in the Bar, 10:30 PM–11:00 PM_
-
-On Lurline Mosley:
-
-- **c034** [observation] Sol Rosenbaum says Lurline Mosley was in the Lobby at 9:00 PM. — _establishes: Lurline Mosley in the Lobby, 9:00 PM_
-- **c035** [observation] Sol Rosenbaum says Lurline Mosley was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Lurline Mosley in the Bar, 10:30 PM–11:00 PM_
-
-On Hedwig Hochstetter's account:
-
-- **c104** [observation] Sol Rosenbaum was at the Front Desk at 9:30 PM and says Hedwig Hochstetter was not at the Front Desk. — _establishes: Hedwig Hochstetter not at the Front Desk, 9:30 PM_
-
-On Lurline Mosley's account:
-
-- **c117** [observation] Sol Rosenbaum was at the Front Desk from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
-
-### From Margarethe Kreuzer (a seamstress)
-
-On Maureen Donnelly:
-
-- **c036** [observation] Margarethe Kreuzer says Maureen Donnelly was in the Roof Garden from 7:30 PM to 8:00 PM. — _establishes: Maureen Donnelly in the Roof Garden, 7:30 PM–8:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM_
-- **c037** [observation] Margarethe Kreuzer says Maureen Donnelly was in the Lobby at 9:00 PM. — _establishes: Maureen Donnelly in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Booker Bledsoe:
-
-- **c038** [observation] Margarethe Kreuzer says Booker Bledsoe was in the Bar from 9:30 PM to 10:30 PM. — _establishes: Booker Bledsoe in the Bar, 9:30 PM–10:30 PM_
-- **c039** [observation] Margarethe Kreuzer says Booker Bledsoe was in the Lobby at 11:00 PM. — _establishes: Booker Bledsoe in the Lobby, 11:00 PM_
-
-On Hedwig Hochstetter:
-
-- **c040** [observation] Margarethe Kreuzer says Hedwig Hochstetter was in the Kitchen at 11:30 PM. — _establishes: Hedwig Hochstetter in the Kitchen, 11:30 PM_
-
-On Fannie Feldman:
-
-- **c041** [observation] Margarethe Kreuzer says Fannie Feldman was in the Kitchen from 10:00 PM to 11:30 PM. — _establishes: Fannie Feldman in the Kitchen, 10:00 PM–11:30 PM_
-
-On Sol Rosenbaum:
-
-- **c042** [observation] Margarethe Kreuzer says Sol Rosenbaum was in the Roof Garden at 8:00 PM. — _establishes: Sol Rosenbaum in the Roof Garden, 8:00 PM_
-- **c043** [observation] Margarethe Kreuzer says Sol Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 9:00 PM_
-- **c044** [observation] Margarethe Kreuzer says Sol Rosenbaum was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 10:30 PM–11:00 PM_
-- **c045** [observation] Margarethe Kreuzer says Sol Rosenbaum was at the Front Desk at 9:30 PM. — _establishes: Sol Rosenbaum at the Front Desk, 9:30 PM_
-
-On Lurline Mosley:
-
-- **c046** [observation] Margarethe Kreuzer says Lurline Mosley was at the Front Desk at 8:30 PM. — _establishes: Lurline Mosley at the Front Desk, 8:30 PM; Lurline Mosley had access to the method_
-- **c047** [observation] Margarethe Kreuzer says Lurline Mosley was in the Lobby at 9:00 PM. — _establishes: Lurline Mosley in the Lobby, 9:00 PM_
-- **c048** [observation] Margarethe Kreuzer says Lurline Mosley was in the Bar from 9:30 PM to 11:30 PM. — _establishes: Lurline Mosley in the Bar, 9:30 PM–11:30 PM_
-
-On Hedwig Hochstetter's account:
-
-- **c100** [observation] Margarethe Kreuzer was in the Lobby at 8:30 PM and says Hedwig Hochstetter was not in the Lobby. — _establishes: Hedwig Hochstetter not in the Lobby, 8:30 PM_
-- **c105** [observation] Margarethe Kreuzer was in the Lobby at 9:30 PM and says Hedwig Hochstetter was not at the Front Desk. — _establishes: Hedwig Hochstetter not at the Front Desk, 9:30 PM_
-
-On Fannie Feldman's account:
-
-- **c108** [observation] Margarethe Kreuzer was in the Lobby at 9:30 PM and says Fannie Feldman was not in the Bar. — _establishes: Fannie Feldman not in the Bar, 9:30 PM_
-
-On Lurline Mosley's account:
-
-- **c118** [observation] Margarethe Kreuzer was in the Lobby at 9:30 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM_
-- **c119** [observation] Margarethe Kreuzer was in the Bar at 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 10:00 PM_
-
-On Booker Bledsoe and Maureen Donnelly:
-
-- **c127** [overheard] Margarethe Kreuzer says Maureen Donnelly told Booker Bledsoe that Friday was the end of it, one way or the other. — _establishes: Booker Bledsoe had a motive (debt)_
-
-### From Lurline Mosley (a chambermaid)
-
-On Maureen Donnelly:
-
-- **c049** [observation] Lurline Mosley says Maureen Donnelly was in the Lobby at 9:00 PM. — _establishes: Maureen Donnelly in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Booker Bledsoe:
-
-- **c050** [observation] Lurline Mosley says Booker Bledsoe was in the Bar at 10:30 PM. — _establishes: Booker Bledsoe in the Bar, 10:30 PM_
-- **c051** [observation] Lurline Mosley says Booker Bledsoe was in the Lobby at 11:00 PM. — _establishes: Booker Bledsoe in the Lobby, 11:00 PM_
-
-On Hedwig Hochstetter:
-
-- **c052** [observation] Lurline Mosley says Hedwig Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Hedwig Hochstetter at the Front Desk, 6:00 PM–6:30 PM; Hedwig Hochstetter had access to the method_
-- **c053** [observation] Lurline Mosley says Hedwig Hochstetter was in the Lobby from 7:00 PM to 7:30 PM. — _establishes: Hedwig Hochstetter in the Lobby, 7:00 PM–7:30 PM_
-- **c054** [observation] Lurline Mosley says Hedwig Hochstetter was in the Kitchen at 11:30 PM. — _establishes: Hedwig Hochstetter in the Kitchen, 11:30 PM_
-
-On Fannie Feldman:
-
-- **c055** [observation] Lurline Mosley says Fannie Feldman was in the Kitchen from 10:30 PM to 11:30 PM. — _establishes: Fannie Feldman in the Kitchen, 10:30 PM–11:30 PM_
-
-On Sol Rosenbaum:
-
-- **c056** [observation] Lurline Mosley says Sol Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 9:00 PM_
-- **c057** [observation] Lurline Mosley says Sol Rosenbaum was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 10:30 PM–11:00 PM_
-
-On Margarethe Kreuzer:
-
-- **c058** [observation] Lurline Mosley says Margarethe Kreuzer was in the Lobby from 8:30 PM to 9:00 PM. — _establishes: Margarethe Kreuzer in the Lobby, 8:30 PM–9:00 PM_
-- **c059** [observation] Lurline Mosley says Margarethe Kreuzer was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Margarethe Kreuzer in the Bar, 10:30 PM–11:30 PM_
-
-On Hedwig Hochstetter's account:
-
-- **c101** [observation] Lurline Mosley was at the Front Desk at 8:30 PM and says Hedwig Hochstetter was not in the Lobby. — _establishes: Hedwig Hochstetter not in the Lobby, 8:30 PM_
-
-On Sol Rosenbaum's account:
-
-- **c112** [observation] Lurline Mosley was at the Front Desk at 6:00 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM_
-- **c113** [observation] Lurline Mosley was in the Lobby at 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:30 PM_
-
-### From Giovanna Alfano (the doorman)
-
-On Maureen Donnelly:
-
-- **c060** [observation] Giovanna Alfano says Maureen Donnelly was in the Lobby at 9:00 PM. — _establishes: Maureen Donnelly in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Booker Bledsoe:
-
-- **c061** [observation] Giovanna Alfano says Booker Bledsoe was in the Bar from 7:30 PM to 8:00 PM. — _establishes: Booker Bledsoe in the Bar, 7:30 PM–8:00 PM_
-- **c062** [observation] Giovanna Alfano says Booker Bledsoe was in the Bar at 9:30 PM. — _establishes: Booker Bledsoe in the Bar, 9:30 PM_
-- **c063** [observation] Giovanna Alfano says Booker Bledsoe was in the Bar at 10:30 PM. — _establishes: Booker Bledsoe in the Bar, 10:30 PM_
-- **c064** [observation] Giovanna Alfano says Booker Bledsoe was in the Lobby at 11:00 PM. — _establishes: Booker Bledsoe in the Lobby, 11:00 PM_
-
-On Hedwig Hochstetter:
-
-- **c065** [observation] Giovanna Alfano says Hedwig Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Hedwig Hochstetter at the Front Desk, 6:00 PM–6:30 PM; Hedwig Hochstetter had access to the method_
-- **c066** [observation] Giovanna Alfano says Hedwig Hochstetter was in the Lobby from 7:00 PM to 7:30 PM. — _establishes: Hedwig Hochstetter in the Lobby, 7:00 PM–7:30 PM_
-- **c067** [observation] Giovanna Alfano says Hedwig Hochstetter was in the Bar at 8:00 PM. — _establishes: Hedwig Hochstetter in the Bar, 8:00 PM_
-
-On Sol Rosenbaum:
-
-- **c068** [observation] Giovanna Alfano says Sol Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 9:00 PM_
-- **c069** [observation] Giovanna Alfano says Sol Rosenbaum was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 10:30 PM–11:00 PM_
-- **c070** [observation] Giovanna Alfano says Sol Rosenbaum was at the Front Desk from 9:30 PM to 10:00 PM. — _establishes: Sol Rosenbaum at the Front Desk, 9:30 PM–10:00 PM_
-- **c071** [observation] Giovanna Alfano says Sol Rosenbaum was on the Street at 11:30 PM. — _establishes: Sol Rosenbaum on the Street, 11:30 PM_
-
-On Margarethe Kreuzer:
-
-- **c072** [observation] Giovanna Alfano says Margarethe Kreuzer was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Margarethe Kreuzer in the Lobby, 8:30 PM–9:30 PM_
-- **c073** [observation] Giovanna Alfano says Margarethe Kreuzer was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Margarethe Kreuzer in the Bar, 10:30 PM–11:30 PM_
-
-On Lurline Mosley:
-
-- **c074** [observation] Giovanna Alfano says Lurline Mosley was at the Front Desk at 6:00 PM. — _establishes: Lurline Mosley at the Front Desk, 6:00 PM; Lurline Mosley had access to the method_
-- **c075** [observation] Giovanna Alfano says Lurline Mosley was at the Front Desk from 7:00 PM to 8:00 PM. — _establishes: Lurline Mosley at the Front Desk, 7:00 PM–8:00 PM; Lurline Mosley had access to the method_
-- **c076** [observation] Giovanna Alfano says Lurline Mosley was in the Lobby at 6:30 PM. — _establishes: Lurline Mosley in the Lobby, 6:30 PM_
-- **c077** [observation] Giovanna Alfano says Lurline Mosley was in the Lobby at 9:00 PM. — _establishes: Lurline Mosley in the Lobby, 9:00 PM_
-- **c078** [observation] Giovanna Alfano says Lurline Mosley was in the Bar at 9:30 PM. — _establishes: Lurline Mosley in the Bar, 9:30 PM_
-- **c079** [observation] Giovanna Alfano says Lurline Mosley was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Lurline Mosley in the Bar, 10:30 PM–11:30 PM_
-
-On Booker Bledsoe's account:
-
-- **c099** [observation] Giovanna Alfano was in the Lobby at 11:30 PM and says Booker Bledsoe was not at the Front Desk. — _establishes: Booker Bledsoe not at the Front Desk, 11:30 PM_
-
-On Hedwig Hochstetter's account:
-
-- **c102** [observation] Giovanna Alfano was on the Street at 8:30 PM and says Hedwig Hochstetter was not in the Lobby. — _establishes: Hedwig Hochstetter not in the Lobby, 8:30 PM_
-- **c106** [observation] Giovanna Alfano was in the Lobby at 9:30 PM and says Hedwig Hochstetter was not at the Front Desk. — _establishes: Hedwig Hochstetter not at the Front Desk, 9:30 PM_
-
-On Fannie Feldman's account:
-
-- **c109** [observation] Giovanna Alfano was in the Lobby at 9:30 PM and says Fannie Feldman was not in the Bar. — _establishes: Fannie Feldman not in the Bar, 9:30 PM_
-
-On Sol Rosenbaum's account:
-
-- **c114** [observation] Giovanna Alfano was in the Lobby from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM–6:30 PM_
-
-On Lurline Mosley's account:
-
-- **c120** [observation] Giovanna Alfano was in the Lobby at 9:30 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM_
-- **c121** [observation] Giovanna Alfano was at the Front Desk at 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 10:00 PM_
-
-### From Lyman Ainsworth (the bartender)
-
-On Maureen Donnelly:
-
-- **c080** [observation] Lyman Ainsworth says Maureen Donnelly was in the Lobby at 9:00 PM. — _establishes: Maureen Donnelly in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Booker Bledsoe:
-
-- **c081** [observation] Lyman Ainsworth says Booker Bledsoe was in the Kitchen from 6:00 PM to 7:00 PM. — _establishes: Booker Bledsoe in the Kitchen, 6:00 PM–7:00 PM_
-- **c082** [observation] Lyman Ainsworth says Booker Bledsoe was in the Kitchen from 8:30 PM to 9:00 PM. — _establishes: Booker Bledsoe in the Kitchen, 8:30 PM–9:00 PM_
-- **c083** [observation] Lyman Ainsworth says Booker Bledsoe was in the Bar from 7:30 PM to 8:00 PM. — _establishes: Booker Bledsoe in the Bar, 7:30 PM–8:00 PM_
-- **c084** [observation] Lyman Ainsworth says Booker Bledsoe was in the Bar from 9:30 PM to 10:30 PM. — _establishes: Booker Bledsoe in the Bar, 9:30 PM–10:30 PM_
-- **c085** [observation] Lyman Ainsworth says Booker Bledsoe was in the Lobby at 11:00 PM. — _establishes: Booker Bledsoe in the Lobby, 11:00 PM_
-
-On Hedwig Hochstetter:
-
-- **c086** [observation] Lyman Ainsworth says Hedwig Hochstetter was in the Lobby from 7:00 PM to 7:30 PM. — _establishes: Hedwig Hochstetter in the Lobby, 7:00 PM–7:30 PM_
-- **c087** [observation] Lyman Ainsworth says Hedwig Hochstetter was in the Bar at 8:00 PM. — _establishes: Hedwig Hochstetter in the Bar, 8:00 PM_
-- **c088** [observation] Lyman Ainsworth says Hedwig Hochstetter was in the Kitchen at 8:30 PM. — _establishes: Hedwig Hochstetter in the Kitchen, 8:30 PM_
-- **c089** [observation] Lyman Ainsworth says Hedwig Hochstetter was in the Kitchen at 11:30 PM. — _establishes: Hedwig Hochstetter in the Kitchen, 11:30 PM_
-
-On Fannie Feldman:
-
-- **c090** [observation] Lyman Ainsworth says Fannie Feldman was in the Kitchen from 6:00 PM to 6:30 PM. — _establishes: Fannie Feldman in the Kitchen, 6:00 PM–6:30 PM_
-- **c091** [observation] Lyman Ainsworth says Fannie Feldman was in the Kitchen from 9:00 PM to 11:30 PM. — _establishes: Fannie Feldman in the Kitchen, 9:00 PM–11:30 PM_
-
-On Sol Rosenbaum:
-
-- **c092** [observation] Lyman Ainsworth says Sol Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 9:00 PM_
-- **c093** [observation] Lyman Ainsworth says Sol Rosenbaum was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Sol Rosenbaum in the Lobby, 10:30 PM–11:00 PM_
-
-On Margarethe Kreuzer:
-
-- **c094** [observation] Lyman Ainsworth says Margarethe Kreuzer was in the Lobby from 8:30 PM to 9:30 PM. — _establishes: Margarethe Kreuzer in the Lobby, 8:30 PM–9:30 PM_
-- **c095** [observation] Lyman Ainsworth says Margarethe Kreuzer was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Margarethe Kreuzer in the Bar, 10:00 PM–11:30 PM_
-
-On Lurline Mosley:
-
-- **c096** [observation] Lyman Ainsworth says Lurline Mosley was in the Lobby at 6:30 PM. — _establishes: Lurline Mosley in the Lobby, 6:30 PM_
-- **c097** [observation] Lyman Ainsworth says Lurline Mosley was in the Lobby at 9:00 PM. — _establishes: Lurline Mosley in the Lobby, 9:00 PM_
-- **c098** [observation] Lyman Ainsworth says Lurline Mosley was in the Bar from 9:30 PM to 11:30 PM. — _establishes: Lurline Mosley in the Bar, 9:30 PM–11:30 PM_
-
-On Hedwig Hochstetter's account:
-
-- **c103** [observation] Lyman Ainsworth was in the Bar at 8:30 PM and says Hedwig Hochstetter was not in the Lobby. — _establishes: Hedwig Hochstetter not in the Lobby, 8:30 PM_
-
-On Fannie Feldman's account:
-
-- **c110** [observation] Lyman Ainsworth was in the Bar at 9:30 PM and says Fannie Feldman was not in the Bar. — _establishes: Fannie Feldman not in the Bar, 9:30 PM_
-
-On Sol Rosenbaum's account:
-
-- **c115** [observation] Lyman Ainsworth was in the Bar from 6:00 PM to 6:30 PM and says Sol Rosenbaum was not in the Lobby. — _establishes: Sol Rosenbaum not in the Lobby, 6:00 PM–6:30 PM_
-
-On Lurline Mosley's account:
-
-- **c122** [observation] Lyman Ainsworth was in the Bar from 9:30 PM to 10:00 PM and says Lurline Mosley was not in the Lobby. — _establishes: Lurline Mosley not in the Lobby, 9:30 PM–10:00 PM_
-
-### From the Front Desk
-
-- **c124** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c125** [document] Margarethe Kreuzer's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
-- **c126** [document] Found in the Front Desk: A promissory note for $4,000 signed by Booker Bledsoe, endorsed to Maureen Donnelly, three months past due. — _establishes: Booker Bledsoe had a motive (debt)_
-- **c128** [document] Found in the Front Desk: A draft codicil in Maureen Donnelly's hand striking Hedwig Hochstetter out of the will, dated last Tuesday and unsigned. — _establishes: Hedwig Hochstetter had a motive (inheritance)_
-
-### From the Roof Garden
-
-- **c123** [morgue] Maureen Donnelly was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:00 PM and 9:30 PM_
-
-### Withheld — the player cannot get these
-
-- ~~Sol Rosenbaum saw Maureen Donnelly in the Victim's Suite, 6:00 PM–6:30 PM~~ — Sol Rosenbaum is lying about that time and will not say.
-- ~~Hedwig Hochstetter saw Booker Bledsoe in the Kitchen, 8:30 PM~~ — Hedwig Hochstetter is lying about that time and will not say.
-- ~~Hedwig Hochstetter saw Lyman Ainsworth in the Bar, 8:30 PM~~ — Hedwig Hochstetter is lying about that time and will not say.
-- ~~Hedwig Hochstetter saw Maureen Donnelly in the Roof Garden, 9:30 PM~~ — Hedwig Hochstetter is lying about that time and will not say.
-- ~~Fannie Feldman saw Booker Bledsoe in the Bar, 9:30 PM~~ — Fannie Feldman is lying about that time and will not say.
-- ~~Fannie Feldman saw Lurline Mosley in the Bar, 9:30 PM~~ — Fannie Feldman is lying about that time and will not say.
-- ~~Fannie Feldman saw Lyman Ainsworth in the Bar, 9:30 PM~~ — Fannie Feldman is lying about that time and will not say.
-- ~~Lurline Mosley saw Booker Bledsoe in the Bar, 9:30 PM–10:00 PM~~ — Lurline Mosley is lying about that time and will not say.
-- ~~Lurline Mosley saw Fannie Feldman in the Kitchen, 9:30 PM–10:00 PM~~ — Lurline Mosley is lying about that time and will not say.
-- ~~Lurline Mosley saw Margarethe Kreuzer in the Lobby, 9:30 PM~~ — Lurline Mosley is lying about that time and will not say.
-- ~~Lurline Mosley saw Giovanna Alfano in the Lobby, 9:30 PM~~ — Lurline Mosley is lying about that time and will not say.
-- ~~Lurline Mosley saw Lyman Ainsworth in the Bar, 9:30 PM–10:00 PM~~ — Lurline Mosley is lying about that time and will not say.
-- ~~Lurline Mosley saw Margarethe Kreuzer in the Bar, 10:00 PM~~ — Lurline Mosley is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c123, c027, c037, c049, c060, c080)_
+| Tick | Time | Nathan Sirkin (the man behind the counter) | Hyman Shapiro (the bartender) | Lorraine Prentiss (the landlady) | Prescott Pickering (the elevator man) | Karl Lindemann (the patrolman on the beat) |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | Mancuso’s pool hall |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | — |
+| 2 | 7:00 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | — |
+| 3 | 7:30 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | Dolan’s Bar |
+| 4 | 8:00 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | — |
+| 5 | 8:30 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | — |
+| 6 | 9:00 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | the benches at the north end of the square |
+| 7 | 9:30 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | — |
+| 8 | 10:00 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | — |
+| 9 | 10:30 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | Mancuso’s pool hall |
+| 10 | 11:00 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | — |
+| 11 | 11:30 PM | Mancuso’s pool hall | Dolan’s Bar | the back room at Mrs. Teague’s | the vestibule of the Hallam apartments | — |
+
+## 6. Secrets in play
+
+- **Klara Hochstetter** (hidden-family): Klara Hochstetter goes to the back room at Mrs. Teague’s from 7:30 PM to see a child nobody is supposed to know about.
+- **Odessa Tillman** (fence): Odessa Tillman hands a parcel of stolen goods to a man at Mancuso’s pool hall from 9:00 PM to 9:30 PM.
+- **Roscoe Dandridge** (murder): Roscoe Dandridge is at the victim’s suite at the residential hotel from 10:30 PM, alone with Vincenzo Grasso when it happens at 10:30 PM.
+- **Roscoe Dandridge** also (blackmail): Roscoe Dandridge meets the victim alone at the vestibule of the Hallam apartments from 8:30 PM and asks for money.
+- **Teresa Salerno** (forged-identity): Teresa Salerno is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.
+- **Nunzio Lanza** (gambling-debt): Nunzio Lanza slips off to Mancuso’s pool hall from 10:00 PM to 10:30 PM to settle with a bookmaker.
+- **Gretchen Steinbach** (gambling-debt): Gretchen Steinbach slips off to Mancuso’s pool hall from 10:30 PM to settle with a bookmaker.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c128, c129, c146. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At Mancuso’s pool hall
+
+- **c113** [spine] (observation; Karl Lindemann on who was there at 10:30 PM) → c131, c067, c179
+  - Karl Lindemann runs through it: at 10:30 PM there were Klara Hochstetter, Odessa Tillman, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.
+  - _establishes: Klara Hochstetter at Mancuso’s pool hall, 10:30 PM; Odessa Tillman at Mancuso’s pool hall, 10:30 PM; Teresa Salerno at Mancuso’s pool hall, 10:30 PM; Nunzio Lanza at Mancuso’s pool hall, 10:30 PM; Gretchen Steinbach at Mancuso’s pool hall, 10:30 PM_
+- **c104** [corroboration] (observation; Nathan Sirkin on who was there at 10:30 PM) → (end)
+  - Nathan Sirkin runs through it: at 10:30 PM there were Klara Hochstetter, Odessa Tillman, Teresa Salerno, Nunzio Lanza, Gretchen Steinbach at Mancuso’s pool hall, and nobody else worth naming.
+  - _establishes: Klara Hochstetter at Mancuso’s pool hall, 10:30 PM; Odessa Tillman at Mancuso’s pool hall, 10:30 PM; Teresa Salerno at Mancuso’s pool hall, 10:30 PM; Nunzio Lanza at Mancuso’s pool hall, 10:30 PM; Gretchen Steinbach at Mancuso’s pool hall, 10:30 PM_
+- **c122** [corroboration] (observation; Odessa Tillman on Roscoe Dandridge’s account) → c165
+  - Odessa Tillman was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.
+  - _establishes: Roscoe Dandridge not at Mancuso’s pool hall, 10:30 PM_
+- **c135** [corroboration] (anchor; Nathan Sirkin on the noise that evening) → (end)
+  - Nathan Sirkin was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.
+  - _establishes: noise at the victim’s suite at the residential hotel at 10:30 PM; the victim dead by 10:30 PM; how it was done_
+- **c080** [corroboration] (observation; Karl Lindemann on Klara Hochstetter) → (end)
+  - Karl Lindemann says Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM.
+  - _establishes: Klara Hochstetter at Mancuso’s pool hall, 10:30 PM_
+- **c022** [corroboration] (observation; Roscoe Dandridge on Teresa Salerno) → c155
+  - Roscoe Dandridge says Teresa Salerno was at Dolan’s Bar from 9:00 PM to 10:00 PM.
+  - _establishes: Teresa Salerno at Dolan’s Bar, 9:00 PM–10:00 PM; Teresa Salerno could reach the weapon_
+- **c170** [noise {b2}] (overheard; Nathan Sirkin on Nunzio Lanza) → c173
+  - Nathan Sirkin on Nunzio Lanza: Nunzio Lanza goes very quiet when the racing wire is mentioned.
+  - _establishes: context only_
+- **c173** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Nunzio Lanza was at Mancuso’s pool hall from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Nunzio Lanza’s gambling-debt accounted for; Nunzio Lanza at Mancuso’s pool hall, 10:00 PM–10:30 PM_
+- **c155** [noise {b3}] (overheard; Nathan Sirkin on Odessa Tillman) → c159
+  - Nathan Sirkin on Odessa Tillman: There is a man who meets people at Mancuso’s pool hall and nobody will say his name out loud.
+  - _establishes: context only_
+- **c159** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The receiver at Mancuso’s pool hall would rather talk than be held: Odessa Tillman was there from 9:00 PM to 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Odessa Tillman will take over this one.
+  - _establishes: Odessa Tillman’s fence accounted for; Odessa Tillman at Mancuso’s pool hall, 9:00 PM–9:30 PM_
+- **c179** [noise {b4}] (physical; the place itself) → c180
+  - A book of markers at Mancuso’s pool hall with Gretchen Steinbach’s initials against four of them.
+  - _establishes: context only_
+- **c180** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Gretchen Steinbach was at Mancuso’s pool hall from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Gretchen Steinbach’s gambling-debt accounted for; Gretchen Steinbach at Mancuso’s pool hall, 10:30 PM_
+- **c162** [noise {b6}] (overheard; Roscoe Dandridge on Teresa Salerno) → c167
+  - Roscoe Dandridge on Teresa Salerno: Two signatures of Teresa Salerno’s, a month apart, are in different hands.
+  - _establishes: context only_
+
+### At the victim’s suite at the residential hotel
+
+- **c128** [spine ⟨opening⟩] (scene; the place itself) → c113, c131, c031, c122, c134
+  - Vincenzo Grasso was found at the victim’s suite at the residential hotel. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The El going over came at 10:30 PM, and the El was running to timetable and it covers the half hour exactly. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 10:30 PM; how it was done_
+- **c129** [spine ⟨opening⟩] (morgue; the place itself) → c113, c121, c022
+  - The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle.
+  - _establishes: death between 10:00 PM and 11:30 PM; how it was done_
+- **c142** [corroboration] (document; the place itself) → (end)
+  - Found at the victim’s suite at the residential hotel: A lease assignment made out in Roscoe Dandridge’s name, waiting only on Vincenzo Grasso’s signature.
+  - _establishes: Roscoe Dandridge had a motive (property)_
+
+### At Dolan’s Bar
+
+- **c130** [corroboration] (physical; the place itself) → (end)
+  - A bottle of chloral drops is gone from Dolan’s Bar. The bottle is gone from the shelf and the ring of dust it stood in is still there.
+  - _establishes: something gone from Dolan’s Bar; how it was done_
+- **c067** [corroboration] (observation; Hyman Shapiro on Roscoe Dandridge) → c170
+  - Hyman Shapiro says Roscoe Dandridge was at Dolan’s Bar from 9:00 PM to 10:00 PM.
+  - _establishes: Roscoe Dandridge at Dolan’s Bar, 9:00 PM–10:00 PM; Roscoe Dandridge could reach the weapon_
+- **c136** [corroboration] (anchor; Hyman Shapiro on the noise that evening) → (end)
+  - Hyman Shapiro was at Dolan’s Bar at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.
+  - _establishes: noise at the victim’s suite at the residential hotel at 10:30 PM; the victim dead by 10:30 PM; how it was done_
+
+### At the benches at the north end of the square
+
+- **c031** [spine] (observation; Teresa Salerno on Roscoe Dandridge) → c080, c148
+  - Teresa Salerno says Roscoe Dandridge was at Dolan’s Bar from 9:00 PM to 10:00 PM.
+  - _establishes: Roscoe Dandridge at Dolan’s Bar, 9:00 PM–10:00 PM; Roscoe Dandridge could reach the weapon_
+- **c032** [corroboration] (observation; Teresa Salerno on Nunzio Lanza) → (end)
+  - Teresa Salerno says Nunzio Lanza was at Mancuso’s pool hall at 10:30 PM.
+  - _establishes: Nunzio Lanza at Mancuso’s pool hall, 10:30 PM_
+- **c134** [corroboration] (anchor; Teresa Salerno on the noise that evening) → (end)
+  - Teresa Salerno was at Mancuso’s pool hall at 10:30 PM and heard a chair going over from the direction of the victim’s suite at the residential hotel, just as the El went over.
+  - _establishes: noise at the victim’s suite at the residential hotel at 10:30 PM; the victim dead by 10:30 PM; how it was done_
+- **c165** [noise {b1}] (physical; the place itself) → c166
+  - A steamship ticket stub among Teresa Salerno’s things, in the name of a man who died at Belleau Wood.
+  - _establishes: context only_
+- **c166** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The name Teresa Salerno was born with turns up on a desertion warrant from 1918. Teresa Salerno has been hiding from the Army for eleven years and from nobody else.
+  - _establishes: Teresa Salerno’s forged-identity accounted for_
+- **c167** [disqualifier {b6}] (overheard; the place itself) → (end)
+  - The papers are forged and the reason is plain: Teresa Salerno was put out of the country once already and does not mean to be put out twice.
+  - _establishes: Teresa Salerno’s forged-identity accounted for_
+
+### At the back room at Mrs. Teague’s
+
+- **c146** [spine ⟨opening⟩] (client; Klara Hochstetter on why I was hired) → c121, c104, c130, c032, c136
+  - Klara Hochstetter hired us. Klara Hochstetter wants it known that Roscoe Dandridge wanted the victim out of a lease, and would rather we started there.
+  - _establishes: Roscoe Dandridge had a motive (property)_
+- **c121** [spine] (observation; Klara Hochstetter on Roscoe Dandridge’s account) → c142, c135, c162
+  - Klara Hochstetter was at Mancuso’s pool hall at 10:30 PM and says Roscoe Dandridge was not.
+  - _establishes: Roscoe Dandridge not at Mancuso’s pool hall, 10:30 PM_
+- **c152** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The woman who keeps the child says it straight out: Klara Hochstetter was at the back room at Mrs. Teague’s from 7:30 PM, the same as every week, and left with the same face as always.
+  - _establishes: Klara Hochstetter’s hidden-family accounted for; Klara Hochstetter at the back room at Mrs. Teague’s, 7:30 PM_
+
+### At the vestibule of the Hallam apartments
+
+- **c131** [spine] (anchor; Prescott Pickering on Vincenzo Grasso that evening) → c031
+  - Prescott Pickering puts Vincenzo Grasso at the vestibule of the Hallam apartments when the lights went, which was 10:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:00 PM; Vincenzo Grasso at the vestibule of the Hallam apartments, 10:00 PM_
+- **c148** [noise {b5}] (overheard; Prescott Pickering on Klara Hochstetter) → c152
+  - Prescott Pickering on Klara Hochstetter: A woman at the back room at Mrs. Teague’s asked for Klara Hochstetter by a name Klara Hochstetter has not used in years.
+  - _establishes: context only_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["Mancuso’s pool hall"]
+    c113["c113 Karl Lindemann"]
+    c104["c104 Nathan Sirkin"]
+    c122["c122 Odessa Tillman"]
+    c135["c135 Nathan Sirkin"]
+    c080["c080 Karl Lindemann"]
+    c022["c022 Roscoe Dandridge"]
+    c170["c170 Nathan Sirkin"]
+    c173["✗ c173 the place"]
+    c155["c155 Nathan Sirkin"]
+    c159["✗ c159 the place"]
+    c179["c179 the place"]
+    c180["✗ c180 the place"]
+    c162["c162 Roscoe Dandridge"]
+  end
+  subgraph P2["the victim’s suite at the residential hotel"]
+    c128["▶ c128 the place"]
+    c129["▶ c129 the place"]
+    c142["c142 the place"]
+  end
+  subgraph P3["Dolan’s Bar"]
+    c130["c130 the place"]
+    c067["c067 Hyman Shapiro"]
+    c136["c136 Hyman Shapiro"]
+  end
+  subgraph P4["the benches at the north end of the square"]
+    c031["c031 Teresa Salerno"]
+    c032["c032 Teresa Salerno"]
+    c134["c134 Teresa Salerno"]
+    c165["c165 the place"]
+    c166["✗ c166 the place"]
+    c167["✗ c167 the place"]
+  end
+  subgraph P5["the back room at Mrs. Teague’s"]
+    c146["▶ c146 Klara Hochstetter"]
+    c121["c121 Klara Hochstetter"]
+    c152["✗ c152 the place"]
+  end
+  subgraph P6["the vestibule of the Hallam apartments"]
+    c131["c131 Prescott Pickering"]
+    c148["c148 Prescott Pickering"]
+  end
+  c128 --> c113
+  c128 --> c131
+  c128 --> c031
+  c128 --> c122
+  c128 --> c134
+  c129 --> c113
+  c129 --> c121
+  c129 --> c022
+  c146 --> c121
+  c146 --> c104
+  c146 --> c130
+  c146 --> c032
+  c146 --> c136
+  c113 --> c131
+  c113 --> c067
+  c113 -.-> c179
+  c121 --> c142
+  c121 --> c135
+  c121 -.-> c162
+  c131 --> c031
+  c031 --> c080
+  c031 -.-> c148
+  c122 -.-> c165
+  c067 -.-> c170
+  c022 -.-> c155
+  c165 --> c166
+  c170 --> c173
+  c155 --> c159
+  c179 --> c180
+  c148 --> c152
+  c162 --> c167
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c128,c129,c146,c113,c121,c131,c031 spine;
+  class c104,c130,c142,c122,c067,c135,c032,c134,c080,c136,c022 corrob;
+  class c165,c170,c155,c179,c148,c162 noise;
+  class c166,c173,c159,c180,c152,c167 disq;
+```
+
+## 9. Deduction path
+
+Par is **8 actions** against a budget of 20: 12 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 10:30 PM: one puts Vincenzo Grasso alive at 10:00 PM, the other times the scene at 10:30 PM. _(c129, c131, c128; + 3 corroborating)_
 
 **Clearing the innocent.**
 
-- Booker Bledsoe was not in the Roof Garden at 9:30 PM, on two independent sources. _(c038, c062, c084)_
-- Fannie Feldman was not in the Roof Garden at 9:30 PM, on two independent sources. _(c005, c091)_
-- Sol Rosenbaum was not in the Roof Garden at 9:30 PM, on two independent sources. _(c045, c070)_
-- Margarethe Kreuzer was not in the Roof Garden at 9:30 PM, on two independent sources. _(c007, c032, c072, c094)_
-- Lurline Mosley was not in the Roof Garden at 9:30 PM, on two independent sources. _(c009, c048, c078, c098)_
+- Klara Hochstetter was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c113; + 2 corroborating)_
+- Odessa Tillman was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c113; + 1 corroborating)_
+- Teresa Salerno was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c113; + 1 corroborating)_
+- Nunzio Lanza was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c113; + 3 corroborating)_
+- Gretchen Steinbach was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c113; + 2 corroborating)_
 
-**Naming the killer.** Hedwig Hochstetter claims the Front Desk at 9:30 PM. Two independent sources put that out of the question, and one ties Hedwig Hochstetter to a gunshot. _(c104, c105, c106, c052, c065)_
+**Naming the killer.** Roscoe Dandridge claims Mancuso’s pool hall at 10:30 PM. Two independent sources put that out of the question. _(c121; + 1 corroborating)_
 
-**Method.** A gunshot, on two physical sources. _(c123, c124)_
+**The weapon.** Roscoe Dandridge was at Dolan’s Bar before 10:30 PM, where a bottle of chloral drops was kept. _(c031; + 1 corroborating)_
 
-**Motive.** inheritance, on two independent sources. _(c128, c129)_
+**Method.** Poison in a drink, on two physical sources. _(c128, c129; + 4 corroborating)_
 
-## 8. Red herrings
+**Motive.** property, on two independent sources. _(c146; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Fannie Feldman claims the Bar at 9:30 PM and was really in the Kitchen. Reason: Fannie Feldman hands a parcel of stolen goods to a man at the Kitchen at 9:30 PM.
-- Lurline Mosley claims the Lobby at 9:30 PM and was really in the Bar. Reason: Lurline Mosley drinks alone in the Bar from 9:30 PM to 10:00 PM and will claim to have been anywhere else.
+- Nunzio Lanza claims the vestibule of the Hallam apartments at 10:30 PM and was really at Mancuso’s pool hall. Reason: Nunzio Lanza slips off to Mancuso’s pool hall from 10:00 PM to 10:30 PM to settle with a bookmaker.
+- Gretchen Steinbach claims the vestibule of the Hallam apartments at 10:30 PM and was really at Mancuso’s pool hall. Reason: Gretchen Steinbach slips off to Mancuso’s pool hall from 10:30 PM to settle with a bookmaker.
 
 **Innocents with a motive:**
 
-- Booker Bledsoe — debt: owed the victim money.
+- Odessa Tillman — exposure: was about to be exposed by the victim.
+- Nunzio Lanza — revenge: blamed the victim for a ruin.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Teresa Salerno, forged-identity): c165 → **c166** — The name Teresa Salerno was born with turns up on a desertion warrant from 1918. Teresa Salerno has been hiding from the Army for eleven years and from nobody else.
+- **b2** (Nunzio Lanza, gambling-debt): c170 → **c173** — The bookmaker’s runner is found and will say it: Nunzio Lanza was at Mancuso’s pool hall from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b3** (Odessa Tillman, fence): c155 → **c159** — The receiver at Mancuso’s pool hall would rather talk than be held: Odessa Tillman was there from 9:00 PM to 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Odessa Tillman will take over this one.
+- **b4** (Gretchen Steinbach, gambling-debt): c179 → **c180** — The bookmaker’s runner is found and will say it: Gretchen Steinbach was at Mancuso’s pool hall from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b5** (Klara Hochstetter, hidden-family): c148 → **c152** — The woman who keeps the child says it straight out: Klara Hochstetter was at the back room at Mrs. Teague’s from 7:30 PM, the same as every week, and left with the same face as always.
+- **b6** (Teresa Salerno, forged-identity): c162 → **c167** — The papers are forged and the reason is plain: Teresa Salerno was put out of the country once already and does not mean to be put out twice.
 
