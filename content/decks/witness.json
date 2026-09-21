@@ -1,0 +1,602 @@
+[
+  {
+    "id": "WIT-001",
+    "deck": "witness",
+    "text": "He had the rye same as always, quarter past nine, and left before the second round.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "bartender",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-002",
+    "deck": "witness",
+    "text": "I don't miss much from behind this rail. {name} was right there where you're standing, the whole ten minutes.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "bartender",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-003",
+    "deck": "witness",
+    "text": "Couldn't tell you what they talked about — a bartender minds the bottles, not the ears.",
+    "tags": {
+      "mood": "wry",
+      "fixtureRole": "bartender",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-004",
+    "deck": "witness",
+    "text": "I logged him in at eight and never saw him go back out my door.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "doorman",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-005",
+    "deck": "witness",
+    "text": "She came through in a hurry, didn't stop for the elevator, took the stairs herself.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "doorman",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-006",
+    "deck": "witness",
+    "text": "Faces I remember. Names I let the tenants keep to themselves.",
+    "tags": {
+      "mood": "tired",
+      "fixtureRole": "doorman",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-007",
+    "deck": "witness",
+    "text": "He bought the early edition every morning at seven, rain or shine, same two cents.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "newsstand",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-008",
+    "deck": "witness",
+    "text": "I saw {name} reading the obituaries like they owed him money.",
+    "tags": {
+      "mood": "wry",
+      "fixtureRole": "newsstand",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-009",
+    "deck": "witness",
+    "text": "A hundred faces cross this corner before lunch. Ask me about one and I'll ask you which.",
+    "tags": {
+      "mood": "tired",
+      "fixtureRole": "newsstand",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-010",
+    "deck": "witness",
+    "text": "She took her coffee black and her pie to go, same as every Tuesday.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "counterman",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-011",
+    "deck": "witness",
+    "text": "He dropped his nickel twice trying to get that little door open — nervous, or cold, I couldn't say.",
+    "tags": {
+      "mood": "wry",
+      "fixtureRole": "counterman",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-012",
+    "deck": "witness",
+    "text": "I watch the machines, not the customers. Ask the chairs what they saw.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "counterman",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-013",
+    "deck": "witness",
+    "text": "He bought one ticket, not two, and went in alone at the seven-fifteen show.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "ticket-taker",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-014",
+    "deck": "witness",
+    "text": "She came back out before the newsreel finished — I remember because she left her stub on the floor.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "ticket-taker",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-015",
+    "deck": "witness",
+    "text": "It's dark in there and darker still in my memory of who sat where.",
+    "tags": {
+      "mood": "tired",
+      "fixtureRole": "ticket-taker",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-016",
+    "deck": "witness",
+    "text": "Took her up to six, brought her back down eleven minutes later. I keep the time in my head.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "elevator-man",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-017",
+    "deck": "witness",
+    "text": "He rode up with a package under his arm and rode down without it.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "elevator-man",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-018",
+    "deck": "witness",
+    "text": "This cage carries whoever presses the button. I don't ask their business and they don't offer it.",
+    "tags": {
+      "mood": "tired",
+      "fixtureRole": "elevator-man",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-019",
+    "deck": "witness",
+    "text": "I heard his door at half past ten, plain as anything through these walls.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "landlady",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-020",
+    "deck": "witness",
+    "text": "She paid the rent on the first, same as always, not a day late in three years.",
+    "tags": {
+      "mood": "tender",
+      "fixtureRole": "landlady",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-021",
+    "deck": "witness",
+    "text": "I hear plenty through this building. Whether it's my place to say is another matter.",
+    "tags": {
+      "mood": "menace",
+      "fixtureRole": "landlady",
+      "register": "evasion",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-022",
+    "deck": "witness",
+    "text": "I passed this corner at the half hour, same as every round, and nothing was out of place.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "beat-cop",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-023",
+    "deck": "witness",
+    "text": "The milk wagon was already on the block when I came through — you can set a watch by it.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "beat-cop",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-024",
+    "deck": "witness",
+    "text": "I walk a beat, not a courtroom. The magistrate gets what I saw, and not one word extra.",
+    "tags": {
+      "mood": "menace",
+      "fixtureRole": "beat-cop",
+      "register": "evasion",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-025",
+    "deck": "witness",
+    "text": "Picked him up at the corner, dropped him at {place}, and he paid the meter without counting his change.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "cabbie",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-026",
+    "deck": "witness",
+    "text": "She got in crying and got out quiet. Whatever happened, it happened before my cab.",
+    "tags": {
+      "mood": "grief",
+      "fixtureRole": "cabbie",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-027",
+    "deck": "witness",
+    "text": "A fare's a fare. I don't ask where the trouble started and I don't wait for the finish.",
+    "tags": {
+      "mood": "tired",
+      "fixtureRole": "cabbie",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-028",
+    "deck": "witness",
+    "text": "He filled that prescription himself, same dose he'd filled twice a month for a year.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "druggist",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-029",
+    "deck": "witness",
+    "text": "She bought aspirin and nothing stronger, whatever anybody's saying about it.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "druggist",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-030",
+    "deck": "witness",
+    "text": "What a man buys at my counter is between him and his doctor, and that's how I keep it.",
+    "tags": {
+      "mood": "menace",
+      "fixtureRole": "druggist",
+      "register": "evasion",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-031",
+    "deck": "witness",
+    "text": "He dictated three letters that afternoon and signed every one before he left.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "secretary",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-032",
+    "deck": "witness",
+    "text": "I typed till six and locked the office same as any other night.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "secretary",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-033",
+    "deck": "witness",
+    "text": "He was in conference the whole hour. I'm certain of it.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "secretary",
+      "register": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-034",
+    "deck": "witness",
+    "text": "I never open his personal mail. I wouldn't know the first thing about a letter like that.",
+    "tags": {
+      "mood": "wry",
+      "fixtureRole": "secretary",
+      "register": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-035",
+    "deck": "witness",
+    "text": "There are things a man tells his secretary, and things he doesn't. I only know the first kind.",
+    "tags": {
+      "mood": "tired",
+      "fixtureRole": "secretary",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-036",
+    "deck": "witness",
+    "text": "I heard raised voices through the wall around nine, but that wasn't unusual for that apartment.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "neighbor",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-037",
+    "deck": "witness",
+    "text": "I saw {name} on the stairs that evening, moving fast, coat half buttoned.",
+    "tags": {
+      "mood": "menace",
+      "fixtureRole": "neighbor",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-038",
+    "deck": "witness",
+    "text": "I was asleep by nine. Heard nothing, saw nothing, and I'll swear to it.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "neighbor",
+      "register": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-039",
+    "deck": "witness",
+    "text": "We never spoke more than good morning. I couldn't tell you a thing about his business.",
+    "tags": {
+      "mood": "wry",
+      "fixtureRole": "neighbor",
+      "register": "lie",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-040",
+    "deck": "witness",
+    "text": "A person minds her own hallway in this building, and I've minded mine for eleven years.",
+    "tags": {
+      "mood": "tired",
+      "fixtureRole": "neighbor",
+      "register": "evasion",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-041",
+    "deck": "witness",
+    "text": "The books were clean the last time I looked, and I look every month.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "business-partner",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-042",
+    "deck": "witness",
+    "text": "We argued about the Chicago contract, same as we argued about everything, and it never came to more than words.",
+    "tags": {
+      "mood": "wry",
+      "fixtureRole": "business-partner",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-043",
+    "deck": "witness",
+    "text": "Our partnership was as solid as the day we signed it. Nothing had changed between us.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "business-partner",
+      "register": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-044",
+    "deck": "witness",
+    "text": "I hadn't seen the ledger in weeks. That was his end of the business, not mine.",
+    "tags": {
+      "mood": "wry",
+      "fixtureRole": "business-partner",
+      "register": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-045",
+    "deck": "witness",
+    "text": "What passed between two partners stays between two partners. One of us isn't here to argue it now.",
+    "tags": {
+      "mood": "grief",
+      "fixtureRole": "business-partner",
+      "register": "evasion",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-046",
+    "deck": "witness",
+    "text": "He called me every Sunday at four, without fail, right up until he didn't.",
+    "tags": {
+      "mood": "grief",
+      "fixtureRole": "relative",
+      "register": "truth",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-047",
+    "deck": "witness",
+    "text": "I knew about the will. He told me himself, over dinner, plain as anything.",
+    "tags": {
+      "mood": "flat",
+      "fixtureRole": "relative",
+      "register": "truth",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-048",
+    "deck": "witness",
+    "text": "We were close as any brothers. There wasn't a thing that came between us.",
+    "tags": {
+      "mood": "tender",
+      "fixtureRole": "relative",
+      "register": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-049",
+    "deck": "witness",
+    "text": "I hadn't asked him for a dime in years. Wouldn't have known how, even if I'd needed to.",
+    "tags": {
+      "mood": "wry",
+      "fixtureRole": "relative",
+      "register": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "WIT-050",
+    "deck": "witness",
+    "text": "Family keeps its troubles inside the family. There's nothing more I'll say on it.",
+    "tags": {
+      "mood": "menace",
+      "fixtureRole": "relative",
+      "register": "evasion",
+      "intensity": 2
+    },
+    "status": "generated"
+  }
+]
