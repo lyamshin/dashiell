@@ -1,0 +1,351 @@
+{
+  "$comment": "The M4 Part B card schema, as data. Two things read this file and nothing else defines the decks: scripts/validate-decks.mjs (Node, zero deps) and src/game/voice/cards.ts (the engine's loader). A writer tuning a deck changes the JSON here and both sides follow. 'required' tags must be present and in 'values'; optional tags may be absent, and 'default' says what the engine assumes when they are. 'coverage' lists the tag tuples the validator reports zero-card gaps for. 'alias' maps a legacy tag name onto its modern one, so the M3 files still validate.",
+  "burnTiers": {
+    "run-to-run": "Never repeated across runs: burned in localStorage until the deck is exhausted, then reshuffled.",
+    "within-run": "Never repeated within one run.",
+    "free": "May repeat."
+  },
+  "common": {
+    "slots": ["detective", "name", "place", "object", "time"],
+    "statuses": ["generated", "kept", "tuned", "cut", "placeholder"],
+    "optionalTags": {
+      "mood": { "values": ["flat", "wry", "menace", "grief", "tired", "tender"] },
+      "intensity": { "values": [1, 2, 3] }
+    }
+  },
+  "vocab": {
+    "mood": ["flat", "wry", "menace", "grief", "tired", "tender"],
+    "fixtureRole": [
+      "bartender",
+      "doorman",
+      "newsstand",
+      "counterman",
+      "ticket-taker",
+      "elevator-man",
+      "landlady",
+      "beat-cop",
+      "cabbie",
+      "druggist"
+    ],
+    "temper": ["enigma", "plain", "yap"],
+    "register": ["truth", "evasion", "lie"],
+    "placeKind": ["private", "semi", "public"],
+    "hourBand": ["midnight-2", "2-4", "4-6", "6-8"],
+    "weather": ["clear", "rain", "fog", "cold"],
+    "circumstance": [
+      "behind-on-rent",
+      "flush",
+      "hungover",
+      "bruised",
+      "off-a-divorce-case",
+      "sleepless",
+      "just-paid"
+    ],
+    "relationship": ["none", "someone-waiting", "someone-who-left", "complicated"],
+    "caseState": ["cold", "warm", "hot", "tight"],
+    "suspectClass": ["money", "working", "underworld", "professional", "any"],
+    "factKind": [
+      "personAt",
+      "personNotAt",
+      "denial",
+      "objectMissing",
+      "noiseAt",
+      "timeOfDeath",
+      "hasMotive",
+      "hadAccess",
+      "victimAliveAt",
+      "victimDeadBy",
+      "methodEvidence",
+      "secretExplained"
+    ],
+    "anchorTemplate": [
+      "bar-radio",
+      "regular-stool",
+      "cop-pass",
+      "piano-lesson",
+      "el-train",
+      "church-bells",
+      "last-edition",
+      "fuse",
+      "rain",
+      "milk-wagon",
+      "theater-out",
+      "garage-shift",
+      "drunk-singing",
+      "dumbwaiter",
+      "ice-delivery",
+      "steam-whistle"
+    ]
+  },
+  "decks": {
+    "similes": {
+      "file": "similes.json",
+      "deckValues": ["similes", "simile"],
+      "idPrefix": "SIM",
+      "placeholderPrefix": "sim-p",
+      "burn": "run-to-run",
+      "target": 300,
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "mood": { "required": true, "vocab": "mood" },
+        "target": {
+          "required": true,
+          "values": [
+            "face",
+            "hands",
+            "voice",
+            "room",
+            "street",
+            "weather",
+            "money",
+            "lie",
+            "silence",
+            "drink",
+            "body",
+            "clothes",
+            "city"
+          ]
+        },
+        "intensity": { "required": true, "values": [1, 2, 3] }
+      },
+      "coverage": [["target", "intensity"]]
+    },
+    "portraits": {
+      "file": "portraits.json",
+      "deckValues": ["portraits", "portrait"],
+      "idPrefix": "POR",
+      "placeholderPrefix": "por-p",
+      "burn": "run-to-run",
+      "target": 150,
+      "slots": ["detective", "name"],
+      "tags": {
+        "component": { "required": true, "values": ["trait", "habit", "clothing"] },
+        "gender": { "required": true, "values": ["m", "f", "any"] },
+        "class": { "required": true, "vocab": "suspectClass" },
+        "ageBand": { "required": false, "default": "middle", "values": ["young", "middle", "old", "any"] }
+      },
+      "coverage": [["component", "gender"], ["component", "class"]]
+    },
+    "business": {
+      "file": "business.json",
+      "deckValues": ["business"],
+      "idPrefix": "BUS",
+      "placeholderPrefix": "bus-p",
+      "burn": "free",
+      "target": 120,
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "role": { "required": true, "vocab": "fixtureRole", "extraValues": ["suspect", "any"] },
+        "temper": { "required": true, "vocab": "temper", "extraValues": ["any"] }
+      },
+      "coverage": [["role", "temper"]]
+    },
+    "humphrey-lines": {
+      "file": "humphrey.json",
+      "deckValues": ["humphrey-lines", "humphrey"],
+      "idPrefix": "HUM",
+      "placeholderPrefix": "hum-p",
+      "burn": "free",
+      "target": 80,
+      "slots": ["detective", "name", "place", "object", "time", "topic"],
+      "tags": {
+        "kind": {
+          "required": true,
+          "values": [
+            "open",
+            "ask-person",
+            "ask-place",
+            "ask-object",
+            "ask-evening",
+            "ask-hired",
+            "follow-up",
+            "close"
+          ]
+        },
+        "familiar": { "required": true, "values": ["yes", "no"] }
+      },
+      "coverage": [["kind", "familiar"]]
+    },
+    "frames": {
+      "file": "frames.json",
+      "deckValues": ["frames", "frame"],
+      "idPrefix": "FRM",
+      "placeholderPrefix": "frm-p",
+      "burn": "within-run",
+      "target": 110,
+      "minPerCoverageCell": 4,
+      "slots": ["detective", "name", "place", "object", "time", "fact", "business", "colour", "humphrey"],
+      "requiredSlots": ["fact"],
+      "tags": {
+        "register": { "required": true, "vocab": "register" },
+        "temper": { "required": true, "vocab": "temper" },
+        "familiar": { "required": true, "values": ["yes", "no"] }
+      },
+      "coverage": [["register", "temper", "familiar"]]
+    },
+    "utterances": {
+      "file": "utterances.json",
+      "deckValues": ["utterances", "utterance"],
+      "idPrefix": "UTT",
+      "placeholderPrefix": "utt-p",
+      "burn": "free",
+      "target": 160,
+      "minPerCoverageCell": 3,
+      "$comment": "The engine adds four slots to Part B's four, because four fact kinds carry something none of {subject}/{place}/{time}/{object} can hold: {window} (the coroner's span), {motive}, {method} and {secret}. An utterance that does not carry its fact kind's mandatory slots (see mandatorySlots) does not fit, and the engine falls back to the clue's flat text in quotation marks and logs the gap.",
+      "slots": [
+        "detective",
+        "name",
+        "subject",
+        "place",
+        "object",
+        "time",
+        "window",
+        "motive",
+        "method",
+        "secret"
+      ],
+      "mandatorySlots": {
+        "personAt": ["subject", "place", "time"],
+        "personNotAt": ["subject", "place", "time"],
+        "denial": ["subject", "time"],
+        "objectMissing": ["object"],
+        "noiseAt": ["place", "time"],
+        "timeOfDeath": ["window"],
+        "hasMotive": ["subject", "motive"],
+        "hadAccess": ["subject", "place"],
+        "victimAliveAt": ["time"],
+        "victimDeadBy": ["time"],
+        "methodEvidence": ["method"],
+        "secretExplained": ["subject", "secret"]
+      },
+      "tags": {
+        "factKind": { "required": true, "vocab": "factKind" },
+        "temper": { "required": true, "vocab": "temper" },
+        "register": { "required": false, "default": "truth", "vocab": "register", "extraValues": ["any"] }
+      },
+      "coverage": [["factKind", "temper"]]
+    },
+    "find": {
+      "file": "find.json",
+      "deckValues": ["find"],
+      "idPrefix": "FND",
+      "placeholderPrefix": "fnd-p",
+      "burn": "within-run",
+      "target": 50,
+      "slots": ["detective", "name", "place", "object", "time", "fact"],
+      "tags": {
+        "clueKind": { "required": true, "values": ["physical", "document", "morgue", "scene"] },
+        "placeKind": { "required": false, "default": "any", "vocab": "placeKind", "extraValues": ["any"] }
+      },
+      "coverage": [["clueKind", "placeKind"]]
+    },
+    "arrivals": {
+      "file": "arrivals.json",
+      "deckValues": ["arrivals", "arrival"],
+      "idPrefix": "ARR",
+      "placeholderPrefix": "arr-p",
+      "burn": "within-run",
+      "target": 60,
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "placeKind": { "required": true, "vocab": "placeKind", "extraValues": ["any"] },
+        "hourBand": { "required": true, "vocab": "hourBand", "extraValues": ["any"] },
+        "weather": { "required": true, "vocab": "weather", "extraValues": ["any"] }
+      },
+      "coverage": [["placeKind", "hourBand"], ["placeKind", "weather"]]
+    },
+    "transitions": {
+      "file": "transitions.json",
+      "deckValues": ["transitions", "transition"],
+      "idPrefix": "TRN",
+      "placeholderPrefix": "trn-p",
+      "burn": "free",
+      "target": 80,
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "hourBand": { "required": true, "vocab": "hourBand", "extraValues": ["any"] },
+        "anchorTemplate": { "required": false, "vocab": "anchorTemplate" }
+      },
+      "coverage": [["hourBand"], ["anchorTemplate"]]
+    },
+    "ambient": {
+      "file": "ambient.json",
+      "deckValues": ["ambient"],
+      "idPrefix": "AMB",
+      "placeholderPrefix": "amb-p",
+      "burn": "within-run",
+      "target": 120,
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "hourBand": { "required": true, "vocab": "hourBand", "extraValues": ["any"] },
+        "caseState": { "required": true, "vocab": "caseState", "extraValues": ["any"] },
+        "circumstance": { "required": false, "default": "any", "vocab": "circumstance", "extraValues": ["any"] }
+      },
+      "coverage": [["hourBand", "caseState"]]
+    },
+    "asides": {
+      "file": "asides.json",
+      "deckValues": ["asides", "aside"],
+      "idPrefix": "ASD",
+      "placeholderPrefix": "asd-p",
+      "burn": "run-to-run",
+      "target": 60,
+      "slots": ["detective", "name", "place", "time"],
+      "tags": {
+        "relationship": { "required": true, "vocab": "relationship", "extraValues": ["any"] },
+        "circumstance": { "required": true, "vocab": "circumstance", "extraValues": ["any"] }
+      },
+      "coverage": [["relationship", "circumstance"]]
+    },
+    "places": {
+      "file": "places.json",
+      "deckValues": ["places", "place"],
+      "idPrefix": "PLACE",
+      "placeholderPrefix": "plc-p",
+      "burn": "within-run",
+      "target": 110,
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "placeKind": { "required": true, "vocab": "placeKind" },
+        "watcher": {
+          "required": false,
+          "default": "none",
+          "alias": "fixtureRole",
+          "vocab": "fixtureRole",
+          "extraValues": ["none"]
+        },
+        "empty": { "required": false, "default": "no", "values": ["yes", "no"] }
+      },
+      "coverage": [["placeKind", "watcher"], ["placeKind", "empty"]]
+    },
+    "endings": {
+      "file": "endings.json",
+      "deckValues": ["endings", "ending"],
+      "idPrefix": "END",
+      "placeholderPrefix": "end-p",
+      "burn": "run-to-run",
+      "target": 24,
+      "slots": ["detective", "name", "place", "object", "time", "missed", "killer"],
+      "tags": {
+        "outcome": { "required": true, "values": ["hanged", "wrong-man", "thin-case", "cold"] },
+        "parDelta": { "required": true, "values": ["under", "at", "over"] }
+      },
+      "coverage": [["outcome", "parDelta"]]
+    },
+    "witness": {
+      "file": "witness.json",
+      "deckValues": ["witness"],
+      "idPrefix": "WIT",
+      "placeholderPrefix": "wit-p",
+      "burn": "within-run",
+      "target": 50,
+      "legacy": "M3's one-card-per-answer deck. The M4 exchange is built from frames × humphrey-lines × utterances instead, so nothing deals this any more. Kept so the file still validates and so a writer can mine it.",
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "fixtureRole": { "required": true, "vocab": "fixtureRole", "extraValues": ["secretary", "neighbor", "business-partner", "relative"] },
+        "register": { "required": true, "vocab": "register" }
+      },
+      "coverage": [["fixtureRole", "register"]]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "end-p001",
+    "deck": "endings",
+    "text": "They took {killer} on a Tuesday and the paperwork went up the line without a hitch in it.",
+    "tags": { "outcome": "hanged", "parDelta": "at" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range end-pNNN; the content deck uses END-NNN."
+  },
+  {
+    "id": "end-p002",
+    "deck": "endings",
+    "text": "They took {killer} before the office had the kettle on, and nobody asked me how.",
+    "tags": { "outcome": "hanged", "parDelta": "under" },
+    "status": "placeholder"
+  },
+  {
+    "id": "end-p003",
+    "deck": "endings",
+    "text": "They took {killer} in the end. It cost more of the night than it should have.",
+    "tags": { "outcome": "hanged", "parDelta": "over" },
+    "status": "placeholder"
+  },
+  {
+    "id": "end-p004",
+    "deck": "endings",
+    "text": "The wrong man goes up, and what I never went back for was this: {missed}",
+    "tags": { "outcome": "wrong-man", "parDelta": "at" },
+    "status": "placeholder"
+  },
+  {
+    "id": "end-p005",
+    "deck": "endings",
+    "text": "A conviction, and a case you could put a thumb through.",
+    "tags": { "outcome": "thin-case", "parDelta": "at" },
+    "status": "placeholder"
+  },
+  {
+    "id": "end-p006",
+    "deck": "endings",
+    "text": "The folder goes in the drawer with the others, and the drawer is the end of it.",
+    "tags": { "outcome": "cold", "parDelta": "at" },
+    "status": "placeholder"
+  }
+]

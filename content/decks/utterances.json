@@ -1,0 +1,129 @@
+[
+  {
+    "id": "utt-p001",
+    "deck": "utterances",
+    "text": "{subject} was at {place} at {time}. I had my eyes open and that is where {subject} was.",
+    "tags": { "factKind": "personAt", "temper": "plain", "register": "truth" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range utt-pNNN; the content deck uses UTT-NNN. An utterance must carry its fact whole: who, where, when."
+  },
+  {
+    "id": "utt-p002",
+    "deck": "utterances",
+    "text": "{time}. {place}. {subject}.",
+    "tags": { "factKind": "personAt", "temper": "enigma", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p003",
+    "deck": "utterances",
+    "text": "{subject}? At {place}, {time}, same as any night of the week, and in no hurry about it.",
+    "tags": { "factKind": "personAt", "temper": "yap", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p004",
+    "deck": "utterances",
+    "text": "{subject} was not at {place} at {time}. Not that half hour.",
+    "tags": { "factKind": "personNotAt", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p005",
+    "deck": "utterances",
+    "text": "Not {subject}. Not {place}, not {time}.",
+    "tags": { "factKind": "personNotAt", "temper": "enigma", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p006",
+    "deck": "utterances",
+    "text": "{subject} was nowhere near {place} at {time}, and I will keep saying so.",
+    "tags": { "factKind": "personNotAt", "temper": "yap", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p007",
+    "deck": "utterances",
+    "text": "{subject} was not with me at {time}. Whoever says so is saying it for a reason.",
+    "tags": { "factKind": "denial", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p008",
+    "deck": "utterances",
+    "text": "{subject}? {time}? No.",
+    "tags": { "factKind": "denial", "temper": "enigma", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p009",
+    "deck": "utterances",
+    "text": "I have been put in a lot of places I was not, but not with {subject}, and not at {time}.",
+    "tags": { "factKind": "denial", "temper": "yap", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p010",
+    "deck": "utterances",
+    "text": "{object} is gone from where it lives, and it went before the morning.",
+    "tags": { "factKind": "objectMissing", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p011",
+    "deck": "utterances",
+    "text": "Something went off at {place} at {time}. One sound, and then the street again.",
+    "tags": { "factKind": "noiseAt", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p012",
+    "deck": "utterances",
+    "text": "The coroner puts it {window}, and he will not go narrower than that.",
+    "tags": { "factKind": "timeOfDeath", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p013",
+    "deck": "utterances",
+    "text": "{subject} had a reason and the reason has a name: {motive}.",
+    "tags": { "factKind": "hasMotive", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p014",
+    "deck": "utterances",
+    "text": "{subject} had the run of {place}. Keys, back door, the lot.",
+    "tags": { "factKind": "hadAccess", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p015",
+    "deck": "utterances",
+    "text": "{subject} was alive at {time}. I would put my hand up for that hour.",
+    "tags": { "factKind": "victimAliveAt", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p016",
+    "deck": "utterances",
+    "text": "By {time} {subject} was past anybody’s help.",
+    "tags": { "factKind": "victimDeadBy", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p017",
+    "deck": "utterances",
+    "text": "It was {method}. The body says so and a body does not hedge.",
+    "tags": { "factKind": "methodEvidence", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  },
+  {
+    "id": "utt-p018",
+    "deck": "utterances",
+    "text": "What {subject} was covering that night was this and no worse: {secret}.",
+    "tags": { "factKind": "secretExplained", "temper": "plain", "register": "truth" },
+    "status": "placeholder"
+  }
+]

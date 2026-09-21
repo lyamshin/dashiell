@@ -1,0 +1,73 @@
+[
+  {
+    "id": "arr-p001",
+    "deck": "arrivals",
+    "text": "{place} keeps one light on at this hour and runs the rest on memory.",
+    "tags": { "placeKind": "any", "hourBand": "midnight-2", "weather": "any" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range arr-pNNN; the content deck uses ARR-NNN."
+  },
+  {
+    "id": "arr-p002",
+    "deck": "arrivals",
+    "text": "The door of {place} is on the latch and the step has been wet a while.",
+    "tags": { "placeKind": "any", "hourBand": "midnight-2", "weather": "rain" },
+    "status": "placeholder"
+  },
+  {
+    "id": "arr-p003",
+    "deck": "arrivals",
+    "text": "Two and four is the hour {place} belongs to whoever is still in it.",
+    "tags": { "placeKind": "any", "hourBand": "2-4", "weather": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "arr-p004",
+    "deck": "arrivals",
+    "text": "Cold came in behind me at {place} and took the good chair.",
+    "tags": { "placeKind": "any", "hourBand": "2-4", "weather": "cold" },
+    "status": "placeholder"
+  },
+  {
+    "id": "arr-p005",
+    "deck": "arrivals",
+    "text": "There is grey at the bottom of the sky over {place}, and nothing open yet.",
+    "tags": { "placeKind": "any", "hourBand": "4-6", "weather": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "arr-p006",
+    "deck": "arrivals",
+    "text": "The fog off the river has {place} down to the near kerb and no further.",
+    "tags": { "placeKind": "any", "hourBand": "4-6", "weather": "fog" },
+    "status": "placeholder"
+  },
+  {
+    "id": "arr-p007",
+    "deck": "arrivals",
+    "text": "Gratings are going back at {place} and the first of the day is going to work past me.",
+    "tags": { "placeKind": "any", "hourBand": "6-8", "weather": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "arr-p008",
+    "deck": "arrivals",
+    "text": "{place} at six in the morning is a public room with private hours behind it.",
+    "tags": { "placeKind": "public", "hourBand": "6-8", "weather": "clear" },
+    "status": "placeholder"
+  },
+  {
+    "id": "arr-p009",
+    "deck": "arrivals",
+    "text": "The stairs up to {place} have been swept and the landing has not.",
+    "tags": { "placeKind": "private", "hourBand": "any", "weather": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "arr-p010",
+    "deck": "arrivals",
+    "text": "Somebody is always coming out of {place} as I am going in, and never the same somebody.",
+    "tags": { "placeKind": "semi", "hourBand": "any", "weather": "any" },
+    "status": "placeholder"
+  }
+]

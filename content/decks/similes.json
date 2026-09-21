@@ -1104,5 +1104,72 @@
       "intensity": 2
     },
     "status": "generated"
+  },
+  {
+    "id": "sim-p001",
+    "deck": "similes",
+    "text": "Hands that had been in cold water all evening and had given up complaining about it, the fingers going at the buttons like a man picking a lock he owns.",
+    "tags": {
+      "mood": "tired",
+      "target": "hands",
+      "intensity": 3
+    },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range sim-pNNN; the content deck uses SIM-NNN. Fills the six intensity-3 targets the M3 deck had none of."
+  },
+  {
+    "id": "sim-p002",
+    "deck": "similes",
+    "text": "The street ran two blocks with nothing on it but a parked truck and the kind of quiet that has somebody in it, and then it turned and was an ordinary street again.",
+    "tags": {
+      "mood": "menace",
+      "target": "street",
+      "intensity": 3
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "sim-p003",
+    "deck": "similes",
+    "text": "Cold came off the river the way it comes off a tiled wall, and stayed on the near side of the coat.",
+    "tags": {
+      "mood": "flat",
+      "target": "weather",
+      "intensity": 3
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "sim-p004",
+    "deck": "similes",
+    "text": "The silence in the room had a shape, and the shape was a chair pushed back from a table with the meal still on it.",
+    "tags": {
+      "mood": "grief",
+      "target": "silence",
+      "intensity": 3
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "sim-p005",
+    "deck": "similes",
+    "text": "Under the sheet the shape was shorter than the man had been, the way a coat is shorter off the hook than on it.",
+    "tags": {
+      "mood": "flat",
+      "target": "body",
+      "intensity": 3
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "sim-p006",
+    "deck": "similes",
+    "text": "The city at that hour ran on the night shift and the night shift ran on coffee and habit, and neither of them asked me anything.",
+    "tags": {
+      "mood": "tired",
+      "target": "city",
+      "intensity": 3
+    },
+    "status": "placeholder"
   }
 ]

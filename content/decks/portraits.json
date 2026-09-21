@@ -1,0 +1,66 @@
+[
+  {
+    "id": "por-p001",
+    "deck": "portraits",
+    "text": "a split thumbnail, black at the base, that the eye keeps coming back to",
+    "tags": { "component": "trait", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range por-pNNN; the content deck uses POR-NNN."
+  },
+  {
+    "id": "por-p002",
+    "deck": "portraits",
+    "text": "a voice pitched low, the way a voice gets in a room rented by the hour",
+    "tags": { "component": "trait", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "por-p003",
+    "deck": "portraits",
+    "text": "eyes that go to the door every time it opens, and come back slower each time",
+    "tags": { "component": "trait", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "por-p004",
+    "deck": "portraits",
+    "text": "a matchbook turning end over end, never struck",
+    "tags": { "component": "habit", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "por-p005",
+    "deck": "portraits",
+    "text": "counting the change twice before it goes in the pocket",
+    "tags": { "component": "habit", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "por-p006",
+    "deck": "portraits",
+    "text": "talking with the chin down, the way people talk through a grille",
+    "tags": { "component": "habit", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "por-p007",
+    "deck": "portraits",
+    "text": "a good coat two seasons old, cuffs turned once already",
+    "tags": { "component": "clothing", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "por-p008",
+    "deck": "portraits",
+    "text": "collar buttoned, no tie, and a smear of green paint at one shoulder",
+    "tags": { "component": "clothing", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "por-p009",
+    "deck": "portraits",
+    "text": "boots wet to the laces and dry everywhere above them",
+    "tags": { "component": "clothing", "gender": "any", "class": "any", "ageBand": "any" },
+    "status": "placeholder"
+  }
+]

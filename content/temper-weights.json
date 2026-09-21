@@ -1,0 +1,52 @@
+{
+  "$comment": "How deep a character is, rolled once at case start. Three tempers: an enigma answers in one clause, a plain speaker is the default shape, a yapper runs long and once a run volunteers a clue nobody asked for. Weights are relative, not probabilities. The engine resolves a person in this order: archetypes[archetypeId], then classes[archetype.class], then default — and for a fixture, fixtures[fixtureRole], then fixtures.default. A writer tunes this file and nothing else.",
+  "default": { "enigma": 2, "plain": 5, "yap": 3 },
+  "classes": {
+    "money": { "enigma": 3, "plain": 5, "yap": 2 },
+    "professional": { "enigma": 3, "plain": 5, "yap": 2 },
+    "working": { "enigma": 1, "plain": 6, "yap": 3 },
+    "underworld": { "enigma": 4, "plain": 3, "yap": 3 }
+  },
+  "archetypes": {
+    "arch-heeler": { "enigma": 0, "plain": 2, "yap": 8 },
+    "arch-society": { "enigma": 1, "plain": 3, "yap": 6 },
+    "arch-reporter": { "enigma": 1, "plain": 3, "yap": 6 },
+    "arch-chorus": { "enigma": 1, "plain": 4, "yap": 5 },
+    "arch-switchboard": { "enigma": 1, "plain": 4, "yap": 5 },
+    "arch-nightman": { "enigma": 2, "plain": 5, "yap": 3 },
+    "arch-seamstress": { "enigma": 1, "plain": 8, "yap": 1 },
+    "arch-tailor": { "enigma": 1, "plain": 7, "yap": 2 },
+    "arch-chambermaid": { "enigma": 2, "plain": 7, "yap": 1 },
+    "arch-longshoreman": { "enigma": 2, "plain": 6, "yap": 2 },
+    "arch-hackman": { "enigma": 1, "plain": 5, "yap": 4 },
+    "arch-stagehand": { "enigma": 1, "plain": 5, "yap": 4 },
+    "arch-nurse": { "enigma": 5, "plain": 4, "yap": 1 },
+    "arch-lawyer": { "enigma": 5, "plain": 4, "yap": 1 },
+    "arch-bookkeeper": { "enigma": 4, "plain": 5, "yap": 1 },
+    "arch-secretary": { "enigma": 4, "plain": 5, "yap": 1 },
+    "arch-dentist": { "enigma": 3, "plain": 5, "yap": 2 },
+    "arch-piano-teacher": { "enigma": 2, "plain": 6, "yap": 2 },
+    "arch-adjuster": { "enigma": 2, "plain": 6, "yap": 2 },
+    "arch-widow": { "enigma": 4, "plain": 4, "yap": 2 },
+    "arch-heir": { "enigma": 2, "plain": 4, "yap": 4 },
+    "arch-broker": { "enigma": 2, "plain": 5, "yap": 3 },
+    "arch-blockowner": { "enigma": 3, "plain": 5, "yap": 2 },
+    "arch-bookmaker": { "enigma": 4, "plain": 4, "yap": 2 },
+    "arch-pawnman": { "enigma": 5, "plain": 4, "yap": 1 },
+    "arch-bouncer": { "enigma": 6, "plain": 3, "yap": 1 },
+    "arch-runner": { "enigma": 3, "plain": 4, "yap": 3 }
+  },
+  "fixtures": {
+    "default": { "enigma": 1, "plain": 7, "yap": 2 },
+    "bartender": { "enigma": 1, "plain": 6, "yap": 3 },
+    "doorman": { "enigma": 1, "plain": 7, "yap": 2 },
+    "newsstand": { "enigma": 0, "plain": 5, "yap": 5 },
+    "counterman": { "enigma": 1, "plain": 6, "yap": 3 },
+    "ticket-taker": { "enigma": 2, "plain": 7, "yap": 1 },
+    "elevator-man": { "enigma": 1, "plain": 6, "yap": 3 },
+    "landlady": { "enigma": 0, "plain": 4, "yap": 6 },
+    "beat-cop": { "enigma": 3, "plain": 6, "yap": 1 },
+    "cabbie": { "enigma": 0, "plain": 5, "yap": 5 },
+    "druggist": { "enigma": 3, "plain": 6, "yap": 1 }
+  }
+}

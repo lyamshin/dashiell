@@ -1,0 +1,59 @@
+[
+  {
+    "id": "fnd-p001",
+    "deck": "find",
+    "text": "It is under the radiator, where things go when a room is tidied in a hurry. {fact}",
+    "tags": { "clueKind": "physical", "placeKind": "any" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range fnd-pNNN; the content deck uses FND-NNN. {fact} is where the record lands."
+  },
+  {
+    "id": "fnd-p002",
+    "deck": "find",
+    "text": "The paper is folded twice and filed where nobody files anything. {fact}",
+    "tags": { "clueKind": "document", "placeKind": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "fnd-p003",
+    "deck": "find",
+    "text": "The sheet comes back to the chin and the attendant reads it out flat. {fact}",
+    "tags": { "clueKind": "morgue", "placeKind": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "fnd-p004",
+    "deck": "find",
+    "text": "I go over the room the way the precinct did not. {fact}",
+    "tags": { "clueKind": "scene", "placeKind": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "fnd-p005",
+    "deck": "find",
+    "text": "Behind the bed, against the skirting, with the dust pushed away from it. {fact}",
+    "tags": { "clueKind": "physical", "placeKind": "private" },
+    "status": "placeholder"
+  },
+  {
+    "id": "fnd-p006",
+    "deck": "find",
+    "text": "It is in the book under the counter, in a hand that does not want to be read. {fact}",
+    "tags": { "clueKind": "document", "placeKind": "semi" },
+    "status": "placeholder"
+  },
+  {
+    "id": "fnd-p007",
+    "deck": "find",
+    "text": "Two feet of kerb, a grating, and the thing nobody swept. {fact}",
+    "tags": { "clueKind": "physical", "placeKind": "public" },
+    "status": "placeholder"
+  },
+  {
+    "id": "fnd-p008",
+    "deck": "find",
+    "text": "The lamp gets moved so the light falls where the precinct’s did not. {fact}",
+    "tags": { "clueKind": "scene", "placeKind": "private" },
+    "status": "placeholder"
+  }
+]

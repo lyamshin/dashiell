@@ -1,0 +1,87 @@
+[
+  {
+    "id": "frm-p001",
+    "deck": "frames",
+    "text": "{business} “{fact}” Nothing after it.",
+    "tags": { "register": "truth", "temper": "plain", "familiar": "no" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range frm-pNNN; the content deck uses FRM-NNN. Every frame must carry {fact}."
+  },
+  {
+    "id": "frm-p002",
+    "deck": "frames",
+    "text": "“{fact}” {business} Said once, in the order it happened.",
+    "tags": { "register": "truth", "temper": "plain", "familiar": "yes" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p003",
+    "deck": "frames",
+    "text": "“{fact}” {business}",
+    "tags": { "register": "truth", "temper": "enigma", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p004",
+    "deck": "frames",
+    "text": "{business} “{fact} {colour}” The rest came whether I wanted it or not.",
+    "tags": { "register": "truth", "temper": "yap", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p005",
+    "deck": "frames",
+    "text": "{business} “That’s a question for somebody else.” A pause with nothing in it. Then: “{fact}”",
+    "tags": { "register": "evasion", "temper": "plain", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p006",
+    "deck": "frames",
+    "text": "“Ask the house.” {business} “{fact}”",
+    "tags": { "register": "evasion", "temper": "enigma", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p007",
+    "deck": "frames",
+    "text": "{business} “You want the whole block’s business out of me.” {colour} Then, sideways: “{fact}”",
+    "tags": { "register": "evasion", "temper": "yap", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p008",
+    "deck": "frames",
+    "text": "“{fact}” {business} Complete. Nobody’s evening is that complete.",
+    "tags": { "register": "lie", "temper": "plain", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p009",
+    "deck": "frames",
+    "text": "{business} “{fact} {colour}” Every hour of it accounted for, and the accounting too tidy to be a night.",
+    "tags": { "register": "lie", "temper": "yap", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p010",
+    "deck": "frames",
+    "text": "“{fact}” {business} Flat, and offered once.",
+    "tags": { "register": "lie", "temper": "enigma", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p011",
+    "deck": "frames",
+    "text": "{business} “{fact}” Then my name, the way it gets said by people who knew me before this coat.",
+    "tags": { "register": "evasion", "temper": "plain", "familiar": "yes" },
+    "status": "placeholder"
+  },
+  {
+    "id": "frm-p012",
+    "deck": "frames",
+    "text": "“You always did ask it twice.” {business} “{fact}”",
+    "tags": { "register": "lie", "temper": "plain", "familiar": "yes" },
+    "status": "placeholder"
+  }
+]

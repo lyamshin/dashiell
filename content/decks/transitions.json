@@ -1,0 +1,87 @@
+[
+  {
+    "id": "trn-p001",
+    "deck": "transitions",
+    "text": "Eleven blocks in the cold, and the cold got the better of the eleven blocks.",
+    "tags": { "hourBand": "midnight-2" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range trn-pNNN; the content deck uses TRN-NNN. One card per anchor template is the target."
+  },
+  {
+    "id": "trn-p002",
+    "deck": "transitions",
+    "text": "Between two and four there is nobody out but me and whoever is paid to be.",
+    "tags": { "hourBand": "2-4" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p003",
+    "deck": "transitions",
+    "text": "The sky over the river had gone grey along the bottom edge.",
+    "tags": { "hourBand": "4-6" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p004",
+    "deck": "transitions",
+    "text": "Shutters up, gratings back, and a man with a hose putting the night down the drain.",
+    "tags": { "hourBand": "6-8" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p005",
+    "deck": "transitions",
+    "text": "The El went over while I was crossing, and for twenty seconds the street had nothing to say.",
+    "tags": { "hourBand": "any", "anchorTemplate": "el-train" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p006",
+    "deck": "transitions",
+    "text": "A patrolman came the other way and we each decided the other was nobody.",
+    "tags": { "hourBand": "any", "anchorTemplate": "cop-pass" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p007",
+    "deck": "transitions",
+    "text": "The milk wagon had the whole block ahead of me, iron tyres on the cobbles.",
+    "tags": { "hourBand": "4-6", "anchorTemplate": "milk-wagon" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p008",
+    "deck": "transitions",
+    "text": "The bells at the corner rang the half hour at my back.",
+    "tags": { "hourBand": "any", "anchorTemplate": "church-bells" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p009",
+    "deck": "transitions",
+    "text": "A whistle went off the river, two long and one short, and nobody looked up.",
+    "tags": { "hourBand": "any", "anchorTemplate": "steam-whistle" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p010",
+    "deck": "transitions",
+    "text": "A truck dropped the last edition at the kerb and pulled away with the doors still open.",
+    "tags": { "hourBand": "any", "anchorTemplate": "last-edition" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p011",
+    "deck": "transitions",
+    "text": "Chairs were going up on the tables behind me before I had the door shut.",
+    "tags": { "hourBand": "any", "anchorTemplate": "theater-out" },
+    "status": "placeholder"
+  },
+  {
+    "id": "trn-p012",
+    "deck": "transitions",
+    "text": "Past the corner, past the grating, past the same two men who had not moved.",
+    "tags": { "hourBand": "any" },
+    "status": "placeholder"
+  }
+]
