@@ -19,6 +19,8 @@ declare module 'node:path' {
 
 declare const process: {
   argv: string[];
+  /** Read by the tests, to print the table that went into the notes. */
+  env: Record<string, string | undefined>;
   exitCode: number | undefined;
   exit(code?: number): never;
   stdout: {
@@ -27,3 +29,6 @@ declare const process: {
   };
   stderr: { write(chunk: string): boolean };
 };
+
+/** The tests print a summary table; nothing in `src/` logs. */
+declare const console: { log(...args: unknown[]): void };

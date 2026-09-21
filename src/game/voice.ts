@@ -129,19 +129,26 @@ export class Voice {
   }
 
   /**
-   * Draw from `pool`, skipping burned cards and cards whose slots cannot be
-   * filled. When every card in the pool is burned the pool reshuffles: the
-   * deck is exhausted, not the run.
+   * Draw one unburned card from `pool`, skipping any whose slots cannot be
+   * filled. Never repeats.
    */
-  private draw(pool: Card[], slots: Slots): Drawn | null {
-    if (pool.length === 0) return null;
-    const fresh = pool.filter((c) => !this.burned.has(c.id));
-    for (const source of [fresh, pool]) {
-      if (source.length === 0) continue;
-      for (const card of this.rng.shuffle(source)) {
-        const drawn = this.take(card, slots);
-        if (drawn) return drawn;
-      }
+  private drawFresh(pool: Card[], slots: Slots): Drawn | null {
+    for (const card of this.rng.shuffle(pool.filter((c) => !this.burned.has(c.id)))) {
+      const drawn = this.take(card, slots);
+      if (drawn) return drawn;
+    }
+    return null;
+  }
+
+  /**
+   * The last resort: the deck is exhausted, so it reshuffles. Every caller
+   * widens its match all the way to its whole deck before reaching for this,
+   * so a card only ever comes round twice once there is nothing else left.
+   */
+  private reshuffle(pool: Card[], slots: Slots): Drawn | null {
+    for (const card of this.rng.shuffle(pool)) {
+      const drawn = this.take(card, slots);
+      if (drawn) return drawn;
     }
     return null;
   }
@@ -157,7 +164,12 @@ export class Voice {
         (place.watcher ? c.tags.fixtureRole === place.watcher : true),
     );
     const loose = PLACE_DECK.filter((c) => c.tags.placeKind === place.kind);
-    return this.draw(exact, slots) ?? this.draw(loose, slots) ?? null;
+    return (
+      this.drawFresh(exact, slots) ??
+      this.drawFresh(loose, slots) ??
+      this.drawFresh(PLACE_DECK, slots) ??
+      this.reshuffle(exact.length > 0 ? exact : PLACE_DECK, slots)
+    );
   }
 
   plainArrival(placeId: Id): string {
@@ -187,25 +199,33 @@ export class Voice {
     const byRole = WITNESS_DECK.filter((c) => c.tags.fixtureRole === role);
     const byRegister = WITNESS_DECK.filter((c) => c.tags.register === register);
     return (
-      this.draw(exact, full) ?? this.draw(byRole, full) ?? this.draw(byRegister, full) ?? null
+      this.drawFresh(exact, full) ??
+      this.drawFresh(byRole, full) ??
+      this.drawFresh(byRegister, full) ??
+      this.drawFresh(WITNESS_DECK, full) ??
+      this.reshuffle(exact.length > 0 ? exact : byRole, full)
     );
   }
 
   /** At most one per page; intensity 3 at most once a run. */
   simile(targets: string[], slots: Slots): Drawn | null {
     const cap = this.showedOff ? 2 : 3;
+    const within = SIMILE_DECK.filter((c) => c.tags.intensity <= cap);
     for (const target of targets) {
-      const pool = SIMILE_DECK.filter(
-        (c) => c.tags.target === target && c.tags.intensity <= cap && !this.burned.has(c.id),
+      const drawn = this.drawFresh(
+        within.filter((c) => c.tags.target === target),
+        slots,
       );
-      const drawn = this.draw(pool, slots);
       if (drawn) return drawn;
     }
-    // Every card on every target is burned. Reshuffle within the first target.
+    // Nothing fresh on any target this page is about. Rather than reach for a
+    // simile about something else, the page simply does without one — until
+    // the whole deck is spent, at which point it reshuffles.
+    if (within.some((c) => !this.burned.has(c.id))) return null;
     const first = targets[0];
     if (!first) return null;
-    return this.draw(
-      SIMILE_DECK.filter((c) => c.tags.target === first && c.tags.intensity <= cap),
+    return this.reshuffle(
+      within.filter((c) => c.tags.target === first),
       slots,
     );
   }

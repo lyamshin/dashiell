@@ -208,12 +208,14 @@ export function parse(view: CaseView, at: Id, raw: string): ParseResult {
   if (verb === 'go' && (rest.startsWith('to ') || rest.startsWith('over to '))) {
     rest = rest.slice(rest.indexOf('to ') + 3);
   }
-  if (verb === 'look' && (rest.startsWith('around') || rest.startsWith('at') || rest.startsWith('in'))) {
-    verb = 'examine';
-    rest = rest.slice(rest.indexOf(' ') + 1).trim();
-  }
-  if (verb === 'look' && rest.length > 0) {
-    verb = 'examine';
+  if (verb === 'look') {
+    const preposition = /^(around|at|in|into|through|over|inside)\b\s*(.*)$/.exec(rest);
+    if (preposition) {
+      verb = 'examine';
+      rest = (preposition[2] ?? '').trim();
+    } else if (rest.length > 0) {
+      verb = 'examine';
+    }
   }
 
   if (verb === null) {
