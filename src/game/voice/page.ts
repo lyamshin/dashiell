@@ -41,6 +41,7 @@ import {
   speakClue,
   type AskKind,
   type Register,
+  type SpokenClue,
 } from './exchange.js';
 import { findKindOf } from './facts.js';
 import { knowsHim } from './roll.js';
@@ -374,6 +375,19 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     // doing the same thing twice in the same paragraph.
     const usedBusiness = new Set<string>();
 
+    /**
+     * A clue that states two facts is two answers, not one breath. The first
+     * answers the question; each one after it gets a follow-up in front of it,
+     * so Dashiell is seen to ask again for what he did not get the first time.
+     */
+    const sayTheRest = (spoken: SpokenClue, isFamiliar: boolean, withSlots: Slots): void => {
+      for (const more of spoken.rest) {
+        const follow = dashiellLine(dealer, 'follow-up', isFamiliar, withSlots);
+        say(follow?.text ?? '"And then."', 'exchange');
+        say(`"${more}"`, 'exchange', spoken.clueId);
+      }
+    };
+
     /* approach — who they are, and what their hands are doing */
     const seen = stage.portrayed.includes(scene.personId);
     if (person) {
@@ -437,6 +451,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       );
       for (const id of answer.cardIds) usedBusiness.add(id);
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', clue.id);
+      sayTheRest(spoken, familiar, slots);
     }
     if (scene.clues.length === 0 && !scene.account) {
       say(nothingLine(dealer, 'present', slots), 'nothing');
@@ -463,6 +478,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         gaps,
       );
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', scene.volunteer.id);
+      sayTheRest(spoken, familiar, slots);
     }
 
     const closer = dashiellLine(dealer, 'close', familiar, slots);
@@ -842,7 +858,7 @@ function answerAccount(
       : 'I was where I was and I could not tell you the hours of it.';
   const answer = frameAnswer(
     stage.dealer,
-    { clueId: '', text: fact, mode: 'utterance', cardIds: [] },
+    { clueId: '', text: fact, rest: [], mode: 'utterance', cardIds: [] },
     person,
     temper,
     register,

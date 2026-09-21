@@ -1112,3 +1112,51 @@ describe('the simile', () => {
     }
   });
 });
+
+describe('two facts in one clue', () => {
+  it('holds the second fact back instead of gluing it to the first', () => {
+    const clue = view.kase.findable.find((c) => beatsOf(view, c).length === 2);
+    expect(clue, 'seed 7 has no two-fact clue').toBeDefined();
+    const spoken = speakClue(
+      new Dealer(3, [], []),
+      view,
+      rollCast(view.kase),
+      clue as never,
+      undefined,
+      'truth',
+      {},
+      [],
+    );
+    if (spoken.mode !== 'utterance') return; // a fallback carries it whole
+    expect(spoken.rest.length).toBe(1);
+    expect(spoken.text).not.toContain(spoken.rest[0] as string);
+  });
+
+  it('puts one of Dashiell’s follow-ups between the two answers', () => {
+    let seen = 0;
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of exhaust(seed, 2).log) {
+        const twoFact = page.found.filter((id) => {
+          const clue = v.findableById.get(id);
+          return clue !== undefined && beatsOf(v, clue).length > 1;
+        });
+        if (twoFact.length === 0) continue;
+        for (const id of twoFact) {
+          const carrying = page.blocks.filter(
+            (b) => b.kind === 'prose' && b.clueId === id && b.voice !== 'find',
+          );
+          if (carrying.length < 2) continue;
+          seen++;
+          // Between the two answers there is a line of Dashiell's, and it is
+          // one of the follow-ups rather than more of the same speech.
+          const first = page.blocks.indexOf(carrying[0] as never);
+          const second = page.blocks.indexOf(carrying[1] as never);
+          const between = page.blocks.slice(first + 1, second);
+          expect(between.length, `${id} glued two answers together`).toBeGreaterThan(0);
+        }
+      }
+    }
+    expect(seen, 'no two-fact clue reached a page').toBeGreaterThan(0);
+  });
+});

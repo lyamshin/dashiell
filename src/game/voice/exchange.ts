@@ -55,6 +55,17 @@ export interface SpokenClue {
   clueId: Id;
   /** What goes inside the frame's quotation marks, or the record's paragraph. */
   text: string;
+  /**
+   * The rest of what the same clue states, one utterance each.
+   *
+   * A clue that establishes two facts used to come out as both utterances
+   * concatenated inside one frame — "Vitale came into Mrs. Teague's around
+   * 9:00 PM and stayed a while. Somebody was moving around in there past 9:00
+   * PM. Alive, I'd say." — which is two answers read as one breath. The page
+   * grammar puts a follow-up between them instead: the primary fact answers
+   * the question, and the second is something Dashiell had to ask again for.
+   */
+  rest: string[];
   mode: 'utterance' | 'quote' | 'record';
   cardIds: string[];
 }
@@ -90,7 +101,16 @@ export function speakClue(
       said.push(drawn.text);
     }
     if (said.length === beats.length) {
-      return { clueId: clue.id, text: said.join(' '), mode: 'utterance', cardIds };
+      // `beatsOf` has already put the placement first: where somebody was
+      // comes before what it means, and the first beat is the answer to the
+      // question that was actually asked.
+      return {
+        clueId: clue.id,
+        text: said[0] as string,
+        rest: said.slice(1),
+        mode: 'utterance',
+        cardIds,
+      };
     }
   } else if (beats.length === 0) {
     gaps.push(`no-fact: ${clue.kind} (${clue.id}) states nothing structured; its own line stands`);
@@ -99,8 +119,9 @@ export function speakClue(
   }
 
   const stripped = strippedQuote(clue, speaker);
-  if (stripped !== null) return { clueId: clue.id, text: stripped, mode: 'quote', cardIds };
-  return { clueId: clue.id, text: clue.text, mode: 'record', cardIds };
+  if (stripped !== null)
+    return { clueId: clue.id, text: stripped, rest: [], mode: 'quote', cardIds };
+  return { clueId: clue.id, text: clue.text, rest: [], mode: 'record', cardIds };
 }
 
 function utteranceFor(
