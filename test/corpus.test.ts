@@ -236,3 +236,40 @@ describe('regeneration cost over seeds 1..200', () => {
     expect(max).toBeLessThanOrEqual(500);
   });
 });
+
+describe('clue sourcing over seeds 1..200', () => {
+  it('never sources a clue from the victim, who is in no position to talk', () => {
+    for (const c of corpus) {
+      const victimId = c.people.find((p) => p.kind === 'victim')?.id;
+      for (const clue of c.clues) {
+        if (clue.source.type === 'person') expect(clue.source.personId).not.toBe(victimId);
+      }
+    }
+  });
+
+  it('never sources a clue from a person who was lying at the time it covers', () => {
+    for (const c of corpus) {
+      const lies = new Map(c.schedules.map((s) => [s.personId, new Set(s.lies)]));
+      for (const clue of c.clues) {
+        if (clue.source.type !== 'person' || clue.kind !== 'observation') continue;
+        const liedTicks = lies.get(clue.source.personId);
+        for (const f of clue.establishes) {
+          if (f.kind === 'personAt' || f.kind === 'personNotAt') {
+            expect(liedTicks?.has(f.tick) ?? false).toBe(false);
+          }
+        }
+      }
+    }
+  });
+
+  it('gives every clue a non-empty, voiceless line of text', () => {
+    for (const c of corpus) {
+      for (const clue of c.clues) {
+        expect(clue.text.length).toBeGreaterThan(10);
+        expect(clue.text.trim()).toBe(clue.text);
+        expect(clue.text).not.toContain('{');
+        expect(clue.text).not.toContain('undefined');
+      }
+    }
+  });
+});
