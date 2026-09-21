@@ -66,7 +66,82 @@ export function caseStateOf(view: CaseView, found: Id[], actionsLeft: number): C
   return 'hot';
 }
 
-/** What a simile on this page should be about, best guess first. */
+/**
+ * What a simile on *this* page should be about, and where on the page it
+ * should fall — both read off what the page actually contains.
+ *
+ * M4's integration put one at the bottom of every page and pointed it at the
+ * room, because the room is the only thing the engine knew for certain. Four
+ * pages running closed on "the room was ... as ...", which is one page
+ * printed four times. A simile is about what the page just spent its words
+ * on: a face or a pair of hands after a portrait, a voice after an exchange,
+ * the street or the weather after an arrival. The room only when the page is
+ * about the place.
+ */
+export type SimileSlot = 'after-arrival' | 'after-approach' | 'close';
+
+/** Which voices a simile may be set down behind, in page order. */
+const SIMILE_ANCHORS: Record<Exclude<SimileSlot, 'close'>, ProseVoice[]> = {
+  'after-arrival': ['arrival', 'place'],
+  'after-approach': ['approach', 'presence'],
+};
+
+export function simileTargetsFor(
+  view: CaseView,
+  scene: Scene,
+  blocks: Block[],
+  placeId: Id,
+  clue: Clue | null,
+): string[] {
+  const kind = view.placeById.get(placeId)?.kind ?? 'semi';
+  const out: string[] = [];
+  const push = (...targets: string[]): void => {
+    for (const t of targets) if (!out.includes(t)) out.push(t);
+  };
+  const has = (...voices: ProseVoice[]): boolean =>
+    blocks.some((b) => b.kind === 'prose' && voices.includes(b.voice));
+  const portrayed = has('presence', 'approach');
+  const aboutThePlace =
+    scene.kind === 'look' || scene.kind === 'open' || scene.kind === 'examine' || has('place');
+
+  // What the page led with comes first: that is what the reader has in hand.
+  switch (scene.kind) {
+    case 'ask':
+      push('voice', 'lie', 'face', 'hands');
+      break;
+    case 'travel':
+      push('street', 'weather', kind === 'public' ? 'city' : 'drink');
+      break;
+    case 'examine':
+    case 'open':
+      push(...simileTargets(view, clue, placeId).filter((t) => t !== 'room' || aboutThePlace));
+      break;
+    default:
+      break;
+  }
+  if (portrayed) push('face', 'hands', 'clothes');
+  if (clue) push(...simileTargets(view, clue, placeId).filter((t) => t !== 'room' || aboutThePlace));
+  if (aboutThePlace) push('room', 'silence');
+  push('silence');
+  return out;
+}
+
+/** Where on the page the simile falls, out of the places this page has. */
+export function simileSlotFor(dealer: Dealer, blocks: Block[]): number {
+  const open: number[] = [];
+  for (const [slot, voices] of Object.entries(SIMILE_ANCHORS)) {
+    void slot;
+    let last = -1;
+    blocks.forEach((b, i) => {
+      if (b.kind === 'prose' && voices.includes(b.voice)) last = i;
+    });
+    if (last >= 0) open.push(last + 1);
+  }
+  open.push(blocks.length);
+  return dealer.random.pick(open);
+}
+
+/** What a simile after a given clue should be about, best guess first. */
 export function simileTargets(view: CaseView, clue: Clue | null, placeId: Id): string[] {
   const kind = view.placeById.get(placeId)?.kind ?? 'semi';
   const byPlace =
@@ -147,6 +222,8 @@ export interface Stage {
   /** Pages so far, for "every third page". */
   pageIndex: number;
   previousTheory: Id | null;
+  /** What the previous page's simile was about. This page picks another. */
+  lastSimile: string | null;
   /** This run has already spent its one intensity-3 simile. */
   showedOff: boolean;
 }
@@ -159,6 +236,8 @@ export interface Composed {
   /** People portrayed in full by this page. */
   portrayed: Id[];
   theory: Id | null;
+  /** What this page's simile was about, if it had one. */
+  simileTarget: string | null;
 }
 
 const WORD_TARGET_LOW = 120;
@@ -484,15 +563,29 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     }
   }
 
+  let simileTarget: string | null = null;
   if (scene.kind !== 'nothing' && words(blocks) < WORD_TARGET_HIGH - 25) {
     const last = lastClue(scene);
+    // Two pages running about the same thing is the repetition the reader
+    // notices first, so last page's target is off the table entirely rather
+    // than merely deprioritized.
+    const targets = simileTargetsFor(view, scene, blocks, stage.at, last).filter(
+      (t) => t !== stage.lastSimile,
+    );
     const sim = simile(
       dealer,
-      simileTargets(view, last, stage.at),
+      targets,
       { ...base, name: last ? subjectName(view, last) : undefined },
       stage.showedOff,
     );
-    if (sim) say(sim, 'simile');
+    if (sim) {
+      simileTarget = sim.target;
+      blocks.splice(simileSlotFor(dealer, blocks), 0, {
+        kind: 'prose',
+        text: sim.text,
+        voice: 'simile',
+      });
+    }
   }
 
   // A page that is still short has run its decks out rather than had nothing
@@ -526,7 +619,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     gaps.push(`deck-exhausted: ${deck} came round again inside one run`);
   }
 
-  return { blocks, gaps, asideBand, portrayed, theory: reaction.theory };
+  return { blocks, gaps, asideBand, portrayed, theory: reaction.theory, simileTarget };
 }
 
 /* ------------------------------------------------------------------ *
@@ -676,7 +769,7 @@ function simile(
   targets: string[],
   slots: Slots,
   showedOff: boolean,
-): string | null {
+): { text: string; target: string } | null {
   const cap = (c: Card): boolean => {
     const i = tagOf('similes', c, 'intensity');
     return typeof i === 'number' && i <= (showedOff ? 2 : 3);
@@ -689,7 +782,7 @@ function simile(
       slots,
       true,
     );
-    if (drawn) return drawn.text;
+    if (drawn) return { text: drawn.text, target };
   }
   // Nothing fresh on anything this page is about: the page goes without,
   // which M3's notes found reads better than reaching for a stranger.

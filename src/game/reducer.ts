@@ -92,6 +92,7 @@ export function newRun(
     asideBands: [],
     portrayed: [],
     theory: null,
+    lastSimile: null,
   };
 
   const found = kase.starting.slice();
@@ -127,6 +128,7 @@ export function newRun(
     asideBands: composed.asideBand ? [composed.asideBand] : [],
     portrayed: composed.portrayed,
     theory: composed.theory,
+    lastSimile: composed.simileTarget,
     log: [page],
   };
   return state;
@@ -164,6 +166,7 @@ function stageFor(
     asideBands: state.asideBands,
     pageIndex: state.log.length,
     previousTheory: state.theory,
+    lastSimile: state.lastSimile,
     showedOff: showedOff([...state.burned, ...at.persisted]),
   };
 }
@@ -264,6 +267,7 @@ export function step(
   let asideBand: string | null = null;
   let portrayed: Id[] = [];
   let theory = state.theory;
+  let lastSimile = state.lastSimile;
 
   switch (command.kind) {
     case 'look':
@@ -390,6 +394,9 @@ export function step(
     asideBand = composed.asideBand;
     portrayed = composed.portrayed;
     theory = composed.theory;
+    // A page with no simile keeps the last one, so the page after it still
+    // has something to avoid.
+    lastSimile = composed.simileTarget ?? state.lastSimile;
   }
 
   const actionsUsed = state.actionsUsed + cost;
@@ -422,6 +429,7 @@ export function step(
     asideBands: asideBand ? [...state.asideBands, asideBand] : state.asideBands,
     portrayed: [...new Set([...state.portrayed, ...portrayed])],
     theory,
+    lastSimile,
   };
   const page: Page = {
     n: state.log.length,

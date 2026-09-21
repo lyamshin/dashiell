@@ -37,6 +37,7 @@ import {
   reactiveMonologue,
   rollCast,
   rollDashiell,
+  simileTargetsFor,
   slotsOf,
   speakClue,
   temperOf,
@@ -1028,6 +1029,85 @@ describe('the seams between cards', () => {
           if (block.kind !== 'prose' && block.kind !== 'note') continue;
           expect(block.text, `seed ${seed}: ${block.text}`).not.toMatch(/[.!?]\s*[.,;:]/);
         }
+      }
+    }
+  });
+});
+
+describe('the simile', () => {
+  /** What each page's simile was about, page by page, nulls for pages without. */
+  const targetsOf = (state: RunState): (string | null)[] =>
+    state.log.map((page) => {
+      for (const id of page.cardsUsed) {
+        if (deckOf(id) !== 'similes') continue;
+        const card = CARD_BY_ID.get(id);
+        if (card) return String(card.tags.target);
+      }
+      return null;
+    });
+
+  it('is about what the page is about, not about the room by default', () => {
+    const at = view.kase.places[0]?.id as string;
+    const ask = {
+      kind: 'ask' as const,
+      personId: 'p-1',
+      askKind: 'ask-person' as AskKind,
+      topicLabel: 't',
+      topicSlots: {},
+      clues: [],
+      account: null,
+      volunteer: null,
+      free: false,
+    };
+    const exchange = simileTargetsFor(view, ask, [{ kind: 'prose', text: 'x', voice: 'approach' }], at, null);
+    expect(exchange[0]).toBe('voice');
+    expect(exchange).toContain('face');
+    expect(exchange, 'an exchange is not about the room').not.toContain('room');
+
+    const arrival = simileTargetsFor(
+      view,
+      { kind: 'travel', to: at, already: false },
+      [{ kind: 'prose', text: 'x', voice: 'arrival' }],
+      at,
+      null,
+    );
+    expect(['street', 'weather', 'city', 'drink']).toContain(arrival[0]);
+
+    // A page about the place may still be about the room.
+    expect(simileTargetsFor(view, { kind: 'look' }, [], at, null)).toContain('room');
+  });
+
+  it('never puts the same simile target on two pages running', () => {
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const targets = targetsOf(exhaust(seed, 2));
+      for (let i = 1; i < targets.length; i++) {
+        if (targets[i] === null) continue;
+        expect(targets[i], `seed ${seed}, page ${i}`).not.toBe(targets[i - 1]);
+      }
+    }
+  });
+
+  it('does not always close the page with it', () => {
+    let closes = 0;
+    let elsewhere = 0;
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      for (const page of exhaust(seed, 2).log) {
+        const prose = page.blocks.filter((b) => b.kind === 'prose');
+        const at = prose.findIndex((b) => b.kind === 'prose' && b.voice === 'simile');
+        if (at < 0) continue;
+        if (at === prose.length - 1) closes++;
+        else elsewhere++;
+      }
+    }
+    expect(closes).toBeGreaterThan(0);
+    expect(elsewhere, 'every simile still closes its page').toBeGreaterThan(0);
+  });
+
+  it('still puts at most one on a page', () => {
+    for (const seed of [1, 7, 19]) {
+      for (const page of exhaust(seed, 2).log) {
+        const n = page.blocks.filter((b) => b.kind === 'prose' && b.voice === 'simile').length;
+        expect(n, `seed ${seed}, page ${page.n}`).toBeLessThanOrEqual(1);
       }
     }
   });
