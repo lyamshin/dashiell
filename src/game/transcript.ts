@@ -13,6 +13,7 @@ import { clockAfter } from './clock.js';
 import type { CaseView } from './derive.js';
 import { accountRuns, claimedAccount, personName, spanLabel } from './derive.js';
 import { buildNotebook } from './notebook.js';
+import { countWords } from './voice/page.js';
 import type { Verdict } from './scoring.js';
 import type { Block, Page, RunState } from './types.js';
 import { EMPTY_ROOM, HELP_LINES, PRESENCE_LEAD } from './voice-data.js';
@@ -37,13 +38,7 @@ export function wrap(text: string, width = WIDTH, indent = ''): string {
 }
 
 export function wordsOnPage(page: Page): number {
-  let n = 0;
-  for (const block of page.blocks) {
-    if (block.kind === 'prose' || block.kind === 'note') {
-      n += block.text.trim().split(/\s+/).filter((w) => w.length > 0).length;
-    }
-  }
-  return n;
+  return countWords(page.blocks);
 }
 
 function renderBlock(block: Block, view: CaseView): string[] {

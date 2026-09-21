@@ -12,7 +12,7 @@ import {
   serializeRun,
   type KeyValueStore,
 } from '../../src/game/storage.js';
-import { ALL_CARDS } from '../../src/game/decks.js';
+import { ALL_CARDS, type Card } from '../../src/game/voice/index.js';
 import { BURNED_KEY, SAVE_KEY } from '../../src/game/types.js';
 
 function memoryStore(): KeyValueStore & { data: Map<string, string> } {
@@ -93,7 +93,7 @@ describe('burned cards outlive the run', () => {
 
   it('reshuffles the pile once every card has been read', () => {
     const store = memoryStore();
-    const everything = ALL_CARDS.map((c) => c.id);
+    const everything = ALL_CARDS.map((c: Card) => c.id);
     addBurned(store, everything, ALL_CARDS.length);
     // Full: the next run starts from just what it burned itself.
     const after = addBurned(store, ['SIM-001'], ALL_CARDS.length);

@@ -157,15 +157,26 @@ export interface Composed {
 const WORD_TARGET_LOW = 120;
 const WORD_TARGET_HIGH = 250;
 
-function words(blocks: Block[]): number {
+/**
+ * How long a page reads. Prose and notes are counted word for word; a roll of
+ * who is in the room and a claimed timeline are counted at what they take up
+ * on the paper, because they are text on the page even though no deck wrote
+ * them. The transcript tool reports this same number, so what the engine trims
+ * against and what a reader counts are the same thing.
+ */
+export function countWords(blocks: Block[]): number {
   let n = 0;
   for (const b of blocks) {
-    if (b.kind === 'prose' || b.kind === 'note') n += b.text.trim().split(/\s+/).length;
+    if (b.kind === 'prose' || b.kind === 'note') {
+      n += b.text.trim().split(/\s+/).filter((w) => w.length > 0).length;
+    }
     if (b.kind === 'presence') n += 6 * Math.max(1, b.personIds.length);
-    if (b.kind === 'timeline') n += 8 * b.rows.length;
+    if (b.kind === 'timeline') n += 4 + 5 * b.rows.length;
   }
   return n;
 }
+
+const words = countWords;
 
 export function composePage(stage: Stage, scene: Scene): Composed {
   const { view, cast, dealer } = stage;
@@ -407,7 +418,13 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       previousTheory: stage.previousTheory,
       seed: (stage.pageIndex + 1) * 7919 + view.kase.seed,
     });
-    for (const line of reaction.lines) say(line, 'monologue');
+    for (const [i, line] of reaction.lines.entries()) {
+      // A page that is already long keeps the first thought and drops the
+      // second. Two paragraphs of thinking on top of three finds is a page
+      // nobody reads to the end of.
+      if (i > 0 && words(blocks) > WORD_TARGET_HIGH - 20) break;
+      say(line, 'monologue');
+    }
   }
 
   /* ------------------------------------- ambient, aside, simile: the trim */
@@ -415,8 +432,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   const state = caseStateOf(view, stage.foundAfter, stage.actionsLeft);
   const thin = (): boolean => words(blocks) < WORD_TARGET_LOW;
   const room = (): boolean => words(blocks) < WORD_TARGET_HIGH;
-
-  if (scene.kind !== 'nothing' && (thin() || stage.pageIndex % 3 === 2)) {
+  const drawAmbient = (): boolean => {
     const ambient = dealer.draw(
       'ambient',
       [
@@ -430,8 +446,12 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       ],
       base,
     );
-    if (ambient) say(ambient.text, 'ambient');
-  }
+    if (!ambient) return false;
+    say(ambient.text, 'ambient');
+    return true;
+  };
+
+  if (scene.kind !== 'nothing' && (thin() || stage.pageIndex % 3 === 2)) drawAmbient();
 
   if (scene.kind !== 'nothing' && !stage.asideBands.includes(band) && thin()) {
     const aside = dealer.draw(
@@ -461,6 +481,17 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       stage.showedOff,
     );
     if (sim) say(sim, 'simile');
+  }
+
+  // A page that is still short has run its decks out rather than had nothing
+  // to say. Keep reaching for the monologue until it is a page and not a
+  // paragraph: two more goes, and then it is as long as it is going to be.
+  for (let i = 0; scene.kind !== 'nothing' && i < 2 && words(blocks) < 90; i++) {
+    if (!drawAmbient()) break;
+  }
+
+  for (const deck of dealer.takeReshuffles()) {
+    gaps.push(`deck-exhausted: ${deck} came round again inside one run`);
   }
 
   return { blocks, gaps, asideBand, portrayed, theory: reaction.theory };

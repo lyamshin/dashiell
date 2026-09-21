@@ -125,6 +125,17 @@ const CLOCK = [
   '{left} more and then whatever I have is what they get.',
 ];
 
+/**
+ * The four contradiction pools, exported so a test can tell which one the
+ * monologue reached for. Bias is only real if it is visible in the prose.
+ */
+export const CONTRADICTION_TEMPLATES = {
+  mild: MILD,
+  mildBiased: MILD_BIASED,
+  hard: HARD,
+  hardTurned: HARD_TURNED,
+} as const;
+
 export interface ReactiveInput {
   view: CaseView;
   roll: HumphreyRoll;

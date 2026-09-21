@@ -207,6 +207,7 @@ export class Dealer {
   private readonly rng: Rng;
   private readonly run: Set<string>;
   private readonly persisted: Set<string>;
+  private readonly reshuffles = new Set<DeckName>();
   readonly spent: string[] = [];
 
   constructor(seed: number, runBurned: Iterable<string>, persistedBurned: Iterable<string>) {
@@ -266,16 +267,28 @@ export class Dealer {
       }
     }
     // Everything that fits has been read. Reshuffle inside the narrowest match
-    // that has any cards at all.
+    // that has any cards at all, and say so: a deck that reshuffles inside one
+    // run is a deck that is too thin for the tag it was asked for, which is
+    // the content team's business and not something to hide.
     for (const match of ladder) {
       const all = pool.filter(match);
       if (all.length === 0) continue;
       for (const card of this.rng.shuffle(all)) {
         const drawn = this.take(deck, card, slots);
-        if (drawn) return drawn;
+        if (drawn) {
+          this.reshuffles.add(deck);
+          return drawn;
+        }
       }
     }
     return null;
+  }
+
+  /** Which decks had to come round again since this was last asked. */
+  takeReshuffles(): DeckName[] {
+    const out = [...this.reshuffles];
+    this.reshuffles.clear();
+    return out;
   }
 
   /** Look without spending: does anything unburned fit? */

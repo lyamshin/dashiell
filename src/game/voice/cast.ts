@@ -147,9 +147,13 @@ export function temperOf(cast: CastSheet, personId: Id): Temper {
   return cast.temper[personId] ?? 'plain';
 }
 
-/** Every portrait card the cast sheet spent, for the burn pile. */
+/**
+ * Every portrait card the cast sheet spent, for the burn pile, once each.
+ * A deck too thin for the cast gives two people the same detail; the pile
+ * still only wants to hear about the card once.
+ */
 export function portraitCardIds(cast: CastSheet): string[] {
-  return Object.values(cast.portraits).flatMap((p) => p.cardIds);
+  return [...new Set(Object.values(cast.portraits).flatMap((p) => p.cardIds))];
 }
 
 /**

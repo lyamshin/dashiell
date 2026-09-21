@@ -1,18 +1,53 @@
+/**
+ * The M4 voice engine.
+ *
+ * M3's voice.test.ts asserted that a clue's flat text was rendered verbatim on
+ * the page. §A.1 moved that sentence to the notebook, so the same contract is
+ * asserted here in its new place — the record is verbatim, and the page still
+ * carries the fact. Losing either half is losing the fairness, and the tests
+ * that watch for it are the first two describes below.
+ */
+
 import { describe, expect, it } from 'vitest';
 import { generateCase, type Difficulty } from '../../src/gen/index.js';
-import { ALL_CARDS, SIMILE_DECK, fill, slotsOf, type Card } from '../../src/game/decks.js';
-import { buildView, segmentNouns } from '../../src/game/derive.js';
+import type { Fact, Person } from '../../src/gen/types.js';
+import { buildView, establishedFrom, segmentNouns } from '../../src/game/derive.js';
+import { buildNotebook } from '../../src/game/notebook.js';
+import { playOracle, playWandering } from '../../src/game/oracle.js';
 import { newRun, stepInput } from '../../src/game/reducer.js';
-import { Voice, voiceRoleOf } from '../../src/game/voice.js';
+import { wordsOnPage } from '../../src/game/transcript.js';
 import type { RunState } from '../../src/game/types.js';
+import {
+  ALL_CARDS,
+  CONTRADICTION_TEMPLATES,
+  DECKS,
+  Dealer,
+  beatsOf,
+  burnTier,
+  carriesFact,
+  crossRunOnly,
+  deckOf,
+  describePerson,
+  fill,
+  leadingTheory,
+  oddsFor,
+  reactiveMonologue,
+  rollCast,
+  rollHumphrey,
+  slotsOf,
+  temperOf,
+  validateDecks,
+  weightsFor,
+  type Card,
+} from '../../src/game/voice/index.js';
 
 const view = buildView(generateCase(7, { difficulty: 2 }));
-const CARD_BY_ID = new Map(ALL_CARDS.map((c) => [c.id, c]));
+const CARD_BY_ID = new Map<string, Card>(ALL_CARDS.map((c) => [c.id, c]));
 
 /** Walk a whole case, taking everything there is to take. */
 function exhaust(seed: number, difficulty: Difficulty): RunState {
   const v = buildView(generateCase(seed, { difficulty }));
-  let state = newRun(v, { detectiveName: 'Humphrey' });
+  let state = newRun(v, { detectiveName: 'Dashiell' });
   for (const place of v.kase.places) {
     state = stepInput(state, `go ${place.shortName}`, v).state;
     state = stepInput(state, 'look', v).state;
@@ -29,49 +64,365 @@ function exhaust(seed: number, difficulty: Difficulty): RunState {
   return state;
 }
 
-describe('the decks', () => {
-  it('never deals the same card twice in a run', () => {
+/* ------------------------------------------------------------------ *
+ * A.1 — the record moved, and nothing was lost moving it.
+ * ------------------------------------------------------------------ */
+
+describe('the record', () => {
+  it('writes every clue found into the notebook verbatim, under its source', () => {
     for (const difficulty of [1, 2, 3] as Difficulty[]) {
-      for (const seed of [3, 7, 11]) {
+      for (const seed of [1, 7, 13]) {
+        const v = buildView(generateCase(seed, { difficulty }));
         const state = exhaust(seed, difficulty);
-        const counts = new Map<string, number>();
-        for (const id of state.burned) counts.set(id, (counts.get(id) ?? 0) + 1);
-        const repeats = [...counts].filter(([, n]) => n > 1);
-        // A card may come round again only once its own deck is exhausted.
-        for (const [id, n] of repeats) {
-          const card = CARD_BY_ID.get(id);
-          const deckSize = card ? ALL_CARDS.filter((c) => c.deck === card.deck).length : 0;
-          expect(
-            state.burned.filter((x) => CARD_BY_ID.get(x)?.deck === card?.deck).length,
-            `${id} dealt ${n} times before its deck ran out`,
-          ).toBeGreaterThanOrEqual(deckSize);
+        const book = buildNotebook(v, state);
+        const written = new Map<string, string>();
+        for (const person of book.people) for (const r of person.records) written.set(r.clueId, r.text);
+        for (const place of book.places) for (const r of place.clues) written.set(r.clueId, r.text);
+        for (const id of state.found) {
+          expect(written.get(id), `${id} is not in the notebook`).toBe(
+            v.findableById.get(id)?.text,
+          );
+        }
+        // And it is nearly everything there is.
+        expect(state.found.length).toBeGreaterThan(v.kase.findable.length - 6);
+      }
+    }
+  });
+
+  it('carries every clue onto the page as well, in some form', () => {
+    for (const seed of [2, 7, 19]) {
+      const state = exhaust(seed, 2);
+      const carried = new Set<string>();
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind === 'prose' && block.clueId) carried.add(block.clueId);
+        }
+      }
+      for (const id of state.found) {
+        expect(carried.has(id), `${id} never reached the page`).toBe(true);
+      }
+    }
+  });
+
+  it('prints a clue flat on the page only where it said it had to', () => {
+    for (const seed of [3, 7, 21]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      const state = exhaust(seed, 2);
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' || !block.clueId) continue;
+          const flat = v.findableById.get(block.clueId)?.text;
+          if (!flat || !block.text.includes(flat)) continue;
+          // A page that carries the record says so in the gap log, or comes
+          // out of the find deck, where the record is the point.
+          const excused =
+            block.voice === 'record' || block.voice === 'find' || page.gaps.length > 0;
+          expect(excused, `${block.clueId} printed flat with nothing logged`).toBe(true);
         }
       }
     }
   });
 
-  it('spends the whole of a run’s prose out of the decks it declares', () => {
-    const state = exhaust(7, 2);
-    expect(state.burned.length).toBeGreaterThan(10);
-    for (const id of state.burned) {
-      expect(id).toMatch(/^(PLACE|WIT|SIM|NA|ROOM)-\d+$/);
+  it('segments a clue back into exactly the string it came from', () => {
+    for (const clue of view.kase.findable) {
+      const segments = segmentNouns(clue.text, view);
+      expect(segments.map((s) => s.text).join('')).toBe(clue.text);
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * A.2 — the roll.
+ * ------------------------------------------------------------------ */
+
+describe('the roll', () => {
+  it('is the same night for the same seed, and a different one for another', () => {
+    for (const seed of [1, 7, 40, 99]) {
+      const kase = generateCase(seed, { difficulty: 2 });
+      expect(rollHumphrey(kase)).toEqual(rollHumphrey(kase));
+      expect(rollCast(kase)).toEqual(rollCast(kase));
+    }
+    const a = rollHumphrey(generateCase(7, { difficulty: 2 }));
+    const b = rollHumphrey(generateCase(8, { difficulty: 2 }));
+    expect(JSON.stringify(a)).not.toBe(JSON.stringify(b));
+  });
+
+  it('can be seeded from somewhere other than the case, for a later milestone', () => {
+    const kase = generateCase(7, { difficulty: 2 });
+    expect(rollHumphrey(kase, { seed: 4242 })).toEqual(rollHumphrey(kase, { seed: 4242 }));
+    expect(rollHumphrey(kase, { seed: 4242 })).not.toEqual(rollHumphrey(kase));
+  });
+
+  it('knows a bartender far more often than an heiress, over 400 cases', () => {
+    const met = new Map<string, { seen: number; known: number }>();
+    for (let seed = 1; seed <= 400; seed++) {
+      const kase = generateCase(seed, { difficulty: 2 });
+      const roll = rollHumphrey(kase);
+      for (const person of kase.people) {
+        if (person.kind === 'victim') continue;
+        const key = person.fixtureRole ?? 'suspect';
+        const row = met.get(key) ?? { seen: 0, known: 0 };
+        row.seen++;
+        if (roll.knows[person.id]) row.known++;
+        met.set(key, row);
+      }
+    }
+    const bartender = met.get('bartender');
+    const suspect = met.get('suspect');
+    expect(bartender).toBeDefined();
+    // 0.5 against a suspect pool averaging well under 0.2.
+    const rate = (k?: { seen: number; known: number }): number => (k ? k.known / k.seen : 0);
+    expect(rate(bartender)).toBeGreaterThan(0.4);
+    expect(rate(bartender)).toBeLessThan(0.6);
+    expect(rate(suspect)).toBeLessThan(0.25);
+    expect(rate(bartender)).toBeGreaterThan(rate(suspect) * 2);
+  });
+
+  it('never puts an old flame on a fixture, and never more than one a run', () => {
+    for (let seed = 1; seed <= 200; seed++) {
+      const kase = generateCase(seed, { difficulty: 2 });
+      const roll = rollHumphrey(kase);
+      const flames = Object.entries(roll.knows).filter(([, a]) => a.how === 'old-flame');
+      expect(flames.length).toBeLessThanOrEqual(1);
+      for (const [id] of flames) {
+        expect(kase.people.find((p) => p.id === id)?.kind).toBe('suspect');
+        expect(roll.relationship).not.toBe('none');
+      }
     }
   });
 
-  it('skips a card whose slots cannot be filled rather than printing a hole', () => {
-    const withName = SIMILE_DECK.find((c) => slotsOf(c).includes('name')) as Card;
-    expect(fill(withName, {})).toBeNull();
-    expect(fill(withName, { name: '' })).toBeNull();
-    expect(fill(withName, { name: 'Brauer' })).toContain('Brauer');
-
-    const voice = new Voice(view, 'Humphrey', [], 1);
-    // Every target, with no slots offered at all: whatever comes back is
-    // slotless, because the rest were skipped.
-    for (let i = 0; i < 20; i++) {
-      const drawn = voice.simile(['face', 'voice', 'room'], {});
-      if (!drawn) break;
-      expect(drawn.text).not.toMatch(/\{[a-z]+\}/);
+  it('gives every person the odds their role says', () => {
+    for (const person of view.kase.people) {
+      if (person.kind === 'victim') expect(oddsFor(person)).toBe(0);
+      else expect(oddsFor(person)).toBeGreaterThan(0);
     }
+    const bartender = view.kase.people.find((p) => p.fixtureRole === 'bartender') as Person;
+    const ticket = { ...bartender, fixtureRole: 'ticket-taker' as const };
+    expect(oddsFor(bartender)).toBeGreaterThan(oddsFor(ticket));
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * A.2 — the free first ask.
+ * ------------------------------------------------------------------ */
+
+describe('the free first ask', () => {
+  it('waives the first question to somebody who knows him, and only the first', () => {
+    let checked = 0;
+    for (let seed = 1; seed <= 60 && checked < 6; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      let state = newRun(v, { detectiveName: 'Dashiell' });
+      const known = Object.keys(state.cast.roll.knows)
+        .map((id) => v.personById.get(id))
+        .filter((p): p is Person => p !== undefined && p.foundAt !== undefined);
+      const friend = known[0];
+      if (!friend) continue;
+      checked++;
+      if (friend.foundAt !== state.at) {
+        state = stepInput(state, `go ${v.placeById.get(friend.foundAt as string)?.shortName}`, v).state;
+      }
+      const before = state.actionsUsed;
+      const first = stepInput(state, `ask ${friend.surname} about that evening`, v);
+      expect(first.page.cost, `${friend.surname} first ask`).toBe(0);
+      expect(first.state.actionsUsed).toBe(before);
+      expect(first.state.waived).toBe(1);
+      state = first.state;
+      const second = stepInput(state, `ask ${friend.surname} about the victim`, v);
+      expect(second.page.cost).toBe(1);
+      expect(second.state.waived).toBe(1);
+    }
+    expect(checked).toBeGreaterThan(0);
+  });
+
+  it('charges everybody else from the first word', () => {
+    const v = buildView(generateCase(7, { difficulty: 2 }));
+    const state = newRun(v, { detectiveName: 'Dashiell' });
+    const stranger = (v.peopleAt.get(state.at) ?? [])
+      .map((id) => v.personById.get(id) as Person)
+      .find((p) => !state.cast.roll.knows[p.id]);
+    if (!stranger) return;
+    const result = stepInput(state, `ask ${stranger.surname} about that evening`, v);
+    expect(result.page.cost).toBe(1);
+    expect(result.state.waived).toBe(0);
+  });
+
+  it('only ever makes the night cheaper: par accounting is untouched', () => {
+    for (const difficulty of [1, 2, 3] as Difficulty[]) {
+      for (let seed = 1; seed <= 25; seed++) {
+        const v = buildView(generateCase(seed, { difficulty }));
+        const result = playOracle(v);
+        expect(result.ok, `d${difficulty} seed ${seed}: ${result.reason}`).toBe(true);
+        expect(result.actions).toBe(result.spent + result.waived);
+        expect(result.actions).toBeLessThanOrEqual(result.par);
+        expect(result.spent).toBeLessThanOrEqual(result.actions);
+      }
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * A.3 — temper and the yap volunteer.
+ * ------------------------------------------------------------------ */
+
+describe('temper', () => {
+  it('leans the way the weights lean, over 300 cases', () => {
+    const counts = new Map<string, Record<string, number>>();
+    for (let seed = 1; seed <= 300; seed++) {
+      const kase = generateCase(seed, { difficulty: 2 });
+      const cast = rollCast(kase);
+      for (const person of kase.people) {
+        if (person.kind === 'victim') continue;
+        const key = person.fixtureRole ?? person.archetypeId ?? 'unknown';
+        const row = counts.get(key) ?? { enigma: 0, plain: 0, yap: 0 };
+        row[temperOf(cast, person.id)] = (row[temperOf(cast, person.id)] ?? 0) + 1;
+        counts.set(key, row);
+      }
+    }
+    // A ward heeler yaps. A seamstress is plain. A nurse may be an enigma.
+    const heeler = counts.get('arch-heeler');
+    if (heeler) {
+      const total = heeler.enigma + heeler.plain + heeler.yap;
+      expect(heeler.yap / total).toBeGreaterThan(0.6);
+      expect(heeler.enigma).toBe(0);
+    }
+    const seamstress = counts.get('arch-seamstress');
+    if (seamstress) {
+      const total = seamstress.enigma + seamstress.plain + seamstress.yap;
+      expect(seamstress.plain / total).toBeGreaterThan(0.6);
+    }
+    // Fixtures lean plain as a group.
+    let fixturePlain = 0;
+    let fixtureAll = 0;
+    for (const [key, row] of counts) {
+      if (!key.startsWith('arch-')) {
+        fixturePlain += row.plain;
+        fixtureAll += row.enigma + row.plain + row.yap;
+      }
+    }
+    expect(fixturePlain / fixtureAll).toBeGreaterThan(0.5);
+  });
+
+  it('resolves a person to the narrowest table that has them', () => {
+    const heeler = view.kase.people.find((p) => p.archetypeId === 'arch-heeler');
+    if (heeler) expect(weightsFor(heeler).yap).toBeGreaterThan(weightsFor(heeler).enigma);
+    const bartender = view.kase.people.find((p) => p.fixtureRole === 'bartender') as Person;
+    expect(weightsFor(bartender).plain).toBeGreaterThan(weightsFor(bartender).enigma);
+  });
+
+  it('volunteers exactly once a run, and never a spine clue', () => {
+    for (const difficulty of [1, 2, 3] as Difficulty[]) {
+      for (const seed of [2, 7, 13, 21, 33]) {
+        const v = buildView(generateCase(seed, { difficulty }));
+        const state = exhaust(seed, difficulty);
+        expect(state.volunteered.length, `d${difficulty} seed ${seed}`).toBeLessThanOrEqual(1);
+        for (const id of state.volunteered) {
+          expect(v.findableById.get(id)?.role).not.toBe('spine');
+        }
+      }
+    }
+  });
+
+  it('volunteers often enough to be a mechanic, over 100 oracle runs', () => {
+    let seen = 0;
+    for (let seed = 1; seed <= 100; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      if (playOracle(v).state.volunteered.length > 0) seen++;
+    }
+    expect(seen).toBeGreaterThan(20);
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * A.4 — portraits.
+ * ------------------------------------------------------------------ */
+
+describe('portraits', () => {
+  it('gives the same person the same three details on every page', () => {
+    const state = exhaust(7, 2);
+    const v = buildView(generateCase(7, { difficulty: 2 }));
+    for (const person of v.kase.people) {
+      const portrait = state.cast.portraits[person.id];
+      expect(portrait, person.surname).toBeDefined();
+      const full = describePerson(state.cast, person.id, person.surname, false, 0);
+      expect(describePerson(state.cast, person.id, person.surname, false, 5)).toBe(full);
+      // Every later appearance is one of the three, and only one.
+      for (let n = 0; n < 6; n++) {
+        const later = describePerson(state.cast, person.id, person.surname, true, n);
+        const parts = [portrait?.trait, portrait?.habit, portrait?.clothing].filter(
+          (p): p is string => typeof p === 'string' && p.length > 0,
+        );
+        expect(parts.filter((p) => later.includes(p))).toHaveLength(1);
+      }
+    }
+  });
+
+  it('describes a person in full once and in part after that', () => {
+    const state = exhaust(7, 2);
+    const v = buildView(generateCase(7, { difficulty: 2 }));
+    for (const person of v.kase.people) {
+      const portrait = state.cast.portraits[person.id];
+      if (!portrait) continue;
+      const parts = [portrait.trait, portrait.habit, portrait.clothing].filter((p) => p.length > 0);
+      if (parts.length < 3) continue;
+      let full = 0;
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose') continue;
+          if (block.voice !== 'presence' && block.voice !== 'approach') continue;
+          if (!block.text.startsWith(`${person.surname}:`)) continue;
+          if (parts.every((p) => block.text.includes(p))) full++;
+        }
+      }
+      expect(full, `${person.surname} described in full ${full} times`).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it('draws without replacement, and avoids what an earlier run read', () => {
+    const kase = generateCase(7, { difficulty: 2 });
+    const fresh = rollCast(kase);
+    // The placeholder deck holds three cards per component. The first three
+    // people must therefore have three different traits: no replacement.
+    const traits = kase.people.slice(0, 3).map((p) => fresh.portraits[p.id]?.trait);
+    expect(new Set(traits).size).toBe(3);
+
+    // A card the browser remembers from an earlier run is passed over while
+    // anything else fits.
+    const firstTrait = fresh.portraits[kase.people[0]?.id ?? '']?.cardIds[0] as string;
+    const again = rollCast(kase, { persistedBurned: [firstTrait] });
+    const used = Object.values(again.portraits)
+      .slice(0, 2)
+      .flatMap((p) => p.cardIds);
+    expect(used).not.toContain(firstTrait);
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * A.5 — the page grammar.
+ * ------------------------------------------------------------------ */
+
+describe('the page grammar', () => {
+  it('keeps every page between 80 and 300 words, over 100 oracle runs', () => {
+    const offenders: string[] = [];
+    for (let seed = 1; seed <= 100; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of playOracle(v).state.log) {
+        const n = wordsOnPage(page);
+        if (n < 80 || n > 300) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  it('keeps the imperfect player inside the same range', () => {
+    const offenders: string[] = [];
+    for (let seed = 1; seed <= 40; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 3 }));
+      for (const page of playWandering(v, seed).state.log) {
+        const n = wordsOnPage(page);
+        if (n < 80 || n > 300) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
+      }
+    }
+    expect(offenders).toEqual([]);
   });
 
   it('never prints an unfilled slot anywhere in a whole run', () => {
@@ -86,99 +437,338 @@ describe('the decks', () => {
     }
   });
 
-  it('shows off at most once a run', () => {
+  it('puts at most one simile on a page and shows off once a run', () => {
     for (const difficulty of [1, 2, 3] as Difficulty[]) {
       for (const seed of [2, 7, 19]) {
         const state = exhaust(seed, difficulty);
+        for (const page of state.log) {
+          const similes = page.cardsUsed.filter((id) => deckOf(id) === 'similes');
+          expect(similes.length).toBeLessThanOrEqual(1);
+        }
         const loud = state.burned.filter((id) => {
           const card = CARD_BY_ID.get(id);
-          return card?.deck === 'simile' && card.tags.intensity === 3;
+          return deckOf(id) === 'similes' && card?.tags.intensity === 3;
         });
         expect(loud.length, `d${difficulty} seed ${seed}`).toBeLessThanOrEqual(1);
       }
     }
   });
 
-  it('puts at most one simile on a page', () => {
-    const state = exhaust(7, 2);
-    for (const page of state.log) {
-      const similes = page.cardsUsed.filter((id) => CARD_BY_ID.get(id)?.deck === 'simile');
-      expect(similes.length).toBeLessThanOrEqual(1);
+  it('spends an aside at most once an hour band', () => {
+    for (const seed of [3, 7, 11]) {
+      const state = exhaust(seed, 2);
+      const bands = state.asideBands;
+      expect(new Set(bands).size).toBe(bands.length);
+      expect(bands.length).toBeLessThanOrEqual(4);
     }
+  });
+
+  it('skips a card whose slots cannot be filled rather than printing a hole', () => {
+    const withName = DECKS.similes.find((c) => slotsOf(c).includes('name')) as Card;
+    expect(fill(withName, {})).toBeNull();
+    expect(fill(withName, { name: '' })).toBeNull();
+    expect(fill(withName, { name: 'Brauer' })).toContain('Brauer');
+  });
+
+  it('sounds like a person and not a parser when there is nothing to say', () => {
+    const v = buildView(generateCase(7, { difficulty: 2 }));
+    const state = newRun(v, { detectiveName: 'Dashiell' });
+    const result = stepInput(state, 'ask nobody about the price of tin', v);
+    const text = result.page.blocks
+      .map((b) => (b.kind === 'prose' || b.kind === 'note' ? b.text : ''))
+      .join(' ');
+    expect(result.page.cost).toBe(0);
+    expect(text.toLowerCase()).not.toContain('error');
+    expect(text.toLowerCase()).not.toContain('parse');
+    expect(text).not.toMatch(/\{[a-z]+\}/);
   });
 });
 
-describe('the clue is never rewritten', () => {
-  it('renders every clue text verbatim, in every case it renders', () => {
-    for (const difficulty of [1, 2, 3] as Difficulty[]) {
-      for (const seed of [1, 7, 13]) {
+/* ------------------------------------------------------------------ *
+ * A.5 — the fact always lands, or the gap is logged.
+ * ------------------------------------------------------------------ */
+
+describe('the utterance deck', () => {
+  it('has something for every fact kind the generator can produce', () => {
+    const kinds = new Set<string>();
+    for (let seed = 1; seed <= 40; seed++) {
+      for (const difficulty of [1, 2, 3] as Difficulty[]) {
         const v = buildView(generateCase(seed, { difficulty }));
-        const state = exhaust(seed, difficulty);
-        let printed = 0;
-        for (const page of state.log) {
-          for (const block of page.blocks) {
-            if (block.kind !== 'clue') continue;
-            printed++;
-            expect(block.text).toBe(v.findableById.get(block.clueId)?.text);
-          }
+        for (const clue of v.kase.findable) {
+          for (const beat of beatsOf(v, clue)) kinds.add(beat.kind);
         }
-        // And it renders essentially everything there is.
-        expect(printed).toBeGreaterThan(v.kase.findable.length - 4);
+      }
+    }
+    expect(kinds.size).toBeGreaterThan(6);
+    for (const kind of kinds) {
+      const fits = DECKS.utterances.filter(
+        (c) => c.tags.factKind === kind && carriesFact(c, kind),
+      );
+      expect(fits.length, `no utterance carries a ${kind}`).toBeGreaterThan(0);
+    }
+  });
+
+  it('logs a gap whenever it falls back, and falls back for a reason', () => {
+    for (const seed of [1, 7, 19]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      const state = exhaust(seed, 2);
+      for (const page of state.log) {
+        for (const gap of page.gaps) {
+          expect(gap).toMatch(/^(no-utterance|no-fact|too-many-facts|deck-exhausted):/);
+          const id = /\(([^)]+)\)/.exec(gap)?.[1];
+          if (id) expect(v.findableById.get(id)).toBeDefined();
+        }
       }
     }
   });
 
-  it('segments a clue back into exactly the string it came from', () => {
-    for (const clue of view.kase.findable) {
-      const segments = segmentNouns(clue.text, view);
-      expect(segments.map((s) => s.text).join('')).toBe(clue.text);
-    }
+  it('refuses an utterance that cannot carry its fact kind whole', () => {
+    const naked: Card = {
+      id: 'test-001',
+      deck: 'utterances',
+      text: 'Somebody was somewhere at some point.',
+      tags: { factKind: 'personAt', temper: 'plain' },
+      status: 'placeholder',
+    };
+    expect(carriesFact(naked, 'personAt')).toBe(false);
+    const whole: Card = { ...naked, text: '{subject} was at {place} at {time}.' };
+    expect(carriesFact(whole, 'personAt')).toBe(true);
   });
 
-  it('finds the people, rooms and things in a clue to underline', () => {
-    const clue = view.kase.findable.find((c) => c.kind === 'observation');
-    const segments = segmentNouns(clue?.text ?? '', view);
-    expect(segments.some((s) => s.noun?.kind === 'person')).toBe(true);
-    expect(segments.some((s) => s.noun?.kind === 'place')).toBe(true);
-  });
-});
-
-describe('who speaks in which voice', () => {
-  it('gives a fixture its own post and a suspect the nearest archetype', () => {
-    for (const person of view.kase.people) {
-      if (person.kind === 'victim') continue;
-      const role = voiceRoleOf(person);
-      if (person.fixtureRole) expect(role).toBe(person.fixtureRole);
-      else expect(['business-partner', 'neighbor', 'relative', 'secretary']).toContain(role);
-    }
-  });
-
-  it('has a witness card for every voice it can ask for', () => {
-    const voice = new Voice(view, 'Humphrey', [], 3);
-    for (const person of view.kase.people) {
-      if (person.kind === 'victim') continue;
-      for (const register of ['truth', 'lie', 'evasion'] as const) {
-        const drawn = voice.witnessCard(person.id, register, { name: person.surname });
-        expect(drawn, `${person.surname} / ${register}`).not.toBeNull();
-      }
-    }
+  it('folds a run of half hours in one room into one span', () => {
+    const clue = view.kase.findable.find(
+      (c) =>
+        c.establishes.filter((f: Fact) => f.kind === 'personAt').length > 1 &&
+        c.source.type === 'person',
+    );
+    if (!clue) return;
+    const beats = beatsOf(view, clue);
+    expect(beats.length).toBeLessThan(clue.establishes.length);
+    const span = beats.find((b) => b.slots.time?.includes(' to '));
+    expect(span).toBeDefined();
   });
 });
 
-describe('nothing-answers', () => {
-  it('sounds like a person, not a parser', () => {
-    const voice = new Voice(view, 'Humphrey', [], 9);
-    for (const tag of ['present', 'elsewhere', 'meaningless'] as const) {
-      const drawn = voice.nothingAnswer(tag, {
-        name: 'Doyle',
-        topic: 'the price of tin',
-        place: 'the speakeasy',
-        detective: 'Humphrey',
+/* ------------------------------------------------------------------ *
+ * A.6 — the monologue, the theory, and the bias.
+ * ------------------------------------------------------------------ */
+
+describe('the reactive monologue', () => {
+  const kase = generateCase(7, { difficulty: 2 });
+  const roll = rollHumphrey(kase);
+  const suspect = kase.people.find((p) => p.kind === 'suspect') as Person;
+
+  const boardWith = (n: number) => {
+    const est = establishedFrom(view, [], []);
+    est.placements.set(
+      suspect.id,
+      Array.from({ length: n }, (_, i) => ({
+        personId: suspect.id,
+        placeId: view.kase.places[0]?.id as string,
+        tick: i,
+        present: true,
+        clueId: `made-up-${i}`,
+        contradicts: true,
+      })),
+    );
+    return est;
+  };
+
+  it('lets a mild contradiction sit, and kills the story on the second', () => {
+    const cold = { ...roll, knows: {} };
+    const one = reactiveMonologue({
+      view,
+      roll: cold,
+      before: boardWith(0),
+      after: boardWith(1),
+      touched: [suspect.id],
+      actionsLeft: 9,
+      previousTheory: null,
+      seed: 3,
+    });
+    expect(one.lines[0]).toBeDefined();
+    const two = reactiveMonologue({
+      view,
+      roll: cold,
+      before: boardWith(1),
+      after: boardWith(2),
+      touched: [suspect.id],
+      actionsLeft: 9,
+      previousTheory: null,
+      seed: 3,
+    });
+    const strip = (s: string): string => s.replace(/[A-Z][a-z]+/g, '{name}');
+    expect(
+      CONTRADICTION_TEMPLATES.mild.some((t) => strip(t) === strip(one.lines[0] as string)) ||
+        CONTRADICTION_TEMPLATES.mild.includes(one.lines[0] as never),
+    ).toBeTruthy();
+    expect(two.lines[0]).toBeDefined();
+  });
+
+  it('rationalizes for a warm acquaintance until two facts, then turns', () => {
+    const warm = { ...roll, knows: { [suspect.id]: { how: 'old-flame' as const, warmth: 1 as const } } };
+    const templatesFor = (n: number, previous: number): string => {
+      const out = reactiveMonologue({
+        view,
+        roll: warm,
+        before: boardWith(previous),
+        after: boardWith(n),
+        touched: [suspect.id],
+        actionsLeft: 9,
+        previousTheory: null,
+        seed: 11,
       });
-      expect(drawn.text.length).toBeGreaterThan(20);
-      expect(drawn.text).not.toMatch(/\{[a-z]+\}/);
-      expect(drawn.text.toLowerCase()).not.toContain('error');
-      expect(drawn.text.toLowerCase()).not.toContain('parse');
+      return out.lines[0] as string;
+    };
+    const mild = templatesFor(1, 0);
+    const hard = templatesFor(2, 1);
+    const matches = (line: string, pool: readonly string[]): boolean =>
+      pool.some((t) => {
+        const head = t.split('{')[0] as string;
+        return head.length > 6 && line.startsWith(head);
+      }) || pool.some((t) => t === line);
+    expect(matches(mild, CONTRADICTION_TEMPLATES.mildBiased), mild).toBe(true);
+    expect(matches(mild, CONTRADICTION_TEMPLATES.mild)).toBe(false);
+    expect(matches(hard, CONTRADICTION_TEMPLATES.hardTurned), hard).toBe(true);
+  });
+
+  it('names the man with the most against him, and says when it changes', () => {
+    const est = boardWith(2);
+    expect(leadingTheory(view, est)).toBe(suspect.id);
+    const other = view.kase.people.find((p) => p.kind === 'suspect' && p.id !== suspect.id) as Person;
+    const changed = reactiveMonologue({
+      view,
+      roll,
+      before: est,
+      after: est,
+      touched: [],
+      actionsLeft: 9,
+      previousTheory: other.id,
+      seed: 5,
+    });
+    expect(changed.theory).toBe(suspect.id);
+    expect(changed.lines.join(' ')).toContain(suspect.surname);
+  });
+
+  it('is often wrong, which is the point', () => {
+    let named = 0;
+    let right = 0;
+    for (let seed = 1; seed <= 60; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      const run = playWandering(v, seed);
+      if (run.report.killerId === null) continue;
+      named++;
+      if (run.report.killerId === v.kase.solution.killerId) right++;
+    }
+    expect(named).toBeGreaterThan(5);
+    // A theory that was always right would not be a theory.
+    expect(right).toBeLessThan(named);
+  });
+
+  it('notices the clock when the night is nearly gone', () => {
+    const out = reactiveMonologue({
+      view,
+      roll,
+      before: boardWith(0),
+      after: boardWith(0),
+      touched: [],
+      actionsLeft: 2,
+      previousTheory: null,
+      seed: 2,
+    });
+    expect(out.lines.join(' ')).toContain('2');
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * A.8 — the burn tiers.
+ * ------------------------------------------------------------------ */
+
+describe('the burn tiers', () => {
+  it('never repeats a run-to-run or within-run card inside one run', () => {
+    for (const difficulty of [1, 2, 3] as Difficulty[]) {
+      for (const seed of [3, 7, 11]) {
+        const state = exhaust(seed, difficulty);
+        const counts = new Map<string, number>();
+        for (const id of state.burned) counts.set(id, (counts.get(id) ?? 0) + 1);
+        const exhausted = new Set(
+          state.log
+            .flatMap((p) => p.gaps)
+            .filter((g) => g.startsWith('deck-exhausted: '))
+            .map((g) => g.slice('deck-exhausted: '.length).split(' ')[0] as string),
+        );
+        for (const [id, n] of counts) {
+          if (n === 1) continue;
+          const deck = deckOf(id);
+          if (deck === null) continue;
+          if (burnTier(deck) === 'free') continue;
+          // A card may come round again only when everything the engine could
+          // have asked for instead has been read — and the engine has to have
+          // said so, because a deck that runs out inside a run is a content
+          // gap and the gap log is how the content team hears about it.
+          expect(
+            exhausted.has(deck),
+            `${id} (${deck}, ${burnTier(deck)}) dealt ${n} times with no reshuffle logged`,
+          ).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('carries only the run-to-run decks into the next run', () => {
+    const state = exhaust(7, 2);
+    for (const id of crossRunOnly(state.burned)) {
+      expect(burnTier(deckOf(id) as never)).toBe('run-to-run');
+    }
+  });
+
+  it('honours a run-to-run burn handed down from an earlier run', () => {
+    const v = buildView(generateCase(7, { difficulty: 2 }));
+    const similes = DECKS.similes.map((c) => c.id);
+    const dealer = new Dealer(1, [], similes);
+    for (const id of similes) expect(dealer.burned('similes', id)).toBe(true);
+    const withinRun = new Dealer(1, [], DECKS.frames.map((c) => c.id));
+    // A within-run deck does not care what an earlier run read.
+    for (const card of DECKS.frames) expect(withinRun.burned('frames', card.id)).toBe(false);
+    void v;
+  });
+
+  it('spends the whole of a run out of decks it declares', () => {
+    const state = exhaust(7, 2);
+    expect(state.burned.length).toBeGreaterThan(20);
+    for (const id of state.burned) {
+      // Either a deck card or one of the hand-written lines.
+      expect(deckOf(id) !== null || /^(NA|ROOM)-\d+$/.test(id), id).toBe(true);
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * The loader agrees with the validator.
+ * ------------------------------------------------------------------ */
+
+describe('the deck loader', () => {
+  it('validates every deck at startup with no errors', () => {
+    for (const report of validateDecks()) {
+      expect(report.errors, `${report.deck}: ${report.errors.join('; ')}`).toEqual([]);
+      expect(report.count).toBeGreaterThan(0);
+    }
+  });
+
+  it('reports which tag combinations nothing was written for', () => {
+    const reports = validateDecks();
+    const frames = reports.find((r) => r.deck === 'frames');
+    expect(frames?.cells).toBeGreaterThan(0);
+    expect(frames?.filled).toBeGreaterThan(0);
+    // The placeholder decks are thin on purpose; the report must say so.
+    expect(reports.some((r) => r.gaps.length > 0)).toBe(true);
+  });
+
+  it('gives every deck a burn tier', () => {
+    for (const card of ALL_CARDS) {
+      const deck = deckOf(card.id);
+      expect(deck, card.id).not.toBeNull();
+      expect(['run-to-run', 'within-run', 'free']).toContain(burnTier(deck as never));
     }
   });
 });

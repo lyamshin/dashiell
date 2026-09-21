@@ -180,14 +180,34 @@ button {
   text-indent: 1.2em;
 }
 
+/*
+ * The M4 page grammar. Most slots are just prose — the book is a book and the
+ * paragraphs do not want labelling. Only three of them look different: what
+ * the detective thinks, the one simile a page is allowed, and the record he
+ * could not get anybody to say out loud.
+ */
+.prose--arrival,
 .prose--place,
-.prose--narrator {
+.prose--narrator,
+.prose--approach,
+.prose--exchange,
+.prose--find,
+.prose--nothing {
   color: var(--ink);
 }
 
-.prose--witness,
-.prose--nothing {
+.prose--transition {
   color: var(--ink);
+}
+
+.prose--monologue,
+.prose--ambient,
+.prose--aside {
+  color: var(--ink-soft);
+}
+
+.prose--aside {
+  font-style: italic;
 }
 
 .prose--simile {
@@ -195,9 +215,12 @@ button {
   color: var(--ink-soft);
 }
 
-.clue {
-  margin: 0 0 1rem;
+/* The clue's own sentence, where no utterance in the deck could carry it. */
+.prose--record {
   text-indent: 0;
+  margin-left: 1.2em;
+  border-left: 1px solid var(--rule);
+  padding-left: 0.9em;
 }
 
 .note {
@@ -438,6 +461,18 @@ li.contradiction::before {
 .nb-place .objects {
   color: var(--ink-faint);
   display: block;
+}
+
+/*
+ * The record (M4 A.1). The clue's own sentence, verbatim, under the person or
+ * the room it came from. This is the authoritative copy of the case and the
+ * reason the left-hand page is free to dramatize.
+ */
+.nb-record {
+  margin: 0.25rem 0 0.4rem 0.9rem;
+  padding-left: 0.6rem;
+  border-left: 1px solid var(--rule);
+  color: var(--ink);
 }
 
 .nb-place.unvisited {
