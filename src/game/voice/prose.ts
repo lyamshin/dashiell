@@ -46,20 +46,37 @@ export function startsLowerCase(text: string): boolean {
 }
 
 /**
- * Collapse the punctuation a join produced. `..` and `.,` and `,.` are all the
- * same mistake: a deck card that ends in a full stop, followed by a mark the
- * page grammar wanted next.
+ * Collapse the punctuation a join produced.
+ *
+ * Every card in every deck is a finished sentence with its own full stop, and
+ * the frames were written around a `{fact}` that was not: `"{fact}."` with an
+ * utterance in it gives `"Alive, I'd say.."`, and `{fact}, and the rest of it`
+ * gives `on., and the rest of it`. The same seam, three ways.
+ *
+ * Nothing here invents punctuation. It only removes the second of two marks
+ * where the deck and the frame each brought one, and turns the full stop in
+ * front of a lower-case fragment into the comma the fragment was expecting.
  */
 export function tidyPunctuation(text: string): string {
-  return text
-    .replace(/([.!?…])\s*\1+/g, '$1')
-    .replace(/\.\s*([,;:])/g, '$1')
-    .replace(/([,;:])\s*\./g, '$1')
-    .replace(/([.!?…])\s*([.!?…])/g, (_m, a: string, b: string) => (a === b ? a : b))
-    .replace(/\s+([,.;:!?])/g, '$1')
-    .replace(/([,;:])(?=\S)/g, '$1 ')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
+  return (
+    text
+      // A full stop the card brought, followed by the mark the frame wanted.
+      .replace(/\.\s*(?=[,;:])/g, '')
+      // Two stops in a row, whichever way round.
+      .replace(/([.!?…])\s*\1/g, '$1')
+      .replace(/\.\s*([!?…])/g, '$1')
+      .replace(/([!?…])\s*\./g, '$1')
+      // A stop inside the quotation marks and another one outside them.
+      .replace(/([.!?…])(["”’'])\s*\./g, '$1$2')
+      // A fragment that starts lower-case is not a sentence of its own: a
+      // place is "the speakeasy" and always will be, so it joins on. The
+      // lookbehind spares an abbreviation — "3 a.m. was empty" is one word
+      // with stops in it, not two sentences.
+      .replace(/(?<!\b[a-z])([.!?…])\s+(?=[a-z])/g, ', ')
+      .replace(/\s+([,.;:!?])/g, '$1')
+      .replace(/\s{2,}/g, ' ')
+      .trim()
+  );
 }
 
 /**

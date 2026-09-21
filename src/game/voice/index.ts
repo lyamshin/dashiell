@@ -13,6 +13,7 @@
  * The reducer hands this a `Scene` — what happened — and gets back blocks.
  */
 
+export * from './prose.js';
 export * from './cards.js';
 export * from './roll.js';
 export * from './cast.js';

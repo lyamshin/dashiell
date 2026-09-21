@@ -30,7 +30,7 @@ import {
   type NothingLine,
 } from '../voice-data.js';
 import { DECKS, Dealer, tagIs, tagOf, type Card, type Slots } from './cards.js';
-import { joinSentences } from './prose.js';
+import { joinSentences, tidyPunctuation } from './prose.js';
 import { describePerson, temperOf, type CastSheet, type Temper } from './cast.js';
 import {
   askKindOf,
@@ -584,11 +584,15 @@ function openingClues(view: CaseView): Clue[] {
 }
 
 function plainArrival(dealer: Dealer, shortName: string | undefined): string {
-  return dealer.random.pick(PLAIN_ARRIVALS).split('{place}').join(shortName ?? 'the address');
+  return tidyPunctuation(
+    dealer.random.pick(PLAIN_ARRIVALS).split('{place}').join(shortName ?? 'the address'),
+  );
 }
 
 function nothingLeft(dealer: Dealer, shortName: string | undefined): string {
-  return dealer.random.pick(NOTHING_LEFT).split('{place}').join(shortName ?? 'the room');
+  return tidyPunctuation(
+    dealer.random.pick(NOTHING_LEFT).split('{place}').join(shortName ?? 'the room'),
+  );
 }
 
 function nothingLine(dealer: Dealer, tag: NothingLine['tag'], slots: Slots): string {
@@ -599,7 +603,7 @@ function nothingLine(dealer: Dealer, tag: NothingLine['tag'], slots: Slots): str
     if (v === undefined) continue;
     text = text.split(`{${k}}`).join(v);
   }
-  return text.replace(/\{[a-z]+\}/g, 'it');
+  return tidyPunctuation(text.replace(/\{[a-z]+\}/g, 'it'));
 }
 
 function placeCard(dealer: Dealer, view: CaseView, placeId: Id): string | null {

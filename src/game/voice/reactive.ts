@@ -23,6 +23,7 @@ import { Rng } from '../../gen/rng.js';
 import type { CaseView, Established } from '../derive.js';
 import { personName, placeName } from '../derive.js';
 import { isWarm, type DashiellRoll } from './roll.js';
+import { tidyPunctuation } from './prose.js';
 
 export interface Board {
   established: Established;
@@ -157,7 +158,7 @@ export interface ReactiveResult {
 function pick(rng: Rng, pool: string[], slots: Record<string, string>): string {
   let text = rng.pick(pool);
   for (const [k, v] of Object.entries(slots)) text = text.split(`{${k}}`).join(v);
-  return text.replace(/\{[a-z]+\}/g, '').replace(/\s{2,}/g, ' ').trim();
+  return tidyPunctuation(text.replace(/\{[a-z]+\}/g, ''));
 }
 
 function windowLabel(ticks: Tick[]): string {

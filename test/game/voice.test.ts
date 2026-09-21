@@ -40,6 +40,7 @@ import {
   slotsOf,
   speakClue,
   temperOf,
+  tidyPunctuation,
   validateDecks,
   weightsFor,
   type AskKind,
@@ -984,5 +985,50 @@ describe('business', () => {
     const drawn = businessLine(new Dealer(9, [], []), asPerson('landlady'), 'plain', {}, everything, gaps);
     expect(drawn).toBeNull();
     expect(gaps.join(' ')).toContain('no-business: landlady');
+  });
+});
+
+describe('the seams between cards', () => {
+  it('never leaves two stops where a card and a frame each brought one', () => {
+    expect(tidyPunctuation('“Alive, I’d say..”')).toBe('“Alive, I’d say.”');
+    expect(tidyPunctuation('Short, and done..')).toBe('Short, and done.');
+    expect(tidyPunctuation('“He was there.”.')).toBe('“He was there.”');
+    expect(tidyPunctuation('Was he there?.')).toBe('Was he there?');
+  });
+
+  it('drops a full stop that a comma was meant to follow', () => {
+    expect(tidyPunctuation('Carbone is in more often than Carbone lets on., and here is the rest.')).toBe(
+      'Carbone is in more often than Carbone lets on, and here is the rest.',
+    );
+    expect(tidyPunctuation('He said so.: plainly')).toBe('He said so: plainly');
+  });
+
+  it('does not put a full stop in front of a lower-case fragment', () => {
+    expect(tidyPunctuation('9:00 PM to 9:30 PM. the speakeasy.')).toBe(
+      '9:00 PM to 9:30 PM, the speakeasy.',
+    );
+    // An abbreviation is one word with stops in it, not two sentences.
+    expect(tidyPunctuation('The street at 3 a.m. was empty.')).toBe(
+      'The street at 3 a.m. was empty.',
+    );
+  });
+
+  it('leaves a card that had no slot exactly as it was written', () => {
+    for (const card of ALL_CARDS) {
+      if (slotsOf(card).length > 0) continue;
+      expect(fill(card, {}), card.id).toBe(card.text);
+    }
+  });
+
+  it('prints no doubled punctuation anywhere in a run, over six seeds', () => {
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const state = exhaust(seed, 2);
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' && block.kind !== 'note') continue;
+          expect(block.text, `seed ${seed}: ${block.text}`).not.toMatch(/[.!?]\s*[.,;:]/);
+        }
+      }
+    }
   });
 });
