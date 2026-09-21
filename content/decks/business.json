@@ -5,7 +5,8 @@
     "text": "The rag keeps going over the same six inches of counter.",
     "tags": {
       "role": "counterman",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range bus-pNNN; the content deck uses BUS-NNN. Role was \"any\", but the prop is the role: this is a counterman’s counter, not anybody’s."
@@ -16,7 +17,8 @@
     "text": "A cigarette gets lit, set on the edge of the shelf, and left to go out.",
     "tags": {
       "role": "any",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "placeholder"
   },
@@ -26,7 +28,8 @@
     "text": "The ledger stays open the whole while, a finger holding the place.",
     "tags": {
       "role": "landlady",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "placeholder",
     "notes": "Role was \"any\", but the prop is the role: this is a landlady’s counter, not anybody’s."
@@ -37,7 +40,8 @@
     "text": "Two glasses go up on the shelf, then a third, slower.",
     "tags": {
       "role": "bartender",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "placeholder",
     "notes": "Role was \"any\", but the prop is the role: this is a bartender’s counter, not anybody’s."
@@ -48,7 +52,8 @@
     "text": "Nothing moves but the jaw.",
     "tags": {
       "role": "any",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "placeholder"
   },
@@ -58,7 +63,8 @@
     "text": "A hat goes round in two hands, brim to brim.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "placeholder"
   },
@@ -68,7 +74,8 @@
     "text": "One hand finds the door frame and stays on it.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "placeholder"
   },
@@ -78,7 +85,8 @@
     "text": "Coffee gets poured for me without my asking, and then talked over.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "placeholder"
   },
@@ -88,7 +96,8 @@
     "text": "A bottle goes back on the shelf label out, the way the house likes it.",
     "tags": {
       "role": "bartender",
-      "temper": "any"
+      "temper": "any",
+      "gender": "any"
     },
     "status": "placeholder"
   },
@@ -98,7 +107,8 @@
     "text": "The register book gets turned round so I can see it and turned back before I can.",
     "tags": {
       "role": "doorman",
-      "temper": "any"
+      "temper": "any",
+      "gender": "any"
     },
     "status": "placeholder"
   },
@@ -108,7 +118,8 @@
     "text": "Working a rag down the same six inches of mahogany.",
     "tags": {
       "role": "bartender",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -118,7 +129,8 @@
     "text": "Kept his eyes on the glass while he dried it.",
     "tags": {
       "role": "bartender",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -128,7 +140,8 @@
     "text": "Set both hands flat on the bar and waited.",
     "tags": {
       "role": "bartender",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -138,7 +151,8 @@
     "text": "Drew a beer nobody had ordered yet and set the rag over one shoulder.",
     "tags": {
       "role": "bartender",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -148,7 +162,8 @@
     "text": "Rinsed a glass, held it to the light, rinsed it again.",
     "tags": {
       "role": "bartender",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -158,7 +173,8 @@
     "text": "Counted the till under the bar without breaking off the sentence.",
     "tags": {
       "role": "bartender",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -168,7 +184,8 @@
     "text": "Kept polishing the same glass through the whole answer, holding it to the light twice, like the story needed the extra beat.",
     "tags": {
       "role": "bartender",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -178,7 +195,8 @@
     "text": "Poured two fingers nobody had asked for, slid it across, and kept talking past it.",
     "tags": {
       "role": "bartender",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -188,7 +206,8 @@
     "text": "Wiped down the whole length of the bar while he talked, working around three regulars who weren't listening to a word.",
     "tags": {
       "role": "bartender",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -198,7 +217,8 @@
     "text": "Stood at parade rest, gloves at his sides.",
     "tags": {
       "role": "doorman",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -208,7 +228,8 @@
     "text": "Kept one hand on the door the whole time.",
     "tags": {
       "role": "doorman",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -218,7 +239,8 @@
     "text": "Watched the street over my shoulder while he answered.",
     "tags": {
       "role": "doorman",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -228,7 +250,8 @@
     "text": "Tugged his gloves straight, finger by finger, before he answered.",
     "tags": {
       "role": "doorman",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -238,7 +261,8 @@
     "text": "Held the door for a tenant mid-sentence, picked the thread back up after.",
     "tags": {
       "role": "doorman",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -248,7 +272,8 @@
     "text": "Checked his watch against the lobby clock without missing a word.",
     "tags": {
       "role": "doorman",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -258,7 +283,8 @@
     "text": "Buttoned and unbuttoned his coat while he talked, working in three tenants' business nobody had asked about.",
     "tags": {
       "role": "doorman",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -268,7 +294,8 @@
     "text": "Waved off one cab, then another, and kept right on talking through both.",
     "tags": {
       "role": "doorman",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -278,7 +305,8 @@
     "text": "Straightened his cap twice and gave me the whole building's schedule along with the one answer I wanted.",
     "tags": {
       "role": "doorman",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -288,7 +316,8 @@
     "text": "Kept making change without looking up.",
     "tags": {
       "role": "newsstand",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -298,7 +327,8 @@
     "text": "Folded a paper into thirds and set it aside.",
     "tags": {
       "role": "newsstand",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -308,7 +338,8 @@
     "text": "Thumbed the twine on a stack, didn't cut it.",
     "tags": {
       "role": "newsstand",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -318,7 +349,8 @@
     "text": "Sold a paper mid-answer, made the change by feel.",
     "tags": {
       "role": "newsstand",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -328,7 +360,8 @@
     "text": "Straightened a row of magazines while he talked.",
     "tags": {
       "role": "newsstand",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -338,7 +371,8 @@
     "text": "Chewed a dead cigar stub that had gone out an hour before.",
     "tags": {
       "role": "newsstand",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -348,7 +382,8 @@
     "text": "Rearranged the whole front row of dailies while he talked, naming every customer who'd bought one that morning.",
     "tags": {
       "role": "newsstand",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -358,7 +393,8 @@
     "text": "Kept one eye on a kid eyeing the candy rack and never lost the thread of the story.",
     "tags": {
       "role": "newsstand",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -368,7 +404,8 @@
     "text": "Counted his stock out loud, twice, and worked in the weather report along with everything I'd asked.",
     "tags": {
       "role": "newsstand",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -378,7 +415,8 @@
     "text": "Wiped the same square foot of counter.",
     "tags": {
       "role": "counterman",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -388,7 +426,8 @@
     "text": "Set down a cup he hadn't been asked to fill.",
     "tags": {
       "role": "counterman",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -398,7 +437,8 @@
     "text": "Kept his eyes on the register drawer.",
     "tags": {
       "role": "counterman",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -408,7 +448,8 @@
     "text": "Rang up a sale mid-sentence and shut the drawer with a hip.",
     "tags": {
       "role": "counterman",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -418,7 +459,8 @@
     "text": "Refilled a sugar bowl that didn't need it while he talked.",
     "tags": {
       "role": "counterman",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -428,7 +470,8 @@
     "text": "Wiped his hands on his apron before answering.",
     "tags": {
       "role": "counterman",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -438,7 +481,8 @@
     "text": "Kept a running account of every regular who'd sat at that stool that month, refilling coffee nobody asked for.",
     "tags": {
       "role": "counterman",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -448,7 +492,8 @@
     "text": "Flipped a towel over one shoulder, then the other, and told the story with both hands free.",
     "tags": {
       "role": "counterman",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -458,7 +503,8 @@
     "text": "Rearranged the pie case twice during the answer, narrating the whole lunch rush along with it.",
     "tags": {
       "role": "counterman",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -468,7 +514,8 @@
     "text": "Punched a stub without looking at it.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -478,7 +525,8 @@
     "text": "Kept his hand on the velvet rope.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -488,7 +536,8 @@
     "text": "Watched the last of the line file past.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -498,7 +547,8 @@
     "text": "Tore a ticket in half mid-answer and pocketed the stub.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -508,7 +558,8 @@
     "text": "Straightened the rope stanchion while he talked.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -518,7 +569,8 @@
     "text": "Checked the house lights through the little window.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -528,7 +580,8 @@
     "text": "Waved three latecomers through free while he talked, explaining the whole picture's plot along with the answer.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -538,7 +591,8 @@
     "text": "Kept re-counting the same stack of stubs, losing count twice, starting over both times.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -548,7 +602,8 @@
     "text": "Gave me the whole second show's crowd along with what I'd asked, checking his punch clock every few words.",
     "tags": {
       "role": "ticket-taker",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -558,7 +613,8 @@
     "text": "Kept a white-gloved hand on the lever.",
     "tags": {
       "role": "elevator-man",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -568,7 +624,8 @@
     "text": "Watched the floor numbers, not me.",
     "tags": {
       "role": "elevator-man",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -578,7 +635,8 @@
     "text": "Let the gate rattle shut before he spoke.",
     "tags": {
       "role": "elevator-man",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -588,7 +646,8 @@
     "text": "Ran the car up a floor and back before he finished the sentence.",
     "tags": {
       "role": "elevator-man",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -598,7 +657,8 @@
     "text": "Straightened one glove at the wrist, then straightened the other.",
     "tags": {
       "role": "elevator-man",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -608,7 +668,8 @@
     "text": "Checked the brass indicator over the door mid-answer.",
     "tags": {
       "role": "elevator-man",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -618,7 +679,8 @@
     "text": "Ran the car for three other tenants while he talked, naming every one along with what I'd asked.",
     "tags": {
       "role": "elevator-man",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -628,7 +690,8 @@
     "text": "Kept working the gate open and shut for emphasis, like the story needed the punctuation.",
     "tags": {
       "role": "elevator-man",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -638,7 +701,8 @@
     "text": "Told me the whole building's comings and goings, floor by floor, before he got to the one I wanted.",
     "tags": {
       "role": "elevator-man",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -648,7 +712,8 @@
     "text": "Kept the ring of keys in one fist.",
     "tags": {
       "role": "landlady",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -658,7 +723,8 @@
     "text": "Stood in the doorway, not moving from it.",
     "tags": {
       "role": "landlady",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -668,7 +734,8 @@
     "text": "Folded her arms over the ledger book.",
     "tags": {
       "role": "landlady",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -678,7 +745,8 @@
     "text": "Flipped through the rent ledger while she talked, finger tracking down the column.",
     "tags": {
       "role": "landlady",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -688,7 +756,8 @@
     "text": "Swept the hall runner without ever looking away.",
     "tags": {
       "role": "landlady",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -698,7 +767,8 @@
     "text": "Checked a curtain was drawn straight, mid-sentence.",
     "tags": {
       "role": "landlady",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -708,7 +778,8 @@
     "text": "Told me every tenant's business on the floor along with what I'd asked, dusting a banister that didn't need it.",
     "tags": {
       "role": "landlady",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -718,7 +789,8 @@
     "text": "Kept the ledger open on her lap and read out half the building's late rent while she answered.",
     "tags": {
       "role": "landlady",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -728,7 +800,8 @@
     "text": "Straightened three doormats in a row, narrating the whole house along with the one fact I wanted.",
     "tags": {
       "role": "landlady",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -738,7 +811,8 @@
     "text": "Kept his nightstick turning slow in one hand.",
     "tags": {
       "role": "beat-cop",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -748,7 +822,8 @@
     "text": "Watched the corner, not me, the whole time.",
     "tags": {
       "role": "beat-cop",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -758,7 +833,8 @@
     "text": "Checked his watch against the call box.",
     "tags": {
       "role": "beat-cop",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -768,7 +844,8 @@
     "text": "Made a note in his book mid-answer, licked the pencil first.",
     "tags": {
       "role": "beat-cop",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -778,7 +855,8 @@
     "text": "Tipped his cap back an inch before he talked.",
     "tags": {
       "role": "beat-cop",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -788,7 +866,8 @@
     "text": "Waved a car through the intersection without losing the sentence.",
     "tags": {
       "role": "beat-cop",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -798,7 +877,8 @@
     "text": "Told me the whole beat's gossip along with what I'd asked, tapping the nightstick against his palm the entire time.",
     "tags": {
       "role": "beat-cop",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -808,7 +888,8 @@
     "text": "Checked his call box twice during the answer, working in three other complaints from the block.",
     "tags": {
       "role": "beat-cop",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -818,7 +899,8 @@
     "text": "Walked half his beat while he talked, naming every storefront along the way.",
     "tags": {
       "role": "beat-cop",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -828,7 +910,8 @@
     "text": "Kept both hands on the wheel, engine idling.",
     "tags": {
       "role": "cabbie",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -838,7 +921,8 @@
     "text": "Flicked the meter flag down and up again.",
     "tags": {
       "role": "cabbie",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -848,7 +932,8 @@
     "text": "Watched the mirror instead of me.",
     "tags": {
       "role": "cabbie",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -858,7 +943,8 @@
     "text": "Wiped the windshield with a rag while he talked.",
     "tags": {
       "role": "cabbie",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -868,7 +954,8 @@
     "text": "Counted his fares for the night on his fingers, mid-sentence.",
     "tags": {
       "role": "cabbie",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -878,7 +965,8 @@
     "text": "Adjusted his cap against the glare before answering.",
     "tags": {
       "role": "cabbie",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -888,7 +976,8 @@
     "text": "Told me every fare he'd carried that night along with the one I'd asked about, working the meter flag the whole time.",
     "tags": {
       "role": "cabbie",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -898,7 +987,8 @@
     "text": "Kept the engine running and the story going, checking the curb for a cop every few words.",
     "tags": {
       "role": "cabbie",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -908,7 +998,8 @@
     "text": "Recounted the whole night's traffic along the avenue before he got to my question.",
     "tags": {
       "role": "cabbie",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -918,7 +1009,8 @@
     "text": "Kept weighing something on the little brass scale.",
     "tags": {
       "role": "druggist",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -928,7 +1020,8 @@
     "text": "Capped a bottle without looking up.",
     "tags": {
       "role": "druggist",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -938,7 +1031,8 @@
     "text": "Wiped the marble counter in one slow pass.",
     "tags": {
       "role": "druggist",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -948,7 +1042,8 @@
     "text": "Filled a prescription slip mid-sentence, blotter first.",
     "tags": {
       "role": "druggist",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -958,7 +1053,8 @@
     "text": "Drew a seltzer nobody had ordered and set it aside.",
     "tags": {
       "role": "druggist",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -968,7 +1064,8 @@
     "text": "Checked a label twice before answering.",
     "tags": {
       "role": "druggist",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -978,7 +1075,8 @@
     "text": "Told me every customer's ailment that week along with what I'd asked, weighing powders the whole time.",
     "tags": {
       "role": "druggist",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -988,7 +1086,8 @@
     "text": "Kept the soda taps hissing behind him and narrated the whole week's prescriptions.",
     "tags": {
       "role": "druggist",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -998,7 +1097,8 @@
     "text": "Recounted three other customers' business while capping bottles that didn't need capping yet.",
     "tags": {
       "role": "druggist",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1008,7 +1108,8 @@
     "text": "Kept both hands flat on the table.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1018,7 +1119,8 @@
     "text": "Didn't reach for the cigarette he'd already lit.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1028,7 +1130,8 @@
     "text": "Held perfectly still, like stillness were an answer.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1038,7 +1141,8 @@
     "text": "Kept his coat buttoned though the room was warm.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1048,7 +1152,8 @@
     "text": "Looked at a point past my shoulder the whole time.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1058,7 +1163,8 @@
     "text": "Kept one hand closed around the other.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1068,7 +1174,8 @@
     "text": "Answered with the door still in his hand.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1078,7 +1185,8 @@
     "text": "Stood with her back to the window, out of the light.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -1088,7 +1196,8 @@
     "text": "Kept the drink untouched at her elbow.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -1098,7 +1207,8 @@
     "text": "Let the silence run longer than the question needed.",
     "tags": {
       "role": "suspect",
-      "temper": "enigma"
+      "temper": "enigma",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1108,7 +1218,8 @@
     "text": "Lit a cigarette to have something to do with his hands.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1118,7 +1229,8 @@
     "text": "Sat down heavily, like the day had finally caught him.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1128,7 +1240,8 @@
     "text": "Smoothed her skirt and glanced once at the door.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -1138,7 +1251,8 @@
     "text": "Crossed his arms and leaned against the mantel.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1148,7 +1262,8 @@
     "text": "Poured a drink he didn't offer to share.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1158,7 +1273,8 @@
     "text": "Straightened a picture frame that didn't need it.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1168,7 +1284,8 @@
     "text": "Perched on the chair's front inch, coat still buttoned.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1178,7 +1295,8 @@
     "text": "Twisted a handkerchief through both hands while she talked.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -1188,7 +1306,8 @@
     "text": "Checked his watch, then looked sorry he had.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1198,7 +1317,8 @@
     "text": "Folded the newspaper she'd been reading and set it face down.",
     "tags": {
       "role": "suspect",
-      "temper": "plain"
+      "temper": "plain",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -1208,7 +1328,8 @@
     "text": "Talked over the question with three others nobody had asked, hands going the whole time.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1218,7 +1339,8 @@
     "text": "Refilled her own glass twice during the answer and never once slowed down.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -1228,7 +1350,8 @@
     "text": "Walked the length of the room and back, working in every grievance he had.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "m"
     },
     "status": "generated"
   },
@@ -1238,7 +1361,8 @@
     "text": "Lit a cigarette, let it burn out untouched, and kept talking past the ashtray.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1248,7 +1372,8 @@
     "text": "Pulled out a photograph nobody had asked to see and passed it across the table.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1258,7 +1383,8 @@
     "text": "Told the whole evening twice, out of order both times.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1268,7 +1394,8 @@
     "text": "Paced to the window and back, narrating half the neighborhood's business along with hers.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "f"
     },
     "status": "generated"
   },
@@ -1278,7 +1405,8 @@
     "text": "Kept reaching for things on the desk and setting them back down, unopened, untouched.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1288,7 +1416,8 @@
     "text": "Laughed at nothing in particular, twice, partway through a story that wasn't funny.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   },
@@ -1298,7 +1427,8 @@
     "text": "Answered a question I hadn't asked yet, then circled back to the one I had.",
     "tags": {
       "role": "suspect",
-      "temper": "yap"
+      "temper": "yap",
+      "gender": "any"
     },
     "status": "generated"
   }

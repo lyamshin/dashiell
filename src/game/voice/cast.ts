@@ -10,6 +10,7 @@
 import { Rng } from '../../gen/rng.js';
 import type { Case, Id, Person } from '../../gen/types.js';
 import { ARCHETYPE_BY_ID, VICTIM_ARCHETYPES } from '../../gen/data/cast.js';
+import { NAME_POOLS } from '../../gen/data/names.js';
 import weightsJson from '../../../content/temper-weights.json';
 import { DECKS, tagIs, type Card } from './cards.js';
 import { rollDashiell, type DashiellRoll } from './roll.js';
@@ -72,8 +73,32 @@ export interface CastSheet {
   order: Record<Id, number>;
 }
 
-/** What gender a portrait card has to be written for to suit this person. */
+/**
+ * Given names, as the generator's pools have them. The name is the most
+ * reliable thing on a person: a fixture has no archetype at all, and a
+ * suspect's relationship to the victim can force a gender the archetype's own
+ * hint does not have ("opposeVictimGender"). Both of those are decided before
+ * the name is drawn, so the name always agrees with the truth and the hint
+ * does not.
+ */
+const GIVEN_NAME_GENDER = ((): Map<string, 'm' | 'f'> => {
+  const out = new Map<string, 'm' | 'f'>();
+  for (const pool of NAME_POOLS) {
+    for (const given of pool.given.male) out.set(given.toLowerCase(), 'm');
+    for (const given of pool.given.female) out.set(given.toLowerCase(), 'f');
+  }
+  return out;
+})();
+
+/**
+ * What gender a card has to be written for to suit this person. Portraits
+ * filter on it, and so does business: "folded the newspaper she'd been
+ * reading" attached to a man is the whole reason the tag exists.
+ */
 export function genderHintOf(person: Person): 'm' | 'f' | 'any' {
+  const given = person.name.split(/\s+/)[0]?.toLowerCase() ?? '';
+  const byName = GIVEN_NAME_GENDER.get(given);
+  if (byName) return byName;
   if (person.kind === 'victim') {
     const vic = VICTIM_ARCHETYPES.find((v) => v.id === person.archetypeId);
     return vic?.genderHint ?? 'any';

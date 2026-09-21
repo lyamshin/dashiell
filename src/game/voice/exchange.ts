@@ -23,7 +23,7 @@ import type { CaseView } from '../derive.js';
 import { clueTick } from '../derive.js';
 import type { Tick } from '../../gen/types.js';
 import type { CastSheet, Temper } from './cast.js';
-import { temperOf } from './cast.js';
+import { genderHintOf, temperOf } from './cast.js';
 import { Dealer, SCHEMA, tagIs, tagOf, type Card, type Slots } from './cards.js';
 import { beatsOf, findKindOf, strippedQuote, type Beat } from './facts.js';
 import { knowsHim } from './roll.js';
@@ -204,9 +204,15 @@ export function businessLine(
   gaps?: string[],
 ): { text: string; cardId: string } | null {
   const role = person?.fixtureRole ?? 'suspect';
+  const gender = person ? genderHintOf(person) : 'any';
+  // Gender is a filter and not a rung: a card that says "she" is wrong on a
+  // man however well it fits the role, so it is never reached for. Being one
+  // temper out is a smaller wrong than calling a woman "he".
+  const fitsGender = (c: Card): boolean =>
+    gender === 'any' || tagIs('business', c, 'gender', gender);
   // `business` is a free deck — it may come round again on a later page — but
   // not twice on the same one, where a reader would see it.
-  const ok = (c: Card): boolean => !exclude.has(c.id);
+  const ok = (c: Card): boolean => !exclude.has(c.id) && fitsGender(c);
   // Not `tagIs`: a card tagged `any` is a wildcard everywhere else, and here
   // it is its own rung, below anything written for the role itself.
   const roleIs = (c: Card, want: string): boolean => tagOf('business', c, 'role') === want;
@@ -222,7 +228,7 @@ export function businessLine(
     true,
   );
   if (!drawn) {
-    gaps?.push(`no-business: ${role} × ${temper} has no card of its own to deal`);
+    gaps?.push(`no-business: ${role} × ${temper} × ${gender} has no card of its own to deal`);
     return null;
   }
   return { text: drawn.text, cardId: drawn.cardId };

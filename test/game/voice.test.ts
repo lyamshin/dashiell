@@ -35,6 +35,7 @@ import {
   factOnPage,
   factsAgainst,
   fill,
+  genderHintOf,
   leadingTheory,
   oddsFor,
   reactiveMonologue,
@@ -1289,5 +1290,55 @@ describe('every utterance carries its fact', () => {
       if (missing.length > 0) warnings.push(`${card.id}: ${missing.join(', ')}`);
     }
     expect(warnings).toEqual([]);
+  });
+});
+
+describe('gendered business', () => {
+  const PRONOUN = { m: /\b(he|his|him|himself)\b/i, f: /\b(she|her|hers|herself)\b/i };
+
+  it('tags every card that carries a pronoun, and leaves the rest alone', () => {
+    for (const card of DECKS.business) {
+      const male = PRONOUN.m.test(card.text);
+      const female = PRONOUN.f.test(card.text);
+      const want = male ? 'm' : female ? 'f' : 'any';
+      expect(String(card.tags.gender), `${card.id}: ${card.text}`).toBe(want);
+    }
+  });
+
+  it('reads a person’s gender off the name the generator gave them', () => {
+    for (const seed of [1, 7, 19]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      // A landlady is a woman and a doorman is a man, whatever the archetype
+      // tables say, because the generator names them out of gendered pools.
+      for (const person of v.kase.people) {
+        if (person.fixtureRole === 'landlady') expect(genderHintOf(person)).toBe('f');
+        if (person.fixtureRole === 'doorman') expect(genderHintOf(person)).toBe('m');
+      }
+      expect(v.kase.people.every((p) => genderHintOf(p) !== 'any')).toBe(true);
+    }
+  });
+
+  it('never gives a woman a card that calls her he, or the other way about', () => {
+    let dealt = 0;
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const person of v.kase.people) {
+        if (person.kind === 'victim') continue;
+        const gender = genderHintOf(person);
+        if (gender === 'any') continue;
+        const wrong = gender === 'm' ? PRONOUN.f : PRONOUN.m;
+        const dealer = new Dealer(seed * 13 + person.id.length, [], []);
+        for (let i = 0; i < 30; i++) {
+          const drawn = businessLine(dealer, person, temperOf(rollCast(v.kase), person.id), {});
+          expect(drawn, `${person.surname} got no business at all`).not.toBeNull();
+          dealt++;
+          expect(
+            wrong.test((drawn as { text: string }).text),
+            `${person.surname} (${gender}): ${(drawn as { text: string }).text}`,
+          ).toBe(false);
+        }
+      }
+    }
+    expect(dealt).toBeGreaterThan(100);
   });
 });
