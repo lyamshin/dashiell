@@ -97,33 +97,37 @@ export function buildCast(rng: Rng): Cast {
     person.motive = { type: t.type, description: t.description };
   }
 
-  // Secrets for the five innocents. At least three must be the kind that can
-  // sit on the murder tick and still be witnessed, or the interestingness
-  // heuristic "two innocents lie about the murder tick" has nothing to work
-  // with and every attempt would be thrown away.
-  let picks: SecretTemplate[] = [];
-  for (let i = 0; i < innocents.length; i++) picks.push(rng.pick(SECRET_TEMPLATES));
-  const witnessable = SECRET_TEMPLATES.filter(WITNESSABLE);
-  while (picks.filter(WITNESSABLE).length < 3) {
-    const swapIndex = picks.findIndex((p) => !WITNESSABLE(p));
-    if (swapIndex < 0) break;
-    picks[swapIndex] = rng.pick(witnessable);
-  }
-  // Affairs come in pairs. An odd one out gets re-rolled into something solo.
-  const affairIndexes = picks.map((p, i) => (p.type === 'affair' ? i : -1)).filter((i) => i >= 0);
-  if (affairIndexes.length % 2 === 1) {
-    const solo = SECRET_TEMPLATES.filter((t) => t.type !== 'affair');
-    picks[affairIndexes[affairIndexes.length - 1] as number] = rng.pick(solo);
-  }
-  if (picks.filter((p) => p.type === 'affair').length > 2) {
-    // Keep it to a single couple; three is a farce, not a mystery.
-    const extra = picks.map((p, i) => (p.type === 'affair' ? i : -1)).filter((i) => i >= 0).slice(2);
-    const solo = SECRET_TEMPLATES.filter((t) => t.type !== 'affair');
-    for (const i of extra) picks[i] = rng.pick(solo);
-    if (picks.filter((p) => p.type === 'affair').length % 2 === 1) {
-      const lone = picks.findIndex((p) => p.type === 'affair');
-      picks[lone] = rng.pick(solo);
+  // Secrets for the five innocents. Distinct types, because a cast with three
+  // gambling debts in it reads like a bug rather than a coincidence. An affair
+  // is the one secret that takes two people, so it is the one type allowed to
+  // appear twice.
+  const picks: SecretTemplate[] = rng.shuffle(SECRET_TEMPLATES).slice(0, innocents.length);
+  const affairTemplate = SECRET_TEMPLATES.find((t) => t.type === 'affair') as SecretTemplate;
+  const affairAt = picks.findIndex((p) => p.type === 'affair');
+  if (affairAt >= 0) {
+    if (rng.chance(0.55)) {
+      const others = picks.map((_, i) => i).filter((i) => i !== affairAt);
+      picks[rng.pick(others)] = affairTemplate;
+    } else {
+      const used = new Set(picks.map((p) => p.type));
+      const spare = SECRET_TEMPLATES.filter((t) => t.type !== 'affair' && !used.has(t.type));
+      picks[affairAt] = rng.pick(
+        spare.length > 0 ? spare : SECRET_TEMPLATES.filter((t) => t.type !== 'affair'),
+      );
     }
+  }
+
+  // At least two must be the kind of secret that can sit on the murder tick and
+  // still leave the liar exculpable, or the interestingness heuristic "two
+  // innocents lie about the murder tick" has nothing to work with and every
+  // attempt would be thrown away.
+  const witnessable = SECRET_TEMPLATES.filter(WITNESSABLE);
+  while (picks.filter(WITNESSABLE).length < 2) {
+    const swapIndex = picks.findIndex((p) => !WITNESSABLE(p) && p.type !== 'affair');
+    if (swapIndex < 0) break;
+    const used = new Set(picks.map((p) => p.type));
+    const fresh = witnessable.filter((t) => !used.has(t.type));
+    picks[swapIndex] = rng.pick(fresh.length > 0 ? fresh : witnessable);
   }
 
   const innocentSecrets: Record<Id, SecretTemplate> = {};
