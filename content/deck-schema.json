@@ -323,7 +323,8 @@
       "deckValues": ["endings", "ending"],
       "idPrefix": "END",
       "placeholderPrefix": "end-p",
-      "burn": "run-to-run",
+      "$burnNote": "A.8 names similes, portraits and asides as the run-to-run decks and does not name this one. The closing page is scored by a pure function that is recomputed on every render, so it has nowhere to write a burn; the card is drawn off the case seed instead, which keeps one case's ending the same however many times it is looked at.",
+      "burn": "free",
       "target": 24,
       "slots": ["detective", "name", "place", "object", "time", "missed", "killer"],
       "tags": {
