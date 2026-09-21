@@ -187,11 +187,14 @@ function corroborate(rng: Rng, reqs: Requirement[], spine: Clue[], floor: number
   const extra: Clue[] = [];
   const placesUsed = new Set(spine.map((c) => c.place));
   const taken = (c: Clue): boolean => chosen.has(c.id) || extra.some((e) => e.id === c.id);
+  // Corroboration is deliberately *not* pulled towards rooms the spine already
+  // visits. Par is measured on the spine alone, so spreading the backup across
+  // the neighbourhood costs nothing on paper and gives the map something to do.
   const addOne = (options: Clue[], keys: Set<string>): boolean => {
     const fresh = rng.shuffle(options).filter((c) => !taken(c) && !keys.has(sourceKey(c)));
     if (fresh.length === 0) return false;
-    const preferred = fresh.filter((c) => placesUsed.has(c.place));
-    const take = (preferred.length > 0 ? preferred : fresh)[0] as Clue;
+    const fresher = fresh.filter((c) => !placesUsed.has(c.place));
+    const take = (fresher.length > 0 ? fresher : fresh)[0] as Clue;
     extra.push(take);
     placesUsed.add(take.place);
     return true;
@@ -221,7 +224,7 @@ function corroborate(rng: Rng, reqs: Requirement[], spine: Clue[], floor: number
         if (!sourcesOf(r).has(key)) n++;
       }
       if (n === 0) continue;
-      const score = n * 4 + (placesUsed.has(c.place) ? 1 : 0);
+      const score = n * 4 + (placesUsed.has(c.place) ? 0 : 1);
       if (score > bestScore) {
         bestScore = score;
         best = c;
