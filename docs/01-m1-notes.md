@@ -2,7 +2,7 @@
 
 ## The numbers
 
-Over seeds 1..200: **median 2 attempts, max 33**, mean 2.48, p90 5, p99 10. 94 of 200 seeds are accepted on the first attempt; 297 attempts are discarded in total. 43 tests pass. A case carries on average 164 clues, 361 observations (19 of them withheld), 2.15 innocents lying about the murder tick, and 1.91 innocents with a motive. The killer carries a second, non-murder secret in 63 of 200 cases.
+Over seeds 1..200: **median 2 attempts, max 16**, mean 2.52, p90 5, p99 14. 96 of 200 seeds are accepted on the first attempt; 305 attempts are discarded in total. 44 tests pass. A case carries on average 169 clues, 374 observations (20 of them withheld), 2.17 innocents lying about the murder tick, and 1.91 innocents with a motive. The killer carries a second, non-murder secret in 61 of 200 cases.
 
 ## What was hard
 
@@ -20,23 +20,28 @@ None of the solvability or interestingness heuristics rejected a single attempt 
 
 | Discard reason | Count |
 |---|---|
-| embezzling has nowhere to happen away from the scene | 114 |
-| a suspect's evening does not join up | 51 |
-| fewer than two innocents could hide a secret at the murder tick | 46 |
-| the killer could not be seen reaching the weapon before the murder | 43 |
-| the blackmail cannot finish before the murder | 24 |
-| no free window for the blackmail secret | 14 |
-| the victim's evening does not join up | 5 |
+| embezzling has nowhere to happen away from the scene | 130 |
+| a suspect's evening does not join up | 56 |
+| the killer could not be seen reaching the weapon before the murder | 46 |
+| fewer than two innocents could hide a secret at the murder tick | 38 |
+| the blackmail cannot finish before the murder | 20 |
+| no free window for the blackmail secret | 12 |
+| the victim's evening does not join up | 3 |
 
-The top one is embezzling colliding with a murder in the Victim's Suite — the secret only has one room and the killer is using it. Blackmail contributes 38 more, because it drags the victim into a private room and the victim also has to be publicly visible at M−1 for the time-of-death proof.
+The top one is embezzling colliding with a murder in the Victim's Suite — the secret only has one room and the killer is using it. Blackmail contributes 32 more, because it drags the victim into a private room and the victim also has to be publicly visible at M−1 for the time-of-death proof.
 
 That the check never fires is the intended outcome of constraint-first generation, but it makes the check a regression net rather than a filter. `test/solvability.test.ts` damages a good case twelve ways to prove it is load-bearing.
 
 ## What I would change
 
-1. **Clue volume.** 164 clues and 361 observations per case is far more than a player can read. M2 needs salience — most observation runs are noise, and the truth sheet is 700 lines because of it.
+1. **Clue volume.** 169 clues and 374 observations per case is far more than a player can read. M2 needs salience — most observation runs are noise, and the truth sheet is 700 lines because of it.
 2. **The killer's alibi is predictable.** Lobby or Bar, nearly always, because they are the only rooms guaranteed two truthful witnesses. A third fixture (a night clerk, an elevator operator) would widen the choice and make the contradiction less mechanical.
-3. **The Roof Garden is the scene 55% of the time** — four of five methods allow it. `murderLocations` needs rebalancing, and the Kitchen (14/200) needs more methods that suit it.
+3. **The Roof Garden is the scene 56% of the time** — four of five methods allow it. `murderLocations` needs rebalancing, and the Kitchen (11/200) needs more methods that suit it.
 4. **Time of death is established the same way nearly every case:** coroner's window plus two people who saw the victim alive at M−1. The [M, M+1] variant only fires for loud methods with two hearers. More independent ways to pin the tick would make the opening of a case less repetitive.
 5. **Withholding is coarse.** A liar withholds *everything* they saw during a lied-about tick, including things that would not incriminate them. More realistic — and more interesting — would be withholding only what places them in the cell they are lying about, and fabricating the rest.
 6. **Map variation is thin.** One optional edge and shuffled objects. The adjacency graph is effectively identical every run.
+7. **The dead-weight heuristic does not catch forged identity.** A suspect with that secret has no hidden movements, so they can end up never lying and with no motive. The spec's test ("no lie, no motive, no secret") passes because they do have a secret, and they do generate a document clue — but on the page they are the quietest person in the hotel.
+
+## Two bugs worth recording
+
+Both were found by tests over the 200-seed corpus rather than by reading the code. A fixture could take two excursions on back-to-back ticks and step straight from the front desk to the street. And, more seriously, the killer's lies stopped at the murder tick, so they truthfully told the detective they had been standing in the room with the body half an hour after it became one — and a fixture on an excursion could walk in and find it. The killer now leaves the scene on the next tick, and nobody, fixtures included, goes back in.

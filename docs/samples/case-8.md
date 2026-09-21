@@ -42,9 +42,9 @@ Agnes Sweeney, a photographer for the rotogravure section, named in the victim's
 | 0 | 6:00 PM | Lobby | Lobby | — |
 | 1 | 6:30 PM | Lobby | Lobby | — |
 | 2 | 7:00 PM | Victim's Suite | Victim's Suite | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
+| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
 | 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
+| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
 | 6 | 9:00 PM | Lobby | Lobby | — |
 | 7 | 9:30 PM | Roof Garden ☠ | Roof Garden | — |
 | 8 | 10:00 PM | — | — | — |
@@ -56,103 +56,103 @@ Agnes Sweeney, a photographer for the rotogravure section, named in the victim's
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
-| 7 | 9:30 PM | Kitchen | **Lobby** | Delia Mulcahy |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
+| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
+| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
+| 3 | 7:30 PM | Kitchen | Kitchen | — |
+| 4 | 8:00 PM | Kitchen | Kitchen | — |
+| 5 | 8:30 PM | Kitchen | Kitchen | — |
+| 6 | 9:00 PM | Kitchen | Kitchen | — |
+| 7 | 9:30 PM | Kitchen | **Bar** | Delia Mulcahy |
+| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
+| 9 | 10:30 PM | Lobby | Lobby | — |
+| 10 | 11:00 PM | Lobby | Lobby | — |
+| 11 | 11:30 PM | Lobby | Lobby | — |
 
 ### Carmela Ruggiero
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Front Desk | Front Desk | — |
-
-### Francis Quill
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Victim's Suite | **Front Desk** | Assunta Bellucci |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
-
-### Assunta Bellucci
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Victim's Suite | **Front Desk** | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
-
-### Delia Mulcahy
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Street | **Lobby** | — |
-| 8 | 10:00 PM | Street | Street | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
-
-### Agnes Sweeney — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
 | 0 | 6:00 PM | Roof Garden | Roof Garden | — |
 | 1 | 6:30 PM | Roof Garden | Roof Garden | — |
 | 2 | 7:00 PM | Roof Garden | Roof Garden | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
+| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
 | 4 | 8:00 PM | Front Desk | Front Desk | — |
+| 5 | 8:30 PM | Front Desk | Front Desk | — |
+| 6 | 9:00 PM | Lobby | Lobby | — |
+| 7 | 9:30 PM | Bar | Bar | — |
+| 8 | 10:00 PM | Bar | Bar | — |
+| 9 | 10:30 PM | Bar | Bar | — |
+| 10 | 11:00 PM | Bar | Bar | — |
+| 11 | 11:30 PM | Bar | Bar | — |
+
+### Francis Quill
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
+| 1 | 6:30 PM | Victim's Suite | **Front Desk** | — |
+| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
+| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
+| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
 | 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Roof Garden | **Street** | Konrad Hochstetter |
-| 7 | 9:30 PM | Roof Garden ☠ | **Street** | Konrad Hochstetter |
-| 8 | 10:00 PM | Roof Garden | Roof Garden | — |
-| 9 | 10:30 PM | Roof Garden | Roof Garden | — |
-| 10 | 11:00 PM | Roof Garden | Roof Garden | — |
-| 11 | 11:30 PM | Roof Garden | Roof Garden | — |
+| 6 | 9:00 PM | Front Desk | Front Desk | — |
+| 7 | 9:30 PM | Lobby | Lobby | — |
+| 8 | 10:00 PM | Bar | Bar | — |
+| 9 | 10:30 PM | Bar | Bar | — |
+| 10 | 11:00 PM | Lobby | Lobby | — |
+| 11 | 11:30 PM | Lobby | Lobby | — |
+
+### Assunta Bellucci
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Bar | Bar | — |
+| 1 | 6:30 PM | Lobby | Lobby | — |
+| 2 | 7:00 PM | Victim's Suite | **Street** | Delia Mulcahy |
+| 3 | 7:30 PM | Lobby | Lobby | — |
+| 4 | 8:00 PM | Lobby | Lobby | — |
+| 5 | 8:30 PM | Lobby | Lobby | — |
+| 6 | 9:00 PM | Lobby | Lobby | — |
+| 7 | 9:30 PM | Bar | Bar | — |
+| 8 | 10:00 PM | Bar | Bar | — |
+| 9 | 10:30 PM | Lobby | Lobby | — |
+| 10 | 11:00 PM | Lobby | Lobby | — |
+| 11 | 11:30 PM | Lobby | Lobby | — |
+
+### Delia Mulcahy
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
+| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
+| 2 | 7:00 PM | Lobby | Lobby | — |
+| 3 | 7:30 PM | Lobby | Lobby | — |
+| 4 | 8:00 PM | Street | Street | — |
+| 5 | 8:30 PM | Street | Street | — |
+| 6 | 9:00 PM | Street | Street | — |
+| 7 | 9:30 PM | Street | **Lobby** | — |
+| 8 | 10:00 PM | Street | Street | — |
+| 9 | 10:30 PM | Street | Street | — |
+| 10 | 11:00 PM | Street | Street | — |
+| 11 | 11:30 PM | Lobby | Lobby | — |
+
+### Agnes Sweeney — the killer
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Lobby | Lobby | — |
+| 1 | 6:30 PM | Front Desk | Front Desk | — |
+| 2 | 7:00 PM | Front Desk | Front Desk | — |
+| 3 | 7:30 PM | Lobby | Lobby | — |
+| 4 | 8:00 PM | Lobby | Lobby | — |
+| 5 | 8:30 PM | Lobby | Lobby | — |
+| 6 | 9:00 PM | Roof Garden | **Bar** | Assunta Bellucci |
+| 7 | 9:30 PM | Roof Garden ☠ | **Bar** | Assunta Bellucci |
+| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
+| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
+| 10 | 11:00 PM | Front Desk | Front Desk | — |
+| 11 | 11:30 PM | Front Desk | Front Desk | — |
 
 ### Fixtures (never lie, never withhold)
 
@@ -185,422 +185,451 @@ Agnes Sweeney, a photographer for the rotogravure section, named in the victim's
 
 ### From Konrad Hochstetter (a wine steward out of work since the Act)
 
-On Ernst Obermann:
-
-- **c001** [observation] Konrad Hochstetter says Ernst Obermann was in the Lobby at 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:30 PM; the victim alive at 6:30 PM_
-- **c002** [observation] Konrad Hochstetter says Ernst Obermann was in the Lobby at 7:30 PM. — _establishes: Ernst Obermann in the Lobby, 7:30 PM; the victim alive at 7:30 PM_
-
 On Carmela Ruggiero:
 
-- **c003** [observation] Konrad Hochstetter says Carmela Ruggiero was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Carmela Ruggiero in the Lobby, 6:30 PM–7:30 PM_
-- **c004** [observation] Konrad Hochstetter says Carmela Ruggiero was on the Service Stairs from 8:30 PM to 9:00 PM. — _establishes: Carmela Ruggiero on the Service Stairs, 8:30 PM–9:00 PM_
-- **c005** [observation] Konrad Hochstetter says Carmela Ruggiero was on the Service Stairs at 11:00 PM. — _establishes: Carmela Ruggiero on the Service Stairs, 11:00 PM_
+- **c001** [observation] Konrad Hochstetter says Carmela Ruggiero was in the Roof Garden at 6:00 PM. — _establishes: Carmela Ruggiero in the Roof Garden, 6:00 PM_
+- **c002** [observation] Konrad Hochstetter says Carmela Ruggiero was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Carmela Ruggiero in the Bar, 10:30 PM–11:30 PM_
+
+On Francis Quill:
+
+- **c003** [observation] Konrad Hochstetter says Francis Quill was on the Service Stairs at 7:00 PM. — _establishes: Francis Quill on the Service Stairs, 7:00 PM_
+- **c004** [observation] Konrad Hochstetter says Francis Quill was in the Bar at 10:30 PM. — _establishes: Francis Quill in the Bar, 10:30 PM_
+- **c005** [observation] Konrad Hochstetter says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Francis Quill in the Lobby, 11:00 PM–11:30 PM_
 
 On Assunta Bellucci:
 
-- **c006** [observation] Konrad Hochstetter says Assunta Bellucci was in the Lobby at 6:30 PM. — _establishes: Assunta Bellucci in the Lobby, 6:30 PM_
-- **c007** [observation] Konrad Hochstetter says Assunta Bellucci was on the Service Stairs at 8:30 PM. — _establishes: Assunta Bellucci on the Service Stairs, 8:30 PM_
-- **c008** [observation] Konrad Hochstetter says Assunta Bellucci was on the Service Stairs at 11:00 PM. — _establishes: Assunta Bellucci on the Service Stairs, 11:00 PM_
+- **c006** [observation] Konrad Hochstetter says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:30 PM–11:30 PM_
 
 On Delia Mulcahy:
 
-- **c009** [observation] Konrad Hochstetter says Delia Mulcahy was on the Service Stairs at 6:00 PM. — _establishes: Delia Mulcahy on the Service Stairs, 6:00 PM_
-- **c010** [observation] Konrad Hochstetter says Delia Mulcahy was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Delia Mulcahy at the Front Desk, 6:30 PM–7:00 PM; Delia Mulcahy had access to the method_
+- **c007** [observation] Konrad Hochstetter says Delia Mulcahy was on the Service Stairs at 6:30 PM. — _establishes: Delia Mulcahy on the Service Stairs, 6:30 PM_
+- **c008** [observation] Konrad Hochstetter says Delia Mulcahy was on the Street from 10:30 PM to 11:00 PM. — _establishes: Delia Mulcahy on the Street, 10:30 PM–11:00 PM_
+- **c009** [observation] Konrad Hochstetter says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
 
 On Agnes Sweeney:
 
-- **c011** [observation] Konrad Hochstetter says Agnes Sweeney was in the Lobby at 7:30 PM. — _establishes: Agnes Sweeney in the Lobby, 7:30 PM_
-- **c012** [observation] Konrad Hochstetter says Agnes Sweeney was at the Front Desk at 8:00 PM. — _establishes: Agnes Sweeney at the Front Desk, 8:00 PM; Agnes Sweeney had access to the method_
-- **c013** [observation] Konrad Hochstetter says Agnes Sweeney was on the Service Stairs at 8:30 PM. — _establishes: Agnes Sweeney on the Service Stairs, 8:30 PM_
-
-On Francis Quill's account:
-
-- **c118** [observation] Konrad Hochstetter was at the Front Desk at 6:30 PM and says Francis Quill was not at the Front Desk. — _establishes: Francis Quill not at the Front Desk, 6:30 PM_
-
-On Assunta Bellucci's account:
-
-- **c123** [observation] Konrad Hochstetter was at the Front Desk at 7:00 PM and says Assunta Bellucci was not at the Front Desk. — _establishes: Assunta Bellucci not at the Front Desk, 7:00 PM_
+- **c010** [observation] Konrad Hochstetter says Agnes Sweeney was on the Service Stairs at 10:00 PM. — _establishes: Agnes Sweeney on the Service Stairs, 10:00 PM_
+- **c011** [observation] Konrad Hochstetter says Agnes Sweeney was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Agnes Sweeney at the Front Desk, 11:00 PM–11:30 PM_
 
 On Agnes Sweeney's account:
 
-- **c135** [observation] Agnes Sweeney says Konrad Hochstetter was there. Konrad Hochstetter says otherwise: Konrad Hochstetter was on the Service Stairs at 9:00 PM, not on the Street. — _establishes: Agnes Sweeney not on the Street, 9:00 PM_
+- **c143** [observation] Konrad Hochstetter was in the Kitchen at 9:00 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM_
 
-On Francis Quill and Ernst Obermann:
+On the rain:
 
-- **c145** [overheard] Konrad Hochstetter says Ernst Obermann told Francis Quill that Friday was the end of it, one way or the other. — _establishes: Francis Quill had a motive (debt)_
+- **c152** [environment] Konrad Hochstetter says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM_
 
 ### From Carmela Ruggiero (a piano teacher)
 
 On Ernst Obermann:
 
-- **c014** [observation] Carmela Ruggiero says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-- **c015** [observation] Carmela Ruggiero says Ernst Obermann was in the Lobby at 7:30 PM. — _establishes: Ernst Obermann in the Lobby, 7:30 PM; the victim alive at 7:30 PM_
+- **c012** [observation] Carmela Ruggiero says Ernst Obermann was on the Service Stairs at 7:30 PM. — _establishes: Ernst Obermann on the Service Stairs, 7:30 PM; the victim alive at 7:30 PM_
+- **c013** [observation] Carmela Ruggiero says Ernst Obermann was in the Lobby at 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
 
 On Konrad Hochstetter:
 
-- **c016** [observation] Carmela Ruggiero says Konrad Hochstetter was at the Front Desk from 6:30 PM to 7:30 PM. — _establishes: Konrad Hochstetter at the Front Desk, 6:30 PM–7:30 PM; Konrad Hochstetter had access to the method_
-- **c017** [observation] Carmela Ruggiero says Konrad Hochstetter was on the Service Stairs from 8:30 PM to 9:00 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 8:30 PM–9:00 PM_
-- **c018** [observation] Carmela Ruggiero says Konrad Hochstetter was on the Service Stairs at 11:00 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 11:00 PM_
+- **c014** [observation] Carmela Ruggiero says Konrad Hochstetter was in the Roof Garden at 6:00 PM. — _establishes: Konrad Hochstetter in the Roof Garden, 6:00 PM_
+- **c015** [observation] Carmela Ruggiero says Konrad Hochstetter was in the Kitchen at 9:30 PM. — _establishes: Konrad Hochstetter in the Kitchen, 9:30 PM_
+- **c016** [observation] Carmela Ruggiero says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Konrad Hochstetter in the Lobby, 10:30 PM–11:30 PM_
 
 On Francis Quill:
 
-- **c019** [observation] Carmela Ruggiero says Francis Quill was in the Lobby at 6:00 PM. — _establishes: Francis Quill in the Lobby, 6:00 PM_
-- **c020** [observation] Carmela Ruggiero says Francis Quill was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Francis Quill in the Lobby, 9:30 PM–10:00 PM_
-- **c021** [observation] Carmela Ruggiero says Francis Quill was on the Service Stairs at 8:00 PM. — _establishes: Francis Quill on the Service Stairs, 8:00 PM_
+- **c017** [observation] Carmela Ruggiero says Francis Quill was on the Service Stairs at 7:30 PM. — _establishes: Francis Quill on the Service Stairs, 7:30 PM_
+- **c018** [observation] Carmela Ruggiero says Francis Quill was at the Front Desk at 9:00 PM. — _establishes: Francis Quill at the Front Desk, 9:00 PM; Francis Quill had access to the method_
+- **c019** [observation] Carmela Ruggiero says Francis Quill was in the Lobby at 9:30 PM. — _establishes: Francis Quill in the Lobby, 9:30 PM_
+- **c020** [observation] Carmela Ruggiero says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Francis Quill in the Lobby, 11:00 PM–11:30 PM_
+- **c021** [observation] Carmela Ruggiero says Francis Quill was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Francis Quill in the Bar, 10:00 PM–10:30 PM_
 
 On Assunta Bellucci:
 
-- **c022** [observation] Carmela Ruggiero says Assunta Bellucci was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Assunta Bellucci in the Lobby, 6:00 PM–6:30 PM_
-- **c023** [observation] Carmela Ruggiero says Assunta Bellucci was in the Lobby at 10:00 PM. — _establishes: Assunta Bellucci in the Lobby, 10:00 PM_
-- **c024** [observation] Carmela Ruggiero says Assunta Bellucci was on the Service Stairs from 8:00 PM to 8:30 PM. — _establishes: Assunta Bellucci on the Service Stairs, 8:00 PM–8:30 PM_
-- **c025** [observation] Carmela Ruggiero says Assunta Bellucci was on the Service Stairs at 11:00 PM. — _establishes: Assunta Bellucci on the Service Stairs, 11:00 PM_
-- **c026** [observation] Carmela Ruggiero says Assunta Bellucci was in the Bar at 9:30 PM. — _establishes: Assunta Bellucci in the Bar, 9:30 PM_
+- **c022** [observation] Carmela Ruggiero says Assunta Bellucci was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Assunta Bellucci in the Lobby, 8:00 PM–9:00 PM_
+- **c023** [observation] Carmela Ruggiero says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:30 PM–11:30 PM_
+- **c024** [observation] Carmela Ruggiero says Assunta Bellucci was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Assunta Bellucci in the Bar, 9:30 PM–10:00 PM_
 
 On Delia Mulcahy:
 
-- **c027** [observation] Carmela Ruggiero says Delia Mulcahy was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Delia Mulcahy at the Front Desk, 6:30 PM–7:00 PM; Delia Mulcahy had access to the method_
-- **c028** [observation] Carmela Ruggiero says Delia Mulcahy was on the Street from 9:30 PM to 10:00 PM. — _establishes: Delia Mulcahy on the Street, 9:30 PM–10:00 PM_
+- **c025** [observation] Carmela Ruggiero says Delia Mulcahy was on the Street at 9:00 PM. — _establishes: Delia Mulcahy on the Street, 9:00 PM_
+- **c026** [observation] Carmela Ruggiero says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
 
 On Agnes Sweeney:
 
-- **c029** [observation] Carmela Ruggiero says Agnes Sweeney was in the Lobby at 7:30 PM. — _establishes: Agnes Sweeney in the Lobby, 7:30 PM_
-- **c030** [observation] Carmela Ruggiero says Agnes Sweeney was on the Service Stairs at 8:30 PM. — _establishes: Agnes Sweeney on the Service Stairs, 8:30 PM_
+- **c027** [observation] Carmela Ruggiero says Agnes Sweeney was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Agnes Sweeney in the Lobby, 8:00 PM–8:30 PM_
 
 On Konrad Hochstetter's account:
 
-- **c113** [observation] Carmela Ruggiero was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Lobby. — _establishes: Konrad Hochstetter not in the Lobby, 9:30 PM_
-
-On Francis Quill's account:
-
-- **c119** [observation] Carmela Ruggiero was in the Lobby at 6:30 PM and says Francis Quill was not at the Front Desk. — _establishes: Francis Quill not at the Front Desk, 6:30 PM_
-
-On Assunta Bellucci's account:
-
-- **c124** [observation] Carmela Ruggiero was in the Lobby at 7:00 PM and says Assunta Bellucci was not at the Front Desk. — _establishes: Assunta Bellucci not at the Front Desk, 7:00 PM_
+- **c128** [observation] Carmela Ruggiero was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Bar. — _establishes: Konrad Hochstetter not in the Bar, 9:30 PM_
 
 On Delia Mulcahy's account:
 
-- **c126** [observation] Carmela Ruggiero was in the Lobby at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
+- **c138** [observation] Carmela Ruggiero was in the Bar at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
 
 On Agnes Sweeney's account:
 
-- **c131** [observation] Carmela Ruggiero was in the Lobby at 9:30 PM and says Agnes Sweeney was not on the Street. — _establishes: Agnes Sweeney not on the Street, 9:30 PM_
+- **c144** [observation] Carmela Ruggiero was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
 
 ### From Francis Quill (a stringer for the evening papers)
 
 On Ernst Obermann:
 
-- **c031** [observation] Francis Quill says Ernst Obermann was in the Lobby at 6:00 PM. — _establishes: Ernst Obermann in the Lobby, 6:00 PM; the victim alive at 6:00 PM_
-- **c032** [observation] Francis Quill says Ernst Obermann was in the Lobby at 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
+- **c028** [observation] Francis Quill says Ernst Obermann was on the Service Stairs at 7:30 PM. — _establishes: Ernst Obermann on the Service Stairs, 7:30 PM; the victim alive at 7:30 PM_
+- **c029** [observation] Francis Quill says Ernst Obermann was in the Lobby at 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
+
+On Konrad Hochstetter:
+
+- **c030** [observation] Francis Quill says Konrad Hochstetter was on the Service Stairs at 7:00 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 7:00 PM_
+- **c031** [observation] Francis Quill says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Konrad Hochstetter in the Lobby, 10:30 PM–11:30 PM_
 
 On Carmela Ruggiero:
 
-- **c033** [observation] Francis Quill says Carmela Ruggiero was in the Lobby at 6:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 6:00 PM_
-- **c034** [observation] Francis Quill says Carmela Ruggiero was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:30 PM–10:00 PM_
-- **c035** [observation] Francis Quill says Carmela Ruggiero was on the Service Stairs at 8:00 PM. — _establishes: Carmela Ruggiero on the Service Stairs, 8:00 PM_
+- **c032** [observation] Francis Quill says Carmela Ruggiero was on the Service Stairs at 7:30 PM. — _establishes: Carmela Ruggiero on the Service Stairs, 7:30 PM_
+- **c033** [observation] Francis Quill says Carmela Ruggiero was in the Lobby at 9:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:00 PM_
+- **c034** [observation] Francis Quill says Carmela Ruggiero was in the Bar from 9:30 PM to 11:30 PM. — _establishes: Carmela Ruggiero in the Bar, 9:30 PM–11:30 PM_
 
 On Assunta Bellucci:
 
-- **c036** [observation] Francis Quill says Assunta Bellucci was in the Lobby at 6:00 PM. — _establishes: Assunta Bellucci in the Lobby, 6:00 PM_
-- **c037** [observation] Francis Quill says Assunta Bellucci was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:00 PM–10:30 PM_
-- **c038** [observation] Francis Quill says Assunta Bellucci was on the Service Stairs from 7:30 PM to 8:00 PM. — _establishes: Assunta Bellucci on the Service Stairs, 7:30 PM–8:00 PM_
-- **c039** [observation] Francis Quill says Assunta Bellucci was in the Bar at 9:30 PM. — _establishes: Assunta Bellucci in the Bar, 9:30 PM_
+- **c035** [observation] Francis Quill says Assunta Bellucci was in the Lobby at 9:00 PM. — _establishes: Assunta Bellucci in the Lobby, 9:00 PM_
+- **c036** [observation] Francis Quill says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:30 PM–11:30 PM_
+- **c037** [observation] Francis Quill says Assunta Bellucci was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Assunta Bellucci in the Bar, 9:30 PM–10:00 PM_
 
 On Delia Mulcahy:
 
-- **c040** [observation] Francis Quill says Delia Mulcahy was on the Service Stairs at 7:30 PM. — _establishes: Delia Mulcahy on the Service Stairs, 7:30 PM_
-- **c041** [observation] Francis Quill says Delia Mulcahy was in the Lobby at 9:00 PM. — _establishes: Delia Mulcahy in the Lobby, 9:00 PM_
-- **c042** [observation] Francis Quill says Delia Mulcahy was on the Street from 9:30 PM to 11:30 PM. — _establishes: Delia Mulcahy on the Street, 9:30 PM–11:30 PM_
+- **c038** [observation] Francis Quill says Delia Mulcahy was on the Service Stairs at 6:00 PM. — _establishes: Delia Mulcahy on the Service Stairs, 6:00 PM_
+- **c039** [observation] Francis Quill says Delia Mulcahy was on the Street at 9:30 PM. — _establishes: Delia Mulcahy on the Street, 9:30 PM_
+- **c040** [observation] Francis Quill says Delia Mulcahy was on the Street at 11:00 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM_
+- **c041** [observation] Francis Quill says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
+
+On Agnes Sweeney:
+
+- **c042** [observation] Francis Quill says Agnes Sweeney was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Agnes Sweeney at the Front Desk, 11:00 PM–11:30 PM_
 
 On Konrad Hochstetter's account:
 
-- **c114** [observation] Francis Quill was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Lobby. — _establishes: Konrad Hochstetter not in the Lobby, 9:30 PM_
+- **c129** [observation] Francis Quill was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Bar. — _establishes: Konrad Hochstetter not in the Bar, 9:30 PM_
 
 On Delia Mulcahy's account:
 
-- **c127** [observation] Francis Quill was in the Lobby at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
+- **c139** [observation] Francis Quill was in the Lobby at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
 
 On Agnes Sweeney's account:
 
-- **c132** [observation] Francis Quill was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not on the Street. — _establishes: Agnes Sweeney not on the Street, 9:00 PM–9:30 PM_
+- **c145** [observation] Francis Quill was in the Lobby at 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:30 PM_
 
 ### From Assunta Bellucci (a dentist with rooms on the third floor)
 
 On Ernst Obermann:
 
 - **c043** [observation] Assunta Bellucci says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
+- **c044** [observation] Assunta Bellucci says Ernst Obermann was in the Lobby at 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
 
 On Konrad Hochstetter:
 
-- **c044** [observation] Assunta Bellucci says Konrad Hochstetter was at the Front Desk at 6:30 PM. — _establishes: Konrad Hochstetter at the Front Desk, 6:30 PM; Konrad Hochstetter had access to the method_
-- **c045** [observation] Assunta Bellucci says Konrad Hochstetter was on the Service Stairs at 8:30 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 8:30 PM_
-- **c046** [observation] Assunta Bellucci says Konrad Hochstetter was on the Service Stairs at 11:00 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 11:00 PM_
-- **c047** [observation] Assunta Bellucci says Konrad Hochstetter was in the Kitchen at 9:30 PM. — _establishes: Konrad Hochstetter in the Kitchen, 9:30 PM_
+- **c045** [observation] Assunta Bellucci says Konrad Hochstetter was in the Kitchen at 9:30 PM. — _establishes: Konrad Hochstetter in the Kitchen, 9:30 PM_
+- **c046** [observation] Assunta Bellucci says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Konrad Hochstetter in the Lobby, 10:30 PM–11:30 PM_
 
 On Carmela Ruggiero:
 
-- **c048** [observation] Assunta Bellucci says Carmela Ruggiero was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Carmela Ruggiero in the Lobby, 6:00 PM–6:30 PM_
-- **c049** [observation] Assunta Bellucci says Carmela Ruggiero was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:30 PM–10:00 PM_
-- **c050** [observation] Assunta Bellucci says Carmela Ruggiero was on the Service Stairs from 8:00 PM to 8:30 PM. — _establishes: Carmela Ruggiero on the Service Stairs, 8:00 PM–8:30 PM_
-- **c051** [observation] Assunta Bellucci says Carmela Ruggiero was on the Service Stairs at 11:00 PM. — _establishes: Carmela Ruggiero on the Service Stairs, 11:00 PM_
+- **c047** [observation] Assunta Bellucci says Carmela Ruggiero was at the Front Desk from 8:00 PM to 8:30 PM. — _establishes: Carmela Ruggiero at the Front Desk, 8:00 PM–8:30 PM; Carmela Ruggiero had access to the method_
+- **c048** [observation] Assunta Bellucci says Carmela Ruggiero was in the Lobby at 9:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:00 PM_
+- **c049** [observation] Assunta Bellucci says Carmela Ruggiero was in the Bar from 9:30 PM to 11:30 PM. — _establishes: Carmela Ruggiero in the Bar, 9:30 PM–11:30 PM_
 
 On Francis Quill:
 
-- **c052** [observation] Assunta Bellucci says Francis Quill was in the Lobby at 6:00 PM. — _establishes: Francis Quill in the Lobby, 6:00 PM_
-- **c053** [observation] Assunta Bellucci says Francis Quill was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Francis Quill in the Lobby, 9:30 PM–10:00 PM_
-- **c054** [observation] Assunta Bellucci says Francis Quill was on the Service Stairs from 7:30 PM to 8:00 PM. — _establishes: Francis Quill on the Service Stairs, 7:30 PM–8:00 PM_
-- **c055** [observation] Assunta Bellucci says Francis Quill was on the Street at 10:30 PM. — _establishes: Francis Quill on the Street, 10:30 PM_
+- **c050** [observation] Assunta Bellucci says Francis Quill was at the Front Desk at 9:00 PM. — _establishes: Francis Quill at the Front Desk, 9:00 PM; Francis Quill had access to the method_
+- **c051** [observation] Assunta Bellucci says Francis Quill was in the Lobby at 9:30 PM. — _establishes: Francis Quill in the Lobby, 9:30 PM_
+- **c052** [observation] Assunta Bellucci says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Francis Quill in the Lobby, 11:00 PM–11:30 PM_
+- **c053** [observation] Assunta Bellucci says Francis Quill was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Francis Quill in the Bar, 10:00 PM–10:30 PM_
 
 On Delia Mulcahy:
 
-- **c056** [observation] Assunta Bellucci says Delia Mulcahy was at the Front Desk at 6:30 PM. — _establishes: Delia Mulcahy at the Front Desk, 6:30 PM; Delia Mulcahy had access to the method_
-- **c057** [observation] Assunta Bellucci says Delia Mulcahy was on the Service Stairs at 7:30 PM. — _establishes: Delia Mulcahy on the Service Stairs, 7:30 PM_
-- **c058** [observation] Assunta Bellucci says Delia Mulcahy was on the Street from 10:00 PM to 10:30 PM. — _establishes: Delia Mulcahy on the Street, 10:00 PM–10:30 PM_
+- **c054** [observation] Assunta Bellucci says Delia Mulcahy was in the Lobby at 7:30 PM. — _establishes: Delia Mulcahy in the Lobby, 7:30 PM_
+- **c055** [observation] Assunta Bellucci says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
+- **c056** [observation] Assunta Bellucci says Delia Mulcahy was on the Street from 8:00 PM to 9:00 PM. — _establishes: Delia Mulcahy on the Street, 8:00 PM–9:00 PM_
+- **c057** [observation] Assunta Bellucci says Delia Mulcahy was on the Street from 10:30 PM to 11:00 PM. — _establishes: Delia Mulcahy on the Street, 10:30 PM–11:00 PM_
 
 On Agnes Sweeney:
 
-- **c059** [observation] Assunta Bellucci says Agnes Sweeney was on the Service Stairs at 8:30 PM. — _establishes: Agnes Sweeney on the Service Stairs, 8:30 PM_
+- **c058** [observation] Assunta Bellucci says Agnes Sweeney was in the Lobby at 6:00 PM. — _establishes: Agnes Sweeney in the Lobby, 6:00 PM_
+- **c059** [observation] Assunta Bellucci says Agnes Sweeney was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Agnes Sweeney in the Lobby, 7:30 PM–8:30 PM_
+- **c060** [observation] Assunta Bellucci says Agnes Sweeney was at the Front Desk at 6:30 PM. — _establishes: Agnes Sweeney at the Front Desk, 6:30 PM; Agnes Sweeney had access to the method_
+- **c061** [observation] Assunta Bellucci says Agnes Sweeney was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Agnes Sweeney at the Front Desk, 11:00 PM–11:30 PM_
 
 On Konrad Hochstetter's account:
 
-- **c115** [observation] Assunta Bellucci was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Lobby. — _establishes: Konrad Hochstetter not in the Lobby, 9:30 PM_
+- **c130** [observation] Assunta Bellucci was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Bar. — _establishes: Konrad Hochstetter not in the Bar, 9:30 PM_
 
 On Francis Quill's account:
 
-- **c120** [observation] Assunta Bellucci was in the Lobby at 6:30 PM and says Francis Quill was not at the Front Desk. — _establishes: Francis Quill not at the Front Desk, 6:30 PM_
+- **c133** [observation] Assunta Bellucci was in the Lobby at 6:30 PM and says Francis Quill was not at the Front Desk. — _establishes: Francis Quill not at the Front Desk, 6:30 PM_
 
 On Delia Mulcahy's account:
 
-- **c128** [observation] Assunta Bellucci was in the Bar at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
+- **c140** [observation] Assunta Bellucci was in the Bar at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
+
+On Agnes Sweeney's account:
+
+- **c146** [observation] Assunta Bellucci was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
 
 ### From Delia Mulcahy (a stagehand at the Selwyn)
 
 On Ernst Obermann:
 
-- **c060** [observation] Delia Mulcahy says Ernst Obermann was in the Lobby at 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:30 PM; the victim alive at 6:30 PM_
-- **c061** [observation] Delia Mulcahy says Ernst Obermann was in the Lobby from 8:30 PM to 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 8:30 PM–9:00 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM_
-- **c062** [observation] Delia Mulcahy says Ernst Obermann was in the Roof Garden at 8:00 PM. — _establishes: Ernst Obermann in the Roof Garden, 8:00 PM; the victim alive at 8:00 PM_
+- **c062** [observation] Delia Mulcahy says Ernst Obermann was in the Lobby at 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
 
 On Konrad Hochstetter:
 
-- **c063** [observation] Delia Mulcahy says Konrad Hochstetter was on the Service Stairs at 6:00 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 6:00 PM_
-- **c064** [observation] Delia Mulcahy says Konrad Hochstetter was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Konrad Hochstetter at the Front Desk, 6:30 PM–7:00 PM; Konrad Hochstetter had access to the method_
+- **c063** [observation] Delia Mulcahy says Konrad Hochstetter was on the Service Stairs at 6:30 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 6:30 PM_
+- **c064** [observation] Delia Mulcahy says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Konrad Hochstetter in the Lobby, 10:30 PM–11:30 PM_
 
 On Carmela Ruggiero:
 
-- **c065** [observation] Delia Mulcahy says Carmela Ruggiero was in the Lobby from 6:30 PM to 7:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 6:30 PM–7:00 PM_
-- **c066** [observation] Delia Mulcahy says Carmela Ruggiero was in the Lobby at 10:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 10:00 PM_
+- **c065** [observation] Delia Mulcahy says Carmela Ruggiero was in the Lobby at 9:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:00 PM_
+- **c066** [observation] Delia Mulcahy says Carmela Ruggiero was in the Bar at 11:30 PM. — _establishes: Carmela Ruggiero in the Bar, 11:30 PM_
 
 On Francis Quill:
 
-- **c067** [observation] Delia Mulcahy says Francis Quill was on the Service Stairs at 7:30 PM. — _establishes: Francis Quill on the Service Stairs, 7:30 PM_
-- **c068** [observation] Delia Mulcahy says Francis Quill was in the Lobby at 9:00 PM. — _establishes: Francis Quill in the Lobby, 9:00 PM_
-- **c069** [observation] Delia Mulcahy says Francis Quill was in the Lobby at 10:00 PM. — _establishes: Francis Quill in the Lobby, 10:00 PM_
-- **c070** [observation] Delia Mulcahy says Francis Quill was on the Street from 10:30 PM to 11:30 PM. — _establishes: Francis Quill on the Street, 10:30 PM–11:30 PM_
+- **c067** [observation] Delia Mulcahy says Francis Quill was on the Service Stairs at 6:00 PM. — _establishes: Francis Quill on the Service Stairs, 6:00 PM_
+- **c068** [observation] Delia Mulcahy says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Francis Quill in the Lobby, 11:00 PM–11:30 PM_
 
 On Assunta Bellucci:
 
-- **c071** [observation] Delia Mulcahy says Assunta Bellucci was in the Lobby at 6:30 PM. — _establishes: Assunta Bellucci in the Lobby, 6:30 PM_
-- **c072** [observation] Delia Mulcahy says Assunta Bellucci was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:00 PM–10:30 PM_
-- **c073** [observation] Delia Mulcahy says Assunta Bellucci was on the Service Stairs at 7:30 PM. — _establishes: Assunta Bellucci on the Service Stairs, 7:30 PM_
+- **c069** [observation] Delia Mulcahy says Assunta Bellucci was in the Lobby from 7:30 PM to 9:00 PM. — _establishes: Assunta Bellucci in the Lobby, 7:30 PM–9:00 PM_
+- **c070** [observation] Delia Mulcahy says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:30 PM–11:30 PM_
 
-On Francis Quill's account:
+On Agnes Sweeney:
 
-- **c121** [observation] Delia Mulcahy was at the Front Desk at 6:30 PM and says Francis Quill was not at the Front Desk. — _establishes: Francis Quill not at the Front Desk, 6:30 PM_
+- **c071** [observation] Delia Mulcahy says Agnes Sweeney was at the Front Desk at 7:00 PM. — _establishes: Agnes Sweeney at the Front Desk, 7:00 PM; Agnes Sweeney had access to the method_
+- **c072** [observation] Delia Mulcahy says Agnes Sweeney was at the Front Desk at 11:30 PM. — _establishes: Agnes Sweeney at the Front Desk, 11:30 PM_
+- **c073** [observation] Delia Mulcahy says Agnes Sweeney was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Agnes Sweeney in the Lobby, 7:30 PM–8:30 PM_
 
 On Assunta Bellucci's account:
 
-- **c125** [observation] Delia Mulcahy was at the Front Desk at 7:00 PM and says Assunta Bellucci was not at the Front Desk. — _establishes: Assunta Bellucci not at the Front Desk, 7:00 PM_
+- **c136** [observation] Delia Mulcahy was in the Lobby at 7:00 PM and says Assunta Bellucci was not on the Street. — _establishes: Assunta Bellucci not on the Street, 7:00 PM_
 
-On Agnes Sweeney's account:
+On Agnes Sweeney and Ernst Obermann:
 
-- **c133** [observation] Delia Mulcahy was in the Lobby at 9:00 PM and says Agnes Sweeney was not on the Street. — _establishes: Agnes Sweeney not on the Street, 9:00 PM_
+- **c161** [overheard] Delia Mulcahy says Ernst Obermann said to Agnes Sweeney that a man who testifies sleeps better. — _establishes: Agnes Sweeney had a motive (silence-a-witness)_
 
 ### From Agnes Sweeney (a photographer for the rotogravure section)
 
 On Ernst Obermann:
 
-- **c074** [observation] Agnes Sweeney says Ernst Obermann was in the Lobby at 7:30 PM. — _establishes: Ernst Obermann in the Lobby, 7:30 PM; the victim alive at 7:30 PM_
+- **c074** [observation] Agnes Sweeney says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
 
 On Konrad Hochstetter:
 
-- **c075** [observation] Agnes Sweeney says Konrad Hochstetter was at the Front Desk from 7:30 PM to 8:00 PM. — _establishes: Konrad Hochstetter at the Front Desk, 7:30 PM–8:00 PM; Konrad Hochstetter had access to the method_
-- **c076** [observation] Agnes Sweeney says Konrad Hochstetter was on the Service Stairs at 8:30 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 8:30 PM_
+- **c075** [observation] Agnes Sweeney says Konrad Hochstetter was on the Service Stairs at 10:00 PM. — _establishes: Konrad Hochstetter on the Service Stairs, 10:00 PM_
+- **c076** [observation] Agnes Sweeney says Konrad Hochstetter was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Konrad Hochstetter in the Lobby, 11:00 PM–11:30 PM_
 
 On Carmela Ruggiero:
 
-- **c077** [observation] Agnes Sweeney says Carmela Ruggiero was in the Lobby at 7:30 PM. — _establishes: Carmela Ruggiero in the Lobby, 7:30 PM_
-- **c078** [observation] Agnes Sweeney says Carmela Ruggiero was on the Service Stairs at 8:30 PM. — _establishes: Carmela Ruggiero on the Service Stairs, 8:30 PM_
+- **c077** [observation] Agnes Sweeney says Carmela Ruggiero was at the Front Desk from 8:00 PM to 8:30 PM. — _establishes: Carmela Ruggiero at the Front Desk, 8:00 PM–8:30 PM; Carmela Ruggiero had access to the method_
+
+On Francis Quill:
+
+- **c078** [observation] Agnes Sweeney says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Francis Quill in the Lobby, 11:00 PM–11:30 PM_
 
 On Assunta Bellucci:
 
-- **c079** [observation] Agnes Sweeney says Assunta Bellucci was on the Service Stairs at 8:30 PM. — _establishes: Assunta Bellucci on the Service Stairs, 8:30 PM_
+- **c079** [observation] Agnes Sweeney says Assunta Bellucci was in the Bar at 6:00 PM. — _establishes: Assunta Bellucci in the Bar, 6:00 PM_
+- **c080** [observation] Agnes Sweeney says Assunta Bellucci was in the Lobby at 6:30 PM. — _establishes: Assunta Bellucci in the Lobby, 6:30 PM_
+- **c081** [observation] Agnes Sweeney says Assunta Bellucci was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Assunta Bellucci in the Lobby, 7:30 PM–8:30 PM_
+- **c082** [observation] Agnes Sweeney says Assunta Bellucci was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Assunta Bellucci in the Lobby, 11:00 PM–11:30 PM_
+
+On Delia Mulcahy:
+
+- **c083** [observation] Agnes Sweeney says Delia Mulcahy was in the Lobby from 7:00 PM to 7:30 PM. — _establishes: Delia Mulcahy in the Lobby, 7:00 PM–7:30 PM_
+- **c084** [observation] Agnes Sweeney says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
+- **c085** [observation] Agnes Sweeney says Delia Mulcahy was on the Street from 8:00 PM to 8:30 PM. — _establishes: Delia Mulcahy on the Street, 8:00 PM–8:30 PM_
+
+On Francis Quill's account:
+
+- **c134** [observation] Agnes Sweeney was at the Front Desk at 6:30 PM and says Francis Quill was not at the Front Desk. — _establishes: Francis Quill not at the Front Desk, 6:30 PM_
 
 ### From Meyer Hurwitz (the doorman)
 
 On Ernst Obermann:
 
-- **c080** [observation] Meyer Hurwitz says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-- **c081** [observation] Meyer Hurwitz says Ernst Obermann was in the Lobby at 7:30 PM. — _establishes: Ernst Obermann in the Lobby, 7:30 PM; the victim alive at 7:30 PM_
-- **c082** [observation] Meyer Hurwitz says Ernst Obermann was in the Lobby from 8:30 PM to 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 8:30 PM–9:00 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM_
+- **c086** [observation] Meyer Hurwitz says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
+- **c087** [observation] Meyer Hurwitz says Ernst Obermann was in the Lobby at 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
 
 On Konrad Hochstetter:
 
-- **c083** [observation] Meyer Hurwitz says Konrad Hochstetter was at the Front Desk at 6:30 PM. — _establishes: Konrad Hochstetter at the Front Desk, 6:30 PM; Konrad Hochstetter had access to the method_
-- **c084** [observation] Meyer Hurwitz says Konrad Hochstetter was at the Front Desk from 7:30 PM to 8:00 PM. — _establishes: Konrad Hochstetter at the Front Desk, 7:30 PM–8:00 PM; Konrad Hochstetter had access to the method_
+- **c088** [observation] Meyer Hurwitz says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Konrad Hochstetter in the Lobby, 10:30 PM–11:30 PM_
 
 On Carmela Ruggiero:
 
-- **c085** [observation] Meyer Hurwitz says Carmela Ruggiero was in the Lobby from 6:00 PM to 7:30 PM. — _establishes: Carmela Ruggiero in the Lobby, 6:00 PM–7:30 PM_
-- **c086** [observation] Meyer Hurwitz says Carmela Ruggiero was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:30 PM–10:00 PM_
-- **c087** [observation] Meyer Hurwitz says Carmela Ruggiero was at the Front Desk at 11:30 PM. — _establishes: Carmela Ruggiero at the Front Desk, 11:30 PM_
+- **c089** [observation] Meyer Hurwitz says Carmela Ruggiero was at the Front Desk from 8:00 PM to 8:30 PM. — _establishes: Carmela Ruggiero at the Front Desk, 8:00 PM–8:30 PM; Carmela Ruggiero had access to the method_
+- **c090** [observation] Meyer Hurwitz says Carmela Ruggiero was in the Lobby at 9:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:00 PM_
+- **c091** [observation] Meyer Hurwitz says Carmela Ruggiero was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Carmela Ruggiero in the Bar, 9:30 PM–10:00 PM_
+- **c092** [observation] Meyer Hurwitz says Carmela Ruggiero was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Carmela Ruggiero in the Bar, 11:00 PM–11:30 PM_
 
 On Francis Quill:
 
-- **c088** [observation] Meyer Hurwitz says Francis Quill was in the Lobby at 6:00 PM. — _establishes: Francis Quill in the Lobby, 6:00 PM_
-- **c089** [observation] Meyer Hurwitz says Francis Quill was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Francis Quill in the Lobby, 9:00 PM–10:00 PM_
-- **c090** [observation] Meyer Hurwitz says Francis Quill was on the Street from 11:00 PM to 11:30 PM. — _establishes: Francis Quill on the Street, 11:00 PM–11:30 PM_
+- **c093** [observation] Meyer Hurwitz says Francis Quill was at the Front Desk at 9:00 PM. — _establishes: Francis Quill at the Front Desk, 9:00 PM; Francis Quill had access to the method_
+- **c094** [observation] Meyer Hurwitz says Francis Quill was in the Lobby at 9:30 PM. — _establishes: Francis Quill in the Lobby, 9:30 PM_
+- **c095** [observation] Meyer Hurwitz says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Francis Quill in the Lobby, 11:00 PM–11:30 PM_
+- **c096** [observation] Meyer Hurwitz says Francis Quill was in the Bar at 10:00 PM. — _establishes: Francis Quill in the Bar, 10:00 PM_
 
 On Assunta Bellucci:
 
-- **c091** [observation] Meyer Hurwitz says Assunta Bellucci was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Assunta Bellucci in the Lobby, 6:00 PM–6:30 PM_
-- **c092** [observation] Meyer Hurwitz says Assunta Bellucci was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:00 PM–10:30 PM_
-- **c093** [observation] Meyer Hurwitz says Assunta Bellucci was in the Bar at 9:30 PM. — _establishes: Assunta Bellucci in the Bar, 9:30 PM_
+- **c097** [observation] Meyer Hurwitz says Assunta Bellucci was in the Bar at 6:00 PM. — _establishes: Assunta Bellucci in the Bar, 6:00 PM_
+- **c098** [observation] Meyer Hurwitz says Assunta Bellucci was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Assunta Bellucci in the Bar, 9:30 PM–10:00 PM_
+- **c099** [observation] Meyer Hurwitz says Assunta Bellucci was in the Lobby at 6:30 PM. — _establishes: Assunta Bellucci in the Lobby, 6:30 PM_
+- **c100** [observation] Meyer Hurwitz says Assunta Bellucci was in the Lobby from 7:30 PM to 9:00 PM. — _establishes: Assunta Bellucci in the Lobby, 7:30 PM–9:00 PM_
+- **c101** [observation] Meyer Hurwitz says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:30 PM–11:30 PM_
 
 On Delia Mulcahy:
 
-- **c094** [observation] Meyer Hurwitz says Delia Mulcahy was at the Front Desk at 6:30 PM. — _establishes: Delia Mulcahy at the Front Desk, 6:30 PM; Delia Mulcahy had access to the method_
-- **c095** [observation] Meyer Hurwitz says Delia Mulcahy was in the Lobby from 8:30 PM to 9:00 PM. — _establishes: Delia Mulcahy in the Lobby, 8:30 PM–9:00 PM_
-- **c096** [observation] Meyer Hurwitz says Delia Mulcahy was on the Street from 9:30 PM to 10:00 PM. — _establishes: Delia Mulcahy on the Street, 9:30 PM–10:00 PM_
-- **c097** [observation] Meyer Hurwitz says Delia Mulcahy was on the Street from 11:00 PM to 11:30 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM–11:30 PM_
+- **c102** [observation] Meyer Hurwitz says Delia Mulcahy was in the Lobby from 7:00 PM to 7:30 PM. — _establishes: Delia Mulcahy in the Lobby, 7:00 PM–7:30 PM_
+- **c103** [observation] Meyer Hurwitz says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
+- **c104** [observation] Meyer Hurwitz says Delia Mulcahy was on the Street from 8:00 PM to 10:00 PM. — _establishes: Delia Mulcahy on the Street, 8:00 PM–10:00 PM_
+- **c105** [observation] Meyer Hurwitz says Delia Mulcahy was on the Street at 11:00 PM. — _establishes: Delia Mulcahy on the Street, 11:00 PM_
 
 On Agnes Sweeney:
 
-- **c098** [observation] Meyer Hurwitz says Agnes Sweeney was in the Lobby at 7:30 PM. — _establishes: Agnes Sweeney in the Lobby, 7:30 PM_
-- **c099** [observation] Meyer Hurwitz says Agnes Sweeney was at the Front Desk at 8:00 PM. — _establishes: Agnes Sweeney at the Front Desk, 8:00 PM; Agnes Sweeney had access to the method_
+- **c106** [observation] Meyer Hurwitz says Agnes Sweeney was in the Lobby at 6:00 PM. — _establishes: Agnes Sweeney in the Lobby, 6:00 PM_
+- **c107** [observation] Meyer Hurwitz says Agnes Sweeney was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Agnes Sweeney in the Lobby, 7:30 PM–8:30 PM_
+- **c108** [observation] Meyer Hurwitz says Agnes Sweeney was at the Front Desk at 6:30 PM. — _establishes: Agnes Sweeney at the Front Desk, 6:30 PM; Agnes Sweeney had access to the method_
+- **c109** [observation] Meyer Hurwitz says Agnes Sweeney was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Agnes Sweeney at the Front Desk, 11:00 PM–11:30 PM_
 
 On Konrad Hochstetter's account:
 
-- **c116** [observation] Meyer Hurwitz was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Lobby. — _establishes: Konrad Hochstetter not in the Lobby, 9:30 PM_
+- **c131** [observation] Meyer Hurwitz was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Bar. — _establishes: Konrad Hochstetter not in the Bar, 9:30 PM_
 
 On Francis Quill's account:
 
-- **c122** [observation] Meyer Hurwitz was in the Lobby at 6:30 PM and says Francis Quill was not at the Front Desk. — _establishes: Francis Quill not at the Front Desk, 6:30 PM_
+- **c135** [observation] Meyer Hurwitz was in the Lobby at 6:30 PM and says Francis Quill was not at the Front Desk. — _establishes: Francis Quill not at the Front Desk, 6:30 PM_
+
+On Assunta Bellucci's account:
+
+- **c137** [observation] Meyer Hurwitz was on the Street at 7:00 PM and says Assunta Bellucci was not on the Street. — _establishes: Assunta Bellucci not on the Street, 7:00 PM_
 
 On Delia Mulcahy's account:
 
-- **c129** [observation] Meyer Hurwitz was in the Lobby at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
+- **c141** [observation] Meyer Hurwitz was in the Lobby at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
 
 On Agnes Sweeney's account:
 
-- **c134** [observation] Meyer Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not on the Street. — _establishes: Agnes Sweeney not on the Street, 9:00 PM–9:30 PM_
-
-On Konrad Hochstetter and Ernst Obermann:
-
-- **c143** [overheard] Meyer Hurwitz says Ernst Obermann told Konrad Hochstetter the lease would go to somebody else at the quarter day. — _establishes: Konrad Hochstetter had a motive (property)_
+- **c147** [observation] Meyer Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
 
 ### From Bernard Sirkin (the bartender)
 
 On Ernst Obermann:
 
-- **c100** [observation] Bernard Sirkin says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-- **c101** [observation] Bernard Sirkin says Ernst Obermann was in the Lobby from 8:30 PM to 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 8:30 PM–9:00 PM; the victim alive at 8:30 PM; the victim alive at 9:00 PM_
+- **c110** [observation] Bernard Sirkin says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Ernst Obermann in the Lobby, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
+- **c111** [observation] Bernard Sirkin says Ernst Obermann was in the Lobby at 9:00 PM. — _establishes: Ernst Obermann in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
 
 On Konrad Hochstetter:
 
-- **c102** [observation] Bernard Sirkin says Konrad Hochstetter was in the Kitchen from 9:30 PM to 10:30 PM. — _establishes: Konrad Hochstetter in the Kitchen, 9:30 PM–10:30 PM_
+- **c112** [observation] Bernard Sirkin says Konrad Hochstetter was in the Kitchen from 7:30 PM to 9:30 PM. — _establishes: Konrad Hochstetter in the Kitchen, 7:30 PM–9:30 PM_
+- **c113** [observation] Bernard Sirkin says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Konrad Hochstetter in the Lobby, 10:30 PM–11:30 PM_
 
 On Carmela Ruggiero:
 
-- **c103** [observation] Bernard Sirkin says Carmela Ruggiero was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 6:00 PM–7:00 PM_
-- **c104** [observation] Bernard Sirkin says Carmela Ruggiero was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:30 PM–10:00 PM_
+- **c114** [observation] Bernard Sirkin says Carmela Ruggiero was in the Lobby at 9:00 PM. — _establishes: Carmela Ruggiero in the Lobby, 9:00 PM_
+- **c115** [observation] Bernard Sirkin says Carmela Ruggiero was in the Bar from 9:30 PM to 11:30 PM. — _establishes: Carmela Ruggiero in the Bar, 9:30 PM–11:30 PM_
 
 On Francis Quill:
 
-- **c105** [observation] Bernard Sirkin says Francis Quill was in the Lobby at 6:00 PM. — _establishes: Francis Quill in the Lobby, 6:00 PM_
-- **c106** [observation] Bernard Sirkin says Francis Quill was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Francis Quill in the Lobby, 9:00 PM–10:00 PM_
+- **c116** [observation] Bernard Sirkin says Francis Quill was in the Lobby at 9:30 PM. — _establishes: Francis Quill in the Lobby, 9:30 PM_
+- **c117** [observation] Bernard Sirkin says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Francis Quill in the Lobby, 11:00 PM–11:30 PM_
+- **c118** [observation] Bernard Sirkin says Francis Quill was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Francis Quill in the Bar, 10:00 PM–10:30 PM_
 
 On Assunta Bellucci:
 
-- **c107** [observation] Bernard Sirkin says Assunta Bellucci was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Assunta Bellucci in the Lobby, 6:00 PM–6:30 PM_
-- **c108** [observation] Bernard Sirkin says Assunta Bellucci was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:00 PM–10:30 PM_
-- **c109** [observation] Bernard Sirkin says Assunta Bellucci was in the Kitchen at 9:00 PM. — _establishes: Assunta Bellucci in the Kitchen, 9:00 PM_
-- **c110** [observation] Bernard Sirkin says Assunta Bellucci was in the Kitchen at 11:30 PM. — _establishes: Assunta Bellucci in the Kitchen, 11:30 PM_
-- **c111** [observation] Bernard Sirkin says Assunta Bellucci was in the Bar at 9:30 PM. — _establishes: Assunta Bellucci in the Bar, 9:30 PM_
+- **c119** [observation] Bernard Sirkin says Assunta Bellucci was in the Bar at 6:00 PM. — _establishes: Assunta Bellucci in the Bar, 6:00 PM_
+- **c120** [observation] Bernard Sirkin says Assunta Bellucci was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Assunta Bellucci in the Bar, 9:30 PM–10:00 PM_
+- **c121** [observation] Bernard Sirkin says Assunta Bellucci was in the Lobby at 6:30 PM. — _establishes: Assunta Bellucci in the Lobby, 6:30 PM_
+- **c122** [observation] Bernard Sirkin says Assunta Bellucci was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Assunta Bellucci in the Lobby, 8:00 PM–9:00 PM_
+- **c123** [observation] Bernard Sirkin says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Assunta Bellucci in the Lobby, 10:30 PM–11:30 PM_
 
 On Delia Mulcahy:
 
-- **c112** [observation] Bernard Sirkin says Delia Mulcahy was in the Lobby from 8:30 PM to 9:00 PM. — _establishes: Delia Mulcahy in the Lobby, 8:30 PM–9:00 PM_
+- **c124** [observation] Bernard Sirkin says Delia Mulcahy was in the Lobby at 7:00 PM. — _establishes: Delia Mulcahy in the Lobby, 7:00 PM_
+- **c125** [observation] Bernard Sirkin says Delia Mulcahy was in the Lobby at 11:30 PM. — _establishes: Delia Mulcahy in the Lobby, 11:30 PM_
+
+On Agnes Sweeney:
+
+- **c126** [observation] Bernard Sirkin says Agnes Sweeney was in the Lobby at 6:00 PM. — _establishes: Agnes Sweeney in the Lobby, 6:00 PM_
+- **c127** [observation] Bernard Sirkin says Agnes Sweeney was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Agnes Sweeney in the Lobby, 8:00 PM–8:30 PM_
 
 On Konrad Hochstetter's account:
 
-- **c117** [observation] Bernard Sirkin was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Lobby. — _establishes: Konrad Hochstetter not in the Lobby, 9:30 PM_
+- **c132** [observation] Bernard Sirkin was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Bar. — _establishes: Konrad Hochstetter not in the Bar, 9:30 PM_
 
 On Delia Mulcahy's account:
 
-- **c130** [observation] Bernard Sirkin was in the Bar at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
+- **c142** [observation] Bernard Sirkin was in the Bar at 9:30 PM and says Delia Mulcahy was not in the Lobby. — _establishes: Delia Mulcahy not in the Lobby, 9:30 PM_
+
+On Agnes Sweeney's account:
+
+- **c148** [observation] Bernard Sirkin was in the Bar from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar. — _establishes: Agnes Sweeney not in the Bar, 9:00 PM–9:30 PM_
 
 On the radio:
 
-- **c139** [radio] Bernard Sirkin says the bar radio carried the returns from the ward elections at 8:00 PM, and that the Ninth went the other way and the announcer said so twice. Anyone in the bar could tell you that. — _establishes: context only_
+- **c153** [radio] Bernard Sirkin says the bar radio carried the returns from the ward elections at 8:00 PM, and that the Ninth went the other way and the announcer said so twice. Anyone in the bar could tell you that. — _establishes: context only_
 
-On Agnes Sweeney and Ernst Obermann:
+On Konrad Hochstetter and Ernst Obermann:
 
-- **c147** [overheard] Bernard Sirkin says Ernst Obermann said to Agnes Sweeney that a man who testifies sleeps better. — _establishes: Agnes Sweeney had a motive (silence-a-witness)_
+- **c157** [overheard] Bernard Sirkin says Ernst Obermann told Konrad Hochstetter the lease would go to somebody else at the quarter day. — _establishes: Konrad Hochstetter had a motive (property)_
+
+On Francis Quill and Ernst Obermann:
+
+- **c159** [overheard] Bernard Sirkin says Ernst Obermann told Francis Quill that Friday was the end of it, one way or the other. — _establishes: Francis Quill had a motive (debt)_
 
 ### From the Front Desk
 
-- **c137** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-- **c140** [document] Carmela Ruggiero's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used. — _establishes: context only_
-- **c141** [document] Agnes Sweeney's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
-- **c142** [document] Found in the Front Desk: A lease assignment made out in Konrad Hochstetter's name, waiting only on Ernst Obermann's signature. — _establishes: Konrad Hochstetter had a motive (property)_
-- **c144** [document] Found in the Front Desk: A promissory note for $4,000 signed by Francis Quill, endorsed to Ernst Obermann, three months past due. — _establishes: Francis Quill had a motive (debt)_
+- **c150** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
+- **c154** [document] Carmela Ruggiero's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
+- **c155** [document] Agnes Sweeney's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
+- **c160** [document] Found in the Front Desk: A subpoena naming Ernst Obermann as a witness before the grand jury, with Agnes Sweeney's name written in the margin. — _establishes: Agnes Sweeney had a motive (silence-a-witness)_
 
 ### From the Victim's Suite
 
-- **c146** [document] Found in the Victim's Suite: A subpoena naming Ernst Obermann as a witness before the grand jury, with Agnes Sweeney's name written in the margin. — _establishes: Agnes Sweeney had a motive (silence-a-witness)_
+- **c156** [document] Found in the Victim's Suite: A lease assignment made out in Konrad Hochstetter's name, waiting only on Ernst Obermann's signature. — _establishes: Konrad Hochstetter had a motive (property)_
+- **c158** [document] Found in the Victim's Suite: A promissory note for $4,000 signed by Francis Quill, endorsed to Ernst Obermann, three months past due. — _establishes: Francis Quill had a motive (debt)_
 
 ### From the Roof Garden
 
-- **c136** [morgue] Ernst Obermann was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:00 PM and 9:30 PM_
+- **c149** [morgue] Ernst Obermann was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:00 PM and 9:30 PM_
 
 ### From the Street
 
-- **c138** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c151** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
 - ~~Assunta Bellucci saw Ernst Obermann in the Victim's Suite, 7:00 PM~~ — Assunta Bellucci is lying about that time and will not say.
+- ~~Konrad Hochstetter saw Carmela Ruggiero in the Bar, 9:30 PM~~ — Konrad Hochstetter is lying about that time and will not say.
 - ~~Konrad Hochstetter saw Assunta Bellucci in the Bar, 9:30 PM~~ — Konrad Hochstetter is lying about that time and will not say.
 - ~~Konrad Hochstetter saw Bernard Sirkin in the Bar, 9:30 PM~~ — Konrad Hochstetter is lying about that time and will not say.
-- ~~Delia Mulcahy saw Carmela Ruggiero in the Lobby, 9:30 PM~~ — Delia Mulcahy is lying about that time and will not say.
 - ~~Delia Mulcahy saw Francis Quill in the Lobby, 9:30 PM~~ — Delia Mulcahy is lying about that time and will not say.
 - ~~Delia Mulcahy saw Meyer Hurwitz in the Lobby, 9:30 PM~~ — Delia Mulcahy is lying about that time and will not say.
 - ~~Agnes Sweeney saw Ernst Obermann in the Roof Garden, 9:30 PM~~ — Agnes Sweeney is lying about that time and will not say.
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c136, c032, c061, c082, c101)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c149, c013, c029, c044, c062, c087, c111)_
 
 **Clearing the innocent.**
 
-- Konrad Hochstetter was not in the Roof Garden at 9:30 PM, on two independent sources. _(c047, c102)_
-- Carmela Ruggiero was not in the Roof Garden at 9:30 PM, on two independent sources. _(c034, c049, c086, c104)_
-- Francis Quill was not in the Roof Garden at 9:30 PM, on two independent sources. _(c020, c053, c089, c106)_
-- Assunta Bellucci was not in the Roof Garden at 9:30 PM, on two independent sources. _(c026, c039, c093, c111)_
-- Delia Mulcahy was not in the Roof Garden at 9:30 PM, on two independent sources. _(c028, c042, c096)_
+- Konrad Hochstetter was not in the Roof Garden at 9:30 PM, on two independent sources. _(c015, c045, c112)_
+- Carmela Ruggiero was not in the Roof Garden at 9:30 PM, on two independent sources. _(c034, c049, c091, c115)_
+- Francis Quill was not in the Roof Garden at 9:30 PM, on two independent sources. _(c019, c051, c094, c116)_
+- Assunta Bellucci was not in the Roof Garden at 9:30 PM, on two independent sources. _(c024, c037, c098, c120)_
+- Delia Mulcahy was not in the Roof Garden at 9:30 PM, on two independent sources. _(c039, c104)_
 
-**Naming the killer.** Agnes Sweeney claims the Street at 9:30 PM. Two independent sources put that out of the question, and one ties Agnes Sweeney to a push from the roof garden. _(c131, c132, c134, c012, c099)_
+**Naming the killer.** Agnes Sweeney claims the Bar at 9:30 PM. Two independent sources put that out of the question, and one ties Agnes Sweeney to a push from the roof garden. _(c144, c145, c146, c147, c148, c060, c071, c108)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c136, c137)_
+**Method.** A push from the roof garden, on two physical sources. _(c149, c150)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c146, c147)_
+**Motive.** silence-a-witness, on two independent sources. _(c160, c161)_
 
 ## 8. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Konrad Hochstetter claims the Lobby at 9:30 PM and was really in the Kitchen. Reason: Konrad Hochstetter hands a parcel of stolen goods to a man at the Kitchen at 9:30 PM.
+- Konrad Hochstetter claims the Bar at 9:30 PM and was really in the Kitchen. Reason: Konrad Hochstetter hands a parcel of stolen goods to a man at the Kitchen at 9:30 PM.
 - Delia Mulcahy claims the Lobby at 9:30 PM and was really in the Street. Reason: Delia Mulcahy slips out to the Street from 9:30 PM to settle with a bookmaker.
 
 **Innocents with a motive:**

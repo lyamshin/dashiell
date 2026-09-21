@@ -386,11 +386,11 @@
     {
       "personId": "p-victim",
       "truth": [
-        "lobby",
+        "service-stairs",
         "suite",
         "lobby",
-        "roof",
-        "roof",
+        "front-desk",
+        "front-desk",
         "lobby",
         "roof",
         null,
@@ -400,11 +400,11 @@
         null
       ],
       "claimed": [
-        "lobby",
+        "service-stairs",
         "suite",
         "lobby",
-        "roof",
-        "roof",
+        "front-desk",
+        "front-desk",
         "lobby",
         "roof",
         null,
@@ -435,33 +435,33 @@
         "street",
         "street",
         "street",
-        "street",
-        "street",
         "lobby",
-        "street",
+        "lobby",
         "lobby",
         "lobby",
         "lobby",
         "service-stairs",
-        "service-stairs"
+        "lobby",
+        "lobby",
+        "lobby"
       ],
       "claimed": [
         "lobby",
         "lobby",
         "street",
-        "street",
-        "street",
         "lobby",
-        "street",
+        "lobby",
         "lobby",
         "lobby",
         "lobby",
         "service-stairs",
-        "service-stairs"
+        "lobby",
+        "lobby",
+        "lobby"
       ],
       "claimedCompanion": [
-        "p-s6",
-        "p-s6",
+        "p-s3",
+        "p-s3",
         null,
         null,
         null,
@@ -481,32 +481,32 @@
     {
       "personId": "p-s2",
       "truth": [
+        "front-desk",
+        "lobby",
+        "lobby",
+        "street",
+        "lobby",
+        "roof",
+        "roof",
+        "lobby",
         "lobby",
         "front-desk",
         "front-desk",
-        "front-desk",
-        "lobby",
-        "roof",
-        "roof",
-        "roof",
-        "roof",
-        "roof",
-        "service-stairs",
-        "service-stairs"
+        "front-desk"
       ],
       "claimed": [
+        "front-desk",
+        "lobby",
+        "lobby",
+        "street",
+        "lobby",
+        "street",
+        "street",
+        "lobby",
         "lobby",
         "front-desk",
         "front-desk",
-        "front-desk",
-        "lobby",
-        "front-desk",
-        "front-desk",
-        "roof",
-        "roof",
-        "roof",
-        "service-stairs",
-        "service-stairs"
+        "front-desk"
       ],
       "claimedCompanion": [
         null,
@@ -514,8 +514,8 @@
         null,
         null,
         null,
-        "p-s4",
-        "p-s4",
+        "p-s1",
+        "p-s1",
         null,
         null,
         null,
@@ -530,32 +530,32 @@
     {
       "personId": "p-s3",
       "truth": [
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
         "kitchen",
         "kitchen",
-        "service-stairs",
+        "kitchen",
+        "kitchen",
+        "bar",
+        "kitchen",
+        "kitchen",
         "kitchen",
         "service-stairs",
-        "lobby"
+        "service-stairs",
+        "service-stairs",
+        "service-stairs"
       ],
       "claimed": [
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "lobby",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "bar",
+        "kitchen",
+        "bar",
         "kitchen",
         "service-stairs",
-        "kitchen",
         "service-stairs",
-        "lobby"
+        "service-stairs",
+        "service-stairs"
       ],
       "claimedCompanion": [
         null,
@@ -564,7 +564,7 @@
         null,
         null,
         null,
-        null,
+        "p-s1",
         null,
         null,
         null,
@@ -580,28 +580,28 @@
       "truth": [
         "front-desk",
         "front-desk",
+        "front-desk",
+        "lobby",
+        "lobby",
         "lobby",
         "bar",
         "bar",
-        "bar",
-        "bar",
-        "bar",
-        "bar",
         "lobby",
+        "service-stairs",
         "service-stairs",
         "service-stairs"
       ],
       "claimed": [
         "front-desk",
         "front-desk",
+        "front-desk",
+        "lobby",
+        "lobby",
         "lobby",
         "bar",
         "bar",
-        "bar",
-        "bar",
-        "bar",
-        "bar",
         "lobby",
+        "service-stairs",
         "service-stairs",
         "service-stairs"
       ],
@@ -627,33 +627,33 @@
         "service-stairs",
         "suite",
         "service-stairs",
-        "kitchen",
-        "kitchen",
         "service-stairs",
         "lobby",
+        "lobby",
         "bar",
-        "bar",
-        "kitchen",
-        "kitchen",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
         "service-stairs"
       ],
       "claimed": [
         "service-stairs",
         "lobby",
         "service-stairs",
-        "kitchen",
-        "kitchen",
         "service-stairs",
         "lobby",
+        "lobby",
         "bar",
-        "bar",
-        "kitchen",
-        "kitchen",
+        "lobby",
+        "lobby",
+        "lobby",
+        "service-stairs",
         "service-stairs"
       ],
       "claimedCompanion": [
         null,
-        null,
+        "p-s1",
         null,
         null,
         null,
@@ -672,29 +672,29 @@
     {
       "personId": "p-s6",
       "truth": [
+        "service-stairs",
+        "kitchen",
+        "kitchen",
         "bar",
         "bar",
         "bar",
-        "lobby",
-        "front-desk",
-        "lobby",
         "bar",
         "bar",
-        "lobby",
+        "bar",
         "lobby",
         "lobby",
         "lobby"
       ],
       "claimed": [
+        "service-stairs",
+        "kitchen",
+        "kitchen",
         "bar",
         "bar",
         "bar",
         "lobby",
-        "front-desk",
         "lobby",
-        "street",
-        "street",
-        "lobby",
+        "bar",
         "lobby",
         "lobby",
         "lobby"
@@ -706,8 +706,8 @@
         null,
         null,
         null,
-        null,
-        null,
+        "p-s3",
+        "p-s3",
         null,
         null,
         null,
@@ -814,127 +814,50 @@
   "observations": [
     {
       "observerId": "p-victim",
-      "subjectId": "p-s1",
-      "location": "street",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s4",
-      "location": "front-desk",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s6",
-      "location": "bar",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": true
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": true
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": true
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s1",
-      "location": "street",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s4",
-      "location": "front-desk",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s6",
-      "location": "bar",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
       "subjectId": "p-s5",
       "location": "service-stairs",
       "tick": 0,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
-      "subjectId": "p-victim",
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
       "location": "lobby",
+      "tick": 0,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "front-desk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
       "tick": 0,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-s2",
-      "location": "lobby",
+      "location": "front-desk",
       "tick": 0,
       "withheld": false
     },
@@ -947,7 +870,14 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
       "location": "service-stairs",
       "tick": 0,
       "withheld": false
@@ -955,35 +885,14 @@
     {
       "observerId": "p-s6",
       "subjectId": "p-victim",
-      "location": "lobby",
+      "location": "service-stairs",
       "tick": 0,
       "withheld": false
     },
     {
       "observerId": "p-s6",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-victim",
-      "location": "lobby",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
       "tick": 0,
       "withheld": false
     },
@@ -997,7 +906,7 @@
     {
       "observerId": "p-doorman",
       "subjectId": "p-s2",
-      "location": "lobby",
+      "location": "front-desk",
       "tick": 0,
       "withheld": false
     },
@@ -1010,13 +919,6 @@
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s6",
-      "location": "bar",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
       "subjectId": "p-bartender",
       "location": "bar",
       "tick": 0,
@@ -1024,22 +926,8 @@
     },
     {
       "observerId": "p-bartender",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s6",
-      "location": "bar",
+      "subjectId": "p-s3",
+      "location": "kitchen",
       "tick": 0,
       "withheld": false
     },
@@ -1059,10 +947,24 @@
     },
     {
       "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 1,
       "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 1,
+      "withheld": false
     },
     {
       "observerId": "p-s2",
@@ -1079,9 +981,30 @@
       "withheld": false
     },
     {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
       "observerId": "p-s4",
       "subjectId": "p-s2",
-      "location": "front-desk",
+      "location": "lobby",
       "tick": 1,
       "withheld": false
     },
@@ -1101,8 +1024,8 @@
     },
     {
       "observerId": "p-s6",
-      "subjectId": "p-doorman",
-      "location": "lobby",
+      "subjectId": "p-s3",
+      "location": "kitchen",
       "tick": 1,
       "withheld": false
     },
@@ -1123,7 +1046,7 @@
     {
       "observerId": "p-doorman",
       "subjectId": "p-s2",
-      "location": "front-desk",
+      "location": "lobby",
       "tick": 1,
       "withheld": false
     },
@@ -1136,13 +1059,6 @@
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s6",
-      "location": "bar",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
       "subjectId": "p-bartender",
       "location": "bar",
       "tick": 1,
@@ -1150,8 +1066,22 @@
     },
     {
       "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
       "subjectId": "p-s6",
-      "location": "bar",
+      "location": "kitchen",
       "tick": 1,
       "withheld": false
     },
@@ -1172,26 +1102,19 @@
     {
       "observerId": "p-victim",
       "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
       "location": "front-desk",
       "tick": 2,
       "withheld": false
     },
     {
       "observerId": "p-victim",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s6",
-      "location": "bar",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 2,
@@ -1206,7 +1129,7 @@
     },
     {
       "observerId": "p-s1",
-      "subjectId": "p-s4",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 2,
       "withheld": false
@@ -1227,8 +1150,15 @@
     },
     {
       "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
       "subjectId": "p-s4",
-      "location": "lobby",
+      "location": "front-desk",
       "tick": 2,
       "withheld": false
     },
@@ -1241,8 +1171,15 @@
     },
     {
       "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "service-stairs",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "kitchen",
       "tick": 2,
       "withheld": false
     },
@@ -1255,22 +1192,8 @@
     },
     {
       "observerId": "p-s4",
-      "subjectId": "p-s1",
-      "location": "street",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
       "subjectId": "p-s2",
-      "location": "front-desk",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s6",
-      "location": "bar",
+      "location": "lobby",
       "tick": 2,
       "withheld": false
     },
@@ -1279,348 +1202,691 @@
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "front-desk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "kitchen",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "street",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "location": "front-desk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
       "withheld": false
     },
     {
       "observerId": "p-s5",
       "subjectId": "p-s3",
-      "location": "service-stairs",
-      "tick": 2,
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
       "withheld": false
     },
     {
       "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
       "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-bartender",
-      "location": "kitchen",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s1",
-      "location": "street",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s2",
-      "location": "front-desk",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s6",
-      "location": "bar",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s6",
-      "location": "bar",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-doorman",
-      "location": "street",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s5",
-      "location": "kitchen",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s1",
-      "location": "street",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s2",
-      "location": "front-desk",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-doorman",
-      "location": "street",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s1",
-      "location": "street",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s5",
-      "location": "kitchen",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s1",
-      "location": "street",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s6",
-      "location": "front-desk",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s5",
-      "location": "kitchen",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s1",
-      "location": "street",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s6",
       "location": "front-desk",
       "tick": 4,
       "withheld": false
     },
     {
       "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
       "subjectId": "p-bartender",
       "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "lobby",
       "tick": 4,
       "withheld": false
     },
@@ -1633,15 +1899,29 @@
     },
     {
       "observerId": "p-bartender",
-      "subjectId": "p-s4",
+      "subjectId": "p-s3",
       "location": "bar",
       "tick": 4,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
       "subjectId": "p-s5",
-      "location": "kitchen",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "bar",
       "tick": 4,
       "withheld": false
     },
@@ -1662,14 +1942,21 @@
     {
       "observerId": "p-victim",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "lobby",
       "tick": 5,
       "withheld": false
     },
     {
       "observerId": "p-victim",
       "subjectId": "p-s6",
-      "location": "lobby",
+      "location": "bar",
       "tick": 5,
       "withheld": false
     },
@@ -1697,14 +1984,21 @@
     {
       "observerId": "p-s1",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "lobby",
       "tick": 5,
       "withheld": false
     },
     {
       "observerId": "p-s1",
       "subjectId": "p-s6",
-      "location": "lobby",
+      "location": "bar",
       "tick": 5,
       "withheld": false
     },
@@ -1724,8 +2018,15 @@
     },
     {
       "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "service-stairs",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
       "tick": 5,
       "withheld": false
     },
@@ -1745,8 +2046,15 @@
     },
     {
       "observerId": "p-s4",
-      "subjectId": "p-s6",
+      "subjectId": "p-s5",
       "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "bar",
       "tick": 5,
       "withheld": false
     },
@@ -1766,8 +2074,43 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s3",
-      "location": "service-stairs",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
       "tick": 5,
       "withheld": false
     },
@@ -1787,8 +2130,22 @@
     },
     {
       "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
       "tick": 5,
       "withheld": false
     },
@@ -1823,14 +2180,21 @@
     {
       "observerId": "p-doorman",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
       "tick": 5,
       "withheld": false
     },
     {
       "observerId": "p-doorman",
       "subjectId": "p-s6",
-      "location": "lobby",
+      "location": "bar",
       "tick": 5,
       "withheld": false
     },
@@ -1857,15 +2221,29 @@
     },
     {
       "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "kitchen",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "lobby",
       "tick": 5,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
       "subjectId": "p-s6",
-      "location": "lobby",
+      "location": "bar",
       "tick": 5,
       "withheld": false
     },
@@ -1885,8 +2263,22 @@
     },
     {
       "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
       "subjectId": "p-s5",
-      "location": "lobby",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "bar",
       "tick": 6,
       "withheld": false
     },
@@ -1894,6 +2286,13 @@
       "observerId": "p-s1",
       "subjectId": "p-doorman",
       "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
       "tick": 6,
       "withheld": false
     },
@@ -1913,6 +2312,13 @@
     },
     {
       "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
       "subjectId": "p-s6",
       "location": "bar",
       "tick": 6,
@@ -1927,6 +2333,13 @@
     },
     {
       "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
       "subjectId": "p-s3",
       "location": "kitchen",
       "tick": 6,
@@ -1935,7 +2348,7 @@
     {
       "observerId": "p-s4",
       "subjectId": "p-s5",
-      "location": "lobby",
+      "location": "bar",
       "tick": 6,
       "withheld": false
     },
@@ -1963,7 +2376,14 @@
     {
       "observerId": "p-s5",
       "subjectId": "p-s1",
-      "location": "street",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "kitchen",
       "tick": 6,
       "withheld": false
     },
@@ -1997,6 +2417,13 @@
     },
     {
       "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
       "subjectId": "p-s3",
       "location": "kitchen",
       "tick": 6,
@@ -2012,7 +2439,7 @@
     {
       "observerId": "p-s6",
       "subjectId": "p-s5",
-      "location": "lobby",
+      "location": "bar",
       "tick": 6,
       "withheld": true
     },
@@ -2033,7 +2460,7 @@
     {
       "observerId": "p-doorman",
       "subjectId": "p-s1",
-      "location": "street",
+      "location": "lobby",
       "tick": 6,
       "withheld": false
     },
@@ -2047,7 +2474,7 @@
     {
       "observerId": "p-doorman",
       "subjectId": "p-s5",
-      "location": "lobby",
+      "location": "bar",
       "tick": 6,
       "withheld": false
     },
@@ -2062,6 +2489,13 @@
       "observerId": "p-doorman",
       "subjectId": "p-bartender",
       "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "lobby",
       "tick": 6,
       "withheld": false
     },
@@ -2082,7 +2516,7 @@
     {
       "observerId": "p-bartender",
       "subjectId": "p-s5",
-      "location": "lobby",
+      "location": "bar",
       "tick": 6,
       "withheld": false
     },
@@ -2098,6 +2532,13 @@
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 7,
       "withheld": false
     },
     {
@@ -2110,7 +2551,7 @@
     {
       "observerId": "p-s1",
       "subjectId": "p-s5",
-      "location": "bar",
+      "location": "lobby",
       "tick": 7,
       "withheld": false
     },
@@ -2130,6 +2571,48 @@
     },
     {
       "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
       "subjectId": "p-bartender",
       "location": "bar",
       "tick": 7,
@@ -2144,13 +2627,6 @@
     },
     {
       "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "bar",
-      "tick": 7,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
       "subjectId": "p-s6",
       "location": "bar",
       "tick": 7,
@@ -2172,6 +2648,13 @@
     },
     {
       "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
       "subjectId": "p-s3",
       "location": "kitchen",
       "tick": 7,
@@ -2180,7 +2663,7 @@
     {
       "observerId": "p-s4",
       "subjectId": "p-s5",
-      "location": "bar",
+      "location": "lobby",
       "tick": 7,
       "withheld": false
     },
@@ -2214,8 +2697,8 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s3",
-      "location": "kitchen",
+      "subjectId": "p-s2",
+      "location": "lobby",
       "tick": 7,
       "withheld": false
     },
@@ -2250,6 +2733,13 @@
     {
       "observerId": "p-s6",
       "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 7,
       "withheld": true
@@ -2271,7 +2761,7 @@
     {
       "observerId": "p-s6",
       "subjectId": "p-s5",
-      "location": "bar",
+      "location": "lobby",
       "tick": 7,
       "withheld": true
     },
@@ -2298,6 +2788,13 @@
     },
     {
       "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
       "subjectId": "p-s4",
       "location": "bar",
       "tick": 7,
@@ -2306,7 +2803,7 @@
     {
       "observerId": "p-doorman",
       "subjectId": "p-s5",
-      "location": "bar",
+      "location": "lobby",
       "tick": 7,
       "withheld": false
     },
@@ -2327,6 +2824,13 @@
     {
       "observerId": "p-bartender",
       "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 7,
       "withheld": false
@@ -2348,19 +2852,19 @@
     {
       "observerId": "p-bartender",
       "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
       "location": "bar",
       "tick": 7,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
-      "subjectId": "p-s6",
-      "location": "bar",
-      "tick": 7,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 7,
@@ -2368,42 +2872,56 @@
     },
     {
       "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
       "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s5",
-      "location": "bar",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s6",
       "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
-      "observerId": "p-s1",
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
-      "observerId": "p-s1",
+      "observerId": "p-s2",
       "subjectId": "p-bartender",
       "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
+      "observerId": "p-s3",
       "subjectId": "p-s1",
+      "location": "service-stairs",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 8,
       "withheld": false
@@ -2411,14 +2929,14 @@
     {
       "observerId": "p-s4",
       "subjectId": "p-s5",
-      "location": "bar",
+      "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-s6",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
@@ -2438,7 +2956,7 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s1",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 8,
       "withheld": false
@@ -2446,14 +2964,14 @@
     {
       "observerId": "p-s5",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-s5",
       "subjectId": "p-s6",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
@@ -2473,7 +2991,7 @@
     },
     {
       "observerId": "p-s6",
-      "subjectId": "p-s1",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 8,
       "withheld": false
@@ -2481,14 +2999,14 @@
     {
       "observerId": "p-s6",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-s6",
       "subjectId": "p-s5",
-      "location": "bar",
+      "location": "lobby",
       "tick": 8,
       "withheld": false
     },
@@ -2508,7 +3026,7 @@
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s1",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 8,
       "withheld": false
@@ -2516,21 +3034,21 @@
     {
       "observerId": "p-doorman",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-doorman",
       "subjectId": "p-s5",
-      "location": "bar",
+      "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-doorman",
       "subjectId": "p-s6",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
@@ -2543,7 +3061,7 @@
     },
     {
       "observerId": "p-bartender",
-      "subjectId": "p-s1",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 8,
       "withheld": false
@@ -2551,21 +3069,21 @@
     {
       "observerId": "p-bartender",
       "subjectId": "p-s4",
-      "location": "bar",
+      "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
       "subjectId": "p-s5",
-      "location": "bar",
+      "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
       "subjectId": "p-s6",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
@@ -2578,7 +3096,14 @@
     },
     {
       "observerId": "p-s1",
-      "subjectId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
       "location": "lobby",
       "tick": 9,
       "withheld": false
@@ -2601,55 +3126,76 @@
       "observerId": "p-s1",
       "subjectId": "p-bartender",
       "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
       "tick": 9,
       "withheld": false
     },
     {
       "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "kitchen",
-      "tick": 9,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-bartender",
-      "location": "bar",
+      "subjectId": "p-s4",
+      "location": "service-stairs",
       "tick": 9,
       "withheld": false
     },
     {
       "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
       "subjectId": "p-s1",
       "location": "lobby",
       "tick": 9,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
       "subjectId": "p-s6",
       "location": "lobby",
       "tick": 9,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
+      "observerId": "p-s5",
       "subjectId": "p-doorman",
       "location": "lobby",
-      "tick": 9,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 9,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s3",
-      "location": "kitchen",
       "tick": 9,
       "withheld": false
     },
@@ -2669,7 +3215,14 @@
     },
     {
       "observerId": "p-s6",
-      "subjectId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
       "location": "lobby",
       "tick": 9,
       "withheld": false
@@ -2697,7 +3250,14 @@
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
       "location": "lobby",
       "tick": 9,
       "withheld": false
@@ -2725,22 +3285,8 @@
     },
     {
       "observerId": "p-bartender",
-      "subjectId": "p-s3",
-      "location": "kitchen",
-      "tick": 9,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 9,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
       "subjectId": "p-s5",
-      "location": "kitchen",
+      "location": "lobby",
       "tick": 9,
       "withheld": false
     },
@@ -2761,82 +3307,82 @@
     {
       "observerId": "p-s1",
       "subjectId": "p-s2",
-      "location": "service-stairs",
+      "location": "front-desk",
       "tick": 10,
       "withheld": false
     },
     {
       "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "service-stairs",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
       "subjectId": "p-s3",
       "location": "service-stairs",
       "tick": 10,
       "withheld": false
     },
     {
-      "observerId": "p-s1",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 10,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s1",
-      "location": "service-stairs",
-      "tick": 10,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s3",
-      "location": "service-stairs",
-      "tick": 10,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 10,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s1",
-      "location": "service-stairs",
-      "tick": 10,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s2",
-      "location": "service-stairs",
-      "tick": 10,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 10,
-      "withheld": false
-    },
-    {
       "observerId": "p-s4",
-      "subjectId": "p-s1",
+      "subjectId": "p-s5",
       "location": "service-stairs",
       "tick": 10,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
-      "subjectId": "p-s2",
-      "location": "service-stairs",
-      "tick": 10,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
+      "observerId": "p-s5",
       "subjectId": "p-s3",
       "location": "service-stairs",
       "tick": 10,
@@ -2844,8 +3390,22 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-bartender",
-      "location": "bar",
+      "subjectId": "p-s4",
+      "location": "service-stairs",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "front-desk",
       "tick": 10,
       "withheld": false
     },
@@ -2865,6 +3425,20 @@
     },
     {
       "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
       "subjectId": "p-s6",
       "location": "lobby",
       "tick": 10,
@@ -2879,8 +3453,8 @@
     },
     {
       "observerId": "p-bartender",
-      "subjectId": "p-s5",
-      "location": "kitchen",
+      "subjectId": "p-s1",
+      "location": "lobby",
       "tick": 10,
       "withheld": false
     },
@@ -2901,54 +3475,47 @@
     {
       "observerId": "p-s1",
       "subjectId": "p-s2",
-      "location": "service-stairs",
+      "location": "front-desk",
       "tick": 11,
       "withheld": false
     },
     {
       "observerId": "p-s1",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 11,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s5",
-      "location": "service-stairs",
-      "tick": 11,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s1",
-      "location": "service-stairs",
-      "tick": 11,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 11,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s5",
-      "location": "service-stairs",
-      "tick": 11,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
       "subjectId": "p-s6",
       "location": "lobby",
       "tick": 11,
       "withheld": false
     },
     {
-      "observerId": "p-s3",
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 11,
@@ -2956,21 +3523,21 @@
     },
     {
       "observerId": "p-s3",
-      "subjectId": "p-bartender",
-      "location": "bar",
+      "subjectId": "p-s4",
+      "location": "service-stairs",
       "tick": 11,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
-      "subjectId": "p-s1",
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
       "location": "service-stairs",
       "tick": 11,
       "withheld": false
     },
     {
       "observerId": "p-s4",
-      "subjectId": "p-s2",
+      "subjectId": "p-s3",
       "location": "service-stairs",
       "tick": 11,
       "withheld": false
@@ -2984,14 +3551,7 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s1",
-      "location": "service-stairs",
-      "tick": 11,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s2",
+      "subjectId": "p-s3",
       "location": "service-stairs",
       "tick": 11,
       "withheld": false
@@ -3005,8 +3565,15 @@
     },
     {
       "observerId": "p-s6",
-      "subjectId": "p-s3",
+      "subjectId": "p-s1",
       "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "front-desk",
       "tick": 11,
       "withheld": false
     },
@@ -3026,8 +3593,15 @@
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s3",
+      "subjectId": "p-s1",
       "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "front-desk",
       "tick": 11,
       "withheld": false
     },
@@ -3047,7 +3621,7 @@
     },
     {
       "observerId": "p-bartender",
-      "subjectId": "p-s3",
+      "subjectId": "p-s1",
       "location": "lobby",
       "tick": 11,
       "withheld": false
@@ -3118,17 +3692,31 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Gretchen Dettweiler"
+        "topic": "Kathleen Doyle"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 4
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
           "tick": 4
         }
       ],
-      "text": "Beatrice Havemeyer says Gretchen Dettweiler was in the Lobby at 8:00 PM."
+      "text": "Beatrice Havemeyer says Kathleen Doyle was at the Front Desk from 7:30 PM to 8:00 PM."
     },
     {
       "id": "c004",
@@ -3142,20 +3730,116 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "service-stairs",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Beatrice Havemeyer says Gretchen Dettweiler was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Beatrice Havemeyer says Gretchen Dettweiler was in the Lobby at 8:00 PM."
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Beatrice Havemeyer says Gretchen Dettweiler was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 3
+        }
+      ],
+      "text": "Beatrice Havemeyer says Gretchen Dettweiler was on the Street at 7:30 PM."
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
           "tick": 10
         },
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "service-stairs",
+          "location": "front-desk",
           "tick": 11
         }
       ],
-      "text": "Beatrice Havemeyer says Gretchen Dettweiler was on the Service Stairs from 11:00 PM to 11:30 PM."
+      "text": "Beatrice Havemeyer says Gretchen Dettweiler was at the Front Desk from 10:30 PM to 11:30 PM."
     },
     {
-      "id": "c005",
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Wendell Dandridge"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Beatrice Havemeyer says Wendell Dandridge was in the Bar at 8:00 PM."
+    },
+    {
+      "id": "c010",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3167,112 +3851,10 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "service-stairs",
-          "tick": 10
-        }
-      ],
-      "text": "Beatrice Havemeyer says Wendell Dandridge was on the Service Stairs at 11:00 PM."
-    },
-    {
-      "id": "c006",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 2
-        }
-      ],
-      "text": "Beatrice Havemeyer says Ernst Reinhardt was in the Lobby at 7:00 PM."
-    },
-    {
-      "id": "c007",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 9
-        }
-      ],
-      "text": "Beatrice Havemeyer says Ernst Reinhardt was in the Lobby at 10:30 PM."
-    },
-    {
-      "id": "c008",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 5
-        }
-      ],
-      "text": "Beatrice Havemeyer says Ernst Reinhardt was in the Bar at 8:30 PM."
-    },
-    {
-      "id": "c009",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
           "tick": 8
         }
       ],
-      "text": "Beatrice Havemeyer says Ernst Reinhardt was in the Bar from 9:30 PM to 10:00 PM."
-    },
-    {
-      "id": "c010",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 11
-        }
-      ],
-      "text": "Beatrice Havemeyer says Ernst Reinhardt was on the Service Stairs from 11:00 PM to 11:30 PM."
+      "text": "Beatrice Havemeyer says Wendell Dandridge was on the Service Stairs at 10:00 PM."
     },
     {
       "id": "c011",
@@ -3280,17 +3862,29 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Antonio Ruggiero"
+        "topic": "Ernst Reinhardt"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s4",
           "location": "lobby",
-          "tick": 6
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Beatrice Havemeyer says Antonio Ruggiero was in the Lobby at 9:00 PM."
+      "text": "Beatrice Havemeyer says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:30 PM."
     },
     {
       "id": "c012",
@@ -3298,23 +3892,23 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Antonio Ruggiero"
+        "topic": "Ernst Reinhardt"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s4",
           "location": "bar",
-          "tick": 7
+          "tick": 6
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s4",
           "location": "bar",
-          "tick": 8
+          "tick": 7
         }
       ],
-      "text": "Beatrice Havemeyer says Antonio Ruggiero was in the Bar from 9:30 PM to 10:00 PM."
+      "text": "Beatrice Havemeyer says Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM."
     },
     {
       "id": "c013",
@@ -3328,11 +3922,17 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Beatrice Havemeyer says Antonio Ruggiero was on the Service Stairs at 11:30 PM."
+      "text": "Beatrice Havemeyer says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM."
     },
     {
       "id": "c014",
@@ -3340,17 +3940,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Patrick Quill"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s5",
           "location": "lobby",
-          "tick": 3
+          "tick": 7
         }
       ],
-      "text": "Beatrice Havemeyer says Patrick Quill was in the Lobby at 7:30 PM."
+      "text": "Beatrice Havemeyer says Antonio Ruggiero was in the Lobby at 9:30 PM."
     },
     {
       "id": "c015",
@@ -3358,17 +3958,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Patrick Quill"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s5",
           "location": "lobby",
-          "tick": 5
+          "tick": 9
         }
       ],
-      "text": "Beatrice Havemeyer says Patrick Quill was in the Lobby at 8:30 PM."
+      "text": "Beatrice Havemeyer says Antonio Ruggiero was in the Lobby at 10:30 PM."
     },
     {
       "id": "c016",
@@ -3376,23 +3976,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Patrick Quill"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 9
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 6
         }
       ],
-      "text": "Beatrice Havemeyer says Patrick Quill was in the Lobby from 10:00 PM to 10:30 PM."
+      "text": "Beatrice Havemeyer says Antonio Ruggiero was in the Bar at 9:00 PM."
     },
     {
       "id": "c017",
@@ -3407,32 +4001,64 @@
           "kind": "personAt",
           "personId": "p-s6",
           "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
           "tick": 7
         }
       ],
-      "text": "Beatrice Havemeyer says Patrick Quill was in the Bar at 9:30 PM."
+      "text": "Beatrice Havemeyer says Patrick Quill was in the Bar from 7:30 PM to 9:30 PM."
     },
     {
       "id": "c018",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Kathleen Doyle"
+        "personId": "p-s1",
+        "topic": "Patrick Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
+          "personId": "p-s6",
           "location": "lobby",
-          "tick": 0
+          "tick": 9
         },
         {
-          "kind": "victimAliveAt",
-          "tick": 0
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Gretchen Dettweiler says Kathleen Doyle was in the Lobby at 6:00 PM."
+      "text": "Beatrice Havemeyer says Patrick Quill was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c019",
@@ -3462,17 +4088,21 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Beatrice Havemeyer"
+        "topic": "Kathleen Doyle"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "location": "street",
-          "tick": 0
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 4
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 4
         }
       ],
-      "text": "Gretchen Dettweiler says Beatrice Havemeyer was on the Street at 6:00 PM."
+      "text": "Gretchen Dettweiler says Kathleen Doyle was at the Front Desk at 8:00 PM."
     },
     {
       "id": "c021",
@@ -3487,10 +4117,16 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "street",
-          "tick": 4
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "street",
+          "tick": 2
         }
       ],
-      "text": "Gretchen Dettweiler says Beatrice Havemeyer was on the Street at 8:00 PM."
+      "text": "Gretchen Dettweiler says Beatrice Havemeyer was on the Street from 6:30 PM to 7:00 PM."
     },
     {
       "id": "c022",
@@ -3504,20 +4140,68 @@
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "service-stairs",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Gretchen Dettweiler says Beatrice Havemeyer was in the Lobby from 7:30 PM to 8:00 PM."
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Beatrice Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Gretchen Dettweiler says Beatrice Havemeyer was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Beatrice Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
           "tick": 10
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "service-stairs",
+          "location": "lobby",
           "tick": 11
         }
       ],
-      "text": "Gretchen Dettweiler says Beatrice Havemeyer was on the Service Stairs from 11:00 PM to 11:30 PM."
+      "text": "Gretchen Dettweiler says Beatrice Havemeyer was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
-      "id": "c023",
+      "id": "c025",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3528,14 +4212,14 @@
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "service-stairs",
-          "tick": 10
+          "location": "bar",
+          "tick": 4
         }
       ],
-      "text": "Gretchen Dettweiler says Wendell Dandridge was on the Service Stairs at 11:00 PM."
+      "text": "Gretchen Dettweiler says Wendell Dandridge was in the Bar at 8:00 PM."
     },
     {
-      "id": "c024",
+      "id": "c026",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3556,48 +4240,18 @@
           "tick": 1
         },
         {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
           "kind": "hadAccess",
           "personId": "p-s4",
           "methodId": "shot"
         }
       ],
-      "text": "Gretchen Dettweiler says Ernst Reinhardt was at the Front Desk from 6:00 PM to 6:30 PM."
-    },
-    {
-      "id": "c025",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 2
-        }
-      ],
-      "text": "Gretchen Dettweiler says Ernst Reinhardt was in the Lobby at 7:00 PM."
-    },
-    {
-      "id": "c026",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 4
-        }
-      ],
-      "text": "Gretchen Dettweiler says Ernst Reinhardt was in the Bar at 8:00 PM."
+      "text": "Gretchen Dettweiler says Ernst Reinhardt was at the Front Desk from 6:00 PM to 7:00 PM."
     },
     {
       "id": "c027",
@@ -3611,20 +4265,56 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 10
+          "location": "lobby",
+          "tick": 3
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "lobby",
+          "tick": 4
         }
       ],
-      "text": "Gretchen Dettweiler says Ernst Reinhardt was on the Service Stairs from 11:00 PM to 11:30 PM."
+      "text": "Gretchen Dettweiler says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:00 PM."
     },
     {
       "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ernst Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Gretchen Dettweiler says Ernst Reinhardt was in the Lobby at 10:00 PM."
+    },
+    {
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ernst Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Gretchen Dettweiler says Ernst Reinhardt was in the Bar at 9:30 PM."
+    },
+    {
+      "id": "c030",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3635,14 +4325,44 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "lobby",
+          "tick": 4
         }
       ],
-      "text": "Gretchen Dettweiler says Antonio Ruggiero was on the Service Stairs at 11:30 PM."
+      "text": "Gretchen Dettweiler says Antonio Ruggiero was in the Lobby at 8:00 PM."
     },
     {
-      "id": "c029",
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Antonio Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Gretchen Dettweiler says Antonio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM."
+    },
+    {
+      "id": "c032",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3654,13 +4374,37 @@
           "kind": "personAt",
           "personId": "p-s6",
           "location": "bar",
-          "tick": 0
+          "tick": 4
         }
       ],
-      "text": "Gretchen Dettweiler says Patrick Quill was in the Bar at 6:00 PM."
+      "text": "Gretchen Dettweiler says Patrick Quill was in the Bar at 8:00 PM."
     },
     {
-      "id": "c030",
+      "id": "c033",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Patrick Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Gretchen Dettweiler says Patrick Quill was in the Bar from 9:30 PM to 10:00 PM."
+    },
+    {
+      "id": "c034",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3672,36 +4416,43 @@
           "kind": "personAt",
           "personId": "p-s6",
           "location": "lobby",
-          "tick": 3
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Gretchen Dettweiler says Patrick Quill was in the Lobby at 7:30 PM."
+      "text": "Gretchen Dettweiler says Patrick Quill was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
-      "id": "c031",
+      "id": "c035",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Patrick Quill"
+        "personId": "p-s3",
+        "topic": "Beatrice Havemeyer"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "front-desk",
+          "personId": "p-s1",
+          "location": "lobby",
           "tick": 4
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s6",
-          "methodId": "shot"
         }
       ],
-      "text": "Gretchen Dettweiler says Patrick Quill was at the Front Desk at 8:00 PM."
+      "text": "Wendell Dandridge says Beatrice Havemeyer was in the Lobby at 8:00 PM."
     },
     {
-      "id": "c032",
+      "id": "c036",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3713,13 +4464,13 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "service-stairs",
-          "tick": 10
+          "tick": 8
         }
       ],
-      "text": "Wendell Dandridge says Beatrice Havemeyer was on the Service Stairs at 11:00 PM."
+      "text": "Wendell Dandridge says Beatrice Havemeyer was on the Service Stairs at 10:00 PM."
     },
     {
-      "id": "c033",
+      "id": "c037",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3730,14 +4481,32 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 10
+          "location": "lobby",
+          "tick": 4
         }
       ],
-      "text": "Wendell Dandridge says Gretchen Dettweiler was on the Service Stairs at 11:00 PM."
+      "text": "Wendell Dandridge says Gretchen Dettweiler was in the Lobby at 8:00 PM."
     },
     {
-      "id": "c034",
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ernst Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Wendell Dandridge says Ernst Reinhardt was in the Lobby at 8:00 PM."
+    },
+    {
+      "id": "c039",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3755,7 +4524,7 @@
       "text": "Wendell Dandridge says Ernst Reinhardt was in the Bar at 9:30 PM."
     },
     {
-      "id": "c035",
+      "id": "c040",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3767,103 +4536,121 @@
           "kind": "personAt",
           "personId": "p-s4",
           "location": "service-stairs",
-          "tick": 10
-        }
-      ],
-      "text": "Wendell Dandridge says Ernst Reinhardt was on the Service Stairs at 11:00 PM."
-    },
-    {
-      "id": "c036",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Antonio Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 0
-        }
-      ],
-      "text": "Wendell Dandridge says Antonio Ruggiero was on the Service Stairs at 6:00 PM."
-    },
-    {
-      "id": "c037",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Antonio Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 2
-        }
-      ],
-      "text": "Wendell Dandridge says Antonio Ruggiero was on the Service Stairs at 7:00 PM."
-    },
-    {
-      "id": "c038",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Antonio Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 5
-        }
-      ],
-      "text": "Wendell Dandridge says Antonio Ruggiero was on the Service Stairs at 8:30 PM."
-    },
-    {
-      "id": "c039",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Antonio Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "bar",
-          "tick": 7
-        }
-      ],
-      "text": "Wendell Dandridge says Antonio Ruggiero was in the Bar at 9:30 PM."
-    },
-    {
-      "id": "c040",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Antonio Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "kitchen",
           "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "service-stairs",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "service-stairs",
+          "tick": 11
         }
       ],
-      "text": "Wendell Dandridge says Antonio Ruggiero was in the Kitchen at 10:30 PM."
+      "text": "Wendell Dandridge says Ernst Reinhardt was on the Service Stairs from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Antonio Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
+        }
+      ],
+      "text": "Wendell Dandridge says Antonio Ruggiero was in the Lobby at 8:00 PM."
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Antonio Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 11
+        }
+      ],
+      "text": "Wendell Dandridge says Antonio Ruggiero was on the Service Stairs from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Patrick Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "kitchen",
+          "tick": 2
+        }
+      ],
+      "text": "Wendell Dandridge says Patrick Quill was in the Kitchen from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c044",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Patrick Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        }
+      ],
+      "text": "Wendell Dandridge says Patrick Quill was in the Bar from 7:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c045",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3881,47 +4668,7 @@
       "text": "Wendell Dandridge says Patrick Quill was in the Bar at 9:30 PM."
     },
     {
-      "id": "c042",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Patrick Quill"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 11
-        }
-      ],
-      "text": "Wendell Dandridge says Patrick Quill was in the Lobby at 11:30 PM."
-    },
-    {
-      "id": "c043",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Kathleen Doyle"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 0
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 0
-        }
-      ],
-      "text": "Ernst Reinhardt says Kathleen Doyle was in the Lobby at 6:00 PM."
-    },
-    {
-      "id": "c044",
+      "id": "c046",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3943,7 +4690,7 @@
       "text": "Ernst Reinhardt says Kathleen Doyle was in the Lobby at 7:00 PM."
     },
     {
-      "id": "c045",
+      "id": "c047",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3965,70 +4712,36 @@
       "text": "Ernst Reinhardt says Kathleen Doyle was in the Lobby at 8:30 PM."
     },
     {
-      "id": "c046",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Beatrice Havemeyer"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "street",
-          "tick": 2
-        }
-      ],
-      "text": "Ernst Reinhardt says Beatrice Havemeyer was on the Street at 7:00 PM."
-    },
-    {
-      "id": "c047",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Beatrice Havemeyer"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 5
-        }
-      ],
-      "text": "Ernst Reinhardt says Beatrice Havemeyer was in the Lobby at 8:30 PM."
-    },
-    {
       "id": "c048",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Beatrice Havemeyer"
+        "topic": "Kathleen Doyle"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 7
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 3
         },
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 8
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 4
         },
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 9
+          "kind": "victimAliveAt",
+          "tick": 3
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 4
         }
       ],
-      "text": "Ernst Reinhardt says Beatrice Havemeyer was in the Lobby from 9:30 PM to 10:30 PM."
+      "text": "Ernst Reinhardt says Kathleen Doyle was at the Front Desk from 7:30 PM to 8:00 PM."
     },
     {
       "id": "c049",
@@ -4042,17 +4755,35 @@
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "service-stairs",
-          "tick": 10
+          "location": "lobby",
+          "tick": 3
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
         }
       ],
-      "text": "Ernst Reinhardt says Beatrice Havemeyer was on the Service Stairs from 11:00 PM to 11:30 PM."
+      "text": "Ernst Reinhardt says Beatrice Havemeyer was in the Lobby from 7:30 PM to 9:30 PM."
     },
     {
       "id": "c050",
@@ -4066,14 +4797,43 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "lobby",
+          "location": "front-desk",
           "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "shot"
         }
       ],
-      "text": "Ernst Reinhardt says Gretchen Dettweiler was in the Lobby at 6:00 PM."
+      "text": "Ernst Reinhardt says Gretchen Dettweiler was at the Front Desk at 6:00 PM."
     },
     {
       "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Ernst Reinhardt says Gretchen Dettweiler was in the Lobby from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c052",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4091,35 +4851,6 @@
       "text": "Ernst Reinhardt says Gretchen Dettweiler was in the Lobby at 8:00 PM."
     },
     {
-      "id": "c052",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Gretchen Dettweiler"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 2
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s2",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Ernst Reinhardt says Gretchen Dettweiler was at the Front Desk from 6:30 PM to 7:00 PM."
-    },
-    {
       "id": "c053",
       "kind": "observation",
       "source": {
@@ -4131,20 +4862,56 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 10
+          "location": "lobby",
+          "tick": 7
         },
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "lobby",
+          "tick": 8
         }
       ],
-      "text": "Ernst Reinhardt says Gretchen Dettweiler was on the Service Stairs from 11:00 PM to 11:30 PM."
+      "text": "Ernst Reinhardt says Gretchen Dettweiler was in the Lobby from 9:30 PM to 10:00 PM."
     },
     {
       "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 3
+        }
+      ],
+      "text": "Ernst Reinhardt says Gretchen Dettweiler was on the Street at 7:30 PM."
+    },
+    {
+      "id": "c055",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Wendell Dandridge"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 4
+        }
+      ],
+      "text": "Ernst Reinhardt says Wendell Dandridge was in the Bar at 8:00 PM."
+    },
+    {
+      "id": "c056",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4168,7 +4935,7 @@
       "text": "Ernst Reinhardt says Wendell Dandridge was in the Kitchen from 9:00 PM to 9:30 PM."
     },
     {
-      "id": "c055",
+      "id": "c057",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4180,52 +4947,22 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "service-stairs",
-          "tick": 10
-        }
-      ],
-      "text": "Ernst Reinhardt says Wendell Dandridge was on the Service Stairs at 11:00 PM."
-    },
-    {
-      "id": "c056",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Antonio Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "kitchen",
-          "tick": 3
+          "tick": 9
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "kitchen",
-          "tick": 4
-        }
-      ],
-      "text": "Ernst Reinhardt says Antonio Ruggiero was in the Kitchen from 7:30 PM to 8:00 PM."
-    },
-    {
-      "id": "c057",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Antonio Ruggiero"
-      },
-      "establishes": [
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 10
+        },
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "lobby",
-          "tick": 6
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 11
         }
       ],
-      "text": "Ernst Reinhardt says Antonio Ruggiero was in the Lobby at 9:00 PM."
+      "text": "Ernst Reinhardt says Wendell Dandridge was on the Service Stairs from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c058",
@@ -4239,17 +4976,17 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "bar",
-          "tick": 7
+          "location": "lobby",
+          "tick": 4
         },
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "bar",
-          "tick": 8
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Ernst Reinhardt says Antonio Ruggiero was in the Bar from 9:30 PM to 10:00 PM."
+      "text": "Ernst Reinhardt says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM."
     },
     {
       "id": "c059",
@@ -4263,11 +5000,17 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
         }
       ],
-      "text": "Ernst Reinhardt says Antonio Ruggiero was on the Service Stairs at 11:30 PM."
+      "text": "Ernst Reinhardt says Antonio Ruggiero was in the Lobby from 9:30 PM to 10:00 PM."
     },
     {
       "id": "c060",
@@ -4275,17 +5018,17 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Patrick Quill"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s5",
           "location": "bar",
-          "tick": 2
+          "tick": 6
         }
       ],
-      "text": "Ernst Reinhardt says Patrick Quill was in the Bar at 7:00 PM."
+      "text": "Ernst Reinhardt says Antonio Ruggiero was in the Bar at 9:00 PM."
     },
     {
       "id": "c061",
@@ -4293,23 +5036,23 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Patrick Quill"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "bar",
-          "tick": 6
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 10
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "bar",
-          "tick": 7
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 11
         }
       ],
-      "text": "Ernst Reinhardt says Patrick Quill was in the Bar from 9:00 PM to 9:30 PM."
+      "text": "Ernst Reinhardt says Antonio Ruggiero was on the Service Stairs from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c062",
@@ -4323,53 +5066,85 @@
         {
           "kind": "personAt",
           "personId": "p-s6",
-          "location": "lobby",
+          "location": "bar",
           "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
         }
       ],
-      "text": "Ernst Reinhardt says Patrick Quill was in the Lobby at 7:30 PM."
+      "text": "Ernst Reinhardt says Patrick Quill was in the Bar from 7:30 PM to 10:00 PM."
     },
     {
       "id": "c063",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Patrick Quill"
+        "personId": "p-s5",
+        "topic": "Kathleen Doyle"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 5
+          "personId": "p-victim",
+          "location": "service-stairs",
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 0
         }
       ],
-      "text": "Ernst Reinhardt says Patrick Quill was in the Lobby at 8:30 PM."
+      "text": "Antonio Ruggiero says Kathleen Doyle was on the Service Stairs at 6:00 PM."
     },
     {
       "id": "c064",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Patrick Quill"
+        "personId": "p-s5",
+        "topic": "Kathleen Doyle"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 8
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 4
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 9
+          "kind": "victimAliveAt",
+          "tick": 4
         }
       ],
-      "text": "Ernst Reinhardt says Patrick Quill was in the Lobby from 10:00 PM to 10:30 PM."
+      "text": "Antonio Ruggiero says Kathleen Doyle was at the Front Desk at 8:00 PM."
     },
     {
       "id": "c065",
@@ -4377,17 +5152,21 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Beatrice Havemeyer"
+        "topic": "Kathleen Doyle"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "location": "street",
-          "tick": 6
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 5
         }
       ],
-      "text": "Antonio Ruggiero says Beatrice Havemeyer was on the Street at 9:00 PM."
+      "text": "Antonio Ruggiero says Kathleen Doyle was in the Lobby at 8:30 PM."
     },
     {
       "id": "c066",
@@ -4402,16 +5181,28 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "lobby",
-          "tick": 7
+          "tick": 4
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
           "location": "lobby",
-          "tick": 8
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
         }
       ],
-      "text": "Antonio Ruggiero says Beatrice Havemeyer was in the Lobby from 9:30 PM to 10:00 PM."
+      "text": "Antonio Ruggiero says Beatrice Havemeyer was in the Lobby from 8:00 PM to 9:30 PM."
     },
     {
       "id": "c067",
@@ -4425,11 +5216,11 @@
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "lobby",
+          "tick": 9
         }
       ],
-      "text": "Antonio Ruggiero says Beatrice Havemeyer was on the Service Stairs at 11:30 PM."
+      "text": "Antonio Ruggiero says Beatrice Havemeyer was in the Lobby at 10:30 PM."
     },
     {
       "id": "c068",
@@ -4443,11 +5234,11 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "lobby",
+          "tick": 4
         }
       ],
-      "text": "Antonio Ruggiero says Gretchen Dettweiler was on the Service Stairs at 11:30 PM."
+      "text": "Antonio Ruggiero says Gretchen Dettweiler was in the Lobby at 8:00 PM."
     },
     {
       "id": "c069",
@@ -4455,17 +5246,23 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wendell Dandridge"
+        "topic": "Gretchen Dettweiler"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "service-stairs",
-          "tick": 0
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
         }
       ],
-      "text": "Antonio Ruggiero says Wendell Dandridge was on the Service Stairs at 6:00 PM."
+      "text": "Antonio Ruggiero says Gretchen Dettweiler was in the Lobby from 9:30 PM to 10:00 PM."
     },
     {
       "id": "c070",
@@ -4473,17 +5270,17 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wendell Dandridge"
+        "topic": "Gretchen Dettweiler"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "service-stairs",
-          "tick": 2
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 9
         }
       ],
-      "text": "Antonio Ruggiero says Wendell Dandridge was on the Service Stairs at 7:00 PM."
+      "text": "Antonio Ruggiero says Gretchen Dettweiler was at the Front Desk at 10:30 PM."
     },
     {
       "id": "c071",
@@ -4497,11 +5294,11 @@
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "service-stairs",
-          "tick": 5
+          "location": "bar",
+          "tick": 4
         }
       ],
-      "text": "Antonio Ruggiero says Wendell Dandridge was on the Service Stairs at 8:30 PM."
+      "text": "Antonio Ruggiero says Wendell Dandridge was in the Bar at 8:00 PM."
     },
     {
       "id": "c072",
@@ -4516,10 +5313,10 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "kitchen",
-          "tick": 7
+          "tick": 6
         }
       ],
-      "text": "Antonio Ruggiero says Wendell Dandridge was in the Kitchen at 9:30 PM."
+      "text": "Antonio Ruggiero says Wendell Dandridge was in the Kitchen at 9:00 PM."
     },
     {
       "id": "c073",
@@ -4533,11 +5330,17 @@
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "kitchen",
-          "tick": 9
+          "location": "service-stairs",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "service-stairs",
+          "tick": 11
         }
       ],
-      "text": "Antonio Ruggiero says Wendell Dandridge was in the Kitchen at 10:30 PM."
+      "text": "Antonio Ruggiero says Wendell Dandridge was on the Service Stairs from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c074",
@@ -4551,17 +5354,17 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
-          "tick": 3
+          "location": "lobby",
+          "tick": 4
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
-          "tick": 4
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Antonio Ruggiero says Ernst Reinhardt was in the Bar from 7:30 PM to 8:00 PM."
+      "text": "Antonio Ruggiero says Ernst Reinhardt was in the Lobby from 8:00 PM to 8:30 PM."
     },
     {
       "id": "c075",
@@ -4575,23 +5378,11 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
+          "location": "lobby",
           "tick": 8
         }
       ],
-      "text": "Antonio Ruggiero says Ernst Reinhardt was in the Bar from 9:00 PM to 10:00 PM."
+      "text": "Antonio Ruggiero says Ernst Reinhardt was in the Lobby at 10:00 PM."
     },
     {
       "id": "c076",
@@ -4605,11 +5396,17 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 11
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 7
         }
       ],
-      "text": "Antonio Ruggiero says Ernst Reinhardt was on the Service Stairs at 11:30 PM."
+      "text": "Antonio Ruggiero says Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM."
     },
     {
       "id": "c077",
@@ -4617,23 +5414,23 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Patrick Quill"
+        "topic": "Ernst Reinhardt"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "bar",
-          "tick": 6
+          "personId": "p-s4",
+          "location": "service-stairs",
+          "tick": 10
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "bar",
-          "tick": 7
+          "personId": "p-s4",
+          "location": "service-stairs",
+          "tick": 11
         }
       ],
-      "text": "Antonio Ruggiero says Patrick Quill was in the Bar from 9:00 PM to 9:30 PM."
+      "text": "Antonio Ruggiero says Ernst Reinhardt was on the Service Stairs from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c078",
@@ -4647,36 +5444,74 @@
         {
           "kind": "personAt",
           "personId": "p-s6",
-          "location": "lobby",
-          "tick": 8
+          "location": "service-stairs",
+          "tick": 0
         }
       ],
-      "text": "Antonio Ruggiero says Patrick Quill was in the Lobby at 10:00 PM."
+      "text": "Antonio Ruggiero says Patrick Quill was on the Service Stairs at 6:00 PM."
     },
     {
       "id": "c079",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "Kathleen Doyle"
+        "personId": "p-s5",
+        "topic": "Patrick Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 0
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
         },
         {
-          "kind": "victimAliveAt",
-          "tick": 0
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
         }
       ],
-      "text": "Patrick Quill says Kathleen Doyle was in the Lobby at 6:00 PM."
+      "text": "Antonio Ruggiero says Patrick Quill was in the Bar from 8:00 PM to 10:00 PM."
     },
     {
       "id": "c080",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Patrick Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 9
+        }
+      ],
+      "text": "Antonio Ruggiero says Patrick Quill was in the Lobby at 10:30 PM."
+    },
+    {
+      "id": "c081",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4687,18 +5522,18 @@
         {
           "kind": "personAt",
           "personId": "p-victim",
-          "location": "lobby",
-          "tick": 2
+          "location": "service-stairs",
+          "tick": 0
         },
         {
           "kind": "victimAliveAt",
-          "tick": 2
+          "tick": 0
         }
       ],
-      "text": "Patrick Quill says Kathleen Doyle was in the Lobby at 7:00 PM."
+      "text": "Patrick Quill says Kathleen Doyle was on the Service Stairs at 6:00 PM."
     },
     {
-      "id": "c081",
+      "id": "c082",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4720,24 +5555,6 @@
       "text": "Patrick Quill says Kathleen Doyle was in the Lobby at 8:30 PM."
     },
     {
-      "id": "c082",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Beatrice Havemeyer"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "street",
-          "tick": 3
-        }
-      ],
-      "text": "Patrick Quill says Beatrice Havemeyer was on the Street at 7:30 PM."
-    },
-    {
       "id": "c083",
       "kind": "observation",
       "source": {
@@ -4750,10 +5567,22 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
           "tick": 5
         }
       ],
-      "text": "Patrick Quill says Beatrice Havemeyer was in the Lobby at 8:30 PM."
+      "text": "Patrick Quill says Beatrice Havemeyer was in the Lobby from 7:30 PM to 8:30 PM."
     },
     {
       "id": "c084",
@@ -4768,37 +5597,25 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "lobby",
-          "tick": 8
+          "tick": 9
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
           "location": "lobby",
-          "tick": 9
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Patrick Quill says Beatrice Havemeyer was in the Lobby from 10:00 PM to 10:30 PM."
+      "text": "Patrick Quill says Beatrice Havemeyer was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c085",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Gretchen Dettweiler"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 0
-        }
-      ],
-      "text": "Patrick Quill says Gretchen Dettweiler was in the Lobby at 6:00 PM."
-    },
-    {
-      "id": "c086",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4816,6 +5633,24 @@
       "text": "Patrick Quill says Gretchen Dettweiler was in the Lobby at 8:00 PM."
     },
     {
+      "id": "c086",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Patrick Quill says Gretchen Dettweiler was in the Lobby at 10:00 PM."
+    },
+    {
       "id": "c087",
       "kind": "observation",
       "source": {
@@ -4828,15 +5663,22 @@
           "kind": "personAt",
           "personId": "p-s2",
           "location": "front-desk",
-          "tick": 3
+          "tick": 9
         },
         {
-          "kind": "hadAccess",
+          "kind": "personAt",
           "personId": "p-s2",
-          "methodId": "shot"
+          "location": "front-desk",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 11
         }
       ],
-      "text": "Patrick Quill says Gretchen Dettweiler was at the Front Desk at 7:30 PM."
+      "text": "Patrick Quill says Gretchen Dettweiler was at the Front Desk from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c088",
@@ -4850,11 +5692,23 @@
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "lobby",
-          "tick": 11
+          "location": "kitchen",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 3
         }
       ],
-      "text": "Patrick Quill says Wendell Dandridge was in the Lobby at 11:30 PM."
+      "text": "Patrick Quill says Wendell Dandridge was in the Kitchen from 6:30 PM to 7:30 PM."
     },
     {
       "id": "c089",
@@ -4862,17 +5716,17 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Ernst Reinhardt"
+        "topic": "Wendell Dandridge"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 2
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 5
         }
       ],
-      "text": "Patrick Quill says Ernst Reinhardt was in the Lobby at 7:00 PM."
+      "text": "Patrick Quill says Wendell Dandridge was in the Kitchen at 8:30 PM."
     },
     {
       "id": "c090",
@@ -4880,17 +5734,17 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Ernst Reinhardt"
+        "topic": "Wendell Dandridge"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 9
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 4
         }
       ],
-      "text": "Patrick Quill says Ernst Reinhardt was in the Lobby at 10:30 PM."
+      "text": "Patrick Quill says Wendell Dandridge was in the Bar at 8:00 PM."
     },
     {
       "id": "c091",
@@ -4904,11 +5758,23 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
+          "location": "lobby",
           "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Patrick Quill says Ernst Reinhardt was in the Bar at 7:30 PM."
+      "text": "Patrick Quill says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:30 PM."
     },
     {
       "id": "c092",
@@ -4922,11 +5788,11 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
-          "tick": 5
+          "location": "lobby",
+          "tick": 8
         }
       ],
-      "text": "Patrick Quill says Ernst Reinhardt was in the Bar at 8:30 PM."
+      "text": "Patrick Quill says Ernst Reinhardt was in the Lobby at 10:00 PM."
     },
     {
       "id": "c093",
@@ -4934,17 +5800,17 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Ernst Reinhardt"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 8
+          "personId": "p-s5",
+          "location": "service-stairs",
+          "tick": 0
         }
       ],
-      "text": "Patrick Quill says Ernst Reinhardt was in the Bar at 10:00 PM."
+      "text": "Patrick Quill says Antonio Ruggiero was on the Service Stairs at 6:00 PM."
     },
     {
       "id": "c094",
@@ -4958,33 +5824,41 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "bar",
-          "tick": 8
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Patrick Quill says Antonio Ruggiero was in the Bar at 10:00 PM."
+      "text": "Patrick Quill says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM."
     },
     {
       "id": "c095",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-doorman",
-        "topic": "Kathleen Doyle"
+        "personId": "p-s6",
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
+          "personId": "p-s5",
           "location": "lobby",
-          "tick": 0
+          "tick": 8
         },
         {
-          "kind": "victimAliveAt",
-          "tick": 0
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
         }
       ],
-      "text": "Daniel Rafferty says Kathleen Doyle was in the Lobby at 6:00 PM."
+      "text": "Patrick Quill says Antonio Ruggiero was in the Lobby from 10:00 PM to 10:30 PM."
     },
     {
       "id": "c096",
@@ -5036,6 +5910,28 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
+        "topic": "Kathleen Doyle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "front-desk",
+          "tick": 4
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 4
+        }
+      ],
+      "text": "Daniel Rafferty says Kathleen Doyle was at the Front Desk at 8:00 PM."
+    },
+    {
+      "id": "c099",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
         "topic": "Beatrice Havemeyer"
       },
       "establishes": [
@@ -5056,39 +5952,9 @@
           "personId": "p-s1",
           "location": "street",
           "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "street",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "street",
-          "tick": 4
         }
       ],
-      "text": "Daniel Rafferty says Beatrice Havemeyer was on the Street from 6:00 PM to 8:00 PM."
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Beatrice Havemeyer"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "street",
-          "tick": 6
-        }
-      ],
-      "text": "Daniel Rafferty says Beatrice Havemeyer was on the Street at 9:00 PM."
+      "text": "Daniel Rafferty says Beatrice Havemeyer was on the Street from 6:00 PM to 7:00 PM."
     },
     {
       "id": "c100",
@@ -5103,10 +5969,34 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
           "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
         }
       ],
-      "text": "Daniel Rafferty says Beatrice Havemeyer was in the Lobby at 8:30 PM."
+      "text": "Daniel Rafferty says Beatrice Havemeyer was in the Lobby from 7:30 PM to 9:30 PM."
     },
     {
       "id": "c101",
@@ -5121,22 +6011,22 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
           "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Daniel Rafferty says Beatrice Havemeyer was in the Lobby from 9:30 PM to 10:30 PM."
+      "text": "Daniel Rafferty says Beatrice Havemeyer was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c102",
@@ -5150,14 +6040,73 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "lobby",
+          "location": "front-desk",
           "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "shot"
         }
       ],
-      "text": "Daniel Rafferty says Gretchen Dettweiler was in the Lobby at 6:00 PM."
+      "text": "Daniel Rafferty says Gretchen Dettweiler was at the Front Desk at 6:00 PM."
     },
     {
       "id": "c103",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 11
+        }
+      ],
+      "text": "Daniel Rafferty says Gretchen Dettweiler was at the Front Desk from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c104",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 2
+        }
+      ],
+      "text": "Daniel Rafferty says Gretchen Dettweiler was in the Lobby from 6:30 PM to 7:00 PM."
+    },
+    {
+      "id": "c105",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5175,7 +6124,7 @@
       "text": "Daniel Rafferty says Gretchen Dettweiler was in the Lobby at 8:00 PM."
     },
     {
-      "id": "c104",
+      "id": "c106",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5186,25 +6135,38 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 1
+          "location": "lobby",
+          "tick": 7
         },
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 2
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s2",
-          "methodId": "shot"
+          "location": "lobby",
+          "tick": 8
         }
       ],
-      "text": "Daniel Rafferty says Gretchen Dettweiler was at the Front Desk from 6:30 PM to 7:00 PM."
+      "text": "Daniel Rafferty says Gretchen Dettweiler was in the Lobby from 9:30 PM to 10:00 PM."
     },
     {
-      "id": "c105",
+      "id": "c107",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 3
+        }
+      ],
+      "text": "Daniel Rafferty says Gretchen Dettweiler was on the Street at 7:30 PM."
+    },
+    {
+      "id": "c108",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5215,76 +6177,11 @@
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "lobby",
-          "tick": 11
+          "location": "bar",
+          "tick": 4
         }
       ],
-      "text": "Daniel Rafferty says Wendell Dandridge was in the Lobby at 11:30 PM."
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "front-desk",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "front-desk",
-          "tick": 1
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s4",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Daniel Rafferty says Ernst Reinhardt was at the Front Desk from 6:00 PM to 6:30 PM."
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 2
-        }
-      ],
-      "text": "Daniel Rafferty says Ernst Reinhardt was in the Lobby at 7:00 PM."
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Ernst Reinhardt"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 9
-        }
-      ],
-      "text": "Daniel Rafferty says Ernst Reinhardt was in the Lobby at 10:30 PM."
+      "text": "Daniel Rafferty says Wendell Dandridge was in the Bar at 8:00 PM."
     },
     {
       "id": "c109",
@@ -5298,35 +6195,28 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
-          "tick": 4
+          "location": "front-desk",
+          "tick": 0
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
-          "tick": 5
+          "location": "front-desk",
+          "tick": 1
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
-          "tick": 6
+          "location": "front-desk",
+          "tick": 2
         },
         {
-          "kind": "personAt",
+          "kind": "hadAccess",
           "personId": "p-s4",
-          "location": "bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 8
+          "methodId": "shot"
         }
       ],
-      "text": "Daniel Rafferty says Ernst Reinhardt was in the Bar from 8:00 PM to 10:00 PM."
+      "text": "Daniel Rafferty says Ernst Reinhardt was at the Front Desk from 6:00 PM to 7:00 PM."
     },
     {
       "id": "c110",
@@ -5334,17 +6224,29 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Antonio Ruggiero"
+        "topic": "Ernst Reinhardt"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s4",
           "location": "lobby",
-          "tick": 6
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Daniel Rafferty says Antonio Ruggiero was in the Lobby at 9:00 PM."
+      "text": "Daniel Rafferty says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:30 PM."
     },
     {
       "id": "c111",
@@ -5352,23 +6254,17 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Antonio Ruggiero"
+        "topic": "Ernst Reinhardt"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "bar",
+          "personId": "p-s4",
+          "location": "lobby",
           "tick": 8
         }
       ],
-      "text": "Daniel Rafferty says Antonio Ruggiero was in the Bar from 9:30 PM to 10:00 PM."
+      "text": "Daniel Rafferty says Ernst Reinhardt was in the Lobby at 10:00 PM."
     },
     {
       "id": "c112",
@@ -5376,29 +6272,23 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Patrick Quill"
+        "topic": "Ernst Reinhardt"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s4",
           "location": "bar",
-          "tick": 0
+          "tick": 6
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s4",
           "location": "bar",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "bar",
-          "tick": 2
+          "tick": 7
         }
       ],
-      "text": "Daniel Rafferty says Patrick Quill was in the Bar from 6:00 PM to 7:00 PM."
+      "text": "Daniel Rafferty says Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM."
     },
     {
       "id": "c113",
@@ -5406,23 +6296,23 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Patrick Quill"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "bar",
-          "tick": 6
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 4
         },
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "bar",
-          "tick": 7
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Daniel Rafferty says Patrick Quill was in the Bar from 9:00 PM to 9:30 PM."
+      "text": "Daniel Rafferty says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM."
     },
     {
       "id": "c114",
@@ -5430,17 +6320,29 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Patrick Quill"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
+          "personId": "p-s5",
           "location": "lobby",
-          "tick": 3
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
         }
       ],
-      "text": "Daniel Rafferty says Patrick Quill was in the Lobby at 7:30 PM."
+      "text": "Daniel Rafferty says Antonio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM."
     },
     {
       "id": "c115",
@@ -5448,17 +6350,17 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Patrick Quill"
+        "topic": "Antonio Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 5
+          "personId": "p-s5",
+          "location": "bar",
+          "tick": 6
         }
       ],
-      "text": "Daniel Rafferty says Patrick Quill was in the Lobby at 8:30 PM."
+      "text": "Daniel Rafferty says Antonio Ruggiero was in the Bar at 9:00 PM."
     },
     {
       "id": "c116",
@@ -5472,9 +6374,45 @@
         {
           "kind": "personAt",
           "personId": "p-s6",
-          "location": "lobby",
-          "tick": 8
+          "location": "bar",
+          "tick": 4
         },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Daniel Rafferty says Patrick Quill was in the Bar from 8:00 PM to 10:00 PM."
+    },
+    {
+      "id": "c117",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Patrick Quill"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s6",
@@ -5494,55 +6432,10 @@
           "tick": 11
         }
       ],
-      "text": "Daniel Rafferty says Patrick Quill was in the Lobby from 10:00 PM to 11:30 PM."
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Patrick Quill"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "front-desk",
-          "tick": 4
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s6",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Daniel Rafferty says Patrick Quill was at the Front Desk at 8:00 PM."
+      "text": "Daniel Rafferty says Patrick Quill was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Kathleen Doyle"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 0
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 0
-        }
-      ],
-      "text": "Edward Feeney says Kathleen Doyle was in the Lobby at 6:00 PM."
-    },
-    {
-      "id": "c119",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5564,6 +6457,48 @@
       "text": "Edward Feeney says Kathleen Doyle was in the Lobby at 8:30 PM."
     },
     {
+      "id": "c119",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Beatrice Havemeyer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Edward Feeney says Beatrice Havemeyer was in the Lobby from 7:30 PM to 9:30 PM."
+    },
+    {
       "id": "c120",
       "kind": "observation",
       "source": {
@@ -5576,43 +6511,25 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "lobby",
-          "tick": 5
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Edward Feeney says Beatrice Havemeyer was in the Lobby at 8:30 PM."
+      "text": "Edward Feeney says Beatrice Havemeyer was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Beatrice Havemeyer"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 9
-        }
-      ],
-      "text": "Edward Feeney says Beatrice Havemeyer was in the Lobby from 9:30 PM to 10:30 PM."
-    },
-    {
-      "id": "c122",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5624,13 +6541,13 @@
           "kind": "personAt",
           "personId": "p-s2",
           "location": "lobby",
-          "tick": 0
+          "tick": 1
         }
       ],
-      "text": "Edward Feeney says Gretchen Dettweiler was in the Lobby at 6:00 PM."
+      "text": "Edward Feeney says Gretchen Dettweiler was in the Lobby at 6:30 PM."
     },
     {
-      "id": "c123",
+      "id": "c122",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5648,6 +6565,30 @@
       "text": "Edward Feeney says Gretchen Dettweiler was in the Lobby at 8:00 PM."
     },
     {
+      "id": "c123",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Gretchen Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 8
+        }
+      ],
+      "text": "Edward Feeney says Gretchen Dettweiler was in the Lobby from 9:30 PM to 10:00 PM."
+    },
+    {
       "id": "c124",
       "kind": "observation",
       "source": {
@@ -5660,16 +6601,28 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "kitchen",
-          "tick": 6
+          "tick": 0
         },
         {
           "kind": "personAt",
           "personId": "p-s3",
           "location": "kitchen",
-          "tick": 7
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 3
         }
       ],
-      "text": "Edward Feeney says Wendell Dandridge was in the Kitchen from 9:00 PM to 9:30 PM."
+      "text": "Edward Feeney says Wendell Dandridge was in the Kitchen from 6:00 PM to 7:30 PM."
     },
     {
       "id": "c125",
@@ -5684,10 +6637,22 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "kitchen",
-          "tick": 9
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "kitchen",
+          "tick": 7
         }
       ],
-      "text": "Edward Feeney says Wendell Dandridge was in the Kitchen at 10:30 PM."
+      "text": "Edward Feeney says Wendell Dandridge was in the Kitchen from 8:30 PM to 9:30 PM."
     },
     {
       "id": "c126",
@@ -5701,11 +6666,11 @@
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "lobby",
-          "tick": 11
+          "location": "bar",
+          "tick": 4
         }
       ],
-      "text": "Edward Feeney says Wendell Dandridge was in the Lobby at 11:30 PM."
+      "text": "Edward Feeney says Wendell Dandridge was in the Bar at 8:00 PM."
     },
     {
       "id": "c127",
@@ -5719,41 +6684,23 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
+          "location": "lobby",
           "tick": 3
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
+          "location": "lobby",
           "tick": 4
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "bar",
+          "location": "lobby",
           "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 8
         }
       ],
-      "text": "Edward Feeney says Ernst Reinhardt was in the Bar from 7:30 PM to 10:00 PM."
+      "text": "Edward Feeney says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:30 PM."
     },
     {
       "id": "c128",
@@ -5768,10 +6715,10 @@
           "kind": "personAt",
           "personId": "p-s4",
           "location": "lobby",
-          "tick": 9
+          "tick": 8
         }
       ],
-      "text": "Edward Feeney says Ernst Reinhardt was in the Lobby at 10:30 PM."
+      "text": "Edward Feeney says Ernst Reinhardt was in the Lobby at 10:00 PM."
     },
     {
       "id": "c129",
@@ -5779,23 +6726,23 @@
       "source": {
         "type": "person",
         "personId": "p-bartender",
-        "topic": "Antonio Ruggiero"
+        "topic": "Ernst Reinhardt"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "kitchen",
-          "tick": 3
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 6
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "kitchen",
-          "tick": 4
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 7
         }
       ],
-      "text": "Edward Feeney says Antonio Ruggiero was in the Kitchen from 7:30 PM to 8:00 PM."
+      "text": "Edward Feeney says Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM."
     },
     {
       "id": "c130",
@@ -5809,17 +6756,17 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "kitchen",
-          "tick": 9
+          "location": "lobby",
+          "tick": 4
         },
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "kitchen",
-          "tick": 10
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Edward Feeney says Antonio Ruggiero was in the Kitchen from 10:30 PM to 11:00 PM."
+      "text": "Edward Feeney says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM."
     },
     {
       "id": "c131",
@@ -5834,10 +6781,22 @@
           "kind": "personAt",
           "personId": "p-s5",
           "location": "lobby",
-          "tick": 6
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 9
         }
       ],
-      "text": "Edward Feeney says Antonio Ruggiero was in the Lobby at 9:00 PM."
+      "text": "Edward Feeney says Antonio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM."
     },
     {
       "id": "c132",
@@ -5852,16 +6811,10 @@
           "kind": "personAt",
           "personId": "p-s5",
           "location": "bar",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "bar",
-          "tick": 8
+          "tick": 6
         }
       ],
-      "text": "Edward Feeney says Antonio Ruggiero was in the Bar from 9:30 PM to 10:00 PM."
+      "text": "Edward Feeney says Antonio Ruggiero was in the Bar at 9:00 PM."
     },
     {
       "id": "c133",
@@ -5875,23 +6828,17 @@
         {
           "kind": "personAt",
           "personId": "p-s6",
-          "location": "bar",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "bar",
+          "location": "kitchen",
           "tick": 1
         },
         {
           "kind": "personAt",
           "personId": "p-s6",
-          "location": "bar",
+          "location": "kitchen",
           "tick": 2
         }
       ],
-      "text": "Edward Feeney says Patrick Quill was in the Bar from 6:00 PM to 7:00 PM."
+      "text": "Edward Feeney says Patrick Quill was in the Kitchen from 6:30 PM to 7:00 PM."
     },
     {
       "id": "c134",
@@ -5906,6 +6853,24 @@
           "kind": "personAt",
           "personId": "p-s6",
           "location": "bar",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
           "tick": 6
         },
         {
@@ -5913,9 +6878,15 @@
           "personId": "p-s6",
           "location": "bar",
           "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 8
         }
       ],
-      "text": "Edward Feeney says Patrick Quill was in the Bar from 9:00 PM to 9:30 PM."
+      "text": "Edward Feeney says Patrick Quill was in the Bar from 7:30 PM to 10:00 PM."
     },
     {
       "id": "c135",
@@ -5926,48 +6897,6 @@
         "topic": "Patrick Quill"
       },
       "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 3
-        }
-      ],
-      "text": "Edward Feeney says Patrick Quill was in the Lobby at 7:30 PM."
-    },
-    {
-      "id": "c136",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Patrick Quill"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 5
-        }
-      ],
-      "text": "Edward Feeney says Patrick Quill was in the Lobby at 8:30 PM."
-    },
-    {
-      "id": "c137",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Patrick Quill"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "location": "lobby",
-          "tick": 8
-        },
         {
           "kind": "personAt",
           "personId": "p-s6",
@@ -5987,10 +6916,10 @@
           "tick": 11
         }
       ],
-      "text": "Edward Feeney says Patrick Quill was in the Lobby from 10:00 PM to 11:30 PM."
+      "text": "Edward Feeney says Patrick Quill was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
-      "id": "c138",
+      "id": "c136",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6011,10 +6940,10 @@
           "tick": 1
         }
       ],
-      "text": "Gretchen Dettweiler was in the Lobby from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby."
+      "text": "Gretchen Dettweiler was at the Front Desk from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby."
     },
     {
-      "id": "c139",
+      "id": "c137",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6038,31 +6967,7 @@
       "text": "Ernst Reinhardt was at the Front Desk from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby."
     },
     {
-      "id": "c140",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Beatrice Havemeyer's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "location": "lobby",
-          "tick": 1
-        }
-      ],
-      "text": "Patrick Quill was in the Bar from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby."
-    },
-    {
-      "id": "c141",
+      "id": "c138",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6086,7 +6991,7 @@
       "text": "Daniel Rafferty was in the Lobby from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby."
     },
     {
-      "id": "c142",
+      "id": "c139",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6110,7 +7015,31 @@
       "text": "Edward Feeney was in the Bar from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby."
     },
     {
-      "id": "c143",
+      "id": "c140",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Beatrice Havemeyer's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 0
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Beatrice Havemeyer says Wendell Dandridge was there. Wendell Dandridge says otherwise: Wendell Dandridge was in the Kitchen from 6:00 PM to 6:30 PM, not in the Lobby."
+    },
+    {
+      "id": "c141",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6121,53 +7050,59 @@
         {
           "kind": "personNotAt",
           "personId": "p-s2",
-          "location": "front-desk",
+          "location": "street",
+          "tick": 5
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 6
+        }
+      ],
+      "text": "Beatrice Havemeyer was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not on the Street."
+    },
+    {
+      "id": "c142",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Gretchen Dettweiler's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "street",
           "tick": 5
         }
       ],
-      "text": "Beatrice Havemeyer was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not at the Front Desk."
+      "text": "Ernst Reinhardt was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not on the Street."
+    },
+    {
+      "id": "c143",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Gretchen Dettweiler's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "location": "street",
+          "tick": 5
+        }
+      ],
+      "text": "Antonio Ruggiero was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not on the Street."
     },
     {
       "id": "c144",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Gretchen Dettweiler's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 6
-        }
-      ],
-      "text": "Antonio Ruggiero was in the Lobby at 9:00 PM and says Gretchen Dettweiler was not at the Front Desk."
-    },
-    {
-      "id": "c145",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Gretchen Dettweiler's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 5
-        }
-      ],
-      "text": "Patrick Quill was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not at the Front Desk."
-    },
-    {
-      "id": "c146",
-      "kind": "observation",
-      "source": {
-        "type": "person",
         "personId": "p-doorman",
         "topic": "Gretchen Dettweiler's account"
       },
@@ -6175,44 +7110,20 @@
         {
           "kind": "personNotAt",
           "personId": "p-s2",
-          "location": "front-desk",
+          "location": "street",
           "tick": 5
         },
         {
           "kind": "personNotAt",
           "personId": "p-s2",
-          "location": "front-desk",
+          "location": "street",
           "tick": 6
         }
       ],
-      "text": "Daniel Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not at the Front Desk."
+      "text": "Daniel Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not on the Street."
     },
     {
-      "id": "c147",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Gretchen Dettweiler's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 6
-        }
-      ],
-      "text": "Gretchen Dettweiler says Ernst Reinhardt was there. Ernst Reinhardt says otherwise: Ernst Reinhardt was in the Bar from 8:30 PM to 9:00 PM, not at the Front Desk."
-    },
-    {
-      "id": "c148",
+      "id": "c145",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6223,14 +7134,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s3",
-          "location": "lobby",
+          "location": "bar",
           "tick": 6
         }
       ],
-      "text": "Beatrice Havemeyer was on the Street at 9:00 PM and says Wendell Dandridge was not in the Lobby."
+      "text": "Beatrice Havemeyer was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Bar."
     },
     {
-      "id": "c149",
+      "id": "c146",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6241,14 +7152,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s3",
-          "location": "lobby",
+          "location": "bar",
           "tick": 6
         }
       ],
-      "text": "Ernst Reinhardt was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Lobby."
+      "text": "Ernst Reinhardt was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar."
     },
     {
-      "id": "c150",
+      "id": "c147",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6259,14 +7170,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s3",
-          "location": "lobby",
+          "location": "bar",
           "tick": 6
         }
       ],
-      "text": "Antonio Ruggiero was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Lobby."
+      "text": "Antonio Ruggiero was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar."
     },
     {
-      "id": "c151",
+      "id": "c148",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6277,14 +7188,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s3",
-          "location": "lobby",
+          "location": "bar",
           "tick": 6
         }
       ],
-      "text": "Daniel Rafferty was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Lobby."
+      "text": "Daniel Rafferty was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Bar."
     },
     {
-      "id": "c152",
+      "id": "c149",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6295,14 +7206,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s3",
-          "location": "lobby",
+          "location": "bar",
           "tick": 6
         }
       ],
-      "text": "Edward Feeney was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Lobby."
+      "text": "Edward Feeney was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar."
     },
     {
-      "id": "c153",
+      "id": "c150",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6317,10 +7228,10 @@
           "tick": 1
         }
       ],
-      "text": "Gretchen Dettweiler was at the Front Desk at 6:30 PM and says Antonio Ruggiero was not in the Lobby."
+      "text": "Gretchen Dettweiler was in the Lobby at 6:30 PM and says Antonio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c154",
+      "id": "c151",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6338,25 +7249,7 @@
       "text": "Ernst Reinhardt was at the Front Desk at 6:30 PM and says Antonio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c155",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Antonio Ruggiero's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "location": "lobby",
-          "tick": 1
-        }
-      ],
-      "text": "Patrick Quill was in the Bar at 6:30 PM and says Antonio Ruggiero was not in the Lobby."
-    },
-    {
-      "id": "c156",
+      "id": "c152",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6374,7 +7267,7 @@
       "text": "Daniel Rafferty was in the Lobby at 6:30 PM and says Antonio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c157",
+      "id": "c153",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6392,7 +7285,7 @@
       "text": "Edward Feeney was in the Bar at 6:30 PM and says Antonio Ruggiero was not in the Lobby."
     },
     {
-      "id": "c158",
+      "id": "c154",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6403,20 +7296,62 @@
         {
           "kind": "personNotAt",
           "personId": "p-s6",
-          "location": "street",
+          "location": "lobby",
           "tick": 6
         },
         {
           "kind": "personNotAt",
           "personId": "p-s6",
-          "location": "street",
+          "location": "lobby",
           "tick": 7
         }
       ],
-      "text": "Beatrice Havemeyer was on the Street from 9:00 PM to 9:30 PM and says Patrick Quill was not on the Street."
+      "text": "Beatrice Havemeyer was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby."
     },
     {
-      "id": "c159",
+      "id": "c155",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Patrick Quill's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Gretchen Dettweiler was in the Lobby at 9:30 PM and says Patrick Quill was not in the Lobby."
+    },
+    {
+      "id": "c156",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Patrick Quill's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby."
+    },
+    {
+      "id": "c157",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6427,14 +7362,20 @@
         {
           "kind": "personNotAt",
           "personId": "p-s6",
-          "location": "street",
+          "location": "lobby",
           "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
         }
       ],
-      "text": "Antonio Ruggiero was in the Lobby at 9:00 PM and says Patrick Quill was not on the Street."
+      "text": "Antonio Ruggiero was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby."
     },
     {
-      "id": "c160",
+      "id": "c158",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -6445,17 +7386,59 @@
         {
           "kind": "personNotAt",
           "personId": "p-s6",
-          "location": "street",
+          "location": "lobby",
           "tick": 6
         },
         {
           "kind": "personNotAt",
           "personId": "p-s6",
-          "location": "street",
+          "location": "lobby",
           "tick": 7
         }
       ],
-      "text": "Daniel Rafferty was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not on the Street."
+      "text": "Daniel Rafferty was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby."
+    },
+    {
+      "id": "c159",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Patrick Quill's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Edward Feeney was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby."
+    },
+    {
+      "id": "c160",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Patrick Quill's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Patrick Quill says Wendell Dandridge was there. Wendell Dandridge says otherwise: Wendell Dandridge was in the Kitchen at 9:30 PM, not in the Lobby."
     },
     {
       "id": "c161",
@@ -6520,7 +7503,7 @@
         "locationId": "front-desk"
       },
       "establishes": [],
-      "text": "Ernst Reinhardt's papers do not hold up. Two signatures in the guest register, a month apart, are in different hands."
+      "text": "Ernst Reinhardt's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date."
     },
     {
       "id": "c166",
@@ -6543,7 +7526,7 @@
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-doorman",
+        "personId": "p-bartender",
         "topic": "Gretchen Dettweiler and Kathleen Doyle"
       },
       "establishes": [
@@ -6553,14 +7536,14 @@
           "motiveType": "exposure"
         }
       ],
-      "text": "Daniel Rafferty says Kathleen Doyle told Gretchen Dettweiler that the story would run whether Gretchen Dettweiler liked it or not."
+      "text": "Edward Feeney says Kathleen Doyle told Gretchen Dettweiler that the story would run whether Gretchen Dettweiler liked it or not."
     },
     {
       "id": "c168",
       "kind": "document",
       "source": {
         "type": "location",
-        "locationId": "suite"
+        "locationId": "front-desk"
       },
       "establishes": [
         {
@@ -6569,7 +7552,7 @@
           "motiveType": "jealousy"
         }
       ],
-      "text": "Found in the Victim's Suite: Three letters in Kathleen Doyle's hand to a woman Antonio Ruggiero is engaged to, kept in the drawer, the last one opened."
+      "text": "Found in the Front Desk: Three letters in Kathleen Doyle's hand to a woman Antonio Ruggiero is engaged to, kept in the drawer, the last one opened."
     },
     {
       "id": "c169",
@@ -6600,45 +7583,49 @@
     "timeOfDeath": [
       "c161",
       "c002",
-      "c045",
-      "c081",
+      "c047",
+      "c065",
+      "c082",
       "c097",
-      "c119"
+      "c118"
     ],
     "exculpations": {
       "p-s1": [
-        "c065",
-        "c099"
+        "c049",
+        "c066",
+        "c100",
+        "c119"
       ],
       "p-s3": [
-        "c054",
-        "c124"
+        "c056",
+        "c072",
+        "c125"
       ],
       "p-s4": [
-        "c075",
-        "c109",
-        "c127"
+        "c012",
+        "c076",
+        "c112",
+        "c129"
       ],
       "p-s5": [
-        "c011",
-        "c057",
-        "c110",
-        "c131"
+        "c016",
+        "c060",
+        "c115",
+        "c132"
       ],
       "p-s6": [
-        "c061",
-        "c077",
-        "c113",
+        "c017",
+        "c062",
+        "c079",
+        "c116",
         "c134"
       ]
     },
     "inculpation": [
+      "c141",
       "c144",
-      "c146",
-      "c147",
-      "c052",
-      "c087",
-      "c104"
+      "c050",
+      "c102"
     ],
     "method": [
       "c161",

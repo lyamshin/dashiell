@@ -383,9 +383,9 @@
         "lobby",
         "lobby",
         "suite",
-        "lobby",
+        "service-stairs",
         "roof",
-        "lobby",
+        "roof",
         "lobby",
         "roof",
         null,
@@ -397,9 +397,9 @@
         "lobby",
         "lobby",
         "suite",
-        "lobby",
+        "service-stairs",
         "roof",
-        "lobby",
+        "roof",
         "lobby",
         "roof",
         null,
@@ -426,32 +426,32 @@
     {
       "personId": "p-s1",
       "truth": [
-        "service-stairs",
-        "front-desk",
-        "front-desk",
-        "front-desk",
-        "front-desk",
+        "roof",
         "service-stairs",
         "service-stairs",
         "kitchen",
         "kitchen",
         "kitchen",
-        "service-stairs",
-        "service-stairs"
-      ],
-      "claimed": [
-        "service-stairs",
-        "front-desk",
-        "front-desk",
-        "front-desk",
-        "front-desk",
-        "service-stairs",
+        "kitchen",
+        "kitchen",
         "service-stairs",
         "lobby",
-        "kitchen",
-        "kitchen",
+        "lobby",
+        "lobby"
+      ],
+      "claimed": [
+        "roof",
         "service-stairs",
-        "service-stairs"
+        "service-stairs",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "kitchen",
+        "bar",
+        "service-stairs",
+        "lobby",
+        "lobby",
+        "lobby"
       ],
       "claimedCompanion": [
         null,
@@ -474,32 +474,32 @@
     {
       "personId": "p-s2",
       "truth": [
-        "lobby",
-        "lobby",
-        "lobby",
-        "lobby",
+        "roof",
+        "roof",
+        "roof",
         "service-stairs",
-        "service-stairs",
-        "service-stairs",
+        "front-desk",
+        "front-desk",
         "lobby",
-        "lobby",
-        "service-stairs",
-        "service-stairs",
-        "front-desk"
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
       ],
       "claimed": [
-        "lobby",
-        "lobby",
-        "lobby",
-        "lobby",
+        "roof",
+        "roof",
+        "roof",
         "service-stairs",
-        "service-stairs",
-        "service-stairs",
+        "front-desk",
+        "front-desk",
         "lobby",
-        "lobby",
-        "service-stairs",
-        "service-stairs",
-        "front-desk"
+        "bar",
+        "bar",
+        "bar",
+        "bar",
+        "bar"
       ],
       "claimedCompanion": [
         null,
@@ -520,36 +520,36 @@
     {
       "personId": "p-s3",
       "truth": [
-        "lobby",
+        "service-stairs",
         "suite",
         "service-stairs",
         "service-stairs",
         "service-stairs",
-        "roof",
+        "service-stairs",
+        "front-desk",
         "lobby",
+        "bar",
+        "bar",
         "lobby",
-        "lobby",
-        "street",
-        "street",
-        "street"
+        "lobby"
       ],
       "claimed": [
-        "lobby",
+        "service-stairs",
         "front-desk",
         "service-stairs",
         "service-stairs",
         "service-stairs",
-        "roof",
+        "service-stairs",
+        "front-desk",
         "lobby",
+        "bar",
+        "bar",
         "lobby",
-        "lobby",
-        "street",
-        "street",
-        "street"
+        "lobby"
       ],
       "claimedCompanion": [
         null,
-        "p-s4",
+        null,
         null,
         null,
         null,
@@ -568,37 +568,37 @@
     {
       "personId": "p-s4",
       "truth": [
-        "lobby",
+        "bar",
         "lobby",
         "suite",
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "kitchen",
+        "lobby",
+        "lobby",
+        "lobby",
+        "lobby",
+        "bar",
         "bar",
         "lobby",
         "lobby",
-        "service-stairs",
-        "kitchen"
+        "lobby"
       ],
       "claimed": [
+        "bar",
+        "lobby",
+        "street",
         "lobby",
         "lobby",
-        "front-desk",
-        "service-stairs",
-        "service-stairs",
-        "service-stairs",
-        "kitchen",
+        "lobby",
+        "lobby",
+        "bar",
         "bar",
         "lobby",
         "lobby",
-        "service-stairs",
-        "kitchen"
+        "lobby"
       ],
       "claimedCompanion": [
         null,
         null,
-        null,
+        "p-s5",
         null,
         null,
         null,
@@ -617,31 +617,31 @@
       "personId": "p-s5",
       "truth": [
         "service-stairs",
-        "front-desk",
-        "front-desk",
         "service-stairs",
-        "roof",
         "lobby",
         "lobby",
         "street",
         "street",
         "street",
         "street",
-        "street"
+        "street",
+        "street",
+        "street",
+        "lobby"
       ],
       "claimed": [
         "service-stairs",
-        "front-desk",
-        "front-desk",
         "service-stairs",
-        "roof",
-        "lobby",
         "lobby",
         "lobby",
         "street",
         "street",
         "street",
-        "street"
+        "lobby",
+        "street",
+        "street",
+        "street",
+        "lobby"
       ],
       "claimedCompanion": [
         null,
@@ -664,32 +664,32 @@
     {
       "personId": "p-s6",
       "truth": [
-        "roof",
-        "roof",
-        "roof",
         "lobby",
         "front-desk",
+        "front-desk",
+        "lobby",
+        "lobby",
+        "lobby",
+        "roof",
+        "roof",
         "service-stairs",
-        "roof",
-        "roof",
-        "roof",
-        "roof",
-        "roof",
-        "roof"
+        "service-stairs",
+        "front-desk",
+        "front-desk"
       ],
       "claimed": [
-        "roof",
-        "roof",
-        "roof",
         "lobby",
         "front-desk",
+        "front-desk",
+        "lobby",
+        "lobby",
+        "lobby",
+        "bar",
+        "bar",
         "service-stairs",
-        "street",
-        "street",
-        "roof",
-        "roof",
-        "roof",
-        "roof"
+        "service-stairs",
+        "front-desk",
+        "front-desk"
       ],
       "claimedCompanion": [
         null,
@@ -698,8 +698,8 @@
         null,
         null,
         null,
-        "p-s1",
-        "p-s1",
+        "p-s4",
+        "p-s4",
         null,
         null,
         null,
@@ -806,21 +806,14 @@
   "observations": [
     {
       "observerId": "p-victim",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
       "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
       "location": "lobby",
       "tick": 0,
       "withheld": false
@@ -841,384 +834,230 @@
     },
     {
       "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "roof",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "roof",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
       "subjectId": "p-s5",
       "location": "service-stairs",
       "tick": 0,
       "withheld": false
     },
     {
-      "observerId": "p-s2",
+      "observerId": "p-s4",
       "subjectId": "p-victim",
       "location": "lobby",
       "tick": 0,
       "withheld": false
     },
     {
-      "observerId": "p-s2",
-      "subjectId": "p-s3",
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
       "location": "lobby",
       "tick": 0,
       "withheld": false
     },
     {
-      "observerId": "p-s2",
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
       "subjectId": "p-s4",
       "location": "lobby",
-      "tick": 0,
+      "tick": 1,
       "withheld": false
     },
     {
-      "observerId": "p-s2",
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
       "subjectId": "p-doorman",
       "location": "lobby",
-      "tick": 0,
+      "tick": 1,
       "withheld": false
     },
     {
-      "observerId": "p-s2",
+      "observerId": "p-victim",
       "subjectId": "p-bartender",
       "location": "bar",
-      "tick": 0,
+      "tick": 1,
       "withheld": false
     },
     {
-      "observerId": "p-s3",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 0,
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "service-stairs",
+      "tick": 1,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-victim",
       "location": "lobby",
-      "tick": 0,
+      "tick": 1,
       "withheld": false
     },
     {
       "observerId": "p-s4",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 0,
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 1,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-doorman",
       "location": "lobby",
-      "tick": 0,
+      "tick": 1,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-bartender",
       "location": "bar",
-      "tick": 0,
+      "tick": 1,
       "withheld": false
     },
     {
       "observerId": "p-s5",
       "subjectId": "p-s1",
       "location": "service-stairs",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 0,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s1",
-      "location": "front-desk",
       "tick": 1,
       "withheld": false
     },
     {
-      "observerId": "p-victim",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s5",
-      "location": "front-desk",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
+      "observerId": "p-s6",
       "subjectId": "p-victim",
       "location": "lobby",
       "tick": 1,
       "withheld": false
     },
     {
-      "observerId": "p-s1",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
+      "observerId": "p-s6",
       "subjectId": "p-s4",
       "location": "lobby",
       "tick": 1,
       "withheld": false
     },
     {
-      "observerId": "p-s1",
-      "subjectId": "p-s5",
-      "location": "front-desk",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s5",
-      "location": "front-desk",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s5",
-      "location": "front-desk",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
+      "observerId": "p-s6",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 1,
@@ -1233,20 +1072,6 @@
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
       "subjectId": "p-s4",
       "location": "lobby",
       "tick": 1,
@@ -1254,7 +1079,7 @@
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s5",
+      "subjectId": "p-s6",
       "location": "front-desk",
       "tick": 1,
       "withheld": false
@@ -1269,13 +1094,6 @@
     {
       "observerId": "p-bartender",
       "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 1,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 1,
       "withheld": false
@@ -1303,43 +1121,15 @@
     },
     {
       "observerId": "p-s1",
-      "subjectId": "p-s2",
-      "location": "lobby",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
       "tick": 2,
       "withheld": false
     },
     {
-      "observerId": "p-s1",
-      "subjectId": "p-s5",
-      "location": "front-desk",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
+      "observerId": "p-s3",
       "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s5",
-      "location": "front-desk",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-doorman",
-      "location": "street",
-      "tick": 2,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-bartender",
-      "location": "bar",
+      "location": "service-stairs",
       "tick": 2,
       "withheld": false
     },
@@ -1352,657 +1142,580 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s1",
+      "subjectId": "p-s6",
       "location": "front-desk",
       "tick": 2,
       "withheld": false
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "street",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
       "location": "lobby",
       "tick": 2,
       "withheld": false
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s2",
+      "subjectId": "p-s5",
       "location": "lobby",
       "tick": 2,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
-      "subjectId": "p-s2",
+      "subjectId": "p-s5",
       "location": "lobby",
       "tick": 2,
       "withheld": false
     },
     {
       "observerId": "p-victim",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
       "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s4",
       "location": "service-stairs",
       "tick": 3,
       "withheld": false
     },
     {
-      "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "service-stairs",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
+      "observerId": "p-victim",
       "subjectId": "p-s3",
       "location": "service-stairs",
       "tick": 3,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
-      "subjectId": "p-s5",
-      "location": "service-stairs",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s3",
-      "location": "service-stairs",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s6",
-      "location": "lobby",
-      "tick": 3,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s5",
-      "location": "roof",
-      "tick": 4,
-      "withheld": false
-    },
-    {
       "observerId": "p-s1",
-      "subjectId": "p-s6",
-      "location": "front-desk",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s3",
-      "location": "service-stairs",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s2",
-      "location": "service-stairs",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s2",
-      "location": "service-stairs",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s3",
-      "location": "service-stairs",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-victim",
-      "location": "roof",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s1",
-      "location": "front-desk",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s6",
-      "location": "front-desk",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
       "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 4,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s5",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s2",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s6",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s1",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s6",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s1",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s2",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s6",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s1",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s2",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-s4",
-      "location": "service-stairs",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s5",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s5",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 5,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-s5",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-victim",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s2",
-      "location": "service-stairs",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s1",
-      "location": "service-stairs",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s5",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-victim",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 6,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
-      "subjectId": "p-s4",
       "location": "kitchen",
-      "tick": 6,
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "service-stairs",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "service-stairs",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "service-stairs",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 3,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
       "subjectId": "p-s5",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "front-desk",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s6",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s2",
       "location": "lobby",
       "tick": 6,
       "withheld": false
     },
     {
-      "observerId": "p-bartender",
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "location": "front-desk",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 6,
@@ -2010,162 +1723,393 @@
     },
     {
       "observerId": "p-victim",
-      "subjectId": "p-s6",
-      "location": "roof",
-      "tick": 7,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s1",
-      "subjectId": "p-s4",
+      "subjectId": "p-bartender",
       "location": "bar",
-      "tick": 7,
-      "withheld": true
+      "tick": 6,
+      "withheld": false
     },
     {
       "observerId": "p-s1",
       "subjectId": "p-bartender",
       "location": "bar",
-      "tick": 7,
-      "withheld": true
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 7,
+      "location": "front-desk",
+      "tick": 6,
       "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 7,
+      "location": "lobby",
+      "tick": 6,
       "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-s5",
       "location": "street",
-      "tick": 7,
+      "tick": 6,
       "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-doorman",
       "location": "lobby",
-      "tick": 7,
+      "tick": 6,
       "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-bartender",
       "location": "bar",
-      "tick": 7,
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 6,
       "withheld": false
     },
     {
       "observerId": "p-s3",
       "subjectId": "p-s2",
       "location": "lobby",
-      "tick": 7,
+      "tick": 6,
       "withheld": false
     },
     {
       "observerId": "p-s3",
       "subjectId": "p-s4",
-      "location": "bar",
-      "tick": 7,
+      "location": "lobby",
+      "tick": 6,
       "withheld": false
     },
     {
       "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "front-desk",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
       "subjectId": "p-s5",
       "location": "street",
-      "tick": 7,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 7,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 7,
+      "tick": 6,
       "withheld": false
     },
     {
       "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "front-desk",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-victim",
+      "location": "lobby",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
       "subjectId": "p-s1",
       "location": "kitchen",
-      "tick": 7,
+      "tick": 6,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
+      "observerId": "p-bartender",
       "subjectId": "p-s2",
       "location": "lobby",
-      "tick": 7,
+      "tick": 6,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
-      "subjectId": "p-s3",
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
       "location": "lobby",
-      "tick": 7,
+      "tick": 6,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
+      "observerId": "p-bartender",
       "subjectId": "p-doorman",
       "location": "lobby",
-      "tick": 7,
+      "tick": 6,
       "withheld": false
     },
     {
-      "observerId": "p-s4",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 7,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 7,
-      "withheld": true
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 7,
-      "withheld": true
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-doorman",
-      "location": "lobby",
-      "tick": 7,
-      "withheld": true
-    },
-    {
-      "observerId": "p-s6",
-      "subjectId": "p-victim",
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
       "location": "roof",
       "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "kitchen",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "location": "roof",
+      "tick": 7,
       "withheld": true
     },
     {
       "observerId": "p-doorman",
       "subjectId": "p-s2",
-      "location": "lobby",
+      "location": "bar",
       "tick": 7,
       "withheld": false
     },
@@ -2207,7 +2151,7 @@
     {
       "observerId": "p-bartender",
       "subjectId": "p-s2",
-      "location": "lobby",
+      "location": "bar",
       "tick": 7,
       "withheld": false
     },
@@ -2234,29 +2178,22 @@
     },
     {
       "observerId": "p-s1",
-      "subjectId": "p-bartender",
-      "location": "bar",
+      "subjectId": "p-s6",
+      "location": "service-stairs",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-s3",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s2",
-      "subjectId": "p-s5",
-      "location": "street",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
@@ -2277,21 +2214,14 @@
     {
       "observerId": "p-s3",
       "subjectId": "p-s2",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-s3",
       "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "street",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
@@ -2312,21 +2242,14 @@
     {
       "observerId": "p-s4",
       "subjectId": "p-s2",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s4",
-      "subjectId": "p-s5",
-      "location": "street",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
@@ -2346,92 +2269,71 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-s5",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 8,
       "withheld": false
     },
     {
-      "observerId": "p-doorman",
-      "subjectId": "p-s2",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s3",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s4",
-      "location": "lobby",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s5",
-      "location": "street",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-bartender",
-      "location": "bar",
-      "tick": 8,
-      "withheld": false
-    },
-    {
-      "observerId": "p-bartender",
+      "observerId": "p-s6",
       "subjectId": "p-s1",
-      "location": "kitchen",
+      "location": "service-stairs",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-bartender",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
       "subjectId": "p-s2",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
       "subjectId": "p-s3",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
     {
       "observerId": "p-bartender",
       "subjectId": "p-s4",
-      "location": "lobby",
+      "location": "bar",
       "tick": 8,
       "withheld": false
     },
@@ -2444,7 +2346,84 @@
     },
     {
       "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "front-desk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
       "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
       "location": "bar",
       "tick": 9,
       "withheld": false
@@ -2458,15 +2437,29 @@
     },
     {
       "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "street",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
       "tick": 9,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-s3",
-      "location": "street",
+      "location": "bar",
       "tick": 9,
       "withheld": false
     },
@@ -2493,14 +2486,21 @@
     },
     {
       "observerId": "p-s5",
-      "subjectId": "p-s3",
-      "location": "street",
+      "subjectId": "p-s1",
+      "location": "lobby",
       "tick": 9,
       "withheld": false
     },
     {
       "observerId": "p-s5",
       "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
       "location": "lobby",
       "tick": 9,
       "withheld": false
@@ -2515,7 +2515,21 @@
     {
       "observerId": "p-bartender",
       "subjectId": "p-s1",
-      "location": "kitchen",
+      "location": "lobby",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "bar",
       "tick": 9,
       "withheld": false
     },
@@ -2529,28 +2543,105 @@
     {
       "observerId": "p-s1",
       "subjectId": "p-s2",
-      "location": "service-stairs",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "lobby",
       "tick": 10,
       "withheld": false
     },
     {
       "observerId": "p-s1",
       "subjectId": "p-s4",
-      "location": "service-stairs",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
       "tick": 10,
       "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-s1",
-      "location": "service-stairs",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
       "tick": 10,
       "withheld": false
     },
     {
       "observerId": "p-s2",
       "subjectId": "p-s4",
-      "location": "service-stairs",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
       "tick": 10,
       "withheld": false
     },
@@ -2563,29 +2654,92 @@
     },
     {
       "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
       "subjectId": "p-doorman",
       "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
       "tick": 10,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-s1",
-      "location": "service-stairs",
+      "location": "lobby",
       "tick": 10,
       "withheld": false
     },
     {
       "observerId": "p-s4",
       "subjectId": "p-s2",
-      "location": "service-stairs",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "street",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "lobby",
       "tick": 10,
       "withheld": false
     },
     {
       "observerId": "p-s5",
       "subjectId": "p-s3",
-      "location": "street",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
       "tick": 10,
       "withheld": false
     },
@@ -2597,9 +2751,58 @@
       "withheld": false
     },
     {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
       "observerId": "p-doorman",
       "subjectId": "p-s3",
-      "location": "street",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
       "tick": 10,
       "withheld": false
     },
@@ -2607,6 +2810,13 @@
       "observerId": "p-doorman",
       "subjectId": "p-s5",
       "location": "street",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
+      "location": "front-desk",
       "tick": 10,
       "withheld": false
     },
@@ -2619,9 +2829,114 @@
     },
     {
       "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 11,
       "withheld": false
     },
     {
@@ -2632,14 +2947,98 @@
       "withheld": false
     },
     {
-      "observerId": "p-s3",
-      "subjectId": "p-s5",
-      "location": "street",
+      "observerId": "p-s2",
+      "subjectId": "p-bartender",
+      "location": "bar",
       "tick": 11,
       "withheld": false
     },
     {
       "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "location": "front-desk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
       "subjectId": "p-doorman",
       "location": "lobby",
       "tick": 11,
@@ -2654,8 +3053,36 @@
     },
     {
       "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
       "subjectId": "p-s3",
-      "location": "street",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "location": "front-desk",
       "tick": 11,
       "withheld": false
     },
@@ -2667,28 +3094,91 @@
       "withheld": false
     },
     {
+      "observerId": "p-s5",
+      "subjectId": "p-bartender",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-doorman",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
       "observerId": "p-doorman",
       "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s4",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s5",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-doorman",
+      "subjectId": "p-s6",
       "location": "front-desk",
       "tick": 11,
       "withheld": false
     },
     {
       "observerId": "p-doorman",
-      "subjectId": "p-s3",
-      "location": "street",
-      "tick": 11,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
-      "subjectId": "p-s5",
-      "location": "street",
-      "tick": 11,
-      "withheld": false
-    },
-    {
-      "observerId": "p-doorman",
       "subjectId": "p-bartender",
       "location": "bar",
       "tick": 11,
@@ -2696,8 +3186,36 @@
     },
     {
       "observerId": "p-bartender",
+      "subjectId": "p-s1",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s2",
+      "location": "bar",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s3",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
       "subjectId": "p-s4",
-      "location": "kitchen",
+      "location": "lobby",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-bartender",
+      "subjectId": "p-s5",
+      "location": "lobby",
       "tick": 11,
       "withheld": false
     },
@@ -2716,21 +3234,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Ernst Obermann"
+        "topic": "Carmela Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 1
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 1
+          "personId": "p-s2",
+          "location": "roof",
+          "tick": 0
         }
       ],
-      "text": "Konrad Hochstetter says Ernst Obermann was in the Lobby at 6:30 PM."
+      "text": "Konrad Hochstetter says Carmela Ruggiero was in the Roof Garden at 6:00 PM."
     },
     {
       "id": "c002",
@@ -2738,21 +3252,29 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Ernst Obermann"
+        "topic": "Carmela Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 3
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 9
         },
         {
-          "kind": "victimAliveAt",
-          "tick": 3
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
         }
       ],
-      "text": "Konrad Hochstetter says Ernst Obermann was in the Lobby at 7:30 PM."
+      "text": "Konrad Hochstetter says Carmela Ruggiero was in the Bar from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c003",
@@ -2760,29 +3282,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Carmela Ruggiero"
+        "topic": "Francis Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
+          "personId": "p-s3",
+          "location": "service-stairs",
           "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 3
         }
       ],
-      "text": "Konrad Hochstetter says Carmela Ruggiero was in the Lobby from 6:30 PM to 7:30 PM."
+      "text": "Konrad Hochstetter says Francis Quill was on the Service Stairs at 7:00 PM."
     },
     {
       "id": "c004",
@@ -2790,23 +3300,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Carmela Ruggiero"
+        "topic": "Francis Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 6
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 9
         }
       ],
-      "text": "Konrad Hochstetter says Carmela Ruggiero was on the Service Stairs from 8:30 PM to 9:00 PM."
+      "text": "Konrad Hochstetter says Francis Quill was in the Bar at 10:30 PM."
     },
     {
       "id": "c005",
@@ -2814,17 +3318,23 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Carmela Ruggiero"
+        "topic": "Francis Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "service-stairs",
+          "personId": "p-s3",
+          "location": "lobby",
           "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Konrad Hochstetter says Carmela Ruggiero was on the Service Stairs at 11:00 PM."
+      "text": "Konrad Hochstetter says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c006",
@@ -2839,10 +3349,22 @@
           "kind": "personAt",
           "personId": "p-s4",
           "location": "lobby",
-          "tick": 1
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Konrad Hochstetter says Assunta Bellucci was in the Lobby at 6:30 PM."
+      "text": "Konrad Hochstetter says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c007",
@@ -2850,17 +3372,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Assunta Bellucci"
+        "topic": "Delia Mulcahy"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
+          "personId": "p-s5",
           "location": "service-stairs",
-          "tick": 5
+          "tick": 1
         }
       ],
-      "text": "Konrad Hochstetter says Assunta Bellucci was on the Service Stairs at 8:30 PM."
+      "text": "Konrad Hochstetter says Delia Mulcahy was on the Service Stairs at 6:30 PM."
     },
     {
       "id": "c008",
@@ -2868,17 +3390,23 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Assunta Bellucci"
+        "topic": "Delia Mulcahy"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "service-stairs",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
           "tick": 10
         }
       ],
-      "text": "Konrad Hochstetter says Assunta Bellucci was on the Service Stairs at 11:00 PM."
+      "text": "Konrad Hochstetter says Delia Mulcahy was on the Street from 10:30 PM to 11:00 PM."
     },
     {
       "id": "c009",
@@ -2892,11 +3420,11 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 0
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Konrad Hochstetter says Delia Mulcahy was on the Service Stairs at 6:00 PM."
+      "text": "Konrad Hochstetter says Delia Mulcahy was in the Lobby at 11:30 PM."
     },
     {
       "id": "c010",
@@ -2904,28 +3432,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Delia Mulcahy"
+        "topic": "Agnes Sweeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "front-desk",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "front-desk",
-          "tick": 2
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "push"
+          "personId": "p-s6",
+          "location": "service-stairs",
+          "tick": 8
         }
       ],
-      "text": "Konrad Hochstetter says Delia Mulcahy was at the Front Desk from 6:30 PM to 7:00 PM."
+      "text": "Konrad Hochstetter says Agnes Sweeney was on the Service Stairs at 10:00 PM."
     },
     {
       "id": "c011",
@@ -2939,52 +3456,61 @@
         {
           "kind": "personAt",
           "personId": "p-s6",
-          "location": "lobby",
-          "tick": 3
+          "location": "front-desk",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 11
         }
       ],
-      "text": "Konrad Hochstetter says Agnes Sweeney was in the Lobby at 7:30 PM."
+      "text": "Konrad Hochstetter says Agnes Sweeney was at the Front Desk from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c012",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "Agnes Sweeney"
+        "personId": "p-s2",
+        "topic": "Ernst Obermann"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "front-desk",
-          "tick": 4
+          "personId": "p-victim",
+          "location": "service-stairs",
+          "tick": 3
         },
         {
-          "kind": "hadAccess",
-          "personId": "p-s6",
-          "methodId": "push"
+          "kind": "victimAliveAt",
+          "tick": 3
         }
       ],
-      "text": "Konrad Hochstetter says Agnes Sweeney was at the Front Desk at 8:00 PM."
+      "text": "Carmela Ruggiero says Ernst Obermann was on the Service Stairs at 7:30 PM."
     },
     {
       "id": "c013",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "Agnes Sweeney"
+        "personId": "p-s2",
+        "topic": "Ernst Obermann"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s6",
-          "location": "service-stairs",
-          "tick": 5
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 6
         }
       ],
-      "text": "Konrad Hochstetter says Agnes Sweeney was on the Service Stairs at 8:30 PM."
+      "text": "Carmela Ruggiero says Ernst Obermann was in the Lobby at 9:00 PM."
     },
     {
       "id": "c014",
@@ -2992,31 +3518,17 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Ernst Obermann"
+        "topic": "Konrad Hochstetter"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
+          "personId": "p-s1",
+          "location": "roof",
           "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 1
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 0
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 1
         }
       ],
-      "text": "Carmela Ruggiero says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM."
+      "text": "Carmela Ruggiero says Konrad Hochstetter was in the Roof Garden at 6:00 PM."
     },
     {
       "id": "c015",
@@ -3024,21 +3536,17 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Ernst Obermann"
+        "topic": "Konrad Hochstetter"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 3
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 3
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 7
         }
       ],
-      "text": "Carmela Ruggiero says Ernst Obermann was in the Lobby at 7:30 PM."
+      "text": "Carmela Ruggiero says Konrad Hochstetter was in the Kitchen at 9:30 PM."
     },
     {
       "id": "c016",
@@ -3052,28 +3560,23 @@
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 1
+          "location": "lobby",
+          "tick": 9
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 2
+          "location": "lobby",
+          "tick": 10
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 3
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "push"
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Carmela Ruggiero says Konrad Hochstetter was at the Front Desk from 6:30 PM to 7:30 PM."
+      "text": "Carmela Ruggiero says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c017",
@@ -3081,23 +3584,17 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Konrad Hochstetter"
+        "topic": "Francis Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
+          "personId": "p-s3",
           "location": "service-stairs",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "service-stairs",
-          "tick": 6
+          "tick": 3
         }
       ],
-      "text": "Carmela Ruggiero says Konrad Hochstetter was on the Service Stairs from 8:30 PM to 9:00 PM."
+      "text": "Carmela Ruggiero says Francis Quill was on the Service Stairs at 7:30 PM."
     },
     {
       "id": "c018",
@@ -3105,17 +3602,22 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Konrad Hochstetter"
+        "topic": "Francis Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "location": "service-stairs",
-          "tick": 10
+          "personId": "p-s3",
+          "location": "front-desk",
+          "tick": 6
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "push"
         }
       ],
-      "text": "Carmela Ruggiero says Konrad Hochstetter was on the Service Stairs at 11:00 PM."
+      "text": "Carmela Ruggiero says Francis Quill was at the Front Desk at 9:00 PM."
     },
     {
       "id": "c019",
@@ -3130,10 +3632,10 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "lobby",
-          "tick": 0
+          "tick": 7
         }
       ],
-      "text": "Carmela Ruggiero says Francis Quill was in the Lobby at 6:00 PM."
+      "text": "Carmela Ruggiero says Francis Quill was in the Lobby at 9:30 PM."
     },
     {
       "id": "c020",
@@ -3148,16 +3650,16 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "lobby",
-          "tick": 7
+          "tick": 10
         },
         {
           "kind": "personAt",
           "personId": "p-s3",
           "location": "lobby",
-          "tick": 8
+          "tick": 11
         }
       ],
-      "text": "Carmela Ruggiero says Francis Quill was in the Lobby from 9:30 PM to 10:00 PM."
+      "text": "Carmela Ruggiero says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c021",
@@ -3171,11 +3673,17 @@
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "service-stairs",
-          "tick": 4
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 9
         }
       ],
-      "text": "Carmela Ruggiero says Francis Quill was on the Service Stairs at 8:00 PM."
+      "text": "Carmela Ruggiero says Francis Quill was in the Bar from 10:00 PM to 10:30 PM."
     },
     {
       "id": "c022",
@@ -3190,16 +3698,22 @@
           "kind": "personAt",
           "personId": "p-s4",
           "location": "lobby",
-          "tick": 0
+          "tick": 4
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
           "location": "lobby",
-          "tick": 1
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
         }
       ],
-      "text": "Carmela Ruggiero says Assunta Bellucci was in the Lobby from 6:00 PM to 6:30 PM."
+      "text": "Carmela Ruggiero says Assunta Bellucci was in the Lobby from 8:00 PM to 9:00 PM."
     },
     {
       "id": "c023",
@@ -3214,10 +3728,22 @@
           "kind": "personAt",
           "personId": "p-s4",
           "location": "lobby",
-          "tick": 8
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Carmela Ruggiero says Assunta Bellucci was in the Lobby at 10:00 PM."
+      "text": "Carmela Ruggiero says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c024",
@@ -3231,17 +3757,17 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 4
+          "location": "bar",
+          "tick": 7
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 5
+          "location": "bar",
+          "tick": 8
         }
       ],
-      "text": "Carmela Ruggiero says Assunta Bellucci was on the Service Stairs from 8:00 PM to 8:30 PM."
+      "text": "Carmela Ruggiero says Assunta Bellucci was in the Bar from 9:30 PM to 10:00 PM."
     },
     {
       "id": "c025",
@@ -3249,17 +3775,17 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Assunta Bellucci"
+        "topic": "Delia Mulcahy"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 10
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 6
         }
       ],
-      "text": "Carmela Ruggiero says Assunta Bellucci was on the Service Stairs at 11:00 PM."
+      "text": "Carmela Ruggiero says Delia Mulcahy was on the Street at 9:00 PM."
     },
     {
       "id": "c026",
@@ -3267,73 +3793,20 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Assunta Bellucci"
+        "topic": "Delia Mulcahy"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
-          "tick": 7
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Carmela Ruggiero says Assunta Bellucci was in the Bar at 9:30 PM."
+      "text": "Carmela Ruggiero says Delia Mulcahy was in the Lobby at 11:30 PM."
     },
     {
       "id": "c027",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Delia Mulcahy"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "front-desk",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "front-desk",
-          "tick": 2
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "push"
-        }
-      ],
-      "text": "Carmela Ruggiero says Delia Mulcahy was at the Front Desk from 6:30 PM to 7:00 PM."
-    },
-    {
-      "id": "c028",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Delia Mulcahy"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
-          "tick": 8
-        }
-      ],
-      "text": "Carmela Ruggiero says Delia Mulcahy was on the Street from 9:30 PM to 10:00 PM."
-    },
-    {
-      "id": "c029",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3345,31 +3818,19 @@
           "kind": "personAt",
           "personId": "p-s6",
           "location": "lobby",
-          "tick": 3
-        }
-      ],
-      "text": "Carmela Ruggiero says Agnes Sweeney was in the Lobby at 7:30 PM."
-    },
-    {
-      "id": "c030",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Agnes Sweeney"
-      },
-      "establishes": [
+          "tick": 4
+        },
         {
           "kind": "personAt",
           "personId": "p-s6",
-          "location": "service-stairs",
+          "location": "lobby",
           "tick": 5
         }
       ],
-      "text": "Carmela Ruggiero says Agnes Sweeney was on the Service Stairs at 8:30 PM."
+      "text": "Carmela Ruggiero says Agnes Sweeney was in the Lobby from 8:00 PM to 8:30 PM."
     },
     {
-      "id": "c031",
+      "id": "c028",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3380,18 +3841,18 @@
         {
           "kind": "personAt",
           "personId": "p-victim",
-          "location": "lobby",
-          "tick": 0
+          "location": "service-stairs",
+          "tick": 3
         },
         {
           "kind": "victimAliveAt",
-          "tick": 0
+          "tick": 3
         }
       ],
-      "text": "Francis Quill says Ernst Obermann was in the Lobby at 6:00 PM."
+      "text": "Francis Quill says Ernst Obermann was on the Service Stairs at 7:30 PM."
     },
     {
-      "id": "c032",
+      "id": "c029",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3413,6 +3874,72 @@
       "text": "Francis Quill says Ernst Obermann was in the Lobby at 9:00 PM."
     },
     {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Konrad Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "service-stairs",
+          "tick": 2
+        }
+      ],
+      "text": "Francis Quill says Konrad Hochstetter was on the Service Stairs at 7:00 PM."
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Konrad Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Francis Quill says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Carmela Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "service-stairs",
+          "tick": 3
+        }
+      ],
+      "text": "Francis Quill says Carmela Ruggiero was on the Service Stairs at 7:30 PM."
+    },
+    {
       "id": "c033",
       "kind": "observation",
       "source": {
@@ -3425,10 +3952,10 @@
           "kind": "personAt",
           "personId": "p-s2",
           "location": "lobby",
-          "tick": 0
+          "tick": 6
         }
       ],
-      "text": "Francis Quill says Carmela Ruggiero was in the Lobby at 6:00 PM."
+      "text": "Francis Quill says Carmela Ruggiero was in the Lobby at 9:00 PM."
     },
     {
       "id": "c034",
@@ -3442,17 +3969,35 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "lobby",
+          "location": "bar",
           "tick": 7
         },
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "lobby",
+          "location": "bar",
           "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
         }
       ],
-      "text": "Francis Quill says Carmela Ruggiero was in the Lobby from 9:30 PM to 10:00 PM."
+      "text": "Francis Quill says Carmela Ruggiero was in the Bar from 9:30 PM to 11:30 PM."
     },
     {
       "id": "c035",
@@ -3460,17 +4005,17 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Carmela Ruggiero"
+        "topic": "Assunta Bellucci"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 4
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
         }
       ],
-      "text": "Francis Quill says Carmela Ruggiero was on the Service Stairs at 8:00 PM."
+      "text": "Francis Quill says Assunta Bellucci was in the Lobby at 9:00 PM."
     },
     {
       "id": "c036",
@@ -3485,10 +4030,22 @@
           "kind": "personAt",
           "personId": "p-s4",
           "location": "lobby",
-          "tick": 0
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Francis Quill says Assunta Bellucci was in the Lobby at 6:00 PM."
+      "text": "Francis Quill says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c037",
@@ -3502,17 +4059,17 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "lobby",
-          "tick": 8
+          "location": "bar",
+          "tick": 7
         },
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "lobby",
-          "tick": 9
+          "location": "bar",
+          "tick": 8
         }
       ],
-      "text": "Francis Quill says Assunta Bellucci was in the Lobby from 10:00 PM to 10:30 PM."
+      "text": "Francis Quill says Assunta Bellucci was in the Bar from 9:30 PM to 10:00 PM."
     },
     {
       "id": "c038",
@@ -3520,23 +4077,17 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Assunta Bellucci"
+        "topic": "Delia Mulcahy"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
+          "personId": "p-s5",
           "location": "service-stairs",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 4
+          "tick": 0
         }
       ],
-      "text": "Francis Quill says Assunta Bellucci was on the Service Stairs from 7:30 PM to 8:00 PM."
+      "text": "Francis Quill says Delia Mulcahy was on the Service Stairs at 6:00 PM."
     },
     {
       "id": "c039",
@@ -3544,17 +4095,17 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Assunta Bellucci"
+        "topic": "Delia Mulcahy"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "bar",
+          "personId": "p-s5",
+          "location": "street",
           "tick": 7
         }
       ],
-      "text": "Francis Quill says Assunta Bellucci was in the Bar at 9:30 PM."
+      "text": "Francis Quill says Delia Mulcahy was on the Street at 9:30 PM."
     },
     {
       "id": "c040",
@@ -3568,11 +4119,11 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 3
+          "location": "street",
+          "tick": 10
         }
       ],
-      "text": "Francis Quill says Delia Mulcahy was on the Service Stairs at 7:30 PM."
+      "text": "Francis Quill says Delia Mulcahy was on the Street at 11:00 PM."
     },
     {
       "id": "c041",
@@ -3587,10 +4138,10 @@
           "kind": "personAt",
           "personId": "p-s5",
           "location": "lobby",
-          "tick": 6
+          "tick": 11
         }
       ],
-      "text": "Francis Quill says Delia Mulcahy was in the Lobby at 9:00 PM."
+      "text": "Francis Quill says Delia Mulcahy was in the Lobby at 11:30 PM."
     },
     {
       "id": "c042",
@@ -3598,41 +4149,23 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Delia Mulcahy"
+        "topic": "Agnes Sweeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
+          "personId": "p-s6",
+          "location": "front-desk",
           "tick": 10
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
+          "personId": "p-s6",
+          "location": "front-desk",
           "tick": 11
         }
       ],
-      "text": "Francis Quill says Delia Mulcahy was on the Street from 9:30 PM to 11:30 PM."
+      "text": "Francis Quill says Agnes Sweeney was at the Front Desk from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c043",
@@ -3672,61 +4205,24 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Konrad Hochstetter"
+        "topic": "Ernst Obermann"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 1
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 6
         },
         {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "push"
+          "kind": "victimAliveAt",
+          "tick": 6
         }
       ],
-      "text": "Assunta Bellucci says Konrad Hochstetter was at the Front Desk at 6:30 PM."
+      "text": "Assunta Bellucci says Ernst Obermann was in the Lobby at 9:00 PM."
     },
     {
       "id": "c045",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Konrad Hochstetter"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "service-stairs",
-          "tick": 5
-        }
-      ],
-      "text": "Assunta Bellucci says Konrad Hochstetter was on the Service Stairs at 8:30 PM."
-    },
-    {
-      "id": "c046",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Konrad Hochstetter"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "service-stairs",
-          "tick": 10
-        }
-      ],
-      "text": "Assunta Bellucci says Konrad Hochstetter was on the Service Stairs at 11:00 PM."
-    },
-    {
-      "id": "c047",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -3744,6 +4240,65 @@
       "text": "Assunta Bellucci says Konrad Hochstetter was in the Kitchen at 9:30 PM."
     },
     {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Konrad Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Assunta Bellucci says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c047",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Carmela Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 5
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "push"
+        }
+      ],
+      "text": "Assunta Bellucci says Carmela Ruggiero was at the Front Desk from 8:00 PM to 8:30 PM."
+    },
+    {
       "id": "c048",
       "kind": "observation",
       "source": {
@@ -3756,16 +4311,10 @@
           "kind": "personAt",
           "personId": "p-s2",
           "location": "lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 1
+          "tick": 6
         }
       ],
-      "text": "Assunta Bellucci says Carmela Ruggiero was in the Lobby from 6:00 PM to 6:30 PM."
+      "text": "Assunta Bellucci says Carmela Ruggiero was in the Lobby at 9:00 PM."
     },
     {
       "id": "c049",
@@ -3779,17 +4328,35 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "lobby",
+          "location": "bar",
           "tick": 7
         },
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "lobby",
+          "location": "bar",
           "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
         }
       ],
-      "text": "Assunta Bellucci says Carmela Ruggiero was in the Lobby from 9:30 PM to 10:00 PM."
+      "text": "Assunta Bellucci says Carmela Ruggiero was in the Bar from 9:30 PM to 11:30 PM."
     },
     {
       "id": "c050",
@@ -3797,23 +4364,22 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Carmela Ruggiero"
+        "topic": "Francis Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 4
+          "personId": "p-s3",
+          "location": "front-desk",
+          "tick": 6
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 5
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "push"
         }
       ],
-      "text": "Assunta Bellucci says Carmela Ruggiero was on the Service Stairs from 8:00 PM to 8:30 PM."
+      "text": "Assunta Bellucci says Francis Quill was at the Front Desk at 9:00 PM."
     },
     {
       "id": "c051",
@@ -3821,17 +4387,17 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Carmela Ruggiero"
+        "topic": "Francis Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 10
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
         }
       ],
-      "text": "Assunta Bellucci says Carmela Ruggiero was on the Service Stairs at 11:00 PM."
+      "text": "Assunta Bellucci says Francis Quill was in the Lobby at 9:30 PM."
     },
     {
       "id": "c052",
@@ -3846,10 +4412,16 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "lobby",
-          "tick": 0
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Assunta Bellucci says Francis Quill was in the Lobby at 6:00 PM."
+      "text": "Assunta Bellucci says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c053",
@@ -3863,17 +4435,17 @@
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "lobby",
-          "tick": 7
+          "location": "bar",
+          "tick": 8
         },
         {
           "kind": "personAt",
           "personId": "p-s3",
-          "location": "lobby",
-          "tick": 8
+          "location": "bar",
+          "tick": 9
         }
       ],
-      "text": "Assunta Bellucci says Francis Quill was in the Lobby from 9:30 PM to 10:00 PM."
+      "text": "Assunta Bellucci says Francis Quill was in the Bar from 10:00 PM to 10:30 PM."
     },
     {
       "id": "c054",
@@ -3881,23 +4453,17 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Francis Quill"
+        "topic": "Delia Mulcahy"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "service-stairs",
+          "personId": "p-s5",
+          "location": "lobby",
           "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "location": "service-stairs",
-          "tick": 4
         }
       ],
-      "text": "Assunta Bellucci says Francis Quill was on the Service Stairs from 7:30 PM to 8:00 PM."
+      "text": "Assunta Bellucci says Delia Mulcahy was in the Lobby at 7:30 PM."
     },
     {
       "id": "c055",
@@ -3905,17 +4471,17 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Francis Quill"
+        "topic": "Delia Mulcahy"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "street",
-          "tick": 9
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Assunta Bellucci says Francis Quill was on the Street at 10:30 PM."
+      "text": "Assunta Bellucci says Delia Mulcahy was in the Lobby at 11:30 PM."
     },
     {
       "id": "c056",
@@ -3929,16 +4495,23 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "front-desk",
-          "tick": 1
+          "location": "street",
+          "tick": 4
         },
         {
-          "kind": "hadAccess",
+          "kind": "personAt",
           "personId": "p-s5",
-          "methodId": "push"
+          "location": "street",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 6
         }
       ],
-      "text": "Assunta Bellucci says Delia Mulcahy was at the Front Desk at 6:30 PM."
+      "text": "Assunta Bellucci says Delia Mulcahy was on the Street from 8:00 PM to 9:00 PM."
     },
     {
       "id": "c057",
@@ -3952,11 +4525,17 @@
         {
           "kind": "personAt",
           "personId": "p-s5",
-          "location": "service-stairs",
-          "tick": 3
+          "location": "street",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 10
         }
       ],
-      "text": "Assunta Bellucci says Delia Mulcahy was on the Service Stairs at 7:30 PM."
+      "text": "Assunta Bellucci says Delia Mulcahy was on the Street from 10:30 PM to 11:00 PM."
     },
     {
       "id": "c058",
@@ -3964,23 +4543,17 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Delia Mulcahy"
+        "topic": "Agnes Sweeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
-          "tick": 9
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 0
         }
       ],
-      "text": "Assunta Bellucci says Delia Mulcahy was on the Street from 10:00 PM to 10:30 PM."
+      "text": "Assunta Bellucci says Agnes Sweeney was in the Lobby at 6:00 PM."
     },
     {
       "id": "c059",
@@ -3994,65 +4567,70 @@
         {
           "kind": "personAt",
           "personId": "p-s6",
-          "location": "service-stairs",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
           "tick": 5
         }
       ],
-      "text": "Assunta Bellucci says Agnes Sweeney was on the Service Stairs at 8:30 PM."
+      "text": "Assunta Bellucci says Agnes Sweeney was in the Lobby from 7:30 PM to 8:30 PM."
     },
     {
       "id": "c060",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Ernst Obermann"
+        "personId": "p-s4",
+        "topic": "Agnes Sweeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
+          "personId": "p-s6",
+          "location": "front-desk",
           "tick": 1
         },
         {
-          "kind": "victimAliveAt",
-          "tick": 1
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "push"
         }
       ],
-      "text": "Delia Mulcahy says Ernst Obermann was in the Lobby at 6:30 PM."
+      "text": "Assunta Bellucci says Agnes Sweeney was at the Front Desk at 6:30 PM."
     },
     {
       "id": "c061",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Ernst Obermann"
+        "personId": "p-s4",
+        "topic": "Agnes Sweeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 5
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 10
         },
         {
           "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 6
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 5
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 6
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 11
         }
       ],
-      "text": "Delia Mulcahy says Ernst Obermann was in the Lobby from 8:30 PM to 9:00 PM."
+      "text": "Assunta Bellucci says Agnes Sweeney was at the Front Desk from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c062",
@@ -4066,15 +4644,15 @@
         {
           "kind": "personAt",
           "personId": "p-victim",
-          "location": "roof",
-          "tick": 4
+          "location": "lobby",
+          "tick": 6
         },
         {
           "kind": "victimAliveAt",
-          "tick": 4
+          "tick": 6
         }
       ],
-      "text": "Delia Mulcahy says Ernst Obermann was in the Roof Garden at 8:00 PM."
+      "text": "Delia Mulcahy says Ernst Obermann was in the Lobby at 9:00 PM."
     },
     {
       "id": "c063",
@@ -4089,10 +4667,10 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "service-stairs",
-          "tick": 0
+          "tick": 1
         }
       ],
-      "text": "Delia Mulcahy says Konrad Hochstetter was on the Service Stairs at 6:00 PM."
+      "text": "Delia Mulcahy says Konrad Hochstetter was on the Service Stairs at 6:30 PM."
     },
     {
       "id": "c064",
@@ -4106,22 +4684,23 @@
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 1
+          "location": "lobby",
+          "tick": 9
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 2
+          "location": "lobby",
+          "tick": 10
         },
         {
-          "kind": "hadAccess",
+          "kind": "personAt",
           "personId": "p-s1",
-          "methodId": "push"
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Delia Mulcahy says Konrad Hochstetter was at the Front Desk from 6:30 PM to 7:00 PM."
+      "text": "Delia Mulcahy says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c065",
@@ -4136,16 +4715,10 @@
           "kind": "personAt",
           "personId": "p-s2",
           "location": "lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 2
+          "tick": 6
         }
       ],
-      "text": "Delia Mulcahy says Carmela Ruggiero was in the Lobby from 6:30 PM to 7:00 PM."
+      "text": "Delia Mulcahy says Carmela Ruggiero was in the Lobby at 9:00 PM."
     },
     {
       "id": "c066",
@@ -4159,11 +4732,11 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "lobby",
-          "tick": 8
+          "location": "bar",
+          "tick": 11
         }
       ],
-      "text": "Delia Mulcahy says Carmela Ruggiero was in the Lobby at 10:00 PM."
+      "text": "Delia Mulcahy says Carmela Ruggiero was in the Bar at 11:30 PM."
     },
     {
       "id": "c067",
@@ -4178,10 +4751,10 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "service-stairs",
-          "tick": 3
+          "tick": 0
         }
       ],
-      "text": "Delia Mulcahy says Francis Quill was on the Service Stairs at 7:30 PM."
+      "text": "Delia Mulcahy says Francis Quill was on the Service Stairs at 6:00 PM."
     },
     {
       "id": "c068",
@@ -4196,10 +4769,16 @@
           "kind": "personAt",
           "personId": "p-s3",
           "location": "lobby",
-          "tick": 6
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Delia Mulcahy says Francis Quill was in the Lobby at 9:00 PM."
+      "text": "Delia Mulcahy says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c069",
@@ -4207,17 +4786,35 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Francis Quill"
+        "topic": "Assunta Bellucci"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
+          "personId": "p-s4",
           "location": "lobby",
-          "tick": 8
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
         }
       ],
-      "text": "Delia Mulcahy says Francis Quill was in the Lobby at 10:00 PM."
+      "text": "Delia Mulcahy says Assunta Bellucci was in the Lobby from 7:30 PM to 9:00 PM."
     },
     {
       "id": "c070",
@@ -4225,29 +4822,29 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Francis Quill"
+        "topic": "Assunta Bellucci"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "street",
+          "personId": "p-s4",
+          "location": "lobby",
           "tick": 9
         },
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "street",
+          "personId": "p-s4",
+          "location": "lobby",
           "tick": 10
         },
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "street",
+          "personId": "p-s4",
+          "location": "lobby",
           "tick": 11
         }
       ],
-      "text": "Delia Mulcahy says Francis Quill was on the Street from 10:30 PM to 11:30 PM."
+      "text": "Delia Mulcahy says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c071",
@@ -4255,17 +4852,22 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Assunta Bellucci"
+        "topic": "Agnes Sweeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 1
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "push"
         }
       ],
-      "text": "Delia Mulcahy says Assunta Bellucci was in the Lobby at 6:30 PM."
+      "text": "Delia Mulcahy says Agnes Sweeney was at the Front Desk at 7:00 PM."
     },
     {
       "id": "c072",
@@ -4273,23 +4875,17 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Assunta Bellucci"
+        "topic": "Agnes Sweeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 9
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 11
         }
       ],
-      "text": "Delia Mulcahy says Assunta Bellucci was in the Lobby from 10:00 PM to 10:30 PM."
+      "text": "Delia Mulcahy says Agnes Sweeney was at the Front Desk at 11:30 PM."
     },
     {
       "id": "c073",
@@ -4297,17 +4893,29 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Assunta Bellucci"
+        "topic": "Agnes Sweeney"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "service-stairs",
+          "personId": "p-s6",
+          "location": "lobby",
           "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Delia Mulcahy says Assunta Bellucci was on the Service Stairs at 7:30 PM."
+      "text": "Delia Mulcahy says Agnes Sweeney was in the Lobby from 7:30 PM to 8:30 PM."
     },
     {
       "id": "c074",
@@ -4322,14 +4930,24 @@
           "kind": "personAt",
           "personId": "p-victim",
           "location": "lobby",
-          "tick": 3
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 1
         },
         {
           "kind": "victimAliveAt",
-          "tick": 3
+          "tick": 0
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
         }
       ],
-      "text": "Agnes Sweeney says Ernst Obermann was in the Lobby at 7:30 PM."
+      "text": "Agnes Sweeney says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM."
     },
     {
       "id": "c075",
@@ -4343,22 +4961,11 @@
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 4
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "push"
+          "location": "service-stairs",
+          "tick": 8
         }
       ],
-      "text": "Agnes Sweeney says Konrad Hochstetter was at the Front Desk from 7:30 PM to 8:00 PM."
+      "text": "Agnes Sweeney says Konrad Hochstetter was on the Service Stairs at 10:00 PM."
     },
     {
       "id": "c076",
@@ -4372,11 +4979,17 @@
         {
           "kind": "personAt",
           "personId": "p-s1",
-          "location": "service-stairs",
-          "tick": 5
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Agnes Sweeney says Konrad Hochstetter was on the Service Stairs at 8:30 PM."
+      "text": "Agnes Sweeney says Konrad Hochstetter was in the Lobby from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c077",
@@ -4390,11 +5003,22 @@
         {
           "kind": "personAt",
           "personId": "p-s2",
-          "location": "lobby",
-          "tick": 3
+          "location": "front-desk",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 5
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "push"
         }
       ],
-      "text": "Agnes Sweeney says Carmela Ruggiero was in the Lobby at 7:30 PM."
+      "text": "Agnes Sweeney says Carmela Ruggiero was at the Front Desk from 8:00 PM to 8:30 PM."
     },
     {
       "id": "c078",
@@ -4402,17 +5026,23 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Carmela Ruggiero"
+        "topic": "Francis Quill"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "service-stairs",
-          "tick": 5
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Agnes Sweeney says Carmela Ruggiero was on the Service Stairs at 8:30 PM."
+      "text": "Agnes Sweeney says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM."
     },
     {
       "id": "c079",
@@ -4426,14 +5056,152 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "service-stairs",
-          "tick": 5
+          "location": "bar",
+          "tick": 0
         }
       ],
-      "text": "Agnes Sweeney says Assunta Bellucci was on the Service Stairs at 8:30 PM."
+      "text": "Agnes Sweeney says Assunta Bellucci was in the Bar at 6:00 PM."
     },
     {
       "id": "c080",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Agnes Sweeney says Assunta Bellucci was in the Lobby at 6:30 PM."
+    },
+    {
+      "id": "c081",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 5
+        }
+      ],
+      "text": "Agnes Sweeney says Assunta Bellucci was in the Lobby from 7:30 PM to 8:30 PM."
+    },
+    {
+      "id": "c082",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Agnes Sweeney says Assunta Bellucci was in the Lobby from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c083",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Delia Mulcahy"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Agnes Sweeney says Delia Mulcahy was in the Lobby from 7:00 PM to 7:30 PM."
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Delia Mulcahy"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Agnes Sweeney says Delia Mulcahy was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c085",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Delia Mulcahy"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 5
+        }
+      ],
+      "text": "Agnes Sweeney says Delia Mulcahy was on the Street from 8:00 PM to 8:30 PM."
+    },
+    {
+      "id": "c086",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4465,188 +5233,26 @@
       "text": "Meyer Hurwitz says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM."
     },
     {
-      "id": "c081",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Ernst Obermann"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 3
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 3
-        }
-      ],
-      "text": "Meyer Hurwitz says Ernst Obermann was in the Lobby at 7:30 PM."
-    },
-    {
-      "id": "c082",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Ernst Obermann"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
-          "tick": 6
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 5
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 6
-        }
-      ],
-      "text": "Meyer Hurwitz says Ernst Obermann was in the Lobby from 8:30 PM to 9:00 PM."
-    },
-    {
-      "id": "c083",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Konrad Hochstetter"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 1
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "push"
-        }
-      ],
-      "text": "Meyer Hurwitz says Konrad Hochstetter was at the Front Desk at 6:30 PM."
-    },
-    {
-      "id": "c084",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Konrad Hochstetter"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "location": "front-desk",
-          "tick": 4
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "push"
-        }
-      ],
-      "text": "Meyer Hurwitz says Konrad Hochstetter was at the Front Desk from 7:30 PM to 8:00 PM."
-    },
-    {
-      "id": "c085",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Carmela Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 3
-        }
-      ],
-      "text": "Meyer Hurwitz says Carmela Ruggiero was in the Lobby from 6:00 PM to 7:30 PM."
-    },
-    {
-      "id": "c086",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Carmela Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 8
-        }
-      ],
-      "text": "Meyer Hurwitz says Carmela Ruggiero was in the Lobby from 9:30 PM to 10:00 PM."
-    },
-    {
       "id": "c087",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Carmela Ruggiero"
+        "topic": "Ernst Obermann"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "front-desk",
-          "tick": 11
+          "personId": "p-victim",
+          "location": "lobby",
+          "tick": 6
+        },
+        {
+          "kind": "victimAliveAt",
+          "tick": 6
         }
       ],
-      "text": "Meyer Hurwitz says Carmela Ruggiero was at the Front Desk at 11:30 PM."
+      "text": "Meyer Hurwitz says Ernst Obermann was in the Lobby at 9:00 PM."
     },
     {
       "id": "c088",
@@ -4654,17 +5260,29 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Francis Quill"
+        "topic": "Konrad Hochstetter"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
+          "personId": "p-s1",
           "location": "lobby",
-          "tick": 0
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 11
         }
       ],
-      "text": "Meyer Hurwitz says Francis Quill was in the Lobby at 6:00 PM."
+      "text": "Meyer Hurwitz says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
       "id": "c089",
@@ -4672,29 +5290,28 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Francis Quill"
+        "topic": "Carmela Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "lobby",
-          "tick": 6
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 4
         },
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "lobby",
-          "tick": 7
+          "personId": "p-s2",
+          "location": "front-desk",
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "location": "lobby",
-          "tick": 8
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "push"
         }
       ],
-      "text": "Meyer Hurwitz says Francis Quill was in the Lobby from 9:00 PM to 10:00 PM."
+      "text": "Meyer Hurwitz says Carmela Ruggiero was at the Front Desk from 8:00 PM to 8:30 PM."
     },
     {
       "id": "c090",
@@ -4702,23 +5319,17 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Francis Quill"
+        "topic": "Carmela Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s3",
-          "location": "street",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "location": "street",
-          "tick": 11
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 6
         }
       ],
-      "text": "Meyer Hurwitz says Francis Quill was on the Street from 11:00 PM to 11:30 PM."
+      "text": "Meyer Hurwitz says Carmela Ruggiero was in the Lobby at 9:00 PM."
     },
     {
       "id": "c091",
@@ -4726,26 +5337,133 @@
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Assunta Bellucci"
+        "topic": "Carmela Ruggiero"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 0
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
         },
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 1
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 8
         }
       ],
-      "text": "Meyer Hurwitz says Assunta Bellucci was in the Lobby from 6:00 PM to 6:30 PM."
+      "text": "Meyer Hurwitz says Carmela Ruggiero was in the Bar from 9:30 PM to 10:00 PM."
     },
     {
       "id": "c092",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Carmela Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Meyer Hurwitz says Carmela Ruggiero was in the Bar from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c093",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Francis Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "front-desk",
+          "tick": 6
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "push"
+        }
+      ],
+      "text": "Meyer Hurwitz says Francis Quill was at the Front Desk at 9:00 PM."
+    },
+    {
+      "id": "c094",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Francis Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Meyer Hurwitz says Francis Quill was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c095",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Francis Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Meyer Hurwitz says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c096",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Francis Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 8
+        }
+      ],
+      "text": "Meyer Hurwitz says Francis Quill was in the Bar at 10:00 PM."
+    },
+    {
+      "id": "c097",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4756,20 +5474,14 @@
         {
           "kind": "personAt",
           "personId": "p-s4",
-          "location": "lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 9
+          "location": "bar",
+          "tick": 0
         }
       ],
-      "text": "Meyer Hurwitz says Assunta Bellucci was in the Lobby from 10:00 PM to 10:30 PM."
+      "text": "Meyer Hurwitz says Assunta Bellucci was in the Bar at 6:00 PM."
     },
     {
-      "id": "c093",
+      "id": "c098",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4782,59 +5494,102 @@
           "personId": "p-s4",
           "location": "bar",
           "tick": 7
-        }
-      ],
-      "text": "Meyer Hurwitz says Assunta Bellucci was in the Bar at 9:30 PM."
-    },
-    {
-      "id": "c094",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Delia Mulcahy"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "front-desk",
-          "tick": 1
         },
         {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "push"
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 8
         }
       ],
-      "text": "Meyer Hurwitz says Delia Mulcahy was at the Front Desk at 6:30 PM."
+      "text": "Meyer Hurwitz says Assunta Bellucci was in the Bar from 9:30 PM to 10:00 PM."
     },
     {
-      "id": "c095",
+      "id": "c099",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-doorman",
-        "topic": "Delia Mulcahy"
+        "topic": "Assunta Bellucci"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Meyer Hurwitz says Assunta Bellucci was in the Lobby at 6:30 PM."
+    },
+    {
+      "id": "c100",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
           "location": "lobby",
           "tick": 5
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s4",
           "location": "lobby",
           "tick": 6
         }
       ],
-      "text": "Meyer Hurwitz says Delia Mulcahy was in the Lobby from 8:30 PM to 9:00 PM."
+      "text": "Meyer Hurwitz says Assunta Bellucci was in the Lobby from 7:30 PM to 9:00 PM."
     },
     {
-      "id": "c096",
+      "id": "c101",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Meyer Hurwitz says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c102",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4842,6 +5597,66 @@
         "topic": "Delia Mulcahy"
       },
       "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 3
+        }
+      ],
+      "text": "Meyer Hurwitz says Delia Mulcahy was in the Lobby from 7:00 PM to 7:30 PM."
+    },
+    {
+      "id": "c103",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Delia Mulcahy"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Meyer Hurwitz says Delia Mulcahy was in the Lobby at 11:30 PM."
+    },
+    {
+      "id": "c104",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Delia Mulcahy"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 6
+        },
         {
           "kind": "personAt",
           "personId": "p-s5",
@@ -4855,10 +5670,10 @@
           "tick": 8
         }
       ],
-      "text": "Meyer Hurwitz says Delia Mulcahy was on the Street from 9:30 PM to 10:00 PM."
+      "text": "Meyer Hurwitz says Delia Mulcahy was on the Street from 8:00 PM to 10:00 PM."
     },
     {
-      "id": "c097",
+      "id": "c105",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4871,18 +5686,30 @@
           "personId": "p-s5",
           "location": "street",
           "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "location": "street",
-          "tick": 11
         }
       ],
-      "text": "Meyer Hurwitz says Delia Mulcahy was on the Street from 11:00 PM to 11:30 PM."
+      "text": "Meyer Hurwitz says Delia Mulcahy was on the Street at 11:00 PM."
     },
     {
-      "id": "c098",
+      "id": "c106",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Agnes Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 0
+        }
+      ],
+      "text": "Meyer Hurwitz says Agnes Sweeney was in the Lobby at 6:00 PM."
+    },
+    {
+      "id": "c107",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4895,12 +5722,24 @@
           "personId": "p-s6",
           "location": "lobby",
           "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
         }
       ],
-      "text": "Meyer Hurwitz says Agnes Sweeney was in the Lobby at 7:30 PM."
+      "text": "Meyer Hurwitz says Agnes Sweeney was in the Lobby from 7:30 PM to 8:30 PM."
     },
     {
-      "id": "c099",
+      "id": "c108",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4912,7 +5751,7 @@
           "kind": "personAt",
           "personId": "p-s6",
           "location": "front-desk",
-          "tick": 4
+          "tick": 1
         },
         {
           "kind": "hadAccess",
@@ -4920,10 +5759,34 @@
           "methodId": "push"
         }
       ],
-      "text": "Meyer Hurwitz says Agnes Sweeney was at the Front Desk at 8:00 PM."
+      "text": "Meyer Hurwitz says Agnes Sweeney was at the Front Desk at 6:30 PM."
     },
     {
-      "id": "c100",
+      "id": "c109",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Agnes Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "front-desk",
+          "tick": 11
+        }
+      ],
+      "text": "Meyer Hurwitz says Agnes Sweeney was at the Front Desk from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c110",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4955,7 +5818,7 @@
       "text": "Bernard Sirkin says Ernst Obermann was in the Lobby from 6:00 PM to 6:30 PM."
     },
     {
-      "id": "c101",
+      "id": "c111",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4967,27 +5830,17 @@
           "kind": "personAt",
           "personId": "p-victim",
           "location": "lobby",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "location": "lobby",
           "tick": 6
-        },
-        {
-          "kind": "victimAliveAt",
-          "tick": 5
         },
         {
           "kind": "victimAliveAt",
           "tick": 6
         }
       ],
-      "text": "Bernard Sirkin says Ernst Obermann was in the Lobby from 8:30 PM to 9:00 PM."
+      "text": "Bernard Sirkin says Ernst Obermann was in the Lobby at 9:00 PM."
     },
     {
-      "id": "c102",
+      "id": "c112",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -4999,211 +5852,211 @@
           "kind": "personAt",
           "personId": "p-s1",
           "location": "kitchen",
-          "tick": 7
+          "tick": 3
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
           "location": "kitchen",
-          "tick": 8
+          "tick": 4
         },
         {
           "kind": "personAt",
           "personId": "p-s1",
           "location": "kitchen",
-          "tick": 9
-        }
-      ],
-      "text": "Bernard Sirkin says Konrad Hochstetter was in the Kitchen from 9:30 PM to 10:30 PM."
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Carmela Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 0
+          "tick": 5
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 2
-        }
-      ],
-      "text": "Bernard Sirkin says Carmela Ruggiero was in the Lobby from 6:00 PM to 7:00 PM."
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Carmela Ruggiero"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "location": "lobby",
-          "tick": 8
-        }
-      ],
-      "text": "Bernard Sirkin says Carmela Ruggiero was in the Lobby from 9:30 PM to 10:00 PM."
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Francis Quill"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "location": "lobby",
-          "tick": 0
-        }
-      ],
-      "text": "Bernard Sirkin says Francis Quill was in the Lobby at 6:00 PM."
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Francis Quill"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "location": "lobby",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "location": "lobby",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "location": "lobby",
-          "tick": 8
-        }
-      ],
-      "text": "Bernard Sirkin says Francis Quill was in the Lobby from 9:00 PM to 10:00 PM."
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Assunta Bellucci"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 1
-        }
-      ],
-      "text": "Bernard Sirkin says Assunta Bellucci was in the Lobby from 6:00 PM to 6:30 PM."
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Assunta Bellucci"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "location": "lobby",
-          "tick": 9
-        }
-      ],
-      "text": "Bernard Sirkin says Assunta Bellucci was in the Lobby from 10:00 PM to 10:30 PM."
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-bartender",
-        "topic": "Assunta Bellucci"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "personId": "p-s1",
           "location": "kitchen",
           "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "kitchen",
+          "tick": 7
         }
       ],
-      "text": "Bernard Sirkin says Assunta Bellucci was in the Kitchen at 9:00 PM."
+      "text": "Bernard Sirkin says Konrad Hochstetter was in the Kitchen from 7:30 PM to 9:30 PM."
     },
     {
-      "id": "c110",
+      "id": "c113",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-bartender",
-        "topic": "Assunta Bellucci"
+        "topic": "Konrad Hochstetter"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s4",
-          "location": "kitchen",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "location": "lobby",
           "tick": 11
         }
       ],
-      "text": "Bernard Sirkin says Assunta Bellucci was in the Kitchen at 11:30 PM."
+      "text": "Bernard Sirkin says Konrad Hochstetter was in the Lobby from 10:30 PM to 11:30 PM."
     },
     {
-      "id": "c111",
+      "id": "c114",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Carmela Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Bernard Sirkin says Carmela Ruggiero was in the Lobby at 9:00 PM."
+    },
+    {
+      "id": "c115",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Carmela Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "location": "bar",
+          "tick": 11
+        }
+      ],
+      "text": "Bernard Sirkin says Carmela Ruggiero was in the Bar from 9:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c116",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Francis Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 7
+        }
+      ],
+      "text": "Bernard Sirkin says Francis Quill was in the Lobby at 9:30 PM."
+    },
+    {
+      "id": "c117",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Francis Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Bernard Sirkin says Francis Quill was in the Lobby from 11:00 PM to 11:30 PM."
+    },
+    {
+      "id": "c118",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Francis Quill"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "location": "bar",
+          "tick": 9
+        }
+      ],
+      "text": "Bernard Sirkin says Francis Quill was in the Bar from 10:00 PM to 10:30 PM."
+    },
+    {
+      "id": "c119",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 0
+        }
+      ],
+      "text": "Bernard Sirkin says Assunta Bellucci was in the Bar at 6:00 PM."
+    },
+    {
+      "id": "c120",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5216,12 +6069,96 @@
           "personId": "p-s4",
           "location": "bar",
           "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "bar",
+          "tick": 8
         }
       ],
-      "text": "Bernard Sirkin says Assunta Bellucci was in the Bar at 9:30 PM."
+      "text": "Bernard Sirkin says Assunta Bellucci was in the Bar from 9:30 PM to 10:00 PM."
     },
     {
-      "id": "c112",
+      "id": "c121",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 1
+        }
+      ],
+      "text": "Bernard Sirkin says Assunta Bellucci was in the Lobby at 6:30 PM."
+    },
+    {
+      "id": "c122",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 6
+        }
+      ],
+      "text": "Bernard Sirkin says Assunta Bellucci was in the Lobby from 8:00 PM to 9:00 PM."
+    },
+    {
+      "id": "c123",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Assunta Bellucci"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "location": "lobby",
+          "tick": 11
+        }
+      ],
+      "text": "Bernard Sirkin says Assunta Bellucci was in the Lobby from 10:30 PM to 11:30 PM."
+    },
+    {
+      "id": "c124",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5233,19 +6170,73 @@
           "kind": "personAt",
           "personId": "p-s5",
           "location": "lobby",
-          "tick": 5
-        },
+          "tick": 2
+        }
+      ],
+      "text": "Bernard Sirkin says Delia Mulcahy was in the Lobby at 7:00 PM."
+    },
+    {
+      "id": "c125",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Delia Mulcahy"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s5",
           "location": "lobby",
-          "tick": 6
+          "tick": 11
         }
       ],
-      "text": "Bernard Sirkin says Delia Mulcahy was in the Lobby from 8:30 PM to 9:00 PM."
+      "text": "Bernard Sirkin says Delia Mulcahy was in the Lobby at 11:30 PM."
     },
     {
-      "id": "c113",
+      "id": "c126",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Agnes Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 0
+        }
+      ],
+      "text": "Bernard Sirkin says Agnes Sweeney was in the Lobby at 6:00 PM."
+    },
+    {
+      "id": "c127",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Agnes Sweeney"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "location": "lobby",
+          "tick": 5
+        }
+      ],
+      "text": "Bernard Sirkin says Agnes Sweeney was in the Lobby from 8:00 PM to 8:30 PM."
+    },
+    {
+      "id": "c128",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5256,14 +6247,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s1",
-          "location": "lobby",
+          "location": "bar",
           "tick": 7
         }
       ],
-      "text": "Carmela Ruggiero was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Lobby."
+      "text": "Carmela Ruggiero was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Bar."
     },
     {
-      "id": "c114",
+      "id": "c129",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5274,14 +6265,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s1",
-          "location": "lobby",
+          "location": "bar",
           "tick": 7
         }
       ],
-      "text": "Francis Quill was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Lobby."
+      "text": "Francis Quill was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Bar."
     },
     {
-      "id": "c115",
+      "id": "c130",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5292,14 +6283,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s1",
-          "location": "lobby",
+          "location": "bar",
           "tick": 7
         }
       ],
-      "text": "Assunta Bellucci was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Lobby."
+      "text": "Assunta Bellucci was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Bar."
     },
     {
-      "id": "c116",
+      "id": "c131",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5310,14 +6301,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s1",
-          "location": "lobby",
+          "location": "bar",
           "tick": 7
         }
       ],
-      "text": "Meyer Hurwitz was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Lobby."
+      "text": "Meyer Hurwitz was in the Lobby at 9:30 PM and says Konrad Hochstetter was not in the Bar."
     },
     {
-      "id": "c117",
+      "id": "c132",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5328,50 +6319,14 @@
         {
           "kind": "personNotAt",
           "personId": "p-s1",
-          "location": "lobby",
+          "location": "bar",
           "tick": 7
         }
       ],
-      "text": "Bernard Sirkin was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Lobby."
+      "text": "Bernard Sirkin was in the Bar at 9:30 PM and says Konrad Hochstetter was not in the Bar."
     },
     {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Francis Quill's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "location": "front-desk",
-          "tick": 1
-        }
-      ],
-      "text": "Konrad Hochstetter was at the Front Desk at 6:30 PM and says Francis Quill was not at the Front Desk."
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Francis Quill's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "location": "front-desk",
-          "tick": 1
-        }
-      ],
-      "text": "Carmela Ruggiero was in the Lobby at 6:30 PM and says Francis Quill was not at the Front Desk."
-    },
-    {
-      "id": "c120",
+      "id": "c133",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5389,11 +6344,11 @@
       "text": "Assunta Bellucci was in the Lobby at 6:30 PM and says Francis Quill was not at the Front Desk."
     },
     {
-      "id": "c121",
+      "id": "c134",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
+        "personId": "p-s6",
         "topic": "Francis Quill's account"
       },
       "establishes": [
@@ -5404,10 +6359,10 @@
           "tick": 1
         }
       ],
-      "text": "Delia Mulcahy was at the Front Desk at 6:30 PM and says Francis Quill was not at the Front Desk."
+      "text": "Agnes Sweeney was at the Front Desk at 6:30 PM and says Francis Quill was not at the Front Desk."
     },
     {
-      "id": "c122",
+      "id": "c135",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5425,43 +6380,7 @@
       "text": "Meyer Hurwitz was in the Lobby at 6:30 PM and says Francis Quill was not at the Front Desk."
     },
     {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Assunta Bellucci's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "location": "front-desk",
-          "tick": 2
-        }
-      ],
-      "text": "Konrad Hochstetter was at the Front Desk at 7:00 PM and says Assunta Bellucci was not at the Front Desk."
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Assunta Bellucci's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "location": "front-desk",
-          "tick": 2
-        }
-      ],
-      "text": "Carmela Ruggiero was in the Lobby at 7:00 PM and says Assunta Bellucci was not at the Front Desk."
-    },
-    {
-      "id": "c125",
+      "id": "c136",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5472,14 +6391,32 @@
         {
           "kind": "personNotAt",
           "personId": "p-s4",
-          "location": "front-desk",
+          "location": "street",
           "tick": 2
         }
       ],
-      "text": "Delia Mulcahy was at the Front Desk at 7:00 PM and says Assunta Bellucci was not at the Front Desk."
+      "text": "Delia Mulcahy was in the Lobby at 7:00 PM and says Assunta Bellucci was not on the Street."
     },
     {
-      "id": "c126",
+      "id": "c137",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Assunta Bellucci's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "location": "street",
+          "tick": 2
+        }
+      ],
+      "text": "Meyer Hurwitz was on the Street at 7:00 PM and says Assunta Bellucci was not on the Street."
+    },
+    {
+      "id": "c138",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5494,10 +6431,10 @@
           "tick": 7
         }
       ],
-      "text": "Carmela Ruggiero was in the Lobby at 9:30 PM and says Delia Mulcahy was not in the Lobby."
+      "text": "Carmela Ruggiero was in the Bar at 9:30 PM and says Delia Mulcahy was not in the Lobby."
     },
     {
-      "id": "c127",
+      "id": "c139",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5515,7 +6452,7 @@
       "text": "Francis Quill was in the Lobby at 9:30 PM and says Delia Mulcahy was not in the Lobby."
     },
     {
-      "id": "c128",
+      "id": "c140",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5533,7 +6470,7 @@
       "text": "Assunta Bellucci was in the Bar at 9:30 PM and says Delia Mulcahy was not in the Lobby."
     },
     {
-      "id": "c129",
+      "id": "c141",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5551,7 +6488,7 @@
       "text": "Meyer Hurwitz was in the Lobby at 9:30 PM and says Delia Mulcahy was not in the Lobby."
     },
     {
-      "id": "c130",
+      "id": "c142",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5569,91 +6506,7 @@
       "text": "Bernard Sirkin was in the Bar at 9:30 PM and says Delia Mulcahy was not in the Lobby."
     },
     {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Agnes Sweeney's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "location": "street",
-          "tick": 7
-        }
-      ],
-      "text": "Carmela Ruggiero was in the Lobby at 9:30 PM and says Agnes Sweeney was not on the Street."
-    },
-    {
-      "id": "c132",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Agnes Sweeney's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "location": "street",
-          "tick": 6
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "location": "street",
-          "tick": 7
-        }
-      ],
-      "text": "Francis Quill was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not on the Street."
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Agnes Sweeney's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "location": "street",
-          "tick": 6
-        }
-      ],
-      "text": "Delia Mulcahy was in the Lobby at 9:00 PM and says Agnes Sweeney was not on the Street."
-    },
-    {
-      "id": "c134",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-doorman",
-        "topic": "Agnes Sweeney's account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "location": "street",
-          "tick": 6
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "location": "street",
-          "tick": 7
-        }
-      ],
-      "text": "Meyer Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not on the Street."
-    },
-    {
-      "id": "c135",
+      "id": "c143",
       "kind": "observation",
       "source": {
         "type": "person",
@@ -5664,14 +6517,128 @@
         {
           "kind": "personNotAt",
           "personId": "p-s6",
-          "location": "street",
+          "location": "bar",
           "tick": 6
         }
       ],
-      "text": "Agnes Sweeney says Konrad Hochstetter was there. Konrad Hochstetter says otherwise: Konrad Hochstetter was on the Service Stairs at 9:00 PM, not on the Street."
+      "text": "Konrad Hochstetter was in the Kitchen at 9:00 PM and says Agnes Sweeney was not in the Bar."
     },
     {
-      "id": "c136",
+      "id": "c144",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Agnes Sweeney's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Carmela Ruggiero was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar."
+    },
+    {
+      "id": "c145",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Agnes Sweeney's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Francis Quill was in the Lobby at 9:30 PM and says Agnes Sweeney was not in the Bar."
+    },
+    {
+      "id": "c146",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Agnes Sweeney's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Assunta Bellucci was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar."
+    },
+    {
+      "id": "c147",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-doorman",
+        "topic": "Agnes Sweeney's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Meyer Hurwitz was in the Lobby from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar."
+    },
+    {
+      "id": "c148",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-bartender",
+        "topic": "Agnes Sweeney's account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "location": "bar",
+          "tick": 7
+        }
+      ],
+      "text": "Bernard Sirkin was in the Bar from 9:00 PM to 9:30 PM and says Agnes Sweeney was not in the Bar."
+    },
+    {
+      "id": "c149",
       "kind": "morgue",
       "source": {
         "type": "location",
@@ -5689,7 +6656,7 @@
       "text": "Ernst Obermann was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back."
     },
     {
-      "id": "c137",
+      "id": "c150",
       "kind": "physical",
       "source": {
         "type": "location",
@@ -5705,7 +6672,7 @@
       "text": "The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook."
     },
     {
-      "id": "c138",
+      "id": "c151",
       "kind": "environment",
       "source": {
         "type": "location",
@@ -5715,7 +6682,25 @@
       "text": "Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet."
     },
     {
-      "id": "c139",
+      "id": "c152",
+      "kind": "environment",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "the rain"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "location": "street",
+          "tick": 10
+        }
+      ],
+      "text": "Konrad Hochstetter says Delia Mulcahy came in off the street at 11:30 PM with a soaked coat, so Delia Mulcahy was outside at 11:00 PM."
+    },
+    {
+      "id": "c153",
       "kind": "radio",
       "source": {
         "type": "person",
@@ -5726,31 +6711,31 @@
       "text": "Bernard Sirkin says the bar radio carried the returns from the ward elections at 8:00 PM, and that the Ninth went the other way and the announcer said so twice. Anyone in the bar could tell you that."
     },
     {
-      "id": "c140",
+      "id": "c154",
       "kind": "document",
       "source": {
         "type": "location",
         "locationId": "front-desk"
       },
       "establishes": [],
-      "text": "Carmela Ruggiero's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used."
+      "text": "Carmela Ruggiero's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo."
     },
     {
-      "id": "c141",
+      "id": "c155",
       "kind": "document",
       "source": {
         "type": "location",
         "locationId": "front-desk"
       },
       "establishes": [],
-      "text": "Agnes Sweeney's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date."
+      "text": "Agnes Sweeney's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo."
     },
     {
-      "id": "c142",
+      "id": "c156",
       "kind": "document",
       "source": {
         "type": "location",
-        "locationId": "front-desk"
+        "locationId": "suite"
       },
       "establishes": [
         {
@@ -5759,14 +6744,14 @@
           "motiveType": "property"
         }
       ],
-      "text": "Found in the Front Desk: A lease assignment made out in Konrad Hochstetter's name, waiting only on Ernst Obermann's signature."
+      "text": "Found in the Victim's Suite: A lease assignment made out in Konrad Hochstetter's name, waiting only on Ernst Obermann's signature."
     },
     {
-      "id": "c143",
+      "id": "c157",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-doorman",
+        "personId": "p-bartender",
         "topic": "Konrad Hochstetter and Ernst Obermann"
       },
       "establishes": [
@@ -5776,14 +6761,14 @@
           "motiveType": "property"
         }
       ],
-      "text": "Meyer Hurwitz says Ernst Obermann told Konrad Hochstetter the lease would go to somebody else at the quarter day."
+      "text": "Bernard Sirkin says Ernst Obermann told Konrad Hochstetter the lease would go to somebody else at the quarter day."
     },
     {
-      "id": "c144",
+      "id": "c158",
       "kind": "document",
       "source": {
         "type": "location",
-        "locationId": "front-desk"
+        "locationId": "suite"
       },
       "establishes": [
         {
@@ -5792,14 +6777,14 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found in the Front Desk: A promissory note for $4,000 signed by Francis Quill, endorsed to Ernst Obermann, three months past due."
+      "text": "Found in the Victim's Suite: A promissory note for $4,000 signed by Francis Quill, endorsed to Ernst Obermann, three months past due."
     },
     {
-      "id": "c145",
+      "id": "c159",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s1",
+        "personId": "p-bartender",
         "topic": "Francis Quill and Ernst Obermann"
       },
       "establishes": [
@@ -5809,14 +6794,14 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Konrad Hochstetter says Ernst Obermann told Francis Quill that Friday was the end of it, one way or the other."
+      "text": "Bernard Sirkin says Ernst Obermann told Francis Quill that Friday was the end of it, one way or the other."
     },
     {
-      "id": "c146",
+      "id": "c160",
       "kind": "document",
       "source": {
         "type": "location",
-        "locationId": "suite"
+        "locationId": "front-desk"
       },
       "establishes": [
         {
@@ -5825,14 +6810,14 @@
           "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Found in the Victim's Suite: A subpoena naming Ernst Obermann as a witness before the grand jury, with Agnes Sweeney's name written in the margin."
+      "text": "Found in the Front Desk: A subpoena naming Ernst Obermann as a witness before the grand jury, with Agnes Sweeney's name written in the margin."
     },
     {
-      "id": "c147",
+      "id": "c161",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-bartender",
+        "personId": "p-s5",
         "topic": "Agnes Sweeney and Ernst Obermann"
       },
       "establishes": [
@@ -5842,7 +6827,7 @@
           "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Bernard Sirkin says Ernst Obermann said to Agnes Sweeney that a man who testifies sleeps better."
+      "text": "Delia Mulcahy says Ernst Obermann said to Agnes Sweeney that a man who testifies sleeps better."
     }
   ],
   "solution": {
@@ -5854,55 +6839,60 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c136",
-      "c032",
-      "c061",
-      "c082",
-      "c101"
+      "c149",
+      "c013",
+      "c029",
+      "c044",
+      "c062",
+      "c087",
+      "c111"
     ],
     "exculpations": {
       "p-s1": [
-        "c047",
-        "c102"
+        "c015",
+        "c045",
+        "c112"
       ],
       "p-s2": [
         "c034",
         "c049",
-        "c086",
-        "c104"
+        "c091",
+        "c115"
       ],
       "p-s3": [
-        "c020",
-        "c053",
-        "c089",
-        "c106"
+        "c019",
+        "c051",
+        "c094",
+        "c116"
       ],
       "p-s4": [
-        "c026",
-        "c039",
-        "c093",
-        "c111"
+        "c024",
+        "c037",
+        "c098",
+        "c120"
       ],
       "p-s5": [
-        "c028",
-        "c042",
-        "c096"
+        "c039",
+        "c104"
       ]
     },
     "inculpation": [
-      "c131",
-      "c132",
-      "c134",
-      "c012",
-      "c099"
+      "c144",
+      "c145",
+      "c146",
+      "c147",
+      "c148",
+      "c060",
+      "c071",
+      "c108"
     ],
     "method": [
-      "c136",
-      "c137"
+      "c149",
+      "c150"
     ],
     "motive": [
-      "c146",
-      "c147"
+      "c160",
+      "c161"
     ]
   }
 }

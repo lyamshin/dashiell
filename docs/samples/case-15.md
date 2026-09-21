@@ -42,8 +42,8 @@ Pasquale Grasso, a ward heeler, the victim's private nurse, killed Bella Hurwitz
 | 0 | 6:00 PM | Front Desk | Front Desk | — |
 | 1 | 6:30 PM | Front Desk | Front Desk | — |
 | 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
+| 3 | 7:30 PM | Front Desk | Front Desk | — |
+| 4 | 8:00 PM | Lobby | Lobby | — |
 | 5 | 8:30 PM | Service Stairs | Service Stairs | — |
 | 6 | 9:00 PM | Victim's Suite | Victim's Suite | — |
 | 7 | 9:30 PM | Service Stairs | Service Stairs | — |
@@ -56,33 +56,33 @@ Pasquale Grasso, a ward heeler, the victim's private nurse, killed Bella Hurwitz
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Roof Garden | **Lobby** | — |
-| 3 | 7:30 PM | Roof Garden | **Lobby** | — |
-| 4 | 8:00 PM | Roof Garden | **Lobby** | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
+| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
+| 2 | 7:00 PM | Roof Garden | **Lobby** | Abraham Sirkin |
+| 3 | 7:30 PM | Roof Garden | **Lobby** | Abraham Sirkin |
+| 4 | 8:00 PM | Roof Garden | **Lobby** | Abraham Sirkin |
+| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
+| 6 | 9:00 PM | Roof Garden | Roof Garden | — |
+| 7 | 9:30 PM | Service Stairs | Service Stairs | — |
+| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
+| 9 | 10:30 PM | Kitchen | Kitchen | — |
+| 10 | 11:00 PM | Kitchen | Kitchen | — |
+| 11 | 11:30 PM | Street | Street | — |
 
 ### Constance Stannard
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
 | 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Street | Street | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Street | **Bar** | — |
-| 9 | 10:30 PM | Street | **Bar** | — |
+| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
+| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
+| 3 | 7:30 PM | Kitchen | Kitchen | — |
+| 4 | 8:00 PM | Kitchen | Kitchen | — |
+| 5 | 8:30 PM | Kitchen | Kitchen | — |
+| 6 | 9:00 PM | Street | Street | — |
+| 7 | 9:30 PM | Street | Street | — |
+| 8 | 10:00 PM | Street | **Lobby** | — |
+| 9 | 10:30 PM | Street | **Lobby** | — |
 | 10 | 11:00 PM | Street | Street | — |
 | 11 | 11:30 PM | Lobby | Lobby | — |
 
@@ -90,69 +90,69 @@ Pasquale Grasso, a ward heeler, the victim's private nurse, killed Bella Hurwitz
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | Street | Street | — |
 | 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Street | Street | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
+| 2 | 7:00 PM | Lobby | Lobby | — |
+| 3 | 7:30 PM | Lobby | Lobby | — |
 | 4 | 8:00 PM | Service Stairs | Service Stairs | — |
 | 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Victim's Suite | **Lobby** | Constance Stannard |
+| 6 | 9:00 PM | Victim's Suite | **Lobby** | — |
 | 7 | 9:30 PM | Service Stairs | Service Stairs | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Front Desk | Front Desk | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
+| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
+| 9 | 10:30 PM | Lobby | Lobby | — |
+| 10 | 11:00 PM | Bar | Bar | — |
 | 11 | 11:30 PM | Bar | Bar | — |
 
 ### Pasquale Grasso — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | Street | Street | — |
+| 1 | 6:30 PM | Street | Street | — |
+| 2 | 7:00 PM | Street | Street | — |
+| 3 | 7:30 PM | Street | Street | — |
 | 4 | 8:00 PM | Kitchen | Kitchen | — |
 | 5 | 8:30 PM | Kitchen | Kitchen | — |
-| 6 | 9:00 PM | Street | Street | — |
-| 7 | 9:30 PM | Street | Street | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Service Stairs ☠ | **Street** | — |
-| 10 | 11:00 PM | Roof Garden | Roof Garden | — |
-| 11 | 11:30 PM | Roof Garden | Roof Garden | — |
+| 6 | 9:00 PM | Kitchen | Kitchen | — |
+| 7 | 9:30 PM | Kitchen | Kitchen | — |
+| 8 | 10:00 PM | Kitchen | Kitchen | — |
+| 9 | 10:30 PM | Service Stairs ☠ | **Bar** | Constance Stannard |
+| 10 | 11:00 PM | Kitchen | Kitchen | — |
+| 11 | 11:30 PM | Kitchen | Kitchen | — |
 
 ### Abraham Sirkin
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Bar | Bar | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Roof Garden | **Lobby** | Pasquale Grasso |
-| 3 | 7:30 PM | Roof Garden | **Lobby** | Pasquale Grasso |
-| 4 | 8:00 PM | Roof Garden | **Lobby** | Pasquale Grasso |
-| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
-| 6 | 9:00 PM | Roof Garden | Roof Garden | — |
+| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
+| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
+| 2 | 7:00 PM | Roof Garden | **Lobby** | Nunzio Tramonti |
+| 3 | 7:30 PM | Roof Garden | **Lobby** | Nunzio Tramonti |
+| 4 | 8:00 PM | Roof Garden | **Lobby** | Nunzio Tramonti |
+| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
+| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
 | 7 | 9:30 PM | Service Stairs | Service Stairs | — |
-| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Front Desk | Front Desk | — |
+| 8 | 10:00 PM | Kitchen | Kitchen | — |
+| 9 | 10:30 PM | Bar | Bar | — |
+| 10 | 11:00 PM | Bar | Bar | — |
+| 11 | 11:30 PM | Bar | Bar | — |
 
 ### Nunzio Tramonti
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | Kitchen | Kitchen | — |
 | 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | Bar | — |
+| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
+| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
+| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
+| 5 | 8:30 PM | Lobby | Lobby | — |
+| 6 | 9:00 PM | Front Desk | Front Desk | — |
 | 7 | 9:30 PM | Lobby | Lobby | — |
 | 8 | 10:00 PM | Bar | Bar | — |
 | 9 | 10:30 PM | Bar | **Lobby** | — |
 | 10 | 11:00 PM | Bar | **Lobby** | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 11 | 11:30 PM | Bar | Bar | — |
 
 ### Fixtures (never lie, never withhold)
 
@@ -187,482 +187,430 @@ Pasquale Grasso, a ward heeler, the victim's private nurse, killed Bella Hurwitz
 
 On Bella Hurwitz:
 
-- **c001** [observation] Lavinia Thorndike says Bella Hurwitz was on the Service Stairs at 8:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 8:30 PM; the victim alive at 8:30 PM_
-- **c002** [observation] Lavinia Thorndike says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
+- **c001** [observation] Lavinia Thorndike says Bella Hurwitz was on the Service Stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM; the victim alive at 9:30 PM_
 
 On Constance Stannard:
 
-- **c003** [observation] Lavinia Thorndike says Constance Stannard was on the Service Stairs at 8:30 PM. — _establishes: Constance Stannard on the Service Stairs, 8:30 PM_
-- **c004** [observation] Lavinia Thorndike says Constance Stannard was on the Street at 10:00 PM. — _establishes: Constance Stannard on the Street, 10:00 PM_
-- **c005** [observation] Lavinia Thorndike says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
+- **c002** [observation] Lavinia Thorndike says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
 
 On Emilio Vitale:
 
-- **c006** [observation] Lavinia Thorndike says Emilio Vitale was on the Service Stairs at 6:00 PM. — _establishes: Emilio Vitale on the Service Stairs, 6:00 PM_
-- **c007** [observation] Lavinia Thorndike says Emilio Vitale was on the Service Stairs at 8:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 8:30 PM_
-- **c008** [observation] Lavinia Thorndike says Emilio Vitale was in the Lobby at 10:00 PM. — _establishes: Emilio Vitale in the Lobby, 10:00 PM_
-- **c009** [observation] Lavinia Thorndike says Emilio Vitale was in the Lobby at 11:00 PM. — _establishes: Emilio Vitale in the Lobby, 11:00 PM_
-- **c010** [observation] Lavinia Thorndike says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
+- **c003** [observation] Lavinia Thorndike says Emilio Vitale was on the Service Stairs from 9:30 PM to 10:00 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM–10:00 PM_
+- **c004** [observation] Lavinia Thorndike says Emilio Vitale was in the Bar at 11:00 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM_
 
 On Pasquale Grasso:
 
-- **c011** [observation] Lavinia Thorndike says Pasquale Grasso was on the Service Stairs from 6:00 PM to 6:30 PM. — _establishes: Pasquale Grasso on the Service Stairs, 6:00 PM–6:30 PM_
-- **c012** [observation] Lavinia Thorndike says Pasquale Grasso was on the Street from 9:00 PM to 9:30 PM. — _establishes: Pasquale Grasso on the Street, 9:00 PM–9:30 PM_
-- **c013** [observation] Lavinia Thorndike says Pasquale Grasso was in the Lobby at 10:00 PM. — _establishes: Pasquale Grasso in the Lobby, 10:00 PM_
+- **c005** [observation] Lavinia Thorndike says Pasquale Grasso was in the Kitchen at 11:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:00 PM_
 
 On Abraham Sirkin:
 
-- **c014** [observation] Lavinia Thorndike says Abraham Sirkin was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Abraham Sirkin in the Lobby, 10:30 PM–11:00 PM_
+- **c006** [observation] Lavinia Thorndike says Abraham Sirkin was in the Roof Garden from 6:00 PM to 6:30 PM. — _establishes: Abraham Sirkin in the Roof Garden, 6:00 PM–6:30 PM_
+- **c007** [observation] Lavinia Thorndike says Abraham Sirkin was on the Service Stairs at 9:30 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:30 PM_
+- **c008** [observation] Lavinia Thorndike says Abraham Sirkin was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Abraham Sirkin in the Bar, 10:30 PM–11:00 PM_
 
 On Nunzio Tramonti:
 
-- **c015** [observation] Lavinia Thorndike says Nunzio Tramonti was on the Service Stairs from 6:00 PM to 6:30 PM. — _establishes: Nunzio Tramonti on the Service Stairs, 6:00 PM–6:30 PM_
-- **c016** [observation] Lavinia Thorndike says Nunzio Tramonti was in the Bar at 9:00 PM. — _establishes: Nunzio Tramonti in the Bar, 9:00 PM_
-- **c017** [observation] Lavinia Thorndike says Nunzio Tramonti was in the Bar from 10:00 PM to 11:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:00 PM_
-- **c018** [observation] Lavinia Thorndike says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
-- **c019** [observation] Lavinia Thorndike says Nunzio Tramonti was in the Lobby at 11:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 11:30 PM_
+- **c009** [observation] Lavinia Thorndike says Nunzio Tramonti was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:30 PM–11:00 PM_
 
-On Constance Stannard's account:
+On Pasquale Grasso's account:
 
-- **c151** [observation] Lavinia Thorndike was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Bar. — _establishes: Constance Stannard not in the Bar, 10:00 PM–10:30 PM_
-
-On Emilio Vitale's account:
-
-- **c158** [observation] Lavinia Thorndike was in the Lobby at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
-
-On Nunzio Tramonti's account:
-
-- **c171** [observation] Lavinia Thorndike was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+- **c116** [observation] Lavinia Thorndike was in the Kitchen at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
 
 On the rain:
 
-- **c182** [environment] Lavinia Thorndike says Pasquale Grasso came in off the street at 10:00 PM with a soaked coat, so Pasquale Grasso was outside at 9:30 PM. — _establishes: Pasquale Grasso on the Street, 9:30 PM_
-
-On Pasquale Grasso and Bella Hurwitz:
-
-- **c191** [overheard] Lavinia Thorndike says Bella Hurwitz told Pasquale Grasso that the story would run whether Pasquale Grasso liked it or not. — _establishes: Pasquale Grasso had a motive (exposure)_
+- **c134** [environment] Lavinia Thorndike says Constance Stannard came in off the street at 11:30 PM with a soaked coat, so Constance Stannard was outside at 11:00 PM. — _establishes: Constance Stannard on the Street, 11:00 PM_
 
 ### From Constance Stannard (a chorus girl between engagements)
 
 On Bella Hurwitz:
 
-- **c020** [observation] Constance Stannard says Bella Hurwitz was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:00 PM–6:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM_
-- **c021** [observation] Constance Stannard says Bella Hurwitz was in the Lobby at 7:30 PM. — _establishes: Bella Hurwitz in the Lobby, 7:30 PM; the victim alive at 7:30 PM_
-- **c022** [observation] Constance Stannard says Bella Hurwitz was on the Service Stairs from 8:00 PM to 8:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 8:00 PM–8:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
+- **c010** [observation] Constance Stannard says Bella Hurwitz was at the Front Desk at 6:00 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:00 PM; the victim alive at 6:00 PM_
 
 On Lavinia Thorndike:
 
-- **c023** [observation] Constance Stannard says Lavinia Thorndike was on the Service Stairs at 8:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 8:30 PM_
-- **c024** [observation] Constance Stannard says Lavinia Thorndike was in the Bar at 11:30 PM. — _establishes: Lavinia Thorndike in the Bar, 11:30 PM_
+- **c011** [observation] Constance Stannard says Lavinia Thorndike was on the Street at 11:30 PM. — _establishes: Lavinia Thorndike on the Street, 11:30 PM_
 
 On Emilio Vitale:
 
-- **c025** [observation] Constance Stannard says Emilio Vitale was in the Lobby at 6:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM_
-- **c026** [observation] Constance Stannard says Emilio Vitale was in the Lobby at 11:00 PM. — _establishes: Emilio Vitale in the Lobby, 11:00 PM_
-- **c027** [observation] Constance Stannard says Emilio Vitale was on the Street at 7:00 PM. — _establishes: Emilio Vitale on the Street, 7:00 PM_
-- **c028** [observation] Constance Stannard says Emilio Vitale was on the Service Stairs from 8:00 PM to 8:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 8:00 PM–8:30 PM_
-- **c029** [observation] Constance Stannard says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
+- **c012** [observation] Constance Stannard says Emilio Vitale was on the Street at 6:00 PM. — _establishes: Emilio Vitale on the Street, 6:00 PM_
+- **c013** [observation] Constance Stannard says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
+
+On Pasquale Grasso:
+
+- **c014** [observation] Constance Stannard says Pasquale Grasso was on the Street at 6:00 PM. — _establishes: Pasquale Grasso on the Street, 6:00 PM_
+- **c015** [observation] Constance Stannard says Pasquale Grasso was in the Kitchen from 8:00 PM to 8:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 8:00 PM–8:30 PM; Pasquale Grasso had access to the method_
 
 On Abraham Sirkin:
 
-- **c030** [observation] Constance Stannard says Abraham Sirkin was in the Bar at 6:00 PM. — _establishes: Abraham Sirkin in the Bar, 6:00 PM_
-- **c031** [observation] Constance Stannard says Abraham Sirkin was in the Lobby at 6:30 PM. — _establishes: Abraham Sirkin in the Lobby, 6:30 PM_
-- **c032** [observation] Constance Stannard says Abraham Sirkin was in the Lobby at 11:00 PM. — _establishes: Abraham Sirkin in the Lobby, 11:00 PM_
-- **c033** [observation] Constance Stannard says Abraham Sirkin was at the Front Desk at 11:30 PM. — _establishes: Abraham Sirkin at the Front Desk, 11:30 PM_
+- **c016** [observation] Constance Stannard says Abraham Sirkin was in the Bar at 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 11:30 PM_
 
 On Nunzio Tramonti:
 
-- **c034** [observation] Constance Stannard says Nunzio Tramonti was in the Bar at 9:00 PM. — _establishes: Nunzio Tramonti in the Bar, 9:00 PM_
-- **c035** [observation] Constance Stannard says Nunzio Tramonti was in the Lobby at 11:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 11:30 PM_
-
-On Lavinia Thorndike's account:
-
-- **c147** [observation] Constance Stannard was on the Street from 7:00 PM to 7:30 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–7:30 PM_
+- **c017** [observation] Constance Stannard says Nunzio Tramonti was on the Service Stairs from 6:30 PM to 7:00 PM. — _establishes: Nunzio Tramonti on the Service Stairs, 6:30 PM–7:00 PM_
+- **c018** [observation] Constance Stannard says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
+- **c019** [observation] Constance Stannard says Nunzio Tramonti was in the Bar at 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 11:30 PM_
 
 On Emilio Vitale's account:
 
-- **c163** [observation] Emilio Vitale says Constance Stannard was there. Constance Stannard says otherwise: Constance Stannard was in the Kitchen at 9:00 PM, not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
-
-On Abraham Sirkin's account:
-
-- **c166** [observation] Constance Stannard was on the Street from 7:00 PM to 7:30 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–7:30 PM_
+- **c112** [observation] Constance Stannard was on the Street at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
 
 On Nunzio Tramonti's account:
 
-- **c172** [observation] Constance Stannard was on the Street at 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 11:00 PM_
+- **c126** [observation] Constance Stannard was on the Street at 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 11:00 PM_
+
+On the rain:
+
+- **c135** [environment] Constance Stannard says Pasquale Grasso came in off the street at 8:00 PM with a soaked coat, so Pasquale Grasso was outside at 7:30 PM. — _establishes: Pasquale Grasso on the Street, 7:30 PM_
+
+On Pasquale Grasso and Bella Hurwitz:
+
+- **c145** [overheard] Constance Stannard says Bella Hurwitz told Pasquale Grasso that the story would run whether Pasquale Grasso liked it or not. — _establishes: Pasquale Grasso had a motive (exposure)_
 
 ### From Emilio Vitale (a dentist with rooms on the third floor)
 
 On Bella Hurwitz:
 
-- **c036** [observation] Emilio Vitale says Bella Hurwitz was at the Front Desk at 6:30 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:30 PM; the victim alive at 6:30 PM_
-- **c037** [observation] Emilio Vitale says Bella Hurwitz was on the Service Stairs from 8:00 PM to 8:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 8:00 PM–8:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c038** [observation] Emilio Vitale says Bella Hurwitz was on the Service Stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM; the victim alive at 9:30 PM_
-- **c039** [observation] Emilio Vitale says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
+- **c020** [observation] Emilio Vitale says Bella Hurwitz was at the Front Desk from 6:30 PM to 7:30 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
+- **c021** [observation] Emilio Vitale says Bella Hurwitz was on the Service Stairs at 8:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 8:30 PM; the victim alive at 8:30 PM_
+- **c022** [observation] Emilio Vitale says Bella Hurwitz was on the Service Stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM; the victim alive at 9:30 PM_
 
 On Lavinia Thorndike:
 
-- **c040** [observation] Emilio Vitale says Lavinia Thorndike was on the Service Stairs at 6:00 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 6:00 PM_
-- **c041** [observation] Emilio Vitale says Lavinia Thorndike was on the Service Stairs at 8:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 8:30 PM_
-- **c042** [observation] Emilio Vitale says Lavinia Thorndike was in the Lobby at 10:00 PM. — _establishes: Lavinia Thorndike in the Lobby, 10:00 PM_
-- **c043** [observation] Emilio Vitale says Lavinia Thorndike was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Lavinia Thorndike in the Bar, 11:00 PM–11:30 PM_
+- **c023** [observation] Emilio Vitale says Lavinia Thorndike was on the Service Stairs from 9:30 PM to 10:00 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 9:30 PM–10:00 PM_
+- **c024** [observation] Emilio Vitale says Lavinia Thorndike was in the Kitchen at 11:00 PM. — _establishes: Lavinia Thorndike in the Kitchen, 11:00 PM_
 
 On Constance Stannard:
 
-- **c044** [observation] Emilio Vitale says Constance Stannard was in the Lobby at 6:30 PM. — _establishes: Constance Stannard in the Lobby, 6:30 PM_
-- **c045** [observation] Emilio Vitale says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-- **c046** [observation] Emilio Vitale says Constance Stannard was on the Street at 7:00 PM. — _establishes: Constance Stannard on the Street, 7:00 PM_
-- **c047** [observation] Emilio Vitale says Constance Stannard was on the Street at 10:00 PM. — _establishes: Constance Stannard on the Street, 10:00 PM_
-- **c048** [observation] Emilio Vitale says Constance Stannard was on the Street at 11:00 PM. — _establishes: Constance Stannard on the Street, 11:00 PM_
-- **c049** [observation] Emilio Vitale says Constance Stannard was on the Service Stairs from 8:00 PM to 8:30 PM. — _establishes: Constance Stannard on the Service Stairs, 8:00 PM–8:30 PM_
+- **c025** [observation] Emilio Vitale says Constance Stannard was in the Lobby at 6:00 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM_
+- **c026** [observation] Emilio Vitale says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
+- **c027** [observation] Emilio Vitale says Constance Stannard was on the Street at 10:30 PM. — _establishes: Constance Stannard on the Street, 10:30 PM_
 
 On Pasquale Grasso:
 
-- **c050** [observation] Emilio Vitale says Pasquale Grasso was on the Service Stairs at 6:00 PM. — _establishes: Pasquale Grasso on the Service Stairs, 6:00 PM_
-- **c051** [observation] Emilio Vitale says Pasquale Grasso was in the Lobby at 10:00 PM. — _establishes: Pasquale Grasso in the Lobby, 10:00 PM_
+- **c028** [observation] Emilio Vitale says Pasquale Grasso was on the Street from 6:00 PM to 7:30 PM. — _establishes: Pasquale Grasso on the Street, 6:00 PM–7:30 PM_
+- **c029** [observation] Emilio Vitale says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:00 PM–11:30 PM_
 
 On Abraham Sirkin:
 
-- **c052** [observation] Emilio Vitale says Abraham Sirkin was in the Lobby at 6:30 PM. — _establishes: Abraham Sirkin in the Lobby, 6:30 PM_
-- **c053** [observation] Emilio Vitale says Abraham Sirkin was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Abraham Sirkin in the Lobby, 10:30 PM–11:00 PM_
-- **c054** [observation] Emilio Vitale says Abraham Sirkin was on the Service Stairs at 9:30 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:30 PM_
+- **c030** [observation] Emilio Vitale says Abraham Sirkin was on the Service Stairs at 8:30 PM. — _establishes: Abraham Sirkin on the Service Stairs, 8:30 PM_
+- **c031** [observation] Emilio Vitale says Abraham Sirkin was on the Service Stairs at 9:30 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:30 PM_
+- **c032** [observation] Emilio Vitale says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 10:30 PM–11:30 PM_
 
 On Nunzio Tramonti:
 
-- **c055** [observation] Emilio Vitale says Nunzio Tramonti was on the Service Stairs at 6:00 PM. — _establishes: Nunzio Tramonti on the Service Stairs, 6:00 PM_
-- **c056** [observation] Emilio Vitale says Nunzio Tramonti was in the Kitchen at 7:30 PM. — _establishes: Nunzio Tramonti in the Kitchen, 7:30 PM; Nunzio Tramonti had access to the method_
-- **c057** [observation] Emilio Vitale says Nunzio Tramonti was in the Bar at 10:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM_
-- **c058** [observation] Emilio Vitale says Nunzio Tramonti was in the Bar at 11:00 PM. — _establishes: Nunzio Tramonti in the Bar, 11:00 PM_
-- **c059** [observation] Emilio Vitale says Nunzio Tramonti was in the Lobby at 11:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 11:30 PM_
+- **c033** [observation] Emilio Vitale says Nunzio Tramonti was on the Service Stairs at 8:00 PM. — _establishes: Nunzio Tramonti on the Service Stairs, 8:00 PM_
+- **c034** [observation] Emilio Vitale says Nunzio Tramonti was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 10:30 PM–11:30 PM_
 
 On Lavinia Thorndike's account:
 
-- **c148** [observation] Emilio Vitale was on the Street at 7:00 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM_
+- **c103** [observation] Emilio Vitale was in the Lobby from 7:00 PM to 7:30 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–7:30 PM_
 
 On Constance Stannard's account:
 
-- **c152** [observation] Emilio Vitale was in the Lobby at 10:00 PM and says Constance Stannard was not in the Bar. — _establishes: Constance Stannard not in the Bar, 10:00 PM_
+- **c107** [observation] Emilio Vitale was in the Lobby at 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:30 PM_
+
+On Pasquale Grasso's account:
+
+- **c117** [observation] Emilio Vitale was in the Lobby at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
 
 On Abraham Sirkin's account:
 
-- **c167** [observation] Emilio Vitale was on the Street at 7:00 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM_
+- **c121** [observation] Emilio Vitale was in the Lobby from 7:00 PM to 7:30 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–7:30 PM_
 
 On Nunzio Tramonti's account:
 
-- **c173** [observation] Emilio Vitale was at the Front Desk from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+- **c127** [observation] Emilio Vitale was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+
+On Abraham Sirkin and Bella Hurwitz:
+
+- **c147** [overheard] Emilio Vitale says Bella Hurwitz told Abraham Sirkin that Friday was the end of it, one way or the other. — _establishes: Abraham Sirkin had a motive (debt)_
 
 ### From Pasquale Grasso (a ward heeler)
 
-On Bella Hurwitz:
-
-- **c060** [observation] Pasquale Grasso says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-
 On Lavinia Thorndike:
 
-- **c061** [observation] Pasquale Grasso says Lavinia Thorndike was on the Service Stairs from 6:00 PM to 6:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 6:00 PM–6:30 PM_
-- **c062** [observation] Pasquale Grasso says Lavinia Thorndike was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Lavinia Thorndike in the Lobby, 9:00 PM–10:00 PM_
+- **c035** [observation] Pasquale Grasso says Lavinia Thorndike was in the Kitchen at 11:00 PM. — _establishes: Lavinia Thorndike in the Kitchen, 11:00 PM_
 
 On Constance Stannard:
 
-- **c063** [observation] Pasquale Grasso says Constance Stannard was on the Street at 10:00 PM. — _establishes: Constance Stannard on the Street, 10:00 PM_
+- **c036** [observation] Pasquale Grasso says Constance Stannard was in the Lobby at 6:00 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM_
+- **c037** [observation] Pasquale Grasso says Constance Stannard was in the Kitchen from 8:00 PM to 8:30 PM. — _establishes: Constance Stannard in the Kitchen, 8:00 PM–8:30 PM; Constance Stannard had access to the method_
 
 On Emilio Vitale:
 
-- **c064** [observation] Pasquale Grasso says Emilio Vitale was on the Service Stairs at 6:00 PM. — _establishes: Emilio Vitale on the Service Stairs, 6:00 PM_
-- **c065** [observation] Pasquale Grasso says Emilio Vitale was in the Lobby at 10:00 PM. — _establishes: Emilio Vitale in the Lobby, 10:00 PM_
+- **c038** [observation] Pasquale Grasso says Emilio Vitale was on the Street at 6:00 PM. — _establishes: Emilio Vitale on the Street, 6:00 PM_
+- **c039** [observation] Pasquale Grasso says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM–7:30 PM_
+- **c040** [observation] Pasquale Grasso says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM–11:30 PM_
+
+On Abraham Sirkin:
+
+- **c041** [observation] Pasquale Grasso says Abraham Sirkin was in the Kitchen at 10:00 PM. — _establishes: Abraham Sirkin in the Kitchen, 10:00 PM; Abraham Sirkin had access to the method_
+- **c042** [observation] Pasquale Grasso says Abraham Sirkin was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 11:00 PM–11:30 PM_
 
 On Nunzio Tramonti:
 
-- **c066** [observation] Pasquale Grasso says Nunzio Tramonti was on the Service Stairs from 6:00 PM to 6:30 PM. — _establishes: Nunzio Tramonti on the Service Stairs, 6:00 PM–6:30 PM_
-- **c067** [observation] Pasquale Grasso says Nunzio Tramonti was in the Kitchen at 8:00 PM. — _establishes: Nunzio Tramonti in the Kitchen, 8:00 PM; Nunzio Tramonti had access to the method_
-- **c068** [observation] Pasquale Grasso says Nunzio Tramonti was in the Bar at 8:30 PM. — _establishes: Nunzio Tramonti in the Bar, 8:30 PM_
-- **c069** [observation] Pasquale Grasso says Nunzio Tramonti was in the Bar at 10:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM_
-- **c070** [observation] Pasquale Grasso says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
+- **c043** [observation] Pasquale Grasso says Nunzio Tramonti was in the Bar at 10:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM_
+- **c044** [observation] Pasquale Grasso says Nunzio Tramonti was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 11:00 PM–11:30 PM_
 
-On Constance Stannard's account:
+On Lavinia Thorndike's account:
 
-- **c153** [observation] Pasquale Grasso was in the Lobby at 10:00 PM and says Constance Stannard was not in the Bar. — _establishes: Constance Stannard not in the Bar, 10:00 PM_
-
-On Emilio Vitale's account:
-
-- **c159** [observation] Pasquale Grasso was on the Street at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
+- **c104** [observation] Pasquale Grasso was on the Street from 7:00 PM to 7:30 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–7:30 PM_
 
 On Abraham Sirkin's account:
 
-- **c170** [observation] Abraham Sirkin says Pasquale Grasso was there. Pasquale Grasso says otherwise: Pasquale Grasso was on the Service Stairs from 7:00 PM to 8:00 PM, not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
+- **c122** [observation] Pasquale Grasso was on the Street from 7:00 PM to 7:30 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–7:30 PM_
+
+On Constance Stannard and Bella Hurwitz:
+
+- **c143** [overheard] Pasquale Grasso says Bella Hurwitz told Constance Stannard the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Constance Stannard had a motive (inheritance)_
 
 ### From Abraham Sirkin (a bookmaker in a small way)
 
 On Bella Hurwitz:
 
-- **c071** [observation] Abraham Sirkin says Bella Hurwitz was at the Front Desk at 6:30 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:30 PM; the victim alive at 6:30 PM_
-- **c072** [observation] Abraham Sirkin says Bella Hurwitz was on the Service Stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM; the victim alive at 9:30 PM_
+- **c045** [observation] Abraham Sirkin says Bella Hurwitz was on the Service Stairs at 8:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 8:30 PM; the victim alive at 8:30 PM_
+- **c046** [observation] Abraham Sirkin says Bella Hurwitz was on the Service Stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM; the victim alive at 9:30 PM_
 
 On Lavinia Thorndike:
 
-- **c073** [observation] Abraham Sirkin says Lavinia Thorndike was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Lavinia Thorndike in the Bar, 10:30 PM–11:00 PM_
+- **c047** [observation] Abraham Sirkin says Lavinia Thorndike was in the Roof Garden from 6:00 PM to 6:30 PM. — _establishes: Lavinia Thorndike in the Roof Garden, 6:00 PM–6:30 PM_
+- **c048** [observation] Abraham Sirkin says Lavinia Thorndike was on the Service Stairs at 9:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 9:30 PM_
+- **c049** [observation] Abraham Sirkin says Lavinia Thorndike was in the Kitchen from 10:30 PM to 11:00 PM. — _establishes: Lavinia Thorndike in the Kitchen, 10:30 PM–11:00 PM_
 
 On Constance Stannard:
 
-- **c074** [observation] Abraham Sirkin says Constance Stannard was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM–6:30 PM_
-- **c075** [observation] Abraham Sirkin says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-- **c076** [observation] Abraham Sirkin says Constance Stannard was on the Street from 10:30 PM to 11:00 PM. — _establishes: Constance Stannard on the Street, 10:30 PM–11:00 PM_
+- **c050** [observation] Abraham Sirkin says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
 
 On Emilio Vitale:
 
-- **c077** [observation] Abraham Sirkin says Emilio Vitale was in the Lobby at 6:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM_
-- **c078** [observation] Abraham Sirkin says Emilio Vitale was in the Lobby at 11:00 PM. — _establishes: Emilio Vitale in the Lobby, 11:00 PM_
-- **c079** [observation] Abraham Sirkin says Emilio Vitale was on the Service Stairs at 9:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM_
-- **c080** [observation] Abraham Sirkin says Emilio Vitale was at the Front Desk at 10:30 PM. — _establishes: Emilio Vitale at the Front Desk, 10:30 PM_
+- **c051** [observation] Abraham Sirkin says Emilio Vitale was on the Service Stairs at 8:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 8:30 PM_
+- **c052** [observation] Abraham Sirkin says Emilio Vitale was on the Service Stairs at 9:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM_
+- **c053** [observation] Abraham Sirkin says Emilio Vitale was in the Lobby at 10:30 PM. — _establishes: Emilio Vitale in the Lobby, 10:30 PM_
+- **c054** [observation] Abraham Sirkin says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM–11:30 PM_
+
+On Pasquale Grasso:
+
+- **c055** [observation] Abraham Sirkin says Pasquale Grasso was in the Kitchen at 10:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 10:00 PM; Pasquale Grasso had access to the method_
+- **c056** [observation] Abraham Sirkin says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:00 PM–11:30 PM_
 
 On Nunzio Tramonti:
 
-- **c081** [observation] Abraham Sirkin says Nunzio Tramonti was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:30 PM–11:00 PM_
-- **c082** [observation] Abraham Sirkin says Nunzio Tramonti was in the Lobby at 11:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 11:30 PM_
+- **c057** [observation] Abraham Sirkin says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:30 PM_
 
 On Constance Stannard's account:
 
-- **c154** [observation] Abraham Sirkin was in the Lobby at 10:30 PM and says Constance Stannard was not in the Bar. — _establishes: Constance Stannard not in the Bar, 10:30 PM_
+- **c108** [observation] Abraham Sirkin was in the Bar at 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:30 PM_
 
 On Pasquale Grasso's account:
 
-- **c164** [observation] Abraham Sirkin was in the Lobby at 10:30 PM and says Pasquale Grasso was not on the Street. — _establishes: Pasquale Grasso not on the Street, 10:30 PM_
+- **c118** [observation] Abraham Sirkin was in the Bar at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
 
 On Nunzio Tramonti's account:
 
-- **c174** [observation] Abraham Sirkin was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+- **c128** [observation] Abraham Sirkin was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
 
 ### From Nunzio Tramonti (a stagehand at the Selwyn)
 
 On Bella Hurwitz:
 
-- **c083** [observation] Nunzio Tramonti says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-
-On Lavinia Thorndike:
-
-- **c084** [observation] Nunzio Tramonti says Lavinia Thorndike was on the Service Stairs from 6:00 PM to 6:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 6:00 PM–6:30 PM_
-- **c085** [observation] Nunzio Tramonti says Lavinia Thorndike was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Lavinia Thorndike in the Lobby, 9:00 PM–10:00 PM_
-- **c086** [observation] Nunzio Tramonti says Lavinia Thorndike was in the Bar at 11:30 PM. — _establishes: Lavinia Thorndike in the Bar, 11:30 PM_
+- **c058** [observation] Nunzio Tramonti says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
 
 On Constance Stannard:
 
-- **c087** [observation] Nunzio Tramonti says Constance Stannard was in the Kitchen at 9:00 PM. — _establishes: Constance Stannard in the Kitchen, 9:00 PM; Constance Stannard had access to the method_
-- **c088** [observation] Nunzio Tramonti says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
+- **c059** [observation] Nunzio Tramonti says Constance Stannard was on the Service Stairs from 6:30 PM to 7:00 PM. — _establishes: Constance Stannard on the Service Stairs, 6:30 PM–7:00 PM_
+- **c060** [observation] Nunzio Tramonti says Constance Stannard was on the Street at 9:30 PM. — _establishes: Constance Stannard on the Street, 9:30 PM_
+- **c061** [observation] Nunzio Tramonti says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
 
 On Emilio Vitale:
 
-- **c089** [observation] Nunzio Tramonti says Emilio Vitale was on the Service Stairs at 6:00 PM. — _establishes: Emilio Vitale on the Service Stairs, 6:00 PM_
-- **c090** [observation] Nunzio Tramonti says Emilio Vitale was in the Kitchen at 7:30 PM. — _establishes: Emilio Vitale in the Kitchen, 7:30 PM; Emilio Vitale had access to the method_
-- **c091** [observation] Nunzio Tramonti says Emilio Vitale was in the Lobby at 10:00 PM. — _establishes: Emilio Vitale in the Lobby, 10:00 PM_
-- **c092** [observation] Nunzio Tramonti says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
+- **c062** [observation] Nunzio Tramonti says Emilio Vitale was on the Service Stairs at 8:00 PM. — _establishes: Emilio Vitale on the Service Stairs, 8:00 PM_
+- **c063** [observation] Nunzio Tramonti says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
 
 On Pasquale Grasso:
 
-- **c093** [observation] Nunzio Tramonti says Pasquale Grasso was on the Service Stairs from 6:00 PM to 6:30 PM. — _establishes: Pasquale Grasso on the Service Stairs, 6:00 PM–6:30 PM_
-- **c094** [observation] Nunzio Tramonti says Pasquale Grasso was in the Kitchen from 8:00 PM to 8:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 8:00 PM–8:30 PM; Pasquale Grasso had access to the method_
-- **c095** [observation] Nunzio Tramonti says Pasquale Grasso was on the Street at 9:30 PM. — _establishes: Pasquale Grasso on the Street, 9:30 PM_
-- **c096** [observation] Nunzio Tramonti says Pasquale Grasso was in the Lobby at 10:00 PM. — _establishes: Pasquale Grasso in the Lobby, 10:00 PM_
+- **c064** [observation] Nunzio Tramonti says Pasquale Grasso was in the Kitchen at 10:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 10:00 PM; Pasquale Grasso had access to the method_
+- **c065** [observation] Nunzio Tramonti says Pasquale Grasso was in the Kitchen at 11:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:30 PM_
 
 On Abraham Sirkin:
 
-- **c097** [observation] Nunzio Tramonti says Abraham Sirkin was at the Front Desk at 11:30 PM. — _establishes: Abraham Sirkin at the Front Desk, 11:30 PM_
+- **c066** [observation] Nunzio Tramonti says Abraham Sirkin was in the Kitchen at 10:00 PM. — _establishes: Abraham Sirkin in the Kitchen, 10:00 PM; Abraham Sirkin had access to the method_
+- **c067** [observation] Nunzio Tramonti says Abraham Sirkin was in the Bar at 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 11:30 PM_
 
 On Constance Stannard's account:
 
-- **c155** [observation] Nunzio Tramonti was in the Bar at 10:00 PM and says Constance Stannard was not in the Bar. — _establishes: Constance Stannard not in the Bar, 10:00 PM_
+- **c109** [observation] Nunzio Tramonti was in the Bar at 10:00 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM_
 
 On Emilio Vitale's account:
 
-- **c160** [observation] Nunzio Tramonti was in the Bar at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
+- **c113** [observation] Nunzio Tramonti was at the Front Desk at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
 
-On the rain:
+On Abraham Sirkin's account:
 
-- **c181** [environment] Nunzio Tramonti says Emilio Vitale came in off the street at 7:30 PM with a soaked coat, so Emilio Vitale was outside at 7:00 PM. — _establishes: Emilio Vitale on the Street, 7:00 PM_
+- **c125** [observation] Abraham Sirkin says Nunzio Tramonti was there. Nunzio Tramonti says otherwise: Nunzio Tramonti was on the Service Stairs from 7:00 PM to 8:00 PM, not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
 
 ### From Heinrich Obermann (the doorman)
 
 On Bella Hurwitz:
 
-- **c098** [observation] Heinrich Obermann says Bella Hurwitz was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:00 PM–7:00 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM_
-- **c099** [observation] Heinrich Obermann says Bella Hurwitz was in the Lobby at 7:30 PM. — _establishes: Bella Hurwitz in the Lobby, 7:30 PM; the victim alive at 7:30 PM_
-- **c100** [observation] Heinrich Obermann says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
+- **c068** [observation] Heinrich Obermann says Bella Hurwitz was at the Front Desk from 6:00 PM to 7:30 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:00 PM–7:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
+- **c069** [observation] Heinrich Obermann says Bella Hurwitz was in the Lobby at 8:00 PM. — _establishes: Bella Hurwitz in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
+- **c070** [observation] Heinrich Obermann says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
 
 On Lavinia Thorndike:
 
-- **c101** [observation] Heinrich Obermann says Lavinia Thorndike was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Lavinia Thorndike in the Lobby, 9:00 PM–10:00 PM_
-- **c102** [observation] Heinrich Obermann says Lavinia Thorndike was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Lavinia Thorndike in the Bar, 10:30 PM–11:30 PM_
+- **c071** [observation] Heinrich Obermann says Lavinia Thorndike was on the Street at 11:30 PM. — _establishes: Lavinia Thorndike on the Street, 11:30 PM_
 
 On Constance Stannard:
 
-- **c103** [observation] Heinrich Obermann says Constance Stannard was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM–6:30 PM_
-- **c104** [observation] Heinrich Obermann says Constance Stannard was in the Lobby at 7:30 PM. — _establishes: Constance Stannard in the Lobby, 7:30 PM_
-- **c105** [observation] Heinrich Obermann says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-- **c106** [observation] Heinrich Obermann says Constance Stannard was on the Street at 7:00 PM. — _establishes: Constance Stannard on the Street, 7:00 PM_
-- **c107** [observation] Heinrich Obermann says Constance Stannard was on the Street from 10:00 PM to 11:00 PM. — _establishes: Constance Stannard on the Street, 10:00 PM–11:00 PM_
+- **c072** [observation] Heinrich Obermann says Constance Stannard was in the Lobby at 6:00 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM_
+- **c073** [observation] Heinrich Obermann says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
+- **c074** [observation] Heinrich Obermann says Constance Stannard was on the Street from 9:00 PM to 11:00 PM. — _establishes: Constance Stannard on the Street, 9:00 PM–11:00 PM_
 
 On Emilio Vitale:
 
-- **c108** [observation] Heinrich Obermann says Emilio Vitale was in the Lobby at 6:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM_
-- **c109** [observation] Heinrich Obermann says Emilio Vitale was in the Lobby at 10:00 PM. — _establishes: Emilio Vitale in the Lobby, 10:00 PM_
-- **c110** [observation] Heinrich Obermann says Emilio Vitale was in the Lobby at 11:00 PM. — _establishes: Emilio Vitale in the Lobby, 11:00 PM_
-- **c111** [observation] Heinrich Obermann says Emilio Vitale was on the Street at 7:00 PM. — _establishes: Emilio Vitale on the Street, 7:00 PM_
-- **c112** [observation] Heinrich Obermann says Emilio Vitale was at the Front Desk at 10:30 PM. — _establishes: Emilio Vitale at the Front Desk, 10:30 PM_
-- **c113** [observation] Heinrich Obermann says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
+- **c075** [observation] Heinrich Obermann says Emilio Vitale was on the Street at 6:00 PM. — _establishes: Emilio Vitale on the Street, 6:00 PM_
+- **c076** [observation] Heinrich Obermann says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM–7:30 PM_
+- **c077** [observation] Heinrich Obermann says Emilio Vitale was in the Lobby at 10:30 PM. — _establishes: Emilio Vitale in the Lobby, 10:30 PM_
+- **c078** [observation] Heinrich Obermann says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM–11:30 PM_
 
 On Pasquale Grasso:
 
-- **c114** [observation] Heinrich Obermann says Pasquale Grasso was on the Street from 9:00 PM to 9:30 PM. — _establishes: Pasquale Grasso on the Street, 9:00 PM–9:30 PM_
-- **c115** [observation] Heinrich Obermann says Pasquale Grasso was in the Lobby at 10:00 PM. — _establishes: Pasquale Grasso in the Lobby, 10:00 PM_
+- **c079** [observation] Heinrich Obermann says Pasquale Grasso was on the Street from 6:00 PM to 7:30 PM. — _establishes: Pasquale Grasso on the Street, 6:00 PM–7:30 PM_
 
 On Abraham Sirkin:
 
-- **c116** [observation] Heinrich Obermann says Abraham Sirkin was in the Bar at 6:00 PM. — _establishes: Abraham Sirkin in the Bar, 6:00 PM_
-- **c117** [observation] Heinrich Obermann says Abraham Sirkin was in the Lobby at 6:30 PM. — _establishes: Abraham Sirkin in the Lobby, 6:30 PM_
-- **c118** [observation] Heinrich Obermann says Abraham Sirkin was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Abraham Sirkin in the Lobby, 10:30 PM–11:00 PM_
-- **c119** [observation] Heinrich Obermann says Abraham Sirkin was at the Front Desk at 11:30 PM. — _establishes: Abraham Sirkin at the Front Desk, 11:30 PM_
+- **c080** [observation] Heinrich Obermann says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 10:30 PM–11:30 PM_
 
 On Nunzio Tramonti:
 
-- **c120** [observation] Heinrich Obermann says Nunzio Tramonti was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Nunzio Tramonti in the Bar, 8:30 PM–9:00 PM_
-- **c121** [observation] Heinrich Obermann says Nunzio Tramonti was in the Bar from 10:00 PM to 11:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:00 PM_
-- **c122** [observation] Heinrich Obermann says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
-- **c123** [observation] Heinrich Obermann says Nunzio Tramonti was in the Lobby at 11:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 11:30 PM_
+- **c081** [observation] Heinrich Obermann says Nunzio Tramonti was in the Lobby at 8:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 8:30 PM_
+- **c082** [observation] Heinrich Obermann says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
+- **c083** [observation] Heinrich Obermann says Nunzio Tramonti was at the Front Desk at 9:00 PM. — _establishes: Nunzio Tramonti at the Front Desk, 9:00 PM_
+- **c084** [observation] Heinrich Obermann says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:30 PM_
 
 On Lavinia Thorndike's account:
 
-- **c149** [observation] Heinrich Obermann was in the Lobby from 7:00 PM to 8:00 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–8:00 PM_
+- **c105** [observation] Heinrich Obermann was in the Lobby from 7:00 PM to 8:00 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–8:00 PM_
 
 On Constance Stannard's account:
 
-- **c156** [observation] Heinrich Obermann was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Bar. — _establishes: Constance Stannard not in the Bar, 10:00 PM–10:30 PM_
+- **c110** [observation] Heinrich Obermann was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
 
 On Emilio Vitale's account:
 
-- **c161** [observation] Heinrich Obermann was in the Lobby at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
+- **c114** [observation] Heinrich Obermann was in the Lobby at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
 
 On Pasquale Grasso's account:
 
-- **c165** [observation] Heinrich Obermann was in the Lobby at 10:30 PM and says Pasquale Grasso was not on the Street. — _establishes: Pasquale Grasso not on the Street, 10:30 PM_
+- **c119** [observation] Heinrich Obermann was in the Lobby at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
 
 On Abraham Sirkin's account:
 
-- **c168** [observation] Heinrich Obermann was in the Lobby from 7:00 PM to 8:00 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
+- **c123** [observation] Heinrich Obermann was in the Lobby from 7:00 PM to 8:00 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
 
 On Nunzio Tramonti's account:
 
-- **c175** [observation] Heinrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
+- **c129** [observation] Heinrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
 
-On the rain:
+On Nunzio Tramonti and Bella Hurwitz:
 
-- **c180** [environment] Heinrich Obermann says Constance Stannard came in off the street at 7:30 PM with a soaked coat, so Constance Stannard was outside at 7:00 PM. — _establishes: Constance Stannard on the Street, 7:00 PM_
-
-On Constance Stannard and Bella Hurwitz:
-
-- **c189** [overheard] Heinrich Obermann says Bella Hurwitz told Constance Stannard the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Constance Stannard had a motive (inheritance)_
-
-On Abraham Sirkin and Bella Hurwitz:
-
-- **c193** [overheard] Heinrich Obermann says Bella Hurwitz told Abraham Sirkin that Friday was the end of it, one way or the other. — _establishes: Abraham Sirkin had a motive (debt)_
+- **c149** [overheard] Heinrich Obermann says Nunzio Tramonti told Bella Hurwitz to keep away, loud enough to turn heads. — _establishes: Nunzio Tramonti had a motive (jealousy)_
 
 ### From Friedrich Kreuzer (the bartender)
 
 On Bella Hurwitz:
 
-- **c124** [observation] Friedrich Kreuzer says Bella Hurwitz was in the Lobby at 7:30 PM. — _establishes: Bella Hurwitz in the Lobby, 7:30 PM; the victim alive at 7:30 PM_
-- **c125** [observation] Friedrich Kreuzer says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
+- **c085** [observation] Friedrich Kreuzer says Bella Hurwitz was in the Lobby at 8:00 PM. — _establishes: Bella Hurwitz in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
+- **c086** [observation] Friedrich Kreuzer says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
 
 On Lavinia Thorndike:
 
-- **c126** [observation] Friedrich Kreuzer says Lavinia Thorndike was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Lavinia Thorndike in the Lobby, 9:00 PM–10:00 PM_
-- **c127** [observation] Friedrich Kreuzer says Lavinia Thorndike was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Lavinia Thorndike in the Bar, 10:30 PM–11:30 PM_
+- **c087** [observation] Friedrich Kreuzer says Lavinia Thorndike was in the Kitchen from 10:30 PM to 11:00 PM. — _establishes: Lavinia Thorndike in the Kitchen, 10:30 PM–11:00 PM_
 
 On Constance Stannard:
 
-- **c128** [observation] Friedrich Kreuzer says Constance Stannard was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM–6:30 PM_
-- **c129** [observation] Friedrich Kreuzer says Constance Stannard was in the Lobby at 7:30 PM. — _establishes: Constance Stannard in the Lobby, 7:30 PM_
-- **c130** [observation] Friedrich Kreuzer says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-- **c131** [observation] Friedrich Kreuzer says Constance Stannard was in the Kitchen from 9:00 PM to 9:30 PM. — _establishes: Constance Stannard in the Kitchen, 9:00 PM–9:30 PM; Constance Stannard had access to the method_
+- **c088** [observation] Friedrich Kreuzer says Constance Stannard was in the Lobby at 6:00 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM_
+- **c089** [observation] Friedrich Kreuzer says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
+- **c090** [observation] Friedrich Kreuzer says Constance Stannard was in the Kitchen from 7:30 PM to 8:00 PM. — _establishes: Constance Stannard in the Kitchen, 7:30 PM–8:00 PM; Constance Stannard had access to the method_
 
 On Emilio Vitale:
 
-- **c132** [observation] Friedrich Kreuzer says Emilio Vitale was in the Lobby at 6:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM_
-- **c133** [observation] Friedrich Kreuzer says Emilio Vitale was in the Lobby at 10:00 PM. — _establishes: Emilio Vitale in the Lobby, 10:00 PM_
-- **c134** [observation] Friedrich Kreuzer says Emilio Vitale was in the Lobby at 11:00 PM. — _establishes: Emilio Vitale in the Lobby, 11:00 PM_
-- **c135** [observation] Friedrich Kreuzer says Emilio Vitale was in the Kitchen at 7:30 PM. — _establishes: Emilio Vitale in the Kitchen, 7:30 PM; Emilio Vitale had access to the method_
-- **c136** [observation] Friedrich Kreuzer says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
+- **c091** [observation] Friedrich Kreuzer says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM–7:30 PM_
+- **c092** [observation] Friedrich Kreuzer says Emilio Vitale was in the Lobby at 10:30 PM. — _establishes: Emilio Vitale in the Lobby, 10:30 PM_
+- **c093** [observation] Friedrich Kreuzer says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM–11:30 PM_
 
 On Pasquale Grasso:
 
-- **c137** [observation] Friedrich Kreuzer says Pasquale Grasso was in the Kitchen at 8:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 8:00 PM; Pasquale Grasso had access to the method_
-- **c138** [observation] Friedrich Kreuzer says Pasquale Grasso was in the Lobby at 10:00 PM. — _establishes: Pasquale Grasso in the Lobby, 10:00 PM_
+- **c094** [observation] Friedrich Kreuzer says Pasquale Grasso was in the Kitchen at 8:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 8:00 PM; Pasquale Grasso had access to the method_
+- **c095** [observation] Friedrich Kreuzer says Pasquale Grasso was in the Kitchen from 9:00 PM to 10:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 9:00 PM–10:00 PM; Pasquale Grasso had access to the method_
+- **c096** [observation] Friedrich Kreuzer says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:00 PM–11:30 PM_
 
 On Abraham Sirkin:
 
-- **c139** [observation] Friedrich Kreuzer says Abraham Sirkin was in the Bar at 6:00 PM. — _establishes: Abraham Sirkin in the Bar, 6:00 PM_
-- **c140** [observation] Friedrich Kreuzer says Abraham Sirkin was in the Lobby at 6:30 PM. — _establishes: Abraham Sirkin in the Lobby, 6:30 PM_
-- **c141** [observation] Friedrich Kreuzer says Abraham Sirkin was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Abraham Sirkin in the Lobby, 10:30 PM–11:00 PM_
+- **c097** [observation] Friedrich Kreuzer says Abraham Sirkin was in the Kitchen at 10:00 PM. — _establishes: Abraham Sirkin in the Kitchen, 10:00 PM; Abraham Sirkin had access to the method_
+- **c098** [observation] Friedrich Kreuzer says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 10:30 PM–11:30 PM_
 
 On Nunzio Tramonti:
 
-- **c142** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Kitchen from 7:00 PM to 8:00 PM. — _establishes: Nunzio Tramonti in the Kitchen, 7:00 PM–8:00 PM; Nunzio Tramonti had access to the method_
-- **c143** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Nunzio Tramonti in the Bar, 8:30 PM–9:00 PM_
-- **c144** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Bar from 10:00 PM to 11:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:00 PM_
-- **c145** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
-- **c146** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Lobby at 11:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 11:30 PM_
+- **c099** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Kitchen at 6:00 PM. — _establishes: Nunzio Tramonti in the Kitchen, 6:00 PM; Nunzio Tramonti had access to the method_
+- **c100** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Lobby at 8:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 8:30 PM_
+- **c101** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
+- **c102** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:30 PM_
 
 On Lavinia Thorndike's account:
 
-- **c150** [observation] Friedrich Kreuzer was in the Bar from 7:00 PM to 8:00 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–8:00 PM_
+- **c106** [observation] Friedrich Kreuzer was in the Bar from 7:00 PM to 8:00 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–8:00 PM_
 
 On Constance Stannard's account:
 
-- **c157** [observation] Friedrich Kreuzer was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Bar. — _establishes: Constance Stannard not in the Bar, 10:00 PM–10:30 PM_
+- **c111** [observation] Friedrich Kreuzer was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
 
 On Emilio Vitale's account:
 
-- **c162** [observation] Friedrich Kreuzer was in the Bar at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
+- **c115** [observation] Friedrich Kreuzer was in the Bar at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
+
+On Pasquale Grasso's account:
+
+- **c120** [observation] Friedrich Kreuzer was in the Bar at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
 
 On Abraham Sirkin's account:
 
-- **c169** [observation] Friedrich Kreuzer was in the Bar from 7:00 PM to 8:00 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
+- **c124** [observation] Friedrich Kreuzer was in the Bar from 7:00 PM to 8:00 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
 
 On Nunzio Tramonti's account:
 
-- **c176** [observation] Friedrich Kreuzer was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
-
-On Nunzio Tramonti and Bella Hurwitz:
-
-- **c195** [overheard] Friedrich Kreuzer says Nunzio Tramonti told Bella Hurwitz to keep away, loud enough to turn heads. — _establishes: Nunzio Tramonti had a motive (jealousy)_
+- **c130** [observation] Friedrich Kreuzer was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
 
 ### From the Lobby
 
-- **c183** [environment] The passenger elevator was out of order from 9:00 PM to 10:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
+- **c136** [environment] The passenger elevator was out of order from 9:00 PM to 10:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
 
 ### From the Front Desk
 
-- **c187** [document] Pasquale Grasso's papers do not hold up. Two signatures in the guest register, a month apart, are in different hands. — _establishes: context only_
-- **c188** [document] Found in the Front Desk: A draft codicil in Bella Hurwitz's hand striking Constance Stannard out of the will, dated last Tuesday and unsigned. — _establishes: Constance Stannard had a motive (inheritance)_
-- **c190** [document] Found in the Front Desk: A typed page of dates and sums in Bella Hurwitz's file, headed with Pasquale Grasso's name. — _establishes: Pasquale Grasso had a motive (exposure)_
+- **c141** [document] Pasquale Grasso's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
+- **c144** [document] Found in the Front Desk: A typed page of dates and sums in Bella Hurwitz's file, headed with Pasquale Grasso's name. — _establishes: Pasquale Grasso had a motive (exposure)_
+- **c146** [document] Found in the Front Desk: A promissory note for $4,000 signed by Abraham Sirkin, endorsed to Bella Hurwitz, three months past due. — _establishes: Abraham Sirkin had a motive (debt)_
+- **c148** [document] Found in the Front Desk: Three letters in Bella Hurwitz's hand to a woman Nunzio Tramonti is engaged to, kept in the drawer, the last one opened. — _establishes: Nunzio Tramonti had a motive (jealousy)_
 
 ### From the Kitchen
 
-- **c178** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
+- **c132** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
 
 ### From the Service Stairs
 
-- **c177** [morgue] Bella Hurwitz was found on the Service Stairs. The coroner puts death between 10:00 PM and 10:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 10:00 PM and 10:30 PM_
-- **c184** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Bella Hurwitz's sleeve; Bella Hurwitz was on the stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM_
-- **c185** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Emilio Vitale's sleeve; Emilio Vitale was on the stairs at 9:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM_
-- **c186** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Abraham Sirkin's sleeve; Abraham Sirkin was on the stairs at 9:30 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:30 PM_
+- **c131** [morgue] Bella Hurwitz was found on the Service Stairs. The coroner puts death between 10:00 PM and 10:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 10:00 PM and 10:30 PM_
+- **c137** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Bella Hurwitz's sleeve; Bella Hurwitz was on the stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM_
+- **c138** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Lavinia Thorndike's sleeve; Lavinia Thorndike was on the stairs at 9:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 9:30 PM_
+- **c139** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Emilio Vitale's sleeve; Emilio Vitale was on the stairs at 9:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM_
+- **c140** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Abraham Sirkin's sleeve; Abraham Sirkin was on the stairs at 9:00 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:00 PM_
 
 ### From the Victim's Suite
 
-- **c192** [document] Found in the Victim's Suite: A promissory note for $4,000 signed by Abraham Sirkin, endorsed to Bella Hurwitz, three months past due. — _establishes: Abraham Sirkin had a motive (debt)_
-- **c194** [document] Found in the Victim's Suite: Three letters in Bella Hurwitz's hand to a woman Nunzio Tramonti is engaged to, kept in the drawer, the last one opened. — _establishes: Nunzio Tramonti had a motive (jealousy)_
+- **c142** [document] Found in the Victim's Suite: A draft codicil in Bella Hurwitz's hand striking Constance Stannard out of the will, dated last Tuesday and unsigned. — _establishes: Constance Stannard had a motive (inheritance)_
 
 ### From the Street
 
-- **c179** [environment] Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
+- **c133** [environment] Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
 
 ### Withheld — the player cannot get these
 
@@ -670,41 +618,40 @@ On Nunzio Tramonti and Bella Hurwitz:
 - ~~Abraham Sirkin saw Lavinia Thorndike in the Roof Garden, 7:00 PM–8:00 PM~~ — Abraham Sirkin is lying about that time and will not say.
 - ~~Emilio Vitale saw Bella Hurwitz in the Victim's Suite, 9:00 PM~~ — Emilio Vitale is lying about that time and will not say.
 - ~~Constance Stannard saw Bella Hurwitz in the Lobby, 10:00 PM~~ — Constance Stannard is lying about that time and will not say.
-- ~~Constance Stannard saw Lavinia Thorndike in the Lobby, 10:00 PM~~ — Constance Stannard is lying about that time and will not say.
-- ~~Constance Stannard saw Emilio Vitale in the Lobby, 10:00 PM~~ — Constance Stannard is lying about that time and will not say.
-- ~~Constance Stannard saw Pasquale Grasso in the Lobby, 10:00 PM~~ — Constance Stannard is lying about that time and will not say.
 - ~~Constance Stannard saw Heinrich Obermann in the Lobby, 10:00 PM–10:30 PM~~ — Constance Stannard is lying about that time and will not say.
-- ~~Constance Stannard saw Abraham Sirkin in the Lobby, 10:30 PM~~ — Constance Stannard is lying about that time and will not say.
+- ~~Constance Stannard saw Emilio Vitale in the Lobby, 10:30 PM~~ — Constance Stannard is lying about that time and will not say.
 - ~~Pasquale Grasso saw Bella Hurwitz on the Service Stairs, 10:30 PM~~ — Pasquale Grasso is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Lavinia Thorndike in the Bar, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Abraham Sirkin in the Lobby, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
+- ~~Nunzio Tramonti saw Lavinia Thorndike in the Kitchen, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
+- ~~Nunzio Tramonti saw Emilio Vitale in the Lobby, 10:30 PM~~ — Nunzio Tramonti is lying about that time and will not say.
+- ~~Nunzio Tramonti saw Abraham Sirkin in the Bar, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
 - ~~Nunzio Tramonti saw Heinrich Obermann in the Lobby, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
 - ~~Nunzio Tramonti saw Friedrich Kreuzer in the Bar, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Emilio Vitale in the Lobby, 11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
+- ~~Nunzio Tramonti saw Emilio Vitale in the Bar, 11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
+- ~~Nunzio Tramonti saw Pasquale Grasso in the Kitchen, 11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
 
 ## 7. Deduction path
 
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:30 PM. _(c177, c002, c039, c060, c083, c100, c125)_
+**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:30 PM. _(c131, c058, c070, c086)_
 
 **Clearing the innocent.**
 
-- Lavinia Thorndike was not on the Service Stairs at 10:30 PM, on two independent sources. _(c073, c102, c127)_
-- Constance Stannard was not on the Service Stairs at 10:30 PM, on two independent sources. _(c076, c107)_
-- Emilio Vitale was not on the Service Stairs at 10:30 PM, on two independent sources. _(c080, c112)_
-- Abraham Sirkin was not on the Service Stairs at 10:30 PM, on two independent sources. _(c014, c053, c118, c141)_
-- Nunzio Tramonti was not on the Service Stairs at 10:30 PM, on two independent sources. _(c017, c081, c121, c144)_
+- Lavinia Thorndike was not on the Service Stairs at 10:30 PM, on two independent sources. _(c049, c087)_
+- Constance Stannard was not on the Service Stairs at 10:30 PM, on two independent sources. _(c027, c074)_
+- Emilio Vitale was not on the Service Stairs at 10:30 PM, on two independent sources. _(c053, c077, c092)_
+- Abraham Sirkin was not on the Service Stairs at 10:30 PM, on two independent sources. _(c008, c032, c080, c098)_
+- Nunzio Tramonti was not on the Service Stairs at 10:30 PM, on two independent sources. _(c009, c034, c057, c084, c102)_
 
-**Naming the killer.** Pasquale Grasso claims the Street at 10:30 PM. Two independent sources put that out of the question, and one ties Pasquale Grasso to strangling with a cord. _(c164, c165, c094, c137)_
+**Naming the killer.** Pasquale Grasso claims the Bar at 10:30 PM. Two independent sources put that out of the question, and one ties Pasquale Grasso to strangling with a cord. _(c116, c117, c118, c119, c120, c015, c055, c064, c094, c095)_
 
-**Method.** Strangling with a cord, on two physical sources. _(c177, c178)_
+**Method.** Strangling with a cord, on two physical sources. _(c131, c132)_
 
-**Motive.** exposure, on two independent sources. _(c190, c191)_
+**Motive.** exposure, on two independent sources. _(c144, c145)_
 
 ## 8. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Constance Stannard claims the Bar at 10:30 PM and was really in the Street. Reason: Constance Stannard slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.
+- Constance Stannard claims the Lobby at 10:30 PM and was really in the Street. Reason: Constance Stannard slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.
 - Nunzio Tramonti claims the Lobby at 10:30 PM and was really in the Bar. Reason: Nunzio Tramonti drinks alone in the Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
 
 **Innocents with a motive:**
