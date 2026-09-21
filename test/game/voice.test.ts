@@ -21,6 +21,7 @@ import {
   ALL_CARDS,
   CONTRADICTION_TEMPLATES,
   DECKS,
+  SCHEMA,
   THEORY_TEMPLATES,
   Dealer,
   askSlots,
@@ -1229,5 +1230,64 @@ describe('the leading theory', () => {
   it('still names somebody off a single fact, so it can still be wrong', () => {
     expect(leadingTheory(view, boardWith(1))).toBe(suspect.id);
     expect(said(1)).toContain(suspect.surname);
+  });
+});
+
+describe('every utterance carries its fact', () => {
+  const MANDATORY = (
+    SCHEMA.decks.utterances as { mandatorySlots: Record<string, string[]> }
+  ).mandatorySlots;
+
+  it('has the slots its fact kind needs, on every card in the deck', () => {
+    const short: string[] = [];
+    for (const card of DECKS.utterances) {
+      const kind = String(card.tags.factKind);
+      if (!carriesFact(card, kind)) short.push(`${card.id} (${kind})`);
+    }
+    expect(short, `${short.length} utterances cannot carry their fact`).toEqual([]);
+    // And the schema really does ask something of every kind the deck uses.
+    for (const card of DECKS.utterances) {
+      expect(MANDATORY[String(card.tags.factKind)], String(card.tags.factKind)).toBeDefined();
+    }
+  });
+
+  it('asks for nothing its beat cannot give it', () => {
+    // Every slot name a beat of each kind actually supplies, over ten cases.
+    const supplied = new Map<string, Set<string>>();
+    for (let seed = 1; seed <= 10; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const clue of v.kase.findable) {
+        for (const beat of beatsOf(v, clue)) {
+          const set = supplied.get(beat.kind) ?? new Set<string>();
+          for (const [k, value] of Object.entries(beat.slots)) {
+            if (value !== undefined && value.length > 0) set.add(k);
+          }
+          supplied.set(beat.kind, set);
+        }
+      }
+    }
+    expect(supplied.size).toBeGreaterThan(4);
+    for (const card of DECKS.utterances) {
+      const kind = String(card.tags.factKind);
+      const set = supplied.get(kind);
+      if (!set) continue; // an implicit fact kind: never spoken on its own
+      for (const slot of slotsOf(card)) {
+        if (slot === 'detective') continue;
+        expect(set.has(slot), `${card.id} (${kind}) asks for {${slot}}`).toBe(true);
+      }
+    }
+  });
+
+  it('leaves the validator nothing to warn about — the same rule, same data', () => {
+    // scripts/validate-decks.mjs reads content/deck-schema.json and warns on
+    // exactly this. Asserting it here keeps the two in step without shelling
+    // out to Node from a test.
+    const warnings: string[] = [];
+    for (const card of DECKS.utterances) {
+      const need = MANDATORY[String(card.tags.factKind)] ?? [];
+      const missing = need.filter((s) => !card.text.includes(`{${s}}`));
+      if (missing.length > 0) warnings.push(`${card.id}: ${missing.join(', ')}`);
+    }
+    expect(warnings).toEqual([]);
   });
 });
