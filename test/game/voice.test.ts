@@ -54,7 +54,7 @@ describe('the decks', () => {
     const state = exhaust(7, 2);
     expect(state.burned.length).toBeGreaterThan(10);
     for (const id of state.burned) {
-      expect(id).toMatch(/^(PLACE|WIT|SIM|NA)-\d+$/);
+      expect(id).toMatch(/^(PLACE|WIT|SIM|NA|ROOM)-\d+$/);
     }
   });
 

@@ -124,6 +124,85 @@ export const NOTHING_LINES: NothingLine[] = [
   },
 ];
 
+/**
+ * Arrival at a room with nobody posted in it.
+ *
+ * All fifty cards in `content/decks/places.json` are tagged with a fixture
+ * role and written out of that fixture's furniture — a brass rail, a lobby
+ * desk, a tray of calling cards. Two rooms in every case are unwatched, and
+ * the scene is always one of them, so the first page of every run would
+ * otherwise describe the victim's own hallway in the landlady's voice. These
+ * twelve lines cover the gap until the real deck has unwatched cards.
+ */
+export interface RoomLine {
+  id: string;
+  placeKind: 'private' | 'semi' | 'public';
+  text: string;
+}
+
+export const ROOM_LINES: RoomLine[] = [
+  {
+    id: 'ROOM-01',
+    placeKind: 'private',
+    text: 'Nobody keeps {place} and it shows: a hall light with no shade, mail on the floor where it fell through the slot, and the cold of a room that has had its window up a while.',
+  },
+  {
+    id: 'ROOM-02',
+    placeKind: 'private',
+    text: 'There is no doorman at {place} and no register to sign. A chair sits at an angle somebody left it at, and the rug has a worn track from the door to the window.',
+  },
+  {
+    id: 'ROOM-03',
+    placeKind: 'private',
+    text: '{place} has the stillness of a place where the last person out did not expect to be the last person out. A cup on the sill, a saucer under it, and a ring where a second cup was.',
+  },
+  {
+    id: 'ROOM-04',
+    placeKind: 'private',
+    text: 'The lock on {place} is a two-dollar lock and it has been a two-dollar lock since the building went up. Inside, the radiator knocks twice and gives up.',
+  },
+  {
+    id: 'ROOM-05',
+    placeKind: 'semi',
+    text: 'Whoever minds {place} is not minding it tonight. A ledger lies open at a page from Tuesday, and the pen has rolled into the crack of the desk.',
+  },
+  {
+    id: 'ROOM-06',
+    placeKind: 'semi',
+    text: '{place} is the kind of room people pass through and nobody sits down in. Two chairs, a hat stand, a smell of wet wool and cold coffee.',
+  },
+  {
+    id: 'ROOM-07',
+    placeKind: 'semi',
+    text: 'The back of {place} is dark and the front of it is not much better. Crates against the wall, a broom leaning where a man would lean.',
+  },
+  {
+    id: 'ROOM-08',
+    placeKind: 'semi',
+    text: 'Nobody works the door at {place} after ten, which is the point of {place}. The boards give under a heel and go on giving for a second after.',
+  },
+  {
+    id: 'ROOM-09',
+    placeKind: 'public',
+    text: 'There is nobody at {place} to ask, only the city going about its evening. A grate breathes warm air at ankle height and a paper cup turns over in it.',
+  },
+  {
+    id: 'ROOM-10',
+    placeKind: 'public',
+    text: '{place} belongs to whoever is standing on it. Tonight that is me, a man asleep on a bench, and a dog with somewhere to be.',
+  },
+  {
+    id: 'ROOM-11',
+    placeKind: 'public',
+    text: 'The lamps at {place} are the old kind, and they leave more dark than they take. Two cigarette ends by the kerb, ground out an hour apart by the look of them.',
+  },
+  {
+    id: 'ROOM-12',
+    placeKind: 'public',
+    text: 'Nothing at {place} keeps a record of anybody. That is what people like about it, and it is why I will be back here twice before morning.',
+  },
+];
+
 /** Arrival, when the place deck has nothing left that fits. */
 export const PLAIN_ARRIVALS: string[] = [
   'I let myself into {place} and stand a moment while my eyes catch up.',

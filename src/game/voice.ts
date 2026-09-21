@@ -21,6 +21,7 @@ import {
   NOTHING_LINES,
   NOTHING_LEFT,
   PLAIN_ARRIVALS,
+  ROOM_LINES,
   type NothingLine,
 } from './voice-data.js';
 
@@ -158,6 +159,20 @@ export class Voice {
     const place = this.view.placeById.get(placeId);
     if (!place) return null;
     const slots: Slots = { place: place.shortName, detective: this.detectiveName };
+    // Every card in the place deck is written in some fixture's furniture, so
+    // a room with nobody posted in it gets a hand-written line instead. See
+    // ROOM_LINES.
+    if (!place.watcher) {
+      const pool = ROOM_LINES.filter((l) => l.placeKind === place.kind);
+      const fresh = pool.filter((l) => !this.burned.has(l.id));
+      const line = (fresh.length > 0 ? fresh : pool)[
+        this.rng.int(Math.max(1, (fresh.length > 0 ? fresh : pool).length))
+      ];
+      if (!line) return null;
+      this.burned.add(line.id);
+      this.spent.push(line.id);
+      return { text: line.text.split('{place}').join(place.shortName), cardId: line.id };
+    }
     const exact = PLACE_DECK.filter(
       (c) =>
         c.tags.placeKind === place.kind &&
