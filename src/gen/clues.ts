@@ -115,6 +115,8 @@ export interface SecretBranchMaterial {
   /** Everybody the activity covers. One entry, or two for an affair. */
   personIds: Id[];
   secretType: string;
+  /** Leads worth opening a branch with, best first. Anchor knowledge tests. */
+  leadIns: Clue[];
   hints: Clue[];
   traces: Clue[];
   disqualifiers: Clue[];
@@ -396,6 +398,8 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   }
 
   /* 7. The anchors themselves. -------------------------------------------- */
+  /** Innocent liars caught out by an anchor, filed under whose branch they head. */
+  const knowledgeTests = new Map<Id, Clue[]>();
   for (const anchor of anchors) {
     for (const trace of anchor.traces) {
       if (trace.kind === 'sighting') {
@@ -455,15 +459,28 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
             if (claim !== place || at(p.id, t) === place) continue;
             // The payoff of the anchor system: a liar who claims a room with
             // something memorable in it has to know the memorable thing.
-            add(
+            //
+            // Against the killer this is a route to the contradiction, and the
+            // selector reaches for it on its own. Against an innocent it is
+            // the head of that innocent's noise branch: the most damning thing
+            // in the hand until the disqualifier says what the lie was for.
+            const innocent = p.id !== cast.killer.id;
+            const clue = add(
               'anchor',
               { type: 'person', personId: p.id, topic: anchor.name },
               foundAt(p.id),
               [{ kind: 'personNotAt', personId: p.id, place, tick: t }],
               `${who(p.id)} claims ${placeName(place)} at ${clock(t)}, which is when ${anchor.name} was on. ` +
                 `Asked about it, ${who(p.id)} cannot say that ${trace.description} — and everybody who was there can.`,
-              { anchorId: anchor.templateId },
+              innocent
+                ? { anchorId: anchor.templateId, aboutSecretOf: p.id }
+                : { anchorId: anchor.templateId },
             );
+            if (innocent) {
+              const list = knowledgeTests.get(p.id) ?? [];
+              list.push(clue);
+              knowledgeTests.set(p.id, list);
+            }
           }
         }
       }
@@ -568,6 +585,9 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
         aboutSecretOf: p.id,
       }),
     );
+    // Anything an anchor already caught this person out on belongs to their
+    // branch as well, and it is the best lead in it.
+    const caught: Clue[] = personIds.flatMap((id) => knowledgeTests.get(id) ?? []);
     // One disqualifier, clearing everybody the activity covers.
     const disqualifiers: Clue[] = template.disqualifiers.map((d) => {
       const facts: Fact[] = [];
@@ -581,7 +601,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
         aboutSecretOf: p.id,
       });
     });
-    material.push({ personIds, secretType: secret.type, hints, traces, disqualifiers });
+    material.push({ personIds, secretType: secret.type, leadIns: caught, hints, traces, disqualifiers });
   }
 
   return { clues, scene, morgue, client, material };

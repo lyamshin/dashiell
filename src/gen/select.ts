@@ -478,7 +478,7 @@ export function selectFindable(ctx: SelectContext): Selection | null {
   );
 
   const usable: SecretBranchMaterial[] = candidates.material.filter(
-    (m) => m.disqualifiers.length > 0 && m.hints.length + m.traces.length > 0,
+    (m) => m.disqualifiers.length > 0 && m.leadIns.length + m.hints.length + m.traces.length > 0,
   );
   if (usable.length < BRANCH_COUNT_FLOOR) {
     return bail('fewer than three innocent secrets can carry a branch');
@@ -555,13 +555,24 @@ export function selectFindable(ctx: SelectContext): Selection | null {
   const chosen: Clue[] = [...spine, ...corroboration];
   const branches: Clue[] = [];
   const hangPoints = [...spine, ...corroboration];
-  const material = rng.shuffle(usable);
+  // Shuffled, then the secrets an anchor already caught somebody out on go
+  // first: those branches open on the strongest lead in the hand, and at
+  // difficulty 3 only three of the four or five activities get dealt at all.
+  const material = rng
+    .shuffle(usable)
+    .slice()
+    .sort((a, b) => (b.leadIns.length > 0 ? 1 : 0) - (a.leadIns.length > 0 ? 1 : 0));
   let branchNo = 0;
   for (const [i, size] of plan.sizes.entries()) {
     const m = material[i];
     if (!m) break;
     const used = new Set([...branches, ...chosen].map((c) => c.id));
-    const body = rng.shuffle([...m.hints, ...m.traces]).filter((c) => !used.has(c.id));
+    // A lead-in goes first when there is one: an anchor catching a liar out is
+    // the strongest thing in a branch, and it should be what opens it.
+    const body = [
+      ...m.leadIns.filter((c) => !used.has(c.id)),
+      ...rng.shuffle([...m.hints, ...m.traces]).filter((c) => !used.has(c.id)),
+    ];
     const disq = m.disqualifiers.find((c) => !used.has(c.id));
     if (!disq || body.length === 0) continue;
     const depth = Math.min(size - 1, body.length);

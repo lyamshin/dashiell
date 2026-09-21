@@ -738,6 +738,35 @@ describe('clues state facts, over seeds 1..200 at each difficulty', () => {
     expect(opportunities).toBeGreaterThan(everyDifficulty.length / 4);
   });
 
+  it('puts the knowledge test in the player\u2019s hands in over half of those cases', () => {
+    // Section 4: "should appear in at least half of cases where a liar claims
+    // an anchored place". A test against an innocent heads that innocent's
+    // noise branch; a test against the killer is a route to the contradiction.
+    let opportunities = 0;
+    let findable = 0;
+    for (const c of everyDifficulty) {
+      const anyLiar = c.anchors.some(
+        (a) =>
+          a.placeId !== undefined &&
+          a.traces.some((t) => t.kind === 'knowledge') &&
+          a.ticks.some((t) =>
+            suspectsOf(c).some((p) => {
+              const sc = scheduleOf(c, p.id);
+              if (!sc) return false;
+              return sc.claimed[t] === a.placeId && sc.truth[t] !== a.placeId;
+            }),
+          ),
+      );
+      if (!anyLiar) continue;
+      opportunities++;
+      if (c.findable.some((cl) => cl.kind === 'anchor' && cl.text.includes('cannot say that'))) {
+        findable++;
+      }
+    }
+    expect(opportunities).toBeGreaterThan(50);
+    expect(findable / opportunities).toBeGreaterThanOrEqual(0.5);
+  });
+
   it('gives every place-attached anchor something only those present know', () => {
     // The knowledge test is the payoff of the anchor system, so a
     // place-attached anchor without one is a wasted card.
