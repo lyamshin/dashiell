@@ -153,14 +153,14 @@ export function playOracle(view: CaseView, detectiveName = 'Humphrey'): OracleRe
   if (script === null) return fail('no route collects the spine');
 
   for (const command of script) {
-    const before = state.found.length;
     const result = stepInput(state, command, view);
+    // A free page with nothing on it means the parser would not take the
+    // string, which is a failure of the game and not of the route.
     if (result.page.cost === 0 && result.page.found.length === 0) {
       return fail(`the prompt refused "${command}"`);
     }
     state = result.state;
     steps.push({ command, gained: result.page.found });
-    void before;
   }
 
   const missing = spine.filter((c) => !state.found.includes(c.id)).map((c) => c.id);

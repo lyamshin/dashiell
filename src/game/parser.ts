@@ -264,7 +264,6 @@ export function parse(view: CaseView, at: Id, raw: string): ParseResult {
     }
     case 'examine': {
       if (rest.length === 0) return { ok: true, command: { kind: 'examine', placeId: at } };
-      const here = view.placeById.get(at);
       const objects = matchObjects(view, rest);
       const places = matchPlaces(view, rest);
       const strongest = Math.max(
@@ -322,7 +321,6 @@ export function parse(view: CaseView, at: Id, raw: string): ParseResult {
             }.`,
           },
         };
-      void here;
       return { ok: true, command: { kind: 'examine', placeId: at } };
     }
     case 'ask': {

@@ -11,7 +11,7 @@ import { generateCase, type Case, type Difficulty } from '../gen/index.js';
 import { ALL_CARDS } from '../game/decks.js';
 import { buildView, type CaseView, type Noun } from '../game/derive.js';
 import { buildNotebook } from '../game/notebook.js';
-import { newRun, planThread, remaining, stepInput } from '../game/reducer.js';
+import { fileReport, newRun, planThread, remaining, stepInput } from '../game/reducer.js';
 import { scoreReport, type Verdict } from '../game/scoring.js';
 import {
   addBurned,
@@ -146,7 +146,7 @@ export function mount(root: HTMLElement): void {
 
   function file(report: Report): void {
     if (!view || !state) return;
-    state = { ...state, filed: report, reportOpen: true };
+    state = fileReport(state, report);
     saveRun(store, state);
     screen = { kind: 'verdict', verdict: scoreReport(view, state, report) };
     render();

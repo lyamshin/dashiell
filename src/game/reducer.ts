@@ -23,7 +23,7 @@
 
 import type { Clue, Id } from '../gen/types.js';
 import { TICKS, clock } from '../gen/types.js';
-import type { Block, Command, Page, RunState, Thread, TopicRef } from './types.js';
+import type { Block, Command, Page, Report, RunState, Thread, TopicRef } from './types.js';
 import { EMPTY_REPORT } from './types.js';
 import { actionsLeft, isOver } from './clock.js';
 import type { CaseView } from './derive.js';
@@ -353,7 +353,7 @@ export function step(
       const card = voice.witnessCard(
         command.personId,
         registerFor(view, command.personId, first),
-        slotsFor(view, state.detectiveName, state.at, first, subjectOf(view, first)),
+        slotsFor(view, state.detectiveName, state.at, first, subjectOf(first)),
       );
       if (card) draft.blocks.push({ kind: 'prose', text: card.text, voice: 'witness' });
       for (const c of answers) {
@@ -362,7 +362,7 @@ export function step(
       }
       const sim = voice.simile(
         simileTargets(view, first, state.at),
-        slotsFor(view, state.detectiveName, state.at, first, subjectOf(view, first)),
+        slotsFor(view, state.detectiveName, state.at, first, subjectOf(first)),
       );
       if (sim) draft.blocks.push({ kind: 'prose', text: sim.text, voice: 'simile' });
       break;
@@ -403,10 +403,10 @@ export function step(
   return { state: next, page };
 }
 
-function subjectOf(view: CaseView, clue: Clue): Id | null {
+/** Who a clue is about: the person in its first fact, or else the speaker. */
+function subjectOf(clue: Clue): Id | null {
   for (const f of clue.establishes) if ('personId' in f) return f.personId;
   if (clue.source.type === 'person') return clue.source.personId;
-  void view;
   return null;
 }
 
@@ -495,7 +495,7 @@ export function planThread(state: RunState, thread: Thread): string[] {
 }
 
 /** Filing. The report is final. */
-export function fileReport(state: RunState, report: RunState['filed']): RunState {
+export function fileReport(state: RunState, report: Report | undefined): RunState {
   return { ...state, filed: report ?? EMPTY_REPORT, reportOpen: true };
 }
 

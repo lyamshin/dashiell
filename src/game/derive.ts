@@ -30,7 +30,6 @@ import type {
   Anchor,
   Case,
   Clue,
-  Fact,
   GameObject,
   Id,
   Person,
@@ -341,15 +340,6 @@ export interface Placement {
   contradicts: boolean;
 }
 
-export function factsOf(view: CaseView, found: Id[]): Fact[] {
-  const out: Fact[] = [];
-  for (const id of found) {
-    const c = view.findableById.get(id);
-    if (c) out.push(...c.establishes);
-  }
-  return out;
-}
-
 export function establishedFrom(view: CaseView, found: Id[], accounts: Id[]): Established {
   const known = new Set(accounts);
   let ticks: Tick[] | null = null;
@@ -479,13 +469,11 @@ function nounIndex(view: CaseView): NounEntry[] {
  */
 export function segmentNouns(text: string, view: CaseView): Segment[] {
   const entries = nounIndex(view);
-  const folded = fold(text);
-  // fold() collapses whitespace, which would shift indices. Only do the cheap
-  // case-fold here so offsets stay aligned with the original string.
+  // fold() collapses whitespace, which would shift the offsets. Only the cheap
+  // case-fold happens here, so every index lines up with the original string.
   const lower = text.toLowerCase().replace(/[’']/g, "'");
   const marks: { start: number; end: number; make: (t: string) => Noun }[] = [];
   const taken: boolean[] = new Array(text.length).fill(false);
-  void folded;
 
   for (const e of entries) {
     if (e.needle.length < 3) continue;
@@ -550,21 +538,4 @@ export function clueSubject(clue: Clue): Id | null {
     if (f.kind === 'secretExplained') return f.personId;
   }
   return null;
-}
-
-/** Everything the player may type after `ask <person> about`. */
-export function topicVocabulary(view: CaseView): { label: string; ref: TopicRef }[] {
-  const out: { label: string; ref: TopicRef }[] = [];
-  for (const p of view.kase.people) {
-    if (p.kind === 'victim') continue;
-    out.push({ label: p.surname, ref: { kind: 'person', id: p.id } });
-  }
-  out.push({ label: 'the victim', ref: { kind: 'person', id: view.victim.id } });
-  for (const pl of view.kase.places) out.push({ label: pl.shortName, ref: { kind: 'place', id: pl.id } });
-  for (const o of view.kase.objects) out.push({ label: o.name, ref: { kind: 'object', id: o.id } });
-  for (const a of view.kase.anchors)
-    out.push({ label: a.name, ref: { kind: 'anchor', id: a.templateId } });
-  out.push({ label: 'that evening', ref: { kind: 'evening' } });
-  out.push({ label: 'why I was hired', ref: { kind: 'hire' } });
-  return out;
 }
