@@ -1,0 +1,1027 @@
+{
+  "generatedAt": "2026-09-21T17:56:47.946Z",
+  "fiction": {
+    "combined": {
+      "name": "fiction-combined (Hammett+Daly+Hecht)",
+      "totalWords": 655835,
+      "totalSentences": 55058,
+      "totalParagraphs": 21420,
+      "sentenceLength": {
+        "mean": 11.91,
+        "median": 10,
+        "p10": 3,
+        "p90": 24
+      },
+      "fragmentRate": 0.1897,
+      "paragraphLength": {
+        "meanSentences": 2.57,
+        "medianSentences": 2
+      },
+      "simileRatePer1000Words": 1.345,
+      "simileCount": 882,
+      "dialogueRatio": 0.3438,
+      "dialogueTags": {
+        "said": 1567,
+        "other": 911,
+        "saidShare": 0.6324
+      },
+      "descriptionTargetsPer1000Words": {
+        "face": 5.35,
+        "hands": 3.193,
+        "clothes": 1.054,
+        "room": 5.767,
+        "street": 2.275,
+        "weather": 0.624,
+        "drink": 0.586,
+        "money": 1.433,
+        "weapon": 1.68,
+        "voice": 1.334
+      },
+      "longThenShortRate": 0.1189,
+      "longSentenceCount": 4493,
+      "longThenShortCount": 534
+    },
+    "perWork": {
+      "hammett-red-harvest": {
+        "name": "hammett-red-harvest",
+        "totalWords": 60910,
+        "totalSentences": 5838,
+        "totalParagraphs": 2670,
+        "sentenceLength": {
+          "mean": 10.43,
+          "median": 8,
+          "p10": 3,
+          "p90": 20
+        },
+        "fragmentRate": 0.1816,
+        "paragraphLength": {
+          "meanSentences": 2.19,
+          "medianSentences": 2
+        },
+        "simileRatePer1000Words": 1.215,
+        "simileCount": 74,
+        "dialogueRatio": 0.4169,
+        "dialogueTags": {
+          "said": 193,
+          "other": 101,
+          "saidShare": 0.6565
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 5.089,
+          "hands": 2.66,
+          "clothes": 1.018,
+          "room": 5.369,
+          "street": 2.955,
+          "weather": 0.197,
+          "drink": 1.707,
+          "money": 2.019,
+          "weapon": 1.494,
+          "voice": 3.037
+        },
+        "longThenShortRate": 0.0851,
+        "longSentenceCount": 282,
+        "longThenShortCount": 24
+      },
+      "hammett-dain-curse": {
+        "name": "hammett-dain-curse",
+        "totalWords": 68637,
+        "totalSentences": 5496,
+        "totalParagraphs": 2108,
+        "sentenceLength": {
+          "mean": 12.49,
+          "median": 10,
+          "p10": 3,
+          "p90": 25
+        },
+        "fragmentRate": 0.1517,
+        "paragraphLength": {
+          "meanSentences": 2.61,
+          "medianSentences": 2
+        },
+        "simileRatePer1000Words": 1.282,
+        "simileCount": 88,
+        "dialogueRatio": 0.4063,
+        "dialogueTags": {
+          "said": 227,
+          "other": 102,
+          "saidShare": 0.69
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 4.487,
+          "hands": 2.914,
+          "clothes": 0.903,
+          "room": 5.915,
+          "street": 0.918,
+          "weather": 0.466,
+          "drink": 0.379,
+          "money": 0.67,
+          "weapon": 0.932,
+          "voice": 0.976
+        },
+        "longThenShortRate": 0.1104,
+        "longSentenceCount": 498,
+        "longThenShortCount": 55
+      },
+      "hammett-maltese-falcon": {
+        "name": "hammett-maltese-falcon",
+        "totalWords": 66978,
+        "totalSentences": 6051,
+        "totalParagraphs": 2288,
+        "sentenceLength": {
+          "mean": 11.07,
+          "median": 9,
+          "p10": 3,
+          "p90": 22
+        },
+        "fragmentRate": 0.2039,
+        "paragraphLength": {
+          "meanSentences": 2.64,
+          "medianSentences": 2
+        },
+        "simileRatePer1000Words": 0.657,
+        "simileCount": 44,
+        "dialogueRatio": 0.4984,
+        "dialogueTags": {
+          "said": 282,
+          "other": 145,
+          "saidShare": 0.6604
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 10.182,
+          "hands": 5.45,
+          "clothes": 1.896,
+          "room": 6.883,
+          "street": 1.702,
+          "weather": 0.299,
+          "drink": 0.881,
+          "money": 1.448,
+          "weapon": 1.12,
+          "voice": 2.105
+        },
+        "longThenShortRate": 0.1667,
+        "longSentenceCount": 390,
+        "longThenShortCount": 65
+      },
+      "hammett-continental-op": {
+        "name": "hammett-continental-op",
+        "totalWords": 310478,
+        "totalSentences": 24874,
+        "totalParagraphs": 10949,
+        "sentenceLength": {
+          "mean": 12.48,
+          "median": 10,
+          "p10": 3,
+          "p90": 25
+        },
+        "fragmentRate": 0.1806,
+        "paragraphLength": {
+          "meanSentences": 2.27,
+          "medianSentences": 2
+        },
+        "simileRatePer1000Words": 1.179,
+        "simileCount": 366,
+        "dialogueRatio": 0.3506,
+        "dialogueTags": {
+          "said": 710,
+          "other": 466,
+          "saidShare": 0.6037
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 4.503,
+          "hands": 2.821,
+          "clothes": 0.992,
+          "room": 5.778,
+          "street": 2.544,
+          "weather": 0.47,
+          "drink": 0.396,
+          "money": 1.456,
+          "weapon": 2.19,
+          "voice": 0.818
+        },
+        "longThenShortRate": 0.0961,
+        "longSentenceCount": 2309,
+        "longThenShortCount": 222
+      },
+      "daly-white-circle": {
+        "name": "daly-white-circle",
+        "totalWords": 70634,
+        "totalSentences": 5613,
+        "totalParagraphs": 1763,
+        "sentenceLength": {
+          "mean": 12.58,
+          "median": 10,
+          "p10": 3,
+          "p90": 25
+        },
+        "fragmentRate": 0.2097,
+        "paragraphLength": {
+          "meanSentences": 3.18,
+          "medianSentences": 3
+        },
+        "simileRatePer1000Words": 1.288,
+        "simileCount": 91,
+        "dialogueRatio": 0.2149,
+        "dialogueTags": {
+          "said": 43,
+          "other": 56,
+          "saidShare": 0.4343
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 6.272,
+          "hands": 5.026,
+          "clothes": 0.68,
+          "room": 7.263,
+          "street": 0.835,
+          "weather": 0.765,
+          "drink": 0.439,
+          "money": 1.515,
+          "weapon": 2.506,
+          "voice": 2.563
+        },
+        "longThenShortRate": 0.1583,
+        "longSentenceCount": 537,
+        "longThenShortCount": 85
+      },
+      "hecht-thousand-one-afternoons": {
+        "name": "hecht-thousand-one-afternoons",
+        "totalWords": 78198,
+        "totalSentences": 7186,
+        "totalParagraphs": 1642,
+        "sentenceLength": {
+          "mean": 10.88,
+          "median": 8,
+          "p10": 3,
+          "p90": 22
+        },
+        "fragmentRate": 0.2289,
+        "paragraphLength": {
+          "meanSentences": 4.38,
+          "medianSentences": 4
+        },
+        "simileRatePer1000Words": 2.801,
+        "simileCount": 219,
+        "dialogueRatio": 0.184,
+        "dialogueTags": {
+          "said": 112,
+          "other": 41,
+          "saidShare": 0.732
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 4.706,
+          "hands": 1.739,
+          "clothes": 1.074,
+          "room": 3.593,
+          "street": 3.657,
+          "weather": 1.854,
+          "drink": 0.524,
+          "money": 1.471,
+          "weapon": 0.192,
+          "voice": 0.601
+        },
+        "longThenShortRate": 0.174,
+        "longSentenceCount": 477,
+        "longThenShortCount": 83
+      }
+    }
+  },
+  "period": {
+    "combined": {
+      "name": "period-combined (WPA+Evening World)",
+      "totalWords": 422144,
+      "totalSentences": 22952,
+      "totalParagraphs": 6190,
+      "sentenceLength": {
+        "mean": 18.39,
+        "median": 16,
+        "p10": 3,
+        "p90": 36
+      },
+      "fragmentRate": 0.3382,
+      "paragraphLength": {
+        "meanSentences": 3.71,
+        "medianSentences": 2
+      },
+      "simileRatePer1000Words": 0.881,
+      "simileCount": 372,
+      "dialogueRatio": 0.1041,
+      "dialogueTags": {
+        "said": 107,
+        "other": 64,
+        "saidShare": 0.6257
+      },
+      "descriptionTargetsPer1000Words": {
+        "face": 0.289,
+        "hands": 0.343,
+        "clothes": 0.398,
+        "room": 2.267,
+        "street": 6.097,
+        "weather": 0.438,
+        "drink": 0.507,
+        "money": 1.815,
+        "weapon": 0.225,
+        "voice": 0.083
+      },
+      "longThenShortRate": 0.0938,
+      "longSentenceCount": 5738,
+      "longThenShortCount": 538
+    },
+    "perWork": {
+      "wpa-guide-new-york-city-1939": {
+        "name": "wpa-guide-new-york-city-1939",
+        "totalWords": 232051,
+        "totalSentences": 12594,
+        "totalParagraphs": 4783,
+        "sentenceLength": {
+          "mean": 18.43,
+          "median": 17,
+          "p10": 3,
+          "p90": 34
+        },
+        "fragmentRate": 0.3384,
+        "paragraphLength": {
+          "meanSentences": 2.63,
+          "medianSentences": 2
+        },
+        "simileRatePer1000Words": 1.181,
+        "simileCount": 274,
+        "dialogueRatio": 0.0469,
+        "dialogueTags": {
+          "said": 3,
+          "other": 3,
+          "saidShare": 0.5
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 0.228,
+          "hands": 0.181,
+          "clothes": 0.194,
+          "room": 2.844,
+          "street": 9.028,
+          "weather": 0.452,
+          "drink": 0.509,
+          "money": 1.366,
+          "weapon": 0.121,
+          "voice": 0.095
+        },
+        "longThenShortRate": 0.0493,
+        "longSentenceCount": 3187,
+        "longThenShortCount": 157
+      },
+      "evening-world-1920": {
+        "name": "evening-world-1920",
+        "totalWords": 61430,
+        "totalSentences": 3311,
+        "totalParagraphs": 483,
+        "sentenceLength": {
+          "mean": 18.55,
+          "median": 15,
+          "p10": 3,
+          "p90": 39
+        },
+        "fragmentRate": 0.3386,
+        "paragraphLength": {
+          "meanSentences": 6.86,
+          "medianSentences": 2
+        },
+        "simileRatePer1000Words": 0.488,
+        "simileCount": 30,
+        "dialogueRatio": 0.1842,
+        "dialogueTags": {
+          "said": 36,
+          "other": 18,
+          "saidShare": 0.6667
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 0.342,
+          "hands": 0.553,
+          "clothes": 0.553,
+          "room": 1.856,
+          "street": 2.377,
+          "weather": 0.521,
+          "drink": 0.667,
+          "money": 2.605,
+          "weapon": 0.342,
+          "voice": 0.081
+        },
+        "longThenShortRate": 0.1564,
+        "longSentenceCount": 857,
+        "longThenShortCount": 134
+      },
+      "evening-world-1921": {
+        "name": "evening-world-1921",
+        "totalWords": 65721,
+        "totalSentences": 3636,
+        "totalParagraphs": 402,
+        "sentenceLength": {
+          "mean": 18.08,
+          "median": 14,
+          "p10": 2,
+          "p90": 39
+        },
+        "fragmentRate": 0.3699,
+        "paragraphLength": {
+          "meanSentences": 9.04,
+          "medianSentences": 3
+        },
+        "simileRatePer1000Words": 0.548,
+        "simileCount": 36,
+        "dialogueRatio": 0.1774,
+        "dialogueTags": {
+          "said": 31,
+          "other": 11,
+          "saidShare": 0.7381
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 0.335,
+          "hands": 0.472,
+          "clothes": 0.761,
+          "room": 1.248,
+          "street": 2.343,
+          "weather": 0.365,
+          "drink": 0.502,
+          "money": 2.115,
+          "weapon": 0.411,
+          "voice": 0.03
+        },
+        "longThenShortRate": 0.1628,
+        "longSentenceCount": 854,
+        "longThenShortCount": 139
+      },
+      "evening-world-1922": {
+        "name": "evening-world-1922",
+        "totalWords": 62942,
+        "totalSentences": 3411,
+        "totalParagraphs": 522,
+        "sentenceLength": {
+          "mean": 18.45,
+          "median": 15,
+          "p10": 3,
+          "p90": 38
+        },
+        "fragmentRate": 0.3031,
+        "paragraphLength": {
+          "meanSentences": 6.53,
+          "medianSentences": 1
+        },
+        "simileRatePer1000Words": 0.508,
+        "simileCount": 32,
+        "dialogueRatio": 0.1592,
+        "dialogueTags": {
+          "said": 37,
+          "other": 32,
+          "saidShare": 0.5362
+        },
+        "descriptionTargetsPer1000Words": {
+          "face": 0.413,
+          "hands": 0.604,
+          "clothes": 0.62,
+          "room": 1.605,
+          "street": 2.844,
+          "weather": 0.381,
+          "drink": 0.35,
+          "money": 2.383,
+          "weapon": 0.302,
+          "voice": 0.095
+        },
+        "longThenShortRate": 0.1286,
+        "longSentenceCount": 840,
+        "longThenShortCount": 108
+      }
+    }
+  },
+  "lardnerContrast": {
+    "name": "lardner-contrast (You Know Me Al)",
+    "totalWords": 59364,
+    "totalSentences": 2634,
+    "totalParagraphs": 769,
+    "sentenceLength": {
+      "mean": 22.54,
+      "median": 17,
+      "p10": 4,
+      "p90": 44
+    },
+    "fragmentRate": 0.0987,
+    "paragraphLength": {
+      "meanSentences": 3.43,
+      "medianSentences": 3
+    },
+    "simileRatePer1000Words": 1.145,
+    "simileCount": 68,
+    "dialogueRatio": 0,
+    "dialogueTags": {
+      "said": 0,
+      "other": 2,
+      "saidShare": 0
+    },
+    "descriptionTargetsPer1000Words": {
+      "face": 0.623,
+      "hands": 0.371,
+      "clothes": 0.404,
+      "room": 0.859,
+      "street": 0.32,
+      "weather": 0.286,
+      "drink": 0.825,
+      "money": 2.459,
+      "weapon": 0.084,
+      "voice": 0.051
+    },
+    "longThenShortRate": 0.0443,
+    "longSentenceCount": 768,
+    "longThenShortCount": 34
+  },
+  "conreteNounBank": {
+    "fictionOverPeriodCount": 2887,
+    "periodOverFictionCount": 4639,
+    "note": "Full lists in concrete-nouns-fiction-over-period.txt and concrete-nouns-period-over-fiction.txt",
+    "topFictionOverPeriod": [
+      {
+        "word": "man",
+        "fictionCount": 2037,
+        "periodCount": 304,
+        "ratio": 4.31
+      },
+      {
+        "word": "face",
+        "fictionCount": 1346,
+        "periodCount": 53,
+        "ratio": 16.35
+      },
+      {
+        "word": "eyes",
+        "fictionCount": 1316,
+        "periodCount": 17,
+        "ratio": 49.83
+      },
+      {
+        "word": "door",
+        "fictionCount": 1258,
+        "periodCount": 90,
+        "ratio": 9
+      },
+      {
+        "word": "around",
+        "fictionCount": 1079,
+        "periodCount": 163,
+        "ratio": 4.26
+      },
+      {
+        "word": "hand",
+        "fictionCount": 1073,
+        "periodCount": 73,
+        "ratio": 9.46
+      },
+      {
+        "word": "head",
+        "fictionCount": 872,
+        "periodCount": 92,
+        "ratio": 6.1
+      },
+      {
+        "word": "spade",
+        "fictionCount": 862,
+        "periodCount": 0,
+        "ratio": null
+      },
+      {
+        "word": "girl",
+        "fictionCount": 698,
+        "periodCount": 58,
+        "ratio": 7.75
+      },
+      {
+        "word": "voice",
+        "fictionCount": 695,
+        "periodCount": 10,
+        "ratio": 44.74
+      },
+      {
+        "word": "gun",
+        "fictionCount": 637,
+        "periodCount": 19,
+        "ratio": 21.58
+      },
+      {
+        "word": "hands",
+        "fictionCount": 632,
+        "periodCount": 59,
+        "ratio": 6.89
+      },
+      {
+        "word": "behind",
+        "fictionCount": 544,
+        "periodCount": 68,
+        "ratio": 5.15
+      },
+      {
+        "word": "black",
+        "fictionCount": 493,
+        "periodCount": 59,
+        "ratio": 5.38
+      },
+      {
+        "word": "things",
+        "fictionCount": 464,
+        "periodCount": 30,
+        "ratio": 9.96
+      },
+      {
+        "word": "dark",
+        "fictionCount": 431,
+        "periodCount": 42,
+        "ratio": 6.61
+      },
+      {
+        "word": "thing",
+        "fictionCount": 424,
+        "periodCount": 32,
+        "ratio": 8.53
+      },
+      {
+        "word": "dead",
+        "fictionCount": 421,
+        "periodCount": 61,
+        "ratio": 4.44
+      },
+      {
+        "word": "mouth",
+        "fictionCount": 397,
+        "periodCount": 11,
+        "ratio": 23.23
+      },
+      {
+        "word": "chair",
+        "fictionCount": 386,
+        "periodCount": 11,
+        "ratio": 22.59
+      },
+      {
+        "word": "window",
+        "fictionCount": 363,
+        "periodCount": 63,
+        "ratio": 3.71
+      },
+      {
+        "word": "himself",
+        "fictionCount": 361,
+        "periodCount": 56,
+        "ratio": 4.15
+      },
+      {
+        "word": "lot",
+        "fictionCount": 359,
+        "periodCount": 22,
+        "ratio": 10.5
+      },
+      {
+        "word": "done",
+        "fictionCount": 349,
+        "periodCount": 30,
+        "ratio": 7.49
+      },
+      {
+        "word": "minutes",
+        "fictionCount": 329,
+        "periodCount": 59,
+        "ratio": 3.59
+      },
+      {
+        "word": "boy",
+        "fictionCount": 325,
+        "periodCount": 64,
+        "ratio": 3.27
+      },
+      {
+        "word": "together",
+        "fictionCount": 322,
+        "periodCount": 58,
+        "ratio": 3.57
+      },
+      {
+        "word": "table",
+        "fictionCount": 322,
+        "periodCount": 23,
+        "ratio": 9.01
+      },
+      {
+        "word": "words",
+        "fictionCount": 316,
+        "periodCount": 16,
+        "ratio": 12.71
+      },
+      {
+        "word": "myself",
+        "fictionCount": 315,
+        "periodCount": 13,
+        "ratio": 15.6
+      },
+      {
+        "word": "else",
+        "fictionCount": 313,
+        "periodCount": 9,
+        "ratio": 22.39
+      },
+      {
+        "word": "arm",
+        "fictionCount": 298,
+        "periodCount": 28,
+        "ratio": 6.85
+      },
+      {
+        "word": "help",
+        "fictionCount": 288,
+        "periodCount": 41,
+        "ratio": 4.52
+      },
+      {
+        "word": "better",
+        "fictionCount": 283,
+        "periodCount": 40,
+        "ratio": 4.55
+      },
+      {
+        "word": "sort",
+        "fictionCount": 281,
+        "periodCount": 17,
+        "ratio": 10.64
+      },
+      {
+        "word": "fingers",
+        "fictionCount": 280,
+        "periodCount": 1,
+        "ratio": 180.23
+      },
+      {
+        "word": "bed",
+        "fictionCount": 277,
+        "periodCount": 28,
+        "ratio": 6.37
+      },
+      {
+        "word": "circle",
+        "fictionCount": 273,
+        "periodCount": 28,
+        "ratio": 6.28
+      },
+      {
+        "word": "couple",
+        "fictionCount": 264,
+        "periodCount": 19,
+        "ratio": 8.94
+      },
+      {
+        "word": "san",
+        "fictionCount": 263,
+        "periodCount": 26,
+        "ratio": 6.51
+      }
+    ],
+    "topPeriodOverFiction": [
+      {
+        "word": "street",
+        "fictionCount": 855,
+        "periodCount": 1914,
+        "ratio": 3.48
+      },
+      {
+        "word": "avenue",
+        "fictionCount": 101,
+        "periodCount": 994,
+        "ratio": 15.29
+      },
+      {
+        "word": "york",
+        "fictionCount": 103,
+        "periodCount": 980,
+        "ratio": 14.78
+      },
+      {
+        "word": "building",
+        "fictionCount": 209,
+        "periodCount": 943,
+        "ratio": 7.01
+      },
+      {
+        "word": "park",
+        "fictionCount": 52,
+        "periodCount": 863,
+        "ratio": 25.78
+      },
+      {
+        "word": "city",
+        "fictionCount": 274,
+        "periodCount": 845,
+        "ratio": 4.79
+      },
+      {
+        "word": "east",
+        "fictionCount": 45,
+        "periodCount": 740,
+        "ratio": 25.55
+      },
+      {
+        "word": "west",
+        "fictionCount": 42,
+        "periodCount": 711,
+        "ratio": 26.3
+      },
+      {
+        "word": "island",
+        "fictionCount": 34,
+        "periodCount": 686,
+        "ratio": 31.35
+      },
+      {
+        "word": "ave",
+        "fictionCount": 0,
+        "periodCount": 634,
+        "ratio": null
+      },
+      {
+        "word": "american",
+        "fictionCount": 42,
+        "periodCount": 488,
+        "ratio": 18.05
+      },
+      {
+        "word": "north",
+        "fictionCount": 63,
+        "periodCount": 473,
+        "ratio": 11.66
+      },
+      {
+        "word": "brooklyn",
+        "fictionCount": 0,
+        "periodCount": 473,
+        "ratio": null
+      },
+      {
+        "word": "to-day",
+        "fictionCount": 2,
+        "periodCount": 469,
+        "ratio": 364.31
+      },
+      {
+        "word": "south",
+        "fictionCount": 55,
+        "periodCount": 440,
+        "ratio": 12.43
+      },
+      {
+        "word": "river",
+        "fictionCount": 118,
+        "periodCount": 435,
+        "ratio": 5.73
+      },
+      {
+        "word": "church",
+        "fictionCount": 8,
+        "periodCount": 433,
+        "ratio": 84.09
+      },
+      {
+        "word": "world",
+        "fictionCount": 143,
+        "periodCount": 427,
+        "ratio": 4.64
+      },
+      {
+        "word": "square",
+        "fictionCount": 66,
+        "periodCount": 419,
+        "ratio": 9.86
+      },
+      {
+        "word": "manhattan",
+        "fictionCount": 1,
+        "periodCount": 419,
+        "ratio": 650.95
+      },
+      {
+        "word": "streets",
+        "fictionCount": 110,
+        "periodCount": 408,
+        "ratio": 5.76
+      },
+      {
+        "word": "broadway",
+        "fictionCount": 34,
+        "periodCount": 363,
+        "ratio": 16.59
+      },
+      {
+        "word": "central",
+        "fictionCount": 18,
+        "periodCount": 362,
+        "ratio": 31.24
+      },
+      {
+        "word": "district",
+        "fictionCount": 85,
+        "periodCount": 361,
+        "ratio": 6.6
+      },
+      {
+        "word": "buildings",
+        "fictionCount": 69,
+        "periodCount": 352,
+        "ratio": 7.93
+      },
+      {
+        "word": "near",
+        "fictionCount": 119,
+        "periodCount": 343,
+        "ratio": 4.48
+      },
+      {
+        "word": "court",
+        "fictionCount": 72,
+        "periodCount": 337,
+        "ratio": 7.27
+      },
+      {
+        "word": "washington",
+        "fictionCount": 15,
+        "periodCount": 333,
+        "ratio": 34.49
+      },
+      {
+        "word": "center",
+        "fictionCount": 66,
+        "periodCount": 322,
+        "ratio": 7.58
+      },
+      {
+        "word": "built",
+        "fictionCount": 24,
+        "periodCount": 318,
+        "ratio": 20.58
+      },
+      {
+        "word": "houses",
+        "fictionCount": 33,
+        "periodCount": 304,
+        "ratio": 14.31
+      },
+      {
+        "word": "john",
+        "fictionCount": 47,
+        "periodCount": 293,
+        "ratio": 9.69
+      },
+      {
+        "word": "also",
+        "fictionCount": 97,
+        "periodCount": 292,
+        "ratio": 4.68
+      },
+      {
+        "word": "hospital",
+        "fictionCount": 54,
+        "periodCount": 288,
+        "ratio": 8.29
+      },
+      {
+        "word": "during",
+        "fictionCount": 80,
+        "periodCount": 283,
+        "ratio": 5.5
+      },
+      {
+        "word": "page",
+        "fictionCount": 26,
+        "periodCount": 280,
+        "ratio": 16.73
+      },
+      {
+        "word": "bridge",
+        "fictionCount": 25,
+        "periodCount": 277,
+        "ratio": 17.21
+      },
+      {
+        "word": "line",
+        "fictionCount": 119,
+        "periodCount": 265,
+        "ratio": 3.46
+      },
+      {
+        "word": "war",
+        "fictionCount": 38,
+        "periodCount": 260,
+        "ratio": 10.63
+      },
+      {
+        "word": "company",
+        "fictionCount": 89,
+        "periodCount": 253,
+        "ratio": 4.42
+      }
+    ]
+  },
+  "methodologyNotes": [
+    "Sentence splitting is regex-based (sentence-ender + whitespace + capital/quote/digit), with a short abbreviation list (Mr., Dr., St., etc.) to avoid false breaks. Approximate, not a parser.",
+    "Fragment detection (\"no finite verb\") is a heuristic: a sentence counts as having a finite verb if it contains a token from a ~250-form hand-built list of common verb inflections (be/have/do/modals + ~90 common verb stems in base/-s/-ed/-ing/irregular forms) or an auxiliary contraction (\"'s\", \"'re\", \"n't\", etc). No POS tagger; zero deps per spec.",
+    "Concrete noun bank uses a stopword+heuristic filter (excludes function words and known verb forms, drops -ly adverbs) rather than true POS tagging, so some adjectives/participles leak through both lists. Spot-check before using verbatim.",
+    "Dialogue ratio counts sentences containing any quotation mark, which over-counts sentences that merely quote a name or title; treat as an upper bound.",
+    "Period corpus excludes the WPA Guide's \"Books About New York\" bibliography section (noisy OCR, not descriptive prose) and skips the first two lines of each Evening World page block (masthead OCR noise) — see corpus/NOTES.md."
+  ]
+}
