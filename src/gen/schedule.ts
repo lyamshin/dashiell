@@ -167,6 +167,8 @@ export interface ScheduleContext {
   accessLocation: Id;
   murderTick: Tick;
   murderLocationId: Id;
+  /** Optional sink for the reason an attempt was abandoned. */
+  reject?: (reason: string) => void;
 }
 
 function tickRange(ticks: Tick[]): string {
@@ -196,6 +198,10 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   const { rng, graph, cast, accessLocation } = ctx;
   const M = ctx.murderTick;
   const L = ctx.murderLocationId;
+  const fail = (reason: string): null => {
+    ctx.reject?.(reason);
+    return null;
+  };
 
   const blockStart = Math.max(1, M - rng.int(3));
   const murderCells: Tick[] = [];
@@ -206,8 +212,12 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     const arr: (Id | null)[] = new Array(TICKS).fill(post);
     const excursions = rng.range(1, 2);
     for (let i = 0; i < excursions; i++) {
-      const t = rng.range(1, TICKS - 1);
+      const t = rng.range(1, TICKS - 2);
       if (t === M || t === M - 1) continue;
+      // One tick away and straight back, so the step either side of the
+      // excursion is still a legal move. Two excursions on adjacent ticks
+      // would otherwise let a fixture cross the hotel in one step.
+      if (arr[t - 1] !== post || arr[t + 1] !== post) continue;
       const dest = rng.pick(away);
       if (graph.adjacentOrSame(post, dest)) arr[t] = dest;
     }
@@ -223,7 +233,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   const witnessCandidates = [LOC.lobby, LOC.bar].filter(
     (w) => w !== L && graph.movesInto(w, M).includes(L),
   );
-  if (witnessCandidates.length === 0) return null;
+  if (witnessCandidates.length === 0) {
+    return fail('no witnessed room leads to the scene at the murder tick');
+  }
   const victimSeenLoc = rng.pick(witnessCandidates);
   const victimSeenAt = M - 1;
 
@@ -269,7 +281,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     const t = cast.innocentSecrets[p.id] as SecretTemplate;
     return t.witnessLocations.some((w) => w !== L);
   });
-  if (witnessable.length < 2) return null;
+  if (witnessable.length < 2) {
+    return fail('fewer than two innocents could hide a secret at the murder tick');
+  }
   const wantLiars = Math.min(witnessable.length, rng.range(2, 3));
   const mLiars = rng.shuffle(witnessable).slice(0, wantLiars);
   const mLiarIds = mLiars.map((p) => p.id);
@@ -294,9 +308,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
           !handled.has(o.id) &&
           (cast.innocentSecrets[o.id] as SecretTemplate).type === 'affair',
       );
-      if (!partner) return null;
+      if (!partner) return fail('an affair with nobody to have it with');
       const alloc = allocate(template, template.locations, false, 0, TICKS - 1);
-      if (!alloc) return null;
+      if (!alloc) return fail('no free window for the affair');
       for (const [who, other] of [
         [person, partner],
         [partner, person],
@@ -318,14 +332,16 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     const locations = isLiar
       ? template.witnessLocations.filter((w) => w !== L)
       : template.locations.filter((w) => w !== L);
-    if (locations.length === 0) return null;
+    if (locations.length === 0) {
+      return fail(`${template.type} has nowhere to happen away from the scene`);
+    }
 
     // Blackmail drags the victim along, so it has to finish before the victim
     // goes downstairs to be seen alive for the last time.
     const maxTick = template.partner === 'victim' ? M - 2 : TICKS - 1;
-    if (maxTick < 0) return null;
+    if (maxTick < 0) return fail('the blackmail cannot finish before the murder');
     const alloc = allocate(template, locations, isLiar, 0, maxTick);
-    if (!alloc) return null;
+    if (!alloc) return fail(`no free window for the ${template.type} secret`);
 
     const secret: Secret = {
       type: template.type,
@@ -367,7 +383,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     killerAccessTick = t;
     break;
   }
-  if (killerAccessTick < 0) return null;
+  if (killerAccessTick < 0) {
+    return fail('the killer could not be seen reaching the weapon before the murder');
+  }
   killerFixed[killerAccessTick] = accessLocation;
 
   let coverSecret: Secret | undefined;
@@ -454,7 +472,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     killerClaimAtM = rng.pick(claimCandidates);
     placed = true;
   }
-  if (!placed || killerClaimAtM === null) return null;
+  if (!placed || killerClaimAtM === null) {
+    return fail('no murder-tick arrangement leaves every innocent doubly witnessed');
+  }
 
   /* --- somebody else could have reached the weapon too ----------------- */
   let innocentAccess: { personId: Id; tick: Tick } | null = null;
@@ -471,7 +491,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     }
     if (innocentAccess) break;
   }
-  if (!innocentAccess) return null;
+  if (!innocentAccess) {
+    return fail('nobody but the killer could have reached the weapon');
+  }
 
   /* --- fill in the rest of everyone's evening -------------------------- */
   const allowedFor = (personId: Id): Allowed => {
@@ -485,7 +507,7 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   };
 
   const victimTruth = fillSchedule(rng, graph, victimFixed, M, allowedFor(cast.victim.id));
-  if (!victimTruth) return null;
+  if (!victimTruth) return fail("the victim's evening does not join up");
   for (let t = M + 1; t < TICKS; t++) victimTruth[t] = null;
   truth[cast.victim.id] = victimTruth;
 
@@ -497,7 +519,7 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
       TICKS - 1,
       allowedFor(person.id),
     );
-    if (!arr) return null;
+    if (!arr) return fail("a suspect's evening does not join up");
     truth[person.id] = arr;
   }
 
@@ -553,7 +575,7 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
         base,
       ];
       const tier = tiers.find((t) => t.length > 0);
-      if (!tier) return null;
+      if (!tier) return fail('no plausible false alibi for a block of lies');
       const claimLoc = rng.pick(tier);
       for (const t of block) myClaim[t] = claimLoc;
 
@@ -572,7 +594,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
 
   // The killer's claim for the murder tick is the one the proof leans on.
   const killerClaim = (claimed[cast.killer.id] as (Id | null)[])[M];
-  if (killerClaim !== killerClaimAtM) return null;
+  if (killerClaim !== killerClaimAtM) {
+    return fail('the killer could not claim the room the proof needs');
+  }
 
   /* --- descriptions ---------------------------------------------------- */
   const nameOf = (id: Id): string => cast.people.find((p) => p.id === id)?.name ?? 'someone';
