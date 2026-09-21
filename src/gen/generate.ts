@@ -252,11 +252,11 @@ function run(
         places: placeIds,
         sceneId: build.murderPlaceId,
         budget,
+        ...(diagnostics
+          ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
+          : {}),
       });
-      if (!selection) {
-        diagnostics?.rejections.push('the clue graph would not fit the budget');
-        continue;
-      }
+      if (!selection) continue;
 
       const underTest: CaseUnderTest = {
         seed,

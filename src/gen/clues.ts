@@ -54,6 +54,22 @@ function bareSpan(ticks: Tick[]): string {
   return first === last ? clock(first) : `${clock(first)} to ${clock(last)}`;
 }
 
+/**
+ * Consecutive lied-about ticks that carry the same false alibi. A killer whose
+ * cover secret abuts the murder block lies twice in a row about two different
+ * rooms, and describing that as one run would put the denials in the wrong one.
+ */
+function claimBlocks(ticks: Tick[], claimed: (Id | null)[]): Tick[][] {
+  const out: Tick[][] = [];
+  for (const t of ticks) {
+    const last = out[out.length - 1];
+    const prev = last?.[last.length - 1];
+    if (last && prev === t - 1 && claimed[prev] === claimed[t]) last.push(t);
+    else out.push([t]);
+  }
+  return out;
+}
+
 function span(ticks: Tick[]): string {
   const first = ticks[0] as Tick;
   const last = ticks[ticks.length - 1] as Tick;
@@ -193,7 +209,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   for (const liar of cast.suspects) {
     const lieTicks = build.lies[liar.id] as Tick[];
     if (lieTicks.length === 0) continue;
-    for (const block of runs(lieTicks)) {
+    for (const block of claimBlocks(lieTicks, build.claimed[liar.id] as (Id | null)[])) {
       const claimPlace = (build.claimed[liar.id] as (Id | null)[])[block[0] as Tick];
       if (!claimPlace) continue;
       const named = (build.companions[liar.id] as (Id | null)[])[block[0] as Tick];

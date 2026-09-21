@@ -202,8 +202,16 @@ function corroborate(rng: Rng, reqs: Requirement[], spine: Clue[], floor: number
 
   const sourcesOf = (r: Requirement): Set<string> =>
     new Set(r.parts.flatMap((p) => p.clues).filter(taken).map(sourceKey));
+  // Secret material is reserved for the noise branches. A disqualifier does
+  // establish where an innocent was, so it would happily serve as a second
+  // route here — and then get dealt a second time as the end of its branch.
   const universe = Array.from(
-    new Map(reqs.flatMap((r) => r.parts.flatMap((p) => p.clues)).map((c) => [c.id, c])).values(),
+    new Map(
+      reqs
+        .flatMap((r) => r.parts.flatMap((p) => p.clues))
+        .filter((c) => c.aboutSecretOf === undefined)
+        .map((c) => [c.id, c]),
+    ).values(),
   );
 
   // Greedy over requirements rather than one at a time: one second witness who
@@ -352,15 +360,23 @@ export interface SelectContext {
   places: Id[];
   sceneId: Id;
   budget: number;
+  /** Optional sink for the reason a selection was abandoned. */
+  reject?: (reason: string) => void;
 }
 
 export function selectFindable(ctx: SelectContext): Selection | null {
   const { rng, cast, build, candidates, difficulty, places, sceneId, budget } = ctx;
+  const bail = (reason: string): null => {
+    ctx.reject?.(reason);
+    return null;
+  };
   const pool = candidates.clues;
   const solutionPool = pool.filter((c) => c.aboutSecretOf === undefined);
   const reqs = buildRequirements(requirementInputFor(cast, build), pool);
   for (const r of reqs) {
-    for (const part of r.parts) if (part.clues.length === 0) return null;
+    for (const part of r.parts) {
+      if (part.clues.length === 0) return bail(`nothing at all establishes ${part.key}`);
+    }
   }
 
   const forced = [candidates.scene, candidates.morgue, candidates.client];
@@ -378,8 +394,9 @@ export function selectFindable(ctx: SelectContext): Selection | null {
     if (best === null || par < best.par) best = { spine, corroboration, leads, par };
     if (par <= budget - 9) break;
   }
-  if (!best || !Number.isFinite(best.par)) return null;
-  if (best.par > budget - 6) return null;
+  if (!best) return bail('no spine covers the proof inside twelve clues');
+  if (!Number.isFinite(best.par)) return bail('the spine cannot be walked from the scene');
+  if (best.par > budget - 6) return bail('par leaves less than six actions of slack');
 
   const { spine, corroboration } = best;
   for (const c of pool) {
@@ -411,7 +428,7 @@ export function selectFindable(ctx: SelectContext): Selection | null {
   /* --- noise, in branches ------------------------------------------------ */
   const chosen: Clue[] = [...spine, ...corroboration];
   const room = TARGET - chosen.length;
-  if (room < 4) return null;
+  if (room < 4) return bail('the proof leaves no room for noise');
   const [dMin, dMax] = BRANCH_DEPTH[difficulty];
   const branches: Clue[] = [];
   const hangPoints = [...spine, ...corroboration];
@@ -423,7 +440,7 @@ export function selectFindable(ctx: SelectContext): Selection | null {
     const m = material[mi % material.length];
     mi++;
     if (!m) break;
-    const used = new Set(branches.map((c) => c.id));
+    const used = new Set([...branches, ...chosen].map((c) => c.id));
     const body = rng.shuffle([...m.hints, ...m.traces]).filter((c) => !used.has(c.id));
     const disq = m.disqualifiers.find((c) => !used.has(c.id));
     if (!disq || body.length === 0) continue;
@@ -447,7 +464,9 @@ export function selectFindable(ctx: SelectContext): Selection | null {
   }
 
   const findable = [...chosen, ...branches];
-  if (findable.length < TARGET - 2 || findable.length > TARGET + 2) return null;
+  if (findable.length < TARGET - 2 || findable.length > TARGET + 2) {
+    return bail(`the hand came out at ${findable.length} clues`);
+  }
 
   /* --- connectivity ------------------------------------------------------ */
   const byId = new Map(findable.map((c) => [c.id, c]));
@@ -463,7 +482,7 @@ export function selectFindable(ctx: SelectContext): Selection | null {
       queue.push(next);
     }
   }
-  if (reached.size !== findable.length) return null;
+  if (reached.size !== findable.length) return bail('the lead graph does not connect');
 
   return {
     findable,
