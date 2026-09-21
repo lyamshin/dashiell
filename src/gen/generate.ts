@@ -41,7 +41,28 @@ function buildEnvironment(rng: Rng): Environment {
  * The single public entry point. Same seed, same case, byte for byte.
  */
 export function generateCase(seed: number, opts?: { detectiveName?: string }): Case {
-  const detectiveName = opts?.detectiveName ?? 'Humphrey';
+  return run(seed, opts?.detectiveName ?? 'Humphrey');
+}
+
+export interface Diagnostics {
+  attempts: number;
+  /** One entry per discarded attempt, saying what it was discarded for. */
+  rejections: string[];
+}
+
+/**
+ * Same generation, with the discard reasons kept. Deliberately not re-exported
+ * from the package index: `generateCase` is the public entry point. This is for
+ * tuning the constraints and for the milestone notes.
+ */
+export function diagnoseCase(seed: number): { case: Case; diagnostics: Diagnostics } {
+  const diagnostics: Diagnostics = { attempts: 0, rejections: [] };
+  const kase = run(seed, 'Humphrey', diagnostics);
+  diagnostics.attempts = kase.attempts;
+  return { case: kase, diagnostics };
+}
+
+function run(seed: number, detectiveName: string, diagnostics?: Diagnostics): Case {
   const rng = new Rng(seed);
   let attempts = 0;
 
@@ -62,7 +83,10 @@ export function generateCase(seed: number, opts?: { detectiveName?: string }): C
         );
         if (reachable) tickChoices.push(t);
       }
-      if (tickChoices.length === 0) continue;
+      if (tickChoices.length === 0) {
+        diagnostics?.rejections.push('no murder tick reaches the scene from a witnessed room');
+        continue;
+      }
       const M: Tick = rng.pick(tickChoices);
 
       const build = buildSchedules({
@@ -72,6 +96,9 @@ export function generateCase(seed: number, opts?: { detectiveName?: string }): C
         accessLocation: setting.accessLocation,
         murderTick: M,
         murderLocationId: L,
+        ...(diagnostics
+          ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
+          : {}),
       });
       if (!build) continue;
 
@@ -146,7 +173,10 @@ export function generateCase(seed: number, opts?: { detectiveName?: string }): C
       };
 
       const check = checkSolvability(underTest);
-      if (!check.ok) continue;
+      if (!check.ok) {
+        diagnostics?.rejections.push(...check.failures);
+        continue;
+      }
 
       return { ...underTest, deduction: check.deduction };
     }
