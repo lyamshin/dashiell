@@ -3,7 +3,11 @@
     "id": "frm-p001",
     "deck": "frames",
     "text": "{business} “{fact}” Nothing after it.",
-    "tags": { "register": "truth", "temper": "plain", "familiar": "no" },
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "no"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range frm-pNNN; the content deck uses FRM-NNN. Every frame must carry {fact}."
   },
@@ -11,77 +15,1331 @@
     "id": "frm-p002",
     "deck": "frames",
     "text": "“{fact}” {business} Said once, in the order it happened.",
-    "tags": { "register": "truth", "temper": "plain", "familiar": "yes" },
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "yes"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p003",
     "deck": "frames",
     "text": "“{fact}” {business}",
-    "tags": { "register": "truth", "temper": "enigma", "familiar": "no" },
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "no"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p004",
     "deck": "frames",
     "text": "{business} “{fact} {colour}” The rest came whether I wanted it or not.",
-    "tags": { "register": "truth", "temper": "yap", "familiar": "no" },
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "no"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p005",
     "deck": "frames",
     "text": "{business} “That’s a question for somebody else.” A pause with nothing in it. Then: “{fact}”",
-    "tags": { "register": "evasion", "temper": "plain", "familiar": "no" },
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "no"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p006",
     "deck": "frames",
     "text": "“Ask the house.” {business} “{fact}”",
-    "tags": { "register": "evasion", "temper": "enigma", "familiar": "no" },
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "no"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p007",
     "deck": "frames",
     "text": "{business} “You want the whole block’s business out of me.” {colour} Then, sideways: “{fact}”",
-    "tags": { "register": "evasion", "temper": "yap", "familiar": "no" },
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "no"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p008",
     "deck": "frames",
     "text": "“{fact}” {business} Complete. Nobody’s evening is that complete.",
-    "tags": { "register": "lie", "temper": "plain", "familiar": "no" },
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "no"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p009",
     "deck": "frames",
     "text": "{business} “{fact} {colour}” Every hour of it accounted for, and the accounting too tidy to be a night.",
-    "tags": { "register": "lie", "temper": "yap", "familiar": "no" },
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "no"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p010",
     "deck": "frames",
     "text": "“{fact}” {business} Flat, and offered once.",
-    "tags": { "register": "lie", "temper": "enigma", "familiar": "no" },
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "no"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p011",
     "deck": "frames",
     "text": "{business} “{fact}” Then my name, the way it gets said by people who knew me before this coat.",
-    "tags": { "register": "evasion", "temper": "plain", "familiar": "yes" },
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "yes"
+    },
     "status": "placeholder"
   },
   {
     "id": "frm-p012",
     "deck": "frames",
     "text": "“You always did ask it twice.” {business} “{fact}”",
-    "tags": { "register": "lie", "temper": "plain", "familiar": "yes" },
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "yes"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "fra-001",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-002",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" Nothing added.",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-003",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" That was all of it.",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-004",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" No more than that.",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-005",
+    "deck": "frames",
+    "text": "{business} Flat, no hedge. \"{fact}.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-006",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" Short, and done.",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-007",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-008",
+    "deck": "frames",
+    "text": "{business} \"{fact}. That's straight, {detective}.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-009",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" No dressing it up, not for you.",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-010",
+    "deck": "frames",
+    "text": "{business} \"{fact}, and you know it.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-011",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" Short, the way you like it.",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-012",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}. Same as always.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-013",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-014",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour}",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-015",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" A plain answer, nothing held back.",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-016",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-017",
+    "deck": "frames",
+    "text": "{business} \"{fact}. That's the whole of it.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-018",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" No pause before it, no hedge after.",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-019",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" Nothing else needed saying.",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-020",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-021",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour}",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-022",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}. You know I wouldn't hold it back from you.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-023",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" Straight, the way he'd always had it from me.",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-024",
+    "deck": "frames",
+    "text": "{business} \"{fact}. Plain truth, that.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-025",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour} Old habit, telling you straight.",
+    "tags": {
+      "register": "truth",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-026",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour} {business}",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-027",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}.\" {business}",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-028",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour} A second thought followed the first, then a third.",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-029",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {business} {colour}",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-030",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}, and here's the rest of it whether you asked or not.\"",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-031",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour} {business} None of it sounded rehearsed.",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-032",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}.\" {colour} {business}",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-033",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}.\" {business} Same as she'd always told it.",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-034",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour} A second thought followed, unasked, then a third.",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-035",
+    "deck": "frames",
+    "text": "{business} \"{fact}, and you're welcome to check it yourself.\" {colour}",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-036",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}.\" {business}",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-037",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}.\" {business} {colour}",
+    "tags": {
+      "register": "truth",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-038",
+    "deck": "frames",
+    "text": "{business} \"Funny you'd ask that particular thing.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-039",
+    "deck": "frames",
+    "text": "{business} \"That's not really mine to say.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-040",
+    "deck": "frames",
+    "text": "{business} \"You'd want someone who watches closer than I do.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-041",
+    "deck": "frames",
+    "text": "{business} \"Depends who's asking, and why.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-042",
+    "deck": "frames",
+    "text": "{business} \"I mind my own business, mostly.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-043",
+    "deck": "frames",
+    "text": "{business} \"That's not the question I'd have led with.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-044",
+    "deck": "frames",
+    "text": "{business} \"You already know more than you're letting on, {detective}.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-045",
+    "deck": "frames",
+    "text": "{business} \"That's between them and whoever else was there.\" \"{fact}, if you must have it.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-046",
+    "deck": "frames",
+    "text": "{business} \"Ask me something I actually know, {detective}.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-047",
+    "deck": "frames",
+    "text": "{business} \"There's a lot I don't ask about, on purpose.\" \"{fact}. For you, and nobody else.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-048",
+    "deck": "frames",
+    "text": "{business} \"You'd get further asking around the corner.\" \"{fact}. Don't say where you heard it.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-049",
+    "deck": "frames",
+    "text": "{business} \"That's not a thing I keep score of, {detective}.\" \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-050",
+    "deck": "frames",
+    "text": "{business} \"Plenty of people could tell you that better than me.\" {humphrey} \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-051",
+    "deck": "frames",
+    "text": "{business} \"I try not to keep track of things like that.\" {humphrey} \"{fact}. That's as much as I'll say.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-052",
+    "deck": "frames",
+    "text": "{business} \"Some things are better left to the people involved.\" {humphrey} \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-053",
+    "deck": "frames",
+    "text": "{business} \"You're fishing in the wrong pond with that one.\" {humphrey} \"{fact}, if it matters.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-054",
+    "deck": "frames",
+    "text": "{business} \"I couldn't say, and wouldn't if I could.\" {humphrey} \"{fact}. Make of it what you like.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-055",
+    "deck": "frames",
+    "text": "{business} \"That's a question for somebody with less sense than me.\" {humphrey} \"{fact}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-056",
+    "deck": "frames",
+    "text": "{business} \"I don't make a habit of watching that closely.\" {humphrey} \"{fact}, {detective}. Satisfied?\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-057",
+    "deck": "frames",
+    "text": "{business} \"There's things I notice and things I let go by.\" {humphrey} \"{fact}. You know I wouldn't lie to you outright.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-058",
+    "deck": "frames",
+    "text": "{business} \"That's not the kind of thing I keep straight.\" {humphrey} \"{fact}. There, now you've got it.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-059",
+    "deck": "frames",
+    "text": "{business} \"That's a family matter, and none of mine to spread.\" {humphrey} \"{fact}, {detective}.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-060",
+    "deck": "frames",
+    "text": "{business} \"You'd be surprised what a person learns not to notice.\" {humphrey} \"{fact}. Happy now?\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-061",
+    "deck": "frames",
+    "text": "{business} \"I keep my eyes on my own work, mostly.\" {humphrey} \"{fact}. For old times' sake.\"",
+    "tags": {
+      "register": "evasion",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-062",
+    "deck": "frames",
+    "text": "{colour} {business} \"That's not something I'd swear to either way.\" {humphrey} \"{fact}.\" {business}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-063",
+    "deck": "frames",
+    "text": "{business} \"There's a version of that answer and a true one, and I'm not sure which you want.\" {humphrey} \"{fact}.\" {colour}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-064",
+    "deck": "frames",
+    "text": "{business} \"I don't like guessing at other people's business.\" {humphrey} \"{fact}, and here's how I know it.\" {business}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-065",
+    "deck": "frames",
+    "text": "{colour} {business} \"You'd have better luck asking twice.\" {humphrey} \"{fact}.\" {business}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-066",
+    "deck": "frames",
+    "text": "{business} \"That kind of thing gets a person talked about, is all.\" {humphrey} \"{fact}.\" {colour} {business}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-067",
+    "deck": "frames",
+    "text": "{business} \"I've learned to let some questions answer themselves.\" {humphrey} \"{fact}, if you're keeping score.\" {colour}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-068",
+    "deck": "frames",
+    "text": "{colour} {business} \"Ask me tomorrow. Might remember it different.\" {humphrey} \"{fact}, {detective}.\" {business}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-069",
+    "deck": "frames",
+    "text": "{business} \"That's not a story that's mine to tell first.\" {humphrey} \"{fact}. There, satisfied?\" {colour}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-070",
+    "deck": "frames",
+    "text": "{business} \"There's a lot goes on I don't put my nose in.\" {humphrey} \"{fact}, same as I'd tell anyone else.\" {business}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-071",
+    "deck": "frames",
+    "text": "{colour} {business} \"You always did ask the hard ones first.\" {humphrey} \"{fact}.\" {business}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-072",
+    "deck": "frames",
+    "text": "{business} \"Give me a minute, {detective}. It's been a long night.\" {humphrey} \"{fact}.\" {colour}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-073",
+    "deck": "frames",
+    "text": "{business} \"Forgive me, {detective}. It's been a long night on this end too.\" {humphrey} \"{fact}, and that's the last of it.\" {business}",
+    "tags": {
+      "register": "evasion",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-074",
+    "deck": "frames",
+    "text": "{business} \"{fact}. To the minute.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-075",
+    "deck": "frames",
+    "text": "{business} \"{fact}. I remember it exactly.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-076",
+    "deck": "frames",
+    "text": "{business} \"{fact}. Nothing more, nothing less.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-077",
+    "deck": "frames",
+    "text": "{business} \"{fact}. I could swear to it in front of anyone.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-078",
+    "deck": "frames",
+    "text": "{business} \"{fact}. Not a detail out of place.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-079",
+    "deck": "frames",
+    "text": "{business} \"{fact}. That's the whole of it, precisely.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-080",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}. Word for word.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-081",
+    "deck": "frames",
+    "text": "{business} \"{fact}. You can set your watch to it.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-082",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}. I'd stake my name on it.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-083",
+    "deck": "frames",
+    "text": "{business} \"{fact}. Clean as that, no rough edges.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-084",
+    "deck": "frames",
+    "text": "{business} \"{fact}, and not a minute off either way.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-085",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}. Ask me twice, I'll say it the same.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-086",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-087",
+    "deck": "frames",
+    "text": "{business} \"{fact}, down to the last detail.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-088",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}. I noticed everything that night, for some reason.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-089",
+    "deck": "frames",
+    "text": "{business} \"{fact}. I even remember what she had on.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-090",
+    "deck": "frames",
+    "text": "{business} \"{fact}, and I could draw you a map of it.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-091",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}. Funny, the things a person remembers.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-092",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-093",
+    "deck": "frames",
+    "text": "{business} \"{fact}. You know I don't forget things.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-094",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}, {detective}. I'd tell you if it were otherwise.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-095",
+    "deck": "frames",
+    "text": "{business} \"{fact}. Every bit of it, plain as you like.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-096",
+    "deck": "frames",
+    "text": "{business} \"{fact}, and I've got the details to prove it.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-097",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}, {detective}. Trust me on this one.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-098",
+    "deck": "frames",
+    "text": "{business} \"{fact}, and I remember every piece of it.\" {colour} {business} {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-099",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}. I could give you the weather that night too, if it helps.\" {business}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-100",
+    "deck": "frames",
+    "text": "{business} \"{fact}, down to what everyone had on.\" {colour} {business} \"Every last bit of it.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-101",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour} {business} \"I don't forget a thing, never have.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-102",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}, and here's the rest of it whether you need it or not.\" {colour}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-103",
+    "deck": "frames",
+    "text": "{business} \"{fact}, and I could go on all night about the rest.\" {colour} {business}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-104",
+    "deck": "frames",
+    "text": "{business} \"{fact}, {detective}, and I remember every piece of it.\" {colour} {business}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-105",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}. I could give you the weather that night too, if it helps, {detective}.\" {business}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-106",
+    "deck": "frames",
+    "text": "{business} \"{fact}, down to what everyone had on, and you know I notice.\" {colour} {business}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-107",
+    "deck": "frames",
+    "text": "{business} \"{fact}.\" {colour} {business} \"I don't forget a thing where you're concerned, {detective}.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-108",
+    "deck": "frames",
+    "text": "{colour} {business} \"{fact}, and here's the rest of it whether you need it or not.\" {colour} {business}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-109",
+    "deck": "frames",
+    "text": "{business} \"{fact}, and I could go on all night about the rest, {detective}.\" {colour} {business}",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "fra-110",
+    "deck": "frames",
+    "text": "{business} \"{fact}. Every last detail, same as I'd tell you anything.\" {colour} {business} \"You know me.\"",
+    "tags": {
+      "register": "lie",
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "status": "generated"
   }
 ]

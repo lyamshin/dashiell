@@ -451,7 +451,9 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     return true;
   };
 
-  if (scene.kind !== 'nothing' && (thin() || stage.pageIndex % 3 === 2)) drawAmbient();
+  // The every-third-page thought only fires when the page has room for it;
+  // with the full decks a find page can already be at the ceiling.
+  if (scene.kind !== 'nothing' && (thin() || (stage.pageIndex % 3 === 2 && room()))) drawAmbient();
 
   if (scene.kind !== 'nothing' && !stage.asideBands.includes(band) && thin()) {
     const aside = dealer.draw(
@@ -472,7 +474,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     }
   }
 
-  if (scene.kind !== 'nothing' && room()) {
+  if (scene.kind !== 'nothing' && words(blocks) < WORD_TARGET_HIGH - 25) {
     const last = lastClue(scene);
     const sim = simile(
       dealer,
@@ -488,6 +490,26 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   // paragraph: two more goes, and then it is as long as it is going to be.
   for (let i = 0; scene.kind !== 'nothing' && i < 2 && words(blocks) < 90; i++) {
     if (!drawAmbient()) break;
+  }
+
+  // Hard ceiling. With the full decks a find page or a yapper's volunteer can
+  // push past 300 words even after the trims above; drop the optional blocks
+  // from the end until it fits. The record is never among them.
+  // Thinking goes first, then texture. The exchange and the finds stay.
+  const CUT_ORDER: ReadonlySet<string>[] = [
+    new Set(['simile', 'aside', 'ambient', 'monologue']),
+    new Set(['transition', 'arrival', 'approach', 'place']),
+  ];
+  for (const cuttable of CUT_ORDER) {
+    while (words(blocks) > 300) {
+      let cut = -1;
+      for (let i = blocks.length - 1; i >= 0; i--) {
+        const b = blocks[i];
+        if (b && b.kind === 'prose' && cuttable.has(b.voice) && b.clueId === undefined) { cut = i; break; }
+      }
+      if (cut < 0) break;
+      blocks.splice(cut, 1);
+    }
   }
 
   for (const deck of dealer.takeReshuffles()) {

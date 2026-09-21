@@ -1,7 +1,7 @@
 [
   {
     "id": "SIM-001",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His face closed like a shop grille pulled down for the night.",
     "tags": {
       "mood": "flat",
@@ -12,7 +12,7 @@
   },
   {
     "id": "SIM-002",
-    "deck": "simile",
+    "deck": "similes",
     "text": "She smiled the way a cash drawer opens — quick, and already counting.",
     "tags": {
       "mood": "wry",
@@ -23,7 +23,7 @@
   },
   {
     "id": "SIM-003",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The bruise under his eye was ripening like a plum left too long on the sill.",
     "tags": {
       "mood": "tired",
@@ -34,7 +34,7 @@
   },
   {
     "id": "SIM-004",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her face went still as a shop window after the lights are cut.",
     "tags": {
       "mood": "menace",
@@ -45,7 +45,7 @@
   },
   {
     "id": "SIM-005",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He had a face like a foreclosure notice — flat, official, final.",
     "tags": {
       "mood": "menace",
@@ -56,7 +56,7 @@
   },
   {
     "id": "SIM-006",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The old man's face folded in on itself like a paper fan closing.",
     "tags": {
       "mood": "grief",
@@ -67,7 +67,7 @@
   },
   {
     "id": "SIM-007",
-    "deck": "simile",
+    "deck": "similes",
     "text": "{name}'s face was patient as a druggist waiting out a head cold.",
     "tags": {
       "mood": "tender",
@@ -78,7 +78,7 @@
   },
   {
     "id": "SIM-008",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His face when he lied was smoother than when he didn't, ironed flat like a boiled shirt.",
     "tags": {
       "mood": "wry",
@@ -89,7 +89,7 @@
   },
   {
     "id": "SIM-009",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His hands were steady as a barber's on a Saturday crowd.",
     "tags": {
       "mood": "flat",
@@ -100,7 +100,7 @@
   },
   {
     "id": "SIM-010",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her hands went to her lap like two birds told to sit.",
     "tags": {
       "mood": "tender",
@@ -111,7 +111,7 @@
   },
   {
     "id": "SIM-011",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He held the glass like it was the only warm thing in the building.",
     "tags": {
       "mood": "tired",
@@ -122,7 +122,7 @@
   },
   {
     "id": "SIM-012",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His hands were quick as a faro dealer's, and about as honest.",
     "tags": {
       "mood": "wry",
@@ -133,7 +133,7 @@
   },
   {
     "id": "SIM-013",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her fingers tapped the counter like a telegraph key with bad news to send.",
     "tags": {
       "mood": "menace",
@@ -144,7 +144,7 @@
   },
   {
     "id": "SIM-014",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The old woman's hands shook like a dumbwaiter cable taking too much weight.",
     "tags": {
       "mood": "grief",
@@ -155,7 +155,7 @@
   },
   {
     "id": "SIM-015",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His knuckles were scarred like a butcher's block, and told the same story.",
     "tags": {
       "mood": "flat",
@@ -166,7 +166,7 @@
   },
   {
     "id": "SIM-016",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He wrung his hat like a washwoman wringing a sheet, and got no more out of it.",
     "tags": {
       "mood": "wry",
@@ -177,7 +177,7 @@
   },
   {
     "id": "SIM-017",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His voice came flat as a nickel dropped on a bar.",
     "tags": {
       "mood": "flat",
@@ -188,7 +188,7 @@
   },
   {
     "id": "SIM-018",
-    "deck": "simile",
+    "deck": "similes",
     "text": "She talked the way a newsboy hollers an extra — loud, and not caring who believed it.",
     "tags": {
       "mood": "wry",
@@ -199,7 +199,7 @@
   },
   {
     "id": "SIM-019",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His voice dropped low as a druggist reading a prescription he didn't like.",
     "tags": {
       "mood": "menace",
@@ -210,7 +210,7 @@
   },
   {
     "id": "SIM-020",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her voice cracked like a phonograph record left too near the radiator.",
     "tags": {
       "mood": "grief",
@@ -221,7 +221,7 @@
   },
   {
     "id": "SIM-021",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He spoke soft as a landlady counting rent she already knows is short.",
     "tags": {
       "mood": "tired",
@@ -232,7 +232,7 @@
   },
   {
     "id": "SIM-022",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His voice had the patience of a doorman holding a door for a man who isn't hurrying.",
     "tags": {
       "mood": "tender",
@@ -243,7 +243,7 @@
   },
   {
     "id": "SIM-023",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He said it the way a ticket-taker says the show's sold out — final, and not his fault.",
     "tags": {
       "mood": "flat",
@@ -254,7 +254,7 @@
   },
   {
     "id": "SIM-024",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His voice came at me like a beat cop's whistle two streets over, closer than it sounded.",
     "tags": {
       "mood": "menace",
@@ -265,7 +265,7 @@
   },
   {
     "id": "SIM-025",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The room was tidy as a undertaker's front parlor, and about as cheerful.",
     "tags": {
       "mood": "menace",
@@ -276,7 +276,7 @@
   },
   {
     "id": "SIM-026",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The office smelled like a filing cabinet that had swallowed a cigar.",
     "tags": {
       "mood": "flat",
@@ -287,7 +287,7 @@
   },
   {
     "id": "SIM-027",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her parlor was crowded with furniture the way a pawnshop window is crowded with other people's luck.",
     "tags": {
       "mood": "tired",
@@ -298,7 +298,7 @@
   },
   {
     "id": "SIM-028",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The room had the hush of a church between services.",
     "tags": {
       "mood": "grief",
@@ -309,7 +309,7 @@
   },
   {
     "id": "SIM-029",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His office was bare as a cell the week before an execution.",
     "tags": {
       "mood": "menace",
@@ -320,7 +320,7 @@
   },
   {
     "id": "SIM-030",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The kitchen was warm and close as a bakery at five in the morning.",
     "tags": {
       "mood": "tender",
@@ -331,7 +331,7 @@
   },
   {
     "id": "SIM-031",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The parlor's good chairs sat under sheets like furniture waiting for a funeral that hadn't been called yet.",
     "tags": {
       "mood": "grief",
@@ -342,7 +342,7 @@
   },
   {
     "id": "SIM-032",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The hallway was narrow as a tenement stairwell, because it was one.",
     "tags": {
       "mood": "flat",
@@ -353,7 +353,7 @@
   },
   {
     "id": "SIM-033",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The avenue at that hour was quiet as a church collection plate.",
     "tags": {
       "mood": "tired",
@@ -364,7 +364,7 @@
   },
   {
     "id": "SIM-034",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The block emptied out the way a dive empties when somebody yells cop.",
     "tags": {
       "mood": "menace",
@@ -375,7 +375,7 @@
   },
   {
     "id": "SIM-035",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The street ran straight and dull as a ledger column.",
     "tags": {
       "mood": "flat",
@@ -386,7 +386,7 @@
   },
   {
     "id": "SIM-036",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The corner was busy as a newsstand on the morning of a scandal.",
     "tags": {
       "mood": "wry",
@@ -397,7 +397,7 @@
   },
   {
     "id": "SIM-037",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The curb was lined with cars the way a coatroom is lined with hats nobody's claimed.",
     "tags": {
       "mood": "tired",
@@ -408,7 +408,7 @@
   },
   {
     "id": "SIM-038",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The alley smelled like a fish stall three days past its ice.",
     "tags": {
       "mood": "flat",
@@ -419,7 +419,7 @@
   },
   {
     "id": "SIM-039",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The tenement sidewalk was cracked like an old man's knuckles.",
     "tags": {
       "mood": "grief",
@@ -430,7 +430,7 @@
   },
   {
     "id": "SIM-040",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The street at 3 a.m. was empty as a collection box on a Monday.",
     "tags": {
       "mood": "menace",
@@ -441,7 +441,7 @@
   },
   {
     "id": "SIM-041",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The cold came down the avenue like a bill collector who knew the address.",
     "tags": {
       "mood": "menace",
@@ -452,7 +452,7 @@
   },
   {
     "id": "SIM-042",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The rain quit sudden as a landlord changing his mind about the rent.",
     "tags": {
       "mood": "flat",
@@ -463,7 +463,7 @@
   },
   {
     "id": "SIM-043",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The heat sat on the block heavy as a delivery truck double-parked all afternoon.",
     "tags": {
       "mood": "tired",
@@ -474,7 +474,7 @@
   },
   {
     "id": "SIM-044",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The wind off the river was sharp as a druggist's ammonia.",
     "tags": {
       "mood": "flat",
@@ -485,7 +485,7 @@
   },
   {
     "id": "SIM-045",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The first snow came down soft as a stenographer's apology.",
     "tags": {
       "mood": "tender",
@@ -496,7 +496,7 @@
   },
   {
     "id": "SIM-046",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The sun came up flat and white as a police blotter page.",
     "tags": {
       "mood": "flat",
@@ -507,7 +507,7 @@
   },
   {
     "id": "SIM-047",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He counted the bills the way a druggist counts pills — careful, and not looking up.",
     "tags": {
       "mood": "flat",
@@ -518,7 +518,7 @@
   },
   {
     "id": "SIM-048",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The retainer sat on the desk like a dare nobody'd picked up yet.",
     "tags": {
       "mood": "wry",
@@ -529,7 +529,7 @@
   },
   {
     "id": "SIM-049",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her allowance ran out the way a nickel cigar runs out — fast, and leaving a bad taste.",
     "tags": {
       "mood": "wry",
@@ -543,7 +543,7 @@
   },
   {
     "id": "SIM-050",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The rent envelope was thin as a chorus girl's alibi.",
     "tags": {
       "mood": "wry",
@@ -557,7 +557,7 @@
   },
   {
     "id": "SIM-051",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He talked about the estate the way a undertaker talks about a casket upgrade.",
     "tags": {
       "mood": "menace",
@@ -568,7 +568,7 @@
   },
   {
     "id": "SIM-052",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The roll of bills was fat as a Thanksgiving goose, and about as dead.",
     "tags": {
       "mood": "menace",
@@ -579,7 +579,7 @@
   },
   {
     "id": "SIM-053",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The five-dollar bill was worn soft as a rosary.",
     "tags": {
       "mood": "tender",
@@ -590,7 +590,7 @@
   },
   {
     "id": "SIM-054",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The unpaid bill sat on the hall table like a relative nobody'd invited.",
     "tags": {
       "mood": "tired",
@@ -601,7 +601,7 @@
   },
   {
     "id": "SIM-055",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her story held together the way a pawnshop watch keeps time — close enough till somebody checks it against the real one.",
     "tags": {
       "mood": "wry",
@@ -612,7 +612,7 @@
   },
   {
     "id": "SIM-056",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His alibi was smooth as a new deck of cards, and dealt just as fast.",
     "tags": {
       "mood": "menace",
@@ -623,7 +623,7 @@
   },
   {
     "id": "SIM-057",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The lie sat on his face like a borrowed hat, an inch too small.",
     "tags": {
       "mood": "wry",
@@ -634,7 +634,7 @@
   },
   {
     "id": "SIM-058",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her explanation came out rehearsed as a Sunday hymn.",
     "tags": {
       "mood": "flat",
@@ -645,7 +645,7 @@
   },
   {
     "id": "SIM-059",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He told it straight-faced as a magistrate reading a sentence he'd already decided.",
     "tags": {
       "mood": "menace",
@@ -656,7 +656,7 @@
   },
   {
     "id": "SIM-060",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The story changed twice, quiet as a shell game on a card table.",
     "tags": {
       "mood": "menace",
@@ -667,7 +667,7 @@
   },
   {
     "id": "SIM-061",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He lied the way a barker lies about the show inside — knowing you'll pay to find out.",
     "tags": {
       "mood": "wry",
@@ -678,7 +678,7 @@
   },
   {
     "id": "SIM-062",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The excuse was thin as the paper it would've been written on, if he'd bothered.",
     "tags": {
       "mood": "flat",
@@ -689,7 +689,7 @@
   },
   {
     "id": "SIM-063",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The silence after she said it was heavy as a safe door swinging shut.",
     "tags": {
       "mood": "menace",
@@ -700,7 +700,7 @@
   },
   {
     "id": "SIM-064",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Nobody said anything for a while, the quiet sitting on the room like snow on a fire escape.",
     "tags": {
       "mood": "tired",
@@ -711,7 +711,7 @@
   },
   {
     "id": "SIM-065",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The quiet in the hallway was thick as the dust on the landlady's good china.",
     "tags": {
       "mood": "grief",
@@ -722,7 +722,7 @@
   },
   {
     "id": "SIM-066",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The line went dead quiet, the way a switchboard goes quiet when the operator's listening.",
     "tags": {
       "mood": "menace",
@@ -733,7 +733,7 @@
   },
   {
     "id": "SIM-067",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Silence came down over the table like a bar towel over a spill.",
     "tags": {
       "mood": "flat",
@@ -744,7 +744,7 @@
   },
   {
     "id": "SIM-068",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Nobody spoke, and the quiet got long as a wake nobody wanted to sit through.",
     "tags": {
       "mood": "grief",
@@ -755,7 +755,7 @@
   },
   {
     "id": "SIM-069",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The silence between them was old, worn smooth as a stair rail.",
     "tags": {
       "mood": "tender",
@@ -766,7 +766,7 @@
   },
   {
     "id": "SIM-070",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He drank it down like a druggist's tonic — fast, and making a face after.",
     "tags": {
       "mood": "wry",
@@ -777,7 +777,7 @@
   },
   {
     "id": "SIM-071",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The whiskey in the flask was cheap and burned like a landlord's notice.",
     "tags": {
       "mood": "flat",
@@ -788,7 +788,7 @@
   },
   {
     "id": "SIM-072",
-    "deck": "simile",
+    "deck": "similes",
     "text": "She nursed the gin the way a nurse would — like it might not survive the night.",
     "tags": {
       "mood": "tired",
@@ -799,7 +799,7 @@
   },
   {
     "id": "SIM-073",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He poured it neat as a bookkeeper's column.",
     "tags": {
       "mood": "flat",
@@ -810,7 +810,7 @@
   },
   {
     "id": "SIM-074",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The rye went down smooth as a lie told to a friend.",
     "tags": {
       "mood": "wry",
@@ -821,7 +821,7 @@
   },
   {
     "id": "SIM-075",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The last of the bottle was thin as an excuse, and he drank it anyway.",
     "tags": {
       "mood": "tired",
@@ -832,7 +832,7 @@
   },
   {
     "id": "SIM-076",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The seltzer fizzed up quick and quit just as quick, like most of his promises.",
     "tags": {
       "mood": "wry",
@@ -843,7 +843,7 @@
   },
   {
     "id": "SIM-077",
-    "deck": "simile",
+    "deck": "similes",
     "text": "She held the glass like a widow holds a photograph — not drinking, just looking.",
     "tags": {
       "mood": "grief",
@@ -854,7 +854,7 @@
   },
   {
     "id": "SIM-078",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He was built like a garage door — wide, flat, and not easy to get past.",
     "tags": {
       "mood": "flat",
@@ -865,7 +865,7 @@
   },
   {
     "id": "SIM-079",
-    "deck": "simile",
+    "deck": "similes",
     "text": "She moved through the room the way a good waiter does — there, then gone.",
     "tags": {
       "mood": "flat",
@@ -876,7 +876,7 @@
   },
   {
     "id": "SIM-080",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He filled the doorway like a repossession notice nobody wanted to open.",
     "tags": {
       "mood": "menace",
@@ -887,7 +887,7 @@
   },
   {
     "id": "SIM-081",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her shoulders dropped the way a marionette's do when the hand lets go of the strings.",
     "tags": {
       "mood": "tired",
@@ -898,7 +898,7 @@
   },
   {
     "id": "SIM-082",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He carried himself stiff as a shirt collar two sizes too small.",
     "tags": {
       "mood": "wry",
@@ -909,7 +909,7 @@
   },
   {
     "id": "SIM-083",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The old man's back was bent like a coat hanger left too long under a heavy coat.",
     "tags": {
       "mood": "grief",
@@ -920,7 +920,7 @@
   },
   {
     "id": "SIM-084",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He came at me slow and sure as a streetcar that isn't going to stop for you.",
     "tags": {
       "mood": "menace",
@@ -931,7 +931,7 @@
   },
   {
     "id": "SIM-085",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He dropped into the chair like a sack of mail off the tail end of a route.",
     "tags": {
       "mood": "tired",
@@ -942,7 +942,7 @@
   },
   {
     "id": "SIM-086",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His suit fit him the way a good alibi fits — almost, and not quite around the shoulders.",
     "tags": {
       "mood": "wry",
@@ -953,7 +953,7 @@
   },
   {
     "id": "SIM-087",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her coat was good wool once, worn now thin as a rumor.",
     "tags": {
       "mood": "grief",
@@ -964,7 +964,7 @@
   },
   {
     "id": "SIM-088",
-    "deck": "simile",
+    "deck": "similes",
     "text": "He kept his hat on indoors, the way a man does who means to leave fast.",
     "tags": {
       "mood": "menace",
@@ -975,7 +975,7 @@
   },
   {
     "id": "SIM-089",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her gloves were white as a coroner's report and just as clean.",
     "tags": {
       "mood": "flat",
@@ -986,7 +986,7 @@
   },
   {
     "id": "SIM-090",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His collar was boiled stiff as his manner.",
     "tags": {
       "mood": "wry",
@@ -997,7 +997,7 @@
   },
   {
     "id": "SIM-091",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The topcoat hung on him loose as a story that didn't fit the facts.",
     "tags": {
       "mood": "menace",
@@ -1008,7 +1008,7 @@
   },
   {
     "id": "SIM-092",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Her hat sat at an angle sharp as her opinion of him.",
     "tags": {
       "mood": "wry",
@@ -1019,7 +1019,7 @@
   },
   {
     "id": "SIM-093",
-    "deck": "simile",
+    "deck": "similes",
     "text": "His spats were spotless, the way a man's hands never are when he's telling the truth.",
     "tags": {
       "mood": "menace",
@@ -1030,7 +1030,7 @@
   },
   {
     "id": "SIM-094",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The city at that hour ran quiet as a shuttered Automat.",
     "tags": {
       "mood": "tired",
@@ -1041,7 +1041,7 @@
   },
   {
     "id": "SIM-095",
-    "deck": "simile",
+    "deck": "similes",
     "text": "New York didn't stop for a dead man any more than a subway stops for a dropped nickel.",
     "tags": {
       "mood": "flat",
@@ -1052,7 +1052,7 @@
   },
   {
     "id": "SIM-096",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The town closed ranks around him the way a precinct closes ranks around a bad arrest.",
     "tags": {
       "mood": "menace",
@@ -1063,7 +1063,7 @@
   },
   {
     "id": "SIM-097",
-    "deck": "simile",
+    "deck": "similes",
     "text": "Downtown at midnight was empty as a collection plate at the second service.",
     "tags": {
       "mood": "tired",
@@ -1074,7 +1074,7 @@
   },
   {
     "id": "SIM-098",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The city kept its own hours, the way a speakeasy keeps its own clock.",
     "tags": {
       "mood": "wry",
@@ -1085,7 +1085,7 @@
   },
   {
     "id": "SIM-099",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The whole block knew before the coroner did, the way a tenement always knows first.",
     "tags": {
       "mood": "menace",
@@ -1096,7 +1096,7 @@
   },
   {
     "id": "SIM-100",
-    "deck": "simile",
+    "deck": "similes",
     "text": "The town forgot him fast as a headline forgets yesterday's fire.",
     "tags": {
       "mood": "grief",
@@ -1171,5 +1171,2205 @@
       "intensity": 3
     },
     "status": "placeholder"
+  },
+  {
+    "id": "SIM-101",
+    "deck": "similes",
+    "text": "His face shut like a rolltop desk at six o'clock.",
+    "tags": {
+      "mood": "flat",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-102",
+    "deck": "similes",
+    "text": "Her face opened like a window getting its first air of spring.",
+    "tags": {
+      "mood": "tender",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-103",
+    "deck": "similes",
+    "text": "His face set like plaster before the mold comes off.",
+    "tags": {
+      "mood": "menace",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-104",
+    "deck": "similes",
+    "text": "Her face went white as the meat of an oyster.",
+    "tags": {
+      "mood": "grief",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-105",
+    "deck": "similes",
+    "text": "His face held steady as a man counting out change he already knows is short.",
+    "tags": {
+      "mood": "flat",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-106",
+    "deck": "similes",
+    "text": "Her face tightened like a drumhead left out in the cold.",
+    "tags": {
+      "mood": "menace",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-107",
+    "deck": "similes",
+    "text": "His grin came slow, the way an old sidewalk cracks.",
+    "tags": {
+      "mood": "wry",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-108",
+    "deck": "similes",
+    "text": "Her face was calm as a card held close to the vest.",
+    "tags": {
+      "mood": "flat",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-109",
+    "deck": "similes",
+    "text": "His face came apart like a wet paper sack.",
+    "tags": {
+      "mood": "grief",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-110",
+    "deck": "similes",
+    "text": "Her face lit up sudden as a struck match.",
+    "tags": {
+      "mood": "wry",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-111",
+    "deck": "similes",
+    "text": "His face was patient as a pawnbroker's scale.",
+    "tags": {
+      "mood": "tired",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-112",
+    "deck": "similes",
+    "text": "Her face closed like a ledger balanced and put away for the week.",
+    "tags": {
+      "mood": "flat",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-113",
+    "deck": "similes",
+    "text": "His face had the stillness of a man posing for a mug shot.",
+    "tags": {
+      "mood": "menace",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-114",
+    "deck": "similes",
+    "text": "Her face went soft as a candle past its wick.",
+    "tags": {
+      "mood": "tender",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-115",
+    "deck": "similes",
+    "text": "His face hardened, cold as a nightstick left out in the rain.",
+    "tags": {
+      "mood": "menace",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-116",
+    "deck": "similes",
+    "text": "Her face was pale as a bar of laundry soap.",
+    "tags": {
+      "mood": "tired",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-117",
+    "deck": "similes",
+    "text": "His face never moved, still as a photograph nobody's dusted.",
+    "tags": {
+      "mood": "flat",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-118",
+    "deck": "similes",
+    "text": "Her face crumpled the way a telegram does in a fist that doesn't want to read it twice. She looked ten years older by the end of it.",
+    "tags": {
+      "mood": "grief",
+      "target": "face",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-119",
+    "deck": "similes",
+    "text": "His face showed nothing, blank as a beat cop's report before the ink.",
+    "tags": {
+      "mood": "flat",
+      "target": "face",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-120",
+    "deck": "similes",
+    "text": "Her face broke into something like relief, quick as a valve let go.",
+    "tags": {
+      "mood": "tender",
+      "target": "face",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-121",
+    "deck": "similes",
+    "text": "His hands were quick as a dealer's at a rigged table.",
+    "tags": {
+      "mood": "wry",
+      "target": "hands",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-122",
+    "deck": "similes",
+    "text": "Her hands lay still as two gloves laid out for church.",
+    "tags": {
+      "mood": "tender",
+      "target": "hands",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-123",
+    "deck": "similes",
+    "text": "His hands shook like a man reading his own indictment.",
+    "tags": {
+      "mood": "menace",
+      "target": "hands",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-124",
+    "deck": "similes",
+    "text": "Her hands were chapped raw as a washday knuckle.",
+    "tags": {
+      "mood": "tired",
+      "target": "hands",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-125",
+    "deck": "similes",
+    "text": "His hands closed slow, the way a safe door closes.",
+    "tags": {
+      "mood": "menace",
+      "target": "hands",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-126",
+    "deck": "similes",
+    "text": "Her hands fluttered like moths at a lit window.",
+    "tags": {
+      "mood": "tired",
+      "target": "hands",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-127",
+    "deck": "similes",
+    "text": "His hands stayed steady as a bank teller's counting out a stack.",
+    "tags": {
+      "mood": "flat",
+      "target": "hands",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-128",
+    "deck": "similes",
+    "text": "Her hands worked the handkerchief like a rosary.",
+    "tags": {
+      "mood": "grief",
+      "target": "hands",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-129",
+    "deck": "similes",
+    "text": "His hands were big as a stevedore's, folded now and doing nothing.",
+    "tags": {
+      "mood": "flat",
+      "target": "hands",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-130",
+    "deck": "similes",
+    "text": "Her hands trembled like a compass needle that can't find north.",
+    "tags": {
+      "mood": "tired",
+      "target": "hands",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-131",
+    "deck": "similes",
+    "text": "His hands were smooth as a card sharp's.",
+    "tags": {
+      "mood": "wry",
+      "target": "hands",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-132",
+    "deck": "similes",
+    "text": "Her hands gripped the rail like it was the last dry spot on a sinking deck.",
+    "tags": {
+      "mood": "menace",
+      "target": "hands",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-133",
+    "deck": "similes",
+    "text": "His hands were pale as a night clerk's, never in the sun.",
+    "tags": {
+      "mood": "flat",
+      "target": "hands",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-134",
+    "deck": "similes",
+    "text": "Her hands were rough as a scrubwoman's, raw twice a day.",
+    "tags": {
+      "mood": "tired",
+      "target": "hands",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-135",
+    "deck": "similes",
+    "text": "His hands moved over the ledger like a man dealing himself a bad hand.",
+    "tags": {
+      "mood": "wry",
+      "target": "hands",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-136",
+    "deck": "similes",
+    "text": "Her hands folded in her lap like two tired birds settling for the night.",
+    "tags": {
+      "mood": "tender",
+      "target": "hands",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-137",
+    "deck": "similes",
+    "text": "His hands were cold as the pipe railing on the El platform.",
+    "tags": {
+      "mood": "menace",
+      "target": "hands",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-138",
+    "deck": "similes",
+    "text": "Her hands shook loose the match, then went still, like a clock somebody'd stopped.",
+    "tags": {
+      "mood": "grief",
+      "target": "hands",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-139",
+    "deck": "similes",
+    "text": "His voice was flat as a form letter.",
+    "tags": {
+      "mood": "flat",
+      "target": "voice",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-140",
+    "deck": "similes",
+    "text": "Her voice rose like a kettle nobody's taken off the burner.",
+    "tags": {
+      "mood": "menace",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-141",
+    "deck": "similes",
+    "text": "His voice dropped soft as a hand over a phone mouthpiece.",
+    "tags": {
+      "mood": "menace",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-142",
+    "deck": "similes",
+    "text": "Her voice cracked like river ice in a thaw.",
+    "tags": {
+      "mood": "grief",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-143",
+    "deck": "similes",
+    "text": "His voice came even as a metronome.",
+    "tags": {
+      "mood": "flat",
+      "target": "voice",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-144",
+    "deck": "similes",
+    "text": "Her voice had the cheer of a Fourth of July that already happened.",
+    "tags": {
+      "mood": "wry",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-145",
+    "deck": "similes",
+    "text": "His voice was rough as a file on a rusted hinge.",
+    "tags": {
+      "mood": "tired",
+      "target": "voice",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-146",
+    "deck": "similes",
+    "text": "Her voice was thin as the wire on a nickel phone call.",
+    "tags": {
+      "mood": "tired",
+      "target": "voice",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-147",
+    "deck": "similes",
+    "text": "His voice rang out like a church bell struck by a boy who doesn't know his own strength.",
+    "tags": {
+      "mood": "menace",
+      "target": "voice",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-148",
+    "deck": "similes",
+    "text": "Her voice steadied like a hand finding a rail in the dark.",
+    "tags": {
+      "mood": "tender",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-149",
+    "deck": "similes",
+    "text": "His voice was warm as a radiator in January.",
+    "tags": {
+      "mood": "tender",
+      "target": "voice",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-150",
+    "deck": "similes",
+    "text": "Her voice had a crack in it like a plate that's been dropped once already.",
+    "tags": {
+      "mood": "grief",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-151",
+    "deck": "similes",
+    "text": "His voice sped up like a ticker running behind the market.",
+    "tags": {
+      "mood": "menace",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-152",
+    "deck": "similes",
+    "text": "Her voice was patient as a night switchboard operator with nothing left to rush for.",
+    "tags": {
+      "mood": "tired",
+      "target": "voice",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-153",
+    "deck": "similes",
+    "text": "His voice came at me like a subpoena served on a Sunday.",
+    "tags": {
+      "mood": "menace",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-154",
+    "deck": "similes",
+    "text": "Her voice was bright as a nickel just out of the roll.",
+    "tags": {
+      "mood": "wry",
+      "target": "voice",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-155",
+    "deck": "similes",
+    "text": "His voice went hollow, the way a hallway sounds after the furniture's moved out.",
+    "tags": {
+      "mood": "grief",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-156",
+    "deck": "similes",
+    "text": "Her voice carried like a newsboy's over six lanes of traffic.",
+    "tags": {
+      "mood": "flat",
+      "target": "voice",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-157",
+    "deck": "similes",
+    "text": "The room was close as a phone booth in August.",
+    "tags": {
+      "mood": "flat",
+      "target": "room",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-158",
+    "deck": "similes",
+    "text": "The parlor sat neat as a hotel room nobody's checked into yet.",
+    "tags": {
+      "mood": "tired",
+      "target": "room",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-159",
+    "deck": "similes",
+    "text": "The office was bare as a cell block on visiting day.",
+    "tags": {
+      "mood": "menace",
+      "target": "room",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-160",
+    "deck": "similes",
+    "text": "The kitchen was warm as a bakery oven before first light.",
+    "tags": {
+      "mood": "tender",
+      "target": "room",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-161",
+    "deck": "similes",
+    "text": "The hallway smelled like a wet umbrella left too long by the door.",
+    "tags": {
+      "mood": "flat",
+      "target": "room",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-162",
+    "deck": "similes",
+    "text": "The room went quiet as a chapel between funerals.",
+    "tags": {
+      "mood": "grief",
+      "target": "room",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-163",
+    "deck": "similes",
+    "text": "The apartment was tidy as a hotel ledger, every entry in its column.",
+    "tags": {
+      "mood": "flat",
+      "target": "room",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-164",
+    "deck": "similes",
+    "text": "The parlor was dim as a projection booth mid-reel.",
+    "tags": {
+      "mood": "wry",
+      "target": "room",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-165",
+    "deck": "similes",
+    "text": "The room was crowded as a subway car at the five-fifteen.",
+    "tags": {
+      "mood": "tired",
+      "target": "room",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-166",
+    "deck": "similes",
+    "text": "The office held the hush of a courtroom before the gavel.",
+    "tags": {
+      "mood": "menace",
+      "target": "room",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-167",
+    "deck": "similes",
+    "text": "The bedroom was cold as an icebox with the door left open.",
+    "tags": {
+      "mood": "flat",
+      "target": "room",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-168",
+    "deck": "similes",
+    "text": "The parlor smelled of camphor, shut up tight as a trunk in an attic.",
+    "tags": {
+      "mood": "grief",
+      "target": "room",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-169",
+    "deck": "similes",
+    "text": "The room was still as a chessboard midgame, nobody's move.",
+    "tags": {
+      "mood": "menace",
+      "target": "room",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-170",
+    "deck": "similes",
+    "text": "The kitchen was scrubbed clean as a coroner's table.",
+    "tags": {
+      "mood": "menace",
+      "target": "room",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-171",
+    "deck": "similes",
+    "text": "The office was quiet as a bank vault on Sunday.",
+    "tags": {
+      "mood": "flat",
+      "target": "room",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-172",
+    "deck": "similes",
+    "text": "The room felt small as a confessional, and about as private.",
+    "tags": {
+      "mood": "wry",
+      "target": "room",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-173",
+    "deck": "similes",
+    "text": "The avenue ran empty as a parade route the morning after.",
+    "tags": {
+      "mood": "tired",
+      "target": "street",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-174",
+    "deck": "similes",
+    "text": "The block was quiet as a pawnshop on a holiday.",
+    "tags": {
+      "mood": "flat",
+      "target": "street",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-175",
+    "deck": "similes",
+    "text": "The street filled up sudden as a fire escape at the alarm bell.",
+    "tags": {
+      "mood": "menace",
+      "target": "street",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-176",
+    "deck": "similes",
+    "text": "The corner was busy as a currency exchange on payday.",
+    "tags": {
+      "mood": "wry",
+      "target": "street",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-177",
+    "deck": "similes",
+    "text": "The gutter ran with rain like a drainpipe with the cap off.",
+    "tags": {
+      "mood": "flat",
+      "target": "street",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-178",
+    "deck": "similes",
+    "text": "The sidewalk buckled like a subway grate under a delivery truck.",
+    "tags": {
+      "mood": "menace",
+      "target": "street",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-179",
+    "deck": "similes",
+    "text": "The avenue lay long and straight as a tape measure.",
+    "tags": {
+      "mood": "flat",
+      "target": "street",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-180",
+    "deck": "similes",
+    "text": "The block emptied like a theater at the second act's worst line.",
+    "tags": {
+      "mood": "wry",
+      "target": "street",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-181",
+    "deck": "similes",
+    "text": "The street held the cold like an unheated hallway.",
+    "tags": {
+      "mood": "tired",
+      "target": "street",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-182",
+    "deck": "similes",
+    "text": "The curb was lined with ash cans like a row of tin soldiers gone to rust.",
+    "tags": {
+      "mood": "grief",
+      "target": "street",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-183",
+    "deck": "similes",
+    "text": "The alley ran narrow as a coal chute.",
+    "tags": {
+      "mood": "flat",
+      "target": "street",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-184",
+    "deck": "similes",
+    "text": "The avenue at that hour was still as a photograph of itself.",
+    "tags": {
+      "mood": "menace",
+      "target": "street",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-185",
+    "deck": "similes",
+    "text": "The street smelled like wet newsprint left out in the rain.",
+    "tags": {
+      "mood": "flat",
+      "target": "street",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-186",
+    "deck": "similes",
+    "text": "The block was dark as a theater between showings.",
+    "tags": {
+      "mood": "tired",
+      "target": "street",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-187",
+    "deck": "similes",
+    "text": "The corner stood empty as a collection box passed twice.",
+    "tags": {
+      "mood": "grief",
+      "target": "street",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-188",
+    "deck": "similes",
+    "text": "The avenue rang with the milk wagon's bell like a fire alarm that never quite catches.",
+    "tags": {
+      "mood": "menace",
+      "target": "street",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-189",
+    "deck": "similes",
+    "text": "The fog came up the street slow as spilled milk.",
+    "tags": {
+      "mood": "flat",
+      "target": "weather",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-190",
+    "deck": "similes",
+    "text": "The wind cut like a straight razor left out in the cold.",
+    "tags": {
+      "mood": "menace",
+      "target": "weather",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-191",
+    "deck": "similes",
+    "text": "The first frost laid down quiet as a bedsheet pulled over a face.",
+    "tags": {
+      "mood": "grief",
+      "target": "weather",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-192",
+    "deck": "similes",
+    "text": "The heat sat on the block heavy as a delivery of coal.",
+    "tags": {
+      "mood": "tired",
+      "target": "weather",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-193",
+    "deck": "similes",
+    "text": "The rain came down like nickels dropped from a height.",
+    "tags": {
+      "mood": "flat",
+      "target": "weather",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-194",
+    "deck": "similes",
+    "text": "The snow fell soft as ash off a cigarette nobody's smoking.",
+    "tags": {
+      "mood": "tender",
+      "target": "weather",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-195",
+    "deck": "similes",
+    "text": "The cold got in like a draft under a tenement door.",
+    "tags": {
+      "mood": "flat",
+      "target": "weather",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-196",
+    "deck": "similes",
+    "text": "The wind off the river smelled like a wet dog and cheap coal.",
+    "tags": {
+      "mood": "wry",
+      "target": "weather",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-197",
+    "deck": "similes",
+    "text": "The sky before the storm was gray as an old bruise.",
+    "tags": {
+      "mood": "menace",
+      "target": "weather",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-198",
+    "deck": "similes",
+    "text": "The thaw came on sudden as a debt called in early.",
+    "tags": {
+      "mood": "menace",
+      "target": "weather",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-199",
+    "deck": "similes",
+    "text": "The wind rattled the fire escape like a man trying doors he knows are locked.",
+    "tags": {
+      "mood": "menace",
+      "target": "weather",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-200",
+    "deck": "similes",
+    "text": "The first warm day felt like a furlough nobody signed for.",
+    "tags": {
+      "mood": "tender",
+      "target": "weather",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-201",
+    "deck": "similes",
+    "text": "The drizzle kept up steady as a leaking spigot.",
+    "tags": {
+      "mood": "flat",
+      "target": "weather",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-202",
+    "deck": "similes",
+    "text": "The frost on the window was thin as tracing paper.",
+    "tags": {
+      "mood": "flat",
+      "target": "weather",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-203",
+    "deck": "similes",
+    "text": "The bills were stacked neat as a printer's proof.",
+    "tags": {
+      "mood": "flat",
+      "target": "money",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-204",
+    "deck": "similes",
+    "text": "His pay envelope was thin as a church bulletin.",
+    "tags": {
+      "mood": "tired",
+      "target": "money",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-205",
+    "deck": "similes",
+    "text": "The roll of tens sat on the table like a dare nobody'd touch.",
+    "tags": {
+      "mood": "wry",
+      "target": "money",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-206",
+    "deck": "similes",
+    "text": "Her savings went the way a nickel goes into a slot, quick and with no bell after.",
+    "tags": {
+      "mood": "wry",
+      "target": "money",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-207",
+    "deck": "similes",
+    "text": "The debt sat on him heavy as a trunk with no handles.",
+    "tags": {
+      "mood": "menace",
+      "target": "money",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-208",
+    "deck": "similes",
+    "text": "The reward money felt thin in the hand, light as a church collection.",
+    "tags": {
+      "mood": "tired",
+      "target": "money",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-209",
+    "deck": "similes",
+    "text": "The cash in the cigar box was counted twice, careful as a druggist's dose.",
+    "tags": {
+      "mood": "flat",
+      "target": "money",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-210",
+    "deck": "similes",
+    "text": "His fortune had gone the way ice goes in August.",
+    "tags": {
+      "mood": "menace",
+      "target": "money",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-211",
+    "deck": "similes",
+    "text": "The unpaid tab sat on the register spike like a paper flag nobody's saluting.",
+    "tags": {
+      "mood": "wry",
+      "target": "money",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-212",
+    "deck": "similes",
+    "text": "Her purse was light as a Sunday collection plate after a bad sermon.",
+    "tags": {
+      "mood": "tired",
+      "target": "money",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-213",
+    "deck": "similes",
+    "text": "The payroll sat locked up tight as a church poor box.",
+    "tags": {
+      "mood": "flat",
+      "target": "money",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-214",
+    "deck": "similes",
+    "text": "He spent it fast as a newsboy spends his morning nickels.",
+    "tags": {
+      "mood": "wry",
+      "target": "money",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-215",
+    "deck": "similes",
+    "text": "The inheritance sat untouched, cold as money nobody's earned.",
+    "tags": {
+      "mood": "menace",
+      "target": "money",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-216",
+    "deck": "similes",
+    "text": "Her last dollar was worn soft as a subway token.",
+    "tags": {
+      "mood": "tired",
+      "target": "money",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-217",
+    "deck": "similes",
+    "text": "His story was smooth as a new deck fresh from the wrapper.",
+    "tags": {
+      "mood": "menace",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-218",
+    "deck": "similes",
+    "text": "Her explanation came out rehearsed as a church recitation.",
+    "tags": {
+      "mood": "flat",
+      "target": "lie",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-219",
+    "deck": "similes",
+    "text": "The alibi fit him wrong, tight across the shoulders like a borrowed coat.",
+    "tags": {
+      "mood": "wry",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-220",
+    "deck": "similes",
+    "text": "His denial came fast, the way a hand comes off a hot stove.",
+    "tags": {
+      "mood": "menace",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-221",
+    "deck": "similes",
+    "text": "Her account was tidy as a stenographer's notes, and just as second-hand.",
+    "tags": {
+      "mood": "wry",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-222",
+    "deck": "similes",
+    "text": "The excuse was thin as a subway token, and about as much good to him.",
+    "tags": {
+      "mood": "wry",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-223",
+    "deck": "similes",
+    "text": "His story held together like a pier at low tide, with just as much underneath it you couldn't see.",
+    "tags": {
+      "mood": "menace",
+      "target": "lie",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-224",
+    "deck": "similes",
+    "text": "Her version of it came out even as a typed page.",
+    "tags": {
+      "mood": "flat",
+      "target": "lie",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-225",
+    "deck": "similes",
+    "text": "The lie sat on him like a suit bought a size too small.",
+    "tags": {
+      "mood": "wry",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-226",
+    "deck": "similes",
+    "text": "His account changed twice, quiet as a shell moving under three cups.",
+    "tags": {
+      "mood": "menace",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-227",
+    "deck": "similes",
+    "text": "Her story was rehearsed smooth as a Sunday sermon.",
+    "tags": {
+      "mood": "flat",
+      "target": "lie",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-228",
+    "deck": "similes",
+    "text": "The tale he told was patched together like a coat mended twice at the elbow.",
+    "tags": {
+      "mood": "tired",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-229",
+    "deck": "similes",
+    "text": "Her denial came out flat as a nickel on a bar.",
+    "tags": {
+      "mood": "flat",
+      "target": "lie",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-230",
+    "deck": "similes",
+    "text": "His story was too neat, straight as a ledger that's been made to balance.",
+    "tags": {
+      "mood": "menace",
+      "target": "lie",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-231",
+    "deck": "similes",
+    "text": "The excuse arrived pressed and folded, like a shirt back from the laundry.",
+    "tags": {
+      "mood": "wry",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-232",
+    "deck": "similes",
+    "text": "Her account of the evening was thin as a subway transfer, and expired besides.",
+    "tags": {
+      "mood": "wry",
+      "target": "lie",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-233",
+    "deck": "similes",
+    "text": "The quiet after the door shut was heavy as a delivery truck's tailgate.",
+    "tags": {
+      "mood": "menace",
+      "target": "silence",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-234",
+    "deck": "similes",
+    "text": "Nobody spoke, and the hush sat on the room like dust on an unused piano.",
+    "tags": {
+      "mood": "grief",
+      "target": "silence",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-235",
+    "deck": "similes",
+    "text": "The silence stretched long as a Sunday sermon nobody asked for.",
+    "tags": {
+      "mood": "tired",
+      "target": "silence",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-236",
+    "deck": "similes",
+    "text": "The quiet in the hallway was thick as steam off a laundry vat.",
+    "tags": {
+      "mood": "flat",
+      "target": "silence",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-237",
+    "deck": "similes",
+    "text": "The line went dead still, quiet as a switchboard nobody's minding.",
+    "tags": {
+      "mood": "menace",
+      "target": "silence",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-238",
+    "deck": "similes",
+    "text": "Nobody said a word, the room gone quiet as a chapel with the candles out.",
+    "tags": {
+      "mood": "grief",
+      "target": "silence",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-239",
+    "deck": "similes",
+    "text": "The silence between them sat old as a family photograph nobody's dusted.",
+    "tags": {
+      "mood": "tender",
+      "target": "silence",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-240",
+    "deck": "similes",
+    "text": "The quiet came down sudden as a curtain at the last act.",
+    "tags": {
+      "mood": "menace",
+      "target": "silence",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-241",
+    "deck": "similes",
+    "text": "The hush over the table was thick as gravy left to set.",
+    "tags": {
+      "mood": "flat",
+      "target": "silence",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-242",
+    "deck": "similes",
+    "text": "Nobody moved, and the silence held like a held breath in a doctor's office.",
+    "tags": {
+      "mood": "tired",
+      "target": "silence",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-243",
+    "deck": "similes",
+    "text": "The quiet was total, still as a shop after the gates come down.",
+    "tags": {
+      "mood": "flat",
+      "target": "silence",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-244",
+    "deck": "similes",
+    "text": "Her silence was heavier than any answer, flat as a closed ledger.",
+    "tags": {
+      "mood": "menace",
+      "target": "silence",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-245",
+    "deck": "similes",
+    "text": "The room's hush sat like a held note nobody wants to finish.",
+    "tags": {
+      "mood": "grief",
+      "target": "silence",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-246",
+    "deck": "similes",
+    "text": "The quiet after the shot was thick as cotton wadding.",
+    "tags": {
+      "mood": "menace",
+      "target": "silence",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-247",
+    "deck": "similes",
+    "text": "He poured the rye careful as a druggist measuring a dose.",
+    "tags": {
+      "mood": "flat",
+      "target": "drink",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-248",
+    "deck": "similes",
+    "text": "She sipped the gin slow, the way a woman waits out a headache.",
+    "tags": {
+      "mood": "tired",
+      "target": "drink",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-249",
+    "deck": "similes",
+    "text": "The whiskey burned going down like a match struck in the throat.",
+    "tags": {
+      "mood": "flat",
+      "target": "drink",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-250",
+    "deck": "similes",
+    "text": "He drank it fast as a man late for a train.",
+    "tags": {
+      "mood": "wry",
+      "target": "drink",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-251",
+    "deck": "similes",
+    "text": "The seltzer fizzed up quick as a struck nerve.",
+    "tags": {
+      "mood": "flat",
+      "target": "drink",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-252",
+    "deck": "similes",
+    "text": "She held the glass untouched, cold as a hand she wasn't ready to shake.",
+    "tags": {
+      "mood": "grief",
+      "target": "drink",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-253",
+    "deck": "similes",
+    "text": "He tossed it back the way a man swallows bad news.",
+    "tags": {
+      "mood": "menace",
+      "target": "drink",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-254",
+    "deck": "similes",
+    "text": "The beer went flat fast as a promise made at closing time.",
+    "tags": {
+      "mood": "wry",
+      "target": "drink",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-255",
+    "deck": "similes",
+    "text": "She nursed the drink like it was the only company in the room.",
+    "tags": {
+      "mood": "tired",
+      "target": "drink",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-256",
+    "deck": "similes",
+    "text": "He poured a second round steady as a man who's done this every night for a year.",
+    "tags": {
+      "mood": "tired",
+      "target": "drink",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-257",
+    "deck": "similes",
+    "text": "The rye tasted like something scraped off a barrel bottom.",
+    "tags": {
+      "mood": "flat",
+      "target": "drink",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-258",
+    "deck": "similes",
+    "text": "She drank it down in one go, quick as a shot at the doctor's office.",
+    "tags": {
+      "mood": "wry",
+      "target": "drink",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-259",
+    "deck": "similes",
+    "text": "The gin sat warm in the glass, forgotten as a coat over a chair.",
+    "tags": {
+      "mood": "tired",
+      "target": "drink",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-260",
+    "deck": "similes",
+    "text": "He drained the flask dry as a creek in August.",
+    "tags": {
+      "mood": "flat",
+      "target": "drink",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-261",
+    "deck": "similes",
+    "text": "He carried his weight like a man used to being underestimated.",
+    "tags": {
+      "mood": "flat",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-262",
+    "deck": "similes",
+    "text": "She moved through the crowd the way a good waiter clears a table, quick and gone.",
+    "tags": {
+      "mood": "flat",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-263",
+    "deck": "similes",
+    "text": "He filled the doorway like a delivery that hasn't been signed for.",
+    "tags": {
+      "mood": "menace",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-264",
+    "deck": "similes",
+    "text": "Her shoulders sat square as a filing cabinet drawer.",
+    "tags": {
+      "mood": "flat",
+      "target": "body",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-265",
+    "deck": "similes",
+    "text": "He descended the stairs slow as a man carrying something heavy that wasn't there.",
+    "tags": {
+      "mood": "menace",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-266",
+    "deck": "similes",
+    "text": "She stood straight as a subway pole, and held on about as hard.",
+    "tags": {
+      "mood": "wry",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-267",
+    "deck": "similes",
+    "text": "His back was bent like a coat hanger left under too much weight.",
+    "tags": {
+      "mood": "grief",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-268",
+    "deck": "similes",
+    "text": "He crossed the room fast as a man late for his own trial.",
+    "tags": {
+      "mood": "menace",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-269",
+    "deck": "similes",
+    "text": "Her hands fell to her sides like two gloves dropped and forgotten.",
+    "tags": {
+      "mood": "tired",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-270",
+    "deck": "similes",
+    "text": "He sat still as a man posing for a photograph he didn't want taken.",
+    "tags": {
+      "mood": "flat",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-271",
+    "deck": "similes",
+    "text": "She carried herself light as a girl who hasn't paid rent yet.",
+    "tags": {
+      "mood": "wry",
+      "target": "body",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-272",
+    "deck": "similes",
+    "text": "He leaned on the bar like it was the only thing holding the building up.",
+    "tags": {
+      "mood": "tired",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-273",
+    "deck": "similes",
+    "text": "Her stride was quick and even as a metronome set for a march.",
+    "tags": {
+      "mood": "flat",
+      "target": "body",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-274",
+    "deck": "similes",
+    "text": "He dropped into the chair like a mail sack off a moving truck.",
+    "tags": {
+      "mood": "tired",
+      "target": "body",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-275",
+    "deck": "similes",
+    "text": "She stood in the door frame stiff as a photograph in a locket.",
+    "tags": {
+      "mood": "grief",
+      "target": "body",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-276",
+    "deck": "similes",
+    "text": "He moved slow as a man who already knows how the evening ends.",
+    "tags": {
+      "mood": "menace",
+      "target": "body",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-277",
+    "deck": "similes",
+    "text": "His hat sat low as a shade pulled halfway.",
+    "tags": {
+      "mood": "flat",
+      "target": "clothes",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-278",
+    "deck": "similes",
+    "text": "Her coat hung loose as a curtain in a vacant room.",
+    "tags": {
+      "mood": "tired",
+      "target": "clothes",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-279",
+    "deck": "similes",
+    "text": "His shoes were shined bright as a new subway token.",
+    "tags": {
+      "mood": "wry",
+      "target": "clothes",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-280",
+    "deck": "similes",
+    "text": "Her gloves were white as a chorus program.",
+    "tags": {
+      "mood": "flat",
+      "target": "clothes",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-281",
+    "deck": "similes",
+    "text": "His collar was stiff as a church usher's manner.",
+    "tags": {
+      "mood": "wry",
+      "target": "clothes",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-282",
+    "deck": "similes",
+    "text": "Her hem was let down twice, the seams showing like an old scar.",
+    "tags": {
+      "mood": "tired",
+      "target": "clothes",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-283",
+    "deck": "similes",
+    "text": "His suit fit sharp as a new deck of cards, corners and all.",
+    "tags": {
+      "mood": "flat",
+      "target": "clothes",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-284",
+    "deck": "similes",
+    "text": "Her scarf was soft as a hand on a shoulder.",
+    "tags": {
+      "mood": "tender",
+      "target": "clothes",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-285",
+    "deck": "similes",
+    "text": "His cuffs were frayed white as a nickel worn thin.",
+    "tags": {
+      "mood": "tired",
+      "target": "clothes",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-286",
+    "deck": "similes",
+    "text": "Her hat was tilted sharp as an opinion she hadn't voiced yet.",
+    "tags": {
+      "mood": "wry",
+      "target": "clothes",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-287",
+    "deck": "similes",
+    "text": "His topcoat was heavy as a winter he hadn't planned on.",
+    "tags": {
+      "mood": "tired",
+      "target": "clothes",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-288",
+    "deck": "similes",
+    "text": "Her shoes clicked on the tile steady as a telegraph key.",
+    "tags": {
+      "mood": "flat",
+      "target": "clothes",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-289",
+    "deck": "similes",
+    "text": "His tie was knotted tight as a man expecting bad news.",
+    "tags": {
+      "mood": "menace",
+      "target": "clothes",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-290",
+    "deck": "similes",
+    "text": "Her coat still smelled of someone else's cigarettes, faint as an old letter.",
+    "tags": {
+      "mood": "grief",
+      "target": "clothes",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-291",
+    "deck": "similes",
+    "text": "The town ran on habit the way a streetcar runs on rail.",
+    "tags": {
+      "mood": "flat",
+      "target": "city",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-292",
+    "deck": "similes",
+    "text": "The city moved on fast as a subway door closing on a late passenger.",
+    "tags": {
+      "mood": "wry",
+      "target": "city",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-293",
+    "deck": "similes",
+    "text": "Downtown at that hour ran quiet as a church between Masses.",
+    "tags": {
+      "mood": "tired",
+      "target": "city",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-294",
+    "deck": "similes",
+    "text": "The city after midnight ran slower, patient as a night clerk's ledger.",
+    "tags": {
+      "mood": "flat",
+      "target": "city",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-295",
+    "deck": "similes",
+    "text": "The whole neighborhood knew before the desk sergeant did, quick as a party line.",
+    "tags": {
+      "mood": "menace",
+      "target": "city",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-296",
+    "deck": "similes",
+    "text": "The avenue at dawn looked scrubbed clean as a hospital corridor.",
+    "tags": {
+      "mood": "flat",
+      "target": "city",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-297",
+    "deck": "similes",
+    "text": "The harbor smell clung to the whole waterfront like wet rope.",
+    "tags": {
+      "mood": "flat",
+      "target": "city",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-298",
+    "deck": "similes",
+    "text": "The city's noise came back gradual, the way a radio warms up.",
+    "tags": {
+      "mood": "tired",
+      "target": "city",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-299",
+    "deck": "similes",
+    "text": "Uptown and downtown kept different hours, the way two shifts at the same plant never meet.",
+    "tags": {
+      "mood": "flat",
+      "target": "city",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "SIM-300",
+    "deck": "similes",
+    "text": "The blocks below Houston ran narrow and crooked as a pawnbroker's ledger.",
+    "tags": {
+      "mood": "menace",
+      "target": "city",
+      "intensity": 2
+    },
+    "status": "generated"
   }
 ]

@@ -3,7 +3,11 @@
     "id": "amb-p001",
     "deck": "ambient",
     "text": "I had a handful of facts and not one of them touched another.",
-    "tags": { "hourBand": "any", "caseState": "cold", "circumstance": "any" },
+    "tags": {
+      "hourBand": "any",
+      "caseState": "cold",
+      "circumstance": "any"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range amb-pNNN; the content deck uses AMB-NNN."
   },
@@ -11,63 +15,1419 @@
     "id": "amb-p002",
     "deck": "ambient",
     "text": "Something was starting to lean. I let it lean and did not push.",
-    "tags": { "hourBand": "any", "caseState": "warm", "circumstance": "any" },
+    "tags": {
+      "hourBand": "any",
+      "caseState": "warm",
+      "circumstance": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "amb-p003",
     "deck": "ambient",
     "text": "The evening had a shape now, and I did not care for the shape.",
-    "tags": { "hourBand": "any", "caseState": "hot", "circumstance": "any" },
+    "tags": {
+      "hourBand": "any",
+      "caseState": "hot",
+      "circumstance": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "amb-p004",
     "deck": "ambient",
     "text": "A short list of calls left and a long list of people who owed me one.",
-    "tags": { "hourBand": "any", "caseState": "tight", "circumstance": "any" },
+    "tags": {
+      "hourBand": "any",
+      "caseState": "tight",
+      "circumstance": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "amb-p005",
     "deck": "ambient",
     "text": "Rent Friday. I counted what was in the coat and stopped counting.",
-    "tags": { "hourBand": "midnight-2", "caseState": "any", "circumstance": "behind-on-rent" },
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "any",
+      "circumstance": "behind-on-rent"
+    },
     "status": "placeholder"
   },
   {
     "id": "amb-p006",
     "deck": "ambient",
     "text": "I had not slept since the night before the night before.",
-    "tags": { "hourBand": "4-6", "caseState": "any", "circumstance": "sleepless" },
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "any",
+      "circumstance": "sleepless"
+    },
     "status": "placeholder"
   },
   {
     "id": "amb-p007",
     "deck": "ambient",
     "text": "Tuesday’s gin was still doing business behind my eyes.",
-    "tags": { "hourBand": "any", "caseState": "any", "circumstance": "hungover" },
+    "tags": {
+      "hourBand": "any",
+      "caseState": "any",
+      "circumstance": "hungover"
+    },
     "status": "placeholder"
   },
   {
     "id": "amb-p008",
     "deck": "ambient",
     "text": "Money in the coat for once, and nothing in the coat was any use to me.",
-    "tags": { "hourBand": "any", "caseState": "any", "circumstance": "flush" },
+    "tags": {
+      "hourBand": "any",
+      "caseState": "any",
+      "circumstance": "flush"
+    },
     "status": "placeholder"
   },
   {
     "id": "amb-p009",
     "deck": "ambient",
     "text": "Four in the morning is when a man reads his own handwriting and doubts it.",
-    "tags": { "hourBand": "2-4", "caseState": "any", "circumstance": "any" },
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "any",
+      "circumstance": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "amb-p010",
     "deck": "ambient",
     "text": "The office would be cold and the telephone would have nothing on it.",
-    "tags": { "hourBand": "6-8", "caseState": "any", "circumstance": "any" },
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "any",
+      "circumstance": "any"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "amb-001",
+    "deck": "ambient",
+    "text": "The landlady's note was still folded in my coat, unread twice already.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "cold",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-002",
+    "deck": "ambient",
+    "text": "I thought about the rent for exactly as long as it took to light a cigarette.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "warm",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-003",
+    "deck": "ambient",
+    "text": "Even with the case moving, the rent didn't care either way.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "hot",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-004",
+    "deck": "ambient",
+    "text": "Four days on the rent and I still hadn't worked out which four.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "tight",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-005",
+    "deck": "ambient",
+    "text": "The landlady would be up at seven asking, same as she'd asked all week.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "cold",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-006",
+    "deck": "ambient",
+    "text": "A little luck on this one might cover March, if it broke my way.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "warm",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-007",
+    "deck": "ambient",
+    "text": "The rent was the last thing on my mind, which was its own kind of luck.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "hot",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-008",
+    "deck": "ambient",
+    "text": "I did the math on the rent again and it still came out short.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "tight",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-009",
+    "deck": "ambient",
+    "text": "By six she'd be knocking, and I still had nothing to hand her.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "cold",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-010",
+    "deck": "ambient",
+    "text": "I let myself think, for a minute, about paying her in full for once.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "warm",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-011",
+    "deck": "ambient",
+    "text": "The rent could wait one more day if this kept moving the way it was.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "hot",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-012",
+    "deck": "ambient",
+    "text": "I owed six weeks and had maybe six hours to make a dent in it.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "tight",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-013",
+    "deck": "ambient",
+    "text": "The landlady's door was already open when I came in, which meant she'd been waiting.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "cold",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-014",
+    "deck": "ambient",
+    "text": "I'd have something for her by Friday, probably, if this held together.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "warm",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-015",
+    "deck": "ambient",
+    "text": "The rent notice was still on the hall table where I'd left it, unanswered.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "hot",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-016",
+    "deck": "ambient",
+    "text": "Whatever this case paid, it wouldn't touch what I owed already.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "tight",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-017",
+    "deck": "ambient",
+    "text": "I had money in my pocket for once and nowhere worth spending it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "cold",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-018",
+    "deck": "ambient",
+    "text": "The roll in my coat felt good against my ribs, which wasn't like me.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "warm",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-019",
+    "deck": "ambient",
+    "text": "Being flush didn't make the night go any faster.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "hot",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-020",
+    "deck": "ambient",
+    "text": "Money in the pocket doesn't buy back an hour, whatever they say about it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "tight",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-021",
+    "deck": "ambient",
+    "text": "I could afford a cab and walked anyway, out of habit more than sense.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "cold",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-022",
+    "deck": "ambient",
+    "text": "For once I wasn't counting nickels while I waited.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "warm",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-023",
+    "deck": "ambient",
+    "text": "The extra cash sat easy in my pocket, which felt strange this late in a case.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "hot",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-024",
+    "deck": "ambient",
+    "text": "I'd have paid double for an extra hour, if that was something money bought.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "tight",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-025",
+    "deck": "ambient",
+    "text": "I thought about a new coat, then thought better of thinking about it.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "cold",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-026",
+    "deck": "ambient",
+    "text": "Flush or not, four in the morning is four in the morning.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "warm",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-027",
+    "deck": "ambient",
+    "text": "The money would keep. The case wouldn't.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "hot",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-028",
+    "deck": "ambient",
+    "text": "I could have hired a second pair of eyes if I'd had the sense to plan ahead.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "tight",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-029",
+    "deck": "ambient",
+    "text": "I'd eat somewhere decent later, if later ever came.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "cold",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-030",
+    "deck": "ambient",
+    "text": "Being able to pay for breakfast without counting it out felt almost indulgent.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "warm",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-031",
+    "deck": "ambient",
+    "text": "I noticed I wasn't thinking about money at all, and that was new.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "hot",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-032",
+    "deck": "ambient",
+    "text": "Whatever this paid, it wouldn't be worth what the last six hours had cost me.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "tight",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-033",
+    "deck": "ambient",
+    "text": "My head still hadn't forgiven me for last night.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "cold",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-034",
+    "deck": "ambient",
+    "text": "The ache behind my eyes kept better time than my watch did.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "warm",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-035",
+    "deck": "ambient",
+    "text": "I could have used a glass of water two hours ago.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "hot",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-036",
+    "deck": "ambient",
+    "text": "My head was pounding in time with my own footsteps, which wasn't helping.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "tight",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-037",
+    "deck": "ambient",
+    "text": "The taste in my mouth hadn't improved with the walking.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "cold",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-038",
+    "deck": "ambient",
+    "text": "I blamed the whiskey for the headache and the case for everything else.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "warm",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-039",
+    "deck": "ambient",
+    "text": "My stomach reminded me, twice, that I'd skipped dinner for the wrong reasons.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "hot",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-040",
+    "deck": "ambient",
+    "text": "The headache made the thinking slower, which was the worst time for it.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "tight",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-041",
+    "deck": "ambient",
+    "text": "By this hour the hangover had settled into something almost familiar.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "cold",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-042",
+    "deck": "ambient",
+    "text": "A cup of coffee would have fixed half of what was wrong with me.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "warm",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-043",
+    "deck": "ambient",
+    "text": "I kept blinking against a light that wasn't even that bright.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "hot",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-044",
+    "deck": "ambient",
+    "text": "My head throbbed once for every minute I didn't have to spare.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "tight",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-045",
+    "deck": "ambient",
+    "text": "The morning light didn't do the headache any favors.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "cold",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-046",
+    "deck": "ambient",
+    "text": "I promised myself, not for the first time, to cut it out.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "warm",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-047",
+    "deck": "ambient",
+    "text": "The hangover was fading, finally, right about when I needed my head clear.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "hot",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-048",
+    "deck": "ambient",
+    "text": "I'd have traded the whole night for one more hour of sleep and a clear head.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "tight",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-049",
+    "deck": "ambient",
+    "text": "My ribs reminded me about it every time I turned too fast.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "cold",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-050",
+    "deck": "ambient",
+    "text": "The bruise on my jaw had gone from purple to something worse.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "warm",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-051",
+    "deck": "ambient",
+    "text": "I favored the side that still hurt without thinking about it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "hot",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-052",
+    "deck": "ambient",
+    "text": "Every fast move cost me something in the ribs I couldn't spare the time to feel.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "tight",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-053",
+    "deck": "ambient",
+    "text": "I probed the bruise once, out of habit, and regretted it once, out of habit too.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "cold",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-054",
+    "deck": "ambient",
+    "text": "The knuckle I'd split hadn't closed up right, and kept catching on my coat pocket.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "warm",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-055",
+    "deck": "ambient",
+    "text": "I ignored the ribs as best I could, which wasn't very well.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "hot",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-056",
+    "deck": "ambient",
+    "text": "The bruise ached worse standing still than it did walking, and I couldn't account for that.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "tight",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-057",
+    "deck": "ambient",
+    "text": "The cold made the bruised side ache worse than it had all night.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "cold",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-058",
+    "deck": "ambient",
+    "text": "I'd stopped noticing the jaw until I tried to talk too fast.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "warm",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-059",
+    "deck": "ambient",
+    "text": "The ribs held up better than I expected, considering.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "hot",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-060",
+    "deck": "ambient",
+    "text": "I didn't have the time to favor the bad side, so I stopped.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "tight",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-061",
+    "deck": "ambient",
+    "text": "The morning cold got into the bruise first, before anywhere else.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "cold",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-062",
+    "deck": "ambient",
+    "text": "I'd need a week off the bad side, and I wasn't likely to get it.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "warm",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-063",
+    "deck": "ambient",
+    "text": "The ribs would keep me honest about how fast I could move today.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "hot",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-064",
+    "deck": "ambient",
+    "text": "Whatever came next, it was going to hurt, and I was already tired of it hurting.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "tight",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-065",
+    "deck": "ambient",
+    "text": "The last job had been two people hating each other over a bank book, and I was relieved to be shut of it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "cold",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-066",
+    "deck": "ambient",
+    "text": "I still had a taste in my mouth from the last case, and it wasn't whiskey.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "warm",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-067",
+    "deck": "ambient",
+    "text": "At least this one wasn't about who slept where and when.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "hot",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-068",
+    "deck": "ambient",
+    "text": "The divorce case had left me short on patience for people who lied about small things.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "tight",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-069",
+    "deck": "ambient",
+    "text": "I thought about the husband from the last job, and how neither one of them had told the truth once.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "cold",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-070",
+    "deck": "ambient",
+    "text": "Compared to the last client, this one at least had the decency to be dead instead of just unhappy.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "warm",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-071",
+    "deck": "ambient",
+    "text": "The last case had soured me on marriage generally, which wasn't fair to anybody involved here.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "hot",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-072",
+    "deck": "ambient",
+    "text": "I was still owed for the divorce job, and probably always would be.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "tight",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-073",
+    "deck": "ambient",
+    "text": "The last client's wife had cried in my office for an hour over nothing worth crying about.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "cold",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-074",
+    "deck": "ambient",
+    "text": "Two weeks of hotel-room photographs will do that to a man's opinion of people.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "warm",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-075",
+    "deck": "ambient",
+    "text": "At least nobody in this case was paying me to catch them lying to each other.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "hot",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-076",
+    "deck": "ambient",
+    "text": "I'd taken the divorce work strictly for the fee, and it still hadn't felt like enough.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "tight",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-077",
+    "deck": "ambient",
+    "text": "The husband from the last case still owed me for the second week.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "cold",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-078",
+    "deck": "ambient",
+    "text": "I hadn't slept right since that job either, if I was honest about it.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "warm",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-079",
+    "deck": "ambient",
+    "text": "This case at least had a body in it instead of just a marriage.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "hot",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-080",
+    "deck": "ambient",
+    "text": "I was tired of other people's secrets before I even started on this one's.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "tight",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-081",
+    "deck": "ambient",
+    "text": "I hadn't slept right in three nights, and the fourth wasn't shaping up any better.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "cold",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-082",
+    "deck": "ambient",
+    "text": "My eyes had that grainy feel that comes after too many nights without enough sleep.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "warm",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-083",
+    "deck": "ambient",
+    "text": "I was running on nerves and black coffee, and the coffee had run out.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "hot",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-084",
+    "deck": "ambient",
+    "text": "I couldn't remember the last full night's sleep I'd had, and didn't try very hard to.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "tight",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-085",
+    "deck": "ambient",
+    "text": "My body wanted to sit down somewhere and not get up for a while.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "cold",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-086",
+    "deck": "ambient",
+    "text": "I'd stopped counting the hours since I'd slept, somewhere around the second night.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "warm",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-087",
+    "deck": "ambient",
+    "text": "The lack of sleep made everything feel one step removed, a pane of glass between me and it.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "hot",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-088",
+    "deck": "ambient",
+    "text": "I was past being nervous, too tired for it, which was its own kind of trouble.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "tight",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-089",
+    "deck": "ambient",
+    "text": "The tired had gone past aching into something flatter, my whole body past complaining about it.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "cold",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-090",
+    "deck": "ambient",
+    "text": "I told myself I'd sleep after, same as I told myself every night this week.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "warm",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-091",
+    "deck": "ambient",
+    "text": "My hands had a small shake to them that wasn't nerves, just exhaustion.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "hot",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-092",
+    "deck": "ambient",
+    "text": "I couldn't afford to stop moving long enough to feel how tired I really was.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "tight",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-093",
+    "deck": "ambient",
+    "text": "The morning light hurt more than it should have, on no sleep.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "cold",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-094",
+    "deck": "ambient",
+    "text": "I'd earned a bed, and one was hours off yet, if it came at all.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "warm",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-095",
+    "deck": "ambient",
+    "text": "The tiredness had a taste to it now, flat and a little sour.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "hot",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-096",
+    "deck": "ambient",
+    "text": "I was past tired and into something else, a kind of clear I didn't trust.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "tight",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-097",
+    "deck": "ambient",
+    "text": "The retainer was folded in my breast pocket, and I checked for it twice without meaning to.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "cold",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-098",
+    "deck": "ambient",
+    "text": "Getting paid up front changes how a man walks, if only for a night.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "warm",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-099",
+    "deck": "ambient",
+    "text": "I hadn't spent a dime of it yet, and already felt better for having it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "hot",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-100",
+    "deck": "ambient",
+    "text": "The money didn't buy back the hours, whatever it bought.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "tight",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-101",
+    "deck": "ambient",
+    "text": "I thought about what the retainer would cover, and it bought less than it once did.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "cold",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-102",
+    "deck": "ambient",
+    "text": "For once I wasn't doing the math on whether I could afford the case at all.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "warm",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-103",
+    "deck": "ambient",
+    "text": "Getting paid up front meant I owed somebody something now, which was its own kind of weight.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "hot",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-104",
+    "deck": "ambient",
+    "text": "The fee sat in my pocket, earned or not, depending on how the next few hours went.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "tight",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-105",
+    "deck": "ambient",
+    "text": "I'd pay off the landlady with this, first thing, before I let myself spend it on anything else.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "cold",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-106",
+    "deck": "ambient",
+    "text": "It was a good fee for a bad hour, and I made a point of not weighing the two against each other.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "warm",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-107",
+    "deck": "ambient",
+    "text": "The money made the case feel real in a way it hadn't before the client signed.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "hot",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-108",
+    "deck": "ambient",
+    "text": "Whatever I'd been paid, it wasn't enough for the hours I was about to lose.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "tight",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-109",
+    "deck": "ambient",
+    "text": "The retainer would cover the essentials, with maybe a little left for something that wasn't essential at all.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "cold",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-110",
+    "deck": "ambient",
+    "text": "I felt almost respectable, walking around with a fee that size in my coat.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "warm",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-111",
+    "deck": "ambient",
+    "text": "The money was a comfort I hadn't expected to need this badly.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "hot",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-112",
+    "deck": "ambient",
+    "text": "I hoped the fee was worth what the case was about to cost me.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "tight",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-113",
+    "deck": "ambient",
+    "text": "I did the rent arithmetic again in my head, and it came out the same as the last four times.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "cold",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-114",
+    "deck": "ambient",
+    "text": "The rent problem would still be there tomorrow, same as it was yesterday.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "hot",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-115",
+    "deck": "ambient",
+    "text": "My stomach turned over once, slow, and I decided not to think about why.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "tight",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-116",
+    "deck": "ambient",
+    "text": "The light through the window found every part of the headache the dark had missed.",
+    "tags": {
+      "hourBand": "6-8",
+      "caseState": "cold",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-117",
+    "deck": "ambient",
+    "text": "I'd trade the case for eight hours of sleep, if anybody was buying.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "hot",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-118",
+    "deck": "ambient",
+    "text": "My eyes kept losing focus on things that weren't moving.",
+    "tags": {
+      "hourBand": "4-6",
+      "caseState": "warm",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-119",
+    "deck": "ambient",
+    "text": "I wondered, not for the first time, what I'd do with the fee once this was over.",
+    "tags": {
+      "hourBand": "2-4",
+      "caseState": "hot",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "amb-120",
+    "deck": "ambient",
+    "text": "The weight of the retainer in my pocket was the only warm thing about the night.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "caseState": "warm",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
   }
 ]

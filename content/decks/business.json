@@ -3,7 +3,10 @@
     "id": "bus-p001",
     "deck": "business",
     "text": "The rag keeps going over the same six inches of counter.",
-    "tags": { "role": "any", "temper": "plain" },
+    "tags": {
+      "role": "any",
+      "temper": "plain"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range bus-pNNN; the content deck uses BUS-NNN."
   },
@@ -11,63 +14,1290 @@
     "id": "bus-p002",
     "deck": "business",
     "text": "A cigarette gets lit, set on the edge of the shelf, and left to go out.",
-    "tags": { "role": "any", "temper": "plain" },
+    "tags": {
+      "role": "any",
+      "temper": "plain"
+    },
     "status": "placeholder"
   },
   {
     "id": "bus-p003",
     "deck": "business",
     "text": "The ledger stays open the whole while, a finger holding the place.",
-    "tags": { "role": "any", "temper": "yap" },
+    "tags": {
+      "role": "any",
+      "temper": "yap"
+    },
     "status": "placeholder"
   },
   {
     "id": "bus-p004",
     "deck": "business",
     "text": "Two glasses go up on the shelf, then a third, slower.",
-    "tags": { "role": "any", "temper": "yap" },
+    "tags": {
+      "role": "any",
+      "temper": "yap"
+    },
     "status": "placeholder"
   },
   {
     "id": "bus-p005",
     "deck": "business",
     "text": "Nothing moves but the jaw.",
-    "tags": { "role": "any", "temper": "enigma" },
+    "tags": {
+      "role": "any",
+      "temper": "enigma"
+    },
     "status": "placeholder"
   },
   {
     "id": "bus-p006",
     "deck": "business",
     "text": "A hat goes round in two hands, brim to brim.",
-    "tags": { "role": "suspect", "temper": "plain" },
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
     "status": "placeholder"
   },
   {
     "id": "bus-p007",
     "deck": "business",
     "text": "One hand finds the door frame and stays on it.",
-    "tags": { "role": "suspect", "temper": "enigma" },
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
     "status": "placeholder"
   },
   {
     "id": "bus-p008",
     "deck": "business",
     "text": "Coffee gets poured for me without my asking, and then talked over.",
-    "tags": { "role": "suspect", "temper": "yap" },
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
     "status": "placeholder"
   },
   {
     "id": "bus-p009",
     "deck": "business",
     "text": "A bottle goes back on the shelf label out, the way the house likes it.",
-    "tags": { "role": "bartender", "temper": "any" },
+    "tags": {
+      "role": "bartender",
+      "temper": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "bus-p010",
     "deck": "business",
     "text": "The register book gets turned round so I can see it and turned back before I can.",
-    "tags": { "role": "doorman", "temper": "any" },
+    "tags": {
+      "role": "doorman",
+      "temper": "any"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "bus-001",
+    "deck": "business",
+    "text": "Working a rag down the same six inches of mahogany.",
+    "tags": {
+      "role": "bartender",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-002",
+    "deck": "business",
+    "text": "Kept his eyes on the glass while he dried it.",
+    "tags": {
+      "role": "bartender",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-003",
+    "deck": "business",
+    "text": "Set both hands flat on the bar and waited.",
+    "tags": {
+      "role": "bartender",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-004",
+    "deck": "business",
+    "text": "Drew a beer nobody had ordered yet and set the rag over one shoulder.",
+    "tags": {
+      "role": "bartender",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-005",
+    "deck": "business",
+    "text": "Rinsed a glass, held it to the light, rinsed it again.",
+    "tags": {
+      "role": "bartender",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-006",
+    "deck": "business",
+    "text": "Counted the till under the bar without breaking off the sentence.",
+    "tags": {
+      "role": "bartender",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-007",
+    "deck": "business",
+    "text": "Kept polishing the same glass through the whole answer, holding it to the light twice, like the story needed the extra beat.",
+    "tags": {
+      "role": "bartender",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-008",
+    "deck": "business",
+    "text": "Poured two fingers nobody had asked for, slid it across, and kept talking past it.",
+    "tags": {
+      "role": "bartender",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-009",
+    "deck": "business",
+    "text": "Wiped down the whole length of the bar while he talked, working around three regulars who weren't listening to a word.",
+    "tags": {
+      "role": "bartender",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-010",
+    "deck": "business",
+    "text": "Stood at parade rest, gloves at his sides.",
+    "tags": {
+      "role": "doorman",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-011",
+    "deck": "business",
+    "text": "Kept one hand on the door the whole time.",
+    "tags": {
+      "role": "doorman",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-012",
+    "deck": "business",
+    "text": "Watched the street over my shoulder while he answered.",
+    "tags": {
+      "role": "doorman",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-013",
+    "deck": "business",
+    "text": "Tugged his gloves straight, finger by finger, before he answered.",
+    "tags": {
+      "role": "doorman",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-014",
+    "deck": "business",
+    "text": "Held the door for a tenant mid-sentence, picked the thread back up after.",
+    "tags": {
+      "role": "doorman",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-015",
+    "deck": "business",
+    "text": "Checked his watch against the lobby clock without missing a word.",
+    "tags": {
+      "role": "doorman",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-016",
+    "deck": "business",
+    "text": "Buttoned and unbuttoned his coat while he talked, working in three tenants' business nobody had asked about.",
+    "tags": {
+      "role": "doorman",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-017",
+    "deck": "business",
+    "text": "Waved off one cab, then another, and kept right on talking through both.",
+    "tags": {
+      "role": "doorman",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-018",
+    "deck": "business",
+    "text": "Straightened his cap twice and gave me the whole building's schedule along with the one answer I wanted.",
+    "tags": {
+      "role": "doorman",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-019",
+    "deck": "business",
+    "text": "Kept making change without looking up.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-020",
+    "deck": "business",
+    "text": "Folded a paper into thirds and set it aside.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-021",
+    "deck": "business",
+    "text": "Thumbed the twine on a stack, didn't cut it.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-022",
+    "deck": "business",
+    "text": "Sold a paper mid-answer, made the change by feel.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-023",
+    "deck": "business",
+    "text": "Straightened a row of magazines while he talked.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-024",
+    "deck": "business",
+    "text": "Chewed a dead cigar stub that had gone out an hour before.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-025",
+    "deck": "business",
+    "text": "Rearranged the whole front row of dailies while he talked, naming every customer who'd bought one that morning.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-026",
+    "deck": "business",
+    "text": "Kept one eye on a kid eyeing the candy rack and never lost the thread of the story.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-027",
+    "deck": "business",
+    "text": "Counted his stock out loud, twice, and worked in the weather report along with everything I'd asked.",
+    "tags": {
+      "role": "newsstand",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-028",
+    "deck": "business",
+    "text": "Wiped the same square foot of counter.",
+    "tags": {
+      "role": "counterman",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-029",
+    "deck": "business",
+    "text": "Set down a cup he hadn't been asked to fill.",
+    "tags": {
+      "role": "counterman",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-030",
+    "deck": "business",
+    "text": "Kept his eyes on the register drawer.",
+    "tags": {
+      "role": "counterman",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-031",
+    "deck": "business",
+    "text": "Rang up a sale mid-sentence and shut the drawer with a hip.",
+    "tags": {
+      "role": "counterman",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-032",
+    "deck": "business",
+    "text": "Refilled a sugar bowl that didn't need it while he talked.",
+    "tags": {
+      "role": "counterman",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-033",
+    "deck": "business",
+    "text": "Wiped his hands on his apron before answering.",
+    "tags": {
+      "role": "counterman",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-034",
+    "deck": "business",
+    "text": "Kept a running account of every regular who'd sat at that stool that month, refilling coffee nobody asked for.",
+    "tags": {
+      "role": "counterman",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-035",
+    "deck": "business",
+    "text": "Flipped a towel over one shoulder, then the other, and told the story with both hands free.",
+    "tags": {
+      "role": "counterman",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-036",
+    "deck": "business",
+    "text": "Rearranged the pie case twice during the answer, narrating the whole lunch rush along with it.",
+    "tags": {
+      "role": "counterman",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-037",
+    "deck": "business",
+    "text": "Punched a stub without looking at it.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-038",
+    "deck": "business",
+    "text": "Kept his hand on the velvet rope.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-039",
+    "deck": "business",
+    "text": "Watched the last of the line file past.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-040",
+    "deck": "business",
+    "text": "Tore a ticket in half mid-answer and pocketed the stub.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-041",
+    "deck": "business",
+    "text": "Straightened the rope stanchion while he talked.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-042",
+    "deck": "business",
+    "text": "Checked the house lights through the little window.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-043",
+    "deck": "business",
+    "text": "Waved three latecomers through free while he talked, explaining the whole picture's plot along with the answer.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-044",
+    "deck": "business",
+    "text": "Kept re-counting the same stack of stubs, losing count twice, starting over both times.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-045",
+    "deck": "business",
+    "text": "Gave me the whole second show's crowd along with what I'd asked, checking his punch clock every few words.",
+    "tags": {
+      "role": "ticket-taker",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-046",
+    "deck": "business",
+    "text": "Kept a white-gloved hand on the lever.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-047",
+    "deck": "business",
+    "text": "Watched the floor numbers, not me.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-048",
+    "deck": "business",
+    "text": "Let the gate rattle shut before he spoke.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-049",
+    "deck": "business",
+    "text": "Ran the car up a floor and back before he finished the sentence.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-050",
+    "deck": "business",
+    "text": "Straightened one glove at the wrist, then straightened the other.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-051",
+    "deck": "business",
+    "text": "Checked the brass indicator over the door mid-answer.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-052",
+    "deck": "business",
+    "text": "Ran the car for three other tenants while he talked, naming every one along with what I'd asked.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-053",
+    "deck": "business",
+    "text": "Kept working the gate open and shut for emphasis, like the story needed the punctuation.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-054",
+    "deck": "business",
+    "text": "Told me the whole building's comings and goings, floor by floor, before he got to the one I wanted.",
+    "tags": {
+      "role": "elevator-man",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-055",
+    "deck": "business",
+    "text": "Kept the ring of keys in one fist.",
+    "tags": {
+      "role": "landlady",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-056",
+    "deck": "business",
+    "text": "Stood in the doorway, not moving from it.",
+    "tags": {
+      "role": "landlady",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-057",
+    "deck": "business",
+    "text": "Folded her arms over the ledger book.",
+    "tags": {
+      "role": "landlady",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-058",
+    "deck": "business",
+    "text": "Flipped through the rent ledger while she talked, finger tracking down the column.",
+    "tags": {
+      "role": "landlady",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-059",
+    "deck": "business",
+    "text": "Swept the hall runner without ever looking away.",
+    "tags": {
+      "role": "landlady",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-060",
+    "deck": "business",
+    "text": "Checked a curtain was drawn straight, mid-sentence.",
+    "tags": {
+      "role": "landlady",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-061",
+    "deck": "business",
+    "text": "Told me every tenant's business on the floor along with what I'd asked, dusting a banister that didn't need it.",
+    "tags": {
+      "role": "landlady",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-062",
+    "deck": "business",
+    "text": "Kept the ledger open on her lap and read out half the building's late rent while she answered.",
+    "tags": {
+      "role": "landlady",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-063",
+    "deck": "business",
+    "text": "Straightened three doormats in a row, narrating the whole house along with the one fact I wanted.",
+    "tags": {
+      "role": "landlady",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-064",
+    "deck": "business",
+    "text": "Kept his nightstick turning slow in one hand.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-065",
+    "deck": "business",
+    "text": "Watched the corner, not me, the whole time.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-066",
+    "deck": "business",
+    "text": "Checked his watch against the call box.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-067",
+    "deck": "business",
+    "text": "Made a note in his book mid-answer, licked the pencil first.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-068",
+    "deck": "business",
+    "text": "Tipped his cap back an inch before he talked.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-069",
+    "deck": "business",
+    "text": "Waved a car through the intersection without losing the sentence.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-070",
+    "deck": "business",
+    "text": "Told me the whole beat's gossip along with what I'd asked, tapping the nightstick against his palm the entire time.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-071",
+    "deck": "business",
+    "text": "Checked his call box twice during the answer, working in three other complaints from the block.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-072",
+    "deck": "business",
+    "text": "Walked half his beat while he talked, naming every storefront along the way.",
+    "tags": {
+      "role": "beat-cop",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-073",
+    "deck": "business",
+    "text": "Kept both hands on the wheel, engine idling.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-074",
+    "deck": "business",
+    "text": "Flicked the meter flag down and up again.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-075",
+    "deck": "business",
+    "text": "Watched the mirror instead of me.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-076",
+    "deck": "business",
+    "text": "Wiped the windshield with a rag while he talked.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-077",
+    "deck": "business",
+    "text": "Counted his fares for the night on his fingers, mid-sentence.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-078",
+    "deck": "business",
+    "text": "Adjusted his cap against the glare before answering.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-079",
+    "deck": "business",
+    "text": "Told me every fare he'd carried that night along with the one I'd asked about, working the meter flag the whole time.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-080",
+    "deck": "business",
+    "text": "Kept the engine running and the story going, checking the curb for a cop every few words.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-081",
+    "deck": "business",
+    "text": "Recounted the whole night's traffic along the avenue before he got to my question.",
+    "tags": {
+      "role": "cabbie",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-082",
+    "deck": "business",
+    "text": "Kept weighing something on the little brass scale.",
+    "tags": {
+      "role": "druggist",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-083",
+    "deck": "business",
+    "text": "Capped a bottle without looking up.",
+    "tags": {
+      "role": "druggist",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-084",
+    "deck": "business",
+    "text": "Wiped the marble counter in one slow pass.",
+    "tags": {
+      "role": "druggist",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-085",
+    "deck": "business",
+    "text": "Filled a prescription slip mid-sentence, blotter first.",
+    "tags": {
+      "role": "druggist",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-086",
+    "deck": "business",
+    "text": "Drew a seltzer nobody had ordered and set it aside.",
+    "tags": {
+      "role": "druggist",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-087",
+    "deck": "business",
+    "text": "Checked a label twice before answering.",
+    "tags": {
+      "role": "druggist",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-088",
+    "deck": "business",
+    "text": "Told me every customer's ailment that week along with what I'd asked, weighing powders the whole time.",
+    "tags": {
+      "role": "druggist",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-089",
+    "deck": "business",
+    "text": "Kept the soda taps hissing behind him and narrated the whole week's prescriptions.",
+    "tags": {
+      "role": "druggist",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-090",
+    "deck": "business",
+    "text": "Recounted three other customers' business while capping bottles that didn't need capping yet.",
+    "tags": {
+      "role": "druggist",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-091",
+    "deck": "business",
+    "text": "Kept both hands flat on the table.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-092",
+    "deck": "business",
+    "text": "Didn't reach for the cigarette he'd already lit.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-093",
+    "deck": "business",
+    "text": "Held perfectly still, like stillness were an answer.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-094",
+    "deck": "business",
+    "text": "Kept his coat buttoned though the room was warm.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-095",
+    "deck": "business",
+    "text": "Looked at a point past my shoulder the whole time.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-096",
+    "deck": "business",
+    "text": "Kept one hand closed around the other.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-097",
+    "deck": "business",
+    "text": "Answered with the door still in his hand.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-098",
+    "deck": "business",
+    "text": "Stood with her back to the window, out of the light.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-099",
+    "deck": "business",
+    "text": "Kept the drink untouched at her elbow.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-100",
+    "deck": "business",
+    "text": "Let the silence run longer than the question needed.",
+    "tags": {
+      "role": "suspect",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-101",
+    "deck": "business",
+    "text": "Lit a cigarette to have something to do with his hands.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-102",
+    "deck": "business",
+    "text": "Sat down heavily, like the day had finally caught him.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-103",
+    "deck": "business",
+    "text": "Smoothed her skirt and glanced once at the door.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-104",
+    "deck": "business",
+    "text": "Crossed his arms and leaned against the mantel.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-105",
+    "deck": "business",
+    "text": "Poured a drink he didn't offer to share.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-106",
+    "deck": "business",
+    "text": "Straightened a picture frame that didn't need it.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-107",
+    "deck": "business",
+    "text": "Perched on the chair's front inch, coat still buttoned.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-108",
+    "deck": "business",
+    "text": "Twisted a handkerchief through both hands while she talked.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-109",
+    "deck": "business",
+    "text": "Checked his watch, then looked sorry he had.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-110",
+    "deck": "business",
+    "text": "Folded the newspaper she'd been reading and set it face down.",
+    "tags": {
+      "role": "suspect",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-111",
+    "deck": "business",
+    "text": "Talked over the question with three others nobody had asked, hands going the whole time.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-112",
+    "deck": "business",
+    "text": "Refilled her own glass twice during the answer and never once slowed down.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-113",
+    "deck": "business",
+    "text": "Walked the length of the room and back, working in every grievance he had.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-114",
+    "deck": "business",
+    "text": "Lit a cigarette, let it burn out untouched, and kept talking past the ashtray.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-115",
+    "deck": "business",
+    "text": "Pulled out a photograph nobody had asked to see and passed it across the table.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-116",
+    "deck": "business",
+    "text": "Told the whole evening twice, out of order both times.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-117",
+    "deck": "business",
+    "text": "Paced to the window and back, narrating half the neighborhood's business along with hers.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-118",
+    "deck": "business",
+    "text": "Kept reaching for things on the desk and setting them back down, unopened, untouched.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-119",
+    "deck": "business",
+    "text": "Laughed at nothing in particular, twice, partway through a story that wasn't funny.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "bus-120",
+    "deck": "business",
+    "text": "Answered a question I hadn't asked yet, then circled back to the one I had.",
+    "tags": {
+      "role": "suspect",
+      "temper": "yap"
+    },
+    "status": "generated"
   }
 ]

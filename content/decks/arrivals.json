@@ -3,7 +3,11 @@
     "id": "arr-p001",
     "deck": "arrivals",
     "text": "{place} keeps one light on at this hour and runs the rest on memory.",
-    "tags": { "placeKind": "any", "hourBand": "midnight-2", "weather": "any" },
+    "tags": {
+      "placeKind": "any",
+      "hourBand": "midnight-2",
+      "weather": "any"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range arr-pNNN; the content deck uses ARR-NNN."
   },
@@ -11,63 +15,759 @@
     "id": "arr-p002",
     "deck": "arrivals",
     "text": "The door of {place} is on the latch and the step has been wet a while.",
-    "tags": { "placeKind": "any", "hourBand": "midnight-2", "weather": "rain" },
+    "tags": {
+      "placeKind": "any",
+      "hourBand": "midnight-2",
+      "weather": "rain"
+    },
     "status": "placeholder"
   },
   {
     "id": "arr-p003",
     "deck": "arrivals",
     "text": "Two and four is the hour {place} belongs to whoever is still in it.",
-    "tags": { "placeKind": "any", "hourBand": "2-4", "weather": "any" },
+    "tags": {
+      "placeKind": "any",
+      "hourBand": "2-4",
+      "weather": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "arr-p004",
     "deck": "arrivals",
     "text": "Cold came in behind me at {place} and took the good chair.",
-    "tags": { "placeKind": "any", "hourBand": "2-4", "weather": "cold" },
+    "tags": {
+      "placeKind": "any",
+      "hourBand": "2-4",
+      "weather": "cold"
+    },
     "status": "placeholder"
   },
   {
     "id": "arr-p005",
     "deck": "arrivals",
     "text": "There is grey at the bottom of the sky over {place}, and nothing open yet.",
-    "tags": { "placeKind": "any", "hourBand": "4-6", "weather": "any" },
+    "tags": {
+      "placeKind": "any",
+      "hourBand": "4-6",
+      "weather": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "arr-p006",
     "deck": "arrivals",
     "text": "The fog off the river has {place} down to the near kerb and no further.",
-    "tags": { "placeKind": "any", "hourBand": "4-6", "weather": "fog" },
+    "tags": {
+      "placeKind": "any",
+      "hourBand": "4-6",
+      "weather": "fog"
+    },
     "status": "placeholder"
   },
   {
     "id": "arr-p007",
     "deck": "arrivals",
     "text": "Gratings are going back at {place} and the first of the day is going to work past me.",
-    "tags": { "placeKind": "any", "hourBand": "6-8", "weather": "any" },
+    "tags": {
+      "placeKind": "any",
+      "hourBand": "6-8",
+      "weather": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "arr-p008",
     "deck": "arrivals",
     "text": "{place} at six in the morning is a public room with private hours behind it.",
-    "tags": { "placeKind": "public", "hourBand": "6-8", "weather": "clear" },
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "6-8",
+      "weather": "clear"
+    },
     "status": "placeholder"
   },
   {
     "id": "arr-p009",
     "deck": "arrivals",
     "text": "The stairs up to {place} have been swept and the landing has not.",
-    "tags": { "placeKind": "private", "hourBand": "any", "weather": "any" },
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "any",
+      "weather": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "arr-p010",
     "deck": "arrivals",
     "text": "Somebody is always coming out of {place} as I am going in, and never the same somebody.",
-    "tags": { "placeKind": "semi", "hourBand": "any", "weather": "any" },
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "any",
+      "weather": "any"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "arr-001",
+    "deck": "arrivals",
+    "text": "The block was quiet, every window dark but one. A car idled at the curb with its lights off.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-002",
+    "deck": "arrivals",
+    "text": "Rain slicked the stoop steps black. A cat crossed under a parked car and didn't look up.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-003",
+    "deck": "arrivals",
+    "text": "Fog sat low over the row houses, blurring the streetlamps to smears. Somewhere a window sash went down.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-004",
+    "deck": "arrivals",
+    "text": "The cold cut through, and the block had emptied early because of it. Every stoop light was out but the one over the door.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-005",
+    "deck": "arrivals",
+    "text": "Not a soul on the block. The moon threw hard shadows off the fire escapes.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "2-4",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-006",
+    "deck": "arrivals",
+    "text": "The rain had settled into a steady drum on the tin cornices. A dog barked once, twice, then gave it up.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "2-4",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-007",
+    "deck": "arrivals",
+    "text": "Fog pressed close against the windows, and the street numbers were hard to read past the third house.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "2-4",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-008",
+    "deck": "arrivals",
+    "text": "Frost had already silvered the iron railings. My own footsteps were the only sound on the block.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "2-4",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-009",
+    "deck": "arrivals",
+    "text": "The sky was going gray at the edges. A milk bottle sat sweating on a stoop three doors down.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "4-6",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-010",
+    "deck": "arrivals",
+    "text": "The rain had thinned to a drizzle, and a lamp came on in a kitchen window as I passed. Somebody else was up early too.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "4-6",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-011",
+    "deck": "arrivals",
+    "text": "The fog was lifting off the rooftops first, leaving the street still socked in. A newspaper lay unclaimed on a stoop, going soft.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "4-6",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-012",
+    "deck": "arrivals",
+    "text": "The cold had a bite that clear skies bring. Smoke stood straight up from two chimneys on the block.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "4-6",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-013",
+    "deck": "arrivals",
+    "text": "The block was waking up slow, a door slamming somewhere, a radio coming on upstairs.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "6-8",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-014",
+    "deck": "arrivals",
+    "text": "Umbrellas were coming out on the stoops, and a boy ran the last block to school with his collar up.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "6-8",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-015",
+    "deck": "arrivals",
+    "text": "The fog had burned down to a haze at eye level. Somebody's wash hung limp on a line between two windows.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "6-8",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-016",
+    "deck": "arrivals",
+    "text": "Breath hung in front of every face on the block. A super was already out front, salting the steps.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "6-8",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-017",
+    "deck": "arrivals",
+    "text": "A last light burned over the shop next to {place}, and the street had the hush that comes after the crowd's thinned. Somebody's radio still played through a cracked window.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-018",
+    "deck": "arrivals",
+    "text": "Rain beaded on the awnings up and down the block, and the gutter ran fast past {place}. A cab sat at the curb, meter dark.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "midnight-2",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-019",
+    "deck": "arrivals",
+    "text": "Fog wrapped the block's lamps into soft yellow rings. {place}'s sign was barely legible from the corner.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "midnight-2",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-020",
+    "deck": "arrivals",
+    "text": "The cold had cleared most of the block out early. A last stubborn pair stood outside {place}, not talking.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-021",
+    "deck": "arrivals",
+    "text": "The block had gone dark storefront by storefront. Only {place} still showed a light through the glass.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "2-4",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-022",
+    "deck": "arrivals",
+    "text": "Rain ran down the gutter in a steady sheet, and every shop on the block had its grille down but one.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "2-4",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-023",
+    "deck": "arrivals",
+    "text": "The fog had thickened enough to hide the far corner. {place}'s window was the only light left on the block.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "2-4",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-024",
+    "deck": "arrivals",
+    "text": "The cold kept the block empty and the glass fogged from inside. {place} was the only warm-looking storefront on the street.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "2-4",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-025",
+    "deck": "arrivals",
+    "text": "A delivery truck idled outside the grocer's, engine ticking as it cooled. The street was starting to stir before the sun did.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "4-6",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-026",
+    "deck": "arrivals",
+    "text": "The rain had washed the block clean of last night's crowd. A grate came up two doors from {place}, early and grudging.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "4-6",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-027",
+    "deck": "arrivals",
+    "text": "Fog hung at window height, thick enough that {place}'s sign showed only its top half. A dog trotted past without slowing, headed somewhere in particular.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "4-6",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-028",
+    "deck": "arrivals",
+    "text": "Frost furred the awnings along the block. Somebody was already scraping ice off a windshield outside {place}.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "4-6",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-029",
+    "deck": "arrivals",
+    "text": "The block was in full swing, grilles up, a boy stacking crates outside the grocer's. {place} had its door propped for the morning trade.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "6-8",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-030",
+    "deck": "arrivals",
+    "text": "Shopkeepers were dragging their awnings out against the drizzle, and the block smelled of wet canvas and fresh coffee.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "6-8",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-031",
+    "deck": "arrivals",
+    "text": "The fog was thinning off the rooftops, though it still sat low over the gutter. {place} had its lights on against the gray.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "6-8",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-032",
+    "deck": "arrivals",
+    "text": "Steam rose off the grates along the block, and everyone walking had their collar turned up against it.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "6-8",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-033",
+    "deck": "arrivals",
+    "text": "The square was near empty, just a few benches holding their regular loiterers. A streetcar rattled through, half lit, nobody aboard.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-034",
+    "deck": "arrivals",
+    "text": "Rain pocked the empty square, and the fountain basin had gone over its rim. A single cab crossed against the light, wipers going.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-035",
+    "deck": "arrivals",
+    "text": "Fog softened the square's lamps to a string of pale rings. The benches sat empty, beaded with damp.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-036",
+    "deck": "arrivals",
+    "text": "The wind came straight across the square with nothing to stop it. Even the pigeons had found somewhere better.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-037",
+    "deck": "arrivals",
+    "text": "The avenue ran wide and empty under a hard sky. A newspaper turned over once on the pavement and stopped.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "2-4",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-038",
+    "deck": "arrivals",
+    "text": "The square's lamps threw long reflections down the wet flagstones. Not a soul was out but a sweeper working the gutter.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "2-4",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-039",
+    "deck": "arrivals",
+    "text": "Fog off the river had swallowed the square's far end whole. A foghorn sounded once, a long way off.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "2-4",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-040",
+    "deck": "arrivals",
+    "text": "The cold had the square to itself. A newsboy's stack sat unguarded under a lamp, weighted down with a brick.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "2-4",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-041",
+    "deck": "arrivals",
+    "text": "The first light caught the square's flagstones and made them look scrubbed. A milk wagon crossed at the far end, iron tires loud on the stone.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "4-6",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-042",
+    "deck": "arrivals",
+    "text": "The rain had slacked to a mist, and the square held a handful of early men with their collars up, going nowhere in particular.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "4-6",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-043",
+    "deck": "arrivals",
+    "text": "The square was still fogged in, though the shapes of the benches were starting to come clear. A bell somewhere tolled the half hour.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "4-6",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-044",
+    "deck": "arrivals",
+    "text": "Ice had skinned over the fountain basin in the square. A lone figure crossed fast, breath trailing behind him.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "4-6",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-045",
+    "deck": "arrivals",
+    "text": "The square had filled in with the morning crowd, pigeons scattering ahead of every third step. The light was flat and full now.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "6-8",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-046",
+    "deck": "arrivals",
+    "text": "Umbrellas crossed the square from every direction at once, and the flagstones ran with runoff toward the gutters.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "6-8",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-047",
+    "deck": "arrivals",
+    "text": "The fog had burned off the square but hung on over the river behind it. Traffic was starting up in earnest along the avenue.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "6-8",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-048",
+    "deck": "arrivals",
+    "text": "The square was busy despite the cold, everybody moving fast to stay warm. Steam curled up off the coffee cart at the corner.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "6-8",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-049",
+    "deck": "arrivals",
+    "text": "The block outside {place} had gone quiet early, one drunk singing to himself half a block off. My own footsteps sounded too loud for the hour.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-050",
+    "deck": "arrivals",
+    "text": "A beat cop crossed the square on the diagonal, unhurried, checking doors as he went. Nothing else moved.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-051",
+    "deck": "arrivals",
+    "text": "Rain ran off {place}'s awning in a steady curtain, and the block smelled of wet brick and spilled beer.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "midnight-2",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-052",
+    "deck": "arrivals",
+    "text": "The rain had driven everybody off the square but a man asleep on a bench under yesterday's paper.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-053",
+    "deck": "arrivals",
+    "text": "The cold kept the block's doors shut tight, and every window along it was fogged from the inside.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-054",
+    "deck": "arrivals",
+    "text": "The fog muffled the square down to almost nothing, just the click of my own heels on the stone.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "fog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-055",
+    "deck": "arrivals",
+    "text": "The block was still, porch lights out up and down the row. A shade moved once in an upstairs window and settled.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-056",
+    "deck": "arrivals",
+    "text": "The block had gone dark early, {place}'s window the last one lit on the row.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "2-4",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-057",
+    "deck": "arrivals",
+    "text": "A lone trolley ground through the square, empty and slow, nobody aboard. The rain kept at it steady.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "2-4",
+      "weather": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-058",
+    "deck": "arrivals",
+    "text": "The grocer's boy was already stacking crates outside, and the block had that early quiet before the trucks start.",
+    "tags": {
+      "placeKind": "semi",
+      "hourBand": "4-6",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-059",
+    "deck": "arrivals",
+    "text": "Commuters cut across the square at an angle, everyone late for something. The fountain had been turned back on for the day.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "6-8",
+      "weather": "clear"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "arr-060",
+    "deck": "arrivals",
+    "text": "The cold had driven even the cats indoors. Nothing moved on the block but a curtain, once, in an upstairs window.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "2-4",
+      "weather": "cold"
+    },
+    "status": "generated"
   }
 ]

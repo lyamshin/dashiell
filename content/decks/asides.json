@@ -3,7 +3,10 @@
     "id": "asd-p001",
     "deck": "asides",
     "text": "There would be a light on in my own window and somebody behind it still up.",
-    "tags": { "relationship": "someone-waiting", "circumstance": "any" },
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "any"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range asd-pNNN; the content deck uses ASD-NNN. Never plot."
   },
@@ -11,49 +14,670 @@
     "id": "asd-p002",
     "deck": "asides",
     "text": "The flat would be cold, and the second cup would be where it has been since March.",
-    "tags": { "relationship": "someone-who-left", "circumstance": "any" },
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "asd-p003",
     "deck": "asides",
     "text": "I thought about telephoning and could not settle on which number. That is the whole of that.",
-    "tags": { "relationship": "complicated", "circumstance": "any" },
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "asd-p004",
     "deck": "asides",
     "text": "Nobody was sitting up for me, which makes a night like this one cheaper.",
-    "tags": { "relationship": "none", "circumstance": "any" },
+    "tags": {
+      "relationship": "none",
+      "circumstance": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "asd-p005",
     "deck": "asides",
     "text": "The landlady would have the notice under my door by Monday, typed.",
-    "tags": { "relationship": "any", "circumstance": "behind-on-rent" },
+    "tags": {
+      "relationship": "any",
+      "circumstance": "behind-on-rent"
+    },
     "status": "placeholder"
   },
   {
     "id": "asd-p006",
     "deck": "asides",
     "text": "Two weeks in a parked car outside a hotel in Astoria, and the money went on the car.",
-    "tags": { "relationship": "any", "circumstance": "off-a-divorce-case" },
+    "tags": {
+      "relationship": "any",
+      "circumstance": "off-a-divorce-case"
+    },
     "status": "placeholder"
   },
   {
     "id": "asd-p007",
     "deck": "asides",
     "text": "The rib Tuesday left me had opinions about stairs.",
-    "tags": { "relationship": "any", "circumstance": "bruised" },
+    "tags": {
+      "relationship": "any",
+      "circumstance": "bruised"
+    },
     "status": "placeholder"
   },
   {
     "id": "asd-p008",
     "deck": "asides",
     "text": "Forty dollars in the coat, and a coat that needed the forty dollars.",
-    "tags": { "relationship": "any", "circumstance": "just-paid" },
+    "tags": {
+      "relationship": "any",
+      "circumstance": "just-paid"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "asd-001",
+    "deck": "asides",
+    "text": "Nobody was waiting up for me, which was its own kind of mercy some nights.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-002",
+    "deck": "asides",
+    "text": "I kept a list of people I owed money, and my own name wasn't the shortest line on it.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-003",
+    "deck": "asides",
+    "text": "I ate a good dinner alone and didn't mind it, which surprised me a little.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-004",
+    "deck": "asides",
+    "text": "Money in the pocket and nobody to spend it on but myself. I'd gotten used to that arithmetic.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-005",
+    "deck": "asides",
+    "text": "There was nobody home to notice what state I came in, and some mornings that was the whole problem.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-006",
+    "deck": "asides",
+    "text": "I drank alone most nights now, which either meant I preferred it or had stopped noticing the difference.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-007",
+    "deck": "asides",
+    "text": "Nobody waited up to ask about the bruise, so I didn't have to explain it to anybody but the mirror.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-008",
+    "deck": "asides",
+    "text": "I patched myself up at the kitchen table, same as always, same as nobody watching.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-009",
+    "deck": "asides",
+    "text": "Watching two people take each other apart over a signature had a way of making my own arrangement look sensible.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-010",
+    "deck": "asides",
+    "text": "I went home to an empty room after that case and found the quiet didn't bother me the way it once might have.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-011",
+    "deck": "asides",
+    "text": "An empty apartment doesn't keep you up, but it doesn't help you sleep either.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-012",
+    "deck": "asides",
+    "text": "I counted the cracks in the ceiling instead of sheep, mostly out of habit.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-013",
+    "deck": "asides",
+    "text": "I thought, for half a second, about who I'd tell the good news to, and came up empty.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-014",
+    "deck": "asides",
+    "text": "A fee like that used to mean something to somebody. Now it just meant the rent.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-015",
+    "deck": "asides",
+    "text": "She'd have the coffee on when I got in, and ask about the rent before she asked about the case.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-016",
+    "deck": "asides",
+    "text": "I hadn't told her yet how far behind we were, and I wasn't looking forward to it.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-017",
+    "deck": "asides",
+    "text": "I thought about the look on her face when I laid the fee on the table.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-018",
+    "deck": "asides",
+    "text": "For once I'd be able to walk in with good news instead of an excuse.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-019",
+    "deck": "asides",
+    "text": "She'd smell the whiskey before I got my coat off, and say nothing about it, which was worse.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-020",
+    "deck": "asides",
+    "text": "I practiced what I'd say about the state of me, and none of it sounded any better out loud.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-021",
+    "deck": "asides",
+    "text": "She'd ask about the jaw first and the case second, same as always.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-022",
+    "deck": "asides",
+    "text": "I thought up three different stories for the bruise on the walk over, and used none of them.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-023",
+    "deck": "asides",
+    "text": "After two weeks on that divorce case, going home to someone who wasn't lying to me felt like a favor.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-024",
+    "deck": "asides",
+    "text": "She never asked what the last case had been about, and I never told her. Some arrangements work better that way.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-025",
+    "deck": "asides",
+    "text": "She'd be asleep by now, and I thought about that more than I thought about the case.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-026",
+    "deck": "asides",
+    "text": "I pictured the apartment dark and quiet, and it got me through the last hour easier than coffee would have.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-027",
+    "deck": "asides",
+    "text": "I'd bring her something with this fee, nothing fancy, just something.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-028",
+    "deck": "asides",
+    "text": "She never asked how much a case paid, only whether I was coming home in one piece.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-029",
+    "deck": "asides",
+    "text": "She used to keep better track of the bills than I did. I still hadn't found her system.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-030",
+    "deck": "asides",
+    "text": "The rent had been easier split two ways, back when it was.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-031",
+    "deck": "asides",
+    "text": "I thought about sending her something, then thought better of it, same as usual.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-032",
+    "deck": "asides",
+    "text": "Money never used to sit easy with me either, until there was somebody to spend it on.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-033",
+    "deck": "asides",
+    "text": "She used to say I drank worse when a case went bad. She wasn't wrong, and she isn't here to say it anymore.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-034",
+    "deck": "asides",
+    "text": "I woke up reaching for a glass of water she used to leave on the nightstand, out of habit more than memory.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-035",
+    "deck": "asides",
+    "text": "She used to patch me up better than I patch myself up now.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-036",
+    "deck": "asides",
+    "text": "Nobody left to ask about the bruise, which I told myself was easier.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-037",
+    "deck": "asides",
+    "text": "I took the divorce work maybe because it was easier than admitting my own hadn't gone any better.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-038",
+    "deck": "asides",
+    "text": "Watching that couple fight over furniture reminded me I never did get my books back from her.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-039",
+    "deck": "asides",
+    "text": "Some nights I still reached for her side of the bed before I remembered.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-040",
+    "deck": "asides",
+    "text": "The apartment was quieter since she left, and I still hadn't decided if that was a mercy.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-041",
+    "deck": "asides",
+    "text": "I used to split good news two ways. Now I just banked it.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-042",
+    "deck": "asides",
+    "text": "She'd have known exactly what to do with a fee like this. I still hadn't worked it out.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-043",
+    "deck": "asides",
+    "text": "She'd lend me the rent if I asked. I wasn't going to ask. We both knew it anyway.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-044",
+    "deck": "asides",
+    "text": "I owed her more than the landlady, one way or another, and neither debt was getting paid soon.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "behind-on-rent"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-045",
+    "deck": "asides",
+    "text": "I thought about calling her with the good news, then remembered why I usually didn't.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-046",
+    "deck": "asides",
+    "text": "Money made things easier between us for about a day, historically. I wasn't holding my breath this time.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "flush"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-047",
+    "deck": "asides",
+    "text": "She always said the drinking was a symptom, not the problem. I never asked what she thought the problem was.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-048",
+    "deck": "asides",
+    "text": "I'd have called her, hungover as I was, if I thought it would go anywhere good.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-049",
+    "deck": "asides",
+    "text": "She'd have plenty to say about the bruise, none of it comforting, all of it probably true.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-050",
+    "deck": "asides",
+    "text": "I decided not to mention the jaw to her, which she'd have called typical, and been right to.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "bruised"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-051",
+    "deck": "asides",
+    "text": "The divorce case had a way of making me count up everything unresolved in my own life, which was a long list.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-052",
+    "deck": "asides",
+    "text": "She'd have found it funny, me working a case like that, given our own history.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-053",
+    "deck": "asides",
+    "text": "I lay awake running arguments we'd already had, improving my side of them after the fact.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-054",
+    "deck": "asides",
+    "text": "She used to say I only missed her at the worst hour of the night. She wasn't wrong about the timing.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-055",
+    "deck": "asides",
+    "text": "I thought about what she'd say about the fee, and decided I already knew, and didn't call.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-056",
+    "deck": "asides",
+    "text": "Good news and complicated people don't mix well over the telephone. I'd learned that one the hard way.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-057",
+    "deck": "asides",
+    "text": "The hangover stung less when there was nobody around to disapprove of it.",
+    "tags": {
+      "relationship": "none",
+      "circumstance": "hungover"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-058",
+    "deck": "asides",
+    "text": "I practiced the number in my head so it wouldn't come out wrong when she asked.",
+    "tags": {
+      "relationship": "someone-waiting",
+      "circumstance": "just-paid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-059",
+    "deck": "asides",
+    "text": "Four in the morning was when I missed her most, and I'd stopped pretending otherwise.",
+    "tags": {
+      "relationship": "someone-who-left",
+      "circumstance": "sleepless"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "asd-060",
+    "deck": "asides",
+    "text": "I wondered if anyone could sum up the pair of us as neatly as I'd just summed up that couple's wreck of a marriage.",
+    "tags": {
+      "relationship": "complicated",
+      "circumstance": "off-a-divorce-case"
+    },
+    "status": "generated"
   }
 ]

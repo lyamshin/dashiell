@@ -3,7 +3,11 @@
     "id": "utt-p001",
     "deck": "utterances",
     "text": "{subject} was at {place} at {time}. I had my eyes open and that is where {subject} was.",
-    "tags": { "factKind": "personAt", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "personAt",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range utt-pNNN; the content deck uses UTT-NNN. An utterance must carry its fact whole: who, where, when."
   },
@@ -11,119 +15,1947 @@
     "id": "utt-p002",
     "deck": "utterances",
     "text": "{time}. {place}. {subject}.",
-    "tags": { "factKind": "personAt", "temper": "enigma", "register": "truth" },
+    "tags": {
+      "factKind": "personAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p003",
     "deck": "utterances",
     "text": "{subject}? At {place}, {time}, same as any night of the week, and in no hurry about it.",
-    "tags": { "factKind": "personAt", "temper": "yap", "register": "truth" },
+    "tags": {
+      "factKind": "personAt",
+      "temper": "yap",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p004",
     "deck": "utterances",
     "text": "{subject} was not at {place} at {time}. Not that half hour.",
-    "tags": { "factKind": "personNotAt", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p005",
     "deck": "utterances",
     "text": "Not {subject}. Not {place}, not {time}.",
-    "tags": { "factKind": "personNotAt", "temper": "enigma", "register": "truth" },
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p006",
     "deck": "utterances",
     "text": "{subject} was nowhere near {place} at {time}, and I will keep saying so.",
-    "tags": { "factKind": "personNotAt", "temper": "yap", "register": "truth" },
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "yap",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p007",
     "deck": "utterances",
     "text": "{subject} was not with me at {time}. Whoever says so is saying it for a reason.",
-    "tags": { "factKind": "denial", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "denial",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p008",
     "deck": "utterances",
     "text": "{subject}? {time}? No.",
-    "tags": { "factKind": "denial", "temper": "enigma", "register": "truth" },
+    "tags": {
+      "factKind": "denial",
+      "temper": "enigma",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p009",
     "deck": "utterances",
     "text": "I have been put in a lot of places I was not, but not with {subject}, and not at {time}.",
-    "tags": { "factKind": "denial", "temper": "yap", "register": "truth" },
+    "tags": {
+      "factKind": "denial",
+      "temper": "yap",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p010",
     "deck": "utterances",
     "text": "{object} is gone from where it lives, and it went before the morning.",
-    "tags": { "factKind": "objectMissing", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p011",
     "deck": "utterances",
     "text": "Something went off at {place} at {time}. One sound, and then the street again.",
-    "tags": { "factKind": "noiseAt", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p012",
     "deck": "utterances",
     "text": "The coroner puts it {window}, and he will not go narrower than that.",
-    "tags": { "factKind": "timeOfDeath", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p013",
     "deck": "utterances",
     "text": "{subject} had a reason and the reason has a name: {motive}.",
-    "tags": { "factKind": "hasMotive", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p014",
     "deck": "utterances",
     "text": "{subject} had the run of {place}. Keys, back door, the lot.",
-    "tags": { "factKind": "hadAccess", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p015",
     "deck": "utterances",
     "text": "{subject} was alive at {time}. I would put my hand up for that hour.",
-    "tags": { "factKind": "victimAliveAt", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p016",
     "deck": "utterances",
     "text": "By {time} {subject} was past anybody’s help.",
-    "tags": { "factKind": "victimDeadBy", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p017",
     "deck": "utterances",
     "text": "It was {method}. The body says so and a body does not hedge.",
-    "tags": { "factKind": "methodEvidence", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
   },
   {
     "id": "utt-p018",
     "deck": "utterances",
     "text": "What {subject} was covering that night was this and no worse: {secret}.",
-    "tags": { "factKind": "secretExplained", "temper": "plain", "register": "truth" },
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "plain",
+      "register": "truth"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "utt-001",
+    "deck": "utterances",
+    "text": "{subject}, {time}. Gone before the next round.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-002",
+    "deck": "utterances",
+    "text": "{time}. {subject} was right there, at {place}.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-003",
+    "deck": "utterances",
+    "text": "{subject} was at {place} by {time}. That's the whole of it.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-004",
+    "deck": "utterances",
+    "text": "{time}, far as I recall. {subject} might've been at {place}.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-005",
+    "deck": "utterances",
+    "text": "{subject} was at {place} the whole time, {time} on, never left my sight.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "enigma",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-006",
+    "deck": "utterances",
+    "text": "{subject} came into {place} around {time} and stayed a while.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-007",
+    "deck": "utterances",
+    "text": "By {time}, {subject} was settled in at {place}.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-008",
+    "deck": "utterances",
+    "text": "{subject} showed up at {place} close to {time}, same as most nights.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-009",
+    "deck": "utterances",
+    "text": "Somewhere around {time}, I think, {subject} was near {place}. Don't hold me to the hour.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-010",
+    "deck": "utterances",
+    "text": "{subject} was at {place} from {time} straight through, and I'd swear to every minute of it.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "plain",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-011",
+    "deck": "utterances",
+    "text": "{subject} came in around {time}, hung a coat, and stayed at {place} long enough that I noticed.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-012",
+    "deck": "utterances",
+    "text": "By {time} {subject} was at {place}, and stayed there talking to half the room.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-013",
+    "deck": "utterances",
+    "text": "{subject} turned up at {place} near {time}, ordered the usual, and didn't hurry through it.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-014",
+    "deck": "utterances",
+    "text": "Somewhere near {time}, best as I can piece it together, {subject} was around {place}, though I wasn't watching close.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-015",
+    "deck": "utterances",
+    "text": "{subject} was at {place} the entire evening from {time} on, and I could name you three people who'd back that up, easy.",
+    "tags": {
+      "factKind": "personAt",
+      "temper": "yap",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-016",
+    "deck": "utterances",
+    "text": "{subject} wasn't at {place}. Not by {time}.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-017",
+    "deck": "utterances",
+    "text": "No sign of {subject} at {place}, {time}.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-018",
+    "deck": "utterances",
+    "text": "{subject} never came near {place}, not at {time}.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-019",
+    "deck": "utterances",
+    "text": "Can't say {subject} was at {place} by {time}. Didn't see them, anyway.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-020",
+    "deck": "utterances",
+    "text": "{subject} was nowhere near {place} at {time}. I'd know.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "enigma",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-021",
+    "deck": "utterances",
+    "text": "{subject} didn't come by {place} at {time}, or any time close to it.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-022",
+    "deck": "utterances",
+    "text": "There was no {subject} at {place} around {time}, not that I saw.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-023",
+    "deck": "utterances",
+    "text": "I'd have noticed {subject} at {place} by {time}, and I didn't.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-024",
+    "deck": "utterances",
+    "text": "I don't recall {subject} at {place} around {time}, but the evening's a blur.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-025",
+    "deck": "utterances",
+    "text": "{subject} was never at {place}, not at {time}, not that whole night.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "plain",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-026",
+    "deck": "utterances",
+    "text": "{subject} didn't set foot near {place} by {time}, and I'd have seen it, sitting where I sit.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-027",
+    "deck": "utterances",
+    "text": "No, {subject} wasn't at {place} around {time}. I know because I was watching the door most of the evening.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-028",
+    "deck": "utterances",
+    "text": "I can tell you {subject} never came through {place} by {time}, on account of I was there the whole stretch.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-029",
+    "deck": "utterances",
+    "text": "I couldn't swear {subject} wasn't at {place} by {time}, the place gets crowded and I don't watch every face.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-030",
+    "deck": "utterances",
+    "text": "{subject} absolutely was not at {place} at {time}, and I'll tell you exactly why I'm so sure, if you want to hear it.",
+    "tags": {
+      "factKind": "personNotAt",
+      "temper": "yap",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-031",
+    "deck": "utterances",
+    "text": "I wasn't with {subject} at {time}. Whatever they told you.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-032",
+    "deck": "utterances",
+    "text": "No. Not with {subject}, not at {time}.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-033",
+    "deck": "utterances",
+    "text": "{subject} wasn't with me at {time}. Plain and simple.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-034",
+    "deck": "utterances",
+    "text": "Can't say I was with {subject} right at {time}. Wouldn't want to swear to where, either.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-035",
+    "deck": "utterances",
+    "text": "I was with {subject} the whole time, {time} included. Every minute.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "enigma",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-036",
+    "deck": "utterances",
+    "text": "I wasn't anywhere near {subject} at {time}, whatever they've told you.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-037",
+    "deck": "utterances",
+    "text": "{subject} wasn't with me at {time}. I don't know why they'd say that.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-038",
+    "deck": "utterances",
+    "text": "No, that's not right. I wasn't with {subject}, not at {time}.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-039",
+    "deck": "utterances",
+    "text": "I couldn't say for certain I was with {subject} at {time}. Memory's not what it was.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-040",
+    "deck": "utterances",
+    "text": "I was with {subject} at {time}, same as they said. Every word of it's true.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "plain",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-041",
+    "deck": "utterances",
+    "text": "I wasn't with {subject} at {time}, and I don't know why they'd tell you otherwise, unless they're covering for somebody.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-042",
+    "deck": "utterances",
+    "text": "No, that's not so. I wasn't anywhere near {subject} at {time}, and I've got my own reasons for remembering it clear.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-043",
+    "deck": "utterances",
+    "text": "{subject} and I weren't together at {time}, not that night, and I'll tell you exactly where I was instead.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-044",
+    "deck": "utterances",
+    "text": "I can't rightly say where I was with {subject} at {time}, the whole evening runs together on me these days.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-045",
+    "deck": "utterances",
+    "text": "I was with {subject} the entire time, {time} on, and I could walk you through every minute of it if you like.",
+    "tags": {
+      "factKind": "denial",
+      "temper": "yap",
+      "register": "lie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-046",
+    "deck": "utterances",
+    "text": "{subject} owed money. Plenty of it.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-047",
+    "deck": "utterances",
+    "text": "Bad blood, {subject} and the dead man. Old money trouble.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-048",
+    "deck": "utterances",
+    "text": "{subject} stood to gain, and everybody at {place} knew it.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-049",
+    "deck": "utterances",
+    "text": "There was talk about {subject} and money. I don't repeat talk.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-050",
+    "deck": "utterances",
+    "text": "Ask somebody else about {subject}'s reasons. Not my business to say.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-051",
+    "deck": "utterances",
+    "text": "{subject} had been pressing for money, and not getting it.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-052",
+    "deck": "utterances",
+    "text": "There was trouble between {subject} and the dead man, going back a while.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-053",
+    "deck": "utterances",
+    "text": "{subject} had plenty to gain, and everyone at {place} knew it.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-054",
+    "deck": "utterances",
+    "text": "I heard talk of {subject} owing money, but I don't put much stock in talk.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-055",
+    "deck": "utterances",
+    "text": "There might've been bad blood there. I try to stay out of it.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-056",
+    "deck": "utterances",
+    "text": "{subject} had been after the dead man for money for months, and not quiet about it either, not at {place}.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-057",
+    "deck": "utterances",
+    "text": "There was old trouble between {subject} and the dead man, going back years, the kind that doesn't just go away.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-058",
+    "deck": "utterances",
+    "text": "{subject} stood to come out ahead, and half of {place} could've told you as much, if you'd asked around.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-059",
+    "deck": "utterances",
+    "text": "I heard plenty of talk about {subject} and money troubles, but talk's cheap around {place}, and I don't spread it further.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-060",
+    "deck": "utterances",
+    "text": "There might've been bad blood there, I couldn't say for certain, people don't tell me everything that goes on.",
+    "tags": {
+      "factKind": "hasMotive",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-061",
+    "deck": "utterances",
+    "text": "{subject} knew where the {object} was kept.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-062",
+    "deck": "utterances",
+    "text": "{subject} had a key to {place}. Always did.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-063",
+    "deck": "utterances",
+    "text": "That {object} was easy enough for {subject} to get to.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-064",
+    "deck": "utterances",
+    "text": "Plenty of people could've gotten at the {object}. {subject} included.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-065",
+    "deck": "utterances",
+    "text": "I couldn't say who all knew where the {object} was kept.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-066",
+    "deck": "utterances",
+    "text": "{subject} had a key to {place}, same as always.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-067",
+    "deck": "utterances",
+    "text": "{subject} knew right where the {object} was kept, no question.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-068",
+    "deck": "utterances",
+    "text": "Getting to the {object} wouldn't have taken {subject} five minutes.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-069",
+    "deck": "utterances",
+    "text": "A few people knew where the {object} was, {subject} among them, but I couldn't say who used it.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-070",
+    "deck": "utterances",
+    "text": "I suppose {subject} could've gotten to the {object}. So could a few others.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-071",
+    "deck": "utterances",
+    "text": "{subject} had a key to {place} going back years, and knew the place well enough to find the {object} in the dark.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-072",
+    "deck": "utterances",
+    "text": "{subject} knew exactly where the {object} was kept, on account of having been in and out of {place} more times than I could count.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-073",
+    "deck": "utterances",
+    "text": "Getting to the {object} would've taken {subject} no time at all, seeing as they'd had the run of {place} for months.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-074",
+    "deck": "utterances",
+    "text": "There were a good few people who knew where the {object} was kept, {subject} being one of them, though I'd hate to single anyone out.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-075",
+    "deck": "utterances",
+    "text": "I couldn't tell you for certain who all had access to the {object} at {place}. More people than you'd think, is all I'll say.",
+    "tags": {
+      "factKind": "hadAccess",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-076",
+    "deck": "utterances",
+    "text": "The {object}'s gone from {place}. Has been.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-077",
+    "deck": "utterances",
+    "text": "No {object} at {place}. Not anymore.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-078",
+    "deck": "utterances",
+    "text": "Somebody cleared the {object} out of {place}.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-079",
+    "deck": "utterances",
+    "text": "Couldn't tell you where the {object} got to.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-080",
+    "deck": "utterances",
+    "text": "The {object} that used to sit at {place} isn't there now.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-081",
+    "deck": "utterances",
+    "text": "Somebody took the {object} out of {place}, and recent.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-082",
+    "deck": "utterances",
+    "text": "I noticed the {object} missing from {place} myself.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-083",
+    "deck": "utterances",
+    "text": "The {object} might be missing from {place}. I don't keep close track.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-084",
+    "deck": "utterances",
+    "text": "The {object} that always sat at {place} is gone, and I noticed it the very same day, though I couldn't tell you who took it.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-085",
+    "deck": "utterances",
+    "text": "Somebody cleared the {object} right out of {place}, quiet as anything, and nobody said a word about it to me.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-086",
+    "deck": "utterances",
+    "text": "I noticed the {object} missing from {place} myself, and thought it odd enough to mention to more than one person.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-087",
+    "deck": "utterances",
+    "text": "The {object} might've gone missing from {place}, though with everything that comes and goes through there, I couldn't swear to when.",
+    "tags": {
+      "factKind": "objectMissing",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-088",
+    "deck": "utterances",
+    "text": "Heard something at {place}, {time}. Loud.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-089",
+    "deck": "utterances",
+    "text": "A noise from {place}, right around {time}.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-090",
+    "deck": "utterances",
+    "text": "{time}. Something crashed at {place}.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-091",
+    "deck": "utterances",
+    "text": "Might've been noise from {place} around {time}. Hard to say over the street.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-092",
+    "deck": "utterances",
+    "text": "There was a racket from {place} around {time}, loud enough to notice.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-093",
+    "deck": "utterances",
+    "text": "Something made a noise at {place}, close to {time}.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-094",
+    "deck": "utterances",
+    "text": "I heard a bang from {place} around {time}, didn't think much of it then.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-095",
+    "deck": "utterances",
+    "text": "There might've been noise from {place} around {time}. The street's loud enough most nights.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-096",
+    "deck": "utterances",
+    "text": "There was a real racket from {place} around {time}, loud enough that I said something about it to whoever was standing near me.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-097",
+    "deck": "utterances",
+    "text": "Something crashed at {place} close to {time}, and I remember thinking it was odd enough to bring up later.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-098",
+    "deck": "utterances",
+    "text": "I heard a bang from {place} around {time}, and I nearly went to look, but the night was busy enough I let it go.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-099",
+    "deck": "utterances",
+    "text": "There might've been some noise from {place} around {time}. Hard to swear to it over everything else going on that night.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-100",
+    "deck": "utterances",
+    "text": "Could've been noise from {place} around {time}, could've been the El, could've been anything. I wasn't paying close attention.",
+    "tags": {
+      "factKind": "noiseAt",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-101",
+    "deck": "utterances",
+    "text": "Dead by {time}. The coroner's sure of that much.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-102",
+    "deck": "utterances",
+    "text": "{time}. That's the window, near as they can fix it.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-103",
+    "deck": "utterances",
+    "text": "Not before {time}. Not after, either.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-104",
+    "deck": "utterances",
+    "text": "The coroner won't commit past a window around {time}.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-105",
+    "deck": "utterances",
+    "text": "The coroner puts it around {time}, give or take.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-106",
+    "deck": "utterances",
+    "text": "Best guess is {time}, according to the coroner's office.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-107",
+    "deck": "utterances",
+    "text": "Time of death comes back to somewhere around {time}.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-108",
+    "deck": "utterances",
+    "text": "The coroner's office wouldn't pin it closer than somewhere near {time}.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-109",
+    "deck": "utterances",
+    "text": "The coroner's office came back with somewhere around {time}, though they hedge it the way they always do, never quite committing to the minute.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-110",
+    "deck": "utterances",
+    "text": "Best they'll say is somewhere near {time}, and they went on a while about why they couldn't do better than that.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-111",
+    "deck": "utterances",
+    "text": "Time of death comes back to around {time}, according to a report that ran three pages longer than it needed to.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-112",
+    "deck": "utterances",
+    "text": "The coroner's office wouldn't commit past a window somewhere around {time}, and I wouldn't push them, they know their business better than I do.",
+    "tags": {
+      "factKind": "timeOfDeath",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-113",
+    "deck": "utterances",
+    "text": "{time}. Still alive, far as anyone could tell.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-114",
+    "deck": "utterances",
+    "text": "Alive at {time}. I'd stake that much.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-115",
+    "deck": "utterances",
+    "text": "Saw movement past {time}. Alive, then.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-116",
+    "deck": "utterances",
+    "text": "Might've still been alive past {time}. Couldn't swear past that.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-117",
+    "deck": "utterances",
+    "text": "The lights were still on past {time}, and I heard talking.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-118",
+    "deck": "utterances",
+    "text": "Somebody was moving around in there past {time}. Alive, I'd say.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-119",
+    "deck": "utterances",
+    "text": "I'd say alive past {time}, going by the noise from inside.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-120",
+    "deck": "utterances",
+    "text": "Can't be sure past {time}, but nothing seemed wrong then.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-121",
+    "deck": "utterances",
+    "text": "The lights were still on well past {time}, and I could hear talking through the wall, so I'd say alive, at least that long.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-122",
+    "deck": "utterances",
+    "text": "Somebody was moving around in there past {time}, footsteps and the like, and I didn't think a thing of it at the time.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-123",
+    "deck": "utterances",
+    "text": "I'd say alive past {time}, going by the noise, though I couldn't tell you exactly what was said through a closed door.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-124",
+    "deck": "utterances",
+    "text": "Can't rightly swear to past {time}. Nothing seemed wrong then, but I wasn't listening close, either.",
+    "tags": {
+      "factKind": "victimAliveAt",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-125",
+    "deck": "utterances",
+    "text": "Dead by {time}. No sound after.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-126",
+    "deck": "utterances",
+    "text": "Quiet by {time}. Too quiet.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-127",
+    "deck": "utterances",
+    "text": "Nothing stirred past {time}. Not a thing.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-128",
+    "deck": "utterances",
+    "text": "Might've been dead by {time}. Can't say when it went quiet.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-129",
+    "deck": "utterances",
+    "text": "Everything had gone quiet by {time}, and stayed that way.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-130",
+    "deck": "utterances",
+    "text": "No sound from in there after {time}, not that I heard.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-131",
+    "deck": "utterances",
+    "text": "By {time} there was nothing, no lights, no talking, nothing.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-132",
+    "deck": "utterances",
+    "text": "It was quiet by {time}, but I couldn't tell you exactly when it started.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-133",
+    "deck": "utterances",
+    "text": "Everything had gone dead quiet by {time}, and it held quiet clear through to morning, which I only noticed because it was such a change.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-134",
+    "deck": "utterances",
+    "text": "There wasn't a sound from in there after {time}, not a light, not a footstep, and I remember remarking on it to somebody.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-135",
+    "deck": "utterances",
+    "text": "By {time} there was nothing at all, no lights, no talking, and I couldn't tell you exactly when it had stopped, only that it had.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-136",
+    "deck": "utterances",
+    "text": "It had gone quiet by {time}, best I can say, though the exact hour it started I couldn't swear to, not with everything else going on.",
+    "tags": {
+      "factKind": "victimDeadBy",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-137",
+    "deck": "utterances",
+    "text": "The {object} tells the story plain enough.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-138",
+    "deck": "utterances",
+    "text": "Marks on the {object}. Match what you'd expect.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-139",
+    "deck": "utterances",
+    "text": "That {object} did the work. No question.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-140",
+    "deck": "utterances",
+    "text": "Couldn't say for certain what the {object} was used for.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-141",
+    "deck": "utterances",
+    "text": "The {object} had marks on it that told their own story.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-142",
+    "deck": "utterances",
+    "text": "Whatever happened, the {object} was part of it. Plain to see.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-143",
+    "deck": "utterances",
+    "text": "The state of the {object} answers most of the question by itself.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-144",
+    "deck": "utterances",
+    "text": "The {object} might tell you something, though I couldn't begin to guess what.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-145",
+    "deck": "utterances",
+    "text": "The {object} had marks on it that told their own story, and the coroner's man spent a good while going over every inch of it before he'd say so.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-146",
+    "deck": "utterances",
+    "text": "Whatever happened, the {object} was part of it, plain to see, and I could point out exactly where if you wanted to look yourself.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-147",
+    "deck": "utterances",
+    "text": "The state of the {object} answers most of the question by itself, though it took somebody with a trained eye to point it out to the rest of us.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-148",
+    "deck": "utterances",
+    "text": "The {object} might tell you something, though I couldn't begin to guess what, not being trained to spot such things.",
+    "tags": {
+      "factKind": "methodEvidence",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-149",
+    "deck": "utterances",
+    "text": "{subject}'s secret. Not murder. Just trouble of another kind.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-150",
+    "deck": "utterances",
+    "text": "Whatever {subject} was hiding, it wasn't that.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-151",
+    "deck": "utterances",
+    "text": "{subject} had a reason to hide it. Just not this reason.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "enigma",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-152",
+    "deck": "utterances",
+    "text": "Can't say what {subject}'s secret was, only that it wasn't what you're asking about.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "enigma",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-153",
+    "deck": "utterances",
+    "text": "{subject} had something to hide, but it wasn't the murder.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-154",
+    "deck": "utterances",
+    "text": "Whatever {subject} was covering up, none of it touched on the dead man.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-155",
+    "deck": "utterances",
+    "text": "{subject}'s secret was real enough, just not the one you're after.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "plain",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-156",
+    "deck": "utterances",
+    "text": "There was something {subject} was hiding, though I couldn't tell you it wasn't connected, only that it never looked that way to me.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "plain",
+      "register": "evasion"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-157",
+    "deck": "utterances",
+    "text": "{subject} had something to hide, sure enough, but once it came out it had nothing at all to do with the dead man, just embarrassment, mostly.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-158",
+    "deck": "utterances",
+    "text": "Whatever {subject} was covering up turned out to be its own separate trouble, unconnected to the murder, though it took some digging to be sure.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-159",
+    "deck": "utterances",
+    "text": "{subject}'s secret was real, and it cost them plenty to keep it quiet, but it wasn't the one you're after, not by a long way.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "yap",
+      "register": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "utt-160",
+    "deck": "utterances",
+    "text": "There was something {subject} was hiding, and I couldn't swear it wasn't connected, only that everything I heard pointed the other way.",
+    "tags": {
+      "factKind": "secretExplained",
+      "temper": "yap",
+      "register": "evasion"
+    },
+    "status": "generated"
   }
 ]

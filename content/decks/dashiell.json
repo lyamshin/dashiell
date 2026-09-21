@@ -1,0 +1,913 @@
+[
+  {
+    "id": "hum-p001",
+    "deck": "humphrey-lines",
+    "text": "“{name},” I said.",
+    "tags": {
+      "kind": "open",
+      "familiar": "no"
+    },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range hum-pNNN; the content deck uses HUM-NNN."
+  },
+  {
+    "id": "hum-p002",
+    "deck": "humphrey-lines",
+    "text": "“It’s {detective},” I said. “Don’t get up.”",
+    "tags": {
+      "kind": "open",
+      "familiar": "yes"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p003",
+    "deck": "humphrey-lines",
+    "text": "“Tell me about {topic}.”",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p004",
+    "deck": "humphrey-lines",
+    "text": "“{topic},” I said. “Straight, and I’ll go away.”",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "yes"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p005",
+    "deck": "humphrey-lines",
+    "text": "“Who was at {topic} last night, and when.”",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p006",
+    "deck": "humphrey-lines",
+    "text": "“{topic},” I said. “Where does it live when nobody’s using it?”",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p007",
+    "deck": "humphrey-lines",
+    "text": "“Walk me through your evening. Start at six.”",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p008",
+    "deck": "humphrey-lines",
+    "text": "“Why me? The precinct is four blocks nearer.”",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p009",
+    "deck": "humphrey-lines",
+    "text": "“And then.”",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p010",
+    "deck": "humphrey-lines",
+    "text": "I wrote it down and let the pause do the rest.",
+    "tags": {
+      "kind": "close",
+      "familiar": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p011",
+    "deck": "humphrey-lines",
+    "text": "“Thanks. I’ll be back if it’s wrong.”",
+    "tags": {
+      "kind": "close",
+      "familiar": "yes"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-001",
+    "deck": "humphrey-lines",
+    "text": "\"{name},\" I said.",
+    "tags": {
+      "kind": "open",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-002",
+    "deck": "humphrey-lines",
+    "text": "\"Evening. {name}?\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-003",
+    "deck": "humphrey-lines",
+    "text": "\"Sorry to trouble you, {name}.\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-004",
+    "deck": "humphrey-lines",
+    "text": "\"Just a few questions, {name}, if you can spare the time.\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-005",
+    "deck": "humphrey-lines",
+    "text": "\"{name}. I won't keep you long.\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-006",
+    "deck": "humphrey-lines",
+    "text": "\"{name}. Been a while.\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-007",
+    "deck": "humphrey-lines",
+    "text": "\"Evening. Didn't expect to see you in this.\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-008",
+    "deck": "humphrey-lines",
+    "text": "\"{name}, you're a hard man to find tonight.\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-009",
+    "deck": "humphrey-lines",
+    "text": "\"Look who it is.\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-010",
+    "deck": "humphrey-lines",
+    "text": "\"{name}. You'll want to sit down for this one.\"",
+    "tags": {
+      "kind": "open",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-011",
+    "deck": "humphrey-lines",
+    "text": "\"Tell me about {name}.\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-012",
+    "deck": "humphrey-lines",
+    "text": "\"Give me your read on {name}.\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-013",
+    "deck": "humphrey-lines",
+    "text": "\"How well did you know {name}?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-014",
+    "deck": "humphrey-lines",
+    "text": "\"What's {name} to you?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-015",
+    "deck": "humphrey-lines",
+    "text": "\"When did you last lay eyes on {name}?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-016",
+    "deck": "humphrey-lines",
+    "text": "\"Straight, now. What's the story with {name}?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-017",
+    "deck": "humphrey-lines",
+    "text": "\"You know {name} better than most. Talk to me.\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-018",
+    "deck": "humphrey-lines",
+    "text": "\"Cut the polish. What's {name} really like?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-019",
+    "deck": "humphrey-lines",
+    "text": "\"You and {name} — how far back does that go?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-020",
+    "deck": "humphrey-lines",
+    "text": "\"I need the truth on {name}, not the version you give strangers.\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-021",
+    "deck": "humphrey-lines",
+    "text": "\"You were at {place}?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-022",
+    "deck": "humphrey-lines",
+    "text": "\"Tell me about {place}.\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-023",
+    "deck": "humphrey-lines",
+    "text": "\"What time were you at {place}?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-024",
+    "deck": "humphrey-lines",
+    "text": "\"Who else was at {place}?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-025",
+    "deck": "humphrey-lines",
+    "text": "\"How long were you at {place}?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-026",
+    "deck": "humphrey-lines",
+    "text": "\"{place}, same as always?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-027",
+    "deck": "humphrey-lines",
+    "text": "\"You still keep to {place} most nights?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-028",
+    "deck": "humphrey-lines",
+    "text": "\"I know you were at {place}. Tell me the rest.\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-029",
+    "deck": "humphrey-lines",
+    "text": "\"Don't make me drag {place} out of you.\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-030",
+    "deck": "humphrey-lines",
+    "text": "\"What happened at {place} that you're not saying?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-031",
+    "deck": "humphrey-lines",
+    "text": "\"This {object} — whose is it?\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-032",
+    "deck": "humphrey-lines",
+    "text": "\"Ever see this {object} before?\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-033",
+    "deck": "humphrey-lines",
+    "text": "\"Where does the {object} belong?\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-034",
+    "deck": "humphrey-lines",
+    "text": "\"Who'd know about the {object}?\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-035",
+    "deck": "humphrey-lines",
+    "text": "\"Tell me about the {object}.\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-036",
+    "deck": "humphrey-lines",
+    "text": "\"The {object}, {name}. Don't waste my evening.\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-037",
+    "deck": "humphrey-lines",
+    "text": "\"You know exactly whose {object} this is.\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-038",
+    "deck": "humphrey-lines",
+    "text": "\"Where'd the {object} really go?\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-039",
+    "deck": "humphrey-lines",
+    "text": "\"I've seen that {object} before. Have you?\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-040",
+    "deck": "humphrey-lines",
+    "text": "\"The {object}, again. Same story as last time, or something new?\"",
+    "tags": {
+      "kind": "ask-object",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-041",
+    "deck": "humphrey-lines",
+    "text": "\"Walk me through your evening.\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-042",
+    "deck": "humphrey-lines",
+    "text": "\"Where were you, start to finish?\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-043",
+    "deck": "humphrey-lines",
+    "text": "\"What hour did you clear out?\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-044",
+    "deck": "humphrey-lines",
+    "text": "\"Anyone with you?\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-045",
+    "deck": "humphrey-lines",
+    "text": "\"Where were you at {time}?\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-046",
+    "deck": "humphrey-lines",
+    "text": "\"Same story as last time, or a new one tonight?\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-047",
+    "deck": "humphrey-lines",
+    "text": "\"No polish tonight. Where were you at {time}?\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-048",
+    "deck": "humphrey-lines",
+    "text": "\"You know I'll check it. Where were you?\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-049",
+    "deck": "humphrey-lines",
+    "text": "\"Don't dress it up. Just the evening, plain.\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-050",
+    "deck": "humphrey-lines",
+    "text": "\"I've heard your evenings before. Try the true one.\"",
+    "tags": {
+      "kind": "ask-evening",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-051",
+    "deck": "humphrey-lines",
+    "text": "\"Somebody hired me to find out what happened.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-052",
+    "deck": "humphrey-lines",
+    "text": "\"I'm working for whoever wants the truth found.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-053",
+    "deck": "humphrey-lines",
+    "text": "\"I don't work for the police. I work for whoever's paying.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-054",
+    "deck": "humphrey-lines",
+    "text": "\"Somebody wanted this looked into. That's all I can say.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-055",
+    "deck": "humphrey-lines",
+    "text": "\"I was hired this morning. I haven't asked why yet.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-056",
+    "deck": "humphrey-lines",
+    "text": "\"You know how this works. Somebody's paying, I'm asking.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-057",
+    "deck": "humphrey-lines",
+    "text": "\"Same arrangement as always. Somebody wants the truth.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-058",
+    "deck": "humphrey-lines",
+    "text": "\"You don't need to ask who's paying. You know the type.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-059",
+    "deck": "humphrey-lines",
+    "text": "\"I took the job blind, same as I always do.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-060",
+    "deck": "humphrey-lines",
+    "text": "\"Don't pretend you're surprised somebody called me.\"",
+    "tags": {
+      "kind": "ask-hired",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-061",
+    "deck": "humphrey-lines",
+    "text": "\"That's not what I asked.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-062",
+    "deck": "humphrey-lines",
+    "text": "\"Try again.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-063",
+    "deck": "humphrey-lines",
+    "text": "\"That's not quite the story I heard.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-064",
+    "deck": "humphrey-lines",
+    "text": "\"You left something out.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-065",
+    "deck": "humphrey-lines",
+    "text": "\"I don't think that's the whole answer.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-066",
+    "deck": "humphrey-lines",
+    "text": "\"I know when you're leaving something out.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-067",
+    "deck": "humphrey-lines",
+    "text": "\"Don't do that to me, not tonight.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-068",
+    "deck": "humphrey-lines",
+    "text": "\"You can do better than that.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-069",
+    "deck": "humphrey-lines",
+    "text": "\"Try that again, and mean it this time.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-070",
+    "deck": "humphrey-lines",
+    "text": "\"I've known you too long for that answer.\"",
+    "tags": {
+      "kind": "follow-up",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-071",
+    "deck": "humphrey-lines",
+    "text": "\"That's all for now.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-072",
+    "deck": "humphrey-lines",
+    "text": "\"I'll be back if I need more.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-073",
+    "deck": "humphrey-lines",
+    "text": "\"Thanks for your time.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-074",
+    "deck": "humphrey-lines",
+    "text": "\"I'll let you get back to it.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-075",
+    "deck": "humphrey-lines",
+    "text": "\"Don't leave town on my account.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-076",
+    "deck": "humphrey-lines",
+    "text": "\"This isn't the last of it. I'll be back.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-077",
+    "deck": "humphrey-lines",
+    "text": "\"Take care of yourself.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-078",
+    "deck": "humphrey-lines",
+    "text": "\"You know where to find me.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-079",
+    "deck": "humphrey-lines",
+    "text": "\"We'll talk again. We always do.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "hum-080",
+    "deck": "humphrey-lines",
+    "text": "\"Go on. I've got what I need for now.\"",
+    "tags": {
+      "kind": "close",
+      "familiar": "yes"
+    },
+    "status": "generated"
+  }
+]

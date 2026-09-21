@@ -3,7 +3,10 @@
     "id": "end-p001",
     "deck": "endings",
     "text": "They took {killer} on a Tuesday and the paperwork went up the line without a hitch in it.",
-    "tags": { "outcome": "hanged", "parDelta": "at" },
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "at"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range end-pNNN; the content deck uses END-NNN."
   },
@@ -11,35 +14,290 @@
     "id": "end-p002",
     "deck": "endings",
     "text": "They took {killer} before the office had the kettle on, and nobody asked me how.",
-    "tags": { "outcome": "hanged", "parDelta": "under" },
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "under"
+    },
     "status": "placeholder"
   },
   {
     "id": "end-p003",
     "deck": "endings",
     "text": "They took {killer} in the end. It cost more of the night than it should have.",
-    "tags": { "outcome": "hanged", "parDelta": "over" },
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "over"
+    },
     "status": "placeholder"
   },
   {
     "id": "end-p004",
     "deck": "endings",
     "text": "The wrong man goes up, and what I never went back for was this: {missed}",
-    "tags": { "outcome": "wrong-man", "parDelta": "at" },
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at"
+    },
     "status": "placeholder"
   },
   {
     "id": "end-p005",
     "deck": "endings",
     "text": "A conviction, and a case you could put a thumb through.",
-    "tags": { "outcome": "thin-case", "parDelta": "at" },
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at"
+    },
     "status": "placeholder"
   },
   {
     "id": "end-p006",
     "deck": "endings",
     "text": "The folder goes in the drawer with the others, and the drawer is the end of it.",
-    "tags": { "outcome": "cold", "parDelta": "at" },
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "end-001",
+    "deck": "endings",
+    "text": "{detective} filed the report before the sun was properly up, {name} for the noose and the facts to back it. There was time left on the clock and nothing left to do with it.",
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "under"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-002",
+    "deck": "endings",
+    "text": "The file went upstairs clean, {name}'s name at the top and the evidence lined up under it in order. {detective} was home before the milk wagons finished their rounds.",
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "under"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-003",
+    "deck": "endings",
+    "text": "{name} would hang for it, and the report said so plainly, no hour to spare and none wasted either. {detective} signed it and went to find some sleep.",
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "at"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-004",
+    "deck": "endings",
+    "text": "The case closed the way it opened, {name} at the center of it, guilty and proven so with the night's last hour to spare. It was enough.",
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "at"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-005",
+    "deck": "endings",
+    "text": "It took every hour of the night to run {name} to ground, and the report showed it, thin at the edges where the clock had run out on patience. But the case held.",
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "over"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-006",
+    "deck": "endings",
+    "text": "{detective} filed on {name} with the morning already up, tired past arguing, but the facts stood on their own regardless of how long they'd taken to gather.",
+    "tags": {
+      "outcome": "hanged",
+      "parDelta": "over"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-007",
+    "deck": "endings",
+    "text": "{name} went to trial, and {detective} closed the file early, sure of it. {missed} never made it into the report, and {killer} read about the verdict same as anybody, over coffee.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "under"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-008",
+    "deck": "endings",
+    "text": "It was tidy, and it was wrong. {detective} had it filed with hours to spare, {name} for it, {missed} sitting unasked the whole night through while {killer} went home free.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "under"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-009",
+    "deck": "endings",
+    "text": "The report went in on schedule, {name}'s name at the bottom of it. {missed} would have changed everything, but nobody asked, and {killer} never had to answer for it.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-010",
+    "deck": "endings",
+    "text": "{detective} had filed on {name} by the time the case called for it, certain enough. {missed} sat in a drawer somewhere, unlooked-at, and {killer} slept fine.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-011",
+    "deck": "endings",
+    "text": "By the time {detective} filed, worn thin from the hours, {name} looked as good as anybody. {missed} would have said otherwise, if it had come up in time, and {killer} was long past caring whether it did.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "over"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-012",
+    "deck": "endings",
+    "text": "It took the whole night and most of the morning, and the report still came out wrong. {missed} sat one question short of being asked, and {killer} walked, and {name} didn't.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "over"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-013",
+    "deck": "endings",
+    "text": "{detective} filed early, and the report showed it: half the facts in place and half a guess. The district attorney wouldn't touch it, not on what was there.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "under"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-014",
+    "deck": "endings",
+    "text": "There was time left on the clock when {detective} called it, which didn't make the case any less thin for the calling. Nobody would hang on what was filed.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "under"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-015",
+    "deck": "endings",
+    "text": "The report went in on time, and it was thin where it needed to be thick, a theory more than a case. {name} walked, for now.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-016",
+    "deck": "endings",
+    "text": "{detective} had a shape for it, right on schedule, but no more than a shape. It wouldn't survive a grand jury, and everybody involved seemed to know it.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-017",
+    "deck": "endings",
+    "text": "By the time the report went in, the night was mostly gone and so was the case's strength. What was left was a theory with the corners rubbed off.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "over"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-018",
+    "deck": "endings",
+    "text": "It took past morning to get even this much down, and even this much wouldn't hold up past a magistrate's first question.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "over"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-019",
+    "deck": "endings",
+    "text": "{detective} called it early, before the case had a chance to go anywhere. It went into the file unsolved, and stayed there.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "under"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-020",
+    "deck": "endings",
+    "text": "There was time left when {detective} gave it up, which didn't change what the file said in the end: nothing closed, nobody named.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "under"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-021",
+    "deck": "endings",
+    "text": "The night ran its full course and the case went with it, cold, filed as such, right on schedule.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-022",
+    "deck": "endings",
+    "text": "{detective} had nothing to file but the hours spent, right at the pace the case called for. It went down as unsolved and stayed that way.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-023",
+    "deck": "endings",
+    "text": "The whole night went into it and came out the other side with nothing to show, the case colder for the trying.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "over"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "end-024",
+    "deck": "endings",
+    "text": "By morning there was nothing left to file but the effort. The case went down cold, same as it had started, only later.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "over"
+    },
+    "status": "generated"
   }
 ]

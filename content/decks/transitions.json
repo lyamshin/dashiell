@@ -3,7 +3,9 @@
     "id": "trn-p001",
     "deck": "transitions",
     "text": "Eleven blocks in the cold, and the cold got the better of the eleven blocks.",
-    "tags": { "hourBand": "midnight-2" },
+    "tags": {
+      "hourBand": "midnight-2"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range trn-pNNN; the content deck uses TRN-NNN. One card per anchor template is the target."
   },
@@ -11,77 +13,858 @@
     "id": "trn-p002",
     "deck": "transitions",
     "text": "Between two and four there is nobody out but me and whoever is paid to be.",
-    "tags": { "hourBand": "2-4" },
+    "tags": {
+      "hourBand": "2-4"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p003",
     "deck": "transitions",
     "text": "The sky over the river had gone grey along the bottom edge.",
-    "tags": { "hourBand": "4-6" },
+    "tags": {
+      "hourBand": "4-6"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p004",
     "deck": "transitions",
     "text": "Shutters up, gratings back, and a man with a hose putting the night down the drain.",
-    "tags": { "hourBand": "6-8" },
+    "tags": {
+      "hourBand": "6-8"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p005",
     "deck": "transitions",
     "text": "The El went over while I was crossing, and for twenty seconds the street had nothing to say.",
-    "tags": { "hourBand": "any", "anchorTemplate": "el-train" },
+    "tags": {
+      "hourBand": "any",
+      "anchorTemplate": "el-train"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p006",
     "deck": "transitions",
     "text": "A patrolman came the other way and we each decided the other was nobody.",
-    "tags": { "hourBand": "any", "anchorTemplate": "cop-pass" },
+    "tags": {
+      "hourBand": "any",
+      "anchorTemplate": "cop-pass"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p007",
     "deck": "transitions",
     "text": "The milk wagon had the whole block ahead of me, iron tyres on the cobbles.",
-    "tags": { "hourBand": "4-6", "anchorTemplate": "milk-wagon" },
+    "tags": {
+      "hourBand": "4-6",
+      "anchorTemplate": "milk-wagon"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p008",
     "deck": "transitions",
     "text": "The bells at the corner rang the half hour at my back.",
-    "tags": { "hourBand": "any", "anchorTemplate": "church-bells" },
+    "tags": {
+      "hourBand": "any",
+      "anchorTemplate": "church-bells"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p009",
     "deck": "transitions",
     "text": "A whistle went off the river, two long and one short, and nobody looked up.",
-    "tags": { "hourBand": "any", "anchorTemplate": "steam-whistle" },
+    "tags": {
+      "hourBand": "any",
+      "anchorTemplate": "steam-whistle"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p010",
     "deck": "transitions",
     "text": "A truck dropped the last edition at the kerb and pulled away with the doors still open.",
-    "tags": { "hourBand": "any", "anchorTemplate": "last-edition" },
+    "tags": {
+      "hourBand": "any",
+      "anchorTemplate": "last-edition"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p011",
     "deck": "transitions",
     "text": "Chairs were going up on the tables behind me before I had the door shut.",
-    "tags": { "hourBand": "any", "anchorTemplate": "theater-out" },
+    "tags": {
+      "hourBand": "any",
+      "anchorTemplate": "theater-out"
+    },
     "status": "placeholder"
   },
   {
     "id": "trn-p012",
     "deck": "transitions",
     "text": "Past the corner, past the grating, past the same two men who had not moved.",
-    "tags": { "hourBand": "any" },
+    "tags": {
+      "hourBand": "any"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "trn-001",
+    "deck": "transitions",
+    "text": "The fight card droned on over some radio down the block, and half an hour went with it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "bar-radio"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-002",
+    "deck": "transitions",
+    "text": "A ball game recap crackled out of a radio somewhere, then went to advertising, then went quiet.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "bar-radio"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-003",
+    "deck": "transitions",
+    "text": "Down at the corner a regular took his stool, same as any night, and the half hour turned.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "regular-stool"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-004",
+    "deck": "transitions",
+    "text": "Somebody's regular seat scraped back at a bar down the block. Another half hour gone.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "regular-stool"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-005",
+    "deck": "transitions",
+    "text": "The beat cop came round again, unhurried, and the half hour went with him.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "cop-pass"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-006",
+    "deck": "transitions",
+    "text": "Somewhere off a block a patrolman's steps went past and faded. Half an hour, gone.",
+    "tags": {
+      "hourBand": "4-6",
+      "anchorTemplate": "cop-pass"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-007",
+    "deck": "transitions",
+    "text": "The same four bars came down from the floor above, over and over, and then the half hour was up.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "piano-lesson"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-008",
+    "deck": "transitions",
+    "text": "A piano lesson two floors up quit for the night. The half hour went quiet after it.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "piano-lesson"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-009",
+    "deck": "transitions",
+    "text": "The El went over, and for twenty seconds nothing else could be heard. Half an hour gone with it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "el-train"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-010",
+    "deck": "transitions",
+    "text": "The El rattled through again, right on its schedule, and time moved with it.",
+    "tags": {
+      "hourBand": "4-6",
+      "anchorTemplate": "el-train"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-011",
+    "deck": "transitions",
+    "text": "St. Malachy's rang the half hour, same as it always does.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "church-bells"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-012",
+    "deck": "transitions",
+    "text": "The bells went again somewhere off to the east, marking the half hour plain and clear.",
+    "tags": {
+      "hourBand": "6-8",
+      "anchorTemplate": "church-bells"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-013",
+    "deck": "transitions",
+    "text": "A truck went by dropping the last edition at the corner stand. Half an hour, and the ink still wet.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "last-edition"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-014",
+    "deck": "transitions",
+    "text": "Somewhere a paper boy was already hawking the late edition. The half hour had gotten away from me.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "last-edition"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-015",
+    "deck": "transitions",
+    "text": "A fuse went somewhere on the block and a whole row of windows went dark. Half an hour passed in it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "fuse"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-016",
+    "deck": "transitions",
+    "text": "The lights flickered once down the street and held. Another half hour gone.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "fuse"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-017",
+    "deck": "transitions",
+    "text": "The rain came on somewhere off to the west, and half an hour went with the first of it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-018",
+    "deck": "transitions",
+    "text": "Rain started up again, thin and steady, and time went with it.",
+    "tags": {
+      "hourBand": "4-6",
+      "anchorTemplate": "rain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-019",
+    "deck": "transitions",
+    "text": "The milk wagon worked its way down the next block, iron tires loud on the stone. Half an hour, gone with it.",
+    "tags": {
+      "hourBand": "4-6",
+      "anchorTemplate": "milk-wagon"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-020",
+    "deck": "transitions",
+    "text": "A milk wagon's bell sounded somewhere off, right on its usual round. Another half hour behind me.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "milk-wagon"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-021",
+    "deck": "transitions",
+    "text": "Somewhere off, a crowd let out of a picture house all at once, loud for a minute and then gone. Half an hour with it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "theater-out"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-022",
+    "deck": "transitions",
+    "text": "The last house let out down the avenue, and the street noise came and went with it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "theater-out"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-023",
+    "deck": "transitions",
+    "text": "A shift changed over at the garage down the block, engines catching one after another. Half an hour, gone in the noise.",
+    "tags": {
+      "hourBand": "4-6",
+      "anchorTemplate": "garage-shift"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-024",
+    "deck": "transitions",
+    "text": "The night men were punching in somewhere close, machinery starting up. Another half hour behind me.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "garage-shift"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-025",
+    "deck": "transitions",
+    "text": "Somebody was singing the same two verses under a window a block over, until a shoe came down and ended it. Half an hour with it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "drunk-singing"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-026",
+    "deck": "transitions",
+    "text": "A drunk was singing off-key somewhere down the street, on and on, and then not.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "drunk-singing"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-027",
+    "deck": "transitions",
+    "text": "A dumbwaiter squealed somewhere up a shaft close by. Half an hour, gone in the noise of it.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "dumbwaiter"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-028",
+    "deck": "transitions",
+    "text": "The dumbwaiter cable groaned again two buildings over, right on its own schedule.",
+    "tags": {
+      "hourBand": "2-4",
+      "anchorTemplate": "dumbwaiter"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-029",
+    "deck": "transitions",
+    "text": "An iceman's wagon worked the block, blocks going in on shoulders. Half an hour went with the delivery.",
+    "tags": {
+      "hourBand": "4-6",
+      "anchorTemplate": "ice-delivery"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-030",
+    "deck": "transitions",
+    "text": "Ice went into somebody's box down the street, dropped once on the step with a crack. Another half hour gone.",
+    "tags": {
+      "hourBand": "6-8",
+      "anchorTemplate": "ice-delivery"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-031",
+    "deck": "transitions",
+    "text": "A whistle went off the river, two long and one short. Half an hour, marked and gone.",
+    "tags": {
+      "hourBand": "midnight-2",
+      "anchorTemplate": "steam-whistle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-032",
+    "deck": "transitions",
+    "text": "The river whistle sounded again, carrying a mile inland easy. Time moved with it.",
+    "tags": {
+      "hourBand": "4-6",
+      "anchorTemplate": "steam-whistle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-033",
+    "deck": "transitions",
+    "text": "Half an hour gone, and nothing to show for it but sore feet.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-034",
+    "deck": "transitions",
+    "text": "I checked my watch twice in the time it took to cross the street.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-035",
+    "deck": "transitions",
+    "text": "Another half hour slipped by in the time it took to light a cigarette.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-036",
+    "deck": "transitions",
+    "text": "The night had that late feel already, the kind that makes an hour feel longer.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-037",
+    "deck": "transitions",
+    "text": "Half an hour slid past somewhere between one block and the next.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-038",
+    "deck": "transitions",
+    "text": "I walked it slow, and the half hour walked with me.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-039",
+    "deck": "transitions",
+    "text": "Somewhere a door closed for the night, and half an hour went with the sound of it.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-040",
+    "deck": "transitions",
+    "text": "The half hour went by quiet, same as most of them do this time of night.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-041",
+    "deck": "transitions",
+    "text": "I stood on the corner long enough to lose track, and picked it back up half an hour later.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-042",
+    "deck": "transitions",
+    "text": "Half an hour gone, same as the last one, and no closer to anything.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-043",
+    "deck": "transitions",
+    "text": "The night was young enough to waste half an hour and not feel it yet.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-044",
+    "deck": "transitions",
+    "text": "I let half an hour go by without noticing, which happens less as the night wears on.",
+    "tags": {
+      "hourBand": "midnight-2"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-045",
+    "deck": "transitions",
+    "text": "The dead hours ran together, and another half hour went with them.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-046",
+    "deck": "transitions",
+    "text": "Half an hour passed slow, then all at once, the dead hours running together.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-047",
+    "deck": "transitions",
+    "text": "I stood in a doorway out of the wind and lost half an hour to it.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-048",
+    "deck": "transitions",
+    "text": "Nothing moved for half an hour but the hands on my watch.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-049",
+    "deck": "transitions",
+    "text": "The half hour went by heavy, same as the small hours always do.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-050",
+    "deck": "transitions",
+    "text": "I walked the long way around, and it cost me half an hour I didn't have.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-051",
+    "deck": "transitions",
+    "text": "Half an hour disappeared somewhere between one cigarette and the next.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-052",
+    "deck": "transitions",
+    "text": "The quiet swallowed the half hour whole.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-053",
+    "deck": "transitions",
+    "text": "I counted the half hour off against my own tired feet.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-054",
+    "deck": "transitions",
+    "text": "Half an hour gone in the worst stretch of the night, and nothing in it.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-055",
+    "deck": "transitions",
+    "text": "The city held its breath for half an hour, and so did I.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-056",
+    "deck": "transitions",
+    "text": "Half an hour went by with nothing in it worth writing down.",
+    "tags": {
+      "hourBand": "2-4"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-057",
+    "deck": "transitions",
+    "text": "The sky was starting to think about morning, and half an hour went with the thought.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-058",
+    "deck": "transitions",
+    "text": "Half an hour passed while the dark thinned out, degree by degree.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-059",
+    "deck": "transitions",
+    "text": "The night was running out, and half an hour of it went with these steps.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-060",
+    "deck": "transitions",
+    "text": "I felt the half hour more than I tracked it, an ache settling behind my eyes.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-061",
+    "deck": "transitions",
+    "text": "Half an hour gone, and the first gray was showing over the rooftops.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-062",
+    "deck": "transitions",
+    "text": "The morning was still a rumor, but half an hour closer to being true.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-063",
+    "deck": "transitions",
+    "text": "I used the half hour walking, which beat standing still and feeling it.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-064",
+    "deck": "transitions",
+    "text": "Half an hour went by with the last of the dark.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-065",
+    "deck": "transitions",
+    "text": "The night had thinned enough to see the end of it, half an hour off yet.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-066",
+    "deck": "transitions",
+    "text": "Half an hour slipped by somewhere in the change of light.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-067",
+    "deck": "transitions",
+    "text": "I lost half an hour to the cold, mostly just standing in it.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-068",
+    "deck": "transitions",
+    "text": "The half hour went quiet, same as the last ones before dawn.",
+    "tags": {
+      "hourBand": "4-6"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-069",
+    "deck": "transitions",
+    "text": "The morning was up in earnest now, and half an hour went with the traffic's first push.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-070",
+    "deck": "transitions",
+    "text": "Half an hour went while the city woke up around it.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-071",
+    "deck": "transitions",
+    "text": "I spent the half hour dodging the morning crowd, which was slower going than the empty streets.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-072",
+    "deck": "transitions",
+    "text": "The half hour went by loud, for a change, with the day starting up.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-073",
+    "deck": "transitions",
+    "text": "Half an hour gone, and the night was somebody else's problem now.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-074",
+    "deck": "transitions",
+    "text": "The light was full and flat, and the half hour went with it, ordinary and unremarked.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-075",
+    "deck": "transitions",
+    "text": "I felt the whole night catch up with me in that half hour.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-076",
+    "deck": "transitions",
+    "text": "Half an hour passed in the noise of the morning shift changing over.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-077",
+    "deck": "transitions",
+    "text": "The city had places to be now, and my half hour went along with the rush of it.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-078",
+    "deck": "transitions",
+    "text": "Half an hour gone, and I could have used the sleep more than the progress.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-079",
+    "deck": "transitions",
+    "text": "The morning traffic ate the half hour without noticing it had.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "trn-080",
+    "deck": "transitions",
+    "text": "I let the half hour go by watching the day start, a small mercy after the night I'd had.",
+    "tags": {
+      "hourBand": "6-8"
+    },
+    "status": "generated"
   }
 ]
