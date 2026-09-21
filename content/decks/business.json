@@ -4,11 +4,11 @@
     "deck": "business",
     "text": "The rag keeps going over the same six inches of counter.",
     "tags": {
-      "role": "any",
+      "role": "counterman",
       "temper": "plain"
     },
     "status": "placeholder",
-    "notes": "Placeholder. Reserved id range bus-pNNN; the content deck uses BUS-NNN."
+    "notes": "Placeholder. Reserved id range bus-pNNN; the content deck uses BUS-NNN. Role was \"any\", but the prop is the role: this is a counterman’s counter, not anybody’s."
   },
   {
     "id": "bus-p002",
@@ -25,20 +25,22 @@
     "deck": "business",
     "text": "The ledger stays open the whole while, a finger holding the place.",
     "tags": {
-      "role": "any",
+      "role": "landlady",
       "temper": "yap"
     },
-    "status": "placeholder"
+    "status": "placeholder",
+    "notes": "Role was \"any\", but the prop is the role: this is a landlady’s counter, not anybody’s."
   },
   {
     "id": "bus-p004",
     "deck": "business",
     "text": "Two glasses go up on the shelf, then a third, slower.",
     "tags": {
-      "role": "any",
+      "role": "bartender",
       "temper": "yap"
     },
-    "status": "placeholder"
+    "status": "placeholder",
+    "notes": "Role was \"any\", but the prop is the role: this is a bartender’s counter, not anybody’s."
   },
   {
     "id": "bus-p005",

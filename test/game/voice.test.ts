@@ -24,6 +24,7 @@ import {
   Dealer,
   askSlots,
   beatsOf,
+  businessLine,
   burnTier,
   carriesFact,
   crossRunOnly,
@@ -932,5 +933,56 @@ describe('the exchange slots', () => {
     expect(spoken.text).not.toContain('NOT-THE-PLACE');
     expect(spoken.text).not.toContain('NOT-THE-TIME');
     expect(spoken.text).not.toContain('NOT-A-NAME');
+  });
+});
+
+describe('business', () => {
+  const asPerson = (fixtureRole: string | undefined): Person =>
+    ({
+      id: 'p-x',
+      name: 'A Person',
+      surname: 'Person',
+      role: 'somebody',
+      kind: fixtureRole ? 'fixture' : 'suspect',
+      fixtureRole,
+      isKiller: false,
+    }) as Person;
+
+  it('never hands a fixture another fixture’s props', () => {
+    const roles = [...new Set(DECKS.business.map((c) => String(c.tags.role)))].filter(
+      (r) => r !== 'any' && r !== 'suspect',
+    );
+    expect(roles.length).toBeGreaterThan(5);
+    for (const role of roles) {
+      for (const temper of ['enigma', 'plain', 'yap'] as const) {
+        const dealer = new Dealer(role.length * 31 + temper.length, [], []);
+        for (let i = 0; i < 40; i++) {
+          const drawn = businessLine(dealer, asPerson(role), temper, {});
+          expect(drawn, `${role} × ${temper} dealt nothing`).not.toBeNull();
+          const card = CARD_BY_ID.get((drawn as { cardId: string }).cardId) as Card;
+          expect(
+            [role, 'any'],
+            `${card.id} (${String(card.tags.role)}) went to a ${role}`,
+          ).toContain(String(card.tags.role));
+        }
+      }
+    }
+  });
+
+  it('gives a suspect the generic suspect role and not a fixture’s', () => {
+    const dealer = new Dealer(5, [], []);
+    for (let i = 0; i < 40; i++) {
+      const drawn = businessLine(dealer, asPerson(undefined), 'plain', {});
+      const card = CARD_BY_ID.get((drawn as { cardId: string }).cardId) as Card;
+      expect(['suspect', 'any']).toContain(String(card.tags.role));
+    }
+  });
+
+  it('logs a gap when a role has nothing to deal', () => {
+    const gaps: string[] = [];
+    const everything = new Set(DECKS.business.map((c) => c.id));
+    const drawn = businessLine(new Dealer(9, [], []), asPerson('landlady'), 'plain', {}, everything, gaps);
+    expect(drawn).toBeNull();
+    expect(gaps.join(' ')).toContain('no-business: landlady');
   });
 });

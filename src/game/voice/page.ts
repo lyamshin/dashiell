@@ -300,7 +300,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     if (person) {
       const portrait = describePerson(cast, scene.personId, person.surname, seen, stage.pageIndex);
       if (!seen) portrayed.push(scene.personId);
-      const approach = businessLine(dealer, person, temper, slots, usedBusiness);
+      const approach = businessLine(dealer, person, temper, slots, usedBusiness, gaps);
       if (approach) usedBusiness.add(approach.cardId);
       const greeting =
         familiar && !seen
@@ -334,6 +334,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         slots,
         opener?.text ?? '',
         usedBusiness,
+        gaps,
       );
     }
     for (const [i, clue] of scene.clues.entries()) {
@@ -353,6 +354,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         slots,
         opener?.text ?? '',
         usedBusiness,
+        gaps,
       );
       for (const id of answer.cardIds) usedBusiness.add(id);
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', clue.id);
@@ -379,6 +381,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         slots,
         opener?.text ?? '',
         usedBusiness,
+        gaps,
       );
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', scene.volunteer.id);
     }
@@ -727,6 +730,7 @@ function answerAccount(
   slots: Slots,
   dashiell: string,
   exclude: ReadonlySet<string>,
+  gaps: string[],
 ): void {
   const account = scene.account;
   if (!account) return;
@@ -749,6 +753,7 @@ function answerAccount(
     slots,
     dashiell,
     exclude,
+    gaps,
   );
   blocks.push({ kind: 'prose', text: answer.text, voice: 'exchange' });
   blocks.push({ kind: 'timeline', personId: scene.personId, rows: account.rows });

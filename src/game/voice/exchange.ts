@@ -161,30 +161,50 @@ export function dashiellLine(
   return drawn ? { text: drawn.text, cardId: drawn.cardId } : null;
 }
 
-/** What the person is doing with their hands while they answer. */
+/**
+ * What the person is doing with their hands while they answer.
+ *
+ * Role first, temper second, and never another fixture's role. A landlady
+ * keeping the rag going over the same six inches of counter is a bartender's
+ * card on a landlady, which is what the old temper-only rung produced: the
+ * props are the role, and swapping them swaps the person.
+ *
+ * The only widening is onto cards tagged `role: any`, which are written to
+ * belong to nobody in particular. A suspect's generic role is `suspect`
+ * already, so that is where a suspect starts; a fixture with an empty role
+ * gets no business at all and says so in the gap log.
+ */
 export function businessLine(
   dealer: Dealer,
   person: Person | undefined,
   temper: Temper,
   slots: Slots,
   exclude: ReadonlySet<string> = new Set(),
+  gaps?: string[],
 ): { text: string; cardId: string } | null {
   const role = person?.fixtureRole ?? 'suspect';
   // `business` is a free deck — it may come round again on a later page — but
   // not twice on the same one, where a reader would see it.
   const ok = (c: Card): boolean => !exclude.has(c.id);
+  // Not `tagIs`: a card tagged `any` is a wildcard everywhere else, and here
+  // it is its own rung, below anything written for the role itself.
+  const roleIs = (c: Card, want: string): boolean => tagOf('business', c, 'role') === want;
   const drawn = dealer.draw(
     'business',
     [
-      (c) => ok(c) && tagIs('business', c, 'role', role) && tagIs('business', c, 'temper', temper),
-      (c) => ok(c) && tagIs('business', c, 'role', role),
-      (c) => ok(c) && tagIs('business', c, 'temper', temper),
-      ok,
+      (c) => ok(c) && roleIs(c, role) && tagIs('business', c, 'temper', temper),
+      (c) => ok(c) && roleIs(c, role),
+      (c) => ok(c) && roleIs(c, 'any') && tagIs('business', c, 'temper', temper),
+      (c) => ok(c) && roleIs(c, 'any'),
     ],
     slots,
     true,
   );
-  return drawn ? { text: drawn.text, cardId: drawn.cardId } : null;
+  if (!drawn) {
+    gaps?.push(`no-business: ${role} × ${temper} has no card of its own to deal`);
+    return null;
+  }
+  return { text: drawn.text, cardId: drawn.cardId };
 }
 
 export interface Answer {
@@ -209,9 +229,10 @@ export function frameAnswer(
   slots: Slots,
   dashiell: string,
   exclude: ReadonlySet<string> = new Set(),
+  gaps?: string[],
 ): Answer {
   const cardIds = [...spoken.cardIds];
-  const business = businessLine(dealer, person, temper, slots, exclude);
+  const business = businessLine(dealer, person, temper, slots, exclude, gaps);
   if (business) cardIds.push(business.cardId);
   const colour = COLOUR_LINES[dealer.random.int(COLOUR_LINES.length)] as string;
 
