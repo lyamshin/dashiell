@@ -30,7 +30,7 @@ describe('truth sheet', () => {
     const sheet = renderTruthSheet(c);
     expect(sheet.startsWith(`# ${c.neighborhood} — case ${c.seed}`)).toBe(true);
     expect(sheet).toContain(`**Attempts** ${c.attempts}`);
-    expect(sheet).toContain('**Detective** Humphrey');
+    expect(sheet).toContain('**Detective** Dashiell');
     expect(sheet).toContain(`**Difficulty** ${c.difficulty}`);
     expect(sheet).toContain(`**Par** ${c.par} actions`);
     expect(sheet).toContain(`**Budget** ${c.budget}`);

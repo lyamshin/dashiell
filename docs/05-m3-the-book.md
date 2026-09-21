@@ -1,6 +1,6 @@
 # Milestone 3 — The Book
 
-The first playable Humphrey. A local web page, no server, that takes a generated case and lets a player investigate it as a bound book with a typed prompt, then file a report. This is a proof of concept for the *feel*: the two-page spread, the clock, the leads, the report. It uses the fragment decks as a placeholder voice to demonstrate the mechanism, not to be good prose yet.
+The first playable Dashiell. A local web page, no server, that takes a generated case and lets a player investigate it as a bound book with a typed prompt, then file a report. This is a proof of concept for the *feel*: the two-page spread, the clock, the leads, the report. It uses the fragment decks as a placeholder voice to demonstrate the mechanism, not to be good prose yet.
 
 Builds on the M2b generator (`docs/04-m2b-watchers-and-budget.md`, merged). `src/gen/` stays pure and is consumed as a library. Do not change generator behavior in this milestone; if the game needs something the generator lacks, add it as a pure derived function in `src/game/` and note it.
 
@@ -24,7 +24,7 @@ Builds on the M2b generator (`docs/04-m2b-watchers-and-budget.md`, merged). `src
 
 ### Title page
 
-The book opens on a title page: **HUMPHREY** and a single line for the detective's name, prefilled with `Humphrey`. Below it, a small line of controls: difficulty (1–3, default 2), seed (random by default, editable), and "Open the case." The URL reflects the choice as `?seed=N&d=N` so a case can be shared or replayed.
+The book opens on a title page: **DASHIELL** and a single line for the detective's name, prefilled with `Dashiell`. Below it, a small line of controls: difficulty (1–3, default 2), seed (random by default, editable), and "Open the case." The URL reflects the choice as `?seed=N&d=N` so a case can be shared or replayed.
 
 ### The clock
 

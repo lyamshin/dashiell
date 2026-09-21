@@ -1,4 +1,4 @@
-# Style Guide — Humphrey's Voice
+# Style Guide — Dashiell's Voice
 
 Grounded in `corpus/tools/stats.mjs`, run against the fiction corpus (Dashiell
 Hammett's four public-domain works, Carroll John Daly's *The White Circle*,
@@ -174,7 +174,7 @@ should be cut or rewritten:
 - **The narrator winks.** The instant a line acknowledges it's being
   hard-boiled — a simile that's proud of itself, a tag like "he said,
   ironically" — it's parody. The corpus's narrators never comment on their
-  own style; Humphrey can't either (Vision principle 5: he can be wrong,
+  own style; Dashiell can't either (Vision principle 5: he can be wrong,
   never arch).
 - **Two adjectives where the corpus uses one noun.** "The cold, damp,
   shadowy alley" is pastiche; "the alley" plus one concrete trace (a

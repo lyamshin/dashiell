@@ -1,13 +1,13 @@
 # Milestone 4 — Voice: The Page Becomes a Scene
 
-The M3 book works and reads thin. Every page is a record with a hat on: a witness card, a database row with names in it, a simile. The information-to-texture ratio is about 90/10. Hammett's is closer to 30/70. Nothing happens on the page. Nobody lights anything, nobody crosses a room, no time passes, and Humphrey never thinks.
+The M3 book works and reads thin. Every page is a record with a hat on: a witness card, a database row with names in it, a simile. The information-to-texture ratio is about 90/10. Hammett's is closer to 30/70. Nothing happens on the page. Nobody lights anything, nobody crosses a room, no time passes, and Dashiell never thinks.
 
 This milestone changes what a page *is*. The generator does not change. The notebook takes the record. The page becomes the scene.
 
 Three decisions already made:
 
-1. **Humphrey talks.** He is a character, thin but present, with his own lines. He may evolve across runs later; design so his roll can be seeded from persistent state without changing anything now.
-2. **Humphrey has a life, rolled at initiation.** Circumstance, relationship state, and which people in this neighborhood already know him, weighted by role. Knowing someone is texture and a small mechanic.
+1. **Dashiell talks.** He is a character, thin but present, with his own lines. He may evolve across runs later; design so his roll can be seeded from persistent state without changing anything now.
+2. **Dashiell has a life, rolled at initiation.** Circumstance, relationship state, and which people in this neighborhood already know him, weighted by role. Knowing someone is texture and a small mechanic.
 3. **Character depth varies.** Every person rolls a temper: enigma, plain, or yap.
 
 Two tracks run in parallel against the schemas in this document: **the engine** (Opus, `src/game/voice/`) and **the content** (Sonnets, `content/decks/`). The engine must run with thin decks and degrade gracefully; the content must validate against the schemas without the engine.
@@ -24,13 +24,13 @@ The page must still contain the fact in some spoken or narrated form, so a playe
 
 ### A.2 The roll
 
-At run start, after the case is generated, roll Humphrey's situation with the run seed (deterministic per seed):
+At run start, after the case is generated, roll Dashiell's situation with the run seed (deterministic per seed):
 
 ```ts
-interface HumphreyRoll {
+interface DashiellRoll {
   circumstance: 'behind-on-rent' | 'flush' | 'hungover' | 'bruised' | 'off-a-divorce-case' | 'sleepless' | 'just-paid';
   relationship: 'none' | 'someone-waiting' | 'someone-who-left' | 'complicated';
-  knows: Record<Id, Acquaintance>;   // personId -> how Humphrey knows them
+  knows: Record<Id, Acquaintance>;   // personId -> how Dashiell knows them
 }
 interface Acquaintance { how: 'regular' | 'did-a-job-for' | 'grew-up-with' | 'owes-me' | 'i-owe' | 'old-flame'; warmth: -1 | 0 | 1; }
 ```
@@ -39,8 +39,8 @@ Acquaintance probabilities by role. Fixtures: bartender 0.5, doorman 0.4, beat-c
 
 Mechanics of knowing someone:
 
-- They use Humphrey's name. Dialogue frames use the `familiar` register.
-- **The first `ask` to a person who knows Humphrey is free.** Par is unaffected; this is unearned slack and should feel like luck.
+- They use Dashiell's name. Dialogue frames use the `familiar` register.
+- **The first `ask` to a person who knows Dashiell is free.** Par is unaffected; this is unearned slack and should feel like luck.
 - **Bias.** The reactive monologue (A.6) discounts evidence against an `old-flame` or `warmth: 1` acquaintance until the contradiction is undeniable (two independent facts against their claim). Until then it rationalizes. After, it turns. This is the narrator-being-wrong mechanic and it must be *visible* in the prose, not just a flag.
 
 Circumstance and relationship feed the ambient monologue and the asides deck. They never touch the mystery.
@@ -51,7 +51,7 @@ Every suspect and fixture rolls `temper: 'enigma' | 'plain' | 'yap'` at case sta
 
 Effects:
 
-- **Enigma.** Answers in one clause. Little business. The fact lands in the fewest words the utterance deck allows. Humphrey's monologue fills the page. Enigmas require the exact topic (they do already).
+- **Enigma.** Answers in one clause. Little business. The fact lands in the fewest words the utterance deck allows. Dashiell's monologue fills the page. Enigmas require the exact topic (they do already).
 - **Plain.** The default shape.
 - **Yap.** Long answers, extra business, colour about people who aren't in the room. **Once per run, a yapper volunteers one findable clue from their own topic buckets that the player did not ask for.** Prefer a noise clue. Deliver it on the same page, after the asked-for fact, and record it in the notebook like any other. This is how noise enters a conversation.
 
@@ -69,8 +69,8 @@ A page is assembled from slots. Not every slot fires on every page; the engine p
 | **arrival** | `go` | arrivals deck, by place kind × hour band × weather |
 | **place** | first `look` at a place | places deck (now including unwatched and empty rooms) |
 | **presence** | arrival, look | portraits of who is here, one component each |
-| **approach** | `ask` | business deck, by role or temper: what they're doing when Humphrey speaks |
-| **exchange** | `ask` | dialogue frames × Humphrey's lines × utterances (below) |
+| **approach** | `ask` | business deck, by role or temper: what they're doing when Dashiell speaks |
+| **exchange** | `ask` | dialogue frames × Dashiell's lines × utterances (below) |
 | **volunteer** | yap, once per run | a second exchange with the volunteered clue |
 | **find** | `examine` | find frames: how the object or trace is come upon |
 | **reactive monologue** | whenever the established board changed | derived templates, see A.6 |
@@ -80,7 +80,7 @@ A page is assembled from slots. Not every slot fires on every page; the engine p
 
 **The exchange** is the heart. It is built from three decks:
 
-- **Humphrey's lines**: how he opens ("Brauer," I said.), how he asks about a person / a place / an object / that evening / why I was hired, how he follows up, how he closes. Keyed by `familiar` vs `stranger`.
+- **Dashiell's lines**: how he opens ("Brauer," I said.), how he asks about a person / a place / an object / that evening / why I was hired, how he follows up, how he closes. Keyed by `familiar` vs `stranger`.
 - **Dialogue frames**: the shape of the answer by register (`truth` / `evasion` / `lie`) × temper × familiar. A frame is 2–5 beats with a `{fact}` slot, `{business}` slots, and optional `{colour}` slots. Truth is short. Evasion answers a different question first. A lie is too complete.
 - **Utterances**: the fact itself as speech, keyed by `Fact.kind` × temper, with slots for `{subject}`, `{place}`, `{time}`, `{object}`. "Eight o'clock, about. Had the one and left before the second round." A denial has its own utterance shapes. Documents and physical clues use `find` frames instead.
 
@@ -96,7 +96,7 @@ Derived from the established board, not from decks. Templates with slots in `src
 - Contradicted by two independent facts (hard: the story is dead)
 - The time-of-death window narrowed
 - A secret explained (a red herring knocked down)
-- **The leading theory**, stated as fact in Humphrey's voice: the suspect with the most facts against them so far. This will often be wrong, and that is the point. Recompute per page; when it changes, say so ("I had been looking at the wrong man.").
+- **The leading theory**, stated as fact in Dashiell's voice: the suspect with the most facts against them so far. This will often be wrong, and that is the point. Recompute per page; when it changes, say so ("I had been looking at the wrong man.").
 - **Bias** (A.2): for an old flame or a warm acquaintance, the mild-contradiction template rationalizes instead; only the hard template turns.
 - Clock pressure: at fewer than four actions left, the monologue notices.
 
@@ -108,7 +108,7 @@ Every costed action produces one transition line keyed to the hour band (midnigh
 
 - **Never repeat across runs** (burn in localStorage until exhausted, then reshuffle): similes, portraits, asides.
 - **Never repeat within a run**: dialogue frames, place cards, ambient monologue, arrivals.
-- **May repeat**: transitions, business, Humphrey's lines, utterances.
+- **May repeat**: transitions, business, Dashiell's lines, utterances.
 
 ### A.9 The transcript tool
 
@@ -152,13 +152,13 @@ Slots available everywhere: `{detective}`, `{name}` (subject surname), `{place}`
 | similes | `similes.json` | mood, target, intensity | **+200** (to 300) | Fix the tells: no explanatory tail after a dash, no genre self-reference (alibis, bill collectors), no knowing aphorisms. |
 | portraits | `portraits.json` | component (trait/habit/clothing), gender (m/f/any), class, ageBand (young/middle/old) | **150** (50 per component) | One concrete detail each. "A split thumbnail he kept looking at." Reusable as a callback. |
 | business | `business.json` | role (fixture roles + 'suspect'), temper | **120** | What they're doing when spoken to, and mid-answer gestures. Fixtures have props. Suspects have nerves. |
-| humphrey-lines | `humphrey.json` | kind (open/ask-person/ask-place/ask-object/ask-evening/ask-hired/follow-up/close), familiar (yes/no) | **80** | Short. He asks like a man who has asked before. |
-| frames | `frames.json` | register, temper, familiar | **110** | 2–5 beats. Slots `{fact}`, `{business}`, `{colour}`, `{humphrey}`. Every combination of register × temper × familiar has at least 4 frames. |
+| dashiell-lines | `dashiell.json` | kind (open/ask-person/ask-place/ask-object/ask-evening/ask-hired/follow-up/close), familiar (yes/no) | **80** | Short. He asks like a man who has asked before. |
+| frames | `frames.json` | register, temper, familiar | **110** | 2–5 beats. Slots `{fact}`, `{business}`, `{colour}`, `{dashiell}`. Every combination of register × temper × familiar has at least 4 frames. |
 | utterances | `utterances.json` | factKind, temper, register | **160** | The fact as speech. Every `Fact.kind` × temper has at least 3. Denials and secretExplained included. |
 | find | `find.json` | clueKind (physical/document/morgue/scene), placeKind | **50** | How a thing is come upon. |
 | arrivals | `arrivals.json` | placeKind, hourBand, weather (clear/rain/fog/cold) | **60** | The street at that hour. |
 | transitions | `transitions.json` | hourBand, anchorTemplate? | **80** | One line each. Include one per anchor template in the generator's `anchors.ts`. |
-| ambient | `ambient.json` | hourBand, caseState (cold/warm/hot/tight), circumstance | **120** | Humphrey thinking about nothing useful. |
+| ambient | `ambient.json` | hourBand, caseState (cold/warm/hot/tight), circumstance | **120** | Dashiell thinking about nothing useful. |
 | asides | `asides.json` | relationship, circumstance | **60** | His life, in fragments. Never plot. |
 | places | `places.json` | placeKind, watcher? (role or 'none'), empty (yes/no) | **+60** (to 110) | Unwatched rooms and empty rooms are the gap. |
 | endings | `endings.json` | outcome (hanged/wrong-man/thin-case/cold), parDelta (under/at/over) | **24** | Closing paragraphs. The wrong-man ending names what was missed via `{missed}`. |
@@ -169,7 +169,7 @@ Slots available everywhere: `{detective}`, `{name}` (subject surname), `{place}`
 - Concrete, period, New York, 1900–1935. Use the lexicon.
 - Sentences median 10 words. Fragments allowed. One simile per card at most, and only in the similes deck itself.
 - The narrator never winks. No aphorisms about the city keeping its own hours.
-- Humphrey is tired, competent, not clever on purpose. He notices; he does not comment.
+- Dashiell is tired, competent, not clever on purpose. He notices; he does not comment.
 - Utterances must carry the fact completely. A player reading only the page must learn who, where, when.
 - Every card `status: 'generated'`. The human tunes.
 
@@ -177,7 +177,7 @@ Slots available everywhere: `{detective}`, `{name}` (subject surname), `{place}`
 
 Two Sonnets, two branches, disjoint files:
 
-- **Content A** (`content-a`): portraits, business, humphrey-lines, frames, utterances, find. Read `src/gen/types.ts` for `Fact` kinds and `src/gen/data/cast.ts` for archetypes first.
+- **Content A** (`content-a`): portraits, business, dashiell-lines, frames, utterances, find. Read `src/gen/types.ts` for `Fact` kinds and `src/gen/data/cast.ts` for archetypes first.
 - **Content B** (`content-b`): similes (+200), arrivals, transitions, ambient, asides, places (+60), endings. Read `src/gen/data/anchors.ts` for anchor templates first.
 
 Each: a `scripts/validate-decks.mjs` run (the engine track will provide one; until then, a local schema check of tag coverage), `corpus/tools/overlap.mjs` clean, and a `docs/06-content-{a,b}-notes.md` naming the tag combinations that were hardest to write for and any you left thin.
@@ -186,4 +186,4 @@ Each: a `scripts/validate-decks.mjs` run (the engine track will provide one; unt
 
 ## Out of scope
 
-Reputation, persistence beyond burn tiers, Humphrey's evolution across runs, sound, art. The generator.
+Reputation, persistence beyond burn tiers, Dashiell's evolution across runs, sound, art. The generator.

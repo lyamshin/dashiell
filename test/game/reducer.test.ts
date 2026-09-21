@@ -8,7 +8,7 @@ import { buildNotebook } from '../../src/game/notebook.js';
 import type { RunState } from '../../src/game/types.js';
 
 const view = buildView(generateCase(7, { difficulty: 2 }));
-const fresh = (): RunState => newRun(view, { detectiveName: 'Humphrey' });
+const fresh = (): RunState => newRun(view, { detectiveName: 'Dashiell' });
 
 function run(state: RunState, ...inputs: string[]): RunState {
   let s = state;

@@ -32,7 +32,7 @@ export function generateCase(
   seed: number,
   opts?: { detectiveName?: string; difficulty?: Difficulty },
 ): Case {
-  return run(seed, opts?.detectiveName ?? 'Humphrey', opts?.difficulty ?? 2);
+  return run(seed, opts?.detectiveName ?? 'Dashiell', opts?.difficulty ?? 2);
 }
 
 /**
@@ -45,7 +45,7 @@ export function diagnoseCase(seed: number, difficulty: Difficulty = 2): {
   diagnostics: Diagnostics;
 } {
   const diagnostics: Diagnostics = { attempts: 0, rejections: [] };
-  const kase = run(seed, 'Humphrey', difficulty, diagnostics);
+  const kase = run(seed, 'Dashiell', difficulty, diagnostics);
   diagnostics.attempts = kase.attempts;
   return { case: kase, diagnostics };
 }

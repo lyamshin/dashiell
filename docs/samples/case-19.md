@@ -1,6 +1,6 @@
 # Greenwich Village — case 19
 
-**Seed** 19 · **Difficulty** 2 · **Attempts** 2 · **Detective** Humphrey
+**Seed** 19 · **Difficulty** 2 · **Attempts** 2 · **Detective** Dashiell
 
 **Par** 10 actions · **Slack** 6 · **Budget** 16 · **Findable** 34 (spine 11, corroboration 9, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 140
 

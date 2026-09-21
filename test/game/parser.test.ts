@@ -179,7 +179,7 @@ describe('a mistake never costs an action', () => {
   ];
 
   it('charges nothing for any of them, and files a page anyway', () => {
-    let state = newRun(view, { detectiveName: 'Humphrey' });
+    let state = newRun(view, { detectiveName: 'Dashiell' });
     const before = state.actionsUsed;
     for (const input of inputs) {
       const pages = state.log.length;
@@ -193,7 +193,7 @@ describe('a mistake never costs an action', () => {
   });
 
   it('charges nothing for asking somebody who is not in the room', () => {
-    const state = newRun(view, { detectiveName: 'Humphrey' });
+    const state = newRun(view, { detectiveName: 'Dashiell' });
     const elsewhere = view.kase.people.find(
       (p) => p.foundAt !== undefined && p.foundAt !== state.at && p.kind !== 'victim',
     );
@@ -203,7 +203,7 @@ describe('a mistake never costs an action', () => {
   });
 
   it('charges nothing for going where you already are', () => {
-    const state = newRun(view, { detectiveName: 'Humphrey' });
+    const state = newRun(view, { detectiveName: 'Dashiell' });
     const here = view.placeById.get(state.at)?.shortName as string;
     const result = stepInput(state, `go ${here}`, view);
     expect(result.page.cost).toBe(0);

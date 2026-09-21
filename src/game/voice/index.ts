@@ -6,7 +6,7 @@
  *   cast.ts      temper and portraits, rolled once and never again
  *   cards.ts     the decks, the schema, the burn tiers, the dealer
  *   facts.ts     a clue read as something a person could say
- *   exchange.ts  Humphrey's line × a dialogue frame × the fact as speech
+ *   exchange.ts  Dashiell's line × a dialogue frame × the fact as speech
  *   reactive.ts  what he thinks about what just changed, including the theory
  *   page.ts      the slots, and which of them fire
  *

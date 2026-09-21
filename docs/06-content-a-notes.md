@@ -1,7 +1,7 @@
-# Content A notes — portraits, business, humphrey-lines, frames, utterances, find
+# Content A notes — portraits, business, dashiell-lines, frames, utterances, find
 
 Six decks, 670 cards: `portraits.json` (150), `business.json` (120),
-`humphrey.json` (80), `frames.json` (110), `utterances.json` (160),
+`dashiell.json` (80), `frames.json` (110), `utterances.json` (160),
 `find.json` (50). `corpus/tools/overlap.mjs` is clean across all six files
 together (see the report handed back with this work). `scripts/validate-
 decks.mjs` did not exist in the repo when this branch started, so I wrote a
@@ -56,13 +56,13 @@ rather than duplicating what portraits or the monologue already do.
 ## Where the schema fought the writing
 
 **`{detective}` and the "never write the name" rule.** Partway through this
-pass the designer renamed the detective from Humphrey to Dashiell and asked
+pass the designer renamed the detective from Dashiell to Dashiell and asked
 that no card ever spell the name literally, always `{detective}`. This
-mostly cost nothing — Humphrey's own lines (`humphrey.json`) never say his
+mostly cost nothing — Dashiell's own lines (`dashiell.json`) never say his
 own name in the first place, since he doesn't refer to himself in the third
 person, so that file needed no changes. The place it actually mattered was
 `frames.json`: I used `{detective}` deliberately in `familiar: yes` frames,
-because A.2 says an acquaintance "uses Humphrey's name" — so several
+because A.2 says an acquaintance "uses Dashiell's name" — so several
 familiar-register frames now have a witness address `{detective}` directly
 ("Straight, {detective}. Every last bit of it."), which is the one place in
 Content A where that slot earns its keep rather than sitting unused.
@@ -70,7 +70,7 @@ Content A where that slot earns its keep rather than sitting unused.
 **`{name}` vs. `{subject}` ambiguity.** B.1 defines the global slot `{name}`
 as "subject surname" but `utterances.json`'s own row in the inventory table
 lists `{subject}` as its slot, not `{name}`. I read this as: `{name}` is
-what Humphrey and frame connective text use to address a person directly
+what Dashiell and frame connective text use to address a person directly
 ("Tell me about {name}"), while `{subject}` is what an utterance uses when
 *reporting* on a third party inside reported speech ("{subject} was at
 {place}"). I kept the two distinct on that reading, but the spec doesn't
@@ -108,8 +108,8 @@ see.
   describe someone doing almost nothing. A future pass could profitably
   trade a couple of these for more enigma-role fixture cards instead,
   where the job props give more to work with.
-- **`humphrey.json`'s `ask-hired` kind** is the thinnest kind
-  conceptually — it's the one place Humphrey talks about himself and his
+- **`dashiell.json`'s `ask-hired` kind** is the thinnest kind
+  conceptually — it's the one place Dashiell talks about himself and his
   own arrangement rather than asking about the case, and the ten lines
   (5 unfamiliar, 5 familiar) cover the ground but don't have much room to
   vary tone the way `follow-up` or `close` do.

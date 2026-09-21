@@ -1,6 +1,6 @@
 # the Bowery — case 20
 
-**Seed** 20 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+**Seed** 20 · **Difficulty** 2 · **Attempts** 1 · **Detective** Dashiell
 
 **Par** 9 actions · **Slack** 6 · **Budget** 15 · **Findable** 34 (spine 11, corroboration 9, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 170
 
