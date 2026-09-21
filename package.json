@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Humphrey — noir murder mystery roguelike. Milestone 1: case generator and truth sheet.",
+  "description": "Humphrey — noir murder mystery roguelike. Milestone 3: the book.",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "case": "tsx src/cli/case.ts",
     "batch": "tsx src/cli/batch.ts",
     "test": "vitest run",

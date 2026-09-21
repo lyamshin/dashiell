@@ -29,6 +29,3 @@ declare const process: {
   };
   stderr: { write(chunk: string): boolean };
 };
-
-/** The tests print a summary table; nothing in `src/` logs. */
-declare const console: { log(...args: unknown[]): void };
