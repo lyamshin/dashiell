@@ -1,0 +1,574 @@
+[
+  {
+    "id": "PLACE-001",
+    "deck": "place",
+    "text": "A brass rail worn bright by forty years of boot heels, and a mirror behind the bottles gone cloudy at the corners. {place} keeps its regulars the way a church keeps its pews — same stool, same hour, same silence when a stranger walks in.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 1,
+      "fixtureRole": "bartender"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-002",
+    "deck": "place",
+    "text": "The stools at {place} are bolted down, which tells you something about the Saturday crowd. A radio on the back shelf plays through the static, and nobody's turned it off since Tuesday.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "semi",
+      "intensity": 1,
+      "fixtureRole": "bartender"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-003",
+    "deck": "place",
+    "text": "Somebody spilled a rye and nobody's mopped it; the whole room smells like it's still 1919 in here. {place} doesn't card and doesn't ask, which is why the regulars keep coming back.",
+    "tags": {
+      "mood": "menace",
+      "placeKind": "semi",
+      "intensity": 2,
+      "fixtureRole": "bartender"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-004",
+    "deck": "place",
+    "text": "The lobby of {place} runs to red carpet gone thin down the middle, where every pair of feet in the building has walked the same six yards to the elevator. A brass spittoon sits by the door, polished, unused.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 1,
+      "fixtureRole": "doorman"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-005",
+    "deck": "place",
+    "text": "Calling cards wait in a silver tray on the lobby desk, most of them curling at the corners. Nobody's asked for the man in 6-C in three days, and the tray hasn't noticed.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "semi",
+      "intensity": 2,
+      "fixtureRole": "doorman"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-006",
+    "deck": "place",
+    "text": "Papers stacked by edition, string-tied, the ink still tacky on the top copies. The newsstand smells of pulp and cold coins, and the man behind it reads every headline before he sells it.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "public",
+      "intensity": 1,
+      "fixtureRole": "newsstand"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-007",
+    "deck": "place",
+    "text": "A rack of magazines curls in the wind off the avenue, held down by a brick nobody remembers placing there. The newsstand at {place} has sold the same corner its whole life and buried two owners doing it.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "public",
+      "intensity": 2,
+      "fixtureRole": "newsstand"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-008",
+    "deck": "place",
+    "text": "Rows of little glass doors, each one guarding a sandwich or a wedge of pie for a nickel dropped in the slot. {place} runs on coins and doesn't care who's behind them.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 1,
+      "fixtureRole": "counterman"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-009",
+    "deck": "place",
+    "text": "The counterman at {place} refills the machines from a locked door in back, and nobody's ever seen what's behind it. The coffee spout hisses on the hour whether anyone's thirsty or not.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "semi",
+      "intensity": 2,
+      "fixtureRole": "counterman"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-010",
+    "deck": "place",
+    "text": "A hand-lettered marquee, half its bulbs burned out, promising a picture that opened two weeks ago. {place} keeps the lobby dark on purpose — makes the ticket line feel like part of the show.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "semi",
+      "intensity": 1,
+      "fixtureRole": "ticket-taker"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-011",
+    "deck": "place",
+    "text": "The ticket-taker at {place} tears stubs without looking up, has done it so many years his hands know the motion better than his eyes do. The carpet inside is the color of an old bruise.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "semi",
+      "intensity": 2,
+      "fixtureRole": "ticket-taker"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-012",
+    "deck": "place",
+    "text": "The elevator cage at {place} rattles going up and worse coming down, and the man who runs it has stopped apologizing for it. He knows every tenant's floor before they say it.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 1,
+      "fixtureRole": "elevator-man"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-013",
+    "deck": "place",
+    "text": "A folding stool, a evening paper folded to the sports page, and a cage door that sticks on the fourth floor — that's the elevator man's whole world at {place}. He sees everyone. He repeats nothing.",
+    "tags": {
+      "mood": "tender",
+      "placeKind": "semi",
+      "intensity": 2,
+      "fixtureRole": "elevator-man"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-014",
+    "deck": "place",
+    "text": "The stairwell at {place} smells of boiled cabbage and coal dust, and every third step announces itself with a groan. The landlady's door stays cracked on the first landing; she hears the whole building breathe.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "semi",
+      "intensity": 1,
+      "fixtureRole": "landlady"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-015",
+    "deck": "place",
+    "text": "A single gas bracket lights the landing, turned low to save money nobody has to spend. The landlady at {place} can't see the stairs from her kitchen, but she can hear every pair of feet on them.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 2,
+      "fixtureRole": "landlady"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-016",
+    "deck": "place",
+    "text": "The El's shadow bars fall across the corner in stripes that move with the sun, and the beat cop turns up here regular as the trains overhead. He knows the corner better than the men who live on it.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "public",
+      "intensity": 1,
+      "fixtureRole": "beat-cop"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-017",
+    "deck": "place",
+    "text": "Under the El at {place}, the noise drowns out conversation every eight minutes on the dot, just time enough to say the one thing nobody's supposed to overhear.",
+    "tags": {
+      "mood": "menace",
+      "placeKind": "public",
+      "intensity": 2,
+      "fixtureRole": "beat-cop"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-018",
+    "deck": "place",
+    "text": "The beat cop stops here to check his watch against the trains, which run truer than his own. Rust drifts down from the El's ironwork like a slow, permanent snow.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "public",
+      "intensity": 1,
+      "fixtureRole": "beat-cop"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-019",
+    "deck": "place",
+    "text": "Two cabs idle at the stand, engines running to keep the drivers warm, meters dark. The cabbies at {place} trade the same three stories every night and add a little to each one.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "public",
+      "intensity": 1,
+      "fixtureRole": "cabbie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-020",
+    "deck": "place",
+    "text": "The cab stand keeps no schedule but its own; a fare shows up, one car pulls off, the rest shuffle forward a length. Nobody at {place} much cares where anybody's going, only that the meter's running.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "public",
+      "intensity": 1,
+      "fixtureRole": "cabbie"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-021",
+    "deck": "place",
+    "text": "Behind the marble counter at {place}, the druggist measures out powders on a brass scale with the same care he gives an egg cream. Both, he says, have to come out exactly right.",
+    "tags": {
+      "mood": "tender",
+      "placeKind": "semi",
+      "intensity": 1,
+      "fixtureRole": "druggist"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-022",
+    "deck": "place",
+    "text": "Bottles of tonic line the shelf behind the prescription counter, most of them more alcohol than medicine and both men behind the counter know it. The soda fountain at {place} does better business after dark than before.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "semi",
+      "intensity": 2,
+      "fixtureRole": "druggist"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-023",
+    "deck": "place",
+    "text": "The apartment is neat in the particular way of someone who lived alone and liked it — books squared on the shelf, one chair pulled to the window, the ashtray emptied every night before bed.",
+    "tags": {
+      "mood": "grief",
+      "placeKind": "private",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-024",
+    "deck": "place",
+    "text": "Somebody's gone through the desk drawers in a hurry; a pen's rolled off the blotter and nobody's picked it up. The radiator knocks twice and goes quiet, the only sound left in the place.",
+    "tags": {
+      "mood": "menace",
+      "placeKind": "private",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-025",
+    "deck": "place",
+    "text": "A coat still hangs by the door, waiting on a hook for a hand that isn't coming back for it. The apartment holds its silence the way a held breath does.",
+    "tags": {
+      "mood": "grief",
+      "placeKind": "private",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-026",
+    "deck": "place",
+    "text": "The kitchen shows one cup, one plate, washed and set to dry — the last small chore of an evening that didn't get to finish itself.",
+    "tags": {
+      "mood": "tender",
+      "placeKind": "private",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-027",
+    "deck": "place",
+    "text": "Tar paper soft underfoot from the day's heat, a line of wash strung between two chimneys and forgotten. From the roof the street sounds come up thin, like they belong to somebody else's evening.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "private",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-028",
+    "deck": "place",
+    "text": "The roof door doesn't latch from this side, hasn't in years, and half the building knows it. Pigeons scatter off the parapet at nothing in particular and settle again just as fast.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "private",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-029",
+    "deck": "place",
+    "text": "From up here the El train looks like a toy somebody wound too tight, clattering along under a sky already going the color of a week-old bruise.",
+    "tags": {
+      "mood": "menace",
+      "placeKind": "private",
+      "intensity": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-030",
+    "deck": "place",
+    "text": "Ash cans lined against the brick, a fire escape zigzagging up into the dark, and a smell that says the grocer's garbage hasn't gone out yet. The alley swallows sound the way a pawnshop swallows a watch nobody's coming back for.",
+    "tags": {
+      "mood": "menace",
+      "placeKind": "private",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-031",
+    "deck": "place",
+    "text": "A single bulb over a service door throws just enough light to make the shadows worse than no light at all. The alley at {place} keeps its own hours, and none of them are respectable.",
+    "tags": {
+      "mood": "menace",
+      "placeKind": "private",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-032",
+    "deck": "place",
+    "text": "Rain collects in a broken paving stone and doesn't drain; a cat's worked out the safest route across without wetting its feet. Nobody comes back here who doesn't have a reason.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "private",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-033",
+    "deck": "place",
+    "text": "A single window looks down on the avenue's awnings, and the desk is angled so the man behind it sees the door before the door sees him. The gilt lettering on the glass is peeling at the corners.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "private",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-034",
+    "deck": "place",
+    "text": "Ledgers stacked by year on a shelf that's starting to sag in the middle. The office smells of carbon paper and the shop's stock below — leather, or coffee, or whatever's sold downstairs.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "private",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-035",
+    "deck": "place",
+    "text": "An upright piano nobody plays, a horsehair sofa gone shiny at the arms, and a house rule against gentleman callers past nine, posted and mostly ignored. The parlor at {place} is where the boarders pretend to be a family.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "private",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-036",
+    "deck": "place",
+    "text": "The parlor clock runs eleven minutes fast, has for years, and every boarder in the house sets their watch by it anyway out of habit. Nobody's corrected it since the landlady's husband died.",
+    "tags": {
+      "mood": "grief",
+      "placeKind": "private",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-037",
+    "deck": "place",
+    "text": "Candles gutter in the side chapel, tended by whoever last remembered to light one. The church holds the cold the way stone always does, longer than the season that put it there.",
+    "tags": {
+      "mood": "grief",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-038",
+    "deck": "place",
+    "text": "The confessional door swings on a hinge that needs oil, announcing anyone who steps in before they've said a word. Outside, the traffic doesn't slow down for what happens inside.",
+    "tags": {
+      "mood": "tender",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-039",
+    "deck": "place",
+    "text": "The platform at {place} shudders when a train comes through, and the timetable posted on the wall hasn't matched reality since before the war. Steam and coal smoke drift up between the ties underfoot.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "public",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-040",
+    "deck": "place",
+    "text": "A newspaper blows along the platform in the wind off an incoming train, end over end, and nobody moves to catch it. Down on the street the shops look smaller from up here, and meaner.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "public",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-041",
+    "deck": "place",
+    "text": "Green felt gone gray at the rail where a thousand elbows have leaned, and a haze of cigar smoke that never quite clears the ceiling fan. Somebody's always got a dollar riding on the next shot at {place}.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-042",
+    "deck": "place",
+    "text": "The balls click and settle in the quiet between hands, the only clock anybody in the room is keeping. A chalked cue and a bad debt look about the same from across the room.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-043",
+    "deck": "place",
+    "text": "Hot towels steam on a rack by the mirror, and the barber talks through a shave the way a bartender talks through a drink — steady, and mostly to himself. Every chair in the place has heard more than the precinct house.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-044",
+    "deck": "place",
+    "text": "A row of shaving mugs on the shelf, each one lettered with a regular's name in gold paint gone thin. The shop stays open past six on Fridays, for men who can't get away during the day.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-045",
+    "deck": "place",
+    "text": "A curtain of glass beads over the kitchen door, and a smell of ginger and hot oil that reaches the sidewalk before the sign does. The back booths at {place} are the ones nobody at the front tables can see.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-046",
+    "deck": "place",
+    "text": "Paper lanterns strung along the ceiling, faded from years of kitchen steam. The waiters at {place} move fast and forget nothing, which makes them either the best witnesses in the neighborhood or the worst, depending who's asking.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "semi",
+      "intensity": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-047",
+    "deck": "place",
+    "text": "An oil-stained pit runs the length of the floor, and a row of tools hangs on a pegboard traced in white paint so a missing one shows right away. The garage at {place} smells of gasoline and cold concrete.",
+    "tags": {
+      "mood": "flat",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-048",
+    "deck": "place",
+    "text": "A car sits up on blocks with its hood open like something mid-operation, and a mechanic's radio plays low through the clatter. Nobody at {place} much notices who comes and goes, so long as the bill gets paid.",
+    "tags": {
+      "mood": "wry",
+      "placeKind": "semi",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-049",
+    "deck": "place",
+    "text": "Pilings furred green below the waterline, and gulls working the space between two idle freighters. The pier at {place} creaks under its own weight even when nobody's walking on it.",
+    "tags": {
+      "mood": "tired",
+      "placeKind": "public",
+      "intensity": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "PLACE-050",
+    "deck": "place",
+    "text": "A watchman's shack stands empty at the pier's end, its window fogged with salt and disuse. The harbor smell out here is diesel and low tide, and it clings to a coat for a day after.",
+    "tags": {
+      "mood": "menace",
+      "placeKind": "public",
+      "intensity": 2
+    },
+    "status": "generated"
+  }
+]
