@@ -1,12 +1,11 @@
 import {
   TICKS,
   clock,
-  placePhrase,
+  type Anchor,
   type Case,
   type Clue,
   type Fact,
   type Id,
-  type Observation,
   type Person,
   type Tick,
 } from '../gen/types.js';
@@ -15,14 +14,15 @@ import {
  * A designer's read-out of one case. Clarity over polish: this is the document
  * you scan twenty of to decide whether the generator is producing mysteries
  * worth interrogating.
+ *
+ * The clue list here is the *findable* set only — the thirty things a player
+ * can actually get hold of. The full candidate pool goes to its own file.
  */
 export function renderTruthSheet(c: Case): string {
-  const L = (id: Id | null | undefined): string =>
-    id ? (c.locations.find((l) => l.id === id)?.name ?? id) : '—';
+  const PL = (id: Id | null | undefined): string =>
+    id ? (c.places.find((p) => p.id === id)?.name ?? id) : '—';
   const P = (id: Id | null | undefined): string =>
     id ? (c.people.find((p) => p.id === id)?.name ?? id) : '—';
-  const W = (id: Id | null | undefined): string =>
-    id ? placePhrase(id, L(id)) : '—';
   const person = (id: Id): Person => c.people.find((p) => p.id === id) as Person;
   const schedule = (id: Id) => c.schedules.find((s) => s.personId === id);
 
@@ -31,15 +31,27 @@ export function renderTruthSheet(c: Case): string {
   const fixtures = c.people.filter((p) => p.kind === 'fixture');
   const killer = person(c.solution.killerId);
   const M = c.solution.murderTick;
-  const ML = c.solution.murderLocationId;
+  const ML = c.solution.murderPlaceId;
+
+  const findable = c.findable;
+  const byRole = (role: Clue['role']): Clue[] => findable.filter((cl) => cl.role === role);
+  const noiseCount = byRole('noise').length + byRole('disqualifier').length;
 
   const out: string[] = [];
 
   /* 1. Header ----------------------------------------------------------- */
-  out.push(`# ${c.hotelName} — case ${c.seed}`);
+  out.push(`# ${c.neighborhood} — case ${c.seed}`);
   out.push('');
   out.push(
-    `**Seed** ${c.seed} · **Attempts** ${c.attempts} · **Detective** ${c.detectiveName}`,
+    `**Seed** ${c.seed} · **Difficulty** ${c.difficulty} · **Attempts** ${c.attempts} · **Detective** ${c.detectiveName}`,
+  );
+  out.push('');
+  out.push(
+    `**Par** ${c.par} actions · **Budget** ${c.budget} · **Slack** ${c.budget - c.par} · ` +
+      `**Findable** ${findable.length} (spine ${byRole('spine').length}, corroboration ${byRole('corroboration').length}, ` +
+      `noise ${byRole('noise').length} + ${byRole('disqualifier').length} disqualifiers) · ` +
+      `**Noise ratio** ${Math.round((noiseCount / findable.length) * 100)}% · ` +
+      `**Candidate pool** ${c.candidates.length}`,
   );
   out.push('');
 
@@ -48,80 +60,84 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
   out.push(
     `${killer.name}, ${killer.role}, ${killer.relationshipToVictim ?? 'known to the victim'}, killed ` +
-      `${victim.name}, ${victim.role}, with ${c.method.name} ${W(ML)} at ${clock(M)}. ` +
+      `${victim.name}, ${victim.role}, with ${c.method.name} at ${PL(ML)} at ${clock(M)}. ` +
       `${killer.name} ${killer.motive?.description ?? 'had an unstated reason'} (${c.solution.motiveType}). ` +
-      `${killer.name} ${describeAccess(c)} and was alone with ${victim.name} when it happened.`,
+      `${killer.name} had been at ${PL(c.method.accessRequirement.place)} earlier in the evening, where the weapon lived, ` +
+      `and was alone with ${victim.name} when it happened. ` +
+      `${c.clientId === killer.id ? `${killer.name} is also the client: the killer hired us.` : `${P(c.clientId)} hired us.`}`,
   );
   out.push('');
 
   /* 3. Dramatis Personae ------------------------------------------------ */
   out.push('## 2. Dramatis Personae');
   out.push('');
-  out.push('| Name | Role | Relationship | Secret | Motive | Killer |');
-  out.push('| --- | --- | --- | --- | --- | --- |');
-  out.push(
-    `| ${victim.name} | ${victim.role} | the victim | — | — | — |`,
-  );
+  out.push('| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |');
+  out.push('| --- | --- | --- | --- | --- | --- | --- |');
+  out.push(`| ${victim.name} | ${victim.role} | the victim | — | — | — | — |`);
   for (const p of suspects) {
     const secretLabel = p.coverSecret
       ? `${p.secret?.type ?? '—'} (+ ${p.coverSecret.type})`
       : (p.secret?.type ?? '—');
     out.push(
-      `| ${p.name} | ${p.role} | ${p.relationshipToVictim ?? '—'} | ${secretLabel} | ${p.motive?.type ?? '—'} | ${p.isKiller ? '**YES**' : '—'} |`,
+      `| ${p.name}${p.isClient ? ' (client)' : ''} | ${p.role} | ${p.relationshipToVictim ?? '—'} | ${secretLabel} | ${p.motive?.type ?? '—'} | ${PL(p.foundAt)} | ${p.isKiller ? '**YES**' : '—'} |`,
     );
   }
   for (const p of fixtures) {
-    out.push(`| ${p.name} | ${p.role} | fixture | — | — | — |`);
+    out.push(`| ${p.name} | ${p.role} | fixture (${p.fixtureRole}) | — | — | ${PL(p.foundAt)} | — |`);
   }
   out.push('');
 
-  /* 4. Map -------------------------------------------------------------- */
-  out.push('## 3. Map');
+  /* 4. Places ----------------------------------------------------------- */
+  out.push('## 3. Places');
   out.push('');
-  for (const loc of c.locations) {
-    const objects = loc.objects
+  for (const place of c.places) {
+    const objects = place.objects
       .map((id) => c.objects.find((o) => o.id === id)?.name ?? id)
       .join(', ');
+    const watcher = place.watcher
+      ? `watched by ${place.watcher} (${P(c.people.find((p) => p.fixtureRole === place.watcher && p.foundAt === place.id)?.id)})`
+      : 'unwatched';
+    const tags: string[] = [];
+    if (place.id === ML) tags.push('**THE SCENE**');
+    if (place.isResidence) tags.push('the victim’s address');
+    if (place.id === c.method.accessRequirement.place) tags.push('where the weapon lived');
+    if (place.nearScene) tags.push('within earshot of the scene');
     out.push(
-      `- **${loc.name}** (${loc.isPublic ? 'public' : 'private'}) — adjacent: ${loc.adjacent.map(L).join(', ') || 'nothing'}` +
-        `; sees: ${loc.sightlines.map(L).join(', ') || 'nothing'}` +
-        `; noise carries to: ${loc.noiseCarriesTo.map(L).join(', ') || 'nowhere'}` +
-        `; objects: ${objects || 'none'}`,
+      `- **${place.name}** (${place.kind}) — ${watcher}; objects: ${objects || 'none'}${tags.length > 0 ? ` — ${tags.join('; ')}` : ''}`,
     );
   }
-  out.push('');
-  const env: string[] = [];
-  if (c.environment.rainStartsAt !== undefined) {
-    env.push(`Rain from ${clock(c.environment.rainStartsAt)}.`);
-  }
-  if (c.environment.elevatorOut) {
-    env.push(
-      `Passenger elevator out of order ${clock(c.environment.elevatorOut[0])}–${clock(c.environment.elevatorOut[1])}.`,
-    );
-  }
-  if (c.environment.radioBroadcastAt !== undefined) {
-    env.push(
-      `Bar radio at ${clock(c.environment.radioBroadcastAt)}: ${c.environment.radioContent} — ${c.environment.radioOutcome}.`,
-    );
-  }
-  out.push(`**Environment:** ${env.length > 0 ? env.join(' ') : 'nothing out of the ordinary.'}`);
   out.push('');
 
-  /* 5. Timelines -------------------------------------------------------- */
-  out.push('## 4. Timelines');
+  /* 5. Anchors ---------------------------------------------------------- */
+  out.push('## 4. Anchors');
+  out.push('');
+  out.push(
+    `The coroner gives ${clock(c.coronerWindow[0])}–${clock(c.coronerWindow[1])}, four ticks wide. ` +
+      `These are what close it: **${c.deduction.timeOfDeathAnchors.join('** and **')}**.`,
+  );
+  out.push('');
+  for (const a of c.anchors) {
+    out.push(`- **${a.name}** — ${anchorWhen(a)}; ${anchorWhere(a, PL)}. ${anchorWhat(a)}`);
+  }
+  out.push('');
+
+  /* 6. Timelines -------------------------------------------------------- */
+  out.push('## 5. Timelines');
   out.push('');
   for (const p of [victim, ...suspects]) {
     const s = schedule(p.id);
     if (!s) continue;
-    out.push(`### ${p.name}${p.isKiller ? ' — the killer' : ''}${p.kind === 'victim' ? ' — the victim' : ''}`);
+    out.push(
+      `### ${p.name}${p.isKiller ? ' — the killer' : ''}${p.kind === 'victim' ? ' — the victim' : ''}`,
+    );
     out.push('');
     out.push('| Tick | Time | Truth | Claimed | Companion claimed |');
     out.push('| --- | --- | --- | --- | --- |');
     for (let t = 0; t < TICKS; t++) {
       const lying = s.lies.includes(t);
       const isMurderCell = t === M && s.truth[t] === ML && (p.isKiller || p.kind === 'victim');
-      const truthCell = `${L(s.truth[t])}${isMurderCell ? ' ☠' : ''}`;
-      const claimCell = lying ? `**${L(s.claimed[t])}**` : L(s.claimed[t]);
+      const truthCell = `${PL(s.truth[t])}${isMurderCell ? ' ☠' : ''}`;
+      const claimCell = lying ? `**${PL(s.claimed[t])}**` : PL(s.claimed[t]);
       out.push(
         `| ${t} | ${clock(t)} | ${truthCell} | ${claimCell} | ${s.claimedCompanion[t] ? P(s.claimedCompanion[t]) : '—'} |`,
       );
@@ -133,13 +149,13 @@ export function renderTruthSheet(c: Case): string {
   out.push(`| Tick | Time | ${fixtures.map((f) => `${f.name} (${f.role})`).join(' | ')} |`);
   out.push(`| --- | --- | ${fixtures.map(() => '---').join(' | ')} |`);
   for (let t = 0; t < TICKS; t++) {
-    const cells = fixtures.map((f) => L(schedule(f.id)?.truth[t]));
+    const cells = fixtures.map((f) => PL(schedule(f.id)?.truth[t]));
     out.push(`| ${t} | ${clock(t)} | ${cells.join(' | ')} |`);
   }
   out.push('');
 
-  /* 6. Secrets in play -------------------------------------------------- */
-  out.push('## 5. Secrets in play');
+  /* 7. Secrets in play -------------------------------------------------- */
+  out.push('## 6. Secrets in play');
   out.push('');
   for (const p of suspects) {
     if (p.secret) out.push(`- **${p.name}** (${p.secret.type}): ${p.secret.description}`);
@@ -149,93 +165,86 @@ export function renderTruthSheet(c: Case): string {
   }
   out.push('');
 
-  /* 7. Clue list -------------------------------------------------------- */
-  out.push('## 6. Clue list');
+  /* 8. Clue list -------------------------------------------------------- */
+  out.push('## 7. Clue list — the 30 findable');
   out.push('');
-  const personClues = c.clues.filter((cl) => cl.source.type === 'person');
-  const locationClues = c.clues.filter((cl) => cl.source.type === 'location');
-
-  for (const p of c.people) {
-    const mine = personClues.filter(
-      (cl) => cl.source.type === 'person' && cl.source.personId === p.id,
-    );
+  out.push(
+    `The opening three, free at the start: ${c.starting.join(', ')}. ` +
+      'Everything else has to be led to. The full candidate pool is in the companion file.',
+  );
+  out.push('');
+  for (const place of c.places) {
+    const mine = findable.filter((cl) => cl.place === place.id);
     if (mine.length === 0) continue;
-    out.push(`### From ${p.name} (${p.role})`);
-    out.push('');
-    const topics = new Map<string, Clue[]>();
-    for (const cl of mine) {
-      const topic = cl.source.type === 'person' ? cl.source.topic : '';
-      const list = topics.get(topic) ?? [];
-      list.push(cl);
-      topics.set(topic, list);
-    }
-    for (const [topic, list] of topics) {
-      out.push(`On ${topic}:`);
-      out.push('');
-      for (const cl of list) out.push(clueLine(c, cl));
-      out.push('');
-    }
-  }
-
-  for (const loc of c.locations) {
-    const mine = locationClues.filter(
-      (cl) => cl.source.type === 'location' && cl.source.locationId === loc.id,
-    );
-    if (mine.length === 0) continue;
-    out.push(`### From the ${loc.name}`);
+    out.push(`### At ${place.name}`);
     out.push('');
     for (const cl of mine) out.push(clueLine(c, cl));
     out.push('');
   }
 
-  out.push('### Withheld — the player cannot get these');
+  /* 9. Clue graph ------------------------------------------------------- */
+  out.push('## 8. Clue graph');
   out.push('');
-  const withheldLines = renderWithheld(c);
-  if (withheldLines.length === 0) out.push('- None.');
-  else out.push(...withheldLines);
+  out.push(...mermaid(c));
   out.push('');
 
-  /* 8. Deduction path --------------------------------------------------- */
-  out.push('## 7. Deduction path');
+  /* 10. Deduction path -------------------------------------------------- */
+  out.push('## 9. Deduction path');
   out.push('');
   out.push(
-    `**Time of death.** The coroner gives a two-tick window; the clues below close it to ${clock(M)}. ${cite(c.deduction.timeOfDeath)}`,
+    `Par is **${c.par} actions** against a budget of ${c.budget}: ${c.budget - c.par} spare. ` +
+      'Every id below is a spine clue.',
+  );
+  out.push('');
+  const spineIds = new Set(byRole('spine').map((cl) => cl.id));
+  // The spec asks the deduction path to cite spine ids only, so the clues that
+  // merely back it up are counted rather than named.
+  const spineOnly = (list: Id[]): string => {
+    const spineHits = list.filter((id) => spineIds.has(id));
+    const rest = list.length - spineHits.length;
+    const body = spineHits.length > 0 ? spineHits.join(', ') : 'no spine clue';
+    return `_(${body}${rest > 0 ? `; + ${rest} corroborating` : ''})_`;
+  };
+  out.push(
+    `**Time of death.** The coroner gives four ticks. The anchors close it to ${clock(M)}: one puts ${victim.name} alive at ${clock(M - 1)}, the other times the scene at ${clock(M)}. ${(spineOnly(c.deduction.timeOfDeath))}`,
   );
   out.push('');
   out.push('**Clearing the innocent.**');
   out.push('');
   for (const p of suspects) {
     if (p.isKiller) continue;
-    const list = c.deduction.exculpations[p.id] ?? [];
     out.push(
-      `- ${p.name} was not ${W(ML)} at ${clock(M)}, on two independent sources. ${cite(list)}`,
+      `- ${p.name} was not at ${PL(ML)} at ${clock(M)}, on two independent sources. ${(spineOnly(c.deduction.exculpations[p.id] ?? []))}`,
     );
   }
   out.push('');
-  const killerSchedule = schedule(killer.id);
   out.push(
-    `**Naming the killer.** ${killer.name} claims the ${L(killerSchedule?.claimed[M])} at ${clock(M)}. ` +
-      `Two independent sources put that out of the question, and one ties ${killer.name} to ${c.method.name}. ${cite(c.deduction.inculpation)}`,
+    `**Naming the killer.** ${killer.name} claims ${PL(schedule(killer.id)?.claimed[M])} at ${clock(M)}. ` +
+      `Two independent sources put that out of the question. ${(spineOnly(c.deduction.inculpation))}`,
   );
   out.push('');
   out.push(
-    `**Method.** ${sentenceCase(c.method.name)}, on two physical sources. ${cite(c.deduction.method)}`,
+    `**The weapon.** ${killer.name} was at ${PL(c.method.accessRequirement.place)} before ${clock(M)}, where ${c.objects.find((o) => o.id === c.method.evidenceObjectId)?.name ?? 'the weapon'} was kept. ${(spineOnly(c.deduction.access))}`,
   );
   out.push('');
   out.push(
-    `**Motive.** ${c.solution.motiveType}, on two independent sources. ${cite(c.deduction.motive)}`,
+    `**Method.** ${sentenceCase(c.method.name)}, on two physical sources. ${(spineOnly(c.deduction.method))}`,
+  );
+  out.push('');
+  out.push(
+    `**Motive.** ${c.solution.motiveType}, on two independent sources. ${(spineOnly(c.deduction.motive))}`,
   );
   out.push('');
 
-  /* 9. Red herrings ----------------------------------------------------- */
-  out.push('## 8. Red herrings');
+  /* 11. Red herrings ---------------------------------------------------- */
+  out.push('## 10. Red herrings');
   out.push('');
   const liars = suspects.filter((p) => !p.isKiller && (schedule(p.id)?.lies ?? []).includes(M));
   out.push('**Innocents who lie about the murder tick:**');
   out.push('');
   for (const p of liars) {
     out.push(
-      `- ${p.name} claims the ${L(schedule(p.id)?.claimed[M])} at ${clock(M)} and was really in the ${L(schedule(p.id)?.truth[M])}. Reason: ${p.secret?.description ?? 'unknown'}`,
+      `- ${p.name} claims ${PL(schedule(p.id)?.claimed[M])} at ${clock(M)} and was really at ${PL(schedule(p.id)?.truth[M])}. Reason: ${p.secret?.description ?? 'unknown'}`,
     );
   }
   if (liars.length === 0) out.push('- None.');
@@ -243,38 +252,77 @@ export function renderTruthSheet(c: Case): string {
   const motived = suspects.filter((p) => !p.isKiller && p.motive);
   out.push('**Innocents with a motive:**');
   out.push('');
-  for (const p of motived) {
-    out.push(`- ${p.name} — ${p.motive?.type}: ${p.motive?.description}.`);
-  }
+  for (const p of motived) out.push(`- ${p.name} — ${p.motive?.type}: ${p.motive?.description}.`);
   if (motived.length === 0) out.push('- None.');
+  out.push('');
+  out.push('**Noise branches, and what knocks each one down:**');
+  out.push('');
+  const branchIds = Array.from(
+    new Set(findable.filter((cl) => cl.branchId).map((cl) => cl.branchId as Id)),
+  );
+  for (const bid of branchIds) {
+    const list = findable.filter((cl) => cl.branchId === bid);
+    const about = list[0]?.aboutSecretOf;
+    const disq = list.find((cl) => cl.role === 'disqualifier');
+    out.push(
+      `- **${bid}** (${P(about)}, ${person(about as Id)?.secret?.type ?? '—'}): ${list
+        .filter((cl) => cl.role === 'noise')
+        .map((cl) => cl.id)
+        .join(' → ')} → **${disq?.id ?? '?'}** — ${disq?.text ?? ''}`,
+    );
+  }
+  if (branchIds.length === 0) out.push('- None.');
   out.push('');
 
   return out.join('\n');
+}
+
+function anchorWhen(a: Anchor): string {
+  if (a.ticks.length === 1) return `at ${clock(a.ticks[0] as Tick)}`;
+  return `at ${a.ticks.map((t) => clock(t)).join(', ')}`;
+}
+
+function anchorWhere(a: Anchor, PL: (id: Id | null | undefined) => string): string {
+  if (a.route) return `on a round through ${Array.from(new Set(a.route)).map(PL).join(' → ')}`;
+  if (a.placeId) return `at ${PL(a.placeId)}`;
+  return 'across the whole neighbourhood';
+}
+
+function anchorWhat(a: Anchor): string {
+  return a.traces
+    .map((t) => {
+      switch (t.kind) {
+        case 'sighting':
+          return 'Somebody reliable notes who was there.';
+        case 'knowledge':
+          return `Only those present know that ${t.description}.`;
+        case 'mark':
+          return `Those present carry it: ${t.description}.`;
+        case 'sound':
+          return `You can time things by it: ${t.description}.`;
+      }
+    })
+    .join(' ');
 }
 
 function sentenceCase(text: string): string {
   return text.length === 0 ? text : `${text[0]?.toUpperCase()}${text.slice(1)}`;
 }
 
-function describeAccess(c: Case): string {
-  const req = c.method.accessRequirement;
-  if (!req) return 'needed nothing in particular to do it';
-  const loc = c.locations.find((l) => l.id === req.location)?.name ?? req.location;
-  return `had been ${placePhrase(req.location, loc)} earlier in the evening, before ${clock(req.beforeTick)}`;
-}
-
-function cite(clueIds: Id[]): string {
-  if (clueIds.length === 0) return '_(no clues cited)_';
-  return `_(${clueIds.join(', ')})_`;
-}
-
 function clueLine(c: Case, clue: Clue): string {
   const facts = clue.establishes.length > 0 ? summarizeFacts(c, clue.establishes) : 'context only';
-  return `- **${clue.id}** [${clue.kind}] ${clue.text} — _establishes: ${facts}_`;
+  const leads = clue.leadsTo.length > 0 ? ` → ${clue.leadsTo.join(', ')}` : ' → (end)';
+  const branch = clue.branchId ? ` {${clue.branchId}}` : '';
+  const start = c.starting.includes(clue.id) ? ' ⟨opening⟩' : '';
+  const src =
+    clue.source.type === 'person'
+      ? `${c.people.find((p) => p.id === (clue.source as { personId: Id }).personId)?.name ?? '?'} on ${(clue.source as { topic: string }).topic}`
+      : `the place itself`;
+  return `- **${clue.id}** [${clue.role}${branch}${start}] (${clue.kind}; ${src})${leads}\n  - ${clue.text}\n  - _establishes: ${facts}_`;
 }
 
 function summarizeFacts(c: Case, facts: Fact[]): string {
-  const L = (id: Id): string => c.locations.find((l) => l.id === id)?.name ?? id;
+  const PL = (id: Id): string => c.places.find((p) => p.id === id)?.name ?? id;
   const P = (id: Id): string => c.people.find((p) => p.id === id)?.name ?? id;
 
   const parts: string[] = [];
@@ -286,7 +334,7 @@ function summarizeFacts(c: Case, facts: Fact[]): string {
       let j = i + 1;
       while (j < facts.length) {
         const g = facts[j] as Fact;
-        if (g.kind !== f.kind || g.personId !== f.personId || g.location !== f.location) break;
+        if (g.kind !== f.kind || g.personId !== f.personId || g.place !== f.place) break;
         ticks.push(g.tick);
         j++;
       }
@@ -294,30 +342,39 @@ function summarizeFacts(c: Case, facts: Fact[]): string {
         ticks.length === 1
           ? clock(ticks[0] as Tick)
           : `${clock(ticks[0] as Tick)}–${clock(ticks[ticks.length - 1] as Tick)}`;
-      parts.push(
-        `${P(f.personId)} ${f.kind === 'personAt' ? '' : 'not '}${placePhrase(f.location, L(f.location))}, ${range}`,
-      );
+      parts.push(`${P(f.personId)} ${f.kind === 'personAt' ? 'at' : 'not at'} ${PL(f.place)}, ${range}`);
       i = j;
       continue;
     }
     switch (f.kind) {
       case 'objectMissing':
-        parts.push(`an object gone from the ${L(f.fromLocation)}`);
+        parts.push(`something gone from ${PL(f.fromPlace)}`);
         break;
       case 'noiseAt':
-        parts.push(`noise ${placePhrase(f.location, L(f.location))} at ${clock(f.tick)}`);
+        parts.push(`noise at ${PL(f.place)} at ${clock(f.tick)}`);
         break;
       case 'timeOfDeath':
-        parts.push(`death between ${clock(f.ticks[0] as Tick)} and ${clock(f.ticks[1] as Tick)}`);
+        parts.push(
+          `death between ${clock(f.ticks[0] as Tick)} and ${clock(f.ticks[f.ticks.length - 1] as Tick)}`,
+        );
         break;
       case 'hasMotive':
         parts.push(`${P(f.personId)} had a motive (${f.motiveType})`);
         break;
       case 'hadAccess':
-        parts.push(`${P(f.personId)} had access to the method`);
+        parts.push(`${P(f.personId)} could reach the weapon`);
         break;
       case 'victimAliveAt':
         parts.push(`the victim alive at ${clock(f.tick)}`);
+        break;
+      case 'victimDeadBy':
+        parts.push(`the victim dead by ${clock(f.tick)}`);
+        break;
+      case 'methodEvidence':
+        parts.push('how it was done');
+        break;
+      case 'secretExplained':
+        parts.push(`${P(f.personId)}’s ${f.secretType} accounted for`);
         break;
     }
     i++;
@@ -325,33 +382,104 @@ function summarizeFacts(c: Case, facts: Fact[]): string {
   return parts.join('; ');
 }
 
-function renderWithheld(c: Case): string[] {
-  const L = (id: Id): string => c.locations.find((l) => l.id === id)?.name ?? id;
-  const P = (id: Id): string => c.people.find((p) => p.id === id)?.name ?? id;
-  const withheld = c.observations.filter((o) => o.withheld);
-  const grouped = new Map<string, Observation[]>();
-  for (const o of withheld) {
-    const key = `${o.observerId}|${o.subjectId}|${o.location}`;
-    const list = grouped.get(key) ?? [];
-    list.push(o);
-    grouped.set(key, list);
+/** A `graph LR` of the findable clues, clustered by place. */
+function mermaid(c: Case): string[] {
+  const out: string[] = ['```mermaid', 'graph LR'];
+  const label = (cl: Clue): string => {
+    const who =
+      cl.source.type === 'person'
+        ? (c.people.find((p) => p.id === (cl.source as { personId: Id }).personId)?.name ?? '?')
+        : 'the place';
+    const mark = cl.role === 'disqualifier' ? '✗ ' : c.starting.includes(cl.id) ? '▶ ' : '';
+    return `${mark}${cl.id} ${who}`.replace(/["[\]()]/g, '');
+  };
+
+  let n = 0;
+  for (const place of c.places) {
+    const mine = c.findable.filter((cl) => cl.place === place.id);
+    if (mine.length === 0) continue;
+    n++;
+    out.push(`  subgraph P${n}["${place.name.replace(/["[\]()]/g, '')}"]`);
+    for (const cl of mine) out.push(`    ${cl.id}["${label(cl)}"]`);
+    out.push('  end');
   }
-  const lines: string[] = [];
-  for (const [key, list] of grouped) {
-    const [observerId, subjectId, location] = key.split('|') as [Id, Id, Id];
-    const ticks = list.map((o) => o.tick).sort((a, b) => a - b);
-    let start = 0;
-    for (let i = 1; i <= ticks.length; i++) {
-      if (i === ticks.length || (ticks[i] as Tick) !== (ticks[i - 1] as Tick) + 1) {
-        const a = ticks[start] as Tick;
-        const b = ticks[i - 1] as Tick;
-        const range = a === b ? clock(a) : `${clock(a)}–${clock(b)}`;
-        lines.push(
-          `- ~~${P(observerId)} saw ${P(subjectId)} ${placePhrase(location, L(location))}, ${range}~~ — ${P(observerId)} is lying about that time and will not say.`,
-        );
-        start = i;
-      }
+  const findableIds = new Set(c.findable.map((cl) => cl.id));
+  for (const cl of c.findable) {
+    for (const next of cl.leadsTo) {
+      if (!findableIds.has(next)) continue;
+      const dashed = c.findable.find((x) => x.id === next)?.role === 'noise';
+      out.push(`  ${cl.id} ${dashed ? '-.->' : '-->'} ${next}`);
     }
   }
-  return lines;
+  const group = (role: Clue['role']): string =>
+    c.findable.filter((cl) => cl.role === role).map((cl) => cl.id).join(',');
+  out.push('  classDef spine stroke-width:3px;');
+  out.push('  classDef corrob stroke-width:1px;');
+  out.push('  classDef noise stroke-dasharray: 4 3;');
+  out.push('  classDef disq stroke-width:2px,stroke-dasharray: 1 0;');
+  if (group('spine')) out.push(`  class ${group('spine')} spine;`);
+  if (group('corroboration')) out.push(`  class ${group('corroboration')} corrob;`);
+  if (group('noise')) out.push(`  class ${group('noise')} noise;`);
+  if (group('disqualifier')) out.push(`  class ${group('disqualifier')} disq;`);
+  out.push('```');
+  return out;
+}
+
+/** The full pool: what is true, whether or not the player can reach it. */
+export function renderCandidateSheet(c: Case): string {
+  const out: string[] = [];
+  const findable = new Set(c.findable.map((cl) => cl.id));
+  out.push(`# ${c.neighborhood} — case ${c.seed}: the candidate pool`);
+  out.push('');
+  out.push(
+    `${c.candidates.length} true things about the evening. ${findable.size} of them are findable ` +
+      '(marked ★); the rest are the truth the report is graded against, not the truth the player can reach.',
+  );
+  out.push('');
+
+  const bySource = new Map<string, Clue[]>();
+  for (const cl of c.candidates) {
+    const src = cl.source;
+    const key =
+      src.type === 'person'
+        ? (c.people.find((p) => p.id === src.personId)?.name ?? src.personId)
+        : `${c.places.find((p) => p.id === src.placeId)?.name ?? src.placeId} (the place itself)`;
+    const list = bySource.get(key) ?? [];
+    list.push(cl);
+    bySource.set(key, list);
+  }
+  for (const [source, list] of bySource) {
+    out.push(`## ${source}`);
+    out.push('');
+    for (const cl of list) {
+      const topic = cl.source.type === 'person' ? ` — on ${cl.source.topic}` : '';
+      out.push(
+        `- ${findable.has(cl.id) ? '★ ' : ''}**${cl.id}** [${cl.kind}]${topic} ${cl.text}\n  - _establishes: ${cl.establishes.length > 0 ? summarizeFacts(c, cl.establishes) : 'context only'}_`,
+      );
+    }
+    out.push('');
+  }
+
+  out.push('## Withheld observations');
+  out.push('');
+  const withheld = c.observations.filter((o) => o.withheld);
+  if (withheld.length === 0) out.push('- None.');
+  const grouped = new Map<string, Tick[]>();
+  for (const o of withheld) {
+    const key = `${o.observerId}|${o.subjectId}|${o.place}`;
+    const list = grouped.get(key) ?? [];
+    list.push(o.tick);
+    grouped.set(key, list);
+  }
+  for (const [key, ticks] of grouped) {
+    const [observerId, subjectId, place] = key.split('|') as [Id, Id, Id];
+    const name = (id: Id): string => c.people.find((p) => p.id === id)?.name ?? id;
+    const placeName = c.places.find((p) => p.id === place)?.name ?? place;
+    const sorted = ticks.slice().sort((a, b) => a - b);
+    out.push(
+      `- ~~${name(observerId)} saw ${name(subjectId)} at ${placeName}, ${sorted.map((t) => clock(t)).join(', ')}~~ — lying about that time, will not say.`,
+    );
+  }
+  out.push('');
+  return out.join('\n');
 }

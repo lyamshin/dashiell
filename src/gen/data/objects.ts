@@ -1,34 +1,46 @@
 import type { Id } from '../types.js';
-import { LOC } from './locations.js';
 
 /**
- * Things that can go missing or bear traces. `homes` lists the locations the
- * object could plausibly live in; the generator picks one per case so the map
- * is not identical every run.
+ * Things that can go missing or bear traces. A place template lists the object
+ * ids that could plausibly be found there; the draw decides which actually are.
+ *
+ * The six weapon objects at the top are each one method's evidence object, so
+ * they are deliberately spread across a lot of places: the method can only be
+ * used if some drawn place other than the scene holds its weapon.
  */
 export interface ObjectTemplate {
   id: Id;
   name: string;
-  homes: Id[];
 }
 
 export const OBJECT_TEMPLATES: ObjectTemplate[] = [
-  { id: 'obj-decanter', name: 'a cut-glass decanter', homes: [LOC.bar, LOC.kitchen] },
-  { id: 'obj-cord', name: 'a length of sash cord', homes: [LOC.kitchen, LOC.stairs] },
-  { id: 'obj-bookend', name: 'a bronze bookend', homes: [LOC.frontDesk, LOC.suite] },
-  { id: 'obj-revolver', name: 'a nickel-plated revolver', homes: [LOC.frontDesk, LOC.suite] },
-  { id: 'obj-roofkey', name: 'the roof door key', homes: [LOC.frontDesk] },
-  { id: 'obj-ledger', name: 'the house ledger', homes: [LOC.frontDesk] },
-  { id: 'obj-cigarette-case', name: 'a silver cigarette case', homes: [LOC.bar, LOC.lobby, LOC.roof] },
-  { id: 'obj-umbrella-stand', name: 'a brass umbrella stand', homes: [LOC.lobby, LOC.street] },
-  { id: 'obj-icepick', name: 'an ice pick', homes: [LOC.kitchen, LOC.bar] },
-  { id: 'obj-coat', name: "a camel-hair overcoat on a hook", homes: [LOC.lobby, LOC.stairs] },
-  { id: 'obj-flowerpot', name: 'a terracotta flower pot', homes: [LOC.roof] },
-  { id: 'obj-watering-can', name: 'a galvanised watering can', homes: [LOC.roof, LOC.kitchen] },
-  { id: 'obj-guest-register', name: 'the guest register', homes: [LOC.frontDesk] },
-  { id: 'obj-mop-bucket', name: 'a mop and bucket', homes: [LOC.stairs, LOC.kitchen] },
-  { id: 'obj-seltzer', name: 'a seltzer siphon', homes: [LOC.bar] },
-  { id: 'obj-steamer-trunk', name: 'a steamer trunk', homes: [LOC.suite, LOC.stairs] },
-  { id: 'obj-writing-desk', name: 'a writing desk with a locked drawer', homes: [LOC.suite, LOC.lobby] },
-  { id: 'obj-newsstand', name: 'a folded stack of evening papers', homes: [LOC.street, LOC.lobby] },
+  { id: 'obj-chloral', name: 'a bottle of chloral drops' },
+  { id: 'obj-bookend', name: 'a bronze bookend' },
+  { id: 'obj-roofkey', name: 'the roof-door key' },
+  { id: 'obj-cord', name: 'a length of sash cord' },
+  { id: 'obj-revolver', name: 'a nickel-plated revolver' },
+  { id: 'obj-icepick', name: 'an ice pick' },
+
+  { id: 'obj-ledger', name: 'a day ledger' },
+  { id: 'obj-cashbox', name: 'a japanned cash box' },
+  { id: 'obj-typewriter', name: 'an Underwood typewriter' },
+  { id: 'obj-photograph', name: 'a framed photograph' },
+  { id: 'obj-cigarette-case', name: 'a silver cigarette case' },
+  { id: 'obj-umbrella', name: 'a brass umbrella stand' },
+  { id: 'obj-overcoat', name: 'a camel-hair overcoat on a hook' },
+  { id: 'obj-suitcase', name: 'a strapped suitcase' },
+  { id: 'obj-pawn-ticket', name: 'a spike of pawn tickets' },
+  { id: 'obj-timetable', name: 'a pasted-up timetable' },
+  { id: 'obj-newspapers', name: 'a folded stack of evening papers' },
+  { id: 'obj-mop-bucket', name: 'a mop and bucket' },
+  { id: 'obj-seltzer', name: 'a seltzer siphon' },
+  { id: 'obj-flowerpot', name: 'a terracotta flower pot' },
+  { id: 'obj-toolbox', name: 'a mechanic’s toolbox' },
+  { id: 'obj-hatbox', name: 'a stack of hatboxes' },
+  { id: 'obj-ashtray', name: 'a standing ashtray' },
+  { id: 'obj-telephone', name: 'a wall telephone' },
 ];
+
+export const OBJECT_NAMES: Record<Id, string> = Object.fromEntries(
+  OBJECT_TEMPLATES.map((o) => [o.id, o.name]),
+);

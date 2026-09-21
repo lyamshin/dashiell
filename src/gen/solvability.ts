@@ -1,4 +1,13 @@
-import type { Case, Clue, DeductionPath, Fact, Id, Tick } from './types.js';
+import {
+  M_LIARS,
+  type Case,
+  type Clue,
+  type DeductionPath,
+  type Fact,
+  type Id,
+  type Tick,
+} from './types.js';
+import { sourceKey } from './select.js';
 
 export interface CheckResult {
   ok: boolean;
@@ -7,10 +16,6 @@ export interface CheckResult {
 }
 
 export type CaseUnderTest = Omit<Case, 'deduction'>;
-
-function sourceKey(clue: Clue): string {
-  return clue.source.type === 'person' ? `p:${clue.source.personId}` : `l:${clue.source.locationId}`;
-}
 
 function independentSources(clues: Clue[]): number {
   return new Set(clues.map(sourceKey)).size;
@@ -27,25 +32,28 @@ function ids(clues: Clue[]): Id[] {
   return out;
 }
 
-function establishing(clues: Clue[], pred: (f: Fact) => boolean): Clue[] {
-  return clues.filter((c) => c.establishes.some(pred));
+function establishing(clues: Clue[], pred: (f: Fact, c: Clue) => boolean): Clue[] {
+  return clues.filter((c) => c.establishes.some((f) => pred(f, c)));
 }
 
 /**
- * The spec's five conditions, plus the four interestingness heuristics.
- * Returns the proof it found, so the truth sheet can print it.
+ * The spec's five conditions over the *findable* set, the interestingness
+ * heuristics, and the shape rules the budget depends on. Returns the proof it
+ * found so the truth sheet can print it.
  */
 export function checkSolvability(c: CaseUnderTest): CheckResult {
   const failures: string[] = [];
   const M = c.solution.murderTick;
-  const L = c.solution.murderLocationId;
+  const L = c.solution.murderPlaceId;
   const killerId = c.solution.killerId;
-  const clues = c.clues;
+  const clues = c.findable;
 
   const deduction: DeductionPath = {
     timeOfDeath: [],
+    timeOfDeathAnchors: [],
     exculpations: {},
     inculpation: [],
+    access: [],
     method: [],
     motive: [],
   };
@@ -54,33 +62,34 @@ export function checkSolvability(c: CaseUnderTest): CheckResult {
   const suspects = c.people.filter((p) => p.kind === 'suspect');
   const innocents = suspects.filter((p) => p.id !== killerId);
 
-  /* 1. Time of death. ---------------------------------------------------- */
+  /* 1. Time of death, four ticks down to one. ---------------------------- */
   const morgue = clues.find((cl) => cl.kind === 'morgue');
   const morgueFact = morgue?.establishes.find((f) => f.kind === 'timeOfDeath');
   if (!morgue || !morgueFact || morgueFact.kind !== 'timeOfDeath') {
     failures.push('no morgue report');
   } else {
-    const range = morgueFact.ticks;
-    if (!range.includes(M)) failures.push('morgue range does not contain the murder tick');
-    const eliminators: Clue[] = [];
-    let allEliminated = true;
-    for (const wrong of range.filter((t) => t !== M)) {
-      const cands =
-        wrong < M
-          ? establishing(clues, (f) => f.kind === 'victimAliveAt' && f.tick >= wrong)
-          : establishing(clues, (f) => f.kind === 'noiseAt' && f.location === L && f.tick === M);
-      if (cands.length === 0) {
-        allEliminated = false;
-        break;
-      }
-      eliminators.push(...cands);
-    }
-    if (!allEliminated) {
-      failures.push('time of death cannot be narrowed to a single tick');
-    } else if (independentSources(eliminators) < 2) {
-      failures.push('only one independent route to the time of death');
-    } else {
-      deduction.timeOfDeath = ids([morgue, ...eliminators]);
+    const [lo, hi] = morgueFact.ticks as [Tick, Tick];
+    if (hi - lo + 1 !== 4) failures.push('the coroner window is not four ticks');
+    if (M < lo || M > hi) failures.push('the coroner window does not contain the murder tick');
+  }
+  const alive = establishing(
+    clues,
+    (f, cl) => f.kind === 'victimAliveAt' && f.tick === M - 1 && cl.anchorId !== undefined,
+  );
+  const dead = establishing(clues, (f) => f.kind === 'victimDeadBy' && f.tick === M);
+  if (alive.length === 0) {
+    failures.push('nothing puts the victim alive at the tick before the murder');
+  } else if (dead.length === 0) {
+    failures.push('nothing closes the window from above');
+  } else if (independentSources([...alive, ...dead]) < 2) {
+    failures.push('only one independent route to the time of death');
+  } else {
+    deduction.timeOfDeath = ids([...(morgue ? [morgue] : []), ...alive, ...dead]);
+    const anchorIds = new Set<Id>();
+    for (const cl of [...alive, ...dead]) if (cl.anchorId) anchorIds.add(cl.anchorId);
+    deduction.timeOfDeathAnchors = [...anchorIds].sort();
+    if (deduction.timeOfDeathAnchors.length < 2) {
+      failures.push('the time of death does not hang on two anchors');
     }
   }
 
@@ -89,8 +98,8 @@ export function checkSolvability(c: CaseUnderTest): CheckResult {
     const cands = establishing(
       clues,
       (f) =>
-        (f.kind === 'personAt' && f.personId === p.id && f.tick === M && f.location !== L) ||
-        (f.kind === 'personNotAt' && f.personId === p.id && f.tick === M && f.location === L),
+        (f.kind === 'personAt' && f.personId === p.id && f.tick === M && f.place !== L) ||
+        (f.kind === 'personNotAt' && f.personId === p.id && f.tick === M && f.place === L),
     );
     if (independentSources(cands) < 2) {
       failures.push(`${p.name} is not exculpable at the murder tick`);
@@ -100,35 +109,36 @@ export function checkSolvability(c: CaseUnderTest): CheckResult {
   }
 
   /* 3. The killer is not. ------------------------------------------------ */
-  const killerSchedule = scheduleOf(killerId);
-  const killerClaim = killerSchedule?.claimed[M] ?? null;
+  const killerClaim = scheduleOf(killerId)?.claimed[M] ?? null;
   if (!killerClaim) {
     failures.push('the killer claims nothing for the murder tick');
   } else {
     const contradictions = establishing(
       clues,
-      (f) => f.kind === 'personNotAt' && f.personId === killerId && f.tick === M && f.location === killerClaim,
-    );
-    const access = establishing(
-      clues,
-      (f) => f.kind === 'hadAccess' && f.personId === killerId && f.methodId === c.method.id,
+      (f) =>
+        f.kind === 'personNotAt' && f.personId === killerId && f.tick === M && f.place === killerClaim,
     );
     if (independentSources(contradictions) < 2) {
       failures.push("the killer's alibi is not contradicted from two independent sources");
-    } else if (access.length === 0) {
-      failures.push('nothing ties the killer to the method');
     } else {
-      deduction.inculpation = ids([...contradictions, ...access]);
+      deduction.inculpation = ids(contradictions);
     }
+  }
+  const access = establishing(
+    clues,
+    (f) => f.kind === 'hadAccess' && f.personId === killerId && f.methodId === c.method.id,
+  );
+  if (independentSources(access) < 2) {
+    failures.push('nothing independent ties the killer to the weapon');
+  } else {
+    deduction.access = ids(access);
   }
 
   /* 4. The method. -------------------------------------------------------- */
-  const methodClues: Clue[] = [];
-  if (morgue) methodClues.push(morgue);
-  methodClues.push(
-    ...establishing(clues, (f) => f.kind === 'objectMissing' && f.objectId === c.method.evidenceObjectId),
+  const methodClues = establishing(
+    clues,
+    (f) => f.kind === 'methodEvidence' && f.methodId === c.method.id,
   );
-  methodClues.push(...establishing(clues, (f) => f.kind === 'noiseAt' && f.location === L));
   if (independentSources(methodClues) < 2) {
     failures.push('the method rests on a single source');
   } else {
@@ -147,26 +157,71 @@ export function checkSolvability(c: CaseUnderTest): CheckResult {
   }
 
   /* Interestingness. ------------------------------------------------------ */
-  const liarsAtM = innocents.filter((p) => (scheduleOf(p.id)?.lies ?? []).includes(M as Tick));
-  if (liarsAtM.length < 2) failures.push('fewer than two innocents lie about the murder tick');
-
+  const [liarMin] = M_LIARS[c.difficulty];
+  const liarsAtM = innocents.filter((p) => (scheduleOf(p.id)?.lies ?? []).includes(M));
+  if (liarsAtM.length < liarMin) {
+    failures.push(`fewer than ${liarMin} innocents lie about the murder tick`);
+  }
   if (!innocents.some((p) => p.motive)) failures.push('no innocent has a motive');
-
   for (const p of suspects) {
     const s = scheduleOf(p.id);
-    const fullyCorroborated = (s?.lies.length ?? 0) === 0;
-    if (fullyCorroborated && !p.motive && !p.secret) {
+    if ((s?.lies.length ?? 0) === 0 && !p.motive && !p.secret) {
       failures.push(`${p.name} is dead weight: no lie, no motive, no secret`);
     }
   }
-
   const othersWithAccess = suspects.filter(
     (p) =>
       p.id !== killerId &&
       establishing(clues, (f) => f.kind === 'hadAccess' && f.personId === p.id).length > 0,
   );
   if (othersWithAccess.length === 0) {
-    failures.push('the killer is the only person with access to the method');
+    failures.push('the killer is the only person the player can see near the weapon');
+  }
+
+  /* The shape of the hand. ------------------------------------------------ */
+  if (clues.length < 28 || clues.length > 32) {
+    failures.push(`the findable set is ${clues.length} clues, not 30 ± 2`);
+  }
+  const spine = clues.filter((cl) => cl.role === 'spine');
+  if (spine.length > 12) failures.push(`the spine is ${spine.length} clues, over the cap of 12`);
+  if (c.par > c.budget - 6) {
+    failures.push(`par ${c.par} leaves less than six actions of slack against ${c.budget}`);
+  }
+
+  const innocentIds = new Set(innocents.map((p) => p.id));
+  for (const cl of clues) {
+    if (cl.role !== 'noise' && cl.role !== 'disqualifier') continue;
+    if (!cl.aboutSecretOf || !innocentIds.has(cl.aboutSecretOf)) {
+      failures.push(`${cl.id} is noise that does not come out of an innocent's secret`);
+    }
+  }
+  const branches = new Map<Id, Clue[]>();
+  for (const cl of clues) {
+    if (!cl.branchId) continue;
+    const list = branches.get(cl.branchId) ?? [];
+    list.push(cl);
+    branches.set(cl.branchId, list);
+  }
+  for (const [branchId, list] of branches) {
+    if (!list.some((cl) => cl.role === 'disqualifier')) {
+      failures.push(`branch ${branchId} never gets disqualified`);
+    }
+  }
+
+  const byId = new Map(clues.map((cl) => [cl.id, cl]));
+  const reached = new Set<Id>(c.starting);
+  const queue = [...reached];
+  while (queue.length > 0) {
+    const cur = byId.get(queue.shift() as Id);
+    if (!cur) continue;
+    for (const next of cur.leadsTo) {
+      if (reached.has(next) || !byId.has(next)) continue;
+      reached.add(next);
+      queue.push(next);
+    }
+  }
+  if (reached.size !== clues.length) {
+    failures.push(`${clues.length - reached.size} findable clues cannot be reached from the opening`);
   }
 
   return { ok: failures.length === 0, failures, deduction };
