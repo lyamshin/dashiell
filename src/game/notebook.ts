@@ -1,6 +1,12 @@
 /**
  * The right-hand page. Everything here is derived from `RunState` and the
  * case; the notebook keeps no state of its own, so it is never stale.
+ *
+ * M4 §A.1 moved the record here. A clue's flat text — the generator's
+ * sentence, verbatim, never rewritten — is written down under the person or
+ * the room it came from, at the moment it is found. The left-hand page
+ * dramatizes the same fact; this is the authoritative copy, and it is always
+ * one click away. That is what keeps the game fair.
  */
 
 import { clock } from '../gen/types.js';
@@ -33,6 +39,12 @@ export interface NotebookFact {
   clueId: Id;
 }
 
+/** A clue's own sentence, verbatim, under the source it came from. */
+export interface NotebookRecord {
+  clueId: Id;
+  text: string;
+}
+
 export interface NotebookPerson {
   id: Id;
   surname: string;
@@ -40,6 +52,8 @@ export interface NotebookPerson {
   foundAt: string | null;
   isClient: boolean;
   facts: NotebookFact[];
+  /** Everything this person said, in the generator's words, in order found. */
+  records: NotebookRecord[];
   /** Their own account, once taken down. */
   account: { span: string; place: string }[] | null;
 }
@@ -52,7 +66,8 @@ export interface NotebookPlace {
   watcher: string | null;
   visited: boolean;
   objects: string[];
-  clues: { id: Id; text: string }[];
+  /** Everything found in this room, verbatim, in the order it was found. */
+  clues: NotebookRecord[];
 }
 
 export interface NotebookThreads {
@@ -110,6 +125,15 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
         };
       });
       const account = state.accounts.includes(p.id) ? claimedAccount(view, p.id) : null;
+      // The record (A.1): every clue this person gave up, in the generator's
+      // own words, in the order the player got them.
+      const records: NotebookRecord[] = state.found
+        .map((id) => view.findableById.get(id))
+        .filter(
+          (c): c is NonNullable<typeof c> =>
+            c !== undefined && c.source.type === 'person' && c.source.personId === p.id,
+        )
+        .map((c) => ({ clueId: c.id, text: c.text }));
       return {
         id: p.id,
         surname: p.surname,
@@ -117,6 +141,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
         foundAt: p.foundAt ? placeName(view, p.foundAt) : null,
         isClient: p.isClient === true,
         facts,
+        records,
         account: account
           ? accountRuns(account)
               .filter((r) => r.placeId !== null)
@@ -138,10 +163,12 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
     objects: visited.has(pl.id)
       ? pl.objects.map((o) => view.objectById.get(o)?.name ?? o)
       : [],
+    // Only what the room itself gave up. What a person said in this room is
+    // written under the person.
     clues: state.found
       .map((id) => view.findableById.get(id))
-      .filter((c) => c !== undefined && c.place === pl.id)
-      .map((c) => ({ id: (c as { id: Id }).id, text: (c as { text: string }).text })),
+      .filter((c): c is NonNullable<typeof c> => c !== undefined && c.source.type === 'place' && c.source.placeId === pl.id)
+      .map((c) => ({ clueId: c.id, text: c.text })),
   }));
 
   const byPlace = new Map<Id, Thread[]>();

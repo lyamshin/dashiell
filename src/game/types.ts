@@ -7,8 +7,10 @@
  */
 
 import type { Difficulty, Id } from '../gen/types.js';
+import type { CastSheet } from './voice/cast.js';
 
 export type { Difficulty, Id };
+export type { CastSheet };
 
 /** What the player can ask a person about. */
 export type TopicRef =
@@ -65,11 +67,36 @@ export interface ParseProblem {
 
 export type ParseResult = { ok: true; command: Command } | { ok: false; problem: ParseProblem };
 
-/** A run of prose on a page. `voice` is which deck or hand wrote it. */
+/**
+ * Which slot of the page grammar (M4 §A.5) a run of prose came out of. The
+ * `record` voice is the one case where a clue's flat text is on the page: no
+ * utterance in the deck fit it and its own sentence is written about the
+ * speaker rather than by them. Everything else dramatizes.
+ */
+export type ProseVoice =
+  | 'transition'
+  | 'arrival'
+  | 'place'
+  | 'presence'
+  | 'approach'
+  | 'exchange'
+  | 'find'
+  | 'monologue'
+  | 'ambient'
+  | 'aside'
+  | 'simile'
+  | 'narrator'
+  | 'nothing'
+  | 'record';
+
+/**
+ * A run of prose on a page. `clueId` marks the paragraph that carries a
+ * clue, so the book can underline it and a test can check that every clue
+ * found reached the page in some form. The clue's *flat* text is the
+ * notebook's business now, not the page's (M4 §A.1).
+ */
 export type Block =
-  | { kind: 'prose'; text: string; voice: 'place' | 'witness' | 'simile' | 'narrator' | 'nothing' }
-  /** The factual core. `text` is the generator's, verbatim, always. */
-  | { kind: 'clue'; clueId: Id; text: string }
+  | { kind: 'prose'; text: string; voice: ProseVoice; clueId?: Id }
   | { kind: 'presence'; personIds: Id[] }
   /** A person's own claimed account of the evening. */
   | { kind: 'timeline'; personId: Id; rows: { tick: number; placeId: Id | null }[] }
@@ -90,6 +117,11 @@ export interface Page {
   found: Id[];
   /** Where the detective stands after this page. */
   at: Id;
+  /**
+   * Where the decks had nothing and the engine had to fall back. Logged, not
+   * hidden: this is the list the content team works from.
+   */
+  gaps: string[];
 }
 
 export interface Report {
@@ -139,6 +171,31 @@ export interface RunState {
   accounts: Id[];
   /** True once the report form is open. It never closes. */
   reportOpen: boolean;
+
+  /* --------------------------------------------------- M4: the voice */
+
+  /**
+   * Humphrey's roll, the tempers and the portraits. Fixed at case start and
+   * carried in the save so that the same man has the same split thumbnail
+   * after a reload.
+   */
+  cast: CastSheet;
+  /** People whose one free question — they know him — has been spent. */
+  freeAsked: Id[];
+  /**
+   * How many actions were waived by the free-first-ask rule. The clock never
+   * sees these; par accounting does, because par counts a question as an
+   * action whether or not the doorman waived his.
+   */
+  waived: number;
+  /** Clue ids a yapper volunteered. At most one a run. */
+  volunteered: Id[];
+  /** Hour bands that have already spent their one aside. */
+  asideBands: string[];
+  /** People described in full already; a second look gets one component. */
+  portrayed: Id[];
+  /** The suspect the monologue is currently accusing. Often wrong. */
+  theory: Id | null;
 }
 
 export const SAVE_KEY = 'humphrey:run';

@@ -234,3 +234,54 @@ export const HELP_LINES: { command: string; gloss: string }[] = [
 
 export const HELP_NOTE =
   'Topics worth trying: anybody’s surname, a room, a thing, something that happened at a fixed hour, that evening, why I was hired. Underlined words on the page are clickable, and so is every lead in the notebook.';
+
+/* ------------------------------------------------------------------ *
+ * M4 additions. Still the hand-written half: lines about the shape of
+ * a page rather than about the person standing on it.
+ * ------------------------------------------------------------------ */
+
+/**
+ * What a yapper says about people who are not in the room — the `{colour}`
+ * slot in a dialogue frame.
+ *
+ * These name nobody in the case and establish nothing about the evening. A
+ * yapper who dropped a real fact here would be handing the player something
+ * the notebook does not have, and the notebook is the record.
+ */
+export const COLOUR_LINES: string[] = [
+  'The fellow who keeps the newsstand has a brother upstate who writes for money.',
+  'They had the hydrant open on this block in August and the whole street stood in it.',
+  'The girl on the third floor sings until eleven and nobody has the heart to knock.',
+  'There is a man on the corner selling a war pension he never earned.',
+  'The butcher two doors down puts his thumb on the scale and has for thirty years.',
+  'They are pulling the old stable down in the spring and nobody believes it.',
+  'A dog got into the bakery Tuesday and came out white to the shoulders.',
+  'The super has a still in the cellar and a notice about fire hazards on the door.',
+];
+
+/**
+ * How the detective introduces a record he could not get anybody to say out
+ * loud. The fallback (A.5) for a clue whose own sentence is written *about*
+ * the speaker rather than by them: quoting it would put words in a man's
+ * mouth he never said, so it goes down as what it is.
+ */
+export const RECORD_LEADS: string[] = [
+  'What I got, I got the long way round, and it goes in the book as it came:',
+  'It took three passes at it. What came out was this:',
+  'I put it another way, and then a third way, and this is what it came to:',
+  'Nothing he would say twice. Here is the once:',
+];
+
+/** The transition when the transitions deck has nothing that fits. */
+export const PLAIN_TRANSITIONS: string[] = [
+  'I walked it, and the walking took what it took.',
+  'Across, and down, and in.',
+  'The distance was nothing and the night charged me for it anyway.',
+];
+
+/** The approach to somebody who already knows him, first time only. */
+export const FAMILIAR_GREETINGS: string[] = [
+  '{name} had my name out before I had the door shut.',
+  '{name} saw me coming and did not look surprised about it.',
+  'There was no introducing to do. {name} has known me longer than the coat has.',
+];

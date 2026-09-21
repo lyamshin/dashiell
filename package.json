@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Humphrey — noir murder mystery roguelike. Milestone 3: the book.",
+  "description": "Humphrey \u2014 noir murder mystery roguelike. Milestone 3: the book.",
   "engines": {
     "node": ">=20"
   },
@@ -14,7 +14,9 @@
     "case": "tsx src/cli/case.ts",
     "batch": "tsx src/cli/batch.ts",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "read": "tsx src/cli/read.ts",
+    "decks": "node scripts/validate-decks.mjs"
   },
   "devDependencies": {
     "tsx": "^4.19.2",

@@ -17,25 +17,39 @@
  * `ask` delivering more than one clue is a deliberate reading of the spec's
  * "deliver it": a question is a question, and the generator will happily give
  * one person two clues under one topic string. Grouping them makes the game's
- * action model line up exactly with `computePar`, which counts one action per
- * spine clue and one per move. See `docs/05-m3-notes.md`.
+ * action model line up exactly with `computePar`. See `docs/05-m3-notes.md`.
+ *
+ * M4 adds two ways the night can come cheaper than par, and no way it can come
+ * dearer:
+ *
+ * - **The free first ask.** The first question to somebody who already knows
+ *   the detective costs nothing. `waived` counts them, so par accounting is
+ *   untouched while the clock genuinely runs slower.
+ * - **The yap volunteer.** Once a run, a yapper hands over a clue nobody
+ *   asked for. It is never a spine clue, so no route the oracle plans is ever
+ *   shortened or lengthened by one.
  */
 
 import type { Clue, Id } from '../gen/types.js';
 import { TICKS, clock } from '../gen/types.js';
 import type { Block, Command, Page, Report, RunState, Thread, TopicRef } from './types.js';
 import { EMPTY_REPORT } from './types.js';
-import { actionsLeft, isOver } from './clock.js';
+import { actionsLeft, isOver, minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
-import {
-  claimedAccount,
-  leadFor,
-  peopleHere,
-  threadsFor,
-  topicKey,
-} from './derive.js';
+import { claimedAccount, leadFor, peopleHere, threadsFor, topicKey } from './derive.js';
 import { parse } from './parser.js';
-import { Voice, registerFor, simileTargets, slotsFor } from './voice.js';
+import {
+  Dealer,
+  askKindOf,
+  composePage,
+  knowsHim,
+  portraitCardIds,
+  rollCast,
+  showedOff,
+  volunteerFrom,
+  type Scene,
+  type Stage,
+} from './voice/index.js';
 
 export interface StepResult {
   state: RunState;
@@ -44,11 +58,11 @@ export interface StepResult {
 
 const VOICE_SALT = 1000003;
 
-function voiceFor(state: RunState, view: CaseView, persistedBurned: string[]): Voice {
+function dealerFor(state: RunState, persistedBurned: string[]): Dealer {
   const seed =
     (state.seed * VOICE_SALT + state.log.length * 97 + state.actionsUsed * 7 + state.difficulty) >>>
     0;
-  return new Voice(view, state.detectiveName, [...persistedBurned, ...state.burned], seed);
+  return new Dealer(seed, state.burned, persistedBurned);
 }
 
 export function newRun(
@@ -56,6 +70,8 @@ export function newRun(
   opts: { detectiveName: string; persistedBurned?: string[] },
 ): RunState {
   const kase = view.kase;
+  const persisted = opts.persistedBurned ?? [];
+  const cast = rollCast(kase, { persistedBurned: persisted });
   const base: RunState = {
     seed: kase.seed,
     difficulty: kase.difficulty,
@@ -64,57 +80,92 @@ export function newRun(
     actionsUsed: 0,
     found: [],
     threads: [],
-    burned: [],
+    burned: portraitCardIds(cast),
     log: [],
     met: [],
     accounts: [],
     reportOpen: false,
+    cast,
+    freeAsked: [],
+    waived: 0,
+    volunteered: [],
+    asideBands: [],
+    portrayed: [],
+    theory: null,
   };
-  const voice = voiceFor(base, view, opts.persistedBurned ?? []);
-  const blocks: Block[] = [];
 
-  const place = view.placeById.get(base.at);
-  blocks.push({
-    kind: 'note',
-    text: `Midnight. ${place?.name ?? 'The address'}, ${kase.neighborhood}. They found ${
-      view.victim.name
-    } and then they found a telephone.`,
-  });
-  const card = voice.placeCard(base.at);
-  if (card) blocks.push({ kind: 'prose', text: card.text, voice: 'place' });
-  else blocks.push({ kind: 'prose', text: voice.plainArrival(base.at), voice: 'narrator' });
-
-  const opening = kase.starting
-    .map((id) => view.findableById.get(id))
-    .filter((c): c is Clue => c !== undefined);
-  for (const c of opening) blocks.push({ kind: 'clue', clueId: c.id, text: c.text });
-
-  const last = opening[opening.length - 1] ?? null;
-  const sim = voice.simile(simileTargets(view, last, base.at), slotsFor(view, opts.detectiveName, base.at, last, null));
-  if (sim) blocks.push({ kind: 'prose', text: sim.text, voice: 'simile' });
+  const found = kase.starting.slice();
+  const dealer = dealerFor(base, persisted);
+  const composed = composePage(
+    stageFor(base, view, dealer, {
+      at: base.at,
+      cost: 0,
+      foundAfter: found,
+      accountsAfter: [],
+      persisted,
+    }),
+    { kind: 'open' },
+  );
 
   const here = peopleHere(view, base.at).map((p) => p.id);
-  blocks.push({ kind: 'presence', personIds: here });
-
-  const found = opening.map((c) => c.id);
+  const page: Page = {
+    n: 0,
+    head: view.placeById.get(base.at)?.shortName ?? kase.neighborhood,
+    blocks: composed.blocks,
+    cost: 0,
+    cardsUsed: dealer.spent,
+    found,
+    at: base.at,
+    gaps: composed.gaps,
+  };
   const state: RunState = {
     ...base,
     found,
-    burned: voice.spent,
+    burned: [...base.burned, ...dealer.spent],
     met: mergeMet(view, base.met, found, here),
     threads: makeThreads(view, found),
+    asideBands: composed.asideBand ? [composed.asideBand] : [],
+    portrayed: composed.portrayed,
+    theory: composed.theory,
+    log: [page],
   };
-  const page: Page = {
-    n: 0,
-    head: place?.shortName ?? kase.neighborhood,
-    blocks,
-    cost: 0,
-    cardsUsed: voice.spent,
-    found,
-    at: state.at,
-  };
-  state.log = [page];
   return state;
+}
+
+/** Everything the page grammar needs that is not the scene itself. */
+function stageFor(
+  state: RunState,
+  view: CaseView,
+  dealer: Dealer,
+  at: {
+    at: Id;
+    cost: number;
+    foundAfter: Id[];
+    accountsAfter: Id[];
+    persisted: string[];
+  },
+): Stage {
+  const used = state.actionsUsed + at.cost;
+  return {
+    view,
+    cast: state.cast,
+    dealer,
+    detectiveName: state.detectiveName,
+    at: at.at,
+    cost: at.cost,
+    minutes: minutesAfter(used, view.kase.budget),
+    actionsLeft: actionsLeft(used, view.kase.budget),
+    foundBefore: state.found,
+    foundAfter: at.foundAfter,
+    accountsBefore: state.accounts,
+    accountsAfter: at.accountsAfter,
+    describedPlaces: describedPlaces(state),
+    portrayed: state.portrayed,
+    asideBands: state.asideBands,
+    pageIndex: state.log.length,
+    previousTheory: state.theory,
+    showedOff: showedOff([...state.burned, ...at.persisted]),
+  };
 }
 
 function mergeMet(view: CaseView, met: Id[], found: Id[], present: Id[]): Id[] {
@@ -145,25 +196,20 @@ function makeThreads(view: CaseView, found: Id[]): Thread[] {
   }));
 }
 
-/** Has this room already been described this run? Place cards are per room. */
-function described(state: RunState, placeId: Id): boolean {
-  return state.log.some(
-    (p) => p.at === placeId && p.blocks.some((b) => b.kind === 'prose' && b.voice === 'place'),
-  );
+/** Which rooms have already had their place card. Derived, never stored. */
+function describedPlaces(state: RunState): Id[] {
+  const out = new Set<Id>();
+  for (const page of state.log) {
+    if (page.blocks.some((b) => b.kind === 'prose' && b.voice === 'place')) out.add(page.at);
+  }
+  return [...out];
 }
 
 /** Which findable clues one question answers, in the order the case deals them. */
-export function answersTo(
-  view: CaseView,
-  personId: Id,
-  topic: TopicRef,
-  found: Id[],
-): Clue[] {
+export function answersTo(view: CaseView, personId: Id, topic: TopicRef, found: Id[]): Clue[] {
   const have = new Set(found);
   if (topic.kind === 'exact') {
-    return (view.exactBuckets.get(personId)?.get(topic.topic) ?? []).filter(
-      (c) => !have.has(c.id),
-    );
+    return (view.exactBuckets.get(personId)?.get(topic.topic) ?? []).filter((c) => !have.has(c.id));
   }
   if (topic.kind === 'evening' || topic.kind === 'hire') {
     if (topic.kind === 'hire') {
@@ -192,18 +238,7 @@ export function answersTo(
   );
   if (!hit) return [];
   const topicString = (hit.source as { topic: string }).topic;
-  return (view.exactBuckets.get(personId)?.get(topicString) ?? []).filter(
-    (c) => !have.has(c.id),
-  );
-}
-
-interface Draft {
-  blocks: Block[];
-  cost: number;
-  found: Id[];
-  at: Id;
-  head: string;
-  accounts: Id[];
+  return (view.exactBuckets.get(personId)?.get(topicString) ?? []).filter((c) => !have.has(c.id));
 }
 
 export function step(
@@ -213,88 +248,67 @@ export function step(
   persistedBurned: string[] = [],
 ): StepResult {
   const kase = view.kase;
-  const voice = voiceFor(state, view, persistedBurned);
-  const draft: Draft = {
-    blocks: [],
-    cost: 0,
-    found: [],
-    at: state.at,
-    head: view.placeById.get(state.at)?.shortName ?? kase.neighborhood,
-    accounts: [],
-  };
+  const dealer = dealerFor(state, persistedBurned);
 
-  const describe = (placeId: Id, force: boolean): void => {
-    if (force || !described(state, placeId)) {
-      const card = voice.placeCard(placeId);
-      if (card) draft.blocks.push({ kind: 'prose', text: card.text, voice: 'place' });
-      else draft.blocks.push({ kind: 'prose', text: voice.plainArrival(placeId), voice: 'narrator' });
-    } else {
-      draft.blocks.push({ kind: 'prose', text: voice.plainArrival(placeId), voice: 'narrator' });
-    }
-    draft.blocks.push({ kind: 'presence', personIds: peopleHere(view, placeId).map((p) => p.id) });
-  };
+  let at = state.at;
+  let cost = 0;
+  let waived = 0;
+  let head = view.placeById.get(state.at)?.shortName ?? kase.neighborhood;
+  let scene: Scene | null = null;
+  let gained: Id[] = [];
+  const accounts: Id[] = [];
+  const freeAsked: Id[] = [];
+  const volunteered: Id[] = [];
+  let blocks: Block[] = [];
+  let gaps: string[] = [];
+  let asideBand: string | null = null;
+  let portrayed: Id[] = [];
+  let theory = state.theory;
 
   switch (command.kind) {
-    case 'look': {
-      describe(state.at, false);
+    case 'look':
+      scene = { kind: 'look' };
       break;
-    }
     case 'go': {
       if (command.placeId === state.at) {
-        draft.blocks.push({ kind: 'note', text: 'Already here.' });
-        describe(state.at, false);
+        scene = { kind: 'travel', to: state.at, already: true };
         break;
       }
-      draft.cost = 1;
-      draft.at = command.placeId;
-      draft.head = view.placeById.get(command.placeId)?.shortName ?? draft.head;
-      describe(command.placeId, false);
+      cost = 1;
+      at = command.placeId;
+      head = view.placeById.get(command.placeId)?.shortName ?? head;
+      scene = { kind: 'travel', to: command.placeId, already: false };
       break;
     }
-    case 'notebook': {
-      draft.head = 'The notebook';
-      draft.blocks.push({ kind: 'note', text: 'Everything written down, on the right-hand page.' });
+    case 'notebook':
+      head = 'The notebook';
+      blocks = [{ kind: 'note', text: 'Everything written down, on the right-hand page.' }];
       break;
-    }
-    case 'help': {
-      draft.head = 'How this works';
-      draft.blocks.push({ kind: 'help' });
+    case 'help':
+      head = 'How this works';
+      blocks = [{ kind: 'help' }];
       break;
-    }
-    case 'file': {
-      draft.head = 'The report';
-      draft.blocks.push({
-        kind: 'note',
-        text: 'I put paper in the machine. Five questions, and the DA only reads the answers.',
-      });
+    case 'file':
+      head = 'The report';
+      blocks = [
+        {
+          kind: 'note',
+          text: 'I put paper in the machine. Five questions, and the DA only reads the answers.',
+        },
+      ];
       break;
-    }
     case 'examine': {
-      draft.cost = 1;
+      cost = 1;
       const available = (view.placeClues.get(state.at) ?? []).filter(
         (c) => !state.found.includes(c.id),
       );
-      const object = command.objectId ? view.objectById.get(command.objectId) : undefined;
-      if (available.length === 0) {
-        draft.blocks.push({ kind: 'prose', text: voice.nothingLeft(state.at), voice: 'nothing' });
-        break;
-      }
-      if (object) {
-        draft.blocks.push({
-          kind: 'note',
-          text: `I start with ${object.name} and work outward.`,
-        });
-      }
-      for (const c of available) {
-        draft.blocks.push({ kind: 'clue', clueId: c.id, text: c.text });
-        draft.found.push(c.id);
-      }
-      const last = available[available.length - 1] as Clue;
-      const sim = voice.simile(
-        simileTargets(view, last, state.at),
-        slotsFor(view, state.detectiveName, state.at, last, null),
-      );
-      if (sim) draft.blocks.push({ kind: 'prose', text: sim.text, voice: 'simile' });
+      gained = available.map((c) => c.id);
+      scene = {
+        kind: 'examine',
+        placeId: state.at,
+        clues: available,
+        ...(command.objectId === undefined ? {} : { objectId: command.objectId }),
+      };
       break;
     }
     case 'ask': {
@@ -302,78 +316,85 @@ export function step(
       const here = peopleHere(view, state.at).some((p) => p.id === command.personId);
       if (!person || !here) {
         // A mistake at the prompt. Free.
-        const line = voice.nothingAnswer('elsewhere', {
-          name: person?.surname,
-          place: view.placeById.get(state.at)?.shortName,
-          detective: state.detectiveName,
-        });
-        draft.blocks.push({ kind: 'prose', text: line.text, voice: 'nothing' });
+        scene = {
+          kind: 'nothing',
+          tag: 'elsewhere',
+          slots: {
+            name: person?.surname,
+            place: view.placeById.get(state.at)?.shortName,
+            detective: state.detectiveName,
+          },
+        };
         break;
       }
-      draft.cost = 1;
-      if (command.topic.kind === 'evening') {
-        const account = claimedAccount(view, command.personId);
-        const lies = view.liesOf.get(command.personId);
-        const register = lies && lies.size > 0 ? 'lie' : 'truth';
-        const card = voice.witnessCard(command.personId, register, {
-          name: person.surname,
-          place: view.placeById.get(state.at)?.shortName,
-          detective: state.detectiveName,
-        });
-        if (card) draft.blocks.push({ kind: 'prose', text: card.text, voice: 'witness' });
-        if (account) {
-          draft.blocks.push({ kind: 'timeline', personId: command.personId, rows: account.rows });
-          draft.accounts.push(command.personId);
-        } else {
-          draft.blocks.push({
-            kind: 'note',
-            text: `${person.surname} keeps no account of the evening worth writing down.`,
-          });
-        }
-        const sim = voice.simile(
-          ['voice', 'lie', 'face'],
-          slotsFor(view, state.detectiveName, state.at, null, command.personId),
-        );
-        if (sim) draft.blocks.push({ kind: 'prose', text: sim.text, voice: 'simile' });
-        break;
+      cost = 1;
+      // The free first ask. Unearned slack, and it should feel like luck.
+      if (knowsHim(state.cast.roll, person.id) && !state.freeAsked.includes(person.id)) {
+        cost = 0;
+        waived = 1;
+        freeAsked.push(person.id);
       }
-
-      const answers = answersTo(view, command.personId, command.topic, state.found);
-      if (answers.length === 0) {
-        const line = voice.nothingAnswer('present', {
-          name: person.surname,
-          topic: topicLabel(view, command.topic),
-          place: view.placeById.get(state.at)?.shortName,
-          detective: state.detectiveName,
-        });
-        draft.blocks.push({ kind: 'prose', text: line.text, voice: 'nothing' });
-        break;
+      const account = command.topic.kind === 'evening' ? claimedAccount(view, person.id) : null;
+      if (account) accounts.push(person.id);
+      const answers =
+        command.topic.kind === 'evening'
+          ? []
+          : answersTo(view, command.personId, command.topic, state.found);
+      gained = answers.map((c) => c.id);
+      const volunteer =
+        answers.length > 0 || account
+          ? volunteerFrom(
+              view,
+              state.cast,
+              person,
+              [...state.found, ...gained],
+              state.volunteered.length,
+              state.seed * 31 + state.log.length,
+            )
+          : null;
+      if (volunteer) {
+        volunteered.push(volunteer.id);
+        gained = [...gained, volunteer.id];
       }
-      const first = answers[0] as Clue;
-      const card = voice.witnessCard(
-        command.personId,
-        registerFor(view, command.personId, first),
-        slotsFor(view, state.detectiveName, state.at, first, subjectOf(first)),
-      );
-      if (card) draft.blocks.push({ kind: 'prose', text: card.text, voice: 'witness' });
-      for (const c of answers) {
-        draft.blocks.push({ kind: 'clue', clueId: c.id, text: c.text });
-        draft.found.push(c.id);
-      }
-      const sim = voice.simile(
-        simileTargets(view, first, state.at),
-        slotsFor(view, state.detectiveName, state.at, first, subjectOf(first)),
-      );
-      if (sim) draft.blocks.push({ kind: 'prose', text: sim.text, voice: 'simile' });
+      scene = {
+        kind: 'ask',
+        personId: command.personId,
+        askKind: askKindOf(command.topic.kind),
+        topicLabel: topicLabel(view, command.topic),
+        clues: answers,
+        account,
+        volunteer,
+        free: waived === 1,
+      };
       break;
     }
   }
 
-  const actionsUsed = state.actionsUsed + draft.cost;
-  const found = [...state.found, ...draft.found];
+  const found = [...state.found, ...gained];
+  const accountsAfter = [...new Set([...state.accounts, ...accounts])];
+
+  if (scene) {
+    const composed = composePage(
+      stageFor(state, view, dealer, {
+        at,
+        cost,
+        foundAfter: found,
+        accountsAfter,
+        persisted: persistedBurned,
+      }),
+      scene,
+    );
+    blocks = composed.blocks;
+    gaps = composed.gaps;
+    asideBand = composed.asideBand;
+    portrayed = composed.portrayed;
+    theory = composed.theory;
+  }
+
+  const actionsUsed = state.actionsUsed + cost;
   const overNow = isOver(actionsUsed, kase.budget);
-  if (draft.cost > 0 && overNow && !state.reportOpen) {
-    draft.blocks.push({
+  if (cost > 0 && overNow && !state.reportOpen) {
+    blocks.push({
       kind: 'note',
       text: 'Eight o’clock. Somebody from the DA’s office is at the door with a folder and a pen, and the folder is mine whether I write in it or not.',
     });
@@ -381,33 +402,38 @@ export function step(
 
   const next: RunState = {
     ...state,
-    at: draft.at,
+    at,
     actionsUsed,
     found,
-    burned: [...state.burned, ...voice.spent],
-    met: mergeMet(view, state.met, found, peopleHere(view, draft.at).map((p) => p.id)),
-    accounts: [...new Set([...state.accounts, ...draft.accounts])],
+    burned: [...state.burned, ...dealer.spent],
+    met: mergeMet(
+      view,
+      state.met,
+      found,
+      peopleHere(view, at).map((p) => p.id),
+    ),
+    accounts: accountsAfter,
     threads: makeThreads(view, found),
     reportOpen: state.reportOpen || overNow || command.kind === 'file',
+    freeAsked: [...state.freeAsked, ...freeAsked],
+    waived: state.waived + waived,
+    volunteered: [...state.volunteered, ...volunteered],
+    asideBands: asideBand ? [...state.asideBands, asideBand] : state.asideBands,
+    portrayed: [...new Set([...state.portrayed, ...portrayed])],
+    theory,
   };
   const page: Page = {
     n: state.log.length,
-    head: draft.head,
-    blocks: draft.blocks,
-    cost: draft.cost,
-    cardsUsed: voice.spent,
-    found: draft.found,
-    at: draft.at,
+    head,
+    blocks,
+    cost,
+    cardsUsed: dealer.spent,
+    found: gained,
+    at,
+    gaps,
   };
   next.log = [...state.log, page];
   return { state: next, page };
-}
-
-/** Who a clue is about: the person in its first fact, or else the speaker. */
-function subjectOf(clue: Clue): Id | null {
-  for (const f of clue.establishes) if ('personId' in f) return f.personId;
-  if (clue.source.type === 'person') return clue.source.personId;
-  return null;
 }
 
 export function topicLabel(view: CaseView, topic: TopicRef): string {
@@ -440,24 +466,38 @@ export function stepInput(
   if (result.ok) return step(state, result.command, view, persistedBurned);
 
   const problem = result.problem;
-  const voice = voiceFor(state, view, persistedBurned);
+  const dealer = dealerFor(state, persistedBurned);
   const blocks: Block[] = [];
+  let gaps: string[] = [];
   if (problem.kind === 'absent-person' || problem.kind === 'unknown-topic') {
     const person = problem.personId ? view.personById.get(problem.personId) : undefined;
-    const line = voice.nothingAnswer(
-      problem.kind === 'absent-person' ? 'elsewhere' : 'meaningless',
+    const composed = composePage(
+      stageFor(state, view, dealer, {
+        at: state.at,
+        cost: 0,
+        foundAfter: state.found,
+        accountsAfter: state.accounts,
+        persisted: persistedBurned,
+      }),
       {
-        name: person?.surname,
-        topic: problem.topicText,
-        place: view.placeById.get(state.at)?.shortName,
-        detective: state.detectiveName,
+        kind: 'nothing',
+        tag: problem.kind === 'absent-person' ? 'elsewhere' : 'meaningless',
+        slots: {
+          name: person?.surname,
+          topic: problem.topicText,
+          place: view.placeById.get(state.at)?.shortName,
+          detective: state.detectiveName,
+        },
       },
     );
-    blocks.push({ kind: 'prose', text: line.text, voice: 'nothing' });
+    blocks.push(...composed.blocks);
+    gaps = composed.gaps;
     if (problem.kind === 'absent-person' && person?.foundAt) {
       blocks.push({
         kind: 'note',
-        text: `${person.surname} is at ${view.placeById.get(person.foundAt)?.shortName ?? 'another address'}.`,
+        text: `${person.surname} is at ${
+          view.placeById.get(person.foundAt)?.shortName ?? 'another address'
+        }.`,
       });
     }
   } else if (problem.kind === 'empty') {
@@ -475,13 +515,14 @@ export function stepInput(
     head: view.placeById.get(state.at)?.shortName ?? view.kase.neighborhood,
     blocks,
     cost: 0,
-    cardsUsed: voice.spent,
+    cardsUsed: dealer.spent,
     found: [],
     at: state.at,
+    gaps,
   };
   const next: RunState = {
     ...state,
-    burned: [...state.burned, ...voice.spent],
+    burned: [...state.burned, ...dealer.spent],
     log: [...state.log, page],
   };
   return { state: next, page };
