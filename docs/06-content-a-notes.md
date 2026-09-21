@@ -78,6 +78,19 @@ say outright whether they're meant to resolve to the same underlying string
 at render time or are genuinely different slots. Worth a confirm from the
 engine side before both get wired up.
 
+> **Confirmed on `m4-polish`, and the reading above was half right.**
+> `{name}` and `{subject}` do resolve to the same string — both are the
+> **subject of the question**, whoever or whatever is being asked about.
+> What they are not is the person being *asked*: that is `{addressee}`, a
+> new slot, and it is the only one a vocative may use. The ten cards that
+> used `{name}` as a vocative (the openers, and "The {object}, {name}")
+> now say `{addressee}`. The two exceptions are `ask-evening` and
+> `ask-hired`, where the subject *is* the addressee because the question is
+> about them; the schema's `$slotNote` on `dashiell-lines` spells this out.
+> Utterances were right to use `{subject}`, and are now filled from the
+> fact's own beat only, so the page's room and hour cannot leak into a
+> reported fact.
+
 **Portraits' `class` tag and fixtures.** A.4 says every person gets a
 portrait "filtered by gender hint, class, and role," but fixtures
 (`FixtureRole` in `src/gen/types.ts`) don't carry a `SuspectClass` the way
