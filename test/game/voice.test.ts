@@ -14,7 +14,7 @@ import type { Fact, Person } from '../../src/gen/types.js';
 import { buildView, establishedFrom, segmentNouns } from '../../src/game/derive.js';
 import { buildNotebook } from '../../src/game/notebook.js';
 import { playOracle, playWandering } from '../../src/game/oracle.js';
-import { newRun, stepInput } from '../../src/game/reducer.js';
+import { newRun, stepInput, topicSlots } from '../../src/game/reducer.js';
 import { wordsOnPage } from '../../src/game/transcript.js';
 import type { RunState } from '../../src/game/types.js';
 import {
@@ -22,6 +22,7 @@ import {
   CONTRADICTION_TEMPLATES,
   DECKS,
   Dealer,
+  askSlots,
   beatsOf,
   burnTier,
   carriesFact,
@@ -36,9 +37,11 @@ import {
   rollCast,
   rollDashiell,
   slotsOf,
+  speakClue,
   temperOf,
   validateDecks,
   weightsFor,
+  type AskKind,
   type Card,
 } from '../../src/game/voice/index.js';
 
@@ -819,5 +822,115 @@ describe('the find slot', () => {
         }
       }
     }
+  });
+});
+
+describe('the exchange slots', () => {
+  const askScene = (askKind: AskKind, slots: Record<string, string | undefined>) =>
+    ({
+      kind: 'ask' as const,
+      personId: 'p-1',
+      askKind,
+      topicLabel: 'a topic',
+      topicSlots: slots,
+      clues: [],
+      account: null,
+      volunteer: null,
+      free: false,
+    });
+
+  it('puts the subject of the question in {name}, never the person being asked', () => {
+    const slots = askSlots({ place: 'the speakeasy' }, askScene('ask-person', { subject: 'Vitale' }), 'Ainsworth');
+    expect(slots.name).toBe('Vitale');
+    expect(slots.subject).toBe('Vitale');
+    expect(slots.addressee).toBe('Ainsworth');
+  });
+
+  it('makes {name} the addressee for the two kinds that ask about them', () => {
+    for (const kind of ['ask-evening', 'ask-hired'] as AskKind[]) {
+      const slots = askSlots({}, askScene(kind, {}), 'Ainsworth');
+      expect(slots.name, kind).toBe('Ainsworth');
+      expect(slots.subject, kind).toBe('Ainsworth');
+    }
+    // And every other kind is a question about somebody else.
+    for (const kind of ['ask-person', 'ask-place', 'ask-object', 'follow-up', 'close'] as AskKind[]) {
+      expect(askSlots({}, askScene(kind, {}), 'Ainsworth').name, kind).toBeUndefined();
+    }
+  });
+
+  it('asks about the topic’s place and thing, not the room it is standing in', () => {
+    const base = { place: 'the speakeasy', object: 'the revolver' };
+    expect(askSlots(base, askScene('ask-place', { place: 'Mrs. Teague’s' }), 'Doyle').place).toBe(
+      'Mrs. Teague’s',
+    );
+    expect(askSlots(base, askScene('ask-object', { object: 'the latchkey' }), 'Doyle').object).toBe(
+      'the latchkey',
+    );
+    // With no topic of its own, the page's own room stands.
+    expect(askSlots(base, askScene('ask-person', { subject: 'Brauer' }), 'Doyle').place).toBe(
+      'the speakeasy',
+    );
+  });
+
+  it('reads the subject out of a generated exact topic string', () => {
+    const vitale = view.victim.surname;
+    expect(topicSlots(view, { kind: 'exact', personId: 'p-1', topic: `${vitale} that evening` })).toEqual({
+      subject: vitale,
+    });
+    expect(topicSlots(view, { kind: 'exact', personId: 'p-1', topic: 'the noise that evening' })).toEqual({
+      subject: undefined,
+    });
+  });
+
+  it('never puts the person being asked into a question about somebody else', () => {
+    for (const seed of [7, 11, 19]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      let asked = 0;
+      for (const place of v.kase.places) {
+        const here = v.peopleAt.get(place.id) ?? [];
+        for (const addresseeId of here) {
+          const addressee = v.personById.get(addresseeId);
+          if (!addressee) continue;
+          for (const subject of v.kase.people) {
+            if (subject.id === addresseeId || subject.kind === 'fixture') continue;
+            let state = newRun(v, { detectiveName: 'Dashiell' });
+            state = stepInput(state, `go ${place.shortName}`, v).state;
+            const step = stepInput(state, `ask ${addressee.surname} about ${subject.surname}`, v);
+            const question = step.page.blocks.find(
+              (b) => b.kind === 'prose' && b.voice === 'exchange',
+            );
+            if (!question || question.kind !== 'prose') continue;
+            asked++;
+            expect(
+              question.text.includes(addressee.surname),
+              `asked ${addressee.surname} about ${subject.surname}: ${question.text}`,
+            ).toBe(false);
+          }
+        }
+      }
+      expect(asked, `seed ${seed} asked nothing`).toBeGreaterThan(0);
+    }
+  });
+
+  it('keeps a reported fact free of the page’s own slots', () => {
+    // An utterance is filled from its beat and nothing else: the room the page
+    // happens in and the hour it opened on are not part of the fact.
+    const clue = view.kase.findable.find((c) => beatsOf(view, c).length === 1);
+    expect(clue, 'no single-fact clue in seed 7').toBeDefined();
+    const cast = rollCast(view.kase);
+    const gaps: string[] = [];
+    const spoken = speakClue(
+      new Dealer(1, [], []),
+      view,
+      cast,
+      clue as never,
+      undefined,
+      'truth',
+      { place: 'NOT-THE-PLACE', time: 'NOT-THE-TIME', name: 'NOT-A-NAME', subject: 'NOT-A-NAME' },
+      gaps,
+    );
+    expect(spoken.text).not.toContain('NOT-THE-PLACE');
+    expect(spoken.text).not.toContain('NOT-THE-TIME');
+    expect(spoken.text).not.toContain('NOT-A-NAME');
   });
 });

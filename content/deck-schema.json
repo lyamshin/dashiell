@@ -147,7 +147,8 @@
       "placeholderPrefix": "hum-p",
       "burn": "free",
       "target": 80,
-      "slots": ["detective", "name", "place", "object", "time", "topic"],
+      "$slotNote": "{name} is the SUBJECT of the question — whoever or whatever Dashiell is asking about — and never the person he is asking. The two coincide for exactly two kinds: 'ask-evening' and 'ask-hired' are questions about the person in front of him, so there {name} is the addressee. Everywhere else, use {addressee} for a vocative ('The {object}, {addressee}.') and {name} only for the subject ('Tell me about {name}.'). {place} and {object} are the place or thing the question is about, not the room the page happens in. A card with {name} is dealt only when the topic names a person; a topic that names none — an anchor, a noise — is asked for with {topic}.",
+      "slots": ["detective", "name", "addressee", "place", "object", "time", "topic"],
       "tags": {
         "kind": {
           "required": true,

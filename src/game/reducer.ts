@@ -361,6 +361,7 @@ export function step(
         personId: command.personId,
         askKind: askKindOf(command.topic.kind),
         topicLabel: topicLabel(view, command.topic),
+        topicSlots: topicSlots(view, command.topic),
         clues: answers,
         account,
         volunteer,
@@ -434,6 +435,46 @@ export function step(
   };
   next.log = [...state.log, page];
   return { state: next, page };
+}
+
+/**
+ * What the question is about, as slots the exchange can fill. This is the
+ * *subject*, never the person being asked: the two are the same thing only
+ * for `evening` and `hire`, and the page grammar decides that, not this.
+ *
+ * An exact topic is a generated string — "Vitale that evening", "Brauer's
+ * account", "Carbone and Vitale" — and the subject is whoever it names first.
+ * An anchor or a noise topic names nobody, and then there is no subject at
+ * all: Dashiell asks for it by name instead ({topic}).
+ */
+export function topicSlots(view: CaseView, topic: TopicRef): Record<string, string | undefined> {
+  switch (topic.kind) {
+    case 'person':
+      return { subject: view.personById.get(topic.id)?.surname };
+    case 'place':
+      return { place: view.placeById.get(topic.id)?.shortName };
+    case 'object':
+      return { object: view.objectById.get(topic.id)?.name };
+    case 'exact':
+      return { subject: surnameIn(view, topic.topic) };
+    default:
+      return {};
+  }
+}
+
+/** The first person named in a generated topic string, if it names one. */
+function surnameIn(view: CaseView, text: string): string | undefined {
+  let best: { at: number; surname: string } | null = null;
+  for (const person of view.kase.people) {
+    const at = text.toLowerCase().indexOf(person.surname.toLowerCase());
+    if (at < 0) continue;
+    // A surname inside a longer word is a coincidence, not a mention.
+    const before = text.charAt(at - 1);
+    const after = text.charAt(at + person.surname.length);
+    if (/[A-Za-z]/.test(before) || /[A-Za-z]/.test(after)) continue;
+    if (best === null || at < best.at) best = { at, surname: person.surname };
+  }
+  return best?.surname;
 }
 
 export function topicLabel(view: CaseView, topic: TopicRef): string {

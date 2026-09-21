@@ -110,7 +110,11 @@ function utteranceFor(
   register: Register,
   base: Slots,
 ): { text: string; cardId: string } | null {
-  const slots: Slots = { ...base, ...beat.slots };
+  // An utterance reports a fact, so every slot in it belongs to that fact and
+  // to nothing else. The page's own slots — the room they are standing in, the
+  // person being spoken to, the tick the page opened on — would quietly turn a
+  // true sentence into a false one, so only {detective} survives from them.
+  const slots: Slots = { detective: base.detective, ...beat.slots };
   const kindIs = (c: Card): boolean =>
     tagOf('utterances', c, 'factKind') === beat.kind && carriesFact(c, beat.kind);
   const drawn = dealer.draw(

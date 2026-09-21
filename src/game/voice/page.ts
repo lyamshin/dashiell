@@ -109,6 +109,12 @@ export type Scene =
       personId: Id;
       askKind: AskKind;
       topicLabel: string;
+      /**
+       * What the question is *about*, resolved by the reducer: `subject` for a
+       * person, `place` for a place, `object` for a thing. Never the person
+       * being spoken to — see `askSlots`.
+       */
+      topicSlots: Slots;
       clues: Clue[];
       account: ClaimedAccount | null;
       volunteer: Clue | null;
@@ -284,7 +290,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const person = view.personById.get(scene.personId);
     const temper = temperOf(cast, scene.personId);
     const familiar = knowsHim(cast.roll, scene.personId);
-    const slots: Slots = { ...base, name: person?.surname, topic: scene.topicLabel };
+    const slots: Slots = askSlots(base, scene, person?.surname);
     // One page, one piece of business per draw: the same hands must not be
     // doing the same thing twice in the same paragraph.
     const usedBusiness = new Set<string>();
@@ -523,6 +529,50 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 /* ------------------------------------------------------------------ *
  * The pieces.
  * ------------------------------------------------------------------ */
+
+/** The ask kinds where the question is about the person being asked. */
+export const ASK_ABOUT_ADDRESSEE: ReadonlySet<AskKind> = new Set<AskKind>([
+  'ask-evening',
+  'ask-hired',
+]);
+
+/**
+ * Every slot the exchange is built with, and what each one means.
+ *
+ *   {name}       the subject of the question — who or what is being asked
+ *                about. Never the person being spoken to, unless they are
+ *                also the subject.
+ *   {subject}    the same, under the name the utterance deck uses for it.
+ *   {addressee}  the person being spoken to. A vocative, nothing more.
+ *   {place}      the place the question is about, or the room they are
+ *                standing in when the question is about neither.
+ *   {object}     the thing the question is about, else the case's evidence.
+ *   {detective}  Dashiell, always.
+ *   {topic}      the thread as the player clicked it, verbatim.
+ *
+ * `ask-evening` and `ask-hired` are the two kinds where the subject *is* the
+ * addressee, because the question is about them — "walk me through your
+ * evening", "why me?". Everywhere else, putting the addressee in {name}
+ * produces the M4 integration's loudest bug: asking Ainsworth about Vitale
+ * and hearing "when did you last lay eyes on Ainsworth?".
+ */
+export function askSlots(
+  base: Slots,
+  scene: Extract<Scene, { kind: 'ask' }>,
+  addressee: string | undefined,
+): Slots {
+  const topic = scene.topicSlots;
+  const subject = ASK_ABOUT_ADDRESSEE.has(scene.askKind) ? addressee : topic.subject;
+  return {
+    ...base,
+    place: topic.place ?? base.place,
+    object: topic.object ?? base.object,
+    name: subject,
+    subject,
+    addressee,
+    topic: scene.topicLabel,
+  };
+}
 
 function openingClues(view: CaseView): Clue[] {
   return view.kase.starting
