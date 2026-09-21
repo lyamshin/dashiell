@@ -29,14 +29,29 @@ describe('the opening spread', () => {
     expect(fresh().threads.length).toBeGreaterThan(0);
   });
 
-  it('renders the clue text verbatim and nothing else as a clue', () => {
+  /**
+   * M4 §A.1 moved the record. The page dramatizes; the notebook keeps the
+   * generator's sentence, verbatim, under the room it came from. Both halves
+   * are asserted here because losing either one is losing the fairness.
+   */
+  it('writes the three starting clues into the notebook verbatim', () => {
     const state = fresh();
-    const printed = state.log[0]?.blocks.filter((b) => b.kind === 'clue') ?? [];
-    expect(printed).toHaveLength(view.kase.starting.length);
-    for (const block of printed) {
-      const clue = view.findableById.get((block as { clueId: string }).clueId);
-      expect((block as { text: string }).text).toBe(clue?.text);
+    const book = buildNotebook(view, state);
+    const written = new Map([
+      ...book.places.flatMap((p) => p.clues.map((c) => [c.clueId, c.text] as const)),
+      ...book.people.flatMap((p) => p.records.map((c) => [c.clueId, c.text] as const)),
+    ]);
+    for (const id of view.kase.starting) {
+      expect(written.get(id)).toBe(view.findableById.get(id)?.text);
     }
+  });
+
+  it('carries every starting clue on the page too, dramatized', () => {
+    const state = fresh();
+    const carried = (state.log[0]?.blocks ?? [])
+      .filter((b) => b.kind === 'prose' && b.clueId !== undefined)
+      .map((b) => (b as { clueId: string }).clueId);
+    expect(carried.sort()).toEqual(view.kase.starting.slice().sort());
   });
 });
 

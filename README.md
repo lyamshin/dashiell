@@ -1,7 +1,7 @@
-# Humphrey
+# Dashiell
 
 A noir murder mystery in the shape of a bound book. Every case is generated
-fresh. The detective is named Humphrey, unless you tell him otherwise.
+fresh. The detective is named Dashiell, unless you tell him otherwise.
 
 Early 20th century New York. Text input. Short runs, replayable. Inspired by
 *Return of the Obra Dinn*, *Kingdom of Loathing*, *Deadline*, and *The Maltese
@@ -9,10 +9,17 @@ Falcon*.
 
 ## Status
 
-Playable. Milestone 3 — the book — is in: a generated case, a two-page spread,
-a typed prompt, a clock that runs out at eight in the morning, and a report.
-The prose around the clues is placeholder, drawn from the fragment decks to
-prove the mechanism. See `docs/` for the design spec as it develops.
+Playable. Milestone 4, Part A — the voice engine — is in on top of Milestone
+3's book. A page is no longer a record with a hat on: the detective's night is
+rolled at the start, everybody has a temper and a portrait, and a question is
+an exchange built out of his own lines, a dialogue frame and the fact as the
+witness says it. The clue's flat text now lives in the notebook, verbatim,
+under whoever gave it up; the page dramatizes the same fact and the engine
+will not let it go missing.
+
+The prose is still placeholder — 5 to 10 hand-written cards a deck, marked
+`status: "placeholder"`, enough to prove the mechanism while the fragment
+decks are written. See `docs/` for the design spec as it develops.
 
 ## Running the book
 
@@ -34,7 +41,9 @@ Leave the seed off and the title page picks a random one.
 
 ### Playing
 
-You start at the scene at midnight. The DA's office opens at eight and files
+You start at the scene at midnight. Some nights you already know somebody in
+the neighbourhood — a bartender you drink with, somebody who owes you — and
+the first question you put to them is free. The DA's office opens at eight and files
 whatever the precinct has, which gives you eight hours and, depending on the
 case, thirteen to twenty actions to spend in them.
 
@@ -57,7 +66,9 @@ Anything underlined is clickable, and so is every lead in the notebook; a lead
 walks you there first if you are not there already. Nothing you get wrong at
 the prompt ever costs you an action.
 
-Your run is saved as you play, so a reload picks it up where you left it.
+Your run is saved as you play, so a reload picks it up where you left it. The
+notebook is the record: every clue you find is written there word for word,
+under the person or the room it came from, and it is always one click away.
 
 ## The generator
 
@@ -70,6 +81,34 @@ npm run case -- --seed 7 --json                      # the whole case as JSON
 npm run case -- --seed 7 --candidates                # the full candidate pool
 npm run batch -- --count 20 --out out                # a corpus of sheets
 ```
+
+## Reading a run without playing it
+
+```sh
+npm run read -- --seed 7                  # the oracle's night, page by page
+npm run read -- --seed 7 --random         # a plausible imperfect player
+npm run read -- --seed 7 --pages 4        # the first four pages only
+npm run read -- --seed 7 --no-gaps        # without the fallback log
+```
+
+It prints the roll the night was played on, every page as a player would read
+it, the notebook at the end and the filed report. The `[gap: …]` lines under a
+page say where a deck had nothing and the engine had to fall back; that list
+is what the content team works from.
+
+## The decks
+
+```sh
+npm run decks                             # validate every deck, report gaps
+npm run decks -- --deck frames            # one deck
+npm run decks -- --quiet                  # errors and gaps only
+npm run decks -- --json                   # for a script
+```
+
+`content/deck-schema.json` is the card schema as data. The validator and the
+engine's loader both read it, so a deck that passes here is a deck the engine
+can deal. It exits non-zero on a schema error; an empty tag combination is
+reported, never fatal — the engine is required to degrade through one.
 
 ## Development
 
@@ -88,6 +127,6 @@ src/gen/     the case generator. Pure. Unchanged by the book.
 src/game/    the game's logic. Pure, no DOM, fully tested.
 src/ui/      the only code that touches the document.
 src/sheet/   the truth sheet renderer, shared by the CLI and the appendix.
-content/     the fragment decks and the lexicon.
+content/     the fragment decks, the card schema, the lexicon.
 test/game/   the game's tests, including the oracle playthrough.
 ```

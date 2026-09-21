@@ -1,0 +1,73 @@
+[
+  {
+    "id": "amb-p001",
+    "deck": "ambient",
+    "text": "I had a handful of facts and not one of them touched another.",
+    "tags": { "hourBand": "any", "caseState": "cold", "circumstance": "any" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range amb-pNNN; the content deck uses AMB-NNN."
+  },
+  {
+    "id": "amb-p002",
+    "deck": "ambient",
+    "text": "Something was starting to lean. I let it lean and did not push.",
+    "tags": { "hourBand": "any", "caseState": "warm", "circumstance": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "amb-p003",
+    "deck": "ambient",
+    "text": "The evening had a shape now, and I did not care for the shape.",
+    "tags": { "hourBand": "any", "caseState": "hot", "circumstance": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "amb-p004",
+    "deck": "ambient",
+    "text": "A short list of calls left and a long list of people who owed me one.",
+    "tags": { "hourBand": "any", "caseState": "tight", "circumstance": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "amb-p005",
+    "deck": "ambient",
+    "text": "Rent Friday. I counted what was in the coat and stopped counting.",
+    "tags": { "hourBand": "midnight-2", "caseState": "any", "circumstance": "behind-on-rent" },
+    "status": "placeholder"
+  },
+  {
+    "id": "amb-p006",
+    "deck": "ambient",
+    "text": "I had not slept since the night before the night before.",
+    "tags": { "hourBand": "4-6", "caseState": "any", "circumstance": "sleepless" },
+    "status": "placeholder"
+  },
+  {
+    "id": "amb-p007",
+    "deck": "ambient",
+    "text": "Tuesday’s gin was still doing business behind my eyes.",
+    "tags": { "hourBand": "any", "caseState": "any", "circumstance": "hungover" },
+    "status": "placeholder"
+  },
+  {
+    "id": "amb-p008",
+    "deck": "ambient",
+    "text": "Money in the coat for once, and nothing in the coat was any use to me.",
+    "tags": { "hourBand": "any", "caseState": "any", "circumstance": "flush" },
+    "status": "placeholder"
+  },
+  {
+    "id": "amb-p009",
+    "deck": "ambient",
+    "text": "Four in the morning is when a man reads his own handwriting and doubts it.",
+    "tags": { "hourBand": "2-4", "caseState": "any", "circumstance": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "amb-p010",
+    "deck": "ambient",
+    "text": "The office would be cold and the telephone would have nothing on it.",
+    "tags": { "hourBand": "6-8", "caseState": "any", "circumstance": "any" },
+    "status": "placeholder"
+  }
+]

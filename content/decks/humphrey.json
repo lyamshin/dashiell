@@ -1,0 +1,80 @@
+[
+  {
+    "id": "hum-p001",
+    "deck": "humphrey-lines",
+    "text": "“{name},” I said.",
+    "tags": { "kind": "open", "familiar": "no" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range hum-pNNN; the content deck uses HUM-NNN."
+  },
+  {
+    "id": "hum-p002",
+    "deck": "humphrey-lines",
+    "text": "“It’s {detective},” I said. “Don’t get up.”",
+    "tags": { "kind": "open", "familiar": "yes" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p003",
+    "deck": "humphrey-lines",
+    "text": "“Tell me about {topic}.”",
+    "tags": { "kind": "ask-person", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p004",
+    "deck": "humphrey-lines",
+    "text": "“{topic},” I said. “Straight, and I’ll go away.”",
+    "tags": { "kind": "ask-person", "familiar": "yes" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p005",
+    "deck": "humphrey-lines",
+    "text": "“Who was at {topic} last night, and when.”",
+    "tags": { "kind": "ask-place", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p006",
+    "deck": "humphrey-lines",
+    "text": "“{topic},” I said. “Where does it live when nobody’s using it?”",
+    "tags": { "kind": "ask-object", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p007",
+    "deck": "humphrey-lines",
+    "text": "“Walk me through your evening. Start at six.”",
+    "tags": { "kind": "ask-evening", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p008",
+    "deck": "humphrey-lines",
+    "text": "“Why me? The precinct is four blocks nearer.”",
+    "tags": { "kind": "ask-hired", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p009",
+    "deck": "humphrey-lines",
+    "text": "“And then.”",
+    "tags": { "kind": "follow-up", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p010",
+    "deck": "humphrey-lines",
+    "text": "I wrote it down and let the pause do the rest.",
+    "tags": { "kind": "close", "familiar": "no" },
+    "status": "placeholder"
+  },
+  {
+    "id": "hum-p011",
+    "deck": "humphrey-lines",
+    "text": "“Thanks. I’ll be back if it’s wrong.”",
+    "tags": { "kind": "close", "familiar": "yes" },
+    "status": "placeholder"
+  }
+]

@@ -68,6 +68,10 @@ export function renderNotebook(
       }
       entry.append(list);
     }
+    // The record (M4 §A.1): what they said, in the words the case wrote it in.
+    for (const record of person.records) {
+      entry.append(el('div', { class: 'nb-record', text: record.text }));
+    }
     body.append(entry);
   }
 
@@ -87,13 +91,8 @@ export function renderNotebook(
     if (place.objects.length > 0) {
       entry.append(el('span', { class: 'objects', text: place.objects.join(', ') }));
     }
-    if (place.clues.length > 0) {
-      entry.append(
-        el('span', {
-          class: 'objects',
-          text: `${place.clues.length} thing${place.clues.length === 1 ? '' : 's'} learned here`,
-        }),
-      );
+    for (const record of place.clues) {
+      entry.append(el('div', { class: 'nb-record', text: record.text }));
     }
     body.append(entry);
   }

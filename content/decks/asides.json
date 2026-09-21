@@ -1,0 +1,59 @@
+[
+  {
+    "id": "asd-p001",
+    "deck": "asides",
+    "text": "There would be a light on in my own window and somebody behind it still up.",
+    "tags": { "relationship": "someone-waiting", "circumstance": "any" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range asd-pNNN; the content deck uses ASD-NNN. Never plot."
+  },
+  {
+    "id": "asd-p002",
+    "deck": "asides",
+    "text": "The flat would be cold, and the second cup would be where it has been since March.",
+    "tags": { "relationship": "someone-who-left", "circumstance": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "asd-p003",
+    "deck": "asides",
+    "text": "I thought about telephoning and could not settle on which number. That is the whole of that.",
+    "tags": { "relationship": "complicated", "circumstance": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "asd-p004",
+    "deck": "asides",
+    "text": "Nobody was sitting up for me, which makes a night like this one cheaper.",
+    "tags": { "relationship": "none", "circumstance": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "asd-p005",
+    "deck": "asides",
+    "text": "The landlady would have the notice under my door by Monday, typed.",
+    "tags": { "relationship": "any", "circumstance": "behind-on-rent" },
+    "status": "placeholder"
+  },
+  {
+    "id": "asd-p006",
+    "deck": "asides",
+    "text": "Two weeks in a parked car outside a hotel in Astoria, and the money went on the car.",
+    "tags": { "relationship": "any", "circumstance": "off-a-divorce-case" },
+    "status": "placeholder"
+  },
+  {
+    "id": "asd-p007",
+    "deck": "asides",
+    "text": "The rib Tuesday left me had opinions about stairs.",
+    "tags": { "relationship": "any", "circumstance": "bruised" },
+    "status": "placeholder"
+  },
+  {
+    "id": "asd-p008",
+    "deck": "asides",
+    "text": "Forty dollars in the coat, and a coat that needed the forty dollars.",
+    "tags": { "relationship": "any", "circumstance": "just-paid" },
+    "status": "placeholder"
+  }
+]

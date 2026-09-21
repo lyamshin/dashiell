@@ -8,6 +8,7 @@ import type { Id } from '../gen/types.js';
 import type { CaseView } from './derive.js';
 import { METHOD_POOL, MOTIVE_POOL, personName, placeName } from './derive.js';
 import type { Report, RunState } from './types.js';
+import { Dealer, tagIs } from './voice/index.js';
 
 export type Outcome = 'solved' | 'wrong-man' | 'thin' | 'cold';
 
@@ -126,6 +127,31 @@ function closingFor(
   const when = clock(kase.solution.murderTick);
   const out: string[] = [];
 
+  // The endings deck (Part B) writes the last paragraph, keyed by how the
+  // night went and by whether it beat par. It burns run to run like the
+  // similes do, so a player who files four cases reads four last pages.
+  const parDelta =
+    state.actionsUsed < kase.par ? 'under' : state.actionsUsed === kase.par ? 'at' : 'over';
+  const deckOutcome =
+    outcome === 'solved' ? 'hanged' : outcome === 'thin' ? 'thin-case' : outcome;
+  const dealer = new Dealer((kase.seed * 8191 + points) >>> 0, [], []);
+  const ending = dealer.draw(
+    'endings',
+    [
+      (c) => tagIs('endings', c, 'outcome', deckOutcome) && tagIs('endings', c, 'parDelta', parDelta),
+      (c) => tagIs('endings', c, 'outcome', deckOutcome),
+    ],
+    {
+      detective: state.detectiveName,
+      killer,
+      name: killer,
+      place: where,
+      time: when,
+      missed: missedLead(view, state),
+    },
+    true,
+  );
+
   switch (outcome) {
     case 'solved':
       out.push(
@@ -175,6 +201,7 @@ function closingFor(
       );
       break;
   }
+  if (ending) out.push(ending.text);
   return out;
 }
 

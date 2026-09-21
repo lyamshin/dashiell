@@ -8,7 +8,7 @@
  */
 
 import { generateCase, type Case, type Difficulty } from '../gen/index.js';
-import { ALL_CARDS } from '../game/decks.js';
+import { CROSS_RUN_TOTAL, crossRunOnly } from '../game/voice/index.js';
 import { buildView, type CaseView, type Noun } from '../game/derive.js';
 import { buildNotebook } from '../game/notebook.js';
 import { fileReport, newRun, planThread, remaining, stepInput } from '../game/reducer.js';
@@ -35,7 +35,7 @@ type Screen =
   | { kind: 'verdict'; verdict: Verdict }
   | { kind: 'truth' };
 
-const DEFAULT_NAME = 'Humphrey';
+const DEFAULT_NAME = 'Dashiell';
 const NAME_KEY = 'humphrey:detective';
 
 function safeStore(): KeyValueStore {
@@ -94,7 +94,7 @@ export function mount(root: HTMLElement): void {
     } else {
       clearRun(store);
       state = newRun(view, { detectiveName: name, persistedBurned: loadBurned(store) });
-      addBurned(store, state.burned, ALL_CARDS.length);
+      addBurned(store, crossRunOnly(state.burned), CROSS_RUN_TOTAL);
       saveRun(store, state);
     }
     turned = state.log.length - 1;
@@ -115,7 +115,7 @@ export function mount(root: HTMLElement): void {
     closeMenu();
     const result = stepInput(state, input, view, loadBurned(store));
     state = result.state;
-    addBurned(store, result.page.cardsUsed, ALL_CARDS.length);
+    addBurned(store, crossRunOnly(result.page.cardsUsed), CROSS_RUN_TOTAL);
     saveRun(store, state);
     turned = state.log.length - 1;
     turning = true;
@@ -344,7 +344,7 @@ export function mount(root: HTMLElement): void {
     }
 
     form.append(
-      el('h1', { text: 'HUMPHREY' }),
+      el('h1', { text: 'DASHIELL' }),
       el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }),
       el('div', { class: 'name-line' }, el('label', { text: 'The detective' }), name),
       el(

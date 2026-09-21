@@ -13,11 +13,13 @@
  * case's arithmetic.
  */
 
-import type { Clue, Id } from '../gen/types.js';
+import type { Clue, Id, Tick } from '../gen/types.js';
+import { Rng } from '../gen/rng.js';
 import type { CaseView } from './derive.js';
-import { leadFor } from './derive.js';
+import { establishedFrom, leadFor } from './derive.js';
 import { newRun, stepInput } from './reducer.js';
-import type { RunState } from './types.js';
+import { leadingTheory } from './voice/reactive.js';
+import type { Report, RunState } from './types.js';
 
 export interface OracleStep {
   command: string;
@@ -28,7 +30,18 @@ export interface OracleResult {
   ok: boolean;
   /** Why it could not be done, when it could not. */
   reason: string | null;
+  /**
+   * The route's cost in par's own accounting: one action per fetch, one per
+   * move, whether or not the book charged for it. M4's free first ask waives
+   * the charge on a question to somebody who already knows the detective —
+   * that is slack handed to the player, not a cheaper route, and par is a
+   * statement about routes. This is the number the oracle test asserts on.
+   */
   actions: number;
+  /** What the clock actually ran: `actions` minus the questions waived. */
+  spent: number;
+  /** Questions the free-first-ask rule waived on this route. */
+  waived: number;
   par: number;
   budget: number;
   steps: OracleStep[];
@@ -132,7 +145,7 @@ function plan(view: CaseView, from: Id, groups: Group[]): string[] | null {
   return null;
 }
 
-export function playOracle(view: CaseView, detectiveName = 'Humphrey'): OracleResult {
+export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleResult {
   const kase = view.kase;
   let state = newRun(view, { detectiveName });
   const spine = kase.findable.filter((c) => c.role === 'spine');
@@ -143,7 +156,9 @@ export function playOracle(view: CaseView, detectiveName = 'Humphrey'): OracleRe
   const fail = (reason: string): OracleResult => ({
     ok: false,
     reason,
-    actions: state.actionsUsed,
+    actions: state.actionsUsed + state.waived,
+    spent: state.actionsUsed,
+    waived: state.waived,
     par: kase.par,
     budget: kase.budget,
     steps,
@@ -153,10 +168,13 @@ export function playOracle(view: CaseView, detectiveName = 'Humphrey'): OracleRe
   if (script === null) return fail('no route collects the spine');
 
   for (const command of script) {
+    const before = state.waived;
     const result = stepInput(state, command, view);
     // A free page with nothing on it means the parser would not take the
-    // string, which is a failure of the game and not of the route.
-    if (result.page.cost === 0 && result.page.found.length === 0) {
+    // string, which is a failure of the game and not of the route. A page the
+    // free-first-ask rule waived is free and still an action in par's terms.
+    const waived = result.state.waived > before;
+    if (result.page.cost === 0 && !waived && result.page.found.length === 0) {
       return fail(`the prompt refused "${command}"`);
     }
     state = result.state;
@@ -164,18 +182,102 @@ export function playOracle(view: CaseView, detectiveName = 'Humphrey'): OracleRe
   }
 
   const missing = spine.filter((c) => !state.found.includes(c.id)).map((c) => c.id);
+  const actions = state.actionsUsed + state.waived;
   if (missing.length > 0) return fail('the script ran out before the spine did');
-  if (state.actionsUsed > kase.par)
-    return fail(`took ${state.actionsUsed} actions against a par of ${kase.par}`);
+  if (actions > kase.par) return fail(`took ${actions} actions against a par of ${kase.par}`);
 
   return {
     ok: true,
     reason: null,
-    actions: state.actionsUsed,
+    actions,
+    spent: state.actionsUsed,
+    waived: state.waived,
     par: kase.par,
     budget: kase.budget,
     steps,
     missing: [],
     state,
   };
+}
+
+/* ------------------------------------------------------------------ *
+ * The other player: a plausible imperfect one.
+ * ------------------------------------------------------------------ */
+
+export interface WanderResult {
+  state: RunState;
+  steps: OracleStep[];
+  report: Report;
+}
+
+/**
+ * A player who does not know which clues are the spine.
+ *
+ * He works the notebook the way a person does: he takes the lead in front of
+ * him, he prefers the interesting-looking one, he goes down noise branches
+ * because noise is interesting, he asks people for their evening because that
+ * is what a detective does, and he runs out of night. Then he files what he
+ * has, naming whoever the monologue was accusing when the clock ran out —
+ * which is the point: the leading theory is very often the wrong man.
+ *
+ * `npm run read -- --random` reads a run of his.
+ */
+export function playWandering(
+  view: CaseView,
+  seed: number,
+  detectiveName = 'Dashiell',
+): WanderResult {
+  const kase = view.kase;
+  const rng = new Rng(((seed || 1) * 2246822519) >>> 0);
+  let state = newRun(view, { detectiveName });
+  const steps: OracleStep[] = [];
+  const interesting = (clueId: Id): number => {
+    const role = view.findableById.get(clueId)?.role;
+    return role === 'noise' || role === 'disqualifier' ? 2 : 1;
+  };
+
+  let guard = 0;
+  while (state.actionsUsed < kase.budget && guard++ < 80) {
+    const here = state.threads.filter((t) => t.placeId === state.at);
+    const elsewhere = state.threads.filter((t) => t.placeId !== state.at);
+    let command: string | null = null;
+
+    if (here.length > 0 && (elsewhere.length === 0 || !rng.chance(0.25))) {
+      const weighted = here.flatMap((t) => Array<typeof t>(interesting(t.clueId)).fill(t));
+      command = rng.pick(weighted).command;
+    } else if (elsewhere.length > 0) {
+      const weighted = elsewhere.flatMap((t) => Array<typeof t>(interesting(t.clueId)).fill(t));
+      command = `go ${rng.pick(weighted).placeLabel}`;
+    }
+
+    // Every so often he does the human thing instead of the efficient one.
+    const peopleHereIds = view.peopleAt.get(state.at) ?? [];
+    const unasked = peopleHereIds.filter((id) => !state.accounts.includes(id));
+    if ((command === null || rng.chance(0.3)) && unasked.length > 0) {
+      command = `ask ${view.personById.get(rng.pick(unasked))?.surname} about that evening`;
+    }
+    if (command === null) {
+      const unsearched = (view.placeClues.get(state.at) ?? []).some(
+        (c) => !state.found.includes(c.id),
+      );
+      command = unsearched
+        ? 'examine'
+        : `go ${rng.pick(kase.places.filter((p) => p.id !== state.at)).shortName}`;
+    }
+
+    const result = stepInput(state, command, view);
+    state = result.state;
+    steps.push({ command, gained: result.page.found });
+    if (result.page.cost === 0 && result.page.found.length === 0 && state.threads.length === 0) break;
+  }
+
+  const est = establishedFrom(view, state.found, state.accounts);
+  const report: Report = {
+    killerId: leadingTheory(view, est),
+    methodId: est.methodEvidence ? kase.method.id : null,
+    motiveType: est.motives[0]?.motiveType ?? null,
+    tick: est.deathTicks.length === 1 ? (est.deathTicks[0] as Tick) : null,
+    placeId: kase.solution.murderPlaceId,
+  };
+  return { state, steps, report };
 }

@@ -1,0 +1,108 @@
+/**
+ * `npm run read -- --seed 7 [--difficulty 2] [--random]`
+ *
+ * Plays a case through and prints the whole run as prose, page by page,
+ * exactly as a player would read it, then the notebook and the filed report.
+ * This is how the designer reads a run without playing it.
+ *
+ * `--random` uses the imperfect player instead of the oracle: somebody who
+ * follows the interesting lead rather than the right one, spends the whole
+ * budget, and files whoever the monologue was accusing at eight o'clock.
+ */
+
+import { generateCase, type Difficulty } from '../gen/index.js';
+import { buildView } from '../game/derive.js';
+import { playOracle, playWandering } from '../game/oracle.js';
+import { fileReport } from '../game/reducer.js';
+import { scoreReport } from '../game/scoring.js';
+import {
+  renderCastText,
+  renderNotebookText,
+  renderPageText,
+  renderVerdictText,
+} from '../game/transcript.js';
+import type { Report, RunState } from '../game/types.js';
+import { ignoreBrokenPipe, parseArgs } from './args.js';
+
+ignoreBrokenPipe();
+
+const { flags, values } = parseArgs(process.argv.slice(2));
+const seed = Number(values.get('seed') ?? 1);
+const difficulty = Number(values.get('difficulty') ?? 2);
+const pageLimit = values.has('pages') ? Number(values.get('pages')) : Infinity;
+const detective = values.get('detective') ?? 'Dashiell';
+
+if (!Number.isInteger(seed) || ![1, 2, 3].includes(difficulty)) {
+  process.stderr.write(
+    'usage: npm run read -- --seed <integer> [--difficulty 1|2|3] [--random] [--pages N] [--no-gaps]\n',
+  );
+  process.exit(1);
+}
+
+const kase = generateCase(seed, { difficulty: difficulty as Difficulty, detectiveName: detective });
+const view = buildView(kase);
+
+let state: RunState;
+let report: Report | null = null;
+if (flags.has('random')) {
+  const run = playWandering(view, seed, detective);
+  state = run.state;
+  report = run.report;
+} else {
+  const run = playOracle(view, detective);
+  state = run.state;
+  if (!run.ok) process.stderr.write(`(the oracle could not finish: ${run.reason})\n`);
+  report = {
+    killerId: kase.solution.killerId,
+    methodId: kase.solution.methodId,
+    motiveType: kase.solution.motiveType,
+    tick: kase.solution.murderTick,
+    placeId: kase.solution.murderPlaceId,
+  };
+}
+
+const out: string[] = [];
+out.push(
+  `${detective.toUpperCase()} · case ${kase.seed} · difficulty ${kase.difficulty} · ${kase.neighborhood}`,
+);
+out.push(`par ${kase.par}, budget ${kase.budget}, ${kase.findable.length} things to find`);
+out.push('');
+out.push(renderCastText(view, state));
+out.push('');
+
+const shown = state.log.slice(0, Number.isFinite(pageLimit) ? pageLimit : undefined);
+for (const page of shown) {
+  out.push(renderPageText(page, view, state, { gaps: !flags.has('no-gaps') }));
+  out.push('');
+}
+
+if (Number.isFinite(pageLimit) && state.log.length > shown.length) {
+  out.push(`… ${state.log.length - shown.length} more pages`);
+  out.push('');
+}
+
+out.push(renderNotebookText(view, state));
+out.push('');
+
+if (report) {
+  const filed = fileReport(state, report);
+  out.push(renderVerdictText(scoreReport(view, filed, report)));
+}
+
+const words = state.log.reduce(
+  (n, p) =>
+    n +
+    p.blocks.reduce(
+      (m, b) =>
+        m + (b.kind === 'prose' || b.kind === 'note' ? b.text.trim().split(/\s+/).length : 0),
+      0,
+    ),
+  0,
+);
+const gaps = state.log.flatMap((p) => p.gaps);
+out.push(
+  `${state.log.length} pages · ${words} words · ${Math.round(words / Math.max(1, state.log.length))} a page · ` +
+    `${state.actionsUsed} actions spent${state.waived > 0 ? ` (${state.waived} waived)` : ''} · ${gaps.length} fallbacks`,
+);
+
+process.stdout.write(out.join('\n') + '\n');

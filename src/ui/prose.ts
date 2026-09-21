@@ -51,12 +51,9 @@ export function renderPage(page: Page, view: CaseView, onNoun: NounClick): HTMLE
 function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLElement[] {
   switch (block.kind) {
     case 'prose': {
-      const p = el('p', { class: `prose--${block.voice}` });
-      p.append(proseWithNouns(block.text, view, onNoun));
-      return [p];
-    }
-    case 'clue': {
-      const p = el('p', { class: 'clue' });
+      const p = el('p', {
+        class: `prose--${block.voice}${block.clueId ? ' carries-clue' : ''}`,
+      });
       p.append(proseWithNouns(block.text, view, onNoun));
       return [p];
     }

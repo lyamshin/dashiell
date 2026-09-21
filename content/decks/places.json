@@ -570,5 +570,94 @@
       "intensity": 2
     },
     "status": "generated"
+  },
+  {
+    "id": "plc-p001",
+    "deck": "places",
+    "text": "Nobody keeps this room and the room knows it: a hall light with no shade, and mail on the floor where it came through the slot.",
+    "tags": {
+      "placeKind": "private",
+      "watcher": "none",
+      "empty": "no"
+    },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range plc-pNNN; the content deck uses PLACE-NNN. Unwatched and empty rooms were M3s documented gap."
+  },
+  {
+    "id": "plc-p002",
+    "deck": "places",
+    "text": "{place} has the stillness of a place the last person out did not expect to be the last person out. A cup on the sill and a ring where a second cup was.",
+    "tags": {
+      "placeKind": "private",
+      "watcher": "none",
+      "empty": "yes"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "plc-p003",
+    "deck": "places",
+    "text": "Whoever minds {place} is not minding it tonight. A ledger open at a page from Tuesday, and the pen rolled into the crack of the desk.",
+    "tags": {
+      "placeKind": "semi",
+      "watcher": "none",
+      "empty": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "plc-p004",
+    "deck": "places",
+    "text": "Two chairs, a hat stand, and the smell of wet wool. {place} is a room people pass through and nobody sits down in.",
+    "tags": {
+      "placeKind": "semi",
+      "watcher": "none",
+      "empty": "yes"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "plc-p005",
+    "deck": "places",
+    "text": "{place} belongs to whoever is standing on it, and at this hour that is me and a grating breathing warm air at ankle height.",
+    "tags": {
+      "placeKind": "public",
+      "watcher": "none",
+      "empty": "no"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "plc-p006",
+    "deck": "places",
+    "text": "The lamps at {place} are the old kind and leave more dark than they take. Two cigarette ends by the kerb, ground out an hour apart.",
+    "tags": {
+      "placeKind": "public",
+      "watcher": "none",
+      "empty": "yes"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "plc-p007",
+    "deck": "places",
+    "text": "The landlady keeps {place} swept and the sweeping is the only thing in it tonight.",
+    "tags": {
+      "placeKind": "private",
+      "watcher": "landlady",
+      "empty": "yes"
+    },
+    "status": "placeholder"
+  },
+  {
+    "id": "plc-p008",
+    "deck": "places",
+    "text": "Stools up, rail wiped, and the radio off at the wall. {place} with nobody in it is a smaller room than it looks.",
+    "tags": {
+      "placeKind": "semi",
+      "watcher": "bartender",
+      "empty": "yes"
+    },
+    "status": "placeholder"
   }
 ]

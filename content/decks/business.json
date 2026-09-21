@@ -1,0 +1,73 @@
+[
+  {
+    "id": "bus-p001",
+    "deck": "business",
+    "text": "The rag keeps going over the same six inches of counter.",
+    "tags": { "role": "any", "temper": "plain" },
+    "status": "placeholder",
+    "notes": "Placeholder. Reserved id range bus-pNNN; the content deck uses BUS-NNN."
+  },
+  {
+    "id": "bus-p002",
+    "deck": "business",
+    "text": "A cigarette gets lit, set on the edge of the shelf, and left to go out.",
+    "tags": { "role": "any", "temper": "plain" },
+    "status": "placeholder"
+  },
+  {
+    "id": "bus-p003",
+    "deck": "business",
+    "text": "The ledger stays open the whole while, a finger holding the place.",
+    "tags": { "role": "any", "temper": "yap" },
+    "status": "placeholder"
+  },
+  {
+    "id": "bus-p004",
+    "deck": "business",
+    "text": "Two glasses go up on the shelf, then a third, slower.",
+    "tags": { "role": "any", "temper": "yap" },
+    "status": "placeholder"
+  },
+  {
+    "id": "bus-p005",
+    "deck": "business",
+    "text": "Nothing moves but the jaw.",
+    "tags": { "role": "any", "temper": "enigma" },
+    "status": "placeholder"
+  },
+  {
+    "id": "bus-p006",
+    "deck": "business",
+    "text": "A hat goes round in two hands, brim to brim.",
+    "tags": { "role": "suspect", "temper": "plain" },
+    "status": "placeholder"
+  },
+  {
+    "id": "bus-p007",
+    "deck": "business",
+    "text": "One hand finds the door frame and stays on it.",
+    "tags": { "role": "suspect", "temper": "enigma" },
+    "status": "placeholder"
+  },
+  {
+    "id": "bus-p008",
+    "deck": "business",
+    "text": "Coffee gets poured for me without my asking, and then talked over.",
+    "tags": { "role": "suspect", "temper": "yap" },
+    "status": "placeholder"
+  },
+  {
+    "id": "bus-p009",
+    "deck": "business",
+    "text": "A bottle goes back on the shelf label out, the way the house likes it.",
+    "tags": { "role": "bartender", "temper": "any" },
+    "status": "placeholder"
+  },
+  {
+    "id": "bus-p010",
+    "deck": "business",
+    "text": "The register book gets turned round so I can see it and turned back before I can.",
+    "tags": { "role": "doorman", "temper": "any" },
+    "status": "placeholder"
+  }
+]
