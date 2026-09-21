@@ -100,3 +100,51 @@ describe('candidate sheet', () => {
     expect(sheet).toContain('## Withheld observations');
   });
 });
+
+describe('sheet hygiene — short names', () => {
+  it('spells each place out in full exactly once, in the Places section', () => {
+    for (let seed = 1; seed <= 20; seed++) {
+      const c = generateCase(seed);
+      const sheet = renderTruthSheet(c);
+      const places = sheet.slice(sheet.indexOf('## 3. Places'), sheet.indexOf('## 4. Anchors'));
+      for (const p of c.places) {
+        expect(sheet.split(p.name).length - 1, `${p.name} in seed ${seed}`).toBe(1);
+        expect(places).toContain(p.name);
+        expect(sheet).toContain(p.shortName);
+      }
+    }
+  });
+
+  it('uses surnames outside Dramatis Personae and the headline', () => {
+    for (let seed = 1; seed <= 20; seed++) {
+      const c = generateCase(seed);
+      const sheet = renderTruthSheet(c);
+      const cast = sheet.slice(
+        sheet.indexOf('## 2. Dramatis Personae'),
+        sheet.indexOf('## 3. Places'),
+      );
+      for (const p of c.people) {
+        expect(cast).toContain(p.name);
+        // Once in the table; the killer and the victim get a second mention in
+        // the headline paragraph, which is where the case is stated in full.
+        const allowed = p.isKiller || p.kind === 'victim' ? 2 : 1;
+        expect(sheet.split(p.name).length - 1, `${p.name} in seed ${seed}`).toBeLessThanOrEqual(
+          allowed,
+        );
+      }
+      const clues = sheet.slice(sheet.indexOf('## 7. Clue list'), sheet.indexOf('## 8. Clue graph'));
+      for (const p of c.people) expect(clues.includes(p.name)).toBe(false);
+    }
+  });
+
+  it('prints par, slack and budget, and the budget is the sum', () => {
+    for (let seed = 1; seed <= 20; seed++) {
+      const c = generateCase(seed);
+      const sheet = renderTruthSheet(c);
+      expect(sheet).toContain(`**Par** ${c.par} actions`);
+      expect(sheet).toContain(`**Slack** ${c.slack}`);
+      expect(sheet).toContain(`**Budget** ${c.budget}`);
+      expect(c.budget).toBe(c.par + c.slack);
+    }
+  });
+});

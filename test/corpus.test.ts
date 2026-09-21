@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import {
+  BRANCH_COUNT_FLOOR,
+  FINDABLE_TARGET,
+  FINDABLE_TOLERANCE,
+  NOISE_RATIO,
+  PAR_CEILING,
+  PAR_FLOOR,
+  SLACK,
+  SPINE_CAP,
   TICKS,
   buildRequirements,
   checkSolvability,
@@ -8,16 +16,30 @@ import {
   sourceKey,
   type Case,
   type Clue,
+  type Difficulty,
   type Id,
   type Tick,
 } from '../src/gen/index.js';
-import { ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID } from '../src/gen/data/cast.js';
-import { PLACE_BY_ID } from '../src/gen/data/places.js';
+import { activityKey } from '../src/gen/solvability.js';
+import { ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID, VICTIM_ARCHETYPES } from '../src/gen/data/cast.js';
+import { PLACE_BY_ID, PLACE_TEMPLATES } from '../src/gen/data/places.js';
+import { MASKING_PHRASES } from '../src/gen/data/anchors.js';
 
 const SEEDS = 200;
+const DIFFICULTIES: Difficulty[] = [1, 2, 3];
 
 const corpus: Case[] = [];
 for (let seed = 1; seed <= SEEDS; seed++) corpus.push(generateCase(seed));
+
+/** M2b's rules are asserted at every difficulty, not only the default. */
+const everyDifficulty: Case[] = [];
+for (const difficulty of DIFFICULTIES) {
+  for (let seed = 1; seed <= SEEDS; seed++) {
+    everyDifficulty.push(difficulty === 2 ? (corpus[seed - 1] as Case) : generateCase(seed, { difficulty }));
+  }
+}
+const FINDABLE_MIN = FINDABLE_TARGET - FINDABLE_TOLERANCE;
+const FINDABLE_MAX = FINDABLE_TARGET + FINDABLE_TOLERANCE;
 
 const scheduleOf = (c: Case, id: Id) => c.schedules.find((s) => s.personId === id);
 const suspectsOf = (c: Case) => c.people.filter((p) => p.kind === 'suspect');
@@ -306,20 +328,20 @@ describe('observations over seeds 1..200', () => {
 });
 
 describe('the findable set over seeds 1..200', () => {
-  it('is exactly thirty clues, give or take two', () => {
-    for (const c of corpus) {
-      expect(c.findable.length).toBeGreaterThanOrEqual(28);
-      expect(c.findable.length).toBeLessThanOrEqual(32);
+  it('is exactly thirty-four clues, give or take two', () => {
+    for (const c of everyDifficulty) {
+      expect(c.findable.length).toBeGreaterThanOrEqual(FINDABLE_MIN);
+      expect(c.findable.length).toBeLessThanOrEqual(FINDABLE_MAX);
       expect(new Set(c.findable.map((cl) => cl.id)).size).toBe(c.findable.length);
       const ids = new Set(c.candidates.map((cl) => cl.id));
       for (const cl of c.findable) expect(ids.has(cl.id)).toBe(true);
     }
   });
 
-  it('keeps the spine to twelve clues and includes the opening three', () => {
-    for (const c of corpus) {
+  it('keeps the spine to fifteen clues and includes the opening three', () => {
+    for (const c of everyDifficulty) {
       const spine = c.findable.filter((cl) => cl.role === 'spine');
-      expect(spine.length).toBeLessThanOrEqual(12);
+      expect(spine.length).toBeLessThanOrEqual(SPINE_CAP);
       expect(c.starting.length).toBe(3);
       for (const id of c.starting) {
         expect(spine.some((cl) => cl.id === id), `${id} is not in the spine`).toBe(true);
@@ -327,15 +349,24 @@ describe('the findable set over seeds 1..200', () => {
     }
   });
 
-  it('gives every essential fact two independent routes among the findable', () => {
-    for (const c of corpus) {
+  it('gives every essential fact the routes its own rule asks for', () => {
+    for (const c of everyDifficulty) {
       const reqs = buildRequirements(requirementInputForCase(c), c.findable);
+      // Two routes for the five legs that name the killer; one for an
+      // innocent's alibi, per M2b section 1.
+      expect(reqs.filter((r) => r.routes === 2).map((r) => r.id).sort()).toEqual([
+        'access',
+        'contradict',
+        'method',
+        'motive',
+        'tod',
+      ]);
       for (const r of reqs) {
         const mine = r.parts.flatMap((p) => p.clues);
         expect(
           new Set(mine.map(sourceKey)).size,
-          `seed ${c.seed}: ${r.label} has one route`,
-        ).toBeGreaterThanOrEqual(2);
+          `seed ${c.seed} d${c.difficulty}: ${r.label} is thin`,
+        ).toBeGreaterThanOrEqual(r.routes);
         for (const part of r.parts) {
           expect(part.clues.length, `seed ${c.seed}: ${part.key} is uncovered`).toBeGreaterThan(0);
         }
@@ -344,7 +375,7 @@ describe('the findable set over seeds 1..200', () => {
   });
 
   it("makes every noise clue an innocent's secret, and every branch end in a disqualifier", () => {
-    for (const c of corpus) {
+    for (const c of everyDifficulty) {
       const innocents = new Set(innocentsOf(c).map((p) => p.id));
       const branches = new Map<Id, Clue[]>();
       for (const cl of c.findable) {
@@ -360,7 +391,7 @@ describe('the findable set over seeds 1..200', () => {
         list.push(cl);
         branches.set(cl.branchId, list);
       }
-      expect(branches.size).toBeGreaterThan(0);
+      expect(branches.size).toBeGreaterThanOrEqual(BRANCH_COUNT_FLOOR);
       for (const [id, list] of branches) {
         const disq = list.filter((cl) => cl.role === 'disqualifier');
         expect(disq.length, `branch ${id} has ${disq.length} disqualifiers`).toBe(1);
@@ -373,15 +404,14 @@ describe('the findable set over seeds 1..200', () => {
     }
   });
 
-  it('keeps roughly two clues in five as noise', () => {
-    const ratios = corpus.map(
-      (c) =>
+  it('keeps the noise between 35 and 45 per cent of every hand', () => {
+    for (const c of everyDifficulty) {
+      const ratio =
         c.findable.filter((cl) => cl.role === 'noise' || cl.role === 'disqualifier').length /
-        c.findable.length,
-    );
-    const mean = ratios.reduce((a, b) => a + b, 0) / ratios.length;
-    expect(mean).toBeGreaterThan(0.3);
-    expect(mean).toBeLessThan(0.5);
+        c.findable.length;
+      expect(ratio, `seed ${c.seed} d${c.difficulty}`).toBeGreaterThanOrEqual(NOISE_RATIO[0]);
+      expect(ratio, `seed ${c.seed} d${c.difficulty}`).toBeLessThanOrEqual(NOISE_RATIO[1]);
+    }
   });
 
   it('is connected from the opening three', () => {
@@ -410,10 +440,12 @@ describe('the findable set over seeds 1..200', () => {
     }
   });
 
-  it('leaves at least six actions of slack against the budget', () => {
-    for (const c of corpus) {
-      expect(c.par).toBeGreaterThan(0);
-      expect(c.budget - c.par, `seed ${c.seed}: par ${c.par} vs budget ${c.budget}`).toBeGreaterThanOrEqual(6);
+  it('sets the budget to par plus the difficulty\u2019s slack, with par in range', () => {
+    for (const c of everyDifficulty) {
+      expect(c.slack, `seed ${c.seed} d${c.difficulty}`).toBe(SLACK[c.difficulty]);
+      expect(c.budget, `seed ${c.seed} d${c.difficulty}`).toBe(c.par + c.slack);
+      expect(c.par, `seed ${c.seed} d${c.difficulty}`).toBeGreaterThanOrEqual(PAR_FLOOR);
+      expect(c.par, `seed ${c.seed} d${c.difficulty}`).toBeLessThanOrEqual(PAR_CEILING);
     }
   });
 });
@@ -481,17 +513,6 @@ describe('spread over seeds 1..200', () => {
   });
 });
 
-describe('regeneration cost over seeds 1..200', () => {
-  it('keeps the median attempt count at or under 10 and the max at or under 300', () => {
-    const attempts = corpus.map((c) => c.attempts).sort((a, b) => a - b);
-    const median = attempts[Math.floor((attempts.length - 1) / 2)] as number;
-    const max = attempts[attempts.length - 1] as number;
-    process.stdout.write(`\n  attempts over seeds 1..200 — median ${median}, max ${max}\n`);
-    expect(median).toBeLessThanOrEqual(10);
-    expect(max).toBeLessThanOrEqual(300);
-  });
-});
-
 describe('clue sourcing over seeds 1..200', () => {
   it('never sources a clue from the victim, who is in no position to talk', () => {
     for (const c of corpus) {
@@ -542,6 +563,302 @@ describe('clue sourcing over seeds 1..200', () => {
         expect(clue.text, `${clue.id}: ${clue.text}`).not.toMatch(/\bfrom from\b/);
         expect(clue.text, `${clue.id}: ${clue.text}`).not.toMatch(/\bat from\b/);
       }
+    }
+  });
+});
+
+/* --------------------------------------------------------------------------
+ * M2b: watchers, budget and sheet hygiene. Section 8 of
+ * `docs/04-m2b-watchers-and-budget.md`, over seeds 1..200 at each difficulty.
+ * ----------------------------------------------------------------------- */
+
+describe('one subject per clue, over seeds 1..200 at each difficulty', () => {
+  it('never lets an observation or a denial place two people at once', () => {
+    for (const c of everyDifficulty) {
+      for (const cl of c.findable) {
+        if (cl.kind !== 'observation' && cl.kind !== 'denial') continue;
+        const subjects = new Set(
+          cl.establishes
+            .filter((f) => f.kind === 'personAt' || f.kind === 'personNotAt')
+            .map((f) => (f as { personId: Id }).personId),
+        );
+        expect(
+          subjects.size,
+          `seed ${c.seed} d${c.difficulty} ${cl.id}: ${cl.text}`,
+        ).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+
+  it('has no roll call anywhere in the candidate pool either', () => {
+    for (const c of everyDifficulty) {
+      for (const cl of c.candidates) {
+        if (cl.kind !== 'observation' && cl.kind !== 'denial') continue;
+        const subjects = new Set(
+          cl.establishes
+            .filter((f) => f.kind === 'personAt' || f.kind === 'personNotAt')
+            .map((f) => (f as { personId: Id }).personId),
+        );
+        expect(subjects.size, `${cl.id}: ${cl.text}`).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+});
+
+describe('branches over seeds 1..200 at each difficulty', () => {
+  it('deals one branch per secret activity, partners sharing one', () => {
+    for (const c of everyDifficulty) {
+      const branches = new Map<Id, Clue[]>();
+      for (const cl of c.findable) {
+        if (!cl.branchId) continue;
+        const list = branches.get(cl.branchId) ?? [];
+        list.push(cl);
+        branches.set(cl.branchId, list);
+      }
+      const seen = new Map<string, Id>();
+      for (const [bid, list] of branches) {
+        const keys = new Set(
+          list
+            .map((cl) => cl.aboutSecretOf)
+            .filter((id): id is Id => id !== undefined)
+            .map((id) => activityKey(c, id)),
+        );
+        expect(keys.size, `seed ${c.seed} d${c.difficulty}: branch ${bid} is two secrets`).toBe(1);
+        const key = [...keys][0] as string;
+        expect(seen.has(key), `seed ${c.seed} d${c.difficulty}: ${key} has two branches`).toBe(
+          false,
+        );
+        seen.set(key, bid);
+        expect(list.filter((cl) => cl.role === 'disqualifier').length).toBe(1);
+      }
+      expect(branches.size).toBeGreaterThanOrEqual(BRANCH_COUNT_FLOOR);
+      expect(branches.size).toBeLessThanOrEqual(5);
+    }
+  });
+
+  it('clears both partners with the one disqualifier an affair gets', () => {
+    let affairs = 0;
+    for (const c of everyDifficulty) {
+      const pairs = c.people.filter(
+        (p) =>
+          p.kind === 'suspect' &&
+          p.secret?.partnerId !== undefined &&
+          c.people.find((q) => q.id === p.secret?.partnerId)?.kind === 'suspect',
+      );
+      for (const p of pairs) {
+        const disq = c.findable.find(
+          (cl) =>
+            cl.role === 'disqualifier' &&
+            cl.establishes.some((f) => f.kind === 'secretExplained' && f.personId === p.id),
+        );
+        if (!disq) continue;
+        affairs++;
+        const cleared = new Set(
+          disq.establishes
+            .filter((f) => f.kind === 'secretExplained')
+            .map((f) => (f as { personId: Id }).personId),
+        );
+        expect(cleared.has(p.id)).toBe(true);
+        expect(cleared.has(p.secret?.partnerId as Id)).toBe(true);
+      }
+    }
+    expect(affairs).toBeGreaterThan(0);
+  });
+});
+
+describe('clues state facts, over seeds 1..200 at each difficulty', () => {
+  const BANNED = ['that puts', 'which means', 'so it must', 'and no later'];
+
+  it('never draws the conclusion for the player', () => {
+    for (const c of everyDifficulty) {
+      for (const cl of c.candidates) {
+        const lower = cl.text.toLowerCase();
+        for (const phrase of BANNED) {
+          expect(lower.includes(phrase), `${cl.id}: ${cl.text}`).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('either has people hear the killing or has it masked, never both', () => {
+    let masked = 0;
+    for (const c of everyDifficulty) {
+      const heard = c.candidates.filter((cl) =>
+        cl.establishes.some(
+          (f) =>
+            f.kind === 'noiseAt' &&
+            f.place === c.solution.murderPlaceId &&
+            f.tick === c.solution.murderTick,
+        ),
+      );
+      const claimsMasked = c.candidates.filter((cl) =>
+        MASKING_PHRASES.some((phrase) => cl.text.includes(phrase)),
+      );
+      if (c.soundMasked) {
+        masked++;
+        expect(heard.length, `seed ${c.seed} d${c.difficulty} hears a masked shot`).toBe(0);
+      } else {
+        expect(claimsMasked.length, `seed ${c.seed} d${c.difficulty} masks a heard shot`).toBe(0);
+      }
+    }
+    // Both halves of the rule have to be exercised, or the test proves nothing.
+    expect(masked).toBeGreaterThan(0);
+    expect(masked).toBeLessThan(everyDifficulty.length);
+  });
+
+  it('tests a liar who claims an anchored place on what everyone there knows', () => {
+    let opportunities = 0;
+    for (const c of everyDifficulty) {
+      for (const a of c.anchors) {
+        if (!a.placeId) continue;
+        if (!a.traces.some((t) => t.kind === 'knowledge')) continue;
+        for (const t of a.ticks) {
+          for (const p of suspectsOf(c)) {
+            const s = scheduleOf(c, p.id);
+            if (s?.claimed[t] !== a.placeId) continue;
+            if (s.truth[t] === a.placeId) continue;
+            opportunities++;
+            const test = c.candidates.find(
+              (cl) =>
+                cl.anchorId === a.templateId &&
+                cl.source.type === 'person' &&
+                cl.source.personId === p.id &&
+                cl.establishes.some(
+                  (f) => f.kind === 'personNotAt' && f.personId === p.id && f.tick === t,
+                ),
+            );
+            expect(
+              test,
+              `seed ${c.seed} d${c.difficulty}: ${p.surname} claims ${a.placeId} at ${t} untested`,
+            ).toBeDefined();
+          }
+        }
+      }
+    }
+    expect(opportunities).toBeGreaterThan(everyDifficulty.length / 4);
+  });
+
+  it('gives every place-attached anchor something only those present know', () => {
+    // The knowledge test is the payoff of the anchor system, so a
+    // place-attached anchor without one is a wasted card.
+    for (const c of everyDifficulty) {
+      for (const a of c.anchors) {
+        if (!a.placeId) continue;
+        expect(a.traces.some((t) => t.kind === 'knowledge'), `${a.templateId}`).toBe(true);
+      }
+    }
+  });
+});
+
+describe('short names over seeds 1..200 at each difficulty', () => {
+  it('gives every place template a distinct short name', () => {
+    for (const t of PLACE_TEMPLATES) expect(t.shortName.length).toBeGreaterThan(0);
+    expect(new Set(PLACE_TEMPLATES.map((t) => t.shortName)).size).toBe(PLACE_TEMPLATES.length);
+  });
+
+  it('never spells a place out in full in a clue more than once', () => {
+    for (const c of everyDifficulty) {
+      for (const cl of c.candidates) {
+        for (const place of c.places) {
+          const hits = cl.text.split(place.name).length - 1;
+          expect(hits, `${cl.id} says "${place.name}" ${hits} times`).toBeLessThanOrEqual(1);
+        }
+      }
+    }
+  });
+
+  it('calls people by their surname in clue text', () => {
+    for (const c of everyDifficulty) {
+      for (const p of c.people) {
+        expect(p.surname.length).toBeGreaterThan(0);
+        expect(p.name.endsWith(p.surname)).toBe(true);
+      }
+      for (const cl of c.candidates) {
+        for (const p of c.people) {
+          expect(cl.text.includes(p.name), `${cl.id} uses the full name ${p.name}`).toBe(false);
+        }
+      }
+    }
+  });
+});
+
+describe('the cast table over seeds 1..200 at each difficulty', () => {
+  it('only makes people rivals in a trade they are both in', () => {
+    let rivals = 0;
+    for (const c of everyDifficulty) {
+      const victim = c.people.find((p) => p.kind === 'victim');
+      const victimArch = VICTIM_ARCHETYPES.find((v) => v.id === victim?.archetypeId);
+      for (const p of suspectsOf(c)) {
+        if (p.relationshipId !== 'rel-rival') continue;
+        rivals++;
+        const arch = ARCHETYPE_BY_ID[p.archetypeId as Id];
+        expect(arch?.trade, `seed ${c.seed}: ${p.role} has no trade`).toBeDefined();
+        expect(arch?.trade, `seed ${c.seed}: ${p.role} vs ${victimArch?.role}`).toBe(
+          victimArch?.trade,
+        );
+      }
+    }
+    expect(rivals).toBeGreaterThan(0);
+  });
+
+  it('never makes a widow an estranged spouse, or a woman a fiancé', () => {
+    for (const c of everyDifficulty) {
+      for (const p of suspectsOf(c)) {
+        if (p.relationshipId === 'rel-spouse') expect(p.archetypeId).not.toBe('arch-widow');
+        if (p.relationshipId === 'rel-engaged') {
+          expect(['arch-chorus', 'arch-nurse', 'arch-widow']).not.toContain(p.archetypeId);
+        }
+      }
+    }
+  });
+});
+
+describe("the killer's named companion over seeds 1..200 at each difficulty", () => {
+  it('always denies the alibi, and the denial can carry the spine', () => {
+    let named = 0;
+    for (const c of everyDifficulty) {
+      const killer = c.solution.killerId;
+      const M = c.solution.murderTick;
+      const companion = scheduleOf(c, killer)?.claimedCompanion[M];
+      if (!companion) continue;
+      named++;
+      const claim = scheduleOf(c, killer)?.claimed[M];
+      const denial = c.candidates.find(
+        (cl) =>
+          cl.kind === 'denial' &&
+          cl.source.type === 'person' &&
+          cl.source.personId === companion &&
+          cl.establishes.some(
+            (f) =>
+              f.kind === 'personNotAt' && f.personId === killer && f.tick === M && f.place === claim,
+          ),
+      );
+      expect(denial, `seed ${c.seed} d${c.difficulty}: no companion denial`).toBeDefined();
+      // Spine-eligible: the selector can reach for it as a route to the
+      // contradiction, which is what section 7 asks for.
+      const reqs = buildRequirements(requirementInputForCase(c), c.candidates);
+      const contradict = reqs.find((r) => r.id === 'contradict');
+      expect(
+        contradict?.parts.some((part) => part.clues.some((cl) => cl.id === denial?.id)),
+        `seed ${c.seed} d${c.difficulty}: the companion denial is not spine-eligible`,
+      ).toBe(true);
+    }
+    expect(named).toBeGreaterThan(everyDifficulty.length / 4);
+  });
+});
+
+describe('regeneration cost at every difficulty', () => {
+  it('keeps the median attempt count at or under 10 and the max at or under 300', () => {
+    for (const difficulty of DIFFICULTIES) {
+      const attempts = everyDifficulty
+        .filter((c) => c.difficulty === difficulty)
+        .map((c) => c.attempts)
+        .sort((a, b) => a - b);
+      const median = attempts[Math.floor((attempts.length - 1) / 2)] as number;
+      const max = attempts[attempts.length - 1] as number;
+      process.stdout.write(`\n  difficulty ${difficulty} — median ${median}, max ${max}\n`);
+      expect(median).toBeLessThanOrEqual(10);
+      expect(max).toBeLessThanOrEqual(300);
     }
   });
 });
