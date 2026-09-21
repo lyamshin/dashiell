@@ -29,7 +29,8 @@ import {
   ROOM_LINES,
   type NothingLine,
 } from '../voice-data.js';
-import { Dealer, tagIs, tagOf, type Card, type Slots } from './cards.js';
+import { DECKS, Dealer, tagIs, tagOf, type Card, type Slots } from './cards.js';
+import { joinSentences } from './prose.js';
 import { describePerson, temperOf, type CastSheet, type Temper } from './cast.js';
 import {
   askKindOf,
@@ -594,7 +595,23 @@ function findLine(dealer: Dealer, view: CaseView, clue: Clue, placeId: Id, base:
     { ...base, fact: clue.text },
     true,
   );
-  return drawn?.text ?? clue.text;
+  if (!drawn) return clue.text;
+  const card = DECKS.find.find((c) => c.id === drawn.cardId);
+  return factOnPage(card?.text ?? '', drawn.text, clue.text);
+}
+
+/**
+ * A find card that carries `{fact}` has the record inside it already, where
+ * the writer put it. One that does not — every card the content pass wrote
+ * before the slot was agreed — describes the coming-upon and then stops, and
+ * the fact it was dealt for would go on the floor.
+ *
+ * The player never loses information (A.5). The card is the first sentence and
+ * the record is the second.
+ */
+export function factOnPage(cardText: string, rendered: string, fact: string): string {
+  if (cardText.includes('{fact}')) return rendered;
+  return joinSentences(rendered, fact);
 }
 
 function simile(

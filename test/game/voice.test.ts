@@ -28,6 +28,7 @@ import {
   crossRunOnly,
   deckOf,
   describePerson,
+  factOnPage,
   fill,
   leadingTheory,
   oddsFor,
@@ -769,6 +770,54 @@ describe('the deck loader', () => {
       const deck = deckOf(card.id);
       expect(deck, card.id).not.toBeNull();
       expect(['run-to-run', 'within-run', 'free']).toContain(burnTier(deck as never));
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * m4-polish — the seams where the real content decks met the engine.
+ * ------------------------------------------------------------------ */
+
+describe('the find slot', () => {
+  it('puts the record on the page when the card has no {fact} of its own', () => {
+    // The card carries the slot: the writer chose where the record falls.
+    expect(
+      factOnPage(
+        'Under the radiator. {fact}',
+        'Under the radiator. A latch was thrown.',
+        'A latch was thrown.',
+      ),
+    ).toBe('Under the radiator. A latch was thrown.');
+    // The card does not: the engine says the card, then the record.
+    expect(
+      factOnPage(
+        'A window latch, thrown, though the room stood four floors up.',
+        'A window latch, thrown, though the room stood four floors up.',
+        'Vitale was found at the back lot.',
+      ),
+    ).toBe(
+      'A window latch, thrown, though the room stood four floors up. Vitale was found at the back lot.',
+    );
+  });
+
+  it('gives every find card in the deck somewhere for its fact to land', () => {
+    for (const card of DECKS.find) {
+      expect(card.text.includes('{fact}'), `${card.id} has no {fact} slot`).toBe(true);
+    }
+  });
+
+  it('never drops a found fact off a find page, over four seeds', () => {
+    for (const seed of [7, 11, 19, 23]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      const state = exhaust(seed, 2);
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' || block.voice !== 'find' || !block.clueId) continue;
+          const flat = v.findableById.get(block.clueId)?.text;
+          if (!flat) continue;
+          expect(block.text, `${block.clueId} came upon and then forgotten`).toContain(flat);
+        }
+      }
     }
   });
 });

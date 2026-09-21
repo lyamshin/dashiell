@@ -83,7 +83,7 @@
   {
     "id": "fnd-001",
     "deck": "find",
-    "text": "Behind the loose baseboard: the {object}, pushed in edgewise.",
+    "text": "Behind the loose baseboard: the {object}, pushed in edgewise. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "private"
@@ -93,7 +93,7 @@
   {
     "id": "fnd-002",
     "deck": "find",
-    "text": "Under the mattress, flat, where a hand would put something in a hurry: the {object}.",
+    "text": "Under the mattress, flat, where a hand would put something in a hurry: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "private"
@@ -103,7 +103,7 @@
   {
     "id": "fnd-003",
     "deck": "find",
-    "text": "In the back of a bureau drawer, wrapped in a stocking: the {object}.",
+    "text": "In the back of a bureau drawer, wrapped in a stocking: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "private"
@@ -113,7 +113,7 @@
   {
     "id": "fnd-004",
     "deck": "find",
-    "text": "Wedged behind the radiator pipe, where nobody dusts: the {object}.",
+    "text": "Wedged behind the radiator pipe, where nobody dusts: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "private"
@@ -123,7 +123,7 @@
   {
     "id": "fnd-005",
     "deck": "find",
-    "text": "Behind the bar rail, dropped and kicked back against the baseboard: the {object}.",
+    "text": "Behind the bar rail, dropped and kicked back against the baseboard: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "semi"
@@ -133,7 +133,7 @@
   {
     "id": "fnd-006",
     "deck": "find",
-    "text": "Under the coat-check counter, fallen through a gap in the shelf: the {object}.",
+    "text": "Under the coat-check counter, fallen through a gap in the shelf: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "semi"
@@ -143,7 +143,7 @@
   {
     "id": "fnd-007",
     "deck": "find",
-    "text": "Wedged between two treads of the stairwell: the {object}.",
+    "text": "Wedged between two treads of the stairwell: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "semi"
@@ -153,7 +153,7 @@
   {
     "id": "fnd-008",
     "deck": "find",
-    "text": "Behind a loose brick in the back wall: the {object}.",
+    "text": "Behind a loose brick in the back wall: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "semi"
@@ -163,7 +163,7 @@
   {
     "id": "fnd-009",
     "deck": "find",
-    "text": "Under the third bench from the corner: the {object}, rained on and dried twice.",
+    "text": "Under the third bench from the corner: the {object}, rained on and dried twice. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "public"
@@ -173,7 +173,7 @@
   {
     "id": "fnd-010",
     "deck": "find",
-    "text": "In the gutter outside {place}, half under a grate: the {object}.",
+    "text": "In the gutter outside {place}, half under a grate: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "public"
@@ -183,7 +183,7 @@
   {
     "id": "fnd-011",
     "deck": "find",
-    "text": "Behind the newsstand rack, where the papers get stacked: the {object}.",
+    "text": "Behind the newsstand rack, where the papers get stacked: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "public"
@@ -193,7 +193,7 @@
   {
     "id": "fnd-012",
     "deck": "find",
-    "text": "Caught in the fence bordering the lot, a scrap that proved to be the {object}.",
+    "text": "Caught in the fence bordering the lot, a scrap that proved to be the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "public"
@@ -203,7 +203,7 @@
   {
     "id": "fnd-013",
     "deck": "find",
-    "text": "Under the cab stand bench, kicked there by a hundred shoes since: the {object}.",
+    "text": "Under the cab stand bench, kicked there by a hundred shoes since: the {object}. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "public"
@@ -213,7 +213,7 @@
   {
     "id": "fnd-014",
     "deck": "find",
-    "text": "Folded small, inside the lining of a hatbox: the letter.",
+    "text": "Folded small, inside the lining of a hatbox: the letter. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "private"
@@ -223,7 +223,7 @@
   {
     "id": "fnd-015",
     "deck": "find",
-    "text": "Behind a framed photograph, tucked flat against the backing: a single page.",
+    "text": "Behind a framed photograph, tucked flat against the backing: a single page. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "private"
@@ -233,7 +233,7 @@
   {
     "id": "fnd-016",
     "deck": "find",
-    "text": "In a locked drawer, the key still in the lock: the ledger page.",
+    "text": "In a locked drawer, the key still in the lock: the ledger page. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "private"
@@ -243,7 +243,7 @@
   {
     "id": "fnd-017",
     "deck": "find",
-    "text": "Between the mattress and the box spring, gone soft with handling: the letter.",
+    "text": "Between the mattress and the box spring, gone soft with handling: the letter. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "private"
@@ -253,7 +253,7 @@
   {
     "id": "fnd-018",
     "deck": "find",
-    "text": "In the pigeonhole behind the desk, filed under nothing in particular: the telegram.",
+    "text": "In the pigeonhole behind the desk, filed under nothing in particular: the telegram. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "semi"
@@ -263,7 +263,7 @@
   {
     "id": "fnd-019",
     "deck": "find",
-    "text": "Left behind the bar, under the till tray: a torn page.",
+    "text": "Left behind the bar, under the till tray: a torn page. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "semi"
@@ -273,7 +273,7 @@
   {
     "id": "fnd-020",
     "deck": "find",
-    "text": "In the ledger book, one line written in a different hand than the rest: the entry.",
+    "text": "In the ledger book, one line written in a different hand than the rest: the entry. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "semi"
@@ -283,7 +283,7 @@
   {
     "id": "fnd-021",
     "deck": "find",
-    "text": "Behind the front desk, in with old receipts nobody sorts: the note.",
+    "text": "Behind the front desk, in with old receipts nobody sorts: the note. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "semi"
@@ -293,7 +293,7 @@
   {
     "id": "fnd-022",
     "deck": "find",
-    "text": "In the trash bin outside {place}, torn twice and not burned: the letter.",
+    "text": "In the trash bin outside {place}, torn twice and not burned: the letter. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "public"
@@ -303,7 +303,7 @@
   {
     "id": "fnd-023",
     "deck": "find",
-    "text": "Left at the newsstand, folded into a paper nobody bought: the note.",
+    "text": "Left at the newsstand, folded into a paper nobody bought: the note. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "public"
@@ -313,7 +313,7 @@
   {
     "id": "fnd-024",
     "deck": "find",
-    "text": "Stuffed behind a loose board at the subway kiosk: the ticket stub.",
+    "text": "Stuffed behind a loose board at the subway kiosk: the ticket stub. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "public"
@@ -323,7 +323,7 @@
   {
     "id": "fnd-025",
     "deck": "find",
-    "text": "In the lost-and-found box at {place}, never claimed: the telegram.",
+    "text": "In the lost-and-found box at {place}, never claimed: the telegram. {fact}",
     "tags": {
       "clueKind": "document",
       "placeKind": "public"
@@ -333,7 +333,7 @@
   {
     "id": "fnd-026",
     "deck": "find",
-    "text": "In the coroner's own hand, penciled onto the intake form's reverse: a note easy to miss.",
+    "text": "In the coroner's own hand, penciled onto the intake form's reverse: a note easy to miss. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "private"
@@ -343,7 +343,7 @@
   {
     "id": "fnd-027",
     "deck": "find",
-    "text": "Under the examining table, dropped and never picked up: a card from the dead man's pocket.",
+    "text": "Under the examining table, dropped and never picked up: a card from the dead man's pocket. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "private"
@@ -353,7 +353,7 @@
   {
     "id": "fnd-028",
     "deck": "find",
-    "text": "In a locked cabinet at the private mortuary, filed by date: the report.",
+    "text": "In a locked cabinet at the private mortuary, filed by date: the report. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "private"
@@ -363,7 +363,7 @@
   {
     "id": "fnd-029",
     "deck": "find",
-    "text": "Tucked inside a folder nobody had reopened since the funeral: the coroner's addendum.",
+    "text": "Tucked inside a folder nobody had reopened since the funeral: the coroner's addendum. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "private"
@@ -373,7 +373,7 @@
   {
     "id": "fnd-030",
     "deck": "find",
-    "text": "In the coroner's log at the precinct, half a line added later: an amendment.",
+    "text": "In the coroner's log at the precinct, half a line added later: an amendment. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "semi"
@@ -383,7 +383,7 @@
   {
     "id": "fnd-031",
     "deck": "find",
-    "text": "Behind the front counter at the undertaker's, in with the paid bills: the certificate.",
+    "text": "Behind the front counter at the undertaker's, in with the paid bills: the certificate. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "semi"
@@ -393,7 +393,7 @@
   {
     "id": "fnd-032",
     "deck": "find",
-    "text": "In the waiting room ledger, a name crossed out and rewritten: a discrepancy.",
+    "text": "In the waiting room ledger, a name crossed out and rewritten: a discrepancy. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "semi"
@@ -403,7 +403,7 @@
   {
     "id": "fnd-033",
     "deck": "find",
-    "text": "Filed loose in the morgue's outbox, never stapled to the rest: a page.",
+    "text": "Filed loose in the morgue's outbox, never stapled to the rest: a page. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "semi"
@@ -413,7 +413,7 @@
   {
     "id": "fnd-034",
     "deck": "find",
-    "text": "Printed in small type on the third page of the morning paper: the coroner's finding.",
+    "text": "Printed in small type on the third page of the morning paper: the coroner's finding. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "public"
@@ -423,7 +423,7 @@
   {
     "id": "fnd-035",
     "deck": "find",
-    "text": "Posted on the precinct bulletin board, curling at one corner: the notice.",
+    "text": "Posted on the precinct bulletin board, curling at one corner: the notice. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "public"
@@ -433,7 +433,7 @@
   {
     "id": "fnd-036",
     "deck": "find",
-    "text": "Read into the public record at the inquest, and forgotten by everyone but the clerk: a detail.",
+    "text": "Read into the public record at the inquest, and forgotten by everyone but the clerk: a detail. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "public"
@@ -443,7 +443,7 @@
   {
     "id": "fnd-037",
     "deck": "find",
-    "text": "In the health department's weekly bulletin, buried in a column of numbers: the entry.",
+    "text": "In the health department's weekly bulletin, buried in a column of numbers: the entry. {fact}",
     "tags": {
       "clueKind": "morgue",
       "placeKind": "public"
@@ -453,7 +453,7 @@
   {
     "id": "fnd-038",
     "deck": "find",
-    "text": "The chair sat pulled out from the desk, at an angle nobody sits in.",
+    "text": "The chair sat pulled out from the desk, at an angle nobody sits in. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "private"
@@ -463,7 +463,7 @@
   {
     "id": "fnd-039",
     "deck": "find",
-    "text": "A window latch, thrown, though the room stood four floors up.",
+    "text": "A window latch, thrown, though the room stood four floors up. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "private"
@@ -473,7 +473,7 @@
   {
     "id": "fnd-040",
     "deck": "find",
-    "text": "The rug, turned back at one corner and never straightened.",
+    "text": "The rug, turned back at one corner and never straightened. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "private"
@@ -483,7 +483,7 @@
   {
     "id": "fnd-041",
     "deck": "find",
-    "text": "A lamp, knocked half off the table and set back crooked.",
+    "text": "A lamp, knocked half off the table and set back crooked. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "private"
@@ -493,7 +493,7 @@
   {
     "id": "fnd-042",
     "deck": "find",
-    "text": "The last stool down the bar, still pulled out from the rest.",
+    "text": "The last stool down the bar, still pulled out from the rest. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "semi"
@@ -503,7 +503,7 @@
   {
     "id": "fnd-043",
     "deck": "find",
-    "text": "The stairwell light, unscrewed a quarter turn, throwing half the landing dark.",
+    "text": "The stairwell light, unscrewed a quarter turn, throwing half the landing dark. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "semi"
@@ -513,7 +513,7 @@
   {
     "id": "fnd-044",
     "deck": "find",
-    "text": "A coat left on a hook two days past when anyone would claim it.",
+    "text": "A coat left on a hook two days past when anyone would claim it. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "semi"
@@ -523,7 +523,7 @@
   {
     "id": "fnd-045",
     "deck": "find",
-    "text": "The back door bolt, thrown from the inside, and nobody owning to it.",
+    "text": "The back door bolt, thrown from the inside, and nobody owning to it. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "semi"
@@ -533,7 +533,7 @@
   {
     "id": "fnd-046",
     "deck": "find",
-    "text": "A bench with one slat cracked clean through, fresh at the break.",
+    "text": "A bench with one slat cracked clean through, fresh at the break. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "public"
@@ -543,7 +543,7 @@
   {
     "id": "fnd-047",
     "deck": "find",
-    "text": "Gravel disturbed at the edge of {place}, in a shape nobody could explain as accident.",
+    "text": "Gravel disturbed at the edge of {place}, in a shape nobody could explain as accident. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "public"
@@ -553,7 +553,7 @@
   {
     "id": "fnd-048",
     "deck": "find",
-    "text": "A lamppost with a fresh scrape at shoulder height, paint gone to the metal.",
+    "text": "A lamppost with a fresh scrape at shoulder height, paint gone to the metal. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "public"
@@ -563,7 +563,7 @@
   {
     "id": "fnd-049",
     "deck": "find",
-    "text": "The newsstand awning, torn at one corner, the tear too clean for wind.",
+    "text": "The newsstand awning, torn at one corner, the tear too clean for wind. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "public"
@@ -573,7 +573,7 @@
   {
     "id": "fnd-050",
     "deck": "find",
-    "text": "Chalk marks on the pavement outside {place}, already half washed by the gutter.",
+    "text": "Chalk marks on the pavement outside {place}, already half washed by the gutter. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "public"

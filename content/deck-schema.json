@@ -233,6 +233,9 @@
       "burn": "within-run",
       "target": 50,
       "slots": ["detective", "name", "place", "object", "time", "fact"],
+      "warnSlots": {
+        "fact": "the clue's own record has nowhere to land inside the card, so the engine appends it as a second sentence instead of the writer choosing where it falls"
+      },
       "tags": {
         "clueKind": { "required": true, "values": ["physical", "document", "morgue", "scene"] },
         "placeKind": { "required": false, "default": "any", "vocab": "placeKind", "extraValues": ["any"] }
