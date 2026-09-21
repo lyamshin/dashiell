@@ -1,655 +1,439 @@
-# The Belvoir — case 20
+# the Bowery — case 20
 
-**Seed** 20 · **Attempts** 1 · **Detective** Humphrey
+**Seed** 20 · **Difficulty** 2 · **Attempts** 2 · **Detective** Humphrey
+
+**Par** 8 actions · **Budget** 20 · **Slack** 12 · **Findable** 31 (spine 9, corroboration 9, noise 7 + 6 disqualifiers) · **Noise ratio** 42% · **Candidate pool** 179
 
 ## 1. The Truth
 
-Lorraine Whitfield, the night manager, the victim's cousin, killed Esther Hurwitz, the landlord of three tenements on Ninth Avenue, with poison in a drink in the Roof Garden at 9:00 PM. Lorraine Whitfield needed the victim silent (silence-a-witness). Lorraine Whitfield had been in the Kitchen earlier in the evening, before 9:00 PM and was alone with Esther Hurwitz when it happened.
+Ilse Lindemann, a curb broker, the victim’s business partner, killed Isaiah Ashby, a union treasurer, with poison in a drink at the victim’s suite at the residential hotel at 10:30 PM. Ilse Lindemann was about to be exposed by the victim (exposure). Ilse Lindemann had been at Dolan’s Bar earlier in the evening, where the weapon lived, and was alone with Isaiah Ashby when it happened. Ilse Lindemann is also the client: the killer hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Esther Hurwitz | the landlord of three tenements on Ninth Avenue | the victim | — | — | — |
-| Roscoe Cheatham | a longshoreman | the victim's brother-in-law | fence | inheritance | — |
-| Gretchen Brauer | a wine steward out of work since the Act | the victim's rival in trade | gambling-debt | — | — |
-| Abraham Lefkowitz | a private nurse | the victim's lawyer | forged-identity | revenge | — |
-| Eileen Rafferty | a seamstress | engaged to the victim's daughter | affair | property | — |
-| Lorraine Whitfield | the night manager | the victim's cousin | murder (+ gambling-debt) | silence-a-witness | **YES** |
-| Francis Hanrahan | a tailor | the victim's tenant | affair | — | — |
-| Friedrich Obermann | the doorman | fixture | — | — | — |
-| Frieda Dettweiler | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Isaiah Ashby | a union treasurer | the victim | — | — | — | — |
+| Ilse Lindemann (client) | a curb broker | the victim’s business partner | murder | exposure | the benches at the north end of the square | **YES** |
+| Prescott Fairbanks | a bookmaker in a small way | in the victim’s debt | gambling-debt | revenge | the lobby of the Wyckoff | — |
+| Isidore Hurwitz | a policy runner | a customer of the victim’s | fence | debt | Dolan’s Bar | — |
+| Thaddeus Winslow | a lawyer with one clerk | the victim’s lawyer | gambling-debt | — | Kaplan’s drugstore with the soda fountain | — |
+| Angelina Alfano | a private secretary | the victim’s former employee | blackmail | — | Dolan’s Bar | — |
+| Sol Shapiro | a hack driver | in the victim’s debt | secret-drinking | — | the benches at the north end of the square | — |
+| Thomas Feeney | the elevator man | fixture (elevator-man) | — | — | the vestibule of the Hallam apartments | — |
+| Millicent Stannard | the druggist | fixture (druggist) | — | — | Kaplan’s drugstore with the soda fountain | — |
+| James Doyle | the doorman | fixture (doorman) | — | — | the lobby of the Wyckoff | — |
+| Elijah Renfro | the bartender | fixture (bartender) | — | — | Dolan’s Bar | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: a folded stack of evening papers
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: the roof door key, a bronze bookend, the guest register
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a seltzer siphon
-- **Kitchen** (private) — adjacent: Bar, Service Stairs; sees: Bar; noise carries to: Bar, Service Stairs; objects: a cut-glass decanter, an ice pick
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a mop and bucket
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a galvanised watering can
-- **Street** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a brass umbrella stand
+- **the victim’s suite at the residential hotel** (private) — unwatched; objects: a camel-hair overcoat on a hook, a silver cigarette case — **THE SCENE**; the victim’s address
+- **the benches at the north end of the square** (public) — unwatched; objects: a folded stack of evening papers, a brass umbrella stand — within earshot of the scene
+- **the vestibule of the Hallam apartments** (private) — watched by elevator-man (Thomas Feeney); objects: the roof-door key, a day ledger, a nickel-plated revolver
+- **Kaplan’s drugstore with the soda fountain** (public) — watched by druggist (Millicent Stannard); objects: a wall telephone, an ice pick
+- **the lobby of the Wyckoff** (semi) — watched by doorman (James Doyle); objects: a bronze bookend — within earshot of the scene
+- **Dolan’s Bar** (semi) — watched by bartender (Elijah Renfro); objects: a bottle of chloral drops, a seltzer siphon — where the weapon lived
 
-**Environment:** Passenger elevator out of order 7:30 PM–8:00 PM. Bar radio at 7:30 PM: a fight card from the Garden — the challenger went down in the fourth and the crowd booed.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 10:00 PM–11:30 PM, four ticks wide. These are what close it: **el-train** and **ice-delivery**.
 
-### Esther Hurwitz — the victim
+- **the ice being brought in** — at 10:00 PM; at Dolan’s Bar. Somebody reliable notes who was there. Those present carry it: a wet patch down one side of a coat.
+- **the El going over** — at 6:30 PM, 7:30 PM, 8:30 PM, 9:30 PM, 10:30 PM, 11:30 PM; across the whole neighbourhood. You can time things by it: everything under the structure stops being audible for twenty seconds.
+
+## 5. Timelines
+
+### Isaiah Ashby — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Roof Garden | Roof Garden | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Roof Garden ☠ | Roof Garden | — |
-| 7 | 9:30 PM | — | — | — |
-| 8 | 10:00 PM | — | — | — |
-| 9 | 10:30 PM | — | — | — |
+| 0 | 6:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 1 | 6:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 2 | 7:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 3 | 7:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 4 | 8:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 5 | 8:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 6 | 9:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 7 | 9:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 9 | 10:30 PM | the victim’s suite at the residential hotel ☠ | the victim’s suite at the residential hotel | — |
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Roscoe Cheatham
+### Ilse Lindemann — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Roof Garden | Roof Garden | — |
-| 3 | 7:30 PM | Roof Garden | Roof Garden | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Kitchen | **Lobby** | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 1 | 6:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 2 | 7:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 3 | 7:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 4 | 8:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 5 | 8:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 6 | 9:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | the victim’s suite at the residential hotel | **Dolan’s Bar** | Thaddeus Winslow |
+| 9 | 10:30 PM | the victim’s suite at the residential hotel ☠ | **Dolan’s Bar** | Thaddeus Winslow |
+| 10 | 11:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
 
-### Gretchen Brauer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Street | **Lobby** | — |
-| 7 | 9:30 PM | Street | Street | — |
-| 8 | 10:00 PM | Street | Street | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
-
-### Abraham Lefkowitz
+### Prescott Fairbanks
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Bar | Bar | — |
-| 1 | 6:30 PM | Bar | Bar | — |
-| 2 | 7:00 PM | Bar | Bar | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Front Desk | Front Desk | — |
-| 11 | 11:30 PM | Front Desk | Front Desk | — |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 1 | 6:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 2 | 7:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 3 | 7:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 4 | 8:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 5 | 8:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 6 | 9:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 7 | 9:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 8 | 10:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 9 | 10:30 PM | Kaplan’s drugstore with the soda fountain | **the vestibule of the Hallam apartments** | — |
+| 10 | 11:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
 
-### Eileen Rafferty
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | **Lobby** | — |
-| 1 | 6:30 PM | Service Stairs | **Lobby** | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
-
-### Lorraine Whitfield — the killer
+### Isidore Hurwitz
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Roof Garden ☠ | **Street** | Francis Hanrahan |
-| 7 | 9:30 PM | Service Stairs | Service Stairs | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Street | **Lobby** | — |
-| 10 | 11:00 PM | Street | **Lobby** | — |
-| 11 | 11:30 PM | Street | Street | — |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | Dolan’s Bar | **the benches at the north end of the square** | — |
+| 3 | 7:30 PM | Dolan’s Bar | **the benches at the north end of the square** | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 9 | 10:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | Dolan’s Bar | Dolan’s Bar | — |
 
-### Francis Hanrahan
+### Thaddeus Winslow
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | **Bar** | — |
-| 1 | 6:30 PM | Service Stairs | **Bar** | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Roof Garden | Roof Garden | — |
-| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Front Desk | Front Desk | — |
-| 11 | 11:30 PM | Front Desk | Front Desk | — |
+| 0 | 6:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 1 | 6:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 2 | 7:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 3 | 7:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 4 | 8:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 5 | 8:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 6 | 9:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 7 | 9:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 8 | 10:00 PM | Kaplan’s drugstore with the soda fountain | **the vestibule of the Hallam apartments** | Sol Shapiro |
+| 9 | 10:30 PM | Kaplan’s drugstore with the soda fountain | **the vestibule of the Hallam apartments** | Sol Shapiro |
+| 10 | 11:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 11 | 11:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+
+### Angelina Alfano
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 1 | 6:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 2 | 7:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 3 | 7:30 PM | the lobby of the Wyckoff | **Dolan’s Bar** | — |
+| 4 | 8:00 PM | the lobby of the Wyckoff | **Dolan’s Bar** | — |
+| 5 | 8:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 6 | 9:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 7 | 9:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 8 | 10:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 9 | 10:30 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 10 | 11:00 PM | Dolan’s Bar | Dolan’s Bar | — |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+
+### Sol Shapiro
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 1 | 6:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 2 | 7:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 3 | 7:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 4 | 8:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 5 | 8:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 6 | 9:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 7 | 9:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 8 | 10:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 9 | 10:30 PM | Dolan’s Bar | **Kaplan’s drugstore with the soda fountain** | Ilse Lindemann |
+| 10 | 11:00 PM | Dolan’s Bar | **Kaplan’s drugstore with the soda fountain** | Ilse Lindemann |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Friedrich Obermann (the doorman) | Frieda Dettweiler (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Lobby | Bar |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Bar |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Lobby |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Roscoe Cheatham** (fence): Roscoe Cheatham hands a parcel of stolen goods to a man at the Kitchen at 9:00 PM.
-- **Gretchen Brauer** (gambling-debt): Gretchen Brauer slips out to the Street from 9:00 PM to settle with a bookmaker.
-- **Abraham Lefkowitz** (forged-identity): Abraham Lefkowitz is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.
-- **Eileen Rafferty** (affair): Eileen Rafferty is with Francis Hanrahan in the Service Stairs from 6:00 PM to 6:30 PM, and both will say they were somewhere else.
-- **Lorraine Whitfield** (murder): Lorraine Whitfield is alone with Esther Hurwitz in the Roof Garden from 9:00 PM, and kills Esther Hurwitz at 9:00 PM.
-- **Lorraine Whitfield** also (gambling-debt): Lorraine Whitfield slips out to the Street from 10:30 PM to 11:00 PM to settle with a bookmaker.
-- **Francis Hanrahan** (affair): Francis Hanrahan is with Eileen Rafferty in the Service Stairs from 6:00 PM to 6:30 PM, and both will say they were somewhere else.
-
-## 6. Clue list
-
-### From Roscoe Cheatham (a longshoreman)
-
-On Esther Hurwitz:
-
-- **c001** [observation] Roscoe Cheatham says Esther Hurwitz was in the Roof Garden at 6:30 PM. — _establishes: Esther Hurwitz in the Roof Garden, 6:30 PM; the victim alive at 6:30 PM_
-- **c002** [observation] Roscoe Cheatham says Esther Hurwitz was in the Roof Garden from 7:30 PM to 8:00 PM. — _establishes: Esther Hurwitz in the Roof Garden, 7:30 PM–8:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM_
-
-On Abraham Lefkowitz:
-
-- **c003** [observation] Roscoe Cheatham says Abraham Lefkowitz was in the Bar at 6:00 PM. — _establishes: Abraham Lefkowitz in the Bar, 6:00 PM_
-- **c004** [observation] Roscoe Cheatham says Abraham Lefkowitz was in the Bar at 9:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 9:30 PM_
-
-On Eileen Rafferty:
-
-- **c005** [observation] Roscoe Cheatham says Eileen Rafferty was in the Kitchen from 9:30 PM to 10:00 PM. — _establishes: Eileen Rafferty in the Kitchen, 9:30 PM–10:00 PM_
-- **c006** [observation] Roscoe Cheatham says Eileen Rafferty was on the Service Stairs at 11:30 PM. — _establishes: Eileen Rafferty on the Service Stairs, 11:30 PM_
-
-On Francis Hanrahan:
-
-- **c007** [observation] Roscoe Cheatham says Francis Hanrahan was in the Roof Garden at 8:00 PM. — _establishes: Francis Hanrahan in the Roof Garden, 8:00 PM_
-- **c008** [observation] Roscoe Cheatham says Francis Hanrahan was in the Bar at 9:30 PM. — _establishes: Francis Hanrahan in the Bar, 9:30 PM_
-
-On Eileen Rafferty's account:
-
-- **c133** [observation] Roscoe Cheatham was in the Lobby at 6:00 PM and says Eileen Rafferty was not in the Lobby. — _establishes: Eileen Rafferty not in the Lobby, 6:00 PM_
-
-On Francis Hanrahan's account:
-
-- **c147** [observation] Roscoe Cheatham was in the Lobby at 6:00 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM_
-
-On Lorraine Whitfield and Esther Hurwitz:
-
-- **c167** [overheard] Roscoe Cheatham says Esther Hurwitz said to Lorraine Whitfield that a man who testifies sleeps better. — _establishes: Lorraine Whitfield had a motive (silence-a-witness)_
-
-### From Gretchen Brauer (a wine steward out of work since the Act)
-
-On Esther Hurwitz:
-
-- **c009** [observation] Gretchen Brauer says Esther Hurwitz was on the Service Stairs at 7:00 PM. — _establishes: Esther Hurwitz on the Service Stairs, 7:00 PM; the victim alive at 7:00 PM_
-- **c010** [observation] Gretchen Brauer says Esther Hurwitz was in the Lobby at 8:30 PM. — _establishes: Esther Hurwitz in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Abraham Lefkowitz:
-
-- **c011** [observation] Gretchen Brauer says Abraham Lefkowitz was in the Bar from 6:00 PM to 6:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 6:00 PM–6:30 PM_
-- **c012** [observation] Gretchen Brauer says Abraham Lefkowitz was in the Bar at 7:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 7:30 PM_
-- **c013** [observation] Gretchen Brauer says Abraham Lefkowitz was in the Bar at 8:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 8:30 PM_
-- **c014** [observation] Gretchen Brauer says Abraham Lefkowitz was in the Lobby at 8:00 PM. — _establishes: Abraham Lefkowitz in the Lobby, 8:00 PM_
-- **c015** [observation] Gretchen Brauer says Abraham Lefkowitz was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Abraham Lefkowitz in the Lobby, 10:00 PM–10:30 PM_
-
-On Eileen Rafferty:
-
-- **c016** [observation] Gretchen Brauer says Eileen Rafferty was on the Service Stairs at 7:00 PM. — _establishes: Eileen Rafferty on the Service Stairs, 7:00 PM_
-- **c017** [observation] Gretchen Brauer says Eileen Rafferty was in the Bar from 8:00 PM to 8:30 PM. — _establishes: Eileen Rafferty in the Bar, 8:00 PM–8:30 PM_
-
-On Lorraine Whitfield:
-
-- **c018** [observation] Gretchen Brauer says Lorraine Whitfield was in the Kitchen from 6:00 PM to 6:30 PM. — _establishes: Lorraine Whitfield in the Kitchen, 6:00 PM–6:30 PM; Lorraine Whitfield had access to the method_
-- **c019** [observation] Gretchen Brauer says Lorraine Whitfield was in the Lobby at 8:30 PM. — _establishes: Lorraine Whitfield in the Lobby, 8:30 PM_
-- **c020** [observation] Gretchen Brauer says Lorraine Whitfield was in the Lobby at 10:00 PM. — _establishes: Lorraine Whitfield in the Lobby, 10:00 PM_
-- **c021** [observation] Gretchen Brauer says Lorraine Whitfield was on the Street from 10:30 PM to 11:30 PM. — _establishes: Lorraine Whitfield on the Street, 10:30 PM–11:30 PM_
-
-On Francis Hanrahan:
-
-- **c022** [observation] Gretchen Brauer says Francis Hanrahan was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Francis Hanrahan in the Lobby, 10:00 PM–10:30 PM_
-
-On Lorraine Whitfield's account:
-
-- **c139** [observation] Gretchen Brauer was on the Street from 10:30 PM to 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM–11:00 PM_
-
-On Francis Hanrahan's account:
-
-- **c148** [observation] Gretchen Brauer was in the Kitchen from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
-
-### From Abraham Lefkowitz (a private nurse)
-
-On Esther Hurwitz:
-
-- **c023** [observation] Abraham Lefkowitz says Esther Hurwitz was in the Lobby at 8:30 PM. — _establishes: Esther Hurwitz in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Roscoe Cheatham:
-
-- **c024** [observation] Abraham Lefkowitz says Roscoe Cheatham was in the Lobby at 6:00 PM. — _establishes: Roscoe Cheatham in the Lobby, 6:00 PM_
-- **c025** [observation] Abraham Lefkowitz says Roscoe Cheatham was in the Kitchen from 9:00 PM to 9:30 PM. — _establishes: Roscoe Cheatham in the Kitchen, 9:00 PM–9:30 PM_
-
-On Gretchen Brauer:
-
-- **c026** [observation] Abraham Lefkowitz says Gretchen Brauer was in the Kitchen from 6:00 PM to 6:30 PM. — _establishes: Gretchen Brauer in the Kitchen, 6:00 PM–6:30 PM; Gretchen Brauer had access to the method_
-- **c027** [observation] Abraham Lefkowitz says Gretchen Brauer was in the Lobby at 7:30 PM. — _establishes: Gretchen Brauer in the Lobby, 7:30 PM_
-- **c028** [observation] Abraham Lefkowitz says Gretchen Brauer was in the Lobby at 8:30 PM. — _establishes: Gretchen Brauer in the Lobby, 8:30 PM_
-- **c029** [observation] Abraham Lefkowitz says Gretchen Brauer was in the Bar at 8:00 PM. — _establishes: Gretchen Brauer in the Bar, 8:00 PM_
-- **c030** [observation] Abraham Lefkowitz says Gretchen Brauer was on the Street from 10:00 PM to 10:30 PM. — _establishes: Gretchen Brauer on the Street, 10:00 PM–10:30 PM_
-
-On Eileen Rafferty:
-
-- **c031** [observation] Abraham Lefkowitz says Eileen Rafferty was in the Kitchen at 7:30 PM. — _establishes: Eileen Rafferty in the Kitchen, 7:30 PM; Eileen Rafferty had access to the method_
-- **c032** [observation] Abraham Lefkowitz says Eileen Rafferty was in the Kitchen from 9:00 PM to 9:30 PM. — _establishes: Eileen Rafferty in the Kitchen, 9:00 PM–9:30 PM_
-- **c033** [observation] Abraham Lefkowitz says Eileen Rafferty was in the Bar from 8:00 PM to 8:30 PM. — _establishes: Eileen Rafferty in the Bar, 8:00 PM–8:30 PM_
-
-On Lorraine Whitfield:
-
-- **c034** [observation] Abraham Lefkowitz says Lorraine Whitfield was in the Kitchen from 6:00 PM to 7:30 PM. — _establishes: Lorraine Whitfield in the Kitchen, 6:00 PM–7:30 PM; Lorraine Whitfield had access to the method_
-- **c035** [observation] Abraham Lefkowitz says Lorraine Whitfield was in the Lobby at 8:30 PM. — _establishes: Lorraine Whitfield in the Lobby, 8:30 PM_
-- **c036** [observation] Abraham Lefkowitz says Lorraine Whitfield was in the Lobby at 10:00 PM. — _establishes: Lorraine Whitfield in the Lobby, 10:00 PM_
-- **c037** [observation] Abraham Lefkowitz says Lorraine Whitfield was on the Street at 10:30 PM. — _establishes: Lorraine Whitfield on the Street, 10:30 PM_
-
-On Francis Hanrahan:
-
-- **c038** [observation] Abraham Lefkowitz says Francis Hanrahan was in the Kitchen at 7:00 PM. — _establishes: Francis Hanrahan in the Kitchen, 7:00 PM; Francis Hanrahan had access to the method_
-- **c039** [observation] Abraham Lefkowitz says Francis Hanrahan was in the Lobby at 9:00 PM. — _establishes: Francis Hanrahan in the Lobby, 9:00 PM_
-- **c040** [observation] Abraham Lefkowitz says Francis Hanrahan was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Francis Hanrahan in the Lobby, 10:00 PM–10:30 PM_
-- **c041** [observation] Abraham Lefkowitz says Francis Hanrahan was in the Bar at 9:30 PM. — _establishes: Francis Hanrahan in the Bar, 9:30 PM_
-- **c042** [observation] Abraham Lefkowitz says Francis Hanrahan was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Francis Hanrahan at the Front Desk, 11:00 PM–11:30 PM_
-
-On Roscoe Cheatham's account:
-
-- **c125** [observation] Abraham Lefkowitz was in the Bar at 9:00 PM and says Roscoe Cheatham was not in the Lobby. — _establishes: Roscoe Cheatham not in the Lobby, 9:00 PM_
-
-On Gretchen Brauer's account:
-
-- **c129** [observation] Abraham Lefkowitz was in the Bar at 9:00 PM and says Gretchen Brauer was not in the Lobby. — _establishes: Gretchen Brauer not in the Lobby, 9:00 PM_
-
-On Eileen Rafferty's account:
-
-- **c134** [observation] Abraham Lefkowitz was in the Bar from 6:00 PM to 6:30 PM and says Eileen Rafferty was not in the Lobby. — _establishes: Eileen Rafferty not in the Lobby, 6:00 PM–6:30 PM_
-
-On Lorraine Whitfield's account:
-
-- **c140** [observation] Abraham Lefkowitz was in the Lobby at 10:30 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM_
-- **c141** [observation] Abraham Lefkowitz was at the Front Desk at 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 11:00 PM_
-
-On Francis Hanrahan's account:
-
-- **c149** [observation] Abraham Lefkowitz was in the Bar from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
-
-### From Eileen Rafferty (a seamstress)
-
-On Esther Hurwitz:
-
-- **c043** [observation] Eileen Rafferty says Esther Hurwitz was on the Service Stairs at 7:00 PM. — _establishes: Esther Hurwitz on the Service Stairs, 7:00 PM; the victim alive at 7:00 PM_
-- **c044** [observation] Eileen Rafferty says Esther Hurwitz was in the Lobby at 8:30 PM. — _establishes: Esther Hurwitz in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Roscoe Cheatham:
-
-- **c045** [observation] Eileen Rafferty says Roscoe Cheatham was in the Kitchen from 9:00 PM to 10:00 PM. — _establishes: Roscoe Cheatham in the Kitchen, 9:00 PM–10:00 PM_
-- **c046** [observation] Eileen Rafferty says Roscoe Cheatham was on the Service Stairs at 11:30 PM. — _establishes: Roscoe Cheatham on the Service Stairs, 11:30 PM_
-
-On Gretchen Brauer:
-
-- **c047** [observation] Eileen Rafferty says Gretchen Brauer was on the Service Stairs at 7:00 PM. — _establishes: Gretchen Brauer on the Service Stairs, 7:00 PM_
-- **c048** [observation] Eileen Rafferty says Gretchen Brauer was in the Bar at 8:00 PM. — _establishes: Gretchen Brauer in the Bar, 8:00 PM_
-- **c049** [observation] Eileen Rafferty says Gretchen Brauer was in the Lobby at 8:30 PM. — _establishes: Gretchen Brauer in the Lobby, 8:30 PM_
-
-On Abraham Lefkowitz:
-
-- **c050** [observation] Eileen Rafferty says Abraham Lefkowitz was in the Bar at 7:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 7:30 PM_
-- **c051** [observation] Eileen Rafferty says Abraham Lefkowitz was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 8:30 PM–9:30 PM_
-- **c052** [observation] Eileen Rafferty says Abraham Lefkowitz was in the Lobby at 8:00 PM. — _establishes: Abraham Lefkowitz in the Lobby, 8:00 PM_
-
-On Lorraine Whitfield:
-
-- **c053** [observation] Eileen Rafferty says Lorraine Whitfield was in the Kitchen at 7:30 PM. — _establishes: Lorraine Whitfield in the Kitchen, 7:30 PM; Lorraine Whitfield had access to the method_
-- **c054** [observation] Eileen Rafferty says Lorraine Whitfield was in the Lobby at 8:30 PM. — _establishes: Lorraine Whitfield in the Lobby, 8:30 PM_
-
-On Francis Hanrahan:
-
-- **c055** [observation] Eileen Rafferty says Francis Hanrahan was in the Bar at 9:30 PM. — _establishes: Francis Hanrahan in the Bar, 9:30 PM_
-
-On Roscoe Cheatham and Esther Hurwitz:
-
-- **c161** [overheard] Eileen Rafferty says Esther Hurwitz told Roscoe Cheatham the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Roscoe Cheatham had a motive (inheritance)_
-
-### From Lorraine Whitfield (the night manager)
-
-On Esther Hurwitz:
-
-- **c056** [observation] Lorraine Whitfield says Esther Hurwitz was in the Lobby at 8:30 PM. — _establishes: Esther Hurwitz in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Gretchen Brauer:
-
-- **c057** [observation] Lorraine Whitfield says Gretchen Brauer was in the Kitchen from 6:00 PM to 6:30 PM. — _establishes: Gretchen Brauer in the Kitchen, 6:00 PM–6:30 PM; Gretchen Brauer had access to the method_
-- **c058** [observation] Lorraine Whitfield says Gretchen Brauer was in the Lobby at 8:30 PM. — _establishes: Gretchen Brauer in the Lobby, 8:30 PM_
-- **c059** [observation] Lorraine Whitfield says Gretchen Brauer was on the Street at 10:00 PM. — _establishes: Gretchen Brauer on the Street, 10:00 PM_
-- **c060** [observation] Lorraine Whitfield says Gretchen Brauer was on the Street at 11:30 PM. — _establishes: Gretchen Brauer on the Street, 11:30 PM_
-
-On Abraham Lefkowitz:
-
-- **c061** [observation] Lorraine Whitfield says Abraham Lefkowitz was in the Bar from 6:00 PM to 7:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 6:00 PM–7:30 PM_
-- **c062** [observation] Lorraine Whitfield says Abraham Lefkowitz was in the Bar at 8:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 8:30 PM_
-- **c063** [observation] Lorraine Whitfield says Abraham Lefkowitz was in the Lobby at 10:00 PM. — _establishes: Abraham Lefkowitz in the Lobby, 10:00 PM_
-
-On Eileen Rafferty:
-
-- **c064** [observation] Lorraine Whitfield says Eileen Rafferty was in the Kitchen at 7:30 PM. — _establishes: Eileen Rafferty in the Kitchen, 7:30 PM; Eileen Rafferty had access to the method_
-- **c065** [observation] Lorraine Whitfield says Eileen Rafferty was in the Bar at 8:30 PM. — _establishes: Eileen Rafferty in the Bar, 8:30 PM_
-
-On Francis Hanrahan:
-
-- **c066** [observation] Lorraine Whitfield says Francis Hanrahan was in the Kitchen at 7:00 PM. — _establishes: Francis Hanrahan in the Kitchen, 7:00 PM; Francis Hanrahan had access to the method_
-- **c067** [observation] Lorraine Whitfield says Francis Hanrahan was in the Lobby at 10:00 PM. — _establishes: Francis Hanrahan in the Lobby, 10:00 PM_
-
-On Francis Hanrahan's account:
-
-- **c150** [observation] Lorraine Whitfield was in the Kitchen from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
-
-### From Francis Hanrahan (a tailor)
-
-On Esther Hurwitz:
-
-- **c068** [observation] Francis Hanrahan says Esther Hurwitz was in the Roof Garden at 8:00 PM. — _establishes: Esther Hurwitz in the Roof Garden, 8:00 PM; the victim alive at 8:00 PM_
-
-On Roscoe Cheatham:
-
-- **c069** [observation] Francis Hanrahan says Roscoe Cheatham was in the Roof Garden at 8:00 PM. — _establishes: Roscoe Cheatham in the Roof Garden, 8:00 PM_
-- **c070** [observation] Francis Hanrahan says Roscoe Cheatham was in the Kitchen at 9:30 PM. — _establishes: Roscoe Cheatham in the Kitchen, 9:30 PM_
-
-On Gretchen Brauer:
-
-- **c071** [observation] Francis Hanrahan says Gretchen Brauer was on the Street at 9:00 PM. — _establishes: Gretchen Brauer on the Street, 9:00 PM_
-- **c072** [observation] Francis Hanrahan says Gretchen Brauer was on the Street from 10:00 PM to 10:30 PM. — _establishes: Gretchen Brauer on the Street, 10:00 PM–10:30 PM_
-
-On Abraham Lefkowitz:
-
-- **c073** [observation] Francis Hanrahan says Abraham Lefkowitz was in the Bar at 7:00 PM. — _establishes: Abraham Lefkowitz in the Bar, 7:00 PM_
-- **c074** [observation] Francis Hanrahan says Abraham Lefkowitz was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 9:00 PM–9:30 PM_
-- **c075** [observation] Francis Hanrahan says Abraham Lefkowitz was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Abraham Lefkowitz in the Lobby, 10:00 PM–10:30 PM_
-- **c076** [observation] Francis Hanrahan says Abraham Lefkowitz was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Abraham Lefkowitz at the Front Desk, 11:00 PM–11:30 PM_
-
-On Eileen Rafferty:
-
-- **c077** [observation] Francis Hanrahan says Eileen Rafferty was in the Kitchen at 9:30 PM. — _establishes: Eileen Rafferty in the Kitchen, 9:30 PM_
-
-On Lorraine Whitfield:
-
-- **c078** [observation] Francis Hanrahan says Lorraine Whitfield was in the Kitchen at 7:00 PM. — _establishes: Lorraine Whitfield in the Kitchen, 7:00 PM; Lorraine Whitfield had access to the method_
-- **c079** [observation] Francis Hanrahan says Lorraine Whitfield was in the Lobby at 10:00 PM. — _establishes: Lorraine Whitfield in the Lobby, 10:00 PM_
-- **c080** [observation] Francis Hanrahan says Lorraine Whitfield was on the Street at 10:30 PM. — _establishes: Lorraine Whitfield on the Street, 10:30 PM_
-
-On Roscoe Cheatham's account:
-
-- **c126** [observation] Francis Hanrahan was in the Lobby at 9:00 PM and says Roscoe Cheatham was not in the Lobby. — _establishes: Roscoe Cheatham not in the Lobby, 9:00 PM_
-
-On Gretchen Brauer's account:
-
-- **c130** [observation] Francis Hanrahan was in the Lobby at 9:00 PM and says Gretchen Brauer was not in the Lobby. — _establishes: Gretchen Brauer not in the Lobby, 9:00 PM_
-
-On Lorraine Whitfield's account:
-
-- **c137** [observation] Francis Hanrahan was in the Lobby at 9:00 PM and says Lorraine Whitfield was not on the Street. — _establishes: Lorraine Whitfield not on the Street, 9:00 PM_
-- **c142** [observation] Francis Hanrahan was in the Lobby at 10:30 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM_
-- **c143** [observation] Francis Hanrahan was at the Front Desk at 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 11:00 PM_
-
-### From Friedrich Obermann (the doorman)
-
-On Esther Hurwitz:
-
-- **c081** [observation] Friedrich Obermann says Esther Hurwitz was in the Lobby at 8:30 PM. — _establishes: Esther Hurwitz in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Roscoe Cheatham:
-
-- **c082** [observation] Friedrich Obermann says Roscoe Cheatham was in the Lobby at 6:00 PM. — _establishes: Roscoe Cheatham in the Lobby, 6:00 PM_
-
-On Gretchen Brauer:
-
-- **c083** [observation] Friedrich Obermann says Gretchen Brauer was in the Lobby at 7:30 PM. — _establishes: Gretchen Brauer in the Lobby, 7:30 PM_
-- **c084** [observation] Friedrich Obermann says Gretchen Brauer was in the Lobby at 8:30 PM. — _establishes: Gretchen Brauer in the Lobby, 8:30 PM_
-- **c085** [observation] Friedrich Obermann says Gretchen Brauer was in the Bar at 8:00 PM. — _establishes: Gretchen Brauer in the Bar, 8:00 PM_
-- **c086** [observation] Friedrich Obermann says Gretchen Brauer was on the Street from 9:00 PM to 11:30 PM. — _establishes: Gretchen Brauer on the Street, 9:00 PM–11:30 PM_
-
-On Abraham Lefkowitz:
-
-- **c087** [observation] Friedrich Obermann says Abraham Lefkowitz was in the Bar from 6:00 PM to 7:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 6:00 PM–7:30 PM_
-- **c088** [observation] Friedrich Obermann says Abraham Lefkowitz was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 8:30 PM–9:30 PM_
-- **c089** [observation] Friedrich Obermann says Abraham Lefkowitz was in the Lobby at 8:00 PM. — _establishes: Abraham Lefkowitz in the Lobby, 8:00 PM_
-- **c090** [observation] Friedrich Obermann says Abraham Lefkowitz was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Abraham Lefkowitz in the Lobby, 10:00 PM–10:30 PM_
-- **c091** [observation] Friedrich Obermann says Abraham Lefkowitz was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Abraham Lefkowitz at the Front Desk, 11:00 PM–11:30 PM_
-
-On Eileen Rafferty:
-
-- **c092** [observation] Friedrich Obermann says Eileen Rafferty was in the Bar from 8:00 PM to 8:30 PM. — _establishes: Eileen Rafferty in the Bar, 8:00 PM–8:30 PM_
-
-On Lorraine Whitfield:
-
-- **c093** [observation] Friedrich Obermann says Lorraine Whitfield was in the Lobby at 8:30 PM. — _establishes: Lorraine Whitfield in the Lobby, 8:30 PM_
-- **c094** [observation] Friedrich Obermann says Lorraine Whitfield was in the Lobby at 10:00 PM. — _establishes: Lorraine Whitfield in the Lobby, 10:00 PM_
-- **c095** [observation] Friedrich Obermann says Lorraine Whitfield was on the Street from 10:30 PM to 11:30 PM. — _establishes: Lorraine Whitfield on the Street, 10:30 PM–11:30 PM_
-
-On Francis Hanrahan:
-
-- **c096** [observation] Friedrich Obermann says Francis Hanrahan was in the Lobby at 9:00 PM. — _establishes: Francis Hanrahan in the Lobby, 9:00 PM_
-- **c097** [observation] Friedrich Obermann says Francis Hanrahan was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Francis Hanrahan in the Lobby, 10:00 PM–10:30 PM_
-- **c098** [observation] Friedrich Obermann says Francis Hanrahan was in the Bar at 9:30 PM. — _establishes: Francis Hanrahan in the Bar, 9:30 PM_
-- **c099** [observation] Friedrich Obermann says Francis Hanrahan was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Francis Hanrahan at the Front Desk, 11:00 PM–11:30 PM_
-
-On Roscoe Cheatham's account:
-
-- **c127** [observation] Friedrich Obermann was in the Lobby at 9:00 PM and says Roscoe Cheatham was not in the Lobby. — _establishes: Roscoe Cheatham not in the Lobby, 9:00 PM_
-
-On Gretchen Brauer's account:
-
-- **c131** [observation] Friedrich Obermann was in the Lobby at 9:00 PM and says Gretchen Brauer was not in the Lobby. — _establishes: Gretchen Brauer not in the Lobby, 9:00 PM_
-
-On Eileen Rafferty's account:
-
-- **c135** [observation] Friedrich Obermann was in the Lobby from 6:00 PM to 6:30 PM and says Eileen Rafferty was not in the Lobby. — _establishes: Eileen Rafferty not in the Lobby, 6:00 PM–6:30 PM_
-
-On Lorraine Whitfield's account:
-
-- **c138** [observation] Friedrich Obermann was in the Lobby at 9:00 PM and says Lorraine Whitfield was not on the Street. — _establishes: Lorraine Whitfield not on the Street, 9:00 PM_
-- **c144** [observation] Friedrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM–11:00 PM_
-
-On Francis Hanrahan's account:
-
-- **c151** [observation] Friedrich Obermann was in the Lobby from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
-
-On Abraham Lefkowitz and Esther Hurwitz:
-
-- **c163** [overheard] Friedrich Obermann says Abraham Lefkowitz said Esther Hurwitz had taken everything and would be made to feel it. — _establishes: Abraham Lefkowitz had a motive (revenge)_
-
-On Eileen Rafferty and Esther Hurwitz:
-
-- **c165** [overheard] Friedrich Obermann says Esther Hurwitz told Eileen Rafferty the lease would go to somebody else at the quarter day. — _establishes: Eileen Rafferty had a motive (property)_
-
-### From Frieda Dettweiler (the bartender)
-
-On Esther Hurwitz:
-
-- **c100** [observation] Frieda Dettweiler says Esther Hurwitz was in the Lobby at 8:30 PM. — _establishes: Esther Hurwitz in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Roscoe Cheatham:
-
-- **c101** [observation] Frieda Dettweiler says Roscoe Cheatham was in the Lobby at 6:00 PM. — _establishes: Roscoe Cheatham in the Lobby, 6:00 PM_
-- **c102** [observation] Frieda Dettweiler says Roscoe Cheatham was in the Kitchen from 9:00 PM to 10:30 PM. — _establishes: Roscoe Cheatham in the Kitchen, 9:00 PM–10:30 PM_
-
-On Gretchen Brauer:
-
-- **c103** [observation] Frieda Dettweiler says Gretchen Brauer was in the Kitchen from 6:00 PM to 6:30 PM. — _establishes: Gretchen Brauer in the Kitchen, 6:00 PM–6:30 PM; Gretchen Brauer had access to the method_
-- **c104** [observation] Frieda Dettweiler says Gretchen Brauer was in the Lobby at 7:30 PM. — _establishes: Gretchen Brauer in the Lobby, 7:30 PM_
-- **c105** [observation] Frieda Dettweiler says Gretchen Brauer was in the Lobby at 8:30 PM. — _establishes: Gretchen Brauer in the Lobby, 8:30 PM_
-- **c106** [observation] Frieda Dettweiler says Gretchen Brauer was in the Bar at 8:00 PM. — _establishes: Gretchen Brauer in the Bar, 8:00 PM_
-- **c107** [observation] Frieda Dettweiler says Gretchen Brauer was on the Street at 11:00 PM. — _establishes: Gretchen Brauer on the Street, 11:00 PM_
-
-On Abraham Lefkowitz:
-
-- **c108** [observation] Frieda Dettweiler says Abraham Lefkowitz was in the Bar from 6:00 PM to 7:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 6:00 PM–7:30 PM_
-- **c109** [observation] Frieda Dettweiler says Abraham Lefkowitz was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Abraham Lefkowitz in the Bar, 8:30 PM–9:30 PM_
-- **c110** [observation] Frieda Dettweiler says Abraham Lefkowitz was in the Lobby at 8:00 PM. — _establishes: Abraham Lefkowitz in the Lobby, 8:00 PM_
-- **c111** [observation] Frieda Dettweiler says Abraham Lefkowitz was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Abraham Lefkowitz in the Lobby, 10:00 PM–10:30 PM_
-- **c112** [observation] Frieda Dettweiler says Abraham Lefkowitz was at the Front Desk at 11:00 PM. — _establishes: Abraham Lefkowitz at the Front Desk, 11:00 PM_
-
-On Eileen Rafferty:
-
-- **c113** [observation] Frieda Dettweiler says Eileen Rafferty was in the Kitchen at 7:30 PM. — _establishes: Eileen Rafferty in the Kitchen, 7:30 PM; Eileen Rafferty had access to the method_
-- **c114** [observation] Frieda Dettweiler says Eileen Rafferty was in the Kitchen from 9:00 PM to 10:00 PM. — _establishes: Eileen Rafferty in the Kitchen, 9:00 PM–10:00 PM_
-- **c115** [observation] Frieda Dettweiler says Eileen Rafferty was in the Bar from 8:00 PM to 8:30 PM. — _establishes: Eileen Rafferty in the Bar, 8:00 PM–8:30 PM_
-
-On Lorraine Whitfield:
-
-- **c116** [observation] Frieda Dettweiler says Lorraine Whitfield was in the Kitchen from 6:00 PM to 7:30 PM. — _establishes: Lorraine Whitfield in the Kitchen, 6:00 PM–7:30 PM; Lorraine Whitfield had access to the method_
-- **c117** [observation] Frieda Dettweiler says Lorraine Whitfield was in the Lobby at 8:30 PM. — _establishes: Lorraine Whitfield in the Lobby, 8:30 PM_
-- **c118** [observation] Frieda Dettweiler says Lorraine Whitfield was in the Lobby at 10:00 PM. — _establishes: Lorraine Whitfield in the Lobby, 10:00 PM_
-- **c119** [observation] Frieda Dettweiler says Lorraine Whitfield was on the Street at 11:00 PM. — _establishes: Lorraine Whitfield on the Street, 11:00 PM_
-
-On Francis Hanrahan:
-
-- **c120** [observation] Frieda Dettweiler says Francis Hanrahan was in the Kitchen at 7:00 PM. — _establishes: Francis Hanrahan in the Kitchen, 7:00 PM; Francis Hanrahan had access to the method_
-- **c121** [observation] Frieda Dettweiler says Francis Hanrahan was in the Lobby at 9:00 PM. — _establishes: Francis Hanrahan in the Lobby, 9:00 PM_
-- **c122** [observation] Frieda Dettweiler says Francis Hanrahan was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Francis Hanrahan in the Lobby, 10:00 PM–10:30 PM_
-- **c123** [observation] Frieda Dettweiler says Francis Hanrahan was in the Bar at 9:30 PM. — _establishes: Francis Hanrahan in the Bar, 9:30 PM_
-- **c124** [observation] Frieda Dettweiler says Francis Hanrahan was at the Front Desk at 11:00 PM. — _establishes: Francis Hanrahan at the Front Desk, 11:00 PM_
-
-On Roscoe Cheatham's account:
-
-- **c128** [observation] Frieda Dettweiler was in the Bar at 9:00 PM and says Roscoe Cheatham was not in the Lobby. — _establishes: Roscoe Cheatham not in the Lobby, 9:00 PM_
-
-On Gretchen Brauer's account:
-
-- **c132** [observation] Frieda Dettweiler was in the Bar at 9:00 PM and says Gretchen Brauer was not in the Lobby. — _establishes: Gretchen Brauer not in the Lobby, 9:00 PM_
-
-On Eileen Rafferty's account:
-
-- **c136** [observation] Frieda Dettweiler was in the Bar from 6:00 PM to 6:30 PM and says Eileen Rafferty was not in the Lobby. — _establishes: Eileen Rafferty not in the Lobby, 6:00 PM–6:30 PM_
-
-On Lorraine Whitfield's account:
-
-- **c145** [observation] Frieda Dettweiler was in the Bar at 10:30 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 10:30 PM_
-- **c146** [observation] Frieda Dettweiler was in the Lobby at 11:00 PM and says Lorraine Whitfield was not in the Lobby. — _establishes: Lorraine Whitfield not in the Lobby, 11:00 PM_
-
-On Francis Hanrahan's account:
-
-- **c152** [observation] Frieda Dettweiler was in the Bar from 6:00 PM to 6:30 PM and says Francis Hanrahan was not in the Bar. — _establishes: Francis Hanrahan not in the Bar, 6:00 PM–6:30 PM_
-
-On the radio:
-
-- **c158** [radio] Frieda Dettweiler says the bar radio carried a fight card from the Garden at 7:30 PM, and that the challenger went down in the fourth and the crowd booed. Anyone in the bar could tell you that. — _establishes: context only_
-
-### From the Lobby
-
-- **c155** [environment] The passenger elevator was out of order from 7:30 PM to 8:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
-
-### From the Front Desk
-
-- **c159** [document] Abraham Lefkowitz's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
-- **c160** [document] Found in the Front Desk: A draft codicil in Esther Hurwitz's hand striking Roscoe Cheatham out of the will, dated last Tuesday and unsigned. — _establishes: Roscoe Cheatham had a motive (inheritance)_
-- **c164** [document] Found in the Front Desk: A lease assignment made out in Eileen Rafferty's name, waiting only on Esther Hurwitz's signature. — _establishes: Eileen Rafferty had a motive (property)_
-
-### From the Kitchen
-
-- **c154** [physical] A cut-glass decanter is missing from the Kitchen. The stopper has been wiped and the dregs test positive for chloral. — _establishes: an object gone from the Kitchen_
-
-### From the Service Stairs
-
-- **c156** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Lorraine Whitfield's sleeve; Lorraine Whitfield was on the stairs at 8:00 PM. — _establishes: Lorraine Whitfield on the Service Stairs, 8:00 PM_
-- **c157** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Francis Hanrahan's sleeve; Francis Hanrahan was on the stairs at 7:30 PM. — _establishes: Francis Hanrahan on the Service Stairs, 7:30 PM_
-
-### From the Victim's Suite
-
-- **c162** [document] Found in the Victim's Suite: A clipping about the failure of Abraham Lefkowitz's business, with Esther Hurwitz's name underlined twice in pencil. — _establishes: Abraham Lefkowitz had a motive (revenge)_
-- **c166** [document] Found in the Victim's Suite: A subpoena naming Esther Hurwitz as a witness before the grand jury, with Lorraine Whitfield's name written in the margin. — _establishes: Lorraine Whitfield had a motive (silence-a-witness)_
-
-### From the Roof Garden
-
-- **c153** [morgue] Esther Hurwitz was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle. — _establishes: death between 8:30 PM and 9:00 PM_
-
-### Withheld — the player cannot get these
-
-- ~~Eileen Rafferty saw Francis Hanrahan on the Service Stairs, 6:00 PM–6:30 PM~~ — Eileen Rafferty is lying about that time and will not say.
-- ~~Francis Hanrahan saw Eileen Rafferty on the Service Stairs, 6:00 PM–6:30 PM~~ — Francis Hanrahan is lying about that time and will not say.
-- ~~Roscoe Cheatham saw Abraham Lefkowitz in the Bar, 9:00 PM~~ — Roscoe Cheatham is lying about that time and will not say.
-- ~~Roscoe Cheatham saw Eileen Rafferty in the Kitchen, 9:00 PM~~ — Roscoe Cheatham is lying about that time and will not say.
-- ~~Roscoe Cheatham saw Frieda Dettweiler in the Bar, 9:00 PM~~ — Roscoe Cheatham is lying about that time and will not say.
-- ~~Gretchen Brauer saw Francis Hanrahan in the Lobby, 9:00 PM~~ — Gretchen Brauer is lying about that time and will not say.
-- ~~Gretchen Brauer saw Friedrich Obermann in the Lobby, 9:00 PM~~ — Gretchen Brauer is lying about that time and will not say.
-- ~~Lorraine Whitfield saw Esther Hurwitz in the Roof Garden, 9:00 PM~~ — Lorraine Whitfield is lying about that time and will not say.
-- ~~Lorraine Whitfield saw Gretchen Brauer on the Street, 10:30 PM–11:00 PM~~ — Lorraine Whitfield is lying about that time and will not say.
-- ~~Lorraine Whitfield saw Abraham Lefkowitz in the Lobby, 10:30 PM~~ — Lorraine Whitfield is lying about that time and will not say.
-- ~~Lorraine Whitfield saw Francis Hanrahan in the Lobby, 10:30 PM~~ — Lorraine Whitfield is lying about that time and will not say.
-- ~~Lorraine Whitfield saw Friedrich Obermann in the Lobby, 10:30 PM–11:00 PM~~ — Lorraine Whitfield is lying about that time and will not say.
-- ~~Lorraine Whitfield saw Frieda Dettweiler in the Lobby, 11:00 PM~~ — Lorraine Whitfield is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c153, c010, c023, c044, c056, c081, c100)_
+| Tick | Time | Thomas Feeney (the elevator man) | Millicent Stannard (the druggist) | James Doyle (the doorman) | Elijah Renfro (the bartender) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+| 1 | 6:30 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+| 2 | 7:00 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+| 3 | 7:30 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+| 4 | 8:00 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+| 5 | 8:30 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | the lobby of the Wyckoff |
+| 6 | 9:00 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+| 7 | 9:30 PM | the vestibule of the Hallam apartments | the benches at the north end of the square | the lobby of the Wyckoff | Dolan’s Bar |
+| 8 | 10:00 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+| 9 | 10:30 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | Dolan’s Bar |
+| 10 | 11:00 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+| 11 | 11:30 PM | the vestibule of the Hallam apartments | Kaplan’s drugstore with the soda fountain | the lobby of the Wyckoff | Dolan’s Bar |
+
+## 6. Secrets in play
+
+- **Ilse Lindemann** (murder): Ilse Lindemann is at the victim’s suite at the residential hotel from 10:00 PM to 10:30 PM, alone with Isaiah Ashby when it happens at 10:30 PM.
+- **Prescott Fairbanks** (gambling-debt): Prescott Fairbanks slips off to Kaplan’s drugstore with the soda fountain from 10:30 PM to settle with a bookmaker.
+- **Isidore Hurwitz** (fence): Isidore Hurwitz hands a parcel of stolen goods to a man at Dolan’s Bar from 7:00 PM to 7:30 PM.
+- **Thaddeus Winslow** (gambling-debt): Thaddeus Winslow slips off to Kaplan’s drugstore with the soda fountain from 10:00 PM to 10:30 PM to settle with a bookmaker.
+- **Angelina Alfano** (blackmail): Angelina Alfano meets the victim alone at the lobby of the Wyckoff from 7:30 PM to 8:00 PM and asks for money.
+- **Sol Shapiro** (secret-drinking): Sol Shapiro drinks alone at Dolan’s Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
+
+## 7. Clue list — the 31 findable
+
+The opening three, free at the start: c131, c132, c144. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At the victim’s suite at the residential hotel
+
+- **c131** [spine ⟨opening⟩] (scene; the place itself) → c114, c106
+  - Isaiah Ashby was found at the victim’s suite at the residential hotel. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The El going over came at 10:30 PM, and the El was running to timetable and it covers the half hour exactly. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 10:30 PM; how it was done_
+- **c132** [spine ⟨opening⟩] (morgue; the place itself) → c138, c135, c090
+  - The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle.
+  - _establishes: death between 10:00 PM and 11:30 PM; how it was done_
+- **c138** [spine] (document; the place itself) → c135, c117, c067
+  - Found at the victim’s suite at the residential hotel: A typed page of dates and sums in Isaiah Ashby’s file, headed with Ilse Lindemann’s name.
+  - _establishes: Ilse Lindemann had a motive (exposure)_
+
+### At the benches at the north end of the square
+
+- **c144** [spine ⟨opening⟩] (client; Ilse Lindemann on why I was hired) → c114, c067, c100
+  - Ilse Lindemann hired us. Ilse Lindemann wants it known that Prescott Fairbanks blamed the victim for a ruin, and would rather we started there.
+  - _establishes: Prescott Fairbanks had a motive (revenge)_
+- **c005** [corroboration] (observation; Ilse Lindemann on Isidore Hurwitz) → (end)
+  - Ilse Lindemann says Isidore Hurwitz was at Dolan’s Bar at 9:30 PM.
+  - _establishes: Isidore Hurwitz at Dolan’s Bar, 9:30 PM; Isidore Hurwitz could reach the weapon_
+
+### At the vestibule of the Hallam apartments
+
+- **c146** [noise {b5}] (overheard; Thomas Feeney on Prescott Fairbanks) → c150
+  - Thomas Feeney on Prescott Fairbanks: A man nobody knew was waiting for Prescott Fairbanks at Kaplan’s drugstore with the soda fountain and would not give a name.
+  - _establishes: context only_
+
+### At Kaplan’s drugstore with the soda fountain
+
+- **c100** [corroboration] (observation; Millicent Stannard on who was there at 10:30 PM) → (end)
+  - Millicent Stannard runs through it: at 10:30 PM there were Prescott Fairbanks, Thaddeus Winslow at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.
+  - _establishes: Prescott Fairbanks at Kaplan’s drugstore with the soda fountain, 10:30 PM; Thaddeus Winslow at Kaplan’s drugstore with the soda fountain, 10:30 PM_
+- **c162** [noise {b3}] (physical; the place itself) → c164
+  - Betting slips at Kaplan’s drugstore with the soda fountain in Thaddeus Winslow’s pocketbook, all of them losers, all of them this month.
+  - _establishes: context only_
+- **c164** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Thaddeus Winslow was at Kaplan’s drugstore with the soda fountain from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Thaddeus Winslow’s gambling-debt accounted for; Thaddeus Winslow at Kaplan’s drugstore with the soda fountain, 10:00 PM–10:30 PM_
+- **c150** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Prescott Fairbanks was at Kaplan’s drugstore with the soda fountain from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Prescott Fairbanks’s gambling-debt accounted for; Prescott Fairbanks at Kaplan’s drugstore with the soda fountain, 10:30 PM_
+
+### At the lobby of the Wyckoff
+
+- **c106** [spine] (observation; James Doyle on who was there at 10:30 PM) → c117, c087
+  - James Doyle runs through it: at 10:30 PM there were Prescott Fairbanks, Thaddeus Winslow at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.
+  - _establishes: Prescott Fairbanks at Kaplan’s drugstore with the soda fountain, 10:30 PM; Thaddeus Winslow at Kaplan’s drugstore with the soda fountain, 10:30 PM_
+- **c134** [corroboration] (anchor; Prescott Fairbanks on Isaiah Ashby that evening) → (end)
+  - Prescott Fairbanks puts Isaiah Ashby at Dolan’s Bar when the ice came, which was 10:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:00 PM; Isaiah Ashby at Dolan’s Bar, 10:00 PM_
+- **c171** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The victim’s bank book settles it: four payments, and Angelina Alfano at the lobby of the Wyckoff from 7:30 PM to 8:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
+  - _establishes: Angelina Alfano’s blackmail accounted for; Angelina Alfano at the lobby of the Wyckoff, 7:30 PM–8:00 PM_
+- **c153** [noise {b6}] (overheard; Prescott Fairbanks on Isidore Hurwitz) → c158
+  - Prescott Fairbanks on Isidore Hurwitz: There is a man who meets people at Dolan’s Bar and nobody will say his name out loud.
+  - _establishes: context only_
+
+### At Dolan’s Bar
+
+- **c114** [spine] (observation; Elijah Renfro on who was there at 10:30 PM) → c106, c138, c118, c139
+  - Elijah Renfro runs through it: at 10:30 PM there were Isidore Hurwitz, Angelina Alfano, Sol Shapiro at Dolan’s Bar, and nobody else worth naming.
+  - _establishes: Isidore Hurwitz at Dolan’s Bar, 10:30 PM; Angelina Alfano at Dolan’s Bar, 10:30 PM; Sol Shapiro at Dolan’s Bar, 10:30 PM_
+- **c135** [spine] (anchor; Elijah Renfro on Isaiah Ashby that evening) → c005, c176, c167
+  - Elijah Renfro puts Isaiah Ashby at Dolan’s Bar when the ice came, which was 10:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:00 PM; Isaiah Ashby at Dolan’s Bar, 10:00 PM_
+- **c117** [spine] (observation; Isidore Hurwitz on Ilse Lindemann’s account) → (end)
+  - Isidore Hurwitz was at Dolan’s Bar at 10:30 PM and says Ilse Lindemann was not.
+  - _establishes: Ilse Lindemann not at Dolan’s Bar, 10:30 PM_
+- **c067** [spine] (observation; Elijah Renfro on Ilse Lindemann) → c020, c133, c134
+  - Elijah Renfro says Ilse Lindemann was at Dolan’s Bar at 9:30 PM.
+  - _establishes: Ilse Lindemann at Dolan’s Bar, 9:30 PM; Ilse Lindemann could reach the weapon_
+- **c087** [corroboration] (observation; Isidore Hurwitz on who was there at 10:30 PM) → (end)
+  - Isidore Hurwitz runs through it: at 10:30 PM there were Angelina Alfano, Sol Shapiro at Dolan’s Bar, and nobody else worth naming.
+  - _establishes: Angelina Alfano at Dolan’s Bar, 10:30 PM; Sol Shapiro at Dolan’s Bar, 10:30 PM_
+- **c090** [corroboration] (observation; Angelina Alfano on who was there at 10:30 PM) → c153
+  - Angelina Alfano runs through it: at 10:30 PM there were Isidore Hurwitz, Sol Shapiro at Dolan’s Bar, and nobody else worth naming.
+  - _establishes: Isidore Hurwitz at Dolan’s Bar, 10:30 PM; Sol Shapiro at Dolan’s Bar, 10:30 PM_
+- **c020** [corroboration] (observation; Isidore Hurwitz on Ilse Lindemann) → (end)
+  - Isidore Hurwitz says Ilse Lindemann was at Dolan’s Bar at 9:30 PM.
+  - _establishes: Ilse Lindemann at Dolan’s Bar, 9:30 PM; Ilse Lindemann could reach the weapon_
+- **c118** [corroboration] (observation; Angelina Alfano on Ilse Lindemann’s account) → c155, c162, c146
+  - Angelina Alfano was at Dolan’s Bar at 10:30 PM and says Ilse Lindemann was not.
+  - _establishes: Ilse Lindemann not at Dolan’s Bar, 10:30 PM_
+- **c139** [corroboration] (overheard; Angelina Alfano on Ilse Lindemann and Isaiah Ashby) → (end)
+  - Angelina Alfano says Isaiah Ashby told Ilse Lindemann that the story would run whether Ilse Lindemann liked it or not.
+  - _establishes: Ilse Lindemann had a motive (exposure)_
+- **c133** [corroboration] (physical; the place itself) → (end)
+  - A bottle of chloral drops is gone from Dolan’s Bar. The bottle is gone from the shelf and the ring of dust it stood in is still there.
+  - _establishes: something gone from Dolan’s Bar; how it was done_
+- **c155** [noise {b1}] (physical; the place itself) → c152
+  - Wrapping paper and a cut string at Dolan’s Bar, and the shop it came from closed two years ago.
+  - _establishes: context only_
+- **c152** [noise {b1}] (overheard; Elijah Renfro on Isidore Hurwitz) → c157
+  - Elijah Renfro on Isidore Hurwitz: Isidore Hurwitz was carrying a parcel into Dolan’s Bar and came out without it.
+  - _establishes: context only_
+- **c157** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The receiver at Dolan’s Bar would rather talk than be held: Isidore Hurwitz was there from 7:00 PM to 7:30 PM handing over a parcel of somebody else’s silver, which is a charge Isidore Hurwitz will take over this one.
+  - _establishes: Isidore Hurwitz’s fence accounted for; Isidore Hurwitz at Dolan’s Bar, 7:00 PM–7:30 PM_
+- **c176** [noise {b2}] (physical; the place itself) → c178
+  - A bottle at Dolan’s Bar pushed behind the pipes, the seal broken and the level down.
+  - _establishes: context only_
+- **c178** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The man behind the counter at Dolan’s Bar knows exactly: Sol Shapiro was on the same stool from 10:30 PM to 11:00 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Sol Shapiro’s secret-drinking accounted for; Sol Shapiro at Dolan’s Bar, 10:30 PM–11:00 PM_
+- **c167** [noise {b4}] (overheard; Elijah Renfro on Angelina Alfano) → c171
+  - Elijah Renfro on Angelina Alfano: Angelina Alfano has come into money lately and has no visible way of having come into money.
+  - _establishes: context only_
+- **c158** [disqualifier {b6}] (overheard; the place itself) → (end)
+  - The goods turn up, tagged and dated, and the tag puts Isidore Hurwitz at Dolan’s Bar from 7:00 PM to 7:30 PM with both hands full.
+  - _establishes: Isidore Hurwitz’s fence accounted for; Isidore Hurwitz at Dolan’s Bar, 7:00 PM–7:30 PM_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["the victim’s suite at the residential hotel"]
+    c131["▶ c131 the place"]
+    c132["▶ c132 the place"]
+    c138["c138 the place"]
+  end
+  subgraph P2["the benches at the north end of the square"]
+    c144["▶ c144 Ilse Lindemann"]
+    c005["c005 Ilse Lindemann"]
+  end
+  subgraph P3["the vestibule of the Hallam apartments"]
+    c146["c146 Thomas Feeney"]
+  end
+  subgraph P4["Kaplan’s drugstore with the soda fountain"]
+    c100["c100 Millicent Stannard"]
+    c162["c162 the place"]
+    c164["✗ c164 the place"]
+    c150["✗ c150 the place"]
+  end
+  subgraph P5["the lobby of the Wyckoff"]
+    c106["c106 James Doyle"]
+    c134["c134 Prescott Fairbanks"]
+    c171["✗ c171 the place"]
+    c153["c153 Prescott Fairbanks"]
+  end
+  subgraph P6["Dolan’s Bar"]
+    c114["c114 Elijah Renfro"]
+    c135["c135 Elijah Renfro"]
+    c117["c117 Isidore Hurwitz"]
+    c067["c067 Elijah Renfro"]
+    c087["c087 Isidore Hurwitz"]
+    c090["c090 Angelina Alfano"]
+    c020["c020 Isidore Hurwitz"]
+    c118["c118 Angelina Alfano"]
+    c139["c139 Angelina Alfano"]
+    c133["c133 the place"]
+    c155["c155 the place"]
+    c152["c152 Elijah Renfro"]
+    c157["✗ c157 the place"]
+    c176["c176 the place"]
+    c178["✗ c178 the place"]
+    c167["c167 Elijah Renfro"]
+    c158["✗ c158 the place"]
+  end
+  c131 --> c114
+  c131 --> c106
+  c132 --> c138
+  c132 --> c135
+  c132 --> c090
+  c144 --> c114
+  c144 --> c067
+  c144 --> c100
+  c114 --> c106
+  c114 --> c138
+  c114 --> c118
+  c114 --> c139
+  c106 --> c117
+  c106 --> c087
+  c138 --> c135
+  c138 --> c117
+  c138 --> c067
+  c135 --> c005
+  c135 -.-> c176
+  c135 -.-> c167
+  c067 --> c020
+  c067 --> c133
+  c067 --> c134
+  c090 -.-> c153
+  c118 -.-> c155
+  c118 -.-> c162
+  c118 -.-> c146
+  c155 -.-> c152
+  c152 --> c157
+  c176 --> c178
+  c162 --> c164
+  c167 --> c171
+  c146 --> c150
+  c153 --> c158
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c131,c132,c144,c114,c106,c138,c135,c117,c067 spine;
+  class c100,c087,c090,c020,c118,c139,c133,c134,c005 corrob;
+  class c155,c152,c176,c162,c167,c146,c153 noise;
+  class c157,c178,c164,c171,c150,c158 disq;
+```
+
+## 9. Deduction path
+
+Par is **8 actions** against a budget of 20: 12 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 10:30 PM: one puts Isaiah Ashby alive at 10:00 PM, the other times the scene at 10:30 PM. _(c132, c135, c131; + 1 corroborating)_
 
 **Clearing the innocent.**
 
-- Roscoe Cheatham was not in the Roof Garden at 9:00 PM, on two independent sources. _(c025, c045, c102)_
-- Gretchen Brauer was not in the Roof Garden at 9:00 PM, on two independent sources. _(c071, c086)_
-- Abraham Lefkowitz was not in the Roof Garden at 9:00 PM, on two independent sources. _(c051, c074, c088, c109)_
-- Eileen Rafferty was not in the Roof Garden at 9:00 PM, on two independent sources. _(c032, c114)_
-- Francis Hanrahan was not in the Roof Garden at 9:00 PM, on two independent sources. _(c039, c096, c121)_
+- Prescott Fairbanks was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c106; + 2 corroborating)_
+- Isidore Hurwitz was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c114; + 1 corroborating)_
+- Thaddeus Winslow was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c106; + 2 corroborating)_
+- Angelina Alfano was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c114; + 1 corroborating)_
+- Sol Shapiro was not at the victim’s suite at the residential hotel at 10:30 PM, on two independent sources. _(c114; + 3 corroborating)_
 
-**Naming the killer.** Lorraine Whitfield claims the Street at 9:00 PM. Two independent sources put that out of the question, and one ties Lorraine Whitfield to poison in a drink. _(c137, c138, c018, c034, c053, c078, c116)_
+**Naming the killer.** Ilse Lindemann claims Dolan’s Bar at 10:30 PM. Two independent sources put that out of the question. _(c117; + 1 corroborating)_
 
-**Method.** Poison in a drink, on two physical sources. _(c153, c154)_
+**The weapon.** Ilse Lindemann was at Dolan’s Bar before 10:30 PM, where a bottle of chloral drops was kept. _(c067; + 1 corroborating)_
 
-**Motive.** silence-a-witness, on two independent sources. _(c166, c167)_
+**Method.** Poison in a drink, on two physical sources. _(c131, c132; + 1 corroborating)_
 
-## 8. Red herrings
+**Motive.** exposure, on two independent sources. _(c138; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Roscoe Cheatham claims the Lobby at 9:00 PM and was really in the Kitchen. Reason: Roscoe Cheatham hands a parcel of stolen goods to a man at the Kitchen at 9:00 PM.
-- Gretchen Brauer claims the Lobby at 9:00 PM and was really in the Street. Reason: Gretchen Brauer slips out to the Street from 9:00 PM to settle with a bookmaker.
+- Prescott Fairbanks claims the vestibule of the Hallam apartments at 10:30 PM and was really at Kaplan’s drugstore with the soda fountain. Reason: Prescott Fairbanks slips off to Kaplan’s drugstore with the soda fountain from 10:30 PM to settle with a bookmaker.
+- Thaddeus Winslow claims the vestibule of the Hallam apartments at 10:30 PM and was really at Kaplan’s drugstore with the soda fountain. Reason: Thaddeus Winslow slips off to Kaplan’s drugstore with the soda fountain from 10:00 PM to 10:30 PM to settle with a bookmaker.
+- Sol Shapiro claims Kaplan’s drugstore with the soda fountain at 10:30 PM and was really at Dolan’s Bar. Reason: Sol Shapiro drinks alone at Dolan’s Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
 
 **Innocents with a motive:**
 
-- Roscoe Cheatham — inheritance: stands to inherit.
-- Abraham Lefkowitz — revenge: blamed the victim for a ruin.
-- Eileen Rafferty — property: wanted the victim out of a lease.
+- Prescott Fairbanks — revenge: blamed the victim for a ruin.
+- Isidore Hurwitz — debt: owed the victim money.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Isidore Hurwitz, fence): c155 → c152 → **c157** — The receiver at Dolan’s Bar would rather talk than be held: Isidore Hurwitz was there from 7:00 PM to 7:30 PM handing over a parcel of somebody else’s silver, which is a charge Isidore Hurwitz will take over this one.
+- **b2** (Sol Shapiro, secret-drinking): c176 → **c178** — The man behind the counter at Dolan’s Bar knows exactly: Sol Shapiro was on the same stool from 10:30 PM to 11:00 PM and was in no condition to walk anywhere, let alone do this.
+- **b3** (Thaddeus Winslow, gambling-debt): c162 → **c164** — The bookmaker’s runner is found and will say it: Thaddeus Winslow was at Kaplan’s drugstore with the soda fountain from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b4** (Angelina Alfano, blackmail): c167 → **c171** — The victim’s bank book settles it: four payments, and Angelina Alfano at the lobby of the Wyckoff from 7:30 PM to 8:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
+- **b5** (Prescott Fairbanks, gambling-debt): c146 → **c150** — The bookmaker’s runner is found and will say it: Prescott Fairbanks was at Kaplan’s drugstore with the soda fountain from 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b6** (Isidore Hurwitz, fence): c153 → **c158** — The goods turn up, tagged and dated, and the tag puts Isidore Hurwitz at Dolan’s Bar from 7:00 PM to 7:30 PM with both hands full.
 

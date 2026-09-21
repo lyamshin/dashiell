@@ -1,669 +1,433 @@
-# Hotel Saint Clair — case 5
+# Harlem — case 5
 
-**Seed** 5 · **Attempts** 1 · **Detective** Humphrey
+**Seed** 5 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 7 actions · **Budget** 20 · **Slack** 13 · **Findable** 30 (spine 8, corroboration 10, noise 7 + 5 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 171
 
 ## 1. The Truth
 
-Eileen Feeney, a stringer for the evening papers, named in the victim's will, killed Rufus Tillman, a shipping clerk who had come into money, with a push from the roof garden in the Roof Garden at 10:00 PM. Eileen Feeney stands to inherit (inheritance). Eileen Feeney had been at the Front Desk earlier in the evening, before 10:00 PM and was alone with Rufus Tillman when it happened.
+Eunice Bledsoe, a stringer for the evening papers, the victim’s rival in trade, killed Friedrich Kreuzer, a theatrical agent, with an ice pick at the victim’s suite at the residential hotel at 8:00 PM. Eunice Bledsoe blamed the victim for a ruin (revenge). Eunice Bledsoe had been at the garage on Eleventh Avenue earlier in the evening, where the weapon lived, and was alone with Friedrich Kreuzer when it happened. Emilio Marchetti hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Rufus Tillman | a shipping clerk who had come into money | the victim | — | — | — |
-| Beatrice Thorndike | a private secretary | the victim's brother-in-law | blackmail | — | — |
-| Eileen Feeney | a stringer for the evening papers | named in the victim's will | murder | inheritance | **YES** |
-| Odessa Broadnax | a bookkeeper | the victim's estranged spouse | fence | — | — |
-| Jacob Lefkowitz | an insurance adjuster | the victim's private nurse | gambling-debt | — | — |
-| Teresa Petrosino | a chambermaid | the victim's lawyer | embezzling | — | — |
-| Thaddeus Fairbanks | a longshoreman | the victim's landlord | forged-identity | jealousy | — |
-| Lucia Carbone | the doorman | fixture | — | — | — |
-| Grafton Ellery | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Friedrich Kreuzer | a theatrical agent | the victim | — | — | — | — |
+| Eunice Bledsoe | a stringer for the evening papers | the victim’s rival in trade | murder (+ gambling-debt) | revenge | the newsstand on the corner | **YES** |
+| Lurline Dandridge | a chambermaid | the victim’s tenant | hidden-family | — | the newsstand on the corner | — |
+| Emilio Marchetti (client) | a policy runner | a childhood friend of the victim’s from the same block | fence | — | the newsstand on the corner | — |
+| Verity Thorndike | a curb broker | the victim’s rival in trade | fence | exposure | the El platform at Twenty-Third Street | — |
+| Lucia Salerno | an insurance adjuster | the victim’s rival in trade | gambling-debt | — | the El platform at Twenty-Third Street | — |
+| James Rafferty | the victim’s nephew, at loose ends | the victim’s brother-in-law | secret-drinking | inheritance | the garage on Eleventh Avenue | — |
+| Sol Feldman | the doorman | fixture (doorman) | — | — | the lobby of the Wyckoff | — |
+| Rachel Kessler | the landlady | fixture (landlady) | — | — | the back room at Mrs. Teague’s | — |
+| Klara Steinbach | the news dealer | fixture (newsstand) | — | — | the newsstand on the corner | — |
+| Carmine Carbone | the man behind the counter | fixture (counterman) | — | — | the garage on Eleventh Avenue | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: a silver cigarette case
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: the roof door key, the house ledger
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a seltzer siphon
-- **Kitchen** (private) — adjacent: Bar, Service Stairs; sees: Bar; noise carries to: Bar, Service Stairs; objects: none
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a camel-hair overcoat on a hook
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a writing desk with a locked drawer, a bronze bookend
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Street** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a brass umbrella stand
+- **the lobby of the Wyckoff** (semi) — watched by doorman (Sol Feldman); objects: a brass umbrella stand, a nickel-plated revolver
+- **the back room at Mrs. Teague’s** (private) — watched by landlady (Rachel Kessler); objects: the roof-door key, a strapped suitcase, a length of sash cord
+- **the El platform at Twenty-Third Street** (public) — unwatched; objects: a folded stack of evening papers, a pasted-up timetable — within earshot of the scene
+- **the newsstand on the corner** (public) — watched by newsstand (Klara Steinbach); objects: a spike of pawn tickets
+- **the victim’s suite at the residential hotel** (private) — unwatched; objects: a camel-hair overcoat on a hook, a silver cigarette case — **THE SCENE**; the victim’s address
+- **the garage on Eleventh Avenue** (semi) — watched by counterman (Carmine Carbone); objects: an ice pick, a mechanic’s toolbox — where the weapon lived; within earshot of the scene
 
-**Environment:** Rain from 9:00 PM. Passenger elevator out of order 7:30 PM–8:30 PM. Bar radio at 10:00 PM: a dance band from the Roseland — the band broke off twice and the announcer filled with a soap advertisement.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 6:30 PM–8:00 PM, four ticks wide. These are what close it: **drunk-singing** and **last-edition**.
 
-### Rufus Tillman — the victim
+- **the last edition coming off the truck** — at 7:30 PM; at the newsstand on the corner. Somebody reliable notes who was there. Those present carry it: ink still wet enough to come off on a glove.
+- **the drunk singing under the window** — at 8:00 PM; at the victim’s suite at the residential hotel. You can time things by it: the same two verses until somebody threw a shoe. Only those present know that it was a shoe, and it was thrown by a woman, and it did not land.
+- **the shift change at the garage** — at 11:00 PM; at the garage on Eleventh Avenue. Somebody reliable notes who was there. Those present carry it: cylinder oil on a cuff.
+
+## 5. Timelines
+
+### Friedrich Kreuzer — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Victim's Suite | Victim's Suite | — |
-| 1 | 6:30 PM | Victim's Suite | Victim's Suite | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Street | Street | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Roof Garden ☠ | Roof Garden | — |
+| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 1 | 6:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 2 | 7:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 3 | 7:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 4 | 8:00 PM | the victim’s suite at the residential hotel ☠ | the victim’s suite at the residential hotel | — |
+| 5 | 8:30 PM | — | — | — |
+| 6 | 9:00 PM | — | — | — |
+| 7 | 9:30 PM | — | — | — |
+| 8 | 10:00 PM | — | — | — |
 | 9 | 10:30 PM | — | — | — |
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Beatrice Thorndike
+### Eunice Bledsoe — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Victim's Suite | **Lobby** | Thaddeus Fairbanks |
-| 1 | 6:30 PM | Victim's Suite | **Lobby** | Thaddeus Fairbanks |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Front Desk | Front Desk | — |
-| 6 | 9:00 PM | Front Desk | Front Desk | — |
-| 7 | 9:30 PM | Front Desk | Front Desk | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
+| 0 | 6:00 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 1 | 6:30 PM | the El platform at Twenty-Third Street | **the back room at Mrs. Teague’s** | — |
+| 2 | 7:00 PM | the El platform at Twenty-Third Street | **the back room at Mrs. Teague’s** | — |
+| 3 | 7:30 PM | the victim’s suite at the residential hotel | **the newsstand on the corner** | — |
+| 4 | 8:00 PM | the victim’s suite at the residential hotel ☠ | **the newsstand on the corner** | — |
+| 5 | 8:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 6 | 9:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 7 | 9:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 8 | 10:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 9 | 10:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 10 | 11:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 11 | 11:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
 
-### Eileen Feeney — the killer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Front Desk | Front Desk | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Roof Garden | **Bar** | Jacob Lefkowitz |
-| 8 | 10:00 PM | Roof Garden ☠ | **Bar** | Jacob Lefkowitz |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
-
-### Odessa Broadnax
+### Lurline Dandridge
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Front Desk | Front Desk | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Kitchen | **Bar** | Eileen Feeney |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 1 | 6:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 2 | 7:00 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 3 | 7:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | **the garage on Eleventh Avenue** | Eunice Bledsoe |
+| 5 | 8:30 PM | the back room at Mrs. Teague’s | **the garage on Eleventh Avenue** | Eunice Bledsoe |
+| 6 | 9:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 7 | 9:30 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 8 | 10:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 9 | 10:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 10 | 11:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 11 | 11:30 PM | the newsstand on the corner | the newsstand on the corner | — |
 
-### Jacob Lefkowitz
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Street | Street | — |
-| 8 | 10:00 PM | Street | **Lobby** | Teresa Petrosino |
-| 9 | 10:30 PM | Street | **Lobby** | Teresa Petrosino |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
-
-### Teresa Petrosino
+### Emilio Marchetti
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Victim's Suite | **Lobby** | Thaddeus Fairbanks |
-| 4 | 8:00 PM | Victim's Suite | **Lobby** | Thaddeus Fairbanks |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
+| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 1 | 6:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 2 | 7:00 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 3 | 7:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 5 | 8:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 6 | 9:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 7 | 9:30 PM | the newsstand on the corner | **the El platform at Twenty-Third Street** | Eunice Bledsoe |
+| 8 | 10:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 9 | 10:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 10 | 11:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 11 | 11:30 PM | the newsstand on the corner | the newsstand on the corner | — |
 
-### Thaddeus Fairbanks
+### Verity Thorndike
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Street | Street | — |
-| 1 | 6:30 PM | Street | Street | — |
-| 2 | 7:00 PM | Street | Street | — |
-| 3 | 7:30 PM | Street | Street | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Front Desk | Front Desk | — |
-| 11 | 11:30 PM | Front Desk | Front Desk | — |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 1 | 6:30 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 2 | 7:00 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 3 | 7:30 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 5 | 8:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 6 | 9:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 7 | 9:30 PM | the El platform at Twenty-Third Street | **the garage on Eleventh Avenue** | Lucia Salerno |
+| 8 | 10:00 PM | the El platform at Twenty-Third Street | **the garage on Eleventh Avenue** | Lucia Salerno |
+| 9 | 10:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 10 | 11:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 11 | 11:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+
+### Lucia Salerno
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 1 | 6:30 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 2 | 7:00 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 3 | 7:30 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 4 | 8:00 PM | the newsstand on the corner | **the lobby of the Wyckoff** | — |
+| 5 | 8:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 6 | 9:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 7 | 9:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 8 | 10:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 9 | 10:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 10 | 11:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 11 | 11:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+
+### James Rafferty
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the back room at Mrs. Teague’s | **the garage on Eleventh Avenue** | — |
+| 1 | 6:30 PM | the back room at Mrs. Teague’s | **the garage on Eleventh Avenue** | — |
+| 2 | 7:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 3 | 7:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 5 | 8:30 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 6 | 9:00 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 7 | 9:30 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 8 | 10:00 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 9 | 10:30 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 10 | 11:00 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
+| 11 | 11:30 PM | the garage on Eleventh Avenue | the garage on Eleventh Avenue | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Lucia Carbone (the doorman) | Grafton Ellery (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Street | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Lobby | Bar |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Bar |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Beatrice Thorndike** (blackmail): Beatrice Thorndike meets the victim alone in the Victim's Suite from 6:00 PM to 6:30 PM and asks for money.
-- **Eileen Feeney** (murder): Eileen Feeney is alone with Rufus Tillman in the Roof Garden from 9:30 PM to 10:00 PM, and kills Rufus Tillman at 10:00 PM.
-- **Odessa Broadnax** (fence): Odessa Broadnax hands a parcel of stolen goods to a man at the Kitchen at 10:00 PM.
-- **Jacob Lefkowitz** (gambling-debt): Jacob Lefkowitz slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.
-- **Teresa Petrosino** (embezzling): Teresa Petrosino goes through the papers in the Victim's Suite from 7:30 PM to 8:00 PM while the victim is downstairs.
-- **Thaddeus Fairbanks** (forged-identity): Thaddeus Fairbanks is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.
-
-## 6. Clue list
-
-### From Beatrice Thorndike (a private secretary)
-
-On Rufus Tillman:
-
-- **c001** [observation] Beatrice Thorndike says Rufus Tillman was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Rufus Tillman in the Lobby, 8:00 PM–8:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c002** [observation] Beatrice Thorndike says Rufus Tillman was in the Lobby at 9:30 PM. — _establishes: Rufus Tillman in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-
-On Eileen Feeney:
-
-- **c003** [observation] Beatrice Thorndike says Eileen Feeney was at the Front Desk from 8:00 PM to 8:30 PM. — _establishes: Eileen Feeney at the Front Desk, 8:00 PM–8:30 PM; Eileen Feeney had access to the method_
-- **c004** [observation] Beatrice Thorndike says Eileen Feeney was in the Lobby at 9:00 PM. — _establishes: Eileen Feeney in the Lobby, 9:00 PM_
-- **c005** [observation] Beatrice Thorndike says Eileen Feeney was in the Lobby at 10:30 PM. — _establishes: Eileen Feeney in the Lobby, 10:30 PM_
-- **c006** [observation] Beatrice Thorndike says Eileen Feeney was on the Street from 11:00 PM to 11:30 PM. — _establishes: Eileen Feeney on the Street, 11:00 PM–11:30 PM_
-
-On Odessa Broadnax:
-
-- **c007** [observation] Beatrice Thorndike says Odessa Broadnax was in the Lobby at 8:00 PM. — _establishes: Odessa Broadnax in the Lobby, 8:00 PM_
-- **c008** [observation] Beatrice Thorndike says Odessa Broadnax was in the Lobby at 9:00 PM. — _establishes: Odessa Broadnax in the Lobby, 9:00 PM_
-- **c009** [observation] Beatrice Thorndike says Odessa Broadnax was at the Front Desk at 8:30 PM. — _establishes: Odessa Broadnax at the Front Desk, 8:30 PM; Odessa Broadnax had access to the method_
-
-On Jacob Lefkowitz:
-
-- **c010** [observation] Beatrice Thorndike says Jacob Lefkowitz was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Jacob Lefkowitz in the Lobby, 8:00 PM–9:00 PM_
-- **c011** [observation] Beatrice Thorndike says Jacob Lefkowitz was on the Street from 10:00 PM to 11:30 PM. — _establishes: Jacob Lefkowitz on the Street, 10:00 PM–11:30 PM_
-
-On Teresa Petrosino:
-
-- **c012** [observation] Beatrice Thorndike says Teresa Petrosino was on the Service Stairs at 7:00 PM. — _establishes: Teresa Petrosino on the Service Stairs, 7:00 PM_
-
-On Thaddeus Fairbanks:
-
-- **c013** [observation] Beatrice Thorndike says Thaddeus Fairbanks was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 8:00 PM–9:00 PM_
-- **c014** [observation] Beatrice Thorndike says Thaddeus Fairbanks was in the Lobby at 10:30 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 10:30 PM_
-- **c015** [observation] Beatrice Thorndike says Thaddeus Fairbanks was in the Bar at 10:00 PM. — _establishes: Thaddeus Fairbanks in the Bar, 10:00 PM_
-
-On Eileen Feeney's account:
-
-- **c130** [observation] Beatrice Thorndike was in the Lobby at 10:00 PM and says Eileen Feeney was not in the Bar. — _establishes: Eileen Feeney not in the Bar, 10:00 PM_
-
-On Odessa Broadnax's account:
-
-- **c137** [observation] Beatrice Thorndike was in the Lobby at 10:00 PM and says Odessa Broadnax was not in the Bar. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
-
-On Jacob Lefkowitz's account:
-
-- **c142** [observation] Beatrice Thorndike was in the Lobby at 10:00 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM_
-- **c143** [observation] Beatrice Thorndike was on the Street at 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:30 PM_
-
-On Teresa Petrosino's account:
-
-- **c150** [observation] Beatrice Thorndike was in the Lobby at 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 8:00 PM_
-
-On the rain:
-
-- **c161** [environment] Beatrice Thorndike says Rufus Tillman came in off the street at 9:30 PM with a soaked coat, so Rufus Tillman was outside at 9:00 PM. — _establishes: Rufus Tillman on the Street, 9:00 PM_
-
-### From Eileen Feeney (a stringer for the evening papers)
-
-On Rufus Tillman:
-
-- **c016** [observation] Eileen Feeney says Rufus Tillman was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Rufus Tillman in the Lobby, 7:00 PM–8:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c017** [observation] Eileen Feeney says Rufus Tillman was on the Street at 9:00 PM. — _establishes: Rufus Tillman on the Street, 9:00 PM; the victim alive at 9:00 PM_
-
-On Beatrice Thorndike:
-
-- **c018** [observation] Eileen Feeney says Beatrice Thorndike was in the Lobby at 8:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 8:00 PM_
-- **c019** [observation] Eileen Feeney says Beatrice Thorndike was at the Front Desk from 8:30 PM to 9:00 PM. — _establishes: Beatrice Thorndike at the Front Desk, 8:30 PM–9:00 PM; Beatrice Thorndike had access to the method_
-- **c020** [observation] Eileen Feeney says Beatrice Thorndike was on the Street from 10:30 PM to 11:30 PM. — _establishes: Beatrice Thorndike on the Street, 10:30 PM–11:30 PM_
-
-On Odessa Broadnax:
-
-- **c021** [observation] Eileen Feeney says Odessa Broadnax was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Odessa Broadnax in the Lobby, 6:30 PM–8:00 PM_
-- **c022** [observation] Eileen Feeney says Odessa Broadnax was in the Lobby at 9:00 PM. — _establishes: Odessa Broadnax in the Lobby, 9:00 PM_
-- **c023** [observation] Eileen Feeney says Odessa Broadnax was at the Front Desk at 8:30 PM. — _establishes: Odessa Broadnax at the Front Desk, 8:30 PM; Odessa Broadnax had access to the method_
-
-On Jacob Lefkowitz:
-
-- **c024** [observation] Eileen Feeney says Jacob Lefkowitz was in the Lobby from 6:00 PM to 9:00 PM. — _establishes: Jacob Lefkowitz in the Lobby, 6:00 PM–9:00 PM_
-- **c025** [observation] Eileen Feeney says Jacob Lefkowitz was on the Street from 10:30 PM to 11:30 PM. — _establishes: Jacob Lefkowitz on the Street, 10:30 PM–11:30 PM_
-
-On Thaddeus Fairbanks:
-
-- **c026** [observation] Eileen Feeney says Thaddeus Fairbanks was on the Street from 6:00 PM to 7:00 PM. — _establishes: Thaddeus Fairbanks on the Street, 6:00 PM–7:00 PM_
-- **c027** [observation] Eileen Feeney says Thaddeus Fairbanks was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 8:00 PM–9:00 PM_
-- **c028** [observation] Eileen Feeney says Thaddeus Fairbanks was in the Lobby at 10:30 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 10:30 PM_
-
-On Beatrice Thorndike's account:
-
-- **c124** [observation] Eileen Feeney was in the Lobby from 6:00 PM to 6:30 PM and says Beatrice Thorndike was not in the Lobby. — _establishes: Beatrice Thorndike not in the Lobby, 6:00 PM–6:30 PM_
-
-On Jacob Lefkowitz's account:
-
-- **c144** [observation] Eileen Feeney was in the Lobby at 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:30 PM_
-
-On Teresa Petrosino's account:
-
-- **c151** [observation] Eileen Feeney was at the Front Desk from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
-
-### From Odessa Broadnax (a bookkeeper)
-
-On Rufus Tillman:
-
-- **c029** [observation] Odessa Broadnax says Rufus Tillman was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Rufus Tillman in the Lobby, 7:00 PM–8:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c030** [observation] Odessa Broadnax says Rufus Tillman was in the Lobby at 9:30 PM. — _establishes: Rufus Tillman in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-- **c031** [observation] Odessa Broadnax says Rufus Tillman was on the Street at 9:00 PM. — _establishes: Rufus Tillman on the Street, 9:00 PM; the victim alive at 9:00 PM_
-
-On Beatrice Thorndike:
-
-- **c032** [observation] Odessa Broadnax says Beatrice Thorndike was in the Lobby at 8:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 8:00 PM_
-- **c033** [observation] Odessa Broadnax says Beatrice Thorndike was at the Front Desk from 8:30 PM to 9:00 PM. — _establishes: Beatrice Thorndike at the Front Desk, 8:30 PM–9:00 PM; Beatrice Thorndike had access to the method_
-
-On Eileen Feeney:
-
-- **c034** [observation] Odessa Broadnax says Eileen Feeney was in the Lobby from 6:30 PM to 7:00 PM. — _establishes: Eileen Feeney in the Lobby, 6:30 PM–7:00 PM_
-- **c035** [observation] Odessa Broadnax says Eileen Feeney was in the Lobby at 9:00 PM. — _establishes: Eileen Feeney in the Lobby, 9:00 PM_
-- **c036** [observation] Odessa Broadnax says Eileen Feeney was at the Front Desk from 7:30 PM to 8:30 PM. — _establishes: Eileen Feeney at the Front Desk, 7:30 PM–8:30 PM; Eileen Feeney had access to the method_
-
-On Jacob Lefkowitz:
-
-- **c037** [observation] Odessa Broadnax says Jacob Lefkowitz was in the Lobby from 6:30 PM to 9:00 PM. — _establishes: Jacob Lefkowitz in the Lobby, 6:30 PM–9:00 PM_
-
-On Teresa Petrosino:
-
-- **c038** [observation] Odessa Broadnax says Teresa Petrosino was in the Kitchen at 9:30 PM. — _establishes: Teresa Petrosino in the Kitchen, 9:30 PM_
-- **c039** [observation] Odessa Broadnax says Teresa Petrosino was in the Kitchen from 10:30 PM to 11:30 PM. — _establishes: Teresa Petrosino in the Kitchen, 10:30 PM–11:30 PM_
-
-On Thaddeus Fairbanks:
-
-- **c040** [observation] Odessa Broadnax says Thaddeus Fairbanks was on the Street from 6:30 PM to 7:30 PM. — _establishes: Thaddeus Fairbanks on the Street, 6:30 PM–7:30 PM_
-- **c041** [observation] Odessa Broadnax says Thaddeus Fairbanks was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 8:00 PM–9:00 PM_
-- **c042** [observation] Odessa Broadnax says Thaddeus Fairbanks was in the Bar at 9:30 PM. — _establishes: Thaddeus Fairbanks in the Bar, 9:30 PM_
-
-On Beatrice Thorndike's account:
-
-- **c125** [observation] Odessa Broadnax was in the Lobby at 6:30 PM and says Beatrice Thorndike was not in the Lobby. — _establishes: Beatrice Thorndike not in the Lobby, 6:30 PM_
-
-On Eileen Feeney's account:
-
-- **c131** [observation] Odessa Broadnax was in the Bar at 9:30 PM and says Eileen Feeney was not in the Bar. — _establishes: Eileen Feeney not in the Bar, 9:30 PM_
-
-On Teresa Petrosino's account:
-
-- **c152** [observation] Odessa Broadnax was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
-
-### From Jacob Lefkowitz (an insurance adjuster)
-
-On Rufus Tillman:
-
-- **c043** [observation] Jacob Lefkowitz says Rufus Tillman was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Rufus Tillman in the Lobby, 7:00 PM–8:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c044** [observation] Jacob Lefkowitz says Rufus Tillman was in the Lobby at 9:30 PM. — _establishes: Rufus Tillman in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-- **c045** [observation] Jacob Lefkowitz says Rufus Tillman was on the Street at 9:00 PM. — _establishes: Rufus Tillman on the Street, 9:00 PM; the victim alive at 9:00 PM_
-
-On Beatrice Thorndike:
-
-- **c046** [observation] Jacob Lefkowitz says Beatrice Thorndike was in the Lobby at 8:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 8:00 PM_
-- **c047** [observation] Jacob Lefkowitz says Beatrice Thorndike was at the Front Desk from 8:30 PM to 9:00 PM. — _establishes: Beatrice Thorndike at the Front Desk, 8:30 PM–9:00 PM; Beatrice Thorndike had access to the method_
-- **c048** [observation] Jacob Lefkowitz says Beatrice Thorndike was on the Street from 11:00 PM to 11:30 PM. — _establishes: Beatrice Thorndike on the Street, 11:00 PM–11:30 PM_
-
-On Eileen Feeney:
-
-- **c049** [observation] Jacob Lefkowitz says Eileen Feeney was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Eileen Feeney in the Lobby, 6:00 PM–7:00 PM_
-- **c050** [observation] Jacob Lefkowitz says Eileen Feeney was in the Lobby at 9:00 PM. — _establishes: Eileen Feeney in the Lobby, 9:00 PM_
-- **c051** [observation] Jacob Lefkowitz says Eileen Feeney was at the Front Desk from 7:30 PM to 8:30 PM. — _establishes: Eileen Feeney at the Front Desk, 7:30 PM–8:30 PM; Eileen Feeney had access to the method_
-- **c052** [observation] Jacob Lefkowitz says Eileen Feeney was on the Street from 11:00 PM to 11:30 PM. — _establishes: Eileen Feeney on the Street, 11:00 PM–11:30 PM_
-
-On Odessa Broadnax:
-
-- **c053** [observation] Jacob Lefkowitz says Odessa Broadnax was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Odessa Broadnax in the Lobby, 6:30 PM–8:00 PM_
-- **c054** [observation] Jacob Lefkowitz says Odessa Broadnax was in the Lobby at 9:00 PM. — _establishes: Odessa Broadnax in the Lobby, 9:00 PM_
-- **c055** [observation] Jacob Lefkowitz says Odessa Broadnax was at the Front Desk at 8:30 PM. — _establishes: Odessa Broadnax at the Front Desk, 8:30 PM; Odessa Broadnax had access to the method_
-
-On Thaddeus Fairbanks:
-
-- **c056** [observation] Jacob Lefkowitz says Thaddeus Fairbanks was on the Street from 6:00 PM to 7:30 PM. — _establishes: Thaddeus Fairbanks on the Street, 6:00 PM–7:30 PM_
-- **c057** [observation] Jacob Lefkowitz says Thaddeus Fairbanks was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 8:00 PM–9:00 PM_
-
-On Beatrice Thorndike's account:
-
-- **c126** [observation] Jacob Lefkowitz was in the Lobby from 6:00 PM to 6:30 PM and says Beatrice Thorndike was not in the Lobby. — _establishes: Beatrice Thorndike not in the Lobby, 6:00 PM–6:30 PM_
-
-On Eileen Feeney's account:
-
-- **c136** [observation] Eileen Feeney says Jacob Lefkowitz was there. Jacob Lefkowitz says otherwise: Jacob Lefkowitz was on the Street at 9:30 PM, not in the Bar. — _establishes: Eileen Feeney not in the Bar, 9:30 PM_
-
-On Teresa Petrosino's account:
-
-- **c153** [observation] Jacob Lefkowitz was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
-
-### From Teresa Petrosino (a chambermaid)
-
-On Beatrice Thorndike:
-
-- **c058** [observation] Teresa Petrosino says Beatrice Thorndike was on the Service Stairs at 7:00 PM. — _establishes: Beatrice Thorndike on the Service Stairs, 7:00 PM_
-
-On Odessa Broadnax:
-
-- **c059** [observation] Teresa Petrosino says Odessa Broadnax was in the Bar at 9:30 PM. — _establishes: Odessa Broadnax in the Bar, 9:30 PM_
-- **c060** [observation] Teresa Petrosino says Odessa Broadnax was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Odessa Broadnax in the Bar, 11:00 PM–11:30 PM_
-- **c061** [observation] Teresa Petrosino says Odessa Broadnax was in the Kitchen from 10:00 PM to 10:30 PM. — _establishes: Odessa Broadnax in the Kitchen, 10:00 PM–10:30 PM_
-
-On Thaddeus Fairbanks:
-
-- **c062** [observation] Teresa Petrosino says Thaddeus Fairbanks was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Thaddeus Fairbanks in the Bar, 9:30 PM–10:00 PM_
-
-On Eileen Feeney's account:
-
-- **c132** [observation] Teresa Petrosino was in the Kitchen from 9:30 PM to 10:00 PM and says Eileen Feeney was not in the Bar. — _establishes: Eileen Feeney not in the Bar, 9:30 PM–10:00 PM_
-
-On Odessa Broadnax's account:
-
-- **c138** [observation] Teresa Petrosino was in the Kitchen at 10:00 PM and says Odessa Broadnax was not in the Bar. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
-
-On Jacob Lefkowitz's account:
-
-- **c149** [observation] Jacob Lefkowitz says Teresa Petrosino was there. Teresa Petrosino says otherwise: Teresa Petrosino was in the Kitchen from 10:00 PM to 10:30 PM, not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
-
-### From Thaddeus Fairbanks (a longshoreman)
-
-On Rufus Tillman:
-
-- **c063** [observation] Thaddeus Fairbanks says Rufus Tillman was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Rufus Tillman in the Lobby, 7:00 PM–8:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c064** [observation] Thaddeus Fairbanks says Rufus Tillman was in the Lobby at 9:30 PM. — _establishes: Rufus Tillman in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-- **c065** [observation] Thaddeus Fairbanks says Rufus Tillman was on the Street at 9:00 PM. — _establishes: Rufus Tillman on the Street, 9:00 PM; the victim alive at 9:00 PM_
-
-On Beatrice Thorndike:
-
-- **c066** [observation] Thaddeus Fairbanks says Beatrice Thorndike was in the Lobby at 8:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 8:00 PM_
-- **c067** [observation] Thaddeus Fairbanks says Beatrice Thorndike was in the Lobby at 10:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 10:00 PM_
-- **c068** [observation] Thaddeus Fairbanks says Beatrice Thorndike was at the Front Desk from 8:30 PM to 9:00 PM. — _establishes: Beatrice Thorndike at the Front Desk, 8:30 PM–9:00 PM; Beatrice Thorndike had access to the method_
-- **c069** [observation] Thaddeus Fairbanks says Beatrice Thorndike was on the Street at 10:30 PM. — _establishes: Beatrice Thorndike on the Street, 10:30 PM_
-
-On Eileen Feeney:
-
-- **c070** [observation] Thaddeus Fairbanks says Eileen Feeney was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Eileen Feeney in the Lobby, 6:00 PM–7:00 PM_
-- **c071** [observation] Thaddeus Fairbanks says Eileen Feeney was in the Lobby at 9:00 PM. — _establishes: Eileen Feeney in the Lobby, 9:00 PM_
-- **c072** [observation] Thaddeus Fairbanks says Eileen Feeney was in the Lobby at 10:30 PM. — _establishes: Eileen Feeney in the Lobby, 10:30 PM_
-- **c073** [observation] Thaddeus Fairbanks says Eileen Feeney was at the Front Desk from 8:00 PM to 8:30 PM. — _establishes: Eileen Feeney at the Front Desk, 8:00 PM–8:30 PM; Eileen Feeney had access to the method_
-
-On Odessa Broadnax:
-
-- **c074** [observation] Thaddeus Fairbanks says Odessa Broadnax was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Odessa Broadnax in the Lobby, 6:30 PM–8:00 PM_
-- **c075** [observation] Thaddeus Fairbanks says Odessa Broadnax was in the Lobby at 9:00 PM. — _establishes: Odessa Broadnax in the Lobby, 9:00 PM_
-- **c076** [observation] Thaddeus Fairbanks says Odessa Broadnax was at the Front Desk at 8:30 PM. — _establishes: Odessa Broadnax at the Front Desk, 8:30 PM; Odessa Broadnax had access to the method_
-- **c077** [observation] Thaddeus Fairbanks says Odessa Broadnax was in the Bar at 9:30 PM. — _establishes: Odessa Broadnax in the Bar, 9:30 PM_
-- **c078** [observation] Thaddeus Fairbanks says Odessa Broadnax was in the Kitchen at 10:00 PM. — _establishes: Odessa Broadnax in the Kitchen, 10:00 PM_
-
-On Jacob Lefkowitz:
-
-- **c079** [observation] Thaddeus Fairbanks says Jacob Lefkowitz was in the Lobby from 6:00 PM to 9:00 PM. — _establishes: Jacob Lefkowitz in the Lobby, 6:00 PM–9:00 PM_
-- **c080** [observation] Thaddeus Fairbanks says Jacob Lefkowitz was on the Street at 10:30 PM. — _establishes: Jacob Lefkowitz on the Street, 10:30 PM_
-
-On Teresa Petrosino:
-
-- **c081** [observation] Thaddeus Fairbanks says Teresa Petrosino was in the Kitchen from 9:30 PM to 10:00 PM. — _establishes: Teresa Petrosino in the Kitchen, 9:30 PM–10:00 PM_
-
-On Beatrice Thorndike's account:
-
-- **c127** [observation] Thaddeus Fairbanks was on the Street from 6:00 PM to 6:30 PM and says Beatrice Thorndike was not in the Lobby. — _establishes: Beatrice Thorndike not in the Lobby, 6:00 PM–6:30 PM_
-
-On Eileen Feeney's account:
-
-- **c133** [observation] Thaddeus Fairbanks was in the Bar from 9:30 PM to 10:00 PM and says Eileen Feeney was not in the Bar. — _establishes: Eileen Feeney not in the Bar, 9:30 PM–10:00 PM_
-
-On Odessa Broadnax's account:
-
-- **c139** [observation] Thaddeus Fairbanks was in the Bar at 10:00 PM and says Odessa Broadnax was not in the Bar. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
-
-On Jacob Lefkowitz's account:
-
-- **c145** [observation] Thaddeus Fairbanks was in the Bar at 10:00 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM_
-- **c146** [observation] Thaddeus Fairbanks was in the Lobby at 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:30 PM_
-
-On Teresa Petrosino's account:
-
-- **c154** [observation] Thaddeus Fairbanks was on the Street at 7:30 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM_
-- **c155** [observation] Thaddeus Fairbanks was in the Lobby at 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 8:00 PM_
-
-### From Lucia Carbone (the doorman)
-
-On Rufus Tillman:
-
-- **c082** [observation] Lucia Carbone says Rufus Tillman was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Rufus Tillman in the Lobby, 7:00 PM–8:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c083** [observation] Lucia Carbone says Rufus Tillman was in the Lobby at 9:30 PM. — _establishes: Rufus Tillman in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-- **c084** [observation] Lucia Carbone says Rufus Tillman was on the Street at 9:00 PM. — _establishes: Rufus Tillman on the Street, 9:00 PM; the victim alive at 9:00 PM_
-
-On Beatrice Thorndike:
-
-- **c085** [observation] Lucia Carbone says Beatrice Thorndike was in the Lobby at 8:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 8:00 PM_
-- **c086** [observation] Lucia Carbone says Beatrice Thorndike was in the Lobby at 10:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 10:00 PM_
-- **c087** [observation] Lucia Carbone says Beatrice Thorndike was at the Front Desk from 8:30 PM to 9:30 PM. — _establishes: Beatrice Thorndike at the Front Desk, 8:30 PM–9:30 PM; Beatrice Thorndike had access to the method_
-- **c088** [observation] Lucia Carbone says Beatrice Thorndike was on the Street from 10:30 PM to 11:30 PM. — _establishes: Beatrice Thorndike on the Street, 10:30 PM–11:30 PM_
-
-On Eileen Feeney:
-
-- **c089** [observation] Lucia Carbone says Eileen Feeney was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Eileen Feeney in the Lobby, 6:00 PM–7:00 PM_
-- **c090** [observation] Lucia Carbone says Eileen Feeney was in the Lobby at 9:00 PM. — _establishes: Eileen Feeney in the Lobby, 9:00 PM_
-- **c091** [observation] Lucia Carbone says Eileen Feeney was in the Lobby at 10:30 PM. — _establishes: Eileen Feeney in the Lobby, 10:30 PM_
-- **c092** [observation] Lucia Carbone says Eileen Feeney was at the Front Desk from 7:30 PM to 8:30 PM. — _establishes: Eileen Feeney at the Front Desk, 7:30 PM–8:30 PM; Eileen Feeney had access to the method_
-- **c093** [observation] Lucia Carbone says Eileen Feeney was on the Street from 11:00 PM to 11:30 PM. — _establishes: Eileen Feeney on the Street, 11:00 PM–11:30 PM_
-
-On Odessa Broadnax:
-
-- **c094** [observation] Lucia Carbone says Odessa Broadnax was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Odessa Broadnax in the Lobby, 6:30 PM–8:00 PM_
-- **c095** [observation] Lucia Carbone says Odessa Broadnax was in the Lobby at 9:00 PM. — _establishes: Odessa Broadnax in the Lobby, 9:00 PM_
-- **c096** [observation] Lucia Carbone says Odessa Broadnax was at the Front Desk at 8:30 PM. — _establishes: Odessa Broadnax at the Front Desk, 8:30 PM; Odessa Broadnax had access to the method_
-- **c097** [observation] Lucia Carbone says Odessa Broadnax was in the Bar at 9:30 PM. — _establishes: Odessa Broadnax in the Bar, 9:30 PM_
-- **c098** [observation] Lucia Carbone says Odessa Broadnax was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Odessa Broadnax in the Bar, 11:00 PM–11:30 PM_
-
-On Jacob Lefkowitz:
-
-- **c099** [observation] Lucia Carbone says Jacob Lefkowitz was in the Lobby from 6:00 PM to 9:00 PM. — _establishes: Jacob Lefkowitz in the Lobby, 6:00 PM–9:00 PM_
-- **c100** [observation] Lucia Carbone says Jacob Lefkowitz was on the Street from 9:30 PM to 11:30 PM. — _establishes: Jacob Lefkowitz on the Street, 9:30 PM–11:30 PM_
-
-On Thaddeus Fairbanks:
-
-- **c101** [observation] Lucia Carbone says Thaddeus Fairbanks was on the Street from 6:00 PM to 7:30 PM. — _establishes: Thaddeus Fairbanks on the Street, 6:00 PM–7:30 PM_
-- **c102** [observation] Lucia Carbone says Thaddeus Fairbanks was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 8:00 PM–9:00 PM_
-- **c103** [observation] Lucia Carbone says Thaddeus Fairbanks was in the Lobby at 10:30 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 10:30 PM_
-- **c104** [observation] Lucia Carbone says Thaddeus Fairbanks was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Thaddeus Fairbanks in the Bar, 9:30 PM–10:00 PM_
-- **c105** [observation] Lucia Carbone says Thaddeus Fairbanks was at the Front Desk from 11:00 PM to 11:30 PM. — _establishes: Thaddeus Fairbanks at the Front Desk, 11:00 PM–11:30 PM_
-
-On Beatrice Thorndike's account:
-
-- **c128** [observation] Lucia Carbone was in the Lobby from 6:00 PM to 6:30 PM and says Beatrice Thorndike was not in the Lobby. — _establishes: Beatrice Thorndike not in the Lobby, 6:00 PM–6:30 PM_
-
-On Eileen Feeney's account:
-
-- **c134** [observation] Lucia Carbone was in the Lobby from 9:30 PM to 10:00 PM and says Eileen Feeney was not in the Bar. — _establishes: Eileen Feeney not in the Bar, 9:30 PM–10:00 PM_
-
-On Odessa Broadnax's account:
-
-- **c140** [observation] Lucia Carbone was in the Lobby at 10:00 PM and says Odessa Broadnax was not in the Bar. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
-
-On Jacob Lefkowitz's account:
-
-- **c147** [observation] Lucia Carbone was in the Lobby from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
-
-On Teresa Petrosino's account:
-
-- **c156** [observation] Lucia Carbone was in the Lobby from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
-
-### From Grafton Ellery (the bartender)
-
-On Rufus Tillman:
-
-- **c106** [observation] Grafton Ellery says Rufus Tillman was in the Lobby from 7:00 PM to 8:30 PM. — _establishes: Rufus Tillman in the Lobby, 7:00 PM–8:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM; the victim alive at 8:30 PM_
-- **c107** [observation] Grafton Ellery says Rufus Tillman was in the Lobby at 9:30 PM. — _establishes: Rufus Tillman in the Lobby, 9:30 PM; the victim alive at 9:30 PM_
-
-On Beatrice Thorndike:
-
-- **c108** [observation] Grafton Ellery says Beatrice Thorndike was in the Lobby at 8:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 8:00 PM_
-- **c109** [observation] Grafton Ellery says Beatrice Thorndike was in the Lobby at 10:00 PM. — _establishes: Beatrice Thorndike in the Lobby, 10:00 PM_
-
-On Eileen Feeney:
-
-- **c110** [observation] Grafton Ellery says Eileen Feeney was in the Lobby from 6:00 PM to 7:00 PM. — _establishes: Eileen Feeney in the Lobby, 6:00 PM–7:00 PM_
-- **c111** [observation] Grafton Ellery says Eileen Feeney was in the Lobby at 9:00 PM. — _establishes: Eileen Feeney in the Lobby, 9:00 PM_
-- **c112** [observation] Grafton Ellery says Eileen Feeney was in the Lobby at 10:30 PM. — _establishes: Eileen Feeney in the Lobby, 10:30 PM_
-
-On Odessa Broadnax:
-
-- **c113** [observation] Grafton Ellery says Odessa Broadnax was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Odessa Broadnax in the Lobby, 6:30 PM–8:00 PM_
-- **c114** [observation] Grafton Ellery says Odessa Broadnax was in the Lobby at 9:00 PM. — _establishes: Odessa Broadnax in the Lobby, 9:00 PM_
-- **c115** [observation] Grafton Ellery says Odessa Broadnax was in the Bar at 9:30 PM. — _establishes: Odessa Broadnax in the Bar, 9:30 PM_
-- **c116** [observation] Grafton Ellery says Odessa Broadnax was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Odessa Broadnax in the Bar, 11:00 PM–11:30 PM_
-- **c117** [observation] Grafton Ellery says Odessa Broadnax was in the Kitchen from 10:00 PM to 10:30 PM. — _establishes: Odessa Broadnax in the Kitchen, 10:00 PM–10:30 PM_
-
-On Jacob Lefkowitz:
-
-- **c118** [observation] Grafton Ellery says Jacob Lefkowitz was in the Lobby from 6:00 PM to 9:00 PM. — _establishes: Jacob Lefkowitz in the Lobby, 6:00 PM–9:00 PM_
-
-On Teresa Petrosino:
-
-- **c119** [observation] Grafton Ellery says Teresa Petrosino was in the Kitchen at 6:00 PM. — _establishes: Teresa Petrosino in the Kitchen, 6:00 PM_
-- **c120** [observation] Grafton Ellery says Teresa Petrosino was in the Kitchen from 9:00 PM to 11:30 PM. — _establishes: Teresa Petrosino in the Kitchen, 9:00 PM–11:30 PM_
-
-On Thaddeus Fairbanks:
-
-- **c121** [observation] Grafton Ellery says Thaddeus Fairbanks was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 8:00 PM–9:00 PM_
-- **c122** [observation] Grafton Ellery says Thaddeus Fairbanks was in the Lobby at 10:30 PM. — _establishes: Thaddeus Fairbanks in the Lobby, 10:30 PM_
-- **c123** [observation] Grafton Ellery says Thaddeus Fairbanks was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Thaddeus Fairbanks in the Bar, 9:30 PM–10:00 PM_
-
-On Beatrice Thorndike's account:
-
-- **c129** [observation] Grafton Ellery was in the Bar from 6:00 PM to 6:30 PM and says Beatrice Thorndike was not in the Lobby. — _establishes: Beatrice Thorndike not in the Lobby, 6:00 PM–6:30 PM_
-
-On Eileen Feeney's account:
-
-- **c135** [observation] Grafton Ellery was in the Bar from 9:30 PM to 10:00 PM and says Eileen Feeney was not in the Bar. — _establishes: Eileen Feeney not in the Bar, 9:30 PM–10:00 PM_
-- **c166** [radio] Eileen Feeney says Eileen Feeney was in the bar at 10:00 PM but cannot say how the broadcast ended. — _establishes: Eileen Feeney not in the Bar, 10:00 PM_
-
-On Odessa Broadnax's account:
-
-- **c141** [observation] Grafton Ellery was in the Bar at 10:00 PM and says Odessa Broadnax was not in the Bar. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
-- **c167** [radio] Odessa Broadnax says Odessa Broadnax was in the bar at 10:00 PM but cannot say how the broadcast ended. — _establishes: Odessa Broadnax not in the Bar, 10:00 PM_
-
-On Jacob Lefkowitz's account:
-
-- **c148** [observation] Grafton Ellery was in the Bar from 10:00 PM to 10:30 PM and says Jacob Lefkowitz was not in the Lobby. — _establishes: Jacob Lefkowitz not in the Lobby, 10:00 PM–10:30 PM_
-
-On Teresa Petrosino's account:
-
-- **c157** [observation] Grafton Ellery was in the Bar from 7:30 PM to 8:00 PM and says Teresa Petrosino was not in the Lobby. — _establishes: Teresa Petrosino not in the Lobby, 7:30 PM–8:00 PM_
-
-On the radio:
-
-- **c165** [radio] Grafton Ellery says the bar radio carried a dance band from the Roseland at 10:00 PM, and that the band broke off twice and the announcer filled with a soap advertisement. Anyone in the bar could tell you that. — _establishes: context only_
-
-On Eileen Feeney and Rufus Tillman:
-
-- **c170** [overheard] Grafton Ellery says Rufus Tillman told Eileen Feeney the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Eileen Feeney had a motive (inheritance)_
-
-On Thaddeus Fairbanks and Rufus Tillman:
-
-- **c172** [overheard] Grafton Ellery says Thaddeus Fairbanks told Rufus Tillman to keep away, loud enough to turn heads. — _establishes: Thaddeus Fairbanks had a motive (jealousy)_
-
-### From the Lobby
-
-- **c162** [environment] The passenger elevator was out of order from 7:30 PM to 8:30 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
-
-### From the Front Desk
-
-- **c159** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-- **c168** [document] Thaddeus Fairbanks's papers do not hold up. A letter addressed to a name nobody at the hotel has heard used. — _establishes: context only_
-
-### From the Service Stairs
-
-- **c163** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Beatrice Thorndike's sleeve; Beatrice Thorndike was on the stairs at 7:30 PM. — _establishes: Beatrice Thorndike on the Service Stairs, 7:30 PM_
-- **c164** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Teresa Petrosino's sleeve; Teresa Petrosino was on the stairs at 8:30 PM. — _establishes: Teresa Petrosino on the Service Stairs, 8:30 PM_
-
-### From the Victim's Suite
-
-- **c169** [document] Found in the Victim's Suite: A draft codicil in Rufus Tillman's hand striking Eileen Feeney out of the will, dated last Tuesday and unsigned. — _establishes: Eileen Feeney had a motive (inheritance)_
-- **c171** [document] Found in the Victim's Suite: Three letters in Rufus Tillman's hand to a woman Thaddeus Fairbanks is engaged to, kept in the drawer, the last one opened. — _establishes: Thaddeus Fairbanks had a motive (jealousy)_
-
-### From the Roof Garden
-
-- **c158** [morgue] Rufus Tillman was found in the Roof Garden. The coroner puts death between 9:30 PM and 10:00 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 9:30 PM and 10:00 PM_
-
-### From the Street
-
-- **c160** [environment] Rain began at 9:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
-
-### Withheld — the player cannot get these
-
-- ~~Beatrice Thorndike saw Rufus Tillman in the Victim's Suite, 6:00 PM–6:30 PM~~ — Beatrice Thorndike is lying about that time and will not say.
-- ~~Eileen Feeney saw Rufus Tillman in the Roof Garden, 10:00 PM~~ — Eileen Feeney is lying about that time and will not say.
-- ~~Odessa Broadnax saw Teresa Petrosino in the Kitchen, 10:00 PM~~ — Odessa Broadnax is lying about that time and will not say.
-- ~~Odessa Broadnax saw Thaddeus Fairbanks in the Bar, 10:00 PM~~ — Odessa Broadnax is lying about that time and will not say.
-- ~~Odessa Broadnax saw Grafton Ellery in the Bar, 10:00 PM~~ — Odessa Broadnax is lying about that time and will not say.
-- ~~Jacob Lefkowitz saw Beatrice Thorndike in the Lobby, 10:00 PM~~ — Jacob Lefkowitz is lying about that time and will not say.
-- ~~Jacob Lefkowitz saw Lucia Carbone in the Lobby, 10:00 PM–10:30 PM~~ — Jacob Lefkowitz is lying about that time and will not say.
-- ~~Jacob Lefkowitz saw Beatrice Thorndike on the Street, 10:30 PM~~ — Jacob Lefkowitz is lying about that time and will not say.
-- ~~Jacob Lefkowitz saw Eileen Feeney in the Lobby, 10:30 PM~~ — Jacob Lefkowitz is lying about that time and will not say.
-- ~~Jacob Lefkowitz saw Thaddeus Fairbanks in the Lobby, 10:30 PM~~ — Jacob Lefkowitz is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:00 PM. _(c158, c002, c030, c044, c064, c083, c107)_
+| Tick | Time | Sol Feldman (the doorman) | Rachel Kessler (the landlady) | Klara Steinbach (the news dealer) | Carmine Carbone (the man behind the counter) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 1 | 6:30 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 2 | 7:00 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 3 | 7:30 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 4 | 8:00 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the newsstand on the corner |
+| 5 | 8:30 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 6 | 9:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | the newsstand on the corner | the garage on Eleventh Avenue |
+| 7 | 9:30 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 8 | 10:00 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 9 | 10:30 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 10 | 11:00 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+| 11 | 11:30 PM | the lobby of the Wyckoff | the back room at Mrs. Teague’s | the newsstand on the corner | the garage on Eleventh Avenue |
+
+## 6. Secrets in play
+
+- **Eunice Bledsoe** (murder): Eunice Bledsoe is at the victim’s suite at the residential hotel from 7:30 PM to 8:00 PM, alone with Friedrich Kreuzer when it happens at 8:00 PM.
+- **Eunice Bledsoe** also (gambling-debt): Eunice Bledsoe slips off to the El platform at Twenty-Third Street from 6:30 PM to 7:00 PM to settle with a bookmaker.
+- **Lurline Dandridge** (hidden-family): Lurline Dandridge goes to the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM to see a child nobody is supposed to know about.
+- **Emilio Marchetti** (fence): Emilio Marchetti hands a parcel of stolen goods to a man at the newsstand on the corner from 9:30 PM.
+- **Verity Thorndike** (fence): Verity Thorndike hands a parcel of stolen goods to a man at the El platform at Twenty-Third Street from 9:30 PM to 10:00 PM.
+- **Lucia Salerno** (gambling-debt): Lucia Salerno slips off to the newsstand on the corner from 8:00 PM to settle with a bookmaker.
+- **James Rafferty** (secret-drinking): James Rafferty drinks alone at the back room at Mrs. Teague’s from 6:00 PM to 6:30 PM and will claim to have been anywhere else.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c121, c122, c136. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At the lobby of the Wyckoff
+
+- **c131** [corroboration] (overheard; Sol Feldman on Eunice Bledsoe and Friedrich Kreuzer) → (end)
+  - Sol Feldman says Eunice Bledsoe said Friedrich Kreuzer had taken everything and would be made to feel it.
+  - _establishes: Eunice Bledsoe had a motive (revenge)_
+- **c137** [noise {b4}] (overheard; Sol Feldman on Lurline Dandridge) → c139
+  - Sol Feldman on Lurline Dandridge: Lurline Dandridge sends money out of every pay envelope and cannot say where it goes.
+  - _establishes: context only_
+- **c158** [noise {b5}] (overheard; Sol Feldman on Lucia Salerno) → c159
+  - Sol Feldman on Lucia Salerno: Lucia Salerno was asking around for a hundred dollars in a hurry earlier in the week.
+  - _establishes: context only_
+
+### At the back room at Mrs. Teague’s
+
+- **c089** [spine] (observation; Rachel Kessler on who was there at 8:00 PM) → c105, c086
+  - Rachel Kessler runs through it: at 8:00 PM there were Lurline Dandridge, Emilio Marchetti, Verity Thorndike, James Rafferty at the back room at Mrs. Teague’s, and nobody else worth naming.
+  - _establishes: Lurline Dandridge at the back room at Mrs. Teague’s, 8:00 PM; Emilio Marchetti at the back room at Mrs. Teague’s, 8:00 PM; Verity Thorndike at the back room at Mrs. Teague’s, 8:00 PM; James Rafferty at the back room at Mrs. Teague’s, 8:00 PM_
+- **c170** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The man behind the counter at the back room at Mrs. Teague’s knows exactly: James Rafferty was on the same stool from 6:00 PM to 6:30 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: James Rafferty’s secret-drinking accounted for; James Rafferty at the back room at Mrs. Teague’s, 6:00 PM–6:30 PM_
+- **c142** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The woman who keeps the child says it straight out: Lurline Dandridge was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.
+  - _establishes: Lurline Dandridge’s hidden-family accounted for; Lurline Dandridge at the back room at Mrs. Teague’s, 8:00 PM–8:30 PM_
+
+### At the El platform at Twenty-Third Street
+
+- **c035** [corroboration] (observation; Lucia Salerno on Eunice Bledsoe) → (end)
+  - Lucia Salerno says Eunice Bledsoe was at the garage on Eleventh Avenue at 6:00 PM.
+  - _establishes: Eunice Bledsoe at the garage on Eleventh Avenue, 6:00 PM; Eunice Bledsoe could reach the weapon_
+- **c034** [corroboration] (observation; Verity Thorndike on James Rafferty) → (end)
+  - Verity Thorndike says James Rafferty was at the back room at Mrs. Teague’s at 8:00 PM.
+  - _establishes: James Rafferty at the back room at Mrs. Teague’s, 8:00 PM_
+- **c154** [noise {b1}] (physical; the place itself) → c156
+  - Wrapping paper and a cut string at the El platform at Twenty-Third Street, and the shop it came from closed two years ago.
+  - _establishes: context only_
+- **c156** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The receiver at the El platform at Twenty-Third Street would rather talk than be held: Verity Thorndike was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Verity Thorndike will take over this one.
+  - _establishes: Verity Thorndike’s fence accounted for; Verity Thorndike at the El platform at Twenty-Third Street, 9:30 PM–10:00 PM_
+
+### At the newsstand on the corner
+
+- **c136** [spine ⟨opening⟩] (client; Emilio Marchetti on why I was hired) → c007, c123, c167
+  - Emilio Marchetti hired us. Emilio Marchetti wants it known that Eunice Bledsoe blamed the victim for a ruin, and would rather we started there.
+  - _establishes: Eunice Bledsoe had a motive (revenge)_
+- **c105** [spine] (observation; Klara Steinbach on Eunice Bledsoe’s account) → c067, c125, c007, c131, c034
+  - Klara Steinbach was at the newsstand on the corner from 7:30 PM to 8:00 PM and says Eunice Bledsoe was not.
+  - _establishes: Eunice Bledsoe not at the newsstand on the corner, 7:30 PM–8:00 PM_
+- **c067** [spine] (observation; Klara Steinbach on Lucia Salerno) → c125, c073
+  - Klara Steinbach says Lucia Salerno was at the newsstand on the corner from 8:00 PM to 8:30 PM.
+  - _establishes: Lucia Salerno at the newsstand on the corner, 8:00 PM–8:30 PM_
+- **c125** [spine] (anchor; Klara Steinbach on Friedrich Kreuzer that evening) → c124, c079
+  - Klara Steinbach puts Friedrich Kreuzer at the newsstand on the corner when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 7:30 PM; Friedrich Kreuzer at the newsstand on the corner, 7:30 PM_
+- **c007** [spine] (observation; Lurline Dandridge on Eunice Bledsoe) → c035, c106
+  - Lurline Dandridge says Eunice Bledsoe was at the garage on Eleventh Avenue at 6:00 PM.
+  - _establishes: Eunice Bledsoe at the garage on Eleventh Avenue, 6:00 PM; Eunice Bledsoe could reach the weapon_
+- **c124** [corroboration] (anchor; Emilio Marchetti on Friedrich Kreuzer that evening) → c158
+  - Emilio Marchetti puts Friedrich Kreuzer at the newsstand on the corner when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 7:30 PM; Friedrich Kreuzer at the newsstand on the corner, 7:30 PM_
+- **c079** [corroboration] (observation; Emilio Marchetti on who was there at 8:00 PM) → c137
+  - Emilio Marchetti runs through it: at 8:00 PM there were Lurline Dandridge, Verity Thorndike, James Rafferty at the back room at Mrs. Teague’s, and nobody else worth naming.
+  - _establishes: Lurline Dandridge at the back room at Mrs. Teague’s, 8:00 PM; Verity Thorndike at the back room at Mrs. Teague’s, 8:00 PM; James Rafferty at the back room at Mrs. Teague’s, 8:00 PM_
+- **c149** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The receiver at the newsstand on the corner would rather talk than be held: Emilio Marchetti was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Emilio Marchetti will take over this one.
+  - _establishes: Emilio Marchetti’s fence accounted for; Emilio Marchetti at the newsstand on the corner, 9:30 PM_
+- **c167** [noise {b3}] (overheard; Lurline Dandridge on James Rafferty) → c170
+  - Lurline Dandridge on James Rafferty: Somebody at the back room at Mrs. Teague’s says James Rafferty is in more often than James Rafferty lets on.
+  - _establishes: context only_
+- **c139** [noise {b4}] (overheard; Emilio Marchetti on Lurline Dandridge) → c142
+  - Emilio Marchetti on Lurline Dandridge: Lurline Dandridge keeps a photograph and will not be asked about it twice.
+  - _establishes: context only_
+- **c159** [noise {b5}] (overheard; Klara Steinbach on Lucia Salerno) → c163
+  - Klara Steinbach on Lucia Salerno: A man nobody knew was waiting for Lucia Salerno at the newsstand on the corner and would not give a name.
+  - _establishes: context only_
+- **c163** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Lucia Salerno was at the newsstand on the corner from 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Lucia Salerno’s gambling-debt accounted for; Lucia Salerno at the newsstand on the corner, 8:00 PM_
+
+### At the victim’s suite at the residential hotel
+
+- **c121** [spine ⟨opening⟩] (scene; the place itself) → c089, c105, c069, c154, c144
+  - Friedrich Kreuzer was found at the victim’s suite at the residential hotel. The tap was left running and the basin had overflowed a clean ring onto the boards. The drunk singing under the window came at 8:00 PM, and the singing stopped when the shoe came down, and that was the half hour. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 8:00 PM; how it was done_
+- **c122** [spine ⟨opening⟩] (morgue; the place itself) → c089, c067
+  - The coroner puts death between 6:30 PM and 8:00 PM — two hours of nothing useful. A single narrow puncture under the ribs. Very little blood outside the body.
+  - _establishes: death between 6:30 PM and 8:00 PM; how it was done_
+
+### At the garage on Eleventh Avenue
+
+- **c086** [corroboration] (observation; James Rafferty on who was there at 8:00 PM) → (end)
+  - James Rafferty runs through it: at 8:00 PM there were Lurline Dandridge, Emilio Marchetti, Verity Thorndike at the back room at Mrs. Teague’s, and nobody else worth naming.
+  - _establishes: Lurline Dandridge at the back room at Mrs. Teague’s, 8:00 PM; Emilio Marchetti at the back room at Mrs. Teague’s, 8:00 PM; Verity Thorndike at the back room at Mrs. Teague’s, 8:00 PM_
+- **c073** [corroboration] (observation; Carmine Carbone on Lucia Salerno) → (end)
+  - Carmine Carbone says Lucia Salerno was at the newsstand on the corner at 8:00 PM.
+  - _establishes: Lucia Salerno at the newsstand on the corner, 8:00 PM_
+- **c106** [corroboration] (observation; Carmine Carbone on Eunice Bledsoe’s account) → (end)
+  - Carmine Carbone was at the newsstand on the corner at 8:00 PM and says Eunice Bledsoe was not.
+  - _establishes: Eunice Bledsoe not at the newsstand on the corner, 8:00 PM_
+- **c123** [corroboration] (physical; the place itself) → (end)
+  - An ice pick is gone from the garage on Eleventh Avenue. The block is out and half melted and the pick that belongs with it is gone.
+  - _establishes: something gone from the garage on Eleventh Avenue; how it was done_
+- **c069** [corroboration] (observation; Carmine Carbone on Lurline Dandridge) → (end)
+  - Carmine Carbone says Lurline Dandridge was at the garage on Eleventh Avenue at 6:00 PM.
+  - _establishes: Lurline Dandridge at the garage on Eleventh Avenue, 6:00 PM; Lurline Dandridge could reach the weapon_
+- **c144** [noise {b2}] (overheard; Carmine Carbone on Emilio Marchetti) → c149
+  - Carmine Carbone on Emilio Marchetti: Emilio Marchetti was carrying a parcel into the newsstand on the corner and came out without it.
+  - _establishes: context only_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["the lobby of the Wyckoff"]
+    c131["c131 Sol Feldman"]
+    c137["c137 Sol Feldman"]
+    c158["c158 Sol Feldman"]
+  end
+  subgraph P2["the back room at Mrs. Teague’s"]
+    c089["c089 Rachel Kessler"]
+    c170["✗ c170 the place"]
+    c142["✗ c142 the place"]
+  end
+  subgraph P3["the El platform at Twenty-Third Street"]
+    c035["c035 Lucia Salerno"]
+    c034["c034 Verity Thorndike"]
+    c154["c154 the place"]
+    c156["✗ c156 the place"]
+  end
+  subgraph P4["the newsstand on the corner"]
+    c136["▶ c136 Emilio Marchetti"]
+    c105["c105 Klara Steinbach"]
+    c067["c067 Klara Steinbach"]
+    c125["c125 Klara Steinbach"]
+    c007["c007 Lurline Dandridge"]
+    c124["c124 Emilio Marchetti"]
+    c079["c079 Emilio Marchetti"]
+    c149["✗ c149 the place"]
+    c167["c167 Lurline Dandridge"]
+    c139["c139 Emilio Marchetti"]
+    c159["c159 Klara Steinbach"]
+    c163["✗ c163 the place"]
+  end
+  subgraph P5["the victim’s suite at the residential hotel"]
+    c121["▶ c121 the place"]
+    c122["▶ c122 the place"]
+  end
+  subgraph P6["the garage on Eleventh Avenue"]
+    c086["c086 James Rafferty"]
+    c073["c073 Carmine Carbone"]
+    c106["c106 Carmine Carbone"]
+    c123["c123 the place"]
+    c069["c069 Carmine Carbone"]
+    c144["c144 Carmine Carbone"]
+  end
+  c121 --> c089
+  c121 --> c105
+  c121 --> c069
+  c121 -.-> c154
+  c121 -.-> c144
+  c122 --> c089
+  c122 --> c067
+  c136 --> c007
+  c136 --> c123
+  c136 -.-> c167
+  c089 --> c105
+  c089 --> c086
+  c105 --> c067
+  c105 --> c125
+  c105 --> c007
+  c105 --> c131
+  c105 --> c034
+  c067 --> c125
+  c067 --> c073
+  c125 --> c124
+  c125 --> c079
+  c007 --> c035
+  c007 --> c106
+  c124 -.-> c158
+  c079 -.-> c137
+  c154 --> c156
+  c144 --> c149
+  c167 --> c170
+  c137 -.-> c139
+  c139 --> c142
+  c158 -.-> c159
+  c159 --> c163
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c121,c122,c136,c089,c105,c067,c125,c007 spine;
+  class c086,c035,c131,c073,c034,c106,c123,c124,c079,c069 corrob;
+  class c154,c144,c167,c137,c139,c158,c159 noise;
+  class c156,c149,c170,c142,c163 disq;
+```
+
+## 9. Deduction path
+
+Par is **7 actions** against a budget of 20: 13 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 8:00 PM: one puts Friedrich Kreuzer alive at 7:30 PM, the other times the scene at 8:00 PM. _(c122, c125, c121; + 1 corroborating)_
 
 **Clearing the innocent.**
 
-- Beatrice Thorndike was not in the Roof Garden at 10:00 PM, on two independent sources. _(c067, c086, c109)_
-- Odessa Broadnax was not in the Roof Garden at 10:00 PM, on two independent sources. _(c061, c078, c117)_
-- Jacob Lefkowitz was not in the Roof Garden at 10:00 PM, on two independent sources. _(c011, c100)_
-- Teresa Petrosino was not in the Roof Garden at 10:00 PM, on two independent sources. _(c081, c120)_
-- Thaddeus Fairbanks was not in the Roof Garden at 10:00 PM, on two independent sources. _(c015, c062, c104, c123)_
+- Lurline Dandridge was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c089; + 3 corroborating)_
+- Emilio Marchetti was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c089; + 1 corroborating)_
+- Verity Thorndike was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c089; + 2 corroborating)_
+- Lucia Salerno was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c067; + 2 corroborating)_
+- James Rafferty was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c089; + 2 corroborating)_
 
-**Naming the killer.** Eileen Feeney claims the Bar at 10:00 PM. Two independent sources put that out of the question, and one ties Eileen Feeney to a push from the roof garden. _(c130, c132, c133, c134, c135, c166, c003, c036, c051, c073, c092)_
+**Naming the killer.** Eunice Bledsoe claims the newsstand on the corner at 8:00 PM. Two independent sources put that out of the question. _(c105; + 1 corroborating)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c158, c159)_
+**The weapon.** Eunice Bledsoe was at the garage on Eleventh Avenue before 8:00 PM, where an ice pick was kept. _(c007; + 1 corroborating)_
 
-**Motive.** inheritance, on two independent sources. _(c169, c170)_
+**Method.** An ice pick, on two physical sources. _(c121, c122; + 1 corroborating)_
 
-## 8. Red herrings
+**Motive.** revenge, on two independent sources. _(c136; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Odessa Broadnax claims the Bar at 10:00 PM and was really in the Kitchen. Reason: Odessa Broadnax hands a parcel of stolen goods to a man at the Kitchen at 10:00 PM.
-- Jacob Lefkowitz claims the Lobby at 10:00 PM and was really in the Street. Reason: Jacob Lefkowitz slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.
+- Lurline Dandridge claims the garage on Eleventh Avenue at 8:00 PM and was really at the back room at Mrs. Teague’s. Reason: Lurline Dandridge goes to the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM to see a child nobody is supposed to know about.
+- Lucia Salerno claims the lobby of the Wyckoff at 8:00 PM and was really at the newsstand on the corner. Reason: Lucia Salerno slips off to the newsstand on the corner from 8:00 PM to settle with a bookmaker.
 
 **Innocents with a motive:**
 
-- Thaddeus Fairbanks — jealousy: jealous of the victim.
+- Verity Thorndike — exposure: was about to be exposed by the victim.
+- James Rafferty — inheritance: stands to inherit.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Verity Thorndike, fence): c154 → **c156** — The receiver at the El platform at Twenty-Third Street would rather talk than be held: Verity Thorndike was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Verity Thorndike will take over this one.
+- **b2** (Emilio Marchetti, fence): c144 → **c149** — The receiver at the newsstand on the corner would rather talk than be held: Emilio Marchetti was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Emilio Marchetti will take over this one.
+- **b3** (James Rafferty, secret-drinking): c167 → **c170** — The man behind the counter at the back room at Mrs. Teague’s knows exactly: James Rafferty was on the same stool from 6:00 PM to 6:30 PM and was in no condition to walk anywhere, let alone do this.
+- **b4** (Lurline Dandridge, hidden-family): c137 → c139 → **c142** — The woman who keeps the child says it straight out: Lurline Dandridge was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.
+- **b5** (Lucia Salerno, gambling-debt): c158 → c159 → **c163** — The bookmaker’s runner is found and will say it: Lucia Salerno was at the newsstand on the corner from 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
 

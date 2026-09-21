@@ -1,7 +1,9 @@
 import {
+  BUDGETS,
   TICKS,
+  type Anchor,
   type Case,
-  type Environment,
+  type Difficulty,
   type Id,
   type Method,
   type Person,
@@ -10,39 +12,14 @@ import {
 } from './types.js';
 import { Rng } from './rng.js';
 import { buildCast } from './cast.js';
-import { buildSetting } from './setting.js';
-import { MapGraph } from './graph.js';
-import { buildSchedules } from './schedule.js';
-import { chooseMorgueRange, deriveClues, deriveObservations } from './clues.js';
+import { buildSetting, type AnchorDraw, type Setting } from './setting.js';
+import { buildSchedules, type ScheduleBuild } from './schedule.js';
+import { deriveCandidates, deriveObservations } from './clues.js';
+import { selectFindable } from './select.js';
 import { checkSolvability, type CaseUnderTest } from './solvability.js';
-import { BROADCASTS } from './data/radio.js';
-import { LOC } from './data/locations.js';
 
-const OUTER_ATTEMPTS = 60;
-const INNER_ATTEMPTS = 40;
-
-function buildEnvironment(rng: Rng): Environment {
-  const env: Environment = {};
-  if (rng.chance(0.5)) env.rainStartsAt = rng.range(1, 8);
-  if (rng.chance(0.4)) {
-    const a = rng.range(1, 8);
-    env.elevatorOut = [a, Math.min(TICKS - 1, a + rng.range(1, 2))];
-  }
-  if (rng.chance(0.65)) {
-    const b = rng.pick(BROADCASTS);
-    env.radioBroadcastAt = rng.range(2, 10);
-    env.radioContent = b.content;
-    env.radioOutcome = b.outcome;
-  }
-  return env;
-}
-
-/**
- * The single public entry point. Same seed, same case, byte for byte.
- */
-export function generateCase(seed: number, opts?: { detectiveName?: string }): Case {
-  return run(seed, opts?.detectiveName ?? 'Humphrey');
-}
+const OUTER_ATTEMPTS = 120;
+const INNER_ATTEMPTS = 30;
 
 export interface Diagnostics {
   attempts: number;
@@ -50,52 +27,144 @@ export interface Diagnostics {
   rejections: string[];
 }
 
+/** The single public entry point. Same seed and difficulty, same case. */
+export function generateCase(
+  seed: number,
+  opts?: { detectiveName?: string; difficulty?: Difficulty },
+): Case {
+  return run(seed, opts?.detectiveName ?? 'Humphrey', opts?.difficulty ?? 2);
+}
+
 /**
  * Same generation, with the discard reasons kept. Deliberately not re-exported
- * from the package index: `generateCase` is the public entry point. This is for
- * tuning the constraints and for the milestone notes.
+ * from the package index: `generateCase` is the public entry point. This is
+ * for tuning the constraints and for the milestone notes.
  */
-export function diagnoseCase(seed: number): { case: Case; diagnostics: Diagnostics } {
+export function diagnoseCase(seed: number, difficulty: Difficulty = 2): {
+  case: Case;
+  diagnostics: Diagnostics;
+} {
   const diagnostics: Diagnostics = { attempts: 0, rejections: [] };
-  const kase = run(seed, 'Humphrey', diagnostics);
+  const kase = run(seed, 'Humphrey', difficulty, diagnostics);
   diagnostics.attempts = kase.attempts;
   return { case: kase, diagnostics };
 }
 
-function run(seed: number, detectiveName: string, diagnostics?: Diagnostics): Case {
-  const rng = new Rng(seed);
+function recurring(phase: number, everyN: number): Tick[] {
+  const out: Tick[] = [];
+  for (let t = phase % everyN; t < TICKS; t += everyN) out.push(t);
+  return out;
+}
+
+function instantiate(draw: AnchorDraw, ticks: Tick[]): Anchor {
+  const anchor: Anchor = {
+    templateId: draw.template.id,
+    name: draw.template.name,
+    ticks,
+    traces: draw.template.traces.map((t) => ({ ...t })),
+    timing: draw.template.timing,
+    sceneTiming: draw.template.sceneTiming,
+  };
+  if (draw.placeId !== undefined) anchor.placeId = draw.placeId;
+  return anchor;
+}
+
+function anchorsFor(setting: Setting, M: Tick, rng: Rng): Anchor[] {
+  const out: Anchor[] = [];
+
+  const lowT = setting.low.template;
+  out.push(
+    instantiate(
+      setting.low,
+      lowT.ticks === 'single' ? [M - 1] : recurring(M - 1, lowT.everyN ?? 3),
+    ),
+  );
+
+  const highT = setting.high.template;
+  out.push(
+    instantiate(setting.high, highT.ticks === 'single' ? [M] : recurring(M, highT.everyN ?? 3)),
+  );
+
+  for (const draw of setting.extra) {
+    const t = draw.template;
+    if (t.id === 'cop-pass') {
+      const ticks = recurring(setting.beatCopPhase, 3);
+      const anchor = instantiate(draw, ticks);
+      anchor.route = ticks.map((_, i) => setting.beatCopRoute[i % setting.beatCopRoute.length] as Id);
+      out.push(anchor);
+      continue;
+    }
+    out.push(
+      instantiate(draw, t.ticks === 'single' ? [rng.range(1, TICKS - 2)] : recurring(rng.int(t.everyN ?? 3), t.everyN ?? 3)),
+    );
+  }
+  return out;
+}
+
+/** Where the detective finds each suspect the day after. */
+function assignFoundAt(
+  rng: Rng,
+  people: Person[],
+  build: ScheduleBuild,
+  placeIds: Id[],
+  residenceId: Id | undefined,
+): void {
+  const open = placeIds.filter((p) => p !== build.murderPlaceId && p !== residenceId);
+  for (const p of people) {
+    if (p.kind !== 'suspect') continue;
+    const counts = new Map<Id, number>();
+    for (const cell of build.truth[p.id] as (Id | null)[]) {
+      if (!cell || cell === build.murderPlaceId || cell === residenceId) continue;
+      counts.set(cell, (counts.get(cell) ?? 0) + 1);
+    }
+    let bestPlace: Id | null = null;
+    let bestCount = -1;
+    for (const [place, n] of counts) {
+      if (n > bestCount) {
+        bestCount = n;
+        bestPlace = place;
+      }
+    }
+    p.foundAt = bestPlace ?? rng.pick(open.length > 0 ? open : placeIds);
+  }
+}
+
+function run(
+  seed: number,
+  detectiveName: string,
+  difficulty: Difficulty,
+  diagnostics?: Diagnostics,
+): Case {
+  const rng = new Rng(seed + difficulty * 7919);
   let attempts = 0;
+  const budget = BUDGETS[difficulty];
 
   for (let outer = 0; outer < OUTER_ATTEMPTS; outer++) {
-    const cast = buildCast(rng);
-    const setting = buildSetting(rng, cast.method);
-    const environment = buildEnvironment(rng);
-    const graph = new MapGraph(setting.locations, environment);
+    const setting = buildSetting(rng);
+    if (!setting) {
+      diagnostics?.rejections.push('the place deck would not deal a legal hand');
+      continue;
+    }
+    const cast = buildCast(rng, setting, difficulty);
+    if (!cast) {
+      diagnostics?.rejections.push('no cast fits the victim and the rooms');
+      continue;
+    }
 
     for (let inner = 0; inner < INNER_ATTEMPTS; inner++) {
       attempts++;
 
-      const L = rng.pick(cast.method.murderLocations);
-      const tickChoices: Tick[] = [];
-      for (let t = 1; t <= TICKS - 2; t++) {
-        const reachable = [LOC.lobby, LOC.bar].some(
-          (w) => w !== L && graph.movesInto(w, t).includes(L),
-        );
-        if (reachable) tickChoices.push(t);
-      }
-      if (tickChoices.length === 0) {
-        diagnostics?.rejections.push('no murder tick reaches the scene from a witnessed room');
-        continue;
-      }
-      const M: Tick = rng.pick(tickChoices);
+      const M: Tick = rng.range(1, TICKS - 2);
+      const anchors = anchorsFor(setting, M, rng);
+      const lowAnchor = anchors[0] as Anchor;
+      const highAnchor = anchors[1] as Anchor;
 
       const build = buildSchedules({
         rng,
-        graph,
+        setting,
         cast,
-        accessLocation: setting.accessLocation,
+        difficulty,
         murderTick: M,
-        murderLocationId: L,
         ...(diagnostics
           ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
           : {}),
@@ -103,13 +172,22 @@ function run(seed: number, detectiveName: string, diagnostics?: Diagnostics): Ca
       if (!build) continue;
 
       const method: Method = {
-        id: cast.method.id,
-        name: cast.method.name,
-        noise: cast.method.noise,
-        evidenceObjectId: cast.method.evidenceObjectId,
-        bodyEvidence: cast.method.bodyEvidence,
-        accessRequirement: { location: setting.accessLocation, beforeTick: M },
+        id: setting.method.id,
+        name: setting.method.name,
+        noise: setting.method.noise,
+        evidenceObjectId: setting.method.evidenceObjectId,
+        bodyEvidence: setting.method.bodyEvidence,
+        accessRequirement: { place: build.accessPlaceId, beforeTick: M },
       };
+
+      const placeIds = setting.places.map((p) => p.id);
+      assignFoundAt(
+        rng,
+        cast.people,
+        build,
+        placeIds,
+        setting.places.find((p) => p.isResidence)?.id,
+      );
 
       const people: Person[] = cast.people.map((p) => {
         const clone: Person = {
@@ -119,11 +197,16 @@ function run(seed: number, detectiveName: string, diagnostics?: Diagnostics): Ca
           kind: p.kind,
           isKiller: p.isKiller,
         };
+        if (p.archetypeId !== undefined) clone.archetypeId = p.archetypeId;
+        if (p.relationshipId !== undefined) clone.relationshipId = p.relationshipId;
         if (p.relationshipToVictim !== undefined) clone.relationshipToVictim = p.relationshipToVictim;
+        if (p.fixtureRole !== undefined) clone.fixtureRole = p.fixtureRole;
         const secret = build.secrets[p.id];
         if (secret) clone.secret = secret;
         if (p.id === cast.killer.id && build.coverSecret) clone.coverSecret = build.coverSecret;
         if (p.motive) clone.motive = { type: p.motive.type, description: p.motive.description };
+        if (p.foundAt !== undefined) clone.foundAt = p.foundAt;
+        if (p.isClient) clone.isClient = true;
         return clone;
       });
 
@@ -135,40 +218,73 @@ function run(seed: number, detectiveName: string, diagnostics?: Diagnostics): Ca
         lies: (build.lies[p.id] as Tick[]).slice(),
       }));
 
-      const observations = deriveObservations(cast, graph, build);
-      const morgueRange = chooseMorgueRange({ rng, cast, graph, build, method, environment });
-      const clues = deriveClues({
+      const observations = deriveObservations(cast, build);
+
+      const offset = rng.range(0, 3);
+      let lo = M - offset;
+      if (lo < 0) lo = 0;
+      if (lo + 3 > TICKS - 1) lo = TICKS - 4;
+      const coronerWindow: [Tick, Tick] = [lo, lo + 3];
+
+      const candidates = deriveCandidates({
         rng,
         cast,
-        graph,
+        setting,
         build,
         method,
-        methodEvidenceNote: cast.method.evidenceNote,
-        environment,
+        methodEvidenceNote: setting.method.evidenceNote,
+        sceneTrace: setting.method.sceneTrace,
+        soundNote: setting.method.soundNote,
         objects: setting.objects,
         observations,
-        morgueRange,
+        anchors,
+        lowAnchor,
+        highAnchor,
+        coronerWindow,
       });
+
+      const selection = selectFindable({
+        rng,
+        cast,
+        build,
+        candidates,
+        difficulty,
+        places: placeIds,
+        sceneId: build.murderPlaceId,
+        budget,
+        ...(diagnostics
+          ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
+          : {}),
+      });
+      if (!selection) continue;
 
       const underTest: CaseUnderTest = {
         seed,
         attempts,
+        difficulty,
         detectiveName,
-        hotelName: setting.hotelName,
-        locations: setting.locations,
+        neighborhood: setting.neighborhood,
+        places: setting.places,
         objects: setting.objects,
         people,
         method,
-        environment,
+        anchors,
+        nearScene: setting.nearScene,
         schedules,
         observations,
-        clues,
+        candidates: candidates.clues,
+        findable: selection.findable,
+        starting: selection.starting,
+        clientId: cast.client.id,
+        par: selection.par,
+        budget,
+        coronerWindow,
         solution: {
           killerId: cast.killer.id,
           methodId: method.id,
           motiveType: cast.killerMotive.type,
           murderTick: M,
-          murderLocationId: L,
+          murderPlaceId: build.murderPlaceId,
         },
       };
 

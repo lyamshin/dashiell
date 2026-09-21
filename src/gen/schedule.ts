@@ -1,148 +1,12 @@
-import { TICKS, clock, type Id, type Secret, type Tick } from './types.js';
-import type { MapGraph } from './graph.js';
+import { TICKS, clock, type Difficulty, type Id, type Person, type Secret, type Tick } from './types.js';
 import type { Rng } from './rng.js';
 import type { Cast } from './cast.js';
+import type { Setting } from './setting.js';
 import type { SecretTemplate } from './data/secrets.js';
-import { LOC } from './data/locations.js';
-
-/* ------------------------------------------------------------------ walking */
-
-function pickWithDwell(rng: Rng, cands: Id[], cur: Id): Id {
-  if (cands.includes(cur) && rng.chance(0.5)) return cur;
-  return rng.pick(cands);
-}
-
-type Allowed = (loc: Id, tick: Tick) => boolean;
-
-function pickNext(rng: Rng, graph: MapGraph, cur: Id, tick: Tick, allowed: Allowed): Id | null {
-  const cands = graph.movesInto(cur, tick).filter((l) => allowed(l, tick));
-  if (cands.length === 0) return null;
-  return pickWithDwell(rng, cands, cur);
-}
-
-/**
- * Locations for ticks t1+1 .. t2 inclusive, starting from `loc1` at t1 and
- * landing on `loc2` at t2. Randomised depth-first with a distance prune and a
- * failure memo; the graph is eight nodes wide and twelve ticks deep, so this is
- * cheap and always finds a path when one exists.
- */
-function walkBetween(
-  rng: Rng,
-  graph: MapGraph,
-  loc1: Id,
-  t1: Tick,
-  loc2: Id,
-  t2: Tick,
-  allowed: Allowed,
-): Id[] | null {
-  const failed = new Set<string>();
-  const path: Id[] = [];
-
-  const rec = (t: Tick, cur: Id): boolean => {
-    if (t === t2) return cur === loc2;
-    if (graph.dist(cur, loc2) > t2 - t) return false;
-    const key = `${t}|${cur}`;
-    if (failed.has(key)) return false;
-    const raw = graph.movesInto(cur, t + 1);
-    const cands = rng.shuffle(raw);
-    if (raw.includes(cur) && rng.chance(0.5)) {
-      const i = cands.indexOf(cur);
-      cands.splice(i, 1);
-      cands.unshift(cur);
-    }
-    for (const c of cands) {
-      if (t + 1 === t2) {
-        if (c !== loc2) continue;
-      } else if (!allowed(c, t + 1)) {
-        continue;
-      }
-      path.push(c);
-      if (rec(t + 1, c)) return true;
-      path.pop();
-    }
-    failed.add(key);
-    return false;
-  };
-
-  if (!rec(t1, loc1)) return null;
-  return path;
-}
-
-export function fillSchedule(
-  rng: Rng,
-  graph: MapGraph,
-  fixed: Record<number, Id>,
-  endTick: Tick,
-  allowed: Allowed,
-): (Id | null)[] | null {
-  const out: (Id | null)[] = new Array(TICKS).fill(null);
-  const fixedTicks = Object.keys(fixed)
-    .map(Number)
-    .filter((t) => t <= endTick)
-    .sort((a, b) => a - b);
-  for (const t of fixedTicks) out[t] = fixed[t] as Id;
-
-  if (fixedTicks.length === 0) {
-    const starts = graph.ids.filter((id) => allowed(id, 0));
-    if (starts.length === 0) return null;
-    out[0] = rng.pick(starts);
-    for (let t = 1; t <= endTick; t++) {
-      const c = pickNext(rng, graph, out[t - 1] as Id, t, allowed);
-      if (c === null) return null;
-      out[t] = c;
-    }
-    return out;
-  }
-
-  const first = fixedTicks[0] as number;
-  for (let t = first - 1; t >= 0; t--) {
-    const cur = out[t + 1] as Id;
-    const cands = graph.movesInto(cur, t + 1).filter((l) => allowed(l, t));
-    if (cands.length === 0) return null;
-    out[t] = pickWithDwell(rng, cands, cur);
-  }
-
-  for (let i = 0; i < fixedTicks.length - 1; i++) {
-    const t1 = fixedTicks[i] as number;
-    const t2 = fixedTicks[i + 1] as number;
-    if (t2 === t1 + 1) {
-      if (!graph.movesInto(out[t1] as Id, t2).includes(out[t2] as Id)) return null;
-      continue;
-    }
-    const seg = walkBetween(rng, graph, out[t1] as Id, t1, out[t2] as Id, t2, allowed);
-    if (seg === null) return null;
-    for (let k = 0; k < seg.length - 1; k++) out[t1 + 1 + k] = seg[k] as Id;
-  }
-
-  const last = fixedTicks[fixedTicks.length - 1] as number;
-  for (let t = last + 1; t <= endTick; t++) {
-    const c = pickNext(rng, graph, out[t - 1] as Id, t, allowed);
-    if (c === null) return null;
-    out[t] = c;
-  }
-  return out;
-}
-
-/** Can `loc` be slotted in at `tick` without stranding the neighbouring fixed cells? */
-function feasibleInsert(graph: MapGraph, fixed: Record<number, Id>, tick: Tick, loc: Id): boolean {
-  if (fixed[tick] !== undefined) return false;
-  const ticks = Object.keys(fixed).map(Number);
-  let prev = -1;
-  let next = TICKS;
-  for (const t of ticks) {
-    if (t < tick && t > prev) prev = t;
-    if (t > tick && t < next) next = t;
-  }
-  if (prev >= 0 && graph.dist(fixed[prev] as Id, loc) > tick - prev) return false;
-  if (next < TICKS && graph.dist(loc, fixed[next] as Id) > next - tick) return false;
-  return true;
-}
-
-/* ------------------------------------------------------------------- output */
 
 export interface ScheduleBuild {
   murderTick: Tick;
-  murderLocationId: Id;
+  murderPlaceId: Id;
   blockStart: Tick;
   /** suspect id -> secret. The killer's is the murder. */
   secrets: Record<Id, Secret>;
@@ -152,22 +16,22 @@ export interface ScheduleBuild {
   companions: Record<Id, (Id | null)[]>;
   lies: Record<Id, Tick[]>;
   killerClaimAtM: Id;
-  accessLocation: Id;
+  accessPlaceId: Id;
   killerAccessTick: Tick;
   innocentAccess: { personId: Id; tick: Tick };
   /** Innocents whose secret sits on the murder tick. */
   mLiars: Id[];
+  /** Where the victim was seen alive, at M − 1. */
   victimSeenAt: Tick;
+  victimSeenPlace: Id;
 }
 
 export interface ScheduleContext {
   rng: Rng;
-  graph: MapGraph;
+  setting: Setting;
   cast: Cast;
-  accessLocation: Id;
+  difficulty: Difficulty;
   murderTick: Tick;
-  murderLocationId: Id;
-  /** Optional sink for the reason an attempt was abandoned. */
   reject?: (reason: string) => void;
 }
 
@@ -182,427 +46,508 @@ export function describeSecret(
   template: SecretTemplate,
   personName: string,
   partnerName: string | null,
-  locationName: string,
+  placeName: string,
   ticks: Tick[],
 ): string {
   return template.description
-    .replace('{P}', personName)
-    .replace('{Q}', partnerName ?? 'someone')
-    .replace('{L}', locationName)
-    .replace('{T}', ticks.length > 0 ? tickRange(ticks) : 'no particular time');
+    .split('{P}').join(personName)
+    .split('{Q}').join(partnerName ?? 'someone')
+    .split('{L}').join(placeName)
+    .split('{T}').join(ticks.length > 0 ? tickRange(ticks) : 'no particular time');
 }
 
 /* ------------------------------------------------------------- the builder */
 
 export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
-  const { rng, graph, cast, accessLocation } = ctx;
+  const { rng, setting, cast } = ctx;
   const M = ctx.murderTick;
-  const L = ctx.murderLocationId;
+  const L = setting.murderPlaceId;
   const fail = (reason: string): null => {
     ctx.reject?.(reason);
     return null;
   };
 
+  const placeIds = setting.places.map((p) => p.id);
+  const nonScene = placeIds.filter((p) => p !== L);
+  const templateOf = (id: Id) => setting.templates[id];
+  const watchedIds = setting.places.filter((p) => p.watcher !== undefined).map((p) => p.id);
+
   const blockStart = Math.max(1, M - rng.int(3));
-  const murderCells: Tick[] = [];
-  for (let t = blockStart; t <= M; t++) murderCells.push(t);
 
-  /* --- fixtures ------------------------------------------------------- */
-  const fixtureSchedule = (post: Id, rawAway: Id[]): (Id | null)[] => {
-    // A fixture must never step into the murder room: at the murder tick it
-    // would break "the killer and the victim, alone", and afterwards it would
-    // find the body and end the evening early.
-    const away = rawAway.filter((l) => l !== L);
-    const arr: (Id | null)[] = new Array(TICKS).fill(post);
-    const excursions = rng.range(1, 2);
-    for (let i = 0; i < excursions; i++) {
-      const t = rng.range(1, TICKS - 2);
-      if (t === M || t === M - 1) continue;
-      // One tick away and straight back, so the step either side of the
-      // excursion is still a legal move. Two excursions on adjacent ticks
-      // would otherwise let a fixture cross the hotel in one step.
-      if (arr[t - 1] !== post || arr[t + 1] !== post) continue;
-      if (away.length === 0) break;
-      const dest = rng.pick(away);
-      if (graph.adjacentOrSame(post, dest)) arr[t] = dest;
-    }
-    return arr;
-  };
+  /* --- fixtures stand where they are posted ---------------------------- */
   const truth: Record<Id, (Id | null)[]> = {};
-  truth[cast.doorman.id] = fixtureSchedule(LOC.lobby, [LOC.street, LOC.frontDesk]);
-  truth[cast.bartender.id] = fixtureSchedule(LOC.bar, [LOC.kitchen, LOC.lobby]);
-
-  const fixtureIds = [cast.doorman.id, cast.bartender.id];
-
-  /* --- where the victim is last seen alive ---------------------------- */
-  const witnessCandidates = [LOC.lobby, LOC.bar].filter(
-    (w) => w !== L && graph.movesInto(w, M).includes(L),
-  );
-  if (witnessCandidates.length === 0) {
-    return fail('no witnessed room leads to the scene at the murder tick');
+  const excursionUsed = new Set<Id>();
+  for (const f of cast.fixtures) {
+    if (f.id === cast.beatCop?.id) {
+      const line: (Id | null)[] = new Array(TICKS).fill(null);
+      const route = setting.beatCopRoute;
+      let i = 0;
+      for (let t = setting.beatCopPhase; t < TICKS; t += 3) {
+        line[t] = route[i % route.length] as Id;
+        i++;
+      }
+      truth[f.id] = line;
+    } else {
+      truth[f.id] = new Array(TICKS).fill(f.foundAt as Id);
+    }
   }
-  const victimSeenLoc = rng.pick(witnessCandidates);
-  const victimSeenAt = M - 1;
 
-  const victimFixed: Record<number, Id> = { [M]: L, [victimSeenAt]: victimSeenLoc };
-
-  /* --- secret cells ---------------------------------------------------- */
-  const reserved = new Set<string>();
-  for (const t of murderCells) reserved.add(`${t}|${L}`);
-
-  const secrets: Record<Id, Secret> = {};
-  const secretCellsByPerson: Record<Id, Tick[]> = {};
+  /* --- fixed cells ------------------------------------------------------ */
   const fixedByPerson: Record<Id, Record<number, Id>> = {};
   for (const p of cast.suspects) fixedByPerson[p.id] = {};
+  const victimFixed: Record<number, Id> = {};
 
-  const allocate = (
-    template: SecretTemplate,
-    locations: Id[],
-    mustIncludeM: boolean,
-    minTick: Tick,
-    maxTick: Tick,
-  ): { location: Id; ticks: Tick[] } | null => {
-    const len = rng.range(template.minTicks, template.maxTicks);
-    for (let attempt = 0; attempt < 60; attempt++) {
-      const location = rng.pick(locations);
-      if (location === L) continue;
-      let start: Tick;
-      if (mustIncludeM) start = M - rng.int(len);
-      else start = rng.range(minTick, maxTick);
-      const ticks: Tick[] = [];
-      for (let k = 0; k < len; k++) ticks.push(start + k);
-      if (ticks.some((t) => t < minTick || t > maxTick)) continue;
-      if (!mustIncludeM && ticks.includes(M)) continue;
-      const isPrivate = !graph.loc(location).isPublic;
-      if (isPrivate && ticks.some((t) => reserved.has(`${t}|${location}`))) continue;
-      if (isPrivate) for (const t of ticks) reserved.add(`${t}|${location}`);
-      return { location, ticks };
+  const victimSeenPlace = setting.low.placeId as Id;
+  const victimSeenAt = M - 1;
+  victimFixed[victimSeenAt] = victimSeenPlace;
+  victimFixed[M] = L;
+
+  const killerFixed = fixedByPerson[cast.killer.id] as Record<number, Id>;
+  for (let t = blockStart; t <= M; t++) killerFixed[t] = L;
+  if (M + 1 <= TICKS - 1) killerFixed[M + 1] = rng.pick(nonScene);
+
+  /* --- secrets ---------------------------------------------------------- */
+  const secrets: Record<Id, Secret> = {};
+  const secretCells: Record<Id, Tick[]> = {};
+  // One block per secret, not per run of consecutive ticks: a killer whose
+  // cover secret happens to abut the murder block must tell two separate lies
+  // about two separate rooms, not one lie spanning both.
+  const lieBlocks: Record<Id, Tick[][]> = {};
+  const liarPlaces: Id[] = [];
+
+  const placesHosting = (type: string, watchedOnly: boolean): Id[] =>
+    placeIds.filter((id) => {
+      if (id === L) return false;
+      const t = templateOf(id);
+      if (!t || !t.secretsHosted.includes(type)) return false;
+      if (watchedOnly && t.watcher === undefined) return false;
+      return true;
+    });
+
+  /** A run of `len` ticks inside [min, max], optionally covering M. */
+  const window = (len: number, coversM: boolean, min: Tick, max: Tick): Tick[] | null => {
+    const starts: Tick[] = [];
+    for (let s = min; s + len - 1 <= max; s++) {
+      const run: Tick[] = [];
+      for (let k = 0; k < len; k++) run.push(s + k);
+      if (coversM && !run.includes(M)) continue;
+      if (!coversM && run.includes(M)) continue;
+      starts.push(s);
     }
-    return null;
+    if (starts.length === 0) return null;
+    const s = rng.pick(starts);
+    return Array.from({ length: len }, (_, k) => s + k);
   };
 
-  // Pick the innocents who will lie about the murder tick.
-  const witnessable = cast.innocents.filter((p) => {
-    const t = cast.innocentSecrets[p.id] as SecretTemplate;
-    return t.witnessLocations.some((w) => w !== L);
-  });
-  if (witnessable.length < 2) {
-    return fail('fewer than two innocents could hide a secret at the murder tick');
-  }
-  const wantLiars = Math.min(witnessable.length, rng.range(2, 3));
-  const mLiars = rng.shuffle(witnessable).slice(0, wantLiars);
-  const mLiarIds = mLiars.map((p) => p.id);
-
-  const handled = new Set<Id>();
-
-  for (const person of cast.innocents) {
-    if (handled.has(person.id)) continue;
-    const template = cast.innocentSecrets[person.id] as SecretTemplate;
-
+  const assign = (person: Person, template: SecretTemplate, isLiar: boolean): boolean => {
     if (template.type === 'forged-identity') {
-      secrets[person.id] = { type: template.type, description: '', cells: [] };
-      secretCellsByPerson[person.id] = [];
-      handled.add(person.id);
-      continue;
+      secrets[person.id] = { type: template.type, label: template.label, description: '', cells: [] };
+      secretCells[person.id] = [];
+      lieBlocks[person.id] = [];
+      return true;
     }
+    const pool = placesHosting(template.type, isLiar);
+    if (pool.length === 0) return false;
+    // Two liars in the same room at the murder tick is cheap company: it means
+    // one posted watcher covers both of them.
+    const preferred = isLiar ? pool.filter((p) => liarPlaces.includes(p)) : [];
+    const place = rng.pick(preferred.length > 0 && rng.chance(0.7) ? preferred : pool);
+    const len = rng.range(template.minTicks, template.maxTicks);
+    const maxTick = template.partner === 'victim' ? M - 2 : TICKS - 1;
+    if (maxTick < 0) return false;
+    const ticks = window(len, isLiar, 0, maxTick);
+    if (!ticks) return false;
 
+    const secret: Secret = {
+      type: template.type,
+      label: template.label,
+      description: '',
+      cells: ticks.map((t) => ({ tick: t, place })),
+    };
+    if (template.partner === 'victim') {
+      secret.partnerId = cast.victim.id;
+      for (const t of ticks) {
+        if (victimFixed[t] !== undefined && victimFixed[t] !== place) return false;
+        victimFixed[t] = place;
+      }
+    }
+    secrets[person.id] = secret;
+    secretCells[person.id] = ticks;
+    lieBlocks[person.id] = [ticks.slice()];
+    const fixed = fixedByPerson[person.id] as Record<number, Id>;
+    for (const t of ticks) fixed[t] = place;
+    if (isLiar) liarPlaces.push(place);
+    return true;
+  };
+
+  // Liars first, so that later secrets can be steered into their rooms.
+  const liars = cast.innocents.filter((p) => cast.mLiarIds.includes(p.id));
+  for (const p of liars) {
+    if (!assign(p, cast.innocentSecrets[p.id] as SecretTemplate, true)) {
+      return fail(`no room for ${cast.innocentSecrets[p.id]?.type} on the murder tick`);
+    }
+  }
+
+  const handled = new Set<Id>(liars.map((p) => p.id));
+  for (const p of cast.innocents) {
+    if (handled.has(p.id)) continue;
+    const template = cast.innocentSecrets[p.id] as SecretTemplate;
     if (template.type === 'affair') {
       const partner = cast.innocents.find(
         (o) =>
-          o.id !== person.id &&
+          o.id !== p.id &&
           !handled.has(o.id) &&
           (cast.innocentSecrets[o.id] as SecretTemplate).type === 'affair',
       );
       if (!partner) return fail('an affair with nobody to have it with');
-      const alloc = allocate(template, template.locations, false, 0, TICKS - 1);
-      if (!alloc) return fail('no free window for the affair');
-      for (const [who, other] of [
-        [person, partner],
-        [partner, person],
-      ] as const) {
-        secrets[who.id] = {
-          type: template.type,
-          description: '',
-          cells: alloc.ticks.map((t) => ({ tick: t, location: alloc.location })),
-          partnerId: other.id,
-        };
-        secretCellsByPerson[who.id] = alloc.ticks;
-        for (const t of alloc.ticks) (fixedByPerson[who.id] as Record<number, Id>)[t] = alloc.location;
-        handled.add(who.id);
-      }
+      if (!assign(p, template, false)) return fail('no free window for the affair');
+      const mine = secrets[p.id] as Secret;
+      const cells = mine.cells.map((c) => ({ tick: c.tick, place: c.place }));
+      secrets[partner.id] = {
+        type: template.type,
+        label: template.label,
+        description: '',
+        cells,
+        partnerId: p.id,
+      };
+      mine.partnerId = partner.id;
+      secretCells[partner.id] = cells.map((c) => c.tick);
+      lieBlocks[partner.id] = [cells.map((c) => c.tick)];
+      const fixed = fixedByPerson[partner.id] as Record<number, Id>;
+      for (const c of cells) fixed[c.tick] = c.place;
+      handled.add(p.id);
+      handled.add(partner.id);
       continue;
     }
-
-    const isLiar = mLiarIds.includes(person.id);
-    const locations = isLiar
-      ? template.witnessLocations.filter((w) => w !== L)
-      : template.locations.filter((w) => w !== L);
-    if (locations.length === 0) {
-      return fail(`${template.type} has nowhere to happen away from the scene`);
-    }
-
-    // Blackmail drags the victim along, so it has to finish before the victim
-    // goes downstairs to be seen alive for the last time.
-    const maxTick = template.partner === 'victim' ? M - 2 : TICKS - 1;
-    if (maxTick < 0) return fail('the blackmail cannot finish before the murder');
-    const alloc = allocate(template, locations, isLiar, 0, maxTick);
-    if (!alloc) return fail(`no free window for the ${template.type} secret`);
-
-    const secret: Secret = {
-      type: template.type,
-      description: '',
-      cells: alloc.ticks.map((t) => ({ tick: t, location: alloc.location })),
-    };
-    if (template.partner === 'victim') {
-      secret.partnerId = cast.victim.id;
-      for (const t of alloc.ticks) victimFixed[t] = alloc.location;
-    }
-    secrets[person.id] = secret;
-    secretCellsByPerson[person.id] = alloc.ticks;
-    for (const t of alloc.ticks) (fixedByPerson[person.id] as Record<number, Id>)[t] = alloc.location;
-    handled.add(person.id);
+    if (!assign(p, template, false)) return fail(`no free window for the ${template.type} secret`);
+    handled.add(p.id);
   }
 
-  /* --- the killer ------------------------------------------------------ */
+  /* --- the murder itself ------------------------------------------------ */
+  const murderCells: Tick[] = [];
+  for (let t = blockStart; t <= M; t++) murderCells.push(t);
   const murderSecret: Secret = {
     type: 'murder',
+    label: 'Murder',
     description: '',
-    cells: murderCells.map((t) => ({ tick: t, location: L })),
+    cells: murderCells.map((t) => ({ tick: t, place: L })),
     partnerId: cast.victim.id,
   };
   secrets[cast.killer.id] = murderSecret;
-  secretCellsByPerson[cast.killer.id] = murderCells.slice();
-  for (const t of murderCells) (fixedByPerson[cast.killer.id] as Record<number, Id>)[t] = L;
+  secretCells[cast.killer.id] = murderCells.slice();
+  lieBlocks[cast.killer.id] = [murderCells.slice()];
 
-  // The killer leaves the scene on the next tick. Without this they wander off
-  // at their leisure and, because their lies stop at the murder tick, they
-  // cheerfully tell the detective they were standing in the room with the body
-  // half an hour after it became a body.
-  if (M + 1 <= TICKS - 1) {
-    const exits = graph
-      .movesInto(L, M + 1)
-      .filter((loc) => loc !== L && loc !== LOC.suite);
-    if (exits.length === 0) return fail('the killer has no way out of the scene');
-    (fixedByPerson[cast.killer.id] as Record<number, Id>)[M + 1] = rng.pick(exits);
+  let coverSecret: Secret | undefined;
+  if (cast.killerCoverSecret) {
+    const t = cast.killerCoverSecret;
+    if (t.type === 'forged-identity') {
+      coverSecret = { type: t.type, label: t.label, description: '', cells: [] };
+    } else {
+      const pool = placesHosting(t.type, false);
+      const len = rng.range(t.minTicks, t.maxTicks);
+      const ticks = pool.length > 0 ? window(len, false, 0, blockStart - 1) : null;
+      if (ticks && ticks.every((tk) => killerFixed[tk] === undefined)) {
+        const place = rng.pick(pool);
+        coverSecret = {
+          type: t.type,
+          label: t.label,
+          description: '',
+          cells: ticks.map((tk) => ({ tick: tk, place })),
+        };
+        for (const tk of ticks) killerFixed[tk] = place;
+        (secretCells[cast.killer.id] as Tick[]).push(...ticks);
+        (lieBlocks[cast.killer.id] as Tick[][]).push(ticks.slice());
+      }
+    }
   }
 
-  // Access requirement: the killer had to be where the weapon lived, and be
-  // seen there, before the murder.
-  const killerFixed = fixedByPerson[cast.killer.id] as Record<number, Id>;
-  const accessTicks = rng.shuffle(
-    Array.from({ length: blockStart }, (_, i) => i).filter((t) => t < blockStart),
-  );
+  /* --- where everyone stands at the murder tick ------------------------- */
+  const liarIds = cast.mLiarIds;
+  const freeInnocents = cast.innocents.filter((p) => !liarIds.includes(p.id));
+  const fixturePostAtM: Record<Id, Id | null> = {};
+  for (const f of cast.fixtures) fixturePostAtM[f.id] = (truth[f.id] as (Id | null)[])[M] ?? null;
+
+  interface Arrangement {
+    innocentPlace: Record<Id, Id>;
+    excursions: { fixtureId: Id; place: Id }[];
+    claim: Id;
+  }
+
+  const arrange = (): Arrangement | null => {
+    const hubs = rng.shuffle(
+      liarPlaces.length > 0 ? Array.from(new Set(liarPlaces)) : watchedIds.filter((p) => p !== L),
+    );
+    const spareFixtures = cast.fixtures.filter(
+      (f) => f.id !== cast.beatCop?.id && !excursionUsed.has(f.id),
+    );
+
+    for (let attempt = 0; attempt < 200; attempt++) {
+      const innocentPlace: Record<Id, Id> = {};
+      for (const p of liars) innocentPlace[p.id] = (fixedByPerson[p.id] as Record<number, Id>)[M] as Id;
+
+      const hub = hubs.length > 0 ? (hubs[attempt % hubs.length] as Id) : rng.pick(nonScene);
+      if (freeInnocents.length < 2 || rng.chance(0.8)) {
+        for (const p of freeInnocents) innocentPlace[p.id] = hub;
+      } else {
+        const pool = rng.shuffle(watchedIds.filter((p) => p !== L && p !== hub));
+        const target = (pool[0] ?? hub) as Id;
+        const half = Math.ceil(freeInnocents.length / 2);
+        freeInnocents.forEach((p, i) => {
+          innocentPlace[p.id] = i < half ? hub : target;
+        });
+      }
+
+      // Who is standing where, before any excursion.
+      const truthfulAt = new Map<Id, number>();
+      const bump = (place: Id | null, truthful: boolean): void => {
+        if (!place) return;
+        if (truthful) truthfulAt.set(place, (truthfulAt.get(place) ?? 0) + 1);
+      };
+      for (const f of cast.fixtures) bump(fixturePostAtM[f.id] ?? null, true);
+      for (const p of cast.innocents) bump(innocentPlace[p.id] as Id, !liarIds.includes(p.id));
+
+      // Only the rooms with an innocent standing in them have to be covered.
+      // The watcher of such a room is the one witness we cannot spare, so he
+      // stays where he is; everybody else's one excursion of the night is
+      // available to make up the numbers.
+      const excursions: { fixtureId: Id; place: Id }[] = [];
+      const inhabited = new Map<Id, Id[]>();
+      for (const p of cast.innocents) {
+        const place = innocentPlace[p.id] as Id;
+        const list = inhabited.get(place) ?? [];
+        list.push(p.id);
+        inhabited.set(place, list);
+      }
+      const busy = new Set<Id>(inhabited.keys());
+      let ok = true;
+      const need = (place: Id): number =>
+        (inhabited.get(place) ?? []).some((id) => !liarIds.includes(id)) ? 3 : 2;
+      for (const place of Array.from(inhabited.keys())) {
+        let have = truthfulAt.get(place) ?? 0;
+        const want = need(place);
+        while (have < want) {
+          const free = spareFixtures.filter(
+            (f) =>
+              !excursions.some((e) => e.fixtureId === f.id) &&
+              !busy.has(fixturePostAtM[f.id] as Id) &&
+              fixturePostAtM[f.id] !== place,
+          );
+          if (free.length === 0) {
+            ok = false;
+            break;
+          }
+          const f = rng.pick(free);
+          excursions.push({ fixtureId: f.id, place });
+          have++;
+          truthfulAt.set(place, have);
+          const fromPlace = fixturePostAtM[f.id];
+          if (fromPlace) truthfulAt.set(fromPlace, (truthfulAt.get(fromPlace) ?? 1) - 1);
+        }
+        if (!ok) break;
+      }
+      if (!ok) continue;
+
+      // Re-check every room now that fixtures have moved.
+      const finalPlaceOf = (id: Id): Id | null => {
+        const e = excursions.find((x) => x.fixtureId === id);
+        if (e) return e.place;
+        return fixturePostAtM[id] ?? innocentPlace[id] ?? null;
+      };
+      const truthfulPeople = [
+        ...cast.fixtures.map((f) => f.id),
+        ...freeInnocents.map((p) => p.id),
+      ];
+      const truthfulHere = (place: Id, except: Id): number =>
+        truthfulPeople.filter((id) => id !== except && finalPlaceOf(id) === place).length;
+
+      let cleared = true;
+      for (const p of cast.innocents) {
+        const place = innocentPlace[p.id] as Id;
+        if (place === L) {
+          cleared = false;
+          break;
+        }
+        if (truthfulHere(place, p.id) < 2) {
+          cleared = false;
+          break;
+        }
+      }
+      if (!cleared) continue;
+
+      const claims = nonScene.filter((c) => truthfulHere(c, cast.killer.id) >= 2);
+      if (claims.length === 0) continue;
+      return { innocentPlace, excursions, claim: rng.pick(claims) };
+    }
+    return null;
+  };
+
+  const arrangement = arrange();
+  if (!arrangement) return fail('no murder-tick arrangement leaves every innocent doubly witnessed');
+
+  for (const p of freeInnocents) {
+    (fixedByPerson[p.id] as Record<number, Id>)[M] = arrangement.innocentPlace[p.id] as Id;
+  }
+  for (const e of arrangement.excursions) {
+    (truth[e.fixtureId] as (Id | null)[])[M] = e.place;
+    excursionUsed.add(e.fixtureId);
+  }
+  const killerClaimAtM = arrangement.claim;
+
+  /* --- the weapon ------------------------------------------------------- */
+  const accessPlaceId = setting.accessPlaceId;
+  const truthfulAtTick = (tick: Tick, place: Id, except: Id): number => {
+    let n = 0;
+    for (const f of cast.fixtures) {
+      if (f.id === except) continue;
+      if ((truth[f.id] as (Id | null)[])[tick] === place) n++;
+    }
+    for (const p of cast.innocents) {
+      if (p.id === except) continue;
+      if ((secretCells[p.id] ?? []).includes(tick)) continue;
+      if ((fixedByPerson[p.id] as Record<number, Id>)[tick] === place) n++;
+    }
+    return n;
+  };
+
+  const freeAt = (p: Person, tick: Tick): boolean =>
+    (fixedByPerson[p.id] as Record<number, Id>)[tick] === undefined &&
+    !(secretCells[p.id] ?? []).includes(tick);
+
   let killerAccessTick = -1;
-  for (const t of accessTicks) {
-    if (!feasibleInsert(graph, killerFixed, t, accessLocation)) continue;
-    const watched = fixtureIds.some((f) => graph.canSee(truth[f]?.[t] as Id, accessLocation));
-    if (!watched) continue;
+  for (const t of rng.shuffle(Array.from({ length: blockStart }, (_, i) => i))) {
+    if (killerFixed[t] !== undefined) continue;
+    const spare = cast.innocents.filter((p) => freeAt(p, t));
+    const witnesses = truthfulAtTick(t, accessPlaceId, cast.killer.id) + spare.length;
+    if (witnesses < 2) continue;
+    killerFixed[t] = accessPlaceId;
+    let have = truthfulAtTick(t, accessPlaceId, cast.killer.id);
+    for (const p of rng.shuffle(spare)) {
+      if (have >= 2) break;
+      (fixedByPerson[p.id] as Record<number, Id>)[t] = accessPlaceId;
+      have++;
+    }
+    if (have < 2) return fail('nobody could see the killer reach the weapon');
     killerAccessTick = t;
     break;
   }
-  if (killerAccessTick < 0) {
-    return fail('the killer could not be seen reaching the weapon before the murder');
-  }
-  killerFixed[killerAccessTick] = accessLocation;
+  if (killerAccessTick < 0) return fail('the killer could not be seen reaching the weapon');
 
-  let coverSecret: Secret | undefined;
-  if (cast.killerCoverSecret && cast.killerCoverSecret.type !== 'forged-identity') {
-    const t = cast.killerCoverSecret;
-    const locations = t.locations.filter((w) => w !== L);
-    if (locations.length > 0) {
-      const alloc = allocate(t, locations, false, 0, TICKS - 1);
-      if (
-        alloc &&
-        !alloc.ticks.some((tk) => killerFixed[tk] !== undefined) &&
-        alloc.ticks.every((tk) => feasibleInsert(graph, killerFixed, tk, alloc.location))
-      ) {
-        coverSecret = {
-          type: t.type,
-          description: '',
-          cells: alloc.ticks.map((tk) => ({ tick: tk, location: alloc.location })),
-        };
-        for (const tk of alloc.ticks) killerFixed[tk] = alloc.location;
-        (secretCellsByPerson[cast.killer.id] as Tick[]).push(...alloc.ticks);
-      }
-    }
-  } else if (cast.killerCoverSecret) {
-    coverSecret = { type: cast.killerCoverSecret.type, description: '', cells: [] };
-  }
-
-  /* --- where everyone stands at the murder tick ------------------------ */
-  const liesAtM = new Set<Id>([cast.killer.id, ...mLiarIds]);
-  const placementPool = [LOC.lobby, LOC.bar, LOC.street, LOC.frontDesk, LOC.kitchen].filter(
-    (l) => l !== L,
-  );
-  const needPlacement = cast.innocents.filter((p) => !mLiarIds.includes(p.id));
-
-  let killerClaimAtM: Id | null = null;
-  let placed = false;
-  for (let attempt = 0; attempt < 200 && !placed; attempt++) {
-    const trial: Record<Id, Id> = {};
-    for (const p of needPlacement) {
-      const pool = rng.chance(0.6) ? [LOC.lobby, LOC.bar].filter((l) => l !== L) : placementPool;
-      trial[p.id] = rng.pick(pool.length > 0 ? pool : placementPool);
-    }
-
-    const whereAtM = (id: Id): Id | null => {
-      if (id === cast.killer.id || id === cast.victim.id) return L;
-      if (fixtureIds.includes(id)) return (truth[id]?.[M] ?? null) as Id | null;
-      const fixedLoc = (fixedByPerson[id] as Record<number, Id>)[M];
-      if (fixedLoc !== undefined) return fixedLoc;
-      return trial[id] ?? null;
-    };
-
-    const seenBy = (target: Id, subjectId: Id): number => {
-      let n = 0;
-      for (const q of cast.people) {
-        if (q.id === subjectId || q.id === cast.victim.id) continue;
-        if (liesAtM.has(q.id)) continue;
-        const qLoc = whereAtM(q.id);
-        if (qLoc && graph.canSee(qLoc, target)) n++;
-      }
-      return n;
-    };
-
-    let ok = true;
-    for (const p of cast.innocents) {
-      const loc = whereAtM(p.id);
-      if (!loc || loc === L) {
-        ok = false;
-        break;
-      }
-      if (seenBy(loc, p.id) < 2) {
-        ok = false;
-        break;
-      }
-    }
-    if (!ok) continue;
-
-    const claimCandidates = graph.ids.filter(
-      (c) => graph.loc(c).isPublic && c !== L && seenBy(c, cast.killer.id) >= 2,
-    );
-    if (claimCandidates.length === 0) continue;
-
-    for (const p of needPlacement) {
-      (fixedByPerson[p.id] as Record<number, Id>)[M] = trial[p.id] as Id;
-    }
-    killerClaimAtM = rng.pick(claimCandidates);
-    placed = true;
-  }
-  if (!placed || killerClaimAtM === null) {
-    return fail('no murder-tick arrangement leaves every innocent doubly witnessed');
-  }
-
-  /* --- somebody else could have reached the weapon too ----------------- */
   let innocentAccess: { personId: Id; tick: Tick } | null = null;
-  for (const person of rng.shuffle(cast.innocents)) {
-    const fixed = fixedByPerson[person.id] as Record<number, Id>;
+  for (const p of rng.shuffle(cast.innocents)) {
     for (const t of rng.shuffle(Array.from({ length: M }, (_, i) => i))) {
-      if (secretCellsByPerson[person.id]?.includes(t)) continue;
-      if (!feasibleInsert(graph, fixed, t, accessLocation)) continue;
-      const watched = fixtureIds.some((f) => graph.canSee(truth[f]?.[t] as Id, accessLocation));
-      if (!watched) continue;
-      fixed[t] = accessLocation;
-      innocentAccess = { personId: person.id, tick: t };
+      if (!freeAt(p, t)) continue;
+      if (truthfulAtTick(t, accessPlaceId, p.id) < 1) continue;
+      (fixedByPerson[p.id] as Record<number, Id>)[t] = accessPlaceId;
+      innocentAccess = { personId: p.id, tick: t };
       break;
     }
     if (innocentAccess) break;
   }
-  if (!innocentAccess) {
-    return fail('nobody but the killer could have reached the weapon');
-  }
+  if (!innocentAccess) return fail('nobody but the killer could have reached the weapon');
 
-  /* --- fill in the rest of everyone's evening -------------------------- */
-  const allowedFor = (personId: Id): Allowed => {
+  /* --- fill in the rest of the evening ---------------------------------- */
+  const allowedPlace = (personId: Id, tick: Tick): Id[] => {
     const isKiller = personId === cast.killer.id;
     const isVictim = personId === cast.victim.id;
-    return (loc, tick) => {
-      if (loc === LOC.suite) return false;
-      if (loc === L && tick >= blockStart && !isKiller && !isVictim) return false;
-      // Nobody revisits the scene once the murder has happened, the killer
-      // least of all.
-      if (loc === L && tick > M) return false;
+    return placeIds.filter((p) => {
+      if (p !== L) return true;
+      if (tick > M) return false;
+      if (tick >= blockStart) return isKiller || isVictim;
       return true;
-    };
+    });
   };
 
-  const victimTruth = fillSchedule(rng, graph, victimFixed, M, allowedFor(cast.victim.id));
-  if (!victimTruth) return fail("the victim's evening does not join up");
-  for (let t = M + 1; t < TICKS; t++) victimTruth[t] = null;
-  truth[cast.victim.id] = victimTruth;
+  // People drift towards the places people drift towards. Without this
+  // weighting a third of the cast spends the evening standing in the victim's
+  // parlour, which reads like a bug rather than an evening.
+  const weighted = (pool: Id[], personId: Id): Id[] => {
+    const out: Id[] = [];
+    for (const id of pool) {
+      const kind = setting.places.find((p) => p.id === id)?.kind ?? 'public';
+      const isHome = id === setting.places.find((p) => p.isResidence)?.id;
+      let weight = kind === 'private' ? 1 : kind === 'semi' ? 3 : 3;
+      if (isHome && personId !== cast.victim.id) weight = 1;
+      for (let i = 0; i < weight; i++) out.push(id);
+    }
+    return out;
+  };
 
-  for (const person of cast.suspects) {
-    const arr = fillSchedule(
-      rng,
-      graph,
-      fixedByPerson[person.id] as Record<number, Id>,
-      TICKS - 1,
-      allowedFor(person.id),
-    );
-    if (!arr) return fail("a suspect's evening does not join up");
-    truth[person.id] = arr;
+  const fill = (personId: Id, fixed: Record<number, Id>, endTick: Tick): (Id | null)[] => {
+    const line: (Id | null)[] = new Array(TICKS).fill(null);
+    let last: Id | null = null;
+    for (let t = 0; t <= endTick; t++) {
+      const f = fixed[t];
+      if (f !== undefined) {
+        line[t] = f;
+        last = f;
+        continue;
+      }
+      const pool = allowedPlace(personId, t);
+      if (last !== null && pool.includes(last) && rng.chance(0.55)) {
+        line[t] = last;
+      } else {
+        line[t] = rng.pick(weighted(pool, personId));
+        last = line[t] as Id;
+      }
+    }
+    return line;
+  };
+
+  truth[cast.victim.id] = fill(cast.victim.id, victimFixed, M);
+  for (const p of cast.suspects) {
+    truth[p.id] = fill(p.id, fixedByPerson[p.id] as Record<number, Id>, TICKS - 1);
   }
 
-  /* --- lies, claims, companions ---------------------------------------- */
+  // One excursion each for the fixtures who did not spend theirs at the murder
+  // tick. Never into the scene: they would find the body and end the evening.
+  for (const f of cast.fixtures) {
+    if (f.id === cast.beatCop?.id || excursionUsed.has(f.id)) continue;
+    if (!rng.chance(0.6)) continue;
+    const t = rng.range(1, TICKS - 2);
+    if (t === M || t === M + 1 || t === M - 1) continue;
+    const dest = rng.pick(nonScene.filter((p) => p !== f.foundAt));
+    if (dest === undefined) continue;
+    (truth[f.id] as (Id | null)[])[t] = dest;
+    excursionUsed.add(f.id);
+  }
+
+  /* --- lies, claims, companions ----------------------------------------- */
   const lies: Record<Id, Tick[]> = {};
   const claimed: Record<Id, (Id | null)[]> = {};
   const companions: Record<Id, (Id | null)[]> = {};
-
   for (const p of cast.people) {
-    const cells = p.kind === 'suspect' ? (secretCellsByPerson[p.id] ?? []) : [];
-    const sorted = Array.from(new Set(cells)).sort((a, b) => a - b);
-    lies[p.id] = sorted;
+    const cells = p.kind === 'suspect' ? (secretCells[p.id] ?? []) : [];
+    lies[p.id] = Array.from(new Set(cells)).sort((a, b) => a - b);
     claimed[p.id] = (truth[p.id] as (Id | null)[]).slice();
     companions[p.id] = new Array(TICKS).fill(null);
   }
 
   for (const p of cast.suspects) {
-    const lieTicks = lies[p.id] as Tick[];
-    if (lieTicks.length === 0) continue;
+    const blocks = (lieBlocks[p.id] ?? []).filter((b) => b.length > 0);
+    if (blocks.length === 0) continue;
     const myTruth = truth[p.id] as (Id | null)[];
     const myClaim = claimed[p.id] as (Id | null)[];
     const myComp = companions[p.id] as (Id | null)[];
 
-    const blocks: Tick[][] = [];
-    for (const t of lieTicks) {
-      const last = blocks[blocks.length - 1];
-      if (last && (last[last.length - 1] as Tick) === t - 1) last.push(t);
-      else blocks.push([t]);
-    }
-
     for (const block of blocks) {
-      const a = block[0] as Tick;
-      const b = block[block.length - 1] as Tick;
-      const anchorBefore = a > 0 ? (myTruth[a - 1] as Id) : null;
-      const anchorAfter = b < TICKS - 1 ? (myTruth[b + 1] as Id) : null;
-      const mustWitnessM = p.id === cast.killer.id && block.includes(M);
+      const coversM = p.id === cast.killer.id && block.includes(M);
+      let claimPlace: Id;
+      if (coversM) {
+        claimPlace = killerClaimAtM;
+      } else {
+        const options = nonScene.filter((c) => !block.some((t) => myTruth[t] === c));
+        if (options.length === 0) return fail('no plausible false alibi for a block of lies');
+        // Somewhere with people in it: a claim nobody can speak to is no use.
+        const peopled = options.filter((c) =>
+          block.some((t) => truthfulAtTick(t, c, p.id) >= 1 || occupiedBy(c, t)),
+        );
+        claimPlace = rng.pick(peopled.length > 0 ? peopled : options);
+      }
+      for (const t of block) myClaim[t] = claimPlace;
 
-      const base = graph.ids.filter((c) => {
-        if (!graph.loc(c).isPublic) return false;
-        if (c === L) return false;
-        for (const t of block) if (myTruth[t] === c) return false;
-        if (mustWitnessM && c !== killerClaimAtM) return false;
-        return true;
-      });
-
-      const tiers: Id[][] = [
-        base.filter(
-          (c) =>
-            (anchorBefore === null || graph.adjacentOrSame(anchorBefore, c)) &&
-            (anchorAfter === null || graph.adjacentOrSame(c, anchorAfter)),
-        ),
-        base.filter((c) => anchorBefore === null || graph.adjacentOrSame(anchorBefore, c)),
-        base,
-      ];
-      const tier = tiers.find((t) => t.length > 0);
-      if (!tier) return fail('no plausible false alibi for a block of lies');
-      const claimLoc = rng.pick(tier);
-      for (const t of block) myClaim[t] = claimLoc;
-
-      const nameCompanion = mustWitnessM ? rng.chance(0.65) : rng.chance(0.45);
-      if (nameCompanion) {
+      if (rng.chance(coversM ? 0.6 : 0.4)) {
         const options = cast.suspects.filter(
-          (q) => q.id !== p.id && (truth[q.id] as (Id | null)[])[a] !== claimLoc,
+          (q) => q.id !== p.id && (truth[q.id] as (Id | null)[])[block[0] as Tick] !== claimPlace,
         );
         if (options.length > 0) {
           const q = rng.pick(options);
@@ -612,44 +557,49 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     }
   }
 
-  // The killer's claim for the murder tick is the one the proof leans on.
-  const killerClaim = (claimed[cast.killer.id] as (Id | null)[])[M];
-  if (killerClaim !== killerClaimAtM) {
+  function occupiedBy(place: Id, tick: Tick): boolean {
+    return cast.people.some((q) => (truth[q.id] as (Id | null)[] | undefined)?.[tick] === place);
+  }
+
+  if ((claimed[cast.killer.id] as (Id | null)[])[M] !== killerClaimAtM) {
     return fail('the killer could not claim the room the proof needs');
   }
 
-  /* --- descriptions ---------------------------------------------------- */
+  /* --- descriptions ------------------------------------------------------ */
   const nameOf = (id: Id): string => cast.people.find((p) => p.id === id)?.name ?? 'someone';
+  const placeName = (id: Id): string => setting.places.find((p) => p.id === id)?.name ?? id;
 
   for (const p of cast.innocents) {
     const template = cast.innocentSecrets[p.id] as SecretTemplate;
     const secret = secrets[p.id] as Secret;
     const ticks = secret.cells.map((c) => c.tick);
-    const locName = secret.cells.length > 0 ? graph.name(secret.cells[0]?.location as Id) : '';
+    const where = secret.cells.length > 0 ? placeName(secret.cells[0]?.place as Id) : '';
     secret.description = describeSecret(
       template,
       p.name,
       secret.partnerId ? nameOf(secret.partnerId) : null,
-      locName,
+      where,
       ticks,
     );
   }
-  murderSecret.description = `${cast.killer.name} is alone with ${cast.victim.name} in the ${graph.name(L)} from ${tickRange(murderCells)}, and kills ${cast.victim.name} at ${clock(M)}.`;
+  murderSecret.description =
+    `${cast.killer.name} is at ${placeName(L)} from ${tickRange(murderCells)}, ` +
+    `alone with ${cast.victim.name} when it happens at ${clock(M)}.`;
   if (coverSecret && cast.killerCoverSecret) {
     const ticks = coverSecret.cells.map((c) => c.tick);
-    const locName = coverSecret.cells.length > 0 ? graph.name(coverSecret.cells[0]?.location as Id) : '';
+    const where = coverSecret.cells.length > 0 ? placeName(coverSecret.cells[0]?.place as Id) : '';
     coverSecret.description = describeSecret(
       cast.killerCoverSecret,
       cast.killer.name,
       null,
-      locName,
+      where,
       ticks,
     );
   }
 
   const build: ScheduleBuild = {
     murderTick: M,
-    murderLocationId: L,
+    murderPlaceId: L,
     blockStart,
     secrets,
     truth,
@@ -657,11 +607,12 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     companions,
     lies,
     killerClaimAtM,
-    accessLocation,
+    accessPlaceId,
     killerAccessTick,
     innocentAccess,
-    mLiars: mLiarIds,
+    mLiars: liarIds.slice(),
     victimSeenAt,
+    victimSeenPlace,
   };
   if (coverSecret) build.coverSecret = coverSecret;
   return build;

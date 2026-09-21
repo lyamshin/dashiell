@@ -1,49 +1,56 @@
-# The Tarleton — case 4
+# Hell’s Kitchen — case 4
 
-**Seed** 4 · **Attempts** 4 · **Detective** Humphrey
+**Seed** 4 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 7 actions · **Budget** 20 · **Slack** 13 · **Findable** 31 (spine 8, corroboration 10, noise 8 + 5 disqualifiers) · **Noise ratio** 42% · **Candidate pool** 214
 
 ## 1. The Truth
 
-Wilhelm Hochstetter, the night manager, the victim's landlord, killed Salvatore Alfano, a retired dry-goods wholesaler, with a push from the roof garden in the Roof Garden at 7:30 PM. Wilhelm Hochstetter stands to inherit (inheritance). Wilhelm Hochstetter had been at the Front Desk earlier in the evening, before 7:30 PM and was alone with Salvatore Alfano when it happened.
+Konrad Brauer, a lawyer with one clerk, the victim’s lawyer, killed Morris Hurwitz, a retired dry-goods wholesaler, with strangling with a cord at the victim’s suite at the residential hotel at 8:00 PM. Konrad Brauer wanted the victim out of a lease (property). Konrad Brauer had been at the third-floor walk-up on Ninth earlier in the evening, where the weapon lived, and was alone with Morris Hurwitz when it happened. Wendell Cheatham hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Salvatore Alfano | a retired dry-goods wholesaler | the victim | — | — | — |
-| Wilhelm Hochstetter | the night manager | the victim's landlord | murder | inheritance | **YES** |
-| Lyman Ellery | a travelling salesman in patent medicines | a childhood friend of the victim from the same block | affair | — | — |
-| Louis Hurwitz | a private nurse | the victim's creditor | secret-drinking | — | — |
-| Maureen Callahan | a bookmaker in a small way | the victim's tenant | affair | property | — |
-| Bernard Feldman | a longshoreman | the victim's former employee | gambling-debt | — | — |
-| Gretchen Steinbach | a private secretary | the victim's rival in trade | blackmail | — | — |
-| Morris Rosenbaum | the doorman | fixture | — | — | — |
-| Domenica Lanza | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Morris Hurwitz | a retired dry-goods wholesaler | the victim | — | — | — | — |
+| Jacob Rosenbaum | a pawnbroker’s man | a customer of the victim’s | forged-identity | exposure | the ferry slip at the foot of the street | — |
+| Wendell Cheatham (client) | a society columnist | the victim’s rival in trade | blackmail | — | the lobby of the Wyckoff | — |
+| Wilhelm Vogel | a longshoreman | the victim’s tenant | fence | — | Mancuso’s pool hall | — |
+| Frieda Hauck | a seamstress | the victim’s former employee | union-organizing | revenge | the lobby of the Wyckoff | — |
+| Carmine Alfano | a doorman at a club with no sign on it | in the victim’s debt | gambling-debt | — | the lobby of the Wyckoff | — |
+| Konrad Brauer | a lawyer with one clerk | the victim’s lawyer | murder (+ blackmail) | property | the ferry slip at the foot of the street | **YES** |
+| Nathan Kessler | the doorman | fixture (doorman) | — | — | the lobby of the Wyckoff | — |
+| Lotte Kreuzer | the landlady | fixture (landlady) | — | — | the third-floor walk-up on Ninth | — |
+| Ezekiel Prentiss | the man behind the counter | fixture (counterman) | — | — | Mancuso’s pool hall | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: a writing desk with a locked drawer
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: the roof door key, the house ledger
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a silver cigarette case
-- **Kitchen** (private) — adjacent: Bar, Service Stairs; sees: Bar; noise carries to: Bar, Service Stairs; objects: an ice pick, a cut-glass decanter
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a length of sash cord, a steamer trunk
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a bronze bookend
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Street** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: none
+- **the office over the tailor’s shop** (private) — unwatched; objects: a bronze bookend, a day ledger
+- **the lobby of the Wyckoff** (semi) — watched by doorman (Nathan Kessler); objects: a nickel-plated revolver, a brass umbrella stand, a camel-hair overcoat on a hook
+- **the third-floor walk-up on Ninth** (private) — watched by landlady (Lotte Kreuzer); objects: a length of sash cord, a bottle of chloral drops, a stack of hatboxes — where the weapon lived
+- **the ferry slip at the foot of the street** (public) — unwatched; objects: a pasted-up timetable, a strapped suitcase, a folded stack of evening papers — within earshot of the scene
+- **the victim’s suite at the residential hotel** (private) — unwatched; objects: a silver cigarette case — **THE SCENE**; the victim’s address
+- **Mancuso’s pool hall** (semi) — watched by counterman (Ezekiel Prentiss); objects: a standing ashtray, an ice pick — within earshot of the scene
 
-**Environment:** Passenger elevator out of order 10:00 PM–11:00 PM. Bar radio at 10:30 PM: a dance band from the Roseland — the band broke off twice and the announcer filled with a soap advertisement.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 7:00 PM–8:30 PM, four ticks wide. These are what close it: **milk-wagon** and **regular-stool**.
 
-### Salvatore Alfano — the victim
+- **the regular who takes the same seat every night** — at 7:30 PM; at the lobby of the Wyckoff. Somebody reliable notes who was there.
+- **the milk wagon on its rounds** — at 6:00 PM, 8:00 PM, 10:00 PM; across the whole neighbourhood. You can time things by it: iron tyres and a horse that will not stand still.
+- **the rain starting** — at 10:00 PM; across the whole neighbourhood. Those present carry it: a coat soaked through at the shoulders.
+
+## 5. Timelines
+
+### Morris Hurwitz — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Victim's Suite | Victim's Suite | — |
-| 1 | 6:30 PM | Victim's Suite | Victim's Suite | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Roof Garden ☠ | Roof Garden | — |
-| 4 | 8:00 PM | — | — | — |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 1 | 6:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 2 | 7:00 PM | the office over the tailor’s shop | the office over the tailor’s shop | — |
+| 3 | 7:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 4 | 8:00 PM | the victim’s suite at the residential hotel ☠ | the victim’s suite at the residential hotel | — |
 | 5 | 8:30 PM | — | — | — |
 | 6 | 9:00 PM | — | — | — |
 | 7 | 9:30 PM | — | — | — |
@@ -52,619 +59,379 @@ Wilhelm Hochstetter, the night manager, the victim's landlord, killed Salvatore 
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Wilhelm Hochstetter — the killer
+### Jacob Rosenbaum
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Roof Garden ☠ | **Street** | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 1 | 6:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 2 | 7:00 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 3 | 7:30 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 4 | 8:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 5 | 8:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 6 | 9:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 7 | 9:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 8 | 10:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 10 | 11:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 11 | 11:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
 
-### Lyman Ellery
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Service Stairs | **Lobby** | — |
-| 6 | 9:00 PM | Service Stairs | **Lobby** | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
-
-### Louis Hurwitz
+### Wendell Cheatham
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Bar | **Front Desk** | — |
-| 4 | 8:00 PM | Bar | **Front Desk** | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 1 | 6:30 PM | the office over the tailor’s shop | the office over the tailor’s shop | — |
+| 2 | 7:00 PM | the office over the tailor’s shop | **Mancuso’s pool hall** | Frieda Hauck |
+| 3 | 7:30 PM | the victim’s suite at the residential hotel | the victim’s suite at the residential hotel | — |
+| 4 | 8:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 5 | 8:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 6 | 9:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 7 | 9:30 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 8 | 10:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 9 | 10:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 10 | 11:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 11 | 11:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
 
-### Maureen Callahan
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Bar | Bar | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Service Stairs | **Bar** | Wilhelm Hochstetter |
-| 6 | 9:00 PM | Service Stairs | **Bar** | Wilhelm Hochstetter |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
-
-### Bernard Feldman
+### Wilhelm Vogel
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Street | Street | — |
-| 3 | 7:30 PM | Street | **Lobby** | — |
-| 4 | 8:00 PM | Street | **Lobby** | — |
-| 5 | 8:30 PM | Street | Street | — |
-| 6 | 9:00 PM | Street | Street | — |
-| 7 | 9:30 PM | Street | Street | — |
-| 8 | 10:00 PM | Street | Street | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 1 | 6:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 2 | 7:00 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 3 | 7:30 PM | Mancuso’s pool hall | **the ferry slip at the foot of the street** | — |
+| 4 | 8:00 PM | Mancuso’s pool hall | **the ferry slip at the foot of the street** | — |
+| 5 | 8:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
+| 6 | 9:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 7 | 9:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 8 | 10:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 10 | 11:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 11 | 11:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
 
-### Gretchen Steinbach
+### Frieda Hauck
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Victim's Suite | **Front Desk** | — |
-| 1 | 6:30 PM | Victim's Suite | **Front Desk** | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 1 | 6:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 2 | 7:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 3 | 7:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 4 | 8:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 5 | 8:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 6 | 9:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 7 | 9:30 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 8 | 10:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | **the lobby of the Wyckoff** | — |
+| 10 | 11:00 PM | the ferry slip at the foot of the street | **the lobby of the Wyckoff** | — |
+| 11 | 11:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+
+### Carmine Alfano
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 1 | 6:30 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 2 | 7:00 PM | the office over the tailor’s shop | the office over the tailor’s shop | — |
+| 3 | 7:30 PM | the office over the tailor’s shop | the office over the tailor’s shop | — |
+| 4 | 8:00 PM | Mancuso’s pool hall | **the lobby of the Wyckoff** | Jacob Rosenbaum |
+| 5 | 8:30 PM | Mancuso’s pool hall | **the lobby of the Wyckoff** | Jacob Rosenbaum |
+| 6 | 9:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 7 | 9:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 8 | 10:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 9 | 10:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 10 | 11:00 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 11 | 11:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+
+### Konrad Brauer — the killer
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 1 | 6:30 PM | the lobby of the Wyckoff | **the office over the tailor’s shop** | — |
+| 2 | 7:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 3 | 7:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 4 | 8:00 PM | the victim’s suite at the residential hotel ☠ | **Mancuso’s pool hall** | Frieda Hauck |
+| 5 | 8:30 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 6 | 9:00 PM | the third-floor walk-up on Ninth | the third-floor walk-up on Ninth | — |
+| 7 | 9:30 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | — |
+| 8 | 10:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 10 | 11:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 11 | 11:30 PM | Mancuso’s pool hall | Mancuso’s pool hall | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Morris Rosenbaum (the doorman) | Domenica Lanza (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Lobby | Bar |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Lobby |
-| 7 | 9:30 PM | Front Desk | Bar |
-| 8 | 10:00 PM | Lobby | Kitchen |
-| 9 | 10:30 PM | Front Desk | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Wilhelm Hochstetter** (murder): Wilhelm Hochstetter is alone with Salvatore Alfano in the Roof Garden from 7:30 PM, and kills Salvatore Alfano at 7:30 PM.
-- **Lyman Ellery** (affair): Lyman Ellery is with Maureen Callahan in the Service Stairs from 8:30 PM to 9:00 PM, and both will say they were somewhere else.
-- **Louis Hurwitz** (secret-drinking): Louis Hurwitz drinks alone in the Bar from 7:30 PM to 8:00 PM and will claim to have been anywhere else.
-- **Maureen Callahan** (affair): Maureen Callahan is with Lyman Ellery in the Service Stairs from 8:30 PM to 9:00 PM, and both will say they were somewhere else.
-- **Bernard Feldman** (gambling-debt): Bernard Feldman slips out to the Street from 7:30 PM to 8:00 PM to settle with a bookmaker.
-- **Gretchen Steinbach** (blackmail): Gretchen Steinbach meets the victim alone in the Victim's Suite from 6:00 PM to 6:30 PM and asks for money.
-
-## 6. Clue list
-
-### From Wilhelm Hochstetter (the night manager)
-
-On Salvatore Alfano:
-
-- **c001** [observation] Wilhelm Hochstetter says Salvatore Alfano was in the Lobby at 7:00 PM. — _establishes: Salvatore Alfano in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-
-On Lyman Ellery:
-
-- **c002** [observation] Wilhelm Hochstetter says Lyman Ellery was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Lyman Ellery at the Front Desk, 6:00 PM–7:00 PM; Lyman Ellery had access to the method_
-- **c003** [observation] Wilhelm Hochstetter says Lyman Ellery was on the Service Stairs at 8:30 PM. — _establishes: Lyman Ellery on the Service Stairs, 8:30 PM_
-- **c004** [observation] Wilhelm Hochstetter says Lyman Ellery was in the Lobby at 10:00 PM. — _establishes: Lyman Ellery in the Lobby, 10:00 PM_
-
-On Louis Hurwitz:
-
-- **c005** [observation] Wilhelm Hochstetter says Louis Hurwitz was in the Bar from 9:00 PM to 10:30 PM. — _establishes: Louis Hurwitz in the Bar, 9:00 PM–10:30 PM_
-
-On Maureen Callahan:
-
-- **c006** [observation] Wilhelm Hochstetter says Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Maureen Callahan in the Lobby, 6:00 PM–6:30 PM_
-- **c007** [observation] Wilhelm Hochstetter says Maureen Callahan was in the Bar at 7:00 PM. — _establishes: Maureen Callahan in the Bar, 7:00 PM_
-- **c008** [observation] Wilhelm Hochstetter says Maureen Callahan was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Maureen Callahan in the Bar, 10:00 PM–10:30 PM_
-- **c009** [observation] Wilhelm Hochstetter says Maureen Callahan was on the Service Stairs at 8:30 PM. — _establishes: Maureen Callahan on the Service Stairs, 8:30 PM_
-
-On Bernard Feldman:
-
-- **c010** [observation] Wilhelm Hochstetter says Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Bernard Feldman in the Lobby, 6:00 PM–6:30 PM_
-- **c011** [observation] Wilhelm Hochstetter says Bernard Feldman was on the Street at 7:00 PM. — _establishes: Bernard Feldman on the Street, 7:00 PM_
-
-On Gretchen Steinbach:
-
-- **c012** [observation] Wilhelm Hochstetter says Gretchen Steinbach was in the Lobby at 7:00 PM. — _establishes: Gretchen Steinbach in the Lobby, 7:00 PM_
-- **c013** [observation] Wilhelm Hochstetter says Gretchen Steinbach was in the Lobby at 10:00 PM. — _establishes: Gretchen Steinbach in the Lobby, 10:00 PM_
-- **c014** [observation] Wilhelm Hochstetter says Gretchen Steinbach was on the Service Stairs from 11:00 PM to 11:30 PM. — _establishes: Gretchen Steinbach on the Service Stairs, 11:00 PM–11:30 PM_
-
-On Maureen Callahan's account:
-
-- **c151** [observation] Wilhelm Hochstetter was in the Kitchen at 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 9:00 PM_
-- **c157** [observation] Maureen Callahan says Wilhelm Hochstetter was there. Wilhelm Hochstetter says otherwise: Wilhelm Hochstetter was on the Service Stairs at 8:30 PM, not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM_
-
-On Gretchen Steinbach's account:
-
-- **c163** [observation] Wilhelm Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
-
-### From Lyman Ellery (a travelling salesman in patent medicines)
-
-On Salvatore Alfano:
-
-- **c015** [observation] Lyman Ellery says Salvatore Alfano was in the Lobby at 7:00 PM. — _establishes: Salvatore Alfano in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-
-On Wilhelm Hochstetter:
-
-- **c016** [observation] Lyman Ellery says Wilhelm Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Wilhelm Hochstetter at the Front Desk, 6:00 PM–6:30 PM; Wilhelm Hochstetter had access to the method_
-- **c017** [observation] Lyman Ellery says Wilhelm Hochstetter was in the Lobby at 7:00 PM. — _establishes: Wilhelm Hochstetter in the Lobby, 7:00 PM_
-- **c018** [observation] Lyman Ellery says Wilhelm Hochstetter was in the Bar at 10:00 PM. — _establishes: Wilhelm Hochstetter in the Bar, 10:00 PM_
-
-On Louis Hurwitz:
-
-- **c019** [observation] Lyman Ellery says Louis Hurwitz was in the Bar from 7:30 PM to 8:00 PM. — _establishes: Louis Hurwitz in the Bar, 7:30 PM–8:00 PM_
-- **c020** [observation] Lyman Ellery says Louis Hurwitz was in the Bar from 9:30 PM to 11:30 PM. — _establishes: Louis Hurwitz in the Bar, 9:30 PM–11:30 PM_
-
-On Maureen Callahan:
-
-- **c021** [observation] Lyman Ellery says Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Maureen Callahan in the Lobby, 6:00 PM–6:30 PM_
-- **c022** [observation] Lyman Ellery says Maureen Callahan was in the Lobby at 9:30 PM. — _establishes: Maureen Callahan in the Lobby, 9:30 PM_
-- **c023** [observation] Lyman Ellery says Maureen Callahan was in the Bar at 7:30 PM. — _establishes: Maureen Callahan in the Bar, 7:30 PM_
-- **c024** [observation] Lyman Ellery says Maureen Callahan was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Maureen Callahan in the Bar, 10:00 PM–10:30 PM_
-
-On Bernard Feldman:
-
-- **c025** [observation] Lyman Ellery says Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Bernard Feldman in the Lobby, 6:00 PM–6:30 PM_
-- **c026** [observation] Lyman Ellery says Bernard Feldman was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Bernard Feldman in the Lobby, 10:30 PM–11:00 PM_
-- **c027** [observation] Lyman Ellery says Bernard Feldman was on the Street from 7:30 PM to 8:00 PM. — _establishes: Bernard Feldman on the Street, 7:30 PM–8:00 PM_
-- **c028** [observation] Lyman Ellery says Bernard Feldman was on the Street from 9:30 PM to 10:00 PM. — _establishes: Bernard Feldman on the Street, 9:30 PM–10:00 PM_
-- **c029** [observation] Lyman Ellery says Bernard Feldman was in the Bar at 11:30 PM. — _establishes: Bernard Feldman in the Bar, 11:30 PM_
-
-On Gretchen Steinbach:
-
-- **c030** [observation] Lyman Ellery says Gretchen Steinbach was in the Lobby at 7:00 PM. — _establishes: Gretchen Steinbach in the Lobby, 7:00 PM_
-- **c031** [observation] Lyman Ellery says Gretchen Steinbach was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 9:30 PM–10:30 PM_
-- **c032** [observation] Lyman Ellery says Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM. — _establishes: Gretchen Steinbach at the Front Desk, 7:30 PM–8:00 PM_
-
-On Wilhelm Hochstetter's account:
-
-- **c140** [observation] Lyman Ellery was in the Lobby at 7:30 PM and says Wilhelm Hochstetter was not on the Street. — _establishes: Wilhelm Hochstetter not on the Street, 7:30 PM_
-
-On Louis Hurwitz's account:
-
-- **c148** [observation] Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
-
-On Bernard Feldman's account:
-
-- **c158** [observation] Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
-
-On Gretchen Steinbach's account:
-
-- **c164** [observation] Lyman Ellery was at the Front Desk from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
-
-On Maureen Callahan and Salvatore Alfano:
-
-- **c177** [overheard] Lyman Ellery says Salvatore Alfano told Maureen Callahan the lease would go to somebody else at the quarter day. — _establishes: Maureen Callahan had a motive (property)_
-
-### From Louis Hurwitz (a private nurse)
-
-On Wilhelm Hochstetter:
-
-- **c033** [observation] Louis Hurwitz says Wilhelm Hochstetter was in the Kitchen from 9:00 PM to 9:30 PM. — _establishes: Wilhelm Hochstetter in the Kitchen, 9:00 PM–9:30 PM_
-- **c034** [observation] Louis Hurwitz says Wilhelm Hochstetter was in the Kitchen at 10:30 PM. — _establishes: Wilhelm Hochstetter in the Kitchen, 10:30 PM_
-- **c035** [observation] Louis Hurwitz says Wilhelm Hochstetter was in the Bar at 10:00 PM. — _establishes: Wilhelm Hochstetter in the Bar, 10:00 PM_
-
-On Lyman Ellery:
-
-- **c036** [observation] Louis Hurwitz says Lyman Ellery was in the Lobby from 9:30 PM to 11:30 PM. — _establishes: Lyman Ellery in the Lobby, 9:30 PM–11:30 PM_
-
-On Maureen Callahan:
-
-- **c037** [observation] Louis Hurwitz says Maureen Callahan was in the Bar at 7:00 PM. — _establishes: Maureen Callahan in the Bar, 7:00 PM_
-- **c038** [observation] Louis Hurwitz says Maureen Callahan was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Maureen Callahan in the Bar, 10:00 PM–10:30 PM_
-- **c039** [observation] Louis Hurwitz says Maureen Callahan was in the Lobby at 9:30 PM. — _establishes: Maureen Callahan in the Lobby, 9:30 PM_
-- **c040** [observation] Louis Hurwitz says Maureen Callahan was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Maureen Callahan in the Kitchen, 11:00 PM–11:30 PM_
-
-On Bernard Feldman:
-
-- **c041** [observation] Louis Hurwitz says Bernard Feldman was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Bernard Feldman in the Lobby, 10:30 PM–11:00 PM_
-- **c042** [observation] Louis Hurwitz says Bernard Feldman was in the Bar at 11:30 PM. — _establishes: Bernard Feldman in the Bar, 11:30 PM_
-
-On Gretchen Steinbach:
-
-- **c043** [observation] Louis Hurwitz says Gretchen Steinbach was in the Lobby at 8:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 8:30 PM_
-- **c044** [observation] Louis Hurwitz says Gretchen Steinbach was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 9:30 PM–10:30 PM_
-
-On Lyman Ellery's account:
-
-- **c142** [observation] Louis Hurwitz was in the Bar from 8:30 PM to 9:00 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 8:30 PM–9:00 PM_
-
-On Maureen Callahan's account:
-
-- **c152** [observation] Louis Hurwitz was in the Bar from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM–9:00 PM_
-
-### From Maureen Callahan (a bookmaker in a small way)
-
-On Salvatore Alfano:
-
-- **c045** [observation] Maureen Callahan says Salvatore Alfano was in the Lobby at 7:00 PM. — _establishes: Salvatore Alfano in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-
-On Wilhelm Hochstetter:
-
-- **c046** [observation] Maureen Callahan says Wilhelm Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Wilhelm Hochstetter at the Front Desk, 6:00 PM–6:30 PM; Wilhelm Hochstetter had access to the method_
-- **c047** [observation] Maureen Callahan says Wilhelm Hochstetter was in the Lobby at 7:00 PM. — _establishes: Wilhelm Hochstetter in the Lobby, 7:00 PM_
-- **c048** [observation] Maureen Callahan says Wilhelm Hochstetter was in the Bar at 10:00 PM. — _establishes: Wilhelm Hochstetter in the Bar, 10:00 PM_
-- **c049** [observation] Maureen Callahan says Wilhelm Hochstetter was in the Kitchen at 10:30 PM. — _establishes: Wilhelm Hochstetter in the Kitchen, 10:30 PM_
-
-On Lyman Ellery:
-
-- **c050** [observation] Maureen Callahan says Lyman Ellery was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Lyman Ellery at the Front Desk, 6:00 PM–6:30 PM; Lyman Ellery had access to the method_
-- **c051** [observation] Maureen Callahan says Lyman Ellery was in the Lobby at 7:30 PM. — _establishes: Lyman Ellery in the Lobby, 7:30 PM_
-- **c052** [observation] Maureen Callahan says Lyman Ellery was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Lyman Ellery in the Lobby, 9:30 PM–10:30 PM_
-
-On Louis Hurwitz:
-
-- **c053** [observation] Maureen Callahan says Louis Hurwitz was in the Kitchen at 7:00 PM. — _establishes: Louis Hurwitz in the Kitchen, 7:00 PM_
-- **c054** [observation] Maureen Callahan says Louis Hurwitz was in the Bar from 7:30 PM to 8:00 PM. — _establishes: Louis Hurwitz in the Bar, 7:30 PM–8:00 PM_
-- **c055** [observation] Maureen Callahan says Louis Hurwitz was in the Bar from 9:30 PM to 11:30 PM. — _establishes: Louis Hurwitz in the Bar, 9:30 PM–11:30 PM_
-
-On Bernard Feldman:
-
-- **c056** [observation] Maureen Callahan says Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Bernard Feldman in the Lobby, 6:00 PM–6:30 PM_
-- **c057** [observation] Maureen Callahan says Bernard Feldman was in the Lobby at 10:30 PM. — _establishes: Bernard Feldman in the Lobby, 10:30 PM_
-- **c058** [observation] Maureen Callahan says Bernard Feldman was on the Street at 9:30 PM. — _establishes: Bernard Feldman on the Street, 9:30 PM_
-- **c059** [observation] Maureen Callahan says Bernard Feldman was in the Bar at 11:30 PM. — _establishes: Bernard Feldman in the Bar, 11:30 PM_
-
-On Gretchen Steinbach:
-
-- **c060** [observation] Maureen Callahan says Gretchen Steinbach was in the Lobby at 7:00 PM. — _establishes: Gretchen Steinbach in the Lobby, 7:00 PM_
-- **c061** [observation] Maureen Callahan says Gretchen Steinbach was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 9:30 PM–10:30 PM_
-
-On Bernard Feldman's account:
-
-- **c159** [observation] Maureen Callahan was in the Bar at 7:30 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM_
-
-On Gretchen Steinbach's account:
-
-- **c165** [observation] Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
-
-### From Bernard Feldman (a longshoreman)
-
-On Salvatore Alfano:
-
-- **c062** [observation] Bernard Feldman says Salvatore Alfano was in the Lobby at 7:00 PM. — _establishes: Salvatore Alfano in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-
-On Wilhelm Hochstetter:
-
-- **c063** [observation] Bernard Feldman says Wilhelm Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Wilhelm Hochstetter at the Front Desk, 6:00 PM–6:30 PM; Wilhelm Hochstetter had access to the method_
-- **c064** [observation] Bernard Feldman says Wilhelm Hochstetter was in the Lobby at 7:00 PM. — _establishes: Wilhelm Hochstetter in the Lobby, 7:00 PM_
-
-On Lyman Ellery:
-
-- **c065** [observation] Bernard Feldman says Lyman Ellery was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Lyman Ellery at the Front Desk, 6:00 PM–6:30 PM; Lyman Ellery had access to the method_
-- **c066** [observation] Bernard Feldman says Lyman Ellery was in the Lobby from 9:30 PM to 11:30 PM. — _establishes: Lyman Ellery in the Lobby, 9:30 PM–11:30 PM_
-
-On Louis Hurwitz:
-
-- **c067** [observation] Bernard Feldman says Louis Hurwitz was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Louis Hurwitz in the Bar, 10:30 PM–11:30 PM_
-
-On Maureen Callahan:
-
-- **c068** [observation] Bernard Feldman says Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Maureen Callahan in the Lobby, 6:00 PM–6:30 PM_
-- **c069** [observation] Bernard Feldman says Maureen Callahan was in the Lobby at 9:30 PM. — _establishes: Maureen Callahan in the Lobby, 9:30 PM_
-- **c070** [observation] Bernard Feldman says Maureen Callahan was in the Bar at 10:30 PM. — _establishes: Maureen Callahan in the Bar, 10:30 PM_
-- **c071** [observation] Bernard Feldman says Maureen Callahan was in the Kitchen at 11:30 PM. — _establishes: Maureen Callahan in the Kitchen, 11:30 PM_
-
-On Gretchen Steinbach:
-
-- **c072** [observation] Bernard Feldman says Gretchen Steinbach was in the Lobby at 7:00 PM. — _establishes: Gretchen Steinbach in the Lobby, 7:00 PM_
-- **c073** [observation] Bernard Feldman says Gretchen Steinbach was in the Lobby at 8:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 8:30 PM_
-- **c074** [observation] Bernard Feldman says Gretchen Steinbach was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 9:30 PM–10:30 PM_
-
-On Lyman Ellery's account:
-
-- **c143** [observation] Bernard Feldman was on the Street from 8:30 PM to 9:00 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 8:30 PM–9:00 PM_
-
-On Gretchen Steinbach's account:
-
-- **c166** [observation] Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
-
-### From Gretchen Steinbach (a private secretary)
-
-On Salvatore Alfano:
-
-- **c075** [observation] Gretchen Steinbach says Salvatore Alfano was in the Lobby at 7:00 PM. — _establishes: Salvatore Alfano in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-
-On Wilhelm Hochstetter:
-
-- **c076** [observation] Gretchen Steinbach says Wilhelm Hochstetter was in the Lobby at 7:00 PM. — _establishes: Wilhelm Hochstetter in the Lobby, 7:00 PM_
-- **c077** [observation] Gretchen Steinbach says Wilhelm Hochstetter was in the Bar at 10:00 PM. — _establishes: Wilhelm Hochstetter in the Bar, 10:00 PM_
-- **c078** [observation] Gretchen Steinbach says Wilhelm Hochstetter was on the Service Stairs from 11:00 PM to 11:30 PM. — _establishes: Wilhelm Hochstetter on the Service Stairs, 11:00 PM–11:30 PM_
-
-On Lyman Ellery:
-
-- **c079** [observation] Gretchen Steinbach says Lyman Ellery was at the Front Desk at 7:00 PM. — _establishes: Lyman Ellery at the Front Desk, 7:00 PM; Lyman Ellery had access to the method_
-- **c080** [observation] Gretchen Steinbach says Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM. — _establishes: Lyman Ellery in the Lobby, 7:30 PM–8:00 PM_
-- **c081** [observation] Gretchen Steinbach says Lyman Ellery was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Lyman Ellery in the Lobby, 9:30 PM–10:30 PM_
-- **c082** [observation] Gretchen Steinbach says Lyman Ellery was on the Service Stairs at 9:00 PM. — _establishes: Lyman Ellery on the Service Stairs, 9:00 PM_
-
-On Louis Hurwitz:
-
-- **c083** [observation] Gretchen Steinbach says Louis Hurwitz was in the Bar at 8:30 PM. — _establishes: Louis Hurwitz in the Bar, 8:30 PM_
-- **c084** [observation] Gretchen Steinbach says Louis Hurwitz was in the Bar from 9:30 PM to 10:30 PM. — _establishes: Louis Hurwitz in the Bar, 9:30 PM–10:30 PM_
-
-On Maureen Callahan:
-
-- **c085** [observation] Gretchen Steinbach says Maureen Callahan was in the Bar at 7:00 PM. — _establishes: Maureen Callahan in the Bar, 7:00 PM_
-- **c086** [observation] Gretchen Steinbach says Maureen Callahan was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Maureen Callahan in the Bar, 10:00 PM–10:30 PM_
-- **c087** [observation] Gretchen Steinbach says Maureen Callahan was on the Service Stairs at 9:00 PM. — _establishes: Maureen Callahan on the Service Stairs, 9:00 PM_
-- **c088** [observation] Gretchen Steinbach says Maureen Callahan was in the Lobby at 9:30 PM. — _establishes: Maureen Callahan in the Lobby, 9:30 PM_
-
-On Bernard Feldman:
-
-- **c089** [observation] Gretchen Steinbach says Bernard Feldman was on the Street at 7:00 PM. — _establishes: Bernard Feldman on the Street, 7:00 PM_
-- **c090** [observation] Gretchen Steinbach says Bernard Feldman was on the Street at 8:30 PM. — _establishes: Bernard Feldman on the Street, 8:30 PM_
-- **c091** [observation] Gretchen Steinbach says Bernard Feldman was on the Street from 9:30 PM to 10:00 PM. — _establishes: Bernard Feldman on the Street, 9:30 PM–10:00 PM_
-- **c092** [observation] Gretchen Steinbach says Bernard Feldman was in the Lobby at 10:30 PM. — _establishes: Bernard Feldman in the Lobby, 10:30 PM_
-
-On Lyman Ellery's account:
-
-- **c144** [observation] Gretchen Steinbach was in the Lobby at 8:30 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 8:30 PM_
-
-On Louis Hurwitz's account:
-
-- **c149** [observation] Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
-
-On Maureen Callahan's account:
-
-- **c153** [observation] Gretchen Steinbach was in the Lobby at 8:30 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM_
-
-On Bernard Feldman's account:
-
-- **c160** [observation] Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
-
-### From Morris Rosenbaum (the doorman)
-
-On Salvatore Alfano:
-
-- **c093** [observation] Morris Rosenbaum says Salvatore Alfano was in the Lobby at 7:00 PM. — _establishes: Salvatore Alfano in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-
-On Wilhelm Hochstetter:
-
-- **c094** [observation] Morris Rosenbaum says Wilhelm Hochstetter was at the Front Desk from 6:00 PM to 6:30 PM. — _establishes: Wilhelm Hochstetter at the Front Desk, 6:00 PM–6:30 PM; Wilhelm Hochstetter had access to the method_
-- **c095** [observation] Morris Rosenbaum says Wilhelm Hochstetter was in the Lobby at 7:00 PM. — _establishes: Wilhelm Hochstetter in the Lobby, 7:00 PM_
-- **c096** [observation] Morris Rosenbaum says Wilhelm Hochstetter was in the Bar at 10:00 PM. — _establishes: Wilhelm Hochstetter in the Bar, 10:00 PM_
-
-On Lyman Ellery:
-
-- **c097** [observation] Morris Rosenbaum says Lyman Ellery was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Lyman Ellery at the Front Desk, 6:00 PM–7:00 PM; Lyman Ellery had access to the method_
-- **c098** [observation] Morris Rosenbaum says Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM. — _establishes: Lyman Ellery in the Lobby, 7:30 PM–8:00 PM_
-- **c099** [observation] Morris Rosenbaum says Lyman Ellery was in the Lobby from 9:30 PM to 11:30 PM. — _establishes: Lyman Ellery in the Lobby, 9:30 PM–11:30 PM_
-
-On Louis Hurwitz:
-
-- **c100** [observation] Morris Rosenbaum says Louis Hurwitz was in the Bar from 7:30 PM to 9:00 PM. — _establishes: Louis Hurwitz in the Bar, 7:30 PM–9:00 PM_
-- **c101** [observation] Morris Rosenbaum says Louis Hurwitz was in the Bar at 10:00 PM. — _establishes: Louis Hurwitz in the Bar, 10:00 PM_
-- **c102** [observation] Morris Rosenbaum says Louis Hurwitz was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Louis Hurwitz in the Bar, 11:00 PM–11:30 PM_
-
-On Maureen Callahan:
-
-- **c103** [observation] Morris Rosenbaum says Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Maureen Callahan in the Lobby, 6:00 PM–6:30 PM_
-- **c104** [observation] Morris Rosenbaum says Maureen Callahan was in the Lobby at 9:30 PM. — _establishes: Maureen Callahan in the Lobby, 9:30 PM_
-- **c105** [observation] Morris Rosenbaum says Maureen Callahan was in the Bar from 7:00 PM to 7:30 PM. — _establishes: Maureen Callahan in the Bar, 7:00 PM–7:30 PM_
-- **c106** [observation] Morris Rosenbaum says Maureen Callahan was in the Bar at 10:00 PM. — _establishes: Maureen Callahan in the Bar, 10:00 PM_
-
-On Bernard Feldman:
-
-- **c107** [observation] Morris Rosenbaum says Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Bernard Feldman in the Lobby, 6:00 PM–6:30 PM_
-- **c108** [observation] Morris Rosenbaum says Bernard Feldman was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Bernard Feldman in the Lobby, 10:30 PM–11:00 PM_
-- **c109** [observation] Morris Rosenbaum says Bernard Feldman was on the Street from 7:00 PM to 9:00 PM. — _establishes: Bernard Feldman on the Street, 7:00 PM–9:00 PM_
-- **c110** [observation] Morris Rosenbaum says Bernard Feldman was on the Street at 10:00 PM. — _establishes: Bernard Feldman on the Street, 10:00 PM_
-- **c111** [observation] Morris Rosenbaum says Bernard Feldman was in the Bar at 11:30 PM. — _establishes: Bernard Feldman in the Bar, 11:30 PM_
-
-On Gretchen Steinbach:
-
-- **c112** [observation] Morris Rosenbaum says Gretchen Steinbach was in the Lobby at 7:00 PM. — _establishes: Gretchen Steinbach in the Lobby, 7:00 PM_
-- **c113** [observation] Morris Rosenbaum says Gretchen Steinbach was in the Lobby at 8:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 8:30 PM_
-- **c114** [observation] Morris Rosenbaum says Gretchen Steinbach was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 9:30 PM–10:30 PM_
-- **c115** [observation] Morris Rosenbaum says Gretchen Steinbach was at the Front Desk from 7:30 PM to 8:00 PM. — _establishes: Gretchen Steinbach at the Front Desk, 7:30 PM–8:00 PM_
-
-On Wilhelm Hochstetter's account:
-
-- **c141** [observation] Morris Rosenbaum was in the Lobby at 7:30 PM and says Wilhelm Hochstetter was not on the Street. — _establishes: Wilhelm Hochstetter not on the Street, 7:30 PM_
-
-On Lyman Ellery's account:
-
-- **c145** [observation] Morris Rosenbaum was in the Lobby from 8:30 PM to 9:00 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 8:30 PM–9:00 PM_
-
-On Louis Hurwitz's account:
-
-- **c150** [observation] Morris Rosenbaum was in the Lobby from 7:30 PM to 8:00 PM and says Louis Hurwitz was not at the Front Desk. — _establishes: Louis Hurwitz not at the Front Desk, 7:30 PM–8:00 PM_
-
-On Maureen Callahan's account:
-
-- **c154** [observation] Morris Rosenbaum was in the Lobby from 8:30 PM to 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM–9:00 PM_
-
-On Bernard Feldman's account:
-
-- **c161** [observation] Morris Rosenbaum was in the Lobby from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
-
-On Gretchen Steinbach's account:
-
-- **c167** [observation] Morris Rosenbaum was in the Lobby from 6:00 PM to 6:30 PM and says Gretchen Steinbach was not at the Front Desk. — _establishes: Gretchen Steinbach not at the Front Desk, 6:00 PM–6:30 PM_
-
-### From Domenica Lanza (the bartender)
-
-On Salvatore Alfano:
-
-- **c116** [observation] Domenica Lanza says Salvatore Alfano was in the Lobby at 7:00 PM. — _establishes: Salvatore Alfano in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-
-On Wilhelm Hochstetter:
-
-- **c117** [observation] Domenica Lanza says Wilhelm Hochstetter was in the Lobby at 7:00 PM. — _establishes: Wilhelm Hochstetter in the Lobby, 7:00 PM_
-- **c118** [observation] Domenica Lanza says Wilhelm Hochstetter was in the Kitchen at 9:30 PM. — _establishes: Wilhelm Hochstetter in the Kitchen, 9:30 PM_
-- **c119** [observation] Domenica Lanza says Wilhelm Hochstetter was in the Kitchen at 10:30 PM. — _establishes: Wilhelm Hochstetter in the Kitchen, 10:30 PM_
-- **c120** [observation] Domenica Lanza says Wilhelm Hochstetter was in the Bar at 10:00 PM. — _establishes: Wilhelm Hochstetter in the Bar, 10:00 PM_
-
-On Lyman Ellery:
-
-- **c121** [observation] Domenica Lanza says Lyman Ellery was in the Lobby from 7:30 PM to 8:00 PM. — _establishes: Lyman Ellery in the Lobby, 7:30 PM–8:00 PM_
-- **c122** [observation] Domenica Lanza says Lyman Ellery was in the Lobby at 9:30 PM. — _establishes: Lyman Ellery in the Lobby, 9:30 PM_
-- **c123** [observation] Domenica Lanza says Lyman Ellery was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Lyman Ellery in the Lobby, 10:30 PM–11:30 PM_
-
-On Louis Hurwitz:
-
-- **c124** [observation] Domenica Lanza says Louis Hurwitz was in the Kitchen from 6:00 PM to 7:00 PM. — _establishes: Louis Hurwitz in the Kitchen, 6:00 PM–7:00 PM_
-- **c125** [observation] Domenica Lanza says Louis Hurwitz was in the Bar from 7:30 PM to 11:30 PM. — _establishes: Louis Hurwitz in the Bar, 7:30 PM–11:30 PM_
-
-On Maureen Callahan:
-
-- **c126** [observation] Domenica Lanza says Maureen Callahan was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Maureen Callahan in the Lobby, 6:00 PM–6:30 PM_
-- **c127** [observation] Domenica Lanza says Maureen Callahan was in the Lobby at 9:30 PM. — _establishes: Maureen Callahan in the Lobby, 9:30 PM_
-- **c128** [observation] Domenica Lanza says Maureen Callahan was in the Bar from 7:00 PM to 7:30 PM. — _establishes: Maureen Callahan in the Bar, 7:00 PM–7:30 PM_
-- **c129** [observation] Domenica Lanza says Maureen Callahan was in the Bar from 10:00 PM to 10:30 PM. — _establishes: Maureen Callahan in the Bar, 10:00 PM–10:30 PM_
-- **c130** [observation] Domenica Lanza says Maureen Callahan was in the Kitchen at 8:00 PM. — _establishes: Maureen Callahan in the Kitchen, 8:00 PM_
-- **c131** [observation] Domenica Lanza says Maureen Callahan was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Maureen Callahan in the Kitchen, 11:00 PM–11:30 PM_
-
-On Bernard Feldman:
-
-- **c132** [observation] Domenica Lanza says Bernard Feldman was in the Lobby from 6:00 PM to 6:30 PM. — _establishes: Bernard Feldman in the Lobby, 6:00 PM–6:30 PM_
-- **c133** [observation] Domenica Lanza says Bernard Feldman was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Bernard Feldman in the Lobby, 10:30 PM–11:00 PM_
-- **c134** [observation] Domenica Lanza says Bernard Feldman was on the Street at 9:00 PM. — _establishes: Bernard Feldman on the Street, 9:00 PM_
-- **c135** [observation] Domenica Lanza says Bernard Feldman was in the Bar at 11:30 PM. — _establishes: Bernard Feldman in the Bar, 11:30 PM_
-
-On Gretchen Steinbach:
-
-- **c136** [observation] Domenica Lanza says Gretchen Steinbach was in the Lobby at 7:00 PM. — _establishes: Gretchen Steinbach in the Lobby, 7:00 PM_
-- **c137** [observation] Domenica Lanza says Gretchen Steinbach was in the Lobby at 8:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 8:30 PM_
-- **c138** [observation] Domenica Lanza says Gretchen Steinbach was in the Lobby at 9:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 9:30 PM_
-- **c139** [observation] Domenica Lanza says Gretchen Steinbach was in the Lobby at 10:30 PM. — _establishes: Gretchen Steinbach in the Lobby, 10:30 PM_
-
-On Lyman Ellery's account:
-
-- **c146** [observation] Domenica Lanza was in the Bar at 8:30 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 8:30 PM_
-- **c147** [observation] Domenica Lanza was in the Lobby at 9:00 PM and says Lyman Ellery was not in the Lobby. — _establishes: Lyman Ellery not in the Lobby, 9:00 PM_
-
-On Maureen Callahan's account:
-
-- **c155** [observation] Domenica Lanza was in the Bar at 8:30 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 8:30 PM_
-- **c156** [observation] Domenica Lanza was in the Lobby at 9:00 PM and says Maureen Callahan was not in the Bar. — _establishes: Maureen Callahan not in the Bar, 9:00 PM_
-
-On Bernard Feldman's account:
-
-- **c162** [observation] Domenica Lanza was in the Bar from 7:30 PM to 8:00 PM and says Bernard Feldman was not in the Lobby. — _establishes: Bernard Feldman not in the Lobby, 7:30 PM–8:00 PM_
-
-On the radio:
-
-- **c173** [radio] Domenica Lanza says the bar radio carried a dance band from the Roseland at 10:30 PM, and that the band broke off twice and the announcer filled with a soap advertisement. Anyone in the bar could tell you that. — _establishes: context only_
-
-On Wilhelm Hochstetter and Salvatore Alfano:
-
-- **c175** [overheard] Domenica Lanza says Salvatore Alfano told Wilhelm Hochstetter the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Wilhelm Hochstetter had a motive (inheritance)_
-
-### From the Lobby
-
-- **c170** [environment] The passenger elevator was out of order from 10:00 PM to 11:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
-
-### From the Front Desk
-
-- **c169** [physical] The roof door key is missing from the Front Desk. The roof door was found unlocked and the key is not on its hook. — _establishes: an object gone from the Front Desk_
-
-### From the Service Stairs
-
-- **c171** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Wilhelm Hochstetter's sleeve; Wilhelm Hochstetter was on the stairs at 11:00 PM. — _establishes: Wilhelm Hochstetter on the Service Stairs, 11:00 PM_
-- **c172** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Gretchen Steinbach's sleeve; Gretchen Steinbach was on the stairs at 11:00 PM. — _establishes: Gretchen Steinbach on the Service Stairs, 11:00 PM_
-
-### From the Victim's Suite
-
-- **c174** [document] Found in the Victim's Suite: A draft codicil in Salvatore Alfano's hand striking Wilhelm Hochstetter out of the will, dated last Tuesday and unsigned. — _establishes: Wilhelm Hochstetter had a motive (inheritance)_
-- **c176** [document] Found in the Victim's Suite: A lease assignment made out in Maureen Callahan's name, waiting only on Salvatore Alfano's signature. — _establishes: Maureen Callahan had a motive (property)_
-
-### From the Roof Garden
-
-- **c168** [morgue] Salvatore Alfano was found in the Roof Garden. The coroner puts death between 7:00 PM and 7:30 PM. Fractures consistent with a fall of six storeys. Two fingernails torn back. — _establishes: death between 7:00 PM and 7:30 PM_
-
-### Withheld — the player cannot get these
-
-- ~~Gretchen Steinbach saw Salvatore Alfano in the Victim's Suite, 6:00 PM–6:30 PM~~ — Gretchen Steinbach is lying about that time and will not say.
-- ~~Wilhelm Hochstetter saw Salvatore Alfano in the Roof Garden, 7:30 PM~~ — Wilhelm Hochstetter is lying about that time and will not say.
-- ~~Louis Hurwitz saw Lyman Ellery in the Lobby, 7:30 PM–8:00 PM~~ — Louis Hurwitz is lying about that time and will not say.
-- ~~Louis Hurwitz saw Maureen Callahan in the Bar, 7:30 PM~~ — Louis Hurwitz is lying about that time and will not say.
-- ~~Louis Hurwitz saw Morris Rosenbaum in the Lobby, 7:30 PM–8:00 PM~~ — Louis Hurwitz is lying about that time and will not say.
-- ~~Louis Hurwitz saw Domenica Lanza in the Bar, 7:30 PM–8:00 PM~~ — Louis Hurwitz is lying about that time and will not say.
-- ~~Bernard Feldman saw Lyman Ellery in the Lobby, 7:30 PM–8:00 PM~~ — Bernard Feldman is lying about that time and will not say.
-- ~~Bernard Feldman saw Morris Rosenbaum in the Lobby, 7:30 PM–8:00 PM~~ — Bernard Feldman is lying about that time and will not say.
-- ~~Louis Hurwitz saw Maureen Callahan in the Kitchen, 8:00 PM~~ — Louis Hurwitz is lying about that time and will not say.
-- ~~Lyman Ellery saw Wilhelm Hochstetter on the Service Stairs, 8:30 PM~~ — Lyman Ellery is lying about that time and will not say.
-- ~~Lyman Ellery saw Maureen Callahan on the Service Stairs, 8:30 PM–9:00 PM~~ — Lyman Ellery is lying about that time and will not say.
-- ~~Maureen Callahan saw Wilhelm Hochstetter on the Service Stairs, 8:30 PM~~ — Maureen Callahan is lying about that time and will not say.
-- ~~Maureen Callahan saw Lyman Ellery on the Service Stairs, 8:30 PM–9:00 PM~~ — Maureen Callahan is lying about that time and will not say.
-- ~~Lyman Ellery saw Gretchen Steinbach on the Service Stairs, 9:00 PM~~ — Lyman Ellery is lying about that time and will not say.
-- ~~Maureen Callahan saw Gretchen Steinbach on the Service Stairs, 9:00 PM~~ — Maureen Callahan is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 7:30 PM. _(c168, c001, c015, c045, c062, c075, c093, c116)_
+| Tick | Time | Nathan Kessler (the doorman) | Lotte Kreuzer (the landlady) | Ezekiel Prentiss (the man behind the counter) |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 1 | 6:30 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 2 | 7:00 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 3 | 7:30 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 4 | 8:00 PM | the lobby of the Wyckoff | the lobby of the Wyckoff | Mancuso’s pool hall |
+| 5 | 8:30 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 6 | 9:00 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 7 | 9:30 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 8 | 10:00 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 9 | 10:30 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+| 10 | 11:00 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | the ferry slip at the foot of the street |
+| 11 | 11:30 PM | the lobby of the Wyckoff | the third-floor walk-up on Ninth | Mancuso’s pool hall |
+
+## 6. Secrets in play
+
+- **Jacob Rosenbaum** (forged-identity): Jacob Rosenbaum is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.
+- **Wendell Cheatham** (blackmail): Wendell Cheatham meets the victim alone at the office over the tailor’s shop from 7:00 PM and asks for money.
+- **Wilhelm Vogel** (fence): Wilhelm Vogel hands a parcel of stolen goods to a man at Mancuso’s pool hall from 7:30 PM to 8:00 PM.
+- **Frieda Hauck** (union-organizing): Frieda Hauck is at the ferry slip at the foot of the street from 10:30 PM to 11:00 PM signing men up, which is a firing offence and worse.
+- **Carmine Alfano** (gambling-debt): Carmine Alfano slips off to Mancuso’s pool hall from 8:00 PM to 8:30 PM to settle with a bookmaker.
+- **Konrad Brauer** (murder): Konrad Brauer is at the victim’s suite at the residential hotel from 8:00 PM, alone with Morris Hurwitz when it happens at 8:00 PM.
+- **Konrad Brauer** also (blackmail): Konrad Brauer meets the victim alone at the lobby of the Wyckoff from 6:30 PM and asks for money.
+
+## 7. Clue list — the 31 findable
+
+The opening three, free at the start: c162, c163, c179. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At the office over the tailor’s shop
+
+- **c177** [corroboration] (document; the place itself) → (end)
+  - Found at the office over the tailor’s shop: A lease assignment made out in Konrad Brauer’s name, waiting only on Morris Hurwitz’s signature.
+  - _establishes: Konrad Brauer had a motive (property)_
+- **c191** [noise {b5}] (physical; the place itself) → c192
+  - A photograph at the office over the tailor’s shop, folded small, of something the victim would have paid to keep folded.
+  - _establishes: context only_
+- **c192** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The victim’s bank book settles it: four payments, and Wendell Cheatham at the office over the tailor’s shop from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
+  - _establishes: Wendell Cheatham’s blackmail accounted for; Wendell Cheatham at the office over the tailor’s shop, 7:00 PM_
+
+### At the lobby of the Wyckoff
+
+- **c179** [spine ⟨opening⟩] (client; Wendell Cheatham on why I was hired) → c141, c160, c169
+  - Wendell Cheatham hired us. Wendell Cheatham wants it known that Konrad Brauer wanted the victim out of a lease, and would rather we started there.
+  - _establishes: Konrad Brauer had a motive (property)_
+- **c165** [spine] (anchor; Frieda Hauck on Morris Hurwitz that evening) → c060
+  - Frieda Hauck puts Morris Hurwitz at the lobby of the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 7:30 PM; Morris Hurwitz at the lobby of the Wyckoff, 7:30 PM_
+- **c078** [spine] (observation; Nathan Kessler on Frieda Hauck) → c191
+  - Nathan Kessler says Frieda Hauck was at the lobby of the Wyckoff from 6:00 PM to 9:00 PM.
+  - _establishes: Frieda Hauck at the lobby of the Wyckoff, 6:00 PM–9:00 PM_
+- **c060** [spine] (observation; Carmine Alfano on Konrad Brauer) → c090, c181
+  - Carmine Alfano says Konrad Brauer was at the third-floor walk-up on Ninth at 6:00 PM.
+  - _establishes: Konrad Brauer at the third-floor walk-up on Ninth, 6:00 PM; Konrad Brauer could reach the weapon_
+- **c159** [corroboration] (observation; Wendell Cheatham on Konrad Brauer’s account) → (end)
+  - Wendell Cheatham was at Mancuso’s pool hall at 8:00 PM and says Konrad Brauer was not.
+  - _establishes: Konrad Brauer not at Mancuso’s pool hall, 8:00 PM_
+- **c016** [corroboration] (observation; Wendell Cheatham on Jacob Rosenbaum) → (end)
+  - Wendell Cheatham says Jacob Rosenbaum was at Mancuso’s pool hall at 8:00 PM.
+  - _establishes: Jacob Rosenbaum at Mancuso’s pool hall, 8:00 PM_
+- **c166** [corroboration] (anchor; Nathan Kessler on Morris Hurwitz that evening) → c195
+  - Nathan Kessler puts Morris Hurwitz at the lobby of the Wyckoff when the regular came in for his seat, which was 7:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 7:30 PM; Morris Hurwitz at the lobby of the Wyckoff, 7:30 PM_
+- **c181** [noise {b1}] (overheard; Nathan Kessler on Jacob Rosenbaum) → c183
+  - Nathan Kessler on Jacob Rosenbaum: Two signatures of Jacob Rosenbaum’s, a month apart, are in different hands.
+  - _establishes: context only_
+- **c195** [noise {b2}] (overheard; Nathan Kessler on Wilhelm Vogel) → c199
+  - Nathan Kessler on Wilhelm Vogel: There is a man who meets people at Mancuso’s pool hall and nobody will say his name out loud.
+  - _establishes: context only_
+- **c208** [noise {b4}] (overheard; Nathan Kessler on Carmine Alfano) → c211
+  - Nathan Kessler on Carmine Alfano: Carmine Alfano was asking around for a hundred dollars in a hurry earlier in the week.
+  - _establishes: context only_
+
+### At the third-floor walk-up on Ninth
+
+- **c086** [corroboration] (observation; Lotte Kreuzer on Frieda Hauck) → (end)
+  - Lotte Kreuzer says Frieda Hauck was at the lobby of the Wyckoff at 8:00 PM.
+  - _establishes: Frieda Hauck at the lobby of the Wyckoff, 8:00 PM_
+- **c164** [corroboration] (physical; the place itself) → (end)
+  - A length of sash cord is gone from the third-floor walk-up on Ninth. A cut end of the same hemp is still tied to the fitting it was taken from.
+  - _establishes: something gone from the third-floor walk-up on Ninth; how it was done_
+- **c090** [corroboration] (observation; Lotte Kreuzer on Konrad Brauer) → c208
+  - Lotte Kreuzer says Konrad Brauer was at the third-floor walk-up on Ninth at 6:00 PM.
+  - _establishes: Konrad Brauer at the third-floor walk-up on Ninth, 6:00 PM; Konrad Brauer could reach the weapon_
+
+### At the ferry slip at the foot of the street
+
+- **c102** [corroboration] (observation; Jacob Rosenbaum on who was there at 8:00 PM) → (end)
+  - Jacob Rosenbaum runs through it: at 8:00 PM there were Wendell Cheatham, Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.
+  - _establishes: Wendell Cheatham at Mancuso’s pool hall, 8:00 PM; Wilhelm Vogel at Mancuso’s pool hall, 8:00 PM; Carmine Alfano at Mancuso’s pool hall, 8:00 PM_
+- **c068** [corroboration] (observation; Konrad Brauer on Carmine Alfano) → (end)
+  - Konrad Brauer says Carmine Alfano was at the third-floor walk-up on Ninth at 6:00 PM.
+  - _establishes: Carmine Alfano at the third-floor walk-up on Ninth, 6:00 PM; Carmine Alfano could reach the weapon_
+- **c183** [noise {b1}] (physical; the place itself) → c185
+  - A union card in Jacob Rosenbaum’s coat lining carries a different surname and a 1919 date.
+  - _establishes: context only_
+- **c185** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The name Jacob Rosenbaum was born with turns up on a desertion warrant from 1918. Jacob Rosenbaum has been hiding from the Army for eleven years and from nobody else.
+  - _establishes: Jacob Rosenbaum’s forged-identity accounted for_
+- **c201** [noise {b3}] (overheard; Jacob Rosenbaum on Frieda Hauck) → c205
+  - Jacob Rosenbaum on Frieda Hauck: Frieda Hauck has been seen with men from three different shops and none of them were drinking.
+  - _establishes: context only_
+- **c205** [noise {b3}] (physical; the place itself) → c206
+  - A hall rental receipt at the ferry slip at the foot of the street made out to a name that means nothing to anyone.
+  - _establishes: context only_
+- **c206** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - Forty men will swear to it if they have to: Frieda Hauck was at the ferry slip at the foot of the street from 10:30 PM to 11:00 PM taking their names, and the only thing Frieda Hauck is guilty of is a charter.
+  - _establishes: Frieda Hauck’s union-organizing accounted for; Frieda Hauck at the ferry slip at the foot of the street, 10:30 PM–11:00 PM_
+
+### At the victim’s suite at the residential hotel
+
+- **c162** [spine ⟨opening⟩] (scene; the place itself) → c165, c078, c102, c177
+  - Morris Hurwitz was found at the victim’s suite at the residential hotel. His watch glass broke against the floor and the hands have not moved since. The milk wagon on its rounds came at 8:00 PM, and the driver keeps to his round and he was at the corner for it. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 8:00 PM; how it was done_
+- **c163** [spine ⟨opening⟩] (morgue; the place itself) → c141, c165, c159, c068
+  - The coroner puts death between 7:00 PM and 8:30 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.
+  - _establishes: death between 7:00 PM and 8:30 PM; how it was done_
+
+### At Mancuso’s pool hall
+
+- **c141** [spine] (observation; Ezekiel Prentiss on who was there at 8:00 PM) → c160, c078, c086, c164, c166
+  - Ezekiel Prentiss runs through it: at 8:00 PM there were Jacob Rosenbaum, Wendell Cheatham, Wilhelm Vogel, Carmine Alfano at Mancuso’s pool hall, and nobody else worth naming.
+  - _establishes: Jacob Rosenbaum at Mancuso’s pool hall, 8:00 PM; Wendell Cheatham at Mancuso’s pool hall, 8:00 PM; Wilhelm Vogel at Mancuso’s pool hall, 8:00 PM; Carmine Alfano at Mancuso’s pool hall, 8:00 PM_
+- **c160** [spine] (observation; Ezekiel Prentiss on Konrad Brauer’s account) → c060, c016, c201
+  - Ezekiel Prentiss was at Mancuso’s pool hall at 8:00 PM and says Konrad Brauer was not.
+  - _establishes: Konrad Brauer not at Mancuso’s pool hall, 8:00 PM_
+- **c169** [corroboration] (anchor; Ezekiel Prentiss on the noise that evening) → (end)
+  - Ezekiel Prentiss was at Mancuso’s pool hall at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s suite at the residential hotel, while the milk wagon was in the street.
+  - _establishes: noise at the victim’s suite at the residential hotel at 8:00 PM; the victim dead by 8:00 PM; how it was done_
+- **c199** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The receiver at Mancuso’s pool hall would rather talk than be held: Wilhelm Vogel was there from 7:30 PM to 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Wilhelm Vogel will take over this one.
+  - _establishes: Wilhelm Vogel’s fence accounted for; Wilhelm Vogel at Mancuso’s pool hall, 7:30 PM–8:00 PM_
+- **c211** [noise {b4}] (physical; the place itself) → c213
+  - Betting slips at Mancuso’s pool hall in Carmine Alfano’s pocketbook, all of them losers, all of them this month.
+  - _establishes: context only_
+- **c213** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Carmine Alfano was at Mancuso’s pool hall from 8:00 PM to 8:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Carmine Alfano’s gambling-debt accounted for; Carmine Alfano at Mancuso’s pool hall, 8:00 PM–8:30 PM_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["the office over the tailor’s shop"]
+    c177["c177 the place"]
+    c191["c191 the place"]
+    c192["✗ c192 the place"]
+  end
+  subgraph P2["the lobby of the Wyckoff"]
+    c179["▶ c179 Wendell Cheatham"]
+    c165["c165 Frieda Hauck"]
+    c078["c078 Nathan Kessler"]
+    c060["c060 Carmine Alfano"]
+    c159["c159 Wendell Cheatham"]
+    c016["c016 Wendell Cheatham"]
+    c166["c166 Nathan Kessler"]
+    c181["c181 Nathan Kessler"]
+    c195["c195 Nathan Kessler"]
+    c208["c208 Nathan Kessler"]
+  end
+  subgraph P3["the third-floor walk-up on Ninth"]
+    c086["c086 Lotte Kreuzer"]
+    c164["c164 the place"]
+    c090["c090 Lotte Kreuzer"]
+  end
+  subgraph P4["the ferry slip at the foot of the street"]
+    c102["c102 Jacob Rosenbaum"]
+    c068["c068 Konrad Brauer"]
+    c183["c183 the place"]
+    c185["✗ c185 the place"]
+    c201["c201 Jacob Rosenbaum"]
+    c205["c205 the place"]
+    c206["✗ c206 the place"]
+  end
+  subgraph P5["the victim’s suite at the residential hotel"]
+    c162["▶ c162 the place"]
+    c163["▶ c163 the place"]
+  end
+  subgraph P6["Mancuso’s pool hall"]
+    c141["c141 Ezekiel Prentiss"]
+    c160["c160 Ezekiel Prentiss"]
+    c169["c169 Ezekiel Prentiss"]
+    c199["✗ c199 the place"]
+    c211["c211 the place"]
+    c213["✗ c213 the place"]
+  end
+  c162 --> c165
+  c162 --> c078
+  c162 --> c102
+  c162 --> c177
+  c163 --> c141
+  c163 --> c165
+  c163 --> c159
+  c163 --> c068
+  c179 --> c141
+  c179 --> c160
+  c179 --> c169
+  c141 --> c160
+  c141 --> c078
+  c141 --> c086
+  c141 --> c164
+  c141 --> c166
+  c160 --> c060
+  c160 --> c016
+  c160 -.-> c201
+  c165 --> c060
+  c078 -.-> c191
+  c060 --> c090
+  c060 -.-> c181
+  c090 -.-> c208
+  c166 -.-> c195
+  c181 -.-> c183
+  c183 --> c185
+  c195 --> c199
+  c201 -.-> c205
+  c205 --> c206
+  c208 -.-> c211
+  c211 --> c213
+  c191 --> c192
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c162,c163,c179,c141,c160,c165,c078,c060 spine;
+  class c102,c086,c177,c159,c164,c090,c016,c166,c169,c068 corrob;
+  class c181,c183,c195,c201,c205,c208,c211,c191 noise;
+  class c185,c199,c206,c213,c192 disq;
+```
+
+## 9. Deduction path
+
+Par is **7 actions** against a budget of 20: 13 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 8:00 PM: one puts Morris Hurwitz alive at 7:30 PM, the other times the scene at 8:00 PM. _(c163, c165, c162; + 2 corroborating)_
 
 **Clearing the innocent.**
 
-- Lyman Ellery was not in the Roof Garden at 7:30 PM, on two independent sources. _(c051, c080, c098, c121)_
-- Louis Hurwitz was not in the Roof Garden at 7:30 PM, on two independent sources. _(c019, c054, c100, c125)_
-- Maureen Callahan was not in the Roof Garden at 7:30 PM, on two independent sources. _(c023, c105, c128)_
-- Bernard Feldman was not in the Roof Garden at 7:30 PM, on two independent sources. _(c027, c109)_
-- Gretchen Steinbach was not in the Roof Garden at 7:30 PM, on two independent sources. _(c032, c115)_
+- Jacob Rosenbaum was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c141; + 1 corroborating)_
+- Wendell Cheatham was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c141; + 1 corroborating)_
+- Wilhelm Vogel was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c141; + 2 corroborating)_
+- Frieda Hauck was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c078; + 1 corroborating)_
+- Carmine Alfano was not at the victim’s suite at the residential hotel at 8:00 PM, on two independent sources. _(c141; + 2 corroborating)_
 
-**Naming the killer.** Wilhelm Hochstetter claims the Street at 7:30 PM. Two independent sources put that out of the question, and one ties Wilhelm Hochstetter to a push from the roof garden. _(c140, c141, c016, c046, c063, c094)_
+**Naming the killer.** Konrad Brauer claims Mancuso’s pool hall at 8:00 PM. Two independent sources put that out of the question. _(c160; + 1 corroborating)_
 
-**Method.** A push from the roof garden, on two physical sources. _(c168, c169)_
+**The weapon.** Konrad Brauer was at the third-floor walk-up on Ninth before 8:00 PM, where a length of sash cord was kept. _(c060; + 1 corroborating)_
 
-**Motive.** inheritance, on two independent sources. _(c174, c175)_
+**Method.** Strangling with a cord, on two physical sources. _(c162, c163; + 2 corroborating)_
 
-## 8. Red herrings
+**Motive.** property, on two independent sources. _(c179; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Louis Hurwitz claims the Front Desk at 7:30 PM and was really in the Bar. Reason: Louis Hurwitz drinks alone in the Bar from 7:30 PM to 8:00 PM and will claim to have been anywhere else.
-- Bernard Feldman claims the Lobby at 7:30 PM and was really in the Street. Reason: Bernard Feldman slips out to the Street from 7:30 PM to 8:00 PM to settle with a bookmaker.
+- Wilhelm Vogel claims the ferry slip at the foot of the street at 8:00 PM and was really at Mancuso’s pool hall. Reason: Wilhelm Vogel hands a parcel of stolen goods to a man at Mancuso’s pool hall from 7:30 PM to 8:00 PM.
+- Carmine Alfano claims the lobby of the Wyckoff at 8:00 PM and was really at Mancuso’s pool hall. Reason: Carmine Alfano slips off to Mancuso’s pool hall from 8:00 PM to 8:30 PM to settle with a bookmaker.
 
 **Innocents with a motive:**
 
-- Maureen Callahan — property: wanted the victim out of a lease.
+- Jacob Rosenbaum — exposure: was about to be exposed by the victim.
+- Frieda Hauck — revenge: blamed the victim for a ruin.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Jacob Rosenbaum, forged-identity): c181 → c183 → **c185** — The name Jacob Rosenbaum was born with turns up on a desertion warrant from 1918. Jacob Rosenbaum has been hiding from the Army for eleven years and from nobody else.
+- **b2** (Wilhelm Vogel, fence): c195 → **c199** — The receiver at Mancuso’s pool hall would rather talk than be held: Wilhelm Vogel was there from 7:30 PM to 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Wilhelm Vogel will take over this one.
+- **b3** (Frieda Hauck, union-organizing): c201 → c205 → **c206** — Forty men will swear to it if they have to: Frieda Hauck was at the ferry slip at the foot of the street from 10:30 PM to 11:00 PM taking their names, and the only thing Frieda Hauck is guilty of is a charter.
+- **b4** (Carmine Alfano, gambling-debt): c208 → c211 → **c213** — The bookmaker’s runner is found and will say it: Carmine Alfano was at Mancuso’s pool hall from 8:00 PM to 8:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b5** (Wendell Cheatham, blackmail): c191 → **c192** — The victim’s bank book settles it: four payments, and Wendell Cheatham at the office over the tailor’s shop from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
 

@@ -1,663 +1,425 @@
-# The Rensselaer — case 15
+# Little Italy — case 15
 
-**Seed** 15 · **Attempts** 2 · **Detective** Humphrey
+**Seed** 15 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 6 actions · **Budget** 20 · **Slack** 14 · **Findable** 30 (spine 7, corroboration 11, noise 7 + 5 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 187
 
 ## 1. The Truth
 
-Pasquale Grasso, a ward heeler, the victim's private nurse, killed Bella Hurwitz, an heiress between marriages, with strangling with a cord on the Service Stairs at 10:30 PM. Pasquale Grasso was about to be exposed by the victim (exposure). Pasquale Grasso had been in the Kitchen earlier in the evening, before 10:30 PM and was alone with Bella Hurwitz when it happened.
+Rivka Weisglass, a seamstress, the victim’s tenant, killed Ellsworth Havemeyer, the landlord of three tenements on Ninth Avenue, with a gunshot at the victim’s apartment on the fourth floor at 11:00 PM. Rivka Weisglass wanted the victim out of a lease (property). Rivka Weisglass had been at the speakeasy under the hat shop earlier in the evening, where the weapon lived, and was alone with Ellsworth Havemeyer when it happened. Friedrich Kreuzer hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Bella Hurwitz | an heiress between marriages | the victim | — | — | — |
-| Lavinia Thorndike | a piano teacher | the victim's secretary | affair | — | — |
-| Constance Stannard | a chorus girl between engagements | a childhood friend of the victim from the same block | gambling-debt | inheritance | — |
-| Emilio Vitale | a dentist with rooms on the third floor | the victim's rival in trade | blackmail | — | — |
-| Pasquale Grasso | a ward heeler | the victim's private nurse | murder (+ forged-identity) | exposure | **YES** |
-| Abraham Sirkin | a bookmaker in a small way | engaged to the victim's daughter | affair | debt | — |
-| Nunzio Tramonti | a stagehand at the Selwyn | the victim's brother-in-law | secret-drinking | jealousy | — |
-| Heinrich Obermann | the doorman | fixture | — | — | — |
-| Friedrich Kreuzer | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Ellsworth Havemeyer | the landlord of three tenements on Ninth Avenue | the victim | — | — | — | — |
+| Salvatore Moretti | a doorman at a club with no sign on it | a witness against the people the victim worked for | fence | — | the cab stand outside the Hippodrome | — |
+| Booker Cheatham | a tailor | the victim’s neighbour across the airshaft | hidden-family | — | Ruggiero’s barber shop | — |
+| Grafton Winslow | a society columnist | the victim’s rival in trade | affair | — | the speakeasy under the hat shop | — |
+| Rivka Weisglass | a seamstress | the victim’s tenant | murder (+ union-organizing) | property | Ruggiero’s barber shop | **YES** |
+| Assunta Bellucci | a widow with rooms on the avenue | named in the victim’s will | affair | inheritance | Ruggiero’s barber shop | — |
+| Friedrich Kreuzer (client) | an insurance adjuster | a witness against the people the victim worked for | gambling-debt | — | Ruggiero’s barber shop | — |
+| Martin Feeney | the man behind the counter | fixture (counterman) | — | — | Ruggiero’s barber shop | — |
+| Klara Lindemann | the landlady | fixture (landlady) | — | — | the back room at Mrs. Teague’s | — |
+| Frieda Vogel | the bartender | fixture (bartender) | — | — | the speakeasy under the hat shop | — |
+| Nora Callahan | the hackman on the stand | fixture (cabbie) | — | — | the cab stand outside the Hippodrome | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: none
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: the house ledger
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a silver cigarette case
-- **Kitchen** (private) — adjacent: Bar, Service Stairs, Street; sees: Bar; noise carries to: Bar, Service Stairs; objects: a length of sash cord, a cut-glass decanter
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a camel-hair overcoat on a hook
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a steamer trunk
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a terracotta flower pot
-- **Street** (public) — adjacent: Lobby, Kitchen; sees: Lobby; noise carries to: Lobby; objects: a folded stack of evening papers
+- **Ruggiero’s barber shop** (semi) — watched by counterman (Martin Feeney); objects: an ice pick, a folded stack of evening papers
+- **the back room at Mrs. Teague’s** (private) — watched by landlady (Klara Lindemann); objects: a framed photograph, a length of sash cord
+- **the speakeasy under the hat shop** (semi) — watched by bartender (Frieda Vogel); objects: a nickel-plated revolver, a seltzer siphon, a bottle of chloral drops, a silver cigarette case — where the weapon lived; within earshot of the scene
+- **the cab stand outside the Hippodrome** (public) — watched by cabbie (Nora Callahan); objects: a pasted-up timetable
+- **the El platform at Twenty-Third Street** (public) — unwatched; objects: none — within earshot of the scene
+- **the victim’s apartment on the fourth floor** (private) — unwatched; objects: a japanned cash box, a bronze bookend — **THE SCENE**; the victim’s address
 
-**Environment:** Rain from 7:00 PM. Passenger elevator out of order 9:00 PM–10:00 PM.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 10:00 PM–11:30 PM, four ticks wide. These are what close it: **drunk-singing** and **el-train**.
 
-### Bella Hurwitz — the victim
+- **the drunk singing under the window** — at 10:30 PM; at the speakeasy under the hat shop. You can time things by it: the same two verses until somebody threw a shoe. Only those present know that it was a shoe, and it was thrown by a woman, and it did not land.
+- **the El going over** — at 6:00 PM, 7:00 PM, 8:00 PM, 9:00 PM, 10:00 PM, 11:00 PM; across the whole neighbourhood. You can time things by it: everything under the structure stops being audible for twenty seconds.
+
+## 5. Timelines
+
+### Ellsworth Havemeyer — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Victim's Suite | Victim's Suite | — |
-| 7 | 9:30 PM | Service Stairs | Service Stairs | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Service Stairs ☠ | Service Stairs | — |
-| 10 | 11:00 PM | — | — | — |
+| 0 | 6:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 1 | 6:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 3 | 7:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 4 | 8:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 5 | 8:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 7 | 9:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 8 | 10:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 10 | 11:00 PM | the victim’s apartment on the fourth floor ☠ | the victim’s apartment on the fourth floor | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Lavinia Thorndike
+### Salvatore Moretti
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Roof Garden | **Lobby** | Abraham Sirkin |
-| 3 | 7:30 PM | Roof Garden | **Lobby** | Abraham Sirkin |
-| 4 | 8:00 PM | Roof Garden | **Lobby** | Abraham Sirkin |
-| 5 | 8:30 PM | Roof Garden | Roof Garden | — |
-| 6 | 9:00 PM | Roof Garden | Roof Garden | — |
-| 7 | 9:30 PM | Service Stairs | Service Stairs | — |
-| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Street | Street | — |
+| 0 | 6:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 1 | 6:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 2 | 7:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 3 | 7:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 4 | 8:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 5 | 8:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 6 | 9:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 10 | 11:00 PM | the cab stand outside the Hippodrome | **the speakeasy under the hat shop** | Friedrich Kreuzer |
+| 11 | 11:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
 
-### Constance Stannard
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Lobby | — |
-| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Kitchen | Kitchen | — |
-| 6 | 9:00 PM | Street | Street | — |
-| 7 | 9:30 PM | Street | Street | — |
-| 8 | 10:00 PM | Street | **Lobby** | — |
-| 9 | 10:30 PM | Street | **Lobby** | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
-
-### Emilio Vitale
+### Booker Cheatham
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Street | Street | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Victim's Suite | **Lobby** | — |
-| 7 | 9:30 PM | Service Stairs | Service Stairs | — |
-| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 1 | 6:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 3 | 7:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | **the El platform at Twenty-Third Street** | — |
+| 5 | 8:30 PM | the back room at Mrs. Teague’s | **the El platform at Twenty-Third Street** | — |
+| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 7 | 9:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 8 | 10:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 9 | 10:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 10 | 11:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 11 | 11:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
 
-### Pasquale Grasso — the killer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Street | Street | — |
-| 1 | 6:30 PM | Street | Street | — |
-| 2 | 7:00 PM | Street | Street | — |
-| 3 | 7:30 PM | Street | Street | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Kitchen | Kitchen | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Service Stairs ☠ | **Bar** | Constance Stannard |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
-
-### Abraham Sirkin
+### Grafton Winslow
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Roof Garden | Roof Garden | — |
-| 2 | 7:00 PM | Roof Garden | **Lobby** | Nunzio Tramonti |
-| 3 | 7:30 PM | Roof Garden | **Lobby** | Nunzio Tramonti |
-| 4 | 8:00 PM | Roof Garden | **Lobby** | Nunzio Tramonti |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Service Stairs | Service Stairs | — |
-| 7 | 9:30 PM | Service Stairs | Service Stairs | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Bar | Bar | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 1 | 6:30 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 2 | 7:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 3 | 7:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 4 | 8:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 5 | 8:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 6 | 9:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the back room at Mrs. Teague’s | **the cab stand outside the Hippodrome** | — |
+| 9 | 10:30 PM | the back room at Mrs. Teague’s | **the cab stand outside the Hippodrome** | — |
+| 10 | 11:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 11 | 11:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
 
-### Nunzio Tramonti
+### Rivka Weisglass — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Service Stairs | Service Stairs | — |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Front Desk | Front Desk | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Bar | **Lobby** | — |
-| 10 | 11:00 PM | Bar | **Lobby** | — |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 1 | 6:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 2 | 7:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 3 | 7:30 PM | Ruggiero’s barber shop | **the speakeasy under the hat shop** | Assunta Bellucci |
+| 4 | 8:00 PM | Ruggiero’s barber shop | **the speakeasy under the hat shop** | Assunta Bellucci |
+| 5 | 8:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 10 | 11:00 PM | the victim’s apartment on the fourth floor ☠ | **the cab stand outside the Hippodrome** | — |
+| 11 | 11:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+
+### Assunta Bellucci
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 1 | 6:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 2 | 7:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 3 | 7:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 4 | 8:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 5 | 8:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 6 | 9:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 7 | 9:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 8 | 10:00 PM | the back room at Mrs. Teague’s | **Ruggiero’s barber shop** | Grafton Winslow |
+| 9 | 10:30 PM | the back room at Mrs. Teague’s | **Ruggiero’s barber shop** | Grafton Winslow |
+| 10 | 11:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 11 | 11:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+
+### Friedrich Kreuzer
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the El platform at Twenty-Third Street | the El platform at Twenty-Third Street | — |
+| 1 | 6:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 2 | 7:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 3 | 7:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 5 | 8:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 6 | 9:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 7 | 9:30 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 8 | 10:00 PM | Ruggiero’s barber shop | Ruggiero’s barber shop | — |
+| 9 | 10:30 PM | the cab stand outside the Hippodrome | **Ruggiero’s barber shop** | — |
+| 10 | 11:00 PM | the cab stand outside the Hippodrome | **Ruggiero’s barber shop** | — |
+| 11 | 11:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Heinrich Obermann (the doorman) | Friedrich Kreuzer (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Lobby | Bar |
-| 5 | 8:30 PM | Lobby | Lobby |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Bar |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Lavinia Thorndike** (affair): Lavinia Thorndike is with Abraham Sirkin in the Roof Garden from 7:00 PM to 8:00 PM, and both will say they were somewhere else.
-- **Constance Stannard** (gambling-debt): Constance Stannard slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.
-- **Emilio Vitale** (blackmail): Emilio Vitale meets the victim alone in the Victim's Suite from 9:00 PM and asks for money.
-- **Pasquale Grasso** (murder): Pasquale Grasso is alone with Bella Hurwitz in the Service Stairs from 10:30 PM, and kills Bella Hurwitz at 10:30 PM.
-- **Pasquale Grasso** also (forged-identity): Pasquale Grasso is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.
-- **Abraham Sirkin** (affair): Abraham Sirkin is with Lavinia Thorndike in the Roof Garden from 7:00 PM to 8:00 PM, and both will say they were somewhere else.
-- **Nunzio Tramonti** (secret-drinking): Nunzio Tramonti drinks alone in the Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
-
-## 6. Clue list
-
-### From Lavinia Thorndike (a piano teacher)
-
-On Bella Hurwitz:
-
-- **c001** [observation] Lavinia Thorndike says Bella Hurwitz was on the Service Stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM; the victim alive at 9:30 PM_
-
-On Constance Stannard:
-
-- **c002** [observation] Lavinia Thorndike says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-
-On Emilio Vitale:
-
-- **c003** [observation] Lavinia Thorndike says Emilio Vitale was on the Service Stairs from 9:30 PM to 10:00 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM–10:00 PM_
-- **c004** [observation] Lavinia Thorndike says Emilio Vitale was in the Bar at 11:00 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM_
-
-On Pasquale Grasso:
-
-- **c005** [observation] Lavinia Thorndike says Pasquale Grasso was in the Kitchen at 11:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:00 PM_
-
-On Abraham Sirkin:
-
-- **c006** [observation] Lavinia Thorndike says Abraham Sirkin was in the Roof Garden from 6:00 PM to 6:30 PM. — _establishes: Abraham Sirkin in the Roof Garden, 6:00 PM–6:30 PM_
-- **c007** [observation] Lavinia Thorndike says Abraham Sirkin was on the Service Stairs at 9:30 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:30 PM_
-- **c008** [observation] Lavinia Thorndike says Abraham Sirkin was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Abraham Sirkin in the Bar, 10:30 PM–11:00 PM_
-
-On Nunzio Tramonti:
-
-- **c009** [observation] Lavinia Thorndike says Nunzio Tramonti was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:30 PM–11:00 PM_
-
-On Pasquale Grasso's account:
-
-- **c116** [observation] Lavinia Thorndike was in the Kitchen at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
-
-On the rain:
-
-- **c135** [environment] Lavinia Thorndike says Constance Stannard came in off the street at 11:30 PM with a soaked coat, so Constance Stannard was outside at 11:00 PM. — _establishes: Constance Stannard on the Street, 11:00 PM_
-
-### From Constance Stannard (a chorus girl between engagements)
-
-On Bella Hurwitz:
-
-- **c010** [observation] Constance Stannard says Bella Hurwitz was at the Front Desk at 6:00 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:00 PM; the victim alive at 6:00 PM_
-
-On Lavinia Thorndike:
-
-- **c011** [observation] Constance Stannard says Lavinia Thorndike was on the Street at 11:30 PM. — _establishes: Lavinia Thorndike on the Street, 11:30 PM_
-
-On Emilio Vitale:
-
-- **c012** [observation] Constance Stannard says Emilio Vitale was on the Street at 6:00 PM. — _establishes: Emilio Vitale on the Street, 6:00 PM_
-- **c013** [observation] Constance Stannard says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
-
-On Pasquale Grasso:
-
-- **c014** [observation] Constance Stannard says Pasquale Grasso was on the Street at 6:00 PM. — _establishes: Pasquale Grasso on the Street, 6:00 PM_
-- **c015** [observation] Constance Stannard says Pasquale Grasso was in the Kitchen from 8:00 PM to 8:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 8:00 PM–8:30 PM; Pasquale Grasso had access to the method_
-
-On Abraham Sirkin:
-
-- **c016** [observation] Constance Stannard says Abraham Sirkin was in the Bar at 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 11:30 PM_
-
-On Nunzio Tramonti:
-
-- **c017** [observation] Constance Stannard says Nunzio Tramonti was on the Service Stairs from 6:30 PM to 7:00 PM. — _establishes: Nunzio Tramonti on the Service Stairs, 6:30 PM–7:00 PM_
-- **c018** [observation] Constance Stannard says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
-- **c019** [observation] Constance Stannard says Nunzio Tramonti was in the Bar at 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 11:30 PM_
-
-On Emilio Vitale's account:
-
-- **c112** [observation] Constance Stannard was on the Street at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
-
-On Nunzio Tramonti's account:
-
-- **c126** [observation] Constance Stannard was on the Street at 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 11:00 PM_
-
-On the rain:
-
-- **c136** [environment] Constance Stannard says Pasquale Grasso came in off the street at 8:00 PM with a soaked coat, so Pasquale Grasso was outside at 7:30 PM. — _establishes: Pasquale Grasso on the Street, 7:30 PM_
-
-On Pasquale Grasso and Bella Hurwitz:
-
-- **c146** [overheard] Constance Stannard says Bella Hurwitz told Pasquale Grasso that the story would run whether Pasquale Grasso liked it or not. — _establishes: Pasquale Grasso had a motive (exposure)_
-
-### From Emilio Vitale (a dentist with rooms on the third floor)
-
-On Bella Hurwitz:
-
-- **c020** [observation] Emilio Vitale says Bella Hurwitz was at the Front Desk from 6:30 PM to 7:30 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c021** [observation] Emilio Vitale says Bella Hurwitz was on the Service Stairs at 8:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 8:30 PM; the victim alive at 8:30 PM_
-- **c022** [observation] Emilio Vitale says Bella Hurwitz was on the Service Stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM; the victim alive at 9:30 PM_
-
-On Lavinia Thorndike:
-
-- **c023** [observation] Emilio Vitale says Lavinia Thorndike was on the Service Stairs from 9:30 PM to 10:00 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 9:30 PM–10:00 PM_
-- **c024** [observation] Emilio Vitale says Lavinia Thorndike was in the Kitchen at 11:00 PM. — _establishes: Lavinia Thorndike in the Kitchen, 11:00 PM_
-
-On Constance Stannard:
-
-- **c025** [observation] Emilio Vitale says Constance Stannard was in the Lobby at 6:00 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM_
-- **c026** [observation] Emilio Vitale says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-- **c027** [observation] Emilio Vitale says Constance Stannard was on the Street at 10:30 PM. — _establishes: Constance Stannard on the Street, 10:30 PM_
-
-On Pasquale Grasso:
-
-- **c028** [observation] Emilio Vitale says Pasquale Grasso was on the Street from 6:00 PM to 7:30 PM. — _establishes: Pasquale Grasso on the Street, 6:00 PM–7:30 PM_
-- **c029** [observation] Emilio Vitale says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:00 PM–11:30 PM_
-
-On Abraham Sirkin:
-
-- **c030** [observation] Emilio Vitale says Abraham Sirkin was on the Service Stairs at 8:30 PM. — _establishes: Abraham Sirkin on the Service Stairs, 8:30 PM_
-- **c031** [observation] Emilio Vitale says Abraham Sirkin was on the Service Stairs at 9:30 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:30 PM_
-- **c032** [observation] Emilio Vitale says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 10:30 PM–11:30 PM_
-
-On Nunzio Tramonti:
-
-- **c033** [observation] Emilio Vitale says Nunzio Tramonti was on the Service Stairs at 8:00 PM. — _establishes: Nunzio Tramonti on the Service Stairs, 8:00 PM_
-- **c034** [observation] Emilio Vitale says Nunzio Tramonti was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 10:30 PM–11:30 PM_
-
-On Lavinia Thorndike's account:
-
-- **c103** [observation] Emilio Vitale was in the Lobby from 7:00 PM to 7:30 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–7:30 PM_
-
-On Constance Stannard's account:
-
-- **c107** [observation] Emilio Vitale was in the Lobby at 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:30 PM_
-
-On Pasquale Grasso's account:
-
-- **c117** [observation] Emilio Vitale was in the Lobby at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
-
-On Abraham Sirkin's account:
-
-- **c121** [observation] Emilio Vitale was in the Lobby from 7:00 PM to 7:30 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–7:30 PM_
-
-On Nunzio Tramonti's account:
-
-- **c127** [observation] Emilio Vitale was in the Lobby at 10:30 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM_
-- **c128** [observation] Emilio Vitale was in the Bar at 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 11:00 PM_
-
-On Abraham Sirkin and Bella Hurwitz:
-
-- **c148** [overheard] Emilio Vitale says Bella Hurwitz told Abraham Sirkin that Friday was the end of it, one way or the other. — _establishes: Abraham Sirkin had a motive (debt)_
-
-### From Pasquale Grasso (a ward heeler)
-
-On Lavinia Thorndike:
-
-- **c035** [observation] Pasquale Grasso says Lavinia Thorndike was in the Kitchen at 11:00 PM. — _establishes: Lavinia Thorndike in the Kitchen, 11:00 PM_
-
-On Constance Stannard:
-
-- **c036** [observation] Pasquale Grasso says Constance Stannard was in the Lobby at 6:00 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM_
-- **c037** [observation] Pasquale Grasso says Constance Stannard was in the Kitchen from 8:00 PM to 8:30 PM. — _establishes: Constance Stannard in the Kitchen, 8:00 PM–8:30 PM; Constance Stannard had access to the method_
-
-On Emilio Vitale:
-
-- **c038** [observation] Pasquale Grasso says Emilio Vitale was on the Street at 6:00 PM. — _establishes: Emilio Vitale on the Street, 6:00 PM_
-- **c039** [observation] Pasquale Grasso says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM–7:30 PM_
-- **c040** [observation] Pasquale Grasso says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM–11:30 PM_
-
-On Abraham Sirkin:
-
-- **c041** [observation] Pasquale Grasso says Abraham Sirkin was in the Kitchen at 10:00 PM. — _establishes: Abraham Sirkin in the Kitchen, 10:00 PM; Abraham Sirkin had access to the method_
-- **c042** [observation] Pasquale Grasso says Abraham Sirkin was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 11:00 PM–11:30 PM_
-
-On Nunzio Tramonti:
-
-- **c043** [observation] Pasquale Grasso says Nunzio Tramonti was in the Bar at 10:00 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM_
-- **c044** [observation] Pasquale Grasso says Nunzio Tramonti was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 11:00 PM–11:30 PM_
-
-On Lavinia Thorndike's account:
-
-- **c104** [observation] Pasquale Grasso was on the Street from 7:00 PM to 7:30 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–7:30 PM_
-
-On Abraham Sirkin's account:
-
-- **c122** [observation] Pasquale Grasso was on the Street from 7:00 PM to 7:30 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–7:30 PM_
-
-On Constance Stannard and Bella Hurwitz:
-
-- **c144** [overheard] Pasquale Grasso says Bella Hurwitz told Constance Stannard the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Constance Stannard had a motive (inheritance)_
-
-### From Abraham Sirkin (a bookmaker in a small way)
-
-On Bella Hurwitz:
-
-- **c045** [observation] Abraham Sirkin says Bella Hurwitz was on the Service Stairs at 8:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 8:30 PM; the victim alive at 8:30 PM_
-- **c046** [observation] Abraham Sirkin says Bella Hurwitz was on the Service Stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM; the victim alive at 9:30 PM_
-
-On Lavinia Thorndike:
-
-- **c047** [observation] Abraham Sirkin says Lavinia Thorndike was in the Roof Garden from 6:00 PM to 6:30 PM. — _establishes: Lavinia Thorndike in the Roof Garden, 6:00 PM–6:30 PM_
-- **c048** [observation] Abraham Sirkin says Lavinia Thorndike was on the Service Stairs at 9:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 9:30 PM_
-- **c049** [observation] Abraham Sirkin says Lavinia Thorndike was in the Kitchen from 10:30 PM to 11:00 PM. — _establishes: Lavinia Thorndike in the Kitchen, 10:30 PM–11:00 PM_
-
-On Constance Stannard:
-
-- **c050** [observation] Abraham Sirkin says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-
-On Emilio Vitale:
-
-- **c051** [observation] Abraham Sirkin says Emilio Vitale was on the Service Stairs at 8:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 8:30 PM_
-- **c052** [observation] Abraham Sirkin says Emilio Vitale was on the Service Stairs at 9:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM_
-- **c053** [observation] Abraham Sirkin says Emilio Vitale was in the Lobby at 10:30 PM. — _establishes: Emilio Vitale in the Lobby, 10:30 PM_
-- **c054** [observation] Abraham Sirkin says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM–11:30 PM_
-
-On Pasquale Grasso:
-
-- **c055** [observation] Abraham Sirkin says Pasquale Grasso was in the Kitchen at 10:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 10:00 PM; Pasquale Grasso had access to the method_
-- **c056** [observation] Abraham Sirkin says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:00 PM–11:30 PM_
-
-On Nunzio Tramonti:
-
-- **c057** [observation] Abraham Sirkin says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:30 PM_
-
-On Constance Stannard's account:
-
-- **c108** [observation] Abraham Sirkin was in the Bar at 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:30 PM_
-
-On Pasquale Grasso's account:
-
-- **c118** [observation] Abraham Sirkin was in the Bar at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
-
-On Nunzio Tramonti's account:
-
-- **c129** [observation] Abraham Sirkin was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
-
-### From Nunzio Tramonti (a stagehand at the Selwyn)
-
-On Bella Hurwitz:
-
-- **c058** [observation] Nunzio Tramonti says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-
-On Constance Stannard:
-
-- **c059** [observation] Nunzio Tramonti says Constance Stannard was on the Service Stairs from 6:30 PM to 7:00 PM. — _establishes: Constance Stannard on the Service Stairs, 6:30 PM–7:00 PM_
-- **c060** [observation] Nunzio Tramonti says Constance Stannard was on the Street at 9:30 PM. — _establishes: Constance Stannard on the Street, 9:30 PM_
-- **c061** [observation] Nunzio Tramonti says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-
-On Emilio Vitale:
-
-- **c062** [observation] Nunzio Tramonti says Emilio Vitale was on the Service Stairs at 8:00 PM. — _establishes: Emilio Vitale on the Service Stairs, 8:00 PM_
-- **c063** [observation] Nunzio Tramonti says Emilio Vitale was in the Bar at 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:30 PM_
-
-On Pasquale Grasso:
-
-- **c064** [observation] Nunzio Tramonti says Pasquale Grasso was in the Kitchen at 10:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 10:00 PM; Pasquale Grasso had access to the method_
-- **c065** [observation] Nunzio Tramonti says Pasquale Grasso was in the Kitchen at 11:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:30 PM_
-
-On Abraham Sirkin:
-
-- **c066** [observation] Nunzio Tramonti says Abraham Sirkin was in the Kitchen at 10:00 PM. — _establishes: Abraham Sirkin in the Kitchen, 10:00 PM; Abraham Sirkin had access to the method_
-- **c067** [observation] Nunzio Tramonti says Abraham Sirkin was in the Bar at 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 11:30 PM_
-
-On Constance Stannard's account:
-
-- **c109** [observation] Nunzio Tramonti was in the Bar at 10:00 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM_
-
-On Emilio Vitale's account:
-
-- **c113** [observation] Nunzio Tramonti was at the Front Desk at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
-
-On Abraham Sirkin's account:
-
-- **c125** [observation] Abraham Sirkin says Nunzio Tramonti was there. Nunzio Tramonti says otherwise: Nunzio Tramonti was on the Service Stairs from 7:00 PM to 8:00 PM, not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
-
-### From Heinrich Obermann (the doorman)
-
-On Bella Hurwitz:
-
-- **c068** [observation] Heinrich Obermann says Bella Hurwitz was at the Front Desk from 6:00 PM to 7:30 PM. — _establishes: Bella Hurwitz at the Front Desk, 6:00 PM–7:30 PM; the victim alive at 6:00 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c069** [observation] Heinrich Obermann says Bella Hurwitz was in the Lobby at 8:00 PM. — _establishes: Bella Hurwitz in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-- **c070** [observation] Heinrich Obermann says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-
-On Lavinia Thorndike:
-
-- **c071** [observation] Heinrich Obermann says Lavinia Thorndike was on the Street at 11:30 PM. — _establishes: Lavinia Thorndike on the Street, 11:30 PM_
-
-On Constance Stannard:
-
-- **c072** [observation] Heinrich Obermann says Constance Stannard was in the Lobby at 6:00 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM_
-- **c073** [observation] Heinrich Obermann says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-- **c074** [observation] Heinrich Obermann says Constance Stannard was on the Street from 9:00 PM to 11:00 PM. — _establishes: Constance Stannard on the Street, 9:00 PM–11:00 PM_
-
-On Emilio Vitale:
-
-- **c075** [observation] Heinrich Obermann says Emilio Vitale was on the Street at 6:00 PM. — _establishes: Emilio Vitale on the Street, 6:00 PM_
-- **c076** [observation] Heinrich Obermann says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM–7:30 PM_
-- **c077** [observation] Heinrich Obermann says Emilio Vitale was in the Lobby at 10:30 PM. — _establishes: Emilio Vitale in the Lobby, 10:30 PM_
-- **c078** [observation] Heinrich Obermann says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM–11:30 PM_
-
-On Pasquale Grasso:
-
-- **c079** [observation] Heinrich Obermann says Pasquale Grasso was on the Street from 6:00 PM to 7:30 PM. — _establishes: Pasquale Grasso on the Street, 6:00 PM–7:30 PM_
-
-On Abraham Sirkin:
-
-- **c080** [observation] Heinrich Obermann says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 10:30 PM–11:30 PM_
-
-On Nunzio Tramonti:
-
-- **c081** [observation] Heinrich Obermann says Nunzio Tramonti was in the Lobby at 8:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 8:30 PM_
-- **c082** [observation] Heinrich Obermann says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
-- **c083** [observation] Heinrich Obermann says Nunzio Tramonti was at the Front Desk at 9:00 PM. — _establishes: Nunzio Tramonti at the Front Desk, 9:00 PM_
-- **c084** [observation] Heinrich Obermann says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:30 PM_
-
-On Lavinia Thorndike's account:
-
-- **c105** [observation] Heinrich Obermann was in the Lobby from 7:00 PM to 8:00 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–8:00 PM_
-
-On Constance Stannard's account:
-
-- **c110** [observation] Heinrich Obermann was in the Lobby from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
-
-On Emilio Vitale's account:
-
-- **c114** [observation] Heinrich Obermann was in the Lobby at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
-
-On Pasquale Grasso's account:
-
-- **c119** [observation] Heinrich Obermann was in the Lobby at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
-
-On Abraham Sirkin's account:
-
-- **c123** [observation] Heinrich Obermann was in the Lobby from 7:00 PM to 8:00 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
-
-On Nunzio Tramonti's account:
-
-- **c130** [observation] Heinrich Obermann was in the Lobby from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
-
-On Nunzio Tramonti and Bella Hurwitz:
-
-- **c150** [overheard] Heinrich Obermann says Nunzio Tramonti told Bella Hurwitz to keep away, loud enough to turn heads. — _establishes: Nunzio Tramonti had a motive (jealousy)_
-
-### From Friedrich Kreuzer (the bartender)
-
-On Bella Hurwitz:
-
-- **c085** [observation] Friedrich Kreuzer says Bella Hurwitz was in the Lobby at 8:00 PM. — _establishes: Bella Hurwitz in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-- **c086** [observation] Friedrich Kreuzer says Bella Hurwitz was in the Lobby at 10:00 PM. — _establishes: Bella Hurwitz in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-
-On Lavinia Thorndike:
-
-- **c087** [observation] Friedrich Kreuzer says Lavinia Thorndike was in the Kitchen from 10:30 PM to 11:00 PM. — _establishes: Lavinia Thorndike in the Kitchen, 10:30 PM–11:00 PM_
-
-On Constance Stannard:
-
-- **c088** [observation] Friedrich Kreuzer says Constance Stannard was in the Lobby at 6:00 PM. — _establishes: Constance Stannard in the Lobby, 6:00 PM_
-- **c089** [observation] Friedrich Kreuzer says Constance Stannard was in the Lobby at 11:30 PM. — _establishes: Constance Stannard in the Lobby, 11:30 PM_
-- **c090** [observation] Friedrich Kreuzer says Constance Stannard was in the Kitchen from 7:30 PM to 8:00 PM. — _establishes: Constance Stannard in the Kitchen, 7:30 PM–8:00 PM; Constance Stannard had access to the method_
-
-On Emilio Vitale:
-
-- **c091** [observation] Friedrich Kreuzer says Emilio Vitale was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Emilio Vitale in the Lobby, 6:30 PM–7:30 PM_
-- **c092** [observation] Friedrich Kreuzer says Emilio Vitale was in the Lobby at 10:30 PM. — _establishes: Emilio Vitale in the Lobby, 10:30 PM_
-- **c093** [observation] Friedrich Kreuzer says Emilio Vitale was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Emilio Vitale in the Bar, 11:00 PM–11:30 PM_
-
-On Pasquale Grasso:
-
-- **c094** [observation] Friedrich Kreuzer says Pasquale Grasso was in the Kitchen at 8:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 8:00 PM; Pasquale Grasso had access to the method_
-- **c095** [observation] Friedrich Kreuzer says Pasquale Grasso was in the Kitchen from 9:00 PM to 10:00 PM. — _establishes: Pasquale Grasso in the Kitchen, 9:00 PM–10:00 PM; Pasquale Grasso had access to the method_
-- **c096** [observation] Friedrich Kreuzer says Pasquale Grasso was in the Kitchen from 11:00 PM to 11:30 PM. — _establishes: Pasquale Grasso in the Kitchen, 11:00 PM–11:30 PM_
-
-On Abraham Sirkin:
-
-- **c097** [observation] Friedrich Kreuzer says Abraham Sirkin was in the Kitchen at 10:00 PM. — _establishes: Abraham Sirkin in the Kitchen, 10:00 PM; Abraham Sirkin had access to the method_
-- **c098** [observation] Friedrich Kreuzer says Abraham Sirkin was in the Bar from 10:30 PM to 11:30 PM. — _establishes: Abraham Sirkin in the Bar, 10:30 PM–11:30 PM_
-
-On Nunzio Tramonti:
-
-- **c099** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Kitchen at 6:00 PM. — _establishes: Nunzio Tramonti in the Kitchen, 6:00 PM; Nunzio Tramonti had access to the method_
-- **c100** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Lobby at 8:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 8:30 PM_
-- **c101** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Lobby at 9:30 PM. — _establishes: Nunzio Tramonti in the Lobby, 9:30 PM_
-- **c102** [observation] Friedrich Kreuzer says Nunzio Tramonti was in the Bar from 10:00 PM to 11:30 PM. — _establishes: Nunzio Tramonti in the Bar, 10:00 PM–11:30 PM_
-
-On Lavinia Thorndike's account:
-
-- **c106** [observation] Friedrich Kreuzer was in the Bar from 7:00 PM to 8:00 PM and says Lavinia Thorndike was not in the Lobby. — _establishes: Lavinia Thorndike not in the Lobby, 7:00 PM–8:00 PM_
-
-On Constance Stannard's account:
-
-- **c111** [observation] Friedrich Kreuzer was in the Bar from 10:00 PM to 10:30 PM and says Constance Stannard was not in the Lobby. — _establishes: Constance Stannard not in the Lobby, 10:00 PM–10:30 PM_
-
-On Emilio Vitale's account:
-
-- **c115** [observation] Friedrich Kreuzer was in the Bar at 9:00 PM and says Emilio Vitale was not in the Lobby. — _establishes: Emilio Vitale not in the Lobby, 9:00 PM_
-
-On Pasquale Grasso's account:
-
-- **c120** [observation] Friedrich Kreuzer was in the Bar at 10:30 PM and says Pasquale Grasso was not in the Bar. — _establishes: Pasquale Grasso not in the Bar, 10:30 PM_
-
-On Abraham Sirkin's account:
-
-- **c124** [observation] Friedrich Kreuzer was in the Bar from 7:00 PM to 8:00 PM and says Abraham Sirkin was not in the Lobby. — _establishes: Abraham Sirkin not in the Lobby, 7:00 PM–8:00 PM_
-
-On Nunzio Tramonti's account:
-
-- **c131** [observation] Friedrich Kreuzer was in the Bar from 10:30 PM to 11:00 PM and says Nunzio Tramonti was not in the Lobby. — _establishes: Nunzio Tramonti not in the Lobby, 10:30 PM–11:00 PM_
-
-### From the Lobby
-
-- **c137** [environment] The passenger elevator was out of order from 9:00 PM to 10:00 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
-
-### From the Front Desk
-
-- **c142** [document] Pasquale Grasso's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
-- **c145** [document] Found in the Front Desk: A typed page of dates and sums in Bella Hurwitz's file, headed with Pasquale Grasso's name. — _establishes: Pasquale Grasso had a motive (exposure)_
-- **c147** [document] Found in the Front Desk: A promissory note for $4,000 signed by Abraham Sirkin, endorsed to Bella Hurwitz, three months past due. — _establishes: Abraham Sirkin had a motive (debt)_
-- **c149** [document] Found in the Front Desk: Three letters in Bella Hurwitz's hand to a woman Nunzio Tramonti is engaged to, kept in the drawer, the last one opened. — _establishes: Nunzio Tramonti had a motive (jealousy)_
-
-### From the Kitchen
-
-- **c133** [physical] A length of sash cord is missing from the Kitchen. A cut end of the same hemp is still tied to the fitting it was taken from. — _establishes: an object gone from the Kitchen_
-
-### From the Service Stairs
-
-- **c132** [morgue] Bella Hurwitz was found on the Service Stairs. The coroner puts death between 10:00 PM and 10:30 PM. A ligature furrow across the throat. Three fibres of hemp in the skin. — _establishes: death between 10:00 PM and 10:30 PM_
-- **c138** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Bella Hurwitz's sleeve; Bella Hurwitz was on the stairs at 9:30 PM. — _establishes: Bella Hurwitz on the Service Stairs, 9:30 PM_
-- **c139** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Lavinia Thorndike's sleeve; Lavinia Thorndike was on the stairs at 9:30 PM. — _establishes: Lavinia Thorndike on the Service Stairs, 9:30 PM_
-- **c140** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Emilio Vitale's sleeve; Emilio Vitale was on the stairs at 9:30 PM. — _establishes: Emilio Vitale on the Service Stairs, 9:30 PM_
-- **c141** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Abraham Sirkin's sleeve; Abraham Sirkin was on the stairs at 9:00 PM. — _establishes: Abraham Sirkin on the Service Stairs, 9:00 PM_
-
-### From the Victim's Suite
-
-- **c143** [document] Found in the Victim's Suite: A draft codicil in Bella Hurwitz's hand striking Constance Stannard out of the will, dated last Tuesday and unsigned. — _establishes: Constance Stannard had a motive (inheritance)_
-
-### From the Street
-
-- **c134** [environment] Rain began at 7:00 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
-
-### Withheld — the player cannot get these
-
-- ~~Lavinia Thorndike saw Abraham Sirkin in the Roof Garden, 7:00 PM–8:00 PM~~ — Lavinia Thorndike is lying about that time and will not say.
-- ~~Abraham Sirkin saw Lavinia Thorndike in the Roof Garden, 7:00 PM–8:00 PM~~ — Abraham Sirkin is lying about that time and will not say.
-- ~~Emilio Vitale saw Bella Hurwitz in the Victim's Suite, 9:00 PM~~ — Emilio Vitale is lying about that time and will not say.
-- ~~Constance Stannard saw Bella Hurwitz in the Lobby, 10:00 PM~~ — Constance Stannard is lying about that time and will not say.
-- ~~Constance Stannard saw Heinrich Obermann in the Lobby, 10:00 PM–10:30 PM~~ — Constance Stannard is lying about that time and will not say.
-- ~~Constance Stannard saw Emilio Vitale in the Lobby, 10:30 PM~~ — Constance Stannard is lying about that time and will not say.
-- ~~Pasquale Grasso saw Bella Hurwitz on the Service Stairs, 10:30 PM~~ — Pasquale Grasso is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Lavinia Thorndike in the Kitchen, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Emilio Vitale in the Lobby, 10:30 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Abraham Sirkin in the Bar, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Heinrich Obermann in the Lobby, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Friedrich Kreuzer in the Bar, 10:30 PM–11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Emilio Vitale in the Bar, 11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-- ~~Nunzio Tramonti saw Pasquale Grasso in the Kitchen, 11:00 PM~~ — Nunzio Tramonti is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:30 PM. _(c132, c058, c070, c086)_
+| Tick | Time | Martin Feeney (the man behind the counter) | Klara Lindemann (the landlady) | Frieda Vogel (the bartender) | Nora Callahan (the hackman on the stand) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 1 | 6:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 2 | 7:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 3 | 7:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 4 | 8:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 5 | 8:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the El platform at Twenty-Third Street | the cab stand outside the Hippodrome |
+| 6 | 9:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 7 | 9:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Ruggiero’s barber shop |
+| 8 | 10:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 9 | 10:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 10 | 11:00 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+| 11 | 11:30 PM | Ruggiero’s barber shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop | the cab stand outside the Hippodrome |
+
+## 6. Secrets in play
+
+- **Salvatore Moretti** (fence): Salvatore Moretti hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 11:00 PM.
+- **Booker Cheatham** (hidden-family): Booker Cheatham goes to the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM to see a child nobody is supposed to know about.
+- **Grafton Winslow** (affair): Grafton Winslow is with Assunta Bellucci at the back room at Mrs. Teague’s from 10:00 PM to 10:30 PM, and both will say they were somewhere else.
+- **Rivka Weisglass** (murder): Rivka Weisglass is at the victim’s apartment on the fourth floor from 11:00 PM, alone with Ellsworth Havemeyer when it happens at 11:00 PM.
+- **Rivka Weisglass** also (union-organizing): Rivka Weisglass is at Ruggiero’s barber shop from 7:30 PM to 8:00 PM signing men up, which is a firing offence and worse.
+- **Assunta Bellucci** (affair): Assunta Bellucci is with Grafton Winslow at the back room at Mrs. Teague’s from 10:00 PM to 10:30 PM, and both will say they were somewhere else.
+- **Friedrich Kreuzer** (gambling-debt): Friedrich Kreuzer slips off to the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM to settle with a bookmaker.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c139, c140, c150. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At Ruggiero’s barber shop
+
+- **c150** [spine ⟨opening⟩] (client; Friedrich Kreuzer on why I was hired) → c143, c018
+  - Friedrich Kreuzer hired us. Friedrich Kreuzer wants it known that Rivka Weisglass wanted the victim out of a lease, and would rather we started there.
+  - _establishes: Rivka Weisglass had a motive (property)_
+- **c143** [spine] (anchor; Rivka Weisglass on Ellsworth Havemeyer that evening) → c006, c146, c070
+  - Rivka Weisglass puts Ellsworth Havemeyer at the speakeasy under the hat shop while the singing was still going on, which was 10:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:30 PM; Ellsworth Havemeyer at the speakeasy under the hat shop, 10:30 PM_
+- **c132** [spine] (observation; Assunta Bellucci on Rivka Weisglass’s account) → c006, c141, c144, c145, c015
+  - Assunta Bellucci was at the cab stand outside the Hippodrome at 11:00 PM and says Rivka Weisglass was not.
+  - _establishes: Rivka Weisglass not at the cab stand outside the Hippodrome, 11:00 PM_
+- **c090** [corroboration] (observation; Booker Cheatham on who was there at 11:00 PM) → (end)
+  - Booker Cheatham runs through it: at 11:00 PM there were Salvatore Moretti, Grafton Winslow, Assunta Bellucci, Friedrich Kreuzer at the cab stand outside the Hippodrome, and nobody else worth naming.
+  - _establishes: Salvatore Moretti at the cab stand outside the Hippodrome, 11:00 PM; Grafton Winslow at the cab stand outside the Hippodrome, 11:00 PM; Assunta Bellucci at the cab stand outside the Hippodrome, 11:00 PM; Friedrich Kreuzer at the cab stand outside the Hippodrome, 11:00 PM_
+- **c130** [corroboration] (observation; Booker Cheatham on Rivka Weisglass’s account) → (end)
+  - Booker Cheatham was at the cab stand outside the Hippodrome at 11:00 PM and says Rivka Weisglass was not.
+  - _establishes: Rivka Weisglass not at the cab stand outside the Hippodrome, 11:00 PM_
+- **c015** [corroboration] (observation; Booker Cheatham on Assunta Bellucci) → c155, c162
+  - Booker Cheatham says Assunta Bellucci was at the cab stand outside the Hippodrome at 11:00 PM.
+  - _establishes: Assunta Bellucci at the cab stand outside the Hippodrome, 11:00 PM_
+
+### At the back room at Mrs. Teague’s
+
+- **c176** [noise {b2}] (physical; the place itself) → c179
+  - Two glasses at the back room at Mrs. Teague’s, one of them with a lip print on it, and only one of them paid for.
+  - _establishes: context only_
+- **c179** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - Grafton Winslow breaks and says it plainly: Grafton Winslow was with Assunta Bellucci at the back room at Mrs. Teague’s for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
+  - _establishes: Assunta Bellucci’s affair accounted for; Assunta Bellucci at the back room at Mrs. Teague’s, 10:00 PM–10:30 PM_
+- **c162** [noise {b4}] (physical; the place itself) → c163
+  - A child’s shoe at the back room at Mrs. Teague’s, and nobody at the back room at Mrs. Teague’s has any children.
+  - _establishes: context only_
+- **c163** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The woman who keeps the child says it straight out: Booker Cheatham was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.
+  - _establishes: Booker Cheatham’s hidden-family accounted for; Booker Cheatham at the back room at Mrs. Teague’s, 8:00 PM–8:30 PM_
+- **c170** [noise {b5}] (physical; the place itself) → c171
+  - A man’s hat at the back room at Mrs. Teague’s that fits nobody who admits to being there.
+  - _establishes: context only_
+- **c171** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - Assunta Bellucci breaks and says it plainly: Assunta Bellucci was with Grafton Winslow at the back room at Mrs. Teague’s for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
+  - _establishes: Grafton Winslow’s affair accounted for; Grafton Winslow at the back room at Mrs. Teague’s, 10:00 PM–10:30 PM_
+
+### At the speakeasy under the hat shop
+
+- **c093** [corroboration] (observation; Grafton Winslow on who was there at 11:00 PM) → (end)
+  - Grafton Winslow runs through it: at 11:00 PM there were Salvatore Moretti, Booker Cheatham, Assunta Bellucci, Friedrich Kreuzer at the cab stand outside the Hippodrome, and nobody else worth naming.
+  - _establishes: Salvatore Moretti at the cab stand outside the Hippodrome, 11:00 PM; Booker Cheatham at the cab stand outside the Hippodrome, 11:00 PM; Assunta Bellucci at the cab stand outside the Hippodrome, 11:00 PM; Friedrich Kreuzer at the cab stand outside the Hippodrome, 11:00 PM_
+- **c141** [corroboration] (physical; the place itself) → (end)
+  - A nickel-plated revolver is gone from the speakeasy under the hat shop. The drawer it was kept in is open and the oiled cloth is still in it.
+  - _establishes: something gone from the speakeasy under the hat shop; how it was done_
+- **c021** [corroboration] (observation; Grafton Winslow on Rivka Weisglass) → (end)
+  - Grafton Winslow says Rivka Weisglass was at the speakeasy under the hat shop at 9:30 PM.
+  - _establishes: Rivka Weisglass at the speakeasy under the hat shop, 9:30 PM; Rivka Weisglass could reach the weapon_
+- **c144** [corroboration] (anchor; Frieda Vogel on Ellsworth Havemeyer that evening) → (end)
+  - Frieda Vogel puts Ellsworth Havemeyer at the speakeasy under the hat shop while the singing was still going on, which was 10:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:30 PM; Ellsworth Havemeyer at the speakeasy under the hat shop, 10:30 PM_
+- **c145** [corroboration] (anchor; Frieda Vogel on the noise that evening) → (end)
+  - Frieda Vogel was at the speakeasy under the hat shop at 11:00 PM and heard a shot from the direction of the victim’s apartment on the fourth floor, just as the El went over.
+  - _establishes: noise at the victim’s apartment on the fourth floor at 11:00 PM; the victim dead by 11:00 PM; how it was done_
+- **c070** [corroboration] (observation; Frieda Vogel on Rivka Weisglass) → c176
+  - Frieda Vogel says Rivka Weisglass was at the speakeasy under the hat shop from 9:30 PM to 10:30 PM.
+  - _establishes: Rivka Weisglass at the speakeasy under the hat shop, 9:30 PM–10:30 PM; Rivka Weisglass could reach the weapon_
+- **c018** [corroboration] (observation; Grafton Winslow on Salvatore Moretti) → c166
+  - Grafton Winslow says Salvatore Moretti was at the speakeasy under the hat shop at 9:30 PM.
+  - _establishes: Salvatore Moretti at the speakeasy under the hat shop, 9:30 PM; Salvatore Moretti could reach the weapon_
+- **c166** [noise {b5}] (overheard; Frieda Vogel on Grafton Winslow) → c170
+  - Frieda Vogel on Grafton Winslow: Somebody asked Grafton Winslow a plain question about the evening and got three different answers.
+  - _establishes: context only_
+
+### At the cab stand outside the Hippodrome
+
+- **c121** [spine] (observation; Nora Callahan on who was there at 11:00 PM) → c132, c021, c185
+  - Nora Callahan runs through it: at 11:00 PM there were Salvatore Moretti, Booker Cheatham, Grafton Winslow, Assunta Bellucci, Friedrich Kreuzer at the cab stand outside the Hippodrome, and nobody else worth naming.
+  - _establishes: Salvatore Moretti at the cab stand outside the Hippodrome, 11:00 PM; Booker Cheatham at the cab stand outside the Hippodrome, 11:00 PM; Grafton Winslow at the cab stand outside the Hippodrome, 11:00 PM; Assunta Bellucci at the cab stand outside the Hippodrome, 11:00 PM; Friedrich Kreuzer at the cab stand outside the Hippodrome, 11:00 PM_
+- **c006** [spine] (observation; Salvatore Moretti on Rivka Weisglass) → (end)
+  - Salvatore Moretti says Rivka Weisglass was at the speakeasy under the hat shop from 9:30 PM to 10:30 PM.
+  - _establishes: Rivka Weisglass at the speakeasy under the hat shop, 9:30 PM–10:30 PM; Rivka Weisglass could reach the weapon_
+- **c155** [noise {b1}] (physical; the place itself) → c154
+  - A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.
+  - _establishes: context only_
+- **c154** [noise {b1}] (physical; the place itself) → c156
+  - Wrapping paper and a cut string at the cab stand outside the Hippodrome, and the shop it came from closed two years ago.
+  - _establishes: context only_
+- **c156** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The receiver at the cab stand outside the Hippodrome would rather talk than be held: Salvatore Moretti was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Salvatore Moretti will take over this one.
+  - _establishes: Salvatore Moretti’s fence accounted for; Salvatore Moretti at the cab stand outside the Hippodrome, 11:00 PM_
+- **c185** [noise {b3}] (physical; the place itself) → c186
+  - A book of markers at the cab stand outside the Hippodrome with Friedrich Kreuzer’s initials against four of them.
+  - _establishes: context only_
+- **c186** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Friedrich Kreuzer was at the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Friedrich Kreuzer’s gambling-debt accounted for; Friedrich Kreuzer at the cab stand outside the Hippodrome, 10:30 PM–11:00 PM_
+
+### At the victim’s apartment on the fourth floor
+
+- **c139** [spine ⟨opening⟩] (scene; the place itself) → c121, c132, c093
+  - Ellsworth Havemeyer was found at the victim’s apartment on the fourth floor. The cigarette he had going burned itself out on the sill where it fell. The El going over came at 11:00 PM, and the El was running to timetable and it covers the half hour exactly. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 11:00 PM; how it was done_
+- **c140** [spine ⟨opening⟩] (morgue; the place itself) → c121, c143, c090, c130
+  - The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
+  - _establishes: death between 10:00 PM and 11:30 PM; how it was done_
+- **c146** [corroboration] (document; the place itself) → (end)
+  - Found at the victim’s apartment on the fourth floor: A lease assignment made out in Rivka Weisglass’s name, waiting only on Ellsworth Havemeyer’s signature.
+  - _establishes: Rivka Weisglass had a motive (property)_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["Ruggiero’s barber shop"]
+    c150["▶ c150 Friedrich Kreuzer"]
+    c143["c143 Rivka Weisglass"]
+    c132["c132 Assunta Bellucci"]
+    c090["c090 Booker Cheatham"]
+    c130["c130 Booker Cheatham"]
+    c015["c015 Booker Cheatham"]
+  end
+  subgraph P2["the back room at Mrs. Teague’s"]
+    c176["c176 the place"]
+    c179["✗ c179 the place"]
+    c162["c162 the place"]
+    c163["✗ c163 the place"]
+    c170["c170 the place"]
+    c171["✗ c171 the place"]
+  end
+  subgraph P3["the speakeasy under the hat shop"]
+    c093["c093 Grafton Winslow"]
+    c141["c141 the place"]
+    c021["c021 Grafton Winslow"]
+    c144["c144 Frieda Vogel"]
+    c145["c145 Frieda Vogel"]
+    c070["c070 Frieda Vogel"]
+    c018["c018 Grafton Winslow"]
+    c166["c166 Frieda Vogel"]
+  end
+  subgraph P4["the cab stand outside the Hippodrome"]
+    c121["c121 Nora Callahan"]
+    c006["c006 Salvatore Moretti"]
+    c155["c155 the place"]
+    c154["c154 the place"]
+    c156["✗ c156 the place"]
+    c185["c185 the place"]
+    c186["✗ c186 the place"]
+  end
+  subgraph P5["the victim’s apartment on the fourth floor"]
+    c139["▶ c139 the place"]
+    c140["▶ c140 the place"]
+    c146["c146 the place"]
+  end
+  c139 --> c121
+  c139 --> c132
+  c139 --> c093
+  c140 --> c121
+  c140 --> c143
+  c140 --> c090
+  c140 --> c130
+  c150 --> c143
+  c150 --> c018
+  c121 --> c132
+  c121 --> c021
+  c121 -.-> c185
+  c143 --> c006
+  c143 --> c146
+  c143 --> c070
+  c132 --> c006
+  c132 --> c141
+  c132 --> c144
+  c132 --> c145
+  c132 --> c015
+  c070 -.-> c176
+  c015 -.-> c155
+  c015 -.-> c162
+  c018 -.-> c166
+  c155 -.-> c154
+  c154 --> c156
+  c176 --> c179
+  c185 --> c186
+  c162 --> c163
+  c166 -.-> c170
+  c170 --> c171
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c139,c140,c150,c121,c143,c132,c006 spine;
+  class c093,c141,c021,c090,c146,c130,c144,c145,c070,c015,c018 corrob;
+  class c155,c154,c176,c185,c162,c166,c170 noise;
+  class c156,c179,c186,c163,c171 disq;
+```
+
+## 9. Deduction path
+
+Par is **6 actions** against a budget of 20: 14 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 11:00 PM: one puts Ellsworth Havemeyer alive at 10:30 PM, the other times the scene at 11:00 PM. _(c140, c143, c139; + 2 corroborating)_
 
 **Clearing the innocent.**
 
-- Lavinia Thorndike was not on the Service Stairs at 10:30 PM, on two independent sources. _(c049, c087)_
-- Constance Stannard was not on the Service Stairs at 10:30 PM, on two independent sources. _(c027, c074)_
-- Emilio Vitale was not on the Service Stairs at 10:30 PM, on two independent sources. _(c053, c077, c092)_
-- Abraham Sirkin was not on the Service Stairs at 10:30 PM, on two independent sources. _(c008, c032, c080, c098)_
-- Nunzio Tramonti was not on the Service Stairs at 10:30 PM, on two independent sources. _(c009, c034, c057, c084, c102)_
+- Salvatore Moretti was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 3 corroborating)_
+- Booker Cheatham was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 1 corroborating)_
+- Grafton Winslow was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 1 corroborating)_
+- Assunta Bellucci was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 3 corroborating)_
+- Friedrich Kreuzer was not at the victim’s apartment on the fourth floor at 11:00 PM, on two independent sources. _(c121; + 3 corroborating)_
 
-**Naming the killer.** Pasquale Grasso claims the Bar at 10:30 PM. Two independent sources put that out of the question, and one ties Pasquale Grasso to strangling with a cord. _(c116, c117, c118, c119, c120, c015, c055, c064, c094, c095)_
+**Naming the killer.** Rivka Weisglass claims the cab stand outside the Hippodrome at 11:00 PM. Two independent sources put that out of the question. _(c132; + 1 corroborating)_
 
-**Method.** Strangling with a cord, on two physical sources. _(c132, c133)_
+**The weapon.** Rivka Weisglass was at the speakeasy under the hat shop before 11:00 PM, where a nickel-plated revolver was kept. _(c006; + 2 corroborating)_
 
-**Motive.** exposure, on two independent sources. _(c145, c146)_
+**Method.** A gunshot, on two physical sources. _(c139, c140; + 2 corroborating)_
 
-## 8. Red herrings
+**Motive.** property, on two independent sources. _(c150; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Constance Stannard claims the Lobby at 10:30 PM and was really in the Street. Reason: Constance Stannard slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.
-- Nunzio Tramonti claims the Lobby at 10:30 PM and was really in the Bar. Reason: Nunzio Tramonti drinks alone in the Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
+- Salvatore Moretti claims the speakeasy under the hat shop at 11:00 PM and was really at the cab stand outside the Hippodrome. Reason: Salvatore Moretti hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 11:00 PM.
+- Friedrich Kreuzer claims Ruggiero’s barber shop at 11:00 PM and was really at the cab stand outside the Hippodrome. Reason: Friedrich Kreuzer slips off to the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM to settle with a bookmaker.
 
 **Innocents with a motive:**
 
-- Constance Stannard — inheritance: stands to inherit.
-- Abraham Sirkin — debt: owed the victim money.
-- Nunzio Tramonti — jealousy: jealous of the victim.
+- Assunta Bellucci — inheritance: stands to inherit.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Salvatore Moretti, fence): c155 → c154 → **c156** — The receiver at the cab stand outside the Hippodrome would rather talk than be held: Salvatore Moretti was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Salvatore Moretti will take over this one.
+- **b2** (Assunta Bellucci, affair): c176 → **c179** — Grafton Winslow breaks and says it plainly: Grafton Winslow was with Assunta Bellucci at the back room at Mrs. Teague’s for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
+- **b3** (Friedrich Kreuzer, gambling-debt): c185 → **c186** — The bookmaker’s runner is found and will say it: Friedrich Kreuzer was at the cab stand outside the Hippodrome from 10:30 PM to 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b4** (Booker Cheatham, hidden-family): c162 → **c163** — The woman who keeps the child says it straight out: Booker Cheatham was at the back room at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.
+- **b5** (Grafton Winslow, affair): c166 → c170 → **c171** — Assunta Bellucci breaks and says it plainly: Assunta Bellucci was with Grafton Winslow at the back room at Mrs. Teague’s for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
 

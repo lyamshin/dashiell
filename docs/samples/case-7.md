@@ -1,713 +1,436 @@
-# Hotel Saint Clair — case 7
+# the Bowery — case 7
 
-**Seed** 7 · **Attempts** 7 · **Detective** Humphrey
+**Seed** 7 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 6 actions · **Budget** 20 · **Slack** 14 · **Findable** 31 (spine 7, corroboration 11, noise 8 + 5 disqualifiers) · **Noise ratio** 42% · **Candidate pool** 187
 
 ## 1. The Truth
 
-Vincenzo Marchetti, a private nurse, a childhood friend of the victim from the same block, killed Agnes Doyle, the owner of the hotel, with a gunshot in the Roof Garden at 10:30 PM. Vincenzo Marchetti stands to inherit (inheritance). Vincenzo Marchetti had been at the Front Desk earlier in the evening, before 10:30 PM and was alone with Agnes Doyle when it happened.
+Otto Brauer, a stagehand at the Selwyn, the victim’s neighbour across the airshaft, killed Salvatore Vitale, a retired dry-goods wholesaler, with a gunshot at the victim’s house on the back lot at 9:30 PM. Otto Brauer blamed the victim for a ruin (revenge). Otto Brauer had been at the speakeasy under the hat shop earlier in the evening, where the weapon lived, and was alone with Salvatore Vitale when it happened. Alonzo Dandridge hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Agnes Doyle | the owner of the hotel | the victim | — | — | — |
-| Meyer Shapiro | a bookkeeper | the victim's tenant | embezzling | — | — |
-| Ezekiel Whitfield | a ward heeler | named in the victim's will | blackmail | revenge | — |
-| Gittel Feldman | the night manager | the victim's secretary | forged-identity | — | — |
-| Vincenzo Marchetti | a private nurse | a childhood friend of the victim from the same block | murder | inheritance | **YES** |
-| Adelaide Lathrop | a chambermaid | the victim's landlord | gambling-debt | jealousy | — |
-| Ilse Brauer | a seamstress | the victim's creditor | secret-drinking | debt | — |
-| Harrison Stannard | the doorman | fixture | — | — | — |
-| Hedwig Lindemann | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Salvatore Vitale | a retired dry-goods wholesaler | the victim | — | — | — | — |
+| Domenica Carbone | a piano teacher | the victim’s tenant | secret-drinking | — | the speakeasy under the hat shop | — |
+| Alonzo Dandridge (client) | a doorman at a club with no sign on it | in the victim’s debt | gambling-debt | — | the back room at Mrs. Teague’s | — |
+| Otto Brauer | a stagehand at the Selwyn | the victim’s neighbour across the airshaft | murder | revenge | the benches at the north end of the square | **YES** |
+| Nathan Kessler | the victim’s nephew, at loose ends | the victim’s cousin | affair | inheritance | the benches at the north end of the square | — |
+| Beatrice Thorndike | a seamstress | the victim’s tenant | affair | — | the cab stand outside the Hippodrome | — |
+| Roscoe Mosley | a ward heeler | the victim’s rival in trade | fence | property | the speakeasy under the hat shop | — |
+| Marion Ainsworth | the landlady | fixture (landlady) | — | — | the back room at Mrs. Teague’s | — |
+| Dennis Doyle | the bartender | fixture (bartender) | — | — | the speakeasy under the hat shop | — |
+| Bernice Colquitt | the druggist | fixture (druggist) | — | — | Kaplan’s drugstore with the soda fountain | — |
+| Lurline Bledsoe | the hackman on the stand | fixture (cabbie) | — | — | the cab stand outside the Hippodrome | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: none
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a nickel-plated revolver, the roof door key, the house ledger
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a silver cigarette case
-- **Kitchen** (private) — adjacent: Bar, Service Stairs, Street; sees: Bar; noise carries to: Bar, Service Stairs; objects: a mop and bucket, a length of sash cord, a galvanised watering can
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: none
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a writing desk with a locked drawer, a bronze bookend
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Street** (public) — adjacent: Lobby, Kitchen; sees: Lobby; noise carries to: Lobby; objects: a brass umbrella stand
+- **the back room at Mrs. Teague’s** (private) — watched by landlady (Marion Ainsworth); objects: a framed photograph, a bronze bookend, a strapped suitcase
+- **the speakeasy under the hat shop** (semi) — watched by bartender (Dennis Doyle); objects: a nickel-plated revolver, a seltzer siphon, a silver cigarette case, a bottle of chloral drops — where the weapon lived; within earshot of the scene
+- **the victim’s house on the back lot** (private) — unwatched; objects: a length of sash cord, a mechanic’s toolbox, the roof-door key — **THE SCENE**; the victim’s address
+- **Kaplan’s drugstore with the soda fountain** (public) — watched by druggist (Bernice Colquitt); objects: a wall telephone, an ice pick
+- **the cab stand outside the Hippodrome** (public) — watched by cabbie (Lurline Bledsoe); objects: a pasted-up timetable, a folded stack of evening papers
+- **the benches at the north end of the square** (public) — unwatched; objects: a brass umbrella stand — within earshot of the scene
 
-**Environment:** nothing out of the ordinary.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 9:00 PM–10:30 PM, four ticks wide. These are what close it: **bar-radio** and **piano-lesson**.
 
-### Agnes Doyle — the victim
+- **the piano lesson on the floor above** — at 9:00 PM; at the back room at Mrs. Teague’s. You can time things by it: the same four bars, over and over, and then nothing. Only those present know that the child never did get the passage right.
+- **the fight card on the bar radio** — at 9:30 PM; at the speakeasy under the hat shop. Only those present know that the challenger went down in the fourth and the crowd booed it. You can time things by it: the set was turned up loud enough to carry into the street.
+- **the drunk singing under the window** — at 8:30 PM; at the back room at Mrs. Teague’s. You can time things by it: the same two verses until somebody threw a shoe. Only those present know that it was a shoe, and it was thrown by a woman, and it did not land.
+
+## 5. Timelines
+
+### Salvatore Vitale — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Victim's Suite | Victim's Suite | — |
-| 5 | 8:30 PM | Victim's Suite | Victim's Suite | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Front Desk | Front Desk | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Roof Garden ☠ | Roof Garden | — |
+| 0 | 6:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 1 | 6:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 2 | 7:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 3 | 7:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 4 | 8:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 5 | 8:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 6 | 9:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 7 | 9:30 PM | the victim’s house on the back lot ☠ | the victim’s house on the back lot | — |
+| 8 | 10:00 PM | — | — | — |
+| 9 | 10:30 PM | — | — | — |
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Meyer Shapiro
+### Domenica Carbone
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Victim's Suite | **Lobby** | Vincenzo Marchetti |
-| 2 | 7:00 PM | Victim's Suite | **Lobby** | Vincenzo Marchetti |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Kitchen | Kitchen | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Street | Street | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 1 | 6:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 2 | 7:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 3 | 7:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 4 | 8:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 5 | 8:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 6 | 9:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | **the back room at Mrs. Teague’s** | Beatrice Thorndike |
+| 8 | 10:00 PM | the speakeasy under the hat shop | **the back room at Mrs. Teague’s** | Beatrice Thorndike |
+| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 10 | 11:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 11 | 11:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
 
-### Ezekiel Whitfield
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Victim's Suite | **Bar** | — |
-| 5 | 8:30 PM | Victim's Suite | **Bar** | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Bar | Bar | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
-
-### Gittel Feldman
+### Alonzo Dandridge
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Roof Garden | Roof Garden | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 1 | 6:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 2 | 7:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 3 | 7:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 4 | 8:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 5 | 8:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 6 | 9:00 PM | the speakeasy under the hat shop | **the back room at Mrs. Teague’s** | Domenica Carbone |
+| 7 | 9:30 PM | the speakeasy under the hat shop | **the back room at Mrs. Teague’s** | Domenica Carbone |
+| 8 | 10:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 9 | 10:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 10 | 11:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 11 | 11:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
 
-### Vincenzo Marchetti — the killer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Roof Garden | **Front Desk** | — |
-| 8 | 10:00 PM | Roof Garden | **Front Desk** | — |
-| 9 | 10:30 PM | Roof Garden ☠ | **Front Desk** | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Bar | Bar | — |
-
-### Adelaide Lathrop
+### Otto Brauer — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Street | Street | — |
-| 5 | 8:30 PM | Street | Street | — |
-| 6 | 9:00 PM | Street | Street | — |
-| 7 | 9:30 PM | Street | Street | — |
-| 8 | 10:00 PM | Street | **Lobby** | — |
-| 9 | 10:30 PM | Street | **Lobby** | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 1 | 6:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 2 | 7:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 3 | 7:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 4 | 8:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 5 | 8:30 PM | the victim’s house on the back lot | **the speakeasy under the hat shop** | Domenica Carbone |
+| 6 | 9:00 PM | the victim’s house on the back lot | **the speakeasy under the hat shop** | Domenica Carbone |
+| 7 | 9:30 PM | the victim’s house on the back lot ☠ | **the speakeasy under the hat shop** | Domenica Carbone |
+| 8 | 10:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 9 | 10:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 10 | 11:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 11 | 11:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
 
-### Ilse Brauer
+### Nathan Kessler
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Bar | Bar | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Bar | Bar | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Bar | **Lobby** | Vincenzo Marchetti |
-| 10 | 11:00 PM | Bar | **Lobby** | Vincenzo Marchetti |
-| 11 | 11:30 PM | Bar | Bar | — |
+| 0 | 6:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 1 | 6:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 2 | 7:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 3 | 7:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 4 | 8:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 5 | 8:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 6 | 9:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the benches at the north end of the square | **the cab stand outside the Hippodrome** | Roscoe Mosley |
+| 9 | 10:30 PM | the benches at the north end of the square | **the cab stand outside the Hippodrome** | Roscoe Mosley |
+| 10 | 11:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+
+### Beatrice Thorndike
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 1 | 6:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 2 | 7:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 3 | 7:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 4 | 8:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 5 | 8:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 6 | 9:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the benches at the north end of the square | **the cab stand outside the Hippodrome** | Roscoe Mosley |
+| 9 | 10:30 PM | the benches at the north end of the square | **the cab stand outside the Hippodrome** | Roscoe Mosley |
+| 10 | 11:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 11 | 11:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+
+### Roscoe Mosley
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 1 | 6:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 2 | 7:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 3 | 7:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 4 | 8:00 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 5 | 8:30 PM | the cab stand outside the Hippodrome | **the back room at Mrs. Teague’s** | Alonzo Dandridge |
+| 6 | 9:00 PM | the cab stand outside the Hippodrome | **the back room at Mrs. Teague’s** | Alonzo Dandridge |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 9 | 10:30 PM | the cab stand outside the Hippodrome | the cab stand outside the Hippodrome | — |
+| 10 | 11:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 11 | 11:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Harrison Stannard (the doorman) | Hedwig Lindemann (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Lobby | Lobby |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Bar |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Street | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Meyer Shapiro** (embezzling): Meyer Shapiro goes through the papers in the Victim's Suite from 6:30 PM to 7:00 PM while the victim is downstairs.
-- **Ezekiel Whitfield** (blackmail): Ezekiel Whitfield meets the victim alone in the Victim's Suite from 8:00 PM to 8:30 PM and asks for money.
-- **Gittel Feldman** (forged-identity): Gittel Feldman is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.
-- **Vincenzo Marchetti** (murder): Vincenzo Marchetti is alone with Agnes Doyle in the Roof Garden from 9:30 PM to 10:30 PM, and kills Agnes Doyle at 10:30 PM.
-- **Adelaide Lathrop** (gambling-debt): Adelaide Lathrop slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.
-- **Ilse Brauer** (secret-drinking): Ilse Brauer drinks alone in the Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
-
-## 6. Clue list
-
-### From Meyer Shapiro (a bookkeeper)
-
-On Agnes Doyle:
-
-- **c001** [observation] Meyer Shapiro says Agnes Doyle was in the Lobby at 10:00 PM. — _establishes: Agnes Doyle in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-
-On Ezekiel Whitfield:
-
-- **c002** [observation] Meyer Shapiro says Ezekiel Whitfield was in the Lobby at 10:00 PM. — _establishes: Ezekiel Whitfield in the Lobby, 10:00 PM_
-- **c003** [observation] Meyer Shapiro says Ezekiel Whitfield was in the Lobby at 11:00 PM. — _establishes: Ezekiel Whitfield in the Lobby, 11:00 PM_
-- **c004** [observation] Meyer Shapiro says Ezekiel Whitfield was in the Bar at 10:30 PM. — _establishes: Ezekiel Whitfield in the Bar, 10:30 PM_
-
-On Gittel Feldman:
-
-- **c005** [observation] Meyer Shapiro says Gittel Feldman was on the Service Stairs at 6:00 PM. — _establishes: Gittel Feldman on the Service Stairs, 6:00 PM_
-- **c006** [observation] Meyer Shapiro says Gittel Feldman was in the Lobby from 10:00 PM to 11:00 PM. — _establishes: Gittel Feldman in the Lobby, 10:00 PM–11:00 PM_
-
-On Vincenzo Marchetti:
-
-- **c007** [observation] Meyer Shapiro says Vincenzo Marchetti was in the Lobby at 11:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 11:00 PM_
-
-On Adelaide Lathrop:
-
-- **c008** [observation] Meyer Shapiro says Adelaide Lathrop was on the Street from 10:00 PM to 10:30 PM. — _establishes: Adelaide Lathrop on the Street, 10:00 PM–10:30 PM_
-- **c009** [observation] Meyer Shapiro says Adelaide Lathrop was in the Lobby at 11:00 PM. — _establishes: Adelaide Lathrop in the Lobby, 11:00 PM_
-
-On Ilse Brauer:
-
-- **c010** [observation] Meyer Shapiro says Ilse Brauer was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Ilse Brauer in the Bar, 8:30 PM–9:30 PM_
-- **c011** [observation] Meyer Shapiro says Ilse Brauer was in the Bar from 10:30 PM to 11:00 PM. — _establishes: Ilse Brauer in the Bar, 10:30 PM–11:00 PM_
-
-On Ezekiel Whitfield's account:
-
-- **c164** [observation] Meyer Shapiro was in the Kitchen at 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:30 PM_
-
-On Vincenzo Marchetti's account:
-
-- **c171** [observation] Meyer Shapiro was in the Lobby at 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 10:30 PM_
-
-On Adelaide Lathrop's account:
-
-- **c175** [observation] Meyer Shapiro was on the Street at 10:00 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM_
-- **c176** [observation] Meyer Shapiro was in the Lobby at 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:30 PM_
-
-On Ilse Brauer's account:
-
-- **c183** [observation] Meyer Shapiro was in the Lobby from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
-
-### From Ezekiel Whitfield (a ward heeler)
-
-On Agnes Doyle:
-
-- **c012** [observation] Ezekiel Whitfield says Agnes Doyle was in the Roof Garden at 6:00 PM. — _establishes: Agnes Doyle in the Roof Garden, 6:00 PM; the victim alive at 6:00 PM_
-- **c013** [observation] Ezekiel Whitfield says Agnes Doyle was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Agnes Doyle in the Lobby, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c014** [observation] Ezekiel Whitfield says Agnes Doyle was in the Lobby at 9:00 PM. — _establishes: Agnes Doyle in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-- **c015** [observation] Ezekiel Whitfield says Agnes Doyle was in the Lobby at 10:00 PM. — _establishes: Agnes Doyle in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-- **c016** [observation] Ezekiel Whitfield says Agnes Doyle was at the Front Desk at 9:30 PM. — _establishes: Agnes Doyle at the Front Desk, 9:30 PM; the victim alive at 9:30 PM_
-
-On Meyer Shapiro:
-
-- **c017** [observation] Ezekiel Whitfield says Meyer Shapiro was on the Street at 10:00 PM. — _establishes: Meyer Shapiro on the Street, 10:00 PM_
-- **c018** [observation] Ezekiel Whitfield says Meyer Shapiro was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Meyer Shapiro in the Lobby, 10:30 PM–11:00 PM_
-
-On Gittel Feldman:
-
-- **c019** [observation] Ezekiel Whitfield says Gittel Feldman was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Gittel Feldman in the Lobby, 6:30 PM–7:30 PM_
-- **c020** [observation] Ezekiel Whitfield says Gittel Feldman was in the Lobby from 9:30 PM to 11:30 PM. — _establishes: Gittel Feldman in the Lobby, 9:30 PM–11:30 PM_
-
-On Vincenzo Marchetti:
-
-- **c021** [observation] Ezekiel Whitfield says Vincenzo Marchetti was at the Front Desk from 6:30 PM to 7:30 PM. — _establishes: Vincenzo Marchetti at the Front Desk, 6:30 PM–7:30 PM; Vincenzo Marchetti had access to the method_
-- **c022** [observation] Ezekiel Whitfield says Vincenzo Marchetti was in the Lobby at 9:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 9:00 PM_
-- **c023** [observation] Ezekiel Whitfield says Vincenzo Marchetti was in the Lobby at 11:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 11:00 PM_
-- **c024** [observation] Ezekiel Whitfield says Vincenzo Marchetti was in the Bar at 11:30 PM. — _establishes: Vincenzo Marchetti in the Bar, 11:30 PM_
-
-On Adelaide Lathrop:
-
-- **c025** [observation] Ezekiel Whitfield says Adelaide Lathrop was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Adelaide Lathrop at the Front Desk, 6:30 PM–7:00 PM; Adelaide Lathrop had access to the method_
-- **c026** [observation] Ezekiel Whitfield says Adelaide Lathrop was in the Lobby at 7:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 7:30 PM_
-- **c027** [observation] Ezekiel Whitfield says Adelaide Lathrop was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 11:00 PM–11:30 PM_
-- **c028** [observation] Ezekiel Whitfield says Adelaide Lathrop was on the Street from 9:00 PM to 10:00 PM. — _establishes: Adelaide Lathrop on the Street, 9:00 PM–10:00 PM_
-
-On Ilse Brauer:
-
-- **c029** [observation] Ezekiel Whitfield says Ilse Brauer was in the Lobby at 6:30 PM. — _establishes: Ilse Brauer in the Lobby, 6:30 PM_
-- **c030** [observation] Ezekiel Whitfield says Ilse Brauer was in the Bar at 7:30 PM. — _establishes: Ilse Brauer in the Bar, 7:30 PM_
-- **c031** [observation] Ezekiel Whitfield says Ilse Brauer was in the Bar from 9:00 PM to 11:30 PM. — _establishes: Ilse Brauer in the Bar, 9:00 PM–11:30 PM_
-
-On Meyer Shapiro's account:
-
-- **c155** [observation] Ezekiel Whitfield was in the Lobby at 6:30 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM_
-- **c156** [observation] Ezekiel Whitfield was at the Front Desk at 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 7:00 PM_
-
-On Vincenzo Marchetti's account:
-
-- **c172** [observation] Ezekiel Whitfield was in the Lobby from 9:30 PM to 10:00 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:00 PM_
-
-On Adelaide Lathrop's account:
-
-- **c177** [observation] Ezekiel Whitfield was in the Lobby at 10:00 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM_
-- **c178** [observation] Ezekiel Whitfield was in the Bar at 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:30 PM_
-
-On Ilse Brauer's account:
-
-- **c184** [observation] Ezekiel Whitfield was in the Bar at 10:30 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM_
-- **c185** [observation] Ezekiel Whitfield was in the Lobby at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
-
-### From Gittel Feldman (the night manager)
-
-On Agnes Doyle:
-
-- **c032** [observation] Gittel Feldman says Agnes Doyle was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Agnes Doyle in the Lobby, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c033** [observation] Gittel Feldman says Agnes Doyle was in the Lobby at 10:00 PM. — _establishes: Agnes Doyle in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-- **c034** [observation] Gittel Feldman says Agnes Doyle was at the Front Desk at 9:30 PM. — _establishes: Agnes Doyle at the Front Desk, 9:30 PM; the victim alive at 9:30 PM_
-
-On Meyer Shapiro:
-
-- **c035** [observation] Gittel Feldman says Meyer Shapiro was on the Service Stairs at 6:00 PM. — _establishes: Meyer Shapiro on the Service Stairs, 6:00 PM_
-- **c036** [observation] Gittel Feldman says Meyer Shapiro was on the Street at 10:00 PM. — _establishes: Meyer Shapiro on the Street, 10:00 PM_
-- **c037** [observation] Gittel Feldman says Meyer Shapiro was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Meyer Shapiro in the Lobby, 10:30 PM–11:00 PM_
-
-On Ezekiel Whitfield:
-
-- **c038** [observation] Gittel Feldman says Ezekiel Whitfield was in the Lobby at 6:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 6:30 PM_
-- **c039** [observation] Gittel Feldman says Ezekiel Whitfield was in the Lobby at 7:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 7:30 PM_
-- **c040** [observation] Gittel Feldman says Ezekiel Whitfield was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Ezekiel Whitfield in the Lobby, 9:30 PM–10:00 PM_
-- **c041** [observation] Gittel Feldman says Ezekiel Whitfield was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 11:00 PM–11:30 PM_
-- **c042** [observation] Gittel Feldman says Ezekiel Whitfield was at the Front Desk at 7:00 PM. — _establishes: Ezekiel Whitfield at the Front Desk, 7:00 PM; Ezekiel Whitfield had access to the method_
-- **c043** [observation] Gittel Feldman says Ezekiel Whitfield was in the Bar at 10:30 PM. — _establishes: Ezekiel Whitfield in the Bar, 10:30 PM_
-
-On Vincenzo Marchetti:
-
-- **c044** [observation] Gittel Feldman says Vincenzo Marchetti was at the Front Desk from 6:30 PM to 7:30 PM. — _establishes: Vincenzo Marchetti at the Front Desk, 6:30 PM–7:30 PM; Vincenzo Marchetti had access to the method_
-- **c045** [observation] Gittel Feldman says Vincenzo Marchetti was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Vincenzo Marchetti in the Lobby, 8:00 PM–8:30 PM_
-- **c046** [observation] Gittel Feldman says Vincenzo Marchetti was in the Lobby at 11:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 11:00 PM_
-- **c047** [observation] Gittel Feldman says Vincenzo Marchetti was in the Bar at 11:30 PM. — _establishes: Vincenzo Marchetti in the Bar, 11:30 PM_
-
-On Adelaide Lathrop:
-
-- **c048** [observation] Gittel Feldman says Adelaide Lathrop was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Adelaide Lathrop at the Front Desk, 6:30 PM–7:00 PM; Adelaide Lathrop had access to the method_
-- **c049** [observation] Gittel Feldman says Adelaide Lathrop was in the Lobby at 7:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 7:30 PM_
-- **c050** [observation] Gittel Feldman says Adelaide Lathrop was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 11:00 PM–11:30 PM_
-- **c051** [observation] Gittel Feldman says Adelaide Lathrop was on the Street from 8:00 PM to 8:30 PM. — _establishes: Adelaide Lathrop on the Street, 8:00 PM–8:30 PM_
-- **c052** [observation] Gittel Feldman says Adelaide Lathrop was on the Street from 9:30 PM to 10:30 PM. — _establishes: Adelaide Lathrop on the Street, 9:30 PM–10:30 PM_
-
-On Ilse Brauer:
-
-- **c053** [observation] Gittel Feldman says Ilse Brauer was in the Lobby at 6:30 PM. — _establishes: Ilse Brauer in the Lobby, 6:30 PM_
-- **c054** [observation] Gittel Feldman says Ilse Brauer was in the Bar from 7:00 PM to 8:30 PM. — _establishes: Ilse Brauer in the Bar, 7:00 PM–8:30 PM_
-- **c055** [observation] Gittel Feldman says Ilse Brauer was in the Bar from 9:30 PM to 11:30 PM. — _establishes: Ilse Brauer in the Bar, 9:30 PM–11:30 PM_
-
-On Meyer Shapiro's account:
-
-- **c157** [observation] Gittel Feldman was in the Lobby from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
-
-On Ezekiel Whitfield's account:
-
-- **c165** [observation] Gittel Feldman was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
-
-On Vincenzo Marchetti's account:
-
-- **c173** [observation] Gittel Feldman was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:30 PM_
-
-On Adelaide Lathrop's account:
-
-- **c179** [observation] Gittel Feldman was in the Lobby from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
-
-On Ilse Brauer's account:
-
-- **c186** [observation] Gittel Feldman was in the Lobby from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
-
-### From Vincenzo Marchetti (a private nurse)
-
-On Agnes Doyle:
-
-- **c056** [observation] Vincenzo Marchetti says Agnes Doyle was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Agnes Doyle in the Lobby, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c057** [observation] Vincenzo Marchetti says Agnes Doyle was in the Lobby at 9:00 PM. — _establishes: Agnes Doyle in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Meyer Shapiro:
-
-- **c058** [observation] Vincenzo Marchetti says Meyer Shapiro was in the Lobby at 11:00 PM. — _establishes: Meyer Shapiro in the Lobby, 11:00 PM_
-
-On Ezekiel Whitfield:
-
-- **c059** [observation] Vincenzo Marchetti says Ezekiel Whitfield was in the Lobby at 6:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 6:30 PM_
-- **c060** [observation] Vincenzo Marchetti says Ezekiel Whitfield was in the Lobby at 7:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 7:30 PM_
-- **c061** [observation] Vincenzo Marchetti says Ezekiel Whitfield was in the Lobby at 9:00 PM. — _establishes: Ezekiel Whitfield in the Lobby, 9:00 PM_
-- **c062** [observation] Vincenzo Marchetti says Ezekiel Whitfield was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 11:00 PM–11:30 PM_
-- **c063** [observation] Vincenzo Marchetti says Ezekiel Whitfield was at the Front Desk at 7:00 PM. — _establishes: Ezekiel Whitfield at the Front Desk, 7:00 PM; Ezekiel Whitfield had access to the method_
-
-On Gittel Feldman:
-
-- **c064** [observation] Vincenzo Marchetti says Gittel Feldman was in the Lobby from 6:30 PM to 8:30 PM. — _establishes: Gittel Feldman in the Lobby, 6:30 PM–8:30 PM_
-- **c065** [observation] Vincenzo Marchetti says Gittel Feldman was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Gittel Feldman in the Lobby, 11:00 PM–11:30 PM_
-
-On Adelaide Lathrop:
-
-- **c066** [observation] Vincenzo Marchetti says Adelaide Lathrop was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Adelaide Lathrop at the Front Desk, 6:00 PM–7:00 PM; Adelaide Lathrop had access to the method_
-- **c067** [observation] Vincenzo Marchetti says Adelaide Lathrop was in the Lobby at 7:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 7:30 PM_
-- **c068** [observation] Vincenzo Marchetti says Adelaide Lathrop was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 11:00 PM–11:30 PM_
-- **c069** [observation] Vincenzo Marchetti says Adelaide Lathrop was on the Street from 8:00 PM to 9:00 PM. — _establishes: Adelaide Lathrop on the Street, 8:00 PM–9:00 PM_
-
-On Ilse Brauer:
-
-- **c070** [observation] Vincenzo Marchetti says Ilse Brauer was in the Lobby at 6:30 PM. — _establishes: Ilse Brauer in the Lobby, 6:30 PM_
-- **c071** [observation] Vincenzo Marchetti says Ilse Brauer was in the Bar from 8:00 PM to 9:00 PM. — _establishes: Ilse Brauer in the Bar, 8:00 PM–9:00 PM_
-- **c072** [observation] Vincenzo Marchetti says Ilse Brauer was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Ilse Brauer in the Bar, 11:00 PM–11:30 PM_
-
-On Meyer Shapiro's account:
-
-- **c158** [observation] Vincenzo Marchetti was at the Front Desk from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
-
-On Ezekiel Whitfield's account:
-
-- **c166** [observation] Vincenzo Marchetti was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
-
-On Ilse Brauer's account:
-
-- **c187** [observation] Vincenzo Marchetti was in the Lobby at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
-
-### From Adelaide Lathrop (a chambermaid)
-
-On Agnes Doyle:
-
-- **c073** [observation] Adelaide Lathrop says Agnes Doyle was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Agnes Doyle in the Lobby, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c074** [observation] Adelaide Lathrop says Agnes Doyle was in the Lobby at 9:00 PM. — _establishes: Agnes Doyle in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Meyer Shapiro:
-
-- **c075** [observation] Adelaide Lathrop says Meyer Shapiro was in the Lobby at 11:00 PM. — _establishes: Meyer Shapiro in the Lobby, 11:00 PM_
-
-On Ezekiel Whitfield:
-
-- **c076** [observation] Adelaide Lathrop says Ezekiel Whitfield was in the Lobby at 6:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 6:30 PM_
-- **c077** [observation] Adelaide Lathrop says Ezekiel Whitfield was in the Lobby at 7:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 7:30 PM_
-- **c078** [observation] Adelaide Lathrop says Ezekiel Whitfield was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 9:00 PM–9:30 PM_
-- **c079** [observation] Adelaide Lathrop says Ezekiel Whitfield was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 11:00 PM–11:30 PM_
-- **c080** [observation] Adelaide Lathrop says Ezekiel Whitfield was at the Front Desk at 7:00 PM. — _establishes: Ezekiel Whitfield at the Front Desk, 7:00 PM; Ezekiel Whitfield had access to the method_
-
-On Gittel Feldman:
-
-- **c081** [observation] Adelaide Lathrop says Gittel Feldman was in the Lobby from 6:30 PM to 8:30 PM. — _establishes: Gittel Feldman in the Lobby, 6:30 PM–8:30 PM_
-- **c082** [observation] Adelaide Lathrop says Gittel Feldman was in the Lobby at 9:30 PM. — _establishes: Gittel Feldman in the Lobby, 9:30 PM_
-- **c083** [observation] Adelaide Lathrop says Gittel Feldman was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Gittel Feldman in the Lobby, 11:00 PM–11:30 PM_
-
-On Vincenzo Marchetti:
-
-- **c084** [observation] Adelaide Lathrop says Vincenzo Marchetti was at the Front Desk from 6:00 PM to 7:30 PM. — _establishes: Vincenzo Marchetti at the Front Desk, 6:00 PM–7:30 PM; Vincenzo Marchetti had access to the method_
-- **c085** [observation] Adelaide Lathrop says Vincenzo Marchetti was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 8:00 PM–9:00 PM_
-- **c086** [observation] Adelaide Lathrop says Vincenzo Marchetti was in the Lobby at 11:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 11:00 PM_
-- **c087** [observation] Adelaide Lathrop says Vincenzo Marchetti was in the Bar at 11:30 PM. — _establishes: Vincenzo Marchetti in the Bar, 11:30 PM_
-
-On Ilse Brauer:
-
-- **c088** [observation] Adelaide Lathrop says Ilse Brauer was in the Lobby at 6:30 PM. — _establishes: Ilse Brauer in the Lobby, 6:30 PM_
-- **c089** [observation] Adelaide Lathrop says Ilse Brauer was in the Bar at 7:30 PM. — _establishes: Ilse Brauer in the Bar, 7:30 PM_
-- **c090** [observation] Adelaide Lathrop says Ilse Brauer was in the Bar from 11:00 PM to 11:30 PM. — _establishes: Ilse Brauer in the Bar, 11:00 PM–11:30 PM_
-
-On Meyer Shapiro's account:
-
-- **c159** [observation] Adelaide Lathrop was at the Front Desk from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
-
-On Ilse Brauer's account:
-
-- **c188** [observation] Adelaide Lathrop was in the Lobby at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
-
-### From Ilse Brauer (a seamstress)
-
-On Agnes Doyle:
-
-- **c091** [observation] Ilse Brauer says Agnes Doyle was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Agnes Doyle in the Lobby, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c092** [observation] Ilse Brauer says Agnes Doyle was in the Lobby at 9:00 PM. — _establishes: Agnes Doyle in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-- **c093** [observation] Ilse Brauer says Agnes Doyle was in the Lobby at 10:00 PM. — _establishes: Agnes Doyle in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-
-On Meyer Shapiro:
-
-- **c094** [observation] Ilse Brauer says Meyer Shapiro was in the Kitchen from 8:30 PM to 9:30 PM. — _establishes: Meyer Shapiro in the Kitchen, 8:30 PM–9:30 PM_
-
-On Ezekiel Whitfield:
-
-- **c095** [observation] Ilse Brauer says Ezekiel Whitfield was in the Lobby at 6:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 6:30 PM_
-- **c096** [observation] Ilse Brauer says Ezekiel Whitfield was in the Lobby at 7:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 7:30 PM_
-- **c097** [observation] Ilse Brauer says Ezekiel Whitfield was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Ezekiel Whitfield in the Lobby, 9:00 PM–10:00 PM_
-- **c098** [observation] Ilse Brauer says Ezekiel Whitfield was in the Lobby at 11:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 11:30 PM_
-
-On Gittel Feldman:
-
-- **c099** [observation] Ilse Brauer says Gittel Feldman was in the Lobby from 6:30 PM to 8:30 PM. — _establishes: Gittel Feldman in the Lobby, 6:30 PM–8:30 PM_
-- **c100** [observation] Ilse Brauer says Gittel Feldman was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Gittel Feldman in the Lobby, 9:30 PM–10:00 PM_
-- **c101** [observation] Ilse Brauer says Gittel Feldman was in the Lobby at 11:30 PM. — _establishes: Gittel Feldman in the Lobby, 11:30 PM_
-
-On Vincenzo Marchetti:
-
-- **c102** [observation] Ilse Brauer says Vincenzo Marchetti was at the Front Desk at 6:30 PM. — _establishes: Vincenzo Marchetti at the Front Desk, 6:30 PM; Vincenzo Marchetti had access to the method_
-- **c103** [observation] Ilse Brauer says Vincenzo Marchetti was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 8:00 PM–9:00 PM_
-- **c104** [observation] Ilse Brauer says Vincenzo Marchetti was in the Bar at 11:30 PM. — _establishes: Vincenzo Marchetti in the Bar, 11:30 PM_
-
-On Adelaide Lathrop:
-
-- **c105** [observation] Ilse Brauer says Adelaide Lathrop was at the Front Desk at 6:30 PM. — _establishes: Adelaide Lathrop at the Front Desk, 6:30 PM; Adelaide Lathrop had access to the method_
-- **c106** [observation] Ilse Brauer says Adelaide Lathrop was in the Lobby at 7:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 7:30 PM_
-- **c107** [observation] Ilse Brauer says Adelaide Lathrop was in the Lobby at 11:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 11:30 PM_
-
-On Meyer Shapiro's account:
-
-- **c160** [observation] Ilse Brauer was in the Lobby at 6:30 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM_
-- **c161** [observation] Ilse Brauer was in the Bar at 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 7:00 PM_
-
-On Ezekiel Whitfield's account:
-
-- **c167** [observation] Ilse Brauer was in the Bar from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
-
-On Adelaide Lathrop's account:
-
-- **c180** [observation] Ilse Brauer was in the Bar at 10:00 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM_
-
-### From Harrison Stannard (the doorman)
-
-On Agnes Doyle:
-
-- **c108** [observation] Harrison Stannard says Agnes Doyle was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Agnes Doyle in the Lobby, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c109** [observation] Harrison Stannard says Agnes Doyle was in the Lobby at 9:00 PM. — _establishes: Agnes Doyle in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-- **c110** [observation] Harrison Stannard says Agnes Doyle was in the Lobby at 10:00 PM. — _establishes: Agnes Doyle in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-- **c111** [observation] Harrison Stannard says Agnes Doyle was at the Front Desk at 9:30 PM. — _establishes: Agnes Doyle at the Front Desk, 9:30 PM; the victim alive at 9:30 PM_
-
-On Meyer Shapiro:
-
-- **c112** [observation] Harrison Stannard says Meyer Shapiro was on the Street at 10:00 PM. — _establishes: Meyer Shapiro on the Street, 10:00 PM_
-- **c113** [observation] Harrison Stannard says Meyer Shapiro was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Meyer Shapiro in the Lobby, 10:30 PM–11:00 PM_
-
-On Ezekiel Whitfield:
-
-- **c114** [observation] Harrison Stannard says Ezekiel Whitfield was in the Lobby at 6:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 6:30 PM_
-- **c115** [observation] Harrison Stannard says Ezekiel Whitfield was in the Lobby at 7:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 7:30 PM_
-- **c116** [observation] Harrison Stannard says Ezekiel Whitfield was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Ezekiel Whitfield in the Lobby, 9:00 PM–10:00 PM_
-- **c117** [observation] Harrison Stannard says Ezekiel Whitfield was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 11:00 PM–11:30 PM_
-- **c118** [observation] Harrison Stannard says Ezekiel Whitfield was at the Front Desk at 7:00 PM. — _establishes: Ezekiel Whitfield at the Front Desk, 7:00 PM; Ezekiel Whitfield had access to the method_
-- **c119** [observation] Harrison Stannard says Ezekiel Whitfield was in the Bar at 10:30 PM. — _establishes: Ezekiel Whitfield in the Bar, 10:30 PM_
-
-On Gittel Feldman:
-
-- **c120** [observation] Harrison Stannard says Gittel Feldman was in the Lobby from 6:30 PM to 8:30 PM. — _establishes: Gittel Feldman in the Lobby, 6:30 PM–8:30 PM_
-- **c121** [observation] Harrison Stannard says Gittel Feldman was in the Lobby from 9:30 PM to 11:30 PM. — _establishes: Gittel Feldman in the Lobby, 9:30 PM–11:30 PM_
-
-On Vincenzo Marchetti:
-
-- **c122** [observation] Harrison Stannard says Vincenzo Marchetti was at the Front Desk from 6:00 PM to 7:30 PM. — _establishes: Vincenzo Marchetti at the Front Desk, 6:00 PM–7:30 PM; Vincenzo Marchetti had access to the method_
-- **c123** [observation] Harrison Stannard says Vincenzo Marchetti was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 8:00 PM–9:00 PM_
-- **c124** [observation] Harrison Stannard says Vincenzo Marchetti was in the Lobby at 11:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 11:00 PM_
-- **c125** [observation] Harrison Stannard says Vincenzo Marchetti was in the Bar at 11:30 PM. — _establishes: Vincenzo Marchetti in the Bar, 11:30 PM_
-
-On Adelaide Lathrop:
-
-- **c126** [observation] Harrison Stannard says Adelaide Lathrop was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Adelaide Lathrop at the Front Desk, 6:00 PM–7:00 PM; Adelaide Lathrop had access to the method_
-- **c127** [observation] Harrison Stannard says Adelaide Lathrop was in the Lobby at 7:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 7:30 PM_
-- **c128** [observation] Harrison Stannard says Adelaide Lathrop was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 11:00 PM–11:30 PM_
-- **c129** [observation] Harrison Stannard says Adelaide Lathrop was on the Street from 8:00 PM to 10:30 PM. — _establishes: Adelaide Lathrop on the Street, 8:00 PM–10:30 PM_
-
-On Ilse Brauer:
-
-- **c130** [observation] Harrison Stannard says Ilse Brauer was in the Bar at 6:00 PM. — _establishes: Ilse Brauer in the Bar, 6:00 PM_
-- **c131** [observation] Harrison Stannard says Ilse Brauer was in the Bar from 7:00 PM to 10:30 PM. — _establishes: Ilse Brauer in the Bar, 7:00 PM–10:30 PM_
-- **c132** [observation] Harrison Stannard says Ilse Brauer was in the Bar at 11:30 PM. — _establishes: Ilse Brauer in the Bar, 11:30 PM_
-- **c133** [observation] Harrison Stannard says Ilse Brauer was in the Lobby at 6:30 PM. — _establishes: Ilse Brauer in the Lobby, 6:30 PM_
-
-On Meyer Shapiro's account:
-
-- **c162** [observation] Harrison Stannard was in the Lobby from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
-
-On Ezekiel Whitfield's account:
-
-- **c168** [observation] Harrison Stannard was in the Lobby from 8:00 PM to 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM–8:30 PM_
-
-On Vincenzo Marchetti's account:
-
-- **c174** [observation] Harrison Stannard was in the Lobby from 9:30 PM to 10:30 PM and says Vincenzo Marchetti was not at the Front Desk. — _establishes: Vincenzo Marchetti not at the Front Desk, 9:30 PM–10:30 PM_
-
-On Adelaide Lathrop's account:
-
-- **c181** [observation] Harrison Stannard was in the Lobby from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
-
-On Ilse Brauer's account:
-
-- **c189** [observation] Harrison Stannard was in the Lobby at 10:30 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM_
-- **c190** [observation] Harrison Stannard was on the Street at 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 11:00 PM_
-
-On Ezekiel Whitfield and Agnes Doyle:
-
-- **c196** [overheard] Harrison Stannard says Ezekiel Whitfield said Agnes Doyle had taken everything and would be made to feel it. — _establishes: Ezekiel Whitfield had a motive (revenge)_
-
-On Ilse Brauer and Agnes Doyle:
-
-- **c202** [overheard] Harrison Stannard says Agnes Doyle told Ilse Brauer that Friday was the end of it, one way or the other. — _establishes: Ilse Brauer had a motive (debt)_
-
-### From Hedwig Lindemann (the bartender)
-
-On Agnes Doyle:
-
-- **c134** [observation] Hedwig Lindemann says Agnes Doyle was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Agnes Doyle in the Lobby, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c135** [observation] Hedwig Lindemann says Agnes Doyle was in the Lobby at 9:00 PM. — _establishes: Agnes Doyle in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-- **c136** [observation] Hedwig Lindemann says Agnes Doyle was in the Lobby at 10:00 PM. — _establishes: Agnes Doyle in the Lobby, 10:00 PM; the victim alive at 10:00 PM_
-
-On Meyer Shapiro:
-
-- **c137** [observation] Hedwig Lindemann says Meyer Shapiro was in the Kitchen from 8:30 PM to 9:30 PM. — _establishes: Meyer Shapiro in the Kitchen, 8:30 PM–9:30 PM_
-- **c138** [observation] Hedwig Lindemann says Meyer Shapiro was in the Lobby from 10:30 PM to 11:00 PM. — _establishes: Meyer Shapiro in the Lobby, 10:30 PM–11:00 PM_
-
-On Ezekiel Whitfield:
-
-- **c139** [observation] Hedwig Lindemann says Ezekiel Whitfield was in the Lobby at 6:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 6:30 PM_
-- **c140** [observation] Hedwig Lindemann says Ezekiel Whitfield was in the Lobby at 7:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 7:30 PM_
-- **c141** [observation] Hedwig Lindemann says Ezekiel Whitfield was in the Lobby from 9:00 PM to 10:00 PM. — _establishes: Ezekiel Whitfield in the Lobby, 9:00 PM–10:00 PM_
-- **c142** [observation] Hedwig Lindemann says Ezekiel Whitfield was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Ezekiel Whitfield in the Lobby, 11:00 PM–11:30 PM_
-- **c143** [observation] Hedwig Lindemann says Ezekiel Whitfield was in the Bar at 10:30 PM. — _establishes: Ezekiel Whitfield in the Bar, 10:30 PM_
-
-On Gittel Feldman:
-
-- **c144** [observation] Hedwig Lindemann says Gittel Feldman was in the Lobby from 6:30 PM to 8:30 PM. — _establishes: Gittel Feldman in the Lobby, 6:30 PM–8:30 PM_
-- **c145** [observation] Hedwig Lindemann says Gittel Feldman was in the Lobby from 9:30 PM to 11:30 PM. — _establishes: Gittel Feldman in the Lobby, 9:30 PM–11:30 PM_
-
-On Vincenzo Marchetti:
-
-- **c146** [observation] Hedwig Lindemann says Vincenzo Marchetti was in the Lobby from 8:00 PM to 9:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 8:00 PM–9:00 PM_
-- **c147** [observation] Hedwig Lindemann says Vincenzo Marchetti was in the Lobby at 11:00 PM. — _establishes: Vincenzo Marchetti in the Lobby, 11:00 PM_
-- **c148** [observation] Hedwig Lindemann says Vincenzo Marchetti was in the Bar at 11:30 PM. — _establishes: Vincenzo Marchetti in the Bar, 11:30 PM_
-
-On Adelaide Lathrop:
-
-- **c149** [observation] Hedwig Lindemann says Adelaide Lathrop was in the Lobby at 7:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 7:30 PM_
-- **c150** [observation] Hedwig Lindemann says Adelaide Lathrop was in the Lobby from 11:00 PM to 11:30 PM. — _establishes: Adelaide Lathrop in the Lobby, 11:00 PM–11:30 PM_
-- **c151** [observation] Hedwig Lindemann says Adelaide Lathrop was on the Street at 8:00 PM. — _establishes: Adelaide Lathrop on the Street, 8:00 PM_
-
-On Ilse Brauer:
-
-- **c152** [observation] Hedwig Lindemann says Ilse Brauer was in the Bar at 6:00 PM. — _establishes: Ilse Brauer in the Bar, 6:00 PM_
-- **c153** [observation] Hedwig Lindemann says Ilse Brauer was in the Bar from 7:00 PM to 11:30 PM. — _establishes: Ilse Brauer in the Bar, 7:00 PM–11:30 PM_
-- **c154** [observation] Hedwig Lindemann says Ilse Brauer was in the Lobby at 6:30 PM. — _establishes: Ilse Brauer in the Lobby, 6:30 PM_
-
-On Meyer Shapiro's account:
-
-- **c163** [observation] Hedwig Lindemann was in the Bar from 6:30 PM to 7:00 PM and says Meyer Shapiro was not in the Lobby. — _establishes: Meyer Shapiro not in the Lobby, 6:30 PM–7:00 PM_
-
-On Ezekiel Whitfield's account:
-
-- **c169** [observation] Hedwig Lindemann was in the Lobby at 8:00 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:00 PM_
-- **c170** [observation] Hedwig Lindemann was in the Bar at 8:30 PM and says Ezekiel Whitfield was not in the Bar. — _establishes: Ezekiel Whitfield not in the Bar, 8:30 PM_
-
-On Adelaide Lathrop's account:
-
-- **c182** [observation] Hedwig Lindemann was in the Bar from 10:00 PM to 10:30 PM and says Adelaide Lathrop was not in the Lobby. — _establishes: Adelaide Lathrop not in the Lobby, 10:00 PM–10:30 PM_
-
-On Ilse Brauer's account:
-
-- **c191** [observation] Hedwig Lindemann was in the Bar from 10:30 PM to 11:00 PM and says Ilse Brauer was not in the Lobby. — _establishes: Ilse Brauer not in the Lobby, 10:30 PM–11:00 PM_
-
-On Vincenzo Marchetti and Agnes Doyle:
-
-- **c198** [overheard] Hedwig Lindemann says Agnes Doyle told Vincenzo Marchetti the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Vincenzo Marchetti had a motive (inheritance)_
-
-On Adelaide Lathrop and Agnes Doyle:
-
-- **c200** [overheard] Hedwig Lindemann says Adelaide Lathrop told Agnes Doyle to keep away, loud enough to turn heads. — _establishes: Adelaide Lathrop had a motive (jealousy)_
-
-### From the Front Desk
-
-- **c193** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c194** [document] Gittel Feldman's papers do not hold up. Two signatures in the guest register, a month apart, are in different hands. — _establishes: context only_
-- **c195** [document] Found in the Front Desk: A clipping about the failure of Ezekiel Whitfield's business, with Agnes Doyle's name underlined twice in pencil. — _establishes: Ezekiel Whitfield had a motive (revenge)_
-- **c199** [document] Found in the Front Desk: Three letters in Agnes Doyle's hand to a woman Adelaide Lathrop is engaged to, kept in the drawer, the last one opened. — _establishes: Adelaide Lathrop had a motive (jealousy)_
-- **c201** [document] Found in the Front Desk: A promissory note for $4,000 signed by Ilse Brauer, endorsed to Agnes Doyle, three months past due. — _establishes: Ilse Brauer had a motive (debt)_
-
-### From the Victim's Suite
-
-- **c197** [document] Found in the Victim's Suite: A draft codicil in Agnes Doyle's hand striking Vincenzo Marchetti out of the will, dated last Tuesday and unsigned. — _establishes: Vincenzo Marchetti had a motive (inheritance)_
-
-### From the Roof Garden
-
-- **c192** [morgue] Agnes Doyle was found in the Roof Garden. The coroner puts death between 10:00 PM and 10:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 10:00 PM and 10:30 PM_
-
-### Withheld — the player cannot get these
-
-- ~~Ezekiel Whitfield saw Agnes Doyle in the Victim's Suite, 8:00 PM–8:30 PM~~ — Ezekiel Whitfield is lying about that time and will not say.
-- ~~Adelaide Lathrop saw Agnes Doyle in the Lobby, 10:00 PM~~ — Adelaide Lathrop is lying about that time and will not say.
-- ~~Adelaide Lathrop saw Meyer Shapiro on the Street, 10:00 PM~~ — Adelaide Lathrop is lying about that time and will not say.
-- ~~Adelaide Lathrop saw Ezekiel Whitfield in the Lobby, 10:00 PM~~ — Adelaide Lathrop is lying about that time and will not say.
-- ~~Adelaide Lathrop saw Gittel Feldman in the Lobby, 10:00 PM–10:30 PM~~ — Adelaide Lathrop is lying about that time and will not say.
-- ~~Adelaide Lathrop saw Harrison Stannard in the Lobby, 10:00 PM–10:30 PM~~ — Adelaide Lathrop is lying about that time and will not say.
-- ~~Vincenzo Marchetti saw Agnes Doyle in the Roof Garden, 10:30 PM~~ — Vincenzo Marchetti is lying about that time and will not say.
-- ~~Adelaide Lathrop saw Meyer Shapiro in the Lobby, 10:30 PM~~ — Adelaide Lathrop is lying about that time and will not say.
-- ~~Ilse Brauer saw Meyer Shapiro in the Lobby, 10:30 PM–11:00 PM~~ — Ilse Brauer is lying about that time and will not say.
-- ~~Ilse Brauer saw Ezekiel Whitfield in the Bar, 10:30 PM~~ — Ilse Brauer is lying about that time and will not say.
-- ~~Ilse Brauer saw Gittel Feldman in the Lobby, 10:30 PM–11:00 PM~~ — Ilse Brauer is lying about that time and will not say.
-- ~~Ilse Brauer saw Harrison Stannard in the Lobby, 10:30 PM~~ — Ilse Brauer is lying about that time and will not say.
-- ~~Ilse Brauer saw Hedwig Lindemann in the Bar, 10:30 PM–11:00 PM~~ — Ilse Brauer is lying about that time and will not say.
-- ~~Ilse Brauer saw Ezekiel Whitfield in the Lobby, 11:00 PM~~ — Ilse Brauer is lying about that time and will not say.
-- ~~Ilse Brauer saw Vincenzo Marchetti in the Lobby, 11:00 PM~~ — Ilse Brauer is lying about that time and will not say.
-- ~~Ilse Brauer saw Adelaide Lathrop in the Lobby, 11:00 PM~~ — Ilse Brauer is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 10:30 PM. _(c192, c001, c015, c033, c093, c110, c136)_
+| Tick | Time | Marion Ainsworth (the landlady) | Dennis Doyle (the bartender) | Bernice Colquitt (the druggist) | Lurline Bledsoe (the hackman on the stand) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 1 | 6:30 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 2 | 7:00 PM | the cab stand outside the Hippodrome | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 3 | 7:30 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 5 | 8:30 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 6 | 9:00 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 7 | 9:30 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 8 | 10:00 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 9 | 10:30 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 10 | 11:00 PM | the back room at Mrs. Teague’s | the cab stand outside the Hippodrome | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+| 11 | 11:30 PM | the back room at Mrs. Teague’s | the speakeasy under the hat shop | Kaplan’s drugstore with the soda fountain | the cab stand outside the Hippodrome |
+
+## 6. Secrets in play
+
+- **Domenica Carbone** (secret-drinking): Domenica Carbone drinks alone at the speakeasy under the hat shop from 9:30 PM to 10:00 PM and will claim to have been anywhere else.
+- **Alonzo Dandridge** (gambling-debt): Alonzo Dandridge slips off to the speakeasy under the hat shop from 9:00 PM to 9:30 PM to settle with a bookmaker.
+- **Otto Brauer** (murder): Otto Brauer is at the victim’s house on the back lot from 8:30 PM to 9:30 PM, alone with Salvatore Vitale when it happens at 9:30 PM.
+- **Nathan Kessler** (affair): Nathan Kessler is with Beatrice Thorndike at the benches at the north end of the square from 10:00 PM to 10:30 PM, and both will say they were somewhere else.
+- **Beatrice Thorndike** (affair): Beatrice Thorndike is with Nathan Kessler at the benches at the north end of the square from 10:00 PM to 10:30 PM, and both will say they were somewhere else.
+- **Roscoe Mosley** (fence): Roscoe Mosley hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 8:30 PM to 9:00 PM.
+
+## 7. Clue list — the 31 findable
+
+The opening three, free at the start: c132, c133, c150. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At the back room at Mrs. Teague’s
+
+- **c150** [spine ⟨opening⟩] (client; Alonzo Dandridge on why I was hired) → c104, c004, c135, c040, c119, c139, c029, c154
+  - Alonzo Dandridge hired us. Alonzo Dandridge wants it known that Otto Brauer blamed the victim for a ruin, and would rather we started there.
+  - _establishes: Otto Brauer had a motive (revenge)_
+- **c135** [spine] (anchor; Marion Ainsworth on Salvatore Vitale that evening) → c173, c185
+  - Marion Ainsworth puts Salvatore Vitale at the back room at Mrs. Teague’s while the lesson was still going on overhead, which was 9:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 9:00 PM; Salvatore Vitale at the back room at Mrs. Teague’s, 9:00 PM_
+
+### At the speakeasy under the hat shop
+
+- **c104** [spine] (observation; Dennis Doyle on who was there at 9:30 PM) → c121, c144, c033, c015
+  - Dennis Doyle runs through it: at 9:30 PM there were Domenica Carbone, Alonzo Dandridge, Nathan Kessler, Beatrice Thorndike, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.
+  - _establishes: Domenica Carbone at the speakeasy under the hat shop, 9:30 PM; Alonzo Dandridge at the speakeasy under the hat shop, 9:30 PM; Nathan Kessler at the speakeasy under the hat shop, 9:30 PM; Beatrice Thorndike at the speakeasy under the hat shop, 9:30 PM; Roscoe Mosley at the speakeasy under the hat shop, 9:30 PM_
+- **c004** [spine] (observation; Domenica Carbone on Otto Brauer) → c121
+  - Domenica Carbone says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.
+  - _establishes: Otto Brauer at the speakeasy under the hat shop, 8:00 PM; Otto Brauer could reach the weapon_
+- **c121** [spine] (observation; Roscoe Mosley on Otto Brauer’s account) → c135
+  - Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM and says Otto Brauer was not.
+  - _establishes: Otto Brauer not at the speakeasy under the hat shop, 9:30 PM_
+- **c138** [corroboration] (anchor; Roscoe Mosley on the noise that evening) → (end)
+  - Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s house on the back lot, while the fight was on the radio.
+  - _establishes: noise at the victim’s house on the back lot at 9:30 PM; the victim dead by 9:30 PM; how it was done_
+- **c061** [corroboration] (observation; Dennis Doyle on Otto Brauer) → (end)
+  - Dennis Doyle says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.
+  - _establishes: Otto Brauer at the speakeasy under the hat shop, 8:00 PM; Otto Brauer could reach the weapon_
+- **c139** [corroboration] (anchor; Dennis Doyle on the noise that evening) → (end)
+  - Dennis Doyle was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s house on the back lot, while the fight was on the radio.
+  - _establishes: noise at the victim’s house on the back lot at 9:30 PM; the victim dead by 9:30 PM; how it was done_
+- **c134** [corroboration] (physical; the place itself) → (end)
+  - A nickel-plated revolver is gone from the speakeasy under the hat shop. The drawer it was kept in is open and the oiled cloth is still in it.
+  - _establishes: something gone from the speakeasy under the hat shop; how it was done_
+- **c154** [noise {b1}] (physical; the place itself) → c153
+  - A bottle at the speakeasy under the hat shop pushed behind the pipes, the seal broken and the level down.
+  - _establishes: context only_
+- **c156** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The man behind the counter at the speakeasy under the hat shop knows exactly: Domenica Carbone was on the same stool from 9:30 PM to 10:00 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Domenica Carbone’s secret-drinking accounted for; Domenica Carbone at the speakeasy under the hat shop, 9:30 PM–10:00 PM_
+- **c173** [noise {b3}] (overheard; Dennis Doyle on Beatrice Thorndike) → c178
+  - Dennis Doyle on Beatrice Thorndike: Beatrice Thorndike was seen going into the benches at the north end of the square alone and came out with somebody half an hour later.
+  - _establishes: context only_
+- **c162** [noise {b5}] (physical; the place itself) → c163
+  - A book of markers at the speakeasy under the hat shop with Alonzo Dandridge’s initials against four of them.
+  - _establishes: context only_
+- **c163** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Alonzo Dandridge was at the speakeasy under the hat shop from 9:00 PM to 9:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Alonzo Dandridge’s gambling-debt accounted for; Alonzo Dandridge at the speakeasy under the hat shop, 9:00 PM–9:30 PM_
+
+### At the victim’s house on the back lot
+
+- **c132** [spine ⟨opening⟩] (scene; the place itself) → c104, c004, c095, c138, c061
+  - Salvatore Vitale was found at the victim’s house on the back lot. The cigarette he had going burned itself out on the sill where it fell. The fight card on the bar radio came at 9:30 PM, and the set was loud enough to cover it, and it was only loud for that half hour. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 9:30 PM; how it was done_
+- **c133** [spine ⟨opening⟩] (morgue; the place itself) → c134
+  - The coroner puts death between 9:00 PM and 10:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
+  - _establishes: death between 9:00 PM and 10:30 PM; how it was done_
+
+### At Kaplan’s drugstore with the soda fountain
+
+- **c144** [corroboration] (document; the place itself) → (end)
+  - Found at Kaplan’s drugstore with the soda fountain: A clipping about the failure of Otto Brauer’s business, with Salvatore Vitale’s name underlined twice in pencil.
+  - _establishes: Otto Brauer had a motive (revenge)_
+
+### At the cab stand outside the Hippodrome
+
+- **c040** [corroboration] (observation; Beatrice Thorndike on Nathan Kessler) → c168, c162
+  - Beatrice Thorndike says Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM.
+  - _establishes: Nathan Kessler at the speakeasy under the hat shop, 9:30 PM_
+- **c153** [noise {b1}] (overheard; Lurline Bledsoe on Domenica Carbone) → c156
+  - Lurline Bledsoe on Domenica Carbone: Somebody at the speakeasy under the hat shop says Domenica Carbone is in more often than Domenica Carbone lets on.
+  - _establishes: context only_
+- **c185** [noise {b4}] (physical; the place itself) → c186
+  - A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.
+  - _establishes: context only_
+- **c186** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The receiver at the cab stand outside the Hippodrome would rather talk than be held: Roscoe Mosley was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Roscoe Mosley will take over this one.
+  - _establishes: Roscoe Mosley’s fence accounted for; Roscoe Mosley at the cab stand outside the Hippodrome, 8:30 PM–9:00 PM_
+
+### At the benches at the north end of the square
+
+- **c095** [corroboration] (observation; Nathan Kessler on who was there at 9:30 PM) → (end)
+  - Nathan Kessler runs through it: at 9:30 PM there were Domenica Carbone, Alonzo Dandridge, Beatrice Thorndike, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.
+  - _establishes: Domenica Carbone at the speakeasy under the hat shop, 9:30 PM; Alonzo Dandridge at the speakeasy under the hat shop, 9:30 PM; Beatrice Thorndike at the speakeasy under the hat shop, 9:30 PM; Roscoe Mosley at the speakeasy under the hat shop, 9:30 PM_
+- **c119** [corroboration] (observation; Nathan Kessler on Otto Brauer’s account) → (end)
+  - Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM and says Otto Brauer was not.
+  - _establishes: Otto Brauer not at the speakeasy under the hat shop, 9:30 PM_
+- **c033** [corroboration] (observation; Nathan Kessler on Roscoe Mosley) → (end)
+  - Nathan Kessler says Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM.
+  - _establishes: Roscoe Mosley at the speakeasy under the hat shop, 9:30 PM_
+- **c029** [corroboration] (observation; Nathan Kessler on Otto Brauer) → (end)
+  - Nathan Kessler says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.
+  - _establishes: Otto Brauer at the speakeasy under the hat shop, 8:00 PM; Otto Brauer could reach the weapon_
+- **c015** [corroboration] (observation; Otto Brauer on Domenica Carbone) → (end)
+  - Otto Brauer says Domenica Carbone was at the speakeasy under the hat shop at 8:00 PM.
+  - _establishes: Domenica Carbone at the speakeasy under the hat shop, 8:00 PM; Domenica Carbone could reach the weapon_
+- **c168** [noise {b2}] (physical; the place itself) → c169
+  - Two glasses at the benches at the north end of the square, one of them with a lip print on it, and only one of them paid for.
+  - _establishes: context only_
+- **c169** [noise {b2}] (physical; the place itself) → c171
+  - A note in a woman’s hand at the benches at the north end of the square, no name on it, naming a time and nothing else.
+  - _establishes: context only_
+- **c171** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - Beatrice Thorndike breaks and says it plainly: Beatrice Thorndike was with Nathan Kessler at the benches at the north end of the square for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
+  - _establishes: Nathan Kessler’s affair accounted for; Nathan Kessler at the benches at the north end of the square, 10:00 PM–10:30 PM_
+- **c178** [noise {b3}] (physical; the place itself) → c179
+  - A man’s hat at the benches at the north end of the square that fits nobody who admits to being there.
+  - _establishes: context only_
+- **c179** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - Nathan Kessler breaks and says it plainly: Nathan Kessler was with Beatrice Thorndike at the benches at the north end of the square for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
+  - _establishes: Beatrice Thorndike’s affair accounted for; Beatrice Thorndike at the benches at the north end of the square, 10:00 PM–10:30 PM_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["the back room at Mrs. Teague’s"]
+    c150["▶ c150 Alonzo Dandridge"]
+    c135["c135 Marion Ainsworth"]
+  end
+  subgraph P2["the speakeasy under the hat shop"]
+    c104["c104 Dennis Doyle"]
+    c004["c004 Domenica Carbone"]
+    c121["c121 Roscoe Mosley"]
+    c138["c138 Roscoe Mosley"]
+    c061["c061 Dennis Doyle"]
+    c139["c139 Dennis Doyle"]
+    c134["c134 the place"]
+    c154["c154 the place"]
+    c156["✗ c156 the place"]
+    c173["c173 Dennis Doyle"]
+    c162["c162 the place"]
+    c163["✗ c163 the place"]
+  end
+  subgraph P3["the victim’s house on the back lot"]
+    c132["▶ c132 the place"]
+    c133["▶ c133 the place"]
+  end
+  subgraph P4["Kaplan’s drugstore with the soda fountain"]
+    c144["c144 the place"]
+  end
+  subgraph P5["the cab stand outside the Hippodrome"]
+    c040["c040 Beatrice Thorndike"]
+    c153["c153 Lurline Bledsoe"]
+    c185["c185 the place"]
+    c186["✗ c186 the place"]
+  end
+  subgraph P6["the benches at the north end of the square"]
+    c095["c095 Nathan Kessler"]
+    c119["c119 Nathan Kessler"]
+    c033["c033 Nathan Kessler"]
+    c029["c029 Nathan Kessler"]
+    c015["c015 Otto Brauer"]
+    c168["c168 the place"]
+    c169["c169 the place"]
+    c171["✗ c171 the place"]
+    c178["c178 the place"]
+    c179["✗ c179 the place"]
+  end
+  c132 --> c104
+  c132 --> c004
+  c132 --> c095
+  c132 --> c138
+  c132 --> c061
+  c133 --> c134
+  c150 --> c104
+  c150 --> c004
+  c150 --> c135
+  c150 --> c040
+  c150 --> c119
+  c150 --> c139
+  c150 --> c029
+  c150 -.-> c154
+  c104 --> c121
+  c104 --> c144
+  c104 --> c033
+  c104 --> c015
+  c004 --> c121
+  c121 --> c135
+  c135 -.-> c173
+  c135 -.-> c185
+  c040 -.-> c168
+  c040 -.-> c162
+  c154 -.-> c153
+  c153 --> c156
+  c168 -.-> c169
+  c169 --> c171
+  c173 -.-> c178
+  c178 --> c179
+  c185 --> c186
+  c162 --> c163
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c132,c133,c150,c104,c004,c121,c135 spine;
+  class c095,c040,c144,c138,c119,c061,c139,c134,c033,c029,c015 corrob;
+  class c154,c153,c168,c169,c173,c178,c185,c162 noise;
+  class c156,c171,c179,c186,c163 disq;
+```
+
+## 9. Deduction path
+
+Par is **6 actions** against a budget of 20: 14 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 9:30 PM: one puts Salvatore Vitale alive at 9:00 PM, the other times the scene at 9:30 PM. _(c133, c135, c132; + 2 corroborating)_
 
 **Clearing the innocent.**
 
-- Meyer Shapiro was not in the Roof Garden at 10:30 PM, on two independent sources. _(c018, c037, c113, c138)_
-- Ezekiel Whitfield was not in the Roof Garden at 10:30 PM, on two independent sources. _(c004, c043, c119, c143)_
-- Gittel Feldman was not in the Roof Garden at 10:30 PM, on two independent sources. _(c006, c020, c121, c145)_
-- Adelaide Lathrop was not in the Roof Garden at 10:30 PM, on two independent sources. _(c008, c052, c129)_
-- Ilse Brauer was not in the Roof Garden at 10:30 PM, on two independent sources. _(c011, c031, c055, c131, c153)_
+- Domenica Carbone was not at the victim’s house on the back lot at 9:30 PM, on two independent sources. _(c104; + 2 corroborating)_
+- Alonzo Dandridge was not at the victim’s house on the back lot at 9:30 PM, on two independent sources. _(c104; + 2 corroborating)_
+- Nathan Kessler was not at the victim’s house on the back lot at 9:30 PM, on two independent sources. _(c104; + 1 corroborating)_
+- Beatrice Thorndike was not at the victim’s house on the back lot at 9:30 PM, on two independent sources. _(c104; + 1 corroborating)_
+- Roscoe Mosley was not at the victim’s house on the back lot at 9:30 PM, on two independent sources. _(c104; + 2 corroborating)_
 
-**Naming the killer.** Vincenzo Marchetti claims the Front Desk at 10:30 PM. Two independent sources put that out of the question, and one ties Vincenzo Marchetti to a gunshot. _(c171, c173, c174, c021, c044, c084, c102, c122)_
+**Naming the killer.** Otto Brauer claims the speakeasy under the hat shop at 9:30 PM. Two independent sources put that out of the question. _(c121; + 1 corroborating)_
 
-**Method.** A gunshot, on two physical sources. _(c192, c193)_
+**The weapon.** Otto Brauer was at the speakeasy under the hat shop before 9:30 PM, where a nickel-plated revolver was kept. _(c004; + 2 corroborating)_
 
-**Motive.** inheritance, on two independent sources. _(c197, c198)_
+**Method.** A gunshot, on two physical sources. _(c132, c133; + 3 corroborating)_
 
-## 8. Red herrings
+**Motive.** revenge, on two independent sources. _(c150; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Adelaide Lathrop claims the Lobby at 10:30 PM and was really in the Street. Reason: Adelaide Lathrop slips out to the Street from 10:00 PM to 10:30 PM to settle with a bookmaker.
-- Ilse Brauer claims the Lobby at 10:30 PM and was really in the Bar. Reason: Ilse Brauer drinks alone in the Bar from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
+- Domenica Carbone claims the back room at Mrs. Teague’s at 9:30 PM and was really at the speakeasy under the hat shop. Reason: Domenica Carbone drinks alone at the speakeasy under the hat shop from 9:30 PM to 10:00 PM and will claim to have been anywhere else.
+- Alonzo Dandridge claims the back room at Mrs. Teague’s at 9:30 PM and was really at the speakeasy under the hat shop. Reason: Alonzo Dandridge slips off to the speakeasy under the hat shop from 9:00 PM to 9:30 PM to settle with a bookmaker.
 
 **Innocents with a motive:**
 
-- Ezekiel Whitfield — revenge: blamed the victim for a ruin.
-- Adelaide Lathrop — jealousy: jealous of the victim.
-- Ilse Brauer — debt: owed the victim money.
+- Nathan Kessler — inheritance: stands to inherit.
+- Roscoe Mosley — property: wanted the victim out of a lease.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Domenica Carbone, secret-drinking): c154 → c153 → **c156** — The man behind the counter at the speakeasy under the hat shop knows exactly: Domenica Carbone was on the same stool from 9:30 PM to 10:00 PM and was in no condition to walk anywhere, let alone do this.
+- **b2** (Nathan Kessler, affair): c168 → c169 → **c171** — Beatrice Thorndike breaks and says it plainly: Beatrice Thorndike was with Nathan Kessler at the benches at the north end of the square for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
+- **b3** (Beatrice Thorndike, affair): c173 → c178 → **c179** — Nathan Kessler breaks and says it plainly: Nathan Kessler was with Beatrice Thorndike at the benches at the north end of the square for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.
+- **b4** (Roscoe Mosley, fence): c185 → **c186** — The receiver at the cab stand outside the Hippodrome would rather talk than be held: Roscoe Mosley was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Roscoe Mosley will take over this one.
+- **b5** (Alonzo Dandridge, gambling-debt): c162 → **c163** — The bookmaker’s runner is found and will say it: Alonzo Dandridge was at the speakeasy under the hat shop from 9:00 PM to 9:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
 

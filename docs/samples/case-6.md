@@ -1,659 +1,433 @@
-# The Calloway — case 6
+# the Gas House District — case 6
 
-**Seed** 6 · **Attempts** 1 · **Detective** Humphrey
+**Seed** 6 · **Difficulty** 2 · **Attempts** 1 · **Detective** Humphrey
+
+**Par** 9 actions · **Budget** 20 · **Slack** 11 · **Findable** 30 (spine 9, corroboration 9, noise 7 + 5 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 215
 
 ## 1. The Truth
 
-Gretchen Dettweiler, a chorus girl between engagements, the victim's cousin, killed Kathleen Doyle, a pawnbroker, with a gunshot in the Roof Garden at 9:00 PM. Gretchen Dettweiler was about to be exposed by the victim (exposure). Gretchen Dettweiler had been at the Front Desk earlier in the evening, before 9:00 PM and was alone with Kathleen Doyle when it happened.
+Hyman Kessler, an insurance adjuster, the victim’s rival in trade, killed Gustav Lindemann, a bootlegger with the lease on the top floor, with poison in a drink at the victim’s rooms in the brownstone at 11:00 PM. Hyman Kessler was about to be exposed by the victim (exposure). Hyman Kessler had been at the speakeasy under the hat shop earlier in the evening, where the weapon lived, and was alone with Gustav Lindemann when it happened. Winthrop Ainsworth hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Kathleen Doyle | a pawnbroker | the victim | — | — | — |
-| Beatrice Havemeyer | a private secretary | the victim's business partner | gambling-debt | — | — |
-| Gretchen Dettweiler | a chorus girl between engagements | the victim's cousin | murder | exposure | **YES** |
-| Wendell Dandridge | a tailor | the victim's creditor | fence | — | — |
-| Ernst Reinhardt | a stringer for the evening papers | the victim's lawyer | forged-identity | — | — |
-| Antonio Ruggiero | a dentist with rooms on the third floor | the victim's rival in trade | blackmail | jealousy | — |
-| Patrick Quill | a photographer for the rotogravure section | the victim's brother-in-law | secret-drinking | — | — |
-| Daniel Rafferty | the doorman | fixture | — | — | — |
-| Edward Feeney | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Gustav Lindemann | a bootlegger with the lease on the top floor | the victim | — | — | — | — |
+| Lyman Coffin | a policy runner | a customer of the victim’s | fence | debt | the newsstand on the corner | — |
+| Bernard Bernstein | the victim’s nephew, at loose ends | the victim’s brother-in-law | gambling-debt | — | the speakeasy under the hat shop | — |
+| Winthrop Ainsworth (client) | a hack driver | a childhood friend of the victim’s from the same block | fence | — | Kaplan’s drugstore with the soda fountain | — |
+| Hedwig Hauck | a dentist with rooms on the third floor | the victim’s neighbour across the airshaft | forged-identity | — | the speakeasy under the hat shop | — |
+| Grafton Stannard | a tailor | the victim’s neighbour across the airshaft | hidden-family | revenge | the speakeasy under the hat shop | — |
+| Hyman Kessler | an insurance adjuster | the victim’s rival in trade | murder (+ gambling-debt) | exposure | the newsstand on the corner | **YES** |
+| Rosaria Marchetti | the druggist | fixture (druggist) | — | — | Kaplan’s drugstore with the soda fountain | — |
+| Klara Obermann | the news dealer | fixture (newsstand) | — | — | the newsstand on the corner | — |
+| Clementine Tillman | the landlady | fixture (landlady) | — | — | the back room at Mrs. Teague’s | — |
+| Giuseppe Bellucci | the bartender | fixture (bartender) | — | — | the speakeasy under the hat shop | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: a writing desk with a locked drawer, a brass umbrella stand
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a nickel-plated revolver, the roof door key, the guest register
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: a cut-glass decanter
-- **Kitchen** (private) — adjacent: Bar, Service Stairs, Street; sees: Bar; noise carries to: Bar, Service Stairs; objects: an ice pick
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a mop and bucket
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby; sees: nothing; noise carries to: Service Stairs; objects: a galvanised watering can, a terracotta flower pot
-- **Street** (public) — adjacent: Lobby, Kitchen; sees: Lobby; noise carries to: Lobby; objects: a folded stack of evening papers
+- **Kaplan’s drugstore with the soda fountain** (public) — watched by druggist (Rosaria Marchetti); objects: an ice pick, a wall telephone
+- **the newsstand on the corner** (public) — watched by newsstand (Klara Obermann); objects: a spike of pawn tickets, the roof-door key — within earshot of the scene
+- **the back room at Mrs. Teague’s** (private) — watched by landlady (Clementine Tillman); objects: a strapped suitcase, a framed photograph
+- **the victim’s rooms in the brownstone** (private) — unwatched; objects: a length of sash cord, a bronze bookend — **THE SCENE**; the victim’s address
+- **the ferry slip at the foot of the street** (public) — unwatched; objects: a folded stack of evening papers, a pasted-up timetable — within earshot of the scene
+- **the speakeasy under the hat shop** (semi) — watched by bartender (Giuseppe Bellucci); objects: a bottle of chloral drops, a seltzer siphon, a nickel-plated revolver, a silver cigarette case — where the weapon lived
 
-**Environment:** Rain from 9:30 PM. Bar radio at 11:00 PM: a serial about a lost heiress — the episode ended with the lawyer arrested, not the brother.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 10:00 PM–11:30 PM, four ticks wide. These are what close it: **ice-delivery** and **last-edition**.
 
-### Kathleen Doyle — the victim
+- **the last edition coming off the truck** — at 10:30 PM; at the newsstand on the corner. Somebody reliable notes who was there. Those present carry it: ink still wet enough to come off on a glove.
+- **the ice being brought in** — at 11:00 PM; at the newsstand on the corner. Somebody reliable notes who was there. Those present carry it: a wet patch down one side of a coat.
+
+## 5. Timelines
+
+### Gustav Lindemann — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Victim's Suite | Victim's Suite | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Roof Garden ☠ | Roof Garden | — |
-| 7 | 9:30 PM | — | — | — |
-| 8 | 10:00 PM | — | — | — |
-| 9 | 10:30 PM | — | — | — |
-| 10 | 11:00 PM | — | — | — |
+| 0 | 6:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 1 | 6:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 2 | 7:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 3 | 7:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 4 | 8:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 5 | 8:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 6 | 9:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 7 | 9:30 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
+| 8 | 10:00 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
+| 9 | 10:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 10 | 11:00 PM | the victim’s rooms in the brownstone ☠ | the victim’s rooms in the brownstone | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Beatrice Havemeyer
+### Lyman Coffin
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Street | **Lobby** | Wendell Dandridge |
-| 1 | 6:30 PM | Street | **Lobby** | Wendell Dandridge |
-| 2 | 7:00 PM | Street | Street | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 1 | 6:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 2 | 7:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 3 | 7:30 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
+| 4 | 8:00 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 5 | 8:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 6 | 9:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 7 | 9:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 8 | 10:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 10 | 11:00 PM | the newsstand on the corner | **the speakeasy under the hat shop** | — |
+| 11 | 11:30 PM | the newsstand on the corner | the newsstand on the corner | — |
 
-### Gretchen Dettweiler — the killer
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Street | Street | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Roof Garden | **Street** | Beatrice Havemeyer |
-| 6 | 9:00 PM | Roof Garden ☠ | **Street** | Beatrice Havemeyer |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Front Desk | Front Desk | — |
-| 10 | 11:00 PM | Front Desk | Front Desk | — |
-| 11 | 11:30 PM | Front Desk | Front Desk | — |
-
-### Wendell Dandridge
+### Bernard Bernstein
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Kitchen | Kitchen | — |
-| 6 | 9:00 PM | Kitchen | **Bar** | Beatrice Havemeyer |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
-| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 1 | 6:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 2 | 7:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 3 | 7:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 4 | 8:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 5 | 8:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 6 | 9:00 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
+| 7 | 9:30 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
+| 8 | 10:00 PM | the victim’s rooms in the brownstone | the victim’s rooms in the brownstone | — |
+| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 10 | 11:00 PM | the newsstand on the corner | **the back room at Mrs. Teague’s** | — |
+| 11 | 11:30 PM | the newsstand on the corner | the newsstand on the corner | — |
 
-### Ernst Reinhardt
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
-
-### Antonio Ruggiero
+### Winthrop Ainsworth
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Victim's Suite | **Lobby** | Beatrice Havemeyer |
-| 2 | 7:00 PM | Service Stairs | Service Stairs | — |
-| 3 | 7:30 PM | Service Stairs | Service Stairs | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 1 | 6:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 2 | 7:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 3 | 7:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 4 | 8:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 5 | 8:30 PM | the speakeasy under the hat shop | **Kaplan’s drugstore with the soda fountain** | — |
+| 6 | 9:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 7 | 9:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 8 | 10:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 9 | 10:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 10 | 11:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 11 | 11:30 PM | the newsstand on the corner | the newsstand on the corner | — |
 
-### Patrick Quill
+### Hedwig Hauck
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Service Stairs | Service Stairs | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | **Lobby** | Wendell Dandridge |
-| 7 | 9:30 PM | Bar | **Lobby** | Wendell Dandridge |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Lobby | Lobby | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 1 | 6:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 2 | 7:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 3 | 7:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 4 | 8:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 5 | 8:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 6 | 9:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 9 | 10:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 10 | 11:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 11 | 11:30 PM | the newsstand on the corner | the newsstand on the corner | — |
+
+### Grafton Stannard
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 1 | 6:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 2 | 7:00 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
+| 3 | 7:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 4 | 8:00 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 5 | 8:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 6 | 9:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the ferry slip at the foot of the street | **the speakeasy under the hat shop** | — |
+| 9 | 10:30 PM | the ferry slip at the foot of the street | the ferry slip at the foot of the street | — |
+| 10 | 11:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 11 | 11:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+
+### Hyman Kessler — the killer
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 1 | 6:30 PM | the newsstand on the corner | **the speakeasy under the hat shop** | Hedwig Hauck |
+| 2 | 7:00 PM | the newsstand on the corner | **the speakeasy under the hat shop** | Hedwig Hauck |
+| 3 | 7:30 PM | the back room at Mrs. Teague’s | the back room at Mrs. Teague’s | — |
+| 4 | 8:00 PM | the newsstand on the corner | the newsstand on the corner | — |
+| 5 | 8:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 6 | 9:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 7 | 9:30 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 8 | 10:00 PM | the speakeasy under the hat shop | the speakeasy under the hat shop | — |
+| 9 | 10:30 PM | the victim’s rooms in the brownstone | **the speakeasy under the hat shop** | Grafton Stannard |
+| 10 | 11:00 PM | the victim’s rooms in the brownstone ☠ | **the speakeasy under the hat shop** | Grafton Stannard |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | Kaplan’s drugstore with the soda fountain | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Daniel Rafferty (the doorman) | Edward Feeney (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Kitchen |
-| 3 | 7:30 PM | Street | Bar |
-| 4 | 8:00 PM | Lobby | Bar |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Lobby |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Beatrice Havemeyer** (gambling-debt): Beatrice Havemeyer slips out to the Street from 6:00 PM to 6:30 PM to settle with a bookmaker.
-- **Gretchen Dettweiler** (murder): Gretchen Dettweiler is alone with Kathleen Doyle in the Roof Garden from 8:30 PM to 9:00 PM, and kills Kathleen Doyle at 9:00 PM.
-- **Wendell Dandridge** (fence): Wendell Dandridge hands a parcel of stolen goods to a man at the Kitchen at 9:00 PM.
-- **Ernst Reinhardt** (forged-identity): Ernst Reinhardt is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.
-- **Antonio Ruggiero** (blackmail): Antonio Ruggiero meets the victim alone in the Victim's Suite from 6:30 PM and asks for money.
-- **Patrick Quill** (secret-drinking): Patrick Quill drinks alone in the Bar from 9:00 PM to 9:30 PM and will claim to have been anywhere else.
-
-## 6. Clue list
-
-### From Beatrice Havemeyer (a private secretary)
-
-On Kathleen Doyle:
-
-- **c001** [observation] Beatrice Havemeyer says Kathleen Doyle was in the Lobby at 7:00 PM. — _establishes: Kathleen Doyle in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-- **c002** [observation] Beatrice Havemeyer says Kathleen Doyle was in the Lobby at 8:30 PM. — _establishes: Kathleen Doyle in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-- **c003** [observation] Beatrice Havemeyer says Kathleen Doyle was at the Front Desk from 7:30 PM to 8:00 PM. — _establishes: Kathleen Doyle at the Front Desk, 7:30 PM–8:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM_
-
-On Gretchen Dettweiler:
-
-- **c004** [observation] Beatrice Havemeyer says Gretchen Dettweiler was in the Lobby at 7:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 7:00 PM_
-- **c005** [observation] Beatrice Havemeyer says Gretchen Dettweiler was in the Lobby at 8:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 8:00 PM_
-- **c006** [observation] Beatrice Havemeyer says Gretchen Dettweiler was in the Lobby at 9:30 PM. — _establishes: Gretchen Dettweiler in the Lobby, 9:30 PM_
-- **c007** [observation] Beatrice Havemeyer says Gretchen Dettweiler was on the Street at 7:30 PM. — _establishes: Gretchen Dettweiler on the Street, 7:30 PM_
-- **c008** [observation] Beatrice Havemeyer says Gretchen Dettweiler was at the Front Desk from 10:30 PM to 11:30 PM. — _establishes: Gretchen Dettweiler at the Front Desk, 10:30 PM–11:30 PM_
-
-On Wendell Dandridge:
-
-- **c009** [observation] Beatrice Havemeyer says Wendell Dandridge was in the Bar at 8:00 PM. — _establishes: Wendell Dandridge in the Bar, 8:00 PM_
-- **c010** [observation] Beatrice Havemeyer says Wendell Dandridge was on the Service Stairs at 10:00 PM. — _establishes: Wendell Dandridge on the Service Stairs, 10:00 PM_
-
-On Ernst Reinhardt:
-
-- **c011** [observation] Beatrice Havemeyer says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Ernst Reinhardt in the Lobby, 7:30 PM–8:30 PM_
-- **c012** [observation] Beatrice Havemeyer says Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Ernst Reinhardt in the Bar, 9:00 PM–9:30 PM_
-
-On Antonio Ruggiero:
-
-- **c013** [observation] Beatrice Havemeyer says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 8:00 PM–8:30 PM_
-- **c014** [observation] Beatrice Havemeyer says Antonio Ruggiero was in the Lobby at 9:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 9:30 PM_
-- **c015** [observation] Beatrice Havemeyer says Antonio Ruggiero was in the Lobby at 10:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 10:30 PM_
-- **c016** [observation] Beatrice Havemeyer says Antonio Ruggiero was in the Bar at 9:00 PM. — _establishes: Antonio Ruggiero in the Bar, 9:00 PM_
-
-On Patrick Quill:
-
-- **c017** [observation] Beatrice Havemeyer says Patrick Quill was in the Bar from 7:30 PM to 9:30 PM. — _establishes: Patrick Quill in the Bar, 7:30 PM–9:30 PM_
-- **c018** [observation] Beatrice Havemeyer says Patrick Quill was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Patrick Quill in the Lobby, 10:30 PM–11:30 PM_
-
-On Gretchen Dettweiler's account:
-
-- **c142** [observation] Beatrice Havemeyer was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM–9:00 PM_
-
-On Wendell Dandridge's account:
-
-- **c146** [observation] Beatrice Havemeyer was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
-
-On Patrick Quill's account:
-
-- **c155** [observation] Beatrice Havemeyer was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
-
-### From Gretchen Dettweiler (a chorus girl between engagements)
-
-On Kathleen Doyle:
-
-- **c019** [observation] Gretchen Dettweiler says Kathleen Doyle was in the Lobby at 7:00 PM. — _establishes: Kathleen Doyle in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-- **c020** [observation] Gretchen Dettweiler says Kathleen Doyle was at the Front Desk at 8:00 PM. — _establishes: Kathleen Doyle at the Front Desk, 8:00 PM; the victim alive at 8:00 PM_
-
-On Beatrice Havemeyer:
-
-- **c021** [observation] Gretchen Dettweiler says Beatrice Havemeyer was on the Street from 6:30 PM to 7:00 PM. — _establishes: Beatrice Havemeyer on the Street, 6:30 PM–7:00 PM_
-- **c022** [observation] Gretchen Dettweiler says Beatrice Havemeyer was in the Lobby from 7:30 PM to 8:00 PM. — _establishes: Beatrice Havemeyer in the Lobby, 7:30 PM–8:00 PM_
-- **c023** [observation] Gretchen Dettweiler says Beatrice Havemeyer was in the Lobby at 9:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 9:30 PM_
-- **c024** [observation] Gretchen Dettweiler says Beatrice Havemeyer was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 10:30 PM–11:30 PM_
-
-On Wendell Dandridge:
-
-- **c025** [observation] Gretchen Dettweiler says Wendell Dandridge was in the Bar at 8:00 PM. — _establishes: Wendell Dandridge in the Bar, 8:00 PM_
-
-On Ernst Reinhardt:
-
-- **c026** [observation] Gretchen Dettweiler says Ernst Reinhardt was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Ernst Reinhardt at the Front Desk, 6:00 PM–7:00 PM; Ernst Reinhardt had access to the method_
-- **c027** [observation] Gretchen Dettweiler says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:00 PM. — _establishes: Ernst Reinhardt in the Lobby, 7:30 PM–8:00 PM_
-- **c028** [observation] Gretchen Dettweiler says Ernst Reinhardt was in the Lobby at 10:00 PM. — _establishes: Ernst Reinhardt in the Lobby, 10:00 PM_
-- **c029** [observation] Gretchen Dettweiler says Ernst Reinhardt was in the Bar at 9:30 PM. — _establishes: Ernst Reinhardt in the Bar, 9:30 PM_
-
-On Antonio Ruggiero:
-
-- **c030** [observation] Gretchen Dettweiler says Antonio Ruggiero was in the Lobby at 8:00 PM. — _establishes: Antonio Ruggiero in the Lobby, 8:00 PM_
-- **c031** [observation] Gretchen Dettweiler says Antonio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 9:30 PM–10:30 PM_
-
-On Patrick Quill:
-
-- **c032** [observation] Gretchen Dettweiler says Patrick Quill was in the Bar at 8:00 PM. — _establishes: Patrick Quill in the Bar, 8:00 PM_
-- **c033** [observation] Gretchen Dettweiler says Patrick Quill was in the Bar from 9:30 PM to 10:00 PM. — _establishes: Patrick Quill in the Bar, 9:30 PM–10:00 PM_
-- **c034** [observation] Gretchen Dettweiler says Patrick Quill was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Patrick Quill in the Lobby, 10:30 PM–11:30 PM_
-
-On Beatrice Havemeyer's account:
-
-- **c136** [observation] Gretchen Dettweiler was at the Front Desk at 6:00 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM_
-- **c137** [observation] Gretchen Dettweiler was in the Lobby at 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:30 PM_
-
-On Antonio Ruggiero's account:
-
-- **c151** [observation] Gretchen Dettweiler was in the Lobby at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
-
-On Patrick Quill's account:
-
-- **c156** [observation] Gretchen Dettweiler was in the Lobby at 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:30 PM_
-
-### From Wendell Dandridge (a tailor)
-
-On Beatrice Havemeyer:
-
-- **c035** [observation] Wendell Dandridge says Beatrice Havemeyer was in the Lobby at 8:00 PM. — _establishes: Beatrice Havemeyer in the Lobby, 8:00 PM_
-- **c036** [observation] Wendell Dandridge says Beatrice Havemeyer was on the Service Stairs at 10:00 PM. — _establishes: Beatrice Havemeyer on the Service Stairs, 10:00 PM_
-
-On Gretchen Dettweiler:
-
-- **c037** [observation] Wendell Dandridge says Gretchen Dettweiler was in the Lobby at 8:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 8:00 PM_
-
-On Ernst Reinhardt:
-
-- **c038** [observation] Wendell Dandridge says Ernst Reinhardt was in the Lobby at 8:00 PM. — _establishes: Ernst Reinhardt in the Lobby, 8:00 PM_
-- **c039** [observation] Wendell Dandridge says Ernst Reinhardt was in the Bar at 9:30 PM. — _establishes: Ernst Reinhardt in the Bar, 9:30 PM_
-- **c040** [observation] Wendell Dandridge says Ernst Reinhardt was on the Service Stairs from 10:30 PM to 11:30 PM. — _establishes: Ernst Reinhardt on the Service Stairs, 10:30 PM–11:30 PM_
-
-On Antonio Ruggiero:
-
-- **c041** [observation] Wendell Dandridge says Antonio Ruggiero was in the Lobby at 8:00 PM. — _establishes: Antonio Ruggiero in the Lobby, 8:00 PM_
-- **c042** [observation] Wendell Dandridge says Antonio Ruggiero was on the Service Stairs from 11:00 PM to 11:30 PM. — _establishes: Antonio Ruggiero on the Service Stairs, 11:00 PM–11:30 PM_
-
-On Patrick Quill:
-
-- **c043** [observation] Wendell Dandridge says Patrick Quill was in the Kitchen from 6:30 PM to 7:00 PM. — _establishes: Patrick Quill in the Kitchen, 6:30 PM–7:00 PM_
-- **c044** [observation] Wendell Dandridge says Patrick Quill was in the Bar from 7:30 PM to 8:30 PM. — _establishes: Patrick Quill in the Bar, 7:30 PM–8:30 PM_
-- **c045** [observation] Wendell Dandridge says Patrick Quill was in the Bar at 9:30 PM. — _establishes: Patrick Quill in the Bar, 9:30 PM_
-
-On Beatrice Havemeyer's account:
-
-- **c141** [observation] Beatrice Havemeyer says Wendell Dandridge was there. Wendell Dandridge says otherwise: Wendell Dandridge was in the Kitchen from 6:00 PM to 6:30 PM, not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
-
-On Patrick Quill's account:
-
-- **c162** [observation] Patrick Quill says Wendell Dandridge was there. Wendell Dandridge says otherwise: Wendell Dandridge was in the Kitchen at 9:30 PM, not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:30 PM_
-
-### From Ernst Reinhardt (a stringer for the evening papers)
-
-On Kathleen Doyle:
-
-- **c046** [observation] Ernst Reinhardt says Kathleen Doyle was in the Lobby at 7:00 PM. — _establishes: Kathleen Doyle in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-- **c047** [observation] Ernst Reinhardt says Kathleen Doyle was in the Lobby at 8:30 PM. — _establishes: Kathleen Doyle in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-- **c048** [observation] Ernst Reinhardt says Kathleen Doyle was at the Front Desk from 7:30 PM to 8:00 PM. — _establishes: Kathleen Doyle at the Front Desk, 7:30 PM–8:00 PM; the victim alive at 7:30 PM; the victim alive at 8:00 PM_
-
-On Beatrice Havemeyer:
-
-- **c049** [observation] Ernst Reinhardt says Beatrice Havemeyer was in the Lobby from 7:30 PM to 9:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 7:30 PM–9:30 PM_
-
-On Gretchen Dettweiler:
-
-- **c050** [observation] Ernst Reinhardt says Gretchen Dettweiler was at the Front Desk at 6:00 PM. — _establishes: Gretchen Dettweiler at the Front Desk, 6:00 PM; Gretchen Dettweiler had access to the method_
-- **c051** [observation] Ernst Reinhardt says Gretchen Dettweiler was in the Lobby from 6:30 PM to 7:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 6:30 PM–7:00 PM_
-- **c052** [observation] Ernst Reinhardt says Gretchen Dettweiler was in the Lobby at 8:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 8:00 PM_
-- **c053** [observation] Ernst Reinhardt says Gretchen Dettweiler was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 9:30 PM–10:00 PM_
-- **c054** [observation] Ernst Reinhardt says Gretchen Dettweiler was on the Street at 7:30 PM. — _establishes: Gretchen Dettweiler on the Street, 7:30 PM_
-
-On Wendell Dandridge:
-
-- **c055** [observation] Ernst Reinhardt says Wendell Dandridge was in the Bar at 8:00 PM. — _establishes: Wendell Dandridge in the Bar, 8:00 PM_
-- **c056** [observation] Ernst Reinhardt says Wendell Dandridge was in the Kitchen from 9:00 PM to 9:30 PM. — _establishes: Wendell Dandridge in the Kitchen, 9:00 PM–9:30 PM_
-- **c057** [observation] Ernst Reinhardt says Wendell Dandridge was on the Service Stairs from 10:30 PM to 11:30 PM. — _establishes: Wendell Dandridge on the Service Stairs, 10:30 PM–11:30 PM_
-
-On Antonio Ruggiero:
-
-- **c058** [observation] Ernst Reinhardt says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 8:00 PM–8:30 PM_
-- **c059** [observation] Ernst Reinhardt says Antonio Ruggiero was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Antonio Ruggiero in the Lobby, 9:30 PM–10:00 PM_
-- **c060** [observation] Ernst Reinhardt says Antonio Ruggiero was in the Bar at 9:00 PM. — _establishes: Antonio Ruggiero in the Bar, 9:00 PM_
-- **c061** [observation] Ernst Reinhardt says Antonio Ruggiero was on the Service Stairs from 11:00 PM to 11:30 PM. — _establishes: Antonio Ruggiero on the Service Stairs, 11:00 PM–11:30 PM_
-
-On Patrick Quill:
-
-- **c062** [observation] Ernst Reinhardt says Patrick Quill was in the Bar from 7:30 PM to 10:00 PM. — _establishes: Patrick Quill in the Bar, 7:30 PM–10:00 PM_
-
-On Beatrice Havemeyer's account:
-
-- **c138** [observation] Ernst Reinhardt was at the Front Desk from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
-
-On Gretchen Dettweiler's account:
-
-- **c143** [observation] Ernst Reinhardt was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM_
-
-On Wendell Dandridge's account:
-
-- **c147** [observation] Ernst Reinhardt was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
-
-On Antonio Ruggiero's account:
-
-- **c152** [observation] Ernst Reinhardt was at the Front Desk at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
-
-On Patrick Quill's account:
-
-- **c157** [observation] Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
-
-### From Antonio Ruggiero (a dentist with rooms on the third floor)
-
-On Kathleen Doyle:
-
-- **c063** [observation] Antonio Ruggiero says Kathleen Doyle was on the Service Stairs at 6:00 PM. — _establishes: Kathleen Doyle on the Service Stairs, 6:00 PM; the victim alive at 6:00 PM_
-- **c064** [observation] Antonio Ruggiero says Kathleen Doyle was at the Front Desk at 8:00 PM. — _establishes: Kathleen Doyle at the Front Desk, 8:00 PM; the victim alive at 8:00 PM_
-- **c065** [observation] Antonio Ruggiero says Kathleen Doyle was in the Lobby at 8:30 PM. — _establishes: Kathleen Doyle in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Beatrice Havemeyer:
-
-- **c066** [observation] Antonio Ruggiero says Beatrice Havemeyer was in the Lobby from 8:00 PM to 9:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 8:00 PM–9:30 PM_
-- **c067** [observation] Antonio Ruggiero says Beatrice Havemeyer was in the Lobby at 10:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 10:30 PM_
-
-On Gretchen Dettweiler:
-
-- **c068** [observation] Antonio Ruggiero says Gretchen Dettweiler was in the Lobby at 8:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 8:00 PM_
-- **c069** [observation] Antonio Ruggiero says Gretchen Dettweiler was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 9:30 PM–10:00 PM_
-- **c070** [observation] Antonio Ruggiero says Gretchen Dettweiler was at the Front Desk at 10:30 PM. — _establishes: Gretchen Dettweiler at the Front Desk, 10:30 PM_
-
-On Wendell Dandridge:
-
-- **c071** [observation] Antonio Ruggiero says Wendell Dandridge was in the Bar at 8:00 PM. — _establishes: Wendell Dandridge in the Bar, 8:00 PM_
-- **c072** [observation] Antonio Ruggiero says Wendell Dandridge was in the Kitchen at 9:00 PM. — _establishes: Wendell Dandridge in the Kitchen, 9:00 PM_
-- **c073** [observation] Antonio Ruggiero says Wendell Dandridge was on the Service Stairs from 11:00 PM to 11:30 PM. — _establishes: Wendell Dandridge on the Service Stairs, 11:00 PM–11:30 PM_
-
-On Ernst Reinhardt:
-
-- **c074** [observation] Antonio Ruggiero says Ernst Reinhardt was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Ernst Reinhardt in the Lobby, 8:00 PM–8:30 PM_
-- **c075** [observation] Antonio Ruggiero says Ernst Reinhardt was in the Lobby at 10:00 PM. — _establishes: Ernst Reinhardt in the Lobby, 10:00 PM_
-- **c076** [observation] Antonio Ruggiero says Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Ernst Reinhardt in the Bar, 9:00 PM–9:30 PM_
-- **c077** [observation] Antonio Ruggiero says Ernst Reinhardt was on the Service Stairs from 11:00 PM to 11:30 PM. — _establishes: Ernst Reinhardt on the Service Stairs, 11:00 PM–11:30 PM_
-
-On Patrick Quill:
-
-- **c078** [observation] Antonio Ruggiero says Patrick Quill was on the Service Stairs at 6:00 PM. — _establishes: Patrick Quill on the Service Stairs, 6:00 PM_
-- **c079** [observation] Antonio Ruggiero says Patrick Quill was in the Bar from 8:00 PM to 10:00 PM. — _establishes: Patrick Quill in the Bar, 8:00 PM–10:00 PM_
-- **c080** [observation] Antonio Ruggiero says Patrick Quill was in the Lobby at 10:30 PM. — _establishes: Patrick Quill in the Lobby, 10:30 PM_
-
-On Gretchen Dettweiler's account:
-
-- **c144** [observation] Antonio Ruggiero was in the Lobby at 8:30 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM_
-
-On Wendell Dandridge's account:
-
-- **c148** [observation] Antonio Ruggiero was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
-
-On Patrick Quill's account:
-
-- **c158** [observation] Antonio Ruggiero was in the Bar at 9:00 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM_
-- **c159** [observation] Antonio Ruggiero was in the Lobby at 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:30 PM_
-
-### From Patrick Quill (a photographer for the rotogravure section)
-
-On Kathleen Doyle:
-
-- **c081** [observation] Patrick Quill says Kathleen Doyle was on the Service Stairs at 6:00 PM. — _establishes: Kathleen Doyle on the Service Stairs, 6:00 PM; the victim alive at 6:00 PM_
-- **c082** [observation] Patrick Quill says Kathleen Doyle was in the Lobby at 8:30 PM. — _establishes: Kathleen Doyle in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Beatrice Havemeyer:
-
-- **c083** [observation] Patrick Quill says Beatrice Havemeyer was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 7:30 PM–8:30 PM_
-- **c084** [observation] Patrick Quill says Beatrice Havemeyer was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 10:30 PM–11:30 PM_
-
-On Gretchen Dettweiler:
-
-- **c085** [observation] Patrick Quill says Gretchen Dettweiler was in the Lobby at 8:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 8:00 PM_
-- **c086** [observation] Patrick Quill says Gretchen Dettweiler was in the Lobby at 10:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 10:00 PM_
-- **c087** [observation] Patrick Quill says Gretchen Dettweiler was at the Front Desk from 10:30 PM to 11:30 PM. — _establishes: Gretchen Dettweiler at the Front Desk, 10:30 PM–11:30 PM_
-
-On Wendell Dandridge:
-
-- **c088** [observation] Patrick Quill says Wendell Dandridge was in the Kitchen from 6:30 PM to 7:30 PM. — _establishes: Wendell Dandridge in the Kitchen, 6:30 PM–7:30 PM_
-- **c089** [observation] Patrick Quill says Wendell Dandridge was in the Kitchen at 8:30 PM. — _establishes: Wendell Dandridge in the Kitchen, 8:30 PM_
-- **c090** [observation] Patrick Quill says Wendell Dandridge was in the Bar at 8:00 PM. — _establishes: Wendell Dandridge in the Bar, 8:00 PM_
-
-On Ernst Reinhardt:
-
-- **c091** [observation] Patrick Quill says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Ernst Reinhardt in the Lobby, 7:30 PM–8:30 PM_
-- **c092** [observation] Patrick Quill says Ernst Reinhardt was in the Lobby at 10:00 PM. — _establishes: Ernst Reinhardt in the Lobby, 10:00 PM_
-
-On Antonio Ruggiero:
-
-- **c093** [observation] Patrick Quill says Antonio Ruggiero was on the Service Stairs at 6:00 PM. — _establishes: Antonio Ruggiero on the Service Stairs, 6:00 PM_
-- **c094** [observation] Patrick Quill says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 8:00 PM–8:30 PM_
-- **c095** [observation] Patrick Quill says Antonio Ruggiero was in the Lobby from 10:00 PM to 10:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 10:00 PM–10:30 PM_
-
-### From Daniel Rafferty (the doorman)
-
-On Kathleen Doyle:
-
-- **c096** [observation] Daniel Rafferty says Kathleen Doyle was in the Lobby at 7:00 PM. — _establishes: Kathleen Doyle in the Lobby, 7:00 PM; the victim alive at 7:00 PM_
-- **c097** [observation] Daniel Rafferty says Kathleen Doyle was in the Lobby at 8:30 PM. — _establishes: Kathleen Doyle in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-- **c098** [observation] Daniel Rafferty says Kathleen Doyle was at the Front Desk at 8:00 PM. — _establishes: Kathleen Doyle at the Front Desk, 8:00 PM; the victim alive at 8:00 PM_
-
-On Beatrice Havemeyer:
-
-- **c099** [observation] Daniel Rafferty says Beatrice Havemeyer was on the Street from 6:00 PM to 7:00 PM. — _establishes: Beatrice Havemeyer on the Street, 6:00 PM–7:00 PM_
-- **c100** [observation] Daniel Rafferty says Beatrice Havemeyer was in the Lobby from 7:30 PM to 9:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 7:30 PM–9:30 PM_
-- **c101** [observation] Daniel Rafferty says Beatrice Havemeyer was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 10:30 PM–11:30 PM_
-
-On Gretchen Dettweiler:
-
-- **c102** [observation] Daniel Rafferty says Gretchen Dettweiler was at the Front Desk at 6:00 PM. — _establishes: Gretchen Dettweiler at the Front Desk, 6:00 PM; Gretchen Dettweiler had access to the method_
-- **c103** [observation] Daniel Rafferty says Gretchen Dettweiler was at the Front Desk from 10:30 PM to 11:30 PM. — _establishes: Gretchen Dettweiler at the Front Desk, 10:30 PM–11:30 PM_
-- **c104** [observation] Daniel Rafferty says Gretchen Dettweiler was in the Lobby from 6:30 PM to 7:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 6:30 PM–7:00 PM_
-- **c105** [observation] Daniel Rafferty says Gretchen Dettweiler was in the Lobby at 8:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 8:00 PM_
-- **c106** [observation] Daniel Rafferty says Gretchen Dettweiler was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 9:30 PM–10:00 PM_
-- **c107** [observation] Daniel Rafferty says Gretchen Dettweiler was on the Street at 7:30 PM. — _establishes: Gretchen Dettweiler on the Street, 7:30 PM_
-
-On Wendell Dandridge:
-
-- **c108** [observation] Daniel Rafferty says Wendell Dandridge was in the Bar at 8:00 PM. — _establishes: Wendell Dandridge in the Bar, 8:00 PM_
-
-On Ernst Reinhardt:
-
-- **c109** [observation] Daniel Rafferty says Ernst Reinhardt was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Ernst Reinhardt at the Front Desk, 6:00 PM–7:00 PM; Ernst Reinhardt had access to the method_
-- **c110** [observation] Daniel Rafferty says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Ernst Reinhardt in the Lobby, 7:30 PM–8:30 PM_
-- **c111** [observation] Daniel Rafferty says Ernst Reinhardt was in the Lobby at 10:00 PM. — _establishes: Ernst Reinhardt in the Lobby, 10:00 PM_
-- **c112** [observation] Daniel Rafferty says Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Ernst Reinhardt in the Bar, 9:00 PM–9:30 PM_
-
-On Antonio Ruggiero:
-
-- **c113** [observation] Daniel Rafferty says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 8:00 PM–8:30 PM_
-- **c114** [observation] Daniel Rafferty says Antonio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 9:30 PM–10:30 PM_
-- **c115** [observation] Daniel Rafferty says Antonio Ruggiero was in the Bar at 9:00 PM. — _establishes: Antonio Ruggiero in the Bar, 9:00 PM_
-
-On Patrick Quill:
-
-- **c116** [observation] Daniel Rafferty says Patrick Quill was in the Bar from 8:00 PM to 10:00 PM. — _establishes: Patrick Quill in the Bar, 8:00 PM–10:00 PM_
-- **c117** [observation] Daniel Rafferty says Patrick Quill was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Patrick Quill in the Lobby, 10:30 PM–11:30 PM_
-
-On Beatrice Havemeyer's account:
-
-- **c139** [observation] Daniel Rafferty was in the Lobby from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
-
-On Gretchen Dettweiler's account:
-
-- **c145** [observation] Daniel Rafferty was in the Lobby from 8:30 PM to 9:00 PM and says Gretchen Dettweiler was not on the Street. — _establishes: Gretchen Dettweiler not on the Street, 8:30 PM–9:00 PM_
-
-On Wendell Dandridge's account:
-
-- **c149** [observation] Daniel Rafferty was in the Lobby at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
-
-On Antonio Ruggiero's account:
-
-- **c153** [observation] Daniel Rafferty was in the Lobby at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
-
-On Patrick Quill's account:
-
-- **c160** [observation] Daniel Rafferty was in the Lobby from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
-
-### From Edward Feeney (the bartender)
-
-On Kathleen Doyle:
-
-- **c118** [observation] Edward Feeney says Kathleen Doyle was in the Lobby at 8:30 PM. — _establishes: Kathleen Doyle in the Lobby, 8:30 PM; the victim alive at 8:30 PM_
-
-On Beatrice Havemeyer:
-
-- **c119** [observation] Edward Feeney says Beatrice Havemeyer was in the Lobby from 7:30 PM to 9:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 7:30 PM–9:30 PM_
-- **c120** [observation] Edward Feeney says Beatrice Havemeyer was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Beatrice Havemeyer in the Lobby, 10:30 PM–11:30 PM_
-
-On Gretchen Dettweiler:
-
-- **c121** [observation] Edward Feeney says Gretchen Dettweiler was in the Lobby at 6:30 PM. — _establishes: Gretchen Dettweiler in the Lobby, 6:30 PM_
-- **c122** [observation] Edward Feeney says Gretchen Dettweiler was in the Lobby at 8:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 8:00 PM_
-- **c123** [observation] Edward Feeney says Gretchen Dettweiler was in the Lobby from 9:30 PM to 10:00 PM. — _establishes: Gretchen Dettweiler in the Lobby, 9:30 PM–10:00 PM_
-
-On Wendell Dandridge:
-
-- **c124** [observation] Edward Feeney says Wendell Dandridge was in the Kitchen from 6:00 PM to 7:30 PM. — _establishes: Wendell Dandridge in the Kitchen, 6:00 PM–7:30 PM_
-- **c125** [observation] Edward Feeney says Wendell Dandridge was in the Kitchen from 8:30 PM to 9:30 PM. — _establishes: Wendell Dandridge in the Kitchen, 8:30 PM–9:30 PM_
-- **c126** [observation] Edward Feeney says Wendell Dandridge was in the Bar at 8:00 PM. — _establishes: Wendell Dandridge in the Bar, 8:00 PM_
-
-On Ernst Reinhardt:
-
-- **c127** [observation] Edward Feeney says Ernst Reinhardt was in the Lobby from 7:30 PM to 8:30 PM. — _establishes: Ernst Reinhardt in the Lobby, 7:30 PM–8:30 PM_
-- **c128** [observation] Edward Feeney says Ernst Reinhardt was in the Lobby at 10:00 PM. — _establishes: Ernst Reinhardt in the Lobby, 10:00 PM_
-- **c129** [observation] Edward Feeney says Ernst Reinhardt was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Ernst Reinhardt in the Bar, 9:00 PM–9:30 PM_
-
-On Antonio Ruggiero:
-
-- **c130** [observation] Edward Feeney says Antonio Ruggiero was in the Lobby from 8:00 PM to 8:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 8:00 PM–8:30 PM_
-- **c131** [observation] Edward Feeney says Antonio Ruggiero was in the Lobby from 9:30 PM to 10:30 PM. — _establishes: Antonio Ruggiero in the Lobby, 9:30 PM–10:30 PM_
-- **c132** [observation] Edward Feeney says Antonio Ruggiero was in the Bar at 9:00 PM. — _establishes: Antonio Ruggiero in the Bar, 9:00 PM_
-
-On Patrick Quill:
-
-- **c133** [observation] Edward Feeney says Patrick Quill was in the Kitchen from 6:30 PM to 7:00 PM. — _establishes: Patrick Quill in the Kitchen, 6:30 PM–7:00 PM_
-- **c134** [observation] Edward Feeney says Patrick Quill was in the Bar from 7:30 PM to 10:00 PM. — _establishes: Patrick Quill in the Bar, 7:30 PM–10:00 PM_
-- **c135** [observation] Edward Feeney says Patrick Quill was in the Lobby from 10:30 PM to 11:30 PM. — _establishes: Patrick Quill in the Lobby, 10:30 PM–11:30 PM_
-
-On Beatrice Havemeyer's account:
-
-- **c140** [observation] Edward Feeney was in the Bar from 6:00 PM to 6:30 PM and says Beatrice Havemeyer was not in the Lobby. — _establishes: Beatrice Havemeyer not in the Lobby, 6:00 PM–6:30 PM_
-
-On Wendell Dandridge's account:
-
-- **c150** [observation] Edward Feeney was in the Bar at 9:00 PM and says Wendell Dandridge was not in the Bar. — _establishes: Wendell Dandridge not in the Bar, 9:00 PM_
-
-On Antonio Ruggiero's account:
-
-- **c154** [observation] Edward Feeney was in the Bar at 6:30 PM and says Antonio Ruggiero was not in the Lobby. — _establishes: Antonio Ruggiero not in the Lobby, 6:30 PM_
-
-On Patrick Quill's account:
-
-- **c161** [observation] Edward Feeney was in the Bar from 9:00 PM to 9:30 PM and says Patrick Quill was not in the Lobby. — _establishes: Patrick Quill not in the Lobby, 9:00 PM–9:30 PM_
-
-On the radio:
-
-- **c166** [radio] Edward Feeney says the bar radio carried a serial about a lost heiress at 11:00 PM, and that the episode ended with the lawyer arrested, not the brother. Anyone in the bar could tell you that. — _establishes: context only_
-
-On Gretchen Dettweiler and Kathleen Doyle:
-
-- **c169** [overheard] Edward Feeney says Kathleen Doyle told Gretchen Dettweiler that the story would run whether Gretchen Dettweiler liked it or not. — _establishes: Gretchen Dettweiler had a motive (exposure)_
-
-On Antonio Ruggiero and Kathleen Doyle:
-
-- **c171** [overheard] Edward Feeney says Antonio Ruggiero told Kathleen Doyle to keep away, loud enough to turn heads. — _establishes: Antonio Ruggiero had a motive (jealousy)_
-
-### From the Front Desk
-
-- **c164** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c167** [document] Ernst Reinhardt's papers do not hold up. A union card in the coat lining carries a different surname and a 1919 date. — _establishes: context only_
-- **c168** [document] Found in the Front Desk: A typed page of dates and sums in Kathleen Doyle's file, headed with Gretchen Dettweiler's name. — _establishes: Gretchen Dettweiler had a motive (exposure)_
-- **c170** [document] Found in the Front Desk: Three letters in Kathleen Doyle's hand to a woman Antonio Ruggiero is engaged to, kept in the drawer, the last one opened. — _establishes: Antonio Ruggiero had a motive (jealousy)_
-
-### From the Roof Garden
-
-- **c163** [morgue] Kathleen Doyle was found in the Roof Garden. The coroner puts death between 8:30 PM and 9:00 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 8:30 PM and 9:00 PM_
-
-### From the Street
-
-- **c165** [environment] Rain began at 9:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
-
-### Withheld — the player cannot get these
-
-- ~~Beatrice Havemeyer saw Daniel Rafferty in the Lobby, 6:00 PM–6:30 PM~~ — Beatrice Havemeyer is lying about that time and will not say.
-- ~~Beatrice Havemeyer saw Gretchen Dettweiler in the Lobby, 6:30 PM~~ — Beatrice Havemeyer is lying about that time and will not say.
-- ~~Antonio Ruggiero saw Kathleen Doyle in the Victim's Suite, 6:30 PM~~ — Antonio Ruggiero is lying about that time and will not say.
-- ~~Gretchen Dettweiler saw Kathleen Doyle in the Roof Garden, 9:00 PM~~ — Gretchen Dettweiler is lying about that time and will not say.
-- ~~Wendell Dandridge saw Ernst Reinhardt in the Bar, 9:00 PM~~ — Wendell Dandridge is lying about that time and will not say.
-- ~~Wendell Dandridge saw Antonio Ruggiero in the Bar, 9:00 PM~~ — Wendell Dandridge is lying about that time and will not say.
-- ~~Wendell Dandridge saw Patrick Quill in the Bar, 9:00 PM~~ — Wendell Dandridge is lying about that time and will not say.
-- ~~Wendell Dandridge saw Edward Feeney in the Bar, 9:00 PM~~ — Wendell Dandridge is lying about that time and will not say.
-- ~~Patrick Quill saw Beatrice Havemeyer in the Lobby, 9:00 PM–9:30 PM~~ — Patrick Quill is lying about that time and will not say.
-- ~~Patrick Quill saw Wendell Dandridge in the Kitchen, 9:00 PM–9:30 PM~~ — Patrick Quill is lying about that time and will not say.
-- ~~Patrick Quill saw Ernst Reinhardt in the Bar, 9:00 PM–9:30 PM~~ — Patrick Quill is lying about that time and will not say.
-- ~~Patrick Quill saw Antonio Ruggiero in the Bar, 9:00 PM~~ — Patrick Quill is lying about that time and will not say.
-- ~~Patrick Quill saw Daniel Rafferty in the Lobby, 9:00 PM–9:30 PM~~ — Patrick Quill is lying about that time and will not say.
-- ~~Patrick Quill saw Edward Feeney in the Bar, 9:00 PM–9:30 PM~~ — Patrick Quill is lying about that time and will not say.
-- ~~Patrick Quill saw Gretchen Dettweiler in the Lobby, 9:30 PM~~ — Patrick Quill is lying about that time and will not say.
-- ~~Patrick Quill saw Antonio Ruggiero in the Lobby, 9:30 PM~~ — Patrick Quill is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:00 PM. _(c163, c002, c047, c065, c082, c097, c118)_
+| Tick | Time | Rosaria Marchetti (the druggist) | Klara Obermann (the news dealer) | Clementine Tillman (the landlady) | Giuseppe Bellucci (the bartender) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 1 | 6:30 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 2 | 7:00 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 3 | 7:30 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 4 | 8:00 PM | Kaplan’s drugstore with the soda fountain | the speakeasy under the hat shop | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 5 | 8:30 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 6 | 9:00 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 7 | 9:30 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 8 | 10:00 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 9 | 10:30 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 10 | 11:00 PM | the speakeasy under the hat shop | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+| 11 | 11:30 PM | Kaplan’s drugstore with the soda fountain | the newsstand on the corner | the back room at Mrs. Teague’s | the speakeasy under the hat shop |
+
+## 6. Secrets in play
+
+- **Lyman Coffin** (fence): Lyman Coffin hands a parcel of stolen goods to a man at the newsstand on the corner from 11:00 PM.
+- **Bernard Bernstein** (gambling-debt): Bernard Bernstein slips off to the newsstand on the corner from 11:00 PM to settle with a bookmaker.
+- **Winthrop Ainsworth** (fence): Winthrop Ainsworth hands a parcel of stolen goods to a man at the speakeasy under the hat shop from 8:30 PM.
+- **Hedwig Hauck** (forged-identity): Hedwig Hauck is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.
+- **Grafton Stannard** (hidden-family): Grafton Stannard goes to the ferry slip at the foot of the street from 10:00 PM to see a child nobody is supposed to know about.
+- **Hyman Kessler** (murder): Hyman Kessler is at the victim’s rooms in the brownstone from 10:30 PM to 11:00 PM, alone with Gustav Lindemann when it happens at 11:00 PM.
+- **Hyman Kessler** also (gambling-debt): Hyman Kessler slips off to the newsstand on the corner from 6:30 PM to 7:00 PM to settle with a bookmaker.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c164, c165, c180. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At Kaplan’s drugstore with the soda fountain
+
+- **c180** [spine ⟨opening⟩] (client; Winthrop Ainsworth on why I was hired) → c071, c167, c179
+  - Winthrop Ainsworth hired us. Winthrop Ainsworth wants it known that Lyman Coffin owed the victim money, and would rather we started there.
+  - _establishes: Lyman Coffin had a motive (debt)_
+- **c071** [spine] (observation; Rosaria Marchetti on Grafton Stannard) → (end)
+  - Rosaria Marchetti says Grafton Stannard was at the speakeasy under the hat shop at 11:00 PM.
+  - _establishes: Grafton Stannard at the speakeasy under the hat shop, 11:00 PM_
+- **c161** [spine] (observation; Rosaria Marchetti on Hyman Kessler’s account) → c178, c169, c025, c050
+  - Rosaria Marchetti was at the speakeasy under the hat shop at 11:00 PM and says Hyman Kessler was not.
+  - _establishes: Hyman Kessler not at the speakeasy under the hat shop, 11:00 PM_
+
+### At the newsstand on the corner
+
+- **c171** [spine] (anchor; the place itself) → c071, c010, c057
+  - The ice being brought in at 11:00 PM puts Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner.
+  - _establishes: Lyman Coffin at the newsstand on the corner, 11:00 PM; Bernard Bernstein at the newsstand on the corner, 11:00 PM; Winthrop Ainsworth at the newsstand on the corner, 11:00 PM; Hedwig Hauck at the newsstand on the corner, 11:00 PM_
+- **c167** [spine] (anchor; Klara Obermann on Gustav Lindemann that evening) → (end)
+  - Klara Obermann puts Gustav Lindemann at the newsstand on the corner when the last edition came up, which was 10:30 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:30 PM; Gustav Lindemann at the newsstand on the corner, 10:30 PM_
+- **c010** [spine] (observation; Lyman Coffin on Hyman Kessler) → (end)
+  - Lyman Coffin says Hyman Kessler was at the speakeasy under the hat shop at 10:00 PM.
+  - _establishes: Hyman Kessler at the speakeasy under the hat shop, 10:00 PM; Hyman Kessler could reach the weapon_
+- **c133** [corroboration] (observation; Klara Obermann on who was there at 11:00 PM) → (end)
+  - Klara Obermann runs through it: at 11:00 PM there were Lyman Coffin, Bernard Bernstein, Winthrop Ainsworth, Hedwig Hauck at the newsstand on the corner, and nobody else worth naming.
+  - _establishes: Lyman Coffin at the newsstand on the corner, 11:00 PM; Bernard Bernstein at the newsstand on the corner, 11:00 PM; Winthrop Ainsworth at the newsstand on the corner, 11:00 PM; Hedwig Hauck at the newsstand on the corner, 11:00 PM_
+- **c079** [corroboration] (observation; Klara Obermann on Bernard Bernstein) → c202
+  - Klara Obermann says Bernard Bernstein was at the newsstand on the corner from 11:00 PM to 11:30 PM.
+  - _establishes: Bernard Bernstein at the newsstand on the corner, 11:00 PM–11:30 PM_
+- **c186** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The receiver at the newsstand on the corner would rather talk than be held: Lyman Coffin was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Lyman Coffin will take over this one.
+  - _establishes: Lyman Coffin’s fence accounted for; Lyman Coffin at the newsstand on the corner, 11:00 PM_
+- **c192** [noise {b2}] (physical; the place itself) → c188
+  - A book of markers at the newsstand on the corner with Bernard Bernstein’s initials against four of them.
+  - _establishes: context only_
+- **c193** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Bernard Bernstein was at the newsstand on the corner from 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Bernard Bernstein’s gambling-debt accounted for; Bernard Bernstein at the newsstand on the corner, 11:00 PM_
+- **c197** [noise {b4}] (overheard; Lyman Coffin on Winthrop Ainsworth) → c199
+  - Lyman Coffin on Winthrop Ainsworth: Winthrop Ainsworth has been selling things that were never Winthrop Ainsworth’s to sell.
+  - _establishes: context only_
+
+### At the back room at Mrs. Teague’s
+
+- **c188** [noise {b2}] (overheard; Clementine Tillman on Bernard Bernstein) → c193
+  - Clementine Tillman on Bernard Bernstein: Bernard Bernstein was asking around for a hundred dollars in a hurry earlier in the week.
+  - _establishes: context only_
+
+### At the victim’s rooms in the brownstone
+
+- **c164** [spine ⟨opening⟩] (scene; the place itself) → c171, c161, c167, c010, c179, c133, c162, c079
+  - Gustav Lindemann was found at the victim’s rooms in the brownstone. A glass is on its side and the spill had not yet reached the edge of the table when it dried. The ice being brought in came at 11:00 PM, and the iceman’s book has the delivery timed and signed for. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 11:00 PM; how it was done_
+- **c165** [spine ⟨opening⟩] (morgue; the place itself) → c171, c161, c098
+  - The coroner puts death between 10:00 PM and 11:30 PM — two hours of nothing useful. Chloral hydrate in the stomach. No wound, no bruising, no sign of a struggle.
+  - _establishes: death between 10:00 PM and 11:30 PM; how it was done_
+
+### At the ferry slip at the foot of the street
+
+- **c178** [corroboration] (document; the place itself) → (end)
+  - Found at the ferry slip at the foot of the street: A typed page of dates and sums in Gustav Lindemann’s file, headed with Hyman Kessler’s name.
+  - _establishes: Hyman Kessler had a motive (exposure)_
+- **c214** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The woman who keeps the child says it straight out: Grafton Stannard was at the ferry slip at the foot of the street from 10:00 PM, the same as every week, and left with the same face as always.
+  - _establishes: Grafton Stannard’s hidden-family accounted for; Grafton Stannard at the ferry slip at the foot of the street, 10:00 PM_
+
+### At the speakeasy under the hat shop
+
+- **c179** [spine] (overheard; Giuseppe Bellucci on Hyman Kessler and Gustav Lindemann) → c210
+  - Giuseppe Bellucci says Gustav Lindemann told Hyman Kessler that the story would run whether Hyman Kessler liked it or not.
+  - _establishes: Hyman Kessler had a motive (exposure)_
+- **c169** [corroboration] (anchor; Hedwig Hauck on the noise that evening) → (end)
+  - Hedwig Hauck was at the newsstand on the corner at 11:00 PM and heard a chair going over from the direction of the victim’s rooms in the brownstone, when the ice came.
+  - _establishes: noise at the victim’s rooms in the brownstone at 11:00 PM; the victim dead by 11:00 PM; how it was done_
+- **c057** [corroboration] (observation; Grafton Stannard on Hyman Kessler) → c192, c197
+  - Grafton Stannard says Hyman Kessler was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM.
+  - _establishes: Hyman Kessler at the speakeasy under the hat shop, 8:30 PM–9:30 PM; Hyman Kessler could reach the weapon_
+- **c098** [corroboration] (observation; Giuseppe Bellucci on Grafton Stannard) → (end)
+  - Giuseppe Bellucci says Grafton Stannard was at the speakeasy under the hat shop from 11:00 PM to 11:30 PM.
+  - _establishes: Grafton Stannard at the speakeasy under the hat shop, 11:00 PM–11:30 PM_
+- **c162** [corroboration] (observation; Giuseppe Bellucci on Hyman Kessler’s account) → (end)
+  - Giuseppe Bellucci was at the speakeasy under the hat shop from 10:30 PM to 11:00 PM and says Hyman Kessler was not.
+  - _establishes: Hyman Kessler not at the speakeasy under the hat shop, 10:30 PM–11:00 PM_
+- **c025** [corroboration] (observation; Bernard Bernstein on Hyman Kessler) → c183
+  - Bernard Bernstein says Hyman Kessler was at the speakeasy under the hat shop at 8:30 PM.
+  - _establishes: Hyman Kessler at the speakeasy under the hat shop, 8:30 PM; Hyman Kessler could reach the weapon_
+- **c050** [corroboration] (observation; Grafton Stannard on Bernard Bernstein) → (end)
+  - Grafton Stannard says Bernard Bernstein was at the speakeasy under the hat shop at 7:30 PM.
+  - _establishes: Bernard Bernstein at the speakeasy under the hat shop, 7:30 PM; Bernard Bernstein could reach the weapon_
+- **c183** [noise {b1}] (overheard; Grafton Stannard on Lyman Coffin) → c186
+  - Grafton Stannard on Lyman Coffin: Lyman Coffin has been selling things that were never Lyman Coffin’s to sell.
+  - _establishes: context only_
+- **c210** [noise {b3}] (overheard; Hedwig Hauck on Grafton Stannard) → c214
+  - Hedwig Hauck on Grafton Stannard: A woman at the ferry slip at the foot of the street asked for Grafton Stannard by a name Grafton Stannard has not used in years.
+  - _establishes: context only_
+- **c199** [noise {b4}] (physical; the place itself) → c200
+  - A pawn ticket at the speakeasy under the hat shop in a name that does not exist, made out at the hour in question.
+  - _establishes: context only_
+- **c200** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The receiver at the speakeasy under the hat shop would rather talk than be held: Winthrop Ainsworth was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Winthrop Ainsworth will take over this one.
+  - _establishes: Winthrop Ainsworth’s fence accounted for; Winthrop Ainsworth at the speakeasy under the hat shop, 8:30 PM_
+- **c202** [noise {b5}] (overheard; Grafton Stannard on Hedwig Hauck) → c207
+  - Grafton Stannard on Hedwig Hauck: Hedwig Hauck’s registration card gives an address on a street that does not exist.
+  - _establishes: context only_
+- **c207** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The name Hedwig Hauck was born with turns up on a desertion warrant from 1918. Hedwig Hauck has been hiding from the Army for eleven years and from nobody else.
+  - _establishes: Hedwig Hauck’s forged-identity accounted for_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["Kaplan’s drugstore with the soda fountain"]
+    c180["▶ c180 Winthrop Ainsworth"]
+    c071["c071 Rosaria Marchetti"]
+    c161["c161 Rosaria Marchetti"]
+  end
+  subgraph P2["the newsstand on the corner"]
+    c171["c171 the place"]
+    c167["c167 Klara Obermann"]
+    c010["c010 Lyman Coffin"]
+    c133["c133 Klara Obermann"]
+    c079["c079 Klara Obermann"]
+    c186["✗ c186 the place"]
+    c192["c192 the place"]
+    c193["✗ c193 the place"]
+    c197["c197 Lyman Coffin"]
+  end
+  subgraph P3["the back room at Mrs. Teague’s"]
+    c188["c188 Clementine Tillman"]
+  end
+  subgraph P4["the victim’s rooms in the brownstone"]
+    c164["▶ c164 the place"]
+    c165["▶ c165 the place"]
+  end
+  subgraph P5["the ferry slip at the foot of the street"]
+    c178["c178 the place"]
+    c214["✗ c214 the place"]
+  end
+  subgraph P6["the speakeasy under the hat shop"]
+    c179["c179 Giuseppe Bellucci"]
+    c169["c169 Hedwig Hauck"]
+    c057["c057 Grafton Stannard"]
+    c098["c098 Giuseppe Bellucci"]
+    c162["c162 Giuseppe Bellucci"]
+    c025["c025 Bernard Bernstein"]
+    c050["c050 Grafton Stannard"]
+    c183["c183 Grafton Stannard"]
+    c210["c210 Hedwig Hauck"]
+    c199["c199 the place"]
+    c200["✗ c200 the place"]
+    c202["c202 Grafton Stannard"]
+    c207["✗ c207 the place"]
+  end
+  c164 --> c171
+  c164 --> c161
+  c164 --> c167
+  c164 --> c010
+  c164 --> c179
+  c164 --> c133
+  c164 --> c162
+  c164 --> c079
+  c165 --> c171
+  c165 --> c161
+  c165 --> c098
+  c180 --> c071
+  c180 --> c167
+  c180 --> c179
+  c171 --> c071
+  c171 --> c010
+  c171 --> c057
+  c161 --> c178
+  c161 --> c169
+  c161 --> c025
+  c161 --> c050
+  c179 -.-> c210
+  c057 -.-> c192
+  c057 -.-> c197
+  c025 -.-> c183
+  c079 -.-> c202
+  c183 --> c186
+  c192 -.-> c188
+  c188 --> c193
+  c210 --> c214
+  c197 -.-> c199
+  c199 --> c200
+  c202 --> c207
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c164,c165,c180,c171,c071,c161,c167,c010,c179 spine;
+  class c133,c178,c169,c057,c098,c162,c025,c079,c050 corrob;
+  class c183,c192,c188,c210,c197,c199,c202 noise;
+  class c186,c193,c214,c200,c207 disq;
+```
+
+## 9. Deduction path
+
+Par is **9 actions** against a budget of 20: 11 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 11:00 PM: one puts Gustav Lindemann alive at 10:30 PM, the other times the scene at 11:00 PM. _(c165, c167, c164; + 1 corroborating)_
 
 **Clearing the innocent.**
 
-- Beatrice Havemeyer was not in the Roof Garden at 9:00 PM, on two independent sources. _(c049, c066, c100, c119)_
-- Wendell Dandridge was not in the Roof Garden at 9:00 PM, on two independent sources. _(c056, c072, c125)_
-- Ernst Reinhardt was not in the Roof Garden at 9:00 PM, on two independent sources. _(c012, c076, c112, c129)_
-- Antonio Ruggiero was not in the Roof Garden at 9:00 PM, on two independent sources. _(c016, c060, c115, c132)_
-- Patrick Quill was not in the Roof Garden at 9:00 PM, on two independent sources. _(c017, c062, c079, c116, c134)_
+- Lyman Coffin was not at the victim’s rooms in the brownstone at 11:00 PM, on two independent sources. _(c171; + 2 corroborating)_
+- Bernard Bernstein was not at the victim’s rooms in the brownstone at 11:00 PM, on two independent sources. _(c171; + 3 corroborating)_
+- Winthrop Ainsworth was not at the victim’s rooms in the brownstone at 11:00 PM, on two independent sources. _(c171; + 1 corroborating)_
+- Hedwig Hauck was not at the victim’s rooms in the brownstone at 11:00 PM, on two independent sources. _(c171; + 1 corroborating)_
+- Grafton Stannard was not at the victim’s rooms in the brownstone at 11:00 PM, on two independent sources. _(c071; + 1 corroborating)_
 
-**Naming the killer.** Gretchen Dettweiler claims the Street at 9:00 PM. Two independent sources put that out of the question, and one ties Gretchen Dettweiler to a gunshot. _(c142, c145, c050, c102)_
+**Naming the killer.** Hyman Kessler claims the speakeasy under the hat shop at 11:00 PM. Two independent sources put that out of the question. _(c161; + 1 corroborating)_
 
-**Method.** A gunshot, on two physical sources. _(c163, c164)_
+**The weapon.** Hyman Kessler was at the speakeasy under the hat shop before 11:00 PM, where a bottle of chloral drops was kept. _(c010; + 2 corroborating)_
 
-**Motive.** exposure, on two independent sources. _(c168, c169)_
+**Method.** Poison in a drink, on two physical sources. _(c164, c165; + 1 corroborating)_
 
-## 8. Red herrings
+**Motive.** exposure, on two independent sources. _(c179; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Wendell Dandridge claims the Bar at 9:00 PM and was really in the Kitchen. Reason: Wendell Dandridge hands a parcel of stolen goods to a man at the Kitchen at 9:00 PM.
-- Patrick Quill claims the Lobby at 9:00 PM and was really in the Bar. Reason: Patrick Quill drinks alone in the Bar from 9:00 PM to 9:30 PM and will claim to have been anywhere else.
+- Lyman Coffin claims the speakeasy under the hat shop at 11:00 PM and was really at the newsstand on the corner. Reason: Lyman Coffin hands a parcel of stolen goods to a man at the newsstand on the corner from 11:00 PM.
+- Bernard Bernstein claims the back room at Mrs. Teague’s at 11:00 PM and was really at the newsstand on the corner. Reason: Bernard Bernstein slips off to the newsstand on the corner from 11:00 PM to settle with a bookmaker.
 
 **Innocents with a motive:**
 
-- Antonio Ruggiero — jealousy: jealous of the victim.
+- Lyman Coffin — debt: owed the victim money.
+- Grafton Stannard — revenge: blamed the victim for a ruin.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Lyman Coffin, fence): c183 → **c186** — The receiver at the newsstand on the corner would rather talk than be held: Lyman Coffin was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Lyman Coffin will take over this one.
+- **b2** (Bernard Bernstein, gambling-debt): c192 → c188 → **c193** — The bookmaker’s runner is found and will say it: Bernard Bernstein was at the newsstand on the corner from 11:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b3** (Grafton Stannard, hidden-family): c210 → **c214** — The woman who keeps the child says it straight out: Grafton Stannard was at the ferry slip at the foot of the street from 10:00 PM, the same as every week, and left with the same face as always.
+- **b4** (Winthrop Ainsworth, fence): c197 → c199 → **c200** — The receiver at the speakeasy under the hat shop would rather talk than be held: Winthrop Ainsworth was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Winthrop Ainsworth will take over this one.
+- **b5** (Hedwig Hauck, forged-identity): c202 → **c207** — The name Hedwig Hauck was born with turns up on a desertion warrant from 1918. Hedwig Hauck has been hiding from the Army for eleven years and from nobody else.
 

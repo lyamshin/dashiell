@@ -1,669 +1,436 @@
-# The Tarleton — case 13
+# Chelsea — case 13
 
-**Seed** 13 · **Attempts** 3 · **Detective** Humphrey
+**Seed** 13 · **Difficulty** 2 · **Attempts** 5 · **Detective** Humphrey
+
+**Par** 8 actions · **Budget** 20 · **Slack** 12 · **Findable** 30 (spine 9, corroboration 9, noise 7 + 5 disqualifiers) · **Noise ratio** 40% · **Candidate pool** 192
 
 ## 1. The Truth
 
-Rutherford Stannard, a travelling salesman in patent medicines, the victim's landlord, killed Meyer Rosenbaum, a pawnbroker, with a gunshot in the Roof Garden at 9:30 PM. Rutherford Stannard stands to inherit (inheritance). Rutherford Stannard had been at the Front Desk earlier in the evening, before 9:30 PM and was alone with Meyer Rosenbaum when it happened.
+Patrick Brennan, a lawyer with one clerk, the victim’s business partner, killed Nora Mulcahy, a society columnist, with a push from the parapet at the victim’s house on the back lot at 10:30 PM. Patrick Brennan was about to be exposed by the victim (exposure). Patrick Brennan had been at the parlour of Mrs. Teague’s boarding house earlier in the evening, where the weapon lived, and was alone with Nora Mulcahy when it happened. Margarethe Hauck hired us.
 
 ## 2. Dramatis Personae
 
-| Name | Role | Relationship | Secret | Motive | Killer |
-| --- | --- | --- | --- | --- | --- |
-| Meyer Rosenbaum | a pawnbroker | the victim | — | — | — |
-| Elsa Vogel | a chorus girl between engagements | the victim's creditor | fence | jealousy | — |
-| Isidore Lefkowitz | a ward heeler | the victim's private nurse | embezzling | — | — |
-| Concetta Alfano | a tailor | the victim's brother-in-law | secret-drinking | silence-a-witness | — |
-| Booker Prentiss | a bookkeeper | engaged to the victim's daughter | affair | — | — |
-| Rutherford Stannard | a travelling salesman in patent medicines | the victim's landlord | murder (+ forged-identity) | inheritance | **YES** |
-| Patrick Sweeney | an insurance adjuster | a childhood friend of the victim from the same block | affair | — | — |
-| Vincenzo Vitale | the doorman | fixture | — | — | — |
-| Eunice Dandridge | the bartender | fixture | — | — | — |
+| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
+| --- | --- | --- | --- | --- | --- | --- |
+| Nora Mulcahy | a society columnist | the victim | — | — | — | — |
+| Rufus Tillman | a policy runner | in the victim’s debt | dope | debt | the parlour of Mrs. Teague’s boarding house | — |
+| Nunzio Moretti | the victim’s nephew, at loose ends | the victim’s cousin | secret-drinking | inheritance | the parlour of Mrs. Teague’s boarding house | — |
+| Patrick Brennan | a lawyer with one clerk | the victim’s business partner | murder (+ gambling-debt) | exposure | the benches at the north end of the square | **YES** |
+| Margarethe Hauck (client) | a dentist with rooms on the third floor | in the victim’s debt | dope | — | the Arcadia dance hall | — |
+| Althea Mosley | a stagehand at the Selwyn | a childhood friend of the victim’s from the same block | gambling-debt | revenge | the parlour of Mrs. Teague’s boarding house | — |
+| Verity Coffin | a piano teacher | the victim’s tenant | secret-drinking | — | the parlour of Mrs. Teague’s boarding house | — |
+| Gittel Zeldin | the man behind the counter | fixture (counterman) | — | — | the chop suey place over the laundry | — |
+| Cornelius Hanrahan | the elevator man | fixture (elevator-man) | — | — | the vestibule of the Hallam apartments | — |
+| Hattie Whitfield | the landlady | fixture (landlady) | — | — | the parlour of Mrs. Teague’s boarding house | — |
+| Agnes Callahan | the ticket-taker | fixture (ticket-taker) | — | — | the Arcadia dance hall | — |
 
-## 3. Map
+## 3. Places
 
-- **Lobby** (public) — adjacent: Front Desk, Street, Bar, Service Stairs, Victim's Suite, Roof Garden; sees: Front Desk, Street, Bar; noise carries to: Front Desk, Street, Bar, Service Stairs; objects: none
-- **Front Desk** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a nickel-plated revolver, the house ledger, the guest register
-- **Bar** (public) — adjacent: Lobby, Kitchen; sees: Lobby, Kitchen; noise carries to: Lobby, Kitchen; objects: an ice pick, a seltzer siphon, a cut-glass decanter
-- **Kitchen** (private) — adjacent: Bar, Service Stairs; sees: Bar; noise carries to: Bar, Service Stairs; objects: a galvanised watering can, a mop and bucket
-- **Service Stairs** (private) — adjacent: Kitchen, Lobby, Victim's Suite, Roof Garden; sees: nothing; noise carries to: Kitchen, Lobby; objects: a length of sash cord
-- **Victim's Suite** (private) — adjacent: Service Stairs, Lobby, Roof Garden; sees: nothing; noise carries to: Service Stairs; objects: a steamer trunk
-- **Roof Garden** (private) — adjacent: Service Stairs, Lobby, Victim's Suite; sees: nothing; noise carries to: Service Stairs; objects: none
-- **Street** (public) — adjacent: Lobby; sees: Lobby; noise carries to: Lobby; objects: a brass umbrella stand
+- **the victim’s house on the back lot** (private) — unwatched; objects: a framed photograph, a bronze bookend — **THE SCENE**; the victim’s address
+- **the benches at the north end of the square** (public) — unwatched; objects: a folded stack of evening papers, a brass umbrella stand
+- **the chop suey place over the laundry** (semi) — watched by counterman (Gittel Zeldin); objects: an ice pick, a bottle of chloral drops, a wall telephone — within earshot of the scene
+- **the vestibule of the Hallam apartments** (private) — watched by elevator-man (Cornelius Hanrahan); objects: a day ledger, a camel-hair overcoat on a hook, a nickel-plated revolver
+- **the parlour of Mrs. Teague’s boarding house** (semi) — watched by landlady (Hattie Whitfield); objects: the roof-door key, a length of sash cord — where the weapon lived
+- **the Arcadia dance hall** (public) — watched by ticket-taker (Agnes Callahan); objects: a silver cigarette case, a standing ashtray — within earshot of the scene
 
-**Environment:** Rain from 7:30 PM. Passenger elevator out of order 8:00 PM–8:30 PM. Bar radio at 11:00 PM: a six-day bicycle race from the Velodrome — a rider fell at the bank and the lead changed hands.
+## 4. Anchors
 
-## 4. Timelines
+The coroner gives 9:00 PM–10:30 PM, four ticks wide. These are what close it: **bar-radio** and **piano-lesson**.
 
-### Meyer Rosenbaum — the victim
+- **the piano lesson on the floor above** — at 10:00 PM; at the parlour of Mrs. Teague’s boarding house. You can time things by it: the same four bars, over and over, and then nothing. Only those present know that the child never did get the passage right.
+- **the fight card on the bar radio** — at 10:30 PM; at the Arcadia dance hall. Only those present know that the challenger went down in the fourth and the crowd booed it. You can time things by it: the set was turned up loud enough to carry into the street.
+- **the fuse going in the building** — at 9:00 PM; at the vestibule of the Hallam apartments. You can time things by it: a crack in the cellar and every light on the riser out at once. Those present carry it: candle smoke on the ceilings of everyone who sat it out.
+
+## 5. Timelines
+
+### Nora Mulcahy — the victim
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Bar | Bar | — |
-| 2 | 7:00 PM | Bar | Bar | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Roof Garden ☠ | Roof Garden | — |
-| 8 | 10:00 PM | — | — | — |
-| 9 | 10:30 PM | — | — | — |
+| 0 | 6:00 PM | the chop suey place over the laundry | the chop suey place over the laundry | — |
+| 1 | 6:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 2 | 7:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 3 | 7:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 4 | 8:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 5 | 8:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 6 | 9:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 7 | 9:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 8 | 10:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 9 | 10:30 PM | the victim’s house on the back lot ☠ | the victim’s house on the back lot | — |
 | 10 | 11:00 PM | — | — | — |
 | 11 | 11:30 PM | — | — | — |
 
-### Elsa Vogel
+### Rufus Tillman
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Kitchen | Kitchen | — |
-| 1 | 6:30 PM | Kitchen | Kitchen | — |
-| 2 | 7:00 PM | Kitchen | Kitchen | — |
-| 3 | 7:30 PM | Kitchen | Kitchen | — |
-| 4 | 8:00 PM | Kitchen | Kitchen | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Kitchen | Kitchen | — |
-| 7 | 9:30 PM | Kitchen | **Bar** | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Kitchen | Kitchen | — |
-| 10 | 11:00 PM | Kitchen | Kitchen | — |
-| 11 | 11:30 PM | Kitchen | Kitchen | — |
+| 0 | 6:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 1 | 6:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 2 | 7:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 3 | 7:30 PM | the chop suey place over the laundry | the chop suey place over the laundry | — |
+| 4 | 8:00 PM | the chop suey place over the laundry | the chop suey place over the laundry | — |
+| 5 | 8:30 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 6 | 9:00 PM | the vestibule of the Hallam apartments | the vestibule of the Hallam apartments | — |
+| 7 | 9:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 8 | 10:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 9 | 10:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 10 | 11:00 PM | the chop suey place over the laundry | **the Arcadia dance hall** | Althea Mosley |
+| 11 | 11:30 PM | the chop suey place over the laundry | **the Arcadia dance hall** | Althea Mosley |
 
-### Isidore Lefkowitz
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Bar | Bar | — |
-| 1 | 6:30 PM | Bar | Bar | — |
-| 2 | 7:00 PM | Bar | Bar | — |
-| 3 | 7:30 PM | Bar | Bar | — |
-| 4 | 8:00 PM | Bar | Bar | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Bar | Bar | — |
-| 8 | 10:00 PM | Bar | Bar | — |
-| 9 | 10:30 PM | Lobby | Lobby | — |
-| 10 | 11:00 PM | Victim's Suite | **Street** | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
-
-### Concetta Alfano
+### Nunzio Moretti
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Roof Garden | Roof Garden | — |
-| 1 | 6:30 PM | Lobby | Lobby | — |
-| 2 | 7:00 PM | Lobby | Lobby | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Lobby | Lobby | — |
-| 5 | 8:30 PM | Bar | Bar | — |
-| 6 | 9:00 PM | Bar | **Lobby** | Isidore Lefkowitz |
-| 7 | 9:30 PM | Bar | **Lobby** | Isidore Lefkowitz |
-| 8 | 10:00 PM | Lobby | Lobby | — |
-| 9 | 10:30 PM | Street | Street | — |
-| 10 | 11:00 PM | Street | Street | — |
-| 11 | 11:30 PM | Street | Street | — |
+| 0 | 6:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 1 | 6:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 2 | 7:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 3 | 7:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 4 | 8:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 5 | 8:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 6 | 9:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 7 | 9:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 8 | 10:00 PM | the Arcadia dance hall | **the vestibule of the Hallam apartments** | Rufus Tillman |
+| 9 | 10:30 PM | the Arcadia dance hall | **the vestibule of the Hallam apartments** | Rufus Tillman |
+| 10 | 11:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
 
-### Booker Prentiss
-
-| Tick | Time | Truth | Claimed | Companion claimed |
-| --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Bar | Bar | — |
-| 7 | 9:30 PM | Kitchen | Kitchen | — |
-| 8 | 10:00 PM | Kitchen | Kitchen | — |
-| 9 | 10:30 PM | Service Stairs | **Bar** | Elsa Vogel |
-| 10 | 11:00 PM | Service Stairs | **Bar** | Elsa Vogel |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
-
-### Rutherford Stannard — the killer
+### Patrick Brennan — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Front Desk | Front Desk | — |
-| 4 | 8:00 PM | Front Desk | Front Desk | — |
-| 5 | 8:30 PM | Lobby | Lobby | — |
-| 6 | 9:00 PM | Roof Garden | **Bar** | Elsa Vogel |
-| 7 | 9:30 PM | Roof Garden ☠ | **Bar** | Elsa Vogel |
-| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
-| 9 | 10:30 PM | Service Stairs | Service Stairs | — |
-| 10 | 11:00 PM | Service Stairs | Service Stairs | — |
-| 11 | 11:30 PM | Lobby | Lobby | — |
+| 0 | 6:00 PM | the benches at the north end of the square | **the Arcadia dance hall** | — |
+| 1 | 6:30 PM | the benches at the north end of the square | **the Arcadia dance hall** | — |
+| 2 | 7:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 3 | 7:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 4 | 8:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 5 | 8:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 6 | 9:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 7 | 9:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 8 | 10:00 PM | the victim’s house on the back lot | **the Arcadia dance hall** | — |
+| 9 | 10:30 PM | the victim’s house on the back lot ☠ | **the Arcadia dance hall** | — |
+| 10 | 11:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 11 | 11:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
 
-### Patrick Sweeney
+### Margarethe Hauck
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Front Desk | Front Desk | — |
-| 1 | 6:30 PM | Front Desk | Front Desk | — |
-| 2 | 7:00 PM | Front Desk | Front Desk | — |
-| 3 | 7:30 PM | Lobby | Lobby | — |
-| 4 | 8:00 PM | Service Stairs | Service Stairs | — |
-| 5 | 8:30 PM | Service Stairs | Service Stairs | — |
-| 6 | 9:00 PM | Lobby | Lobby | — |
-| 7 | 9:30 PM | Lobby | Lobby | — |
-| 8 | 10:00 PM | Service Stairs | Service Stairs | — |
-| 9 | 10:30 PM | Service Stairs | **Lobby** | — |
-| 10 | 11:00 PM | Service Stairs | **Lobby** | — |
-| 11 | 11:30 PM | Service Stairs | Service Stairs | — |
+| 0 | 6:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 1 | 6:30 PM | the chop suey place over the laundry | the chop suey place over the laundry | — |
+| 2 | 7:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 3 | 7:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 4 | 8:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 5 | 8:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 6 | 9:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 7 | 9:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 8 | 10:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 9 | 10:30 PM | the chop suey place over the laundry | **the benches at the north end of the square** | — |
+| 10 | 11:00 PM | the chop suey place over the laundry | **the benches at the north end of the square** | — |
+| 11 | 11:30 PM | the chop suey place over the laundry | the chop suey place over the laundry | — |
+
+### Althea Mosley
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 1 | 6:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 2 | 7:00 PM | the benches at the north end of the square | **the Arcadia dance hall** | — |
+| 3 | 7:30 PM | the benches at the north end of the square | **the Arcadia dance hall** | — |
+| 4 | 8:00 PM | the victim’s house on the back lot | the victim’s house on the back lot | — |
+| 5 | 8:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 6 | 9:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 7 | 9:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 8 | 10:00 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 9 | 10:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 10 | 11:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 11 | 11:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+
+### Verity Coffin
+
+| Tick | Time | Truth | Claimed | Companion claimed |
+| --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 1 | 6:30 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 2 | 7:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 3 | 7:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 4 | 8:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 5 | 8:30 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 6 | 9:00 PM | the parlour of Mrs. Teague’s boarding house | the parlour of Mrs. Teague’s boarding house | — |
+| 7 | 9:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
+| 8 | 10:00 PM | the benches at the north end of the square | the benches at the north end of the square | — |
+| 9 | 10:30 PM | the Arcadia dance hall | **the chop suey place over the laundry** | — |
+| 10 | 11:00 PM | the Arcadia dance hall | **the chop suey place over the laundry** | — |
+| 11 | 11:30 PM | the Arcadia dance hall | the Arcadia dance hall | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Vincenzo Vitale (the doorman) | Eunice Dandridge (the bartender) |
-| --- | --- | --- | --- |
-| 0 | 6:00 PM | Lobby | Bar |
-| 1 | 6:30 PM | Lobby | Bar |
-| 2 | 7:00 PM | Lobby | Bar |
-| 3 | 7:30 PM | Lobby | Bar |
-| 4 | 8:00 PM | Street | Lobby |
-| 5 | 8:30 PM | Lobby | Bar |
-| 6 | 9:00 PM | Lobby | Bar |
-| 7 | 9:30 PM | Lobby | Bar |
-| 8 | 10:00 PM | Lobby | Lobby |
-| 9 | 10:30 PM | Lobby | Bar |
-| 10 | 11:00 PM | Lobby | Bar |
-| 11 | 11:30 PM | Lobby | Bar |
-
-## 5. Secrets in play
-
-- **Elsa Vogel** (fence): Elsa Vogel hands a parcel of stolen goods to a man at the Kitchen at 9:30 PM.
-- **Isidore Lefkowitz** (embezzling): Isidore Lefkowitz goes through the papers in the Victim's Suite from 11:00 PM while the victim is downstairs.
-- **Concetta Alfano** (secret-drinking): Concetta Alfano drinks alone in the Bar from 9:00 PM to 9:30 PM and will claim to have been anywhere else.
-- **Booker Prentiss** (affair): Booker Prentiss is with Patrick Sweeney in the Service Stairs from 10:30 PM to 11:00 PM, and both will say they were somewhere else.
-- **Rutherford Stannard** (murder): Rutherford Stannard is alone with Meyer Rosenbaum in the Roof Garden from 9:00 PM to 9:30 PM, and kills Meyer Rosenbaum at 9:30 PM.
-- **Rutherford Stannard** also (forged-identity): Rutherford Stannard is not the person the register says. Nothing is hidden about the evening; the lie is in the paperwork.
-- **Patrick Sweeney** (affair): Patrick Sweeney is with Booker Prentiss in the Service Stairs from 10:30 PM to 11:00 PM, and both will say they were somewhere else.
-
-## 6. Clue list
-
-### From Elsa Vogel (a chorus girl between engagements)
-
-On Meyer Rosenbaum:
-
-- **c001** [observation] Elsa Vogel says Meyer Rosenbaum was in the Kitchen at 6:00 PM. — _establishes: Meyer Rosenbaum in the Kitchen, 6:00 PM; the victim alive at 6:00 PM_
-- **c002** [observation] Elsa Vogel says Meyer Rosenbaum was in the Bar from 6:30 PM to 7:30 PM. — _establishes: Meyer Rosenbaum in the Bar, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-
-On Isidore Lefkowitz:
-
-- **c003** [observation] Elsa Vogel says Isidore Lefkowitz was in the Bar from 6:00 PM to 9:00 PM. — _establishes: Isidore Lefkowitz in the Bar, 6:00 PM–9:00 PM_
-- **c004** [observation] Elsa Vogel says Isidore Lefkowitz was in the Bar at 10:00 PM. — _establishes: Isidore Lefkowitz in the Bar, 10:00 PM_
-
-On Concetta Alfano:
-
-- **c005** [observation] Elsa Vogel says Concetta Alfano was in the Bar from 8:30 PM to 9:00 PM. — _establishes: Concetta Alfano in the Bar, 8:30 PM–9:00 PM_
-
-On Booker Prentiss:
-
-- **c006** [observation] Elsa Vogel says Booker Prentiss was in the Lobby at 8:30 PM. — _establishes: Booker Prentiss in the Lobby, 8:30 PM_
-- **c007** [observation] Elsa Vogel says Booker Prentiss was in the Bar at 9:00 PM. — _establishes: Booker Prentiss in the Bar, 9:00 PM_
-- **c008** [observation] Elsa Vogel says Booker Prentiss was in the Kitchen at 10:00 PM. — _establishes: Booker Prentiss in the Kitchen, 10:00 PM_
-
-On Rutherford Stannard:
-
-- **c009** [observation] Elsa Vogel says Rutherford Stannard was in the Lobby at 8:30 PM. — _establishes: Rutherford Stannard in the Lobby, 8:30 PM_
-
-On Booker Prentiss's account:
-
-- **c137** [observation] Elsa Vogel was in the Kitchen from 10:30 PM to 11:00 PM and says Booker Prentiss was not in the Bar. — _establishes: Booker Prentiss not in the Bar, 10:30 PM–11:00 PM_
-
-On Rutherford Stannard's account:
-
-- **c141** [observation] Elsa Vogel was in the Kitchen at 9:00 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM_
-
-### From Isidore Lefkowitz (a ward heeler)
-
-On Meyer Rosenbaum:
-
-- **c010** [observation] Isidore Lefkowitz says Meyer Rosenbaum was in the Kitchen at 6:00 PM. — _establishes: Meyer Rosenbaum in the Kitchen, 6:00 PM; the victim alive at 6:00 PM_
-- **c011** [observation] Isidore Lefkowitz says Meyer Rosenbaum was in the Bar from 6:30 PM to 7:30 PM. — _establishes: Meyer Rosenbaum in the Bar, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c012** [observation] Isidore Lefkowitz says Meyer Rosenbaum was in the Lobby at 8:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-- **c013** [observation] Isidore Lefkowitz says Meyer Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Elsa Vogel:
-
-- **c014** [observation] Isidore Lefkowitz says Elsa Vogel was in the Kitchen from 6:00 PM to 8:00 PM. — _establishes: Elsa Vogel in the Kitchen, 6:00 PM–8:00 PM_
-- **c015** [observation] Isidore Lefkowitz says Elsa Vogel was in the Kitchen from 9:00 PM to 10:00 PM. — _establishes: Elsa Vogel in the Kitchen, 9:00 PM–10:00 PM_
-- **c016** [observation] Isidore Lefkowitz says Elsa Vogel was in the Bar at 8:30 PM. — _establishes: Elsa Vogel in the Bar, 8:30 PM_
-
-On Concetta Alfano:
-
-- **c017** [observation] Isidore Lefkowitz says Concetta Alfano was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Concetta Alfano in the Lobby, 6:30 PM–8:00 PM_
-- **c018** [observation] Isidore Lefkowitz says Concetta Alfano was in the Lobby at 10:00 PM. — _establishes: Concetta Alfano in the Lobby, 10:00 PM_
-- **c019** [observation] Isidore Lefkowitz says Concetta Alfano was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Concetta Alfano in the Bar, 8:30 PM–9:30 PM_
-- **c020** [observation] Isidore Lefkowitz says Concetta Alfano was on the Street at 10:30 PM. — _establishes: Concetta Alfano on the Street, 10:30 PM_
-- **c021** [observation] Isidore Lefkowitz says Concetta Alfano was on the Street at 11:30 PM. — _establishes: Concetta Alfano on the Street, 11:30 PM_
-
-On Booker Prentiss:
-
-- **c022** [observation] Isidore Lefkowitz says Booker Prentiss was in the Lobby at 8:30 PM. — _establishes: Booker Prentiss in the Lobby, 8:30 PM_
-- **c023** [observation] Isidore Lefkowitz says Booker Prentiss was in the Bar at 9:00 PM. — _establishes: Booker Prentiss in the Bar, 9:00 PM_
-- **c024** [observation] Isidore Lefkowitz says Booker Prentiss was in the Kitchen from 9:30 PM to 10:00 PM. — _establishes: Booker Prentiss in the Kitchen, 9:30 PM–10:00 PM_
-
-On Rutherford Stannard:
-
-- **c025** [observation] Isidore Lefkowitz says Rutherford Stannard was in the Lobby at 8:30 PM. — _establishes: Rutherford Stannard in the Lobby, 8:30 PM_
-- **c026** [observation] Isidore Lefkowitz says Rutherford Stannard was in the Lobby at 11:30 PM. — _establishes: Rutherford Stannard in the Lobby, 11:30 PM_
-
-On Patrick Sweeney:
-
-- **c027** [observation] Isidore Lefkowitz says Patrick Sweeney was in the Lobby at 7:30 PM. — _establishes: Patrick Sweeney in the Lobby, 7:30 PM_
-- **c028** [observation] Isidore Lefkowitz says Patrick Sweeney was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Patrick Sweeney in the Lobby, 9:00 PM–9:30 PM_
-
-On Elsa Vogel's account:
-
-- **c125** [observation] Isidore Lefkowitz was in the Bar at 9:30 PM and says Elsa Vogel was not in the Bar. — _establishes: Elsa Vogel not in the Bar, 9:30 PM_
-
-On Concetta Alfano's account:
-
-- **c132** [observation] Isidore Lefkowitz was in the Bar from 9:00 PM to 9:30 PM and says Concetta Alfano was not in the Lobby. — _establishes: Concetta Alfano not in the Lobby, 9:00 PM–9:30 PM_
-
-On Booker Prentiss's account:
-
-- **c138** [observation] Isidore Lefkowitz was in the Lobby at 10:30 PM and says Booker Prentiss was not in the Bar. — _establishes: Booker Prentiss not in the Bar, 10:30 PM_
-
-On Rutherford Stannard's account:
-
-- **c142** [observation] Isidore Lefkowitz was in the Bar from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
-
-On Patrick Sweeney's account:
-
-- **c148** [observation] Isidore Lefkowitz was in the Lobby at 10:30 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM_
-
-### From Concetta Alfano (a tailor)
-
-On Meyer Rosenbaum:
-
-- **c029** [observation] Concetta Alfano says Meyer Rosenbaum was in the Bar from 6:30 PM to 7:30 PM. — _establishes: Meyer Rosenbaum in the Bar, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c030** [observation] Concetta Alfano says Meyer Rosenbaum was in the Lobby at 8:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-
-On Elsa Vogel:
-
-- **c031** [observation] Concetta Alfano says Elsa Vogel was in the Bar at 8:30 PM. — _establishes: Elsa Vogel in the Bar, 8:30 PM_
-
-On Isidore Lefkowitz:
-
-- **c032** [observation] Concetta Alfano says Isidore Lefkowitz was in the Bar from 6:30 PM to 8:30 PM. — _establishes: Isidore Lefkowitz in the Bar, 6:30 PM–8:30 PM_
-- **c033** [observation] Concetta Alfano says Isidore Lefkowitz was in the Bar at 10:00 PM. — _establishes: Isidore Lefkowitz in the Bar, 10:00 PM_
-- **c034** [observation] Concetta Alfano says Isidore Lefkowitz was in the Lobby at 10:30 PM. — _establishes: Isidore Lefkowitz in the Lobby, 10:30 PM_
-- **c035** [observation] Concetta Alfano says Isidore Lefkowitz was in the Lobby at 11:30 PM. — _establishes: Isidore Lefkowitz in the Lobby, 11:30 PM_
-
-On Booker Prentiss:
-
-- **c036** [observation] Concetta Alfano says Booker Prentiss was at the Front Desk from 6:30 PM to 8:00 PM. — _establishes: Booker Prentiss at the Front Desk, 6:30 PM–8:00 PM; Booker Prentiss had access to the method_
-- **c037** [observation] Concetta Alfano says Booker Prentiss was in the Lobby at 8:30 PM. — _establishes: Booker Prentiss in the Lobby, 8:30 PM_
-
-On Rutherford Stannard:
-
-- **c038** [observation] Concetta Alfano says Rutherford Stannard was at the Front Desk from 6:30 PM to 8:00 PM. — _establishes: Rutherford Stannard at the Front Desk, 6:30 PM–8:00 PM; Rutherford Stannard had access to the method_
-- **c039** [observation] Concetta Alfano says Rutherford Stannard was in the Lobby at 8:30 PM. — _establishes: Rutherford Stannard in the Lobby, 8:30 PM_
-- **c040** [observation] Concetta Alfano says Rutherford Stannard was in the Lobby at 11:30 PM. — _establishes: Rutherford Stannard in the Lobby, 11:30 PM_
-
-On Patrick Sweeney:
-
-- **c041** [observation] Concetta Alfano says Patrick Sweeney was at the Front Desk from 6:30 PM to 7:00 PM. — _establishes: Patrick Sweeney at the Front Desk, 6:30 PM–7:00 PM; Patrick Sweeney had access to the method_
-- **c042** [observation] Concetta Alfano says Patrick Sweeney was in the Lobby at 7:30 PM. — _establishes: Patrick Sweeney in the Lobby, 7:30 PM_
-
-On Isidore Lefkowitz's account:
-
-- **c130** [observation] Concetta Alfano was on the Street at 11:00 PM and says Isidore Lefkowitz was not on the Street. — _establishes: Isidore Lefkowitz not on the Street, 11:00 PM_
-
-On Patrick Sweeney's account:
-
-- **c149** [observation] Concetta Alfano was on the Street from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
-
-### From Booker Prentiss (a bookkeeper)
-
-On Meyer Rosenbaum:
-
-- **c043** [observation] Booker Prentiss says Meyer Rosenbaum was in the Lobby at 8:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-- **c044** [observation] Booker Prentiss says Meyer Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Elsa Vogel:
-
-- **c045** [observation] Booker Prentiss says Elsa Vogel was in the Bar at 8:30 PM. — _establishes: Elsa Vogel in the Bar, 8:30 PM_
-- **c046** [observation] Booker Prentiss says Elsa Vogel was in the Kitchen from 9:00 PM to 10:00 PM. — _establishes: Elsa Vogel in the Kitchen, 9:00 PM–10:00 PM_
-
-On Isidore Lefkowitz:
-
-- **c047** [observation] Booker Prentiss says Isidore Lefkowitz was in the Bar from 8:30 PM to 10:00 PM. — _establishes: Isidore Lefkowitz in the Bar, 8:30 PM–10:00 PM_
-
-On Concetta Alfano:
-
-- **c048** [observation] Booker Prentiss says Concetta Alfano was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Concetta Alfano in the Lobby, 6:30 PM–8:00 PM_
-- **c049** [observation] Booker Prentiss says Concetta Alfano was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Concetta Alfano in the Bar, 8:30 PM–9:30 PM_
-
-On Rutherford Stannard:
-
-- **c050** [observation] Booker Prentiss says Rutherford Stannard was at the Front Desk from 6:00 PM to 8:00 PM. — _establishes: Rutherford Stannard at the Front Desk, 6:00 PM–8:00 PM; Rutherford Stannard had access to the method_
-- **c051** [observation] Booker Prentiss says Rutherford Stannard was in the Lobby at 8:30 PM. — _establishes: Rutherford Stannard in the Lobby, 8:30 PM_
-
-On Patrick Sweeney:
-
-- **c052** [observation] Booker Prentiss says Patrick Sweeney was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Patrick Sweeney at the Front Desk, 6:00 PM–7:00 PM; Patrick Sweeney had access to the method_
-- **c053** [observation] Booker Prentiss says Patrick Sweeney was in the Lobby at 7:30 PM. — _establishes: Patrick Sweeney in the Lobby, 7:30 PM_
-- **c054** [observation] Booker Prentiss says Patrick Sweeney was in the Lobby at 9:00 PM. — _establishes: Patrick Sweeney in the Lobby, 9:00 PM_
-- **c055** [observation] Booker Prentiss says Patrick Sweeney was on the Service Stairs at 11:30 PM. — _establishes: Patrick Sweeney on the Service Stairs, 11:30 PM_
-
-On Elsa Vogel's account:
-
-- **c126** [observation] Booker Prentiss was in the Kitchen at 9:30 PM and says Elsa Vogel was not in the Bar. — _establishes: Elsa Vogel not in the Bar, 9:30 PM_
-
-On Concetta Alfano's account:
-
-- **c133** [observation] Booker Prentiss was in the Bar at 9:00 PM and says Concetta Alfano was not in the Lobby. — _establishes: Concetta Alfano not in the Lobby, 9:00 PM_
-
-On Rutherford Stannard's account:
-
-- **c143** [observation] Booker Prentiss was in the Bar at 9:00 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM_
-- **c144** [observation] Booker Prentiss was in the Kitchen at 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:30 PM_
-
-### From Rutherford Stannard (a travelling salesman in patent medicines)
-
-On Meyer Rosenbaum:
-
-- **c056** [observation] Rutherford Stannard says Meyer Rosenbaum was in the Lobby at 8:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-
-On Elsa Vogel:
-
-- **c057** [observation] Rutherford Stannard says Elsa Vogel was in the Bar at 8:30 PM. — _establishes: Elsa Vogel in the Bar, 8:30 PM_
-
-On Isidore Lefkowitz:
-
-- **c058** [observation] Rutherford Stannard says Isidore Lefkowitz was in the Bar at 8:30 PM. — _establishes: Isidore Lefkowitz in the Bar, 8:30 PM_
-- **c059** [observation] Rutherford Stannard says Isidore Lefkowitz was in the Lobby at 11:30 PM. — _establishes: Isidore Lefkowitz in the Lobby, 11:30 PM_
-
-On Concetta Alfano:
-
-- **c060** [observation] Rutherford Stannard says Concetta Alfano was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Concetta Alfano in the Lobby, 6:30 PM–8:00 PM_
-- **c061** [observation] Rutherford Stannard says Concetta Alfano was in the Bar at 8:30 PM. — _establishes: Concetta Alfano in the Bar, 8:30 PM_
-- **c062** [observation] Rutherford Stannard says Concetta Alfano was on the Street at 11:30 PM. — _establishes: Concetta Alfano on the Street, 11:30 PM_
-
-On Booker Prentiss:
-
-- **c063** [observation] Rutherford Stannard says Booker Prentiss was at the Front Desk from 6:00 PM to 8:00 PM. — _establishes: Booker Prentiss at the Front Desk, 6:00 PM–8:00 PM; Booker Prentiss had access to the method_
-- **c064** [observation] Rutherford Stannard says Booker Prentiss was in the Lobby at 8:30 PM. — _establishes: Booker Prentiss in the Lobby, 8:30 PM_
-- **c065** [observation] Rutherford Stannard says Booker Prentiss was on the Service Stairs from 10:30 PM to 11:00 PM. — _establishes: Booker Prentiss on the Service Stairs, 10:30 PM–11:00 PM_
-
-On Patrick Sweeney:
-
-- **c066** [observation] Rutherford Stannard says Patrick Sweeney was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Patrick Sweeney at the Front Desk, 6:00 PM–7:00 PM; Patrick Sweeney had access to the method_
-- **c067** [observation] Rutherford Stannard says Patrick Sweeney was in the Lobby at 7:30 PM. — _establishes: Patrick Sweeney in the Lobby, 7:30 PM_
-- **c068** [observation] Rutherford Stannard says Patrick Sweeney was on the Service Stairs from 10:00 PM to 11:00 PM. — _establishes: Patrick Sweeney on the Service Stairs, 10:00 PM–11:00 PM_
-
-### From Patrick Sweeney (an insurance adjuster)
-
-On Meyer Rosenbaum:
-
-- **c069** [observation] Patrick Sweeney says Meyer Rosenbaum was in the Bar at 7:30 PM. — _establishes: Meyer Rosenbaum in the Bar, 7:30 PM; the victim alive at 7:30 PM_
-- **c070** [observation] Patrick Sweeney says Meyer Rosenbaum was on the Service Stairs at 8:30 PM. — _establishes: Meyer Rosenbaum on the Service Stairs, 8:30 PM; the victim alive at 8:30 PM_
-- **c071** [observation] Patrick Sweeney says Meyer Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Isidore Lefkowitz:
-
-- **c072** [observation] Patrick Sweeney says Isidore Lefkowitz was in the Bar at 7:30 PM. — _establishes: Isidore Lefkowitz in the Bar, 7:30 PM_
-- **c073** [observation] Patrick Sweeney says Isidore Lefkowitz was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Isidore Lefkowitz in the Bar, 9:00 PM–9:30 PM_
-
-On Concetta Alfano:
-
-- **c074** [observation] Patrick Sweeney says Concetta Alfano was in the Lobby from 6:30 PM to 7:30 PM. — _establishes: Concetta Alfano in the Lobby, 6:30 PM–7:30 PM_
-- **c075** [observation] Patrick Sweeney says Concetta Alfano was in the Bar from 9:00 PM to 9:30 PM. — _establishes: Concetta Alfano in the Bar, 9:00 PM–9:30 PM_
-
-On Booker Prentiss:
-
-- **c076** [observation] Patrick Sweeney says Booker Prentiss was at the Front Desk from 6:00 PM to 7:30 PM. — _establishes: Booker Prentiss at the Front Desk, 6:00 PM–7:30 PM; Booker Prentiss had access to the method_
-- **c077** [observation] Patrick Sweeney says Booker Prentiss was in the Bar at 9:00 PM. — _establishes: Booker Prentiss in the Bar, 9:00 PM_
-- **c078** [observation] Patrick Sweeney says Booker Prentiss was on the Service Stairs at 11:30 PM. — _establishes: Booker Prentiss on the Service Stairs, 11:30 PM_
-
-On Rutherford Stannard:
-
-- **c079** [observation] Patrick Sweeney says Rutherford Stannard was at the Front Desk from 6:00 PM to 7:30 PM. — _establishes: Rutherford Stannard at the Front Desk, 6:00 PM–7:30 PM; Rutherford Stannard had access to the method_
-- **c080** [observation] Patrick Sweeney says Rutherford Stannard was on the Service Stairs at 10:00 PM. — _establishes: Rutherford Stannard on the Service Stairs, 10:00 PM_
-
-On Elsa Vogel's account:
-
-- **c127** [observation] Patrick Sweeney was in the Lobby at 9:30 PM and says Elsa Vogel was not in the Bar. — _establishes: Elsa Vogel not in the Bar, 9:30 PM_
-
-On Concetta Alfano's account:
-
-- **c134** [observation] Patrick Sweeney was in the Lobby from 9:00 PM to 9:30 PM and says Concetta Alfano was not in the Lobby. — _establishes: Concetta Alfano not in the Lobby, 9:00 PM–9:30 PM_
-
-On Rutherford Stannard's account:
-
-- **c145** [observation] Patrick Sweeney was in the Lobby from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
-
-### From Vincenzo Vitale (the doorman)
-
-On Meyer Rosenbaum:
-
-- **c081** [observation] Vincenzo Vitale says Meyer Rosenbaum was in the Bar from 6:30 PM to 7:30 PM. — _establishes: Meyer Rosenbaum in the Bar, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c082** [observation] Vincenzo Vitale says Meyer Rosenbaum was in the Lobby at 8:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-- **c083** [observation] Vincenzo Vitale says Meyer Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Elsa Vogel:
-
-- **c084** [observation] Vincenzo Vitale says Elsa Vogel was in the Bar at 8:30 PM. — _establishes: Elsa Vogel in the Bar, 8:30 PM_
-
-On Isidore Lefkowitz:
-
-- **c085** [observation] Vincenzo Vitale says Isidore Lefkowitz was in the Bar from 6:00 PM to 7:30 PM. — _establishes: Isidore Lefkowitz in the Bar, 6:00 PM–7:30 PM_
-- **c086** [observation] Vincenzo Vitale says Isidore Lefkowitz was in the Bar from 8:30 PM to 10:00 PM. — _establishes: Isidore Lefkowitz in the Bar, 8:30 PM–10:00 PM_
-- **c087** [observation] Vincenzo Vitale says Isidore Lefkowitz was in the Lobby at 10:30 PM. — _establishes: Isidore Lefkowitz in the Lobby, 10:30 PM_
-- **c088** [observation] Vincenzo Vitale says Isidore Lefkowitz was in the Lobby at 11:30 PM. — _establishes: Isidore Lefkowitz in the Lobby, 11:30 PM_
-
-On Concetta Alfano:
-
-- **c089** [observation] Vincenzo Vitale says Concetta Alfano was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Concetta Alfano in the Lobby, 6:30 PM–8:00 PM_
-- **c090** [observation] Vincenzo Vitale says Concetta Alfano was in the Lobby at 10:00 PM. — _establishes: Concetta Alfano in the Lobby, 10:00 PM_
-- **c091** [observation] Vincenzo Vitale says Concetta Alfano was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Concetta Alfano in the Bar, 8:30 PM–9:30 PM_
-- **c092** [observation] Vincenzo Vitale says Concetta Alfano was on the Street from 10:30 PM to 11:30 PM. — _establishes: Concetta Alfano on the Street, 10:30 PM–11:30 PM_
-
-On Booker Prentiss:
-
-- **c093** [observation] Vincenzo Vitale says Booker Prentiss was at the Front Desk from 6:00 PM to 7:30 PM. — _establishes: Booker Prentiss at the Front Desk, 6:00 PM–7:30 PM; Booker Prentiss had access to the method_
-- **c094** [observation] Vincenzo Vitale says Booker Prentiss was in the Lobby at 8:30 PM. — _establishes: Booker Prentiss in the Lobby, 8:30 PM_
-- **c095** [observation] Vincenzo Vitale says Booker Prentiss was in the Bar at 9:00 PM. — _establishes: Booker Prentiss in the Bar, 9:00 PM_
-
-On Rutherford Stannard:
-
-- **c096** [observation] Vincenzo Vitale says Rutherford Stannard was at the Front Desk from 6:00 PM to 7:30 PM. — _establishes: Rutherford Stannard at the Front Desk, 6:00 PM–7:30 PM; Rutherford Stannard had access to the method_
-- **c097** [observation] Vincenzo Vitale says Rutherford Stannard was in the Lobby at 8:30 PM. — _establishes: Rutherford Stannard in the Lobby, 8:30 PM_
-- **c098** [observation] Vincenzo Vitale says Rutherford Stannard was in the Lobby at 11:30 PM. — _establishes: Rutherford Stannard in the Lobby, 11:30 PM_
-
-On Patrick Sweeney:
-
-- **c099** [observation] Vincenzo Vitale says Patrick Sweeney was at the Front Desk from 6:00 PM to 7:00 PM. — _establishes: Patrick Sweeney at the Front Desk, 6:00 PM–7:00 PM; Patrick Sweeney had access to the method_
-- **c100** [observation] Vincenzo Vitale says Patrick Sweeney was in the Lobby at 7:30 PM. — _establishes: Patrick Sweeney in the Lobby, 7:30 PM_
-- **c101** [observation] Vincenzo Vitale says Patrick Sweeney was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Patrick Sweeney in the Lobby, 9:00 PM–9:30 PM_
-
-On Elsa Vogel's account:
-
-- **c128** [observation] Vincenzo Vitale was in the Lobby at 9:30 PM and says Elsa Vogel was not in the Bar. — _establishes: Elsa Vogel not in the Bar, 9:30 PM_
-
-On Isidore Lefkowitz's account:
-
-- **c131** [observation] Vincenzo Vitale was in the Lobby at 11:00 PM and says Isidore Lefkowitz was not on the Street. — _establishes: Isidore Lefkowitz not on the Street, 11:00 PM_
-
-On Concetta Alfano's account:
-
-- **c135** [observation] Vincenzo Vitale was in the Lobby from 9:00 PM to 9:30 PM and says Concetta Alfano was not in the Lobby. — _establishes: Concetta Alfano not in the Lobby, 9:00 PM–9:30 PM_
-
-On Booker Prentiss's account:
-
-- **c139** [observation] Vincenzo Vitale was in the Lobby from 10:30 PM to 11:00 PM and says Booker Prentiss was not in the Bar. — _establishes: Booker Prentiss not in the Bar, 10:30 PM–11:00 PM_
-
-On Rutherford Stannard's account:
-
-- **c146** [observation] Vincenzo Vitale was in the Lobby from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
-
-On Patrick Sweeney's account:
-
-- **c150** [observation] Vincenzo Vitale was in the Lobby from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
-
-On Rutherford Stannard and Meyer Rosenbaum:
-
-- **c166** [overheard] Vincenzo Vitale says Meyer Rosenbaum told Rutherford Stannard the lawyer was coming Thursday and that the arrangement would be changed. — _establishes: Rutherford Stannard had a motive (inheritance)_
-
-### From Eunice Dandridge (the bartender)
-
-On Meyer Rosenbaum:
-
-- **c102** [observation] Eunice Dandridge says Meyer Rosenbaum was in the Kitchen at 6:00 PM. — _establishes: Meyer Rosenbaum in the Kitchen, 6:00 PM; the victim alive at 6:00 PM_
-- **c103** [observation] Eunice Dandridge says Meyer Rosenbaum was in the Bar from 6:30 PM to 7:30 PM. — _establishes: Meyer Rosenbaum in the Bar, 6:30 PM–7:30 PM; the victim alive at 6:30 PM; the victim alive at 7:00 PM; the victim alive at 7:30 PM_
-- **c104** [observation] Eunice Dandridge says Meyer Rosenbaum was in the Lobby at 8:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 8:00 PM; the victim alive at 8:00 PM_
-- **c105** [observation] Eunice Dandridge says Meyer Rosenbaum was in the Lobby at 9:00 PM. — _establishes: Meyer Rosenbaum in the Lobby, 9:00 PM; the victim alive at 9:00 PM_
-
-On Elsa Vogel:
-
-- **c106** [observation] Eunice Dandridge says Elsa Vogel was in the Kitchen from 6:00 PM to 7:30 PM. — _establishes: Elsa Vogel in the Kitchen, 6:00 PM–7:30 PM_
-- **c107** [observation] Eunice Dandridge says Elsa Vogel was in the Kitchen from 9:00 PM to 9:30 PM. — _establishes: Elsa Vogel in the Kitchen, 9:00 PM–9:30 PM_
-- **c108** [observation] Eunice Dandridge says Elsa Vogel was in the Kitchen from 10:30 PM to 11:30 PM. — _establishes: Elsa Vogel in the Kitchen, 10:30 PM–11:30 PM_
-- **c109** [observation] Eunice Dandridge says Elsa Vogel was in the Bar at 8:30 PM. — _establishes: Elsa Vogel in the Bar, 8:30 PM_
-
-On Isidore Lefkowitz:
-
-- **c110** [observation] Eunice Dandridge says Isidore Lefkowitz was in the Bar from 6:00 PM to 10:00 PM. — _establishes: Isidore Lefkowitz in the Bar, 6:00 PM–10:00 PM_
-- **c111** [observation] Eunice Dandridge says Isidore Lefkowitz was in the Lobby at 10:30 PM. — _establishes: Isidore Lefkowitz in the Lobby, 10:30 PM_
-- **c112** [observation] Eunice Dandridge says Isidore Lefkowitz was in the Lobby at 11:30 PM. — _establishes: Isidore Lefkowitz in the Lobby, 11:30 PM_
-
-On Concetta Alfano:
-
-- **c113** [observation] Eunice Dandridge says Concetta Alfano was in the Lobby from 6:30 PM to 8:00 PM. — _establishes: Concetta Alfano in the Lobby, 6:30 PM–8:00 PM_
-- **c114** [observation] Eunice Dandridge says Concetta Alfano was in the Lobby at 10:00 PM. — _establishes: Concetta Alfano in the Lobby, 10:00 PM_
-- **c115** [observation] Eunice Dandridge says Concetta Alfano was in the Bar from 8:30 PM to 9:30 PM. — _establishes: Concetta Alfano in the Bar, 8:30 PM–9:30 PM_
-
-On Booker Prentiss:
-
-- **c116** [observation] Eunice Dandridge says Booker Prentiss was at the Front Desk at 8:00 PM. — _establishes: Booker Prentiss at the Front Desk, 8:00 PM; Booker Prentiss had access to the method_
-- **c117** [observation] Eunice Dandridge says Booker Prentiss was in the Lobby at 8:30 PM. — _establishes: Booker Prentiss in the Lobby, 8:30 PM_
-- **c118** [observation] Eunice Dandridge says Booker Prentiss was in the Bar at 9:00 PM. — _establishes: Booker Prentiss in the Bar, 9:00 PM_
-- **c119** [observation] Eunice Dandridge says Booker Prentiss was in the Kitchen at 9:30 PM. — _establishes: Booker Prentiss in the Kitchen, 9:30 PM_
-
-On Rutherford Stannard:
-
-- **c120** [observation] Eunice Dandridge says Rutherford Stannard was at the Front Desk at 8:00 PM. — _establishes: Rutherford Stannard at the Front Desk, 8:00 PM; Rutherford Stannard had access to the method_
-- **c121** [observation] Eunice Dandridge says Rutherford Stannard was in the Lobby at 8:30 PM. — _establishes: Rutherford Stannard in the Lobby, 8:30 PM_
-- **c122** [observation] Eunice Dandridge says Rutherford Stannard was in the Lobby at 11:30 PM. — _establishes: Rutherford Stannard in the Lobby, 11:30 PM_
-
-On Patrick Sweeney:
-
-- **c123** [observation] Eunice Dandridge says Patrick Sweeney was in the Lobby at 7:30 PM. — _establishes: Patrick Sweeney in the Lobby, 7:30 PM_
-- **c124** [observation] Eunice Dandridge says Patrick Sweeney was in the Lobby from 9:00 PM to 9:30 PM. — _establishes: Patrick Sweeney in the Lobby, 9:00 PM–9:30 PM_
-
-On Elsa Vogel's account:
-
-- **c129** [observation] Eunice Dandridge was in the Bar at 9:30 PM and says Elsa Vogel was not in the Bar. — _establishes: Elsa Vogel not in the Bar, 9:30 PM_
-
-On Concetta Alfano's account:
-
-- **c136** [observation] Eunice Dandridge was in the Bar from 9:00 PM to 9:30 PM and says Concetta Alfano was not in the Lobby. — _establishes: Concetta Alfano not in the Lobby, 9:00 PM–9:30 PM_
-
-On Booker Prentiss's account:
-
-- **c140** [observation] Eunice Dandridge was in the Bar from 10:30 PM to 11:00 PM and says Booker Prentiss was not in the Bar. — _establishes: Booker Prentiss not in the Bar, 10:30 PM–11:00 PM_
-- **c159** [radio] Booker Prentiss says Booker Prentiss was in the bar at 11:00 PM but cannot say how the broadcast ended. — _establishes: Booker Prentiss not in the Bar, 11:00 PM_
-
-On Rutherford Stannard's account:
-
-- **c147** [observation] Eunice Dandridge was in the Bar from 9:00 PM to 9:30 PM and says Rutherford Stannard was not in the Bar. — _establishes: Rutherford Stannard not in the Bar, 9:00 PM–9:30 PM_
-
-On Patrick Sweeney's account:
-
-- **c151** [observation] Eunice Dandridge was in the Bar from 10:30 PM to 11:00 PM and says Patrick Sweeney was not in the Lobby. — _establishes: Patrick Sweeney not in the Lobby, 10:30 PM–11:00 PM_
-
-On the radio:
-
-- **c158** [radio] Eunice Dandridge says the bar radio carried a six-day bicycle race from the Velodrome at 11:00 PM, and that a rider fell at the bank and the lead changed hands. Anyone in the bar could tell you that. — _establishes: context only_
-
-On Elsa Vogel and Meyer Rosenbaum:
-
-- **c162** [overheard] Eunice Dandridge says Elsa Vogel told Meyer Rosenbaum to keep away, loud enough to turn heads. — _establishes: Elsa Vogel had a motive (jealousy)_
-
-On Concetta Alfano and Meyer Rosenbaum:
-
-- **c164** [overheard] Eunice Dandridge says Meyer Rosenbaum said to Concetta Alfano that a man who testifies sleeps better. — _establishes: Concetta Alfano had a motive (silence-a-witness)_
-
-### From the Lobby
-
-- **c155** [environment] The passenger elevator was out of order from 8:00 PM to 8:30 PM. Anyone changing floors in that time used the service stairs. — _establishes: context only_
-
-### From the Front Desk
-
-- **c153** [physical] A nickel-plated revolver is missing from the Front Desk. The drawer it was kept in is open and the oiled cloth is still in it. — _establishes: an object gone from the Front Desk_
-- **c160** [document] Rutherford Stannard's papers do not hold up. The registration card gives an address in Buffalo. There is no such street in Buffalo. — _establishes: context only_
-- **c161** [document] Found in the Front Desk: Three letters in Meyer Rosenbaum's hand to a woman Elsa Vogel is engaged to, kept in the drawer, the last one opened. — _establishes: Elsa Vogel had a motive (jealousy)_
-
-### From the Service Stairs
-
-- **c156** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Meyer Rosenbaum's sleeve; Meyer Rosenbaum was on the stairs at 8:30 PM. — _establishes: Meyer Rosenbaum on the Service Stairs, 8:30 PM_
-- **c157** [physical] The service stairs were whitewashed that afternoon. There is whitewash on Patrick Sweeney's sleeve; Patrick Sweeney was on the stairs at 8:00 PM. — _establishes: Patrick Sweeney on the Service Stairs, 8:00 PM_
-
-### From the Victim's Suite
-
-- **c163** [document] Found in the Victim's Suite: A subpoena naming Meyer Rosenbaum as a witness before the grand jury, with Concetta Alfano's name written in the margin. — _establishes: Concetta Alfano had a motive (silence-a-witness)_
-- **c165** [document] Found in the Victim's Suite: A draft codicil in Meyer Rosenbaum's hand striking Rutherford Stannard out of the will, dated last Tuesday and unsigned. — _establishes: Rutherford Stannard had a motive (inheritance)_
-
-### From the Roof Garden
-
-- **c152** [morgue] Meyer Rosenbaum was found in the Roof Garden. The coroner puts death between 9:00 PM and 9:30 PM. One bullet below the sternum. Powder burns on the shirt front: fired close. — _establishes: death between 9:00 PM and 9:30 PM_
-
-### From the Street
-
-- **c154** [environment] Rain began at 7:30 PM and did not let up. Anyone out on the street after that came back in wet. — _establishes: context only_
-
-### Withheld — the player cannot get these
-
-- ~~Concetta Alfano saw Meyer Rosenbaum in the Lobby, 9:00 PM~~ — Concetta Alfano is lying about that time and will not say.
-- ~~Concetta Alfano saw Elsa Vogel in the Kitchen, 9:00 PM–9:30 PM~~ — Concetta Alfano is lying about that time and will not say.
-- ~~Concetta Alfano saw Isidore Lefkowitz in the Bar, 9:00 PM–9:30 PM~~ — Concetta Alfano is lying about that time and will not say.
-- ~~Concetta Alfano saw Booker Prentiss in the Bar, 9:00 PM~~ — Concetta Alfano is lying about that time and will not say.
-- ~~Concetta Alfano saw Patrick Sweeney in the Lobby, 9:00 PM–9:30 PM~~ — Concetta Alfano is lying about that time and will not say.
-- ~~Concetta Alfano saw Vincenzo Vitale in the Lobby, 9:00 PM–9:30 PM~~ — Concetta Alfano is lying about that time and will not say.
-- ~~Concetta Alfano saw Eunice Dandridge in the Bar, 9:00 PM–9:30 PM~~ — Concetta Alfano is lying about that time and will not say.
-- ~~Elsa Vogel saw Isidore Lefkowitz in the Bar, 9:30 PM~~ — Elsa Vogel is lying about that time and will not say.
-- ~~Elsa Vogel saw Concetta Alfano in the Bar, 9:30 PM~~ — Elsa Vogel is lying about that time and will not say.
-- ~~Elsa Vogel saw Booker Prentiss in the Kitchen, 9:30 PM~~ — Elsa Vogel is lying about that time and will not say.
-- ~~Elsa Vogel saw Eunice Dandridge in the Bar, 9:30 PM~~ — Elsa Vogel is lying about that time and will not say.
-- ~~Concetta Alfano saw Booker Prentiss in the Kitchen, 9:30 PM~~ — Concetta Alfano is lying about that time and will not say.
-- ~~Rutherford Stannard saw Meyer Rosenbaum in the Roof Garden, 9:30 PM~~ — Rutherford Stannard is lying about that time and will not say.
-- ~~Booker Prentiss saw Rutherford Stannard on the Service Stairs, 10:30 PM–11:00 PM~~ — Booker Prentiss is lying about that time and will not say.
-- ~~Booker Prentiss saw Patrick Sweeney on the Service Stairs, 10:30 PM–11:00 PM~~ — Booker Prentiss is lying about that time and will not say.
-- ~~Patrick Sweeney saw Booker Prentiss on the Service Stairs, 10:30 PM–11:00 PM~~ — Patrick Sweeney is lying about that time and will not say.
-- ~~Patrick Sweeney saw Rutherford Stannard on the Service Stairs, 10:30 PM–11:00 PM~~ — Patrick Sweeney is lying about that time and will not say.
-
-## 7. Deduction path
-
-**Time of death.** The coroner gives a two-tick window; the clues below close it to 9:30 PM. _(c152, c013, c044, c071, c083, c105)_
+| Tick | Time | Gittel Zeldin (the man behind the counter) | Cornelius Hanrahan (the elevator man) | Hattie Whitfield (the landlady) | Agnes Callahan (the ticket-taker) |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 6:00 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 1 | 6:30 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 2 | 7:00 PM | the parlour of Mrs. Teague’s boarding house | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 3 | 7:30 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 4 | 8:00 PM | the chop suey place over the laundry | the Arcadia dance hall | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 5 | 8:30 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 6 | 9:00 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 7 | 9:30 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 8 | 10:00 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 9 | 10:30 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the chop suey place over the laundry | the Arcadia dance hall |
+| 10 | 11:00 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+| 11 | 11:30 PM | the chop suey place over the laundry | the vestibule of the Hallam apartments | the parlour of Mrs. Teague’s boarding house | the Arcadia dance hall |
+
+## 6. Secrets in play
+
+- **Rufus Tillman** (dope): Rufus Tillman buys morphine at the chop suey place over the laundry from 11:00 PM to 11:30 PM and would rather be thought a murderer than a hop-head.
+- **Nunzio Moretti** (secret-drinking): Nunzio Moretti drinks alone at the Arcadia dance hall from 10:00 PM to 10:30 PM and will claim to have been anywhere else.
+- **Patrick Brennan** (murder): Patrick Brennan is at the victim’s house on the back lot from 10:00 PM to 10:30 PM, alone with Nora Mulcahy when it happens at 10:30 PM.
+- **Patrick Brennan** also (gambling-debt): Patrick Brennan slips off to the benches at the north end of the square from 6:00 PM to 6:30 PM to settle with a bookmaker.
+- **Margarethe Hauck** (dope): Margarethe Hauck buys morphine at the chop suey place over the laundry from 10:30 PM to 11:00 PM and would rather be thought a murderer than a hop-head.
+- **Althea Mosley** (gambling-debt): Althea Mosley slips off to the benches at the north end of the square from 7:00 PM to 7:30 PM to settle with a bookmaker.
+- **Verity Coffin** (secret-drinking): Verity Coffin drinks alone at the Arcadia dance hall from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
+
+## 7. Clue list — the 30 findable
+
+The opening three, free at the start: c137, c138, c157. Everything else has to be led to. The full candidate pool is in the companion file.
+
+### At the victim’s house on the back lot
+
+- **c137** [spine ⟨opening⟩] (scene; the place itself) → c117, c130, c006, c154, c067, c176
+  - Nora Mulcahy was found at the victim’s house on the back lot. The dust on the parapet is scored where his heels went over, and the scuff has not weathered. The fight card on the bar radio came at 10:30 PM, and the set was loud enough to cover it, and it was only loud for that half hour. That puts the killing in that half hour and no later.
+  - _establishes: the victim dead by 10:30 PM; how it was done_
+- **c138** [spine ⟨opening⟩] (morgue; the place itself) → c068, c187, c180
+  - The coroner puts death between 9:00 PM and 10:30 PM — two hours of nothing useful. Fractures consistent with a fall of six storeys. Two fingernails torn back.
+  - _establishes: death between 9:00 PM and 10:30 PM; how it was done_
+
+### At the benches at the north end of the square
+
+- **c147** [corroboration] (anchor; Patrick Brennan on the fight card on the bar radio) → (end)
+  - Patrick Brennan claims to have been at the Arcadia dance hall at 10:30 PM but cannot say that the challenger went down in the fourth and the crowd booed it, which everybody there can.
+  - _establishes: Patrick Brennan not at the Arcadia dance hall, 10:30 PM_
+- **c184** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Althea Mosley was at the benches at the north end of the square from 7:00 PM to 7:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Althea Mosley’s gambling-debt accounted for; Althea Mosley at the benches at the north end of the square, 7:00 PM–7:30 PM_
+
+### At the chop suey place over the laundry
+
+- **c057** [corroboration] (observation; Gittel Zeldin on Margarethe Hauck) → (end)
+  - Gittel Zeldin says Margarethe Hauck was at the chop suey place over the laundry from 10:30 PM to 11:30 PM.
+  - _establishes: Margarethe Hauck at the chop suey place over the laundry, 10:30 PM–11:30 PM_
+- **c144** [corroboration] (anchor; Gittel Zeldin on the noise that evening) → (end)
+  - Gittel Zeldin was at the chop suey place over the laundry at 10:30 PM and heard a shout and then something hitting the areaway from the direction of the victim’s house on the back lot, while the fight was on the radio.
+  - _establishes: noise at the victim’s house on the back lot at 10:30 PM; the victim dead by 10:30 PM; how it was done_
+- **c162** [noise {b1}] (physical; the place itself) → c163
+  - A prescription blank at the chop suey place over the laundry signed by a doctor who has been dead since the spring.
+  - _establishes: context only_
+- **c163** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The man who sells it at the chop suey place over the laundry gives it up rather than be held: Rufus Tillman was there from 11:00 PM to 11:30 PM, and stayed until it took hold.
+  - _establishes: Rufus Tillman’s dope accounted for; Rufus Tillman at the chop suey place over the laundry, 11:00 PM–11:30 PM_
+- **c176** [noise {b5}] (physical; the place itself) → c177
+  - A prescription blank at the chop suey place over the laundry signed by a doctor who has been dead since the spring.
+  - _establishes: context only_
+- **c177** [disqualifier {b5}] (overheard; the place itself) → (end)
+  - The man who sells it at the chop suey place over the laundry gives it up rather than be held: Margarethe Hauck was there from 10:30 PM to 11:00 PM, and stayed until it took hold.
+  - _establishes: Margarethe Hauck’s dope accounted for; Margarethe Hauck at the chop suey place over the laundry, 10:30 PM–11:00 PM_
+
+### At the vestibule of the Hallam apartments
+
+- **c153** [corroboration] (document; the place itself) → (end)
+  - Found at the vestibule of the Hallam apartments: A typed page of dates and sums in Nora Mulcahy’s file, headed with Patrick Brennan’s name.
+  - _establishes: Patrick Brennan had a motive (exposure)_
+- **c187** [noise {b3}] (overheard; Cornelius Hanrahan on Verity Coffin) → c191
+  - Cornelius Hanrahan on Verity Coffin: Verity Coffin is on a temperance pledge that Verity Coffin mentions before anybody asks.
+  - _establishes: context only_
+
+### At the parlour of Mrs. Teague’s boarding house
+
+- **c006** [spine] (observation; Rufus Tillman on Patrick Brennan) → c141, c083
+  - Rufus Tillman says Patrick Brennan was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.
+  - _establishes: Patrick Brennan at the parlour of Mrs. Teague’s boarding house, 9:30 PM; Patrick Brennan could reach the weapon_
+- **c154** [spine] (overheard; Althea Mosley on Patrick Brennan and Nora Mulcahy) → c141
+  - Althea Mosley says Nora Mulcahy told Patrick Brennan that the story would run whether Patrick Brennan liked it or not.
+  - _establishes: Patrick Brennan had a motive (exposure)_
+- **c067** [spine] (observation; Hattie Whitfield on Margarethe Hauck) → c014, c100
+  - Hattie Whitfield says Margarethe Hauck was at the chop suey place over the laundry at 10:30 PM.
+  - _establishes: Margarethe Hauck at the chop suey place over the laundry, 10:30 PM_
+- **c141** [spine] (anchor; Hattie Whitfield on Nora Mulcahy that evening) → c153, c147
+  - Hattie Whitfield puts Nora Mulcahy at the parlour of Mrs. Teague’s boarding house while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:00 PM; Nora Mulcahy at the parlour of Mrs. Teague’s boarding house, 10:00 PM_
+- **c083** [corroboration] (observation; Rufus Tillman on who was there at 10:30 PM) → (end)
+  - Rufus Tillman runs through it: at 10:30 PM there were Nunzio Moretti, Althea Mosley, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.
+  - _establishes: Nunzio Moretti at the Arcadia dance hall, 10:30 PM; Althea Mosley at the Arcadia dance hall, 10:30 PM; Verity Coffin at the Arcadia dance hall, 10:30 PM_
+- **c014** [corroboration] (observation; Nunzio Moretti on Patrick Brennan) → (end)
+  - Nunzio Moretti says Patrick Brennan was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.
+  - _establishes: Patrick Brennan at the parlour of Mrs. Teague’s boarding house, 9:30 PM; Patrick Brennan could reach the weapon_
+- **c100** [corroboration] (observation; Althea Mosley on who was there at 10:30 PM) → c169
+  - Althea Mosley runs through it: at 10:30 PM there were Rufus Tillman, Nunzio Moretti, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.
+  - _establishes: Rufus Tillman at the Arcadia dance hall, 10:30 PM; Nunzio Moretti at the Arcadia dance hall, 10:30 PM; Verity Coffin at the Arcadia dance hall, 10:30 PM_
+- **c140** [corroboration] (anchor; Rufus Tillman on Nora Mulcahy that evening) → (end)
+  - Rufus Tillman puts Nora Mulcahy at the parlour of Mrs. Teague’s boarding house while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 10:00 PM; Nora Mulcahy at the parlour of Mrs. Teague’s boarding house, 10:00 PM_
+- **c068** [corroboration] (observation; Hattie Whitfield on Althea Mosley) → (end)
+  - Hattie Whitfield says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.
+  - _establishes: Althea Mosley at the parlour of Mrs. Teague’s boarding house, 6:00 PM–6:30 PM; Althea Mosley could reach the weapon_
+- **c180** [noise {b4}] (overheard; Rufus Tillman on Althea Mosley) → c179
+  - Rufus Tillman on Althea Mosley: A man nobody knew was waiting for Althea Mosley at the benches at the north end of the square and would not give a name.
+  - _establishes: context only_
+- **c179** [noise {b4}] (overheard; Hattie Whitfield on Althea Mosley) → c184
+  - Hattie Whitfield on Althea Mosley: Althea Mosley was asking around for a hundred dollars in a hurry earlier in the week.
+  - _establishes: context only_
+
+### At the Arcadia dance hall
+
+- **c157** [spine ⟨opening⟩] (client; Margarethe Hauck on why I was hired) → c117, c130, c006, c067
+  - Margarethe Hauck hired us. Margarethe Hauck wants it known that Rufus Tillman owed the victim money, and would rather we started there.
+  - _establishes: Rufus Tillman had a motive (debt)_
+- **c117** [spine] (observation; Agnes Callahan on who was there at 10:30 PM) → c154, c057, c144, c140, c162
+  - Agnes Callahan runs through it: at 10:30 PM there were Rufus Tillman, Nunzio Moretti, Althea Mosley, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.
+  - _establishes: Rufus Tillman at the Arcadia dance hall, 10:30 PM; Nunzio Moretti at the Arcadia dance hall, 10:30 PM; Althea Mosley at the Arcadia dance hall, 10:30 PM; Verity Coffin at the Arcadia dance hall, 10:30 PM_
+- **c130** [spine] (observation; Agnes Callahan on Patrick Brennan’s account) → (end)
+  - Agnes Callahan was at the Arcadia dance hall from 10:00 PM to 10:30 PM and says Patrick Brennan was not.
+  - _establishes: Patrick Brennan not at the Arcadia dance hall, 10:00 PM–10:30 PM_
+- **c169** [noise {b2}] (physical; the place itself) → c168
+  - A tab at the Arcadia dance hall in a name that is not Nunzio Moretti’s, in Nunzio Moretti’s handwriting.
+  - _establishes: context only_
+- **c168** [noise {b2}] (physical; the place itself) → c170
+  - A bottle at the Arcadia dance hall pushed behind the pipes, the seal broken and the level down.
+  - _establishes: context only_
+- **c170** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - The man behind the counter at the Arcadia dance hall knows exactly: Nunzio Moretti was on the same stool from 10:00 PM to 10:30 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Nunzio Moretti’s secret-drinking accounted for; Nunzio Moretti at the Arcadia dance hall, 10:00 PM–10:30 PM_
+- **c191** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The man behind the counter at the Arcadia dance hall knows exactly: Verity Coffin was on the same stool from 10:30 PM to 11:00 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Verity Coffin’s secret-drinking accounted for; Verity Coffin at the Arcadia dance hall, 10:30 PM–11:00 PM_
+
+## 8. Clue graph
+
+```mermaid
+graph LR
+  subgraph P1["the victim’s house on the back lot"]
+    c137["▶ c137 the place"]
+    c138["▶ c138 the place"]
+  end
+  subgraph P2["the benches at the north end of the square"]
+    c147["c147 Patrick Brennan"]
+    c184["✗ c184 the place"]
+  end
+  subgraph P3["the chop suey place over the laundry"]
+    c057["c057 Gittel Zeldin"]
+    c144["c144 Gittel Zeldin"]
+    c162["c162 the place"]
+    c163["✗ c163 the place"]
+    c176["c176 the place"]
+    c177["✗ c177 the place"]
+  end
+  subgraph P4["the vestibule of the Hallam apartments"]
+    c153["c153 the place"]
+    c187["c187 Cornelius Hanrahan"]
+  end
+  subgraph P5["the parlour of Mrs. Teague’s boarding house"]
+    c006["c006 Rufus Tillman"]
+    c154["c154 Althea Mosley"]
+    c067["c067 Hattie Whitfield"]
+    c141["c141 Hattie Whitfield"]
+    c083["c083 Rufus Tillman"]
+    c014["c014 Nunzio Moretti"]
+    c100["c100 Althea Mosley"]
+    c140["c140 Rufus Tillman"]
+    c068["c068 Hattie Whitfield"]
+    c180["c180 Rufus Tillman"]
+    c179["c179 Hattie Whitfield"]
+  end
+  subgraph P6["the Arcadia dance hall"]
+    c157["▶ c157 Margarethe Hauck"]
+    c117["c117 Agnes Callahan"]
+    c130["c130 Agnes Callahan"]
+    c169["c169 the place"]
+    c168["c168 the place"]
+    c170["✗ c170 the place"]
+    c191["✗ c191 the place"]
+  end
+  c137 --> c117
+  c137 --> c130
+  c137 --> c006
+  c137 --> c154
+  c137 --> c067
+  c137 -.-> c176
+  c138 --> c068
+  c138 -.-> c187
+  c138 -.-> c180
+  c157 --> c117
+  c157 --> c130
+  c157 --> c006
+  c157 --> c067
+  c117 --> c154
+  c117 --> c057
+  c117 --> c144
+  c117 --> c140
+  c117 -.-> c162
+  c006 --> c141
+  c006 --> c083
+  c154 --> c141
+  c067 --> c014
+  c067 --> c100
+  c141 --> c153
+  c141 --> c147
+  c100 -.-> c169
+  c162 --> c163
+  c169 -.-> c168
+  c168 --> c170
+  c187 --> c191
+  c180 -.-> c179
+  c179 --> c184
+  c176 --> c177
+  classDef spine stroke-width:3px;
+  classDef corrob stroke-width:1px;
+  classDef noise stroke-dasharray: 4 3;
+  classDef disq stroke-width:2px,stroke-dasharray: 1 0;
+  class c137,c138,c157,c117,c130,c006,c154,c067,c141 spine;
+  class c083,c153,c147,c057,c144,c014,c100,c140,c068 corrob;
+  class c162,c169,c168,c187,c180,c179,c176 noise;
+  class c163,c170,c191,c184,c177 disq;
+```
+
+## 9. Deduction path
+
+Par is **8 actions** against a budget of 20: 12 spare. Every id below is a spine clue.
+
+**Time of death.** The coroner gives four ticks. The anchors close it to 10:30 PM: one puts Nora Mulcahy alive at 10:00 PM, the other times the scene at 10:30 PM. _(c138, c141, c137; + 2 corroborating)_
 
 **Clearing the innocent.**
 
-- Elsa Vogel was not in the Roof Garden at 9:30 PM, on two independent sources. _(c015, c046, c107)_
-- Isidore Lefkowitz was not in the Roof Garden at 9:30 PM, on two independent sources. _(c047, c073, c086, c110)_
-- Concetta Alfano was not in the Roof Garden at 9:30 PM, on two independent sources. _(c019, c049, c075, c091, c115)_
-- Booker Prentiss was not in the Roof Garden at 9:30 PM, on two independent sources. _(c024, c119)_
-- Patrick Sweeney was not in the Roof Garden at 9:30 PM, on two independent sources. _(c028, c101, c124)_
+- Rufus Tillman was not at the victim’s house on the back lot at 10:30 PM, on two independent sources. _(c117; + 1 corroborating)_
+- Nunzio Moretti was not at the victim’s house on the back lot at 10:30 PM, on two independent sources. _(c117; + 3 corroborating)_
+- Margarethe Hauck was not at the victim’s house on the back lot at 10:30 PM, on two independent sources. _(c067; + 2 corroborating)_
+- Althea Mosley was not at the victim’s house on the back lot at 10:30 PM, on two independent sources. _(c117; + 1 corroborating)_
+- Verity Coffin was not at the victim’s house on the back lot at 10:30 PM, on two independent sources. _(c117; + 3 corroborating)_
 
-**Naming the killer.** Rutherford Stannard claims the Bar at 9:30 PM. Two independent sources put that out of the question, and one ties Rutherford Stannard to a gunshot. _(c142, c144, c145, c146, c147, c038, c050, c079, c096, c120)_
+**Naming the killer.** Patrick Brennan claims the Arcadia dance hall at 10:30 PM. Two independent sources put that out of the question. _(c130; + 1 corroborating)_
 
-**Method.** A gunshot, on two physical sources. _(c152, c153)_
+**The weapon.** Patrick Brennan was at the parlour of Mrs. Teague’s boarding house before 10:30 PM, where the roof-door key was kept. _(c006; + 1 corroborating)_
 
-**Motive.** inheritance, on two independent sources. _(c165, c166)_
+**Method.** A push from the parapet, on two physical sources. _(c137, c138; + 1 corroborating)_
 
-## 8. Red herrings
+**Motive.** exposure, on two independent sources. _(c154; + 1 corroborating)_
+
+## 10. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Elsa Vogel claims the Bar at 9:30 PM and was really in the Kitchen. Reason: Elsa Vogel hands a parcel of stolen goods to a man at the Kitchen at 9:30 PM.
-- Concetta Alfano claims the Lobby at 9:30 PM and was really in the Bar. Reason: Concetta Alfano drinks alone in the Bar from 9:00 PM to 9:30 PM and will claim to have been anywhere else.
+- Nunzio Moretti claims the vestibule of the Hallam apartments at 10:30 PM and was really at the Arcadia dance hall. Reason: Nunzio Moretti drinks alone at the Arcadia dance hall from 10:00 PM to 10:30 PM and will claim to have been anywhere else.
+- Margarethe Hauck claims the benches at the north end of the square at 10:30 PM and was really at the chop suey place over the laundry. Reason: Margarethe Hauck buys morphine at the chop suey place over the laundry from 10:30 PM to 11:00 PM and would rather be thought a murderer than a hop-head.
+- Verity Coffin claims the chop suey place over the laundry at 10:30 PM and was really at the Arcadia dance hall. Reason: Verity Coffin drinks alone at the Arcadia dance hall from 10:30 PM to 11:00 PM and will claim to have been anywhere else.
 
 **Innocents with a motive:**
 
-- Elsa Vogel — jealousy: jealous of the victim.
-- Concetta Alfano — silence-a-witness: needed the victim silent.
+- Rufus Tillman — debt: owed the victim money.
+- Nunzio Moretti — inheritance: stands to inherit.
+- Althea Mosley — revenge: blamed the victim for a ruin.
+
+**Noise branches, and what knocks each one down:**
+
+- **b1** (Rufus Tillman, dope): c162 → **c163** — The man who sells it at the chop suey place over the laundry gives it up rather than be held: Rufus Tillman was there from 11:00 PM to 11:30 PM, and stayed until it took hold.
+- **b2** (Nunzio Moretti, secret-drinking): c169 → c168 → **c170** — The man behind the counter at the Arcadia dance hall knows exactly: Nunzio Moretti was on the same stool from 10:00 PM to 10:30 PM and was in no condition to walk anywhere, let alone do this.
+- **b3** (Verity Coffin, secret-drinking): c187 → **c191** — The man behind the counter at the Arcadia dance hall knows exactly: Verity Coffin was on the same stool from 10:30 PM to 11:00 PM and was in no condition to walk anywhere, let alone do this.
+- **b4** (Althea Mosley, gambling-debt): c180 → c179 → **c184** — The bookmaker’s runner is found and will say it: Althea Mosley was at the benches at the north end of the square from 7:00 PM to 7:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b5** (Margarethe Hauck, dope): c176 → **c177** — The man who sells it at the chop suey place over the laundry gives it up rather than be held: Margarethe Hauck was there from 10:30 PM to 11:00 PM, and stayed until it took hold.
 
