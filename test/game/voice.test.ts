@@ -21,6 +21,7 @@ import {
   ALL_CARDS,
   CONTRADICTION_TEMPLATES,
   DECKS,
+  THEORY_TEMPLATES,
   Dealer,
   askSlots,
   beatsOf,
@@ -31,6 +32,7 @@ import {
   deckOf,
   describePerson,
   factOnPage,
+  factsAgainst,
   fill,
   leadingTheory,
   oddsFor,
@@ -41,6 +43,7 @@ import {
   slotsOf,
   speakClue,
   temperOf,
+  theoryPool,
   tidyPunctuation,
   validateDecks,
   weightsFor,
@@ -1158,5 +1161,73 @@ describe('two facts in one clue', () => {
       }
     }
     expect(seen, 'no two-fact clue reached a page').toBeGreaterThan(0);
+  });
+});
+
+describe('the leading theory', () => {
+  const kase = generateCase(7, { difficulty: 2 });
+  const roll = rollDashiell(kase);
+  const suspect = kase.people.find((p) => p.kind === 'suspect') as Person;
+
+  const boardWith = (n: number) => {
+    const est = establishedFrom(view, [], []);
+    est.placements.set(
+      suspect.id,
+      Array.from({ length: n }, (_, i) => ({
+        personId: suspect.id,
+        placeId: view.kase.places[0]?.id as string,
+        tick: i,
+        present: true,
+        clueId: `made-up-${i}`,
+        contradicts: true,
+      })),
+    );
+    return est;
+  };
+
+  const said = (n: number, previousTheory: string | null = null): string =>
+    reactiveMonologue({
+      view,
+      roll,
+      before: establishedFrom(view, [], []),
+      after: boardWith(n),
+      touched: [],
+      actionsLeft: 9,
+      previousTheory,
+      seed: 11,
+    }).lines.join(' ');
+
+  const from = (pool: readonly string[], line: string): boolean =>
+    pool.some((t) => {
+      const head = t.split('{')[0] as string;
+      return head.length > 6 && line.includes(head.trim());
+    });
+
+  it('counts what is actually against a man, not the weight it gives it', () => {
+    expect(factsAgainst(boardWith(1), suspect.id)).toBe(1);
+    expect(factsAgainst(boardWith(3), suspect.id)).toBe(3);
+  });
+
+  it('leans on one fact, is convinced by two, and is certain on three', () => {
+    expect(theoryPool(1, false)).toBe(THEORY_TEMPLATES.lean);
+    expect(theoryPool(2, false)).toBe(THEORY_TEMPLATES.conviction);
+    expect(theoryPool(3, false)).toBe(THEORY_TEMPLATES.certain);
+    expect(theoryPool(9, false)).toBe(THEORY_TEMPLATES.certain);
+    // A theory that changes off one fact is still only a lean.
+    expect(theoryPool(1, true)).toBe(THEORY_TEMPLATES.changedLean);
+    expect(theoryPool(2, true)).toBe(THEORY_TEMPLATES.changed);
+  });
+
+  it('says it in the voice the evidence can carry', () => {
+    const lean = said(1);
+    expect(from(THEORY_TEMPLATES.lean, lean), lean).toBe(true);
+    expect(from(THEORY_TEMPLATES.certain, lean)).toBe(false);
+    const certain = said(3);
+    expect(from(THEORY_TEMPLATES.certain, certain), certain).toBe(true);
+  });
+
+  it('still names somebody off a single fact, so it can still be wrong', () => {
+    expect(leadingTheory(view, boardWith(1))).toBe(suspect.id);
+    expect(said(1)).toContain(suspect.surname);
   });
 });
