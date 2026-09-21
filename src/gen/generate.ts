@@ -55,7 +55,7 @@ export function generateCase(seed: number, opts?: { detectiveName?: string }): C
       attempts++;
 
       const L = rng.pick(cast.method.murderLocations);
-      const tickChoices = [];
+      const tickChoices: Tick[] = [];
       for (let t = 1; t <= TICKS - 2; t++) {
         const reachable = [LOC.lobby, LOC.bar].some(
           (w) => w !== L && graph.movesInto(w, t).includes(L),

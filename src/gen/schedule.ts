@@ -274,7 +274,6 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   const mLiars = rng.shuffle(witnessable).slice(0, wantLiars);
   const mLiarIds = mLiars.map((p) => p.id);
 
-  const affairCells: Record<string, { location: Id; ticks: Tick[] }> = {};
   const handled = new Set<Id>();
 
   for (const person of cast.innocents) {
@@ -298,8 +297,6 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
       if (!partner) return null;
       const alloc = allocate(template, template.locations, false, 0, TICKS - 1);
       if (!alloc) return null;
-      affairCells[person.id] = alloc;
-      affairCells[partner.id] = alloc;
       for (const [who, other] of [
         [person, partner],
         [partner, person],
