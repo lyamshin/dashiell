@@ -3,7 +3,12 @@
     "id": "por-p001",
     "deck": "portraits",
     "text": "a split thumbnail, black at the base, that the eye keeps coming back to",
-    "tags": { "component": "trait", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range por-pNNN; the content deck uses POR-NNN."
   },
@@ -11,56 +16,1896 @@
     "id": "por-p002",
     "deck": "portraits",
     "text": "a voice pitched low, the way a voice gets in a room rented by the hour",
-    "tags": { "component": "trait", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "por-p003",
     "deck": "portraits",
     "text": "eyes that go to the door every time it opens, and come back slower each time",
-    "tags": { "component": "trait", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "por-p004",
     "deck": "portraits",
     "text": "a matchbook turning end over end, never struck",
-    "tags": { "component": "habit", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "por-p005",
     "deck": "portraits",
     "text": "counting the change twice before it goes in the pocket",
-    "tags": { "component": "habit", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "por-p006",
     "deck": "portraits",
     "text": "talking with the chin down, the way people talk through a grille",
-    "tags": { "component": "habit", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "por-p007",
     "deck": "portraits",
     "text": "a good coat two seasons old, cuffs turned once already",
-    "tags": { "component": "clothing", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "por-p008",
     "deck": "portraits",
     "text": "collar buttoned, no tie, and a smear of green paint at one shoulder",
-    "tags": { "component": "clothing", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder"
   },
   {
     "id": "por-p009",
     "deck": "portraits",
     "text": "boots wet to the laces and dry everywhere above them",
-    "tags": { "component": "clothing", "gender": "any", "class": "any", "ageBand": "any" },
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "any",
+      "ageBand": "any"
+    },
     "status": "placeholder"
+  },
+  {
+    "id": "por-001",
+    "deck": "portraits",
+    "text": "A scar through one eyebrow, thin as a pencil line.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-002",
+    "deck": "portraits",
+    "text": "Her left hand curled slightly, an old break that never set right.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-003",
+    "deck": "portraits",
+    "text": "A voice pitched low, like he'd learned to talk through a closed door.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-004",
+    "deck": "portraits",
+    "text": "Knuckles scarred white across every one, the marks of a bare-knuckle youth.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-005",
+    "deck": "portraits",
+    "text": "A gold tooth, upper left, that showed when he laughed.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-006",
+    "deck": "portraits",
+    "text": "Her eyes were two different shades of brown, close enough most men missed it.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-007",
+    "deck": "portraits",
+    "text": "A limp he covered by never standing still.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-008",
+    "deck": "portraits",
+    "text": "Fingers stained yellow to the second knuckle.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-009",
+    "deck": "portraits",
+    "text": "A widow's peak going gray at the edges first.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-010",
+    "deck": "portraits",
+    "text": "Her voice cracked on the high notes, like a girl's that never finished growing up.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-011",
+    "deck": "portraits",
+    "text": "A burn scar along one forearm, shaped like a flatiron pressed flat.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-012",
+    "deck": "portraits",
+    "text": "A left ear that sat lower than the right, from a fall as a boy.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-013",
+    "deck": "portraits",
+    "text": "Her hands shook faintly at rest, and steadied the moment she picked something up.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-014",
+    "deck": "portraits",
+    "text": "A jaw he held tight even when he wasn't angry.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-015",
+    "deck": "portraits",
+    "text": "Freckles across the bridge of her nose that face powder never quite covered.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-016",
+    "deck": "portraits",
+    "text": "A voice that dropped to a whisper mid-sentence, out of old habit.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-017",
+    "deck": "portraits",
+    "text": "Thick wrists, the kind that came from years hauling something heavy.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-018",
+    "deck": "portraits",
+    "text": "One eyebrow set permanently higher than the other.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-019",
+    "deck": "portraits",
+    "text": "A gap between her front teeth she'd stopped trying to hide.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-020",
+    "deck": "portraits",
+    "text": "Nails bitten to the quick on the right hand only.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-021",
+    "deck": "portraits",
+    "text": "A soft chin, younger-looking than the rest of him put together.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-022",
+    "deck": "portraits",
+    "text": "Her hair going white at one temple only, a streak an inch wide.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-023",
+    "deck": "portraits",
+    "text": "A boxer's flattened nose above a mild, apologetic mouth.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-024",
+    "deck": "portraits",
+    "text": "Hands too small for the rest of him, and he knew it.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-025",
+    "deck": "portraits",
+    "text": "A stare that didn't blink as often as it should.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-026",
+    "deck": "portraits",
+    "text": "A rasp in the voice, left over from a fever nobody named.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-027",
+    "deck": "portraits",
+    "text": "Long fingers, ink-stained at the first joint.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-028",
+    "deck": "portraits",
+    "text": "Her chin lifted a half-inch before she answered anything.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-029",
+    "deck": "portraits",
+    "text": "A birthmark the shape of a thumbprint, just under the left ear.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-030",
+    "deck": "portraits",
+    "text": "Eyes set close together under heavy brows.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-031",
+    "deck": "portraits",
+    "text": "A dimple that showed only on the left, even when he wasn't smiling.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-032",
+    "deck": "portraits",
+    "text": "Her wedding band worn thin on the underside, the only soft metal on her.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-033",
+    "deck": "portraits",
+    "text": "A crooked little finger, broken once and never reset.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-034",
+    "deck": "portraits",
+    "text": "Skin gone leathery at the throat from years outdoors.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-035",
+    "deck": "portraits",
+    "text": "A voice pitched for a bigger room than the one she stood in.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-036",
+    "deck": "portraits",
+    "text": "Eyebrows plucked to two thin arches, drawn back in with a pencil.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-037",
+    "deck": "portraits",
+    "text": "A front tooth chipped at an angle, never capped.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-038",
+    "deck": "portraits",
+    "text": "Hands that stayed folded, like they'd learned not to be seen fidgeting.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-039",
+    "deck": "portraits",
+    "text": "A neck too thick for his collar, whatever collar he wore.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-040",
+    "deck": "portraits",
+    "text": "Pale eyes that looked paler for how dark her hair was.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-041",
+    "deck": "portraits",
+    "text": "A stammer that only showed on words starting with a hard C.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-042",
+    "deck": "portraits",
+    "text": "Earlobes pierced twice on the left, once on the right.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-043",
+    "deck": "portraits",
+    "text": "A squint that came from reading in bad light for thirty years.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-044",
+    "deck": "portraits",
+    "text": "A jaw scar shaped like a fishhook, just under the ear.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-045",
+    "deck": "portraits",
+    "text": "Hands as soft as a boy's, on a man past fifty.",
+    "tags": {
+      "component": "trait",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-046",
+    "deck": "portraits",
+    "text": "A voice that rose at the end of every sentence, like every fact was a question.",
+    "tags": {
+      "component": "trait",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-047",
+    "deck": "portraits",
+    "text": "One shoulder set lower, from carrying a bag the same way for years.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-048",
+    "deck": "portraits",
+    "text": "A trace of an accent that came out only on numbers.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-049",
+    "deck": "portraits",
+    "text": "Grey eyes that went nearly black when the light dropped.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-050",
+    "deck": "portraits",
+    "text": "A callus in the web of the thumb, the width of a rope.",
+    "tags": {
+      "component": "trait",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-051",
+    "deck": "portraits",
+    "text": "Taps two fingers on the table before answering anything.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-052",
+    "deck": "portraits",
+    "text": "Chews the same toothpick down to a sliver.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-053",
+    "deck": "portraits",
+    "text": "Counts change twice, out loud, before pocketing it.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-054",
+    "deck": "portraits",
+    "text": "Cracks each knuckle in order, left hand first.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-055",
+    "deck": "portraits",
+    "text": "Rolls a coin across his fingers when he's thinking.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-056",
+    "deck": "portraits",
+    "text": "Straightens picture frames that are already straight.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-057",
+    "deck": "portraits",
+    "text": "Folds her handkerchief into smaller and smaller squares.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-058",
+    "deck": "portraits",
+    "text": "Polishes his glasses on his tie, though the lenses never look any cleaner.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-059",
+    "deck": "portraits",
+    "text": "Hums the same four notes whenever the questions get close.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-060",
+    "deck": "portraits",
+    "text": "Chews her lower lip until it colors.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-061",
+    "deck": "portraits",
+    "text": "Taps ash before there's any ash to tap.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-062",
+    "deck": "portraits",
+    "text": "Straightens his tie by feel, never checking a glass.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-063",
+    "deck": "portraits",
+    "text": "Licks a thumb before turning any page.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-064",
+    "deck": "portraits",
+    "text": "Adjusts cufflinks that don't need adjusting.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-065",
+    "deck": "portraits",
+    "text": "Clears his throat before every lie, and some of the truths too.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-066",
+    "deck": "portraits",
+    "text": "Twists a ring around and around without taking it off.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-067",
+    "deck": "portraits",
+    "text": "Snaps a rubber band against the wrist.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-068",
+    "deck": "portraits",
+    "text": "Picks lint off a sleeve that has none.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-069",
+    "deck": "portraits",
+    "text": "Bites the inside of her cheek instead of answering right away.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-070",
+    "deck": "portraits",
+    "text": "Drums a march rhythm nobody else hears.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-071",
+    "deck": "portraits",
+    "text": "Sniffs the air before answering, like checking for something burning.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-072",
+    "deck": "portraits",
+    "text": "Pats a breast pocket to confirm what's already there.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-073",
+    "deck": "portraits",
+    "text": "Tugs an earlobe when a question lands close to home.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-074",
+    "deck": "portraits",
+    "text": "Blinks hard, twice, before saying a name out loud.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-075",
+    "deck": "portraits",
+    "text": "Straightens a stack of papers that's already square.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-076",
+    "deck": "portraits",
+    "text": "Runs a thumbnail along the seam of the table.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-077",
+    "deck": "portraits",
+    "text": "Sighs through the nose instead of the mouth.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-078",
+    "deck": "portraits",
+    "text": "Cracks his neck to one side before speaking.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-079",
+    "deck": "portraits",
+    "text": "Wipes the same rail with the same rag whether it needs it or not.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-080",
+    "deck": "portraits",
+    "text": "Rubs at a wedding band that isn't there anymore.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-081",
+    "deck": "portraits",
+    "text": "Clicks a pen open and shut, open and shut.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-082",
+    "deck": "portraits",
+    "text": "Straightens a hat that's already straight.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-083",
+    "deck": "portraits",
+    "text": "Sucks air through the teeth before a hard answer.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-084",
+    "deck": "portraits",
+    "text": "Picks at a hangnail through the whole conversation.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-085",
+    "deck": "portraits",
+    "text": "Repeats the last word of a question back before answering it.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-086",
+    "deck": "portraits",
+    "text": "Shifts weight foot to foot like the floor is cold.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-087",
+    "deck": "portraits",
+    "text": "Taps a cigarette against the case three times before lighting it.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-088",
+    "deck": "portraits",
+    "text": "Smooths her skirt over her knees, though it's already smooth.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-089",
+    "deck": "portraits",
+    "text": "Rolls the shoulders like a coat that doesn't fit right.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-090",
+    "deck": "portraits",
+    "text": "Counts under the breath, one to five, before speaking.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-091",
+    "deck": "portraits",
+    "text": "Turns a glass in slow circles without drinking from it.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-092",
+    "deck": "portraits",
+    "text": "Picks a thread off a cuff, examines it, drops it.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-093",
+    "deck": "portraits",
+    "text": "Studies his own hands when a question gets personal.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-094",
+    "deck": "portraits",
+    "text": "Whistles two bars of the same tune between sentences.",
+    "tags": {
+      "component": "habit",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-095",
+    "deck": "portraits",
+    "text": "Buttons and unbuttons the top button of a coat.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-096",
+    "deck": "portraits",
+    "text": "Wets a pencil tip with the tongue before writing.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-097",
+    "deck": "portraits",
+    "text": "Straightens a stack of coins into a column.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-098",
+    "deck": "portraits",
+    "text": "Cracks the knuckles of one hand, then presses them into the other palm.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-099",
+    "deck": "portraits",
+    "text": "Looks at the door before answering anything at all.",
+    "tags": {
+      "component": "habit",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-100",
+    "deck": "portraits",
+    "text": "Tucks loose hair behind one ear, the same ear, every time.",
+    "tags": {
+      "component": "habit",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-101",
+    "deck": "portraits",
+    "text": "A derby a size too small, worn anyway.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-102",
+    "deck": "portraits",
+    "text": "A fedora with the brim turned down against a rain that wasn't falling.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-103",
+    "deck": "portraits",
+    "text": "Spats gone gray at the toe from city slush.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-104",
+    "deck": "portraits",
+    "text": "A stickpin holding a tie that had seen better collars.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-105",
+    "deck": "portraits",
+    "text": "A boiled shirt with a ring of yellow at the collar.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-106",
+    "deck": "portraits",
+    "text": "A Norfolk jacket, belted, meant for a country he'd never visited.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-107",
+    "deck": "portraits",
+    "text": "A watch chain looped twice across the vest, no watch on the end of it.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-108",
+    "deck": "portraits",
+    "text": "A shirtwaist buttoned to the throat, regardless of the weather.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-109",
+    "deck": "portraits",
+    "text": "A cloche hat pulled low enough to shadow one eye.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-110",
+    "deck": "portraits",
+    "text": "Gaiters buttoned over shoes that didn't need them.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-111",
+    "deck": "portraits",
+    "text": "A topcoat with the lining coming loose at one cuff.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-112",
+    "deck": "portraits",
+    "text": "A slicker still dripping from a rain three blocks back.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-113",
+    "deck": "portraits",
+    "text": "Knickers gone through at one knee, mended with the wrong thread.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-114",
+    "deck": "portraits",
+    "text": "A mended glove, the left one, three stitches short of matching the right.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-115",
+    "deck": "portraits",
+    "text": "A pawned watch chain, bought back once and worn for the look of the thing.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-116",
+    "deck": "portraits",
+    "text": "A collar a half-size too tight, and he wouldn't loosen it.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-117",
+    "deck": "portraits",
+    "text": "A hat band dark with sweat under a fresh brim.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-118",
+    "deck": "portraits",
+    "text": "A coat with a torn pocket, sewn shut instead of mended.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-119",
+    "deck": "portraits",
+    "text": "Cuffs turned to hide the fray.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-120",
+    "deck": "portraits",
+    "text": "A vest buttoned one hole off, all evening, and nobody told him.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-121",
+    "deck": "portraits",
+    "text": "A tie held with a dime-store pin instead of the real thing.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-122",
+    "deck": "portraits",
+    "text": "A dress let out at the seams, the stitching newer than the fabric.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-123",
+    "deck": "portraits",
+    "text": "A coat two seasons out of style and brushed clean anyway.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-124",
+    "deck": "portraits",
+    "text": "Gloves kept on indoors, past any reasonable hour.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-125",
+    "deck": "portraits",
+    "text": "A hem taken up an inch, the old line still showing.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-126",
+    "deck": "portraits",
+    "text": "A collar starched hard enough to leave a mark on the throat.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-127",
+    "deck": "portraits",
+    "text": "Shoes resoled twice, shined enough to hide it.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-128",
+    "deck": "portraits",
+    "text": "A muffler wound twice around the neck, even indoors.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-129",
+    "deck": "portraits",
+    "text": "A brooch pinned slightly crooked, like it went on in a hurry.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-130",
+    "deck": "portraits",
+    "text": "A pocket square that didn't match anything else he had on.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-131",
+    "deck": "portraits",
+    "text": "A raincoat buttoned to the collar though the sky was clear.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-132",
+    "deck": "portraits",
+    "text": "A hat left on indoors, out of habit more than manners.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-133",
+    "deck": "portraits",
+    "text": "Cufflinks that didn't match, one plain, one carved.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "money",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-134",
+    "deck": "portraits",
+    "text": "A shawl worn indoors against a cold nobody else felt.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-135",
+    "deck": "portraits",
+    "text": "A skirt hemmed shorter than the fashion plates called for.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-136",
+    "deck": "portraits",
+    "text": "A jacket let out across the shoulders, tailored once for a heavier man.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "working",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-137",
+    "deck": "portraits",
+    "text": "Stockings with a run mended in ink instead of thread.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-138",
+    "deck": "portraits",
+    "text": "A necktie knotted too tight, like it went on in the dark.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-139",
+    "deck": "portraits",
+    "text": "A pair of galoshes left by the door, never quite dry.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-140",
+    "deck": "portraits",
+    "text": "A ring worn on a chain instead of a finger.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-141",
+    "deck": "portraits",
+    "text": "A handkerchief with an initial that wasn't his.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-142",
+    "deck": "portraits",
+    "text": "A coat collar turned up though the night was mild.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-143",
+    "deck": "portraits",
+    "text": "A garter showing for half a second, and never again.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-144",
+    "deck": "portraits",
+    "text": "Buttons that didn't match down one side of a coat.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-145",
+    "deck": "portraits",
+    "text": "A borrowed overcoat, sleeves an inch short.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-146",
+    "deck": "portraits",
+    "text": "A hat with a feather missing from the band.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "money",
+      "ageBand": "middle"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-147",
+    "deck": "portraits",
+    "text": "A vest with a cigar burn patched over.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "old"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-148",
+    "deck": "portraits",
+    "text": "Shoes a half-size large, stuffed with newspaper at the toe.",
+    "tags": {
+      "component": "clothing",
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-149",
+    "deck": "portraits",
+    "text": "A collar pin holding together what a missing button used to.",
+    "tags": {
+      "component": "clothing",
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "young"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "por-150",
+    "deck": "portraits",
+    "text": "A bob cut close, with a shingle at the back nobody's caught up to yet.",
+    "tags": {
+      "component": "clothing",
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young"
+    },
+    "status": "generated"
   }
 ]

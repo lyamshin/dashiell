@@ -132,9 +132,9 @@ export function rollCast(
       parts[component] = pick.text;
     }
     portraits[person.id] = {
-      trait: parts.trait ?? '',
-      habit: parts.habit ?? '',
-      clothing: parts.clothing ?? '',
+      trait: fragment(parts.trait ?? ''),
+      habit: fragment(parts.habit ?? ''),
+      clothing: fragment(parts.clothing ?? ''),
       cardIds,
     };
     order[person.id] = 0;
@@ -161,6 +161,16 @@ export function portraitCardIds(cast: CastSheet): string[] {
  * that one, and a different one each time, so the same man is described twice
  * without being described the same way twice.
  */
+/**
+ * Portrait cards arrive as sentences ("A split thumbnail he kept looking at.").
+ * On the page they are joined mid-sentence, so they are stored as fragments:
+ * lower-case start, no full stop of their own. Otherwise the page reads
+ * "Hanrahan, and Hands that stayed folded..".
+ */
+function fragment(p: string): string {
+  return p.trim().replace(/[.!?]+$/, '').replace(/^([A-Z])(?![A-Z])/, (m) => m.toLowerCase());
+}
+
 export function describePerson(
   cast: CastSheet,
   personId: Id,
