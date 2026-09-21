@@ -1,3 +1,14 @@
+/**
+ * `npm run case -- --seed 42 --json | head` closes stdout early, which Node
+ * reports as an unhandled EPIPE and a stack trace. Piping into `head` is a
+ * normal thing to do to these commands, so treat it as a clean exit.
+ */
+export function ignoreBrokenPipe(): void {
+  process.stdout.on('error', (err) => {
+    if (err.code === 'EPIPE') process.exit(0);
+  });
+}
+
 export interface ParsedArgs {
   flags: Set<string>;
   values: Map<string, string>;

@@ -2,7 +2,9 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { generateCase } from '../gen/index.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
-import { parseArgs } from './args.js';
+import { ignoreBrokenPipe, parseArgs } from './args.js';
+
+ignoreBrokenPipe();
 
 const { values } = parseArgs(process.argv.slice(2));
 

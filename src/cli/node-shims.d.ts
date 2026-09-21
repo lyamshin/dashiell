@@ -21,6 +21,9 @@ declare const process: {
   argv: string[];
   exitCode: number | undefined;
   exit(code?: number): never;
-  stdout: { write(chunk: string): boolean };
+  stdout: {
+    write(chunk: string): boolean;
+    on(event: 'error', listener: (err: { code?: string }) => void): void;
+  };
   stderr: { write(chunk: string): boolean };
 };
