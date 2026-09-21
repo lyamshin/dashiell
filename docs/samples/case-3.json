@@ -8,6 +8,7 @@
     {
       "id": "ferry-slip",
       "name": "the ferry slip at the foot of the street",
+      "shortName": "the ferry slip",
       "kind": "public",
       "objects": [
         "obj-suitcase",
@@ -20,6 +21,7 @@
     {
       "id": "speakeasy",
       "name": "the speakeasy under the hat shop",
+      "shortName": "the speakeasy",
       "kind": "semi",
       "objects": [
         "obj-cigarette-case",
@@ -32,6 +34,7 @@
     {
       "id": "walkup-flat",
       "name": "the third-floor walk-up on Ninth",
+      "shortName": "the third floor",
       "kind": "private",
       "objects": [
         "obj-roofkey",
@@ -45,6 +48,7 @@
     {
       "id": "res-suite",
       "name": "the victim’s suite at the residential hotel",
+      "shortName": "the suite",
       "kind": "private",
       "objects": [
         "obj-ledger",
@@ -56,6 +60,7 @@
     {
       "id": "hotel-garage",
       "name": "the garage on Eleventh Avenue",
+      "shortName": "the garage",
       "kind": "semi",
       "objects": [
         "obj-toolbox",
@@ -68,6 +73,7 @@
     {
       "id": "hotel-lobby",
       "name": "the lobby of the Wyckoff",
+      "shortName": "the Wyckoff",
       "kind": "semi",
       "objects": [
         "obj-bookend",
@@ -160,6 +166,7 @@
     {
       "id": "p-victim",
       "name": "Martin Sweeney",
+      "surname": "Sweeney",
       "role": "a bootlegger with the lease on the top floor",
       "kind": "victim",
       "isKiller": false,
@@ -168,6 +175,7 @@
     {
       "id": "p-s1",
       "name": "Vincenzo Grasso",
+      "surname": "Grasso",
       "role": "a longshoreman",
       "kind": "suspect",
       "isKiller": true,
@@ -177,7 +185,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Vincenzo Grasso is at the victim’s suite at the residential hotel from 8:30 PM, alone with Martin Sweeney when it happens at 8:30 PM.",
+        "description": "Grasso is at the suite from 8:30 PM, alone with Sweeney when it happens at 8:30 PM.",
         "cells": [
           {
             "tick": 5,
@@ -196,6 +204,7 @@
     {
       "id": "p-s2",
       "name": "Gretchen Kreuzer",
+      "surname": "Kreuzer",
       "role": "a pawnbroker’s man",
       "kind": "suspect",
       "isKiller": false,
@@ -205,7 +214,7 @@
       "secret": {
         "type": "forged-identity",
         "label": "Forged identity",
-        "description": "Gretchen Kreuzer is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
+        "description": "Kreuzer is not the person the papers say. Nothing about the evening is hidden; the lie is all in the paperwork.",
         "cells": []
       },
       "motive": {
@@ -217,6 +226,7 @@
     {
       "id": "p-s3",
       "name": "Nora Hanrahan",
+      "surname": "Hanrahan",
       "role": "a private secretary",
       "kind": "suspect",
       "isKiller": false,
@@ -226,7 +236,7 @@
       "secret": {
         "type": "embezzling",
         "label": "Embezzling",
-        "description": "Nora Hanrahan goes through the books at the third-floor walk-up on Ninth from 8:30 PM, while there is nobody to see.",
+        "description": "Hanrahan goes through the books at the third floor from 8:30 PM, while there is nobody to see.",
         "cells": [
           {
             "tick": 5,
@@ -239,16 +249,17 @@
     {
       "id": "p-s4",
       "name": "James Mulcahy",
+      "surname": "Mulcahy",
       "role": "a society columnist",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-society",
-      "relationshipId": "rel-neighbor",
-      "relationshipToVictim": "the victim’s neighbour across the airshaft",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people the victim worked for",
       "secret": {
         "type": "blackmail",
         "label": "Blackmailing the victim",
-        "description": "James Mulcahy meets the victim alone at the lobby of the Wyckoff from 7:00 PM and asks for money.",
+        "description": "Mulcahy meets the victim alone at the Wyckoff from 7:00 PM and asks for money.",
         "cells": [
           {
             "tick": 2,
@@ -257,11 +268,16 @@
         ],
         "partnerId": "p-victim"
       },
+      "motive": {
+        "type": "exposure",
+        "description": "was about to be exposed by the victim"
+      },
       "foundAt": "speakeasy"
     },
     {
       "id": "p-s5",
       "name": "Sterling Coffin",
+      "surname": "Coffin",
       "role": "a doorman at a club with no sign on it",
       "kind": "suspect",
       "isKiller": false,
@@ -271,7 +287,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Sterling Coffin hands a parcel of stolen goods to a man at the speakeasy under the hat shop from 9:30 PM.",
+        "description": "Coffin hands a parcel of stolen goods to a man at the speakeasy from 9:30 PM.",
         "cells": [
           {
             "tick": 7,
@@ -288,6 +304,7 @@
     {
       "id": "p-s6",
       "name": "Margarethe Schilling",
+      "surname": "Schilling",
       "role": "a chambermaid",
       "kind": "suspect",
       "isKiller": false,
@@ -297,7 +314,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Margarethe Schilling hands a parcel of stolen goods to a man at the garage on Eleventh Avenue from 8:30 PM.",
+        "description": "Schilling hands a parcel of stolen goods to a man at the garage from 8:30 PM.",
         "cells": [
           {
             "tick": 5,
@@ -305,15 +322,12 @@
           }
         ]
       },
-      "motive": {
-        "type": "exposure",
-        "description": "was about to be exposed by the victim"
-      },
       "foundAt": "hotel-lobby"
     },
     {
       "id": "p-f1",
       "name": "Margaret Callahan",
+      "surname": "Callahan",
       "role": "the bartender",
       "kind": "fixture",
       "isKiller": false,
@@ -323,6 +337,7 @@
     {
       "id": "p-f2",
       "name": "Carmela Marchetti",
+      "surname": "Marchetti",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -332,6 +347,7 @@
     {
       "id": "p-f3",
       "name": "Esther Feldman",
+      "surname": "Feldman",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -341,6 +357,7 @@
     {
       "id": "p-f4",
       "name": "Chandler Havemeyer",
+      "surname": "Havemeyer",
       "role": "the doorman",
       "kind": "fixture",
       "isKiller": false,
@@ -377,7 +394,9 @@
         }
       ],
       "timing": "while the lesson was still going on overhead",
-      "sceneTiming": "the piano stopped and what was heard next was heard against silence",
+      "highTiming": "just after the lesson overhead stopped",
+      "sceneFact": "The lesson overhead stopped at {T} and nothing was played after it.",
+      "masks": false,
       "placeId": "walkup-flat"
     },
     {
@@ -398,13 +417,16 @@
         }
       ],
       "timing": "just as the El went over",
-      "sceneTiming": "the El was running to timetable and it covers the half hour exactly"
+      "highTiming": "just as the El went over",
+      "sceneFact": "The El went over at {T}, running to timetable, and for twenty seconds nothing under the structure can be heard at all.",
+      "masks": true
     }
   ],
   "nearScene": [
     "ferry-slip",
     "hotel-lobby"
   ],
+  "soundMasked": true,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2570,7 +2592,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Martin Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -2580,7 +2602,7 @@
           "tick": 2
         }
       ],
-      "text": "Vincenzo Grasso says Martin Sweeney was at the lobby of the Wyckoff at 7:00 PM.",
+      "text": "Grasso says Sweeney was at the Wyckoff at 7:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2591,7 +2613,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -2601,7 +2623,7 @@
           "tick": 4
         }
       ],
-      "text": "Vincenzo Grasso says Gretchen Kreuzer was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Grasso says Kreuzer was at the speakeasy at 8:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2612,7 +2634,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -2646,7 +2668,7 @@
           "tick": 10
         }
       ],
-      "text": "Vincenzo Grasso says Gretchen Kreuzer was at the third-floor walk-up on Ninth from 9:00 PM to 11:00 PM.",
+      "text": "Grasso says Kreuzer was at the third floor from 9:00 PM to 11:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2657,7 +2679,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -2673,7 +2695,7 @@
           "tick": 7
         }
       ],
-      "text": "Vincenzo Grasso says Nora Hanrahan was at the third-floor walk-up on Ninth from 9:00 PM to 9:30 PM.",
+      "text": "Grasso says Hanrahan was at the third floor from 9:00 PM to 9:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2684,7 +2706,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -2694,7 +2716,7 @@
           "tick": 11
         }
       ],
-      "text": "Vincenzo Grasso says Nora Hanrahan was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Grasso says Hanrahan was at the ferry slip at 11:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2705,7 +2727,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2726,7 +2748,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Vincenzo Grasso says James Mulcahy was at the lobby of the Wyckoff from 6:30 PM to 7:00 PM.",
+      "text": "Grasso says Mulcahy was at the Wyckoff from 6:30 PM to 7:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2737,7 +2759,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2753,7 +2775,7 @@
           "tick": 4
         }
       ],
-      "text": "Vincenzo Grasso says James Mulcahy was at the speakeasy under the hat shop from 7:30 PM to 8:00 PM.",
+      "text": "Grasso says Mulcahy was at the speakeasy from 7:30 PM to 8:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2764,7 +2786,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2780,7 +2802,7 @@
           "tick": 7
         }
       ],
-      "text": "Vincenzo Grasso says James Mulcahy was at the third-floor walk-up on Ninth from 9:00 PM to 9:30 PM.",
+      "text": "Grasso says Mulcahy was at the third floor from 9:00 PM to 9:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2791,7 +2813,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2806,7 +2828,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Vincenzo Grasso says Sterling Coffin was at the lobby of the Wyckoff at 7:00 PM.",
+      "text": "Grasso says Coffin was at the Wyckoff at 7:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2817,7 +2839,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -2844,7 +2866,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Vincenzo Grasso says Margarethe Schilling was at the lobby of the Wyckoff from 6:00 PM to 7:00 PM.",
+      "text": "Grasso says Schilling was at the Wyckoff from 6:00 PM to 7:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2855,7 +2877,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -2865,7 +2887,7 @@
           "tick": 11
         }
       ],
-      "text": "Vincenzo Grasso says Margarethe Schilling was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Grasso says Schilling was at the ferry slip at 11:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2876,7 +2898,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -2886,7 +2908,7 @@
           "tick": 4
         }
       ],
-      "text": "Gretchen Kreuzer says Vincenzo Grasso was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Kreuzer says Grasso was at the speakeasy at 8:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2897,7 +2919,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -2931,7 +2953,7 @@
           "tick": 10
         }
       ],
-      "text": "Gretchen Kreuzer says Vincenzo Grasso was at the third-floor walk-up on Ninth from 9:00 PM to 11:00 PM.",
+      "text": "Kreuzer says Grasso was at the third floor from 9:00 PM to 11:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2942,7 +2964,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -2952,7 +2974,7 @@
           "tick": 2
         }
       ],
-      "text": "Gretchen Kreuzer says Nora Hanrahan was at the speakeasy under the hat shop at 7:00 PM.",
+      "text": "Kreuzer says Hanrahan was at the speakeasy at 7:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2963,7 +2985,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -2973,7 +2995,7 @@
           "tick": 3
         }
       ],
-      "text": "Gretchen Kreuzer says Nora Hanrahan was at the ferry slip at the foot of the street at 7:30 PM.",
+      "text": "Kreuzer says Hanrahan was at the ferry slip at 7:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -2984,7 +3006,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3006,10 +3028,12 @@
           "tick": 7
         }
       ],
-      "text": "Gretchen Kreuzer says Nora Hanrahan was at the third-floor walk-up on Ninth from 8:30 PM to 9:30 PM.",
+      "text": "Kreuzer says Hanrahan was at the third floor from 8:30 PM to 9:30 PM.",
       "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "spine"
     },
     {
       "id": "c017",
@@ -3017,7 +3041,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3027,7 +3051,7 @@
           "tick": 4
         }
       ],
-      "text": "Gretchen Kreuzer says James Mulcahy was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Kreuzer says Mulcahy was at the speakeasy at 8:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -3038,7 +3062,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3060,10 +3084,10 @@
           "tick": 7
         }
       ],
-      "text": "Gretchen Kreuzer says James Mulcahy was at the third-floor walk-up on Ninth from 8:30 PM to 9:30 PM.",
+      "text": "Kreuzer says Mulcahy was at the third floor from 8:30 PM to 9:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c019",
@@ -3071,7 +3095,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3081,7 +3105,7 @@
           "tick": 5
         }
       ],
-      "text": "Gretchen Kreuzer says Sterling Coffin was at the third-floor walk-up on Ninth at 8:30 PM.",
+      "text": "Kreuzer says Coffin was at the third floor at 8:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -3092,7 +3116,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3108,7 +3132,7 @@
           "tick": 7
         }
       ],
-      "text": "Nora Hanrahan says Vincenzo Grasso was at the third-floor walk-up on Ninth from 9:00 PM to 9:30 PM.",
+      "text": "Hanrahan says Grasso was at the third floor from 9:00 PM to 9:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3119,7 +3143,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3129,7 +3153,7 @@
           "tick": 11
         }
       ],
-      "text": "Nora Hanrahan says Vincenzo Grasso was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Hanrahan says Grasso was at the ferry slip at 11:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3140,7 +3164,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3150,7 +3174,7 @@
           "tick": 2
         }
       ],
-      "text": "Nora Hanrahan says Gretchen Kreuzer was at the speakeasy under the hat shop at 7:00 PM.",
+      "text": "Hanrahan says Kreuzer was at the speakeasy at 7:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3161,7 +3185,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3171,7 +3195,7 @@
           "tick": 3
         }
       ],
-      "text": "Nora Hanrahan says Gretchen Kreuzer was at the ferry slip at the foot of the street at 7:30 PM.",
+      "text": "Hanrahan says Kreuzer was at the ferry slip at 7:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3182,7 +3206,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3198,7 +3222,7 @@
           "tick": 7
         }
       ],
-      "text": "Nora Hanrahan says Gretchen Kreuzer was at the third-floor walk-up on Ninth from 9:00 PM to 9:30 PM.",
+      "text": "Hanrahan says Kreuzer was at the third floor from 9:00 PM to 9:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3209,7 +3233,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3219,7 +3243,7 @@
           "tick": 0
         }
       ],
-      "text": "Nora Hanrahan says James Mulcahy was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Hanrahan says Mulcahy was at the garage at 6:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3230,7 +3254,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3246,7 +3270,7 @@
           "tick": 7
         }
       ],
-      "text": "Nora Hanrahan says James Mulcahy was at the third-floor walk-up on Ninth from 9:00 PM to 9:30 PM.",
+      "text": "Hanrahan says Mulcahy was at the third floor from 9:00 PM to 9:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3257,7 +3281,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3273,7 +3297,7 @@
           "tick": 9
         }
       ],
-      "text": "Nora Hanrahan says Sterling Coffin was at the ferry slip at the foot of the street from 10:00 PM to 10:30 PM.",
+      "text": "Hanrahan says Coffin was at the ferry slip from 10:00 PM to 10:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3284,7 +3308,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -3294,7 +3318,7 @@
           "tick": 4
         }
       ],
-      "text": "Nora Hanrahan says Margarethe Schilling was at the garage on Eleventh Avenue at 8:00 PM.",
+      "text": "Hanrahan says Schilling was at the garage at 8:00 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3305,7 +3329,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -3315,7 +3339,7 @@
           "tick": 11
         }
       ],
-      "text": "Nora Hanrahan says Margarethe Schilling was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Hanrahan says Schilling was at the ferry slip at 11:30 PM.",
       "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
@@ -3326,7 +3350,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3341,7 +3365,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "James Mulcahy says Vincenzo Grasso was at the lobby of the Wyckoff at 6:30 PM.",
+      "text": "Mulcahy says Grasso was at the Wyckoff at 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3352,7 +3376,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3368,7 +3392,7 @@
           "tick": 4
         }
       ],
-      "text": "James Mulcahy says Vincenzo Grasso was at the speakeasy under the hat shop from 7:30 PM to 8:00 PM.",
+      "text": "Mulcahy says Grasso was at the speakeasy from 7:30 PM to 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3379,7 +3403,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3395,7 +3419,7 @@
           "tick": 7
         }
       ],
-      "text": "James Mulcahy says Vincenzo Grasso was at the third-floor walk-up on Ninth from 9:00 PM to 9:30 PM.",
+      "text": "Mulcahy says Grasso was at the third floor from 9:00 PM to 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3406,7 +3430,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3416,7 +3440,7 @@
           "tick": 4
         }
       ],
-      "text": "James Mulcahy says Gretchen Kreuzer was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Mulcahy says Kreuzer was at the speakeasy at 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3427,7 +3451,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3449,7 +3473,7 @@
           "tick": 7
         }
       ],
-      "text": "James Mulcahy says Gretchen Kreuzer was at the third-floor walk-up on Ninth from 8:30 PM to 9:30 PM.",
+      "text": "Mulcahy says Kreuzer was at the third floor from 8:30 PM to 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3460,7 +3484,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3470,7 +3494,7 @@
           "tick": 0
         }
       ],
-      "text": "James Mulcahy says Nora Hanrahan was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Mulcahy says Hanrahan was at the garage at 6:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3481,7 +3505,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3503,7 +3527,7 @@
           "tick": 7
         }
       ],
-      "text": "James Mulcahy says Nora Hanrahan was at the third-floor walk-up on Ninth from 8:30 PM to 9:30 PM.",
+      "text": "Mulcahy says Hanrahan was at the third floor from 8:30 PM to 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3514,7 +3538,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3524,7 +3548,7 @@
           "tick": 5
         }
       ],
-      "text": "James Mulcahy says Sterling Coffin was at the third-floor walk-up on Ninth at 8:30 PM.",
+      "text": "Mulcahy says Coffin was at the third floor at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3535,7 +3559,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3551,7 +3575,7 @@
           "tick": 11
         }
       ],
-      "text": "James Mulcahy says Sterling Coffin was at the speakeasy under the hat shop from 11:00 PM to 11:30 PM.",
+      "text": "Mulcahy says Coffin was at the speakeasy from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3562,7 +3586,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -3577,10 +3601,10 @@
           "methodId": "blunt"
         }
       ],
-      "text": "James Mulcahy says Margarethe Schilling was at the lobby of the Wyckoff at 6:30 PM.",
+      "text": "Mulcahy says Schilling was at the Wyckoff at 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c040",
@@ -3588,7 +3612,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -3598,7 +3622,7 @@
           "tick": 8
         }
       ],
-      "text": "James Mulcahy says Margarethe Schilling was at the lobby of the Wyckoff at 10:00 PM.",
+      "text": "Mulcahy says Schilling was at the Wyckoff at 10:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3609,7 +3633,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Martin Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3625,7 +3649,7 @@
           "tick": 3
         }
       ],
-      "text": "Sterling Coffin says Martin Sweeney was at the lobby of the Wyckoff from 7:00 PM to 7:30 PM.",
+      "text": "Coffin says Sweeney was at the Wyckoff from 7:00 PM to 7:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3636,7 +3660,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3651,10 +3675,12 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Sterling Coffin says Vincenzo Grasso was at the lobby of the Wyckoff at 7:00 PM.",
+      "text": "Coffin says Grasso was at the Wyckoff at 7:00 PM.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c067"
+      ],
+      "role": "spine"
     },
     {
       "id": "c043",
@@ -3662,7 +3688,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -3672,10 +3698,10 @@
           "tick": 5
         }
       ],
-      "text": "Sterling Coffin says Gretchen Kreuzer was at the third-floor walk-up on Ninth at 8:30 PM.",
+      "text": "Coffin says Kreuzer was at the third floor at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c044",
@@ -3683,7 +3709,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3693,7 +3719,7 @@
           "tick": 5
         }
       ],
-      "text": "Sterling Coffin says Nora Hanrahan was at the third-floor walk-up on Ninth at 8:30 PM.",
+      "text": "Coffin says Hanrahan was at the third floor at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3704,7 +3730,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3720,7 +3746,7 @@
           "tick": 9
         }
       ],
-      "text": "Sterling Coffin says Nora Hanrahan was at the ferry slip at the foot of the street from 10:00 PM to 10:30 PM.",
+      "text": "Coffin says Hanrahan was at the ferry slip from 10:00 PM to 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3731,7 +3757,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3746,10 +3772,10 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Sterling Coffin says James Mulcahy was at the lobby of the Wyckoff at 7:00 PM.",
+      "text": "Coffin says Mulcahy was at the Wyckoff at 7:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c047",
@@ -3757,7 +3783,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3767,7 +3793,7 @@
           "tick": 5
         }
       ],
-      "text": "Sterling Coffin says James Mulcahy was at the third-floor walk-up on Ninth at 8:30 PM.",
+      "text": "Coffin says Mulcahy was at the third floor at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3778,7 +3804,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3794,7 +3820,7 @@
           "tick": 11
         }
       ],
-      "text": "Sterling Coffin says James Mulcahy was at the speakeasy under the hat shop from 11:00 PM to 11:30 PM.",
+      "text": "Coffin says Mulcahy was at the speakeasy from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3805,7 +3831,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -3820,7 +3846,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Sterling Coffin says Margarethe Schilling was at the lobby of the Wyckoff at 7:00 PM.",
+      "text": "Coffin says Schilling was at the Wyckoff at 7:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3831,7 +3857,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Martin Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -3841,7 +3867,7 @@
           "tick": 2
         }
       ],
-      "text": "Margarethe Schilling says Martin Sweeney was at the lobby of the Wyckoff at 7:00 PM.",
+      "text": "Schilling says Sweeney was at the Wyckoff at 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3852,7 +3878,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3879,15 +3905,10 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Margarethe Schilling says Vincenzo Grasso was at the lobby of the Wyckoff from 6:00 PM to 7:00 PM.",
+      "text": "Schilling says Grasso was at the Wyckoff from 6:00 PM to 7:00 PM.",
       "place": "hotel-lobby",
-      "leadsTo": [
-        "c143",
-        "c141",
-        "c152",
-        "c175"
-      ],
-      "role": "spine"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c052",
@@ -3895,7 +3916,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -3905,7 +3926,7 @@
           "tick": 11
         }
       ],
-      "text": "Margarethe Schilling says Vincenzo Grasso was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Schilling says Grasso was at the ferry slip at 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3916,7 +3937,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3926,7 +3947,7 @@
           "tick": 4
         }
       ],
-      "text": "Margarethe Schilling says Nora Hanrahan was at the garage on Eleventh Avenue at 8:00 PM.",
+      "text": "Schilling says Hanrahan was at the garage at 8:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3937,7 +3958,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -3947,7 +3968,7 @@
           "tick": 11
         }
       ],
-      "text": "Margarethe Schilling says Nora Hanrahan was at the ferry slip at the foot of the street at 11:30 PM.",
+      "text": "Schilling says Hanrahan was at the ferry slip at 11:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3958,7 +3979,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3979,7 +4000,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Margarethe Schilling says James Mulcahy was at the lobby of the Wyckoff from 6:30 PM to 7:00 PM.",
+      "text": "Schilling says Mulcahy was at the Wyckoff from 6:30 PM to 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -3990,7 +4011,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4000,7 +4021,7 @@
           "tick": 8
         }
       ],
-      "text": "Margarethe Schilling says James Mulcahy was at the lobby of the Wyckoff at 10:00 PM.",
+      "text": "Schilling says Mulcahy was at the Wyckoff at 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4011,7 +4032,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4026,7 +4047,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Margarethe Schilling says Sterling Coffin was at the lobby of the Wyckoff at 7:00 PM.",
+      "text": "Schilling says Coffin was at the Wyckoff at 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4037,7 +4058,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -4053,7 +4074,7 @@
           "tick": 4
         }
       ],
-      "text": "Margaret Callahan says Vincenzo Grasso was at the speakeasy under the hat shop from 7:30 PM to 8:00 PM.",
+      "text": "Callahan says Grasso was at the speakeasy from 7:30 PM to 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4064,7 +4085,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -4074,7 +4095,7 @@
           "tick": 2
         }
       ],
-      "text": "Margaret Callahan says Gretchen Kreuzer was at the speakeasy under the hat shop at 7:00 PM.",
+      "text": "Callahan says Kreuzer was at the speakeasy at 7:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4085,7 +4106,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -4095,7 +4116,7 @@
           "tick": 4
         }
       ],
-      "text": "Margaret Callahan says Gretchen Kreuzer was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Callahan says Kreuzer was at the speakeasy at 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4106,7 +4127,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -4116,7 +4137,7 @@
           "tick": 2
         }
       ],
-      "text": "Margaret Callahan says Nora Hanrahan was at the speakeasy under the hat shop at 7:00 PM.",
+      "text": "Callahan says Hanrahan was at the speakeasy at 7:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4127,7 +4148,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4143,7 +4164,7 @@
           "tick": 4
         }
       ],
-      "text": "Margaret Callahan says James Mulcahy was at the speakeasy under the hat shop from 7:30 PM to 8:00 PM.",
+      "text": "Callahan says Mulcahy was at the speakeasy from 7:30 PM to 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4154,7 +4175,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4176,7 +4197,7 @@
           "tick": 11
         }
       ],
-      "text": "Margaret Callahan says James Mulcahy was at the speakeasy under the hat shop from 10:30 PM to 11:30 PM.",
+      "text": "Callahan says Mulcahy was at the speakeasy from 10:30 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4187,7 +4208,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4203,7 +4224,7 @@
           "tick": 1
         }
       ],
-      "text": "Margaret Callahan says Sterling Coffin was at the speakeasy under the hat shop from 6:00 PM to 6:30 PM.",
+      "text": "Callahan says Coffin was at the speakeasy from 6:00 PM to 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4214,7 +4235,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4224,7 +4245,7 @@
           "tick": 7
         }
       ],
-      "text": "Margaret Callahan says Sterling Coffin was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Callahan says Coffin was at the speakeasy at 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4235,7 +4256,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4251,7 +4272,7 @@
           "tick": 11
         }
       ],
-      "text": "Margaret Callahan says Sterling Coffin was at the speakeasy under the hat shop from 11:00 PM to 11:30 PM.",
+      "text": "Callahan says Coffin was at the speakeasy from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4262,7 +4283,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -4272,12 +4293,11 @@
           "tick": 5
         }
       ],
-      "text": "Margaret Callahan says Margarethe Schilling was at the garage on Eleventh Avenue at 8:30 PM.",
+      "text": "Callahan says Schilling was at the garage at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [
-        "c078",
-        "c101",
-        "c042"
+        "c080",
+        "c046"
       ],
       "role": "spine"
     },
@@ -4287,7 +4307,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Martin Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -4303,7 +4323,7 @@
           "tick": 1
         }
       ],
-      "text": "Carmela Marchetti says Martin Sweeney was at the third-floor walk-up on Ninth from 6:00 PM to 6:30 PM.",
+      "text": "Marchetti says Sweeney was at the third floor from 6:00 PM to 6:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4314,7 +4334,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Martin Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -4324,7 +4344,7 @@
           "tick": 4
         }
       ],
-      "text": "Carmela Marchetti says Martin Sweeney was at the third-floor walk-up on Ninth at 8:00 PM.",
+      "text": "Marchetti says Sweeney was at the third floor at 8:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4335,7 +4355,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -4369,7 +4389,7 @@
           "tick": 10
         }
       ],
-      "text": "Carmela Marchetti says Vincenzo Grasso was at the third-floor walk-up on Ninth from 9:00 PM to 11:00 PM.",
+      "text": "Marchetti says Grasso was at the third floor from 9:00 PM to 11:00 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4380,7 +4400,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
@@ -4426,10 +4446,14 @@
           "tick": 11
         }
       ],
-      "text": "Carmela Marchetti says Gretchen Kreuzer was at the third-floor walk-up on Ninth from 8:30 PM to 11:30 PM.",
+      "text": "Marchetti says Kreuzer was at the third floor from 8:30 PM to 11:30 PM.",
       "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c016",
+        "c101",
+        "c127"
+      ],
+      "role": "spine"
     },
     {
       "id": "c072",
@@ -4437,7 +4461,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -4459,7 +4483,7 @@
           "tick": 7
         }
       ],
-      "text": "Carmela Marchetti says Nora Hanrahan was at the third-floor walk-up on Ninth from 8:30 PM to 9:30 PM.",
+      "text": "Marchetti says Hanrahan was at the third floor from 8:30 PM to 9:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4470,7 +4494,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4492,10 +4516,12 @@
           "tick": 7
         }
       ],
-      "text": "Carmela Marchetti says James Mulcahy was at the third-floor walk-up on Ninth from 8:30 PM to 9:30 PM.",
+      "text": "Marchetti says Mulcahy was at the third floor from 8:30 PM to 9:30 PM.",
       "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c016"
+      ],
+      "role": "spine"
     },
     {
       "id": "c074",
@@ -4503,7 +4529,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4513,10 +4539,15 @@
           "tick": 5
         }
       ],
-      "text": "Carmela Marchetti says Sterling Coffin was at the third-floor walk-up on Ninth at 8:30 PM.",
+      "text": "Marchetti says Coffin was at the third floor at 8:30 PM.",
       "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c089",
+        "c071",
+        "c102",
+        "c088"
+      ],
+      "role": "spine"
     },
     {
       "id": "c075",
@@ -4524,7 +4555,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -4534,7 +4565,7 @@
           "tick": 0
         }
       ],
-      "text": "Esther Feldman says Nora Hanrahan was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Feldman says Hanrahan was at the garage at 6:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -4545,7 +4576,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Nora Hanrahan"
+        "topic": "Hanrahan"
       },
       "establishes": [
         {
@@ -4555,7 +4586,7 @@
           "tick": 4
         }
       ],
-      "text": "Esther Feldman says Nora Hanrahan was at the garage on Eleventh Avenue at 8:00 PM.",
+      "text": "Feldman says Hanrahan was at the garage at 8:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -4566,7 +4597,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4576,7 +4607,7 @@
           "tick": 0
         }
       ],
-      "text": "Esther Feldman says James Mulcahy was at the garage on Eleventh Avenue at 6:00 PM.",
+      "text": "Feldman says Mulcahy was at the garage at 6:00 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
@@ -4587,7 +4618,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -4621,10 +4652,10 @@
           "tick": 7
         }
       ],
-      "text": "Esther Feldman says Margarethe Schilling was at the garage on Eleventh Avenue from 7:30 PM to 9:30 PM.",
+      "text": "Feldman says Schilling was at the garage from 7:30 PM to 9:30 PM.",
       "place": "hotel-garage",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c079",
@@ -4632,7 +4663,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Martin Sweeney"
+        "topic": "Sweeney"
       },
       "establishes": [
         {
@@ -4648,7 +4679,7 @@
           "tick": 3
         }
       ],
-      "text": "Chandler Havemeyer says Martin Sweeney was at the lobby of the Wyckoff from 7:00 PM to 7:30 PM.",
+      "text": "Havemeyer says Sweeney was at the Wyckoff from 7:00 PM to 7:30 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4659,7 +4690,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -4686,7 +4717,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Chandler Havemeyer says Vincenzo Grasso was at the lobby of the Wyckoff from 6:00 PM to 7:00 PM.",
+      "text": "Havemeyer says Grasso was at the Wyckoff from 6:00 PM to 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "corroboration"
@@ -4697,7 +4728,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4718,7 +4749,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Chandler Havemeyer says James Mulcahy was at the lobby of the Wyckoff from 6:30 PM to 7:00 PM.",
+      "text": "Havemeyer says Mulcahy was at the Wyckoff from 6:30 PM to 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4729,7 +4760,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4739,7 +4770,7 @@
           "tick": 8
         }
       ],
-      "text": "Chandler Havemeyer says James Mulcahy was at the lobby of the Wyckoff at 10:00 PM.",
+      "text": "Havemeyer says Mulcahy was at the Wyckoff at 10:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4750,7 +4781,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Sterling Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4777,7 +4808,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Chandler Havemeyer says Sterling Coffin was at the lobby of the Wyckoff from 7:00 PM to 8:00 PM.",
+      "text": "Havemeyer says Coffin was at the Wyckoff from 7:00 PM to 8:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4788,7 +4819,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -4815,7 +4846,7 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Chandler Havemeyer says Margarethe Schilling was at the lobby of the Wyckoff from 6:00 PM to 7:00 PM.",
+      "text": "Havemeyer says Schilling was at the Wyckoff from 6:00 PM to 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4826,7 +4857,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -4848,7 +4879,7 @@
           "tick": 10
         }
       ],
-      "text": "Chandler Havemeyer says Margarethe Schilling was at the lobby of the Wyckoff from 10:00 PM to 11:00 PM.",
+      "text": "Havemeyer says Schilling was at the Wyckoff from 10:00 PM to 11:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
@@ -4858,24 +4889,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-s2",
+        "topic": "Grasso’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "walkup-flat",
+          "tick": 5
         }
       ],
-      "text": "Vincenzo Grasso runs through it: at 6:30 PM there were James Mulcahy, Margarethe Schilling at the lobby of the Wyckoff, and nobody else worth naming.",
+      "text": "Kreuzer was at the third floor at 8:30 PM and says Grasso was not.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
@@ -4885,31 +4910,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-s4",
+        "topic": "Grasso’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 2
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "walkup-flat",
+          "tick": 5
         }
       ],
-      "text": "Vincenzo Grasso runs through it: at 7:00 PM there were James Mulcahy, Sterling Coffin, Margarethe Schilling at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "walkup-flat",
+      "text": "Mulcahy was at the third floor at 8:30 PM and says Grasso was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4918,91 +4931,64 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s5",
+        "topic": "Grasso’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "walkup-flat",
+          "tick": 5
         }
       ],
-      "text": "Vincenzo Grasso runs through it: at 8:00 PM there were Gretchen Kreuzer, James Mulcahy at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "walkup-flat",
+      "text": "Coffin was at the third floor at 8:30 PM and says Grasso was not.",
+      "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c089",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f2",
+        "topic": "Grasso’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 6
+          "tick": 5
         }
       ],
-      "text": "Vincenzo Grasso runs through it: at 9:00 PM there were Gretchen Kreuzer, Nora Hanrahan, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
+      "text": "Marchetti was at the third floor at 8:30 PM and says Grasso was not.",
       "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c067",
+        "c099"
+      ],
+      "role": "spine"
     },
     {
       "id": "c090",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f4",
+        "topic": "Hanrahan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 7
+          "place": "hotel-lobby",
+          "tick": 5
         }
       ],
-      "text": "Vincenzo Grasso runs through it: at 9:30 PM there were Gretchen Kreuzer, Nora Hanrahan, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
+      "text": "Havemeyer was at the Wyckoff at 8:30 PM and says Hanrahan was not.",
+      "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5011,52 +4997,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f2",
+        "topic": "Mulcahy’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "ferry-slip",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "ferry-slip",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "walkup-flat",
+          "tick": 2
         }
       ],
-      "text": "Vincenzo Grasso runs through it: at 11:30 PM there were Nora Hanrahan, Margarethe Schilling at the ferry slip at the foot of the street, and nobody else worth naming.",
+      "text": "Marchetti was at the third floor at 7:00 PM and says Mulcahy was not.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c092",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s6",
+        "topic": "Mulcahy’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 4
+          "place": "walkup-flat",
+          "tick": 2
         }
       ],
-      "text": "Gretchen Kreuzer runs through it: at 8:00 PM there were Vincenzo Grasso, James Mulcahy at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "walkup-flat",
+      "text": "Mulcahy names Schilling as the company for it. Schilling was at the Wyckoff at 7:00 PM, and says Mulcahy was not there.",
+      "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5065,31 +5039,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s6",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "walkup-flat",
-          "tick": 5
+          "place": "hotel-garage",
+          "tick": 7
         }
       ],
-      "text": "Gretchen Kreuzer runs through it: at 8:30 PM there were Nora Hanrahan, James Mulcahy, Sterling Coffin at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
+      "text": "Schilling was at the garage at 9:30 PM and says Coffin was not.",
+      "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5098,64 +5060,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f3",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "hotel-garage",
+          "tick": 7
         }
       ],
-      "text": "Gretchen Kreuzer runs through it: at 9:00 PM there were Vincenzo Grasso, Nora Hanrahan, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
+      "text": "Feldman was at the garage at 9:30 PM and says Coffin was not.",
+      "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c095",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-s3",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "hotel-garage",
           "tick": 7
         }
       ],
-      "text": "Gretchen Kreuzer runs through it: at 9:30 PM there were Vincenzo Grasso, Nora Hanrahan, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
+      "text": "Coffin names Hanrahan as the company for it. Hanrahan was at the third floor at 9:30 PM, and says Coffin was not there.",
+      "place": "ferry-slip",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5164,1160 +5102,24 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f4",
+        "topic": "Schilling’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "hotel-lobby",
+          "tick": 5
         }
       ],
-      "text": "Nora Hanrahan runs through it: at 9:00 PM there were Vincenzo Grasso, Gretchen Kreuzer, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "ferry-slip",
+      "text": "Havemeyer was at the Wyckoff at 8:30 PM and says Schilling was not.",
+      "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c097",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 7
-        }
-      ],
-      "text": "Nora Hanrahan runs through it: at 9:30 PM there were Vincenzo Grasso, Gretchen Kreuzer, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "ferry-slip",
-          "tick": 11
-        }
-      ],
-      "text": "Nora Hanrahan runs through it: at 11:30 PM there were Vincenzo Grasso, Margarethe Schilling at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 1
-        }
-      ],
-      "text": "James Mulcahy runs through it: at 6:30 PM there were Vincenzo Grasso, Margarethe Schilling at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 4
-        }
-      ],
-      "text": "James Mulcahy runs through it: at 8:00 PM there were Vincenzo Grasso, Gretchen Kreuzer at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "James Mulcahy runs through it: at 8:30 PM there were Gretchen Kreuzer, Nora Hanrahan, Sterling Coffin at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 6
-        }
-      ],
-      "text": "James Mulcahy runs through it: at 9:00 PM there were Vincenzo Grasso, Gretchen Kreuzer, Nora Hanrahan at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 7
-        }
-      ],
-      "text": "James Mulcahy runs through it: at 9:30 PM there were Vincenzo Grasso, Gretchen Kreuzer, Nora Hanrahan at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 2
-        }
-      ],
-      "text": "Sterling Coffin runs through it: at 7:00 PM there were Vincenzo Grasso, James Mulcahy, Margarethe Schilling at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "Sterling Coffin runs through it: at 8:30 PM there were Gretchen Kreuzer, Nora Hanrahan, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 1
-        }
-      ],
-      "text": "Margarethe Schilling runs through it: at 6:30 PM there were Vincenzo Grasso, James Mulcahy at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 2
-        }
-      ],
-      "text": "Margarethe Schilling runs through it: at 7:00 PM there were Vincenzo Grasso, James Mulcahy, Sterling Coffin at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "ferry-slip",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "ferry-slip",
-          "tick": 11
-        }
-      ],
-      "text": "Margarethe Schilling runs through it: at 11:30 PM there were Vincenzo Grasso, Nora Hanrahan at the ferry slip at the foot of the street, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 2
-        }
-      ],
-      "text": "Margaret Callahan runs through it: at 7:00 PM there were Gretchen Kreuzer, Nora Hanrahan at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 3
-        }
-      ],
-      "text": "Margaret Callahan runs through it: at 7:30 PM there were Vincenzo Grasso, James Mulcahy at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 4
-        }
-      ],
-      "text": "Margaret Callahan runs through it: at 8:00 PM there were Vincenzo Grasso, Gretchen Kreuzer, James Mulcahy at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 10
-        }
-      ],
-      "text": "Margaret Callahan runs through it: at 11:00 PM there were James Mulcahy, Sterling Coffin at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 11
-        }
-      ],
-      "text": "Margaret Callahan runs through it: at 11:30 PM there were James Mulcahy, Sterling Coffin at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "Carmela Marchetti runs through it: at 8:30 PM there were Gretchen Kreuzer, Nora Hanrahan, James Mulcahy, Sterling Coffin at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
-      "leadsTo": [
-        "c129",
-        "c140",
-        "c126",
-        "c080",
-        "c167"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 6
-        }
-      ],
-      "text": "Carmela Marchetti runs through it: at 9:00 PM there were Vincenzo Grasso, Gretchen Kreuzer, Nora Hanrahan, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 7
-        }
-      ],
-      "text": "Carmela Marchetti runs through it: at 9:30 PM there were Vincenzo Grasso, Gretchen Kreuzer, Nora Hanrahan, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 8
-        }
-      ],
-      "text": "Carmela Marchetti runs through it: at 10:00 PM there were Vincenzo Grasso, Gretchen Kreuzer at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 9
-        }
-      ],
-      "text": "Carmela Marchetti runs through it: at 10:30 PM there were Vincenzo Grasso, Gretchen Kreuzer at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 10
-        }
-      ],
-      "text": "Carmela Marchetti runs through it: at 11:00 PM there were Vincenzo Grasso, Gretchen Kreuzer at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-garage",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-garage",
-          "tick": 0
-        }
-      ],
-      "text": "Esther Feldman runs through it: at 6:00 PM there were Nora Hanrahan, James Mulcahy at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "hotel-garage",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 4
-        }
-      ],
-      "text": "Esther Feldman runs through it: at 8:00 PM there were Nora Hanrahan, Margarethe Schilling at the garage on Eleventh Avenue, and nobody else worth naming.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 0
-        }
-      ],
-      "text": "Chandler Havemeyer runs through it: at 6:00 PM there were Vincenzo Grasso, Margarethe Schilling at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 1
-        }
-      ],
-      "text": "Chandler Havemeyer runs through it: at 6:30 PM there were Vincenzo Grasso, James Mulcahy, Margarethe Schilling at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 2
-        }
-      ],
-      "text": "Chandler Havemeyer runs through it: at 7:00 PM there were Vincenzo Grasso, James Mulcahy, Sterling Coffin, Margarethe Schilling at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 8
-        }
-      ],
-      "text": "Chandler Havemeyer runs through it: at 10:00 PM there were James Mulcahy, Margarethe Schilling at the lobby of the Wyckoff, and nobody else worth naming.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Vincenzo Grasso’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "Gretchen Kreuzer was at the third-floor walk-up on Ninth at 8:30 PM and says Vincenzo Grasso was not.",
-      "place": "walkup-flat",
-      "leadsTo": [
-        "c159"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Vincenzo Grasso’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "James Mulcahy was at the third-floor walk-up on Ninth at 8:30 PM and says Vincenzo Grasso was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Vincenzo Grasso’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "Sterling Coffin was at the third-floor walk-up on Ninth at 8:30 PM and says Vincenzo Grasso was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c129",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Vincenzo Grasso’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "Carmela Marchetti was at the third-floor walk-up on Ninth at 8:30 PM and says Vincenzo Grasso was not.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "spine"
-    },
-    {
-      "id": "c130",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Nora Hanrahan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "hotel-lobby",
-          "tick": 5
-        }
-      ],
-      "text": "Chandler Havemeyer was at the lobby of the Wyckoff at 8:30 PM and says Nora Hanrahan was not.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "James Mulcahy’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 2
-        }
-      ],
-      "text": "Carmela Marchetti was at the third-floor walk-up on Ninth at 7:00 PM and says James Mulcahy was not.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c132",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "James Mulcahy’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 2
-        }
-      ],
-      "text": "James Mulcahy says Margarethe Schilling was there for it. Margarethe Schilling says otherwise: Margarethe Schilling was at the lobby of the Wyckoff at 7:00 PM, nowhere near the third-floor walk-up on Ninth.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Sterling Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "hotel-garage",
-          "tick": 7
-        }
-      ],
-      "text": "Margarethe Schilling was at the garage on Eleventh Avenue at 9:30 PM and says Sterling Coffin was not.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c134",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Sterling Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "hotel-garage",
-          "tick": 7
-        }
-      ],
-      "text": "Esther Feldman was at the garage on Eleventh Avenue at 9:30 PM and says Sterling Coffin was not.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c135",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Sterling Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "hotel-garage",
-          "tick": 7
-        }
-      ],
-      "text": "Sterling Coffin says Nora Hanrahan was there for it. Nora Hanrahan says otherwise: Nora Hanrahan was at the third-floor walk-up on Ninth at 9:30 PM, nowhere near the garage on Eleventh Avenue.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c136",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Margarethe Schilling’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 5
-        }
-      ],
-      "text": "Chandler Havemeyer was at the lobby of the Wyckoff at 8:30 PM and says Margarethe Schilling was not.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c137",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -6333,20 +5135,19 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Martin Sweeney was found at the victim’s suite at the residential hotel. The lamp came down with him and the bulb is still warm in its socket, unbroken. The El going over came at 8:30 PM, and the El was running to timetable and it covers the half hour exactly. That puts the killing in that half hour and no later.",
+      "text": "Sweeney was found at the suite. The lamp came down with him and the bulb is still warm in its socket, unbroken. The El went over at 8:30 PM, running to timetable, and for twenty seconds nothing under the structure can be heard at all.",
       "place": "res-suite",
       "leadsTo": [
-        "c114",
-        "c129",
-        "c051",
-        "c067",
-        "c105"
+        "c073",
+        "c100",
+        "c101",
+        "c043"
       ],
       "role": "spine",
       "anchorId": "el-train"
     },
     {
-      "id": "c138",
+      "id": "c098",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -6368,14 +5169,14 @@
       "text": "The coroner puts death between 8:30 PM and 10:00 PM — two hours of nothing useful. One depressed fracture at the back of the skull. Death was not instant.",
       "place": "res-suite",
       "leadsTo": [
-        "c114",
-        "c142",
-        "c182"
+        "c074",
+        "c089",
+        "c071"
       ],
       "role": "spine"
     },
     {
-      "id": "c139",
+      "id": "c099",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6392,18 +5193,20 @@
           "methodId": "blunt"
         }
       ],
-      "text": "A bronze bookend is gone from the lobby of the Wyckoff. There is a clean square in the dust where it stood.",
+      "text": "A bronze bookend is gone from the Wyckoff. There is a clean square in the dust where it stood.",
       "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c135"
+      ],
+      "role": "corroboration"
     },
     {
-      "id": "c140",
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Martin Sweeney that evening"
+        "topic": "Sweeney that evening"
       },
       "establishes": [
         {
@@ -6417,46 +5220,16 @@
           "tick": 4
         }
       ],
-      "text": "Carmela Marchetti puts Martin Sweeney at the third-floor walk-up on Ninth while the lesson was still going on overhead, which was 8:00 PM, and alive enough to argue about the weather.",
+      "text": "Marchetti puts Sweeney at the third floor while the lesson was still going on overhead, which was 8:00 PM, and alive enough to argue about the weather.",
       "place": "walkup-flat",
       "leadsTo": [
-        "c051",
-        "c067"
+        "c142"
       ],
       "role": "spine",
       "anchorId": "piano-lesson"
     },
     {
-      "id": "c141",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 5
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 5
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "blunt"
-        }
-      ],
-      "text": "Chandler Havemeyer was at the lobby of the Wyckoff at 8:30 PM and heard a heavy fall and a cry cut short from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c142",
+      "id": "c101",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6469,21 +5242,20 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A clipping about the failure of Vincenzo Grasso’s business, with Martin Sweeney’s name underlined twice in pencil.",
+      "text": "Found at the suite: A clipping about the failure of Grasso’s business, with Sweeney’s name underlined twice in pencil.",
       "place": "res-suite",
       "leadsTo": [
-        "c140",
-        "c039"
+        "c042"
       ],
       "role": "spine"
     },
     {
-      "id": "c143",
+      "id": "c102",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Vincenzo Grasso and Martin Sweeney"
+        "topic": "Grasso and Sweeney"
       },
       "establishes": [
         {
@@ -6492,13 +5264,13 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Margaret Callahan says Vincenzo Grasso said Martin Sweeney had taken everything and would be made to feel it.",
+      "text": "Callahan says Grasso said Sweeney had taken everything and would be made to feel it.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c144",
+      "id": "c103",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6511,18 +5283,18 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s suite at the residential hotel: A promissory note for $4,000 signed by Gretchen Kreuzer, endorsed to Martin Sweeney, three months past due.",
+      "text": "Found at the suite: A promissory note for $4,000 signed by Kreuzer, endorsed to Sweeney, three months past due.",
       "place": "res-suite",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c145",
+      "id": "c104",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Gretchen Kreuzer and Martin Sweeney"
+        "topic": "Kreuzer and Sweeney"
       },
       "establishes": [
         {
@@ -6531,13 +5303,13 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Margarethe Schilling says Martin Sweeney told Gretchen Kreuzer that Friday was the end of it, one way or the other.",
+      "text": "Schilling says Sweeney told Kreuzer that Friday was the end of it, one way or the other.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c146",
+      "id": "c105",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6546,37 +5318,37 @@
       "establishes": [
         {
           "kind": "hasMotive",
-          "personId": "p-s5",
-          "motiveType": "silence-a-witness"
+          "personId": "p-s4",
+          "motiveType": "exposure"
         }
       ],
-      "text": "Found at the garage on Eleventh Avenue: A subpoena naming Martin Sweeney before the grand jury, with Sterling Coffin’s name written in the margin.",
+      "text": "Found at the garage: A typed page of dates and sums in Sweeney’s file, headed with Mulcahy’s name.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c147",
+      "id": "c106",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Sterling Coffin and Martin Sweeney"
+        "topic": "Mulcahy and Sweeney"
       },
       "establishes": [
         {
           "kind": "hasMotive",
-          "personId": "p-s5",
-          "motiveType": "silence-a-witness"
+          "personId": "p-s4",
+          "motiveType": "exposure"
         }
       ],
-      "text": "Gretchen Kreuzer says Martin Sweeney said to Sterling Coffin that a man who testifies sleeps better.",
+      "text": "Kreuzer says Sweeney told Mulcahy that the story would run whether Mulcahy liked it or not.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c148",
+      "id": "c107",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6585,37 +5357,37 @@
       "establishes": [
         {
           "kind": "hasMotive",
-          "personId": "p-s6",
-          "motiveType": "exposure"
+          "personId": "p-s5",
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "Found at the third-floor walk-up on Ninth: A typed page of dates and sums in Martin Sweeney’s file, headed with Margarethe Schilling’s name.",
+      "text": "Found at the third floor: A subpoena naming Sweeney before the grand jury, with Coffin’s name written in the margin.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c149",
+      "id": "c108",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Margarethe Schilling and Martin Sweeney"
+        "topic": "Coffin and Sweeney"
       },
       "establishes": [
         {
           "kind": "hasMotive",
-          "personId": "p-s6",
-          "motiveType": "exposure"
+          "personId": "p-s5",
+          "motiveType": "silence-a-witness"
         }
       ],
-      "text": "James Mulcahy says Martin Sweeney told Margarethe Schilling that the story would run whether Margarethe Schilling liked it or not.",
+      "text": "Mulcahy says Sweeney said to Coffin that a man who testifies sleeps better.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c150",
+      "id": "c109",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6629,211 +5401,211 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Vincenzo Grasso hired us. Vincenzo Grasso wants it known that Gretchen Kreuzer owed the victim money, and would rather we started there.",
+      "text": "Grasso hired us, and wants it known that Kreuzer owed the victim money, and would rather we started there.",
       "place": "walkup-flat",
       "leadsTo": [
-        "c142"
+        "c074",
+        "c073",
+        "c100",
+        "c042",
+        "c018"
       ],
       "role": "spine"
     },
     {
-      "id": "c151",
+      "id": "c110",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "Gretchen Kreuzer"
+        "personId": "p-s3",
+        "topic": "Kreuzer"
       },
       "establishes": [],
-      "text": "Carmela Marchetti on Gretchen Kreuzer: Gretchen Kreuzer’s registration card gives an address on a street that does not exist.",
+      "text": "Hanrahan on Kreuzer: Kreuzer’s registration card gives an address on a street that does not exist.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Kreuzer"
+      },
+      "establishes": [],
+      "text": "Coffin on Kreuzer: Two signatures of Kreuzer’s, a month apart, are in different hands.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c112",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Kreuzer"
+      },
+      "establishes": [],
+      "text": "Callahan on Kreuzer: Kreuzer answers to the name a half-second late, every time.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c113",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "walkup-flat"
+      },
+      "establishes": [],
+      "text": "A union card in Kreuzer’s coat lining carries a different surname and a 1919 date.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c152",
+      "id": "c114",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "walkup-flat"
+      },
+      "establishes": [],
+      "text": "A steamship ticket stub among Kreuzer’s things, in the name of a man who died at Belleau Wood.",
+      "place": "walkup-flat",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c115",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "walkup-flat"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "forged-identity"
+        }
+      ],
+      "text": "The name Kreuzer was born with turns up on a desertion warrant from 1918. Kreuzer has been hiding from the Army for eleven years and from nobody else.",
+      "place": "walkup-flat",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "walkup-flat"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "forged-identity"
+        }
+      ],
+      "text": "The papers are forged and the reason is plain: Kreuzer was put out of the country once already and does not mean to be put out twice.",
+      "place": "walkup-flat",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Hanrahan"
+      },
+      "establishes": [],
+      "text": "Marchetti on Hanrahan: Hanrahan had a key to the third floor that Hanrahan had no business having.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b4"
+    },
+    {
+      "id": "c118",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Gretchen Kreuzer"
+        "topic": "Hanrahan"
       },
       "establishes": [],
-      "text": "Chandler Havemeyer on Gretchen Kreuzer: Two signatures of Gretchen Kreuzer’s, a month apart, are in different hands.",
+      "text": "Havemeyer on Hanrahan: The accounts at the third floor are in two hands, and the second hand only appears in the last column.",
       "place": "hotel-lobby",
-      "leadsTo": [
-        "c156"
-      ],
+      "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s3"
     },
     {
-      "id": "c153",
+      "id": "c119",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "Gretchen Kreuzer"
+        "personId": "p-s4",
+        "topic": "Hanrahan"
       },
       "establishes": [],
-      "text": "Nora Hanrahan on Gretchen Kreuzer: Gretchen Kreuzer answers to the name a half-second late, every time.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c154",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "walkup-flat"
-      },
-      "establishes": [],
-      "text": "A union card in Gretchen Kreuzer’s coat lining carries a different surname and a 1919 date.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c155",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "walkup-flat"
-      },
-      "establishes": [],
-      "text": "A steamship ticket stub among Gretchen Kreuzer’s things, in the name of a man who died at Belleau Wood.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "walkup-flat"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "forged-identity"
-        }
-      ],
-      "text": "The name Gretchen Kreuzer was born with turns up on a desertion warrant from 1918. Gretchen Kreuzer has been hiding from the Army for eleven years and from nobody else.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c157",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "walkup-flat"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "forged-identity"
-        }
-      ],
-      "text": "The papers are forged and the reason is plain: Gretchen Kreuzer was put out of the country once already and does not mean to be put out twice.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c158",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Nora Hanrahan"
-      },
-      "establishes": [],
-      "text": "Margaret Callahan on Nora Hanrahan: Nora Hanrahan had a key to the third-floor walk-up on Ninth that Nora Hanrahan had no business having.",
+      "text": "Mulcahy on Hanrahan: Somebody heard a drawer being worked at the third floor some time after 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s3"
     },
     {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Nora Hanrahan"
-      },
-      "establishes": [],
-      "text": "Esther Feldman on Nora Hanrahan: The accounts at the third-floor walk-up on Ninth are in two hands, and the second hand only appears in the last column.",
-      "place": "hotel-garage",
-      "leadsTo": [
-        "c162"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Nora Hanrahan"
-      },
-      "establishes": [],
-      "text": "Gretchen Kreuzer on Nora Hanrahan: Somebody heard a drawer being worked at the third-floor walk-up on Ninth some time after 8:30 PM.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c161",
+      "id": "c120",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "walkup-flat"
       },
       "establishes": [],
-      "text": "A carbon of a deposit slip at the third-floor walk-up on Ninth, made out in Nora Hanrahan’s hand to an account in another name.",
+      "text": "A carbon of a deposit slip at the third floor, made out in Hanrahan’s hand to an account in another name.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s3"
     },
     {
-      "id": "c162",
+      "id": "c121",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "walkup-flat"
       },
       "establishes": [],
-      "text": "Ledger pages at the third-floor walk-up on Ninth where the totals have been rubbed and written over.",
+      "text": "Ledger pages at the third floor where the totals have been rubbed and written over.",
       "place": "walkup-flat",
       "leadsTo": [
-        "c163"
+        "c117"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s3",
       "branchId": "b4"
     },
     {
-      "id": "c163",
+      "id": "c122",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -6852,7 +5624,7 @@
           "tick": 5
         }
       ],
-      "text": "The bank confirms the account: Nora Hanrahan has been taking two hundred a month for a year, and was at the third-floor walk-up on Ninth doing exactly that from 8:30 PM. It is theft, and it is not murder.",
+      "text": "The bank confirms the account: Hanrahan has been taking two hundred a month for a year, and was at the third floor doing exactly that from 8:30 PM. It is theft, and it is not murder.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "disqualifier",
@@ -6860,7 +5632,7 @@
       "branchId": "b4"
     },
     {
-      "id": "c164",
+      "id": "c123",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -6879,354 +5651,365 @@
           "tick": 5
         }
       ],
-      "text": "The books at the third-floor walk-up on Ninth settle it. Nora Hanrahan spent from 8:30 PM covering a hole in the accounts, which is why Nora Hanrahan would rather be suspected of anything else.",
+      "text": "The books at the third floor settle it. Hanrahan spent from 8:30 PM covering a hole in the accounts, which is why Hanrahan would rather be suspected of anything else.",
       "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise",
+      "leadsTo": [
+        "c121"
+      ],
+      "role": "corroboration",
       "aboutSecretOf": "p-s3"
     },
     {
-      "id": "c165",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "James Mulcahy"
-      },
-      "establishes": [],
-      "text": "Nora Hanrahan on James Mulcahy: James Mulcahy and the victim were heard at the lobby of the Wyckoff, and one of them was doing all the talking.",
-      "place": "ferry-slip",
-      "leadsTo": [
-        "c170"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "James Mulcahy"
-      },
-      "establishes": [],
-      "text": "Margarethe Schilling on James Mulcahy: James Mulcahy has come into money lately and has no visible way of having come into money.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c167",
+      "id": "c124",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "James Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [],
-      "text": "Carmela Marchetti on James Mulcahy: The victim had been drawing cash in amounts that did not match anything in the accounts.",
+      "text": "Marchetti on Mulcahy: Mulcahy and the victim were heard at the Wyckoff, and one of them was doing all the talking.",
       "place": "walkup-flat",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Mulcahy"
+      },
+      "establishes": [],
+      "text": "Havemeyer on Mulcahy: Mulcahy has come into money lately and has no visible way of having come into money.",
+      "place": "hotel-lobby",
       "leadsTo": [
-        "c165"
+        "c126"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s4",
       "branchId": "b2"
     },
     {
-      "id": "c168",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hotel-lobby"
-      },
-      "establishes": [],
-      "text": "An envelope at the lobby of the Wyckoff with nothing in it, addressed in the victim’s hand to no one.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hotel-lobby"
-      },
-      "establishes": [],
-      "text": "A photograph at the lobby of the Wyckoff, folded small, of something the victim would have paid to keep folded.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hotel-lobby"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "blackmail"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 2
-        }
-      ],
-      "text": "The victim’s bank book settles it: four payments, and James Mulcahy at the lobby of the Wyckoff from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hotel-lobby"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "blackmail"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "hotel-lobby",
-          "tick": 2
-        }
-      ],
-      "text": "The thing James Mulcahy was holding over the victim turns up, and it was worth more to James Mulcahy every month than once.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c172",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Sterling Coffin"
-      },
-      "establishes": [],
-      "text": "Vincenzo Grasso on Sterling Coffin: Sterling Coffin was carrying a parcel into the speakeasy under the hat shop and came out without it.",
-      "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Sterling Coffin"
-      },
-      "establishes": [],
-      "text": "Nora Hanrahan on Sterling Coffin: There is a man who meets people at the speakeasy under the hat shop and nobody will say his name out loud.",
-      "place": "ferry-slip",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c174",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Sterling Coffin"
-      },
-      "establishes": [],
-      "text": "Margarethe Schilling on Sterling Coffin: Sterling Coffin has been selling things that were never Sterling Coffin’s to sell.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c175",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the speakeasy under the hat shop, and the shop it came from closed two years ago.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c177"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c176",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the speakeasy under the hat shop in a name that does not exist, made out at the hour in question.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c177",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "The receiver at the speakeasy under the hat shop would rather talk than be held: Sterling Coffin was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Sterling Coffin will take over this one.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b5"
-    },
-    {
-      "id": "c178",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Sterling Coffin at the speakeasy under the hat shop from 9:30 PM with both hands full.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c179",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Margarethe Schilling"
-      },
-      "establishes": [],
-      "text": "Margaret Callahan on Margarethe Schilling: Margarethe Schilling was carrying a parcel into the garage on Eleventh Avenue and came out without it.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Margarethe Schilling"
-      },
-      "establishes": [],
-      "text": "Esther Feldman on Margarethe Schilling: There is a man who meets people at the garage on Eleventh Avenue and nobody will say his name out loud.",
-      "place": "hotel-garage",
-      "leadsTo": [
-        "c184"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b1"
-    },
-    {
-      "id": "c181",
+      "id": "c126",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Margarethe Schilling"
+        "topic": "Mulcahy"
       },
       "establishes": [],
-      "text": "Gretchen Kreuzer on Margarethe Schilling: Margarethe Schilling has been selling things that were never Margarethe Schilling’s to sell.",
+      "text": "Kreuzer on Mulcahy: The victim had been drawing cash in amounts that did not match anything in the accounts.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c129"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c127",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-lobby"
+      },
+      "establishes": [],
+      "text": "An envelope at the Wyckoff with nothing in it, addressed in the victim’s hand to no one.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c125"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c128",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-lobby"
+      },
+      "establishes": [],
+      "text": "A photograph at the Wyckoff, folded small, of something the victim would have paid to keep folded.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c129",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-lobby"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "hotel-lobby",
+          "tick": 2
+        }
+      ],
+      "text": "The victim’s bank book settles it: four payments, and Mulcahy at the Wyckoff from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-lobby"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "hotel-lobby",
+          "tick": 2
+        }
+      ],
+      "text": "The thing Mulcahy was holding over the victim turns up, and it was worth more to Mulcahy every month than once.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Schilling on Coffin: Coffin was carrying a parcel into the speakeasy and came out without it.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Marchetti on Coffin: There is a man who meets people at the speakeasy and nobody will say his name out loud.",
       "place": "walkup-flat",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s6"
+      "aboutSecretOf": "p-s5"
     },
     {
-      "id": "c182",
-      "kind": "physical",
+      "id": "c133",
+      "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "hotel-garage"
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Coffin"
       },
       "establishes": [],
-      "text": "Wrapping paper and a cut string at the garage on Eleventh Avenue, and the shop it came from closed two years ago.",
-      "place": "hotel-garage",
+      "text": "Havemeyer on Coffin: Coffin has been selling things that were never Coffin’s to sell.",
+      "place": "hotel-lobby",
       "leadsTo": [
-        "c180"
+        "c136"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s6",
+      "aboutSecretOf": "p-s5",
       "branchId": "b1"
     },
     {
-      "id": "c183",
+      "id": "c134",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the speakeasy, and the shop it came from closed two years ago.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c133"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c135",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the speakeasy in a name that does not exist, made out at the hour in question.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c134"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c136",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "The receiver at the speakeasy would rather talk than be held: Coffin was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Coffin will take over this one.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Coffin at the speakeasy from 9:30 PM with both hands full.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Schilling"
+      },
+      "establishes": [],
+      "text": "Marchetti on Schilling: Schilling was carrying a parcel into the garage and came out without it.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c143"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Schilling"
+      },
+      "establishes": [],
+      "text": "Havemeyer on Schilling: There is a man who meets people at the garage and nobody will say his name out loud.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Schilling"
+      },
+      "establishes": [],
+      "text": "Mulcahy on Schilling: Schilling has been selling things that were never Schilling’s to sell.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c141",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "hotel-garage"
       },
       "establishes": [],
-      "text": "A pawn ticket at the garage on Eleventh Avenue in a name that does not exist, made out at the hour in question.",
+      "text": "Wrapping paper and a cut string at the garage, and the shop it came from closed two years ago.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c184",
+      "id": "c142",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-garage"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the garage in a name that does not exist, made out at the hour in question.",
+      "place": "hotel-garage",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c143",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7245,15 +6028,15 @@
           "tick": 5
         }
       ],
-      "text": "The receiver at the garage on Eleventh Avenue would rather talk than be held: Margarethe Schilling was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Margarethe Schilling will take over this one.",
+      "text": "The receiver at the garage would rather talk than be held: Schilling was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Schilling will take over this one.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s6",
-      "branchId": "b1"
+      "branchId": "b3"
     },
     {
-      "id": "c185",
+      "id": "c144",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7272,7 +6055,7 @@
           "tick": 5
         }
       ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Margarethe Schilling at the garage on Eleventh Avenue from 8:30 PM with both hands full.",
+      "text": "The goods turn up, tagged and dated, and the tag puts Schilling at the garage from 8:30 PM with both hands full.",
       "place": "hotel-garage",
       "leadsTo": [],
       "role": "noise",
@@ -7281,7 +6064,7 @@
   ],
   "findable": [
     {
-      "id": "c137",
+      "id": "c097",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7297,20 +6080,19 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Martin Sweeney was found at the victim’s suite at the residential hotel. The lamp came down with him and the bulb is still warm in its socket, unbroken. The El going over came at 8:30 PM, and the El was running to timetable and it covers the half hour exactly. That puts the killing in that half hour and no later.",
+      "text": "Sweeney was found at the suite. The lamp came down with him and the bulb is still warm in its socket, unbroken. The El went over at 8:30 PM, running to timetable, and for twenty seconds nothing under the structure can be heard at all.",
       "place": "res-suite",
       "leadsTo": [
-        "c114",
-        "c129",
-        "c051",
-        "c067",
-        "c105"
+        "c073",
+        "c100",
+        "c101",
+        "c043"
       ],
       "role": "spine",
       "anchorId": "el-train"
     },
     {
-      "id": "c138",
+      "id": "c098",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7332,14 +6114,14 @@
       "text": "The coroner puts death between 8:30 PM and 10:00 PM — two hours of nothing useful. One depressed fracture at the back of the skull. Death was not instant.",
       "place": "res-suite",
       "leadsTo": [
-        "c114",
-        "c142",
-        "c182"
+        "c074",
+        "c089",
+        "c071"
       ],
       "role": "spine"
     },
     {
-      "id": "c150",
+      "id": "c109",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7353,40 +6135,26 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Vincenzo Grasso hired us. Vincenzo Grasso wants it known that Gretchen Kreuzer owed the victim money, and would rather we started there.",
+      "text": "Grasso hired us, and wants it known that Kreuzer owed the victim money, and would rather we started there.",
       "place": "walkup-flat",
       "leadsTo": [
-        "c142"
+        "c074",
+        "c073",
+        "c100",
+        "c042",
+        "c018"
       ],
       "role": "spine"
     },
     {
-      "id": "c114",
+      "id": "c074",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "who was there at 8:30 PM"
+        "topic": "Coffin"
       },
       "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 5
-        },
         {
           "kind": "personAt",
           "personId": "p-s5",
@@ -7394,46 +6162,23 @@
           "tick": 5
         }
       ],
-      "text": "Carmela Marchetti runs through it: at 8:30 PM there were Gretchen Kreuzer, Nora Hanrahan, James Mulcahy, Sterling Coffin at the third-floor walk-up on Ninth, and nobody else worth naming.",
+      "text": "Marchetti says Coffin was at the third floor at 8:30 PM.",
       "place": "walkup-flat",
       "leadsTo": [
-        "c129",
-        "c140",
-        "c126",
-        "c080",
-        "c167"
+        "c089",
+        "c071",
+        "c102",
+        "c088"
       ],
       "role": "spine"
     },
     {
-      "id": "c142",
-      "kind": "document",
-      "source": {
-        "type": "place",
-        "placeId": "res-suite"
-      },
-      "establishes": [
-        {
-          "kind": "hasMotive",
-          "personId": "p-s1",
-          "motiveType": "revenge"
-        }
-      ],
-      "text": "Found at the victim’s suite at the residential hotel: A clipping about the failure of Vincenzo Grasso’s business, with Martin Sweeney’s name underlined twice in pencil.",
-      "place": "res-suite",
-      "leadsTo": [
-        "c140",
-        "c039"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c129",
+      "id": "c089",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Vincenzo Grasso’s account"
+        "topic": "Grasso’s account"
       },
       "establishes": [
         {
@@ -7443,18 +6188,56 @@
           "tick": 5
         }
       ],
-      "text": "Carmela Marchetti was at the third-floor walk-up on Ninth at 8:30 PM and says Vincenzo Grasso was not.",
+      "text": "Marchetti was at the third floor at 8:30 PM and says Grasso was not.",
       "place": "walkup-flat",
-      "leadsTo": [],
+      "leadsTo": [
+        "c067",
+        "c099"
+      ],
       "role": "spine"
     },
     {
-      "id": "c140",
+      "id": "c073",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Mulcahy"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "walkup-flat",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "walkup-flat",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "walkup-flat",
+          "tick": 7
+        }
+      ],
+      "text": "Marchetti says Mulcahy was at the third floor from 8:30 PM to 9:30 PM.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c016"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Martin Sweeney that evening"
+        "topic": "Sweeney that evening"
       },
       "establishes": [
         {
@@ -7468,36 +6251,140 @@
           "tick": 4
         }
       ],
-      "text": "Carmela Marchetti puts Martin Sweeney at the third-floor walk-up on Ninth while the lesson was still going on overhead, which was 8:00 PM, and alive enough to argue about the weather.",
+      "text": "Marchetti puts Sweeney at the third floor while the lesson was still going on overhead, which was 8:00 PM, and alive enough to argue about the weather.",
       "place": "walkup-flat",
       "leadsTo": [
-        "c051",
-        "c067"
+        "c142"
       ],
       "role": "spine",
       "anchorId": "piano-lesson"
     },
     {
-      "id": "c051",
+      "id": "c071",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s6",
-        "topic": "Vincenzo Grasso"
+        "personId": "p-f2",
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 0
+          "personId": "p-s2",
+          "place": "walkup-flat",
+          "tick": 5
         },
         {
           "kind": "personAt",
-          "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 1
+          "personId": "p-s2",
+          "place": "walkup-flat",
+          "tick": 6
         },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "walkup-flat",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "walkup-flat",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "walkup-flat",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "walkup-flat",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "walkup-flat",
+          "tick": 11
+        }
+      ],
+      "text": "Marchetti says Kreuzer was at the third floor from 8:30 PM to 11:30 PM.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c016",
+        "c101",
+        "c127"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Hanrahan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "walkup-flat",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "walkup-flat",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "walkup-flat",
+          "tick": 7
+        }
+      ],
+      "text": "Kreuzer says Hanrahan was at the third floor from 8:30 PM to 9:30 PM.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c101",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-suite"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s1",
+          "motiveType": "revenge"
+        }
+      ],
+      "text": "Found at the suite: A clipping about the failure of Grasso’s business, with Sweeney’s name underlined twice in pencil.",
+      "place": "res-suite",
+      "leadsTo": [
+        "c042"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Grasso"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s1",
@@ -7510,13 +6397,10 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Margarethe Schilling says Vincenzo Grasso was at the lobby of the Wyckoff from 6:00 PM to 7:00 PM.",
-      "place": "hotel-lobby",
+      "text": "Coffin says Grasso was at the Wyckoff at 7:00 PM.",
+      "place": "speakeasy",
       "leadsTo": [
-        "c143",
-        "c141",
-        "c152",
-        "c175"
+        "c067"
       ],
       "role": "spine"
     },
@@ -7526,7 +6410,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Margarethe Schilling"
+        "topic": "Schilling"
       },
       "establishes": [
         {
@@ -7536,148 +6420,13 @@
           "tick": 5
         }
       ],
-      "text": "Margaret Callahan says Margarethe Schilling was at the garage on Eleventh Avenue at 8:30 PM.",
+      "text": "Callahan says Schilling was at the garage at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [
-        "c078",
-        "c101",
-        "c042"
+        "c080",
+        "c046"
       ],
       "role": "spine"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "Sterling Coffin runs through it: at 8:30 PM there were Gretchen Kreuzer, Nora Hanrahan, James Mulcahy at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c078",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Margarethe Schilling"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
-          "tick": 7
-        }
-      ],
-      "text": "Esther Feldman says Margarethe Schilling was at the garage on Eleventh Avenue from 7:30 PM to 9:30 PM.",
-      "place": "hotel-garage",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Vincenzo Grasso’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "Gretchen Kreuzer was at the third-floor walk-up on Ninth at 8:30 PM and says Vincenzo Grasso was not.",
-      "place": "walkup-flat",
-      "leadsTo": [
-        "c159"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "walkup-flat",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "walkup-flat",
-          "tick": 5
-        }
-      ],
-      "text": "James Mulcahy runs through it: at 8:30 PM there were Gretchen Kreuzer, Nora Hanrahan, Sterling Coffin at the third-floor walk-up on Ninth, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
     },
     {
       "id": "c080",
@@ -7685,7 +6434,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso"
       },
       "establishes": [
         {
@@ -7712,18 +6461,18 @@
           "methodId": "blunt"
         }
       ],
-      "text": "Chandler Havemeyer says Vincenzo Grasso was at the lobby of the Wyckoff from 6:00 PM to 7:00 PM.",
+      "text": "Havemeyer says Grasso was at the Wyckoff from 6:00 PM to 7:00 PM.",
       "place": "hotel-lobby",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c143",
+      "id": "c102",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Vincenzo Grasso and Martin Sweeney"
+        "topic": "Grasso and Sweeney"
       },
       "establishes": [
         {
@@ -7732,293 +6481,106 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Margaret Callahan says Vincenzo Grasso said Martin Sweeney had taken everything and would be made to feel it.",
+      "text": "Callahan says Grasso said Sweeney had taken everything and would be made to feel it.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c141",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-suite",
-          "tick": 5
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 5
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "blunt"
-        }
-      ],
-      "text": "Chandler Havemeyer was at the lobby of the Wyckoff at 8:30 PM and heard a heavy fall and a cry cut short from the direction of the victim’s suite at the residential hotel, just as the El went over.",
-      "place": "hotel-lobby",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "el-train"
-    },
-    {
-      "id": "c042",
+      "id": "c088",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Vincenzo Grasso"
+        "topic": "Grasso’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s1",
-          "place": "hotel-lobby",
-          "tick": 2
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "blunt"
-        }
-      ],
-      "text": "Sterling Coffin says Vincenzo Grasso was at the lobby of the Wyckoff at 7:00 PM.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c039",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Margarethe Schilling"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-lobby",
-          "tick": 1
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s6",
-          "methodId": "blunt"
-        }
-      ],
-      "text": "James Mulcahy says Margarethe Schilling was at the lobby of the Wyckoff at 6:30 PM.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c182",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "hotel-garage"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the garage on Eleventh Avenue, and the shop it came from closed two years ago.",
-      "place": "hotel-garage",
-      "leadsTo": [
-        "c180"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b1"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Margarethe Schilling"
-      },
-      "establishes": [],
-      "text": "Esther Feldman on Margarethe Schilling: There is a man who meets people at the garage on Eleventh Avenue and nobody will say his name out loud.",
-      "place": "hotel-garage",
-      "leadsTo": [
-        "c184"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b1"
-    },
-    {
-      "id": "c184",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "hotel-garage"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "hotel-garage",
+          "place": "walkup-flat",
           "tick": 5
         }
       ],
-      "text": "The receiver at the garage on Eleventh Avenue would rather talk than be held: Margarethe Schilling was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Margarethe Schilling will take over this one.",
-      "place": "hotel-garage",
+      "text": "Coffin was at the third floor at 8:30 PM and says Grasso was not.",
+      "place": "speakeasy",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b1"
+      "role": "corroboration"
     },
     {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "James Mulcahy"
-      },
-      "establishes": [],
-      "text": "Carmela Marchetti on James Mulcahy: The victim had been drawing cash in amounts that did not match anything in the accounts.",
-      "place": "walkup-flat",
-      "leadsTo": [
-        "c165"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c165",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "James Mulcahy"
-      },
-      "establishes": [],
-      "text": "Nora Hanrahan on James Mulcahy: James Mulcahy and the victim were heard at the lobby of the Wyckoff, and one of them was doing all the talking.",
-      "place": "ferry-slip",
-      "leadsTo": [
-        "c170"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
+      "id": "c099",
+      "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "hotel-lobby"
       },
       "establishes": [
         {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "blackmail"
+          "kind": "objectMissing",
+          "objectId": "obj-bookend",
+          "fromPlace": "hotel-lobby"
         },
+        {
+          "kind": "methodEvidence",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "A bronze bookend is gone from the Wyckoff. There is a clean square in the dust where it stood.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c135"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Mulcahy"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s4",
           "place": "hotel-lobby",
           "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "blunt"
         }
       ],
-      "text": "The victim’s bank book settles it: four payments, and James Mulcahy at the lobby of the Wyckoff from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
-      "place": "hotel-lobby",
+      "text": "Coffin says Mulcahy was at the Wyckoff at 7:00 PM.",
+      "place": "speakeasy",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
+      "role": "corroboration"
     },
     {
-      "id": "c152",
-      "kind": "overheard",
+      "id": "c043",
+      "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f4",
-        "topic": "Gretchen Kreuzer"
-      },
-      "establishes": [],
-      "text": "Chandler Havemeyer on Gretchen Kreuzer: Two signatures of Gretchen Kreuzer’s, a month apart, are in different hands.",
-      "place": "hotel-lobby",
-      "leadsTo": [
-        "c156"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "walkup-flat"
+        "personId": "p-s5",
+        "topic": "Kreuzer"
       },
       "establishes": [
         {
-          "kind": "secretExplained",
+          "kind": "personAt",
           "personId": "p-s2",
-          "secretType": "forged-identity"
+          "place": "walkup-flat",
+          "tick": 5
         }
       ],
-      "text": "The name Gretchen Kreuzer was born with turns up on a desertion warrant from 1918. Gretchen Kreuzer has been hiding from the Army for eleven years and from nobody else.",
-      "place": "walkup-flat",
+      "text": "Coffin says Kreuzer was at the third floor at 8:30 PM.",
+      "place": "speakeasy",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "role": "corroboration"
     },
     {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Nora Hanrahan"
-      },
-      "establishes": [],
-      "text": "Esther Feldman on Nora Hanrahan: The accounts at the third-floor walk-up on Ninth are in two hands, and the second hand only appears in the last column.",
-      "place": "hotel-garage",
-      "leadsTo": [
-        "c162"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c162",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "walkup-flat"
-      },
-      "establishes": [],
-      "text": "Ledger pages at the third-floor walk-up on Ninth where the totals have been rubbed and written over.",
-      "place": "walkup-flat",
-      "leadsTo": [
-        "c163"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c163",
+      "id": "c123",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8037,32 +6599,101 @@
           "tick": 5
         }
       ],
-      "text": "The bank confirms the account: Nora Hanrahan has been taking two hundred a month for a year, and was at the third-floor walk-up on Ninth doing exactly that from 8:30 PM. It is theft, and it is not murder.",
+      "text": "The books at the third floor settle it. Hanrahan spent from 8:30 PM covering a hole in the accounts, which is why Hanrahan would rather be suspected of anything else.",
       "place": "walkup-flat",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "leadsTo": [
+        "c121"
+      ],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s3"
     },
     {
-      "id": "c175",
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Mulcahy"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "walkup-flat",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "walkup-flat",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "walkup-flat",
+          "tick": 7
+        }
+      ],
+      "text": "Kreuzer says Mulcahy was at the third floor from 8:30 PM to 9:30 PM.",
+      "place": "walkup-flat",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c135",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "speakeasy"
       },
       "establishes": [],
-      "text": "Wrapping paper and a cut string at the speakeasy under the hat shop, and the shop it came from closed two years ago.",
+      "text": "A pawn ticket at the speakeasy in a name that does not exist, made out at the hour in question.",
       "place": "speakeasy",
       "leadsTo": [
-        "c177"
+        "c134"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
-      "branchId": "b5"
+      "branchId": "b1"
     },
     {
-      "id": "c177",
+      "id": "c134",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the speakeasy, and the shop it came from closed two years ago.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c133"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Havemeyer on Coffin: Coffin has been selling things that were never Coffin’s to sell.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c136"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b1"
+    },
+    {
+      "id": "c136",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8081,22 +6712,227 @@
           "tick": 7
         }
       ],
-      "text": "The receiver at the speakeasy under the hat shop would rather talk than be held: Sterling Coffin was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Sterling Coffin will take over this one.",
+      "text": "The receiver at the speakeasy would rather talk than be held: Coffin was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Coffin will take over this one.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s5",
-      "branchId": "b5"
+      "branchId": "b1"
+    },
+    {
+      "id": "c127",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-lobby"
+      },
+      "establishes": [],
+      "text": "An envelope at the Wyckoff with nothing in it, addressed in the victim’s hand to no one.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c125"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Mulcahy"
+      },
+      "establishes": [],
+      "text": "Havemeyer on Mulcahy: Mulcahy has come into money lately and has no visible way of having come into money.",
+      "place": "hotel-lobby",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Mulcahy"
+      },
+      "establishes": [],
+      "text": "Kreuzer on Mulcahy: The victim had been drawing cash in amounts that did not match anything in the accounts.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c129"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c129",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-lobby"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "hotel-lobby",
+          "tick": 2
+        }
+      ],
+      "text": "The victim’s bank book settles it: four payments, and Mulcahy at the Wyckoff from 7:00 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.",
+      "place": "hotel-lobby",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c142",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-garage"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the garage in a name that does not exist, made out at the hour in question.",
+      "place": "hotel-garage",
+      "leadsTo": [
+        "c138"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Schilling"
+      },
+      "establishes": [],
+      "text": "Marchetti on Schilling: Schilling was carrying a parcel into the garage and came out without it.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c143"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c143",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hotel-garage"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hotel-garage",
+          "tick": 5
+        }
+      ],
+      "text": "The receiver at the garage would rather talk than be held: Schilling was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Schilling will take over this one.",
+      "place": "hotel-garage",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c121",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "walkup-flat"
+      },
+      "establishes": [],
+      "text": "Ledger pages at the third floor where the totals have been rubbed and written over.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c117"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b4"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Hanrahan"
+      },
+      "establishes": [],
+      "text": "Marchetti on Hanrahan: Hanrahan had a key to the third floor that Hanrahan had no business having.",
+      "place": "walkup-flat",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b4"
+    },
+    {
+      "id": "c122",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "walkup-flat"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "embezzling"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "walkup-flat",
+          "tick": 5
+        }
+      ],
+      "text": "The bank confirms the account: Hanrahan has been taking two hundred a month for a year, and was at the third floor doing exactly that from 8:30 PM. It is theft, and it is not murder.",
+      "place": "walkup-flat",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c137",
-    "c138",
-    "c150"
+    "c097",
+    "c098",
+    "c109"
   ],
   "clientId": "p-s1",
-  "par": 9,
-  "budget": 20,
+  "par": 11,
+  "slack": 6,
+  "budget": 17,
   "coronerWindow": [
     5,
     8
@@ -8110,10 +6946,9 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c138",
-      "c140",
-      "c137",
-      "c141"
+      "c098",
+      "c100",
+      "c097"
     ],
     "timeOfDeathAnchors": [
       "el-train",
@@ -8121,47 +6956,42 @@
     ],
     "exculpations": {
       "p-s2": [
-        "c114",
-        "c105",
-        "c101"
+        "c071",
+        "c043"
       ],
       "p-s3": [
-        "c114",
-        "c105",
-        "c101",
-        "c163"
+        "c016",
+        "c123",
+        "c122"
       ],
       "p-s4": [
-        "c114",
-        "c105"
+        "c073",
+        "c018"
       ],
       "p-s5": [
-        "c114",
-        "c101"
+        "c074"
       ],
       "p-s6": [
         "c067",
-        "c078",
-        "c184"
+        "c143"
       ]
     },
     "inculpation": [
-      "c129",
-      "c126"
+      "c089",
+      "c088"
     ],
     "access": [
-      "c051",
-      "c080",
-      "c042"
+      "c042",
+      "c080"
     ],
     "method": [
-      "c137",
-      "c138",
-      "c141"
+      "c097",
+      "c098",
+      "c099"
     ],
     "motive": [
-      "c142",
-      "c143"
+      "c101",
+      "c102"
     ]
   }
 }

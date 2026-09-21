@@ -1,511 +1,423 @@
 # Harlem — case 14: the candidate pool
 
-219 true things about the evening. 31 of them are findable (marked ★); the rest are the truth the report is graded against, not the truth the player can reach.
+175 true things about the evening. 34 of them are findable (marked ★); the rest are the truth the report is graded against, not the truth the player can reach.
 
-## Alonzo Colquitt
+## Colquitt
 
-- **c001** [observation] — on Gretchen Vogel Alonzo Colquitt says Gretchen Vogel was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Gretchen Vogel could reach the weapon_
-- **c002** [observation] — on Gretchen Vogel Alonzo Colquitt says Gretchen Vogel was at the ferry slip at the foot of the street at 10:30 PM.
-  - _establishes: Gretchen Vogel at the ferry slip at the foot of the street, 10:30 PM_
-- **c003** [observation] — on Augustus Dandridge Alonzo Colquitt says Augustus Dandridge was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge could reach the weapon_
-- **c004** [observation] — on Augustus Dandridge Alonzo Colquitt says Augustus Dandridge was at the ferry slip at the foot of the street from 10:30 PM to 11:30 PM.
-  - _establishes: Augustus Dandridge at the ferry slip at the foot of the street, 10:30 PM–11:30 PM_
-- **c005** [observation] — on Filomena Vitale Alonzo Colquitt says Filomena Vitale was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale could reach the weapon_
-- **c006** [observation] — on Filomena Vitale Alonzo Colquitt says Filomena Vitale was at the ferry slip at the foot of the street at 10:30 PM.
-  - _establishes: Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM_
-- **c007** [observation] — on Maureen Sweeney Alonzo Colquitt says Maureen Sweeney was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney could reach the weapon_
-- **c008** [observation] — on Maureen Sweeney Alonzo Colquitt says Maureen Sweeney was at the ferry slip at the foot of the street from 10:30 PM to 11:30 PM.
-  - _establishes: Maureen Sweeney at the ferry slip at the foot of the street, 10:30 PM–11:30 PM_
-- ★ **c009** [observation] — on Teresa Marchetti Alonzo Colquitt says Teresa Marchetti was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti could reach the weapon_
-- **c010** [observation] — on Teresa Marchetti Alonzo Colquitt says Teresa Marchetti was at Dolan’s Bar at 8:00 PM.
-  - _establishes: Teresa Marchetti at Dolan’s Bar, 8:00 PM_
-- **c098** [observation] — on who was there at 6:30 PM Alonzo Colquitt runs through it: at 6:30 PM there were Gretchen Vogel, Augustus Dandridge, Filomena Vitale, Maureen Sweeney, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM_
-- **c099** [observation] — on who was there at 10:30 PM Alonzo Colquitt runs through it: at 10:30 PM there were Gretchen Vogel, Augustus Dandridge, Filomena Vitale, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the ferry slip at the foot of the street, 10:30 PM; Augustus Dandridge at the ferry slip at the foot of the street, 10:30 PM; Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM; Maureen Sweeney at the ferry slip at the foot of the street, 10:30 PM_
-- **c100** [observation] — on who was there at 11:00 PM Alonzo Colquitt runs through it: at 11:00 PM there were Augustus Dandridge, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at the ferry slip at the foot of the street, 11:00 PM; Maureen Sweeney at the ferry slip at the foot of the street, 11:00 PM_
-- **c101** [observation] — on who was there at 11:30 PM Alonzo Colquitt runs through it: at 11:30 PM there were Augustus Dandridge, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at the ferry slip at the foot of the street, 11:30 PM; Maureen Sweeney at the ferry slip at the foot of the street, 11:30 PM_
-- **c157** [observation] — on Filomena Vitale’s account Filomena Vitale says Alonzo Colquitt was there for it. Alonzo Colquitt says otherwise: Alonzo Colquitt was at the ferry slip at the foot of the street at 10:30 PM, nowhere near the vestibule of the Hallam apartments.
-  - _establishes: Filomena Vitale not at the vestibule of the Hallam apartments, 10:30 PM_
-- **c199** [overheard] — on Filomena Vitale Alonzo Colquitt on Filomena Vitale: Filomena Vitale sends money out of every pay envelope and cannot say where it goes.
+- **c001** [observation] — on Vogel Colquitt says Vogel was at the fourth floor at 6:30 PM.
+  - _establishes: Vogel at the fourth floor, 6:30 PM; Vogel could reach the weapon_
+- **c002** [observation] — on Vogel Colquitt says Vogel was at the ferry slip at 10:30 PM.
+  - _establishes: Vogel at the ferry slip, 10:30 PM_
+- **c003** [observation] — on Dandridge Colquitt says Dandridge was at the fourth floor at 6:30 PM.
+  - _establishes: Dandridge at the fourth floor, 6:30 PM; Dandridge could reach the weapon_
+- **c004** [observation] — on Dandridge Colquitt says Dandridge was at the ferry slip from 10:30 PM to 11:30 PM.
+  - _establishes: Dandridge at the ferry slip, 10:30 PM–11:30 PM_
+- **c005** [observation] — on Vitale Colquitt says Vitale was at the fourth floor at 6:30 PM.
+  - _establishes: Vitale at the fourth floor, 6:30 PM; Vitale could reach the weapon_
+- **c006** [observation] — on Vitale Colquitt says Vitale was at the ferry slip at 10:30 PM.
+  - _establishes: Vitale at the ferry slip, 10:30 PM_
+- **c007** [observation] — on Sweeney Colquitt says Sweeney was at the fourth floor at 6:30 PM.
+  - _establishes: Sweeney at the fourth floor, 6:30 PM; Sweeney could reach the weapon_
+- **c008** [observation] — on Sweeney Colquitt says Sweeney was at the ferry slip from 10:30 PM to 11:30 PM.
+  - _establishes: Sweeney at the ferry slip, 10:30 PM–11:30 PM_
+- **c009** [observation] — on Marchetti Colquitt says Marchetti was at the fourth floor at 6:30 PM.
+  - _establishes: Marchetti at the fourth floor, 6:30 PM; Marchetti could reach the weapon_
+- **c010** [observation] — on Marchetti Colquitt says Marchetti was at Dolan’s at 8:00 PM.
+  - _establishes: Marchetti at Dolan’s, 8:00 PM_
+- **c108** [denial] — on Vitale’s account Vitale names Colquitt as the company for it. Colquitt was at the ferry slip at 10:30 PM, and says Vitale was not there.
+  - _establishes: Vitale not at the Hallam, 10:30 PM_
+
+## Vogel
+
+- **c011** [observation] — on Colquitt Vogel says Colquitt was at the fourth floor at 6:30 PM.
+  - _establishes: Colquitt at the fourth floor, 6:30 PM; Colquitt could reach the weapon_
+- **c012** [observation] — on Colquitt Vogel says Colquitt was at the ferry slip at 10:30 PM.
+  - _establishes: Colquitt at the ferry slip, 10:30 PM_
+- **c013** [observation] — on Dandridge Vogel says Dandridge was at the fourth floor at 6:30 PM.
+  - _establishes: Dandridge at the fourth floor, 6:30 PM; Dandridge could reach the weapon_
+- **c014** [observation] — on Dandridge Vogel says Dandridge was at the ferry slip from 10:00 PM to 10:30 PM.
+  - _establishes: Dandridge at the ferry slip, 10:00 PM–10:30 PM_
+- **c015** [observation] — on Vitale Vogel says Vitale was at the fourth floor from 6:00 PM to 6:30 PM.
+  - _establishes: Vitale at the fourth floor, 6:00 PM–6:30 PM; Vitale could reach the weapon_
+- **c016** [observation] — on Vitale Vogel says Vitale was at the ferry slip at 10:30 PM.
+  - _establishes: Vitale at the ferry slip, 10:30 PM_
+- **c017** [observation] — on Sweeney Vogel says Sweeney was at the fourth floor from 6:00 PM to 7:30 PM.
+  - _establishes: Sweeney at the fourth floor, 6:00 PM–7:30 PM; Sweeney could reach the weapon_
+- **c018** [observation] — on Sweeney Vogel says Sweeney was at Ruggiero’s at 9:30 PM.
+  - _establishes: Sweeney at Ruggiero’s, 9:30 PM_
+- **c019** [observation] — on Sweeney Vogel says Sweeney was at the ferry slip from 10:00 PM to 10:30 PM.
+  - _establishes: Sweeney at the ferry slip, 10:00 PM–10:30 PM_
+- **c020** [observation] — on Marchetti Vogel says Marchetti was at the fourth floor from 6:30 PM to 7:30 PM.
+  - _establishes: Marchetti at the fourth floor, 6:30 PM–7:30 PM; Marchetti could reach the weapon_
+- **c021** [observation] — on Marchetti Vogel says Marchetti was at Dolan’s from 11:00 PM to 11:30 PM.
+  - _establishes: Marchetti at Dolan’s, 11:00 PM–11:30 PM_
+- **c113** [denial] — on Sweeney’s account Sweeney names Vogel as the company for Dolan’s at 8:30 PM. Vogel says they were not together that evening.
+  - _establishes: Sweeney not at Dolan’s, 8:30 PM_
+- **c137** [overheard] — on Sweeney and Whitfield Vogel says Whitfield told Sweeney that Friday was the end of it, one way or the other.
+  - _establishes: Sweeney had a motive (debt)_
+- **c155** [overheard] — on Vitale Vogel on Vitale: Vitale sends money out of every pay envelope and cannot say where it goes.
   - _establishes: context only_
 
-## Gretchen Vogel
+## Dandridge
 
-- **c011** [observation] — on Alonzo Colquitt Gretchen Vogel says Alonzo Colquitt was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Alonzo Colquitt could reach the weapon_
-- **c012** [observation] — on Alonzo Colquitt Gretchen Vogel says Alonzo Colquitt was at the ferry slip at the foot of the street at 10:30 PM.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 10:30 PM_
-- **c013** [observation] — on Augustus Dandridge Gretchen Vogel says Augustus Dandridge was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge could reach the weapon_
-- **c014** [observation] — on Augustus Dandridge Gretchen Vogel says Augustus Dandridge was at the ferry slip at the foot of the street from 10:00 PM to 10:30 PM.
-  - _establishes: Augustus Dandridge at the ferry slip at the foot of the street, 10:00 PM–10:30 PM_
-- **c015** [observation] — on Filomena Vitale Gretchen Vogel says Filomena Vitale was at the victim’s apartment on the fourth floor from 6:00 PM to 6:30 PM.
-  - _establishes: Filomena Vitale at the victim’s apartment on the fourth floor, 6:00 PM–6:30 PM; Filomena Vitale could reach the weapon_
-- **c016** [observation] — on Filomena Vitale Gretchen Vogel says Filomena Vitale was at the ferry slip at the foot of the street at 10:30 PM.
-  - _establishes: Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM_
-- **c017** [observation] — on Maureen Sweeney Gretchen Vogel says Maureen Sweeney was at the victim’s apartment on the fourth floor from 6:00 PM to 7:30 PM.
-  - _establishes: Maureen Sweeney at the victim’s apartment on the fourth floor, 6:00 PM–7:30 PM; Maureen Sweeney could reach the weapon_
-- **c018** [observation] — on Maureen Sweeney Gretchen Vogel says Maureen Sweeney was at Ruggiero’s barber shop at 9:30 PM.
-  - _establishes: Maureen Sweeney at Ruggiero’s barber shop, 9:30 PM_
-- **c019** [observation] — on Maureen Sweeney Gretchen Vogel says Maureen Sweeney was at the ferry slip at the foot of the street from 10:00 PM to 10:30 PM.
-  - _establishes: Maureen Sweeney at the ferry slip at the foot of the street, 10:00 PM–10:30 PM_
-- **c020** [observation] — on Teresa Marchetti Gretchen Vogel says Teresa Marchetti was at the victim’s apartment on the fourth floor from 6:30 PM to 7:30 PM.
-  - _establishes: Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM–7:30 PM; Teresa Marchetti could reach the weapon_
-- **c021** [observation] — on Teresa Marchetti Gretchen Vogel says Teresa Marchetti was at Dolan’s Bar from 11:00 PM to 11:30 PM.
-  - _establishes: Teresa Marchetti at Dolan’s Bar, 11:00 PM–11:30 PM_
-- **c102** [observation] — on who was there at 6:00 PM Gretchen Vogel runs through it: at 6:00 PM there were Filomena Vitale, Maureen Sweeney at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Filomena Vitale at the victim’s apartment on the fourth floor, 6:00 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 6:00 PM_
-- **c103** [observation] — on who was there at 6:30 PM Gretchen Vogel runs through it: at 6:30 PM there were Alonzo Colquitt, Augustus Dandridge, Filomena Vitale, Maureen Sweeney, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM_
-- **c104** [observation] — on who was there at 7:00 PM Gretchen Vogel runs through it: at 7:00 PM there were Maureen Sweeney, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Maureen Sweeney at the victim’s apartment on the fourth floor, 7:00 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 7:00 PM_
-- **c105** [observation] — on who was there at 7:30 PM Gretchen Vogel runs through it: at 7:30 PM there were Maureen Sweeney, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Maureen Sweeney at the victim’s apartment on the fourth floor, 7:30 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 7:30 PM_
-- **c106** [observation] — on who was there at 10:00 PM Gretchen Vogel runs through it: at 10:00 PM there were Augustus Dandridge, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at the ferry slip at the foot of the street, 10:00 PM; Maureen Sweeney at the ferry slip at the foot of the street, 10:00 PM_
-- **c107** [observation] — on who was there at 10:30 PM Gretchen Vogel runs through it: at 10:30 PM there were Alonzo Colquitt, Augustus Dandridge, Filomena Vitale, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 10:30 PM; Augustus Dandridge at the ferry slip at the foot of the street, 10:30 PM; Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM; Maureen Sweeney at the ferry slip at the foot of the street, 10:30 PM_
-- **c181** [overheard] — on Maureen Sweeney and Roscoe Whitfield Gretchen Vogel says Roscoe Whitfield told Maureen Sweeney that Friday was the end of it, one way or the other.
-  - _establishes: Maureen Sweeney had a motive (debt)_
-
-## Augustus Dandridge
-
-- **c022** [observation] — on Roscoe Whitfield Augustus Dandridge says Roscoe Whitfield was at Dolan’s Bar at 6:00 PM.
-  - _establishes: Roscoe Whitfield at Dolan’s Bar, 6:00 PM_
-- **c023** [observation] — on Roscoe Whitfield Augustus Dandridge says Roscoe Whitfield was at Ruggiero’s barber shop at 7:00 PM.
-  - _establishes: Roscoe Whitfield at Ruggiero’s barber shop, 7:00 PM_
-- **c024** [observation] — on Alonzo Colquitt Augustus Dandridge says Alonzo Colquitt was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Alonzo Colquitt could reach the weapon_
-- **c025** [observation] — on Alonzo Colquitt Augustus Dandridge says Alonzo Colquitt was at the ferry slip at the foot of the street from 10:30 PM to 11:30 PM.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 10:30 PM–11:30 PM_
-- **c026** [observation] — on Gretchen Vogel Augustus Dandridge says Gretchen Vogel was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Gretchen Vogel could reach the weapon_
-- **c027** [observation] — on Gretchen Vogel Augustus Dandridge says Gretchen Vogel was at the ferry slip at the foot of the street from 10:00 PM to 10:30 PM.
-  - _establishes: Gretchen Vogel at the ferry slip at the foot of the street, 10:00 PM–10:30 PM_
-- **c028** [observation] — on Filomena Vitale Augustus Dandridge says Filomena Vitale was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale could reach the weapon_
-- **c029** [observation] — on Filomena Vitale Augustus Dandridge says Filomena Vitale was at Ruggiero’s barber shop at 7:00 PM.
-  - _establishes: Filomena Vitale at Ruggiero’s barber shop, 7:00 PM_
-- **c030** [observation] — on Filomena Vitale Augustus Dandridge says Filomena Vitale was at Dolan’s Bar from 8:30 PM to 9:30 PM.
-  - _establishes: Filomena Vitale at Dolan’s Bar, 8:30 PM–9:30 PM_
-- **c031** [observation] — on Filomena Vitale Augustus Dandridge says Filomena Vitale was at the ferry slip at the foot of the street at 10:30 PM.
-  - _establishes: Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM_
-- **c032** [observation] — on Maureen Sweeney Augustus Dandridge says Maureen Sweeney was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney could reach the weapon_
-- **c033** [observation] — on Maureen Sweeney Augustus Dandridge says Maureen Sweeney was at the ferry slip at the foot of the street from 10:00 PM to 11:30 PM.
-  - _establishes: Maureen Sweeney at the ferry slip at the foot of the street, 10:00 PM–11:30 PM_
-- **c034** [observation] — on Teresa Marchetti Augustus Dandridge says Teresa Marchetti was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti could reach the weapon_
-- **c035** [observation] — on Teresa Marchetti Augustus Dandridge says Teresa Marchetti was at Dolan’s Bar from 8:30 PM to 9:30 PM.
-  - _establishes: Teresa Marchetti at Dolan’s Bar, 8:30 PM–9:30 PM_
-- **c108** [observation] — on who was there at 6:30 PM Augustus Dandridge runs through it: at 6:30 PM there were Alonzo Colquitt, Gretchen Vogel, Filomena Vitale, Maureen Sweeney, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM_
-- **c109** [observation] — on who was there at 8:30 PM Augustus Dandridge runs through it: at 8:30 PM there were Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Filomena Vitale at Dolan’s Bar, 8:30 PM; Teresa Marchetti at Dolan’s Bar, 8:30 PM_
-- **c110** [observation] — on who was there at 9:00 PM Augustus Dandridge runs through it: at 9:00 PM there were Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Filomena Vitale at Dolan’s Bar, 9:00 PM; Teresa Marchetti at Dolan’s Bar, 9:00 PM_
-- **c111** [observation] — on who was there at 9:30 PM Augustus Dandridge runs through it: at 9:30 PM there were Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Filomena Vitale at Dolan’s Bar, 9:30 PM; Teresa Marchetti at Dolan’s Bar, 9:30 PM_
-- **c112** [observation] — on who was there at 10:00 PM Augustus Dandridge runs through it: at 10:00 PM there were Gretchen Vogel, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the ferry slip at the foot of the street, 10:00 PM; Maureen Sweeney at the ferry slip at the foot of the street, 10:00 PM_
-- **c113** [observation] — on who was there at 10:30 PM Augustus Dandridge runs through it: at 10:30 PM there were Alonzo Colquitt, Gretchen Vogel, Filomena Vitale, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 10:30 PM; Gretchen Vogel at the ferry slip at the foot of the street, 10:30 PM; Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM; Maureen Sweeney at the ferry slip at the foot of the street, 10:30 PM_
-- **c114** [observation] — on who was there at 11:00 PM Augustus Dandridge runs through it: at 11:00 PM there were Alonzo Colquitt, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 11:00 PM; Maureen Sweeney at the ferry slip at the foot of the street, 11:00 PM_
-- **c115** [observation] — on who was there at 11:30 PM Augustus Dandridge runs through it: at 11:30 PM there were Alonzo Colquitt, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 11:30 PM; Maureen Sweeney at the ferry slip at the foot of the street, 11:30 PM_
-- **c147** [observation] — on Alonzo Colquitt’s account Augustus Dandridge was at Dolan’s Bar at 8:30 PM and says Alonzo Colquitt was not.
-  - _establishes: Alonzo Colquitt not at Dolan’s Bar, 8:30 PM_
-- **c151** [observation] — on Gretchen Vogel’s account Augustus Dandridge was at Dolan’s Bar at 8:30 PM and says Gretchen Vogel was not.
-  - _establishes: Gretchen Vogel not at Dolan’s Bar, 8:30 PM_
-- **c158** [observation] — on Maureen Sweeney’s account Augustus Dandridge was at Dolan’s Bar at 8:30 PM and says Maureen Sweeney was not.
-  - _establishes: Maureen Sweeney not at Dolan’s Bar, 8:30 PM_
-- **c162** [observation] — on Teresa Marchetti’s account Augustus Dandridge was at the vestibule of the Hallam apartments at 8:00 PM and says Teresa Marchetti was not.
-  - _establishes: Teresa Marchetti not at the vestibule of the Hallam apartments, 8:00 PM_
-- **c168** [anchor] — on the noise that evening Augustus Dandridge was at Dolan’s Bar at 8:30 PM and heard a shot from the direction of the roof over the Dover, as the bells were going.
-  - _establishes: noise at the roof over the Dover at 8:30 PM; the victim dead by 8:30 PM; how it was done_
-- ★ **c186** [overheard] — on Alonzo Colquitt Augustus Dandridge on Alonzo Colquitt: There is a man who meets people at Ruggiero’s barber shop and nobody will say his name out loud.
+- **c022** [observation] — on Whitfield Dandridge says Whitfield was at Dolan’s at 6:00 PM.
+  - _establishes: Whitfield at Dolan’s, 6:00 PM_
+- **c023** [observation] — on Whitfield Dandridge says Whitfield was at Ruggiero’s at 7:00 PM.
+  - _establishes: Whitfield at Ruggiero’s, 7:00 PM_
+- **c024** [observation] — on Colquitt Dandridge says Colquitt was at the fourth floor at 6:30 PM.
+  - _establishes: Colquitt at the fourth floor, 6:30 PM; Colquitt could reach the weapon_
+- **c025** [observation] — on Colquitt Dandridge says Colquitt was at the ferry slip from 10:30 PM to 11:30 PM.
+  - _establishes: Colquitt at the ferry slip, 10:30 PM–11:30 PM_
+- **c026** [observation] — on Vogel Dandridge says Vogel was at the fourth floor at 6:30 PM.
+  - _establishes: Vogel at the fourth floor, 6:30 PM; Vogel could reach the weapon_
+- **c027** [observation] — on Vogel Dandridge says Vogel was at the ferry slip from 10:00 PM to 10:30 PM.
+  - _establishes: Vogel at the ferry slip, 10:00 PM–10:30 PM_
+- **c028** [observation] — on Vitale Dandridge says Vitale was at the fourth floor at 6:30 PM.
+  - _establishes: Vitale at the fourth floor, 6:30 PM; Vitale could reach the weapon_
+- **c029** [observation] — on Vitale Dandridge says Vitale was at Ruggiero’s at 7:00 PM.
+  - _establishes: Vitale at Ruggiero’s, 7:00 PM_
+- **c030** [observation] — on Vitale Dandridge says Vitale was at Dolan’s from 8:30 PM to 9:30 PM.
+  - _establishes: Vitale at Dolan’s, 8:30 PM–9:30 PM_
+- **c031** [observation] — on Vitale Dandridge says Vitale was at the ferry slip at 10:30 PM.
+  - _establishes: Vitale at the ferry slip, 10:30 PM_
+- **c032** [observation] — on Sweeney Dandridge says Sweeney was at the fourth floor at 6:30 PM.
+  - _establishes: Sweeney at the fourth floor, 6:30 PM; Sweeney could reach the weapon_
+- **c033** [observation] — on Sweeney Dandridge says Sweeney was at the ferry slip from 10:00 PM to 11:30 PM.
+  - _establishes: Sweeney at the ferry slip, 10:00 PM–11:30 PM_
+- **c034** [observation] — on Marchetti Dandridge says Marchetti was at the fourth floor at 6:30 PM.
+  - _establishes: Marchetti at the fourth floor, 6:30 PM; Marchetti could reach the weapon_
+- **c035** [observation] — on Marchetti Dandridge says Marchetti was at Dolan’s from 8:30 PM to 9:30 PM.
+  - _establishes: Marchetti at Dolan’s, 8:30 PM–9:30 PM_
+- **c098** [observation] — on Colquitt’s account Dandridge was at Dolan’s at 8:30 PM and says Colquitt was not.
+  - _establishes: Colquitt not at Dolan’s, 8:30 PM_
+- ★ **c102** [observation] — on Vogel’s account Dandridge was at Dolan’s at 8:30 PM and says Vogel was not.
+  - _establishes: Vogel not at Dolan’s, 8:30 PM_
+- **c109** [observation] — on Sweeney’s account Dandridge was at Dolan’s at 8:30 PM and says Sweeney was not.
+  - _establishes: Sweeney not at Dolan’s, 8:30 PM_
+- **c114** [observation] — on Marchetti’s account Dandridge was at the Hallam at 8:00 PM and says Marchetti was not.
+  - _establishes: Marchetti not at the Hallam, 8:00 PM_
+- **c120** [anchor] — on the noise that evening Dandridge was at Dolan’s at 8:30 PM and heard a shot from the direction of the roof, while the bells were going.
+  - _establishes: noise at the roof at 8:30 PM; the victim dead by 8:30 PM; how it was done_
+- ★ **c143** [overheard] — on Colquitt Dandridge on Colquitt: Colquitt has been selling things that were never Colquitt’s to sell.
   - _establishes: context only_
-- ★ **c200** [overheard] — on Filomena Vitale Augustus Dandridge on Filomena Vitale: A woman at the ferry slip at the foot of the street asked for Filomena Vitale by a name Filomena Vitale has not used in years.
-  - _establishes: context only_
-- ★ **c215** [overheard] — on Teresa Marchetti Augustus Dandridge on Teresa Marchetti: Somebody at Dolan’s Bar says Teresa Marchetti is in more often than Teresa Marchetti lets on.
+- ★ **c169** [overheard] — on Marchetti Dandridge on Marchetti: Marchetti had taken a drink and had gone to some trouble about the smell of it.
   - _establishes: context only_
 
-## Filomena Vitale
+## Vitale
 
-- **c036** [observation] — on Roscoe Whitfield Filomena Vitale says Roscoe Whitfield was at Ruggiero’s barber shop at 7:00 PM.
-  - _establishes: Roscoe Whitfield at Ruggiero’s barber shop, 7:00 PM_
-- **c037** [observation] — on Alonzo Colquitt Filomena Vitale says Alonzo Colquitt was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Alonzo Colquitt could reach the weapon_
-- ★ **c038** [observation] — on Gretchen Vogel Filomena Vitale says Gretchen Vogel was at the victim’s apartment on the fourth floor from 6:00 PM to 6:30 PM.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:00 PM–6:30 PM; Gretchen Vogel could reach the weapon_
-- **c039** [observation] — on Augustus Dandridge Filomena Vitale says Augustus Dandridge was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge could reach the weapon_
-- **c040** [observation] — on Augustus Dandridge Filomena Vitale says Augustus Dandridge was at Ruggiero’s barber shop at 7:00 PM.
-  - _establishes: Augustus Dandridge at Ruggiero’s barber shop, 7:00 PM_
-- **c041** [observation] — on Augustus Dandridge Filomena Vitale says Augustus Dandridge was at Dolan’s Bar from 8:30 PM to 9:30 PM.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM–9:30 PM_
-- **c042** [observation] — on Maureen Sweeney Filomena Vitale says Maureen Sweeney was at the victim’s apartment on the fourth floor from 6:00 PM to 6:30 PM.
-  - _establishes: Maureen Sweeney at the victim’s apartment on the fourth floor, 6:00 PM–6:30 PM; Maureen Sweeney could reach the weapon_
-- **c043** [observation] — on Teresa Marchetti Filomena Vitale says Teresa Marchetti was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti could reach the weapon_
-- **c044** [observation] — on Teresa Marchetti Filomena Vitale says Teresa Marchetti was at Dolan’s Bar from 8:30 PM to 9:30 PM.
-  - _establishes: Teresa Marchetti at Dolan’s Bar, 8:30 PM–9:30 PM_
-- **c116** [observation] — on who was there at 6:00 PM Filomena Vitale runs through it: at 6:00 PM there were Gretchen Vogel, Maureen Sweeney at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:00 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 6:00 PM_
-- **c117** [observation] — on who was there at 6:30 PM Filomena Vitale runs through it: at 6:30 PM there were Alonzo Colquitt, Gretchen Vogel, Augustus Dandridge, Maureen Sweeney, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM_
-- **c118** [observation] — on who was there at 8:30 PM Filomena Vitale runs through it: at 8:30 PM there were Augustus Dandridge, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM; Teresa Marchetti at Dolan’s Bar, 8:30 PM_
-- **c119** [observation] — on who was there at 9:00 PM Filomena Vitale runs through it: at 9:00 PM there were Augustus Dandridge, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 9:00 PM; Teresa Marchetti at Dolan’s Bar, 9:00 PM_
-- **c120** [observation] — on who was there at 9:30 PM Filomena Vitale runs through it: at 9:30 PM there were Augustus Dandridge, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 9:30 PM; Teresa Marchetti at Dolan’s Bar, 9:30 PM_
-- **c148** [observation] — on Alonzo Colquitt’s account Filomena Vitale was at Dolan’s Bar at 8:30 PM and says Alonzo Colquitt was not.
-  - _establishes: Alonzo Colquitt not at Dolan’s Bar, 8:30 PM_
-- ★ **c152** [observation] — on Gretchen Vogel’s account Filomena Vitale was at Dolan’s Bar at 8:30 PM and says Gretchen Vogel was not.
-  - _establishes: Gretchen Vogel not at Dolan’s Bar, 8:30 PM_
-- **c159** [observation] — on Maureen Sweeney’s account Filomena Vitale was at Dolan’s Bar at 8:30 PM and says Maureen Sweeney was not.
-  - _establishes: Maureen Sweeney not at Dolan’s Bar, 8:30 PM_
-- **c169** [anchor] — on the noise that evening Filomena Vitale was at Dolan’s Bar at 8:30 PM and heard a shot from the direction of the roof over the Dover, as the bells were going.
-  - _establishes: noise at the roof over the Dover at 8:30 PM; the victim dead by 8:30 PM; how it was done_
-- ★ **c184** [client] — on why I was hired Filomena Vitale hired us. Filomena Vitale wants it known that Gretchen Vogel blamed the victim for a ruin, and would rather we started there.
-  - _establishes: Gretchen Vogel had a motive (revenge)_
-- **c192** [overheard] — on Augustus Dandridge Filomena Vitale on Augustus Dandridge: Augustus Dandridge and the victim were heard at the vestibule of the Hallam apartments, and one of them was doing all the talking.
-  - _establishes: context only_
-- ★ **c206** [overheard] — on Maureen Sweeney Filomena Vitale on Maureen Sweeney: Maureen Sweeney was carrying a parcel into Ruggiero’s barber shop and came out without it.
+- **c036** [observation] — on Whitfield Vitale says Whitfield was at Ruggiero’s at 7:00 PM.
+  - _establishes: Whitfield at Ruggiero’s, 7:00 PM_
+- **c037** [observation] — on Colquitt Vitale says Colquitt was at the fourth floor at 6:30 PM.
+  - _establishes: Colquitt at the fourth floor, 6:30 PM; Colquitt could reach the weapon_
+- ★ **c038** [observation] — on Vogel Vitale says Vogel was at the fourth floor from 6:00 PM to 6:30 PM.
+  - _establishes: Vogel at the fourth floor, 6:00 PM–6:30 PM; Vogel could reach the weapon_
+- **c039** [observation] — on Dandridge Vitale says Dandridge was at the fourth floor at 6:30 PM.
+  - _establishes: Dandridge at the fourth floor, 6:30 PM; Dandridge could reach the weapon_
+- **c040** [observation] — on Dandridge Vitale says Dandridge was at Ruggiero’s at 7:00 PM.
+  - _establishes: Dandridge at Ruggiero’s, 7:00 PM_
+- ★ **c041** [observation] — on Dandridge Vitale says Dandridge was at Dolan’s from 8:30 PM to 9:30 PM.
+  - _establishes: Dandridge at Dolan’s, 8:30 PM–9:30 PM_
+- **c042** [observation] — on Sweeney Vitale says Sweeney was at the fourth floor from 6:00 PM to 6:30 PM.
+  - _establishes: Sweeney at the fourth floor, 6:00 PM–6:30 PM; Sweeney could reach the weapon_
+- **c043** [observation] — on Marchetti Vitale says Marchetti was at the fourth floor at 6:30 PM.
+  - _establishes: Marchetti at the fourth floor, 6:30 PM; Marchetti could reach the weapon_
+- ★ **c044** [observation] — on Marchetti Vitale says Marchetti was at Dolan’s from 8:30 PM to 9:30 PM.
+  - _establishes: Marchetti at Dolan’s, 8:30 PM–9:30 PM_
+- **c099** [observation] — on Colquitt’s account Vitale was at Dolan’s at 8:30 PM and says Colquitt was not.
+  - _establishes: Colquitt not at Dolan’s, 8:30 PM_
+- ★ **c103** [observation] — on Vogel’s account Vitale was at Dolan’s at 8:30 PM and says Vogel was not.
+  - _establishes: Vogel not at Dolan’s, 8:30 PM_
+- **c110** [observation] — on Sweeney’s account Vitale was at Dolan’s at 8:30 PM and says Sweeney was not.
+  - _establishes: Sweeney not at Dolan’s, 8:30 PM_
+- **c121** [anchor] — on the noise that evening Vitale was at Dolan’s at 8:30 PM and heard a shot from the direction of the roof, while the bells were going.
+  - _establishes: noise at the roof at 8:30 PM; the victim dead by 8:30 PM; how it was done_
+- ★ **c140** [client] — on why I was hired Vitale hired us, and wants it known that Vogel blamed the victim for a ruin, and would rather we started there.
+  - _establishes: Vogel had a motive (revenge)_
+- **c163** [overheard] — on Sweeney Vitale on Sweeney: There is a man who meets people at Ruggiero’s and nobody will say his name out loud.
   - _establishes: context only_
 
-## Maureen Sweeney
+## Sweeney
 
-- **c045** [observation] — on Alonzo Colquitt Maureen Sweeney says Alonzo Colquitt was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Alonzo Colquitt could reach the weapon_
-- **c046** [observation] — on Alonzo Colquitt Maureen Sweeney says Alonzo Colquitt was at the ferry slip at the foot of the street from 10:30 PM to 11:30 PM.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 10:30 PM–11:30 PM_
-- **c047** [observation] — on Gretchen Vogel Maureen Sweeney says Gretchen Vogel was at the victim’s apartment on the fourth floor from 6:00 PM to 7:30 PM.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:00 PM–7:30 PM; Gretchen Vogel could reach the weapon_
-- **c048** [observation] — on Gretchen Vogel Maureen Sweeney says Gretchen Vogel was at Ruggiero’s barber shop at 9:30 PM.
-  - _establishes: Gretchen Vogel at Ruggiero’s barber shop, 9:30 PM_
-- **c049** [observation] — on Gretchen Vogel Maureen Sweeney says Gretchen Vogel was at the ferry slip at the foot of the street from 10:00 PM to 10:30 PM.
-  - _establishes: Gretchen Vogel at the ferry slip at the foot of the street, 10:00 PM–10:30 PM_
-- **c050** [observation] — on Augustus Dandridge Maureen Sweeney says Augustus Dandridge was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge could reach the weapon_
-- **c051** [observation] — on Augustus Dandridge Maureen Sweeney says Augustus Dandridge was at the ferry slip at the foot of the street from 10:00 PM to 11:30 PM.
-  - _establishes: Augustus Dandridge at the ferry slip at the foot of the street, 10:00 PM–11:30 PM_
-- **c052** [observation] — on Filomena Vitale Maureen Sweeney says Filomena Vitale was at the victim’s apartment on the fourth floor from 6:00 PM to 6:30 PM.
-  - _establishes: Filomena Vitale at the victim’s apartment on the fourth floor, 6:00 PM–6:30 PM; Filomena Vitale could reach the weapon_
-- **c053** [observation] — on Filomena Vitale Maureen Sweeney says Filomena Vitale was at the ferry slip at the foot of the street at 10:30 PM.
-  - _establishes: Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM_
-- **c054** [observation] — on Teresa Marchetti Maureen Sweeney says Teresa Marchetti was at the victim’s apartment on the fourth floor from 6:30 PM to 7:30 PM.
-  - _establishes: Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM–7:30 PM; Teresa Marchetti could reach the weapon_
-- **c121** [observation] — on who was there at 6:00 PM Maureen Sweeney runs through it: at 6:00 PM there were Gretchen Vogel, Filomena Vitale at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:00 PM; Filomena Vitale at the victim’s apartment on the fourth floor, 6:00 PM_
-- **c122** [observation] — on who was there at 6:30 PM Maureen Sweeney runs through it: at 6:30 PM there were Alonzo Colquitt, Gretchen Vogel, Augustus Dandridge, Filomena Vitale, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM_
-- **c123** [observation] — on who was there at 7:00 PM Maureen Sweeney runs through it: at 7:00 PM there were Gretchen Vogel, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 7:00 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 7:00 PM_
-- **c124** [observation] — on who was there at 7:30 PM Maureen Sweeney runs through it: at 7:30 PM there were Gretchen Vogel, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 7:30 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 7:30 PM_
-- **c125** [observation] — on who was there at 10:00 PM Maureen Sweeney runs through it: at 10:00 PM there were Gretchen Vogel, Augustus Dandridge at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the ferry slip at the foot of the street, 10:00 PM; Augustus Dandridge at the ferry slip at the foot of the street, 10:00 PM_
-- **c126** [observation] — on who was there at 10:30 PM Maureen Sweeney runs through it: at 10:30 PM there were Alonzo Colquitt, Gretchen Vogel, Augustus Dandridge, Filomena Vitale at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 10:30 PM; Gretchen Vogel at the ferry slip at the foot of the street, 10:30 PM; Augustus Dandridge at the ferry slip at the foot of the street, 10:30 PM; Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM_
-- **c127** [observation] — on who was there at 11:00 PM Maureen Sweeney runs through it: at 11:00 PM there were Alonzo Colquitt, Augustus Dandridge at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 11:00 PM; Augustus Dandridge at the ferry slip at the foot of the street, 11:00 PM_
-- **c128** [observation] — on who was there at 11:30 PM Maureen Sweeney runs through it: at 11:30 PM there were Alonzo Colquitt, Augustus Dandridge at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 11:30 PM; Augustus Dandridge at the ferry slip at the foot of the street, 11:30 PM_
-
-## Teresa Marchetti
-
-- **c055** [observation] — on Alonzo Colquitt Teresa Marchetti says Alonzo Colquitt was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Alonzo Colquitt could reach the weapon_
-- ★ **c056** [observation] — on Gretchen Vogel Teresa Marchetti says Gretchen Vogel was at the victim’s apartment on the fourth floor from 6:30 PM to 7:30 PM.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM–7:30 PM; Gretchen Vogel could reach the weapon_
-- **c057** [observation] — on Gretchen Vogel Teresa Marchetti says Gretchen Vogel was at Dolan’s Bar from 11:00 PM to 11:30 PM.
-  - _establishes: Gretchen Vogel at Dolan’s Bar, 11:00 PM–11:30 PM_
-- **c058** [observation] — on Augustus Dandridge Teresa Marchetti says Augustus Dandridge was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge could reach the weapon_
-- **c059** [observation] — on Augustus Dandridge Teresa Marchetti says Augustus Dandridge was at Dolan’s Bar from 9:00 PM to 9:30 PM.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 9:00 PM–9:30 PM_
-- **c060** [observation] — on Filomena Vitale Teresa Marchetti says Filomena Vitale was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale could reach the weapon_
-- **c061** [observation] — on Filomena Vitale Teresa Marchetti says Filomena Vitale was at Dolan’s Bar from 9:00 PM to 9:30 PM.
-  - _establishes: Filomena Vitale at Dolan’s Bar, 9:00 PM–9:30 PM_
-- **c062** [observation] — on Maureen Sweeney Teresa Marchetti says Maureen Sweeney was at the victim’s apartment on the fourth floor from 6:30 PM to 7:30 PM.
-  - _establishes: Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM–7:30 PM; Maureen Sweeney could reach the weapon_
-- **c129** [observation] — on who was there at 6:30 PM Teresa Marchetti runs through it: at 6:30 PM there were Alonzo Colquitt, Gretchen Vogel, Augustus Dandridge, Filomena Vitale, Maureen Sweeney at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM_
-- **c130** [observation] — on who was there at 7:00 PM Teresa Marchetti runs through it: at 7:00 PM there were Gretchen Vogel, Maureen Sweeney at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 7:00 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 7:00 PM_
-- **c131** [observation] — on who was there at 7:30 PM Teresa Marchetti runs through it: at 7:30 PM there were Gretchen Vogel, Maureen Sweeney at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 7:30 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 7:30 PM_
-- **c132** [observation] — on who was there at 9:00 PM Teresa Marchetti runs through it: at 9:00 PM there were Augustus Dandridge, Filomena Vitale at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 9:00 PM; Filomena Vitale at Dolan’s Bar, 9:00 PM_
-- **c133** [observation] — on who was there at 9:30 PM Teresa Marchetti runs through it: at 9:30 PM there were Augustus Dandridge, Filomena Vitale at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 9:30 PM; Filomena Vitale at Dolan’s Bar, 9:30 PM_
-- ★ **c193** [overheard] — on Augustus Dandridge Teresa Marchetti on Augustus Dandridge: Augustus Dandridge has come into money lately and has no visible way of having come into money.
+- **c045** [observation] — on Colquitt Sweeney says Colquitt was at the fourth floor at 6:30 PM.
+  - _establishes: Colquitt at the fourth floor, 6:30 PM; Colquitt could reach the weapon_
+- **c046** [observation] — on Colquitt Sweeney says Colquitt was at the ferry slip from 10:30 PM to 11:30 PM.
+  - _establishes: Colquitt at the ferry slip, 10:30 PM–11:30 PM_
+- ★ **c047** [observation] — on Vogel Sweeney says Vogel was at the fourth floor from 6:00 PM to 7:30 PM.
+  - _establishes: Vogel at the fourth floor, 6:00 PM–7:30 PM; Vogel could reach the weapon_
+- **c048** [observation] — on Vogel Sweeney says Vogel was at Ruggiero’s at 9:30 PM.
+  - _establishes: Vogel at Ruggiero’s, 9:30 PM_
+- **c049** [observation] — on Vogel Sweeney says Vogel was at the ferry slip from 10:00 PM to 10:30 PM.
+  - _establishes: Vogel at the ferry slip, 10:00 PM–10:30 PM_
+- **c050** [observation] — on Dandridge Sweeney says Dandridge was at the fourth floor at 6:30 PM.
+  - _establishes: Dandridge at the fourth floor, 6:30 PM; Dandridge could reach the weapon_
+- **c051** [observation] — on Dandridge Sweeney says Dandridge was at the ferry slip from 10:00 PM to 11:30 PM.
+  - _establishes: Dandridge at the ferry slip, 10:00 PM–11:30 PM_
+- **c052** [observation] — on Vitale Sweeney says Vitale was at the fourth floor from 6:00 PM to 6:30 PM.
+  - _establishes: Vitale at the fourth floor, 6:00 PM–6:30 PM; Vitale could reach the weapon_
+- **c053** [observation] — on Vitale Sweeney says Vitale was at the ferry slip at 10:30 PM.
+  - _establishes: Vitale at the ferry slip, 10:30 PM_
+- **c054** [observation] — on Marchetti Sweeney says Marchetti was at the fourth floor from 6:30 PM to 7:30 PM.
+  - _establishes: Marchetti at the fourth floor, 6:30 PM–7:30 PM; Marchetti could reach the weapon_
+- ★ **c148** [overheard] — on Dandridge Sweeney on Dandridge: Dandridge and the victim were heard at the Hallam, and one of them was doing all the talking.
   - _establishes: context only_
-- **c201** [overheard] — on Filomena Vitale Teresa Marchetti on Filomena Vitale: Filomena Vitale keeps a photograph and will not be asked about it twice.
+- **c156** [overheard] — on Vitale Sweeney on Vitale: A woman at the ferry slip asked for Vitale by a name Vitale has not used in years.
   - _establishes: context only_
 
-## Thaddeus Thorndike
+## Marchetti
 
-- **c063** [observation] — on Roscoe Whitfield Thaddeus Thorndike says Roscoe Whitfield was at Dolan’s Bar at 6:00 PM.
-  - _establishes: Roscoe Whitfield at Dolan’s Bar, 6:00 PM_
-- **c064** [observation] — on Alonzo Colquitt Thaddeus Thorndike says Alonzo Colquitt was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Alonzo Colquitt could reach the weapon_
-- **c065** [observation] — on Alonzo Colquitt Thaddeus Thorndike says Alonzo Colquitt was at Dolan’s Bar from 7:00 PM to 8:00 PM.
-  - _establishes: Alonzo Colquitt at Dolan’s Bar, 7:00 PM–8:00 PM_
-- **c066** [observation] — on Gretchen Vogel Thaddeus Thorndike says Gretchen Vogel was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Gretchen Vogel could reach the weapon_
-- **c067** [observation] — on Gretchen Vogel Thaddeus Thorndike says Gretchen Vogel was at Dolan’s Bar from 11:00 PM to 11:30 PM.
-  - _establishes: Gretchen Vogel at Dolan’s Bar, 11:00 PM–11:30 PM_
-- **c068** [observation] — on Augustus Dandridge Thaddeus Thorndike says Augustus Dandridge was at Dolan’s Bar at 6:00 PM.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 6:00 PM_
-- **c069** [observation] — on Augustus Dandridge Thaddeus Thorndike says Augustus Dandridge was at Dolan’s Bar from 8:30 PM to 9:30 PM.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM–9:30 PM_
-- **c070** [observation] — on Augustus Dandridge Thaddeus Thorndike says Augustus Dandridge was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge could reach the weapon_
-- **c071** [observation] — on Filomena Vitale Thaddeus Thorndike says Filomena Vitale was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale could reach the weapon_
-- ★ **c072** [observation] — on Filomena Vitale Thaddeus Thorndike says Filomena Vitale was at Dolan’s Bar from 8:30 PM to 9:30 PM.
-  - _establishes: Filomena Vitale at Dolan’s Bar, 8:30 PM–9:30 PM_
-- **c073** [observation] — on Maureen Sweeney Thaddeus Thorndike says Maureen Sweeney was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney could reach the weapon_
-- **c074** [observation] — on Teresa Marchetti Thaddeus Thorndike says Teresa Marchetti was at the victim’s apartment on the fourth floor at 6:30 PM.
-  - _establishes: Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti could reach the weapon_
-- **c075** [observation] — on Teresa Marchetti Thaddeus Thorndike says Teresa Marchetti was at Dolan’s Bar from 8:00 PM to 11:30 PM.
-  - _establishes: Teresa Marchetti at Dolan’s Bar, 8:00 PM–11:30 PM_
-- **c134** [observation] — on who was there at 6:30 PM Thaddeus Thorndike runs through it: at 6:30 PM there were Alonzo Colquitt, Gretchen Vogel, Augustus Dandridge, Filomena Vitale, Maureen Sweeney, Teresa Marchetti at the victim’s apartment on the fourth floor, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the victim’s apartment on the fourth floor, 6:30 PM; Gretchen Vogel at the victim’s apartment on the fourth floor, 6:30 PM; Augustus Dandridge at the victim’s apartment on the fourth floor, 6:30 PM; Filomena Vitale at the victim’s apartment on the fourth floor, 6:30 PM; Maureen Sweeney at the victim’s apartment on the fourth floor, 6:30 PM; Teresa Marchetti at the victim’s apartment on the fourth floor, 6:30 PM_
-- **c135** [observation] — on who was there at 8:00 PM Thaddeus Thorndike runs through it: at 8:00 PM there were Alonzo Colquitt, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at Dolan’s Bar, 8:00 PM; Teresa Marchetti at Dolan’s Bar, 8:00 PM_
-- ★ **c136** [observation] — on who was there at 8:30 PM Thaddeus Thorndike runs through it: at 8:30 PM there were Augustus Dandridge, Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM; Filomena Vitale at Dolan’s Bar, 8:30 PM; Teresa Marchetti at Dolan’s Bar, 8:30 PM_
-- **c137** [observation] — on who was there at 9:00 PM Thaddeus Thorndike runs through it: at 9:00 PM there were Augustus Dandridge, Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 9:00 PM; Filomena Vitale at Dolan’s Bar, 9:00 PM; Teresa Marchetti at Dolan’s Bar, 9:00 PM_
-- **c138** [observation] — on who was there at 9:30 PM Thaddeus Thorndike runs through it: at 9:30 PM there were Augustus Dandridge, Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 9:30 PM; Filomena Vitale at Dolan’s Bar, 9:30 PM; Teresa Marchetti at Dolan’s Bar, 9:30 PM_
-- **c139** [observation] — on who was there at 11:00 PM Thaddeus Thorndike runs through it: at 11:00 PM there were Gretchen Vogel, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at Dolan’s Bar, 11:00 PM; Teresa Marchetti at Dolan’s Bar, 11:00 PM_
-- **c140** [observation] — on who was there at 11:30 PM Thaddeus Thorndike runs through it: at 11:30 PM there were Gretchen Vogel, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at Dolan’s Bar, 11:30 PM; Teresa Marchetti at Dolan’s Bar, 11:30 PM_
-- **c149** [observation] — on Alonzo Colquitt’s account Thaddeus Thorndike was at Dolan’s Bar at 8:30 PM and says Alonzo Colquitt was not.
-  - _establishes: Alonzo Colquitt not at Dolan’s Bar, 8:30 PM_
-- ★ **c153** [observation] — on Gretchen Vogel’s account Thaddeus Thorndike was at Dolan’s Bar at 8:30 PM and says Gretchen Vogel was not.
-  - _establishes: Gretchen Vogel not at Dolan’s Bar, 8:30 PM_
-- **c160** [observation] — on Maureen Sweeney’s account Thaddeus Thorndike was at Dolan’s Bar at 8:30 PM and says Maureen Sweeney was not.
-  - _establishes: Maureen Sweeney not at Dolan’s Bar, 8:30 PM_
-- **c170** [anchor] — on the noise that evening Thaddeus Thorndike was at Dolan’s Bar at 8:30 PM and heard a shot from the direction of the roof over the Dover, as the bells were going.
-  - _establishes: noise at the roof over the Dover at 8:30 PM; the victim dead by 8:30 PM; how it was done_
-- **c177** [overheard] — on Gretchen Vogel and Roscoe Whitfield Thaddeus Thorndike says Gretchen Vogel said Roscoe Whitfield had taken everything and would be made to feel it.
-  - _establishes: Gretchen Vogel had a motive (revenge)_
-- **c183** [overheard] — on Teresa Marchetti and Roscoe Whitfield Thaddeus Thorndike says Teresa Marchetti told Roscoe Whitfield to keep away, loud enough to turn heads.
-  - _establishes: Teresa Marchetti had a motive (jealousy)_
-- **c187** [overheard] — on Alonzo Colquitt Thaddeus Thorndike on Alonzo Colquitt: Alonzo Colquitt has been selling things that were never Alonzo Colquitt’s to sell.
-  - _establishes: context only_
-- **c213** [overheard] — on Teresa Marchetti Thaddeus Thorndike on Teresa Marchetti: Teresa Marchetti had taken a drink and had gone to some trouble about the smell of it.
-  - _establishes: context only_
+- **c055** [observation] — on Colquitt Marchetti says Colquitt was at the fourth floor at 6:30 PM.
+  - _establishes: Colquitt at the fourth floor, 6:30 PM; Colquitt could reach the weapon_
+- **c056** [observation] — on Vogel Marchetti says Vogel was at the fourth floor from 6:30 PM to 7:30 PM.
+  - _establishes: Vogel at the fourth floor, 6:30 PM–7:30 PM; Vogel could reach the weapon_
+- **c057** [observation] — on Vogel Marchetti says Vogel was at Dolan’s from 11:00 PM to 11:30 PM.
+  - _establishes: Vogel at Dolan’s, 11:00 PM–11:30 PM_
+- **c058** [observation] — on Dandridge Marchetti says Dandridge was at the fourth floor at 6:30 PM.
+  - _establishes: Dandridge at the fourth floor, 6:30 PM; Dandridge could reach the weapon_
+- **c059** [observation] — on Dandridge Marchetti says Dandridge was at Dolan’s from 9:00 PM to 9:30 PM.
+  - _establishes: Dandridge at Dolan’s, 9:00 PM–9:30 PM_
+- **c060** [observation] — on Vitale Marchetti says Vitale was at the fourth floor at 6:30 PM.
+  - _establishes: Vitale at the fourth floor, 6:30 PM; Vitale could reach the weapon_
+- **c061** [observation] — on Vitale Marchetti says Vitale was at Dolan’s from 9:00 PM to 9:30 PM.
+  - _establishes: Vitale at Dolan’s, 9:00 PM–9:30 PM_
+- **c062** [observation] — on Sweeney Marchetti says Sweeney was at the fourth floor from 6:30 PM to 7:30 PM.
+  - _establishes: Sweeney at the fourth floor, 6:30 PM–7:30 PM; Sweeney could reach the weapon_
 
-## Pasquale Moretti
+## Thorndike
 
-- **c076** [observation] — on Roscoe Whitfield Pasquale Moretti says Roscoe Whitfield was at the vestibule of the Hallam apartments at 7:30 PM.
-  - _establishes: Roscoe Whitfield at the vestibule of the Hallam apartments, 7:30 PM_
-- **c077** [observation] — on Alonzo Colquitt Pasquale Moretti says Alonzo Colquitt was at the vestibule of the Hallam apartments at 6:00 PM.
-  - _establishes: Alonzo Colquitt at the vestibule of the Hallam apartments, 6:00 PM_
-- **c078** [observation] — on Alonzo Colquitt Pasquale Moretti says Alonzo Colquitt was at the vestibule of the Hallam apartments from 9:00 PM to 9:30 PM.
-  - _establishes: Alonzo Colquitt at the vestibule of the Hallam apartments, 9:00 PM–9:30 PM_
-- **c079** [observation] — on Alonzo Colquitt Pasquale Moretti says Alonzo Colquitt was at Ruggiero’s barber shop at 8:30 PM.
-  - _establishes: Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM_
-- **c080** [observation] — on Augustus Dandridge Pasquale Moretti says Augustus Dandridge was at the vestibule of the Hallam apartments from 7:30 PM to 8:00 PM.
-  - _establishes: Augustus Dandridge at the vestibule of the Hallam apartments, 7:30 PM–8:00 PM_
-- **c081** [observation] — on Filomena Vitale Pasquale Moretti says Filomena Vitale was at the vestibule of the Hallam apartments at 10:00 PM.
-  - _establishes: Filomena Vitale at the vestibule of the Hallam apartments, 10:00 PM_
-- **c082** [observation] — on Maureen Sweeney Pasquale Moretti says Maureen Sweeney was at Ruggiero’s barber shop at 8:30 PM.
-  - _establishes: Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM_
-- ★ **c141** [observation] — on who was there at 8:30 PM Pasquale Moretti runs through it: at 8:30 PM there were Alonzo Colquitt, Maureen Sweeney at Ruggiero’s barber shop, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM; Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM_
-- **c156** [observation] — on Filomena Vitale’s account Pasquale Moretti was at the vestibule of the Hallam apartments at 10:30 PM and says Filomena Vitale was not.
-  - _establishes: Filomena Vitale not at the vestibule of the Hallam apartments, 10:30 PM_
-- **c163** [observation] — on Teresa Marchetti’s account Pasquale Moretti was at the vestibule of the Hallam apartments at 8:00 PM and says Teresa Marchetti was not.
-  - _establishes: Teresa Marchetti not at the vestibule of the Hallam apartments, 8:00 PM_
-- **c171** [anchor] — on the noise that evening Pasquale Moretti was at Ruggiero’s barber shop at 8:30 PM and heard a shot from the direction of the roof over the Dover, as the bells were going.
-  - _establishes: noise at the roof over the Dover at 8:30 PM; the victim dead by 8:30 PM; how it was done_
-- ★ **c194** [overheard] — on Augustus Dandridge Pasquale Moretti on Augustus Dandridge: The victim had been drawing cash in amounts that did not match anything in the accounts.
+- **c063** [observation] — on Whitfield Thorndike says Whitfield was at Dolan’s at 6:00 PM.
+  - _establishes: Whitfield at Dolan’s, 6:00 PM_
+- **c064** [observation] — on Colquitt Thorndike says Colquitt was at the fourth floor at 6:30 PM.
+  - _establishes: Colquitt at the fourth floor, 6:30 PM; Colquitt could reach the weapon_
+- **c065** [observation] — on Colquitt Thorndike says Colquitt was at Dolan’s from 7:00 PM to 8:00 PM.
+  - _establishes: Colquitt at Dolan’s, 7:00 PM–8:00 PM_
+- **c066** [observation] — on Vogel Thorndike says Vogel was at the fourth floor at 6:30 PM.
+  - _establishes: Vogel at the fourth floor, 6:30 PM; Vogel could reach the weapon_
+- **c067** [observation] — on Vogel Thorndike says Vogel was at Dolan’s from 11:00 PM to 11:30 PM.
+  - _establishes: Vogel at Dolan’s, 11:00 PM–11:30 PM_
+- **c068** [observation] — on Dandridge Thorndike says Dandridge was at Dolan’s at 6:00 PM.
+  - _establishes: Dandridge at Dolan’s, 6:00 PM_
+- ★ **c069** [observation] — on Dandridge Thorndike says Dandridge was at Dolan’s from 8:30 PM to 9:30 PM.
+  - _establishes: Dandridge at Dolan’s, 8:30 PM–9:30 PM_
+- **c070** [observation] — on Dandridge Thorndike says Dandridge was at the fourth floor at 6:30 PM.
+  - _establishes: Dandridge at the fourth floor, 6:30 PM; Dandridge could reach the weapon_
+- **c071** [observation] — on Vitale Thorndike says Vitale was at the fourth floor at 6:30 PM.
+  - _establishes: Vitale at the fourth floor, 6:30 PM; Vitale could reach the weapon_
+- ★ **c072** [observation] — on Vitale Thorndike says Vitale was at Dolan’s from 8:30 PM to 9:30 PM.
+  - _establishes: Vitale at Dolan’s, 8:30 PM–9:30 PM_
+- ★ **c073** [observation] — on Sweeney Thorndike says Sweeney was at the fourth floor at 6:30 PM.
+  - _establishes: Sweeney at the fourth floor, 6:30 PM; Sweeney could reach the weapon_
+- **c074** [observation] — on Marchetti Thorndike says Marchetti was at the fourth floor at 6:30 PM.
+  - _establishes: Marchetti at the fourth floor, 6:30 PM; Marchetti could reach the weapon_
+- **c075** [observation] — on Marchetti Thorndike says Marchetti was at Dolan’s from 8:00 PM to 11:30 PM.
+  - _establishes: Marchetti at Dolan’s, 8:00 PM–11:30 PM_
+- **c100** [observation] — on Colquitt’s account Thorndike was at Dolan’s at 8:30 PM and says Colquitt was not.
+  - _establishes: Colquitt not at Dolan’s, 8:30 PM_
+- **c104** [observation] — on Vogel’s account Thorndike was at Dolan’s at 8:30 PM and says Vogel was not.
+  - _establishes: Vogel not at Dolan’s, 8:30 PM_
+- **c111** [observation] — on Sweeney’s account Thorndike was at Dolan’s at 8:30 PM and says Sweeney was not.
+  - _establishes: Sweeney not at Dolan’s, 8:30 PM_
+- **c122** [anchor] — on the noise that evening Thorndike was at Dolan’s at 8:30 PM and heard a shot from the direction of the roof, while the bells were going.
+  - _establishes: noise at the roof at 8:30 PM; the victim dead by 8:30 PM; how it was done_
+- **c133** [overheard] — on Vogel and Whitfield Thorndike says Vogel said Whitfield had taken everything and would be made to feel it.
+  - _establishes: Vogel had a motive (revenge)_
+- **c139** [overheard] — on Marchetti and Whitfield Thorndike says Whitfield told Marchetti the lawyer was coming Thursday and that the arrangement would be changed.
+  - _establishes: Marchetti had a motive (inheritance)_
+- **c141** [overheard] — on Colquitt Thorndike on Colquitt: Colquitt was carrying a parcel into Ruggiero’s and came out without it.
   - _establishes: context only_
-- **c207** [overheard] — on Maureen Sweeney Pasquale Moretti on Maureen Sweeney: There is a man who meets people at Ruggiero’s barber shop and nobody will say his name out loud.
+- **c149** [overheard] — on Dandridge Thorndike on Dandridge: Dandridge has come into money lately and has no visible way of having come into money.
+  - _establishes: context only_
+- **c157** [overheard] — on Vitale Thorndike on Vitale: Vitale keeps a photograph and will not be asked about it twice.
+  - _establishes: context only_
+- **c170** [overheard] — on Marchetti Thorndike on Marchetti: Marchetti is on a temperance pledge that Marchetti mentions before anybody asks.
   - _establishes: context only_
 
-## Lucia Ruggiero
+## Moretti
 
-- **c083** [observation] — on Roscoe Whitfield Lucia Ruggiero says Roscoe Whitfield was at Ruggiero’s barber shop at 7:00 PM.
-  - _establishes: Roscoe Whitfield at Ruggiero’s barber shop, 7:00 PM_
-- **c084** [observation] — on Roscoe Whitfield Lucia Ruggiero says Roscoe Whitfield was at Ruggiero’s barber shop at 8:00 PM.
-  - _establishes: Roscoe Whitfield at Ruggiero’s barber shop, 8:00 PM_
-- ★ **c085** [observation] — on Alonzo Colquitt Lucia Ruggiero says Alonzo Colquitt was at Ruggiero’s barber shop at 8:30 PM.
-  - _establishes: Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM_
-- **c086** [observation] — on Gretchen Vogel Lucia Ruggiero says Gretchen Vogel was at Ruggiero’s barber shop at 9:30 PM.
-  - _establishes: Gretchen Vogel at Ruggiero’s barber shop, 9:30 PM_
-- **c087** [observation] — on Augustus Dandridge Lucia Ruggiero says Augustus Dandridge was at Ruggiero’s barber shop at 7:00 PM.
-  - _establishes: Augustus Dandridge at Ruggiero’s barber shop, 7:00 PM_
-- **c088** [observation] — on Filomena Vitale Lucia Ruggiero says Filomena Vitale was at Ruggiero’s barber shop at 7:00 PM.
-  - _establishes: Filomena Vitale at Ruggiero’s barber shop, 7:00 PM_
-- **c089** [observation] — on Filomena Vitale Lucia Ruggiero says Filomena Vitale was at Ruggiero’s barber shop from 11:00 PM to 11:30 PM.
-  - _establishes: Filomena Vitale at Ruggiero’s barber shop, 11:00 PM–11:30 PM_
-- **c090** [observation] — on Maureen Sweeney Lucia Ruggiero says Maureen Sweeney was at Ruggiero’s barber shop from 8:30 PM to 9:30 PM.
-  - _establishes: Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM–9:30 PM_
-- **c091** [observation] — on Teresa Marchetti Lucia Ruggiero says Teresa Marchetti was at Ruggiero’s barber shop at 6:00 PM.
-  - _establishes: Teresa Marchetti at Ruggiero’s barber shop, 6:00 PM_
-- **c142** [observation] — on who was there at 7:00 PM Lucia Ruggiero runs through it: at 7:00 PM there were Augustus Dandridge, Filomena Vitale at Ruggiero’s barber shop, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Ruggiero’s barber shop, 7:00 PM; Filomena Vitale at Ruggiero’s barber shop, 7:00 PM_
-- ★ **c143** [observation] — on who was there at 8:30 PM Lucia Ruggiero runs through it: at 8:30 PM there were Alonzo Colquitt, Maureen Sweeney at Ruggiero’s barber shop, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM; Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM_
-- **c144** [observation] — on who was there at 9:30 PM Lucia Ruggiero runs through it: at 9:30 PM there were Gretchen Vogel, Maureen Sweeney at Ruggiero’s barber shop, and nobody else worth naming.
-  - _establishes: Gretchen Vogel at Ruggiero’s barber shop, 9:30 PM; Maureen Sweeney at Ruggiero’s barber shop, 9:30 PM_
-- **c155** [observation] — on Augustus Dandridge’s account Lucia Ruggiero was at Ruggiero’s barber shop at 7:30 PM and says Augustus Dandridge was not.
-  - _establishes: Augustus Dandridge not at Ruggiero’s barber shop, 7:30 PM_
-- ★ **c167** [anchor] — on Roscoe Whitfield that evening Lucia Ruggiero puts Roscoe Whitfield at Ruggiero’s barber shop when the regular came in for his seat, which was 8:00 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 8:00 PM; Roscoe Whitfield at Ruggiero’s barber shop, 8:00 PM_
-- ★ **c172** [anchor] — on the noise that evening Lucia Ruggiero was at Ruggiero’s barber shop at 8:30 PM and heard a shot from the direction of the roof over the Dover, as the bells were going.
-  - _establishes: noise at the roof over the Dover at 8:30 PM; the victim dead by 8:30 PM; how it was done_
-- **c179** [overheard] — on Augustus Dandridge and Roscoe Whitfield Lucia Ruggiero says Roscoe Whitfield said to Augustus Dandridge that a man who testifies sleeps better.
-  - _establishes: Augustus Dandridge had a motive (silence-a-witness)_
-- ★ **c185** [overheard] — on Alonzo Colquitt Lucia Ruggiero on Alonzo Colquitt: Alonzo Colquitt was carrying a parcel into Ruggiero’s barber shop and came out without it.
-  - _establishes: context only_
-- **c214** [overheard] — on Teresa Marchetti Lucia Ruggiero on Teresa Marchetti: Teresa Marchetti is on a temperance pledge that Teresa Marchetti mentions before anybody asks.
+- **c076** [observation] — on Whitfield Moretti says Whitfield was at the Hallam at 7:30 PM.
+  - _establishes: Whitfield at the Hallam, 7:30 PM_
+- **c077** [observation] — on Colquitt Moretti says Colquitt was at the Hallam at 6:00 PM.
+  - _establishes: Colquitt at the Hallam, 6:00 PM_
+- **c078** [observation] — on Colquitt Moretti says Colquitt was at the Hallam from 9:00 PM to 9:30 PM.
+  - _establishes: Colquitt at the Hallam, 9:00 PM–9:30 PM_
+- ★ **c079** [observation] — on Colquitt Moretti says Colquitt was at Ruggiero’s at 8:30 PM.
+  - _establishes: Colquitt at Ruggiero’s, 8:30 PM_
+- **c080** [observation] — on Dandridge Moretti says Dandridge was at the Hallam from 7:30 PM to 8:00 PM.
+  - _establishes: Dandridge at the Hallam, 7:30 PM–8:00 PM_
+- **c081** [observation] — on Vitale Moretti says Vitale was at the Hallam at 10:00 PM.
+  - _establishes: Vitale at the Hallam, 10:00 PM_
+- **c082** [observation] — on Sweeney Moretti says Sweeney was at Ruggiero’s at 8:30 PM.
+  - _establishes: Sweeney at Ruggiero’s, 8:30 PM_
+- **c107** [observation] — on Vitale’s account Moretti was at the Hallam at 10:30 PM and says Vitale was not.
+  - _establishes: Vitale not at the Hallam, 10:30 PM_
+- **c115** [observation] — on Marchetti’s account Moretti was at the Hallam at 8:00 PM and says Marchetti was not.
+  - _establishes: Marchetti not at the Hallam, 8:00 PM_
+- ★ **c123** [anchor] — on the noise that evening Moretti was at Ruggiero’s at 8:30 PM and heard a shot from the direction of the roof, while the bells were going.
+  - _establishes: noise at the roof at 8:30 PM; the victim dead by 8:30 PM; how it was done_
+- ★ **c164** [overheard] — on Sweeney Moretti on Sweeney: Sweeney has been selling things that were never Sweeney’s to sell.
   - _establishes: context only_
 
-## Friedrich Brauer
+## Ruggiero
 
-- **c092** [observation] — on Alonzo Colquitt Friedrich Brauer says Alonzo Colquitt was at the ferry slip at the foot of the street at 11:30 PM.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 11:30 PM_
-- **c093** [observation] — on Augustus Dandridge Friedrich Brauer says Augustus Dandridge was at Dolan’s Bar at 8:30 PM.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM_
-- **c094** [observation] — on Augustus Dandridge Friedrich Brauer says Augustus Dandridge was at the ferry slip at the foot of the street at 11:30 PM.
-  - _establishes: Augustus Dandridge at the ferry slip at the foot of the street, 11:30 PM_
-- **c095** [observation] — on Filomena Vitale Friedrich Brauer says Filomena Vitale was at Dolan’s Bar at 8:30 PM.
-  - _establishes: Filomena Vitale at Dolan’s Bar, 8:30 PM_
-- **c096** [observation] — on Maureen Sweeney Friedrich Brauer says Maureen Sweeney was at the ferry slip at the foot of the street at 11:30 PM.
-  - _establishes: Maureen Sweeney at the ferry slip at the foot of the street, 11:30 PM_
-- **c097** [observation] — on Teresa Marchetti Friedrich Brauer says Teresa Marchetti was at Dolan’s Bar at 8:30 PM.
-  - _establishes: Teresa Marchetti at Dolan’s Bar, 8:30 PM_
-- ★ **c145** [observation] — on who was there at 8:30 PM Friedrich Brauer runs through it: at 8:30 PM there were Augustus Dandridge, Filomena Vitale, Teresa Marchetti at Dolan’s Bar, and nobody else worth naming.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM; Filomena Vitale at Dolan’s Bar, 8:30 PM; Teresa Marchetti at Dolan’s Bar, 8:30 PM_
-- **c146** [observation] — on who was there at 11:30 PM Friedrich Brauer runs through it: at 11:30 PM there were Alonzo Colquitt, Augustus Dandridge, Maureen Sweeney at the ferry slip at the foot of the street, and nobody else worth naming.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 11:30 PM; Augustus Dandridge at the ferry slip at the foot of the street, 11:30 PM; Maureen Sweeney at the ferry slip at the foot of the street, 11:30 PM_
-- **c150** [observation] — on Alonzo Colquitt’s account Friedrich Brauer was at Dolan’s Bar at 8:30 PM and says Alonzo Colquitt was not.
-  - _establishes: Alonzo Colquitt not at Dolan’s Bar, 8:30 PM_
-- **c154** [observation] — on Gretchen Vogel’s account Friedrich Brauer was at Dolan’s Bar at 8:30 PM and says Gretchen Vogel was not.
-  - _establishes: Gretchen Vogel not at Dolan’s Bar, 8:30 PM_
-- **c161** [observation] — on Maureen Sweeney’s account Friedrich Brauer was at Dolan’s Bar at 8:30 PM and says Maureen Sweeney was not.
-  - _establishes: Maureen Sweeney not at Dolan’s Bar, 8:30 PM_
-- **c173** [anchor] — on the noise that evening Friedrich Brauer was at Dolan’s Bar at 8:30 PM and heard a shot from the direction of the roof over the Dover, as the bells were going.
-  - _establishes: noise at the roof over the Dover at 8:30 PM; the victim dead by 8:30 PM; how it was done_
-- **c174** [anchor] — on the 8:30 PM round The beat cop’s pass at 8:30 PM puts Augustus Dandridge, Filomena Vitale, Teresa Marchetti at Dolan’s Bar.
-  - _establishes: Augustus Dandridge at Dolan’s Bar, 8:30 PM; Filomena Vitale at Dolan’s Bar, 8:30 PM; Teresa Marchetti at Dolan’s Bar, 8:30 PM_
-- **c175** [anchor] — on the 11:30 PM round The beat cop’s pass at 11:30 PM puts Alonzo Colquitt, Augustus Dandridge, Maureen Sweeney at the ferry slip at the foot of the street.
-  - _establishes: Alonzo Colquitt at the ferry slip at the foot of the street, 11:30 PM; Augustus Dandridge at the ferry slip at the foot of the street, 11:30 PM; Maureen Sweeney at the ferry slip at the foot of the street, 11:30 PM_
-- **c208** [overheard] — on Maureen Sweeney Friedrich Brauer on Maureen Sweeney: Maureen Sweeney has been selling things that were never Maureen Sweeney’s to sell.
+- **c083** [observation] — on Whitfield Ruggiero says Whitfield was at Ruggiero’s at 7:00 PM.
+  - _establishes: Whitfield at Ruggiero’s, 7:00 PM_
+- **c084** [observation] — on Whitfield Ruggiero says Whitfield was at Ruggiero’s at 8:00 PM.
+  - _establishes: Whitfield at Ruggiero’s, 8:00 PM_
+- ★ **c085** [observation] — on Colquitt Ruggiero says Colquitt was at Ruggiero’s at 8:30 PM.
+  - _establishes: Colquitt at Ruggiero’s, 8:30 PM_
+- **c086** [observation] — on Vogel Ruggiero says Vogel was at Ruggiero’s at 9:30 PM.
+  - _establishes: Vogel at Ruggiero’s, 9:30 PM_
+- **c087** [observation] — on Dandridge Ruggiero says Dandridge was at Ruggiero’s at 7:00 PM.
+  - _establishes: Dandridge at Ruggiero’s, 7:00 PM_
+- **c088** [observation] — on Vitale Ruggiero says Vitale was at Ruggiero’s at 7:00 PM.
+  - _establishes: Vitale at Ruggiero’s, 7:00 PM_
+- **c089** [observation] — on Vitale Ruggiero says Vitale was at Ruggiero’s from 11:00 PM to 11:30 PM.
+  - _establishes: Vitale at Ruggiero’s, 11:00 PM–11:30 PM_
+- ★ **c090** [observation] — on Sweeney Ruggiero says Sweeney was at Ruggiero’s from 8:30 PM to 9:30 PM.
+  - _establishes: Sweeney at Ruggiero’s, 8:30 PM–9:30 PM_
+- **c091** [observation] — on Marchetti Ruggiero says Marchetti was at Ruggiero’s at 6:00 PM.
+  - _establishes: Marchetti at Ruggiero’s, 6:00 PM_
+- **c106** [observation] — on Dandridge’s account Ruggiero was at Ruggiero’s at 7:30 PM and says Dandridge was not.
+  - _establishes: Dandridge not at Ruggiero’s, 7:30 PM_
+- ★ **c119** [anchor] — on Whitfield that evening Ruggiero puts Whitfield at Ruggiero’s when the regular came in for his seat, which was 8:00 PM, and alive enough to argue about the weather.
+  - _establishes: the victim alive at 8:00 PM; Whitfield at Ruggiero’s, 8:00 PM_
+- **c124** [anchor] — on the noise that evening Ruggiero was at Ruggiero’s at 8:30 PM and heard a shot from the direction of the roof, while the bells were going.
+  - _establishes: noise at the roof at 8:30 PM; the victim dead by 8:30 PM; how it was done_
+- **c135** [overheard] — on Dandridge and Whitfield Ruggiero says Whitfield said to Dandridge that a man who testifies sleeps better.
+  - _establishes: Dandridge had a motive (silence-a-witness)_
+- **c142** [overheard] — on Colquitt Ruggiero on Colquitt: There is a man who meets people at Ruggiero’s and nobody will say his name out loud.
+  - _establishes: context only_
+- ★ **c150** [overheard] — on Dandridge Ruggiero on Dandridge: The victim had been drawing cash in amounts that did not match anything in the accounts.
+  - _establishes: context only_
+- ★ **c171** [overheard] — on Marchetti Ruggiero on Marchetti: Somebody at Dolan’s says Marchetti is in more often than Marchetti lets on.
   - _establishes: context only_
 
-## the roof over the Dover (the place itself)
+## Brauer
 
-- ★ **c164** [scene] Roscoe Whitfield was found at the roof over the Dover. The cigarette he had going burned itself out on the sill where it fell. The bells at St. Malachy’s came at 8:30 PM, and the bells fix it: the sexton rings them off the sacristy clock and it keeps good time. That puts the killing in that half hour and no later.
+- **c092** [observation] — on Colquitt Brauer says Colquitt was at the ferry slip at 11:30 PM.
+  - _establishes: Colquitt at the ferry slip, 11:30 PM_
+- **c093** [observation] — on Dandridge Brauer says Dandridge was at Dolan’s at 8:30 PM.
+  - _establishes: Dandridge at Dolan’s, 8:30 PM_
+- **c094** [observation] — on Dandridge Brauer says Dandridge was at the ferry slip at 11:30 PM.
+  - _establishes: Dandridge at the ferry slip, 11:30 PM_
+- ★ **c095** [observation] — on Vitale Brauer says Vitale was at Dolan’s at 8:30 PM.
+  - _establishes: Vitale at Dolan’s, 8:30 PM_
+- **c096** [observation] — on Sweeney Brauer says Sweeney was at the ferry slip at 11:30 PM.
+  - _establishes: Sweeney at the ferry slip, 11:30 PM_
+- **c097** [observation] — on Marchetti Brauer says Marchetti was at Dolan’s at 8:30 PM.
+  - _establishes: Marchetti at Dolan’s, 8:30 PM_
+- **c101** [observation] — on Colquitt’s account Brauer was at Dolan’s at 8:30 PM and says Colquitt was not.
+  - _establishes: Colquitt not at Dolan’s, 8:30 PM_
+- **c105** [observation] — on Vogel’s account Brauer was at Dolan’s at 8:30 PM and says Vogel was not.
+  - _establishes: Vogel not at Dolan’s, 8:30 PM_
+- **c112** [observation] — on Sweeney’s account Brauer was at Dolan’s at 8:30 PM and says Sweeney was not.
+  - _establishes: Sweeney not at Dolan’s, 8:30 PM_
+- **c125** [anchor] — on the noise that evening Brauer was at Dolan’s at 8:30 PM and heard a shot from the direction of the roof, while the bells were going.
+  - _establishes: noise at the roof at 8:30 PM; the victim dead by 8:30 PM; how it was done_
+- **c126** [anchor] — on Dandridge Brauer came round at 8:30 PM and had Dandridge at Dolan’s.
+  - _establishes: Dandridge at Dolan’s, 8:30 PM_
+- **c127** [anchor] — on Vitale Brauer came round at 8:30 PM and had Vitale at Dolan’s.
+  - _establishes: Vitale at Dolan’s, 8:30 PM_
+- **c128** [anchor] — on Marchetti Brauer came round at 8:30 PM and had Marchetti at Dolan’s.
+  - _establishes: Marchetti at Dolan’s, 8:30 PM_
+- **c129** [anchor] — on Colquitt Brauer came round at 11:30 PM and had Colquitt at the ferry slip.
+  - _establishes: Colquitt at the ferry slip, 11:30 PM_
+- **c130** [anchor] — on Dandridge Brauer came round at 11:30 PM and had Dandridge at the ferry slip.
+  - _establishes: Dandridge at the ferry slip, 11:30 PM_
+- **c131** [anchor] — on Sweeney Brauer came round at 11:30 PM and had Sweeney at the ferry slip.
+  - _establishes: Sweeney at the ferry slip, 11:30 PM_
+- ★ **c162** [overheard] — on Sweeney Brauer on Sweeney: Sweeney was carrying a parcel into Ruggiero’s and came out without it.
+  - _establishes: context only_
+
+## the roof (the place itself)
+
+- ★ **c116** [scene] Whitfield was found at the roof. The cigarette he had going burned itself out on the sill where it fell. The bells rang the half hour at 8:30 PM. The sexton rings them off the sacristy clock and it keeps good time.
   - _establishes: the victim dead by 8:30 PM; how it was done_
-- ★ **c165** [morgue] The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
+- ★ **c117** [morgue] The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
   - _establishes: death between 7:30 PM and 9:00 PM; how it was done_
-- **c180** [document] Found at the roof over the Dover: A promissory note for $4,000 signed by Maureen Sweeney, endorsed to Roscoe Whitfield, three months past due.
-  - _establishes: Maureen Sweeney had a motive (debt)_
+- **c136** [document] Found at the roof: A promissory note for $4,000 signed by Sweeney, endorsed to Whitfield, three months past due.
+  - _establishes: Sweeney had a motive (debt)_
 
-## the victim’s apartment on the fourth floor (the place itself)
+## the fourth floor (the place itself)
 
-- ★ **c166** [physical] A nickel-plated revolver is gone from the victim’s apartment on the fourth floor. The drawer it was kept in is open and the oiled cloth is still in it.
-  - _establishes: something gone from the victim’s apartment on the fourth floor; how it was done_
-- ★ **c176** [document] Found at the victim’s apartment on the fourth floor: A clipping about the failure of Gretchen Vogel’s business, with Roscoe Whitfield’s name underlined twice in pencil.
-  - _establishes: Gretchen Vogel had a motive (revenge)_
-- **c178** [document] Found at the victim’s apartment on the fourth floor: A subpoena naming Roscoe Whitfield before the grand jury, with Augustus Dandridge’s name written in the margin.
-  - _establishes: Augustus Dandridge had a motive (silence-a-witness)_
+- **c118** [physical] A nickel-plated revolver is gone from the fourth floor. The drawer it was kept in is open and the oiled cloth is still in it.
+  - _establishes: something gone from the fourth floor; how it was done_
+- ★ **c132** [document] Found at the fourth floor: A clipping about the failure of Vogel’s business, with Whitfield’s name underlined twice in pencil.
+  - _establishes: Vogel had a motive (revenge)_
+- **c134** [document] Found at the fourth floor: A subpoena naming Whitfield before the grand jury, with Dandridge’s name written in the margin.
+  - _establishes: Dandridge had a motive (silence-a-witness)_
 
-## Ruggiero’s barber shop (the place itself)
+## Ruggiero’s (the place itself)
 
-- **c182** [document] Found at Ruggiero’s barber shop: Three letters in Roscoe Whitfield’s hand to a woman Teresa Marchetti is engaged to, kept in a drawer, the last one opened.
-  - _establishes: Teresa Marchetti had a motive (jealousy)_
-- **c188** [physical] Wrapping paper and a cut string at Ruggiero’s barber shop, and the shop it came from closed two years ago.
+- **c138** [document] Found at Ruggiero’s: A draft codicil in Whitfield’s hand striking Marchetti out of the will, dated last Tuesday and unsigned.
+  - _establishes: Marchetti had a motive (inheritance)_
+- ★ **c144** [physical] Wrapping paper and a cut string at Ruggiero’s, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c189** [physical] A pawn ticket at Ruggiero’s barber shop in a name that does not exist, made out at the hour in question.
+- **c145** [physical] A pawn ticket at Ruggiero’s in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- ★ **c190** [overheard] The receiver at Ruggiero’s barber shop would rather talk than be held: Alonzo Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Alonzo Colquitt will take over this one.
-  - _establishes: Alonzo Colquitt’s fence accounted for; Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM_
-- **c191** [overheard] The goods turn up, tagged and dated, and the tag puts Alonzo Colquitt at Ruggiero’s barber shop from 8:30 PM with both hands full.
-  - _establishes: Alonzo Colquitt’s fence accounted for; Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM_
-- **c209** [physical] Wrapping paper and a cut string at Ruggiero’s barber shop, and the shop it came from closed two years ago.
+- ★ **c146** [overheard] The receiver at Ruggiero’s would rather talk than be held: Colquitt was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Colquitt will take over this one.
+  - _establishes: Colquitt’s fence accounted for; Colquitt at Ruggiero’s, 8:30 PM_
+- **c147** [overheard] The goods turn up, tagged and dated, and the tag puts Colquitt at Ruggiero’s from 8:30 PM with both hands full.
+  - _establishes: Colquitt’s fence accounted for; Colquitt at Ruggiero’s, 8:30 PM_
+- **c165** [physical] Wrapping paper and a cut string at Ruggiero’s, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c210** [physical] A pawn ticket at Ruggiero’s barber shop in a name that does not exist, made out at the hour in question.
+- **c166** [physical] A pawn ticket at Ruggiero’s in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- ★ **c211** [overheard] The receiver at Ruggiero’s barber shop would rather talk than be held: Maureen Sweeney was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Maureen Sweeney will take over this one.
-  - _establishes: Maureen Sweeney’s fence accounted for; Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM_
-- **c212** [overheard] The goods turn up, tagged and dated, and the tag puts Maureen Sweeney at Ruggiero’s barber shop from 8:30 PM with both hands full.
-  - _establishes: Maureen Sweeney’s fence accounted for; Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM_
+- ★ **c167** [overheard] The receiver at Ruggiero’s would rather talk than be held: Sweeney was there from 8:30 PM handing over a parcel of somebody else’s silver, which is a charge Sweeney will take over this one.
+  - _establishes: Sweeney’s fence accounted for; Sweeney at Ruggiero’s, 8:30 PM_
+- ★ **c168** [overheard] The goods turn up, tagged and dated, and the tag puts Sweeney at Ruggiero’s from 8:30 PM with both hands full.
+  - _establishes: Sweeney’s fence accounted for; Sweeney at Ruggiero’s, 8:30 PM_
 
-## the vestibule of the Hallam apartments (the place itself)
+## the Hallam (the place itself)
 
-- **c195** [physical] An envelope at the vestibule of the Hallam apartments with nothing in it, addressed in the victim’s hand to no one.
+- **c151** [physical] An envelope at the Hallam with nothing in it, addressed in the victim’s hand to no one.
   - _establishes: context only_
-- **c196** [physical] A photograph at the vestibule of the Hallam apartments, folded small, of something the victim would have paid to keep folded.
+- ★ **c152** [physical] A photograph at the Hallam, folded small, of something the victim would have paid to keep folded.
   - _establishes: context only_
-- ★ **c197** [overheard] The victim’s bank book settles it: four payments, and Augustus Dandridge at the vestibule of the Hallam apartments from 7:30 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
-  - _establishes: Augustus Dandridge’s blackmail accounted for; Augustus Dandridge at the vestibule of the Hallam apartments, 7:30 PM_
-- **c198** [overheard] The thing Augustus Dandridge was holding over the victim turns up, and it was worth more to Augustus Dandridge every month than once.
-  - _establishes: Augustus Dandridge’s blackmail accounted for; Augustus Dandridge at the vestibule of the Hallam apartments, 7:30 PM_
+- ★ **c153** [overheard] The victim’s bank book settles it: four payments, and Dandridge at the Hallam from 7:30 PM collecting the fifth. It is extortion, and an extortionist wants the man alive.
+  - _establishes: Dandridge’s blackmail accounted for; Dandridge at the Hallam, 7:30 PM_
+- **c154** [overheard] The thing Dandridge was holding over the victim turns up, and it was worth more to Dandridge every month than once.
+  - _establishes: Dandridge’s blackmail accounted for; Dandridge at the Hallam, 7:30 PM_
 
-## the ferry slip at the foot of the street (the place itself)
+## the ferry slip (the place itself)
 
-- **c202** [physical] A board-and-keep receipt at the ferry slip at the foot of the street, monthly, eight years of them.
+- **c158** [physical] A board-and-keep receipt at the ferry slip, monthly, eight years of them.
   - _establishes: context only_
-- **c203** [physical] A child’s shoe at the ferry slip at the foot of the street, and nobody at the ferry slip at the foot of the street has any children.
+- **c159** [physical] A child’s shoe at the ferry slip, and nobody at the ferry slip has any children.
   - _establishes: context only_
-- ★ **c204** [overheard] The woman who keeps the child says it straight out: Filomena Vitale was at the ferry slip at the foot of the street from 10:30 PM, the same as every week, and left with the same face as always.
-  - _establishes: Filomena Vitale’s hidden-family accounted for; Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM_
-- **c205** [overheard] The parish register at the ferry slip at the foot of the street has the christening in it, and the board money receipted through the evening in question.
-  - _establishes: Filomena Vitale’s hidden-family accounted for; Filomena Vitale at the ferry slip at the foot of the street, 10:30 PM_
+- **c160** [overheard] The woman who keeps the child says it straight out: Vitale was at the ferry slip from 10:30 PM, the same as every week, and left with the same face as always.
+  - _establishes: Vitale’s hidden-family accounted for; Vitale at the ferry slip, 10:30 PM_
+- **c161** [overheard] The parish register at the ferry slip has the christening in it, and the board money receipted through the evening in question.
+  - _establishes: Vitale’s hidden-family accounted for; Vitale at the ferry slip, 10:30 PM_
 
-## Dolan’s Bar (the place itself)
+## Dolan’s (the place itself)
 
-- ★ **c216** [physical] A bottle at Dolan’s Bar pushed behind the pipes, the seal broken and the level down.
+- **c172** [physical] A bottle at Dolan’s pushed behind the pipes, the seal broken and the level down.
   - _establishes: context only_
-- **c217** [physical] A tab at Dolan’s Bar in a name that is not Teresa Marchetti’s, in Teresa Marchetti’s handwriting.
+- ★ **c173** [physical] A tab at Dolan’s in a name that is not Marchetti’s, in Marchetti’s handwriting.
   - _establishes: context only_
-- ★ **c218** [overheard] The man behind the counter at Dolan’s Bar knows exactly: Teresa Marchetti was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.
-  - _establishes: Teresa Marchetti’s secret-drinking accounted for; Teresa Marchetti at Dolan’s Bar, 8:00 PM–8:30 PM_
-- **c219** [overheard] The tab at Dolan’s Bar is dated and timed, from 8:00 PM to 8:30 PM, and Teresa Marchetti was there to run it up.
-  - _establishes: Teresa Marchetti’s secret-drinking accounted for; Teresa Marchetti at Dolan’s Bar, 8:00 PM–8:30 PM_
+- ★ **c174** [overheard] The man behind the counter at Dolan’s knows exactly: Marchetti was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Marchetti’s secret-drinking accounted for; Marchetti at Dolan’s, 8:00 PM–8:30 PM_
+- **c175** [overheard] The tab at Dolan’s is dated and timed, from 8:00 PM to 8:30 PM, and Marchetti was there to run it up.
+  - _establishes: Marchetti’s secret-drinking accounted for; Marchetti at Dolan’s, 8:00 PM–8:30 PM_
 
 ## Withheld observations
 
-- ~~Augustus Dandridge saw Roscoe Whitfield at the vestibule of the Hallam apartments, 7:30 PM~~ — lying about that time, will not say.
-- ~~Augustus Dandridge saw Pasquale Moretti at the vestibule of the Hallam apartments, 7:30 PM~~ — lying about that time, will not say.
-- ~~Teresa Marchetti saw Alonzo Colquitt at Dolan’s Bar, 8:00 PM~~ — lying about that time, will not say.
-- ~~Teresa Marchetti saw Thaddeus Thorndike at Dolan’s Bar, 8:00 PM, 8:30 PM~~ — lying about that time, will not say.
-- ~~Alonzo Colquitt saw Maureen Sweeney at Ruggiero’s barber shop, 8:30 PM~~ — lying about that time, will not say.
-- ~~Alonzo Colquitt saw Pasquale Moretti at Ruggiero’s barber shop, 8:30 PM~~ — lying about that time, will not say.
-- ~~Alonzo Colquitt saw Lucia Ruggiero at Ruggiero’s barber shop, 8:30 PM~~ — lying about that time, will not say.
-- ~~Gretchen Vogel saw Roscoe Whitfield at the roof over the Dover, 8:30 PM~~ — lying about that time, will not say.
-- ~~Maureen Sweeney saw Alonzo Colquitt at Ruggiero’s barber shop, 8:30 PM~~ — lying about that time, will not say.
-- ~~Maureen Sweeney saw Pasquale Moretti at Ruggiero’s barber shop, 8:30 PM~~ — lying about that time, will not say.
-- ~~Maureen Sweeney saw Lucia Ruggiero at Ruggiero’s barber shop, 8:30 PM~~ — lying about that time, will not say.
-- ~~Teresa Marchetti saw Augustus Dandridge at Dolan’s Bar, 8:30 PM~~ — lying about that time, will not say.
-- ~~Teresa Marchetti saw Filomena Vitale at Dolan’s Bar, 8:30 PM~~ — lying about that time, will not say.
-- ~~Teresa Marchetti saw Friedrich Brauer at Dolan’s Bar, 8:30 PM~~ — lying about that time, will not say.
-- ~~Filomena Vitale saw Alonzo Colquitt at the ferry slip at the foot of the street, 10:30 PM~~ — lying about that time, will not say.
-- ~~Filomena Vitale saw Gretchen Vogel at the ferry slip at the foot of the street, 10:30 PM~~ — lying about that time, will not say.
-- ~~Filomena Vitale saw Augustus Dandridge at the ferry slip at the foot of the street, 10:30 PM~~ — lying about that time, will not say.
-- ~~Filomena Vitale saw Maureen Sweeney at the ferry slip at the foot of the street, 10:30 PM~~ — lying about that time, will not say.
+- ~~Dandridge saw Whitfield at the Hallam, 7:30 PM~~ — lying about that time, will not say.
+- ~~Dandridge saw Moretti at the Hallam, 7:30 PM~~ — lying about that time, will not say.
+- ~~Marchetti saw Colquitt at Dolan’s, 8:00 PM~~ — lying about that time, will not say.
+- ~~Marchetti saw Thorndike at Dolan’s, 8:00 PM, 8:30 PM~~ — lying about that time, will not say.
+- ~~Colquitt saw Sweeney at Ruggiero’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Colquitt saw Moretti at Ruggiero’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Colquitt saw Ruggiero at Ruggiero’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Vogel saw Whitfield at the roof, 8:30 PM~~ — lying about that time, will not say.
+- ~~Sweeney saw Colquitt at Ruggiero’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Sweeney saw Moretti at Ruggiero’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Sweeney saw Ruggiero at Ruggiero’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Marchetti saw Dandridge at Dolan’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Marchetti saw Vitale at Dolan’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Marchetti saw Brauer at Dolan’s, 8:30 PM~~ — lying about that time, will not say.
+- ~~Vitale saw Colquitt at the ferry slip, 10:30 PM~~ — lying about that time, will not say.
+- ~~Vitale saw Vogel at the ferry slip, 10:30 PM~~ — lying about that time, will not say.
+- ~~Vitale saw Dandridge at the ferry slip, 10:30 PM~~ — lying about that time, will not say.
+- ~~Vitale saw Sweeney at the ferry slip, 10:30 PM~~ — lying about that time, will not say.
 

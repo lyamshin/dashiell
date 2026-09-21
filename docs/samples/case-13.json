@@ -8,6 +8,7 @@
     {
       "id": "res-backhouse",
       "name": "the victim’s house on the back lot",
+      "shortName": "the back lot",
       "kind": "private",
       "objects": [
         "obj-photograph",
@@ -19,6 +20,7 @@
     {
       "id": "square-benches",
       "name": "the benches at the north end of the square",
+      "shortName": "the benches",
       "kind": "public",
       "objects": [
         "obj-newspapers",
@@ -30,6 +32,7 @@
     {
       "id": "chop-suey",
       "name": "the chop suey place over the laundry",
+      "shortName": "the chop suey place",
       "kind": "semi",
       "objects": [
         "obj-icepick",
@@ -43,6 +46,7 @@
     {
       "id": "hallam-vestibule",
       "name": "the vestibule of the Hallam apartments",
+      "shortName": "the Hallam",
       "kind": "private",
       "objects": [
         "obj-ledger",
@@ -56,6 +60,7 @@
     {
       "id": "boarding-parlor",
       "name": "the parlour of Mrs. Teague’s boarding house",
+      "shortName": "the parlour",
       "kind": "semi",
       "objects": [
         "obj-roofkey",
@@ -68,6 +73,7 @@
     {
       "id": "dance-hall",
       "name": "the Arcadia dance hall",
+      "shortName": "the Arcadia",
       "kind": "public",
       "objects": [
         "obj-cigarette-case",
@@ -154,6 +160,7 @@
     {
       "id": "p-victim",
       "name": "Nora Mulcahy",
+      "surname": "Mulcahy",
       "role": "a society columnist",
       "kind": "victim",
       "isKiller": false,
@@ -162,6 +169,7 @@
     {
       "id": "p-s1",
       "name": "Rufus Tillman",
+      "surname": "Tillman",
       "role": "a policy runner",
       "kind": "suspect",
       "isKiller": false,
@@ -171,7 +179,7 @@
       "secret": {
         "type": "dope",
         "label": "Buying morphine",
-        "description": "Rufus Tillman buys morphine at the chop suey place over the laundry from 11:00 PM to 11:30 PM and would rather be thought a murderer than a hop-head.",
+        "description": "Tillman buys morphine at the chop suey place from 11:00 PM to 11:30 PM and would rather be thought a murderer than a hop-head.",
         "cells": [
           {
             "tick": 10,
@@ -192,7 +200,8 @@
     {
       "id": "p-s2",
       "name": "Nunzio Moretti",
-      "role": "the victim’s nephew, at loose ends",
+      "surname": "Moretti",
+      "role": "a young man living on expectations",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heir",
@@ -201,7 +210,7 @@
       "secret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "Nunzio Moretti drinks alone at the Arcadia dance hall from 10:00 PM to 10:30 PM and will claim to have been anywhere else.",
+        "description": "Moretti drinks alone at the Arcadia from 10:00 PM to 10:30 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 8,
@@ -222,16 +231,17 @@
     {
       "id": "p-s3",
       "name": "Patrick Brennan",
+      "surname": "Brennan",
       "role": "a lawyer with one clerk",
       "kind": "suspect",
       "isKiller": true,
       "archetypeId": "arch-lawyer",
-      "relationshipId": "rel-partner",
-      "relationshipToVictim": "the victim’s business partner",
+      "relationshipId": "rel-creditor",
+      "relationshipToVictim": "the victim’s creditor",
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Patrick Brennan is at the victim’s house on the back lot from 10:00 PM to 10:30 PM, alone with Nora Mulcahy when it happens at 10:30 PM.",
+        "description": "Brennan is at the back lot from 10:00 PM to 10:30 PM, alone with Mulcahy when it happens at 10:30 PM.",
         "cells": [
           {
             "tick": 8,
@@ -247,7 +257,7 @@
       "coverSecret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Patrick Brennan slips off to the benches at the north end of the square from 6:00 PM to 6:30 PM to settle with a bookmaker.",
+        "description": "Brennan slips off to the benches from 6:00 PM to 6:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 0,
@@ -260,14 +270,15 @@
         ]
       },
       "motive": {
-        "type": "exposure",
-        "description": "was about to be exposed by the victim"
+        "type": "property",
+        "description": "wanted the victim out of a lease"
       },
       "foundAt": "square-benches"
     },
     {
       "id": "p-s4",
       "name": "Margarethe Hauck",
+      "surname": "Hauck",
       "role": "a dentist with rooms on the third floor",
       "kind": "suspect",
       "isKiller": false,
@@ -277,7 +288,7 @@
       "secret": {
         "type": "dope",
         "label": "Buying morphine",
-        "description": "Margarethe Hauck buys morphine at the chop suey place over the laundry from 10:30 PM to 11:00 PM and would rather be thought a murderer than a hop-head.",
+        "description": "Hauck buys morphine at the chop suey place from 10:30 PM to 11:00 PM and would rather be thought a murderer than a hop-head.",
         "cells": [
           {
             "tick": 9,
@@ -295,6 +306,7 @@
     {
       "id": "p-s5",
       "name": "Althea Mosley",
+      "surname": "Mosley",
       "role": "a stagehand at the Selwyn",
       "kind": "suspect",
       "isKiller": false,
@@ -304,7 +316,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Althea Mosley slips off to the benches at the north end of the square from 7:00 PM to 7:30 PM to settle with a bookmaker.",
+        "description": "Mosley slips off to the benches from 7:00 PM to 7:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 2,
@@ -325,6 +337,7 @@
     {
       "id": "p-s6",
       "name": "Verity Coffin",
+      "surname": "Coffin",
       "role": "a piano teacher",
       "kind": "suspect",
       "isKiller": false,
@@ -334,7 +347,7 @@
       "secret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "Verity Coffin drinks alone at the Arcadia dance hall from 10:30 PM to 11:00 PM and will claim to have been anywhere else.",
+        "description": "Coffin drinks alone at the Arcadia from 10:30 PM to 11:00 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 9,
@@ -351,6 +364,7 @@
     {
       "id": "p-f1",
       "name": "Gittel Zeldin",
+      "surname": "Zeldin",
       "role": "the man behind the counter",
       "kind": "fixture",
       "isKiller": false,
@@ -360,6 +374,7 @@
     {
       "id": "p-f2",
       "name": "Cornelius Hanrahan",
+      "surname": "Hanrahan",
       "role": "the elevator man",
       "kind": "fixture",
       "isKiller": false,
@@ -369,6 +384,7 @@
     {
       "id": "p-f3",
       "name": "Hattie Whitfield",
+      "surname": "Whitfield",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -378,6 +394,7 @@
     {
       "id": "p-f4",
       "name": "Agnes Callahan",
+      "surname": "Callahan",
       "role": "the ticket-taker",
       "kind": "fixture",
       "isKiller": false,
@@ -414,7 +431,9 @@
         }
       ],
       "timing": "while the lesson was still going on overhead",
-      "sceneTiming": "the piano stopped and what was heard next was heard against silence",
+      "highTiming": "just after the lesson overhead stopped",
+      "sceneFact": "The lesson overhead stopped at {T} and nothing was played after it.",
+      "masks": false,
       "placeId": "boarding-parlor"
     },
     {
@@ -434,7 +453,9 @@
         }
       ],
       "timing": "while the fight was on the radio",
-      "sceneTiming": "the set was loud enough to cover it, and it was only loud for that half hour",
+      "highTiming": "while the fight was on the radio",
+      "sceneFact": "The fight card was on the bar radio at {T}, turned up loud enough to carry into the street, and off when the card ended.",
+      "masks": true,
       "placeId": "dance-hall"
     },
     {
@@ -449,12 +470,18 @@
           "description": "a crack in the cellar and every light on the riser out at once"
         },
         {
+          "kind": "knowledge",
+          "description": "it was the second floor that went dark and not the whole house"
+        },
+        {
           "kind": "mark",
           "description": "candle smoke on the ceilings of everyone who sat it out"
         }
       ],
       "timing": "when the lights went",
-      "sceneTiming": "the lights on that riser were dead from then until the morning",
+      "highTiming": "just after the lights went",
+      "sceneFact": "The fuse went at {T} and the lights on that riser were dead from then until the morning.",
+      "masks": false,
       "placeId": "hallam-vestibule"
     }
   ],
@@ -462,6 +489,7 @@
     "dance-hall",
     "chop-suey"
   ],
+  "soundMasked": true,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2721,7 +2749,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2731,7 +2759,7 @@
           "tick": 2
         }
       ],
-      "text": "Rufus Tillman says Nora Mulcahy was at the Arcadia dance hall at 7:00 PM.",
+      "text": "Tillman says Mulcahy was at the Arcadia at 7:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2742,7 +2770,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2758,7 +2786,7 @@
           "tick": 8
         }
       ],
-      "text": "Rufus Tillman says Nora Mulcahy was at the parlour of Mrs. Teague’s boarding house from 9:30 PM to 10:00 PM.",
+      "text": "Tillman says Mulcahy was at the parlour from 9:30 PM to 10:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2769,7 +2797,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -2790,7 +2818,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Rufus Tillman says Nunzio Moretti was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Tillman says Moretti was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2801,7 +2829,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -2816,7 +2844,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Rufus Tillman says Nunzio Moretti was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Tillman says Moretti was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2827,7 +2855,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -2837,7 +2865,7 @@
           "tick": 9
         }
       ],
-      "text": "Rufus Tillman says Nunzio Moretti was at the Arcadia dance hall at 10:30 PM.",
+      "text": "Tillman says Moretti was at the Arcadia at 10:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2848,7 +2876,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -2863,11 +2891,10 @@
           "methodId": "fall"
         }
       ],
-      "text": "Rufus Tillman says Patrick Brennan was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Tillman says Brennan was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [
-        "c141",
-        "c083"
+        "c109"
       ],
       "role": "spine"
     },
@@ -2877,7 +2904,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -2898,7 +2925,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Rufus Tillman says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Tillman says Mosley was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2909,7 +2936,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -2924,7 +2951,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Rufus Tillman says Althea Mosley was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Tillman says Mosley was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2935,7 +2962,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -2945,7 +2972,7 @@
           "tick": 9
         }
       ],
-      "text": "Rufus Tillman says Althea Mosley was at the Arcadia dance hall at 10:30 PM.",
+      "text": "Tillman says Mosley was at the Arcadia at 10:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2956,7 +2983,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -2966,7 +2993,7 @@
           "tick": 9
         }
       ],
-      "text": "Rufus Tillman says Verity Coffin was at the Arcadia dance hall at 10:30 PM.",
+      "text": "Tillman says Coffin was at the Arcadia at 10:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2977,7 +3004,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -2987,7 +3014,7 @@
           "tick": 7
         }
       ],
-      "text": "Nunzio Moretti says Nora Mulcahy was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Moretti says Mulcahy was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -2998,7 +3025,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3019,7 +3046,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Nunzio Moretti says Rufus Tillman was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Moretti says Tillman was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3030,7 +3057,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3045,7 +3072,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Nunzio Moretti says Rufus Tillman was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Moretti says Tillman was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3056,7 +3083,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3071,7 +3098,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Nunzio Moretti says Patrick Brennan was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Moretti says Brennan was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "corroboration"
@@ -3082,7 +3109,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3092,7 +3119,7 @@
           "tick": 11
         }
       ],
-      "text": "Nunzio Moretti says Patrick Brennan was at the benches at the north end of the square at 11:30 PM.",
+      "text": "Moretti says Brennan was at the benches at 11:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3103,7 +3130,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3124,7 +3151,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Nunzio Moretti says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Moretti says Mosley was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3135,7 +3162,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3162,7 +3189,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Nunzio Moretti says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 8:30 PM to 9:30 PM.",
+      "text": "Moretti says Mosley was at the parlour from 8:30 PM to 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3173,7 +3200,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3212,7 +3239,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Nunzio Moretti says Verity Coffin was at the parlour of Mrs. Teague’s boarding house from 7:00 PM to 9:00 PM.",
+      "text": "Moretti says Coffin was at the parlour from 7:00 PM to 9:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3223,7 +3250,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3233,7 +3260,7 @@
           "tick": 10
         }
       ],
-      "text": "Nunzio Moretti says Verity Coffin was at the Arcadia dance hall at 11:00 PM.",
+      "text": "Moretti says Coffin was at the Arcadia at 11:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3244,7 +3271,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3254,7 +3281,7 @@
           "tick": 7
         }
       ],
-      "text": "Patrick Brennan says Nora Mulcahy was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Brennan says Mulcahy was at the parlour at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3265,7 +3292,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3280,7 +3307,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Patrick Brennan says Rufus Tillman was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Brennan says Tillman was at the parlour at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3291,7 +3318,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -3306,7 +3333,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Patrick Brennan says Nunzio Moretti was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Brennan says Moretti was at the parlour at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3317,7 +3344,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -3327,7 +3354,7 @@
           "tick": 11
         }
       ],
-      "text": "Patrick Brennan says Nunzio Moretti was at the benches at the north end of the square at 11:30 PM.",
+      "text": "Brennan says Moretti was at the benches at 11:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3338,7 +3365,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3348,7 +3375,7 @@
           "tick": 2
         }
       ],
-      "text": "Patrick Brennan says Margarethe Hauck was at the benches at the north end of the square at 7:00 PM.",
+      "text": "Brennan says Hauck was at the benches at 7:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3359,7 +3386,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3375,7 +3402,7 @@
           "tick": 3
         }
       ],
-      "text": "Patrick Brennan says Althea Mosley was at the benches at the north end of the square from 7:00 PM to 7:30 PM.",
+      "text": "Brennan says Mosley was at the benches from 7:00 PM to 7:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3386,7 +3413,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3401,7 +3428,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Patrick Brennan says Althea Mosley was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Brennan says Mosley was at the parlour at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3412,7 +3439,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3440,7 +3467,7 @@
           "tick": 6
         }
       ],
-      "text": "Margarethe Hauck says Nora Mulcahy was at the Arcadia dance hall from 7:30 PM to 9:00 PM.",
+      "text": "Hauck says Mulcahy was at the Arcadia from 7:30 PM to 9:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3451,7 +3478,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3461,7 +3488,7 @@
           "tick": 11
         }
       ],
-      "text": "Margarethe Hauck says Rufus Tillman was at the chop suey place over the laundry at 11:30 PM.",
+      "text": "Hauck says Tillman was at the chop suey place at 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3472,7 +3499,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -3482,7 +3509,7 @@
           "tick": 8
         }
       ],
-      "text": "Margarethe Hauck says Nunzio Moretti was at the Arcadia dance hall at 10:00 PM.",
+      "text": "Hauck says Moretti was at the Arcadia at 10:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3493,7 +3520,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3503,7 +3530,7 @@
           "tick": 0
         }
       ],
-      "text": "Margarethe Hauck says Patrick Brennan was at the benches at the north end of the square at 6:00 PM.",
+      "text": "Hauck says Brennan was at the benches at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3514,7 +3541,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3524,7 +3551,7 @@
           "tick": 2
         }
       ],
-      "text": "Margarethe Hauck says Patrick Brennan was at the benches at the north end of the square at 7:00 PM.",
+      "text": "Hauck says Brennan was at the benches at 7:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3535,7 +3562,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3545,7 +3572,7 @@
           "tick": 2
         }
       ],
-      "text": "Margarethe Hauck says Althea Mosley was at the benches at the north end of the square at 7:00 PM.",
+      "text": "Hauck says Mosley was at the benches at 7:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3556,7 +3583,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3566,7 +3593,7 @@
           "tick": 8
         }
       ],
-      "text": "Margarethe Hauck says Althea Mosley was at the Arcadia dance hall at 10:00 PM.",
+      "text": "Hauck says Mosley was at the Arcadia at 10:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3577,7 +3604,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3587,7 +3614,7 @@
           "tick": 0
         }
       ],
-      "text": "Margarethe Hauck says Verity Coffin was at the benches at the north end of the square at 6:00 PM.",
+      "text": "Hauck says Coffin was at the benches at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3598,7 +3625,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3608,7 +3635,7 @@
           "tick": 7
         }
       ],
-      "text": "Margarethe Hauck says Verity Coffin was at the Arcadia dance hall at 9:30 PM.",
+      "text": "Hauck says Coffin was at the Arcadia at 9:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3619,7 +3646,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -3629,7 +3656,7 @@
           "tick": 7
         }
       ],
-      "text": "Althea Mosley says Nora Mulcahy was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Mosley says Mulcahy was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3640,7 +3667,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3661,7 +3688,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Althea Mosley says Rufus Tillman was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Mosley says Tillman was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3672,7 +3699,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3687,7 +3714,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Althea Mosley says Rufus Tillman was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Mosley says Tillman was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3698,7 +3725,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -3708,10 +3735,10 @@
           "tick": 9
         }
       ],
-      "text": "Althea Mosley says Rufus Tillman was at the Arcadia dance hall at 10:30 PM.",
+      "text": "Mosley says Tillman was at the Arcadia at 10:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c040",
@@ -3719,7 +3746,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -3740,7 +3767,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Althea Mosley says Nunzio Moretti was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Mosley says Moretti was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3751,7 +3778,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -3778,7 +3805,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Althea Mosley says Nunzio Moretti was at the parlour of Mrs. Teague’s boarding house from 8:30 PM to 9:30 PM.",
+      "text": "Mosley says Moretti was at the parlour from 8:30 PM to 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3789,7 +3816,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -3805,10 +3832,10 @@
           "tick": 9
         }
       ],
-      "text": "Althea Mosley says Nunzio Moretti was at the Arcadia dance hall from 10:00 PM to 10:30 PM.",
+      "text": "Mosley says Moretti was at the Arcadia from 10:00 PM to 10:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c043",
@@ -3816,7 +3843,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3831,7 +3858,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Althea Mosley says Patrick Brennan was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Mosley says Brennan was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3842,7 +3869,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -3852,7 +3879,7 @@
           "tick": 8
         }
       ],
-      "text": "Althea Mosley says Margarethe Hauck was at the Arcadia dance hall at 10:00 PM.",
+      "text": "Mosley says Hauck was at the Arcadia at 10:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3863,7 +3890,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3884,7 +3911,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Althea Mosley says Verity Coffin was at the parlour of Mrs. Teague’s boarding house from 8:30 PM to 9:00 PM.",
+      "text": "Mosley says Coffin was at the parlour from 8:30 PM to 9:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3895,7 +3922,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -3905,7 +3932,7 @@
           "tick": 9
         }
       ],
-      "text": "Althea Mosley says Verity Coffin was at the Arcadia dance hall at 10:30 PM.",
+      "text": "Mosley says Coffin was at the Arcadia at 10:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3916,7 +3943,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -3955,7 +3982,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Verity Coffin says Nunzio Moretti was at the parlour of Mrs. Teague’s boarding house from 7:00 PM to 9:00 PM.",
+      "text": "Coffin says Moretti was at the parlour from 7:00 PM to 9:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3966,7 +3993,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3982,7 +4009,7 @@
           "tick": 1
         }
       ],
-      "text": "Verity Coffin says Patrick Brennan was at the benches at the north end of the square from 6:00 PM to 6:30 PM.",
+      "text": "Coffin says Brennan was at the benches from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -3993,7 +4020,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4003,7 +4030,7 @@
           "tick": 0
         }
       ],
-      "text": "Verity Coffin says Margarethe Hauck was at the benches at the north end of the square at 6:00 PM.",
+      "text": "Coffin says Hauck was at the benches at 6:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4014,7 +4041,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4024,7 +4051,7 @@
           "tick": 7
         }
       ],
-      "text": "Verity Coffin says Margarethe Hauck was at the Arcadia dance hall at 9:30 PM.",
+      "text": "Coffin says Hauck was at the Arcadia at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4035,7 +4062,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4056,7 +4083,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Verity Coffin says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 8:30 PM to 9:00 PM.",
+      "text": "Coffin says Mosley was at the parlour from 8:30 PM to 9:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4067,7 +4094,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4077,7 +4104,7 @@
           "tick": 0
         }
       ],
-      "text": "Gittel Zeldin says Nora Mulcahy was at the chop suey place over the laundry at 6:00 PM.",
+      "text": "Zeldin says Mulcahy was at the chop suey place at 6:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -4088,7 +4115,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4104,7 +4131,7 @@
           "tick": 4
         }
       ],
-      "text": "Gittel Zeldin says Rufus Tillman was at the chop suey place over the laundry from 7:30 PM to 8:00 PM.",
+      "text": "Zeldin says Tillman was at the chop suey place from 7:30 PM to 8:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -4115,7 +4142,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4131,7 +4158,7 @@
           "tick": 11
         }
       ],
-      "text": "Gittel Zeldin says Rufus Tillman was at the chop suey place over the laundry from 11:00 PM to 11:30 PM.",
+      "text": "Zeldin says Tillman was at the chop suey place from 11:00 PM to 11:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -4142,7 +4169,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -4157,7 +4184,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Gittel Zeldin says Nunzio Moretti was at the parlour of Mrs. Teague’s boarding house at 7:00 PM.",
+      "text": "Zeldin says Moretti was at the parlour at 7:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -4168,7 +4195,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4178,7 +4205,7 @@
           "tick": 1
         }
       ],
-      "text": "Gittel Zeldin says Margarethe Hauck was at the chop suey place over the laundry at 6:30 PM.",
+      "text": "Zeldin says Hauck was at the chop suey place at 6:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
@@ -4189,7 +4216,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4211,7 +4238,7 @@
           "tick": 11
         }
       ],
-      "text": "Gittel Zeldin says Margarethe Hauck was at the chop suey place over the laundry from 10:30 PM to 11:30 PM.",
+      "text": "Zeldin says Hauck was at the chop suey place from 10:30 PM to 11:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "corroboration"
@@ -4222,7 +4249,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4237,10 +4264,10 @@
           "methodId": "fall"
         }
       ],
-      "text": "Gittel Zeldin says Verity Coffin was at the parlour of Mrs. Teague’s boarding house at 7:00 PM.",
+      "text": "Zeldin says Coffin was at the parlour at 7:00 PM.",
       "place": "chop-suey",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c059",
@@ -4248,7 +4275,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4258,7 +4285,7 @@
           "tick": 4
         }
       ],
-      "text": "Cornelius Hanrahan says Nora Mulcahy was at the Arcadia dance hall at 8:00 PM.",
+      "text": "Hanrahan says Mulcahy was at the Arcadia at 8:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4269,7 +4296,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4285,7 +4312,7 @@
           "tick": 6
         }
       ],
-      "text": "Cornelius Hanrahan says Rufus Tillman was at the vestibule of the Hallam apartments from 8:30 PM to 9:00 PM.",
+      "text": "Hanrahan says Tillman was at the Hallam from 8:30 PM to 9:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4296,7 +4323,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4306,7 +4333,7 @@
           "tick": 4
         }
       ],
-      "text": "Cornelius Hanrahan says Margarethe Hauck was at the Arcadia dance hall at 8:00 PM.",
+      "text": "Hanrahan says Hauck was at the Arcadia at 8:00 PM.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
@@ -4317,7 +4344,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4333,7 +4360,7 @@
           "tick": 8
         }
       ],
-      "text": "Hattie Whitfield says Nora Mulcahy was at the parlour of Mrs. Teague’s boarding house from 9:30 PM to 10:00 PM.",
+      "text": "Whitfield says Mulcahy was at the parlour from 9:30 PM to 10:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4344,7 +4371,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4365,7 +4392,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Hattie Whitfield says Rufus Tillman was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Whitfield says Tillman was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4376,7 +4403,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4397,7 +4424,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Hattie Whitfield says Rufus Tillman was at the parlour of Mrs. Teague’s boarding house from 9:30 PM to 10:00 PM.",
+      "text": "Whitfield says Tillman was at the parlour from 9:30 PM to 10:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4408,7 +4435,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -4465,7 +4492,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Hattie Whitfield says Nunzio Moretti was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 9:30 PM.",
+      "text": "Whitfield says Moretti was at the parlour from 6:00 PM to 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4476,7 +4503,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4491,7 +4518,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Hattie Whitfield says Patrick Brennan was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Whitfield says Brennan was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4502,7 +4529,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4512,11 +4539,11 @@
           "tick": 9
         }
       ],
-      "text": "Hattie Whitfield says Margarethe Hauck was at the chop suey place over the laundry at 10:30 PM.",
+      "text": "Whitfield says Hauck was at the chop suey place at 10:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [
-        "c014",
-        "c100"
+        "c108",
+        "c042"
       ],
       "role": "spine"
     },
@@ -4526,7 +4553,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4547,10 +4574,10 @@
           "methodId": "fall"
         }
       ],
-      "text": "Hattie Whitfield says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
+      "text": "Whitfield says Mosley was at the parlour from 6:00 PM to 6:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c069",
@@ -4558,7 +4585,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4585,7 +4612,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Hattie Whitfield says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 8:30 PM to 9:30 PM.",
+      "text": "Whitfield says Mosley was at the parlour from 8:30 PM to 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4596,7 +4623,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4612,7 +4639,7 @@
           "tick": 11
         }
       ],
-      "text": "Hattie Whitfield says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 11:00 PM to 11:30 PM.",
+      "text": "Whitfield says Mosley was at the parlour from 11:00 PM to 11:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4623,7 +4650,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4662,7 +4689,7 @@
           "methodId": "fall"
         }
       ],
-      "text": "Hattie Whitfield says Verity Coffin was at the parlour of Mrs. Teague’s boarding house from 7:00 PM to 9:00 PM.",
+      "text": "Whitfield says Coffin was at the parlour from 7:00 PM to 9:00 PM.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4673,7 +4700,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Nora Mulcahy"
+        "topic": "Mulcahy"
       },
       "establishes": [
         {
@@ -4713,7 +4740,7 @@
           "tick": 6
         }
       ],
-      "text": "Agnes Callahan says Nora Mulcahy was at the Arcadia dance hall from 6:30 PM to 9:00 PM.",
+      "text": "Callahan says Mulcahy was at the Arcadia from 6:30 PM to 9:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4724,7 +4751,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4734,7 +4761,7 @@
           "tick": 2
         }
       ],
-      "text": "Agnes Callahan says Rufus Tillman was at the Arcadia dance hall at 7:00 PM.",
+      "text": "Callahan says Tillman was at the Arcadia at 7:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4745,7 +4772,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [
         {
@@ -4755,10 +4782,10 @@
           "tick": 9
         }
       ],
-      "text": "Agnes Callahan says Rufus Tillman was at the Arcadia dance hall at 10:30 PM.",
+      "text": "Callahan says Tillman was at the Arcadia at 10:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c075",
@@ -4766,7 +4793,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Nunzio Moretti"
+        "topic": "Moretti"
       },
       "establishes": [
         {
@@ -4788,10 +4815,14 @@
           "tick": 10
         }
       ],
-      "text": "Agnes Callahan says Nunzio Moretti was at the Arcadia dance hall from 10:00 PM to 11:00 PM.",
+      "text": "Callahan says Moretti was at the Arcadia from 10:00 PM to 11:00 PM.",
       "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c077",
+        "c101",
+        "c039"
+      ],
+      "role": "spine"
     },
     {
       "id": "c076",
@@ -4799,7 +4830,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -4839,7 +4870,7 @@
           "tick": 8
         }
       ],
-      "text": "Agnes Callahan says Margarethe Hauck was at the Arcadia dance hall from 7:30 PM to 10:00 PM.",
+      "text": "Callahan says Hauck was at the Arcadia from 7:30 PM to 10:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4850,7 +4881,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4866,10 +4897,13 @@
           "tick": 9
         }
       ],
-      "text": "Agnes Callahan says Althea Mosley was at the Arcadia dance hall from 10:00 PM to 10:30 PM.",
+      "text": "Callahan says Mosley was at the Arcadia from 10:00 PM to 10:30 PM.",
       "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c006",
+        "c057"
+      ],
+      "role": "spine"
     },
     {
       "id": "c078",
@@ -4877,7 +4911,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4887,7 +4921,7 @@
           "tick": 7
         }
       ],
-      "text": "Agnes Callahan says Verity Coffin was at the Arcadia dance hall at 9:30 PM.",
+      "text": "Callahan says Coffin was at the Arcadia at 9:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4898,7 +4932,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Verity Coffin"
+        "topic": "Coffin"
       },
       "establishes": [
         {
@@ -4920,34 +4954,34 @@
           "tick": 11
         }
       ],
-      "text": "Agnes Callahan says Verity Coffin was at the Arcadia dance hall from 10:30 PM to 11:30 PM.",
+      "text": "Callahan says Coffin was at the Arcadia from 10:30 PM to 11:30 PM.",
       "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c075",
+        "c074",
+        "c067",
+        "c058",
+        "c130"
+      ],
+      "role": "spine"
     },
     {
       "id": "c080",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s2",
+        "topic": "Tillman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 10
         }
       ],
-      "text": "Rufus Tillman runs through it: at 6:00 PM there were Nunzio Moretti, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
+      "text": "Moretti was at the Arcadia at 11:00 PM and says Tillman was not.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4957,24 +4991,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-s6",
+        "topic": "Tillman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 11
         }
       ],
-      "text": "Rufus Tillman runs through it: at 6:30 PM there were Nunzio Moretti, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
+      "text": "Coffin was at the Arcadia at 11:30 PM and says Tillman was not.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -4984,117 +5012,105 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f4",
+        "topic": "Tillman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 10
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 11
         }
       ],
-      "text": "Rufus Tillman runs through it: at 9:30 PM there were Nunzio Moretti, Patrick Brennan, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
+      "text": "Callahan was at the Arcadia from 11:00 PM to 11:30 PM and says Tillman was not.",
+      "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c083",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-s5",
+        "topic": "Tillman’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "dance-hall",
-          "tick": 9
+          "tick": 10
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
+          "kind": "personNotAt",
+          "personId": "p-s1",
           "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 9
+          "tick": 11
         }
       ],
-      "text": "Rufus Tillman runs through it: at 10:30 PM there were Nunzio Moretti, Althea Mosley, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Tillman names Mosley as the company for it. Mosley was at the parlour from 11:00 PM to 11:30 PM, and says Tillman was not there.",
       "place": "boarding-parlor",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c084",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f2",
+        "topic": "Moretti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "hallam-vestibule",
+          "tick": 8
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "hallam-vestibule",
+          "tick": 9
         }
       ],
-      "text": "Nunzio Moretti runs through it: at 6:00 PM there were Rufus Tillman, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
+      "text": "Hanrahan was at the Hallam from 10:00 PM to 10:30 PM and says Moretti was not.",
+      "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c085",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-s1",
+        "topic": "Moretti’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "hallam-vestibule",
+          "tick": 8
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "hallam-vestibule",
+          "tick": 9
         }
       ],
-      "text": "Nunzio Moretti runs through it: at 6:30 PM there were Rufus Tillman, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
+      "text": "Moretti names Tillman as the company for it. Tillman was at the parlour from 10:00 PM to 10:30 PM, and says Moretti was not there.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -5104,25 +5120,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-f4",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 0
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 5
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 1
         }
       ],
-      "text": "Nunzio Moretti runs through it: at 8:30 PM there were Althea Mosley, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
+      "text": "Callahan was at the Arcadia from 6:00 PM to 6:30 PM and says Brennan was not.",
+      "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5131,24 +5147,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-s1",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 9
         }
       ],
-      "text": "Nunzio Moretti runs through it: at 9:00 PM there were Althea Mosley, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
+      "text": "Tillman was at the Arcadia at 10:30 PM and says Brennan was not.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
@@ -5158,31 +5168,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-s4",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s3",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 7
+          "place": "dance-hall",
+          "tick": 8
         }
       ],
-      "text": "Nunzio Moretti runs through it: at 9:30 PM there were Rufus Tillman, Patrick Brennan, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
+      "text": "Hauck was at the Arcadia at 10:00 PM and says Brennan was not.",
+      "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5191,25 +5189,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-s5",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 2
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 8
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 2
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 9
         }
       ],
-      "text": "Patrick Brennan runs through it: at 7:00 PM there were Margarethe Hauck, Althea Mosley at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Mosley was at the Arcadia from 10:00 PM to 10:30 PM and says Brennan was not.",
+      "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5218,58 +5216,51 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f4",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 8
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 7
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 9
         }
       ],
-      "text": "Patrick Brennan runs through it: at 9:30 PM there were Rufus Tillman, Nunzio Moretti, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
+      "text": "Callahan was at the Arcadia from 10:00 PM to 10:30 PM and says Brennan was not.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c077",
+        "c067",
+        "c102",
+        "c115"
+      ],
+      "role": "spine"
     },
     {
       "id": "c091",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s3",
+        "topic": "Hauck’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
+          "kind": "personNotAt",
+          "personId": "p-s4",
           "place": "square-benches",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "square-benches",
-          "tick": 0
+          "tick": 10
         }
       ],
-      "text": "Margarethe Hauck runs through it: at 6:00 PM there were Patrick Brennan, Verity Coffin at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Brennan was at the benches at 11:00 PM and says Hauck was not.",
+      "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5278,25 +5269,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-s1",
+        "topic": "Mosley’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "square-benches",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "square-benches",
+          "place": "dance-hall",
           "tick": 2
         }
       ],
-      "text": "Margarethe Hauck runs through it: at 7:00 PM there were Patrick Brennan, Althea Mosley at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Tillman was at the Arcadia at 7:00 PM and says Mosley was not.",
+      "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5306,23 +5291,17 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "who was there at 10:00 PM"
+        "topic": "Mosley’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
           "place": "dance-hall",
-          "tick": 8
+          "tick": 3
         }
       ],
-      "text": "Margarethe Hauck runs through it: at 10:00 PM there were Nunzio Moretti, Althea Mosley at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Hauck was at the Arcadia at 7:30 PM and says Mosley was not.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -5332,25 +5311,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f4",
+        "topic": "Mosley’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 2
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 3
         }
       ],
-      "text": "Althea Mosley runs through it: at 6:00 PM there were Rufus Tillman, Nunzio Moretti at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
+      "text": "Callahan was at the Arcadia from 7:00 PM to 7:30 PM and says Mosley was not.",
+      "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5359,25 +5338,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-f1",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "chop-suey",
+          "tick": 9
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "chop-suey",
+          "tick": 10
         }
       ],
-      "text": "Althea Mosley runs through it: at 6:30 PM there were Rufus Tillman, Nunzio Moretti at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
+      "text": "Zeldin was at the chop suey place from 10:30 PM to 11:00 PM and says Coffin was not.",
+      "place": "chop-suey",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5386,1124 +5365,24 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-f3",
+        "topic": "Coffin’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 5
+          "place": "chop-suey",
+          "tick": 9
         }
       ],
-      "text": "Althea Mosley runs through it: at 8:30 PM there were Nunzio Moretti, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
+      "text": "Whitfield was at the chop suey place at 10:30 PM and says Coffin was not.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c097",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 6
-        }
-      ],
-      "text": "Althea Mosley runs through it: at 9:00 PM there were Nunzio Moretti, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "boarding-parlor",
-          "tick": 7
-        }
-      ],
-      "text": "Althea Mosley runs through it: at 9:30 PM there were Rufus Tillman, Nunzio Moretti, Patrick Brennan at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 8
-        }
-      ],
-      "text": "Althea Mosley runs through it: at 10:00 PM there were Nunzio Moretti, Margarethe Hauck at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Althea Mosley runs through it: at 10:30 PM there were Rufus Tillman, Nunzio Moretti, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [
-        "c169"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "square-benches",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 0
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 6:00 PM there were Patrick Brennan, Margarethe Hauck at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 5
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 8:30 PM there were Nunzio Moretti, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 6
-        }
-      ],
-      "text": "Verity Coffin runs through it: at 9:00 PM there were Nunzio Moretti, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 2
-        }
-      ],
-      "text": "Gittel Zeldin runs through it: at 7:00 PM there were Nunzio Moretti, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 10
-        }
-      ],
-      "text": "Gittel Zeldin runs through it: at 11:00 PM there were Rufus Tillman, Margarethe Hauck at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 11
-        }
-      ],
-      "text": "Gittel Zeldin runs through it: at 11:30 PM there were Rufus Tillman, Margarethe Hauck at the chop suey place over the laundry, and nobody else worth naming.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 0
-        }
-      ],
-      "text": "Hattie Whitfield runs through it: at 6:00 PM there were Rufus Tillman, Nunzio Moretti, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 1
-        }
-      ],
-      "text": "Hattie Whitfield runs through it: at 6:30 PM there were Rufus Tillman, Nunzio Moretti, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 2
-        }
-      ],
-      "text": "Hattie Whitfield runs through it: at 7:00 PM there were Nunzio Moretti, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 3
-        }
-      ],
-      "text": "Hattie Whitfield runs through it: at 7:30 PM there were Nunzio Moretti, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 4
-        }
-      ],
-      "text": "Hattie Whitfield runs through it: at 8:00 PM there were Nunzio Moretti, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 5
-        }
-      ],
-      "text": "Hattie Whitfield runs through it: at 8:30 PM there were Nunzio Moretti, Althea Mosley, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "boarding-parlor",
-          "tick": 6
-        }
-      ],
-      "text": "Hattie Whitfield runs through it: at 9:00 PM there were Nunzio Moretti, Althea Mosley, Verity Coffin at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 7
-        }
-      ],
-      "text": "Hattie Whitfield runs through it: at 9:30 PM there were Rufus Tillman, Nunzio Moretti, Patrick Brennan, Althea Mosley at the parlour of Mrs. Teague’s boarding house, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 7
-        }
-      ],
-      "text": "Agnes Callahan runs through it: at 9:30 PM there were Margarethe Hauck, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 8
-        }
-      ],
-      "text": "Agnes Callahan runs through it: at 10:00 PM there were Nunzio Moretti, Margarethe Hauck, Althea Mosley at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Agnes Callahan runs through it: at 10:30 PM there were Rufus Tillman, Nunzio Moretti, Althea Mosley, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c154",
-        "c057",
-        "c144",
-        "c140",
-        "c162"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 10
-        }
-      ],
-      "text": "Agnes Callahan runs through it: at 11:00 PM there were Nunzio Moretti, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Rufus Tillman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 10
-        }
-      ],
-      "text": "Nunzio Moretti was at the Arcadia dance hall at 11:00 PM and says Rufus Tillman was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Rufus Tillman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 11
-        }
-      ],
-      "text": "Verity Coffin was at the Arcadia dance hall at 11:30 PM and says Rufus Tillman was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Rufus Tillman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 11
-        }
-      ],
-      "text": "Agnes Callahan was at the Arcadia dance hall from 11:00 PM to 11:30 PM and says Rufus Tillman was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Rufus Tillman’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 11
-        }
-      ],
-      "text": "Rufus Tillman says Althea Mosley was there for it. Althea Mosley says otherwise: Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 11:00 PM to 11:30 PM, nowhere near the Arcadia dance hall.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Nunzio Moretti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "hallam-vestibule",
-          "tick": 8
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "hallam-vestibule",
-          "tick": 9
-        }
-      ],
-      "text": "Cornelius Hanrahan was at the vestibule of the Hallam apartments from 10:00 PM to 10:30 PM and says Nunzio Moretti was not.",
-      "place": "hallam-vestibule",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Nunzio Moretti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "hallam-vestibule",
-          "tick": 8
-        }
-      ],
-      "text": "Nunzio Moretti says Rufus Tillman was there for it. Rufus Tillman says otherwise: Rufus Tillman was at the parlour of Mrs. Teague’s boarding house at 10:00 PM, nowhere near the vestibule of the Hallam apartments.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Nunzio Moretti’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "hallam-vestibule",
-          "tick": 9
-        }
-      ],
-      "text": "Nunzio Moretti says Rufus Tillman was there for it. Rufus Tillman says otherwise: Rufus Tillman was at the Arcadia dance hall at 10:30 PM, nowhere near the vestibule of the Hallam apartments.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Patrick Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 1
-        }
-      ],
-      "text": "Agnes Callahan was at the Arcadia dance hall from 6:00 PM to 6:30 PM and says Patrick Brennan was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Patrick Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Rufus Tillman was at the Arcadia dance hall at 10:30 PM and says Patrick Brennan was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Patrick Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 8
-        }
-      ],
-      "text": "Margarethe Hauck was at the Arcadia dance hall at 10:00 PM and says Patrick Brennan was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c129",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Patrick Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Althea Mosley was at the Arcadia dance hall from 10:00 PM to 10:30 PM and says Patrick Brennan was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c130",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Patrick Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Agnes Callahan was at the Arcadia dance hall from 10:00 PM to 10:30 PM and says Patrick Brennan was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "spine"
-    },
-    {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Margarethe Hauck’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 10
-        }
-      ],
-      "text": "Patrick Brennan was at the benches at the north end of the square at 11:00 PM and says Margarethe Hauck was not.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c132",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Althea Mosley’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 2
-        }
-      ],
-      "text": "Rufus Tillman was at the Arcadia dance hall at 7:00 PM and says Althea Mosley was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Althea Mosley’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 3
-        }
-      ],
-      "text": "Margarethe Hauck was at the Arcadia dance hall at 7:30 PM and says Althea Mosley was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c134",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Althea Mosley’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 2
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 3
-        }
-      ],
-      "text": "Agnes Callahan was at the Arcadia dance hall from 7:00 PM to 7:30 PM and says Althea Mosley was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c135",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Verity Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "chop-suey",
-          "tick": 9
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "chop-suey",
-          "tick": 10
-        }
-      ],
-      "text": "Gittel Zeldin was at the chop suey place over the laundry from 10:30 PM to 11:00 PM and says Verity Coffin was not.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c136",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Verity Coffin’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "chop-suey",
-          "tick": 9
-        }
-      ],
-      "text": "Hattie Whitfield was at the chop suey place over the laundry at 10:30 PM and says Verity Coffin was not.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c137",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -6519,21 +5398,21 @@
           "methodId": "fall"
         }
       ],
-      "text": "Nora Mulcahy was found at the victim’s house on the back lot. The dust on the parapet is scored where his heels went over, and the scuff has not weathered. The fight card on the bar radio came at 10:30 PM, and the set was loud enough to cover it, and it was only loud for that half hour. That puts the killing in that half hour and no later.",
+      "text": "Mulcahy was found at the back lot. The dust on the parapet is scored where his heels went over, and the scuff has not weathered. The fight card was on the bar radio at 10:30 PM, turned up loud enough to carry into the street, and off when the card ended.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c117",
-        "c130",
+        "c079",
+        "c075",
+        "c090",
         "c006",
-        "c154",
-        "c067",
-        "c176"
+        "c014",
+        "c099"
       ],
       "role": "spine",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c138",
+      "id": "c098",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -6555,14 +5434,13 @@
       "text": "The coroner puts death between 9:00 PM and 10:30 PM — two hours of nothing useful. Fractures consistent with a fall of six storeys. Two fingernails torn back.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c068",
-        "c187",
-        "c180"
+        "c079",
+        "c090"
       ],
       "role": "spine"
     },
     {
-      "id": "c139",
+      "id": "c099",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6579,18 +5457,20 @@
           "methodId": "fall"
         }
       ],
-      "text": "The roof-door key is gone from the parlour of Mrs. Teague’s boarding house. The key is not on its hook and the door it opens was found standing wide.",
+      "text": "The roof-door key is gone from the parlour. The key is not on its hook and the door it opens was found standing wide.",
       "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c145"
+      ],
+      "role": "corroboration"
     },
     {
-      "id": "c140",
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nora Mulcahy that evening"
+        "topic": "Mulcahy that evening"
       },
       "establishes": [
         {
@@ -6604,19 +5484,19 @@
           "tick": 8
         }
       ],
-      "text": "Rufus Tillman puts Nora Mulcahy at the parlour of Mrs. Teague’s boarding house while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.",
+      "text": "Tillman puts Mulcahy at the parlour while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.",
       "place": "boarding-parlor",
       "leadsTo": [],
-      "role": "corroboration",
+      "role": "noise",
       "anchorId": "piano-lesson"
     },
     {
-      "id": "c141",
+      "id": "c101",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Nora Mulcahy that evening"
+        "topic": "Mulcahy that evening"
       },
       "establishes": [
         {
@@ -6630,162 +5510,16 @@
           "tick": 8
         }
       ],
-      "text": "Hattie Whitfield puts Nora Mulcahy at the parlour of Mrs. Teague’s boarding house while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.",
+      "text": "Whitfield puts Mulcahy at the parlour while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.",
       "place": "boarding-parlor",
       "leadsTo": [
-        "c153",
-        "c147"
+        "c134"
       ],
       "role": "spine",
       "anchorId": "piano-lesson"
     },
     {
-      "id": "c142",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "fall"
-        }
-      ],
-      "text": "Rufus Tillman was at the Arcadia dance hall at 10:30 PM and heard a shout and then something hitting the areaway from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c143",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "fall"
-        }
-      ],
-      "text": "Althea Mosley was at the Arcadia dance hall at 10:30 PM and heard a shout and then something hitting the areaway from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c144",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "fall"
-        }
-      ],
-      "text": "Gittel Zeldin was at the chop suey place over the laundry at 10:30 PM and heard a shout and then something hitting the areaway from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c145",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "fall"
-        }
-      ],
-      "text": "Hattie Whitfield was at the chop suey place over the laundry at 10:30 PM and heard a shout and then something hitting the areaway from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c146",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "fall"
-        }
-      ],
-      "text": "Agnes Callahan was at the Arcadia dance hall at 10:30 PM and heard a shout and then something hitting the areaway from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c147",
+      "id": "c102",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6800,14 +5534,14 @@
           "tick": 9
         }
       ],
-      "text": "Patrick Brennan claims to have been at the Arcadia dance hall at 10:30 PM but cannot say that the challenger went down in the fourth and the crowd booed it, which everybody there can.",
+      "text": "Brennan claims the Arcadia at 10:30 PM, which is when the fight card on the bar radio was on. Asked about it, Brennan cannot say that the challenger went down in the fourth and the crowd booed it — and everybody who was there can.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c148",
+      "id": "c103",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6821,14 +5555,14 @@
           "tick": 6
         }
       ],
-      "text": "Rufus Tillman carries the mark of it: candle smoke on the ceilings of everyone who sat it out. That fixes Rufus Tillman at the vestibule of the Hallam apartments at 9:00 PM, when the fuse going in the building happened.",
+      "text": "Tillman still carries it: candle smoke on the ceilings of everyone who sat it out. The fuse going in the building was at 9:00 PM, at the Hallam.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "fuse"
     },
     {
-      "id": "c149",
+      "id": "c104",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6841,18 +5575,18 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s house on the back lot: A promissory note for $4,000 signed by Rufus Tillman, endorsed to Nora Mulcahy, three months past due.",
+      "text": "Found at the back lot: A promissory note for $4,000 signed by Tillman, endorsed to Mulcahy, three months past due.",
       "place": "res-backhouse",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c150",
+      "id": "c105",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Rufus Tillman and Nora Mulcahy"
+        "topic": "Tillman and Mulcahy"
       },
       "establishes": [
         {
@@ -6861,13 +5595,13 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Verity Coffin says Nora Mulcahy told Rufus Tillman that Friday was the end of it, one way or the other.",
+      "text": "Coffin says Mulcahy told Tillman that Friday was the end of it, one way or the other.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c151",
+      "id": "c106",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6880,18 +5614,18 @@
           "motiveType": "inheritance"
         }
       ],
-      "text": "Found at the Arcadia dance hall: A draft codicil in Nora Mulcahy’s hand striking Nunzio Moretti out of the will, dated last Tuesday and unsigned.",
+      "text": "Found at the Arcadia: A draft codicil in Mulcahy’s hand striking Moretti out of the will, dated last Tuesday and unsigned.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c152",
+      "id": "c107",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Nunzio Moretti and Nora Mulcahy"
+        "topic": "Moretti and Mulcahy"
       },
       "establishes": [
         {
@@ -6900,13 +5634,13 @@
           "motiveType": "inheritance"
         }
       ],
-      "text": "Agnes Callahan says Nora Mulcahy told Nunzio Moretti the lawyer was coming Thursday and that the arrangement would be changed.",
+      "text": "Callahan says Mulcahy told Moretti the lawyer was coming Thursday and that the arrangement would be changed.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c153",
+      "id": "c108",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6916,38 +5650,36 @@
         {
           "kind": "hasMotive",
           "personId": "p-s3",
-          "motiveType": "exposure"
+          "motiveType": "property"
         }
       ],
-      "text": "Found at the vestibule of the Hallam apartments: A typed page of dates and sums in Nora Mulcahy’s file, headed with Patrick Brennan’s name.",
+      "text": "Found at the Hallam: A lease assignment made out in Brennan’s name, waiting only on Mulcahy’s signature.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c154",
+      "id": "c109",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Patrick Brennan and Nora Mulcahy"
+        "topic": "Brennan and Mulcahy"
       },
       "establishes": [
         {
           "kind": "hasMotive",
           "personId": "p-s3",
-          "motiveType": "exposure"
+          "motiveType": "property"
         }
       ],
-      "text": "Althea Mosley says Nora Mulcahy told Patrick Brennan that the story would run whether Patrick Brennan liked it or not.",
+      "text": "Mosley says Mulcahy told Brennan the lease would go to somebody else at the quarter day.",
       "place": "boarding-parlor",
-      "leadsTo": [
-        "c141"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c155",
+      "id": "c110",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6960,18 +5692,18 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Found at the victim’s house on the back lot: A clipping about the failure of Althea Mosley’s business, with Nora Mulcahy’s name underlined twice in pencil.",
+      "text": "Found at the back lot: A clipping about the failure of Mosley’s business, with Mulcahy’s name underlined twice in pencil.",
       "place": "res-backhouse",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c156",
+      "id": "c111",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Althea Mosley and Nora Mulcahy"
+        "topic": "Mosley and Mulcahy"
       },
       "establishes": [
         {
@@ -6980,13 +5712,13 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Cornelius Hanrahan says Althea Mosley said Nora Mulcahy had taken everything and would be made to feel it.",
+      "text": "Hanrahan says Mosley said Mulcahy had taken everything and would be made to feel it.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c157",
+      "id": "c112",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7000,664 +5732,671 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Margarethe Hauck hired us. Margarethe Hauck wants it known that Rufus Tillman owed the victim money, and would rather we started there.",
+      "text": "Hauck hired us, and wants it known that Tillman owed the victim money, and would rather we started there.",
       "place": "dance-hall",
       "leadsTo": [
-        "c117",
-        "c130",
-        "c006",
-        "c067"
+        "c074",
+        "c101",
+        "c109"
       ],
       "role": "spine"
     },
     {
-      "id": "c158",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Rufus Tillman"
-      },
-      "establishes": [],
-      "text": "Gittel Zeldin on Rufus Tillman: Rufus Tillman’s sleeves are buttoned at the wrist in a warm room.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Rufus Tillman"
-      },
-      "establishes": [],
-      "text": "Hattie Whitfield on Rufus Tillman: Somebody at the chop suey place over the laundry sells what a druggist will not, and Rufus Tillman knows which door.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c160",
+      "id": "c113",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Rufus Tillman"
+        "topic": "Tillman"
       },
       "establishes": [],
-      "text": "Nunzio Moretti on Rufus Tillman: Rufus Tillman was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "text": "Moretti on Tillman: Tillman’s sleeves are buttoned at the wrist in a warm room.",
       "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c161",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [],
-      "text": "A paper of powder at the chop suey place over the laundry, folded the way one particular hand folds them.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c162",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [],
-      "text": "A prescription blank at the chop suey place over the laundry signed by a doctor who has been dead since the spring.",
-      "place": "chop-suey",
       "leadsTo": [
-        "c163"
+        "c117"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c163",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 11
-        }
-      ],
-      "text": "The man who sells it at the chop suey place over the laundry gives it up rather than be held: Rufus Tillman was there from 11:00 PM to 11:30 PM, and stayed until it took hold.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c164",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "chop-suey",
-          "tick": 11
-        }
-      ],
-      "text": "The doctor Rufus Tillman used to see confirms the habit and the hour: Rufus Tillman was at the chop suey place over the laundry from 11:00 PM to 11:30 PM, and could not have crossed the street unhelped.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c165",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Nunzio Moretti"
-      },
-      "establishes": [],
-      "text": "Gittel Zeldin on Nunzio Moretti: Nunzio Moretti had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Nunzio Moretti"
-      },
-      "establishes": [],
-      "text": "Hattie Whitfield on Nunzio Moretti: Nunzio Moretti is on a temperance pledge that Nunzio Moretti mentions before anybody asks.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Nunzio Moretti"
-      },
-      "establishes": [],
-      "text": "Rufus Tillman on Nunzio Moretti: Somebody at the Arcadia dance hall says Nunzio Moretti is in more often than Nunzio Moretti lets on.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c168",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A bottle at the Arcadia dance hall pushed behind the pipes, the seal broken and the level down.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c170"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
       "branchId": "b2"
     },
     {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A tab at the Arcadia dance hall in a name that is not Nunzio Moretti’s, in Nunzio Moretti’s handwriting.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c168"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "The man behind the counter at the Arcadia dance hall knows exactly: Nunzio Moretti was on the same stool from 10:00 PM to 10:30 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "The tab at the Arcadia dance hall is dated and timed, from 10:00 PM to 10:30 PM, and Nunzio Moretti was there to run it up.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c172",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Margarethe Hauck"
-      },
-      "establishes": [],
-      "text": "Gittel Zeldin on Margarethe Hauck: Margarethe Hauck’s sleeves are buttoned at the wrist in a warm room.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Margarethe Hauck"
-      },
-      "establishes": [],
-      "text": "Hattie Whitfield on Margarethe Hauck: Somebody at the chop suey place over the laundry sells what a druggist will not, and Margarethe Hauck knows which door.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c174",
+      "id": "c114",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Margarethe Hauck"
+        "topic": "Tillman"
       },
       "establishes": [],
-      "text": "Althea Mosley on Margarethe Hauck: Margarethe Hauck was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "text": "Mosley on Tillman: Somebody at the chop suey place sells what a druggist will not, and Tillman knows which door.",
       "place": "boarding-parlor",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s4"
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c175",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [],
-      "text": "A paper of powder at the chop suey place over the laundry, folded the way one particular hand folds them.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c176",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [],
-      "text": "A prescription blank at the chop suey place over the laundry signed by a doctor who has been dead since the spring.",
-      "place": "chop-suey",
-      "leadsTo": [
-        "c177"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c177",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 10
-        }
-      ],
-      "text": "The man who sells it at the chop suey place over the laundry gives it up rather than be held: Margarethe Hauck was there from 10:30 PM to 11:00 PM, and stayed until it took hold.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c178",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 10
-        }
-      ],
-      "text": "The doctor Margarethe Hauck used to see confirms the habit and the hour: Margarethe Hauck was at the chop suey place over the laundry from 10:30 PM to 11:00 PM, and could not have crossed the street unhelped.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c179",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Althea Mosley"
-      },
-      "establishes": [],
-      "text": "Hattie Whitfield on Althea Mosley: Althea Mosley was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "boarding-parlor",
-      "leadsTo": [
-        "c184"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b4"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Althea Mosley"
-      },
-      "establishes": [],
-      "text": "Rufus Tillman on Althea Mosley: A man nobody knew was waiting for Althea Mosley at the benches at the north end of the square and would not give a name.",
-      "place": "boarding-parlor",
-      "leadsTo": [
-        "c179"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b4"
-    },
-    {
-      "id": "c181",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Althea Mosley"
-      },
-      "establishes": [],
-      "text": "Patrick Brennan on Althea Mosley: Althea Mosley goes very quiet when the racing wire is mentioned.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c182",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "Betting slips at the benches at the north end of the square in Althea Mosley’s pocketbook, all of them losers, all of them this month.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c183",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A book of markers at the benches at the north end of the square with Althea Mosley’s initials against four of them.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c184",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 3
-        }
-      ],
-      "text": "The bookmaker’s runner is found and will say it: Althea Mosley was at the benches at the north end of the square from 7:00 PM to 7:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b4"
-    },
-    {
-      "id": "c185",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 3
-        }
-      ],
-      "text": "The book at the benches at the north end of the square has the payment entered against Althea Mosley’s name and the time beside it, from 7:00 PM to 7:30 PM, in the clerk’s own hand.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c186",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Verity Coffin"
-      },
-      "establishes": [],
-      "text": "Althea Mosley on Verity Coffin: Verity Coffin had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c187",
+      "id": "c115",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Verity Coffin"
+        "topic": "Tillman"
       },
       "establishes": [],
-      "text": "Cornelius Hanrahan on Verity Coffin: Verity Coffin is on a temperance pledge that Verity Coffin mentions before anybody asks.",
+      "text": "Hanrahan on Tillman: Tillman was steady at nine and shaking at seven, and it was not nerves about the police.",
       "place": "hallam-vestibule",
       "leadsTo": [
-        "c191"
+        "c113"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c116",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the chop suey place, folded the way one particular hand folds them.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c117",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the chop suey place signed by a doctor who has been dead since the spring.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c118"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "chop-suey",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "chop-suey",
+          "tick": 11
+        }
+      ],
+      "text": "The man who sells it at the chop suey place gives it up rather than be held: Tillman was there from 11:00 PM to 11:30 PM, and stayed until it took hold.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "chop-suey",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "chop-suey",
+          "tick": 11
+        }
+      ],
+      "text": "The doctor Tillman used to see confirms the habit and the hour: Tillman was at the chop suey place from 11:00 PM to 11:30 PM, and could not have crossed the street unhelped.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Moretti"
+      },
+      "establishes": [],
+      "text": "Callahan on Moretti: Moretti had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c121",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Moretti"
+      },
+      "establishes": [],
+      "text": "Mosley on Moretti: Moretti is on a temperance pledge that Moretti mentions before anybody asks.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c122",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Moretti"
+      },
+      "establishes": [],
+      "text": "Hanrahan on Moretti: Somebody at the Arcadia says Moretti is in more often than Moretti lets on.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c124",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A tab at the Arcadia in a name that is not Moretti’s, in Moretti’s handwriting.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "The man behind the counter at the Arcadia knows exactly: Moretti was on the same stool from 10:00 PM to 10:30 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "The tab at the Arcadia is dated and timed, from 10:00 PM to 10:30 PM, and Moretti was there to run it up.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Zeldin on Hauck: Hauck’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Whitfield on Hauck: Somebody at the chop suey place sells what a druggist will not, and Hauck knows which door.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c129",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Mosley on Hauck: Hauck was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the chop suey place, folded the way one particular hand folds them.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c131"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c131",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the chop suey place signed by a doctor who has been dead since the spring.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c127"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 10
+        }
+      ],
+      "text": "The man who sells it at the chop suey place gives it up rather than be held: Hauck was there from 10:30 PM to 11:00 PM, and stayed until it took hold.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 10
+        }
+      ],
+      "text": "The doctor Hauck used to see confirms the habit and the hour: Hauck was at the chop suey place from 10:30 PM to 11:00 PM, and could not have crossed the street unhelped.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Mosley"
+      },
+      "establishes": [],
+      "text": "Whitfield on Mosley: Mosley was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "boarding-parlor",
+      "leadsTo": [
+        "c136"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c135",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Mosley"
+      },
+      "establishes": [],
+      "text": "Tillman on Mosley: A man nobody knew was waiting for Mosley at the benches and would not give a name.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c136",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Mosley"
+      },
+      "establishes": [],
+      "text": "Brennan on Mosley: Mosley goes very quiet when the racing wire is mentioned.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c139"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c137",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "Betting slips at the benches in Mosley’s pocketbook, all of them losers, all of them this month.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c138",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "A book of markers at the benches with Mosley’s initials against four of them.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 3
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Mosley was at the benches from 7:00 PM to 7:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 3
+        }
+      ],
+      "text": "The book at the benches has the payment entered against Mosley’s name and the time beside it, from 7:00 PM to 7:30 PM, in the clerk’s own hand.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Mosley on Coffin: Coffin had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c142",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Hanrahan on Coffin: Coffin is on a temperance pledge that Coffin mentions before anybody asks.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c143",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Coffin"
+      },
+      "establishes": [],
+      "text": "Callahan on Coffin: Somebody at the Arcadia says Coffin is in more often than Coffin lets on.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c144",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c146"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
       "branchId": "b3"
     },
     {
-      "id": "c188",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Verity Coffin"
-      },
-      "establishes": [],
-      "text": "Agnes Callahan on Verity Coffin: Somebody at the Arcadia dance hall says Verity Coffin is in more often than Verity Coffin lets on.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c189",
+      "id": "c145",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "dance-hall"
       },
       "establishes": [],
-      "text": "A bottle at the Arcadia dance hall pushed behind the pipes, the seal broken and the level down.",
+      "text": "A tab at the Arcadia in a name that is not Coffin’s, in Coffin’s handwriting.",
       "place": "dance-hall",
-      "leadsTo": [],
+      "leadsTo": [
+        "c144"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s6"
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
     },
     {
-      "id": "c190",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A tab at the Arcadia dance hall in a name that is not Verity Coffin’s, in Verity Coffin’s handwriting.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c191",
+      "id": "c146",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7682,7 +6421,7 @@
           "tick": 10
         }
       ],
-      "text": "The man behind the counter at the Arcadia dance hall knows exactly: Verity Coffin was on the same stool from 10:30 PM to 11:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "text": "The man behind the counter at the Arcadia knows exactly: Coffin was on the same stool from 10:30 PM to 11:00 PM and was in no condition to walk anywhere, let alone do this.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "disqualifier",
@@ -7690,7 +6429,7 @@
       "branchId": "b3"
     },
     {
-      "id": "c192",
+      "id": "c147",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7715,7 +6454,7 @@
           "tick": 10
         }
       ],
-      "text": "The tab at the Arcadia dance hall is dated and timed, from 10:30 PM to 11:00 PM, and Verity Coffin was there to run it up.",
+      "text": "The tab at the Arcadia is dated and timed, from 10:30 PM to 11:00 PM, and Coffin was there to run it up.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise",
@@ -7724,7 +6463,7 @@
   ],
   "findable": [
     {
-      "id": "c137",
+      "id": "c097",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7740,21 +6479,21 @@
           "methodId": "fall"
         }
       ],
-      "text": "Nora Mulcahy was found at the victim’s house on the back lot. The dust on the parapet is scored where his heels went over, and the scuff has not weathered. The fight card on the bar radio came at 10:30 PM, and the set was loud enough to cover it, and it was only loud for that half hour. That puts the killing in that half hour and no later.",
+      "text": "Mulcahy was found at the back lot. The dust on the parapet is scored where his heels went over, and the scuff has not weathered. The fight card was on the bar radio at 10:30 PM, turned up loud enough to carry into the street, and off when the card ended.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c117",
-        "c130",
+        "c079",
+        "c075",
+        "c090",
         "c006",
-        "c154",
-        "c067",
-        "c176"
+        "c014",
+        "c099"
       ],
       "role": "spine",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c138",
+      "id": "c098",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7776,14 +6515,13 @@
       "text": "The coroner puts death between 9:00 PM and 10:30 PM — two hours of nothing useful. Fractures consistent with a fall of six storeys. Two fingernails torn back.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c068",
-        "c187",
-        "c180"
+        "c079",
+        "c090"
       ],
       "role": "spine"
     },
     {
-      "id": "c157",
+      "id": "c112",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7797,30 +6535,68 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Margarethe Hauck hired us. Margarethe Hauck wants it known that Rufus Tillman owed the victim money, and would rather we started there.",
+      "text": "Hauck hired us, and wants it known that Tillman owed the victim money, and would rather we started there.",
       "place": "dance-hall",
       "leadsTo": [
-        "c117",
-        "c130",
-        "c006",
-        "c067"
+        "c074",
+        "c101",
+        "c109"
       ],
       "role": "spine"
     },
     {
-      "id": "c117",
+      "id": "c079",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "who was there at 10:30 PM"
+        "topic": "Coffin"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
+          "personId": "p-s6",
           "place": "dance-hall",
           "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 11
+        }
+      ],
+      "text": "Callahan says Coffin was at the Arcadia from 10:30 PM to 11:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c075",
+        "c074",
+        "c067",
+        "c058",
+        "c130"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c075",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Moretti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 8
         },
         {
           "kind": "personAt",
@@ -7830,35 +6606,48 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s5",
+          "personId": "p-s2",
           "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 9
+          "tick": 10
         }
       ],
-      "text": "Agnes Callahan runs through it: at 10:30 PM there were Rufus Tillman, Nunzio Moretti, Althea Mosley, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Callahan says Moretti was at the Arcadia from 10:00 PM to 11:00 PM.",
       "place": "dance-hall",
       "leadsTo": [
-        "c154",
-        "c057",
-        "c144",
-        "c140",
-        "c162"
+        "c077",
+        "c101",
+        "c039"
       ],
       "role": "spine"
     },
     {
-      "id": "c130",
+      "id": "c074",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Patrick Brennan’s account"
+        "topic": "Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Callahan says Tillman was at the Arcadia at 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c090",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
@@ -7874,10 +6663,73 @@
           "tick": 9
         }
       ],
-      "text": "Agnes Callahan was at the Arcadia dance hall from 10:00 PM to 10:30 PM and says Patrick Brennan was not.",
+      "text": "Callahan was at the Arcadia from 10:00 PM to 10:30 PM and says Brennan was not.",
       "place": "dance-hall",
-      "leadsTo": [],
+      "leadsTo": [
+        "c077",
+        "c067",
+        "c102",
+        "c115"
+      ],
       "role": "spine"
+    },
+    {
+      "id": "c077",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f4",
+        "topic": "Mosley"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Callahan says Mosley was at the Arcadia from 10:00 PM to 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c006",
+        "c057"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c101",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Mulcahy that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "boarding-parlor",
+          "tick": 8
+        }
+      ],
+      "text": "Whitfield puts Mulcahy at the parlour while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.",
+      "place": "boarding-parlor",
+      "leadsTo": [
+        "c134"
+      ],
+      "role": "spine",
+      "anchorId": "piano-lesson"
     },
     {
       "id": "c006",
@@ -7885,7 +6737,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Patrick Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -7900,34 +6752,31 @@
           "methodId": "fall"
         }
       ],
-      "text": "Rufus Tillman says Patrick Brennan was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
+      "text": "Tillman says Brennan was at the parlour at 9:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [
-        "c141",
-        "c083"
+        "c109"
       ],
       "role": "spine"
     },
     {
-      "id": "c154",
+      "id": "c109",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Patrick Brennan and Nora Mulcahy"
+        "topic": "Brennan and Mulcahy"
       },
       "establishes": [
         {
           "kind": "hasMotive",
           "personId": "p-s3",
-          "motiveType": "exposure"
+          "motiveType": "property"
         }
       ],
-      "text": "Althea Mosley says Nora Mulcahy told Patrick Brennan that the story would run whether Patrick Brennan liked it or not.",
+      "text": "Mosley says Mulcahy told Brennan the lease would go to somebody else at the quarter day.",
       "place": "boarding-parlor",
-      "leadsTo": [
-        "c141"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
@@ -7936,7 +6785,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -7946,78 +6795,16 @@
           "tick": 9
         }
       ],
-      "text": "Hattie Whitfield says Margarethe Hauck was at the chop suey place over the laundry at 10:30 PM.",
+      "text": "Whitfield says Hauck was at the chop suey place at 10:30 PM.",
       "place": "boarding-parlor",
       "leadsTo": [
-        "c014",
-        "c100"
+        "c108",
+        "c042"
       ],
       "role": "spine"
     },
     {
-      "id": "c141",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Nora Mulcahy that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "boarding-parlor",
-          "tick": 8
-        }
-      ],
-      "text": "Hattie Whitfield puts Nora Mulcahy at the parlour of Mrs. Teague’s boarding house while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.",
-      "place": "boarding-parlor",
-      "leadsTo": [
-        "c153",
-        "c147"
-      ],
-      "role": "spine",
-      "anchorId": "piano-lesson"
-    },
-    {
-      "id": "c083",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Rufus Tillman runs through it: at 10:30 PM there were Nunzio Moretti, Althea Mosley, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c153",
+      "id": "c108",
       "kind": "document",
       "source": {
         "type": "place",
@@ -8027,16 +6814,16 @@
         {
           "kind": "hasMotive",
           "personId": "p-s3",
-          "motiveType": "exposure"
+          "motiveType": "property"
         }
       ],
-      "text": "Found at the vestibule of the Hallam apartments: A typed page of dates and sums in Nora Mulcahy’s file, headed with Patrick Brennan’s name.",
+      "text": "Found at the Hallam: A lease assignment made out in Brennan’s name, waiting only on Mulcahy’s signature.",
       "place": "hallam-vestibule",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c147",
+      "id": "c102",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -8051,11 +6838,136 @@
           "tick": 9
         }
       ],
-      "text": "Patrick Brennan claims to have been at the Arcadia dance hall at 10:30 PM but cannot say that the challenger went down in the fourth and the crowd booed it, which everybody there can.",
+      "text": "Brennan claims the Arcadia at 10:30 PM, which is when the fight card on the bar radio was on. Asked about it, Brennan cannot say that the challenger went down in the fourth and the crowd booed it — and everybody who was there can.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration",
       "anchorId": "bar-radio"
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "boarding-parlor",
+          "tick": 7
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "fall"
+        }
+      ],
+      "text": "Moretti says Brennan was at the parlour at 9:30 PM.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c099",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "boarding-parlor"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-roofkey",
+          "fromPlace": "boarding-parlor"
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "fall"
+        }
+      ],
+      "text": "The roof-door key is gone from the parlour. The key is not on its hook and the door it opens was found standing wide.",
+      "place": "boarding-parlor",
+      "leadsTo": [
+        "c145"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Coffin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "boarding-parlor",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "fall"
+        }
+      ],
+      "text": "Zeldin says Coffin was at the parlour at 7:00 PM.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c039",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Tillman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Mosley says Tillman was at the Arcadia at 10:30 PM.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Moretti"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Mosley says Moretti was at the Arcadia from 10:00 PM to 10:30 PM.",
+      "place": "boarding-parlor",
+      "leadsTo": [],
+      "role": "corroboration"
     },
     {
       "id": "c057",
@@ -8063,7 +6975,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Margarethe Hauck"
+        "topic": "Hauck"
       },
       "establishes": [
         {
@@ -8085,178 +6997,151 @@
           "tick": 11
         }
       ],
-      "text": "Gittel Zeldin says Margarethe Hauck was at the chop suey place over the laundry from 10:30 PM to 11:30 PM.",
+      "text": "Zeldin says Hauck was at the chop suey place from 10:30 PM to 11:30 PM.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c144",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 9
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 9
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "fall"
-        }
-      ],
-      "text": "Gittel Zeldin was at the chop suey place over the laundry at 10:30 PM and heard a shout and then something hitting the areaway from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c014",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Patrick Brennan"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "boarding-parlor",
-          "tick": 7
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s3",
-          "methodId": "fall"
-        }
-      ],
-      "text": "Nunzio Moretti says Patrick Brennan was at the parlour of Mrs. Teague’s boarding house at 9:30 PM.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "Althea Mosley runs through it: at 10:30 PM there were Rufus Tillman, Nunzio Moretti, Verity Coffin at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "boarding-parlor",
-      "leadsTo": [
-        "c169"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c140",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Nora Mulcahy that evening"
-      },
-      "establishes": [
-        {
-          "kind": "victimAliveAt",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-victim",
-          "place": "boarding-parlor",
-          "tick": 8
-        }
-      ],
-      "text": "Rufus Tillman puts Nora Mulcahy at the parlour of Mrs. Teague’s boarding house while the lesson was still going on overhead, which was 10:00 PM, and alive enough to argue about the weather.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "piano-lesson"
-    },
-    {
-      "id": "c068",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Althea Mosley"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "boarding-parlor",
-          "tick": 1
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "fall"
-        }
-      ],
-      "text": "Hattie Whitfield says Althea Mosley was at the parlour of Mrs. Teague’s boarding house from 6:00 PM to 6:30 PM.",
-      "place": "boarding-parlor",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c162",
+      "id": "c130",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "chop-suey"
       },
       "establishes": [],
-      "text": "A prescription blank at the chop suey place over the laundry signed by a doctor who has been dead since the spring.",
+      "text": "A paper of powder at the chop suey place, folded the way one particular hand folds them.",
       "place": "chop-suey",
       "leadsTo": [
-        "c163"
+        "c131"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s1",
+      "aboutSecretOf": "p-s4",
       "branchId": "b1"
     },
     {
-      "id": "c163",
+      "id": "c131",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the chop suey place signed by a doctor who has been dead since the spring.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c127"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Hauck"
+      },
+      "establishes": [],
+      "text": "Zeldin on Hauck: Hauck’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "chop-suey",
+          "tick": 10
+        }
+      ],
+      "text": "The man who sells it at the chop suey place gives it up rather than be held: Hauck was there from 10:30 PM to 11:00 PM, and stayed until it took hold.",
+      "place": "chop-suey",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b1"
+    },
+    {
+      "id": "c115",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Hanrahan on Tillman: Tillman was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c113"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c113",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Tillman"
+      },
+      "establishes": [],
+      "text": "Moretti on Tillman: Tillman’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "boarding-parlor",
+      "leadsTo": [
+        "c117"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c117",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "chop-suey"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the chop suey place signed by a doctor who has been dead since the spring.",
+      "place": "chop-suey",
+      "leadsTo": [
+        "c118"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c118",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8281,100 +7166,49 @@
           "tick": 11
         }
       ],
-      "text": "The man who sells it at the chop suey place over the laundry gives it up rather than be held: Rufus Tillman was there from 11:00 PM to 11:30 PM, and stayed until it took hold.",
+      "text": "The man who sells it at the chop suey place gives it up rather than be held: Tillman was there from 11:00 PM to 11:30 PM, and stayed until it took hold.",
       "place": "chop-suey",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s1",
-      "branchId": "b1"
+      "branchId": "b2"
     },
     {
-      "id": "c169",
+      "id": "c145",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "dance-hall"
       },
       "establishes": [],
-      "text": "A tab at the Arcadia dance hall in a name that is not Nunzio Moretti’s, in Nunzio Moretti’s handwriting.",
+      "text": "A tab at the Arcadia in a name that is not Coffin’s, in Coffin’s handwriting.",
       "place": "dance-hall",
       "leadsTo": [
-        "c168"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
-    },
-    {
-      "id": "c168",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A bottle at the Arcadia dance hall pushed behind the pipes, the seal broken and the level down.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c170"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 9
-        }
-      ],
-      "text": "The man behind the counter at the Arcadia dance hall knows exactly: Nunzio Moretti was on the same stool from 10:00 PM to 10:30 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b2"
-    },
-    {
-      "id": "c187",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Verity Coffin"
-      },
-      "establishes": [],
-      "text": "Cornelius Hanrahan on Verity Coffin: Verity Coffin is on a temperance pledge that Verity Coffin mentions before anybody asks.",
-      "place": "hallam-vestibule",
-      "leadsTo": [
-        "c191"
+        "c144"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
       "branchId": "b3"
     },
     {
-      "id": "c191",
+      "id": "c144",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c146"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c146",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8399,7 +7233,7 @@
           "tick": 10
         }
       ],
-      "text": "The man behind the counter at the Arcadia dance hall knows exactly: Verity Coffin was on the same stool from 10:30 PM to 11:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "text": "The man behind the counter at the Arcadia knows exactly: Coffin was on the same stool from 10:30 PM to 11:00 PM and was in no condition to walk anywhere, let alone do this.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "disqualifier",
@@ -8407,43 +7241,43 @@
       "branchId": "b3"
     },
     {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Althea Mosley"
-      },
-      "establishes": [],
-      "text": "Rufus Tillman on Althea Mosley: A man nobody knew was waiting for Althea Mosley at the benches at the north end of the square and would not give a name.",
-      "place": "boarding-parlor",
-      "leadsTo": [
-        "c179"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b4"
-    },
-    {
-      "id": "c179",
+      "id": "c134",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Althea Mosley"
+        "topic": "Mosley"
       },
       "establishes": [],
-      "text": "Hattie Whitfield on Althea Mosley: Althea Mosley was asking around for a hundred dollars in a hurry earlier in the week.",
+      "text": "Whitfield on Mosley: Mosley was asking around for a hundred dollars in a hurry earlier in the week.",
       "place": "boarding-parlor",
       "leadsTo": [
-        "c184"
+        "c136"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s5",
       "branchId": "b4"
     },
     {
-      "id": "c184",
+      "id": "c136",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Mosley"
+      },
+      "establishes": [],
+      "text": "Brennan on Mosley: Mosley goes very quiet when the racing wire is mentioned.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c139"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c139",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8468,72 +7302,23 @@
           "tick": 3
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Althea Mosley was at the benches at the north end of the square from 7:00 PM to 7:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Mosley was at the benches from 7:00 PM to 7:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s5",
       "branchId": "b4"
-    },
-    {
-      "id": "c176",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [],
-      "text": "A prescription blank at the chop suey place over the laundry signed by a doctor who has been dead since the spring.",
-      "place": "chop-suey",
-      "leadsTo": [
-        "c177"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
-    },
-    {
-      "id": "c177",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "chop-suey"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "chop-suey",
-          "tick": 10
-        }
-      ],
-      "text": "The man who sells it at the chop suey place over the laundry gives it up rather than be held: Margarethe Hauck was there from 10:30 PM to 11:00 PM, and stayed until it took hold.",
-      "place": "chop-suey",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b5"
     }
   ],
   "starting": [
-    "c137",
-    "c138",
-    "c157"
+    "c097",
+    "c098",
+    "c112"
   ],
   "clientId": "p-s4",
-  "par": 8,
-  "budget": 20,
+  "par": 11,
+  "slack": 6,
+  "budget": 17,
   "coronerWindow": [
     6,
     9
@@ -8541,17 +7326,15 @@
   "solution": {
     "killerId": "p-s3",
     "methodId": "fall",
-    "motiveType": "exposure",
+    "motiveType": "property",
     "murderTick": 9,
     "murderPlaceId": "res-backhouse"
   },
   "deduction": {
     "timeOfDeath": [
-      "c138",
-      "c141",
-      "c140",
-      "c137",
-      "c144"
+      "c098",
+      "c101",
+      "c097"
     ],
     "timeOfDeathAnchors": [
       "bar-radio",
@@ -8559,47 +7342,42 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c117",
-        "c100"
+        "c074",
+        "c039"
       ],
       "p-s2": [
-        "c117",
-        "c083",
-        "c100",
-        "c170"
+        "c075",
+        "c042"
       ],
       "p-s4": [
         "c067",
         "c057",
-        "c177"
+        "c132"
       ],
       "p-s5": [
-        "c117",
-        "c083"
+        "c077"
       ],
       "p-s6": [
-        "c117",
-        "c083",
-        "c100",
-        "c191"
+        "c079",
+        "c146"
       ]
     },
     "inculpation": [
-      "c130",
-      "c147"
+      "c090",
+      "c102"
     ],
     "access": [
       "c006",
       "c014"
     ],
     "method": [
-      "c137",
-      "c138",
-      "c144"
+      "c097",
+      "c098",
+      "c099"
     ],
     "motive": [
-      "c154",
-      "c153"
+      "c109",
+      "c108"
     ]
   }
 }

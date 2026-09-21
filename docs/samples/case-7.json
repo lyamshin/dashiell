@@ -8,6 +8,7 @@
     {
       "id": "rooming-house-room",
       "name": "the back room at Mrs. Teague’s",
+      "shortName": "Mrs. Teague’s",
       "kind": "private",
       "objects": [
         "obj-photograph",
@@ -21,6 +22,7 @@
     {
       "id": "speakeasy",
       "name": "the speakeasy under the hat shop",
+      "shortName": "the speakeasy",
       "kind": "semi",
       "objects": [
         "obj-revolver",
@@ -35,6 +37,7 @@
     {
       "id": "res-backhouse",
       "name": "the victim’s house on the back lot",
+      "shortName": "the back lot",
       "kind": "private",
       "objects": [
         "obj-cord",
@@ -47,6 +50,7 @@
     {
       "id": "drugstore",
       "name": "Kaplan’s drugstore with the soda fountain",
+      "shortName": "Kaplan’s",
       "kind": "public",
       "objects": [
         "obj-telephone",
@@ -59,6 +63,7 @@
     {
       "id": "cab-stand",
       "name": "the cab stand outside the Hippodrome",
+      "shortName": "the cab stand",
       "kind": "public",
       "objects": [
         "obj-timetable",
@@ -71,6 +76,7 @@
     {
       "id": "square-benches",
       "name": "the benches at the north end of the square",
+      "shortName": "the benches",
       "kind": "public",
       "objects": [
         "obj-umbrella"
@@ -160,6 +166,7 @@
     {
       "id": "p-victim",
       "name": "Salvatore Vitale",
+      "surname": "Vitale",
       "role": "a retired dry-goods wholesaler",
       "kind": "victim",
       "isKiller": false,
@@ -168,6 +175,7 @@
     {
       "id": "p-s1",
       "name": "Domenica Carbone",
+      "surname": "Carbone",
       "role": "a piano teacher",
       "kind": "suspect",
       "isKiller": false,
@@ -177,7 +185,7 @@
       "secret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "Domenica Carbone drinks alone at the speakeasy under the hat shop from 9:30 PM to 10:00 PM and will claim to have been anywhere else.",
+        "description": "Carbone drinks alone at the speakeasy from 9:30 PM to 10:00 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 7,
@@ -194,6 +202,7 @@
     {
       "id": "p-s2",
       "name": "Alonzo Dandridge",
+      "surname": "Dandridge",
       "role": "a doorman at a club with no sign on it",
       "kind": "suspect",
       "isKiller": false,
@@ -203,7 +212,7 @@
       "secret": {
         "type": "gambling-debt",
         "label": "Gambling debt",
-        "description": "Alonzo Dandridge slips off to the speakeasy under the hat shop from 9:00 PM to 9:30 PM to settle with a bookmaker.",
+        "description": "Dandridge slips off to the speakeasy from 9:00 PM to 9:30 PM to settle with a bookmaker.",
         "cells": [
           {
             "tick": 6,
@@ -221,6 +230,7 @@
     {
       "id": "p-s3",
       "name": "Otto Brauer",
+      "surname": "Brauer",
       "role": "a stagehand at the Selwyn",
       "kind": "suspect",
       "isKiller": true,
@@ -230,7 +240,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Otto Brauer is at the victim’s house on the back lot from 8:30 PM to 9:30 PM, alone with Salvatore Vitale when it happens at 9:30 PM.",
+        "description": "Brauer is at the back lot from 8:30 PM to 9:30 PM, alone with Vitale when it happens at 9:30 PM.",
         "cells": [
           {
             "tick": 5,
@@ -256,7 +266,8 @@
     {
       "id": "p-s4",
       "name": "Nathan Kessler",
-      "role": "the victim’s nephew, at loose ends",
+      "surname": "Kessler",
+      "role": "a young man living on expectations",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heir",
@@ -265,7 +276,7 @@
       "secret": {
         "type": "affair",
         "label": "Affair",
-        "description": "Nathan Kessler is with Beatrice Thorndike at the benches at the north end of the square from 10:00 PM to 10:30 PM, and both will say they were somewhere else.",
+        "description": "Kessler is with Thorndike at the benches from 10:00 PM to 10:30 PM, and both will say they were somewhere else.",
         "cells": [
           {
             "tick": 8,
@@ -287,6 +298,7 @@
     {
       "id": "p-s5",
       "name": "Beatrice Thorndike",
+      "surname": "Thorndike",
       "role": "a seamstress",
       "kind": "suspect",
       "isKiller": false,
@@ -296,7 +308,7 @@
       "secret": {
         "type": "affair",
         "label": "Affair",
-        "description": "Beatrice Thorndike is with Nathan Kessler at the benches at the north end of the square from 10:00 PM to 10:30 PM, and both will say they were somewhere else.",
+        "description": "Thorndike is with Kessler at the benches from 10:00 PM to 10:30 PM, and both will say they were somewhere else.",
         "cells": [
           {
             "tick": 8,
@@ -314,16 +326,17 @@
     {
       "id": "p-s6",
       "name": "Roscoe Mosley",
+      "surname": "Mosley",
       "role": "a ward heeler",
       "kind": "suspect",
       "isKiller": false,
       "archetypeId": "arch-heeler",
-      "relationshipId": "rel-rival",
-      "relationshipToVictim": "the victim’s rival in trade",
+      "relationshipId": "rel-partner",
+      "relationshipToVictim": "the victim’s business partner",
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Roscoe Mosley hands a parcel of stolen goods to a man at the cab stand outside the Hippodrome from 8:30 PM to 9:00 PM.",
+        "description": "Mosley hands a parcel of stolen goods to a man at the cab stand from 8:30 PM to 9:00 PM.",
         "cells": [
           {
             "tick": 5,
@@ -344,6 +357,7 @@
     {
       "id": "p-f1",
       "name": "Marion Ainsworth",
+      "surname": "Ainsworth",
       "role": "the landlady",
       "kind": "fixture",
       "isKiller": false,
@@ -353,6 +367,7 @@
     {
       "id": "p-f2",
       "name": "Dennis Doyle",
+      "surname": "Doyle",
       "role": "the bartender",
       "kind": "fixture",
       "isKiller": false,
@@ -362,6 +377,7 @@
     {
       "id": "p-f3",
       "name": "Bernice Colquitt",
+      "surname": "Colquitt",
       "role": "the druggist",
       "kind": "fixture",
       "isKiller": false,
@@ -371,6 +387,7 @@
     {
       "id": "p-f4",
       "name": "Lurline Bledsoe",
+      "surname": "Bledsoe",
       "role": "the hackman on the stand",
       "kind": "fixture",
       "isKiller": false,
@@ -407,7 +424,9 @@
         }
       ],
       "timing": "while the lesson was still going on overhead",
-      "sceneTiming": "the piano stopped and what was heard next was heard against silence",
+      "highTiming": "just after the lesson overhead stopped",
+      "sceneFact": "The lesson overhead stopped at {T} and nothing was played after it.",
+      "masks": false,
       "placeId": "rooming-house-room"
     },
     {
@@ -427,7 +446,9 @@
         }
       ],
       "timing": "while the fight was on the radio",
-      "sceneTiming": "the set was loud enough to cover it, and it was only loud for that half hour",
+      "highTiming": "while the fight was on the radio",
+      "sceneFact": "The fight card was on the bar radio at {T}, turned up loud enough to carry into the street, and off when the card ended.",
+      "masks": true,
       "placeId": "speakeasy"
     },
     {
@@ -447,7 +468,9 @@
         }
       ],
       "timing": "while the singing was still going on",
-      "sceneTiming": "the singing stopped when the shoe came down, and that was the half hour",
+      "highTiming": "just as the singing stopped",
+      "sceneFact": "The singing under the window stopped at {T}, when the shoe came down.",
+      "masks": false,
       "placeId": "rooming-house-room"
     }
   ],
@@ -455,6 +478,7 @@
     "square-benches",
     "speakeasy"
   ],
+  "soundMasked": true,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2419,7 +2443,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Salvatore Vitale"
+        "topic": "Vitale"
       },
       "establishes": [
         {
@@ -2429,7 +2453,7 @@
           "tick": 1
         }
       ],
-      "text": "Domenica Carbone says Salvatore Vitale was at Kaplan’s drugstore with the soda fountain at 6:30 PM.",
+      "text": "Carbone says Vitale was at Kaplan’s at 6:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -2440,7 +2464,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2450,7 +2474,7 @@
           "tick": 2
         }
       ],
-      "text": "Domenica Carbone says Alonzo Dandridge was at Kaplan’s drugstore with the soda fountain at 7:00 PM.",
+      "text": "Carbone says Dandridge was at Kaplan’s at 7:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -2461,7 +2485,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2471,7 +2495,7 @@
           "tick": 5
         }
       ],
-      "text": "Domenica Carbone says Alonzo Dandridge was at Kaplan’s drugstore with the soda fountain at 8:30 PM.",
+      "text": "Carbone says Dandridge was at Kaplan’s at 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -2482,7 +2506,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -2497,12 +2521,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Domenica Carbone says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Carbone says Brauer was at the speakeasy at 8:00 PM.",
       "place": "speakeasy",
-      "leadsTo": [
-        "c121"
-      ],
-      "role": "spine"
+      "leadsTo": [],
+      "role": "corroboration"
     },
     {
       "id": "c005",
@@ -2510,7 +2532,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2525,7 +2547,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Domenica Carbone says Nathan Kessler was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Carbone says Kessler was at the speakeasy at 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -2536,7 +2558,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2546,7 +2568,7 @@
           "tick": 6
         }
       ],
-      "text": "Domenica Carbone says Nathan Kessler was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Carbone says Kessler was at Kaplan’s at 9:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -2557,7 +2579,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2567,7 +2589,7 @@
           "tick": 6
         }
       ],
-      "text": "Domenica Carbone says Beatrice Thorndike was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Carbone says Thorndike was at Kaplan’s at 9:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -2578,7 +2600,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2588,7 +2610,7 @@
           "tick": 11
         }
       ],
-      "text": "Domenica Carbone says Beatrice Thorndike was at the speakeasy under the hat shop at 11:30 PM.",
+      "text": "Carbone says Thorndike was at the speakeasy at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -2599,7 +2621,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -2615,7 +2637,7 @@
           "tick": 11
         }
       ],
-      "text": "Domenica Carbone says Roscoe Mosley was at the speakeasy under the hat shop from 11:00 PM to 11:30 PM.",
+      "text": "Carbone says Mosley was at the speakeasy from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -2626,7 +2648,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -2636,7 +2658,7 @@
           "tick": 2
         }
       ],
-      "text": "Alonzo Dandridge says Domenica Carbone was at Kaplan’s drugstore with the soda fountain at 7:00 PM.",
+      "text": "Dandridge says Carbone was at Kaplan’s at 7:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2647,7 +2669,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -2657,7 +2679,7 @@
           "tick": 5
         }
       ],
-      "text": "Alonzo Dandridge says Domenica Carbone was at Kaplan’s drugstore with the soda fountain at 8:30 PM.",
+      "text": "Dandridge says Carbone was at Kaplan’s at 8:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2668,7 +2690,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -2684,7 +2706,7 @@
           "tick": 1
         }
       ],
-      "text": "Alonzo Dandridge says Otto Brauer was at the benches at the north end of the square from 6:00 PM to 6:30 PM.",
+      "text": "Dandridge says Brauer was at the benches from 6:00 PM to 6:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2695,7 +2717,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2711,7 +2733,7 @@
           "tick": 1
         }
       ],
-      "text": "Alonzo Dandridge says Nathan Kessler was at the benches at the north end of the square from 6:00 PM to 6:30 PM.",
+      "text": "Dandridge says Kessler was at the benches from 6:00 PM to 6:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -2722,7 +2744,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Salvatore Vitale"
+        "topic": "Vitale"
       },
       "establishes": [
         {
@@ -2738,7 +2760,7 @@
           "tick": 3
         }
       ],
-      "text": "Otto Brauer says Salvatore Vitale was at the benches at the north end of the square from 7:00 PM to 7:30 PM.",
+      "text": "Brauer says Vitale was at the benches from 7:00 PM to 7:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -2749,7 +2771,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -2764,10 +2786,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Otto Brauer says Domenica Carbone was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Brauer says Carbone was at the speakeasy at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c016",
@@ -2775,7 +2797,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -2791,7 +2813,7 @@
           "tick": 1
         }
       ],
-      "text": "Otto Brauer says Alonzo Dandridge was at the benches at the north end of the square from 6:00 PM to 6:30 PM.",
+      "text": "Brauer says Dandridge was at the benches from 6:00 PM to 6:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -2802,7 +2824,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2830,7 +2852,7 @@
           "tick": 3
         }
       ],
-      "text": "Otto Brauer says Nathan Kessler was at the benches at the north end of the square from 6:00 PM to 7:30 PM.",
+      "text": "Brauer says Kessler was at the benches from 6:00 PM to 7:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -2841,7 +2863,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2863,7 +2885,7 @@
           "tick": 10
         }
       ],
-      "text": "Otto Brauer says Nathan Kessler was at the benches at the north end of the square from 10:00 PM to 11:00 PM.",
+      "text": "Brauer says Kessler was at the benches from 10:00 PM to 11:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -2874,7 +2896,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -2889,7 +2911,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Otto Brauer says Nathan Kessler was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Brauer says Kessler was at the speakeasy at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -2900,7 +2922,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -2922,7 +2944,7 @@
           "tick": 10
         }
       ],
-      "text": "Otto Brauer says Beatrice Thorndike was at the benches at the north end of the square from 10:00 PM to 11:00 PM.",
+      "text": "Brauer says Thorndike was at the benches from 10:00 PM to 11:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -2933,7 +2955,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Salvatore Vitale"
+        "topic": "Vitale"
       },
       "establishes": [
         {
@@ -2949,7 +2971,7 @@
           "tick": 3
         }
       ],
-      "text": "Nathan Kessler says Salvatore Vitale was at the benches at the north end of the square from 7:00 PM to 7:30 PM.",
+      "text": "Kessler says Vitale was at the benches from 7:00 PM to 7:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -2960,7 +2982,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -2975,7 +2997,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Nathan Kessler says Domenica Carbone was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Kessler says Carbone was at the speakeasy at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -2986,7 +3008,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -2996,7 +3018,7 @@
           "tick": 7
         }
       ],
-      "text": "Nathan Kessler says Domenica Carbone was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Kessler says Carbone was at the speakeasy at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3007,7 +3029,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3017,7 +3039,7 @@
           "tick": 6
         }
       ],
-      "text": "Nathan Kessler says Domenica Carbone was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Kessler says Carbone was at Kaplan’s at 9:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3028,7 +3050,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3044,7 +3066,7 @@
           "tick": 1
         }
       ],
-      "text": "Nathan Kessler says Alonzo Dandridge was at the benches at the north end of the square from 6:00 PM to 6:30 PM.",
+      "text": "Kessler says Dandridge was at the benches from 6:00 PM to 6:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3055,7 +3077,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3065,10 +3087,12 @@
           "tick": 7
         }
       ],
-      "text": "Nathan Kessler says Alonzo Dandridge was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Kessler says Dandridge was at the speakeasy at 9:30 PM.",
       "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c102"
+      ],
+      "role": "corroboration"
     },
     {
       "id": "c027",
@@ -3076,7 +3100,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3104,7 +3128,7 @@
           "tick": 3
         }
       ],
-      "text": "Nathan Kessler says Otto Brauer was at the benches at the north end of the square from 6:00 PM to 7:30 PM.",
+      "text": "Kessler says Brauer was at the benches from 6:00 PM to 7:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3115,7 +3139,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3125,7 +3149,7 @@
           "tick": 10
         }
       ],
-      "text": "Nathan Kessler says Otto Brauer was at the benches at the north end of the square at 11:00 PM.",
+      "text": "Kessler says Brauer was at the benches at 11:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3136,7 +3160,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3151,10 +3175,10 @@
           "methodId": "shot"
         }
       ],
-      "text": "Nathan Kessler says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Kessler says Brauer was at the speakeasy at 8:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c030",
@@ -3162,7 +3186,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3172,7 +3196,7 @@
           "tick": 6
         }
       ],
-      "text": "Nathan Kessler says Beatrice Thorndike was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Kessler says Thorndike was at Kaplan’s at 9:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3183,7 +3207,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3193,7 +3217,7 @@
           "tick": 7
         }
       ],
-      "text": "Nathan Kessler says Beatrice Thorndike was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Kessler says Thorndike was at the speakeasy at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3204,7 +3228,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3214,7 +3238,7 @@
           "tick": 10
         }
       ],
-      "text": "Nathan Kessler says Beatrice Thorndike was at the benches at the north end of the square at 11:00 PM.",
+      "text": "Kessler says Thorndike was at the benches at 11:00 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -3225,7 +3249,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3235,7 +3259,7 @@
           "tick": 7
         }
       ],
-      "text": "Nathan Kessler says Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Kessler says Mosley was at the speakeasy at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration"
@@ -3246,7 +3270,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3256,7 +3280,7 @@
           "tick": 6
         }
       ],
-      "text": "Beatrice Thorndike says Domenica Carbone was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Thorndike says Carbone was at Kaplan’s at 9:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3267,7 +3291,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3277,10 +3301,10 @@
           "tick": 7
         }
       ],
-      "text": "Beatrice Thorndike says Domenica Carbone was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Thorndike says Carbone was at the speakeasy at 9:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c036",
@@ -3288,7 +3312,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3298,7 +3322,7 @@
           "tick": 11
         }
       ],
-      "text": "Beatrice Thorndike says Domenica Carbone was at the speakeasy under the hat shop at 11:30 PM.",
+      "text": "Thorndike says Carbone was at the speakeasy at 11:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3309,7 +3333,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3319,7 +3343,7 @@
           "tick": 7
         }
       ],
-      "text": "Beatrice Thorndike says Alonzo Dandridge was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Thorndike says Dandridge was at the speakeasy at 9:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3330,7 +3354,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3340,7 +3364,7 @@
           "tick": 10
         }
       ],
-      "text": "Beatrice Thorndike says Otto Brauer was at the benches at the north end of the square at 11:00 PM.",
+      "text": "Thorndike says Brauer was at the benches at 11:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3351,7 +3375,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3361,7 +3385,7 @@
           "tick": 6
         }
       ],
-      "text": "Beatrice Thorndike says Nathan Kessler was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Thorndike says Kessler was at Kaplan’s at 9:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3372,7 +3396,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3382,13 +3406,10 @@
           "tick": 7
         }
       ],
-      "text": "Beatrice Thorndike says Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Thorndike says Kessler was at the speakeasy at 9:30 PM.",
       "place": "cab-stand",
-      "leadsTo": [
-        "c168",
-        "c162"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c041",
@@ -3396,7 +3417,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3406,7 +3427,7 @@
           "tick": 10
         }
       ],
-      "text": "Beatrice Thorndike says Nathan Kessler was at the benches at the north end of the square at 11:00 PM.",
+      "text": "Thorndike says Kessler was at the benches at 11:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3417,7 +3438,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3439,7 +3460,7 @@
           "tick": 5
         }
       ],
-      "text": "Beatrice Thorndike says Roscoe Mosley was at the cab stand outside the Hippodrome from 7:30 PM to 8:30 PM.",
+      "text": "Thorndike says Mosley was at the cab stand from 7:30 PM to 8:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3450,7 +3471,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3460,7 +3481,7 @@
           "tick": 7
         }
       ],
-      "text": "Beatrice Thorndike says Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Thorndike says Mosley was at the speakeasy at 9:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3471,7 +3492,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -3481,7 +3502,7 @@
           "tick": 11
         }
       ],
-      "text": "Beatrice Thorndike says Roscoe Mosley was at the speakeasy under the hat shop at 11:30 PM.",
+      "text": "Thorndike says Mosley was at the speakeasy at 11:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -3492,7 +3513,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3508,10 +3529,10 @@
           "tick": 8
         }
       ],
-      "text": "Roscoe Mosley says Domenica Carbone was at the speakeasy under the hat shop from 9:30 PM to 10:00 PM.",
+      "text": "Mosley says Carbone was at the speakeasy from 9:30 PM to 10:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c046",
@@ -3519,7 +3540,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3535,7 +3556,7 @@
           "tick": 11
         }
       ],
-      "text": "Roscoe Mosley says Domenica Carbone was at the speakeasy under the hat shop from 11:00 PM to 11:30 PM.",
+      "text": "Mosley says Carbone was at the speakeasy from 11:00 PM to 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3546,7 +3567,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3556,7 +3577,7 @@
           "tick": 7
         }
       ],
-      "text": "Roscoe Mosley says Alonzo Dandridge was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Mosley says Dandridge was at the speakeasy at 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3567,7 +3588,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3577,10 +3598,16 @@
           "tick": 7
         }
       ],
-      "text": "Roscoe Mosley says Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Mosley says Kessler was at the speakeasy at 9:30 PM.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c090",
+        "c050",
+        "c045",
+        "c099",
+        "c063"
+      ],
+      "role": "spine"
     },
     {
       "id": "c049",
@@ -3588,7 +3615,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3604,7 +3631,7 @@
           "tick": 4
         }
       ],
-      "text": "Roscoe Mosley says Beatrice Thorndike was at the cab stand outside the Hippodrome from 7:30 PM to 8:00 PM.",
+      "text": "Mosley says Thorndike was at the cab stand from 7:30 PM to 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3615,7 +3642,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3625,10 +3652,10 @@
           "tick": 7
         }
       ],
-      "text": "Roscoe Mosley says Beatrice Thorndike was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Mosley says Thorndike was at the speakeasy at 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "spine"
     },
     {
       "id": "c051",
@@ -3636,7 +3663,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3646,7 +3673,7 @@
           "tick": 11
         }
       ],
-      "text": "Roscoe Mosley says Beatrice Thorndike was at the speakeasy under the hat shop at 11:30 PM.",
+      "text": "Mosley says Thorndike was at the speakeasy at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3657,7 +3684,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Salvatore Vitale"
+        "topic": "Vitale"
       },
       "establishes": [
         {
@@ -3667,7 +3694,7 @@
           "tick": 6
         }
       ],
-      "text": "Marion Ainsworth says Salvatore Vitale was at the back room at Mrs. Teague’s at 9:00 PM.",
+      "text": "Ainsworth says Vitale was at Mrs. Teague’s at 9:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3678,7 +3705,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3688,7 +3715,7 @@
           "tick": 0
         }
       ],
-      "text": "Marion Ainsworth says Domenica Carbone was at the back room at Mrs. Teague’s at 6:00 PM.",
+      "text": "Ainsworth says Carbone was at Mrs. Teague’s at 6:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3699,7 +3726,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3727,7 +3754,7 @@
           "tick": 11
         }
       ],
-      "text": "Marion Ainsworth says Alonzo Dandridge was at the back room at Mrs. Teague’s from 10:00 PM to 11:30 PM.",
+      "text": "Ainsworth says Dandridge was at Mrs. Teague’s from 10:00 PM to 11:30 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3738,7 +3765,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3748,7 +3775,7 @@
           "tick": 2
         }
       ],
-      "text": "Marion Ainsworth says Beatrice Thorndike was at the cab stand outside the Hippodrome at 7:00 PM.",
+      "text": "Ainsworth says Thorndike was at the cab stand at 7:00 PM.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
@@ -3759,7 +3786,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3774,7 +3801,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Dennis Doyle says Domenica Carbone was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Doyle says Carbone was at the speakeasy at 8:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3785,7 +3812,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3807,7 +3834,7 @@
           "tick": 9
         }
       ],
-      "text": "Dennis Doyle says Domenica Carbone was at the speakeasy under the hat shop from 9:30 PM to 10:30 PM.",
+      "text": "Doyle says Carbone was at the speakeasy from 9:30 PM to 10:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3818,7 +3845,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -3828,7 +3855,7 @@
           "tick": 11
         }
       ],
-      "text": "Dennis Doyle says Domenica Carbone was at the speakeasy under the hat shop at 11:30 PM.",
+      "text": "Doyle says Carbone was at the speakeasy at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3839,7 +3866,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3854,7 +3881,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Dennis Doyle says Alonzo Dandridge was at the speakeasy under the hat shop at 7:30 PM.",
+      "text": "Doyle says Dandridge was at the speakeasy at 7:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3865,7 +3892,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -3886,10 +3913,15 @@
           "methodId": "shot"
         }
       ],
-      "text": "Dennis Doyle says Alonzo Dandridge was at the speakeasy under the hat shop from 9:00 PM to 9:30 PM.",
+      "text": "Doyle says Dandridge was at the speakeasy from 9:00 PM to 9:30 PM.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c048",
+        "c061",
+        "c033",
+        "c101"
+      ],
+      "role": "spine"
     },
     {
       "id": "c061",
@@ -3897,7 +3929,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -3912,10 +3944,12 @@
           "methodId": "shot"
         }
       ],
-      "text": "Dennis Doyle says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Doyle says Brauer was at the speakeasy at 8:00 PM.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c035"
+      ],
+      "role": "spine"
     },
     {
       "id": "c062",
@@ -3923,7 +3957,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3944,7 +3978,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Dennis Doyle says Nathan Kessler was at the speakeasy under the hat shop from 8:00 PM to 8:30 PM.",
+      "text": "Doyle says Kessler was at the speakeasy from 8:00 PM to 8:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -3955,7 +3989,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -3965,10 +3999,10 @@
           "tick": 7
         }
       ],
-      "text": "Dennis Doyle says Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Doyle says Kessler was at the speakeasy at 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c064",
@@ -3976,7 +4010,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -3986,10 +4020,10 @@
           "tick": 7
         }
       ],
-      "text": "Dennis Doyle says Beatrice Thorndike was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Doyle says Thorndike was at the speakeasy at 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c065",
@@ -3997,7 +4031,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -4007,7 +4041,7 @@
           "tick": 11
         }
       ],
-      "text": "Dennis Doyle says Beatrice Thorndike was at the speakeasy under the hat shop at 11:30 PM.",
+      "text": "Doyle says Thorndike was at the speakeasy at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4018,7 +4052,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4045,7 +4079,7 @@
           "methodId": "shot"
         }
       ],
-      "text": "Dennis Doyle says Roscoe Mosley was at the speakeasy under the hat shop from 6:00 PM to 7:00 PM.",
+      "text": "Doyle says Mosley was at the speakeasy from 6:00 PM to 7:00 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4056,7 +4090,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4072,10 +4106,12 @@
           "tick": 8
         }
       ],
-      "text": "Dennis Doyle says Roscoe Mosley was at the speakeasy under the hat shop from 9:30 PM to 10:00 PM.",
+      "text": "Doyle says Mosley was at the speakeasy from 9:30 PM to 10:00 PM.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c112"
+      ],
+      "role": "spine"
     },
     {
       "id": "c068",
@@ -4083,7 +4119,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4093,7 +4129,7 @@
           "tick": 11
         }
       ],
-      "text": "Dennis Doyle says Roscoe Mosley was at the speakeasy under the hat shop at 11:30 PM.",
+      "text": "Doyle says Mosley was at the speakeasy at 11:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
@@ -4104,7 +4140,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Salvatore Vitale"
+        "topic": "Vitale"
       },
       "establishes": [
         {
@@ -4120,7 +4156,7 @@
           "tick": 1
         }
       ],
-      "text": "Bernice Colquitt says Salvatore Vitale was at Kaplan’s drugstore with the soda fountain from 6:00 PM to 6:30 PM.",
+      "text": "Colquitt says Vitale was at Kaplan’s from 6:00 PM to 6:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4131,7 +4167,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -4153,7 +4189,7 @@
           "tick": 3
         }
       ],
-      "text": "Bernice Colquitt says Domenica Carbone was at Kaplan’s drugstore with the soda fountain from 6:30 PM to 7:30 PM.",
+      "text": "Colquitt says Carbone was at Kaplan’s from 6:30 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4164,7 +4200,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Domenica Carbone"
+        "topic": "Carbone"
       },
       "establishes": [
         {
@@ -4180,7 +4216,7 @@
           "tick": 6
         }
       ],
-      "text": "Bernice Colquitt says Domenica Carbone was at Kaplan’s drugstore with the soda fountain from 8:30 PM to 9:00 PM.",
+      "text": "Colquitt says Carbone was at Kaplan’s from 8:30 PM to 9:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4191,7 +4227,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4201,7 +4237,7 @@
           "tick": 2
         }
       ],
-      "text": "Bernice Colquitt says Alonzo Dandridge was at Kaplan’s drugstore with the soda fountain at 7:00 PM.",
+      "text": "Colquitt says Dandridge was at Kaplan’s at 7:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4212,7 +4248,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Alonzo Dandridge"
+        "topic": "Dandridge"
       },
       "establishes": [
         {
@@ -4228,7 +4264,7 @@
           "tick": 5
         }
       ],
-      "text": "Bernice Colquitt says Alonzo Dandridge was at Kaplan’s drugstore with the soda fountain from 8:00 PM to 8:30 PM.",
+      "text": "Colquitt says Dandridge was at Kaplan’s from 8:00 PM to 8:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4239,7 +4275,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Nathan Kessler"
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -4249,7 +4285,7 @@
           "tick": 6
         }
       ],
-      "text": "Bernice Colquitt says Nathan Kessler was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Colquitt says Kessler was at Kaplan’s at 9:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4260,7 +4296,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -4270,7 +4306,7 @@
           "tick": 6
         }
       ],
-      "text": "Bernice Colquitt says Beatrice Thorndike was at Kaplan’s drugstore with the soda fountain at 9:00 PM.",
+      "text": "Colquitt says Thorndike was at Kaplan’s at 9:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4281,7 +4317,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -4291,7 +4327,7 @@
           "tick": 11
         }
       ],
-      "text": "Lurline Bledsoe says Otto Brauer was at the cab stand outside the Hippodrome at 11:30 PM.",
+      "text": "Bledsoe says Brauer was at the cab stand at 11:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4302,7 +4338,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Beatrice Thorndike"
+        "topic": "Thorndike"
       },
       "establishes": [
         {
@@ -4342,7 +4378,7 @@
           "tick": 5
         }
       ],
-      "text": "Lurline Bledsoe says Beatrice Thorndike was at the cab stand outside the Hippodrome from 6:00 PM to 8:30 PM.",
+      "text": "Bledsoe says Thorndike was at the cab stand from 6:00 PM to 8:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4353,7 +4389,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4381,7 +4417,7 @@
           "tick": 6
         }
       ],
-      "text": "Lurline Bledsoe says Roscoe Mosley was at the cab stand outside the Hippodrome from 7:30 PM to 9:00 PM.",
+      "text": "Bledsoe says Mosley was at the cab stand from 7:30 PM to 9:00 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4392,7 +4428,7 @@
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -4402,7 +4438,7 @@
           "tick": 9
         }
       ],
-      "text": "Lurline Bledsoe says Roscoe Mosley was at the cab stand outside the Hippodrome at 10:30 PM.",
+      "text": "Bledsoe says Mosley was at the cab stand at 10:30 PM.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
@@ -4412,25 +4448,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s2",
+        "topic": "Carbone’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 8
         }
       ],
-      "text": "Domenica Carbone runs through it: at 8:00 PM there were Otto Brauer, Nathan Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Dandridge was at Mrs. Teague’s at 10:00 PM and says Carbone was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4439,52 +4469,52 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-f1",
+        "topic": "Carbone’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 8
         }
       ],
-      "text": "Domenica Carbone runs through it: at 9:00 PM there were Nathan Kessler, Beatrice Thorndike at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Ainsworth was at Mrs. Teague’s from 9:30 PM to 10:00 PM and says Carbone was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c082",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-s5",
+        "topic": "Carbone’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 11
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "rooming-house-room",
+          "tick": 8
         }
       ],
-      "text": "Domenica Carbone runs through it: at 11:30 PM there were Beatrice Thorndike, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
+      "text": "Carbone names Thorndike as the company for Mrs. Teague’s from 9:30 PM to 10:00 PM. Thorndike says they were not together that evening.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4493,52 +4523,52 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f1",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "square-benches",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 6
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 7
         }
       ],
-      "text": "Alonzo Dandridge runs through it: at 6:00 PM there were Otto Brauer, Nathan Kessler at the benches at the north end of the square, and nobody else worth naming.",
+      "text": "Ainsworth was at Mrs. Teague’s from 9:00 PM to 9:30 PM and says Dandridge was not.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c084",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-s1",
+        "topic": "Dandridge’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "square-benches",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 6
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
+          "tick": 7
         }
       ],
-      "text": "Alonzo Dandridge runs through it: at 6:30 PM there were Otto Brauer, Nathan Kessler at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "rooming-house-room",
+      "text": "Dandridge names Carbone as the company for Mrs. Teague’s from 9:00 PM to 9:30 PM. Carbone says they were not together that evening.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4547,24 +4577,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s4",
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "square-benches",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 5
         }
       ],
-      "text": "Otto Brauer runs through it: at 6:00 PM there were Alonzo Dandridge, Nathan Kessler at the benches at the north end of the square, and nobody else worth naming.",
+      "text": "Kessler was at the speakeasy at 8:30 PM and says Brauer was not.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -4574,24 +4598,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-s4",
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "square-benches",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 7
         }
       ],
-      "text": "Otto Brauer runs through it: at 6:30 PM there were Alonzo Dandridge, Nathan Kessler at the benches at the north end of the square, and nobody else worth naming.",
+      "text": "Kessler was at the speakeasy at 9:30 PM and says Brauer was not.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise"
@@ -4601,25 +4619,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s5",
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s3",
           "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 4
+          "tick": 7
         }
       ],
-      "text": "Otto Brauer runs through it: at 8:00 PM there were Domenica Carbone, Nathan Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Thorndike was at the speakeasy at 9:30 PM and says Brauer was not.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4628,25 +4640,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-s6",
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 8
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 7
         }
       ],
-      "text": "Otto Brauer runs through it: at 10:00 PM there were Nathan Kessler, Beatrice Thorndike at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Mosley was at the speakeasy at 9:30 PM and says Brauer was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4655,106 +4661,121 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 10:30 PM"
+        "personId": "p-f2",
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 9
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 7
         }
       ],
-      "text": "Otto Brauer runs through it: at 10:30 PM there were Nathan Kessler, Beatrice Thorndike at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Doyle was at the speakeasy from 8:30 PM to 9:30 PM and says Brauer was not.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c090",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s1",
+        "topic": "Brauer’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 10
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 10
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 6
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 7
         }
       ],
-      "text": "Otto Brauer runs through it: at 11:00 PM there were Nathan Kessler, Beatrice Thorndike at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
+      "text": "Brauer names Carbone as the company for the speakeasy from 8:30 PM to 9:30 PM. Carbone says they were not together that evening.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c050",
+        "c067"
+      ],
+      "role": "spine"
     },
     {
       "id": "c091",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f4",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "square-benches",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "cab-stand",
+          "tick": 8
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "square-benches",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "cab-stand",
+          "tick": 9
         }
       ],
-      "text": "Nathan Kessler runs through it: at 6:00 PM there were Alonzo Dandridge, Otto Brauer at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Bledsoe was at the cab stand from 10:00 PM to 10:30 PM and says Kessler was not.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c092",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-s6",
+        "topic": "Kessler’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "square-benches",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "cab-stand",
+          "tick": 8
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "square-benches",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "cab-stand",
+          "tick": 9
         }
       ],
-      "text": "Nathan Kessler runs through it: at 6:30 PM there were Alonzo Dandridge, Otto Brauer at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Kessler names Mosley as the company for the cab stand from 10:00 PM to 10:30 PM. Mosley says they were not together that evening.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4763,52 +4784,52 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f4",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "cab-stand",
+          "tick": 8
         },
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "cab-stand",
+          "tick": 9
         }
       ],
-      "text": "Nathan Kessler runs through it: at 8:00 PM there were Domenica Carbone, Otto Brauer at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Bledsoe was at the cab stand from 10:00 PM to 10:30 PM and says Thorndike was not.",
+      "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c094",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:00 PM"
+        "personId": "p-s6",
+        "topic": "Thorndike’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 6
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "cab-stand",
+          "tick": 8
         },
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 6
+          "place": "cab-stand",
+          "tick": 9
         }
       ],
-      "text": "Nathan Kessler runs through it: at 9:00 PM there were Domenica Carbone, Beatrice Thorndike at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Thorndike names Mosley as the company for the cab stand from 10:00 PM to 10:30 PM. Mosley says they were not together that evening.",
+      "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4817,1015 +4838,57 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f1",
+        "topic": "Mosley’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 7
+          "place": "rooming-house-room",
+          "tick": 5
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 6
         }
       ],
-      "text": "Nathan Kessler runs through it: at 9:30 PM there were Domenica Carbone, Alonzo Dandridge, Beatrice Thorndike, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Ainsworth was at Mrs. Teague’s from 8:30 PM to 9:00 PM and says Mosley was not.",
+      "place": "rooming-house-room",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c096",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s2",
+        "topic": "Mosley’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "square-benches",
-          "tick": 10
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 5
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 10
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 6
         }
       ],
-      "text": "Nathan Kessler runs through it: at 11:00 PM there were Otto Brauer, Beatrice Thorndike at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "square-benches",
+      "text": "Mosley names Dandridge as the company for Mrs. Teague’s from 8:30 PM to 9:00 PM. Dandridge says they were not together that evening.",
+      "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c097",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 6
-        }
-      ],
-      "text": "Beatrice Thorndike runs through it: at 9:00 PM there were Domenica Carbone, Nathan Kessler at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c098",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Beatrice Thorndike runs through it: at 9:30 PM there were Domenica Carbone, Alonzo Dandridge, Nathan Kessler, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "square-benches",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 10
-        }
-      ],
-      "text": "Beatrice Thorndike runs through it: at 11:00 PM there were Otto Brauer, Nathan Kessler at the benches at the north end of the square, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c100",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 11
-        }
-      ],
-      "text": "Beatrice Thorndike runs through it: at 11:30 PM there were Domenica Carbone, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c101",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Roscoe Mosley runs through it: at 9:30 PM there were Domenica Carbone, Alonzo Dandridge, Nathan Kessler, Beatrice Thorndike at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c102",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 11
-        }
-      ],
-      "text": "Roscoe Mosley runs through it: at 11:30 PM there were Domenica Carbone, Beatrice Thorndike at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c103",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 4
-        }
-      ],
-      "text": "Dennis Doyle runs through it: at 8:00 PM there were Domenica Carbone, Otto Brauer, Nathan Kessler at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Dennis Doyle runs through it: at 9:30 PM there were Domenica Carbone, Alonzo Dandridge, Nathan Kessler, Beatrice Thorndike, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c121",
-        "c144",
-        "c033",
-        "c015"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c105",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "Dennis Doyle runs through it: at 10:00 PM there were Domenica Carbone, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c106",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 11
-        }
-      ],
-      "text": "Dennis Doyle runs through it: at 11:30 PM there were Domenica Carbone, Beatrice Thorndike, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 2
-        }
-      ],
-      "text": "Bernice Colquitt runs through it: at 7:00 PM there were Domenica Carbone, Alonzo Dandridge at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "drugstore",
-          "tick": 5
-        }
-      ],
-      "text": "Bernice Colquitt runs through it: at 8:30 PM there were Domenica Carbone, Alonzo Dandridge at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "drugstore",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 6
-        }
-      ],
-      "text": "Bernice Colquitt runs through it: at 9:00 PM there were Domenica Carbone, Nathan Kessler, Beatrice Thorndike at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 7:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 3
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 3
-        }
-      ],
-      "text": "Lurline Bledsoe runs through it: at 7:30 PM there were Beatrice Thorndike, Roscoe Mosley at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 4
-        }
-      ],
-      "text": "Lurline Bledsoe runs through it: at 8:00 PM there were Beatrice Thorndike, Roscoe Mosley at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 5
-        }
-      ],
-      "text": "Lurline Bledsoe runs through it: at 8:30 PM there were Beatrice Thorndike, Roscoe Mosley at the cab stand outside the Hippodrome, and nobody else worth naming.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Domenica Carbone’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 8
-        }
-      ],
-      "text": "Alonzo Dandridge was at the back room at Mrs. Teague’s at 10:00 PM and says Domenica Carbone was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Domenica Carbone’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 7
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 8
-        }
-      ],
-      "text": "Marion Ainsworth was at the back room at Mrs. Teague’s from 9:30 PM to 10:00 PM and says Domenica Carbone was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Domenica Carbone’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "rooming-house-room",
-          "tick": 7
-        }
-      ],
-      "text": "Domenica Carbone says Beatrice Thorndike was there for it. Beatrice Thorndike says otherwise: Beatrice Thorndike was at the speakeasy under the hat shop at 9:30 PM, nowhere near the back room at Mrs. Teague’s.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Alonzo Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 6
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 7
-        }
-      ],
-      "text": "Marion Ainsworth was at the back room at Mrs. Teague’s from 9:00 PM to 9:30 PM and says Alonzo Dandridge was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Alonzo Dandridge’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "rooming-house-room",
-          "tick": 6
-        }
-      ],
-      "text": "Alonzo Dandridge says Domenica Carbone was there for it. Domenica Carbone says otherwise: Domenica Carbone was at Kaplan’s drugstore with the soda fountain at 9:00 PM, nowhere near the back room at Mrs. Teague’s.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Otto Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        }
-      ],
-      "text": "Nathan Kessler was at the speakeasy under the hat shop at 8:30 PM and says Otto Brauer was not.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Otto Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM and says Otto Brauer was not.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Otto Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Beatrice Thorndike was at the speakeasy under the hat shop at 9:30 PM and says Otto Brauer was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Otto Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM and says Otto Brauer was not.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c135"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Otto Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Dennis Doyle was at the speakeasy under the hat shop from 8:30 PM to 9:30 PM and says Otto Brauer was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Otto Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 6
-        }
-      ],
-      "text": "Otto Brauer says Domenica Carbone was there for it. Domenica Carbone says otherwise: Domenica Carbone was at Kaplan’s drugstore with the soda fountain from 8:30 PM to 9:00 PM, nowhere near the speakeasy under the hat shop.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Nathan Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "cab-stand",
-          "tick": 9
-        }
-      ],
-      "text": "Roscoe Mosley was at the cab stand outside the Hippodrome at 10:30 PM and says Nathan Kessler was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Nathan Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "cab-stand",
-          "tick": 8
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "cab-stand",
-          "tick": 9
-        }
-      ],
-      "text": "Lurline Bledsoe was at the cab stand outside the Hippodrome from 10:00 PM to 10:30 PM and says Nathan Kessler was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Nathan Kessler’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "cab-stand",
-          "tick": 8
-        }
-      ],
-      "text": "Nathan Kessler says Roscoe Mosley was there for it. Roscoe Mosley says otherwise: Roscoe Mosley was at the speakeasy under the hat shop at 10:00 PM, nowhere near the cab stand outside the Hippodrome.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Beatrice Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 9
-        }
-      ],
-      "text": "Roscoe Mosley was at the cab stand outside the Hippodrome at 10:30 PM and says Beatrice Thorndike was not.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Beatrice Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 8
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 9
-        }
-      ],
-      "text": "Lurline Bledsoe was at the cab stand outside the Hippodrome from 10:00 PM to 10:30 PM and says Beatrice Thorndike was not.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c129",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Beatrice Thorndike’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "cab-stand",
-          "tick": 8
-        }
-      ],
-      "text": "Beatrice Thorndike says Roscoe Mosley was there for it. Roscoe Mosley says otherwise: Roscoe Mosley was at the speakeasy under the hat shop at 10:00 PM, nowhere near the cab stand outside the Hippodrome.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c130",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Roscoe Mosley’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 5
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 6
-        }
-      ],
-      "text": "Marion Ainsworth was at the back room at Mrs. Teague’s from 8:30 PM to 9:00 PM and says Roscoe Mosley was not.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Roscoe Mosley’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "rooming-house-room",
-          "tick": 5
-        }
-      ],
-      "text": "Roscoe Mosley says Alonzo Dandridge was there for it. Alonzo Dandridge says otherwise: Alonzo Dandridge was at Kaplan’s drugstore with the soda fountain at 8:30 PM, nowhere near the back room at Mrs. Teague’s.",
-      "place": "rooming-house-room",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c132",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -5841,20 +4904,19 @@
           "methodId": "shot"
         }
       ],
-      "text": "Salvatore Vitale was found at the victim’s house on the back lot. The cigarette he had going burned itself out on the sill where it fell. The fight card on the bar radio came at 9:30 PM, and the set was loud enough to cover it, and it was only loud for that half hour. That puts the killing in that half hour and no later.",
+      "text": "Vitale was found at the back lot. The cigarette he had going burned itself out on the sill where it fell. The fight card was on the bar radio at 9:30 PM, turned up loud enough to carry into the street, and off when the card ended.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c104",
-        "c004",
-        "c095",
-        "c138",
-        "c061"
+        "c061",
+        "c067",
+        "c026",
+        "c064"
       ],
       "role": "spine",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c133",
+      "id": "c098",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -5876,12 +4938,14 @@
       "text": "The coroner puts death between 9:00 PM and 10:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c134"
+        "c100",
+        "c060",
+        "c004"
       ],
       "role": "spine"
     },
     {
-      "id": "c134",
+      "id": "c099",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -5898,18 +4962,18 @@
           "methodId": "shot"
         }
       ],
-      "text": "A nickel-plated revolver is gone from the speakeasy under the hat shop. The drawer it was kept in is open and the oiled cloth is still in it.",
+      "text": "A nickel-plated revolver is gone from the speakeasy. The drawer it was kept in is open and the oiled cloth is still in it.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c135",
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Salvatore Vitale that evening"
+        "topic": "Vitale that evening"
       },
       "establishes": [
         {
@@ -5923,133 +4987,18 @@
           "tick": 6
         }
       ],
-      "text": "Marion Ainsworth puts Salvatore Vitale at the back room at Mrs. Teague’s while the lesson was still going on overhead, which was 9:00 PM, and alive enough to argue about the weather.",
+      "text": "Ainsworth puts Vitale at Mrs. Teague’s while the lesson was still going on overhead, which was 9:00 PM, and alive enough to argue about the weather.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c173",
-        "c185"
+        "c060",
+        "c105",
+        "c128"
       ],
       "role": "spine",
       "anchorId": "piano-lesson"
     },
     {
-      "id": "c136",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 7
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 7
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c137",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 7
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 7
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Beatrice Thorndike was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c138",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 7
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 7
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c139",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 7
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 7
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Dennis Doyle was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s house on the back lot, while the fight was on the radio.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "bar-radio"
-    },
-    {
-      "id": "c140",
+      "id": "c101",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6064,14 +5013,18 @@
           "tick": 6
         }
       ],
-      "text": "Alonzo Dandridge claims to have been at the back room at Mrs. Teague’s at 9:00 PM but cannot say that the child never did get the passage right, which everybody there can.",
+      "text": "Dandridge claims Mrs. Teague’s at 9:00 PM, which is when the piano lesson on the floor above was on. Asked about it, Dandridge cannot say that the child never did get the passage right — and everybody who was there can.",
       "place": "rooming-house-room",
-      "leadsTo": [],
+      "leadsTo": [
+        "c122"
+      ],
       "role": "noise",
-      "anchorId": "piano-lesson"
+      "anchorId": "piano-lesson",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
     },
     {
-      "id": "c141",
+      "id": "c102",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6086,14 +5039,18 @@
           "tick": 6
         }
       ],
-      "text": "Roscoe Mosley claims to have been at the back room at Mrs. Teague’s at 9:00 PM but cannot say that the child never did get the passage right, which everybody there can.",
+      "text": "Mosley claims Mrs. Teague’s at 9:00 PM, which is when the piano lesson on the floor above was on. Asked about it, Mosley cannot say that the child never did get the passage right — and everybody who was there can.",
       "place": "speakeasy",
-      "leadsTo": [],
+      "leadsTo": [
+        "c104"
+      ],
       "role": "noise",
-      "anchorId": "piano-lesson"
+      "anchorId": "piano-lesson",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
     },
     {
-      "id": "c142",
+      "id": "c103",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6108,14 +5065,14 @@
           "tick": 7
         }
       ],
-      "text": "Otto Brauer claims to have been at the speakeasy under the hat shop at 9:30 PM but cannot say that the challenger went down in the fourth and the crowd booed it, which everybody there can.",
+      "text": "Brauer claims the speakeasy at 9:30 PM, which is when the fight card on the bar radio was on. Asked about it, Brauer cannot say that the challenger went down in the fourth and the crowd booed it — and everybody who was there can.",
       "place": "square-benches",
       "leadsTo": [],
-      "role": "noise",
+      "role": "corroboration",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c143",
+      "id": "c104",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6130,14 +5087,18 @@
           "tick": 5
         }
       ],
-      "text": "Roscoe Mosley claims to have been at the back room at Mrs. Teague’s at 8:30 PM but cannot say that it was a shoe, and it was thrown by a woman, and it did not land, which everybody there can.",
+      "text": "Mosley claims Mrs. Teague’s at 8:30 PM, which is when the drunk singing under the window was on. Asked about it, Mosley cannot say that it was a shoe, and it was thrown by a woman, and it did not land — and everybody who was there can.",
       "place": "speakeasy",
-      "leadsTo": [],
+      "leadsTo": [
+        "c135"
+      ],
       "role": "noise",
-      "anchorId": "drunk-singing"
+      "anchorId": "drunk-singing",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
     },
     {
-      "id": "c144",
+      "id": "c105",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6150,18 +5111,18 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Found at Kaplan’s drugstore with the soda fountain: A clipping about the failure of Otto Brauer’s business, with Salvatore Vitale’s name underlined twice in pencil.",
+      "text": "Found at Kaplan’s: A clipping about the failure of Brauer’s business, with Vitale’s name underlined twice in pencil.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c145",
+      "id": "c106",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Otto Brauer and Salvatore Vitale"
+        "topic": "Brauer and Vitale"
       },
       "establishes": [
         {
@@ -6170,13 +5131,13 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Domenica Carbone says Otto Brauer said Salvatore Vitale had taken everything and would be made to feel it.",
+      "text": "Carbone says Brauer said Vitale had taken everything and would be made to feel it.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c146",
+      "id": "c107",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6189,18 +5150,18 @@
           "motiveType": "inheritance"
         }
       ],
-      "text": "Found at the cab stand outside the Hippodrome: A draft codicil in Salvatore Vitale’s hand striking Nathan Kessler out of the will, dated last Tuesday and unsigned.",
+      "text": "Found at the cab stand: A draft codicil in Vitale’s hand striking Kessler out of the will, dated last Tuesday and unsigned.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c147",
+      "id": "c108",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Nathan Kessler and Salvatore Vitale"
+        "topic": "Kessler and Vitale"
       },
       "establishes": [
         {
@@ -6209,13 +5170,13 @@
           "motiveType": "inheritance"
         }
       ],
-      "text": "Dennis Doyle says Salvatore Vitale told Nathan Kessler the lawyer was coming Thursday and that the arrangement would be changed.",
+      "text": "Doyle says Vitale told Kessler the lawyer was coming Thursday and that the arrangement would be changed.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c148",
+      "id": "c109",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6228,18 +5189,18 @@
           "motiveType": "property"
         }
       ],
-      "text": "Found at the victim’s house on the back lot: A lease assignment made out in Roscoe Mosley’s name, waiting only on Salvatore Vitale’s signature.",
+      "text": "Found at the back lot: A lease assignment made out in Mosley’s name, waiting only on Vitale’s signature.",
       "place": "res-backhouse",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c149",
+      "id": "c110",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Roscoe Mosley and Salvatore Vitale"
+        "topic": "Mosley and Vitale"
       },
       "establishes": [
         {
@@ -6248,13 +5209,13 @@
           "motiveType": "property"
         }
       ],
-      "text": "Dennis Doyle says Salvatore Vitale told Roscoe Mosley the lease would go to somebody else at the quarter day.",
+      "text": "Doyle says Vitale told Mosley the lease would go to somebody else at the quarter day.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c150",
+      "id": "c111",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6268,699 +5229,575 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Alonzo Dandridge hired us. Alonzo Dandridge wants it known that Otto Brauer blamed the victim for a ruin, and would rather we started there.",
+      "text": "Dandridge hired us, and wants it known that Brauer blamed the victim for a ruin, and would rather we started there.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c104",
-        "c004",
-        "c135",
-        "c040",
-        "c119",
-        "c139",
-        "c029",
-        "c154"
+        "c100",
+        "c048",
+        "c090",
+        "c045",
+        "c103"
       ],
       "role": "spine"
     },
     {
-      "id": "c151",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Domenica Carbone"
-      },
-      "establishes": [],
-      "text": "Roscoe Mosley on Domenica Carbone: Domenica Carbone had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c152",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Domenica Carbone"
-      },
-      "establishes": [],
-      "text": "Dennis Doyle on Domenica Carbone: Domenica Carbone is on a temperance pledge that Domenica Carbone mentions before anybody asks.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c153",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Domenica Carbone"
-      },
-      "establishes": [],
-      "text": "Lurline Bledsoe on Domenica Carbone: Somebody at the speakeasy under the hat shop says Domenica Carbone is in more often than Domenica Carbone lets on.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c156"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c154",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A bottle at the speakeasy under the hat shop pushed behind the pipes, the seal broken and the level down.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c153"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c155",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A tab at the speakeasy under the hat shop in a name that is not Domenica Carbone’s, in Domenica Carbone’s handwriting.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "The man behind the counter at the speakeasy under the hat shop knows exactly: Domenica Carbone was on the same stool from 9:30 PM to 10:00 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c157",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "The tab at the speakeasy under the hat shop is dated and timed, from 9:30 PM to 10:00 PM, and Domenica Carbone was there to run it up.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c158",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Alonzo Dandridge"
-      },
-      "establishes": [],
-      "text": "Beatrice Thorndike on Alonzo Dandridge: Alonzo Dandridge was asking around for a hundred dollars in a hurry earlier in the week.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c159",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Alonzo Dandridge"
-      },
-      "establishes": [],
-      "text": "Dennis Doyle on Alonzo Dandridge: A man nobody knew was waiting for Alonzo Dandridge at the speakeasy under the hat shop and would not give a name.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c160",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Alonzo Dandridge"
-      },
-      "establishes": [],
-      "text": "Lurline Bledsoe on Alonzo Dandridge: Alonzo Dandridge goes very quiet when the racing wire is mentioned.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c161",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "Betting slips at the speakeasy under the hat shop in Alonzo Dandridge’s pocketbook, all of them losers, all of them this month.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c162",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A book of markers at the speakeasy under the hat shop with Alonzo Dandridge’s initials against four of them.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c163"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
-    },
-    {
-      "id": "c163",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "The bookmaker’s runner is found and will say it: Alonzo Dandridge was at the speakeasy under the hat shop from 9:00 PM to 9:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b5"
-    },
-    {
-      "id": "c164",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "gambling-debt"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "The book at the speakeasy under the hat shop has the payment entered against Alonzo Dandridge’s name and the time beside it, from 9:00 PM to 9:30 PM, in the clerk’s own hand.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c165",
+      "id": "c112",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Nathan Kessler"
+        "topic": "Carbone"
       },
       "establishes": [],
-      "text": "Marion Ainsworth on Nathan Kessler: Nathan Kessler was seen going into the benches at the north end of the square alone and came out with somebody half an hour later.",
+      "text": "Ainsworth on Carbone: Carbone had taken a drink and had gone to some trouble about the smell of it.",
       "place": "rooming-house-room",
-      "leadsTo": [],
+      "leadsTo": [
+        "c114"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s4"
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
     },
     {
-      "id": "c166",
+      "id": "c113",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Nathan Kessler"
+        "topic": "Carbone"
       },
       "establishes": [],
-      "text": "Bernice Colquitt on Nathan Kessler: Somebody asked Nathan Kessler a plain question about the evening and got three different answers.",
+      "text": "Colquitt on Carbone: Carbone is on a temperance pledge that Carbone mentions before anybody asks.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s4"
+      "aboutSecretOf": "p-s1"
     },
     {
-      "id": "c167",
+      "id": "c114",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "Nathan Kessler"
+        "personId": "p-s6",
+        "topic": "Carbone"
       },
       "establishes": [],
-      "text": "Alonzo Dandridge on Nathan Kessler: Beatrice Thorndike answers for Nathan Kessler before Nathan Kessler can answer, and neither of them likes being asked twice.",
+      "text": "Mosley on Carbone: Somebody at the speakeasy says Carbone is in more often than Carbone lets on.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c117"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c115",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A bottle at the speakeasy pushed behind the pipes, the seal broken and the level down.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c116",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A tab at the speakeasy in a name that is not Carbone’s, in Carbone’s handwriting.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 8
+        }
+      ],
+      "text": "The man behind the counter at the speakeasy knows exactly: Carbone was on the same stool from 9:30 PM to 10:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 8
+        }
+      ],
+      "text": "The tab at the speakeasy is dated and timed, from 9:30 PM to 10:00 PM, and Carbone was there to run it up.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Dandridge"
+      },
+      "establishes": [],
+      "text": "Colquitt on Dandridge: Dandridge was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Dandridge"
+      },
+      "establishes": [],
+      "text": "Kessler on Dandridge: A man nobody knew was waiting for Dandridge at the speakeasy and would not give a name.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c121",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Dandridge"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Dandridge: Dandridge goes very quiet when the racing wire is mentioned.",
       "place": "rooming-house-room",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s4"
+      "aboutSecretOf": "p-s2"
     },
     {
-      "id": "c168",
+      "id": "c122",
       "kind": "physical",
       "source": {
         "type": "place",
-        "placeId": "square-benches"
+        "placeId": "speakeasy"
       },
       "establishes": [],
-      "text": "Two glasses at the benches at the north end of the square, one of them with a lip print on it, and only one of them paid for.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c169"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A note in a woman’s hand at the benches at the north end of the square, no name on it, naming a time and nothing else.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c171"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c170",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A man’s hat at the benches at the north end of the square that fits nobody who admits to being there.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 9
-        }
-      ],
-      "text": "Beatrice Thorndike breaks and says it plainly: Beatrice Thorndike was with Nathan Kessler at the benches at the north end of the square for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c172",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 9
-        }
-      ],
-      "text": "The keeper at the benches at the north end of the square knows them both by sight and says the pair of them were there from 10:00 PM to 10:30 PM, and that it is nobody’s business but theirs.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Beatrice Thorndike"
-      },
-      "establishes": [],
-      "text": "Dennis Doyle on Beatrice Thorndike: Beatrice Thorndike was seen going into the benches at the north end of the square alone and came out with somebody half an hour later.",
+      "text": "Betting slips at the speakeasy in Dandridge’s pocketbook, all of them losers, all of them this month.",
       "place": "speakeasy",
       "leadsTo": [
-        "c178"
+        "c119"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
     },
     {
-      "id": "c174",
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [],
+      "text": "A book of markers at the speakeasy with Dandridge’s initials against four of them.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Dandridge was at the speakeasy from 9:00 PM to 9:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "The book at the speakeasy has the payment entered against Dandridge’s name and the time beside it, from 9:00 PM to 9:30 PM, in the clerk’s own hand.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c126",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-f4",
-        "topic": "Beatrice Thorndike"
+        "topic": "Kessler"
       },
       "establishes": [],
-      "text": "Lurline Bledsoe on Beatrice Thorndike: Somebody asked Beatrice Thorndike a plain question about the evening and got three different answers.",
+      "text": "Bledsoe on Kessler: Kessler was seen going into the benches alone and came out with somebody half an hour later.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c175",
+      "id": "c127",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Beatrice Thorndike"
+        "topic": "Kessler"
       },
       "establishes": [],
-      "text": "Otto Brauer on Beatrice Thorndike: Nathan Kessler answers for Beatrice Thorndike before Beatrice Thorndike can answer, and neither of them likes being asked twice.",
+      "text": "Brauer on Kessler: Somebody asked Kessler a plain question about the evening and got three different answers.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "noise",
-      "aboutSecretOf": "p-s5"
+      "aboutSecretOf": "p-s4"
     },
     {
-      "id": "c176",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "Two glasses at the benches at the north end of the square, one of them with a lip print on it, and only one of them paid for.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c177",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A note in a woman’s hand at the benches at the north end of the square, no name on it, naming a time and nothing else.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c178",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A man’s hat at the benches at the north end of the square that fits nobody who admits to being there.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c179"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b3"
-    },
-    {
-      "id": "c179",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 9
-        }
-      ],
-      "text": "Nathan Kessler breaks and says it plainly: Nathan Kessler was with Beatrice Thorndike at the benches at the north end of the square for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b3"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 9
-        }
-      ],
-      "text": "The keeper at the benches at the north end of the square knows them both by sight and says the pair of them were there from 10:00 PM to 10:30 PM, and that it is nobody’s business but theirs.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s5"
-    },
-    {
-      "id": "c181",
+      "id": "c128",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "Roscoe Mosley"
+        "personId": "p-f1",
+        "topic": "Kessler"
       },
       "establishes": [],
-      "text": "Bernice Colquitt on Roscoe Mosley: Roscoe Mosley was carrying a parcel into the cab stand outside the Hippodrome and came out without it.",
-      "place": "drugstore",
-      "leadsTo": [],
+      "text": "Ainsworth on Kessler: Thorndike answers for Kessler before Kessler can answer, and neither of them likes being asked twice.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c130"
+      ],
       "role": "noise",
-      "aboutSecretOf": "p-s6"
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
     },
     {
-      "id": "c182",
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "Two glasses at the benches, one of them with a lip print on it, and only one of them paid for.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "A note in a woman’s hand at the benches, no name on it, naming a time and nothing else.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c131",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "A man’s hat at the benches that fits nobody who admits to being there.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "square-benches",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "square-benches",
+          "tick": 9
+        },
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 9
+        }
+      ],
+      "text": "Thorndike breaks and says it plainly: Thorndike was with Kessler at the benches for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "square-benches",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "square-benches",
+          "tick": 9
+        },
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 9
+        }
+      ],
+      "text": "The keeper at the benches knows them both by sight and says the pair of them were there from 10:00 PM to 10:30 PM, and that it is nobody’s business but theirs.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c134",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [],
-      "text": "Domenica Carbone on Roscoe Mosley: There is a man who meets people at the cab stand outside the Hippodrome and nobody will say his name out loud.",
+      "text": "Carbone on Mosley: Mosley was carrying a parcel into the cab stand and came out without it.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "noise",
       "aboutSecretOf": "p-s6"
     },
     {
-      "id": "c183",
+      "id": "c135",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [],
-      "text": "Beatrice Thorndike on Roscoe Mosley: Roscoe Mosley has been selling things that were never Roscoe Mosley’s to sell.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c184",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the cab stand outside the Hippodrome, and the shop it came from closed two years ago.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c185",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.",
+      "text": "Thorndike on Mosley: There is a man who meets people at the cab stand and nobody will say his name out loud.",
       "place": "cab-stand",
       "leadsTo": [
-        "c186"
+        "c139"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c186",
+      "id": "c136",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Mosley"
+      },
+      "establishes": [],
+      "text": "Doyle on Mosley: Mosley has been selling things that were never Mosley’s to sell.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c137",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the cab stand, and the shop it came from closed two years ago.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c138",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the cab stand in a name that does not exist, made out at the hour in question.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c139",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -6985,15 +5822,15 @@
           "tick": 6
         }
       ],
-      "text": "The receiver at the cab stand outside the Hippodrome would rather talk than be held: Roscoe Mosley was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Roscoe Mosley will take over this one.",
+      "text": "The receiver at the cab stand would rather talk than be held: Mosley was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Mosley will take over this one.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s6",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c187",
+      "id": "c140",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7018,7 +5855,7 @@
           "tick": 6
         }
       ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Roscoe Mosley at the cab stand outside the Hippodrome from 8:30 PM to 9:00 PM with both hands full.",
+      "text": "The goods turn up, tagged and dated, and the tag puts Mosley at the cab stand from 8:30 PM to 9:00 PM with both hands full.",
       "place": "cab-stand",
       "leadsTo": [],
       "role": "noise",
@@ -7027,7 +5864,7 @@
   ],
   "findable": [
     {
-      "id": "c132",
+      "id": "c097",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7043,20 +5880,19 @@
           "methodId": "shot"
         }
       ],
-      "text": "Salvatore Vitale was found at the victim’s house on the back lot. The cigarette he had going burned itself out on the sill where it fell. The fight card on the bar radio came at 9:30 PM, and the set was loud enough to cover it, and it was only loud for that half hour. That puts the killing in that half hour and no later.",
+      "text": "Vitale was found at the back lot. The cigarette he had going burned itself out on the sill where it fell. The fight card was on the bar radio at 9:30 PM, turned up loud enough to carry into the street, and off when the card ended.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c104",
-        "c004",
-        "c095",
-        "c138",
-        "c061"
+        "c061",
+        "c067",
+        "c026",
+        "c064"
       ],
       "role": "spine",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c133",
+      "id": "c098",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7078,12 +5914,14 @@
       "text": "The coroner puts death between 9:00 PM and 10:30 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.",
       "place": "res-backhouse",
       "leadsTo": [
-        "c134"
+        "c100",
+        "c060",
+        "c004"
       ],
       "role": "spine"
     },
     {
-      "id": "c150",
+      "id": "c111",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7097,128 +5935,24 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Alonzo Dandridge hired us. Alonzo Dandridge wants it known that Otto Brauer blamed the victim for a ruin, and would rather we started there.",
+      "text": "Dandridge hired us, and wants it known that Brauer blamed the victim for a ruin, and would rather we started there.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c104",
-        "c004",
-        "c135",
-        "c040",
-        "c119",
-        "c139",
-        "c029",
-        "c154"
+        "c100",
+        "c048",
+        "c090",
+        "c045",
+        "c103"
       ],
       "role": "spine"
     },
     {
-      "id": "c104",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Dennis Doyle runs through it: at 9:30 PM there were Domenica Carbone, Alonzo Dandridge, Nathan Kessler, Beatrice Thorndike, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c121",
-        "c144",
-        "c033",
-        "c015"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c004",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Otto Brauer"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s3",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Domenica Carbone says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c121"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Otto Brauer’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 7
-        }
-      ],
-      "text": "Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM and says Otto Brauer was not.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c135"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c135",
+      "id": "c100",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Salvatore Vitale that evening"
+        "topic": "Vitale that evening"
       },
       "establishes": [
         {
@@ -7232,29 +5966,30 @@
           "tick": 6
         }
       ],
-      "text": "Marion Ainsworth puts Salvatore Vitale at the back room at Mrs. Teague’s while the lesson was still going on overhead, which was 9:00 PM, and alive enough to argue about the weather.",
+      "text": "Ainsworth puts Vitale at Mrs. Teague’s while the lesson was still going on overhead, which was 9:00 PM, and alive enough to argue about the weather.",
       "place": "rooming-house-room",
       "leadsTo": [
-        "c173",
-        "c185"
+        "c060",
+        "c105",
+        "c128"
       ],
       "role": "spine",
       "anchorId": "piano-lesson"
     },
     {
-      "id": "c095",
+      "id": "c060",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:30 PM"
+        "personId": "p-f2",
+        "topic": "Dandridge"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s1",
+          "personId": "p-s2",
           "place": "speakeasy",
-          "tick": 7
+          "tick": 6
         },
         {
           "kind": "personAt",
@@ -7263,30 +5998,28 @@
           "tick": 7
         },
         {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "speakeasy",
-          "tick": 7
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "shot"
         }
       ],
-      "text": "Nathan Kessler runs through it: at 9:30 PM there were Domenica Carbone, Alonzo Dandridge, Beatrice Thorndike, Roscoe Mosley at the speakeasy under the hat shop, and nobody else worth naming.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "corroboration"
+      "text": "Doyle says Dandridge was at the speakeasy from 9:00 PM to 9:30 PM.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c048",
+        "c061",
+        "c033",
+        "c101"
+      ],
+      "role": "spine"
     },
     {
-      "id": "c040",
+      "id": "c048",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s5",
-        "topic": "Nathan Kessler"
+        "personId": "p-s6",
+        "topic": "Kessler"
       },
       "establishes": [
         {
@@ -7296,71 +6029,38 @@
           "tick": 7
         }
       ],
-      "text": "Beatrice Thorndike says Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c168",
-        "c162"
-      ],
-      "role": "corroboration"
-    },
-    {
-      "id": "c144",
-      "kind": "document",
-      "source": {
-        "type": "place",
-        "placeId": "drugstore"
-      },
-      "establishes": [
-        {
-          "kind": "hasMotive",
-          "personId": "p-s3",
-          "motiveType": "revenge"
-        }
-      ],
-      "text": "Found at Kaplan’s drugstore with the soda fountain: A clipping about the failure of Otto Brauer’s business, with Salvatore Vitale’s name underlined twice in pencil.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c138",
-      "kind": "anchor",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "the noise that evening"
-      },
-      "establishes": [
-        {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
-          "tick": 7
-        },
-        {
-          "kind": "victimDeadBy",
-          "tick": 7
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s house on the back lot, while the fight was on the radio.",
+      "text": "Mosley says Kessler was at the speakeasy at 9:30 PM.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration",
-      "anchorId": "bar-radio"
+      "leadsTo": [
+        "c090",
+        "c050",
+        "c045",
+        "c099",
+        "c063"
+      ],
+      "role": "spine"
     },
     {
-      "id": "c119",
-      "kind": "observation",
+      "id": "c090",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Otto Brauer’s account"
+        "personId": "p-s1",
+        "topic": "Brauer’s account"
       },
       "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 5
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 6
+        },
         {
           "kind": "personNotAt",
           "personId": "p-s3",
@@ -7368,10 +6068,34 @@
           "tick": 7
         }
       ],
-      "text": "Nathan Kessler was at the speakeasy under the hat shop at 9:30 PM and says Otto Brauer was not.",
-      "place": "square-benches",
+      "text": "Brauer names Carbone as the company for the speakeasy from 8:30 PM to 9:30 PM. Carbone says they were not together that evening.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c050",
+        "c067"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "Mosley says Thorndike was at the speakeasy at 9:30 PM.",
+      "place": "speakeasy",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "spine"
     },
     {
       "id": "c061",
@@ -7379,7 +6103,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Otto Brauer"
+        "topic": "Brauer"
       },
       "establishes": [
         {
@@ -7394,42 +6118,138 @@
           "methodId": "shot"
         }
       ],
-      "text": "Dennis Doyle says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.",
+      "text": "Doyle says Brauer was at the speakeasy at 8:00 PM.",
       "place": "speakeasy",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c035"
+      ],
+      "role": "spine"
     },
     {
-      "id": "c139",
-      "kind": "anchor",
+      "id": "c045",
+      "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f2",
-        "topic": "the noise that evening"
+        "personId": "p-s6",
+        "topic": "Carbone"
       },
       "establishes": [
         {
-          "kind": "noiseAt",
-          "place": "res-backhouse",
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
           "tick": 7
         },
         {
-          "kind": "victimDeadBy",
-          "tick": 7
-        },
-        {
-          "kind": "methodEvidence",
-          "methodId": "shot"
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 8
         }
       ],
-      "text": "Dennis Doyle was at the speakeasy under the hat shop at 9:30 PM and heard a shot from the direction of the victim’s house on the back lot, while the fight was on the radio.",
+      "text": "Mosley says Carbone was at the speakeasy from 9:30 PM to 10:00 PM.",
       "place": "speakeasy",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c067",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Mosley"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "speakeasy",
+          "tick": 8
+        }
+      ],
+      "text": "Doyle says Mosley was at the speakeasy from 9:30 PM to 10:00 PM.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c112"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c103",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "the fight card on the bar radio"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "Brauer claims the speakeasy at 9:30 PM, which is when the fight card on the bar radio was on. Asked about it, Brauer cannot say that the challenger went down in the fourth and the crowd booed it — and everybody who was there can.",
+      "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration",
       "anchorId": "bar-radio"
     },
     {
-      "id": "c134",
+      "id": "c105",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "revenge"
+        }
+      ],
+      "text": "Found at Kaplan’s: A clipping about the failure of Brauer’s business, with Vitale’s name underlined twice in pencil.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c004",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "speakeasy",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "shot"
+        }
+      ],
+      "text": "Carbone says Brauer was at the speakeasy at 8:00 PM.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c099",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -7446,7 +6266,93 @@
           "methodId": "shot"
         }
       ],
-      "text": "A nickel-plated revolver is gone from the speakeasy under the hat shop. The drawer it was kept in is open and the oiled cloth is still in it.",
+      "text": "A nickel-plated revolver is gone from the speakeasy. The drawer it was kept in is open and the oiled cloth is still in it.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Carbone"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "Thorndike says Carbone was at the speakeasy at 9:30 PM.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Dandridge"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "Kessler says Dandridge was at the speakeasy at 9:30 PM.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c102"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Kessler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "Doyle says Kessler was at the speakeasy at 9:30 PM.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Thorndike"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "speakeasy",
+          "tick": 7
+        }
+      ],
+      "text": "Doyle says Thorndike was at the speakeasy at 9:30 PM.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "corroboration"
@@ -7457,7 +6363,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Roscoe Mosley"
+        "topic": "Mosley"
       },
       "establishes": [
         {
@@ -7467,335 +6373,74 @@
           "tick": 7
         }
       ],
-      "text": "Nathan Kessler says Roscoe Mosley was at the speakeasy under the hat shop at 9:30 PM.",
+      "text": "Kessler says Mosley was at the speakeasy at 9:30 PM.",
       "place": "square-benches",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c029",
-      "kind": "observation",
+      "id": "c101",
+      "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Otto Brauer"
+        "personId": "p-s2",
+        "topic": "the piano lesson on the floor above"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s3",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Nathan Kessler says Otto Brauer was at the speakeasy under the hat shop at 8:00 PM.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c015",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Domenica Carbone"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 4
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s1",
-          "methodId": "shot"
-        }
-      ],
-      "text": "Otto Brauer says Domenica Carbone was at the speakeasy under the hat shop at 8:00 PM.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c154",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [],
-      "text": "A bottle at the speakeasy under the hat shop pushed behind the pipes, the seal broken and the level down.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c153"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c153",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f4",
-        "topic": "Domenica Carbone"
-      },
-      "establishes": [],
-      "text": "Lurline Bledsoe on Domenica Carbone: Somebody at the speakeasy under the hat shop says Domenica Carbone is in more often than Domenica Carbone lets on.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c156"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c156",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "speakeasy"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "speakeasy",
-          "tick": 8
-        }
-      ],
-      "text": "The man behind the counter at the speakeasy under the hat shop knows exactly: Domenica Carbone was on the same stool from 9:30 PM to 10:00 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "speakeasy",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b1"
-    },
-    {
-      "id": "c168",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "Two glasses at the benches at the north end of the square, one of them with a lip print on it, and only one of them paid for.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c169"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c169",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A note in a woman’s hand at the benches at the north end of the square, no name on it, naming a time and nothing else.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c171"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c171",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "square-benches",
-          "tick": 9
-        }
-      ],
-      "text": "Beatrice Thorndike breaks and says it plainly: Beatrice Thorndike was with Nathan Kessler at the benches at the north end of the square for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b2"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Beatrice Thorndike"
-      },
-      "establishes": [],
-      "text": "Dennis Doyle on Beatrice Thorndike: Beatrice Thorndike was seen going into the benches at the north end of the square alone and came out with somebody half an hour later.",
-      "place": "speakeasy",
-      "leadsTo": [
-        "c178"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b3"
-    },
-    {
-      "id": "c178",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [],
-      "text": "A man’s hat at the benches at the north end of the square that fits nobody who admits to being there.",
-      "place": "square-benches",
-      "leadsTo": [
-        "c179"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b3"
-    },
-    {
-      "id": "c179",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "square-benches"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s5",
-          "secretType": "affair"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "square-benches",
-          "tick": 9
-        }
-      ],
-      "text": "Nathan Kessler breaks and says it plainly: Nathan Kessler was with Beatrice Thorndike at the benches at the north end of the square for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.",
-      "place": "square-benches",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s5",
-      "branchId": "b3"
-    },
-    {
-      "id": "c185",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the cab stand outside the Hippodrome in a name that does not exist, made out at the hour in question.",
-      "place": "cab-stand",
-      "leadsTo": [
-        "c186"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b4"
-    },
-    {
-      "id": "c186",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "cab-stand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "cab-stand",
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "rooming-house-room",
           "tick": 6
         }
       ],
-      "text": "The receiver at the cab stand outside the Hippodrome would rather talk than be held: Roscoe Mosley was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Roscoe Mosley will take over this one.",
-      "place": "cab-stand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b4"
+      "text": "Dandridge claims Mrs. Teague’s at 9:00 PM, which is when the piano lesson on the floor above was on. Asked about it, Dandridge cannot say that the child never did get the passage right — and everybody who was there can.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "anchorId": "piano-lesson",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
     },
     {
-      "id": "c162",
+      "id": "c122",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "speakeasy"
       },
       "establishes": [],
-      "text": "A book of markers at the speakeasy under the hat shop with Alonzo Dandridge’s initials against four of them.",
+      "text": "Betting slips at the speakeasy in Dandridge’s pocketbook, all of them losers, all of them this month.",
       "place": "speakeasy",
       "leadsTo": [
-        "c163"
+        "c119"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s2",
-      "branchId": "b5"
+      "branchId": "b1"
     },
     {
-      "id": "c163",
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Dandridge"
+      },
+      "establishes": [],
+      "text": "Colquitt on Dandridge: Dandridge was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c124",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7820,22 +6465,280 @@
           "tick": 7
         }
       ],
-      "text": "The bookmaker’s runner is found and will say it: Alonzo Dandridge was at the speakeasy under the hat shop from 9:00 PM to 9:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "text": "The bookmaker’s runner is found and will say it: Dandridge was at the speakeasy from 9:00 PM to 9:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
       "place": "speakeasy",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s2",
-      "branchId": "b5"
+      "branchId": "b1"
+    },
+    {
+      "id": "c102",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "the piano lesson on the floor above"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 6
+        }
+      ],
+      "text": "Mosley claims Mrs. Teague’s at 9:00 PM, which is when the piano lesson on the floor above was on. Asked about it, Mosley cannot say that the child never did get the passage right — and everybody who was there can.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c104"
+      ],
+      "role": "noise",
+      "anchorId": "piano-lesson",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c104",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "the drunk singing under the window"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "rooming-house-room",
+          "tick": 5
+        }
+      ],
+      "text": "Mosley claims Mrs. Teague’s at 8:30 PM, which is when the drunk singing under the window was on. Asked about it, Mosley cannot say that it was a shoe, and it was thrown by a woman, and it did not land — and everybody who was there can.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c135"
+      ],
+      "role": "noise",
+      "anchorId": "drunk-singing",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c135",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Mosley"
+      },
+      "establishes": [],
+      "text": "Thorndike on Mosley: There is a man who meets people at the cab stand and nobody will say his name out loud.",
+      "place": "cab-stand",
+      "leadsTo": [
+        "c139"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "cab-stand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "cab-stand",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "cab-stand",
+          "tick": 6
+        }
+      ],
+      "text": "The receiver at the cab stand would rather talk than be held: Mosley was there from 8:30 PM to 9:00 PM handing over a parcel of somebody else’s silver, which is a charge Mosley will take over this one.",
+      "place": "cab-stand",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b2"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Kessler"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Kessler: Thorndike answers for Kessler before Kessler can answer, and neither of them likes being asked twice.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [],
+      "text": "A note in a woman’s hand at the benches, no name on it, naming a time and nothing else.",
+      "place": "square-benches",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "square-benches"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "square-benches",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "square-benches",
+          "tick": 9
+        },
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "affair"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "square-benches",
+          "tick": 9
+        }
+      ],
+      "text": "Thorndike breaks and says it plainly: Thorndike was with Kessler at the benches for the whole of it, from 10:00 PM to 10:30 PM, and it is a marriage they are hiding, not a killing.",
+      "place": "square-benches",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b3"
+    },
+    {
+      "id": "c112",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Carbone"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Carbone: Carbone had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "rooming-house-room",
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c114",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Carbone"
+      },
+      "establishes": [],
+      "text": "Mosley on Carbone: Somebody at the speakeasy says Carbone is in more often than Carbone lets on.",
+      "place": "speakeasy",
+      "leadsTo": [
+        "c117"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "speakeasy"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "speakeasy",
+          "tick": 8
+        }
+      ],
+      "text": "The man behind the counter at the speakeasy knows exactly: Carbone was on the same stool from 9:30 PM to 10:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "speakeasy",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c132",
-    "c133",
-    "c150"
+    "c097",
+    "c098",
+    "c111"
   ],
   "clientId": "p-s2",
-  "par": 6,
-  "budget": 20,
+  "par": 10,
+  "slack": 6,
+  "budget": 16,
   "coronerWindow": [
     6,
     9
@@ -7849,11 +6752,9 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c133",
-      "c135",
-      "c132",
-      "c138",
-      "c139"
+      "c098",
+      "c100",
+      "c097"
     ],
     "timeOfDeathAnchors": [
       "bar-radio",
@@ -7861,48 +6762,44 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c104",
-        "c095",
-        "c156"
+        "c045",
+        "c035",
+        "c117"
       ],
       "p-s2": [
-        "c104",
-        "c095",
-        "c163"
+        "c060",
+        "c026",
+        "c124"
       ],
       "p-s4": [
-        "c104",
-        "c040"
+        "c048",
+        "c063"
       ],
       "p-s5": [
-        "c104",
-        "c095"
+        "c050",
+        "c064"
       ],
       "p-s6": [
-        "c104",
-        "c095",
+        "c067",
         "c033"
       ]
     },
     "inculpation": [
-      "c121",
-      "c119"
+      "c090",
+      "c103"
     ],
     "access": [
-      "c004",
       "c061",
-      "c029"
+      "c004"
     ],
     "method": [
-      "c132",
-      "c133",
-      "c138",
-      "c139",
-      "c134"
+      "c097",
+      "c098",
+      "c099"
     ],
     "motive": [
-      "c150",
-      "c144"
+      "c111",
+      "c105"
     ]
   }
 }

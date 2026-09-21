@@ -8,6 +8,7 @@
     {
       "id": "corner-newsstand",
       "name": "the newsstand on the corner",
+      "shortName": "the newsstand",
       "kind": "public",
       "objects": [
         "obj-newspapers",
@@ -21,6 +22,7 @@
     {
       "id": "subway-kiosk",
       "name": "the subway kiosk at the corner",
+      "shortName": "the subway kiosk",
       "kind": "public",
       "objects": [
         "obj-umbrella"
@@ -31,6 +33,7 @@
     {
       "id": "drugstore",
       "name": "Kaplan’s drugstore with the soda fountain",
+      "shortName": "Kaplan’s",
       "kind": "public",
       "objects": [
         "obj-telephone",
@@ -44,6 +47,7 @@
     {
       "id": "res-apartment",
       "name": "the victim’s apartment on the fourth floor",
+      "shortName": "the fourth floor",
       "kind": "private",
       "objects": [
         "obj-revolver",
@@ -56,6 +60,7 @@
     {
       "id": "dance-hall",
       "name": "the Arcadia dance hall",
+      "shortName": "the Arcadia",
       "kind": "public",
       "objects": [
         "obj-ashtray",
@@ -68,6 +73,7 @@
     {
       "id": "laundry-yard",
       "name": "the drying yard behind the laundry",
+      "shortName": "the drying yard",
       "kind": "private",
       "objects": [
         "obj-cord",
@@ -153,6 +159,7 @@
     {
       "id": "p-victim",
       "name": "Edward Doyle",
+      "surname": "Doyle",
       "role": "a theatrical agent",
       "kind": "victim",
       "isKiller": false,
@@ -161,6 +168,7 @@
     {
       "id": "p-s1",
       "name": "Patrick Corrigan",
+      "surname": "Corrigan",
       "role": "a doorman at a club with no sign on it",
       "kind": "suspect",
       "isKiller": false,
@@ -170,7 +178,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Patrick Corrigan hands a parcel of stolen goods to a man at the subway kiosk at the corner from 7:30 PM.",
+        "description": "Corrigan hands a parcel of stolen goods to a man at the subway kiosk from 7:30 PM.",
         "cells": [
           {
             "tick": 3,
@@ -183,6 +191,7 @@
     {
       "id": "p-s2",
       "name": "Bridget Brennan",
+      "surname": "Brennan",
       "role": "a society columnist",
       "kind": "suspect",
       "isKiller": false,
@@ -192,7 +201,7 @@
       "secret": {
         "type": "dope",
         "label": "Buying morphine",
-        "description": "Bridget Brennan buys morphine at the Arcadia dance hall from 11:00 PM and would rather be thought a murderer than a hop-head.",
+        "description": "Brennan buys morphine at the Arcadia from 11:00 PM and would rather be thought a murderer than a hop-head.",
         "cells": [
           {
             "tick": 10,
@@ -205,6 +214,7 @@
     {
       "id": "p-s3",
       "name": "Alonzo Broadnax",
+      "surname": "Broadnax",
       "role": "a hack driver",
       "kind": "suspect",
       "isKiller": false,
@@ -214,7 +224,7 @@
       "secret": {
         "type": "fence",
         "label": "Fencing stolen goods",
-        "description": "Alonzo Broadnax hands a parcel of stolen goods to a man at the newsstand on the corner from 8:00 PM.",
+        "description": "Broadnax hands a parcel of stolen goods to a man at the newsstand from 8:00 PM.",
         "cells": [
           {
             "tick": 4,
@@ -231,6 +241,7 @@
     {
       "id": "p-s4",
       "name": "Marion Stannard",
+      "surname": "Stannard",
       "role": "a dentist with rooms on the third floor",
       "kind": "suspect",
       "isKiller": false,
@@ -240,7 +251,7 @@
       "secret": {
         "type": "dope",
         "label": "Buying morphine",
-        "description": "Marion Stannard buys morphine at the Arcadia dance hall from 8:00 PM to 8:30 PM and would rather be thought a murderer than a hop-head.",
+        "description": "Stannard buys morphine at the Arcadia from 8:00 PM to 8:30 PM and would rather be thought a murderer than a hop-head.",
         "cells": [
           {
             "tick": 4,
@@ -262,6 +273,7 @@
     {
       "id": "p-s5",
       "name": "Sadie Shapiro",
+      "surname": "Shapiro",
       "role": "a chorus girl between engagements",
       "kind": "suspect",
       "isKiller": true,
@@ -271,7 +283,7 @@
       "secret": {
         "type": "murder",
         "label": "Murder",
-        "description": "Sadie Shapiro is at the victim’s apartment on the fourth floor from 7:30 PM to 8:00 PM, alone with Edward Doyle when it happens at 8:00 PM.",
+        "description": "Shapiro is at the fourth floor from 7:30 PM to 8:00 PM, alone with Doyle when it happens at 8:00 PM.",
         "cells": [
           {
             "tick": 3,
@@ -287,7 +299,7 @@
       "coverSecret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "Sadie Shapiro drinks alone at the Arcadia dance hall from 6:00 PM to 6:30 PM and will claim to have been anywhere else.",
+        "description": "Shapiro drinks alone at the Arcadia from 6:00 PM to 6:30 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 0,
@@ -308,6 +320,7 @@
     {
       "id": "p-s6",
       "name": "Wilhelm Steinbach",
+      "surname": "Steinbach",
       "role": "the night manager at the hotel",
       "kind": "suspect",
       "isKiller": false,
@@ -317,7 +330,7 @@
       "secret": {
         "type": "secret-drinking",
         "label": "Drinking in secret",
-        "description": "Wilhelm Steinbach drinks alone at the Arcadia dance hall from 8:00 PM to 8:30 PM and will claim to have been anywhere else.",
+        "description": "Steinbach drinks alone at the Arcadia from 8:00 PM to 8:30 PM and will claim to have been anywhere else.",
         "cells": [
           {
             "tick": 4,
@@ -334,6 +347,7 @@
     {
       "id": "p-f1",
       "name": "Ernst Brauer",
+      "surname": "Brauer",
       "role": "the news dealer",
       "kind": "fixture",
       "isKiller": false,
@@ -343,6 +357,7 @@
     {
       "id": "p-f2",
       "name": "Bernard Feldman",
+      "surname": "Feldman",
       "role": "the druggist",
       "kind": "fixture",
       "isKiller": false,
@@ -352,6 +367,7 @@
     {
       "id": "p-f3",
       "name": "Rosaria Petrosino",
+      "surname": "Petrosino",
       "role": "the ticket-taker",
       "kind": "fixture",
       "isKiller": false,
@@ -361,6 +377,7 @@
     {
       "id": "p-cop",
       "name": "Louis Bernstein",
+      "surname": "Bernstein",
       "role": "the patrolman on the beat",
       "kind": "fixture",
       "isKiller": false,
@@ -391,12 +408,18 @@
           "kind": "sighting"
         },
         {
+          "kind": "knowledge",
+          "description": "the iceman dropped a block on the step and it went in three"
+        },
+        {
           "kind": "mark",
           "description": "a wet patch down one side of a coat"
         }
       ],
       "timing": "when the ice came",
-      "sceneTiming": "the iceman’s book has the delivery timed and signed for",
+      "highTiming": "as the ice was being brought in",
+      "sceneFact": "The ice was brought in at {T} and the iceman’s book has the delivery timed and signed for.",
+      "masks": false,
       "placeId": "drugstore"
     },
     {
@@ -412,10 +435,16 @@
         {
           "kind": "sound",
           "description": "a noise the whole shaft hears and nobody in the building can sleep through"
+        },
+        {
+          "kind": "knowledge",
+          "description": "the car came up with somebody’s wash still in it, and stuck halfway"
         }
       ],
       "timing": "when the dumbwaiter went up",
-      "sceneTiming": "the shaft carries and the car was worked on the hour and the half hour",
+      "highTiming": "as the dumbwaiter was going up",
+      "sceneFact": "The dumbwaiter car was worked at {T}, as it is on the hour and the half hour.",
+      "masks": false,
       "placeId": "res-apartment"
     },
     {
@@ -433,7 +462,9 @@
         }
       ],
       "timing": "when the cop came round",
-      "sceneTiming": "the patrolman was two streets off on his round and heard it",
+      "highTiming": "as the cop was coming round",
+      "sceneFact": "The patrolman’s round brought him two streets off at {T}.",
+      "masks": false,
       "route": [
         "corner-newsstand",
         "subway-kiosk",
@@ -446,6 +477,7 @@
     "subway-kiosk",
     "corner-newsstand"
   ],
+  "soundMasked": false,
   "schedules": [
     {
       "personId": "p-victim",
@@ -2548,7 +2580,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -2564,7 +2596,7 @@
           "tick": 2
         }
       ],
-      "text": "Patrick Corrigan says Edward Doyle was at the newsstand on the corner from 6:30 PM to 7:00 PM.",
+      "text": "Corrigan says Doyle was at the newsstand from 6:30 PM to 7:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2575,7 +2607,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -2591,10 +2623,13 @@
           "tick": 5
         }
       ],
-      "text": "Patrick Corrigan says Bridget Brennan was at the Arcadia dance hall from 8:00 PM to 8:30 PM.",
+      "text": "Corrigan says Brennan was at the Arcadia from 8:00 PM to 8:30 PM.",
       "place": "dance-hall",
-      "leadsTo": [],
-      "role": "corroboration"
+      "leadsTo": [
+        "c075",
+        "c154"
+      ],
+      "role": "spine"
     },
     {
       "id": "c003",
@@ -2602,7 +2637,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -2618,7 +2653,7 @@
           "tick": 11
         }
       ],
-      "text": "Patrick Corrigan says Bridget Brennan was at the Arcadia dance hall from 11:00 PM to 11:30 PM.",
+      "text": "Corrigan says Brennan was at the Arcadia from 11:00 PM to 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2629,7 +2664,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -2639,7 +2674,7 @@
           "tick": 0
         }
       ],
-      "text": "Patrick Corrigan says Alonzo Broadnax was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Corrigan says Broadnax was at the Arcadia at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2650,7 +2685,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -2660,7 +2695,7 @@
           "tick": 8
         }
       ],
-      "text": "Patrick Corrigan says Alonzo Broadnax was at the drying yard behind the laundry at 10:00 PM.",
+      "text": "Corrigan says Broadnax was at the drying yard at 10:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2671,7 +2706,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -2681,7 +2716,7 @@
           "tick": 0
         }
       ],
-      "text": "Patrick Corrigan says Marion Stannard was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Corrigan says Stannard was at the Arcadia at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2692,7 +2727,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -2720,10 +2755,14 @@
           "tick": 7
         }
       ],
-      "text": "Patrick Corrigan says Marion Stannard was at the Arcadia dance hall from 8:00 PM to 9:30 PM.",
+      "text": "Corrigan says Stannard was at the Arcadia from 8:00 PM to 9:30 PM.",
       "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c102",
+        "c011",
+        "c065"
+      ],
+      "role": "spine"
     },
     {
       "id": "c008",
@@ -2731,7 +2770,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -2747,7 +2786,7 @@
           "tick": 11
         }
       ],
-      "text": "Patrick Corrigan says Marion Stannard was at the Arcadia dance hall from 11:00 PM to 11:30 PM.",
+      "text": "Corrigan says Stannard was at the Arcadia from 11:00 PM to 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2758,7 +2797,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -2768,7 +2807,7 @@
           "tick": 0
         }
       ],
-      "text": "Patrick Corrigan says Sadie Shapiro was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Corrigan says Shapiro was at the Arcadia at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2779,7 +2818,7 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -2801,7 +2840,7 @@
           "tick": 6
         }
       ],
-      "text": "Patrick Corrigan says Wilhelm Steinbach was at the Arcadia dance hall from 8:00 PM to 9:00 PM.",
+      "text": "Corrigan says Steinbach was at the Arcadia from 8:00 PM to 9:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2812,7 +2851,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -2828,12 +2867,10 @@
           "tick": 5
         }
       ],
-      "text": "Bridget Brennan says Patrick Corrigan was at the Arcadia dance hall from 8:00 PM to 8:30 PM.",
+      "text": "Brennan says Corrigan was at the Arcadia from 8:00 PM to 8:30 PM.",
       "place": "dance-hall",
-      "leadsTo": [
-        "c168"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "spine"
     },
     {
       "id": "c012",
@@ -2841,7 +2878,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -2851,7 +2888,7 @@
           "tick": 11
         }
       ],
-      "text": "Bridget Brennan says Patrick Corrigan was at the Arcadia dance hall at 11:30 PM.",
+      "text": "Brennan says Corrigan was at the Arcadia at 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2862,7 +2899,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -2872,7 +2909,7 @@
           "tick": 1
         }
       ],
-      "text": "Bridget Brennan says Alonzo Broadnax was at the Arcadia dance hall at 6:30 PM.",
+      "text": "Brennan says Broadnax was at the Arcadia at 6:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2883,7 +2920,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -2898,7 +2935,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Bridget Brennan says Alonzo Broadnax was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Brennan says Broadnax was at the drying yard at 7:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2909,7 +2946,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -2925,7 +2962,7 @@
           "tick": 5
         }
       ],
-      "text": "Bridget Brennan says Marion Stannard was at the Arcadia dance hall from 8:00 PM to 8:30 PM.",
+      "text": "Brennan says Stannard was at the Arcadia from 8:00 PM to 8:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2936,7 +2973,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -2946,7 +2983,7 @@
           "tick": 11
         }
       ],
-      "text": "Bridget Brennan says Marion Stannard was at the Arcadia dance hall at 11:30 PM.",
+      "text": "Brennan says Stannard was at the Arcadia at 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2957,7 +2994,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -2967,7 +3004,7 @@
           "tick": 8
         }
       ],
-      "text": "Bridget Brennan says Marion Stannard was at the subway kiosk at the corner at 10:00 PM.",
+      "text": "Brennan says Stannard was at the subway kiosk at 10:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2978,7 +3015,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -2988,7 +3025,7 @@
           "tick": 1
         }
       ],
-      "text": "Bridget Brennan says Sadie Shapiro was at the Arcadia dance hall at 6:30 PM.",
+      "text": "Brennan says Shapiro was at the Arcadia at 6:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -2999,7 +3036,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3014,10 +3051,11 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Bridget Brennan says Sadie Shapiro was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Brennan says Shapiro was at the drying yard at 7:00 PM.",
       "place": "dance-hall",
       "leadsTo": [
-        "c065"
+        "c026",
+        "c143"
       ],
       "role": "spine"
     },
@@ -3027,7 +3065,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3043,7 +3081,7 @@
           "tick": 8
         }
       ],
-      "text": "Bridget Brennan says Sadie Shapiro was at the subway kiosk at the corner from 9:30 PM to 10:00 PM.",
+      "text": "Brennan says Shapiro was at the subway kiosk from 9:30 PM to 10:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3054,7 +3092,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3075,7 +3113,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Bridget Brennan says Wilhelm Steinbach was at the drying yard behind the laundry from 7:00 PM to 7:30 PM.",
+      "text": "Brennan says Steinbach was at the drying yard from 7:00 PM to 7:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3086,7 +3124,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3102,7 +3140,7 @@
           "tick": 5
         }
       ],
-      "text": "Bridget Brennan says Wilhelm Steinbach was at the Arcadia dance hall from 8:00 PM to 8:30 PM.",
+      "text": "Brennan says Steinbach was at the Arcadia from 8:00 PM to 8:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3113,7 +3151,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -3123,7 +3161,7 @@
           "tick": 0
         }
       ],
-      "text": "Alonzo Broadnax says Patrick Corrigan was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Broadnax says Corrigan was at the Arcadia at 6:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3134,7 +3172,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -3144,7 +3182,7 @@
           "tick": 8
         }
       ],
-      "text": "Alonzo Broadnax says Patrick Corrigan was at the drying yard behind the laundry at 10:00 PM.",
+      "text": "Broadnax says Corrigan was at the drying yard at 10:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3155,7 +3193,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3165,7 +3203,7 @@
           "tick": 1
         }
       ],
-      "text": "Alonzo Broadnax says Bridget Brennan was at the Arcadia dance hall at 6:30 PM.",
+      "text": "Broadnax says Brennan was at the Arcadia at 6:30 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3176,7 +3214,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3191,10 +3229,10 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Alonzo Broadnax says Bridget Brennan was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Broadnax says Brennan was at the drying yard at 7:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c027",
@@ -3202,7 +3240,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3212,7 +3250,7 @@
           "tick": 0
         }
       ],
-      "text": "Alonzo Broadnax says Marion Stannard was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Broadnax says Stannard was at the Arcadia at 6:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3223,7 +3261,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3239,7 +3277,7 @@
           "tick": 1
         }
       ],
-      "text": "Alonzo Broadnax says Sadie Shapiro was at the Arcadia dance hall from 6:00 PM to 6:30 PM.",
+      "text": "Broadnax says Shapiro was at the Arcadia from 6:00 PM to 6:30 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3250,7 +3288,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3265,7 +3303,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Alonzo Broadnax says Sadie Shapiro was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Broadnax says Shapiro was at the drying yard at 7:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "corroboration"
@@ -3276,7 +3314,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3286,7 +3324,7 @@
           "tick": 6
         }
       ],
-      "text": "Alonzo Broadnax says Sadie Shapiro was at the drying yard behind the laundry at 9:00 PM.",
+      "text": "Broadnax says Shapiro was at the drying yard at 9:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3297,7 +3335,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3307,7 +3345,7 @@
           "tick": 11
         }
       ],
-      "text": "Alonzo Broadnax says Sadie Shapiro was at Kaplan’s drugstore with the soda fountain at 11:30 PM.",
+      "text": "Broadnax says Shapiro was at Kaplan’s at 11:30 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3318,7 +3356,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3333,7 +3371,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Alonzo Broadnax says Wilhelm Steinbach was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Broadnax says Steinbach was at the drying yard at 7:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3344,7 +3382,7 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3354,7 +3392,7 @@
           "tick": 7
         }
       ],
-      "text": "Alonzo Broadnax says Wilhelm Steinbach was at Kaplan’s drugstore with the soda fountain at 9:30 PM.",
+      "text": "Broadnax says Steinbach was at Kaplan’s at 9:30 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3365,7 +3403,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -3375,7 +3413,7 @@
           "tick": 0
         }
       ],
-      "text": "Marion Stannard says Patrick Corrigan was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Stannard says Corrigan was at the Arcadia at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3386,7 +3424,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -3402,7 +3440,7 @@
           "tick": 7
         }
       ],
-      "text": "Marion Stannard says Patrick Corrigan was at the Arcadia dance hall from 9:00 PM to 9:30 PM.",
+      "text": "Stannard says Corrigan was at the Arcadia from 9:00 PM to 9:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3413,7 +3451,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -3429,7 +3467,7 @@
           "tick": 11
         }
       ],
-      "text": "Marion Stannard says Patrick Corrigan was at the Arcadia dance hall from 11:00 PM to 11:30 PM.",
+      "text": "Stannard says Corrigan was at the Arcadia from 11:00 PM to 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3440,7 +3478,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -3450,7 +3488,7 @@
           "tick": 3
         }
       ],
-      "text": "Marion Stannard says Patrick Corrigan was at the subway kiosk at the corner at 7:30 PM.",
+      "text": "Stannard says Corrigan was at the subway kiosk at 7:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3461,7 +3499,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3471,7 +3509,7 @@
           "tick": 8
         }
       ],
-      "text": "Marion Stannard says Bridget Brennan was at the subway kiosk at the corner at 10:00 PM.",
+      "text": "Stannard says Brennan was at the subway kiosk at 10:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3482,7 +3520,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3498,7 +3536,7 @@
           "tick": 11
         }
       ],
-      "text": "Marion Stannard says Bridget Brennan was at the Arcadia dance hall from 11:00 PM to 11:30 PM.",
+      "text": "Stannard says Brennan was at the Arcadia from 11:00 PM to 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3509,7 +3547,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -3519,7 +3557,7 @@
           "tick": 0
         }
       ],
-      "text": "Marion Stannard says Alonzo Broadnax was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Stannard says Broadnax was at the Arcadia at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3530,7 +3568,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3540,7 +3578,7 @@
           "tick": 0
         }
       ],
-      "text": "Marion Stannard says Sadie Shapiro was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Stannard says Shapiro was at the Arcadia at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3551,7 +3589,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3561,7 +3599,7 @@
           "tick": 8
         }
       ],
-      "text": "Marion Stannard says Sadie Shapiro was at the subway kiosk at the corner at 10:00 PM.",
+      "text": "Stannard says Shapiro was at the subway kiosk at 10:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3572,7 +3610,7 @@
       "source": {
         "type": "person",
         "personId": "p-s4",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3582,7 +3620,7 @@
           "tick": 6
         }
       ],
-      "text": "Marion Stannard says Wilhelm Steinbach was at the Arcadia dance hall at 9:00 PM.",
+      "text": "Stannard says Steinbach was at the Arcadia at 9:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -3593,7 +3631,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3608,7 +3646,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Sadie Shapiro says Bridget Brennan was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Shapiro says Brennan was at the drying yard at 7:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3619,7 +3657,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3635,7 +3673,7 @@
           "tick": 8
         }
       ],
-      "text": "Sadie Shapiro says Bridget Brennan was at the subway kiosk at the corner from 9:30 PM to 10:00 PM.",
+      "text": "Shapiro says Brennan was at the subway kiosk from 9:30 PM to 10:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3646,7 +3684,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -3661,12 +3699,10 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Sadie Shapiro says Alonzo Broadnax was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Shapiro says Broadnax was at the drying yard at 7:00 PM.",
       "place": "laundry-yard",
-      "leadsTo": [
-        "c191"
-      ],
-      "role": "corroboration"
+      "leadsTo": [],
+      "role": "noise"
     },
     {
       "id": "c047",
@@ -3674,7 +3710,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -3684,7 +3720,7 @@
           "tick": 6
         }
       ],
-      "text": "Sadie Shapiro says Alonzo Broadnax was at the drying yard behind the laundry at 9:00 PM.",
+      "text": "Shapiro says Broadnax was at the drying yard at 9:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3695,7 +3731,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -3705,7 +3741,7 @@
           "tick": 11
         }
       ],
-      "text": "Sadie Shapiro says Alonzo Broadnax was at Kaplan’s drugstore with the soda fountain at 11:30 PM.",
+      "text": "Shapiro says Broadnax was at Kaplan’s at 11:30 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3716,7 +3752,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3726,7 +3762,7 @@
           "tick": 8
         }
       ],
-      "text": "Sadie Shapiro says Marion Stannard was at the subway kiosk at the corner at 10:00 PM.",
+      "text": "Shapiro says Stannard was at the subway kiosk at 10:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3737,7 +3773,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3752,7 +3788,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Sadie Shapiro says Wilhelm Steinbach was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Shapiro says Steinbach was at the drying yard at 7:00 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3763,7 +3799,7 @@
       "source": {
         "type": "person",
         "personId": "p-s5",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -3773,7 +3809,7 @@
           "tick": 9
         }
       ],
-      "text": "Sadie Shapiro says Wilhelm Steinbach was at Kaplan’s drugstore with the soda fountain at 10:30 PM.",
+      "text": "Shapiro says Steinbach was at Kaplan’s at 10:30 PM.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -3784,7 +3820,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -3794,7 +3830,7 @@
           "tick": 6
         }
       ],
-      "text": "Wilhelm Steinbach says Patrick Corrigan was at the Arcadia dance hall at 9:00 PM.",
+      "text": "Steinbach says Corrigan was at the Arcadia at 9:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3805,7 +3841,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -3826,7 +3862,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Wilhelm Steinbach says Bridget Brennan was at the drying yard behind the laundry from 7:00 PM to 7:30 PM.",
+      "text": "Steinbach says Brennan was at the drying yard from 7:00 PM to 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3837,7 +3873,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -3852,7 +3888,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Wilhelm Steinbach says Alonzo Broadnax was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Steinbach says Broadnax was at the drying yard at 7:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3863,7 +3899,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -3873,7 +3909,7 @@
           "tick": 7
         }
       ],
-      "text": "Wilhelm Steinbach says Alonzo Broadnax was at Kaplan’s drugstore with the soda fountain at 9:30 PM.",
+      "text": "Steinbach says Broadnax was at Kaplan’s at 9:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3884,7 +3920,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -3894,7 +3930,7 @@
           "tick": 6
         }
       ],
-      "text": "Wilhelm Steinbach says Marion Stannard was at the Arcadia dance hall at 9:00 PM.",
+      "text": "Steinbach says Stannard was at the Arcadia at 9:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3905,7 +3941,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3920,7 +3956,7 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Wilhelm Steinbach says Sadie Shapiro was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Steinbach says Shapiro was at the drying yard at 7:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3931,7 +3967,7 @@
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -3941,7 +3977,7 @@
           "tick": 9
         }
       ],
-      "text": "Wilhelm Steinbach says Sadie Shapiro was at Kaplan’s drugstore with the soda fountain at 10:30 PM.",
+      "text": "Steinbach says Shapiro was at Kaplan’s at 10:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -3952,7 +3988,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -3974,7 +4010,7 @@
           "tick": 2
         }
       ],
-      "text": "Ernst Brauer says Edward Doyle was at the newsstand on the corner from 6:00 PM to 7:00 PM.",
+      "text": "Brauer says Doyle was at the newsstand from 6:00 PM to 7:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -3985,7 +4021,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4001,7 +4037,7 @@
           "tick": 2
         }
       ],
-      "text": "Ernst Brauer says Patrick Corrigan was at the newsstand on the corner from 6:30 PM to 7:00 PM.",
+      "text": "Brauer says Corrigan was at the newsstand from 6:30 PM to 7:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4012,7 +4048,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4022,7 +4058,7 @@
           "tick": 9
         }
       ],
-      "text": "Ernst Brauer says Bridget Brennan was at the newsstand on the corner at 10:30 PM.",
+      "text": "Brauer says Brennan was at the newsstand at 10:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4033,7 +4069,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -4049,10 +4085,10 @@
           "tick": 5
         }
       ],
-      "text": "Ernst Brauer says Alonzo Broadnax was at the newsstand on the corner from 8:00 PM to 8:30 PM.",
+      "text": "Brauer says Broadnax was at the newsstand from 8:00 PM to 8:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
-      "role": "spine"
+      "role": "noise"
     },
     {
       "id": "c063",
@@ -4060,7 +4096,7 @@
       "source": {
         "type": "person",
         "personId": "p-f1",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4070,7 +4106,7 @@
           "tick": 8
         }
       ],
-      "text": "Ernst Brauer says Wilhelm Steinbach was at Kaplan’s drugstore with the soda fountain at 10:00 PM.",
+      "text": "Brauer says Steinbach was at Kaplan’s at 10:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4081,7 +4117,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -4091,7 +4127,7 @@
           "tick": 3
         }
       ],
-      "text": "Bernard Feldman says Edward Doyle was at Kaplan’s drugstore with the soda fountain at 7:30 PM.",
+      "text": "Feldman says Doyle was at Kaplan’s at 7:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4102,7 +4138,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -4112,10 +4148,10 @@
           "tick": 4
         }
       ],
-      "text": "Bernard Feldman says Alonzo Broadnax was at the newsstand on the corner at 8:00 PM.",
+      "text": "Feldman says Broadnax was at the newsstand at 8:00 PM.",
       "place": "drugstore",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "spine"
     },
     {
       "id": "c066",
@@ -4123,7 +4159,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -4133,7 +4169,7 @@
           "tick": 7
         }
       ],
-      "text": "Bernard Feldman says Alonzo Broadnax was at Kaplan’s drugstore with the soda fountain at 9:30 PM.",
+      "text": "Feldman says Broadnax was at Kaplan’s at 9:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4144,7 +4180,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -4154,7 +4190,7 @@
           "tick": 11
         }
       ],
-      "text": "Bernard Feldman says Alonzo Broadnax was at Kaplan’s drugstore with the soda fountain at 11:30 PM.",
+      "text": "Feldman says Broadnax was at Kaplan’s at 11:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4165,7 +4201,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -4187,7 +4223,7 @@
           "tick": 11
         }
       ],
-      "text": "Bernard Feldman says Sadie Shapiro was at Kaplan’s drugstore with the soda fountain from 10:30 PM to 11:30 PM.",
+      "text": "Feldman says Shapiro was at Kaplan’s from 10:30 PM to 11:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4198,7 +4234,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4214,7 +4250,7 @@
           "tick": 1
         }
       ],
-      "text": "Bernard Feldman says Wilhelm Steinbach was at Kaplan’s drugstore with the soda fountain from 6:00 PM to 6:30 PM.",
+      "text": "Feldman says Steinbach was at Kaplan’s from 6:00 PM to 6:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4225,7 +4261,7 @@
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4247,7 +4283,7 @@
           "tick": 9
         }
       ],
-      "text": "Bernard Feldman says Wilhelm Steinbach was at Kaplan’s drugstore with the soda fountain from 9:30 PM to 10:30 PM.",
+      "text": "Feldman says Steinbach was at Kaplan’s from 9:30 PM to 10:30 PM.",
       "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
@@ -4258,7 +4294,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4268,7 +4304,7 @@
           "tick": 0
         }
       ],
-      "text": "Rosaria Petrosino says Patrick Corrigan was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Petrosino says Corrigan was at the Arcadia at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4279,7 +4315,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4307,10 +4343,12 @@
           "tick": 7
         }
       ],
-      "text": "Rosaria Petrosino says Patrick Corrigan was at the Arcadia dance hall from 8:00 PM to 9:30 PM.",
+      "text": "Petrosino says Corrigan was at the Arcadia from 8:00 PM to 9:30 PM.",
       "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c150"
+      ],
+      "role": "corroboration"
     },
     {
       "id": "c073",
@@ -4318,7 +4356,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4334,7 +4372,7 @@
           "tick": 11
         }
       ],
-      "text": "Rosaria Petrosino says Patrick Corrigan was at the Arcadia dance hall from 11:00 PM to 11:30 PM.",
+      "text": "Petrosino says Corrigan was at the Arcadia from 11:00 PM to 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4345,7 +4383,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4355,7 +4393,7 @@
           "tick": 1
         }
       ],
-      "text": "Rosaria Petrosino says Bridget Brennan was at the Arcadia dance hall at 6:30 PM.",
+      "text": "Petrosino says Brennan was at the Arcadia at 6:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4366,7 +4404,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4382,10 +4420,10 @@
           "tick": 5
         }
       ],
-      "text": "Rosaria Petrosino says Bridget Brennan was at the Arcadia dance hall from 8:00 PM to 8:30 PM.",
+      "text": "Petrosino says Brennan was at the Arcadia from 8:00 PM to 8:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c076",
@@ -4393,7 +4431,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4409,7 +4447,7 @@
           "tick": 11
         }
       ],
-      "text": "Rosaria Petrosino says Bridget Brennan was at the Arcadia dance hall from 11:00 PM to 11:30 PM.",
+      "text": "Petrosino says Brennan was at the Arcadia from 11:00 PM to 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4420,7 +4458,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -4436,7 +4474,7 @@
           "tick": 1
         }
       ],
-      "text": "Rosaria Petrosino says Alonzo Broadnax was at the Arcadia dance hall from 6:00 PM to 6:30 PM.",
+      "text": "Petrosino says Broadnax was at the Arcadia from 6:00 PM to 6:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4447,7 +4485,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -4457,7 +4495,7 @@
           "tick": 3
         }
       ],
-      "text": "Rosaria Petrosino says Alonzo Broadnax was at the Arcadia dance hall at 7:30 PM.",
+      "text": "Petrosino says Broadnax was at the Arcadia at 7:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4468,7 +4506,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -4478,7 +4516,7 @@
           "tick": 0
         }
       ],
-      "text": "Rosaria Petrosino says Marion Stannard was at the Arcadia dance hall at 6:00 PM.",
+      "text": "Petrosino says Stannard was at the Arcadia at 6:00 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4489,7 +4527,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -4517,7 +4555,7 @@
           "tick": 7
         }
       ],
-      "text": "Rosaria Petrosino says Marion Stannard was at the Arcadia dance hall from 8:00 PM to 9:30 PM.",
+      "text": "Petrosino says Stannard was at the Arcadia from 8:00 PM to 9:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4528,7 +4566,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -4550,7 +4588,7 @@
           "tick": 11
         }
       ],
-      "text": "Rosaria Petrosino says Marion Stannard was at the Arcadia dance hall from 10:30 PM to 11:30 PM.",
+      "text": "Petrosino says Stannard was at the Arcadia from 10:30 PM to 11:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4561,7 +4599,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -4577,7 +4615,7 @@
           "tick": 1
         }
       ],
-      "text": "Rosaria Petrosino says Sadie Shapiro was at the Arcadia dance hall from 6:00 PM to 6:30 PM.",
+      "text": "Petrosino says Shapiro was at the Arcadia from 6:00 PM to 6:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4588,7 +4626,7 @@
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4610,10 +4648,15 @@
           "tick": 6
         }
       ],
-      "text": "Rosaria Petrosino says Wilhelm Steinbach was at the Arcadia dance hall from 8:00 PM to 9:00 PM.",
+      "text": "Petrosino says Steinbach was at the Arcadia from 8:00 PM to 9:00 PM.",
       "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c102",
+        "c002",
+        "c065",
+        "c110"
+      ],
+      "role": "spine"
     },
     {
       "id": "c084",
@@ -4621,7 +4664,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Edward Doyle"
+        "topic": "Doyle"
       },
       "establishes": [
         {
@@ -4631,7 +4674,7 @@
           "tick": 1
         }
       ],
-      "text": "Louis Bernstein says Edward Doyle was at the newsstand on the corner at 6:30 PM.",
+      "text": "Bernstein says Doyle was at the newsstand at 6:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4642,7 +4685,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4652,7 +4695,7 @@
           "tick": 1
         }
       ],
-      "text": "Louis Bernstein says Patrick Corrigan was at the newsstand on the corner at 6:30 PM.",
+      "text": "Bernstein says Corrigan was at the newsstand at 6:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4663,7 +4706,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Patrick Corrigan"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -4673,7 +4716,7 @@
           "tick": 10
         }
       ],
-      "text": "Louis Bernstein says Patrick Corrigan was at the Arcadia dance hall at 11:00 PM.",
+      "text": "Bernstein says Corrigan was at the Arcadia at 11:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4684,7 +4727,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Bridget Brennan"
+        "topic": "Brennan"
       },
       "establishes": [
         {
@@ -4694,7 +4737,7 @@
           "tick": 10
         }
       ],
-      "text": "Louis Bernstein says Bridget Brennan was at the Arcadia dance hall at 11:00 PM.",
+      "text": "Bernstein says Brennan was at the Arcadia at 11:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4705,7 +4748,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Alonzo Broadnax"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -4715,7 +4758,7 @@
           "tick": 7
         }
       ],
-      "text": "Louis Bernstein says Alonzo Broadnax was at Kaplan’s drugstore with the soda fountain at 9:30 PM.",
+      "text": "Bernstein says Broadnax was at Kaplan’s at 9:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4726,7 +4769,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Marion Stannard"
+        "topic": "Stannard"
       },
       "establishes": [
         {
@@ -4736,7 +4779,7 @@
           "tick": 10
         }
       ],
-      "text": "Louis Bernstein says Marion Stannard was at the Arcadia dance hall at 11:00 PM.",
+      "text": "Bernstein says Stannard was at the Arcadia at 11:00 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4747,7 +4790,7 @@
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "Wilhelm Steinbach"
+        "topic": "Steinbach"
       },
       "establishes": [
         {
@@ -4757,7 +4800,7 @@
           "tick": 7
         }
       ],
-      "text": "Louis Bernstein says Wilhelm Steinbach was at Kaplan’s drugstore with the soda fountain at 9:30 PM.",
+      "text": "Bernstein says Steinbach was at Kaplan’s at 9:30 PM.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
@@ -4767,31 +4810,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f2",
+        "topic": "Corrigan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 3
         }
       ],
-      "text": "Patrick Corrigan runs through it: at 6:00 PM there were Alonzo Broadnax, Marion Stannard, Sadie Shapiro at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Feldman was at Kaplan’s at 7:30 PM and says Corrigan was not.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4800,64 +4831,40 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-s3",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 4
+          "place": "laundry-yard",
+          "tick": 10
         }
       ],
-      "text": "Patrick Corrigan runs through it: at 8:00 PM there were Bridget Brennan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Broadnax was at the drying yard at 11:00 PM and says Brennan was not.",
+      "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c093",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 8:30 PM"
+        "personId": "p-s6",
+        "topic": "Brennan’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 5
+          "place": "laundry-yard",
+          "tick": 10
         }
       ],
-      "text": "Patrick Corrigan runs through it: at 8:30 PM there were Bridget Brennan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Brennan names Steinbach as the company for it. Steinbach was at the subway kiosk at 11:00 PM, and says Brennan was not there.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4867,23 +4874,17 @@
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "who was there at 9:00 PM"
+        "topic": "Broadnax’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s3",
           "place": "dance-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 6
+          "tick": 4
         }
       ],
-      "text": "Patrick Corrigan runs through it: at 9:00 PM there were Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Corrigan was at the Arcadia at 8:00 PM and says Broadnax was not.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4893,24 +4894,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:00 PM"
+        "personId": "p-s2",
+        "topic": "Broadnax’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s3",
           "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 10
+          "tick": 4
         }
       ],
-      "text": "Patrick Corrigan runs through it: at 11:00 PM there were Bridget Brennan, Marion Stannard at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Brennan was at the Arcadia at 8:00 PM and says Broadnax was not.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4920,24 +4915,18 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f3",
+        "topic": "Broadnax’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
+          "kind": "personNotAt",
+          "personId": "p-s3",
           "place": "dance-hall",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 11
+          "tick": 4
         }
       ],
-      "text": "Patrick Corrigan runs through it: at 11:30 PM there were Bridget Brennan, Marion Stannard at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Petrosino was at the Arcadia at 8:00 PM and says Broadnax was not.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
@@ -4947,25 +4936,19 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 6:30 PM"
+        "personId": "p-cop",
+        "topic": "Stannard’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 4
         }
       ],
-      "text": "Bridget Brennan runs through it: at 6:30 PM there were Alonzo Broadnax, Sadie Shapiro at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Bernstein was at the subway kiosk at 8:00 PM and says Stannard was not.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -4974,31 +4957,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-s6",
+        "topic": "Shapiro’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "laundry-yard",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "laundry-yard",
-          "tick": 2
+          "place": "drugstore",
+          "tick": 0
         },
         {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "laundry-yard",
-          "tick": 2
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 1
         }
       ],
-      "text": "Bridget Brennan runs through it: at 7:00 PM there were Alonzo Broadnax, Sadie Shapiro, Wilhelm Steinbach at the drying yard behind the laundry, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Steinbach was at Kaplan’s from 6:00 PM to 6:30 PM and says Shapiro was not.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5007,33 +4984,27 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 8:00 PM"
+        "personId": "p-f2",
+        "topic": "Shapiro’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 0
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 4
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 1
         }
       ],
-      "text": "Bridget Brennan runs through it: at 8:00 PM there were Patrick Corrigan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Feldman was at Kaplan’s from 6:00 PM to 6:30 PM and says Shapiro was not.",
+      "place": "drugstore",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
       "id": "c100",
@@ -5041,57 +5012,39 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "who was there at 8:30 PM"
+        "topic": "Shapiro’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "dance-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 5
+          "tick": 4
         }
       ],
-      "text": "Bridget Brennan runs through it: at 8:30 PM there were Patrick Corrigan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Brennan was at the Arcadia at 8:00 PM and says Shapiro was not.",
       "place": "dance-hall",
       "leadsTo": [],
-      "role": "noise"
+      "role": "corroboration"
     },
     {
       "id": "c101",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 10:00 PM"
+        "personId": "p-s3",
+        "topic": "Shapiro’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "subway-kiosk",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
-          "place": "subway-kiosk",
-          "tick": 8
+          "place": "dance-hall",
+          "tick": 3
         }
       ],
-      "text": "Bridget Brennan runs through it: at 10:00 PM there were Marion Stannard, Sadie Shapiro at the subway kiosk at the corner, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Broadnax was at the Arcadia at 7:30 PM and says Shapiro was not.",
+      "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5100,58 +5053,57 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 11:30 PM"
+        "personId": "p-f3",
+        "topic": "Shapiro’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "dance-hall",
-          "tick": 11
+          "tick": 3
         },
         {
-          "kind": "personAt",
-          "personId": "p-s4",
+          "kind": "personNotAt",
+          "personId": "p-s5",
           "place": "dance-hall",
-          "tick": 11
+          "tick": 4
         }
       ],
-      "text": "Bridget Brennan runs through it: at 11:30 PM there were Patrick Corrigan, Marion Stannard at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Petrosino was at the Arcadia from 7:30 PM to 8:00 PM and says Shapiro was not.",
       "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c019",
+        "c113",
+        "c100",
+        "c159"
+      ],
+      "role": "spine"
     },
     {
       "id": "c103",
-      "kind": "observation",
+      "kind": "denial",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-s1",
+        "topic": "Shapiro’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s5",
           "place": "dance-hall",
-          "tick": 0
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 4
         }
       ],
-      "text": "Alonzo Broadnax runs through it: at 6:00 PM there were Patrick Corrigan, Marion Stannard, Sadie Shapiro at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "laundry-yard",
+      "text": "Shapiro names Corrigan as the company for the Arcadia from 7:30 PM to 8:00 PM. Corrigan says they were not together that evening.",
+      "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5161,23 +5113,17 @@
       "source": {
         "type": "person",
         "personId": "p-s3",
-        "topic": "who was there at 6:30 PM"
+        "topic": "Steinbach’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 1
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 5
         }
       ],
-      "text": "Alonzo Broadnax runs through it: at 6:30 PM there were Bridget Brennan, Sadie Shapiro at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Broadnax was at the newsstand at 8:30 PM and says Steinbach was not.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
@@ -5187,31 +5133,25 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s3",
-        "topic": "who was there at 7:00 PM"
+        "personId": "p-f1",
+        "topic": "Steinbach’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "laundry-yard",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "laundry-yard",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
+          "kind": "personNotAt",
           "personId": "p-s6",
-          "place": "laundry-yard",
-          "tick": 2
+          "place": "corner-newsstand",
+          "tick": 4
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 5
         }
       ],
-      "text": "Alonzo Broadnax runs through it: at 7:00 PM there were Bridget Brennan, Sadie Shapiro, Wilhelm Steinbach at the drying yard behind the laundry, and nobody else worth naming.",
-      "place": "laundry-yard",
+      "text": "Brauer was at the newsstand from 8:00 PM to 8:30 PM and says Steinbach was not.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise"
     },
@@ -5220,1051 +5160,24 @@
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 6:00 PM"
+        "personId": "p-f2",
+        "topic": "Steinbach’s account"
       },
       "establishes": [
         {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 0
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 4
         }
       ],
-      "text": "Marion Stannard runs through it: at 6:00 PM there were Patrick Corrigan, Alonzo Broadnax, Sadie Shapiro at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
+      "text": "Feldman was at the newsstand at 8:00 PM and says Steinbach was not.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "noise"
     },
     {
       "id": "c107",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 6
-        }
-      ],
-      "text": "Marion Stannard runs through it: at 9:00 PM there were Patrick Corrigan, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c108",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "subway-kiosk",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "subway-kiosk",
-          "tick": 8
-        }
-      ],
-      "text": "Marion Stannard runs through it: at 10:00 PM there were Bridget Brennan, Sadie Shapiro at the subway kiosk at the corner, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c109",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 10
-        }
-      ],
-      "text": "Marion Stannard runs through it: at 11:00 PM there were Patrick Corrigan, Bridget Brennan at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c110",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 11
-        }
-      ],
-      "text": "Marion Stannard runs through it: at 11:30 PM there were Patrick Corrigan, Bridget Brennan at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c111",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "laundry-yard",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "laundry-yard",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "laundry-yard",
-          "tick": 2
-        }
-      ],
-      "text": "Sadie Shapiro runs through it: at 7:00 PM there were Bridget Brennan, Alonzo Broadnax, Wilhelm Steinbach at the drying yard behind the laundry, and nobody else worth naming.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c112",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "who was there at 10:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "subway-kiosk",
-          "tick": 8
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "subway-kiosk",
-          "tick": 8
-        }
-      ],
-      "text": "Sadie Shapiro runs through it: at 10:00 PM there were Bridget Brennan, Marion Stannard at the subway kiosk at the corner, and nobody else worth naming.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c113",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 7:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "laundry-yard",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "laundry-yard",
-          "tick": 2
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "laundry-yard",
-          "tick": 2
-        }
-      ],
-      "text": "Wilhelm Steinbach runs through it: at 7:00 PM there were Bridget Brennan, Alonzo Broadnax, Sadie Shapiro at the drying yard behind the laundry, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c114",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 6
-        }
-      ],
-      "text": "Wilhelm Steinbach runs through it: at 9:00 PM there were Patrick Corrigan, Marion Stannard at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c115",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "drugstore",
-          "tick": 7
-        }
-      ],
-      "text": "Bernard Feldman runs through it: at 9:30 PM there were Alonzo Broadnax, Wilhelm Steinbach at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c116",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 10:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 9
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "drugstore",
-          "tick": 9
-        }
-      ],
-      "text": "Bernard Feldman runs through it: at 10:30 PM there were Sadie Shapiro, Wilhelm Steinbach at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c117",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 11
-        }
-      ],
-      "text": "Bernard Feldman runs through it: at 11:30 PM there were Alonzo Broadnax, Sadie Shapiro at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c118",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 0
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 0
-        }
-      ],
-      "text": "Rosaria Petrosino runs through it: at 6:00 PM there were Patrick Corrigan, Alonzo Broadnax, Marion Stannard, Sadie Shapiro at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c119",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 6:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 1
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 1
-        }
-      ],
-      "text": "Rosaria Petrosino runs through it: at 6:30 PM there were Bridget Brennan, Alonzo Broadnax, Sadie Shapiro at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c120",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Rosaria Petrosino runs through it: at 8:00 PM there were Patrick Corrigan, Bridget Brennan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c019",
-        "c147",
-        "c002"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c121",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 8:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 5
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 5
-        }
-      ],
-      "text": "Rosaria Petrosino runs through it: at 8:30 PM there were Patrick Corrigan, Bridget Brennan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c122",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 6
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 6
-        }
-      ],
-      "text": "Rosaria Petrosino runs through it: at 9:00 PM there were Patrick Corrigan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c123",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 7
-        }
-      ],
-      "text": "Rosaria Petrosino runs through it: at 9:30 PM there were Patrick Corrigan, Marion Stannard at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c124",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 10
-        }
-      ],
-      "text": "Rosaria Petrosino runs through it: at 11:00 PM there were Patrick Corrigan, Bridget Brennan, Marion Stannard at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c125",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "who was there at 11:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 11
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 11
-        }
-      ],
-      "text": "Rosaria Petrosino runs through it: at 11:30 PM there were Patrick Corrigan, Bridget Brennan, Marion Stannard at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c126",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "who was there at 9:30 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "drugstore",
-          "tick": 7
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "drugstore",
-          "tick": 7
-        }
-      ],
-      "text": "Louis Bernstein runs through it: at 9:30 PM there were Alonzo Broadnax, Wilhelm Steinbach at Kaplan’s drugstore with the soda fountain, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c127",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "who was there at 11:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 10
-        }
-      ],
-      "text": "Louis Bernstein runs through it: at 11:00 PM there were Patrick Corrigan, Bridget Brennan, Marion Stannard at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c128",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Patrick Corrigan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s1",
-          "place": "drugstore",
-          "tick": 3
-        }
-      ],
-      "text": "Bernard Feldman was at Kaplan’s drugstore with the soda fountain at 7:30 PM and says Patrick Corrigan was not.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c129",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Bridget Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "laundry-yard",
-          "tick": 10
-        }
-      ],
-      "text": "Alonzo Broadnax was at the drying yard behind the laundry at 11:00 PM and says Bridget Brennan was not.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c130",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Bridget Brennan’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s2",
-          "place": "laundry-yard",
-          "tick": 10
-        }
-      ],
-      "text": "Bridget Brennan says Wilhelm Steinbach was there for it. Wilhelm Steinbach says otherwise: Wilhelm Steinbach was at the subway kiosk at the corner at 11:00 PM, nowhere near the drying yard behind the laundry.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c131",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Alonzo Broadnax’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Patrick Corrigan was at the Arcadia dance hall at 8:00 PM and says Alonzo Broadnax was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c132",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Alonzo Broadnax’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Bridget Brennan was at the Arcadia dance hall at 8:00 PM and says Alonzo Broadnax was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c133",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Alonzo Broadnax’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s3",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Rosaria Petrosino was at the Arcadia dance hall at 8:00 PM and says Alonzo Broadnax was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c134",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Marion Stannard’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s4",
-          "place": "subway-kiosk",
-          "tick": 4
-        }
-      ],
-      "text": "Louis Bernstein was at the subway kiosk at the corner at 8:00 PM and says Marion Stannard was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c135",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s6",
-        "topic": "Sadie Shapiro’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 0
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Wilhelm Steinbach was at Kaplan’s drugstore with the soda fountain from 6:00 PM to 6:30 PM and says Sadie Shapiro was not.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c136",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Sadie Shapiro’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 0
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "drugstore",
-          "tick": 1
-        }
-      ],
-      "text": "Bernard Feldman was at Kaplan’s drugstore with the soda fountain from 6:00 PM to 6:30 PM and says Sadie Shapiro was not.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c137",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Sadie Shapiro’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Patrick Corrigan was at the Arcadia dance hall at 8:00 PM and says Sadie Shapiro was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c138",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Sadie Shapiro’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Bridget Brennan was at the Arcadia dance hall at 8:00 PM and says Sadie Shapiro was not.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c062",
-        "c147",
-        "c099",
-        "c183",
-        "c178"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c139",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Sadie Shapiro’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 3
-        }
-      ],
-      "text": "Alonzo Broadnax was at the Arcadia dance hall at 7:30 PM and says Sadie Shapiro was not.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c140",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Sadie Shapiro’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Rosaria Petrosino was at the Arcadia dance hall from 7:30 PM to 8:00 PM and says Sadie Shapiro was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c141",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Wilhelm Steinbach’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "corner-newsstand",
-          "tick": 5
-        }
-      ],
-      "text": "Alonzo Broadnax was at the newsstand on the corner at 8:30 PM and says Wilhelm Steinbach was not.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c142",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Wilhelm Steinbach’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "corner-newsstand",
-          "tick": 4
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "corner-newsstand",
-          "tick": 5
-        }
-      ],
-      "text": "Ernst Brauer was at the newsstand on the corner from 8:00 PM to 8:30 PM and says Wilhelm Steinbach was not.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c143",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Wilhelm Steinbach’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s6",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "Bernard Feldman was at the newsstand on the corner at 8:00 PM and says Wilhelm Steinbach was not.",
-      "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
-    },
-    {
-      "id": "c144",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -6280,19 +5193,17 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Edward Doyle was found at the victim’s apartment on the fourth floor. His watch glass broke against the floor and the hands have not moved since. The dumbwaiter squeal came at 8:00 PM, and the shaft carries and the car was worked on the hour and the half hour. That puts the killing in that half hour and no later.",
+      "text": "Doyle was found at the fourth floor. His watch glass broke against the floor and the hands have not moved since. The dumbwaiter car was worked at 8:00 PM, as it is on the hour and the half hour.",
       "place": "res-apartment",
       "leadsTo": [
-        "c120",
-        "c062",
-        "c158",
-        "c162"
+        "c007",
+        "c002"
       ],
       "role": "spine",
       "anchorId": "dumbwaiter"
     },
     {
-      "id": "c145",
+      "id": "c108",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -6314,13 +5225,15 @@
       "text": "The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.",
       "place": "res-apartment",
       "leadsTo": [
-        "c120",
-        "c138"
+        "c083",
+        "c007",
+        "c126",
+        "c072"
       ],
       "role": "spine"
     },
     {
-      "id": "c146",
+      "id": "c109",
       "kind": "physical",
       "source": {
         "type": "place",
@@ -6337,18 +5250,18 @@
           "methodId": "strangle"
         }
       ],
-      "text": "A length of sash cord is gone from the drying yard behind the laundry. A cut end of the same hemp is still tied to the fitting it was taken from.",
+      "text": "A length of sash cord is gone from the drying yard. A cut end of the same hemp is still tied to the fitting it was taken from.",
       "place": "laundry-yard",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c147",
+      "id": "c110",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Doyle that evening"
+        "topic": "Doyle that evening"
       },
       "establishes": [
         {
@@ -6362,17 +5275,14 @@
           "tick": 3
         }
       ],
-      "text": "Bernard Feldman puts Edward Doyle at Kaplan’s drugstore with the soda fountain when the ice came, which was 7:30 PM, and alive enough to argue about the weather.",
+      "text": "Feldman puts Doyle at Kaplan’s when the ice came, which was 7:30 PM, and alive enough to argue about the weather.",
       "place": "drugstore",
-      "leadsTo": [
-        "c149",
-        "c140"
-      ],
+      "leadsTo": [],
       "role": "spine",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c148",
+      "id": "c111",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6394,14 +5304,14 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Ernst Brauer was at the newsstand on the corner at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s apartment on the fourth floor, when the dumbwaiter went up.",
+      "text": "Brauer was at the newsstand at 8:00 PM and heard a scuffle and a chair dragging from the direction of the fourth floor, as the dumbwaiter was going up.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "dumbwaiter"
     },
     {
-      "id": "c149",
+      "id": "c112",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6423,14 +5333,14 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Bernard Feldman was at the newsstand on the corner at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s apartment on the fourth floor, when the dumbwaiter went up.",
+      "text": "Feldman was at the newsstand at 8:00 PM and heard a scuffle and a chair dragging from the direction of the fourth floor, as the dumbwaiter was going up.",
       "place": "drugstore",
       "leadsTo": [],
-      "role": "corroboration",
+      "role": "noise",
       "anchorId": "dumbwaiter"
     },
     {
-      "id": "c150",
+      "id": "c113",
       "kind": "anchor",
       "source": {
         "type": "person",
@@ -6452,19 +5362,45 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Louis Bernstein was at the subway kiosk at the corner at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s apartment on the fourth floor, when the dumbwaiter went up.",
+      "text": "Bernstein was at the subway kiosk at 8:00 PM and heard a scuffle and a chair dragging from the direction of the fourth floor, as the dumbwaiter was going up.",
       "place": "corner-newsstand",
       "leadsTo": [],
-      "role": "noise",
+      "role": "corroboration",
       "anchorId": "dumbwaiter"
     },
     {
-      "id": "c151",
+      "id": "c114",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "the ice being brought in"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 3
+        }
+      ],
+      "text": "Corrigan claims Kaplan’s at 7:30 PM, which is when the ice being brought in was on. Asked about it, Corrigan cannot say that the iceman dropped a block on the step and it went in three — and everybody who was there can.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c128"
+      ],
+      "role": "noise",
+      "anchorId": "ice-delivery",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c115",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 6:30 PM round"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -6474,19 +5410,19 @@
           "tick": 1
         }
       ],
-      "text": "The beat cop’s pass at 6:30 PM puts Patrick Corrigan at the newsstand on the corner.",
+      "text": "Bernstein came round at 6:30 PM and had Corrigan at the newsstand.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c152",
+      "id": "c116",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 9:30 PM round"
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -6494,7 +5430,23 @@
           "personId": "p-s3",
           "place": "drugstore",
           "tick": 7
-        },
+        }
+      ],
+      "text": "Bernstein came round at 9:30 PM and had Broadnax at Kaplan’s.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c117",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Steinbach"
+      },
+      "establishes": [
         {
           "kind": "personAt",
           "personId": "p-s6",
@@ -6502,19 +5454,19 @@
           "tick": 7
         }
       ],
-      "text": "The beat cop’s pass at 9:30 PM puts Alonzo Broadnax, Wilhelm Steinbach at Kaplan’s drugstore with the soda fountain.",
+      "text": "Bernstein came round at 9:30 PM and had Steinbach at Kaplan’s.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c153",
+      "id": "c118",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-cop",
-        "topic": "the 11:00 PM round"
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -6522,28 +5474,60 @@
           "personId": "p-s1",
           "place": "dance-hall",
           "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 10
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 10
         }
       ],
-      "text": "The beat cop’s pass at 11:00 PM puts Patrick Corrigan, Bridget Brennan, Marion Stannard at the Arcadia dance hall.",
+      "text": "Bernstein came round at 11:00 PM and had Corrigan at the Arcadia.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "noise",
       "anchorId": "cop-pass"
     },
     {
-      "id": "c154",
+      "id": "c119",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 10
+        }
+      ],
+      "text": "Bernstein came round at 11:00 PM and had Brennan at the Arcadia.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c120",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 10
+        }
+      ],
+      "text": "Bernstein came round at 11:00 PM and had Stannard at the Arcadia.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c121",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6556,18 +5540,18 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Found at the victim’s apartment on the fourth floor: A clipping about the failure of Alonzo Broadnax’s business, with Edward Doyle’s name underlined twice in pencil.",
+      "text": "Found at the fourth floor: A clipping about the failure of Broadnax’s business, with Doyle’s name underlined twice in pencil.",
       "place": "res-apartment",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c155",
+      "id": "c122",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Alonzo Broadnax and Edward Doyle"
+        "topic": "Broadnax and Doyle"
       },
       "establishes": [
         {
@@ -6576,13 +5560,13 @@
           "motiveType": "revenge"
         }
       ],
-      "text": "Bridget Brennan says Alonzo Broadnax said Edward Doyle had taken everything and would be made to feel it.",
+      "text": "Brennan says Broadnax said Doyle had taken everything and would be made to feel it.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c156",
+      "id": "c123",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6595,18 +5579,18 @@
           "motiveType": "property"
         }
       ],
-      "text": "Found at the victim’s apartment on the fourth floor: A lease assignment made out in Marion Stannard’s name, waiting only on Edward Doyle’s signature.",
+      "text": "Found at the fourth floor: A lease assignment made out in Stannard’s name, waiting only on Doyle’s signature.",
       "place": "res-apartment",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c157",
+      "id": "c124",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s1",
-        "topic": "Marion Stannard and Edward Doyle"
+        "topic": "Stannard and Doyle"
       },
       "establishes": [
         {
@@ -6615,13 +5599,13 @@
           "motiveType": "property"
         }
       ],
-      "text": "Patrick Corrigan says Edward Doyle told Marion Stannard the lease would go to somebody else at the quarter day.",
+      "text": "Corrigan says Doyle told Stannard the lease would go to somebody else at the quarter day.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise"
     },
     {
-      "id": "c158",
+      "id": "c125",
       "kind": "document",
       "source": {
         "type": "place",
@@ -6634,18 +5618,18 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s apartment on the fourth floor: A promissory note for $4,000 signed by Sadie Shapiro, endorsed to Edward Doyle, three months past due.",
+      "text": "Found at the fourth floor: A promissory note for $4,000 signed by Shapiro, endorsed to Doyle, three months past due.",
       "place": "res-apartment",
       "leadsTo": [],
-      "role": "corroboration"
+      "role": "noise"
     },
     {
-      "id": "c159",
+      "id": "c126",
       "kind": "overheard",
       "source": {
         "type": "person",
         "personId": "p-s6",
-        "topic": "Sadie Shapiro and Edward Doyle"
+        "topic": "Shapiro and Doyle"
       },
       "establishes": [
         {
@@ -6654,13 +5638,15 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Wilhelm Steinbach says Edward Doyle told Sadie Shapiro that Friday was the end of it, one way or the other.",
+      "text": "Steinbach says Doyle told Shapiro that Friday was the end of it, one way or the other.",
       "place": "drugstore",
-      "leadsTo": [],
-      "role": "noise"
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "corroboration"
     },
     {
-      "id": "c160",
+      "id": "c127",
       "kind": "client",
       "source": {
         "type": "person",
@@ -6674,632 +5660,670 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Marion Stannard hired us. Marion Stannard wants it known that Sadie Shapiro owed the victim money, and would rather we started there.",
+      "text": "Stannard hired us, and wants it known that Shapiro owed the victim money, and would rather we started there.",
       "place": "dance-hall",
       "leadsTo": [
-        "c138",
-        "c019",
-        "c029",
+        "c083",
         "c011",
-        "c137",
-        "c046"
+        "c019",
+        "c110",
+        "c029",
+        "c147"
       ],
       "role": "spine"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Corrigan"
+      },
+      "establishes": [],
+      "text": "Bernstein on Corrigan: Corrigan was carrying a parcel into the subway kiosk and came out without it.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c132"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c129",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Corrigan"
+      },
+      "establishes": [],
+      "text": "Broadnax on Corrigan: There is a man who meets people at the subway kiosk and nobody will say his name out loud.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Corrigan"
+      },
+      "establishes": [],
+      "text": "Steinbach on Corrigan: Corrigan has been selling things that were never Corrigan’s to sell.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c131",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the subway kiosk, and the shop it came from closed two years ago.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c132",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the subway kiosk in a name that does not exist, made out at the hour in question.",
+      "place": "subway-kiosk",
+      "leadsTo": [
+        "c133"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "The receiver at the subway kiosk would rather talk than be held: Corrigan was there from 7:30 PM handing over a parcel of somebody else’s silver, which is a charge Corrigan will take over this one.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Corrigan at the subway kiosk from 7:30 PM with both hands full.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c135",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Bernstein on Brennan: Brennan’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c136",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Broadnax on Brennan: Somebody at the Arcadia sells what a druggist will not, and Brennan knows which door.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Shapiro on Brennan: Brennan was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c138",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Arcadia, folded the way one particular hand folds them.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c139",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Arcadia signed by a doctor who has been dead since the spring.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 10
+        }
+      ],
+      "text": "The man who sells it at the Arcadia gives it up rather than be held: Brennan was there from 11:00 PM, and stayed until it took hold.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 10
+        }
+      ],
+      "text": "The doctor Brennan used to see confirms the habit and the hour: Brennan was at the Arcadia from 11:00 PM, and could not have crossed the street unhelped.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c142",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Broadnax"
+      },
+      "establishes": [],
+      "text": "Feldman on Broadnax: Broadnax was carrying a parcel into the newsstand and came out without it.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c146"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c143",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Broadnax"
+      },
+      "establishes": [],
+      "text": "Bernstein on Broadnax: There is a man who meets people at the newsstand and nobody will say his name out loud.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c142"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c144",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Broadnax"
+      },
+      "establishes": [],
+      "text": "Brennan on Broadnax: Broadnax has been selling things that were never Broadnax’s to sell.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c145",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the newsstand, and the shop it came from closed two years ago.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c146",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the newsstand in a name that does not exist, made out at the hour in question.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c148"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c147",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 4
+        }
+      ],
+      "text": "The receiver at the newsstand would rather talk than be held: Broadnax was there from 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Broadnax will take over this one.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c148",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 4
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Broadnax at the newsstand from 8:00 PM with both hands full.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c149",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Petrosino on Stannard: Stannard’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c150",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Corrigan on Stannard: Somebody at the Arcadia sells what a druggist will not, and Stannard knows which door.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c153"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c151",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Brauer on Stannard: Stannard was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c152",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Arcadia, folded the way one particular hand folds them.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c153",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Arcadia signed by a doctor who has been dead since the spring.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c155"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c154",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "The man who sells it at the Arcadia gives it up rather than be held: Stannard was there from 8:00 PM to 8:30 PM, and stayed until it took hold.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c155",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "The doctor Stannard used to see confirms the habit and the hour: Stannard was at the Arcadia from 8:00 PM to 8:30 PM, and could not have crossed the street unhelped.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c156",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Steinbach"
+      },
+      "establishes": [],
+      "text": "Bernstein on Steinbach: Steinbach had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c157",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Steinbach"
+      },
+      "establishes": [],
+      "text": "Brennan on Steinbach: Steinbach is on a temperance pledge that Steinbach mentions before anybody asks.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c158",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Steinbach"
+      },
+      "establishes": [],
+      "text": "Feldman on Steinbach: Somebody at the Arcadia says Steinbach is in more often than Steinbach lets on.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c159",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c160"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c160",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A tab at the Arcadia in a name that is not Steinbach’s, in Steinbach’s handwriting.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c161"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
     },
     {
       "id": "c161",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Patrick Corrigan"
+        "type": "place",
+        "placeId": "dance-hall"
       },
-      "establishes": [],
-      "text": "Bridget Brennan on Patrick Corrigan: Patrick Corrigan was carrying a parcel into the subway kiosk at the corner and came out without it.",
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "The man behind the counter at the Arcadia knows exactly: Steinbach was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.",
       "place": "dance-hall",
       "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
     },
     {
       "id": "c162",
       "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-s4",
-        "topic": "Patrick Corrigan"
-      },
-      "establishes": [],
-      "text": "Marion Stannard on Patrick Corrigan: There is a man who meets people at the subway kiosk at the corner and nobody will say his name out loud.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c164"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c163",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Patrick Corrigan"
-      },
-      "establishes": [],
-      "text": "Ernst Brauer on Patrick Corrigan: Patrick Corrigan has been selling things that were never Patrick Corrigan’s to sell.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c164",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "subway-kiosk"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the subway kiosk at the corner, and the shop it came from closed two years ago.",
-      "place": "subway-kiosk",
-      "leadsTo": [
-        "c166"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c165",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "subway-kiosk"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the subway kiosk at the corner in a name that does not exist, made out at the hour in question.",
-      "place": "subway-kiosk",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c166",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "subway-kiosk"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "subway-kiosk",
-          "tick": 3
-        }
-      ],
-      "text": "The receiver at the subway kiosk at the corner would rather talk than be held: Patrick Corrigan was there from 7:30 PM handing over a parcel of somebody else’s silver, which is a charge Patrick Corrigan will take over this one.",
-      "place": "subway-kiosk",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s1",
-      "branchId": "b2"
-    },
-    {
-      "id": "c167",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "subway-kiosk"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s1",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "subway-kiosk",
-          "tick": 3
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Patrick Corrigan at the subway kiosk at the corner from 7:30 PM with both hands full.",
-      "place": "subway-kiosk",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s1"
-    },
-    {
-      "id": "c168",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Bridget Brennan"
-      },
-      "establishes": [],
-      "text": "Ernst Brauer on Bridget Brennan: Bridget Brennan’s sleeves are buttoned at the wrist in a warm room.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c173"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c169",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Bridget Brennan"
-      },
-      "establishes": [],
-      "text": "Rosaria Petrosino on Bridget Brennan: Somebody at the Arcadia dance hall sells what a druggist will not, and Bridget Brennan knows which door.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c170",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Bridget Brennan"
-      },
-      "establishes": [],
-      "text": "Patrick Corrigan on Bridget Brennan: Bridget Brennan was steady at nine and shaking at seven, and it was not nerves about the police.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c171",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A paper of powder at the Arcadia dance hall, folded the way one particular hand folds them.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c172",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A prescription blank at the Arcadia dance hall signed by a doctor who has been dead since the spring.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c173",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 10
-        }
-      ],
-      "text": "The man who sells it at the Arcadia dance hall gives it up rather than be held: Bridget Brennan was there from 11:00 PM, and stayed until it took hold.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
-    },
-    {
-      "id": "c174",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 10
-        }
-      ],
-      "text": "The doctor Bridget Brennan used to see confirms the habit and the hour: Bridget Brennan was at the Arcadia dance hall from 11:00 PM, and could not have crossed the street unhelped.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s2"
-    },
-    {
-      "id": "c175",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Alonzo Broadnax"
-      },
-      "establishes": [],
-      "text": "Patrick Corrigan on Alonzo Broadnax: Alonzo Broadnax was carrying a parcel into the newsstand on the corner and came out without it.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c176",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Alonzo Broadnax"
-      },
-      "establishes": [],
-      "text": "Ernst Brauer on Alonzo Broadnax: There is a man who meets people at the newsstand on the corner and nobody will say his name out loud.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c177",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Alonzo Broadnax"
-      },
-      "establishes": [],
-      "text": "Rosaria Petrosino on Alonzo Broadnax: Alonzo Broadnax has been selling things that were never Alonzo Broadnax’s to sell.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c178",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [],
-      "text": "Wrapping paper and a cut string at the newsstand on the corner, and the shop it came from closed two years ago.",
-      "place": "corner-newsstand",
-      "leadsTo": [
-        "c180"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c179",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [],
-      "text": "A pawn ticket at the newsstand on the corner in a name that does not exist, made out at the hour in question.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c180",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "The receiver at the newsstand on the corner would rather talk than be held: Alonzo Broadnax was there from 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Alonzo Broadnax will take over this one.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s3",
-      "branchId": "b4"
-    },
-    {
-      "id": "c181",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "corner-newsstand"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s3",
-          "secretType": "fence"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "The goods turn up, tagged and dated, and the tag puts Alonzo Broadnax at the newsstand on the corner from 8:00 PM with both hands full.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s3"
-    },
-    {
-      "id": "c182",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Marion Stannard"
-      },
-      "establishes": [],
-      "text": "Bridget Brennan on Marion Stannard: Marion Stannard’s sleeves are buttoned at the wrist in a warm room.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c183",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Marion Stannard"
-      },
-      "establishes": [],
-      "text": "Bernard Feldman on Marion Stannard: Somebody at the Arcadia dance hall sells what a druggist will not, and Marion Stannard knows which door.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c187"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c184",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-cop",
-        "topic": "Marion Stannard"
-      },
-      "establishes": [],
-      "text": "Louis Bernstein on Marion Stannard: Marion Stannard was steady at nine and shaking at seven, and it was not nerves about the police.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c185",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A paper of powder at the Arcadia dance hall, folded the way one particular hand folds them.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c186",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A prescription blank at the Arcadia dance hall signed by a doctor who has been dead since the spring.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c187",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 5
-        }
-      ],
-      "text": "The man who sells it at the Arcadia dance hall gives it up rather than be held: Marion Stannard was there from 8:00 PM to 8:30 PM, and stayed until it took hold.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c188",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s4",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 5
-        }
-      ],
-      "text": "The doctor Marion Stannard used to see confirms the habit and the hour: Marion Stannard was at the Arcadia dance hall from 8:00 PM to 8:30 PM, and could not have crossed the street unhelped.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s4"
-    },
-    {
-      "id": "c189",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f1",
-        "topic": "Wilhelm Steinbach"
-      },
-      "establishes": [],
-      "text": "Ernst Brauer on Wilhelm Steinbach: Wilhelm Steinbach had taken a drink and had gone to some trouble about the smell of it.",
-      "place": "corner-newsstand",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c190",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f3",
-        "topic": "Wilhelm Steinbach"
-      },
-      "establishes": [],
-      "text": "Rosaria Petrosino on Wilhelm Steinbach: Wilhelm Steinbach is on a temperance pledge that Wilhelm Steinbach mentions before anybody asks.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c191",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Wilhelm Steinbach"
-      },
-      "establishes": [],
-      "text": "Patrick Corrigan on Wilhelm Steinbach: Somebody at the Arcadia dance hall says Wilhelm Steinbach is in more often than Wilhelm Steinbach lets on.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c193"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b5"
-    },
-    {
-      "id": "c192",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A bottle at the Arcadia dance hall pushed behind the pipes, the seal broken and the level down.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "noise",
-      "aboutSecretOf": "p-s6"
-    },
-    {
-      "id": "c193",
-      "kind": "physical",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [],
-      "text": "A tab at the Arcadia dance hall in a name that is not Wilhelm Steinbach’s, in Wilhelm Steinbach’s handwriting.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c194"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b5"
-    },
-    {
-      "id": "c194",
-      "kind": "overheard",
-      "source": {
         "type": "place",
         "placeId": "dance-hall"
       },
@@ -7322,40 +6346,7 @@
           "tick": 5
         }
       ],
-      "text": "The man behind the counter at the Arcadia dance hall knows exactly: Wilhelm Steinbach was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b5"
-    },
-    {
-      "id": "c195",
-      "kind": "overheard",
-      "source": {
-        "type": "place",
-        "placeId": "dance-hall"
-      },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s6",
-          "secretType": "secret-drinking"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 5
-        }
-      ],
-      "text": "The tab at the Arcadia dance hall is dated and timed, from 8:00 PM to 8:30 PM, and Wilhelm Steinbach was there to run it up.",
+      "text": "The tab at the Arcadia is dated and timed, from 8:00 PM to 8:30 PM, and Steinbach was there to run it up.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "noise",
@@ -7364,7 +6355,7 @@
   ],
   "findable": [
     {
-      "id": "c144",
+      "id": "c107",
       "kind": "scene",
       "source": {
         "type": "place",
@@ -7380,19 +6371,17 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Edward Doyle was found at the victim’s apartment on the fourth floor. His watch glass broke against the floor and the hands have not moved since. The dumbwaiter squeal came at 8:00 PM, and the shaft carries and the car was worked on the hour and the half hour. That puts the killing in that half hour and no later.",
+      "text": "Doyle was found at the fourth floor. His watch glass broke against the floor and the hands have not moved since. The dumbwaiter car was worked at 8:00 PM, as it is on the hour and the half hour.",
       "place": "res-apartment",
       "leadsTo": [
-        "c120",
-        "c062",
-        "c158",
-        "c162"
+        "c007",
+        "c002"
       ],
       "role": "spine",
       "anchorId": "dumbwaiter"
     },
     {
-      "id": "c145",
+      "id": "c108",
       "kind": "morgue",
       "source": {
         "type": "place",
@@ -7414,13 +6403,15 @@
       "text": "The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.",
       "place": "res-apartment",
       "leadsTo": [
-        "c120",
-        "c138"
+        "c083",
+        "c007",
+        "c126",
+        "c072"
       ],
       "role": "spine"
     },
     {
-      "id": "c160",
+      "id": "c127",
       "kind": "client",
       "source": {
         "type": "person",
@@ -7434,25 +6425,168 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Marion Stannard hired us. Marion Stannard wants it known that Sadie Shapiro owed the victim money, and would rather we started there.",
+      "text": "Stannard hired us, and wants it known that Shapiro owed the victim money, and would rather we started there.",
       "place": "dance-hall",
       "leadsTo": [
-        "c138",
-        "c019",
-        "c029",
+        "c083",
         "c011",
-        "c137",
-        "c046"
+        "c019",
+        "c110",
+        "c029",
+        "c147"
       ],
       "role": "spine"
     },
     {
-      "id": "c120",
+      "id": "c083",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-f3",
-        "topic": "who was there at 8:00 PM"
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 6
+        }
+      ],
+      "text": "Petrosino says Steinbach was at the Arcadia from 8:00 PM to 9:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c102",
+        "c002",
+        "c065",
+        "c110"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "Corrigan says Stannard was at the Arcadia from 8:00 PM to 9:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c102",
+        "c011",
+        "c065"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c102",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Shapiro’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 3
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Petrosino was at the Arcadia from 7:30 PM to 8:00 PM and says Shapiro was not.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c019",
+        "c113",
+        "c100",
+        "c159"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c002",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "Corrigan says Brennan was at the Arcadia from 8:00 PM to 8:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c075",
+        "c154"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -7463,57 +6597,14 @@
         },
         {
           "kind": "personAt",
-          "personId": "p-s2",
+          "personId": "p-s1",
           "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 4
+          "tick": 5
         }
       ],
-      "text": "Rosaria Petrosino runs through it: at 8:00 PM there were Patrick Corrigan, Bridget Brennan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
+      "text": "Brennan says Corrigan was at the Arcadia from 8:00 PM to 8:30 PM.",
       "place": "dance-hall",
-      "leadsTo": [
-        "c019",
-        "c147",
-        "c002"
-      ],
-      "role": "spine"
-    },
-    {
-      "id": "c138",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "Sadie Shapiro’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Bridget Brennan was at the Arcadia dance hall at 8:00 PM and says Sadie Shapiro was not.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c062",
-        "c147",
-        "c099",
-        "c183",
-        "c178"
-      ],
+      "leadsTo": [],
       "role": "spine"
     },
     {
@@ -7522,7 +6613,7 @@
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Sadie Shapiro"
+        "topic": "Shapiro"
       },
       "establishes": [
         {
@@ -7537,20 +6628,21 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Bridget Brennan says Sadie Shapiro was at the drying yard behind the laundry at 7:00 PM.",
+      "text": "Brennan says Shapiro was at the drying yard at 7:00 PM.",
       "place": "dance-hall",
       "leadsTo": [
-        "c065"
+        "c026",
+        "c143"
       ],
       "role": "spine"
     },
     {
-      "id": "c062",
+      "id": "c065",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Alonzo Broadnax"
+        "personId": "p-f2",
+        "topic": "Broadnax"
       },
       "establishes": [
         {
@@ -7558,26 +6650,20 @@
           "personId": "p-s3",
           "place": "corner-newsstand",
           "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 5
         }
       ],
-      "text": "Ernst Brauer says Alonzo Broadnax was at the newsstand on the corner from 8:00 PM to 8:30 PM.",
-      "place": "corner-newsstand",
+      "text": "Feldman says Broadnax was at the newsstand at 8:00 PM.",
+      "place": "drugstore",
       "leadsTo": [],
       "role": "spine"
     },
     {
-      "id": "c147",
+      "id": "c110",
       "kind": "anchor",
       "source": {
         "type": "person",
         "personId": "p-f2",
-        "topic": "Edward Doyle that evening"
+        "topic": "Doyle that evening"
       },
       "establishes": [
         {
@@ -7591,80 +6677,18 @@
           "tick": 3
         }
       ],
-      "text": "Bernard Feldman puts Edward Doyle at Kaplan’s drugstore with the soda fountain when the ice came, which was 7:30 PM, and alive enough to argue about the weather.",
+      "text": "Feldman puts Doyle at Kaplan’s when the ice came, which was 7:30 PM, and alive enough to argue about the weather.",
       "place": "drugstore",
-      "leadsTo": [
-        "c149",
-        "c140"
-      ],
+      "leadsTo": [],
       "role": "spine",
       "anchorId": "ice-delivery"
     },
     {
-      "id": "c099",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s2",
-        "topic": "who was there at 8:00 PM"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s1",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s4",
-          "place": "dance-hall",
-          "tick": 4
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s6",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Bridget Brennan runs through it: at 8:00 PM there were Patrick Corrigan, Marion Stannard, Wilhelm Steinbach at the Arcadia dance hall, and nobody else worth naming.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c029",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-s3",
-        "topic": "Sadie Shapiro"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s5",
-          "place": "laundry-yard",
-          "tick": 2
-        },
-        {
-          "kind": "hadAccess",
-          "personId": "p-s5",
-          "methodId": "strangle"
-        }
-      ],
-      "text": "Alonzo Broadnax says Sadie Shapiro was at the drying yard behind the laundry at 7:00 PM.",
-      "place": "laundry-yard",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c149",
+      "id": "c113",
       "kind": "anchor",
       "source": {
         "type": "person",
-        "personId": "p-f2",
+        "personId": "p-cop",
         "topic": "the noise that evening"
       },
       "establishes": [
@@ -7682,72 +6706,45 @@
           "methodId": "strangle"
         }
       ],
-      "text": "Bernard Feldman was at the newsstand on the corner at 8:00 PM and heard a scuffle and a chair dragging from the direction of the victim’s apartment on the fourth floor, when the dumbwaiter went up.",
-      "place": "drugstore",
+      "text": "Bernstein was at the subway kiosk at 8:00 PM and heard a scuffle and a chair dragging from the direction of the fourth floor, as the dumbwaiter was going up.",
+      "place": "corner-newsstand",
       "leadsTo": [],
       "role": "corroboration",
       "anchorId": "dumbwaiter"
     },
     {
-      "id": "c002",
+      "id": "c029",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "Bridget Brennan"
+        "personId": "p-s3",
+        "topic": "Shapiro"
       },
       "establishes": [
         {
           "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 4
+          "personId": "p-s5",
+          "place": "laundry-yard",
+          "tick": 2
         },
         {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 5
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
         }
       ],
-      "text": "Patrick Corrigan says Bridget Brennan was at the Arcadia dance hall from 8:00 PM to 8:30 PM.",
-      "place": "dance-hall",
+      "text": "Broadnax says Shapiro was at the drying yard at 7:00 PM.",
+      "place": "laundry-yard",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c140",
-      "kind": "observation",
+      "id": "c126",
+      "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f3",
-        "topic": "Sadie Shapiro’s account"
-      },
-      "establishes": [
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 3
-        },
-        {
-          "kind": "personNotAt",
-          "personId": "p-s5",
-          "place": "dance-hall",
-          "tick": 4
-        }
-      ],
-      "text": "Rosaria Petrosino was at the Arcadia dance hall from 7:30 PM to 8:00 PM and says Sadie Shapiro was not.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c158",
-      "kind": "document",
-      "source": {
-        "type": "place",
-        "placeId": "res-apartment"
+        "personId": "p-s6",
+        "topic": "Shapiro and Doyle"
       },
       "establishes": [
         {
@@ -7756,39 +6753,67 @@
           "motiveType": "debt"
         }
       ],
-      "text": "Found at the victim’s apartment on the fourth floor: A promissory note for $4,000 signed by Sadie Shapiro, endorsed to Edward Doyle, three months past due.",
-      "place": "res-apartment",
-      "leadsTo": [],
-      "role": "corroboration"
-    },
-    {
-      "id": "c065",
-      "kind": "observation",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Alonzo Broadnax"
-      },
-      "establishes": [
-        {
-          "kind": "personAt",
-          "personId": "p-s3",
-          "place": "corner-newsstand",
-          "tick": 4
-        }
-      ],
-      "text": "Bernard Feldman says Alonzo Broadnax was at the newsstand on the corner at 8:00 PM.",
+      "text": "Steinbach says Doyle told Shapiro that Friday was the end of it, one way or the other.",
       "place": "drugstore",
-      "leadsTo": [],
+      "leadsTo": [
+        "c114"
+      ],
       "role": "corroboration"
     },
     {
-      "id": "c011",
+      "id": "c100",
       "kind": "observation",
       "source": {
         "type": "person",
         "personId": "p-s2",
-        "topic": "Patrick Corrigan"
+        "topic": "Shapiro’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Brennan was at the Arcadia at 8:00 PM and says Shapiro was not.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "laundry-yard",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Broadnax says Brennan was at the drying yard at 7:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Corrigan"
       },
       "establishes": [
         {
@@ -7802,84 +6827,82 @@
           "personId": "p-s1",
           "place": "dance-hall",
           "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
         }
       ],
-      "text": "Bridget Brennan says Patrick Corrigan was at the Arcadia dance hall from 8:00 PM to 8:30 PM.",
+      "text": "Petrosino says Corrigan was at the Arcadia from 8:00 PM to 9:30 PM.",
       "place": "dance-hall",
       "leadsTo": [
-        "c168"
+        "c150"
       ],
       "role": "corroboration"
     },
     {
-      "id": "c137",
+      "id": "c075",
       "kind": "observation",
       "source": {
         "type": "person",
-        "personId": "p-s1",
-        "topic": "Sadie Shapiro’s account"
+        "personId": "p-f3",
+        "topic": "Brennan"
       },
       "establishes": [
         {
-          "kind": "personNotAt",
-          "personId": "p-s5",
+          "kind": "personAt",
+          "personId": "p-s2",
           "place": "dance-hall",
           "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 5
         }
       ],
-      "text": "Patrick Corrigan was at the Arcadia dance hall at 8:00 PM and says Sadie Shapiro was not.",
+      "text": "Petrosino says Brennan was at the Arcadia from 8:00 PM to 8:30 PM.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "corroboration"
     },
     {
-      "id": "c046",
-      "kind": "observation",
+      "id": "c147",
+      "kind": "overheard",
       "source": {
-        "type": "person",
-        "personId": "p-s5",
-        "topic": "Alonzo Broadnax"
+        "type": "place",
+        "placeId": "corner-newsstand"
       },
       "establishes": [
         {
-          "kind": "personAt",
+          "kind": "secretExplained",
           "personId": "p-s3",
-          "place": "laundry-yard",
-          "tick": 2
+          "secretType": "fence"
         },
         {
-          "kind": "hadAccess",
+          "kind": "personAt",
           "personId": "p-s3",
-          "methodId": "strangle"
+          "place": "corner-newsstand",
+          "tick": 4
         }
       ],
-      "text": "Sadie Shapiro says Alonzo Broadnax was at the drying yard behind the laundry at 7:00 PM.",
-      "place": "laundry-yard",
-      "leadsTo": [
-        "c191"
-      ],
-      "role": "corroboration"
+      "text": "The receiver at the newsstand would rather talk than be held: Broadnax was there from 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Broadnax will take over this one.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s3"
     },
     {
-      "id": "c183",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-f2",
-        "topic": "Marion Stannard"
-      },
-      "establishes": [],
-      "text": "Bernard Feldman on Marion Stannard: Somebody at the Arcadia dance hall sells what a druggist will not, and Marion Stannard knows which door.",
-      "place": "drugstore",
-      "leadsTo": [
-        "c187"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s4",
-      "branchId": "b1"
-    },
-    {
-      "id": "c187",
+      "id": "c154",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7904,50 +6927,75 @@
           "tick": 5
         }
       ],
-      "text": "The man who sells it at the Arcadia dance hall gives it up rather than be held: Marion Stannard was there from 8:00 PM to 8:30 PM, and stayed until it took hold.",
+      "text": "The man who sells it at the Arcadia gives it up rather than be held: Stannard was there from 8:00 PM to 8:30 PM, and stayed until it took hold.",
       "place": "dance-hall",
       "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s4",
+      "role": "corroboration",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c114",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "the ice being brought in"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 3
+        }
+      ],
+      "text": "Corrigan claims Kaplan’s at 7:30 PM, which is when the ice being brought in was on. Asked about it, Corrigan cannot say that the iceman dropped a block on the step and it went in three — and everybody who was there can.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c128"
+      ],
+      "role": "noise",
+      "anchorId": "ice-delivery",
+      "aboutSecretOf": "p-s1",
       "branchId": "b1"
     },
     {
-      "id": "c162",
+      "id": "c128",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-s4",
-        "topic": "Patrick Corrigan"
+        "personId": "p-cop",
+        "topic": "Corrigan"
       },
       "establishes": [],
-      "text": "Marion Stannard on Patrick Corrigan: There is a man who meets people at the subway kiosk at the corner and nobody will say his name out loud.",
-      "place": "dance-hall",
+      "text": "Bernstein on Corrigan: Corrigan was carrying a parcel into the subway kiosk and came out without it.",
+      "place": "corner-newsstand",
       "leadsTo": [
-        "c164"
+        "c132"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s1",
-      "branchId": "b2"
+      "branchId": "b1"
     },
     {
-      "id": "c164",
+      "id": "c132",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "subway-kiosk"
       },
       "establishes": [],
-      "text": "Wrapping paper and a cut string at the subway kiosk at the corner, and the shop it came from closed two years ago.",
+      "text": "A pawn ticket at the subway kiosk in a name that does not exist, made out at the hour in question.",
       "place": "subway-kiosk",
       "leadsTo": [
-        "c166"
+        "c133"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s1",
-      "branchId": "b2"
+      "branchId": "b1"
     },
     {
-      "id": "c166",
+      "id": "c133",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -7966,77 +7014,68 @@
           "tick": 3
         }
       ],
-      "text": "The receiver at the subway kiosk at the corner would rather talk than be held: Patrick Corrigan was there from 7:30 PM handing over a parcel of somebody else’s silver, which is a charge Patrick Corrigan will take over this one.",
+      "text": "The receiver at the subway kiosk would rather talk than be held: Corrigan was there from 7:30 PM handing over a parcel of somebody else’s silver, which is a charge Corrigan will take over this one.",
       "place": "subway-kiosk",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s1",
-      "branchId": "b2"
+      "branchId": "b1"
     },
     {
-      "id": "c168",
+      "id": "c143",
       "kind": "overheard",
       "source": {
         "type": "person",
-        "personId": "p-f1",
-        "topic": "Bridget Brennan"
+        "personId": "p-cop",
+        "topic": "Broadnax"
       },
       "establishes": [],
-      "text": "Ernst Brauer on Bridget Brennan: Bridget Brennan’s sleeves are buttoned at the wrist in a warm room.",
+      "text": "Bernstein on Broadnax: There is a man who meets people at the newsstand and nobody will say his name out loud.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c173"
+        "c142"
       ],
       "role": "noise",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
     },
     {
-      "id": "c173",
+      "id": "c142",
       "kind": "overheard",
       "source": {
-        "type": "place",
-        "placeId": "dance-hall"
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Broadnax"
       },
-      "establishes": [
-        {
-          "kind": "secretExplained",
-          "personId": "p-s2",
-          "secretType": "dope"
-        },
-        {
-          "kind": "personAt",
-          "personId": "p-s2",
-          "place": "dance-hall",
-          "tick": 10
-        }
+      "establishes": [],
+      "text": "Feldman on Broadnax: Broadnax was carrying a parcel into the newsstand and came out without it.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c146"
       ],
-      "text": "The man who sells it at the Arcadia dance hall gives it up rather than be held: Bridget Brennan was there from 11:00 PM, and stayed until it took hold.",
-      "place": "dance-hall",
-      "leadsTo": [],
-      "role": "disqualifier",
-      "aboutSecretOf": "p-s2",
-      "branchId": "b3"
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
     },
     {
-      "id": "c178",
+      "id": "c146",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "corner-newsstand"
       },
       "establishes": [],
-      "text": "Wrapping paper and a cut string at the newsstand on the corner, and the shop it came from closed two years ago.",
+      "text": "A pawn ticket at the newsstand in a name that does not exist, made out at the hour in question.",
       "place": "corner-newsstand",
       "leadsTo": [
-        "c180"
+        "c148"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c180",
+      "id": "c148",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8055,50 +7094,49 @@
           "tick": 4
         }
       ],
-      "text": "The receiver at the newsstand on the corner would rather talk than be held: Alonzo Broadnax was there from 8:00 PM handing over a parcel of somebody else’s silver, which is a charge Alonzo Broadnax will take over this one.",
+      "text": "The goods turn up, tagged and dated, and the tag puts Broadnax at the newsstand from 8:00 PM with both hands full.",
       "place": "corner-newsstand",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s3",
-      "branchId": "b4"
+      "branchId": "b2"
     },
     {
-      "id": "c191",
-      "kind": "overheard",
-      "source": {
-        "type": "person",
-        "personId": "p-s1",
-        "topic": "Wilhelm Steinbach"
-      },
-      "establishes": [],
-      "text": "Patrick Corrigan on Wilhelm Steinbach: Somebody at the Arcadia dance hall says Wilhelm Steinbach is in more often than Wilhelm Steinbach lets on.",
-      "place": "dance-hall",
-      "leadsTo": [
-        "c193"
-      ],
-      "role": "noise",
-      "aboutSecretOf": "p-s6",
-      "branchId": "b5"
-    },
-    {
-      "id": "c193",
+      "id": "c159",
       "kind": "physical",
       "source": {
         "type": "place",
         "placeId": "dance-hall"
       },
       "establishes": [],
-      "text": "A tab at the Arcadia dance hall in a name that is not Wilhelm Steinbach’s, in Wilhelm Steinbach’s handwriting.",
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
       "place": "dance-hall",
       "leadsTo": [
-        "c194"
+        "c160"
       ],
       "role": "noise",
       "aboutSecretOf": "p-s6",
-      "branchId": "b5"
+      "branchId": "b3"
     },
     {
-      "id": "c194",
+      "id": "c160",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A tab at the Arcadia in a name that is not Steinbach’s, in Steinbach’s handwriting.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c161"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c161",
       "kind": "overheard",
       "source": {
         "type": "place",
@@ -8123,22 +7161,91 @@
           "tick": 5
         }
       ],
-      "text": "The man behind the counter at the Arcadia dance hall knows exactly: Wilhelm Steinbach was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.",
+      "text": "The man behind the counter at the Arcadia knows exactly: Steinbach was on the same stool from 8:00 PM to 8:30 PM and was in no condition to walk anywhere, let alone do this.",
       "place": "dance-hall",
       "leadsTo": [],
       "role": "disqualifier",
       "aboutSecretOf": "p-s6",
-      "branchId": "b5"
+      "branchId": "b3"
+    },
+    {
+      "id": "c150",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Corrigan on Stannard: Somebody at the Arcadia sells what a druggist will not, and Stannard knows which door.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c153"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c153",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Arcadia signed by a doctor who has been dead since the spring.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c155"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c155",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "The doctor Stannard used to see confirms the habit and the hour: Stannard was at the Arcadia from 8:00 PM to 8:30 PM, and could not have crossed the street unhelped.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
     }
   ],
   "starting": [
-    "c144",
-    "c145",
-    "c160"
+    "c107",
+    "c108",
+    "c127"
   ],
   "clientId": "p-s4",
-  "par": 8,
-  "budget": 20,
+  "par": 10,
+  "slack": 6,
+  "budget": 16,
   "coronerWindow": [
     3,
     6
@@ -8152,10 +7259,10 @@
   },
   "deduction": {
     "timeOfDeath": [
-      "c145",
-      "c147",
-      "c144",
-      "c149"
+      "c108",
+      "c110",
+      "c107",
+      "c113"
     ],
     "timeOfDeathAnchors": [
       "dumbwaiter",
@@ -8163,47 +7270,44 @@
     ],
     "exculpations": {
       "p-s1": [
-        "c120",
-        "c099",
-        "c011"
+        "c011",
+        "c072"
       ],
       "p-s2": [
-        "c120",
-        "c002"
+        "c002",
+        "c075"
       ],
       "p-s3": [
-        "c062",
         "c065",
-        "c180"
+        "c147",
+        "c148"
       ],
       "p-s4": [
-        "c120",
-        "c099",
-        "c187"
+        "c007",
+        "c154",
+        "c155"
       ],
       "p-s6": [
-        "c120",
-        "c099",
-        "c194"
+        "c083",
+        "c161"
       ]
     },
     "inculpation": [
-      "c138",
-      "c140",
-      "c137"
+      "c102",
+      "c100"
     ],
     "access": [
       "c019",
       "c029"
     ],
     "method": [
-      "c144",
-      "c145",
-      "c149"
+      "c107",
+      "c108",
+      "c113"
     ],
     "motive": [
-      "c160",
-      "c158"
+      "c127",
+      "c126"
     ]
   }
 }
