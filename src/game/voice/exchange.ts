@@ -28,8 +28,19 @@ import { Dealer, SCHEMA, tagIs, tagOf, type Card, type Slots } from './cards.js'
 import { beatsOf, findKindOf, strippedQuote, type Beat } from './facts.js';
 import { knowsHim } from './roll.js';
 import { COLOUR_LINES, RECORD_LEADS } from '../voice-data.js';
+import { tidyPunctuation } from './prose.js';
 
 export type Register = 'truth' | 'lie' | 'evasion';
+
+/**
+ * Stand-ins put into a frame's `{business}` and `{colour}` slots while it is
+ * dealt, so each occurrence can be given a card of its own afterwards. A
+ * frame that asks for business twice means two gestures, not one gesture
+ * printed twice. Control characters: nothing in any deck contains them, and
+ * they never survive the function.
+ */
+const BUSINESS_MARK = 'business';
+const COLOUR_MARK = 'colour';
 
 const MANDATORY = (SCHEMA.decks.utterances?.mandatorySlots ?? {}) as Record<string, string[]>;
 
@@ -259,13 +270,33 @@ export function frameAnswer(
   gaps?: string[],
 ): Answer {
   const cardIds = [...spoken.cardIds];
-  const business = businessLine(dealer, person, temper, slots, exclude, gaps);
-  if (business) cardIds.push(business.cardId);
-  const colour = COLOUR_LINES[dealer.random.int(COLOUR_LINES.length)] as string;
+  // A frame that asks for business twice — the gesture on the way in and the
+  // one mid-answer — must get two different pieces of it, so the slots are
+  // filled one at a time out of a widening exclusion list rather than all at
+  // once with the same card. Twenty-eight of the frames ask twice.
+  const spentBusiness = new Set(exclude);
+  const nextBusiness = (): string => {
+    const drawn = businessLine(dealer, person, temper, slots, spentBusiness, gaps);
+    if (!drawn) return '';
+    spentBusiness.add(drawn.cardId);
+    cardIds.push(drawn.cardId);
+    return drawn.text;
+  };
+  const spentColour = new Set<string>();
+  const nextColour = (): string => {
+    for (let i = 0; i < COLOUR_LINES.length; i++) {
+      const line = COLOUR_LINES[dealer.random.int(COLOUR_LINES.length)] as string;
+      if (spentColour.has(line)) continue;
+      spentColour.add(line);
+      return line;
+    }
+    return COLOUR_LINES[0] as string;
+  };
 
   if (spoken.mode === 'record') {
     const lead = RECORD_LEADS[dealer.random.int(RECORD_LEADS.length)] as string;
-    const head = business ? `${business.text} ` : '';
+    const business = nextBusiness();
+    const head = business.length > 0 ? `${business} ` : '';
     return { text: `${head}${lead} ${spoken.text}`, mode: spoken.mode, cardIds };
   }
 
@@ -284,17 +315,23 @@ export function frameAnswer(
     {
       ...slots,
       fact: spoken.text,
-      business: business?.text ?? '',
-      colour,
+      // Sentinels: the frame is dealt with its business and colour slots
+      // marked rather than filled, and each mark takes its own card below.
+      business: BUSINESS_MARK,
+      colour: COLOUR_MARK,
       dashiell,
     },
   );
   if (!frame) {
-    const head = business ? `${business.text} ` : '';
+    const business = nextBusiness();
+    const head = business.length > 0 ? `${business} ` : '';
     return { text: `${head}“${spoken.text}”`, mode: spoken.mode, cardIds };
   }
   cardIds.push(frame.cardId);
-  return { text: frame.text.replace(/\s{2,}/g, ' ').trim(), mode: spoken.mode, cardIds };
+  let text = frame.text;
+  while (text.includes(BUSINESS_MARK)) text = text.replace(BUSINESS_MARK, nextBusiness());
+  while (text.includes(COLOUR_MARK)) text = text.replace(COLOUR_MARK, nextColour());
+  return { text: tidyPunctuation(text), mode: spoken.mode, cardIds };
 }
 
 /** Which of Dashiell's line kinds a topic asks for. */

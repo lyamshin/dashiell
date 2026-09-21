@@ -1374,3 +1374,25 @@ describe('the endings', () => {
     for (const card of wrong) expect(card.text, card.id).toContain('{missed}');
   });
 });
+
+describe('a frame that asks for business twice', () => {
+  it('gets two gestures and not one printed twice', () => {
+    // Twenty-eight of the frames have two {business} slots — the gesture on
+    // the way in and the one mid-answer — and `fill` put the same card in
+    // both of them.
+    const twice = DECKS.frames.filter((c) => (c.text.match(/\{business\}/g) ?? []).length > 1);
+    expect(twice.length, 'no frame asks for business twice any more').toBeGreaterThan(0);
+
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      for (const page of exhaust(seed, 2).log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose') continue;
+          for (const card of DECKS.business) {
+            const hits = block.text.split(card.text).length - 1;
+            expect(hits, `seed ${seed}: ${card.id} twice in one paragraph`).toBeLessThanOrEqual(1);
+          }
+        }
+      }
+    }
+  });
+});
