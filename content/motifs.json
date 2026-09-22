@@ -1,0 +1,60 @@
+{
+  "$comment": "M4b §A.2. The fixed motif vocabulary. Every card in every deck may carry `tags.motifs`: one to three of these words (zero is allowed for a card with no image in it). The validator rejects anything not on this list and reports per-deck coverage; the engine scores a card by how many of its motifs the page's motif set already holds. Nothing outside this file may add a word: a vocabulary that grows to fit the cards stops being a vocabulary. A card that fights it is a note in docs/08-tagging-notes.md, not a new motif.",
+  "$groups": "The groups are for the writer's eye and for the engine's two special cases: `weather` motifs are the ones that agree or disagree with the night, and `props` motifs are the ones the glue templates (§A.6) may carry into the next line as a noun.",
+  "groups": {
+    "weather": ["fog", "rain", "cold", "heat", "clear", "wind", "snow"],
+    "time": ["late", "dawn", "midnight"],
+    "sound": ["radio", "el", "piano", "bells", "traffic", "quiet", "singing", "footsteps"],
+    "props": [
+      "drink",
+      "cigarette",
+      "money",
+      "keys",
+      "paper",
+      "ledger",
+      "glass",
+      "hat",
+      "coat",
+      "telephone",
+      "clock",
+      "lamp",
+      "door",
+      "window",
+      "stairs",
+      "counter",
+      "mirror",
+      "photograph"
+    ],
+    "body": ["hands", "face", "eyes", "voice", "mouth", "shoulders", "breath"],
+    "place": [
+      "street",
+      "alley",
+      "room",
+      "bar",
+      "kitchen",
+      "office",
+      "roof",
+      "cellar",
+      "church",
+      "station"
+    ],
+    "theme": [
+      "funeral",
+      "market",
+      "theater",
+      "baseball",
+      "boxing",
+      "gambling",
+      "law",
+      "medicine",
+      "sea",
+      "machinery",
+      "animals",
+      "food",
+      "childhood",
+      "work",
+      "sleep",
+      "memory"
+    ]
+  }
+}
