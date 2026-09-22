@@ -12,7 +12,7 @@ import type { Clue, Id, Person } from '../../gen/types.js';
 import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
 import { OTHER_THING } from '../errand.js';
-import { figuresIn, hourAgrees, introduceNames, nameables, pastTense, sentencesOf, stripHere, wordCount, isSubjectless } from './text.js';
+import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, sentencesOf, stripHere, wordCount, isSubjectless } from './text.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
 import {
@@ -29,6 +29,7 @@ import {
   PRECINCT_LINES,
   SCENE_BODY,
   SCENE_BODY_AGAIN,
+  SCENE_BODY_OUTSIDE,
   SCENE_MISSING,
   SCENE_ROBBERY,
   SEARCH_ROOM_ACTS,
@@ -344,18 +345,31 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         if (beat.scene) {
           const pool =
             beat.scene === 'body'
-              ? SCENE_BODY
+              ? place?.kind === 'public'
+                ? SCENE_BODY_OUTSIDE
+                : SCENE_BODY
               : beat.scene === 'body-again'
                 ? SCENE_BODY_AGAIN
                 : beat.scene === 'robbery'
                   ? SCENE_ROBBERY
                   : SCENE_MISSING;
-          const line = pickShape(dealer.random, pool, victimSlots);
+          // The empty shelf is said once: by the find, when the opening report
+          // carries it, and by this line only when nothing else will.
+          const taken = view.kase.act.taken?.name ?? '§';
+          const shelfFound =
+            beat.scene === 'robbery' &&
+            (plan.beats.some((b) => b.kind === 'establish' && b.precinct !== undefined) ||
+              plan.beats.some(
+                (b) => b.kind === 'find' && (view.findableById.get(b.clueId)?.text ?? '').includes(taken),
+              ));
+          const line = shelfFound ? '' : pickShape(dealer.random, pool, victimSlots);
           if (line.length > 0) lines.push(line);
           if (beat.people.length === 0 && (beat.scene === 'body' || beat.scene === 'body-again')) {
             lines.push(dealer.random.pick(NOBODY_ELSE));
           }
-        } else if (beat.people.length === 0) {
+        }
+        // Who is here is always said, if only that it is nobody (§3).
+        if (lines.length === 0 && beat.people.length === 0) {
           lines.push(pickShape(dealer.random, NOBODY_HERE, { place: here }));
         }
         const opened = lines.length > 0 ? push({ text: lines.join(' '), voice: 'presence', beats: [i] }) : null;
@@ -458,7 +472,8 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const lines: string[] = [];
         for (const j of run) {
           const t = (beats[j] as Extract<Beat, { kind: 'thought' }>).thought;
-          let text = thoughtLine(stage, t, gaps);
+          const finds = paras.filter((p) => p.clueId !== undefined).map((p) => p.text);
+          let text = thoughtLine(stage, t, gaps, finds);
           if (/^Which\b/.test(text)) {
             const prev = lines[lines.length - 1];
             if (prev !== undefined && /\.$/.test(prev)) {
@@ -483,6 +498,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
             personIds: [t.subjectId, t.sourceId].filter((x): x is Id => x !== undefined),
             placeIds: [t.placeId, t.otherPlaceId].filter((x): x is Id => x !== undefined),
             text,
+            ...(t.single ? { hedge: true } : {}),
           });
         }
         push({ text: lines.join(' '), voice: 'thought', beats: run });
@@ -493,11 +509,20 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       /* ---------------------------------------------------- the bridge */
       case 'bridge': {
         const b = beat.bridge;
-        const who = b.whoId ? view.personById.get(b.whoId)?.surname : undefined;
-        const where = b.whereId ? view.placeById.get(b.whereId)?.shortName : undefined;
+        const whoPerson = b.whoId ? view.personById.get(b.whoId) : undefined;
+        const who = whoPerson?.surname;
+        // A fixture's clause already says where they are: "Hargrove, the
+        // doorman at the Wyckoff". Saying it again is the same fact twice.
+        const where =
+          b.whereId && !(whoPerson?.kind === 'fixture' && whoPerson.foundAt === b.whereId)
+            ? view.placeById.get(b.whereId)?.shortName
+            : undefined;
         const slots: Slots = { who, subject: b.subject, tie: b.tieText, where };
         const lead = (c: Card): boolean => (tagOf('bridge', c, 'lead') === 'search') === (b.search === true);
-        const drawn = deal(stage, 'bridge', [(c) => tagIs('bridge', c, 'tie', b.tie) && lead(c)], slots);
+        const fits = (c: Card): boolean => tagIs('bridge', c, 'tie', b.tie) && lead(c);
+        // §6: where the one to ask is found, said when the notebook knows it.
+        const ladder: Match[] = where ? [(c) => fits(c) && c.text.includes('{where}'), fits] : [fits];
+        const drawn = deal(stage, 'bridge', ladder, slots);
         let text = drawn?.text ?? '';
         if (text.length === 0) {
           gaps.push(`no-card: bridge has nothing for ${b.tie} with the slots this lead has`);
@@ -847,7 +872,7 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
   };
 }
 
-function thoughtLine(stage: Stage, t: Thought, gaps: string[]): string {
+function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly string[] = []): string {
   const caseType = stage.view.kase.act.type;
   // §3–§4: the watcher's view on arrival is the place's watch clause — why
   // the watcher matters is that they watch — so it is dealt from `watch`.
@@ -866,7 +891,17 @@ function thoughtLine(stage: Stage, t: Thought, gaps: string[]): string {
   const is = (c: Card, tag: string, want: string | undefined): boolean =>
     want === undefined || tagIs('thought', c, tag, want);
   const lied = t.lied === undefined ? undefined : t.lied ? 'yes' : 'no';
-  const cls = (c: Card): boolean => tagOf('thought', c, 'class') === t.cls && is(c, 'case', caseType);
+  const names = [
+    ...stage.view.kase.people.map((p) => p.surname),
+    ...stage.view.places.map((p) => p.shortName),
+  ];
+  // §5: a thought on one person's word says "if"; and it never says the find
+  // again in other words (§5's "find, then thought").
+  const cls = (c: Card): boolean =>
+    tagOf('thought', c, 'class') === t.cls &&
+    is(c, 'case', caseType) &&
+    (t.single !== true || hedged(c.text)) &&
+    !restates(c.text, finds, names);
   const ladder: Match[] = [
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && lied === 'yes' && tagOf('thought', c, 'lied') === 'yes',
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && is(c, 'lied', lied),

@@ -28,6 +28,9 @@ import { DECKS, deckOf, fill } from '../src/game/voice/cards.js';
 import { takesSpan } from '../src/game/voice/exchange.js';
 import { spokenSpan, spokenSpans } from '../src/game/voice/facts.js';
 import { spokenPlace } from '../src/game/scene/realize.js';
+import { HEDGE, WORKPLACES, restates } from '../src/game/scene/index.js';
+import { tagOf } from '../src/game/voice/cards.js';
+import { verblessPlacement } from '../src/game/voice/exchange.js';
 import {
   NIGHT_CEILING,
   candidateThoughts,
@@ -791,5 +794,121 @@ describe('M8 review fixes', () => {
     expect(spokenPlace({ name: 'the garage on Eleventh Avenue', shortName: 'the garage' })).toBe('the garage on Eleventh Avenue');
     expect(spokenPlace({ name: 'the speakeasy under the hat shop', shortName: 'the speakeasy' })).toBe('the speakeasy');
     expect(spokenPlace({ name: '{V}’s apartment on the fourth floor', shortName: 'the fourth floor' })).toBe('the fourth floor');
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * The designer read: seven more, each held.
+ * ------------------------------------------------------------------ */
+
+describe('M8 designer-read fixes', () => {
+  it('never lets a thought on one witness’s word, or an anchor, speak without an if', () => {
+    // The deck first: every card the single-source filter can reach hedges,
+    // so the filter never has to fall back to a flat one.
+    for (const c of DECKS.thought) {
+      const cls = String(tagOf('thought', c, 'class'));
+      const basis = String(tagOf('thought', c, 'basis'));
+      const reachable = cls === 'clears' || cls === 'implicates' || (cls === 'window' && basis === 'anchor');
+      if (reachable) expect(HEDGE.test(c.text), `${c.id}: ${c.text}`).toBe(true);
+    }
+    let single = 0;
+    for (const w of [...sweep(), ...byType()]) {
+      for (const page of w.final.log.slice(1)) {
+        for (const b of page.beats ?? []) {
+          if (b.kind !== 'thought' || !b.hedge || !b.rendered) continue;
+          single++;
+          expect(HEDGE.test(b.text ?? ''), `${w.label} p${page.n + 1}: ${b.text}`).toBe(true);
+        }
+      }
+    }
+    expect(single).toBeGreaterThan(200);
+  });
+
+  it('never has a thought say the find again', () => {
+    for (const w of sweep()) {
+      // The slot values a card is filled with — people, places, anchors, things —
+      // are not the card saying the find again.
+      const names = [
+        ...w.view.kase.people.map((p) => p.surname),
+        ...w.view.places.map((p) => p.shortName),
+        ...w.view.kase.anchors.map((a) => a.name),
+        ...w.view.kase.objects.map((o) => o.name),
+      ];
+      for (const page of w.final.log.slice(1)) {
+        const finds = page.blocks.flatMap((b) => (b.kind === 'prose' && b.clueId !== undefined ? [b.text] : []));
+        for (const b of page.beats ?? []) {
+          if (b.kind !== 'thought' || !b.rendered || !b.text) continue;
+          // The golden joins "which put Kreuzer…" onto the thought before it,
+          // so a joined thought's text is the whole sentence; test the card's.
+          expect(restates(b.text, finds, names), `${w.label} p${page.n + 1}: ${b.text}`).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('deals no ambient card on a night page', () => {
+    for (const w of sweep()) {
+      for (const page of w.final.log) {
+        if (page.shape === undefined) continue;
+        expect(page.cardsUsed.filter((id) => deckOf(id) === 'ambient'), `${w.label} p${page.n + 1}`).toEqual([]);
+      }
+    }
+  });
+
+  it('says a placement with a verb, never as a name, a comma and a place', () => {
+    for (const c of DECKS.utterances) {
+      const kind = String(tagOf('utterances', c, 'factKind'));
+      if (kind !== 'personAt' && kind !== 'personNotAt' && kind !== 'denial') continue;
+      if (!verblessPlacement(c.text)) continue;
+      // Such a card exists in the deck; it is simply never dealt.
+    }
+    const broken = /“[A-Z][a-z’']+, (?:the |at the )[a-z][^,.]*, (?:from|at|around|by|half|six|seven|eight|nine|ten|eleven)\b/;
+    for (const w of sweep()) {
+      for (const page of w.final.log.slice(1)) {
+        for (const b of page.blocks) {
+          if (b.kind !== 'prose' || b.voice !== 'exchange' || b.clueId === undefined) continue;
+          expect(broken.test(b.text), `${w.label} p${page.n + 1}: ${b.text}`).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('bridges say the tie and who to ask, and never what it does to the case', () => {
+    const judging = /changed things|changed that|opened .* up|narrowed things|news to me|in the story|reason enough|worth chasing|mattered|worth a question|worth knowing|worth a look|\bknew {subject}/i;
+    for (const c of DECKS.bridge) expect(judging.test(c.text), `${c.id}: ${c.text}`).toBe(false);
+  });
+
+  it('says where the one to ask is, whenever the notebook knows and the clause has not', () => {
+    let where = 0;
+    for (const w of sweep()) {
+      for (const page of w.final.log.slice(1)) {
+        for (const b of page.beats ?? []) {
+          if (b.kind !== 'bridge' || !b.rendered || !b.placeIds?.[0]) continue;
+          const who = w.view.personById.get((b.personIds ?? [])[0] ?? '');
+          if (!who || (who.kind === 'fixture' && who.foundAt === b.placeIds[0])) continue;
+          where++;
+          const name = w.view.placeById.get(b.placeIds[0])?.shortName as string;
+          expect(b.text, `${w.label} p${page.n + 1}`).toContain(name);
+        }
+      }
+    }
+    expect(where).toBeGreaterThan(100);
+  });
+
+  it('gives a suspect a trade task only where the trade is carried on', () => {
+    let checked = 0;
+    for (const w of [...sweep(), ...byType()]) {
+      for (const [id, act] of Object.entries(w.final.scene?.activities ?? {})) {
+        const person = w.view.personById.get(id);
+        if (!person || person.kind !== 'suspect' || act.cardId === '') continue;
+        const card = DECKS.activity.find((c) => c.id === act.cardId);
+        if (!card) continue;
+        checked++;
+        if (tagOf('activity', card, 'at') === 'work') {
+          expect(WORKPLACES[person.archetypeId ?? ''] ?? [], `${w.label} ${person.surname}: ${act.text}`).toContain(act.placeId);
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(500);
   });
 });

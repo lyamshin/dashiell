@@ -553,3 +553,425 @@ As listed above under "Tag vocabularies and slots", with these changes:
 - `portrait-pairs` gains `recallAction`.
 - `establish` is dealt with no `{watcher}` (a watcher in the room is
   introduced by the presence line and the arrival thought).
+
+
+## The designer read (third review)
+
+The coordinator read seed 3 as a player. Seven fixes, each held by a test in
+`test/m8.test.ts` ("M8 designer-read fixes").
+
+1. **Thoughts claim no more than they are licensed to.** A thought resting on
+   one person's word — a `clears` or `implicates` placement nobody else in the
+   notebook corroborates, an `implicates` from access — or on an anchor inside
+   the coroner's window is marked `single` and may only be dealt a card that
+   hedges (`if`, `might`, `would`, `could`, …). A room's own physical or
+   documentary find, or a second clue saying the same, may be stated flat. The
+   twelve anchor-window cards were rewritten conditional ("The coroner had
+   given me hours. {other} might give me the minute."), seven implicates
+   cards hedged (and the invented key taken out), and the goods, last-seen and
+   seen-after cards cut back to what the notebook holds. Tests: every card the
+   filter can reach hedges, and every single-source thought dealt over the
+   sweep does.
+2. **A thought never says the find again.** A card sharing three content words
+   in a row with a find on the same page — names, places, hours and the verbs
+   of being taken out — is passed over ("Nothing had been carried out" after
+   "Nothing was carried out of the room"). Three not-robbery cards were also
+   rewritten to state the conclusion without inventing drawers or a fight.
+3. **No detective-body or inventory texture.** The ambient deck is the
+   detective's rent, hangover and bruises, and it invented things ("the
+   landlady's note … in my coat"); it is no longer dealt on a night page at
+   all. Texture on a night page is the weather, on arrival, and nothing else.
+4. **Placements are sentences.** An utterance of the shape "{subject},
+   {place}, {time}." or "{time}. {place}. …" is not dealt, and a written
+   card is preferred to a placeholder at every rung (the placeholders claimed
+   habits: "same as any night of the week").
+5. **Bridges state the tie and who to ask.** All 45 rewritten: no "changed
+   things", "opened a case up", "worth a question", "knew {subject}". Tested
+   against a list of evaluative phrases.
+6. **Where the one to ask is found is said when the notebook knows it** — a
+   card with `{where}` is preferred — unless the person is a fixture whose
+   clause already says it ("Hargrove, the doorman at the Wyckoff").
+7. **Activities fit the place.** Suspect activity cards are tagged `at: work`
+   (a trade task; 219 of them) or `at: any`, and a trade task is dealt only
+   where that archetype works (`WORKPLACES` in `src/game/scene/plan.ts`: a
+   pawnbroker's clerk at the pawnshop, a bouncer at a bar or the dance hall, a
+   secretary at the office over the tailor's…). Anywhere else the person does
+   what anybody does there: 14 new `role: any` cards by place kind (a coffee
+   going cold, a newspaper, waiting).
+
+Also from reading seeds 7 and 12: the body out of doors lies "on the ground",
+not the floor; a robbery's empty shelf is said once (the scene's given and the
+find already say it); a room with nobody in it says so; a person named in a lead
+the notebook holds counts as known for the arrival view; the stop line no
+longer assumes the person was holding something ("put it aside").
+
+### Numbers
+
+- **Tests:** 30 files, 648 passing.
+- **Beat coverage:** 5,292 of 5,292 night pages, 26,053 of 26,053 required
+  beats; **correspondence:** 0 violations (330 runs).
+- **Decks:** 3,305 cards, 0 errors; overlap clean on the touched decks.
+- **Night harness:** arrive 0.313, search 0.131, ask 0.462; aggregate
+  **0.302** (0.250 before this round). All of the rise is length and short
+  sentences: the ambient line that padded a short page is gone and nothing
+  invented stands in for it (questions now average 100 words against the
+  golden's 138; searches 124 against 162). The cohesion numbers improved.
+- **Office page:** byte-identical on all forty seeds; 0.009.
+
+### Seed 3, pages 2–5
+
+```
+the suite                                             12:25 AM   page 2
+────────────────────────────────────────────────────────────────────────────
+
+Kreuzer had named it first. I came to go through it, drawer by drawer.
+
+The cold cut through, and the block had emptied early because of it. Every
+stoop light was out but the one over the door. The hotel holding the suite
+was six floors of brick, plain outside and plainer in. A house phone sat on
+a table by the stairs, unanswered at this hour. The building had the
+particular quiet of a place where everybody paying by the week had learned
+to keep to themselves. There was no one to notice who passed through. The
+precinct had taken its statement and gone home.
+
+Sweeney lay where he had fallen. Nobody had covered him yet. There was
+nobody else in the room. The lamp came down with him and the bulb was still
+warm in its socket, unbroken. The El went over at ten o’clock, running to
+timetable, and for twenty seconds nothing under the structure could be heard
+at all.
+
+The coroner’s man had left a note on the back of an intake form. The coroner
+put death between half past nine and eleven. One depressed fracture at the
+back of the skull. Death was not instant.
+
+If ten o’clock was the hour, the El going over was the clock. I did not know
+yet that it was.
+
+
+the suite                                             12:50 AM   page 3
+────────────────────────────────────────────────────────────────────────────
+
+The last thing I had turned up pointed here. I went through the room.
+
+I took the room one wall at a time. The rug was rucked up under Sweeney and
+the chair beside it went over backwards. Nothing was carried out of the
+room.
+
+There was a day ledger in the room, and a nickel-plated revolver. I left
+them both alone for now.
+
+Whoever came, came for Sweeney, not for anything Sweeney owned.
+
+The next name was Hanrahan, Sweeney’s secretary. Kreuzer could tell me more,
+at the speakeasy.
+
+
+the speakeasy                                         1:15 AM   page 4
+────────────────────────────────────────────────────────────────────────────
+
+Kreuzer would know about Hanrahan, Sweeney’s secretary.
+
+The hour had turned to one. The cold had cleared most of the block out
+early. A last stubborn pair stood outside the speakeasy, not talking. The
+speakeasy was a long room with a low ceiling, a bar down one side and a
+scatter of tables along the other. This late the crowd had thinned to
+whoever had nowhere better to be.
+
+Callahan was rinsing glasses in a basin, setting them out to dry. She was
+the bartender, a woman in her forties.
+
+Kreuzer was waiting, and not for me. The coin was going over her knuckles
+again.
+
+Kreuzer was the client. Clients kept their own hours, and I let them.
+Callahan kept half an eye on the glasses and half on the door.
+
+
+the speakeasy                                         1:40 AM   page 5
+────────────────────────────────────────────────────────────────────────────
+
+Kreuzer looked up as I came over. “Sweeney had a secretary. Hanrahan.”
+
+“Nora Hanrahan.”
+
+“Where was Hanrahan tonight?”
+
+“From ten until half past. Hanrahan was right there, at the walk-up on
+Ninth.”
+
+I wrote it in the book. Then I read it back.
+
+If Hanrahan was at the third floor at ten o’clock, that put Hanrahan well
+clear of the suite. Good news, if it was true. Kreuzer placed Hanrahan at
+the third floor, at ten o’clock — and in saying so, put Kreuzer there too.
+She had told me plenty, and skipped that.
+
+The next name was Schilling, Sweeney’s former employee. Hargrove, the
+doorman at the Wyckoff, was the one to ask.
+
+```
+
+### Seed 7, pages 2–4 (oracle)
+
+```
+the back lot                                          12:30 AM   page 2
+────────────────────────────────────────────────────────────────────────────
+
+Salerno started me on this. I meant to turn the place over.
+
+Fog sat low over the row houses, blurring the streetlamps to smears.
+Somewhere a window sash went down. The back lot belonged to Brennan, tucked
+behind a larger house, out of sight the way a poor relation so often was.
+The path in was gravel, loud underfoot. This late there was nobody else back
+there to hear it. There was no one to notice who passed through. The police
+had come and gone. A japanned cash box came off a shelf in this room, and
+Brennan was alive and at Mrs. Teague’s, which was the first thing anybody
+said about it. Nothing at the back lot was forced: the lock was turned and
+the door was shut again after.
+
+I had the back lot to myself.
+
+A japanned cash box was gone from the back lot, which was Brennan’s. Nothing
+was forced and nothing was broken. Whoever it was had all night and took
+twenty minutes. The fight card was on the bar radio at half past ten, turned
+up loud enough to carry into the street, and off when the card ended.
+
+The desk sergeant's report put it between ten o’clock and half past eleven.
+The precinct report said there was no entry at all. Whoever it was was
+inside before the door was shut.
+
+That was consistent with how it had happened.
+
+Bidwell was Brennan’s former employee. The question was for Salerno, at the
+speakeasy.
+
+
+the speakeasy                                         12:55 AM   page 3
+────────────────────────────────────────────────────────────────────────────
+
+Something on paper at the back lot sent me. I wanted an answer from Lanza,
+the bartender at the speakeasy, about the lock.
+
+Fog wrapped the block's lamps into soft yellow rings. The speakeasy's sign
+was barely legible from the corner. The speakeasy was a long room with a low
+ceiling, a bar down one side and a scatter of tables along the other. This
+late the crowd had thinned to whoever had nowhere better to be.
+
+Lanza was rinsing glasses in a basin, setting them out to dry. She was the
+bartender: a woman in her thirties.
+
+Salerno was sitting with a drink and not drinking it. She kept her legs
+uncrossed again, over the pinned hem.
+
+Salerno was the client. Clients kept their own hours, and I let them.
+Whoever came or went, Lanza would have marked it.
+
+
+the speakeasy                                         1:25 AM   page 4
+────────────────────────────────────────────────────────────────────────────
+
+The notebook had a question for Lanza, the bartender at the speakeasy, about
+the lock.
+
+The night had reached one without my noticing. Lanza left off and looked up.
+“Tell me about the lock.”
+
+“The lock at the back lot has never been changed, and that the people who
+can open it can be counted on one hand.” Lanza tapped two fingers against
+her temple again.
+
+I put it in the notebook.
+
+Mosley, a customer of Brennan’s, could have got into the back lot without
+much trouble. That was a reason to keep asking.
+
+Brauer was named in Brennan’s will. Lanza might know Brauer, and I meant to
+ask.
+
+```
+
+### Seed 12, pages 2–4 (oracle)
+
+```
+the benches                                           12:25 AM   page 2
+────────────────────────────────────────────────────────────────────────────
+
+It was what Tillman said. I wanted a proper look at the room.
+
+The benches was public in the plainest sense, open on every side, watched by
+no one in particular. A lamp at the corner of the square gave what light
+reached the benches at all. This late they sat empty more often than not.
+There was no one to notice who passed through. The police had called it a
+fall and gone home. Grasso was not killed at the benches: there was no blood
+there and no sign of a struggle.
+
+He was still on the ground where he had been left.
+
+Dandridge, Grasso’s business partner, was waiting, and looking up the street
+now and then.
+
+A glass was on its side and the spill had not yet reached the edge of the
+table when it dried. The El went over at half past six, running to
+timetable, and for twenty seconds nothing under the structure could be heard
+at all.
+
+The coroner’s note was on the table under a glass, left for whoever came
+next. The coroner put death between six o’clock and half past seven. Chloral
+hydrate in the stomach. No wound, no bruising, no sign of a struggle.
+
+The El going over came at half past six, inside the coroner’s hours. If the
+rest fit, that could be when. That was consistent with how it had happened.
+I had Dandridge’s name before I had the face.
+
+Hochstetter, Grasso’s tenant, would know about Dandridge, Grasso’s business
+partner. Hochstetter was at Mancuso’s.
+
+
+Mancuso’s                                             12:55 AM   page 3
+────────────────────────────────────────────────────────────────────────────
+
+A document at the suite pointed here. I came to hear Lefkowitz, the man
+behind the counter at Mancuso’s, out on Steinbach, Grasso’s lawyer.
+
+The cold had cleared most of the block out early. A last stubborn pair stood
+outside Mancuso’s, not talking. The hall making up Mancuso’s kept its lamps
+low over the tables, leaving the rest of that room dark by comparison. A
+rack of cues lined one wall, half of them missing tips. At this hour the
+room was quieter than it had any right to look, given the hour it usually
+kept.
+
+Lefkowitz was racking a set of cues along the wall, straightening each one.
+He was the man behind the counter, a man in his forties.
+
+Hochstetter was smoking at a table near the wall. She was a piano teacher, a
+woman in her thirties.
+
+Salerno was at a table with a cup of coffee going cold. She was a dentist
+with a chair and a waiting room, a woman in her forties.
+
+Lanza was counting out coins for a round, stacking them by size. He was a
+longshoreman, a man in his thirties.
+
+Steinbach was tapping ash from a cigarette onto a saucer. She was a lawyer
+with one clerk, a woman in her forties.
+
+Hanrahan was watching the door over a cup of coffee. He was the patrolman on
+the beat: a man in his thirties.
+
+Tillman was tapping ash from a cigarette without breaking a sentence. She
+opened the compact again, looked at nothing, and shut it.
+
+Hochstetter was in the notebook already. Now there was a face to go with it.
+Whoever came in, Lefkowitz had a look at them from behind the counter.
+
+
+Mancuso’s                                             1:20 AM   page 4
+────────────────────────────────────────────────────────────────────────────
+
+It was past one, and the night went on. Hochstetter, Grasso’s tenant, looked
+up when I sat down. “Grasso had a business partner. Dandridge.”
+
+“Roscoe Dandridge.”
+
+“Where was Dandridge tonight?”
+
+“I'd have noticed Dandridge at Mancuso’s by half past six, and I didn't.”
+Hochstetter turned a wrist again to read the watch worn face-in.
+
+That was worth knowing, and it was worth setting aside.
+
+Dandridge was Grasso’s business partner. The question was for Lanza,
+Grasso’s tenant, at Mancuso’s.
+
+```
+
+### Card changes this round
+
+```
+thought tht-014: "That put {subject} at {scene}, at {time} — the same hour it happened. That did not clear anyone." -> "If {subject} was at {scene} at {time}, {subject} was there the same hour it happened. That cleared nobody."
+thought tht-016: "{subject} had a key to {scene}. That put opportunity in {subject}’s hands." -> "{subject} could have got into {scene}. That put it within reach, if nothing more."
+thought tht-017: "At {time}, {subject} was at {scene} — right where it happened. That was not an alibi." -> "At {time}, {subject} might have been at {scene}, right where it happened. If so, it was no alibi."
+thought tht-019: "{subject} could get into {scene} without trouble. That was reason enough to keep asking." -> "{subject} could have got into {scene} without much trouble. That was a reason to keep asking."
+thought tht-021: "{subject} was seen near {scene} at {time}. That did {subject} no favors." -> "If {subject} was near {scene} at {time}, that did {subject} no favors."
+thought tht-023: "{subject} had access to {scene}, and access was not nothing." -> "{subject} might have had a way into {scene}, and a way in was not nothing."
+thought tht-024: "At {time}, {subject} was where it happened, or close to it. That was bad news for {subject}." -> "If {subject} was where it happened at {time}, or close to it, that was bad news for {subject}."
+thought tht-085: "The coroner had given a span. This gave a point inside it: {time}." -> "The coroner had given me hours. {other} might give me the minute."
+thought tht-086: "If it happened at {time}, that explained why nobody heard it." -> "If it happened at {time}, it happened during {other}. That was worth holding on to."
+thought tht-087: "That narrowed the coroner’s hours down to {time}." -> "{other} at {time} fell inside the coroner’s hours. It might be the minute, and it might not."
+thought tht-088: "The window was wide. This made it {time}, if it was right." -> "The coroner’s window was wide. {other} at {time} might narrow it, if the rest agreed."
+thought tht-089: "That was an anchor, not a guess: it happened, or did not, at {time}." -> "If it was {time}, then {other} marked it. I did not know yet that it was."
+thought tht-090: "If {time} was right, it was worth more than the coroner’s span alone." -> "{other} came at {time}, inside the coroner’s hours. If the rest fit, that could be when."
+thought tht-091: "The coroner gave hours. This gave a minute: {time}." -> "It could have happened at {time}. If it did, {other} would have been going on."
+thought tht-092: "That turned a span into a single hour: {time}." -> "I had hours from the coroner. {other} at {time} was a guess at the minute, and only a guess."
+thought tht-093: "It placed the hour more exactly than the coroner had managed. {time}, if it held." -> "{time} was possible. {other} made it worth thinking about, if nothing more."
+thought tht-094: "If {time} was right, that was the minute the coroner could not give." -> "Somewhere in the coroner’s hours was {other}, at {time}. It might be the moment."
+thought tht-095: "That put a number on it: {time}, and nothing vaguer." -> "If {time} was the hour, {other} was the clock. I did not know yet that it was."
+thought tht-096: "The coroner’s window ran wide. This closed it down to {time}." -> "{other} at {time} sat inside the window. That made it a candidate, if not an answer."
+thought tht-098: "The drawers were shut and nothing was missing. Whoever came, came for {victim}, not for things." -> "Whoever came, came for {victim}, not for anything {victim} owned."
+thought tht-105: "It was a fight, not a theft. Nothing in {scene} said different." -> "It was not a theft. Nothing in {scene} said different."
+thought tht-106: "Whoever came up, came for {victim} and touched nothing else in the room." -> "Whoever came for {victim} came for {victim} and nothing else."
+thought tht-e005: "So {other} had passed through {place}. It had not gone far." -> "So {other} had passed through {place}. That was somewhere to start."
+thought tht-e006: "{other} had come this way after it left. {place} was where the trail was warm." -> "{other} had come this way after it left, if the finding was honest. {place} was the place to ask."
+thought tht-e015: "{other} had stopped at {place}. The trail was shorter than I had feared." -> "{other} had stopped at {place}. Somebody there might know who brought it."
+thought tht-e017: "So {victim} had been at {place} at {time}. After that, nobody had {victim} anywhere." -> "So {victim} had been at {place} at {time}. After that I had nothing on {victim}."
+thought tht-e018: "{place} at {time}. That was the last anybody had of {victim}." -> "{place} at {time}. That was the last I had of {victim}."
+thought tht-e020: "{time} at {place} was the last sight of {victim}. Whatever happened, it happened after." -> "{time} at {place} was the last sight of {victim} I had. Whatever happened, it might have happened after."
+thought tht-e021: "The trail on {victim} ran as far as {place}, at {time}. It stopped there." -> "What I had on {victim} ran as far as {place}, at {time}. It stopped there."
+thought tht-e022: "{victim} had been at {place} at {time}. That was the edge of what anybody knew." -> "{victim} had been at {place} at {time}. That was the edge of what I knew."
+thought tht-e025: "{place}, at {time}, was the last place anybody could swear to {victim}." -> "{place}, at {time}, was the last place anybody had sworn to {victim} yet."
+thought tht-e027: "Nobody had seen {victim} since {place} at {time}. That was where to start." -> "Nobody had given me {victim} since {place} at {time}. That was where to start."
+thought tht-e028: "{victim} was at {place} at {time}, and then nowhere anybody could name." -> "{victim} was at {place} at {time}, and then nowhere I could name."
+thought tht-e029: "{victim} had been at {place} at {time}, after the hour {victim} was supposed to have gone. Somebody had been wrong." -> "{victim} had been at {place} at {time}, later than I had {victim} before. If it held, somebody had it wrong."
+thought tht-e030: "So {victim} was still walking around at {time}. Walking meant choosing." -> "So {victim} might still have been walking around at {time}. Walking would mean choosing."
+thought tht-e031: "{place} at {time} was later than anybody had put {victim} before. That changed what gone meant." -> "{place} at {time} was later than anybody had put {victim} before. If it was true, gone meant something else."
+thought tht-e032: "At {time}, {victim} was at {place}. Whoever had {victim} vanishing earlier had it wrong." -> "At {time}, {victim} was at {place}, if the word was good. Whoever had {victim} gone earlier would have to think again."
+thought tht-e033: "That put {victim} at {place} at {time}, after the last sighting I had. {victim} had gone somewhere on foot." -> "That put {victim} at {place} at {time}, after the last sighting I had."
+thought tht-e035: "{victim} was seen at {place} at {time}. That was after, and after mattered." -> "{victim} was seen at {place} at {time}. That was after, if it held."
+bridge: brg-001..045 rewritten to state the tie and who to ask, never what it does to the case ("changed things", "opened a case up", "worth a question"); six a tie use {where}, for §6’s "where the source is". Draft text kept in the log below.
+  was brg-001: {subject} was {tie}. That was worth knowing on its own, and {who} would know more.
+  was brg-002: Being {tie} put {subject} in it. I wanted to hear the rest from {who}.
+  was brg-003: {subject}, {tie} — that alone was worth a question, and {who} was who to ask.
+  was brg-004: {subject}, {tie}, was somebody worth asking about. {who} could say more.
+  was brg-005: That {subject} was {tie} changed things. {who} would know the rest of it.
+  was brg-006: {subject} was {tie}, and nobody had mentioned it yet. {who} would know why.
+  was brg-007: A person who was {tie} was worth a look. {who} knew {subject} best.
+  was brg-008: {subject} being {tie} was reason enough by itself. {who} was who to ask, at {where}.
+  was brg-009: {subject} was {tie}. I had not heard that before. {who} would know more, and {who} was at {where}.
+  was brg-010: I had not known {subject} was {tie}. {who} would, and I meant to ask.
+  was brg-011: {subject} was {tie} — that was new, and worth chasing. {who} could tell me the rest.
+  was brg-012: That put {subject} in the story: {tie}. {who} was next.
+  was brg-013: {subject}, {tie}, was somebody I had not asked about yet. {who} would know where to start.
+  was brg-014: Being {tie} gave {subject} a place in this. {who} knew {subject} well enough to say more.
+  was brg-015: {subject} being {tie} was the kind of thing that opened a case up. {who} was who I would ask, at {where}.
+  was brg-016: {subject} had a connection to the place: {tie}. {who} would know what that connection meant.
+  was brg-017: {tie}. That was enough to send me to {who} next.
+  was brg-018: Whoever was {tie} belonged in this. I wanted {who}’s word on {subject}.
+  was brg-019: {subject} turned out to be {tie}. That was a thread I had not pulled yet.
+  was brg-020: It mattered that {subject} was {tie}. {who} could say how much.
+  was brg-021: I had not placed {subject} there before. {tie} changed that. {who} would know more.
+  was brg-022: {tie} — a fact nobody had mentioned. {who} was who to ask about it.
+  was brg-023: That tied {subject} to the place: {tie}. {who} knew the rest, and {who} was at {where}.
+  was brg-024: {subject}, it turned out, was {tie}. I wanted {who}’s account of it.
+  was brg-025: Knowing {subject} was {tie} opened a door. {who} was the one standing behind it.
+  was brg-026: {tie}. It put {subject} somewhere I had not looked yet, and {who} could say where next.
+  was brg-027: {subject} being {tie} was news to me. {who} would fill in the rest.
+  was brg-028: That gave {subject} a reason to have been there: {tie}. {who} knew the details.
+  was brg-029: I wanted to know more about {subject} being {tie}. {who} was where to start, at {where}.
+  was brg-030: {tie} put {subject} in the story in a way nothing else had. {who} was next.
+  was brg-031: Somebody had to account for {subject} at {tie}. {who} was the one to ask.
+  was brg-032: {who} might know about {subject}, and about {tie}.
+  was brg-033: It came back to {subject} and {tie}. {who} was who to ask about it.
+  was brg-034: Nobody had told me about {subject} at {tie} yet. {who} might.
+  was brg-035: The next question was {subject}, and the hour was {tie}. {who} would know, at {where}.
+  was brg-036: {tie} was the hour that mattered, and {subject} was in it somewhere. I wanted {who}’s word on it.
+  was brg-037: I still had nothing on {subject} at {tie}. {who} was the one to put it to.
+  was brg-038: {who} was next. The question was {subject}, around {tie}.
+  was brg-039: The coroner’s hours opened at {tie}. {who} could tell me about {subject}, and {who} was at {where}.
+  was brg-040: {subject} and {tie}: that was the next question, and {who} would have an answer.
+  was brg-041: I wanted to know about {subject} around {tie}. {who} was the one who might say.
+  was brg-042: {tie} was where the coroner started counting. {who} might know where {subject} fit.
+  was brg-043: I had {subject} and I had {tie}, and nothing to join them. {who} might.
+  was brg-044: The hour was {tie}. {who} was the one to ask about {subject}.
+  was brg-045: It was {tie} I cared about, and {subject}. {who} might have been around for both.
+activity: tagged `at` on the suspect-archetype cards — `work` (219) for a trade task, `any` for the rest — and added act-w01..w14, what anybody does at a place of each kind when it is not their place of work.
+```

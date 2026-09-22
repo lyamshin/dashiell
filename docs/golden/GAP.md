@@ -145,13 +145,17 @@ distance, so it reads on the same scale as the day aggregate.
 Pages 2–8 of the fixed set are 92 arrivals, 26 searches and 162 questions on
 the oracle's route.
 
-| shape | before M8 | placeholder decks | real scene decks |
-|---|---|---|---|
-| arrive | 0.205 | 0.288 | 0.360 |
-| search | 0.405 | 0.006 | 0.000 |
-| ask | 0.584 | 0.317 | 0.388 |
-| **night aggregate** | **0.398** | **0.204** | **0.250** |
-| office page, day targets | 0.009 | 0.009 | 0.009 (every office page byte-identical) |
+| shape | before M8 | placeholder decks | real scene decks | after the designer read |
+|---|---|---|---|---|
+| arrive | 0.205 | 0.288 | 0.360 | 0.313 |
+| search | 0.405 | 0.006 | 0.000 | 0.131 |
+| ask | 0.584 | 0.317 | 0.388 | 0.462 |
+| **night aggregate** | **0.398** | **0.204** | **0.250** | **0.302** |
+| office page, day targets | 0.009 | 0.009 | 0.009 | 0.009 (every office page byte-identical) |
+
+The last column dropped the ambient texture that padded short pages: nothing
+invented stands in for it, so the search and the question now run short of the
+golden's length and short-sentence share.
 
 With the real cards the arrival's distance is paragraph and sentence cohesion
 (0.587 and 0.556 against 0.775 and 0.63) and the question's is short

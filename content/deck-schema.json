@@ -558,13 +558,14 @@
       "placeholderPrefix": "act-p",
       "burn": "free",
       "target": 333,
-      "$comment": "M8 §4. What a person present is doing when the detective walks in: one sentence, from their trade, the place and the hour. Chosen once per visit and kept for it. `role` is the suspect archetype id or the fixture role (`any` is the engine’s own fallback). `band`: after-midnight is 12:00–2:59, small-hours 3:00–5:59, dawn 6:00–8:00; `any` fits all three. {name} is the surname and opens the card; never a pronoun for {name}, whose gender varies. {place} is the short name.",
+      "$comment": "M8 §4. What a person present is doing when the detective walks in: one sentence, from their trade, the place and the hour. Chosen once per visit and kept for it. `role` is the suspect archetype id or the fixture role (`any` is the engine’s own fallback). `band`: after-midnight is 12:00–2:59, small-hours 3:00–5:59, dawn 6:00–8:00; `any` fits all three. {name} is the surname and opens the card; never a pronoun for {name}, whose gender varies. {place} is the short name. `at: work` marks a trade task on a suspect card: dealt only where that archetype works (WORKPLACES in src/game/scene/plan.ts); anywhere else the person does what anybody does there.",
       "slots": ["detective", "name", "place"],
       "minPerCoverageCell": 3,
       "tags": {
         "role": { "required": true, "values": ["arch-heir", "arch-widow", "arch-broker", "arch-society", "arch-blockowner", "arch-lawyer", "arch-bookkeeper", "arch-nurse", "arch-dentist", "arch-secretary", "arch-reporter", "arch-piano-teacher", "arch-adjuster", "arch-chambermaid", "arch-longshoreman", "arch-seamstress", "arch-hackman", "arch-tailor", "arch-stagehand", "arch-switchboard", "arch-nightman", "arch-chorus", "arch-bookmaker", "arch-heeler", "arch-pawnman", "arch-bouncer", "arch-runner", "bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist"], "extraValues": ["any"] },
         "placeKind": { "required": true, "values": ["public", "semi", "private"], "extraValues": ["any"] },
-        "band": { "required": false, "default": "any", "values": ["after-midnight", "small-hours", "dawn"], "extraValues": ["any"] }
+        "band": { "required": false, "default": "any", "values": ["after-midnight", "small-hours", "dawn"], "extraValues": ["any"] },
+        "at": { "required": false, "default": "any", "values": ["work", "any"] }
       },
       "coverage": [["role", "placeKind"]]
     },

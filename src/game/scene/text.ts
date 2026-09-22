@@ -181,6 +181,46 @@ export function subjectify(text: string, surname: string): string {
 }
 
 /* ------------------------------------------------------------------ *
+ * §5 — a thought claims no more than it is licensed to.
+ * ------------------------------------------------------------------ */
+
+/** What a thought resting on one person's word, or an anchor, has to carry. */
+export const HEDGE = /\b(if|might|would|could|may|maybe|perhaps|possible|guess)\b/i;
+
+export function hedged(text: string): boolean {
+  return HEDGE.test(text);
+}
+
+const FILLER = new Set([
+  'a', 'an', 'the', 'of', 'was', 'were', 'is', 'are', 'had', 'has', 'have', 'been', 'be', 'to', 'at', 'in', 'on',
+  'it', 'and', 'that', 'so', 'o’clock', "o'clock", 'half', 'past', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven',
+]);
+
+function contentRun(text: string, names: readonly string[]): string[] {
+  let t = text.toLowerCase();
+  for (const n of names) t = t.split(n.toLowerCase()).join(' ');
+  return (t.match(/[a-z’']+/g) ?? []).filter((w) => !FILLER.has(w));
+}
+
+/**
+ * Does a thought say again what the find on the same page said? Three content
+ * words in a row in common, once names, places, hours and the verbs of being
+ * are taken out: "Nothing had been carried out" after "Nothing was carried
+ * out of the room" is the find twice, not a conclusion.
+ */
+export function restates(thought: string, finds: readonly string[], names: readonly string[]): boolean {
+  const a = contentRun(thought, names);
+  const grams = new Set<string>();
+  for (let i = 0; i + 2 < a.length; i++) grams.add(`${a[i]} ${a[i + 1]} ${a[i + 2]}`);
+  if (grams.size === 0) return false;
+  for (const f of finds) {
+    const b = contentRun(f, names);
+    for (let i = 0; i + 2 < b.length; i++) if (grams.has(`${b[i]} ${b[i + 1]} ${b[i + 2]}`)) return true;
+  }
+  return false;
+}
+
+/* ------------------------------------------------------------------ *
  * §4 — no epithets.
  * ------------------------------------------------------------------ */
 

@@ -379,7 +379,8 @@
     "text": "{name} was folding a newspaper closed without finishing it.",
     "tags": {
       "role": "arch-heir",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -390,7 +391,8 @@
     "text": "{name} was tapping a coin against the counter, waiting on nothing in particular.",
     "tags": {
       "role": "arch-heir",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -402,7 +404,8 @@
     "tags": {
       "role": "arch-heir",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -413,7 +416,8 @@
     "text": "{name} was running a finger down a tab, working out the total.",
     "tags": {
       "role": "arch-heir",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -424,7 +428,8 @@
     "text": "{name} was setting a hat on the next seat over, leaving it there.",
     "tags": {
       "role": "arch-heir",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -436,7 +441,8 @@
     "tags": {
       "role": "arch-heir",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -447,7 +453,8 @@
     "text": "{name} was going through a stack of unopened bills, setting each one aside.",
     "tags": {
       "role": "arch-heir",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -458,7 +465,8 @@
     "text": "{name} was straightening a necktie in a mirror, taking a long time about it.",
     "tags": {
       "role": "arch-heir",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -470,7 +478,8 @@
     "tags": {
       "role": "arch-heir",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -481,7 +490,8 @@
     "text": "{name} was sitting with gloved hands folded, waiting for nothing to hurry.",
     "tags": {
       "role": "arch-widow",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -492,7 +502,8 @@
     "text": "{name} was checking a compact mirror, then closing it with a snap.",
     "tags": {
       "role": "arch-widow",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -504,7 +515,8 @@
     "tags": {
       "role": "arch-widow",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -515,7 +527,8 @@
     "text": "{name} was sitting with a cup gone cold, not touching it.",
     "tags": {
       "role": "arch-widow",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -526,7 +539,8 @@
     "text": "{name} was smoothing a coat that did not need smoothing.",
     "tags": {
       "role": "arch-widow",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -538,7 +552,8 @@
     "tags": {
       "role": "arch-widow",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -549,7 +564,8 @@
     "text": "{name} was going through a box of correspondence, letter by letter.",
     "tags": {
       "role": "arch-widow",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -560,7 +576,8 @@
     "text": "{name} was straightening a photograph on the mantel that was already straight.",
     "tags": {
       "role": "arch-widow",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -572,7 +589,8 @@
     "tags": {
       "role": "arch-widow",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -583,7 +601,8 @@
     "text": "{name} was scanning a folded page of quotations, a pencil marking a column.",
     "tags": {
       "role": "arch-broker",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -594,7 +613,8 @@
     "text": "{name} was checking a pocket watch against the street clock.",
     "tags": {
       "role": "arch-broker",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -606,7 +626,8 @@
     "tags": {
       "role": "arch-broker",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -617,7 +638,8 @@
     "text": "{name} was working figures across the back of an old receipt.",
     "tags": {
       "role": "arch-broker",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -628,7 +650,8 @@
     "text": "{name} was tapping ash from a cigarette without breaking a sentence.",
     "tags": {
       "role": "arch-broker",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -640,7 +663,8 @@
     "tags": {
       "role": "arch-broker",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -651,7 +675,8 @@
     "text": "{name} was going through a ledger, a finger running down the columns.",
     "tags": {
       "role": "arch-broker",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -662,7 +687,8 @@
     "text": "{name} was counting a stack of bills twice before putting it away.",
     "tags": {
       "role": "arch-broker",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -674,7 +700,8 @@
     "tags": {
       "role": "arch-broker",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -685,7 +712,8 @@
     "text": "{name} was scribbling a line into a small notebook, then closing it fast.",
     "tags": {
       "role": "arch-society",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -696,7 +724,8 @@
     "text": "{name} was checking a compact, then a wristwatch, then the door.",
     "tags": {
       "role": "arch-society",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -708,7 +737,8 @@
     "tags": {
       "role": "arch-society",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -719,7 +749,8 @@
     "text": "{name} was going through a card index, flipping past name after name.",
     "tags": {
       "role": "arch-society",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -730,7 +761,8 @@
     "text": "{name} was ordering without looking at the menu.",
     "tags": {
       "role": "arch-society",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -742,7 +774,8 @@
     "tags": {
       "role": "arch-society",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -753,7 +786,8 @@
     "text": "{name} was typing at a small desk, two fingers, fast.",
     "tags": {
       "role": "arch-society",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -764,7 +798,8 @@
     "text": "{name} was reading a paragraph back aloud, striking out a word.",
     "tags": {
       "role": "arch-society",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -776,7 +811,8 @@
     "tags": {
       "role": "arch-society",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -787,7 +823,8 @@
     "text": "{name} was checking a rent book against a list of addresses.",
     "tags": {
       "role": "arch-blockowner",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -798,7 +835,8 @@
     "text": "{name} was counting a stack of bills, licking a thumb between each one.",
     "tags": {
       "role": "arch-blockowner",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -810,7 +848,8 @@
     "tags": {
       "role": "arch-blockowner",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -821,7 +860,8 @@
     "text": "{name} was going over a column of figures with a stub of pencil.",
     "tags": {
       "role": "arch-blockowner",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -832,7 +872,8 @@
     "text": "{name} was checking a set of keys against a tag on each.",
     "tags": {
       "role": "arch-blockowner",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -844,7 +885,8 @@
     "tags": {
       "role": "arch-blockowner",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -855,7 +897,8 @@
     "text": "{name} was going through a stack of leases, initialing each page.",
     "tags": {
       "role": "arch-blockowner",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -866,7 +909,8 @@
     "text": "{name} was counting a roll of bills into a strongbox, closing the lid after.",
     "tags": {
       "role": "arch-blockowner",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -878,7 +922,8 @@
     "tags": {
       "role": "arch-blockowner",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -889,7 +934,8 @@
     "text": "{name} was reading a folded document, lips moving slightly over the clauses.",
     "tags": {
       "role": "arch-lawyer",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -900,7 +946,8 @@
     "text": "{name} was checking a pocket watch, then a slip of paper.",
     "tags": {
       "role": "arch-lawyer",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -912,7 +959,8 @@
     "tags": {
       "role": "arch-lawyer",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -923,7 +971,8 @@
     "text": "{name} was going over a contract with a pencil, marking a clause.",
     "tags": {
       "role": "arch-lawyer",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -934,7 +983,8 @@
     "text": "{name} was tapping ash from a cigarette onto a saucer.",
     "tags": {
       "role": "arch-lawyer",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -946,7 +996,8 @@
     "tags": {
       "role": "arch-lawyer",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -957,7 +1008,8 @@
     "text": "{name} was drafting a letter at a desk crowded with paper.",
     "tags": {
       "role": "arch-lawyer",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -968,7 +1020,8 @@
     "text": "{name} was reading a will aloud to an empty room, checking each clause.",
     "tags": {
       "role": "arch-lawyer",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -980,7 +1033,8 @@
     "tags": {
       "role": "arch-lawyer",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -991,7 +1045,8 @@
     "text": "{name} was checking a receipt against a total, pencil behind an ear.",
     "tags": {
       "role": "arch-bookkeeper",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1002,7 +1057,8 @@
     "text": "{name} was counting change twice before handing it over.",
     "tags": {
       "role": "arch-bookkeeper",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1014,7 +1070,8 @@
     "tags": {
       "role": "arch-bookkeeper",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1025,7 +1082,8 @@
     "text": "{name} was going through a tab, checking the addition.",
     "tags": {
       "role": "arch-bookkeeper",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1036,7 +1094,8 @@
     "text": "{name} was tapping a pencil against a ledger, thinking.",
     "tags": {
       "role": "arch-bookkeeper",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1048,7 +1107,8 @@
     "tags": {
       "role": "arch-bookkeeper",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1059,7 +1119,8 @@
     "text": "{name} was ruling a fresh column by hand, straightedge and all.",
     "tags": {
       "role": "arch-bookkeeper",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1070,7 +1131,8 @@
     "text": "{name} was going through a ledger by lamplight, page after page.",
     "tags": {
       "role": "arch-bookkeeper",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1082,7 +1144,8 @@
     "tags": {
       "role": "arch-bookkeeper",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1093,7 +1156,8 @@
     "text": "{name} was checking a small watch pinned to a collar.",
     "tags": {
       "role": "arch-nurse",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -1104,7 +1168,8 @@
     "text": "{name} was counting a set of pills into a paper cup.",
     "tags": {
       "role": "arch-nurse",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1116,7 +1181,8 @@
     "tags": {
       "role": "arch-nurse",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1127,7 +1193,8 @@
     "text": "{name} was going through a bag of supplies, checking each item off.",
     "tags": {
       "role": "arch-nurse",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1138,7 +1205,8 @@
     "text": "{name} was counting a pulse against a watch, lips moving with the count.",
     "tags": {
       "role": "arch-nurse",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1150,7 +1218,8 @@
     "tags": {
       "role": "arch-nurse",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1161,7 +1230,8 @@
     "text": "{name} was checking a patient's chart, pencil in hand.",
     "tags": {
       "role": "arch-nurse",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1172,7 +1242,8 @@
     "text": "{name} was measuring a dose into a small glass, holding it to the light.",
     "tags": {
       "role": "arch-nurse",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1184,7 +1255,8 @@
     "tags": {
       "role": "arch-nurse",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1195,7 +1267,8 @@
     "text": "{name} was checking a pocket watch against the hour written on a card.",
     "tags": {
       "role": "arch-dentist",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1206,7 +1279,8 @@
     "text": "{name} was wiping down a small case of instruments.",
     "tags": {
       "role": "arch-dentist",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1218,7 +1292,8 @@
     "tags": {
       "role": "arch-dentist",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1229,7 +1304,8 @@
     "text": "{name} was going through a drawer of instruments, checking each one.",
     "tags": {
       "role": "arch-dentist",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1240,7 +1316,8 @@
     "text": "{name} was making a note on a patient card and filing it.",
     "tags": {
       "role": "arch-dentist",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1252,7 +1329,8 @@
     "tags": {
       "role": "arch-dentist",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1263,7 +1341,8 @@
     "text": "{name} was polishing a set of instruments laid out on a cloth.",
     "tags": {
       "role": "arch-dentist",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1274,7 +1353,8 @@
     "text": "{name} was checking a ledger of accounts against a stack of unpaid cards.",
     "tags": {
       "role": "arch-dentist",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1286,7 +1366,8 @@
     "tags": {
       "role": "arch-dentist",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1297,7 +1378,8 @@
     "text": "{name} was checking a wristwatch, then a slip of paper with an address on it.",
     "tags": {
       "role": "arch-secretary",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1308,7 +1390,8 @@
     "text": "{name} was folding a letter into an envelope, sealing it.",
     "tags": {
       "role": "arch-secretary",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1320,7 +1403,8 @@
     "tags": {
       "role": "arch-secretary",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1331,7 +1415,8 @@
     "text": "{name} was going through a stack of correspondence, sorting it into two piles.",
     "tags": {
       "role": "arch-secretary",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1342,7 +1427,8 @@
     "text": "{name} was checking a shorthand notebook against a typed page.",
     "tags": {
       "role": "arch-secretary",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1354,7 +1440,8 @@
     "tags": {
       "role": "arch-secretary",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1365,7 +1452,8 @@
     "text": "{name} was typing at a desk, the carriage bell ringing each time a line ran out.",
     "tags": {
       "role": "arch-secretary",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1376,7 +1464,8 @@
     "text": "{name} was filing a folder into a drawer already thick with them.",
     "tags": {
       "role": "arch-secretary",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1388,7 +1477,8 @@
     "tags": {
       "role": "arch-secretary",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1399,7 +1489,8 @@
     "text": "{name} was scribbling a line into a notebook, then folding it shut.",
     "tags": {
       "role": "arch-reporter",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1410,7 +1501,8 @@
     "text": "{name} was checking a pocket watch against a deadline only {name} knew.",
     "tags": {
       "role": "arch-reporter",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1422,7 +1514,8 @@
     "tags": {
       "role": "arch-reporter",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1433,7 +1526,8 @@
     "text": "{name} was going through a notebook, flipping back a page to check a name.",
     "tags": {
       "role": "arch-reporter",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1444,7 +1538,8 @@
     "text": "{name} was tapping ash from a cigarette, eyes on the room.",
     "tags": {
       "role": "arch-reporter",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -1456,7 +1551,8 @@
     "tags": {
       "role": "arch-reporter",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1467,7 +1563,8 @@
     "text": "{name} was typing fast, two fingers, glancing at a note propped against the machine.",
     "tags": {
       "role": "arch-reporter",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1478,7 +1575,8 @@
     "text": "{name} was reading a paragraph back aloud, striking a line through half of it.",
     "tags": {
       "role": "arch-reporter",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1490,7 +1588,8 @@
     "tags": {
       "role": "arch-reporter",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1501,7 +1600,8 @@
     "text": "{name} was tapping out a rhythm on a tabletop, counting under breath.",
     "tags": {
       "role": "arch-piano-teacher",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1512,7 +1612,8 @@
     "text": "{name} was checking a small watch pinned to a collar.",
     "tags": {
       "role": "arch-piano-teacher",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -1524,7 +1625,8 @@
     "tags": {
       "role": "arch-piano-teacher",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1535,7 +1637,8 @@
     "text": "{name} was humming a scale, half under breath, fingers moving on the tabletop.",
     "tags": {
       "role": "arch-piano-teacher",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1546,7 +1649,8 @@
     "text": "{name} was checking a music book against a list of pupils.",
     "tags": {
       "role": "arch-piano-teacher",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1558,7 +1662,8 @@
     "tags": {
       "role": "arch-piano-teacher",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1569,7 +1674,8 @@
     "text": "{name} was running a hand along piano keys without pressing them down.",
     "tags": {
       "role": "arch-piano-teacher",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1580,7 +1686,8 @@
     "text": "{name} was straightening a stack of sheet music, squaring the edges.",
     "tags": {
       "role": "arch-piano-teacher",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1592,7 +1699,8 @@
     "tags": {
       "role": "arch-piano-teacher",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1603,7 +1711,8 @@
     "text": "{name} was checking a claim form against a wristwatch.",
     "tags": {
       "role": "arch-adjuster",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1614,7 +1723,8 @@
     "text": "{name} was writing a note in a small book, pressing hard on the pencil.",
     "tags": {
       "role": "arch-adjuster",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1626,7 +1736,8 @@
     "tags": {
       "role": "arch-adjuster",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1637,7 +1748,8 @@
     "text": "{name} was going through a folder of claims, checking each date.",
     "tags": {
       "role": "arch-adjuster",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1648,7 +1760,8 @@
     "text": "{name} was tapping a pencil against a form, thinking.",
     "tags": {
       "role": "arch-adjuster",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1660,7 +1773,8 @@
     "tags": {
       "role": "arch-adjuster",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1671,7 +1785,8 @@
     "text": "{name} was writing up a report at a small desk, pausing between lines.",
     "tags": {
       "role": "arch-adjuster",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1682,7 +1797,8 @@
     "text": "{name} was checking a policy against a list of exclusions.",
     "tags": {
       "role": "arch-adjuster",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1694,7 +1810,8 @@
     "tags": {
       "role": "arch-adjuster",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1705,7 +1822,8 @@
     "text": "{name} was carrying a folded stack of linen against a hip.",
     "tags": {
       "role": "arch-chambermaid",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1716,7 +1834,8 @@
     "text": "{name} was counting a set of keys on a ring, checking each tag.",
     "tags": {
       "role": "arch-chambermaid",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1728,7 +1847,8 @@
     "tags": {
       "role": "arch-chambermaid",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -1739,7 +1859,8 @@
     "text": "{name} was folding a stack of towels into even squares.",
     "tags": {
       "role": "arch-chambermaid",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1750,7 +1871,8 @@
     "text": "{name} was checking a room list against a set of keys.",
     "tags": {
       "role": "arch-chambermaid",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1762,7 +1884,8 @@
     "tags": {
       "role": "arch-chambermaid",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1773,7 +1896,8 @@
     "text": "{name} was turning down a bed, corner by corner.",
     "tags": {
       "role": "arch-chambermaid",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1784,7 +1908,8 @@
     "text": "{name} was dusting a shelf, working left to right.",
     "tags": {
       "role": "arch-chambermaid",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1796,7 +1921,8 @@
     "tags": {
       "role": "arch-chambermaid",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1807,7 +1933,8 @@
     "text": "{name} was leaning against a lamppost, a hook hanging from a belt.",
     "tags": {
       "role": "arch-longshoreman",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1818,7 +1945,8 @@
     "text": "{name} was checking a union card against a slip of paper.",
     "tags": {
       "role": "arch-longshoreman",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1830,7 +1958,8 @@
     "tags": {
       "role": "arch-longshoreman",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1841,7 +1970,8 @@
     "text": "{name} was sitting with a hook set on the table, turning a glass slowly.",
     "tags": {
       "role": "arch-longshoreman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1852,7 +1982,8 @@
     "text": "{name} was counting out coins for a round, stacking them by size.",
     "tags": {
       "role": "arch-longshoreman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -1864,7 +1995,8 @@
     "tags": {
       "role": "arch-longshoreman",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1875,7 +2007,8 @@
     "text": "{name} was sitting with a hook laid across a knee, working a knot loose from a length of rope.",
     "tags": {
       "role": "arch-longshoreman",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1886,7 +2019,8 @@
     "text": "{name} was counting a thin roll of bills, recounting it.",
     "tags": {
       "role": "arch-longshoreman",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1898,7 +2032,8 @@
     "tags": {
       "role": "arch-longshoreman",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1909,7 +2044,8 @@
     "text": "{name} was carrying a bundle of coats tied with string.",
     "tags": {
       "role": "arch-seamstress",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1920,7 +2056,8 @@
     "text": "{name} was checking a thimble against a finger, working it back on.",
     "tags": {
       "role": "arch-seamstress",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1932,7 +2069,8 @@
     "tags": {
       "role": "arch-seamstress",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1943,7 +2081,8 @@
     "text": "{name} was going through a bundle of piecework, counting the pieces.",
     "tags": {
       "role": "arch-seamstress",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1954,7 +2093,8 @@
     "text": "{name} was threading a needle by a low light, squinting at it.",
     "tags": {
       "role": "arch-seamstress",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1966,7 +2106,8 @@
     "tags": {
       "role": "arch-seamstress",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1977,7 +2118,8 @@
     "text": "{name} was working a needle through a hem, fast, even stitches.",
     "tags": {
       "role": "arch-seamstress",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -1988,7 +2130,8 @@
     "text": "{name} was counting finished coats into a stack, tying them with string.",
     "tags": {
       "role": "arch-seamstress",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2000,7 +2143,8 @@
     "tags": {
       "role": "arch-seamstress",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2011,7 +2155,8 @@
     "text": "{name} was leaning against the cab, watching the corner for a fare.",
     "tags": {
       "role": "arch-hackman",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2022,7 +2167,8 @@
     "text": "{name} was checking the meter twice, tapping the glass.",
     "tags": {
       "role": "arch-hackman",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2034,7 +2180,8 @@
     "tags": {
       "role": "arch-hackman",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2045,7 +2192,8 @@
     "text": "{name} was sitting behind the wheel, engine idling, waiting on a fare.",
     "tags": {
       "role": "arch-hackman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2056,7 +2204,8 @@
     "text": "{name} was wiping the windshield down with a rag kept for the purpose.",
     "tags": {
       "role": "arch-hackman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2068,7 +2217,8 @@
     "tags": {
       "role": "arch-hackman",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2079,7 +2229,8 @@
     "text": "{name} was totaling the night's fares in a small notebook, a pencil licked and ready.",
     "tags": {
       "role": "arch-hackman",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2090,7 +2241,8 @@
     "text": "{name} was checking the oil level, a rag over one hand.",
     "tags": {
       "role": "arch-hackman",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2102,7 +2254,8 @@
     "tags": {
       "role": "arch-hackman",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2113,7 +2266,8 @@
     "text": "{name} was carrying a suit on a hanger, brushing lint from the shoulder.",
     "tags": {
       "role": "arch-tailor",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2124,7 +2278,8 @@
     "text": "{name} was checking a tape measure against a chalk mark.",
     "tags": {
       "role": "arch-tailor",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2136,7 +2291,8 @@
     "tags": {
       "role": "arch-tailor",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2147,7 +2303,8 @@
     "text": "{name} was going through a rack of coats, checking the tickets.",
     "tags": {
       "role": "arch-tailor",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2158,7 +2315,8 @@
     "text": "{name} was chalking a hem, kneeling by the cuff.",
     "tags": {
       "role": "arch-tailor",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2170,7 +2328,8 @@
     "tags": {
       "role": "arch-tailor",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2181,7 +2340,8 @@
     "text": "{name} was working a needle through a lapel, fast and even.",
     "tags": {
       "role": "arch-tailor",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2192,7 +2352,8 @@
     "text": "{name} was checking a bolt of cloth against the light.",
     "tags": {
       "role": "arch-tailor",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2204,7 +2365,8 @@
     "tags": {
       "role": "arch-tailor",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2215,7 +2377,8 @@
     "text": "{name} was coiling a length of rope over one arm, looping it hand over hand.",
     "tags": {
       "role": "arch-stagehand",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2226,7 +2389,8 @@
     "text": "{name} was checking a call sheet against a wristwatch.",
     "tags": {
       "role": "arch-stagehand",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2238,7 +2402,8 @@
     "tags": {
       "role": "arch-stagehand",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2249,7 +2414,8 @@
     "text": "{name} was going through a box of props, checking each against a list.",
     "tags": {
       "role": "arch-stagehand",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2260,7 +2426,8 @@
     "text": "{name} was testing a rope's give with a sharp tug.",
     "tags": {
       "role": "arch-stagehand",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2272,7 +2439,8 @@
     "tags": {
       "role": "arch-stagehand",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2283,7 +2451,8 @@
     "text": "{name} was coiling a length of rope, hand over hand, into a tight loop.",
     "tags": {
       "role": "arch-stagehand",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2294,7 +2463,8 @@
     "text": "{name} was checking a set of tools laid out on a cloth.",
     "tags": {
       "role": "arch-stagehand",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2306,7 +2476,8 @@
     "tags": {
       "role": "arch-stagehand",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2317,7 +2488,8 @@
     "text": "{name} was checking a small watch pinned to a collar.",
     "tags": {
       "role": "arch-switchboard",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -2328,7 +2500,8 @@
     "text": "{name} was counting change from a purse, coin by coin.",
     "tags": {
       "role": "arch-switchboard",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2340,7 +2513,8 @@
     "tags": {
       "role": "arch-switchboard",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2351,7 +2525,8 @@
     "text": "{name} was tapping a pencil against a list of numbers.",
     "tags": {
       "role": "arch-switchboard",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2362,7 +2537,8 @@
     "text": "{name} was counting out coins for a sandwich, stacking them small.",
     "tags": {
       "role": "arch-switchboard",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2374,7 +2550,8 @@
     "tags": {
       "role": "arch-switchboard",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2385,7 +2562,8 @@
     "text": "{name} was sitting with a cord in each hand, plugging one line into another.",
     "tags": {
       "role": "arch-switchboard",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2396,7 +2574,8 @@
     "text": "{name} was checking a directory of numbers, a finger running down the column.",
     "tags": {
       "role": "arch-switchboard",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2408,7 +2587,8 @@
     "tags": {
       "role": "arch-switchboard",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2419,7 +2599,8 @@
     "text": "{name} was checking a pocket watch against the street clock.",
     "tags": {
       "role": "arch-nightman",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -2430,7 +2611,8 @@
     "text": "{name} was counting change from a coat pocket.",
     "tags": {
       "role": "arch-nightman",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2442,7 +2624,8 @@
     "tags": {
       "role": "arch-nightman",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -2453,7 +2636,8 @@
     "text": "{name} was going through the register, checking a name against a room number.",
     "tags": {
       "role": "arch-nightman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2464,7 +2648,8 @@
     "text": "{name} was counting a set of keys hung on a board.",
     "tags": {
       "role": "arch-nightman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2476,7 +2661,8 @@
     "tags": {
       "role": "arch-nightman",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2487,7 +2673,8 @@
     "text": "{name} was sitting behind the desk, going through the night's mail.",
     "tags": {
       "role": "arch-nightman",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2498,7 +2685,8 @@
     "text": "{name} was counting the till twice before locking it.",
     "tags": {
       "role": "arch-nightman",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2510,7 +2698,8 @@
     "tags": {
       "role": "arch-nightman",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2521,7 +2710,8 @@
     "text": "{name} was checking a compact mirror, then closing it with a snap.",
     "tags": {
       "role": "arch-chorus",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2532,7 +2722,8 @@
     "text": "{name} was counting change from a small purse.",
     "tags": {
       "role": "arch-chorus",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2544,7 +2735,8 @@
     "tags": {
       "role": "arch-chorus",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2555,7 +2747,8 @@
     "text": "{name} was sitting with a cup gone cold, not touching it.",
     "tags": {
       "role": "arch-chorus",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -2566,7 +2759,8 @@
     "text": "{name} was tapping a rhythm against the table with two fingers, half a step behind the radio.",
     "tags": {
       "role": "arch-chorus",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2578,7 +2772,8 @@
     "tags": {
       "role": "arch-chorus",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2589,7 +2784,8 @@
     "text": "{name} was going through a small trunk of costumes, checking each piece.",
     "tags": {
       "role": "arch-chorus",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2600,7 +2796,8 @@
     "text": "{name} was counting a thin roll of bills, recounting it.",
     "tags": {
       "role": "arch-chorus",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2612,7 +2809,8 @@
     "tags": {
       "role": "arch-chorus",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2623,7 +2821,8 @@
     "text": "{name} was chalking a number on a slate, then rubbing half of it off.",
     "tags": {
       "role": "arch-bookmaker",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2634,7 +2833,8 @@
     "text": "{name} was counting change from a cigar box.",
     "tags": {
       "role": "arch-bookmaker",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2646,7 +2846,8 @@
     "tags": {
       "role": "arch-bookmaker",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2657,7 +2858,8 @@
     "text": "{name} was going through a stack of betting slips, sorting them by name.",
     "tags": {
       "role": "arch-bookmaker",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2668,7 +2870,8 @@
     "text": "{name} was tapping a pencil against a slate of odds.",
     "tags": {
       "role": "arch-bookmaker",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2680,7 +2883,8 @@
     "tags": {
       "role": "arch-bookmaker",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2691,7 +2895,8 @@
     "text": "{name} was counting a roll of bills, licking a thumb between each one.",
     "tags": {
       "role": "arch-bookmaker",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2702,7 +2907,8 @@
     "text": "{name} was checking a ledger of debts against a list of names.",
     "tags": {
       "role": "arch-bookmaker",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2714,7 +2920,8 @@
     "tags": {
       "role": "arch-bookmaker",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2725,7 +2932,8 @@
     "text": "{name} was shaking a hand and moving to the next one down the line.",
     "tags": {
       "role": "arch-heeler",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2736,7 +2944,8 @@
     "text": "{name} was checking a list of names against a ward map.",
     "tags": {
       "role": "arch-heeler",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2748,7 +2957,8 @@
     "tags": {
       "role": "arch-heeler",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2759,7 +2969,8 @@
     "text": "{name} was sitting at the head of a table, a coffee cup gone cold beside a ledger.",
     "tags": {
       "role": "arch-heeler",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2770,7 +2981,8 @@
     "text": "{name} was tapping a pencil against a list of favors owed.",
     "tags": {
       "role": "arch-heeler",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2782,7 +2994,8 @@
     "tags": {
       "role": "arch-heeler",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2793,7 +3006,8 @@
     "text": "{name} was going through a list of names, checking off who owed what.",
     "tags": {
       "role": "arch-heeler",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2804,7 +3018,8 @@
     "text": "{name} was counting a roll of bills into a drawer.",
     "tags": {
       "role": "arch-heeler",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2816,7 +3031,8 @@
     "tags": {
       "role": "arch-heeler",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2827,7 +3043,8 @@
     "text": "{name} was checking a ticket stub against a number chalked on a board.",
     "tags": {
       "role": "arch-pawnman",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2838,7 +3055,8 @@
     "text": "{name} was counting change from a drawer, coin by coin.",
     "tags": {
       "role": "arch-pawnman",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2850,7 +3068,8 @@
     "tags": {
       "role": "arch-pawnman",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2861,7 +3080,8 @@
     "text": "{name} was going through a tray of tickets, sorting them by date.",
     "tags": {
       "role": "arch-pawnman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2872,7 +3092,8 @@
     "text": "{name} was checking an item against a ledger, matching the number to a tag.",
     "tags": {
       "role": "arch-pawnman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2884,7 +3105,8 @@
     "tags": {
       "role": "arch-pawnman",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2895,7 +3117,8 @@
     "text": "{name} was weighing a ring on a small scale, checking the mark twice.",
     "tags": {
       "role": "arch-pawnman",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2906,7 +3129,8 @@
     "text": "{name} was counting a drawer of cash, stacking the bills by denomination.",
     "tags": {
       "role": "arch-pawnman",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2918,7 +3142,8 @@
     "tags": {
       "role": "arch-pawnman",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2929,7 +3154,8 @@
     "text": "{name} was standing with arms crossed, watching the street from a doorway.",
     "tags": {
       "role": "arch-bouncer",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2940,7 +3166,8 @@
     "text": "{name} was checking a face against a mental list, waving it through.",
     "tags": {
       "role": "arch-bouncer",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2952,7 +3179,8 @@
     "tags": {
       "role": "arch-bouncer",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2963,7 +3191,8 @@
     "text": "{name} was standing at the door, arms crossed, watching the room over the crowd.",
     "tags": {
       "role": "arch-bouncer",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2974,7 +3203,8 @@
     "text": "{name} was checking a coat for a bulge before waving someone through.",
     "tags": {
       "role": "arch-bouncer",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2986,7 +3216,8 @@
     "tags": {
       "role": "arch-bouncer",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -2997,7 +3228,8 @@
     "text": "{name} was standing where the staircase topped out, arms crossed.",
     "tags": {
       "role": "arch-bouncer",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3008,7 +3240,8 @@
     "text": "{name} was checking a door was locked, testing the handle twice.",
     "tags": {
       "role": "arch-bouncer",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3020,7 +3253,8 @@
     "tags": {
       "role": "arch-bouncer",
       "placeKind": "private",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3031,7 +3265,8 @@
     "text": "{name} was folding a slip into a pocket without breaking stride.",
     "tags": {
       "role": "arch-runner",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3042,7 +3277,8 @@
     "text": "{name} was counting change from a pocket, quick and quiet.",
     "tags": {
       "role": "arch-runner",
-      "placeKind": "public"
+      "placeKind": "public",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3054,7 +3290,8 @@
     "tags": {
       "role": "arch-runner",
       "placeKind": "public",
-      "band": "dawn"
+      "band": "dawn",
+      "at": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -3065,7 +3302,8 @@
     "text": "{name} was going through a stack of slips, sorting them by number.",
     "tags": {
       "role": "arch-runner",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3076,7 +3314,8 @@
     "text": "{name} was counting out winnings into a small envelope.",
     "tags": {
       "role": "arch-runner",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3088,7 +3327,8 @@
     "tags": {
       "role": "arch-runner",
       "placeKind": "semi",
-      "band": "after-midnight"
+      "band": "after-midnight",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3099,7 +3339,8 @@
     "text": "{name} was counting a bag of coins into stacks on the table.",
     "tags": {
       "role": "arch-runner",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3110,7 +3351,8 @@
     "text": "{name} was checking a ledger of plays against a column of numbers.",
     "tags": {
       "role": "arch-runner",
-      "placeKind": "private"
+      "placeKind": "private",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3122,7 +3364,8 @@
     "tags": {
       "role": "arch-runner",
       "placeKind": "private",
-      "band": "small-hours"
+      "band": "small-hours",
+      "at": "work"
     },
     "motifs": [],
     "status": "generated"
@@ -3189,6 +3432,160 @@
     "tags": {
       "role": "any",
       "placeKind": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w01",
+    "deck": "activity",
+    "text": "{name} was at a table with a cup of coffee going cold.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w02",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper, not turning the page.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w03",
+    "deck": "activity",
+    "text": "{name} was sitting with a drink and not drinking it.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w04",
+    "deck": "activity",
+    "text": "{name} was smoking at a table near the wall.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w05",
+    "deck": "activity",
+    "text": "{name} was waiting, and not for me.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w06",
+    "deck": "activity",
+    "text": "{name} was watching the door over a cup of coffee.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w07",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind, hands in pockets.",
+    "tags": {
+      "role": "any",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w08",
+    "deck": "activity",
+    "text": "{name} was smoking under the nearest light.",
+    "tags": {
+      "role": "any",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w09",
+    "deck": "activity",
+    "text": "{name} was waiting, and looking up the street now and then.",
+    "tags": {
+      "role": "any",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w10",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper by the light that was there.",
+    "tags": {
+      "role": "any",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w11",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "any",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w12",
+    "deck": "activity",
+    "text": "{name} was sitting in a hard chair, doing nothing much.",
+    "tags": {
+      "role": "any",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w13",
+    "deck": "activity",
+    "text": "{name} was smoking by the window.",
+    "tags": {
+      "role": "any",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w14",
+    "deck": "activity",
+    "text": "{name} was waiting, and had been for a while.",
+    "tags": {
+      "role": "any",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"

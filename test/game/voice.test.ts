@@ -568,7 +568,7 @@ describe('the page grammar', () => {
         // M8 §8: a night page has targets, not a floor — the night harness
         // measures its length against the golden's — and a question with one
         // short answer and nothing to make of it is a short page.
-        const floor = page.shape === undefined ? 50 : 30;
+        const floor = page.shape === undefined ? 50 : 20;
         if (n < floor || n > ceiling) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
       }
     }
@@ -585,7 +585,7 @@ describe('the page grammar', () => {
         // M8 §8: a night page has targets, not a floor — the night harness
         // measures its length against the golden's — and a question with one
         // short answer and nothing to make of it is a short page.
-        const floor = page.shape === undefined ? 50 : 30;
+        const floor = page.shape === undefined ? 50 : 20;
         if (n < floor || n > ceiling) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
       }
     }

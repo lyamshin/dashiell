@@ -133,7 +133,7 @@
   {
     "id": "tht-014",
     "deck": "thought",
-    "text": "That put {subject} at {scene}, at {time} — the same hour it happened. That did not clear anyone.",
+    "text": "If {subject} was at {scene} at {time}, {subject} was there the same hour it happened. That cleared nobody.",
     "tags": {
       "class": "implicates",
       "basis": "placement"
@@ -155,24 +155,24 @@
   {
     "id": "tht-016",
     "deck": "thought",
-    "text": "{subject} had a key to {scene}. That put opportunity in {subject}’s hands.",
+    "text": "{subject} could have got into {scene}. That put it within reach, if nothing more.",
     "tags": {
       "class": "implicates",
       "basis": "access"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-017",
     "deck": "thought",
-    "text": "At {time}, {subject} was at {scene} — right where it happened. That was not an alibi.",
+    "text": "At {time}, {subject} might have been at {scene}, right where it happened. If so, it was no alibi.",
     "tags": {
       "class": "implicates",
       "basis": "placement"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-018",
@@ -188,13 +188,13 @@
   {
     "id": "tht-019",
     "deck": "thought",
-    "text": "{subject} could get into {scene} without trouble. That was reason enough to keep asking.",
+    "text": "{subject} could have got into {scene} without much trouble. That was a reason to keep asking.",
     "tags": {
       "class": "implicates",
       "basis": "access"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-020",
@@ -210,13 +210,13 @@
   {
     "id": "tht-021",
     "deck": "thought",
-    "text": "{subject} was seen near {scene} at {time}. That did {subject} no favors.",
+    "text": "If {subject} was near {scene} at {time}, that did {subject} no favors.",
     "tags": {
       "class": "implicates",
       "basis": "placement"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-022",
@@ -232,24 +232,24 @@
   {
     "id": "tht-023",
     "deck": "thought",
-    "text": "{subject} had access to {scene}, and access was not nothing.",
+    "text": "{subject} might have had a way into {scene}, and a way in was not nothing.",
     "tags": {
       "class": "implicates",
       "basis": "access"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-024",
     "deck": "thought",
-    "text": "At {time}, {subject} was where it happened, or close to it. That was bad news for {subject}.",
+    "text": "If {subject} was where it happened at {time}, or close to it, that was bad news for {subject}.",
     "tags": {
       "class": "implicates",
       "basis": "placement"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-025",
@@ -861,134 +861,134 @@
   {
     "id": "tht-085",
     "deck": "thought",
-    "text": "The coroner had given a span. This gave a point inside it: {time}.",
+    "text": "The coroner had given me hours. {other} might give me the minute.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-086",
     "deck": "thought",
-    "text": "If it happened at {time}, that explained why nobody heard it.",
+    "text": "If it happened at {time}, it happened during {other}. That was worth holding on to.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-087",
     "deck": "thought",
-    "text": "That narrowed the coroner’s hours down to {time}.",
+    "text": "{other} at {time} fell inside the coroner’s hours. It might be the minute, and it might not.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-088",
     "deck": "thought",
-    "text": "The window was wide. This made it {time}, if it was right.",
+    "text": "The coroner’s window was wide. {other} at {time} might narrow it, if the rest agreed.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-089",
     "deck": "thought",
-    "text": "That was an anchor, not a guess: it happened, or did not, at {time}.",
+    "text": "If it was {time}, then {other} marked it. I did not know yet that it was.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-090",
     "deck": "thought",
-    "text": "If {time} was right, it was worth more than the coroner’s span alone.",
+    "text": "{other} came at {time}, inside the coroner’s hours. If the rest fit, that could be when.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-091",
     "deck": "thought",
-    "text": "The coroner gave hours. This gave a minute: {time}.",
+    "text": "It could have happened at {time}. If it did, {other} would have been going on.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-092",
     "deck": "thought",
-    "text": "That turned a span into a single hour: {time}.",
+    "text": "I had hours from the coroner. {other} at {time} was a guess at the minute, and only a guess.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-093",
     "deck": "thought",
-    "text": "It placed the hour more exactly than the coroner had managed. {time}, if it held.",
+    "text": "{time} was possible. {other} made it worth thinking about, if nothing more.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-094",
     "deck": "thought",
-    "text": "If {time} was right, that was the minute the coroner could not give.",
+    "text": "Somewhere in the coroner’s hours was {other}, at {time}. It might be the moment.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-095",
     "deck": "thought",
-    "text": "That put a number on it: {time}, and nothing vaguer.",
+    "text": "If {time} was the hour, {other} was the clock. I did not know yet that it was.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-096",
     "deck": "thought",
-    "text": "The coroner’s window ran wide. This closed it down to {time}.",
+    "text": "{other} at {time} sat inside the window. That made it a candidate, if not an answer.",
     "tags": {
       "class": "window",
       "basis": "anchor"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-097",
@@ -1003,12 +1003,12 @@
   {
     "id": "tht-098",
     "deck": "thought",
-    "text": "The drawers were shut and nothing was missing. Whoever came, came for {victim}, not for things.",
+    "text": "Whoever came, came for {victim}, not for anything {victim} owned.",
     "tags": {
       "class": "not-robbery"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-099",
@@ -1073,22 +1073,22 @@
   {
     "id": "tht-105",
     "deck": "thought",
-    "text": "It was a fight, not a theft. Nothing in {scene} said different.",
+    "text": "It was not a theft. Nothing in {scene} said different.",
     "tags": {
       "class": "not-robbery"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-106",
     "deck": "thought",
-    "text": "Whoever came up, came for {victim} and touched nothing else in the room.",
+    "text": "Whoever came for {victim} came for {victim} and nothing else.",
     "tags": {
       "class": "not-robbery"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-107",
@@ -1757,22 +1757,22 @@
   {
     "id": "tht-e005",
     "deck": "thought",
-    "text": "So {other} had passed through {place}. It had not gone far.",
+    "text": "So {other} had passed through {place}. That was somewhere to start.",
     "tags": {
       "class": "goods"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e006",
     "deck": "thought",
-    "text": "{other} had come this way after it left. {place} was where the trail was warm.",
+    "text": "{other} had come this way after it left, if the finding was honest. {place} was the place to ask.",
     "tags": {
       "class": "goods"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e007",
@@ -1857,12 +1857,12 @@
   {
     "id": "tht-e015",
     "deck": "thought",
-    "text": "{other} had stopped at {place}. The trail was shorter than I had feared.",
+    "text": "{other} had stopped at {place}. Somebody there might know who brought it.",
     "tags": {
       "class": "goods"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e016",
@@ -1877,22 +1877,22 @@
   {
     "id": "tht-e017",
     "deck": "thought",
-    "text": "So {victim} had been at {place} at {time}. After that, nobody had {victim} anywhere.",
+    "text": "So {victim} had been at {place} at {time}. After that I had nothing on {victim}.",
     "tags": {
       "class": "last-seen"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e018",
     "deck": "thought",
-    "text": "{place} at {time}. That was the last anybody had of {victim}.",
+    "text": "{place} at {time}. That was the last I had of {victim}.",
     "tags": {
       "class": "last-seen"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e019",
@@ -1907,32 +1907,32 @@
   {
     "id": "tht-e020",
     "deck": "thought",
-    "text": "{time} at {place} was the last sight of {victim}. Whatever happened, it happened after.",
+    "text": "{time} at {place} was the last sight of {victim} I had. Whatever happened, it might have happened after.",
     "tags": {
       "class": "last-seen"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e021",
     "deck": "thought",
-    "text": "The trail on {victim} ran as far as {place}, at {time}. It stopped there.",
+    "text": "What I had on {victim} ran as far as {place}, at {time}. It stopped there.",
     "tags": {
       "class": "last-seen"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e022",
     "deck": "thought",
-    "text": "{victim} had been at {place} at {time}. That was the edge of what anybody knew.",
+    "text": "{victim} had been at {place} at {time}. That was the edge of what I knew.",
     "tags": {
       "class": "last-seen"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e023",
@@ -1957,12 +1957,12 @@
   {
     "id": "tht-e025",
     "deck": "thought",
-    "text": "{place}, at {time}, was the last place anybody could swear to {victim}.",
+    "text": "{place}, at {time}, was the last place anybody had sworn to {victim} yet.",
     "tags": {
       "class": "last-seen"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e026",
@@ -1977,72 +1977,72 @@
   {
     "id": "tht-e027",
     "deck": "thought",
-    "text": "Nobody had seen {victim} since {place} at {time}. That was where to start.",
+    "text": "Nobody had given me {victim} since {place} at {time}. That was where to start.",
     "tags": {
       "class": "last-seen"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e028",
     "deck": "thought",
-    "text": "{victim} was at {place} at {time}, and then nowhere anybody could name.",
+    "text": "{victim} was at {place} at {time}, and then nowhere I could name.",
     "tags": {
       "class": "last-seen"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e029",
     "deck": "thought",
-    "text": "{victim} had been at {place} at {time}, after the hour {victim} was supposed to have gone. Somebody had been wrong.",
+    "text": "{victim} had been at {place} at {time}, later than I had {victim} before. If it held, somebody had it wrong.",
     "tags": {
       "class": "seen-after"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e030",
     "deck": "thought",
-    "text": "So {victim} was still walking around at {time}. Walking meant choosing.",
+    "text": "So {victim} might still have been walking around at {time}. Walking would mean choosing.",
     "tags": {
       "class": "seen-after"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e031",
     "deck": "thought",
-    "text": "{place} at {time} was later than anybody had put {victim} before. That changed what gone meant.",
+    "text": "{place} at {time} was later than anybody had put {victim} before. If it was true, gone meant something else.",
     "tags": {
       "class": "seen-after"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e032",
     "deck": "thought",
-    "text": "At {time}, {victim} was at {place}. Whoever had {victim} vanishing earlier had it wrong.",
+    "text": "At {time}, {victim} was at {place}, if the word was good. Whoever had {victim} gone earlier would have to think again.",
     "tags": {
       "class": "seen-after"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e033",
     "deck": "thought",
-    "text": "That put {victim} at {place} at {time}, after the last sighting I had. {victim} had gone somewhere on foot.",
+    "text": "That put {victim} at {place} at {time}, after the last sighting I had.",
     "tags": {
       "class": "seen-after"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e034",
@@ -2057,12 +2057,12 @@
   {
     "id": "tht-e035",
     "deck": "thought",
-    "text": "{victim} was seen at {place} at {time}. That was after, and after mattered.",
+    "text": "{victim} was seen at {place} at {time}. That was after, if it held.",
     "tags": {
       "class": "seen-after"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "tht-e036",

@@ -226,6 +226,8 @@ export interface BeatTrace {
   targetId?: Id;
   /** Exactly the words it put on the page, when it put any. */
   text?: string;
+  /** A thought on one witness's word or an anchor: the words must hedge (§5). */
+  hedge?: boolean;
 }
 
 /** One choice as the book drew it, kept on the page it was offered under. */

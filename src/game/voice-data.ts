@@ -427,6 +427,12 @@ export const SCENE_BODY: string[] = [
   '{victim} lay where {he} had fallen. Nobody had covered {him} yet.',
 ];
 
+/** §3: the body, where the scene is out of doors. */
+export const SCENE_BODY_OUTSIDE: string[] = [
+  '{victim} was still on the ground where {he} had been left.',
+  '{victim} lay where {he} had been found. Nobody had covered {him} yet.',
+];
+
 /** §3: the body stays all night. A return to the scene finds it where it was. */
 export const SCENE_BODY_AGAIN: string[] = [
   '{victim} was where I had left {him}.',
@@ -489,9 +495,9 @@ export const LEFT_TWO: string[] = [
 
 /** §4: spoken to, a person stops what they were doing. */
 export const STOP_LINES: string[] = [
-  '{name} stopped what {pronoun} was doing.',
+  '{name} looked up when I sat down.',
   '{name} left off and looked up.',
-  '{name} put it aside when I sat down.',
+  '{name} looked up as I came over.',
 ];
 
 /** §4: first sight — who they are to the case, and their sex and rough age. */

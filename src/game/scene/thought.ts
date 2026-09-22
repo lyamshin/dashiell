@@ -89,6 +89,11 @@ export interface Thought {
   clueIds: Id[];
   /** Accounts taken that it also rests on. */
   accountIds?: Id[];
+  /**
+   * Resting on one witness's word, or on an anchor that only makes an hour
+   * possible: the thought may say "if", "might" or "would", and nothing flatter.
+   */
+  single?: boolean;
 }
 
 export interface ThoughtInput {
@@ -467,7 +472,41 @@ function sceneFactIn(clue: Clue, sceneFact: string): boolean {
  * `THOUGHT_CAP` by priority, with each kept `observer-placed` bringing its
  * `unmentioned` rider along. `nothing` when the page found nothing at all.
  */
+/**
+ * Is this placement one person's word and nothing more? A room or a paper
+ * says it itself; a second clue in the notebook saying the same thing
+ * corroborates it.
+ */
+function singleWord(view: CaseView, clue: Clue, personId: Id, placeId: Id, tick: Tick, found: readonly Id[]): boolean {
+  if (clue.source.type === 'place' && (clue.kind === 'physical' || clue.kind === 'document' || clue.kind === 'scene')) return false;
+  const others = found.filter((id) => id !== clue.id);
+  return !others.some((id) =>
+    (view.findableById.get(id)?.establishes ?? []).some(
+      (f) => f.kind === 'personAt' && f.personId === personId && f.place === placeId && f.tick === tick,
+    ),
+  );
+}
+
+/** The single-source marks, laid on after the fact. */
+function markSingle(input: ThoughtInput, thoughts: Thought[]): Thought[] {
+  return thoughts.map((t) => {
+    if (t.cls === 'window') return t.basis === 'anchor' ? { ...t, single: true } : t;
+    if (t.cls !== 'clears' && t.cls !== 'implicates') return t;
+    const clue = input.view.findableById.get(t.clueIds[0] ?? '');
+    if (!clue) return t;
+    if (t.basis === 'access' || t.placeId === undefined || t.tick === undefined || t.subjectId === undefined) {
+      const physical = clue.source.type === 'place' && (clue.kind === 'physical' || clue.kind === 'document');
+      return physical ? t : { ...t, single: true };
+    }
+    return singleWord(input.view, clue, t.subjectId, t.placeId, t.tick, input.foundAfter) ? { ...t, single: true } : t;
+  });
+}
+
 export function thoughtsFor(input: ThoughtInput): Thought[] {
+  return markSingle(input, thoughtsForUnmarked(input));
+}
+
+function thoughtsForUnmarked(input: ThoughtInput): Thought[] {
   if (input.newClues.length === 0) return [{ cls: 'nothing', clueIds: [] }];
   const all = candidateThoughts(input);
   // One thought per class and subject: two clues placing Hanrahan at the same

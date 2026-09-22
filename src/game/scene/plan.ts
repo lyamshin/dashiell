@@ -209,6 +209,41 @@ function hash(...parts: (string | number)[]): number {
   return h >>> 0;
 }
 
+/**
+ * Where a suspect's trade is carried on, by archetype and place template. The
+ * activity deck's `at: work` cards are trade tasks, dealt only here (§4: the
+ * activity comes from the trade, the place and the hour together).
+ */
+export const WORKPLACES: Record<string, string[]> = {
+  'arch-pawnman': ['pawnshop'],
+  'arch-bouncer': ['dolans-bar', 'speakeasy', 'dance-hall', 'pool-hall'],
+  'arch-hackman': ['cab-stand'],
+  'arch-chambermaid': ['hotel-lobby', 'res-suite', 'rooming-house-room', 'boarding-parlor'],
+  'arch-longshoreman': ['pier-shed', 'ferry-slip'],
+  'arch-bookmaker': ['pool-hall', 'dolans-bar', 'speakeasy'],
+  'arch-runner': ['pool-hall', 'corner-newsstand'],
+  'arch-chorus': ['dance-hall', 'movie-house'],
+  'arch-stagehand': ['movie-house', 'dance-hall'],
+  'arch-nightman': ['hotel-lobby', 'hotel-garage', 'hallam-vestibule'],
+  'arch-switchboard': ['hotel-lobby', 'hallam-vestibule'],
+  'arch-tailor': ['office-over-tailor'],
+  'arch-seamstress': ['office-over-tailor', 'laundry-yard'],
+  'arch-heeler': ['union-hall'],
+  'arch-secretary': ['office-over-tailor'],
+  'arch-lawyer': ['office-over-tailor'],
+  'arch-broker': ['office-over-tailor'],
+  'arch-bookkeeper': ['office-over-tailor', 'union-hall'],
+  'arch-adjuster': ['office-over-tailor'],
+  'arch-dentist': ['office-over-tailor'],
+  'arch-nurse': ['drugstore'],
+  'arch-reporter': ['corner-newsstand'],
+  'arch-piano-teacher': ['boarding-parlor'],
+  'arch-blockowner': ['office-over-tailor'],
+  'arch-society': [],
+  'arch-heir': [],
+  'arch-widow': [],
+};
+
 /** The activity-deck role for a person: fixture role, else archetype, else `any`. */
 export function activityRole(person: Person): string {
   if (person.kind === 'fixture' && person.fixtureRole) return person.fixtureRole;
@@ -239,10 +274,15 @@ export function chooseActivity(
     hourAgrees(c.text, minutes) &&
     tagIs('activity', c, 'band', band) &&
     (sky === null || scoreMotifs(motifsOf(c), c, sky) !== -Infinity);
+  // A trade task only where the person works: a pawnbroker's clerk sorts
+  // tickets at the pawnshop, and at a speakeasy has a coffee like anybody.
+  const atWork = (WORKPLACES[person.archetypeId ?? ''] ?? []).includes(placeId);
+  const may = (c: Card): boolean => atWork || tagOf('activity', c, 'at') !== 'work';
   const ladder: ((c: Card) => boolean)[] = [
-    (c) => roleIs(c, role) && tagIs('activity', c, 'placeKind', kind) && tagOf('activity', c, 'band') === band,
-    (c) => roleIs(c, role) && tagIs('activity', c, 'placeKind', kind),
-    (c) => roleIs(c, role),
+    (c) => may(c) && roleIs(c, role) && tagIs('activity', c, 'placeKind', kind) && tagOf('activity', c, 'band') === band,
+    (c) => may(c) && roleIs(c, role) && tagIs('activity', c, 'placeKind', kind),
+    (c) => roleIs(c, 'any') && tagOf('activity', c, 'placeKind') === kind,
+    (c) => may(c) && roleIs(c, role),
     (c) => roleIs(c, 'any') && tagIs('activity', c, 'placeKind', kind),
   ];
   const slots = { name: person.surname, place: place?.shortName };
@@ -521,7 +561,6 @@ export function planPage(input: PlanInput): Plan {
     const presence = presenceFor(input, memory, !first);
     memory = presence.memory;
     beats.push(presence.beat);
-    if (!establish) beats.push({ kind: 'texture', required: false, texture: 'ambient' });
 
     const opening = action.kind === 'travel' ? (action.openingClues ?? []) : [];
     for (const clue of opening) beats.push({ kind: 'find', required: true, clueId: clue.id });
@@ -539,7 +578,11 @@ export function planPage(input: PlanInput): Plan {
           viewOf(
             view,
             view.personById.get(p.personId) as Person,
-            input.met.includes(p.personId),
+            // Known: met, or named in a lead the notebook holds.
+            input.met.includes(p.personId) ||
+              threadsFor(view, [...input.foundBefore]).some((t) =>
+                new RegExp(`\\b${view.personById.get(p.personId)?.surname ?? '§'}\\b`).test(t.label),
+              ),
             input.foundBefore,
             input.accountsBefore,
           ),
@@ -579,7 +622,6 @@ export function planPage(input: PlanInput): Plan {
     const left = (place?.objects ?? []).filter((id) => id !== action.objectId).slice(0, 2);
     beats.push({ kind: 'act', required: true, ...(action.objectId ? { objectId: action.objectId } : {}), left });
     for (const clue of action.clues) beats.push({ kind: 'find', required: true, clueId: clue.id });
-    beats.push({ kind: 'texture', required: false, texture: 'ambient' });
     addThoughts(thoughtsFor(thoughtInput));
     addBridge();
     return { shape: 'search', beats, memory };
@@ -616,7 +658,6 @@ export function planPage(input: PlanInput): Plan {
     memory = { ...memory, activities: { ...memory.activities, [action.personId]: { ...kept, stopped: true } } };
   }
   for (const id of newIds) beats.push({ kind: 'find', required: true, clueId: id });
-  beats.push({ kind: 'texture', required: false, texture: 'ambient' });
   if (action.self && newClues.length === 0) {
     // Somebody's account of themselves is not a find; it is context.
     addThoughts([{ cls: 'context', clueIds: [] }]);
