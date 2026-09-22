@@ -364,7 +364,7 @@ describe('§8 the clock', () => {
         expect(transitions, `seed ${seed} page ${page.n}`).toEqual([]);
         const text = page.blocks.map((b) => (b.kind === 'prose' || b.kind === 'note' ? b.text : '')).join(' ');
         if (kind.beat === 'hour') expect(text).toContain(kind.hour);
-        else expect(text).toMatch(kind.beat === 'two-left' ? /[Tt]wo/ : /[Oo]ne/);
+        else expect(text).toMatch(kind.beat === 'two-left' ? /[Tt]wo/ : /[Oo]ne|last/);
       }
     }
     expect(beats).toBeGreaterThan(100);

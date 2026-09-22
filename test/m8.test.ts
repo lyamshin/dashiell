@@ -24,6 +24,10 @@ import { playOracle, playWandering } from '../src/game/oracle.js';
 import { newRun, stepInput } from '../src/game/reducer.js';
 import type { Page, RunState } from '../src/game/types.js';
 import { wordsOnPage } from '../src/game/transcript.js';
+import { DECKS, deckOf, fill } from '../src/game/voice/cards.js';
+import { takesSpan } from '../src/game/voice/exchange.js';
+import { spokenSpan, spokenSpans } from '../src/game/voice/facts.js';
+import { spokenPlace } from '../src/game/scene/realize.js';
 import {
   NIGHT_CEILING,
   candidateThoughts,
@@ -671,5 +675,121 @@ describe('M8: the golden route, seed 3', () => {
     expect(tags(p, 'thought')).toEqual(['clears', 'observer-placed', 'unmentioned']);
     const text = p.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ');
     expect(text).toContain('Sweeney had a secretary. Hanrahan.');
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * The review of PR #25: seven fixes, each held.
+ * ------------------------------------------------------------------ */
+
+describe('M8 review fixes', () => {
+  const HOUR = '(?:half past )?(?:six|seven|eight|nine|ten|eleven)(?: o[’\']clock)?';
+  const PREP = '(?:by|at|around|near|after|past|close to|since|before|not)';
+
+  it('introduces a watcher once: never in the place’s paragraph when they are in the room', () => {
+    let checked = 0;
+    for (const w of sweep()) {
+      for (const page of w.final.log) {
+        if (page.shape !== 'arrive') continue;
+        const est = (page.beats ?? []).find((b) => b.kind === 'establish');
+        const watcherId = (est?.personIds ?? []).find((id) => w.view.personById.get(id)?.kind === 'fixture');
+        if (!watcherId) continue;
+        checked++;
+        const surname = w.view.personById.get(watcherId)?.surname as string;
+        expect(est?.text, `${w.label} p${page.n + 1}`).not.toContain(surname);
+        // …and the first-sight line gives the job without the post again.
+        const presence = (page.beats ?? []).find((b) => b.kind === 'presence');
+        const role = w.view.personById.get(watcherId)?.role as string;
+        expect(presence?.text ?? '').not.toContain(`${role} at `);
+      }
+    }
+    expect(checked).toBeGreaterThan(20);
+  });
+
+  it('recalls a person by what they do, never by a noun, and only where the pair has an action', () => {
+    let recalled = 0;
+    for (const w of sweep()) {
+      for (const page of w.final.log.slice(1)) {
+        const text = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ');
+        expect(text).not.toMatch(/\b(?:I noticed|I saw|There was) the [^.]+ again\./);
+        for (const p of w.view.kase.people) {
+          const pair = w.final.cast.portraits[p.id]?.pair;
+          if (!pair) continue;
+          if (pair.action && text.includes(pair.action)) recalled++;
+        }
+      }
+    }
+    expect(recalled).toBeGreaterThan(50);
+  });
+
+  it('deals no business card on a night page; the only gesture is the person’s own recall action', () => {
+    for (const w of sweep()) {
+      for (const page of w.final.log) {
+        if (page.shape === undefined) continue;
+        expect(page.cardsUsed.filter((id) => deckOf(id) === 'business'), `${w.label} p${page.n + 1}`).toEqual([]);
+      }
+    }
+  });
+
+  it('says a span the spoken way, and puts it only on an utterance that can take one', () => {
+    expect(spokenSpan(8, 9)).toBe('from ten until half past');
+    expect(spokenSpan(7, 8)).toBe('from half past nine until ten');
+    expect(spokenSpan(6, 10)).toBe('from nine until eleven');
+    expect(spokenSpans('Hanrahan was at the third floor from ten o’clock to half past ten.')).toBe(
+      'Hanrahan was at the third floor from ten until half past.',
+    );
+    expect(takesSpan('By {time}, {subject} was settled in at {place}.')).toBe(false);
+    expect(takesSpan('{subject} showed up at {place} close to {time}, same as most nights.')).toBe(false);
+    expect(takesSpan('{subject}, {place}, {time}. Gone before the next round.')).toBe(true);
+    // Every utterance, filled both ways: a point wherever it has a {time},
+    // a span only where it can take one, and neither reads wrong.
+    const bad = new RegExp(`\\b${PREP} from\\b|(?<!half )\\b${PREP} ${HOUR} to ${HOUR}`, 'i');
+    for (const card of DECKS.utterances) {
+      if (!card.text.includes('{time}')) continue;
+      const slots = { subject: 'Hanrahan', name: 'Hanrahan', place: 'the third floor', object: 'a cash box', window: 'x', motive: 'x', method: 'x', secret: 'x', detective: 'Dashiell' };
+      const point = fill(card, { ...slots, time: 'ten o’clock' });
+      expect(point, card.id).not.toBeNull();
+      if (!takesSpan(card.text)) continue;
+      const span = fill(card, { ...slots, time: spokenSpan(8, 9) }) as string;
+      expect(bad.test(span), `${card.id}: ${span}`).toBe(false);
+    }
+    // And over forty seeds, three difficulties, no span in anybody's mouth
+    // hangs off a preposition built for one hour.
+    for (const w of sweep()) {
+      for (const page of w.final.log.slice(1)) {
+        for (const b of page.blocks) {
+          if (b.kind !== 'prose' || b.voice !== 'exchange') continue;
+          expect(bad.test(b.text), `${w.label} p${page.n + 1}: ${b.text}`).toBe(false);
+          expect(b.text).not.toMatch(new RegExp(`\\bfrom ${HOUR} to ${HOUR}`));
+        }
+      }
+    }
+  });
+
+  it('never leaves an observer-placed thought standing as a fragment', () => {
+    for (const w of sweep()) {
+      for (const page of w.final.log.slice(1)) {
+        for (const b of page.blocks) {
+          if (b.kind !== 'prose') continue;
+          expect(b.text, `${w.label} p${page.n + 1}`).not.toMatch(/(?:^|[.!]\s)Which\b[^?]*\./);
+        }
+      }
+    }
+  });
+
+  it('takes the answer down in the golden’s words', () => {
+    for (const w of sweep()) {
+      for (const page of w.final.log.slice(1)) {
+        const text = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ');
+        expect(text).not.toContain('Down it went.');
+      }
+    }
+  });
+
+  it('says a place with a street in it the way the block does, in speech only', () => {
+    expect(spokenPlace({ name: 'the third-floor walk-up on Ninth', shortName: 'the third floor' })).toBe('the walk-up on Ninth');
+    expect(spokenPlace({ name: 'the garage on Eleventh Avenue', shortName: 'the garage' })).toBe('the garage on Eleventh Avenue');
+    expect(spokenPlace({ name: 'the speakeasy under the hat shop', shortName: 'the speakeasy' })).toBe('the speakeasy');
+    expect(spokenPlace({ name: '{V}’s apartment on the fourth floor', shortName: 'the fourth floor' })).toBe('the fourth floor');
   });
 });

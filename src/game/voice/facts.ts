@@ -48,6 +48,8 @@ export interface Beat {
   kind: FactKind;
   subjectId: Id | null;
   slots: Record<string, string | undefined>;
+  /** M8: `{time}` is a span ("from ten until half past"), not one hour. */
+  span?: boolean;
 }
 
 /**
@@ -56,7 +58,42 @@ export interface Beat {
  * and the hours here are spoken; the notebook and the sheet keep the faces.
  */
 function tickSpan(from: Tick, to: Tick): string {
-  return from === to ? spokenClock(from) : `${spokenClock(from)} to ${spokenClock(to)}`;
+  return from === to ? spokenClock(from) : spokenSpan(from, to);
+}
+
+/**
+ * M8: a span the way a person says it — "from ten until half past", "from
+ * half past nine until ten", "from nine until eleven". The first hour drops
+ * its "o'clock"; the second drops the hour too when it is the same hour.
+ */
+export function spokenSpan(from: Tick, to: Tick): string {
+  const bare = (t: Tick): string => spokenClock(t).replace(/ o[’']clock$/, '');
+  const hourOf = (t: Tick): number => Math.floor(t / 2);
+  const end = hourOf(to) === hourOf(from) && to % 2 === 1 && from % 2 === 0 ? 'half past' : bare(to);
+  return `from ${bare(from)} until ${end}`;
+}
+
+/** Speech that says a span the record's way — "from ten o'clock to half past ten" — said the spoken way. */
+export function spokenSpans(text: string): string {
+  const hour = '(?:half past )?(?:six|seven|eight|nine|ten|eleven)(?: o[’\']clock)?';
+  // "some time after ten o'clock to half past ten" is a record's span with
+  // the wrong preposition on it; said aloud it is a between.
+  const between = text.replace(
+    new RegExp(`\\bafter (${hour}) to (${hour})`, 'g'),
+    (_w, a: string, b: string) => `between ${a.replace(/ o[’']clock$/, '')} and ${b}`,
+  );
+  return between.replace(new RegExp(`\\bfrom (${hour}) to (${hour})`, 'g'), (whole, a: string, b: string) => {
+    const tick = (s: string): Tick | null => {
+      const words = ['six', 'seven', 'eight', 'nine', 'ten', 'eleven'];
+      const half = s.startsWith('half past ');
+      const w = s.replace(/^half past /, '').replace(/ o[’']clock$/, '');
+      const i = words.indexOf(w);
+      return i < 0 ? null : ((i * 2 + (half ? 1 : 0)) as Tick);
+    };
+    const x = tick(a);
+    const y = tick(b);
+    return x === null || y === null || y < x ? whole : spokenSpan(x, y);
+  });
 }
 
 /**
@@ -100,6 +137,7 @@ export function beatsOf(view: CaseView, clue: Clue): Beat[] {
             place: placeName(f.place),
             time: tickSpan(f.tick, last),
           },
+          ...(last !== f.tick ? { span: true } : {}),
         });
         break;
       }

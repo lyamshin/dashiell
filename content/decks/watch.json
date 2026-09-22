@@ -2,7 +2,7 @@
   {
     "id": "wat-p001",
     "deck": "watch",
-    "text": "{watcher} kept watch behind the bar.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "bartender"
     },
@@ -22,7 +22,7 @@
   {
     "id": "wat-p003",
     "deck": "watch",
-    "text": "{watcher} kept watch on the door.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "doorman"
     },
@@ -42,7 +42,7 @@
   {
     "id": "wat-p005",
     "deck": "watch",
-    "text": "{watcher} kept watch at the stand.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "newsstand"
     },
@@ -62,7 +62,7 @@
   {
     "id": "wat-p007",
     "deck": "watch",
-    "text": "{watcher} kept watch behind the counter.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "counterman"
     },
@@ -82,7 +82,7 @@
   {
     "id": "wat-p009",
     "deck": "watch",
-    "text": "{watcher} kept watch in the booth.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "ticket-taker"
     },
@@ -102,7 +102,7 @@
   {
     "id": "wat-p011",
     "deck": "watch",
-    "text": "{watcher} kept watch by the car.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "elevator-man"
     },
@@ -122,7 +122,7 @@
   {
     "id": "wat-p013",
     "deck": "watch",
-    "text": "{watcher} kept watch in the hall.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "landlady"
     },
@@ -142,7 +142,7 @@
   {
     "id": "wat-p015",
     "deck": "watch",
-    "text": "{watcher} kept watch on the corner.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "beat-cop"
     },
@@ -162,7 +162,7 @@
   {
     "id": "wat-p017",
     "deck": "watch",
-    "text": "{watcher} kept watch on the stand.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "cabbie"
     },
@@ -182,7 +182,7 @@
   {
     "id": "wat-p019",
     "deck": "watch",
-    "text": "{watcher} kept watch behind the counter.",
+    "text": "{watcher} watched the room. That made {watcher} worth a question.",
     "tags": {
       "watcher": "druggist"
     },

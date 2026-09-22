@@ -145,6 +145,21 @@ export function registerFor(view: CaseView, speakerId: Id, clue: Clue | null): R
   return 'truth';
 }
 
+/**
+ * M8: can this utterance say a span in its `{time}`? A span brings its own
+ * preposition ("from ten until half past"), so the slot has to stand free:
+ * at the head of the card or after a comma or a stop, and followed by one.
+ * "By {time}", "around {time}", "{time} on" take one hour and only one.
+ */
+export function takesSpan(text: string): boolean {
+  const at = text.indexOf('{time}');
+  if (at < 0) return true;
+  const before = text.slice(0, at);
+  const after = text.slice(at + '{time}'.length);
+  const free = before.length === 0 || /[,.?:;]\s*$/.test(before);
+  return free && /^[,.?!;]/.test(after);
+}
+
 /** Does this utterance carry everything its fact kind has to carry? */
 export function carriesFact(card: Card, kind: string): boolean {
   for (const slot of MANDATORY[kind] ?? []) {
@@ -269,7 +284,9 @@ function utteranceFor(
   // true sentence into a false one, so only {detective} survives from them.
   const slots: Slots = { detective: base.detective, ...beat.slots };
   const kindIs = (c: Card): boolean =>
-    tagOf('utterances', c, 'factKind') === beat.kind && carriesFact(c, beat.kind);
+    tagOf('utterances', c, 'factKind') === beat.kind &&
+    carriesFact(c, beat.kind) &&
+    (beat.span !== true || takesSpan(c.text));
   const drawn = dealer.draw(
     'utterances',
     [

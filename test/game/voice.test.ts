@@ -565,7 +565,11 @@ describe('the page grammar', () => {
       for (const page of playOracle(v).state.log) {
         const n = wordsOnPage(page);
         const ceiling = page.n === 0 ? 380 : 340;
-        if (n < 50 || n > ceiling) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
+        // M8 §8: a night page has targets, not a floor — the night harness
+        // measures its length against the golden's — and a question with one
+        // short answer and nothing to make of it is a short page.
+        const floor = page.shape === undefined ? 50 : 30;
+        if (n < floor || n > ceiling) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
       }
     }
     expect(offenders).toEqual([]);
@@ -578,7 +582,11 @@ describe('the page grammar', () => {
       for (const page of playWandering(v, seed).state.log) {
         const n = wordsOnPage(page);
         const ceiling = page.n === 0 ? 380 : 340;
-        if (n < 50 || n > ceiling) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
+        // M8 §8: a night page has targets, not a floor — the night harness
+        // measures its length against the golden's — and a question with one
+        // short answer and nothing to make of it is a short page.
+        const floor = page.shape === undefined ? 50 : 30;
+        if (n < floor || n > ceiling) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
       }
     }
     expect(offenders).toEqual([]);
@@ -712,7 +720,8 @@ describe('the utterance deck', () => {
     if (!clue) return;
     const beats = beatsOf(view, clue);
     expect(beats.length).toBeLessThan(clue.establishes.length);
-    const span = beats.find((b) => b.slots.time?.includes(' to '));
+    // M8: a span is said the spoken way, "from ten until half past".
+    const span = beats.find((b) => b.slots.time?.includes(' until '));
     expect(span).toBeDefined();
   });
 });

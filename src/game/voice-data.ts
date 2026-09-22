@@ -407,10 +407,10 @@ export const GUEST_POSTS: Record<string, string[]> = {
  * seeing the phrase a writer wrote (§A.3).
  */
 export const DA_AT_THE_DOOR =
-  'Eight o\u2019clock. Somebody from the DA\u2019s office is at the door with a folder and a pen, and the folder is mine whether I write in it or not.';
+  'Eight o’clock. Somebody from the DA’s office is at the door with a folder and a pen, and the folder is mine whether I write in it or not.';
 
 /* ------------------------------------------------------------------ *
- * M8 \u2014 the lines the scene's planner writes in code rather than deals.
+ * M8 — the lines the scene's planner writes in code rather than deals.
  *
  * They live here, like every other hand-written pool, because the
  * correspondence checker reads this file for the words the engine is allowed
@@ -420,38 +420,38 @@ export const DA_AT_THE_DOOR =
  * name, {object} a thing with its article.
  * ------------------------------------------------------------------ */
 
-/** \u00a73: the body at the scene, on the first visit. The presence beat must say so. */
+/** §3: the body at the scene, on the first visit. The presence beat must say so. */
 export const SCENE_BODY: string[] = [
   '{victim} was still on the floor where {he} had fallen.',
   '{victim} was on the floor where {he} had gone down, and nobody had moved {him}.',
   '{victim} lay where {he} had fallen. Nobody had covered {him} yet.',
 ];
 
-/** \u00a73: the body stays all night. A return to the scene finds it where it was. */
+/** §3: the body stays all night. A return to the scene finds it where it was. */
 export const SCENE_BODY_AGAIN: string[] = [
   '{victim} was where I had left {him}.',
   '{victim} had not moved. Nobody had come for {him} yet.',
 ];
 
-/** \u00a73: a robbery's scene has no body; it has the place where the thing was. */
+/** §3: a robbery's scene has no body; it has the place where the thing was. */
 export const SCENE_ROBBERY: string[] = [
   'There was a space where {object} had been, and nobody had touched it since.',
   'The place where {object} had been was empty.',
 ];
 
-/** \u00a73: a disappearance's scene has nobody in it, which is the point. */
+/** §3: a disappearance's scene has nobody in it, which is the point. */
 export const SCENE_MISSING: string[] = [
   '{victim} was not there, which was the whole trouble.',
   'There was no sign of {victim}, and nobody had expected one.',
 ];
 
-/** Nobody alive in a room that has the body in it. Said plainly (\u00a73). */
+/** Nobody alive in a room that has the body in it. Said plainly (§3). */
 export const NOBODY_ELSE: string[] = ['There was nobody else in the room.', 'Nobody else was there.'];
 
 /** A room with nobody in it at all. */
 export const NOBODY_HERE: string[] = ['There was nobody at {place}.', 'Nobody was there.', 'I had {place} to myself.'];
 
-/** \u00a73: what the precinct did, on the first visit to the scene. Keyed by `Precinct`. */
+/** §3: what the precinct did, on the first visit to the scene. Keyed by `Precinct`. */
 export const PRECINCT_LINES: Record<string, string> = {
   'came-and-went': 'The police had come and gone.',
   'called-it-a-fall': 'The police had called it a fall and gone home.',
@@ -460,7 +460,7 @@ export const PRECINCT_LINES: Record<string, string> = {
   'closed-it-in-an-hour': 'The precinct had closed it inside the hour and gone home.',
 };
 
-/** \u00a71's `act` beat for a search: what the detective does. */
+/** §1's `act` beat for a search: what the detective does. */
 export const SEARCH_ROOM_ACTS: string[] = [
   'I started at the door and worked in.',
   'I went through it from the door inward.',
@@ -486,23 +486,21 @@ export const LEFT_TWO: string[] = [
   'There was {object} in the room, and {other}. I left them both alone for now.',
 ];
 
-/** \u00a74: a recall phrase, once a visit, as something noticed and never as an epithet. */
-export const RECALL_LINES: string[] = ['I noticed {recall} again.', 'There was {recall} again.', 'I saw {recall} again.'];
 
-/** \u00a74: spoken to, a person stops what they were doing. */
+/** §4: spoken to, a person stops what they were doing. */
 export const STOP_LINES: string[] = [
   '{name} stopped what {pronoun} was doing.',
   '{name} left off and looked up.',
   '{name} put it aside when I sat down.',
 ];
 
-/** \u00a74: first sight \u2014 who they are to the case, and their sex and rough age. */
+/** §4: first sight — who they are to the case, and their sex and rough age. */
 export const SIGHT_LINES: string[] = [
   '{Pronoun} was {clause}, a {noun} in {possessive} {decade}.',
   '{Pronoun} was {clause}: a {noun} in {possessive} {decade}.',
 ];
 
-/** \u00a72: the question that carries its own reason. Golden page 5. */
+/** §2: the question that carries its own reason. Golden page 5. */
 export const CARRIED_QUESTIONS: string[] = ['{victim} had {article} {noun}. {subject}.'];
 export const CARRIED_QUESTIONS_PLAIN: string[] = ['{subject}, {clause}.'];
 
@@ -521,5 +519,19 @@ export const NOTHING_ASKED: string[] = [
   '{name} didn’t know, and for once in this neighbourhood I believed somebody.',
 ];
 
+/** Taking it down, after an answer. The golden's "I wrote it down." */
+export const WROTE_IT_DOWN: string[] = [
+  'I wrote it down.',
+  'I wrote that down.',
+  'I put it in the notebook.',
+  'I got it down on paper.',
+  'I wrote it in the book.',
+];
+
 /** The thought's lead-in on a page that found something. Golden page 5. */
-export const LOOKED_AGAIN: string[] = ['Then I looked at what I had written.', 'Then I read it back.'];
+export const LOOKED_AGAIN: string[] = [
+  'Then I looked at what I’d written.',
+  'Then I read it back.',
+  'Then I read it over again.',
+  'Then I looked at it on the page.',
+];

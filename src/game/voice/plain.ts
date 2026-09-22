@@ -885,16 +885,18 @@ export function plainBeat(view: CaseView, beat: Beat): string {
   const name = s.subject ?? s.name ?? 'somebody';
   const place = s.place ?? 'the address';
   const time = s.time ?? 'that evening';
+  // M8: a span brings its own preposition — "from ten until half past".
+  const at = (t: string): string => (t.startsWith('from ') || t === 'that evening' ? t : `at ${t}`);
   const thing = view.kase.act.taken?.name ?? 'it';
   switch (beat.kind) {
     case 'personAt':
-      return `${name} was at ${place} at ${time}.`;
+      return `${name} was at ${place} ${at(time)}.`;
     case 'personNotAt':
-      return `${name} was not at ${place} at ${time}.`;
+      return `${name} was not at ${place} ${at(time)}.`;
     case 'denial':
-      return `${name} says they were not at ${place} at ${time}.`;
+      return `${name} says they were not at ${place} ${at(time)}.`;
     case 'noiseAt':
-      return `Something was heard at ${place} at ${time}.`;
+      return `Something was heard at ${place} ${at(time)}.`;
     case 'timeOfDeath':
       return type === 'murder'
         ? `The coroner puts it ${s.window ?? 'that evening'}.`
@@ -905,10 +907,10 @@ export function plainBeat(view: CaseView, beat: Beat): string {
       // §7: the owner of a stolen thing is alive. What the fact closes is when
       // the thing was last where it belonged, and that is what it says.
       return type === 'robbery'
-        ? `${name} still had ${thing} at ${time}.`
+        ? `${name} still had ${thing} ${at(time)}.`
         : type === 'missing'
-          ? `${name} was still about at ${time}.`
-          : `${name} was still alive at ${time}.`;
+          ? `${name} was still about ${at(time)}.`
+          : `${name} was still alive ${at(time)}.`;
     case 'victimDeadBy':
       return type === 'robbery'
         ? `${thing} was gone by ${time}.`

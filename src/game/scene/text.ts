@@ -158,6 +158,9 @@ export function isSubjectless(sentence: string): boolean {
   // Speech is not narration: "Took you long enough" is somebody talking.
   if (/^[“"‘']/.test(sentence.trim())) return false;
   const bare = sentence.replace(/^[(]+/, '').trim();
+  // "Which put Kreuzer at the third floor too." is a relative clause with its
+  // sentence missing; a question is not.
+  if (/^Which\b/.test(bare) && !/\?$/.test(bare)) return true;
   const m = /^([A-Z][a-z]+)\s+([a-z][a-z’']*)/.exec(bare);
   if (!m) return false;
   const [, head] = m as unknown as [string, string, string];

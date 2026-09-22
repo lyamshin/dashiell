@@ -116,6 +116,8 @@ export interface Card {
    * person by — "the broken finger". A card in any other deck has none.
    */
   recall?: string;
+  /** M8 §4, `portrait-pairs` only: the recall as something the person does. */
+  recallAction?: string;
   status: string;
   notes?: string;
 }

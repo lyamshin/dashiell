@@ -12,7 +12,7 @@ import type { Clue, Id, Person } from '../../gen/types.js';
 import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
 import { OTHER_THING } from '../errand.js';
-import { clauseOf, figuresIn, hourAgrees, introduceNames, nameables, pastTense, sentencesOf, stripHere, subjectify, wordCount, isSubjectless } from './text.js';
+import { figuresIn, hourAgrees, introduceNames, nameables, pastTense, sentencesOf, stripHere, wordCount, isSubjectless } from './text.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
 import {
@@ -21,12 +21,12 @@ import {
   LEFT_ONE,
   LEFT_TWO,
   LOOKED_AGAIN,
+  WROTE_IT_DOWN,
   MORGUE_LEADS,
   NOBODY_ELSE,
   NOBODY_HERE,
   NOTHING_ASKED,
   PRECINCT_LINES,
-  RECALL_LINES,
   SCENE_BODY,
   SCENE_BODY_AGAIN,
   SCENE_MISSING,
@@ -37,17 +37,18 @@ import {
   STOP_LINES,
 } from '../voice-data.js';
 import { tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
-import { genderHintOf, possessiveOf, pronounOf, temperOf } from '../voice/cast.js';
-import { businessLine, dashiellLine, registerFor, speakClue, type AskKind } from '../voice/exchange.js';
+import { genderHintOf, possessiveOf, pronounOf } from '../voice/cast.js';
+import { dashiellLine, registerFor, speakClue, type AskKind } from '../voice/exchange.js';
+import { spokenSpan, spokenSpans } from '../voice/facts.js';
 import { findKindOf } from '../voice/facts.js';
-import { PLAIN_NOTED, SELF_ALREADY, SELF_QUESTIONS, briefingQuestion, pickShape } from '../voice/plain.js';
+import { SELF_ALREADY, SELF_QUESTIONS, briefingQuestion, pickShape } from '../voice/plain.js';
 import { tidyPunctuation } from '../voice/prose.js';
 import { knowsHim } from '../voice/roll.js';
 import { clientLeavingLine } from '../voice/office.js';
 import type { Scene, Stage } from '../voice/page.js';
 import { hourBandOf } from '../voice/page.js';
 import { NO_CONTEXT } from '../voice/motifs.js';
-import { openingNote, opensOnSubject, pronounSubject, countSentences } from '../voice/plain.js';
+import { PLAIN_FLOOR, openingNote, opensOnSubject, pronounSubject, countSentences } from '../voice/plain.js';
 
 /** §8: night pages have no hard ceiling below this. */
 export const NIGHT_CEILING = 600;
@@ -290,9 +291,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           }
         }
         const watchRole = place?.watcher ?? 'none';
+        // M8 §3–§4: a watcher in the room is introduced once, by the presence
+        // line and the arrival thought; the watch clause is folded into that
+        // thought, never said here as well. Only an unwatched place — "nobody
+        // minds who uses the stairs" — gets the clause in the place's paragraph.
         const watch =
-          watchRole === 'none' || watcher
-            ? deal(stage, 'watch', [(c) => tagIs('watch', c, 'watcher', watchRole)], { watcher: watcher?.surname, place: here })
+          watchRole === 'none'
+            ? deal(stage, 'watch', [(c) => tagIs('watch', c, 'watcher', 'none')], { place: here })
             : null;
         const precinct = beat.precinct ? PRECINCT_LINES[beat.precinct] : undefined;
         const given = beat.precinct !== undefined ? sceneGiven(stage) : '';
@@ -441,7 +446,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const found = scene.kind === 'ask' && plan.beats.some((b) => b.kind === 'find');
         const onlyContext = run.every((j) => (beats[j] as Extract<Beat, { kind: 'thought' }>).thought.cls === 'context');
         if (found && !onlyContext) {
-          const noted = dealer.random.pick(PLAIN_NOTED);
+          const noted = dealer.random.pick(WROTE_IT_DOWN);
           const again = run.some((j) => (beats[j] as Extract<Beat, { kind: 'thought' }>).thought.cls === 'observer-placed')
             ? ` ${dealer.random.pick(LOOKED_AGAIN)}`
             : '';
@@ -450,7 +455,24 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const lines: string[] = [];
         for (const j of run) {
           const t = (beats[j] as Extract<Beat, { kind: 'thought' }>).thought;
-          const text = thoughtLine(stage, t, gaps);
+          let text = thoughtLine(stage, t, gaps);
+          if (/^Which\b/.test(text)) {
+            const prev = lines[lines.length - 1];
+            if (prev !== undefined && /\.$/.test(prev)) {
+              // "…when it happened, which put Kreuzer at the third floor too."
+              lines[lines.length - 1] = `${prev.slice(0, -1)}, ${text.charAt(0).toLowerCase()}${text.slice(1)}`;
+              mark(j, {
+                tag: t.cls,
+                clueIds: t.clueIds,
+                personIds: [t.subjectId, t.sourceId].filter((x): x is Id => x !== undefined),
+                placeIds: [t.placeId, t.otherPlaceId].filter((x): x is Id => x !== undefined),
+                text: lines[lines.length - 1] as string,
+              });
+              continue;
+            }
+            const who = t.sourceId ? view.personById.get(t.sourceId)?.surname : undefined;
+            text = `${who ?? 'Somebody'} had seen it, ${text.charAt(0).toLowerCase()}${text.slice(1)}`;
+          }
           lines.push(text);
           mark(j, {
             tag: t.cls,
@@ -567,22 +589,39 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       mark(ambientAt, { tag: 'ambient', text: drawn.text });
     }
   }
-  // A page over the ceiling loses texture, and only texture.
+  // Texture is the only thing the page may lose (§8), in `CUT_ORDER`: to get
+  // under the ceiling, and to keep M5's plain floor — a place card and the
+  // weather together can outweigh a short page's plain sentences.
+  const cutOne = (kind: (typeof CUT_ORDER)[number]): boolean => {
+    const at = paras.findIndex((p) => p.texture === kind);
+    if (at >= 0) {
+      const cut = paras.splice(at, 1)[0] as Para;
+      for (const j of cut.beats) traces[j] = { ...(traces[j] as BeatTrace), rendered: false };
+      return true;
+    }
+    const host = paras.find((p) => (p.riders ?? []).some((r) => r.kind === kind));
+    if (!host) return false;
+    const rider = (host.riders ?? []).find((r) => r.kind === kind) as NonNullable<Para['riders']>[number];
+    host.text = host.text.replace(rider.text, '').replace(/\s{2,}/g, ' ').trim();
+    host.riders = (host.riders ?? []).filter((r) => r !== rider);
+    host.imageN = Math.max(0, (host.imageN ?? 0) - countSentences(rider.text));
+    traces[rider.beat] = { ...(traces[rider.beat] as BeatTrace), rendered: false };
+    return true;
+  };
+  const plainShare = (): number => {
+    let plain = 0;
+    let image = 0;
+    for (const p of paras) {
+      const n = countSentences(p.text);
+      const img = Math.min(n, p.imageN ?? 0);
+      image += img;
+      plain += n - img;
+    }
+    return plain + image === 0 ? 1 : plain / (plain + image);
+  };
   for (const kind of CUT_ORDER) {
-    while (count() > NIGHT_CEILING) {
-      const at = paras.findIndex((p) => p.texture === kind);
-      if (at >= 0) {
-        const cut = paras.splice(at, 1)[0] as Para;
-        for (const j of cut.beats) traces[j] = { ...(traces[j] as BeatTrace), rendered: false };
-        continue;
-      }
-      const host = paras.find((p) => (p.riders ?? []).some((r) => r.kind === kind));
-      if (!host) break;
-      const rider = (host.riders ?? []).find((r) => r.kind === kind) as NonNullable<Para['riders']>[number];
-      host.text = host.text.replace(rider.text, '').replace(/\s{2,}/g, ' ').trim();
-      host.riders = (host.riders ?? []).filter((r) => r !== rider);
-      host.imageN = Math.max(0, (host.imageN ?? 0) - countSentences(rider.text));
-      traces[rider.beat] = { ...(traces[rider.beat] as BeatTrace), rendered: false };
+    while ((count() > NIGHT_CEILING || plainShare() < PLAIN_FLOOR) && cutOne(kind)) {
+      /* cut */
     }
   }
 
@@ -681,8 +720,7 @@ function presenceLine(stage: Stage, p: PresencePerson): string {
     const d = person.dossier;
     const decade = d ? DECADES[Math.floor(d.age / 10)] : undefined;
     const gender = genderHintOf(person);
-    const clause =
-      person.kind === 'fixture' ? clauseOf(view, person) : person.role.replace(/\.$/, '');
+    const clause = person.role.replace(/\.$/, '');
     const sight = fillTemplate(stage.dealer.random.pick(SIGHT_LINES), {
       Pronoun: gender === 'f' ? 'She' : 'He',
       clause,
@@ -692,8 +730,10 @@ function presenceLine(stage: Stage, p: PresencePerson): string {
     });
     if (sight.length > 0) parts.push(sight);
   } else if (p.recall) {
-    const recall = cast.portraits[p.personId]?.pair?.recall?.trim().replace(/[.!?]+$/, '');
-    if (recall) parts.push(fillTemplate(stage.dealer.random.pick(RECALL_LINES), { recall }));
+    // §4: a recall is something the person does, never a noun and never an
+    // epithet. A pair with no action form is not recalled.
+    const action = cast.portraits[p.personId]?.pair?.action;
+    if (action) parts.push(action);
   }
   return parts.join(' ');
 }
@@ -737,6 +777,30 @@ export function pageFact(clue: Clue, here: string, view: Stage['view']): string 
   return pastTense(stripHere(capitalize(filed), here));
 }
 
+/**
+ * How somebody from the block says a place, where the place's full name has a
+ * street in it: "the third-floor walk-up on Ninth" is "the walk-up on Ninth"
+ * in a witness's mouth, not "the third floor". Places with no street keep
+ * their short name. Only for speech; narration keeps the short name the
+ * notebook and the buttons use.
+ */
+export function spokenPlace(place: { name: string; shortName: string }): string {
+  if (place.name.includes('{V}')) return place.shortName;
+  const m = /^the (?:[a-z-]+ )*?([a-z-]+) on ([A-Z][a-z]+(?: [A-Z][a-z]+)?)$/.exec(place.name);
+  if (!m) return place.shortName;
+  return `the ${m[1]} on ${m[2]}`;
+}
+
+function localPlaces(view: Stage['view'], text: string): string {
+  let out = text;
+  for (const place of view.places) {
+    const local = spokenPlace(place);
+    if (local === place.shortName) continue;
+    out = out.split(place.shortName).join(local);
+  }
+  return out;
+}
+
 /** Slots for a thought card (see the deck's `$comment` for what each means). */
 export function thoughtSlots(stage: Stage, t: Thought): Slots {
   const { view } = stage;
@@ -773,6 +837,19 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
 
 function thoughtLine(stage: Stage, t: Thought, gaps: string[]): string {
   const caseType = stage.view.kase.act.type;
+  // §3–§4: the watcher's view on arrival is the place's watch clause — why
+  // the watcher matters is that they watch — so it is dealt from `watch`.
+  if (t.cls === 'view' && t.who === 'watcher' && t.subjectId) {
+    const person = stage.view.personById.get(t.subjectId);
+    const role = person?.fixtureRole;
+    if (person && role) {
+      const drawn = deal(stage, 'watch', [(c) => tagIs('watch', c, 'watcher', role)], {
+        watcher: person.surname,
+        place: stage.view.placeById.get(person.foundAt ?? '')?.shortName,
+      });
+      if (drawn) return drawn.text;
+    }
+  }
   const slots = thoughtSlots(stage, t);
   const is = (c: Card, tag: string, want: string | undefined): boolean =>
     want === undefined || tagIs('thought', c, tag, want);
@@ -803,7 +880,6 @@ function exchange(
   const { view, cast, dealer } = stage;
   const person = view.personById.get(scene.personId) as Person;
   const surname = person.surname;
-  const temper = temperOf(cast, person.id);
   const familiar = knowsHim(cast.roll, person.id);
   const out: Omit<Para, 'beats'>[] = [];
   const pronoun = pronounOf(person);
@@ -851,23 +927,24 @@ function exchange(
   if (scene.free) out.push({ text: 'No charge on this one. There never is, the first time.', voice: 'narrator' });
 
   /* the answer */
-  const used = new Set<string>();
-  let business = false;
+  // One piece of business at most, and only the person's own: their recall
+  // action, once a visit, past tense, and so never at odds with their
+  // portrait. A dealt gesture ("A hat goes round in two hands") could be
+  // either, so none is dealt; when there is no recall to spend, nothing.
+  let business = !beat.recall;
   const withBusiness = (text: string): string => {
     if (business) return text;
     business = true;
-    const drawn = businessLine(dealer, person, temper, slots, used, gaps);
-    if (!drawn) return text;
-    used.add(drawn.cardId);
-    const gesture = subjectify(drawn.text, surname);
-    // A gesture that names a pronoun not this person's is not theirs.
-    return `${text} ${endStop(capitalize(gesture))}`;
+    const action = cast.portraits[person.id]?.pair?.action;
+    return action ? `${text} ${action}` : text;
   };
   const answerClue = (clue: Clue, followUp: boolean): void => {
     const register = registerFor(view, person.id, clue);
     const spoken = speakClue(dealer, view, cast, clue, person, register, slots, gaps);
     const say = (t: string): string =>
-      spoken.mode === 'utterance' || spoken.mode === 'quote' ? `“${endStop(t)}”` : capitalize(endStop(pastTense(t)));
+      spoken.mode === 'utterance' || spoken.mode === 'quote'
+        ? `“${endStop(capitalize(localPlaces(view, spokenSpans(t))))}”`
+        : capitalize(endStop(pastTense(t)));
     if (followUp) {
       const q = briefingQuestion(dealer.random, 'follow-named', { ...slots, victim: view.victim.surname }, [], clue.text);
       if (q.length > 0) out.push({ text: `“${q}”`, voice: 'exchange' });
@@ -886,9 +963,9 @@ function exchange(
     const lastRow = claimed[claimed.length - 1];
     const fact =
       first && lastRow
-        ? `I was at ${view.placeById.get(first.placeId as Id)?.shortName ?? 'home'} and then where I said, ${spokenClock(
-            first.tick,
-          )} to ${spokenClock(lastRow.tick)}. All of it is in the book if you want the book.`
+        ? `I was at ${localPlaces(view, view.placeById.get(first.placeId as Id)?.shortName ?? 'home')} and then where I said, ${
+            first.tick === lastRow.tick ? spokenClock(first.tick) : spokenSpan(first.tick, lastRow.tick)
+          }. All of it is in the book if you want the book.`
         : 'I was where I was and I could not tell you the hours of it.';
     out.push({ text: withBusiness(`“${fact}”`), voice: 'exchange' });
   }

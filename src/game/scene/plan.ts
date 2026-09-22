@@ -96,6 +96,8 @@ export type Beat =
       volunteerId?: Id;
       /** The first question to them this visit: they stop what they are doing. */
       stops: boolean;
+      /** Their recall action is this page's one piece of business (once a visit). */
+      recall: boolean;
     }
   | { kind: 'thought'; required: true; thought: Thought }
   | { kind: 'bridge'; required: true; bridge: BridgePlan }
@@ -155,6 +157,8 @@ export interface PlanInput {
   seed: number;
   /** The night's sky, so no activity contradicts it. */
   weather?: string;
+  /** People whose portrait has a recall action (§4); nobody else is recalled. */
+  recallable?: readonly Id[];
 }
 
 /** Which beats each shape must carry (§10's coverage check reads this). */
@@ -437,7 +441,8 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
     activities[person.id] = activity;
     const firstSight = !input.met.includes(person.id);
     // A recall phrase, once a visit, for somebody already portrayed.
-    const recall = !firstSight && recalled[person.id] !== memory.visit;
+    const recall =
+      !firstSight && recalled[person.id] !== memory.visit && (input.recallable ?? []).includes(person.id);
     if (recall) recalled[person.id] = memory.visit;
     people.push({ personId: person.id, activity, firstSight, recall });
   }
@@ -591,6 +596,9 @@ export function planPage(input: PlanInput): Plan {
   if (!carried) beats.push({ kind: 'errand', required: true, form: 'carry', carry });
   const kept = memory.activities[action.personId];
   const stops = kept !== undefined && kept.visit === memory.visit && !kept.stopped;
+  const recall =
+    (input.recallable ?? []).includes(action.personId) && memory.recalled[action.personId] !== memory.visit;
+  if (recall) memory = { ...memory, recalled: { ...memory.recalled, [action.personId]: memory.visit } };
   beats.push({
     kind: 'exchange',
     required: true,
@@ -602,6 +610,7 @@ export function planPage(input: PlanInput): Plan {
     self: action.self,
     ...(action.volunteer ? { volunteerId: action.volunteer.id } : {}),
     stops,
+    recall,
   });
   if (kept !== undefined && stops) {
     memory = { ...memory, activities: { ...memory.activities, [action.personId]: { ...kept, stopped: true } } };
