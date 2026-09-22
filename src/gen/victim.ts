@@ -1,5 +1,6 @@
 import {
   clock,
+  spokenClock,
   type Act,
   type Dossier,
   type Id,
@@ -70,6 +71,9 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
       tick: build.victimSeenAt,
       text: `${who(byId)} saw ${V} at ${PL(build.victimSeenPlace)} at ${clock(build.victimSeenAt)}, and nobody has seen ${V} since.`,
     };
+    if (byId === cast.client.id) {
+      bio.lastSeen.textFirst = `I saw ${V} at ${PL(build.victimSeenPlace)} at ${spokenClock(build.victimSeenAt)}, and nobody has seen ${V} since.`;
+    }
     return bio;
   }
 
@@ -86,6 +90,14 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
           : `${who(discovery.byId)} found ${V} at ${PL(discovery.placeId)} at ${clock(discovery.tick)}.`,
       precinct,
     };
+    // The one who walked in on it is often the one who then walks up the
+    // stairs to hire somebody, and on page one they are saying it themselves.
+    if (discovery.byId === cast.client.id) {
+      bio.discovery.foundTextFirst =
+        act.type === 'robbery'
+          ? `I found the door at ${PL(discovery.placeId)} shut and ${taken ?? 'the box'} gone, at ${spokenClock(discovery.tick)}.`
+          : `I found ${V} at ${PL(discovery.placeId)} at ${spokenClock(discovery.tick)}.`;
+    }
   }
   return bio;
 }

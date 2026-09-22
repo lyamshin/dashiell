@@ -37,7 +37,7 @@ export const KNOWN_WORDS: Set<string> = new Set([
   'Past', 'Perhaps', 'Plenty', 'Powder',
   'Rows', 'Rent',
   'Seven', 'She', 'Since', 'Six', 'So', 'Some', 'Somebody', 'Someone',
-  'Something', 'Sometimes', 'Still', 'Such',
+  'Something', 'Sometimes', 'Start', 'Still', 'Such',
   'Ten', 'That', 'The', 'Their', 'Them', 'Then', 'There', 'These', 'They',
   'Third', 'Thirty', 'This', 'Those', 'Three', 'Through', 'Till', 'Time',
   'To', 'Together', 'Too', 'Twelve', 'Twenty', 'Two', 'Under', 'Until',

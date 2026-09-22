@@ -60,6 +60,12 @@ export interface CheckContext {
    * anchor's hour, the coroner's window, the hour a room was let.
    */
   allowTicks?: Tick[];
+  /**
+   * This text is somebody talking, so an hour in it may be spelled the way
+   * people say hours — "half past eleven". Only the generator's first-person
+   * sentences set it; the decks say "six o'clock" as an image.
+   */
+  spoken?: boolean;
 }
 
 /* ------------------------------------------------------------------ *
@@ -67,6 +73,43 @@ export interface CheckContext {
  * ------------------------------------------------------------------ */
 
 const TIME_RE = /\b\d{1,2}:\d{2}\s(?:AM|PM)\b/g;
+/**
+ * The same hours as somebody says them out loud: "half past eleven", "nine
+ * o'clock". A person in a chair does not read a clock face aloud, and the
+ * first-person half of the briefing is a person talking — so the hour is still
+ * a claim about the evening and is still checked against it.
+ */
+const SPOKEN_TIME_RE =
+  /\b(?:half past (six|seven|eight|nine|ten|eleven)|(six|seven|eight|nine|ten|eleven) o['’]clock)\b/gi;
+const SPOKEN_HOUR_TICK: Record<string, Tick> = {
+  six: 0,
+  seven: 2,
+  eight: 4,
+  nine: 6,
+  ten: 8,
+  eleven: 10,
+};
+
+/**
+ * Every spoken hour in a text, as the clock string it means.
+ *
+ * Read only where the register is somebody talking — the generator's
+ * first-person sentences. In seventeen decks of hand-written noir "six
+ * o'clock" is an image ("his face shut like a rolltop desk at six o'clock")
+ * and "Eight o'clock" is the morning the run ends in, and neither is a claim
+ * about the evening.
+ */
+export function spokenTimes(text: string): string[] {
+  const out: string[] = [];
+  for (const m of text.matchAll(SPOKEN_TIME_RE)) {
+    const halfPast = m[1]?.toLowerCase();
+    const word = halfPast ?? m[2]?.toLowerCase();
+    const base = word === undefined ? undefined : SPOKEN_HOUR_TICK[word];
+    if (base === undefined) continue;
+    out.push(clock((halfPast === undefined ? base : base + 1) as Tick));
+  }
+  return out;
+}
 // A capitalized word, with the curly and straight apostrophes and the hyphen
 // allowed inside it: "Sweeney’s", "Mrs.", "Kaplan's", "Twenty-Eighth".
 const NAME_RE = /\b[A-Z][A-Za-z’'’.-]*/g;
@@ -89,8 +132,11 @@ export function bareToken(token: string): string {
   return t;
 }
 
-export function renderedFacts(text: string): RenderedFacts {
-  const times = text.match(TIME_RE) ?? [];
+export function renderedFacts(text: string, opts?: { spoken?: boolean }): RenderedFacts {
+  const times = [
+    ...(text.match(TIME_RE) ?? []),
+    ...(opts?.spoken === true ? spokenTimes(text) : []),
+  ];
   const names = (text.match(NAME_RE) ?? [])
     .map(bareToken)
     .filter((t) => t.length > 0)
@@ -204,7 +250,7 @@ function movementIsTrue(c: Case, f: Fact): boolean | null {
 export function check(c: Case, text: string, ctx: CheckContext): Violation[] {
   const out: Violation[] = [];
   const vocab = vocabularyOf(c);
-  const rendered = renderedFacts(text);
+  const rendered = renderedFacts(text, { spoken: ctx.spoken === true });
   const flag = (rule: Rule, detail: string): void => {
     out.push({ where: ctx.where, rule, detail, text });
   };
@@ -321,7 +367,19 @@ export function checkCase(c: Case): Violation[] {
   if (c.victimBio.discovery) briefingTicks.push(c.victimBio.discovery.foundTick);
   if (c.victimBio.lastSeen) briefingTicks.push(c.victimBio.lastSeen.tick);
   c.briefing.forEach((line, i) => {
-    out.push(...check(c, line, { where: `briefing ${i + 1}`, allowTicks: briefingTicks }));
+    out.push(...check(c, line.text, { where: `briefing ${i + 1}`, allowTicks: briefingTicks }));
+    // The client's own words for the same sentence are rendered too — page one
+    // is nothing else — so they are held to the same rule. The pronouns in
+    // them are ordinary words and were never names.
+    if (line.spoken !== null && line.spoken !== line.text) {
+      out.push(
+        ...check(c, line.spoken, {
+          where: `briefing ${i + 1} spoken`,
+          allowTicks: briefingTicks,
+          spoken: true,
+        }),
+      );
+    }
   });
 
   c.act.givens.text.forEach((line, i) => {
@@ -344,6 +402,9 @@ export function checkCase(c: Case): Violation[] {
       out.push(...check(c, layer.text, { where: `dossier ${p.id}.${layer.kind}.${i}` }));
     });
     out.push(...check(c, d.tie.backstory, { where: `tie ${p.id}` }));
+    if (d.tie.backstoryFirst) {
+      out.push(...check(c, d.tie.backstoryFirst, { where: `tie ${p.id} first person` }));
+    }
     if (p.motive) {
       out.push(
         ...check(c, p.motive.description, { where: `motive ${p.id}`, motive: true }),
@@ -372,25 +433,37 @@ export function checkCase(c: Case): Violation[] {
   const bio = c.victimBio;
   out.push(...check(c, bio.standing, { where: 'victim standing' }));
   if (bio.discovery) {
-    out.push(
-      ...check(c, bio.discovery.foundText, {
-        where: 'victim discovery',
-        allowTicks: [bio.discovery.foundTick],
-      }),
-    );
+    const at = [bio.discovery.foundTick];
+    out.push(...check(c, bio.discovery.foundText, { where: 'victim discovery', allowTicks: at }));
+    if (bio.discovery.foundTextFirst) {
+      out.push(
+        ...check(c, bio.discovery.foundTextFirst, {
+          where: 'victim discovery first person',
+          allowTicks: at,
+          spoken: true,
+        }),
+      );
+    }
   }
   if (bio.lastSeen) {
-    out.push(
-      ...check(c, bio.lastSeen.text, {
-        where: 'victim last seen',
-        allowTicks: [bio.lastSeen.tick],
-      }),
-    );
+    const at = [bio.lastSeen.tick];
+    out.push(...check(c, bio.lastSeen.text, { where: 'victim last seen', allowTicks: at }));
+    if (bio.lastSeen.textFirst) {
+      out.push(
+        ...check(c, bio.lastSeen.textFirst, {
+          where: 'victim last seen first person',
+          allowTicks: at,
+          spoken: true,
+        }),
+      );
+    }
   }
 
   const brief = c.clientBrief;
   out.push(...check(c, brief.purposeText, { where: 'client purpose' }));
+  out.push(...check(c, brief.purposeTextFirst, { where: 'client purpose first person' }));
   out.push(...check(c, brief.cost, { where: 'client cost' }));
+  out.push(...check(c, brief.costFirst, { where: 'client cost first person' }));
   brief.tellTexts.forEach((t, i) =>
     out.push(...check(c, t, { where: `client tell ${i + 1}`, allowTicks: [c.act.tick, Math.max(0, c.act.tick - 1) as Tick] })),
   );
@@ -401,6 +474,7 @@ export function checkCase(c: Case): Violation[] {
     out.push(...check(c, t, { where: `client withhold ${i + 1}`, allowTicks: clientTicks })),
   );
   out.push(...check(c, brief.points.reason, { where: 'client pointer' }));
+  out.push(...check(c, brief.points.reasonSpoken, { where: 'client pointer spoken' }));
   brief.ownEvening.forEach((t, i) =>
     out.push(
       ...check(c, t, {

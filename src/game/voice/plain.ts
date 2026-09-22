@@ -660,32 +660,13 @@ export const SELF_QUESTIONS: string[] = [
   '"Tell me who you are," I said, "and I will tell you what I want."',
 ];
 
-/**
- * How the client's own sentences get into quotation marks.
- *
- * The generator writes the briefing in the third person, with the client's own
- * name in it, so that one string serves the sheet and the page. In a mouth
- * that is a register rather than a mistake — it is how a frightened person
- * talks to a policeman — and one line of narration says so, once, rather than
- * the engine rewriting sixteen sentences it did not write.
+/*
+ * There was a pool of leads here — "She gave it to me in the third person, as
+ * though it had happened to somebody she knew" — because the generator wrote
+ * the briefing with the client's own name in it and the page had to excuse the
+ * register. The generator now writes the client's own words alongside the
+ * record's, so the page has nothing to excuse and the line is gone.
  */
-export const BRIEFING_LEADS: string[] = [
-  '{They} told it with {their} own name in it, the way people do when they have already said it once to the police.',
-  '{They} gave it to me in the third person, as though it had happened to somebody {they} knew.',
-  '{They} had the whole of it ready, in order, and none of it in the first person.',
-  'It came out flat and in order, {their} own name among the others.',
-];
-
-export function briefingLead(pool: string[], i: number, gender: 'm' | 'f'): string {
-  const line = pool[i % pool.length] as string;
-  return line
-    .split('{They}')
-    .join(gender === 'f' ? 'She' : 'He')
-    .split('{they}')
-    .join(gender === 'f' ? 'she' : 'he')
-    .split('{their}')
-    .join(gender === 'f' ? 'her' : 'his');
-}
 
 /** The second time. It costs nothing and it gets nothing. */
 export const SELF_ALREADY: string[] = [

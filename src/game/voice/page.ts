@@ -88,8 +88,6 @@ import {
   PLAIN_FLOOR,
   SELF_ALREADY,
   SELF_QUESTIONS,
-  BRIEFING_LEADS,
-  briefingLead,
   clueAbout,
   connective,
   type ConnectiveKind,
@@ -1718,13 +1716,6 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   const seen = [...(split.entrance ? [split.entrance] : []), ...split.narration];
   if (seen.length > 0) t.say(seen.join(' '), 'narrator', { transparent: true });
   const speech = speechParagraphs(split.speech);
-  if (speech.length > 0) {
-    t.say(
-      briefingLead(BRIEFING_LEADS, dealer.random.int(BRIEFING_LEADS.length), gender === 'f' ? 'f' : 'm'),
-      'narrator',
-      { transparent: true },
-    );
-  }
   for (const paragraph of speech) {
     t.say(paragraph, 'exchange', {
       personId: client.id,

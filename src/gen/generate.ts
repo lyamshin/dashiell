@@ -23,7 +23,7 @@ import { checkSolvability, type CaseUnderTest } from './solvability.js';
 import { pickTrope, type Trope, type TropeContext } from './tropes/index.js';
 import { buildVictimBio } from './victim.js';
 import { buildClientBrief } from './client.js';
-import { buildBriefing } from './briefing.js';
+import { briefingStrings, buildBriefing } from './briefing.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
 import type { Clue, Fact } from './types.js';
 
@@ -449,6 +449,7 @@ function run(
         victimBio,
         clientBrief,
         briefing,
+        briefingText: briefingStrings(briefing),
       };
 
       const check = checkSolvability(underTest);

@@ -144,9 +144,12 @@ describe('the briefing page', () => {
       const page = state.log[0] as Page;
       const text = textOf(page).replace(/\s+/g, ' ');
       const familiar = knowsHim(state.cast.roll, view.client.id);
-      const missing = view.kase.briefing.filter(
-        (line, i) => !(familiar && i === 0) && !text.includes(bare(line)),
-      );
+      // The client's sentences reach the page in the client's own words, so
+      // that is the form to look for; Dashiell's reach it as written.
+      const missing = view.kase.briefing
+        .map((line, i) => ({ said: line.spoken ?? line.text, i }))
+        .filter(({ said, i }) => !(familiar && i === 0) && !text.includes(bare(said)))
+        .map(({ said }) => said);
       expect(missing, `seed ${seed}`).toEqual([]);
     }
   });

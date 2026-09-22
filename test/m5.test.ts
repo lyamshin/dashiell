@@ -10,6 +10,7 @@ import { describe, expect, it } from 'vitest';
 import {
   TICKS,
   generateCase,
+  type BriefingLine,
   type Case,
   type Difficulty,
   type Id,
@@ -38,6 +39,9 @@ for (const difficulty of DIFFICULTIES) {
 }
 
 const scheduleOf = (c: Case, id: Id) => c.schedules.find((s) => s.personId === id);
+
+/** One briefing line the client says, for the tests that damage a good one. */
+const said = (text: string): BriefingLine => ({ text, spoken: text, speaker: 'client' });
 
 /* ------------------------------------------------------------------ *
  * Part 1 — dossiers.
@@ -534,15 +538,45 @@ describe('correspondence over seeds 1..200 at every difficulty', () => {
     const c = corpus[6] as Case;
     const bad = checkCase({
       ...c,
-      briefing: [...c.briefing, 'Thaddeus Ellery came by at 10:00 PM and said nothing.'],
+      briefing: [...c.briefing, said('Thaddeus Ellery came by at 10:00 PM and said nothing.')],
     });
     expect(bad.some((v) => v.rule === 'unknown-name')).toBe(true);
   });
 
   it('catches a time that is not a half hour of the evening', () => {
     const c = corpus[6] as Case;
-    const bad = checkCase({ ...c, briefing: [...c.briefing, 'It was over by 3:15 AM.'] });
+    const bad = checkCase({ ...c, briefing: [...c.briefing, said('It was over by 3:15 AM.')] });
     expect(bad.some((v) => v.rule === 'bad-time')).toBe(true);
+  });
+
+  it('checks what the client says as well as what the record says', () => {
+    // The spoken half of a briefing line is rendered on page one and nowhere
+    // else, so it is the half nothing else would catch.
+    const c = corpus[6] as Case;
+    const bad = checkCase({
+      ...c,
+      briefing: [
+        ...c.briefing,
+        {
+          text: 'Nothing happened that anybody minded.',
+          spoken: 'Thaddeus Ellery came by and said nothing.',
+          speaker: 'client',
+        },
+      ],
+    });
+    expect(bad.some((v) => v.rule === 'unknown-name' && v.where.endsWith('spoken'))).toBe(true);
+  });
+
+  it('reads an hour said out loud as the hour it is', () => {
+    // "Half past eleven" is 11:30 PM and is checked as such: the first person
+    // does not buy a sentence an exemption from the clock.
+    const spoken = { spoken: true };
+    expect(renderedFacts('I found him at half past eleven.', spoken).times).toEqual(['11:30 PM']);
+    expect(renderedFacts('It was nine o’clock when I left.', spoken).times).toEqual(['9:00 PM']);
+    expect(renderedFacts('Nothing was said about the hour.', spoken).times).toEqual([]);
+    // And only where somebody is talking: a simile that says "six o'clock" is
+    // an image, and the run's last page says "Eight o'clock" about a morning.
+    expect(renderedFacts('His face shut like a rolltop desk at six o’clock.').times).toEqual([]);
   });
 
   it('catches a movement the schedules do not support', () => {
@@ -591,7 +625,7 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
         `seed ${c.seed} d${c.difficulty}: ${c.briefing.length} sentences`,
       ).toBeGreaterThanOrEqual(10);
       expect(c.briefing.length).toBeLessThanOrEqual(16);
-      for (const line of c.briefing) {
+      for (const line of c.briefingText) {
         expect(line).toMatch(/[.!?]$/);
         expect(line).not.toContain('{');
         expect(line.trim()).toBe(line);
@@ -606,10 +640,10 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
     for (const c of everyDifficulty) {
       const client = c.people.find((p) => p.id === c.clientId) as { name: string; surname: string };
       const victim = c.people.find((p) => p.kind === 'victim') as { surname: string };
-      const text = c.briefing.join(' ');
+      const text = c.briefingText.join(' ');
       // 1. who came in
-      expect(c.briefing[0]).toMatch(/^A (man|woman) came up the stairs/);
-      expect(c.briefing[1]).toContain(client.name);
+      expect(c.briefingText[0]).toMatch(/^A (man|woman) came up the stairs/);
+      expect(c.briefingText[1]).toContain(client.name);
       // 2. what happened, in the victim's terms
       expect(text).toContain(victim.surname);
       expect(text).toContain(c.victimBio.standing);
@@ -630,7 +664,7 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
   it('never states an unknown the report is going to ask for', () => {
     for (const c of everyDifficulty) {
       const killer = c.people.find((p) => p.id === c.solution.killerId) as { surname: string };
-      const text = c.briefing.join(' ');
+      const text = c.briefingText.join(' ');
       if (!c.act.unknowns.includes('who')) continue;
       // The client may point at the killer — that is a suspicion, not a
       // given — and a client who is the killer introduces themselves.
@@ -639,6 +673,85 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
       expect(text, `seed ${c.seed} names the killer in the briefing`).not.toContain(
         killer.surname,
       );
+    }
+  });
+
+  /**
+   * The client speaks in the first person.
+   *
+   * The generator writes each sentence twice: the record's form, which is what
+   * the sheet prints and the notebook files, and the client's own words, which
+   * are what page one puts in quotation marks. The rule the engine used to
+   * excuse with a line of narration — "she gave it to me in the third person"
+   * — is now a rule about the data: nothing the client says out loud refers to
+   * the client by name.
+   */
+  it('gives the client their own words for every sentence they say', () => {
+    for (const c of everyDifficulty) {
+      const client = c.people.find((p) => p.id === c.clientId) as { surname: string };
+      const where = `seed ${c.seed} d${c.difficulty}`;
+      expect(c.briefingText, where).toEqual(c.briefing.map((l) => l.text));
+      expect(c.briefing.some((l) => l.speaker === 'narration'), where).toBe(true);
+      expect(c.briefing.some((l) => l.speaker === 'client'), where).toBe(true);
+      for (const line of c.briefing) {
+        if (line.speaker === 'narration') {
+          // Dashiell's own observation. Nobody says it, so it has no spoken form.
+          expect(line.spoken, `${where}: ${line.text}`).toBeNull();
+          continue;
+        }
+        expect(line.spoken, `${where}: ${line.text}`).not.toBeNull();
+        expect(line.spoken).toMatch(/[.!?]$/);
+        expect(line.spoken).not.toContain('{');
+        // The whole of it: a sentence the client says never names the client.
+        expect(line.spoken, `${where}: the client says their own name`).not.toContain(
+          client.surname,
+        );
+      }
+    }
+  });
+
+  it('says the client’s own four sentences in the first person', () => {
+    for (const c of everyDifficulty) {
+      const said = c.briefing.filter((l) => l.speaker === 'client').map((l) => l.spoken ?? '');
+      const where = `seed ${c.seed} d${c.difficulty}`;
+      // Why they are hiring, what it costs them, their tie, and the pointer.
+      expect(said, where).toContain(c.clientBrief.purposeTextFirst);
+      expect(said, where).toContain(c.clientBrief.costFirst);
+      expect(c.clientBrief.purposeTextFirst).toMatch(/^I /);
+      expect(c.clientBrief.costFirst).toMatch(/\bI\b/);
+      const pointed = c.people.find((p) => p.id === c.clientBrief.points.personId) as {
+        surname: string;
+      };
+      expect(said, where).toContain(`Start with ${pointed.surname}.`);
+      // The tie, which is the one sentence about the client that another card
+      // wrote: "I am a customer of Sweeney's", not "Kreuzer is".
+      expect(said.some((s) => s.startsWith('I am ')), where).toBe(true);
+    }
+  });
+
+  it('keeps the third person for the sheet, and only for the sheet', () => {
+    for (const c of everyDifficulty) {
+      const client = c.people.find((p) => p.id === c.clientId) as { surname: string };
+      // The record still says who it is about — that is what makes it filable.
+      expect(c.briefingText.join(' '), `seed ${c.seed}`).toContain(client.surname);
+      expect(c.clientBrief.purposeText.startsWith(client.surname)).toBe(true);
+    }
+  });
+
+  it('says the pointer’s reason the way somebody would say it', () => {
+    for (const c of everyDifficulty) {
+      const pointed = c.people.find((p) => p.id === c.clientBrief.points.personId) as {
+        surname: string;
+      };
+      const spoken = c.clientBrief.points.reasonSpoken;
+      // The name is said once, at the head of it, and after that it is a
+      // pronoun: "Grasso blamed Sweeney for the ruin of his business."
+      const first = spoken.indexOf(pointed.surname);
+      expect(first, `seed ${c.seed}: ${spoken}`).toBeGreaterThanOrEqual(0);
+      expect(
+        spoken.slice(first + pointed.surname.length),
+        `seed ${c.seed}: ${spoken}`,
+      ).not.toContain(pointed.surname);
     }
   });
 });
