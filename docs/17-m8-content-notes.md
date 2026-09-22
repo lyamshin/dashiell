@@ -1,5 +1,7 @@
 # M8 scene decks — drafts
 
+*Moved: this was `content/drafts/scene/README.md`. The drafts are now in `content/decks/`, reconciled with the engine; every change made on the way in is listed in `docs/17-m8-notes.md`, "What the drafts needed". `scripts/check-scene-drafts.mjs` went with the drafts; `npm run decks` validates the same decks against their schema entries.*
+
 Eight decks written against `docs/17-m8-the-scene.md` §9, on branch
 `m8-scene-content`, against golden voice in `docs/golden/seed3-night.md`
 and `docs/golden/seed3-opening.md`. `content/decks/` and

@@ -34,6 +34,8 @@ export interface BridgePlan {
   tieText: string;
   /** Where the one to ask is found, as the notebook's lead list has it. */
   whereId?: Id;
+  /** A room to go through rather than a person to ask: the deck's `lead: search`. */
+  search?: boolean;
 }
 
 const fold = (s: string): string => s.toLowerCase().replace(/[’']/g, "'");
@@ -110,6 +112,7 @@ export function planBridge(
       tie: 'place',
       tieText: name,
       whereId: target.place,
+      search: true,
     };
   }
 
@@ -129,17 +132,23 @@ export function planBridge(
     if (person?.relationshipToVictim) {
       return { ...base, subjectId: named, subject, tie: 'victim', tieText: person.relationshipToVictim };
     }
-    // A fixture matters for the room they keep.
+    // A fixture matters for the room they keep: "the landlady at the third floor".
     const post = view.placeById.get(person?.foundAt ?? '');
-    if (post) return { ...base, subjectId: named, subject, tie: 'place', tieText: post.shortName };
+    if (post && person) {
+      const role = person.role.replace(/\.$/, '');
+      return { ...base, subjectId: named, subject, tie: 'place', tieText: `${role} at ${post.shortName}` };
+    }
     return { ...base, subjectId: named, subject, tie: 'time', tieText: hourOf(view, foundAfter, accountsAfter) };
   }
-  // The victim, an hour, a room or a thing: the question is about the hour.
+  // The victim, an hour, a room or a thing: the question is about the hour
+  // the notebook's window opens on, and {subject} is whatever it is about.
   const place = view.places.find((p) => fold(topic).includes(fold(p.shortName)));
-  if (place && named === null) {
-    return { ...base, subject: place.shortName, tie: 'place', tieText: place.shortName };
-  }
-  const subject = named === view.victim.id ? view.victim.surname : topic;
+  const subject =
+    named === view.victim.id
+      ? view.victim.surname
+      : place && named === null
+        ? place.shortName
+        : topic.replace(/ that evening$/, '');
   return {
     ...base,
     ...(named === view.victim.id ? { subjectId: named } : {}),

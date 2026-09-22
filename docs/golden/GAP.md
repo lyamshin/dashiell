@@ -140,18 +140,22 @@ reported and not scored.
 The night aggregate is the mean over the three shapes of each shape's summed
 distance, so it reads on the same scale as the day aggregate.
 
-### Where it stands (M8, placeholder scene decks)
+### Where it stands (M8)
 
 Pages 2–8 of the fixed set are 92 arrivals, 26 searches and 162 questions on
 the oracle's route.
 
-| shape | before M8 | after M8 |
-|---|---|---|
-| arrive | 0.205 | 0.288 |
-| search | 0.405 | 0.006 |
-| ask | 0.584 | 0.317 |
-| **night aggregate** | **0.398** | **0.204** |
-| office page, day targets | 0.009 | 0.009 (every office page byte-identical) |
+| shape | before M8 | placeholder decks | real scene decks |
+|---|---|---|---|
+| arrive | 0.205 | 0.288 | 0.360 |
+| search | 0.405 | 0.006 | 0.000 |
+| ask | 0.584 | 0.317 | 0.388 |
+| **night aggregate** | **0.398** | **0.204** | **0.250** |
+| office page, day targets | 0.009 | 0.009 | 0.009 (every office page byte-identical) |
+
+With the real cards the arrival's distance is paragraph and sentence cohesion
+(0.587 and 0.556 against 0.775 and 0.63) and the question's is short
+sentences, length and words a paragraph; `docs/17-m8-notes.md` says why.
 
 The arrival's distance is paragraph and sentence cohesion (0.668 and 0.543
 against 0.775 and 0.63): the placeholder establish, watch and activity cards

@@ -255,3 +255,301 @@ and `{name}` on answer cards is who sent me.
 - The office page still says the client's line about where she will be only
   when she leaves after two questions; a player who walks out first never
   hears it on the page.
+
+
+## Review fixes (PR #25, part A)
+
+From the coordinator's read of seed 3 pages 2–5.
+
+1. **A watcher is introduced once.** A watcher in the room is never in the
+   place's paragraph: the `watch` clause is dealt as the watcher's arrival
+   thought (the `view` of a watcher), and the first-sight line gives the job
+   without the post ("She was the bartender, a woman in her forties"). The
+   `watch` deck's `none` cards stay in the place's paragraph. Establish cards
+   are dealt with no `{watcher}` value, so a card that names the watcher is
+   not dealt (see part B for what that did to the drafts).
+2. **Recall is something the person does.** `portrait-pairs` gains
+   `recallAction` (schema documented), written for 97 of the 120 pairs — every
+   one whose detail is a habit or a gesture ("The coin was going over {his}
+   knuckles again."). The 23 whose detail is only a thing about them (the
+   resoled shoes, the twice-broken nose) have none, and are not recalled. The
+   planner recalls only people whose pair has an action, once a visit.
+3. **Spans are spoken.** `spokenSpan` says a run of half hours "from ten until
+   half past", "from half past nine until ten"; a record's "from ten o'clock
+   to half past ten" in a quote is turned the same way, and "some time after
+   ten o'clock to half past ten" becomes a between. An utterance gets a span
+   only if its `{time}` stands free (`takesSpan`: at the head of the card or
+   after punctuation, and followed by punctuation); "By {time}", "around
+   {time}", "{time} on" take one hour. A test fills every utterance with a
+   point and, where it can take one, a span, and reads every exchange over
+   forty seeds at three difficulties for a span hung off a one-hour
+   preposition.
+4. **No dealt business on night pages.** The only gesture in an answer is the
+   person's own recall action, when it has not been spent this visit; else
+   nothing. The business deck is not dealt on a planned page at all (tested).
+5. **No "Which…" fragments.** An observer-placed thought that opens on
+   "Which" joins the sentence before it, or gets its own subject ("Kreuzer
+   had seen it, which…"); `isSubjectless` now counts a non-question "Which…"
+   sentence as a fragment, so the coverage check holds it.
+6. **The note line** is the golden's family: "I wrote it down.", "I wrote
+   that down.", "I put it in the notebook.", …, then "Then I looked at what
+   I'd written." and its variants.
+7. **Local place names in speech.** `spokenPlace` derives the name the block
+   uses from the place's full name where it carries a street — "the
+   third-floor walk-up on Ninth" is "the walk-up on Ninth" in a witness's
+   mouth; "the garage on Eleventh Avenue" stays whole — and leaves every other
+   place its short name. Narration keeps the short name the notebook and the
+   buttons use.
+
+Also: texture is now cut to keep M5's plain floor as well as to get under the
+ceiling (a place card and the weather together can outweigh a short page), and
+a night page's word floor in the old page-grammar test is 30 (§8 gives night
+pages targets, not a floor; the night harness measures length).
+
+## Integration (part B)
+
+`m8-scene-content` (PR #24) merged into `m8-scene`. The drafts are now
+`content/decks/{establish,watch,return,activity,thought,bridge,carry,answer}.json`,
+replacing the placeholders; `content/drafts/scene/` is gone, its README kept
+as `docs/17-m8-content-notes.md`, and `scripts/check-scene-drafts.mjs` removed
+because `npm run decks` now validates the same decks against their schema
+entries.
+
+### Numbers, with the real cards
+
+- **Tests:** 30 files, 641 passing.
+- **Decks:** `npm run decks` — 3,291 cards across 28 decks, 0 errors, the same
+  26 empty tag combinations (all in the older decks). Every scene deck's key
+  covered.
+- **Overlap:** `node corpus/tools/overlap.mjs` over the nine touched decks —
+  clean (five of my own new cards reworded to get there).
+- **Beat coverage:** 5,292 of 5,292 night pages; 26,053 of 26,053 required
+  beats written. No deck fallback (`no-card` gap) anywhere over the sweep, and
+  no activity fallback (2,284 activities chosen).
+- **Correspondence:** zero violations, thoughts and bridges traced.
+
+**Night harness** (pages 2–8, seeds 1–40, Precinct, oracle):
+
+| shape | before M8 | placeholders | after part A | real cards |
+|---|---|---|---|---|
+| arrive | 0.205 | 0.288 | 0.431 | 0.360 |
+| search | 0.405 | 0.006 | 0.006 | 0.000 |
+| ask | 0.584 | 0.317 | 0.352 | 0.388 |
+| **night aggregate** | **0.398** | **0.204** | **0.263** | **0.250** |
+
+With the real cards the search page meets every target. The arrival misses
+on paragraph and sentence cohesion (0.587 and 0.556 against 0.775 and 0.63):
+the presence paragraph opens on a name the place's paragraph never used, now
+that the watcher is not named there — golden page 4 bridges the same gap with
+the word "bar". The question misses on short sentences (0.481 against 0.584),
+length (114 words against 130) and words a paragraph (13.7 against 14.7): the
+golden's page 5 is two-thirds dialogue in short turns and carries a dossier
+line ("She's been with him since 'eighteen.") the engine is not licensed to
+volunteer.
+
+**Office page:** every office page byte-identical to `main`; day-target
+distance 0.009. The day loop over pages 1–3 reads 0.299 (short sentences on
+the two night pages it includes, as before, and orphan words 0.826 against
+0.82).
+
+### Seed 3, pages 2–5, with the real cards
+
+```
+the suite                                             12:25 AM   page 2
+────────────────────────────────────────────────────────────────────────────
+
+Kreuzer had named it first. I came to go through it, drawer by drawer.
+
+The cold cut through, and the block had emptied early because of it. Every
+stoop light was out but the one over the door. The hotel holding the suite
+was six floors of brick, plain outside and plainer in. A house phone sat on
+a table by the stairs, unanswered at this hour. The building had the
+particular quiet of a place where everybody paying by the week had learned
+to keep to themselves. There was no one to notice who passed through. The
+precinct had taken its statement and gone home.
+
+Sweeney lay where he had fallen. Nobody had covered him yet. There was
+nobody else in the room. The lamp came down with him and the bulb was still
+warm in its socket, unbroken. The El went over at ten o’clock, running to
+timetable, and for twenty seconds nothing under the structure could be heard
+at all.
+
+The coroner’s man had left a note on the back of an intake form. The coroner
+put death between half past nine and eleven. One depressed fracture at the
+back of the skull. Death was not instant.
+
+That put a number on it: ten o’clock, and nothing vaguer.
+
+[1 action, 2 written down, 211 words]
+
+the suite                                             12:50 AM   page 3
+────────────────────────────────────────────────────────────────────────────
+
+The last thing I had turned up pointed here. I went through the room.
+
+I took the room one wall at a time. The rug was rucked up under Sweeney and
+the chair beside it went over backwards. Nothing was carried out of the
+room.
+
+There was a day ledger in the room, and a nickel-plated revolver. I left
+them both alone for now. I could have used a glass of water two hours ago.
+
+Nothing had been carried out. It was not a robbery.
+
+I had not known Hanrahan was Sweeney’s secretary. Kreuzer would, and I meant
+to ask.
+
+[1 action, 1 written down, 100 words]
+
+the speakeasy                                         1:15 AM   page 4
+────────────────────────────────────────────────────────────────────────────
+
+Kreuzer would know about Hanrahan, Sweeney’s secretary.
+
+The hour had turned to one. The cold had cleared most of the block out
+early. A last stubborn pair stood outside the speakeasy, not talking. The
+speakeasy was a long room with a low ceiling, a bar down one side and a
+scatter of tables along the other. This late the crowd had thinned to
+whoever had nowhere better to be.
+
+Callahan was rinsing glasses in a basin, setting them out to dry. She was
+the bartender, a woman in her forties.
+
+Kreuzer was going through a tray of tickets, sorting them by date. The coin
+was going over her knuckles again.
+
+Kreuzer was the client. Clients kept their own hours, and I let them.
+Callahan kept half an eye on the glasses and half on the door.
+
+[1 action, 136 words]
+
+the speakeasy                                         1:40 AM   page 5
+────────────────────────────────────────────────────────────────────────────
+
+Kreuzer put it aside when I sat down. “Sweeney had a secretary. Hanrahan.”
+
+“Nora Hanrahan.”
+
+“Where was Hanrahan tonight?”
+
+“Hanrahan, the walk-up on Ninth, from ten until half past. Gone before the
+next round.”
+
+The landlady's note was still folded in my coat, unread twice already.
+
+I got it down on paper. Then I read it back.
+
+At ten o’clock, Hanrahan was at the third floor — and if so, not at the
+suite, where it happened. That was not only what Kreuzer said about
+Hanrahan. It put Kreuzer at the third floor at ten o’clock too. It was the
+kind of thing a person says first, if they mean to say it at all. Kreuzer
+had not.
+
+That Schilling was Sweeney’s former employee changed things. Hargrove, the
+doorman at the Wyckoff, would know the rest of it.
+
+[1 action, 1 written down, 138 words]
+```
+
+### What the drafts needed
+
+Every change is below. In short: 37 establish cards lost the sentence that
+named the watcher (4 more, where that sentence also names the place, are kept
+as written and are not dealt tonight); 15 time-tie bridges were rewritten and
+3 victim-tie bridges re-ordered, because the engine's `{tie}` is an hour for
+`time` and the relation can be a predicate ("named in Lathrop's will"); 3
+thought cards fixed (a doubled subject, an unlicensed lie, the word
+"disqualifier"); implicates, window and unmentioned tagged with `basis` and
+`via`. Added in the same voice: 55 thought cards (window by the coroner's
+hours alone, goods, last-seen, seen-after, view), 18 carry cards for a lead a
+paper or a room opened, 9 answer cards with neither slot, 6 `any` activities,
+4 `lead: search` bridges, and the errand's 72 short-form cards. Nothing was
+dropped.
+
+```
+establish est-041: kept as written, and unreachable while its watcher is in the room (always, tonight): the sentence naming {watcher} also names {place}, or nothing is left without it: "{place} was up two flights from a street door {watcher} kept a closer eye on than most tenants realized. The stairs were bare, the banister loose in two places. At this hour most of the building was dark, save for a single lit window two flights up."
+establish est-044: kept as written, and unreachable while its watcher is in the room (always, tonight): the sentence naming {watcher} also names {place}, or nothing is left without it: "The walk-up holding {place} was owned by {owner}, six units over a street-level door with a mail slot for each. {watcher} had the ground-floor rooms and heard most of what happened on the stairs. At this hour, though, even {watcher} had usually gone to bed."
+establish est-045: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was the entry hall of the building, marble underfoot and a bank of brass mailboxes along one wall. {watcher} ran the elevator from a stool just past the door. At this hour the lobby was empty but for whoever was waiting on the car." -> "{place} was the entry hall of the building, marble underfoot and a bank of brass mailboxes along one wall. At this hour the lobby was empty but for whoever was waiting on the car."
+establish est-048: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "The vestibule holding {place} kept a night bell for callers after the desk had closed. {watcher} answered it from the elevator, whatever floor the car happened to be on. At this hour the bell rang rarely, and everyone in the building knew it when it did." -> "The vestibule holding {place} kept a night bell for callers after the desk had closed. At this hour the bell rang rarely, and everyone in the building knew it when it did."
+establish est-049: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was a back room in a rooming house, reached down a hall that ran past four other doors just like it. {watcher} had the ground-floor rooms and heard the stairs better than any tenant liked. At this hour the house had gone still, every door shut for the night." -> "{place} was a back room in a rooming house, reached down a hall that ran past four other doors just like it. At this hour the house had gone still, every door shut for the night."
+establish est-052: kept as written, and unreachable while its watcher is in the room (always, tonight): the sentence naming {watcher} also names {place}, or nothing is left without it: "The rooming house holding {place} took in boarders one to a door, meals included at set hours. {watcher} had run it for years, and knew every tenant's habits better than they knew them themselves. At this hour, though, even {watcher} had turned in."
+establish est-053: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} kept a plain front, no sign past a painted name over the door. {watcher} worked the bar most nights it was open. At this hour the stools were mostly empty, the regulars gone home or gone quiet." -> "{place} kept a plain front, no sign past a painted name over the door. At this hour the stools were mostly empty, the regulars gone home or gone quiet."
+establish est-055: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was the kind of bar a block kept for itself, known by name to everyone who drank there and by nobody past it. {watcher} minded the register and most everything else. This late the radio behind the bar was the loudest thing in the room." -> "{place} was the kind of bar a block kept for itself, known by name to everyone who drank there and by nobody past it. This late the radio behind the bar was the loudest thing in the room."
+establish est-057: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} sat under a hat shop, down six steps and through a door you had to knock on. {watcher} worked the bar and decided who got past that door. At this hour most of the stools were empty." -> "{place} sat under a hat shop, down six steps and through a door you had to knock on. At this hour most of the stools were empty."
+establish est-059: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was a long room with a low ceiling, a bar down one side and a scatter of tables along the other. {watcher} kept the glasses moving and the door watched, both at once. This late the crowd had thinned to whoever had nowhere better to be." -> "{place} was a long room with a low ceiling, a bar down one side and a scatter of tables along the other. This late the crowd had thinned to whoever had nowhere better to be."
+establish est-061: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} ran the width of the building, red carpet worn thin down the middle where every pair of feet crossed to the elevator. {watcher} stood by the door and watched who came through it. At this hour the lobby had emptied to a few chairs nobody was sitting in." -> "{place} ran the width of the building, red carpet worn thin down the middle where every pair of feet crossed to the elevator. At this hour the lobby had emptied to a few chairs nobody was sitting in."
+establish est-063: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was the lobby of a hotel, marble floor, brass fittings polished by somebody's nightly round. {watcher} had the door and the sidewalk both, and missed little of either. This late the chairs by the window sat empty, cushions still holding the shape of whoever had last used them." -> "{place} was the lobby of a hotel, marble floor, brass fittings polished by somebody's nightly round. This late the chairs by the window sat empty, cushions still holding the shape of whoever had last used them."
+establish est-065: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} ran up the middle of the building, bare bulbs on alternating landings, the rest left dark to save the current. {watcher} had the ground-floor rooms and heard most of what went up and down. At this hour the building had settled into the particular quiet of people sleeping four to a room." -> "{place} ran up the middle of the building, bare bulbs on alternating landings, the rest left dark to save the current. At this hour the building had settled into the particular quiet of people sleeping four to a room."
+establish est-067: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} smelled of a dozen different dinners layered over each other, the way a stairwell did in a building with no other place to cook. {watcher} kept a chair near the bottom and used it more than tenants liked to think about. This late the chair sat empty, though rarely for long." -> "{place} smelled of a dozen different dinners layered over each other, the way a stairwell did in a building with no other place to cook. This late the chair sat empty, though rarely for long."
+establish est-069: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} sat below street level, down a short flight from a door with no window in it. {watcher} racked cues and ran the register from behind a low counter. At this hour half the tables were covered, the balls put away for the night." -> "{place} sat below street level, down a short flight from a door with no window in it. At this hour half the tables were covered, the balls put away for the night."
+establish est-071: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was a room of tables and cues and a radio nobody ever turned all the way off. {watcher} minded the counter and most of what happened around it. This late the crowd had thinned to the ones with nowhere better to be." -> "{place} was a room of tables and cues and a radio nobody ever turned all the way off. This late the crowd had thinned to the ones with nowhere better to be."
+establish est-073: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was the room behind a pawnshop's counter, reached past the counter itself and a curtain that didn't quite close. {watcher} minded the shop and the room both, most nights. At this hour the front of the store was shuttered, the window grille down." -> "{place} was the room behind a pawnshop's counter, reached past the counter itself and a curtain that didn't quite close. At this hour the front of the store was shuttered, the window grille down."
+establish est-075: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} sat behind a pawnshop, a small room crowded with what hadn't sold and what hadn't been decided about yet. {watcher} kept the books in there as much as at the counter. This late the shop's grille was down and the street outside it was as quiet as the room." -> "{place} sat behind a pawnshop, a small room crowded with what hadn't sold and what hadn't been decided about yet. This late the shop's grille was down and the street outside it was as quiet as the room."
+establish est-077: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} sat over a laundry, reached by a stair along the building's side wall, a paper lantern hung at the bottom of it. {watcher} ran the counter and most everything past it. At this hour the tables were down to the last few customers who hadn't left yet." -> "{place} sat over a laundry, reached by a stair along the building's side wall, a paper lantern hung at the bottom of it. At this hour the tables were down to the last few customers who hadn't left yet."
+establish est-079: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was a long room over a laundry, tables close together, a counter along the back wall. {watcher} watched the room from behind that counter, missing little. This late the kitchen noise had died down to almost nothing." -> "{place} was a long room over a laundry, tables close together, a counter along the back wall. This late the kitchen noise had died down to almost nothing."
+establish est-081: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} sat just off the front hall, the room where a boarding house's tenants were meant to receive callers, and mostly didn't. {watcher} kept an eye on it from the hall table. At this hour it was empty, the furniture in it arranged for a use nobody was making of it that night." -> "{place} sat just off the front hall, the room where a boarding house's tenants were meant to receive callers, and mostly didn't. At this hour it was empty, the furniture in it arranged for a use nobody was making of it that night."
+establish est-083: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was kept formal, the way a landlady kept the one room in the house meant to be seen by outsiders. {watcher} used it for accounts as much as for company. This late the room's own lamp was usually the only one lit downstairs." -> "{place} was kept formal, the way a landlady kept the one room in the house meant to be seen by outsiders. This late the room's own lamp was usually the only one lit downstairs."
+establish est-085: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was shuttered at this hour, the chairs empty, the mirrors dark. {watcher} kept a key and sometimes a reason to be there after closing. You got in through the same door as by day, if you had a key or knew whom to ask." -> "{place} was shuttered at this hour, the chairs empty, the mirrors dark. You got in through the same door as by day, if you had a key or knew whom to ask."
+establish est-087: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} kept two chairs and a bench for waiting, a calendar from a barber's supply house tacked up behind the register. {watcher} ran the shop by day and sometimes kept later hours than the sign said. This late the shop was usually closed, its grille down over the window." -> "{place} kept two chairs and a bench for waiting, a calendar from a barber's supply house tacked up behind the register. This late the shop was usually closed, its grille down over the window."
+establish est-089: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was a wide bay, cars nosed in along both walls, oil-stained concrete underfoot. {watcher} minded the pumps and the register from a little office at the front. At this hour most of the cars sat idle, covers pulled over the ones that wouldn't be needed before morning." -> "{place} was a wide bay, cars nosed in along both walls, oil-stained concrete underfoot. At this hour most of the cars sat idle, covers pulled over the ones that wouldn't be needed before morning."
+establish est-091: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} served the hotel's guests and a few others besides, a garage big enough for a dozen cars and loud with machinery by day. {watcher} kept the night shift, mostly alone. This late the bay was quiet but for a radio somewhere in the back." -> "{place} served the hotel's guests and a few others besides, a garage big enough for a dozen cars and loud with machinery by day. This late the bay was quiet but for a radio somewhere in the back."
+establish est-101: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} sat on the corner, a wood stand with a corrugated roof and papers weighted down against the wind. {watcher} kept it open later than most businesses on the block. At this hour there was little foot traffic to sell to." -> "{place} sat on the corner, a wood stand with a corrugated roof and papers weighted down against the wind. At this hour there was little foot traffic to sell to."
+establish est-103: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} had held that corner since before most of the buildings near it went up, one of the fixtures a neighborhood collects without meaning to. {watcher} ran it alone at this hour, the morning papers not due for hours yet. It was quiet enough to hear the presses two blocks off, if the wind was right." -> "{place} had held that corner since before most of the buildings near it went up, one of the fixtures a neighborhood collects without meaning to. It was quiet enough to hear the presses two blocks off, if the wind was right."
+establish est-104: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "The stand at the corner, where {place} was, kept a small shelf of magazines under glass, the rest of the stock left open to the weather. {watcher} had seen every kind of customer the block produced. This late there was hardly a customer to be seen." -> "The stand at the corner, where {place} was, kept a small shelf of magazines under glass, the rest of the stock left open to the weather. This late there was hardly a customer to be seen."
+establish est-105: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} kept its lights on all night, a wall of little glass doors and a slot for a nickel behind each one. {watcher} refilled the compartments from somewhere behind the wall, out of sight. At this hour half the tables sat empty, napkin holders lined up straight." -> "{place} kept its lights on all night, a wall of little glass doors and a slot for a nickel behind each one. At this hour half the tables sat empty, napkin holders lined up straight."
+establish est-107: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} ran the length of a storefront, mirrors on the walls doubling a room that was already more empty than full at this hour. {watcher} worked behind the machinery, keeping the little doors stocked. This late it drew the kind of customer who had nowhere better to sit." -> "{place} ran the length of a storefront, mirrors on the walls doubling a room that was already more empty than full at this hour. This late it drew the kind of customer who had nowhere better to sit."
+establish est-109: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} had a marquee dark at this hour, the last show having let out hours before. {watcher} had gone home with everyone else, the doors locked behind them. You'd have needed a reason and a key to get inside past this point." -> "{place} had a marquee dark at this hour, the last show having let out hours before. You'd have needed a reason and a key to get inside past this point."
+establish est-111: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was a picture house with a lobby of red carpet gone thin down the aisle where the crowds walked in twice a day. {watcher} worked the door through the evening shows and locked up after the last one. This late the building held nobody at all, unless somebody had reason to be inside it." -> "{place} was a picture house with a lobby of red carpet gone thin down the aisle where the crowds walked in twice a day. This late the building held nobody at all, unless somebody had reason to be inside it."
+establish est-113: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} kept a band going most nights until the crowd thinned enough to send home. {watcher} worked the door and knew the regulars from the strangers at a glance. At this hour the music had usually stopped, the floor swept, the last couples gone." -> "{place} kept a band going most nights until the crowd thinned enough to send home. At this hour the music had usually stopped, the floor swept, the last couples gone."
+establish est-115: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was a hall built for a band and a crowd and not much else. {watcher} had the door through the last dance and stayed to lock up after. This late the chairs were stacked, the floor bare, the whole place smelling faintly of cigarettes and floor wax." -> "{place} was a hall built for a band and a crowd and not much else. This late the chairs were stacked, the floor bare, the whole place smelling faintly of cigarettes and floor wax."
+establish est-117: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} kept a soda fountain running most of the day and a light on well past it. {watcher} minded the counter alone at this hour, the fountain's stools mostly empty. You could get in through the front, the only door the shop had." -> "{place} kept a soda fountain running most of the day and a light on well past it. You could get in through the front, the only door the shop had."
+establish est-118: kept as written, and unreachable while its watcher is in the room (always, tonight): the sentence naming {watcher} also names {place}, or nothing is left without it: "You reached {place} through a door with a bell that announced every customer whether {watcher} was looking up or not. Shelves of bottles ran behind the counter, labeled in handwriting that hadn't changed in years. Past midnight there was little trade beyond whoever needed something and couldn't wait for morning."
+establish est-119: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} was a drugstore with a soda fountain, one of the few storefronts on the block still lit at this hour. {watcher} kept the register and the prescriptions and most of what happened at the counter besides. This late the stools at the fountain sat empty, a rag folded over the nearest one." -> "{place} was a drugstore with a soda fountain, one of the few storefronts on the block still lit at this hour. This late the stools at the fountain sat empty, a rag folded over the nearest one."
+establish est-120: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "The drugstore with the soda fountain, where {place} was, ran a single bulb over the register, the rest of the shop left half dark to save the current. At this hour it drew the kind of customer with a headache or nowhere else open. {watcher} had seen most of them before." -> "The drugstore with the soda fountain, where {place} was, ran a single bulb over the register, the rest of the shop left half dark to save the current. At this hour it drew the kind of customer with a headache or nowhere else open."
+establish est-121: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} sat outside a theater, a line painted on the curb where the cabs were meant to wait their turn. {watcher} worked the stand most nights, first in line when a fare came out. At this hour there were more cabs waiting than fares to fill them." -> "{place} sat outside a theater, a line painted on the curb where the cabs were meant to wait their turn. At this hour there were more cabs waiting than fares to fill them."
+establish est-123: took out the sentence naming {watcher} (a watcher in the room is introduced once, by the presence line and the arrival thought): "{place} served a theater's crowds by evening and whoever else needed a cab the rest of the time. {watcher} had the stand and the patience that came with it. This late the wait for a fare ran longer than the ride usually did." -> "{place} served a theater's crowds by evening and whoever else needed a cab the rest of the time. This late the wait for a fare ran longer than the ride usually did."
+answer: added ans-n01..n09, three an outcome with neither slot: an errand a paper or a room sent me on, to a room, has no {name} and no {subject} (15 fallbacks over the sweep before these).
+activity: added act-a01..a06, role `any`, the engine’s fallback for a person with no card of their own (a beat-cop, or a pruned cell).
+carry: added cry-n01..n18, `lead: yes` without {name}, for a lead a paper or a room opened (every `lead: yes` draft names who sent me, and a place clue has nobody; golden page 3’s carry is this case).
+bridge brg-003: opened on {tie} as a noun, and a relation is often a predicate ("named in Lathrop’s will", "engaged to Ashby’s daughter"), which left the sentence without a subject: "{tie} — that alone was worth a question, and {who} was who to ask." -> "{subject}, {tie} — that alone was worth a question, and {who} was who to ask."
+bridge brg-009: opened on {tie} as a noun, and a relation is often a predicate ("named in Lathrop’s will", "engaged to Ashby’s daughter"), which left the sentence without a subject: "{tie}. I had not heard that before. {who} would know more, and {who} was at {where}." -> "{subject} was {tie}. I had not heard that before. {who} would know more, and {who} was at {where}."
+bridge brg-015: opened on {tie} as a noun, and a relation is often a predicate ("named in Lathrop’s will", "engaged to Ashby’s daughter"), which left the sentence without a subject: "{tie} was the kind of thing that opened a case up. {who} was who I would ask, at {where}." -> "{subject} being {tie} was the kind of thing that opened a case up. {who} was who I would ask, at {where}."
+bridge brg-031: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "{subject} had been placed at a particular hour: {tie}. {who} could say what it meant." -> "Somebody had to account for {subject} at {tie}. {who} was the one to ask."
+bridge brg-032: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "{tie}. That put the clock on {subject}, and {who} was who to ask about it." -> "{who} might know about {subject}, and about {tie}."
+bridge brg-033: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "Whoever was {tie} mattered for that half hour alone. I wanted {who}’s word on {subject}." -> "It came back to {subject} and {tie}. {who} was who to ask about it."
+bridge brg-034: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "{subject} turned out to be {tie}. That was an hour worth asking about." -> "Nobody had told me about {subject} at {tie} yet. {who} might."
+bridge brg-035: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "It mattered that {subject} was {tie}. {who} could say how much." -> "The next question was {subject}, and the hour was {tie}. {who} would know, at {where}."
+bridge brg-036: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "I had not accounted for {subject} at that hour before. {tie} changed that. {who} would know more." -> "{tie} was the hour that mattered, and {subject} was in it somewhere. I wanted {who}’s word on it."
+bridge brg-037: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "{tie} — a fact nobody had mentioned about that hour. {who} was who to ask." -> "I still had nothing on {subject} at {tie}. {who} was the one to put it to."
+bridge brg-038: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "That put a clock on {subject}: {tie}. {who} knew the rest, and {who} was at {where}." -> "{who} was next. The question was {subject}, around {tie}."
+bridge brg-039: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "{subject}, it turned out, was {tie}. I wanted {who}’s account of that hour." -> "The coroner’s hours opened at {tie}. {who} could tell me about {subject}, and {who} was at {where}."
+bridge brg-040: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "Knowing {subject} was {tie} narrowed things. {who} was the one holding the answer." -> "{subject} and {tie}: that was the next question, and {who} would have an answer."
+bridge brg-041: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "{tie}. It put {subject} at an hour I had not asked about, and {who} could say more." -> "I wanted to know about {subject} around {tie}. {who} was the one who might say."
+bridge brg-042: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "{subject} being {tie} was news to me. {who} would fill in the hour." -> "{tie} was where the coroner started counting. {who} might know where {subject} fit."
+bridge brg-043: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "That gave the hour a name: {tie}. {who} knew the details." -> "I had {subject} and I had {tie}, and nothing to join them. {who} might."
+bridge brg-044: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "I wanted to know more about {subject} at that hour. {who} was where to start, at {where}." -> "The hour was {tie}. {who} was the one to ask about {subject}."
+bridge brg-045: rewritten. For `tie: time` the engine fills {tie} with the hour the notebook’s window opens on ("half past nine") and {subject} with whom or what the question is about, often the victim or a topic; the draft read {tie} as a predicate ("Whoever was {tie}…"): "{tie} put a time on {subject} that nothing else had. {who} was next." -> "It was {tie} I cared about, and {subject}. {who} might have been around for both."
+bridge: added brg-s01..s04, `tie: place`, `lead: search` (a new tag): the bridge to a room to go through, which has no {who}. A `tie: place` draft reads {subject} as a person and would say "The Wyckoff turned out to be the Wyckoff."
+thought tht-014: "{subject} put {subject} at {scene}" names the same person twice as two people: "{subject} put {subject} at {scene}, at {time} — the same hour it happened. That did not clear anyone." -> "That put {subject} at {scene}, at {time} — the same hour it happened. That did not clear anyone."
+thought tht-128: asserted a lie that a secret explained does not establish: "That accounted for {subject}’s lie. It did not account for the rest." -> "That accounted for {subject}. It did not account for the rest."
+thought tht-134: "disqualifier" is the generator’s word, not the detective’s: "It was a disqualifier, plain: this branch was finished." -> "That ruled it out plainly. That line was finished."
+thought: tagged `basis` on implicates (placement where the card has {time}, access where it does not) and window (anchor: every draft names {time}); tagged `via` on the unmentioned cards that only make sense for the office briefing (037, 038, 039, 045, 046, 048) or for a told evening (041).
+thought: added tht-e001..e055 — window with `basis: coroner` (4; every window draft needs {time}, and a narrowing with no anchor has none), goods (12), last-seen (12), seen-after (12), view (15: watcher, client, known, stranger, and lied).
+errand: the short form (`bridged: yes`), err-b001..b072, four a `for` value under each of said, document and found, replacing the 36 placeholders.
+```
+
+### Tags and slots, as they stand after integration
+
+As listed above under "Tag vocabularies and slots", with these changes:
+
+- `bridge` gains `lead` (`ask` default, `search`), and its slots mean: `tie:
+  victim` — {subject} a person, {tie} the relation; `tie: place` —
+  {subject} a person who keeps a place, {tie} "the landlady at the third
+  floor"; `tie: time` — {tie} the hour the notebook's window opens on,
+  {subject} whom or what the question is about; `lead: search` — no
+  {who}, {subject} the room.
+- `thought`: `{scene}` always filled; `{other}` on `secret` and
+  `dead-end` is what the secret was ("embezzling").
+- `portrait-pairs` gains `recallAction`.
+- `establish` is dealt with no `{watcher}` (a watcher in the room is
+  introduced by the presence line and the arrival thought).

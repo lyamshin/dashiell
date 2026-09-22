@@ -595,11 +595,12 @@
       "placeholderPrefix": "brg-p",
       "burn": "free",
       "target": 45,
-      "$comment": "M8 §6. The next lead, named, and why. {who} is the person to ask (absent when the lead is a room to search), {subject} whom or what to ask about, {tie} why the subject matters — `victim`: the relation, \"Sweeney’s secretary\"; `place`: the place’s short name; `time`: the spoken hour — and {where} where {who} is found (absent when the notebook does not know). Every tie needs cards without {where}, and `place` needs cards without {who}.",
+      "$comment": "M8 §6. The next lead, named, and why. `tie: victim` — {subject} is a person and {tie} their relation to the victim (\"Sweeney’s secretary\"). `tie: place` — {subject} is a person who keeps a place and {tie} says so (\"the landlady at the third floor\"). `tie: time` — {tie} is the spoken hour the notebook’s window opens on (\"half past nine\") and {subject} whom or what the question is about: the victim, a person, or a topic (\"the noise\", \"the lock\"). {who} is the person to ask and {where} where they are found (absent when the notebook does not know). `lead: search` (a card with no {who}) is the bridge to a room to go through, {subject} its short name; every other card is `lead: ask`, the default.",
       "slots": ["detective", "who", "subject", "tie", "where"],
       "minPerCoverageCell": 15,
       "tags": {
-        "tie": { "required": true, "values": ["victim", "place", "time"] }
+        "tie": { "required": true, "values": ["victim", "place", "time"] },
+        "lead": { "required": false, "default": "ask", "values": ["ask", "search"] }
       },
       "coverage": [["tie"]]
     },

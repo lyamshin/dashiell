@@ -1,82 +1,402 @@
 [
   {
-    "id": "ret-p001",
+    "id": "ret-001",
     "deck": "return",
-    "text": "I was back at {place}.",
+    "text": "{place} again, same as before.",
     "tags": {
       "placeKind": "public"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "ret-p002",
+    "id": "ret-002",
     "deck": "return",
-    "text": "{place} again, and the street no different.",
+    "text": "I was back at {place}, and nobody looked up.",
     "tags": {
       "placeKind": "public"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "ret-p003",
+    "id": "ret-003",
     "deck": "return",
-    "text": "I was back at {place}.",
+    "text": "{place} hadn't changed since my last visit.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-004",
+    "deck": "return",
+    "text": "I came back to {place}. The second time was never the first.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-005",
+    "deck": "return",
+    "text": "{place} was where I had left it.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-006",
+    "deck": "return",
+    "text": "Back at {place}. The crowd had turned over since I was last through.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-007",
+    "deck": "return",
+    "text": "I went back to {place} without much ceremony.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-008",
+    "deck": "return",
+    "text": "{place} looked the same as it had the first time.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-009",
+    "deck": "return",
+    "text": "Second visit to {place}, and it went quicker.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-010",
+    "deck": "return",
+    "text": "I found {place} again easily enough.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-011",
+    "deck": "return",
+    "text": "I was back at {place}. The second time, nobody asked my business.",
     "tags": {
       "placeKind": "semi"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "ret-p004",
+    "id": "ret-012",
     "deck": "return",
-    "text": "I went into {place} a second time.",
+    "text": "{place} again. I didn't have to explain myself twice.",
     "tags": {
       "placeKind": "semi"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "ret-p005",
+    "id": "ret-013",
     "deck": "return",
-    "text": "I was back at {place}.",
+    "text": "I came back to {place}, and this time I knew where to stand.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-014",
+    "deck": "return",
+    "text": "Back at {place}. Whoever watched the room remembered me from before.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-015",
+    "deck": "return",
+    "text": "{place} hadn't changed, and neither had who was watching it.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-016",
+    "deck": "return",
+    "text": "I returned to {place} the way a regular would, without being stopped.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-017",
+    "deck": "return",
+    "text": "Second time at {place}. It went easier than the first.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-018",
+    "deck": "return",
+    "text": "I was back at {place}, and the door gave me no trouble.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-019",
+    "deck": "return",
+    "text": "{place} again, and I let myself in without being asked.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-020",
+    "deck": "return",
+    "text": "Back at {place}. Nobody made a thing of it.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-021",
+    "deck": "return",
+    "text": "I was back in {place}. It felt no less like trespass the second time.",
     "tags": {
       "placeKind": "private"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "ret-p006",
+    "id": "ret-022",
     "deck": "return",
-    "text": "I let myself into {place} again.",
+    "text": "{place} again. The door was where I had left it, and just as quiet.",
     "tags": {
       "placeKind": "private"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "ret-p007",
+    "id": "ret-023",
     "deck": "return",
-    "text": "I was back at {place}, where it had happened.",
+    "text": "I let myself back into {place}.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-024",
+    "deck": "return",
+    "text": "Second visit to {place}. Nothing in it had moved.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-025",
+    "deck": "return",
+    "text": "I returned to {place}, and the room still felt like somebody else’s.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-026",
+    "deck": "return",
+    "text": "Back in {place}. It hadn't gotten any easier to be there.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-027",
+    "deck": "return",
+    "text": "{place} again, and no one to answer for my being in it.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-028",
+    "deck": "return",
+    "text": "I went back into {place} without knocking this time.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-029",
+    "deck": "return",
+    "text": "{place} hadn't been touched since I had last stood in it.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-030",
+    "deck": "return",
+    "text": "Back at {place}. The second look was always the shorter one.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-031",
+    "deck": "return",
+    "text": "Back at {place}. It still felt like the room where it happened, because it was.",
     "tags": {
       "placeKind": "scene"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "ret-p008",
+    "id": "ret-032",
     "deck": "return",
-    "text": "{place} again. Nothing had been tidied.",
+    "text": "I returned to {place}, and the weight of it hadn’t lifted.",
     "tags": {
       "placeKind": "scene"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
+  },
+  {
+    "id": "ret-033",
+    "deck": "return",
+    "text": "Second visit to {place}. It hadn't stopped being a crime scene.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-034",
+    "deck": "return",
+    "text": "I was back where it happened. The room didn't get any easier to stand in.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-035",
+    "deck": "return",
+    "text": "{place} again. Nothing about it had gotten to be ordinary.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-036",
+    "deck": "return",
+    "text": "I went back to {place}, and it still read like the aftermath.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-037",
+    "deck": "return",
+    "text": "Back at {place}. It was still the room I had first walked into that night.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-038",
+    "deck": "return",
+    "text": "I returned to {place}. It hadn’t been put back together.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-039",
+    "deck": "return",
+    "text": "Second look at {place}, and it was no less the scene of it.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ret-040",
+    "deck": "return",
+    "text": "I was back at {place}, and the room still had the shape of what happened in it.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

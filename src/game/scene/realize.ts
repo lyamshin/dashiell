@@ -261,7 +261,10 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const key = placeKey(stage, beat.placeId);
         const watcher = beat.watcherId ? view.personById.get(beat.watcherId) : undefined;
         const owner = beat.ownerId ? view.personById.get(beat.ownerId) : undefined;
-        const slots: Slots = { place: here, watcher: watcher?.surname, owner: owner?.surname };
+        // §3–§4: a watcher in the room is introduced by the presence line and
+        // the arrival thought, so a card that names {watcher} is not dealt here.
+        void watcher;
+        const slots: Slots = { place: here, owner: owner?.surname };
         const drawn = deal(stage, 'establish', [(c) => tagIs('establish', c, 'place', key)], slots);
         const parts: string[] = [];
         if (drawn) parts.push(drawn.text);
@@ -493,7 +496,8 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const who = b.whoId ? view.personById.get(b.whoId)?.surname : undefined;
         const where = b.whereId ? view.placeById.get(b.whereId)?.shortName : undefined;
         const slots: Slots = { who, subject: b.subject, tie: b.tieText, where };
-        const drawn = deal(stage, 'bridge', [(c) => tagIs('bridge', c, 'tie', b.tie)], slots);
+        const lead = (c: Card): boolean => (tagOf('bridge', c, 'lead') === 'search') === (b.search === true);
+        const drawn = deal(stage, 'bridge', [(c) => tagIs('bridge', c, 'tie', b.tie) && lead(c)], slots);
         let text = drawn?.text ?? '';
         if (text.length === 0) {
           gaps.push(`no-card: bridge has nothing for ${b.tie} with the slots this lead has`);
@@ -820,6 +824,14 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
     case 'method':
       other = t.objectId ? view.objectById.get(t.objectId)?.name : undefined;
       break;
+    case 'secret':
+    case 'dead-end': {
+      // What the secret was, as a thing somebody does: "embezzling".
+      const who = t.subjectId ? view.personById.get(t.subjectId) : undefined;
+      const label = (who?.isKiller ? who.coverSecret : who?.secret)?.label;
+      other = label ? label.charAt(0).toLowerCase() + label.slice(1) : undefined;
+      break;
+    }
     default:
       break;
   }
