@@ -113,9 +113,14 @@ export function newRun(
   const kase = view.kase;
   const persisted = opts.persistedBurned ?? [];
   const cast = rollCast(kase, { persistedBurned: persisted });
+  const tier = kase.shape?.tier;
   const base: RunState = {
     seed: kase.seed,
     difficulty: kase.difficulty,
+    // M7: a tiered case records what it was dealt at, so a reload deals it again.
+    ...(tier !== undefined && tier !== 'custom' && kase.ladder !== undefined
+      ? { tier, level: kase.ladder.level }
+      : {}),
     detectiveName: opts.detectiveName,
     // §B.2: the run starts at the office, at midnight.
     at: view.office.id,

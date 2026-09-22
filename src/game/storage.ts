@@ -44,6 +44,10 @@ function isRunState(value: unknown): value is RunState {
     typeof v.seed === 'number' &&
     // M7: level 4, the DA's Office.
     (v.difficulty === 1 || v.difficulty === 2 || v.difficulty === 3 || v.difficulty === 4) &&
+    // M7: a tier and a level, both optional. A save from before them is the
+    // untiered case it always was; a tier that is not one is not a save.
+    (v.tier === undefined || [0, 1, 2, 3, 4, 5, 'over-easy'].includes(v.tier as number | string)) &&
+    (v.level === undefined || v.level === 1 || v.level === 2 || v.level === 3 || v.level === 4) &&
     typeof v.detectiveName === 'string' &&
     typeof v.at === 'string' &&
     typeof v.actionsUsed === 'number' &&

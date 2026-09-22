@@ -29,6 +29,9 @@ const arg = (name, fallback) => {
 const routes = JSON.parse(readFileSync(arg('routes', 'out/routes.json'), 'utf8'));
 const base = arg('url', 'http://localhost:5186');
 const difficulty = Number(arg('difficulty', '2'));
+// M7: `--tier 0..5|over-easy` opens the tiered case (`&t=`); print the routes
+// with the same flags (`oracle-commands.ts --tier N --level L`).
+const tier = arg('tier', '');
 const chrome = arg('chrome', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');
 const shots = arg('shots', '');
 if (shots) mkdirSync(shots, { recursive: true });
@@ -118,7 +121,7 @@ try {
         hasTouch: size.name === 'phone',
       });
       const page = await context.newPage();
-      await page.goto(`${base}/?seed=${seed}&d=${difficulty}`);
+      await page.goto(`${base}/?seed=${seed}&d=${difficulty}${tier ? `&t=${tier}` : ''}`);
       await page.waitForSelector('.choices, form.report');
       for (let n = 0; n <= commands.length; n++) {
         const m = await measure(page);
