@@ -1055,14 +1055,24 @@ function carryNoun(dealer: Dealer, before: readonly string[]): string | null {
 }
 
 /**
- * §A.4 — the presence roll as one sentence. "Carbone and Mosley at the far
- * end, Doyle behind the bar." Roles appear only for somebody not yet met.
+ * §A.4 — the presence roll as one sentence. "Carbone at the far end, Mosley
+ * near the door, and Doyle behind the bar." Roles appear only for somebody not
+ * yet met.
+ *
+ * A role is itself set off by commas — "Ainsworth, the landlady, in the hall" —
+ * so a comma between the people as well gives a reader four commas and no way
+ * to tell which of them separates two people: "Dandridge by the window,
+ * Ainsworth, the landlady, in the hall" reads as three people, one of them
+ * called The Landlady. When any clause carries a role the list goes up a level
+ * and is separated by semicolons instead, and either way the last of three or
+ * more is introduced by "and", so the end of the list is audible.
  */
 export function presenceSentence(stage: Stage): string {
   const { view } = stage;
   const place = view.placeById.get(stage.at);
   const guests = GUEST_POSTS[place?.kind ?? 'semi'] ?? (GUEST_POSTS.semi as string[]);
   const clauses: string[] = [];
+  let hasRole = false;
   let group: { post: string; names: string[] } | null = null;
   const flush = (): void => {
     if (!group) return;
@@ -1077,6 +1087,7 @@ export function presenceSentence(stage: Stage): string {
     const met = stage.met.includes(person.id);
     if (!met) {
       flush();
+      hasRole = true;
       clauses.push(`${person.surname}, ${person.role}, ${post}`);
       continue;
     }
@@ -1087,7 +1098,20 @@ export function presenceSentence(stage: Stage): string {
     }
   }
   flush();
-  return clauses.length === 0 ? '' : `${capitalize(clauses.join(', '))}.`;
+  return clauses.length === 0 ? '' : `${capitalize(joinClauses(clauses, hasRole))}.`;
+}
+
+/**
+ * The people in the room, as one list. Semicolons where a clause has a role
+ * with commas of its own; "and" before the last of three or more, where it
+ * marks the end of the list rather than getting in the way of a pair.
+ */
+export function joinClauses(clauses: string[], hasRole: boolean): string {
+  if (clauses.length <= 1) return clauses[0] ?? '';
+  const sep = hasRole ? '; ' : ', ';
+  if (clauses.length === 2) return clauses.join(sep);
+  const last = clauses[clauses.length - 1] as string;
+  return `${clauses.slice(0, -1).join(sep)}${sep}and ${last}`;
 }
 
 function listOf(names: string[]): string {

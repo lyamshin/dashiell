@@ -28,6 +28,7 @@ import {
   SIMILE_HOSTS,
   contradictsWeather,
   deckOf,
+  joinClauses,
   meanSharedMotifs,
   motifsOf,
   tagOf,
@@ -223,6 +224,56 @@ describe('portraits and presence', () => {
       }
     }
     expect(rolls, 'no run put anybody in a room').toBeGreaterThan(0);
+  });
+
+  it('sets the people off with semicolons when any of them carries a role', () => {
+    // A role is itself between commas, so a comma between the people as well
+    // reads as one more person: "Dandridge by the window, Ainsworth, the
+    // landlady, in the hall" is three names to a reader who does not already
+    // know the cast.
+    expect(
+      joinClauses(['Dandridge by the window', 'Ainsworth, the landlady, in the hall'], true),
+    ).toBe('Dandridge by the window; Ainsworth, the landlady, in the hall');
+    expect(
+      joinClauses(
+        ['Carbone at the far end', 'Mosley near the door', 'Doyle behind the bar'],
+        false,
+      ),
+    ).toBe('Carbone at the far end, Mosley near the door, and Doyle behind the bar');
+    expect(
+      joinClauses(
+        [
+          'Carbone at the far end',
+          'Mosley, a ward heeler, near the door',
+          'Doyle, the bartender, behind the bar',
+        ],
+        true,
+      ),
+    ).toBe(
+      'Carbone at the far end; Mosley, a ward heeler, near the door; and Doyle, the bartender, behind the bar',
+    );
+  });
+
+  it('never lets a role’s own commas double as the separator, over forty runs', () => {
+    let rolls = 0;
+    for (let seed = 1; seed <= 40; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of playOracle(v).state.log) {
+        for (const block of page.blocks) {
+          const text = block.kind === 'presence' ? block.text : undefined;
+          if (text === undefined || block.kind !== 'presence') continue;
+          if (block.personIds.length < 2) continue;
+          const named = block.personIds.some((id) => {
+            const role = v.personById.get(id)?.role;
+            return typeof role === 'string' && text.includes(`, ${role},`);
+          });
+          if (!named) continue;
+          rolls++;
+          expect(text, `seed ${seed}: ${text}`).toContain(';');
+        }
+      }
+    }
+    expect(rolls, 'no run printed a role beside another person').toBeGreaterThan(0);
   });
 });
 
