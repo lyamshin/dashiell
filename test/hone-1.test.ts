@@ -435,17 +435,32 @@ describe('portrait pairs', () => {
     });
   });
 
-  it('falls back to the three components, and says so, when no pair fits', () => {
-    const kase = generateCase(3, { difficulty: 2 });
-    const cast = rollCast(kase);
-    const client = kase.people.find((p) => p.isClient === true) as NonNullable<
-      (typeof kase.people)[number]
-    >;
-    // The deck is Track C's and is not on this branch.
-    expect(cast.portraits[client.id]?.pair).toBeUndefined();
-    const view = buildView(kase);
-    const page = newRun(view, { detectiveName: 'Dashiell' }).log[0] as Page;
-    expect(page.gaps.join(' ')).toContain('missing-pair');
+  it('uses a pair when one fits, and falls back to the three components, and says so, when none does', () => {
+    // Track C's deck is on disk now, so both branches are exercised for real:
+    // a client with a pair opens on it and logs no gap; a client without one
+    // gets the three-component portrait and the page says so.
+    let withPair = 0;
+    let withoutPair = 0;
+    for (let seed = 1; seed <= 40; seed++) {
+      const kase = generateCase(seed, { difficulty: 2 });
+      const cast = rollCast(kase);
+      const client = kase.people.find((p) => p.isClient === true) as NonNullable<
+        (typeof kase.people)[number]
+      >;
+      const view = buildView(kase);
+      const page = newRun(view, { detectiveName: 'Dashiell' }).log[0] as Page;
+      const gaps = page.gaps.join(' ');
+      const pair = cast.portraits[client.id]?.pair;
+      if (pair) {
+        withPair++;
+        expect(gaps, `seed ${seed}`).not.toContain(`missing-pair: no portrait-pairs card fits ${client.surname}`);
+      } else {
+        withoutPair++;
+        expect(gaps, `seed ${seed}`).toContain('missing-pair');
+      }
+    }
+    // The deck has 16/16 tag cells covered, so the pair branch must be the common one.
+    expect(withPair).toBeGreaterThan(withoutPair);
   });
 });
 

@@ -369,6 +369,9 @@ describe('portraits', () => {
     for (const person of v.kase.people) {
       const portrait = state.cast.portraits[person.id];
       expect(portrait, person.surname).toBeDefined();
+      // Hone 1 §B.4: a fitting pair replaces the weave. This test is about the
+      // weave, so it is measured with the pair set aside.
+      if (portrait?.pair) delete portrait.pair;
       const weave = (times: number, nth: number): string =>
         describePerson({
           cast: state.cast,
@@ -462,6 +465,8 @@ describe('portraits', () => {
     for (const person of v.kase.people) {
       const portrait = state.cast.portraits[person.id];
       if (!portrait || portrait.habit.length === 0) continue;
+      // Hone 1 §B.4: set the pair aside; the weave is what is under test.
+      if (portrait.pair) delete portrait.pair;
       for (let times = 0; times < 5; times++) {
         for (let nth = 0; nth < 5; nth++) {
           const text = describePerson({

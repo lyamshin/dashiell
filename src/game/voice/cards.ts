@@ -42,6 +42,7 @@ import endingsJson from '../../../content/decks/endings.json';
 import officeJson from '../../../content/decks/office.json';
 import entrancesJson from '../../../content/decks/entrances.json';
 import hiringJson from '../../../content/decks/hiring.json';
+import portraitPairsJson from '../../../content/decks/portrait-pairs.json';
 
 export type DeckName =
   | 'similes'
@@ -163,24 +164,11 @@ const RAW: Record<DeckName, unknown> = {
   office: officeJson,
   entrances: entrancesJson,
   hiring: hiringJson,
-  /*
-   * Hone 1 §B.4. `content/decks/portrait-pairs.json` is Track C's and is not
-   * on this branch. A deck that is not on disk is an empty deck: the dealer
-   * finds nothing in it, the portrait falls back to the three-component weave
-   * the engine already has, and the page says so in its gap log. When the deck
-   * lands this becomes an import like the rest and `MISSING_DECKS` empties.
-   */
-  'portrait-pairs': [],
+  'portrait-pairs': portraitPairsJson,
 };
 
-/**
- * Which decks are not on disk. The pages that wanted one say so in their gaps.
- *
- * The three M4b decks landed; `portrait-pairs` is Hone 1 Track C's and is
- * written on its own branch, so the engine is built against the schema and
- * runs without the cards.
- */
-export const MISSING_DECKS: readonly DeckName[] = ['portrait-pairs'];
+/** Every deck is on disk and imported; nothing is missing. */
+export const MISSING_DECKS: readonly DeckName[] = [];
 
 export const DECK_NAMES = Object.keys(RAW) as DeckName[];
 
