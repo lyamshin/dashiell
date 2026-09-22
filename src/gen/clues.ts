@@ -579,7 +579,10 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     { type: 'person', personId: cast.client.id, topic: 'why I was hired' },
     foundAt(cast.client.id),
     clientFacts,
-    `${who(cast.client.id)} hired us. ${brief.purposeText} ${who(pointedAt.id)} is where ${who(cast.client.id)} would rather we started: ${brief.points.reason}.`,
+    // One sentence, in the shape it has always had, because the office page
+    // strips this exact opening off it to make the hiring line. The rest of
+    // what the client says is the briefing now, and the briefing is not a clue.
+    `${who(cast.client.id)} hired us, and wants it known that ${brief.points.reason.replace(/\.$/, '')}, and would rather we started there.`,
   );
 
   /* 10. Everything the innocents are hiding. -------------------------------

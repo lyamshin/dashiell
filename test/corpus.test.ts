@@ -53,13 +53,24 @@ function counts<T>(xs: T[]): Map<T, number> {
 }
 
 describe('hard constraints over seeds 1..200', () => {
-  it('puts the killer and the victim alone at the murder cell', () => {
+  /*
+   * M5 §2.1 changed what "the murder cell" means for two of the three case
+   * types, so three of these four are now scoped by type. What has not
+   * changed is the constraint the whole machine rests on: the actor is alone
+   * at the place at the tick. Nobody else is ever in the room.
+   */
+  it('puts the actor alone at the act, with the subject when there is one', () => {
     for (const c of corpus) {
       const { killerId, murderTick: M, murderPlaceId: L } = c.solution;
       const victim = c.people.find((p) => p.kind === 'victim');
       expect(victim).toBeDefined();
       expect(scheduleOf(c, killerId)?.truth[M]).toBe(L);
-      expect(scheduleOf(c, victim?.id as Id)?.truth[M]).toBe(L);
+      if (c.act.type === 'robbery') {
+        // Nobody died. The owner had an evening, and it was not in that room.
+        expect(scheduleOf(c, victim?.id as Id)?.truth[M]).not.toBe(L);
+      } else {
+        expect(scheduleOf(c, victim?.id as Id)?.truth[M]).toBe(L);
+      }
       for (const s of c.schedules) {
         if (s.personId === killerId || s.personId === victim?.id) continue;
         expect(s.truth[M], `${s.personId} is in the room at the murder tick`).not.toBe(L);
@@ -67,8 +78,9 @@ describe('hard constraints over seeds 1..200', () => {
     }
   });
 
-  it('leaves the victim with no place after the murder tick', () => {
+  it('leaves a murdered victim with no place after the murder tick', () => {
     for (const c of corpus) {
+      if (c.act.type !== 'murder') continue;
       const victim = c.people.find((p) => p.kind === 'victim');
       const line = scheduleOf(c, victim?.id as Id);
       for (let t = c.solution.murderTick + 1; t < TICKS; t++) {
@@ -78,11 +90,42 @@ describe('hard constraints over seeds 1..200', () => {
     }
   });
 
-  it('clears the scene after the murder, the killer included', () => {
+  it('carries a missing person on to a whereabouts nobody observes', () => {
+    for (const c of corpus) {
+      if (c.act.type !== 'missing') continue;
+      const victim = c.people.find((p) => p.kind === 'victim') as { id: Id };
+      const line = scheduleOf(c, victim.id);
+      const where = c.act.whereabouts;
+      expect(where, `seed ${c.seed} has no whereabouts`).toBeDefined();
+      for (let t = c.solution.murderTick + 1; t < TICKS; t++) {
+        expect(line?.truth[t], `seed ${c.seed} tick ${t}`).toBe(where);
+      }
+      for (const o of c.observations) {
+        if (o.subjectId !== victim.id) continue;
+        expect(o.tick, `seed ${c.seed}: somebody watched a vanished person`).toBeLessThanOrEqual(
+          c.solution.murderTick,
+        );
+      }
+    }
+  });
+
+  /*
+   * One exception, added by M5 §1.3: somebody walked in and found it, and the
+   * case is only a case because they did. Exactly one person may be at the
+   * scene after the act, and only at the tick the discovery says.
+   */
+  it('clears the scene after the act, except for the one who finds it', () => {
     for (const c of corpus) {
       const { murderTick: M, murderPlaceId: L } = c.solution;
+      const found = c.victimBio.discovery;
       for (const s of c.schedules) {
         for (let t = M + 1; t < TICKS; t++) {
+          const excused =
+            found !== undefined &&
+            found.foundAt === L &&
+            found.foundById === s.personId &&
+            found.foundTick === t;
+          if (excused) continue;
           expect(s.truth[t], `${s.personId} is still in the murder room at tick ${t}`).not.toBe(L);
           expect(s.claimed[t]).not.toBe(L);
         }
@@ -146,7 +189,12 @@ describe('the place deck over seeds 1..200', () => {
     for (const c of corpus) {
       const scene = c.places.find((p) => p.id === c.solution.murderPlaceId);
       expect(scene?.watcher).toBeUndefined();
-      expect(PLACE_BY_ID[c.solution.murderPlaceId]?.murderMethods).toContain(c.solution.methodId);
+      // M5 §2.1: only a murder is gated on what a room can host. A room can
+      // be broken into, or walked out of, whether or not anybody could be
+      // killed in it; what still has to hold is that nobody is posted there.
+      if (c.act.type === 'murder') {
+        expect(PLACE_BY_ID[c.solution.murderPlaceId]?.murderMethods).toContain(c.solution.methodId);
+      }
     }
   });
 
@@ -201,7 +249,11 @@ describe('cast compatibility over seeds 1..200', () => {
         expect(arch?.role).toBe(p.role);
         expect(arch?.relationships).toContain(p.relationshipId);
         const rel = RELATIONSHIP_BY_ID[p.relationshipId as Id];
-        expect(rel?.text).toBe(p.relationshipToVictim);
+        // M5 §3: the relationship names the victim rather than calling them
+        // "the victim", so the card carries `{V}` and the person carries it
+        // filled in.
+        const victim = c.people.find((q) => q.kind === 'victim');
+        expect(rel?.text.split('{V}').join(victim?.surname ?? '')).toBe(p.relationshipToVictim);
         if (p.motive) {
           expect(arch?.motives).toContain(p.motive.type);
           if (rel?.impliesMotives) expect(rel.impliesMotives).toContain(p.motive.type);

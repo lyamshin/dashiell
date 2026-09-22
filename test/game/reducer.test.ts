@@ -366,8 +366,12 @@ describe('every budget in the corpus', () => {
     for (const difficulty of [1, 2, 3] as Difficulty[]) {
       for (let seed = 1; seed <= 20; seed++) {
         const v = buildView(generateCase(seed, { difficulty }));
+        // M5 moved the ceiling from 20 to 22. Every case now carries one more
+        // requirement — the trope's own essential fact set — which is one more
+        // clue in the spine, so par runs 9..14 where M2b's ran 9..12, and the
+        // budget is par plus slack. Still well inside the PAR_CEILING of 18.
         expect(v.kase.budget).toBeGreaterThanOrEqual(13);
-        expect(v.kase.budget).toBeLessThanOrEqual(20);
+        expect(v.kase.budget).toBeLessThanOrEqual(22);
         expect(clockAfter(v.kase.budget, v.kase.budget)).toBe('8:00 AM');
         expect(clockAfter(v.kase.budget - 1, v.kase.budget)).not.toBe('8:00 AM');
       }
