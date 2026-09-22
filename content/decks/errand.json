@@ -3658,5 +3658,437 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "err-p101",
+    "deck": "errand",
+    "text": "{who} would know where {subject} had been.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p102",
+    "deck": "errand",
+    "text": "{who} was the one who would know about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p103",
+    "deck": "errand",
+    "text": "{who} would have an evening to account for.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p104",
+    "deck": "errand",
+    "text": "It was {who}'s evening I wanted now.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p105",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p106",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} had the answer.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p107",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p108",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} had the answer.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p109",
+    "deck": "errand",
+    "text": "The room would have it, if anything did.",
+    "tags": {
+      "because": "said",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p110",
+    "deck": "errand",
+    "text": "What I wanted was in {place}, somewhere.",
+    "tags": {
+      "because": "said",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p111",
+    "deck": "errand",
+    "text": "{subject} would have it, if anything did.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p112",
+    "deck": "errand",
+    "text": "What I wanted was in {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p113",
+    "deck": "errand",
+    "text": "{who} would know where {subject} had been.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p114",
+    "deck": "errand",
+    "text": "{who} was the one who would know about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p115",
+    "deck": "errand",
+    "text": "{who} would have an evening to account for.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p116",
+    "deck": "errand",
+    "text": "It was {who}'s evening I wanted now.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p117",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p118",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} had the answer.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p119",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p120",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} had the answer.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p121",
+    "deck": "errand",
+    "text": "The room would have it, if anything did.",
+    "tags": {
+      "because": "document",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p122",
+    "deck": "errand",
+    "text": "What I wanted was in {place}, somewhere.",
+    "tags": {
+      "because": "document",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p123",
+    "deck": "errand",
+    "text": "{subject} would have it, if anything did.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p124",
+    "deck": "errand",
+    "text": "What I wanted was in {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p125",
+    "deck": "errand",
+    "text": "{who} would know where {subject} had been.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p126",
+    "deck": "errand",
+    "text": "{who} was the one who would know about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p127",
+    "deck": "errand",
+    "text": "{who} would have an evening to account for.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p128",
+    "deck": "errand",
+    "text": "It was {who}'s evening I wanted now.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p129",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p130",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} had the answer.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p131",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p132",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} had the answer.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p133",
+    "deck": "errand",
+    "text": "The room would have it, if anything did.",
+    "tags": {
+      "because": "found",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p134",
+    "deck": "errand",
+    "text": "What I wanted was in {place}, somewhere.",
+    "tags": {
+      "because": "found",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p135",
+    "deck": "errand",
+    "text": "{subject} would have it, if anything did.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p136",
+    "deck": "errand",
+    "text": "What I wanted was in {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
   }
 ]

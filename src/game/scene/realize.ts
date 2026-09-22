@@ -1,0 +1,814 @@
+/**
+ * M8 — prose realization: the planned beats, rendered.
+ *
+ * Every beat the planner laid out is written from the decks and the engine's
+ * own templates, in the order the plan gives, into paragraphs the golden would
+ * recognise: the reason set apart, the place, who is in it, what was found,
+ * what it means, and what to do next. Required beats are always written; the
+ * only thing the length rule may take off is texture (§8).
+ */
+
+import type { Clue, Id, Person } from '../../gen/types.js';
+import { spokenClock } from '../../gen/types.js';
+import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
+import { OTHER_THING } from '../errand.js';
+import { clauseOf, figuresIn, hourAgrees, introduceNames, nameables, pastTense, sentencesOf, stripHere, subjectify, wordCount, isSubjectless } from './text.js';
+import type { Beat, Plan, PresencePerson } from './plan.js';
+import type { Thought } from './thought.js';
+import {
+  CARRIED_QUESTIONS,
+  CARRIED_QUESTIONS_PLAIN,
+  LEFT_ONE,
+  LEFT_TWO,
+  LOOKED_AGAIN,
+  MORGUE_LEADS,
+  NOBODY_ELSE,
+  NOBODY_HERE,
+  NOTHING_ASKED,
+  PRECINCT_LINES,
+  RECALL_LINES,
+  SCENE_BODY,
+  SCENE_BODY_AGAIN,
+  SCENE_MISSING,
+  SCENE_ROBBERY,
+  SEARCH_ROOM_ACTS,
+  SEARCH_THING_ACTS,
+  SIGHT_LINES,
+  STOP_LINES,
+} from '../voice-data.js';
+import { tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
+import { genderHintOf, possessiveOf, pronounOf, temperOf } from '../voice/cast.js';
+import { businessLine, dashiellLine, registerFor, speakClue, type AskKind } from '../voice/exchange.js';
+import { findKindOf } from '../voice/facts.js';
+import { PLAIN_NOTED, SELF_ALREADY, SELF_QUESTIONS, briefingQuestion, pickShape } from '../voice/plain.js';
+import { tidyPunctuation } from '../voice/prose.js';
+import { knowsHim } from '../voice/roll.js';
+import { clientLeavingLine } from '../voice/office.js';
+import type { Scene, Stage } from '../voice/page.js';
+import { hourBandOf } from '../voice/page.js';
+
+/** §8: night pages have no hard ceiling below this. */
+export const NIGHT_CEILING = 600;
+
+/** §8: what the golden runs to, per shape. Under the low end, texture may be added. */
+export const NIGHT_TARGETS: Record<string, [number, number]> = {
+  arrive: [220, 350],
+  return: [120, 280],
+  search: [180, 280],
+  ask: [180, 280],
+  look: [80, 200],
+};
+
+/** §8: texture only, in this order. */
+export const CUT_ORDER = ['simile', 'ambient', 'weather'] as const;
+
+interface Para {
+  text: string;
+  voice: ProseVoice;
+  clueId?: Id;
+  /** Indexes into the plan's beats that wrote into this paragraph. */
+  beats: number[];
+  /** Texture, which the length rule may cut. */
+  texture?: 'weather' | 'ambient' | 'simile';
+}
+
+export interface Realized {
+  blocks: Block[];
+  traces: BeatTrace[];
+  errand?: ErrandTrace;
+  gaps: string[];
+}
+
+const DECADES: Record<number, string> = {
+  1: 'teens',
+  2: 'twenties',
+  3: 'thirties',
+  4: 'forties',
+  5: 'fifties',
+  6: 'sixties',
+  7: 'seventies',
+};
+
+function fillTemplate(template: string, slots: Record<string, string | undefined>): string {
+  let out = template;
+  for (const m of new Set(template.match(/\{(\w+)\}/g) ?? [])) {
+    const key = m.slice(1, -1);
+    const value = slots[key];
+    if (value === undefined || value.length === 0) return '';
+    out = out.split(m).join(value);
+  }
+  if (/^\{/.test(template)) out = `${out.charAt(0).toUpperCase()}${out.slice(1)}`;
+  return tidyPunctuation(out);
+}
+
+function capitalize(s: string): string {
+  return s.length === 0 ? s : `${s.charAt(0).toUpperCase()}${s.slice(1)}`;
+}
+
+function endStop(s: string): string {
+  const t = s.trim();
+  return /[.!?”"]$/.test(t) ? t : `${t}.`;
+}
+
+/**
+ * Deal from a deck through a ladder, refusing any card whose text names an
+ * hour the clock does not agree with (§7). Null when nothing fits, and the
+ * caller logs the gap.
+ */
+function deal(
+  stage: Stage,
+  deck: Parameters<Stage['dealer']['draw']>[0],
+  ladder: Match[],
+  slots: Slots,
+): { text: string; cardId: string } | null {
+  const agrees = (c: Card): boolean => hourAgrees(c.text, stage.minutes);
+  const drawn = stage.dealer.draw(
+    deck,
+    ladder.map((m) => (c: Card) => m(c) && agrees(c)),
+    slots,
+    true,
+  );
+  return drawn ? { text: drawn.text, cardId: drawn.cardId } : null;
+}
+
+/** The deck name a place is keyed under in `establish`. */
+function placeKey(stage: Stage, placeId: Id): string {
+  return placeId === stage.view.office.id ? 'office' : placeId;
+}
+
+export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
+  const { view, cast, dealer } = stage;
+  const gaps: string[] = [];
+  const paras: Para[] = [];
+  const traces: BeatTrace[] = plan.beats.map((b) => ({ kind: b.kind, required: b.required, rendered: false }));
+  const place = view.placeById.get(stage.at);
+  const here = place?.shortName ?? '';
+  const victim = view.victim;
+  let errand: ErrandTrace | undefined;
+  /** A clock line waits for the paragraph after the reason (see `clock`). */
+  let pendingClock: { text: string; beat: number } | null = null;
+
+  const mark = (i: number, patch: Partial<BeatTrace>): void => {
+    traces[i] = { ...(traces[i] as BeatTrace), rendered: true, ...patch };
+  };
+  const push = (para: Para): Para => {
+    if (pendingClock && para.voice !== 'errand') {
+      para.text = `${pendingClock.text} ${para.text}`;
+      para.beats.unshift(pendingClock.beat);
+      pendingClock = null;
+    }
+    paras.push(para);
+    return para;
+  };
+  const last = (): Para | undefined => paras[paras.length - 1];
+  /** Golden page 3: the things in the room, named and left, after the finds. */
+  let pendingLeft: { text: string; beat: number } | null = null;
+  const flushLeft = (): void => {
+    if (!pendingLeft) return;
+    push({ text: pendingLeft.text, voice: 'act', beats: [pendingLeft.beat] });
+    pendingLeft = null;
+  };
+
+  const beats = plan.beats;
+  for (let i = 0; i < beats.length; i++) {
+    const beat = beats[i] as Beat;
+    if (beat.kind !== 'find' && beat.kind !== 'act') flushLeft();
+    switch (beat.kind) {
+      /* ------------------------------------------------------ the clock */
+      case 'clock': {
+        const slots: Slots = beat.hour ? { hour: beat.hour } : {};
+        const drawn = deal(stage, 'hours', [(c) => tagIs('hours', c, 'beat', beat.beat)], slots);
+        const text =
+          drawn?.text ??
+          (beat.beat === 'hour'
+            ? `It was past ${beat.hour}.`
+            : beat.beat === 'two-left'
+              ? 'Two calls left before eight.'
+              : 'One call left before eight.');
+        if (!drawn) gaps.push(`no-card: hours has nothing for ${beat.beat}; a hand-written line stood in`);
+        pendingClock = { text, beat: i };
+        mark(i, { tag: beat.beat, text });
+        break;
+      }
+
+      /* ----------------------------------------------------- the reason */
+      case 'errand': {
+        if (beat.form === 'carry') {
+          const c = beat.carry;
+          const lead = c.lead ? 'yes' : 'no';
+          const slots: Slots = { ...c.slots, victim: victim.surname };
+          const drawn = deal(
+            stage,
+            'carry',
+            [(card) => tagIs('carry', card, 'for', c.for) && tagIs('carry', card, 'lead', lead)],
+            slots,
+          );
+          let text = drawn?.text ?? '';
+          if (text.length === 0) {
+            gaps.push(`no-card: carry has nothing for ${c.for} × ${lead}; a hand-written line stood in`);
+            text = c.lead ? 'I had been pointed at it.' : 'No one sent me to it.';
+          }
+          push({ text, voice: 'errand', beats: [i] });
+          mark(i, {
+            tag: 'carry',
+            ...(c.sourceId ? { clueIds: [c.sourceId] } : {}),
+            ...(c.targetId ? { targetId: c.targetId } : {}),
+          });
+          break;
+        }
+        const plan = beat.plan;
+        const searched = plan.searched === true ? 'yes' : 'no';
+        const fits: Match = (c) =>
+          tagIs('errand', c, 'because', plan.because) &&
+          tagIs('errand', c, 'for', plan.for) &&
+          (plan.because !== 'return' || tagIs('errand', c, 'searched', searched));
+        const short: Match = (c) => fits(c) && tagOf('errand', c, 'bridged') === 'yes';
+        const long: Match = (c) => fits(c) && tagOf('errand', c, 'bridged') !== 'yes';
+        const ladder = beat.form === 'short' ? [short, long] : [long];
+        const drawn = deal(stage, 'errand', ladder, { detective: stage.detectiveName, place: here, ...plan.slots });
+        let text = drawn?.text ?? '';
+        if (text.length === 0) {
+          gaps.push(`no-card: errand has nothing for ${plan.because} × ${plan.for}; a hand-written line stood in`);
+          text = plan.kind === 'office' ? `I went back to ${here} to think.` : 'Nobody sent me. I came to see.';
+        }
+        if (plan.kind === 'lead' && plan.leads === 2) text = `${text} ${OTHER_THING}`;
+        push({ text, voice: 'errand', beats: [i] });
+        mark(i, {
+          tag: beat.form,
+          ...(plan.sourceId ? { clueIds: [plan.sourceId] } : {}),
+          ...(plan.targetId ? { targetId: plan.targetId } : {}),
+        });
+        errand = { ...plan, text };
+        break;
+      }
+
+      /* ------------------------------------------------------ the place */
+      case 'establish': {
+        const key = placeKey(stage, beat.placeId);
+        const watcher = beat.watcherId ? view.personById.get(beat.watcherId) : undefined;
+        const owner = beat.ownerId ? view.personById.get(beat.ownerId) : undefined;
+        const slots: Slots = { place: here, watcher: watcher?.surname, owner: owner?.surname };
+        const drawn = deal(stage, 'establish', [(c) => tagIs('establish', c, 'place', key)], slots);
+        const parts: string[] = [];
+        if (drawn) parts.push(drawn.text);
+        else {
+          gaps.push(`no-card: establish has nothing for ${key}; the place's own name stood in`);
+          parts.push(`${capitalize(place?.name.replace('{V}', victim.surname) ?? here)}.`);
+        }
+        // The weather comes first, on the walk up to the door (§1 lets the
+        // establish paragraph hold it), and it is texture: only a card written
+        // for tonight's sky, this kind of place and this hour.
+        const weatherAt = beats.findIndex((b, j) => j > i && b.kind === 'texture' && b.texture === 'weather');
+        if (weatherAt >= 0) {
+          const band = hourBandOf(stage.minutes);
+          const kind = place?.kind ?? 'semi';
+          const sky = (c: Card): boolean =>
+            tagOf('arrivals', c, 'weather') === cast.roll.weather && tagIs('arrivals', c, 'hourBand', band);
+          const w = deal(
+            stage,
+            'arrivals',
+            [(c) => sky(c) && tagOf('arrivals', c, 'placeKind') === kind, (c) => sky(c) && tagIs('arrivals', c, 'placeKind', kind)],
+            { place: here },
+          );
+          if (w && !isSubjectless(w.text) && figuresIn(w.text) === 0) {
+            push({ text: w.text, voice: 'establish', beats: [weatherAt], texture: 'weather' });
+            mark(weatherAt, { tag: 'weather', text: w.text });
+          }
+        }
+        const watchRole = place?.watcher ?? 'none';
+        const watch =
+          watchRole === 'none' || watcher
+            ? deal(stage, 'watch', [(c) => tagIs('watch', c, 'watcher', watchRole)], { watcher: watcher?.surname, place: here })
+            : null;
+        const precinct = beat.precinct ? PRECINCT_LINES[beat.precinct] : undefined;
+        const para = push({
+          text: [parts[0], watch?.text, precinct].filter((s): s is string => !!s && s.length > 0).join(' '),
+          voice: 'establish',
+          beats: [i],
+        });
+        mark(i, {
+          tag: key,
+          placeIds: [beat.placeId],
+          personIds: [beat.watcherId, beat.ownerId].filter((x): x is Id => x !== undefined),
+          text: para.text,
+        });
+        break;
+      }
+      case 'return': {
+        const drawn = deal(stage, 'return', [(c) => tagIs('return', c, 'placeKind', beat.placeKind)], { place: here });
+        const text = drawn?.text ?? `I was back at ${here}.`;
+        if (!drawn) gaps.push(`no-card: return has nothing for ${beat.placeKind}`);
+        push({ text, voice: 'establish', beats: [i] });
+        mark(i, { tag: beat.placeKind, placeIds: [beat.placeId], text });
+        break;
+      }
+
+      /* -------------------------------------------------- who is here */
+      case 'presence': {
+        const lines: string[] = [];
+        const he = pronounOf(victim);
+        const victimSlots = {
+          victim: victim.surname,
+          he,
+          him: he === 'she' ? 'her' : 'him',
+          his: possessiveOf(victim),
+          object: view.kase.act.taken?.name,
+        };
+        if (beat.scene) {
+          const pool =
+            beat.scene === 'body'
+              ? SCENE_BODY
+              : beat.scene === 'body-again'
+                ? SCENE_BODY_AGAIN
+                : beat.scene === 'robbery'
+                  ? SCENE_ROBBERY
+                  : SCENE_MISSING;
+          const line = pickShape(dealer.random, pool, victimSlots);
+          if (line.length > 0) lines.push(line);
+          if (beat.people.length === 0 && (beat.scene === 'body' || beat.scene === 'body-again')) {
+            lines.push(dealer.random.pick(NOBODY_ELSE));
+          }
+        } else if (beat.people.length === 0) {
+          lines.push(pickShape(dealer.random, NOBODY_HERE, { place: here }));
+        }
+        const opened = lines.length > 0 ? push({ text: lines.join(' '), voice: 'presence', beats: [i] }) : null;
+        const texts: string[] = opened ? [opened.text] : [];
+        for (const p of beat.people) {
+          const text = presenceLine(stage, p);
+          texts.push(text);
+          push({ text, voice: 'presence', beats: [i] });
+        }
+        mark(i, {
+          ...(beat.scene ? { tag: beat.scene } : { tag: beat.people.length === 0 ? 'empty' : 'people' }),
+          personIds: beat.people.map((p) => p.personId),
+          text: texts.join(' '),
+        });
+        break;
+      }
+
+      /* ---------------------------------------------------- the search */
+      case 'act': {
+        const object = beat.objectId ? view.objectById.get(beat.objectId)?.name : undefined;
+        const text = object
+          ? pickShape(dealer.random, SEARCH_THING_ACTS, { object })
+          : dealer.random.pick(SEARCH_ROOM_ACTS);
+        push({ text, voice: 'act', beats: [i] });
+        const names = beat.left.map((id) => view.objectById.get(id)?.name).filter((n): n is string => !!n);
+        const leftText =
+          names.length >= 2
+            ? pickShape(dealer.random, LEFT_TWO, { object: names[0], other: names[1] })
+            : names.length === 1
+              ? pickShape(dealer.random, LEFT_ONE, { object: names[0] })
+              : '';
+        if (leftText.length > 0) pendingLeft = { text: leftText, beat: i };
+        mark(i, { tag: beat.objectId ? 'search-thing' : 'search-room', text: `${text} ${leftText}`.trim() });
+        break;
+      }
+
+      /* ------------------------------------------------------ the finds */
+      case 'find': {
+        if (plan.shape === 'ask') {
+          // An ask's finds are in the witness's mouth: the exchange wrote them.
+          break;
+        }
+        const clue = view.findableById.get(beat.clueId) as Clue;
+        const text = findText(stage, clue, plan, gaps);
+        // The first find of a search goes in the paragraph the search opened.
+        const prev = last();
+        if (prev && prev.voice === 'act' && prev.clueId === undefined) {
+          prev.text = `${prev.text} ${text}`;
+          prev.clueId = clue.id;
+          prev.beats.push(i);
+        } else {
+          push({ text, voice: 'find', clueId: clue.id, beats: [i] });
+        }
+        mark(i, { clueIds: [clue.id], text });
+        break;
+      }
+
+      /* ------------------------------------------------- the question */
+      case 'exchange': {
+        if (scene.kind !== 'ask') break;
+        const written = exchange(stage, scene, beat, gaps);
+        for (const p of written) push({ ...p, beats: [i] });
+        mark(i, {
+          tag: beat.carried ? 'carried' : 'asked',
+          personIds: [beat.personId, ...(beat.subjectId ? [beat.subjectId] : [])],
+          clueIds: beat.clueIds,
+          text: written.map((p) => p.text).join(' '),
+        });
+        // The finds rode in the answer.
+        for (let j = i + 1; j < beats.length; j++) {
+          const b = beats[j] as Beat;
+          if (b.kind !== 'find') continue;
+          const answer = written.find((p) => p.clueId === b.clueId);
+          mark(j, { clueIds: [b.clueId], ...(answer ? { text: answer.text } : {}) });
+        }
+        break;
+      }
+
+      /* -------------------------------------------------- the thought */
+      case 'thought': {
+        // Consecutive thoughts are one paragraph (golden page 5).
+        const run: number[] = [];
+        for (let j = i; j < beats.length && (beats[j] as Beat).kind === 'thought'; j++) run.push(j);
+        const found = scene.kind === 'ask' && plan.beats.some((b) => b.kind === 'find');
+        if (found) {
+          const noted = dealer.random.pick(PLAIN_NOTED);
+          const again = run.some((j) => (beats[j] as Extract<Beat, { kind: 'thought' }>).thought.cls === 'observer-placed')
+            ? ` ${dealer.random.pick(LOOKED_AGAIN)}`
+            : '';
+          push({ text: `${noted}${again}`, voice: 'narrator', beats: [] });
+        }
+        const lines: string[] = [];
+        for (const j of run) {
+          const t = (beats[j] as Extract<Beat, { kind: 'thought' }>).thought;
+          const text = thoughtLine(stage, t, gaps);
+          lines.push(text);
+          mark(j, {
+            tag: t.cls,
+            clueIds: t.clueIds,
+            personIds: [t.subjectId, t.sourceId].filter((x): x is Id => x !== undefined),
+            placeIds: [t.placeId, t.otherPlaceId].filter((x): x is Id => x !== undefined),
+            text,
+          });
+        }
+        push({ text: lines.join(' '), voice: 'thought', beats: run });
+        i = run[run.length - 1] as number;
+        break;
+      }
+
+      /* ---------------------------------------------------- the bridge */
+      case 'bridge': {
+        const b = beat.bridge;
+        const who = b.whoId ? view.personById.get(b.whoId)?.surname : undefined;
+        const where = b.whereId ? view.placeById.get(b.whereId)?.shortName : undefined;
+        const slots: Slots = { who, subject: b.subject, tie: b.tieText, where };
+        const drawn = deal(stage, 'bridge', [(c) => tagIs('bridge', c, 'tie', b.tie)], slots);
+        let text = drawn?.text ?? '';
+        if (text.length === 0) {
+          gaps.push(`no-card: bridge has nothing for ${b.tie} with the slots this lead has`);
+          text = who ? `${who} was the one to ask about ${b.subject}.` : `${capitalize(b.subject)} was next.`;
+        }
+        push({ text, voice: 'bridge', beats: [i] });
+        mark(i, {
+          tag: b.tie,
+          clueIds: [b.openerId],
+          targetId: b.targetId,
+          personIds: [b.whoId, b.subjectId].filter((x): x is Id => x !== undefined),
+          ...(b.whereId ? { placeIds: [b.whereId] } : {}),
+          text,
+        });
+        break;
+      }
+
+      /* ---------------------------------------------------- the answer */
+      case 'answer': {
+        const slots: Slots = { subject: beat.subject, name: beat.name };
+        const drawn = deal(stage, 'answer', [(c) => tagIs('answer', c, 'outcome', beat.outcome)], slots);
+        const text =
+          drawn?.text ??
+          (beat.outcome === 'found'
+            ? 'It was what I had come for.'
+            : beat.outcome === 'dead-end'
+              ? 'It was a dead end.'
+              : 'It was not what I came for.');
+        if (!drawn) gaps.push(`no-card: answer has nothing for ${beat.outcome}`);
+        const prev = last();
+        if (prev && prev.voice !== 'errand' && prev.voice !== 'exchange' && wordCount(prev.text) < 45) {
+          prev.text = `${prev.text} ${text}`;
+          prev.beats.push(i);
+        } else {
+          push({ text, voice: 'answer', beats: [i] });
+        }
+        mark(i, { tag: beat.outcome, ...(beat.targetId ? { targetId: beat.targetId } : {}), text });
+        break;
+      }
+
+      /* --------------------------------------------------- the texture */
+      case 'texture':
+        // Weather is written with the place; ambient is decided on length below.
+        break;
+    }
+  }
+
+  flushLeft();
+
+  /* ----------------------------------------- the client's close (office) */
+  if (scene.kind === 'ask' && scene.clientLeaves) {
+    const client = view.client;
+    push({
+      text: clientLeavingLine(
+        dealer,
+        client.surname,
+        view.placeById.get(client.foundAt ?? '')?.shortName ?? `the address ${pronounOf(client)} gave me`,
+      ),
+      voice: 'exchange',
+      beats: [],
+    });
+  }
+
+  /* --------------------------------------------------- §8: length, texture */
+  const shape = plan.shape;
+  const [low] = NIGHT_TARGETS[shape] ?? [150, 300];
+  const ambientAt = beats.findIndex((b) => b.kind === 'texture' && b.texture === 'ambient');
+  const count = (): number => paras.reduce((n, p) => n + wordCount(p.text), 0);
+  if (ambientAt >= 0 && count() < (low as number)) {
+    const band = hourBandOf(stage.minutes);
+    const drawn = deal(
+      stage,
+      'ambient',
+      [(c) => tagIs('ambient', c, 'hourBand', band), () => true],
+      { place: here },
+    );
+    if (drawn && figuresIn(drawn.text) === 0 && !isSubjectless(drawn.text)) {
+      // After the finds and before the thinking, where the golden lets a room breathe.
+      const at = paras.findIndex((p) => p.voice === 'thought' || p.voice === 'narrator');
+      const para: Para = { text: drawn.text, voice: 'find', beats: [ambientAt], texture: 'ambient' };
+      const host = at > 0 ? paras[at - 1] : undefined;
+      if (host && host.voice !== 'errand' && host.voice !== 'exchange' && host.clueId === undefined) {
+        host.text = `${host.text} ${drawn.text}`;
+      } else if (at > 0) paras.splice(at, 0, para);
+      else paras.push(para);
+      mark(ambientAt, { tag: 'ambient', text: drawn.text });
+    }
+  }
+  // A page over the ceiling loses texture, and only texture.
+  for (const kind of CUT_ORDER) {
+    while (count() > NIGHT_CEILING) {
+      const at = paras.findIndex((p) => p.texture === kind);
+      if (at < 0) break;
+      const cut = paras.splice(at, 1)[0] as Para;
+      for (const j of cut.beats) traces[j] = { ...(traces[j] as BeatTrace), rendered: false };
+    }
+  }
+
+  /* -------------------------------------------- §7: names with clauses */
+  const people = nameables(view);
+  const named = new Set<Id>();
+  for (const p of paras) p.text = introduceNames(p.text, people, named);
+
+  const blocks: Block[] = paras.map((p) =>
+    p.clueId === undefined
+      ? { kind: 'prose', text: tidyPunctuation(p.text), voice: p.voice }
+      : { kind: 'prose', text: tidyPunctuation(p.text), voice: p.voice, clueId: p.clueId },
+  );
+  // The timeline an account prints goes after the paragraph that gave it.
+  if (scene.kind === 'ask' && scene.account) {
+    const at = blocks.findIndex((b) => b.kind === 'prose' && b.voice === 'exchange' && /evening|book/.test(b.text));
+    blocks.splice(at >= 0 ? at + 1 : blocks.length, 0, {
+      kind: 'timeline',
+      personId: scene.personId,
+      rows: scene.account.rows,
+    });
+  }
+  if (errand) {
+    const first = blocks[0];
+    if (first && first.kind === 'prose' && first.voice === 'errand') errand = { ...errand, text: first.text };
+  }
+  return { blocks, traces, ...(errand ? { errand } : {}), gaps };
+}
+
+/* ------------------------------------------------------------------ *
+ * The pieces.
+ * ------------------------------------------------------------------ */
+
+/** One person in the room: what they are doing, and on first sight who they are. */
+function presenceLine(stage: Stage, p: PresencePerson): string {
+  const { view, cast } = stage;
+  const person = view.personById.get(p.personId) as Person;
+  const parts = [endStop(p.activity.text)];
+  if (p.firstSight) {
+    const d = person.dossier;
+    const decade = d ? DECADES[Math.floor(d.age / 10)] : undefined;
+    const gender = genderHintOf(person);
+    const clause =
+      person.kind === 'fixture' ? clauseOf(view, person) : person.role.replace(/\.$/, '');
+    const sight = fillTemplate(stage.dealer.random.pick(SIGHT_LINES), {
+      Pronoun: gender === 'f' ? 'She' : 'He',
+      clause,
+      noun: gender === 'f' ? 'woman' : 'man',
+      possessive: possessiveOf(person),
+      decade,
+    });
+    if (sight.length > 0) parts.push(sight);
+  } else if (p.recall) {
+    const recall = cast.portraits[p.personId]?.pair?.recall?.trim().replace(/[.!?]+$/, '');
+    if (recall) parts.push(fillTemplate(stage.dealer.random.pick(RECALL_LINES), { recall }));
+  }
+  return parts.join(' ');
+}
+
+/**
+ * A find, as the golden writes one: what the room shows, in the past tense,
+ * with its source where the source is a document. The generator's sentence is
+ * the notebook's; this is the page's.
+ */
+function findText(stage: Stage, clue: Clue, plan: Plan, gaps: string[]): string {
+  const { view } = stage;
+  const here = view.placeById.get(stage.at)?.shortName ?? '';
+  // "Found at the back lot: A clipping…" is the record's filing line; the
+  // page is standing in the room and says what was there.
+  const filed = clue.text.replace(/^Found at [^:]{1,60}:\s*/, '');
+  let fact = pastTense(stripHere(capitalize(filed), here));
+  // The presence beat already said where the body is; "Sweeney was found at
+  // the suite." after it is the record's address, not a find.
+  const body = plan.beats.some((b) => b.kind === 'presence' && (b.scene === 'body' || b.scene === 'body-again'));
+  if (body) {
+    const found = new RegExp(`^${view.victim.surname} was found at ${here.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\.\\s*`);
+    fact = fact.replace(found, '');
+  }
+  // The coroner's note says where it came from before it says anything; a
+  // room's own finds describe themselves, and a paper names its source in its
+  // own first words ("The bank confirms the account").
+  if (findKindOf(view, clue) === 'morgue' && clue.source.type === 'place') {
+    return `${stage.dealer.random.pick(MORGUE_LEADS)} ${capitalize(fact)}`;
+  }
+  void gaps;
+  return capitalize(fact);
+}
+
+/** Slots for a thought card (see the deck's `$comment` for what each means). */
+export function thoughtSlots(stage: Stage, t: Thought): Slots {
+  const { view } = stage;
+  const surname = (id: Id | undefined): string | undefined => (id ? view.personById.get(id)?.surname : undefined);
+  const placeName = (id: Id | undefined): string | undefined => (id ? view.placeById.get(id)?.shortName : undefined);
+  let other: string | undefined;
+  switch (t.cls) {
+    case 'clears':
+    case 'contradicts':
+      other = placeName(t.otherPlaceId);
+      break;
+    case 'window':
+      other = t.anchorId ? view.anchorById.get(t.anchorId)?.name : undefined;
+      break;
+    case 'robbery-shape':
+    case 'goods':
+    case 'method':
+      other = t.objectId ? view.objectById.get(t.objectId)?.name : undefined;
+      break;
+    default:
+      break;
+  }
+  return {
+    subject: surname(t.subjectId),
+    source: surname(t.sourceId),
+    place: placeName(t.placeId),
+    time: t.tick === undefined ? undefined : spokenClock(t.tick),
+    victim: view.victim.surname,
+    other,
+  };
+}
+
+function thoughtLine(stage: Stage, t: Thought, gaps: string[]): string {
+  const caseType = stage.view.kase.act.type;
+  const slots = thoughtSlots(stage, t);
+  const is = (c: Card, tag: string, want: string | undefined): boolean =>
+    want === undefined || tagIs('thought', c, tag, want);
+  const lied = t.lied === undefined ? undefined : t.lied ? 'yes' : 'no';
+  const cls = (c: Card): boolean => tagOf('thought', c, 'class') === t.cls && is(c, 'case', caseType);
+  const ladder: Match[] = [
+    (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && lied === 'yes' && tagOf('thought', c, 'lied') === 'yes',
+    (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && is(c, 'lied', lied),
+    (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via),
+  ];
+  const drawn = deal(stage, 'thought', ladder, slots);
+  if (drawn) return drawn.text;
+  gaps.push(`no-card: thought has nothing for ${t.cls} with the slots it has`);
+  return 'I wrote it down and thought about it.';
+}
+
+/**
+ * The exchange: the question (carried or plain), the answer in the witness's
+ * mouth, one piece of business at most, and a follow-up before each further
+ * fact. Returns paragraphs; the answer to each clue carries its id.
+ */
+function exchange(
+  stage: Stage,
+  scene: Extract<Scene, { kind: 'ask' }>,
+  beat: Extract<Beat, { kind: 'exchange' }>,
+  gaps: string[],
+): Omit<Para, 'beats'>[] {
+  const { view, cast, dealer } = stage;
+  const person = view.personById.get(scene.personId) as Person;
+  const surname = person.surname;
+  const temper = temperOf(cast, person.id);
+  const familiar = knowsHim(cast.roll, person.id);
+  const out: Omit<Para, 'beats'>[] = [];
+  const pronoun = pronounOf(person);
+  const subject = beat.subjectId ? view.personById.get(beat.subjectId) : undefined;
+  const slots: Slots = {
+    detective: stage.detectiveName,
+    place: scene.topicSlots.place ?? view.placeById.get(stage.at)?.shortName,
+    object: scene.topicSlots.object,
+    name: scene.askKind === 'ask-evening' || scene.askKind === 'ask-hired' ? surname : scene.topicSlots.subject,
+    subject: scene.askKind === 'ask-evening' || scene.askKind === 'ask-hired' ? surname : scene.topicSlots.subject,
+    addressee: surname,
+    topic: scene.topicLabel,
+  };
+
+  /* the approach, and the question */
+  const opening: string[] = [];
+  if (beat.stops) opening.push(fillTemplate(dealer.random.pick(STOP_LINES), { name: surname, pronoun }));
+  let question = '';
+  if (beat.carried && subject) {
+    const tie = subject.relationshipToVictim ?? '';
+    const m = /^(.+?)[’']s ([a-z][a-z -]*)$/.exec(tie);
+    if (m && m[1] === view.victim.surname) {
+      const noun = m[2] as string;
+      question = fillTemplate(dealer.random.pick(CARRIED_QUESTIONS), {
+        victim: view.victim.surname,
+        article: /^[aeiou]/.test(noun) ? 'an' : 'a',
+        noun,
+        subject: subject.surname,
+      });
+    } else {
+      question = fillTemplate(dealer.random.pick(CARRIED_QUESTIONS_PLAIN), {
+        subject: subject.surname,
+        clause: tie,
+      });
+    }
+    question = `“${question}”`;
+  } else if (scene.self) {
+    question = dealer.random.pick(SELF_QUESTIONS);
+  } else {
+    const line = dashiellLine(dealer, scene.askKind as AskKind, familiar, slots);
+    question = line?.text ?? `“${capitalize(scene.topicLabel)}?”`;
+  }
+  opening.push(question);
+  out.push({ text: opening.join(' '), voice: 'exchange' });
+  if (scene.free) out.push({ text: 'No charge on this one. There never is, the first time.', voice: 'narrator' });
+
+  /* the answer */
+  const used = new Set<string>();
+  let business = false;
+  const withBusiness = (text: string): string => {
+    if (business) return text;
+    business = true;
+    const drawn = businessLine(dealer, person, temper, slots, used, gaps);
+    if (!drawn) return text;
+    used.add(drawn.cardId);
+    const gesture = subjectify(drawn.text, surname);
+    // A gesture that names a pronoun not this person's is not theirs.
+    return `${text} ${endStop(capitalize(gesture))}`;
+  };
+  const answerClue = (clue: Clue, followUp: boolean): void => {
+    const register = registerFor(view, person.id, clue);
+    const spoken = speakClue(dealer, view, cast, clue, person, register, slots, gaps);
+    const say = (t: string): string =>
+      spoken.mode === 'utterance' || spoken.mode === 'quote' ? `“${endStop(t)}”` : capitalize(endStop(pastTense(t)));
+    if (followUp) {
+      const q = briefingQuestion(dealer.random, 'follow-named', { ...slots, victim: view.victim.surname }, [], clue.text);
+      if (q.length > 0) out.push({ text: `“${q}”`, voice: 'exchange' });
+    }
+    out.push({ text: withBusiness(say(spoken.text)), voice: 'exchange', clueId: clue.id });
+    for (const more of spoken.rest) {
+      const q = briefingQuestion(dealer.random, 'follow-named', { ...slots, victim: view.victim.surname }, [], more);
+      if (q.length > 0) out.push({ text: `“${q}”`, voice: 'exchange' });
+      out.push({ text: say(more), voice: 'exchange' });
+    }
+  };
+
+  if (scene.account) {
+    const claimed = scene.account.rows.filter((r) => r.placeId !== null);
+    const first = claimed[0];
+    const lastRow = claimed[claimed.length - 1];
+    const fact =
+      first && lastRow
+        ? `I was at ${view.placeById.get(first.placeId as Id)?.shortName ?? 'home'} and then where I said, ${spokenClock(
+            first.tick,
+          )} to ${spokenClock(lastRow.tick)}. All of it is in the book if you want the book.`
+        : 'I was where I was and I could not tell you the hours of it.';
+    out.push({ text: withBusiness(`“${fact}”`), voice: 'exchange' });
+  }
+  scene.clues.forEach((clue, i) => answerClue(clue, i > 0));
+  if (scene.self) {
+    if (scene.self.told) {
+      out.push({ text: fillTemplate(dealer.random.pick(SELF_ALREADY), { name: surname }), voice: 'exchange' });
+    } else {
+      const lines = scene.self.lines.filter((l) => l.trim().length > 0);
+      if (lines.length > 0) out.push({ text: withBusiness(`“${lines.join(' ')}”`), voice: 'exchange' });
+      if (scene.self.gossip) {
+        const about = view.personById.get(scene.self.gossip.personId);
+        out.push({
+          text: `${surname} was not finished, and the rest of it was about ${about?.surname ?? 'somebody else'}. “${scene.self.gossip.text}”`,
+          voice: 'exchange',
+        });
+      }
+    }
+  }
+  if (scene.clues.length === 0 && !scene.account && !scene.self) {
+    const line = fillTemplate(dealer.random.pick(NOTHING_ASKED), { name: surname });
+    out.push({ text: line.length > 0 ? line : `${surname} had nothing for me.`, voice: 'exchange' });
+  }
+  if (scene.volunteer) {
+    out.push({ text: `I had what I came for. ${surname} was not finished.`, voice: 'narrator' });
+    answerClue(scene.volunteer, false);
+  }
+  return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+}
+
+/** For the tests: every sentence of a realized page, in order. */
+export function sentencesOfBlocks(blocks: Block[]): string[] {
+  return blocks.flatMap((b) => (b.kind === 'prose' || b.kind === 'note' ? sentencesOf(b.text) : []));
+}

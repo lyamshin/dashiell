@@ -31,7 +31,8 @@ import type { Clue, Id, Person } from '../../gen/types.js';
 import type { Rng } from '../../gen/rng.js';
 import { spokenClock } from '../../gen/types.js';
 import { NIGHT_MINUTES } from '../types.js';
-import type { Block, ErrandTrace, ProseVoice } from '../types.js';
+import type { BeatTrace, Block, ErrandTrace, PageShape, ProseVoice, SceneMemory } from '../types.js';
+import { composeScene, isNightScene } from '../scene/index.js';
 import { OTHER_THING, type ErrandPlan } from '../errand.js';
 import type { CaseView, ClaimedAccount, Established } from '../derive.js';
 import { clueTick, establishedFrom } from '../derive.js';
@@ -427,6 +428,8 @@ export type Scene =
       };
       volunteer: Clue | null;
       free: boolean;
+      /** M8: the topic as the parser read it, so the planner knows what kind of question it was. */
+      topicRef?: { kind: string; id?: Id; topic?: string };
       /** That was the second free question and the client has a bus to catch. */
       clientLeaves?: boolean;
     }
@@ -478,6 +481,10 @@ export interface Stage {
   showedOff: boolean;
   /** Who is standing here, including the client while he is in the office. */
   here: Person[];
+  /** M8: the scene's memory before this page — visits, activities, bridges. */
+  memory?: SceneMemory;
+  /** M8: rooms with a page before this one. */
+  visitedBefore?: Id[];
 }
 
 export interface Composed {
@@ -505,6 +512,10 @@ export interface Composed {
   image: number;
   /** M6 §2: the errand line this page opened on, as the checker traces it. */
   errand?: ErrandTrace;
+  /** M8 §1: the page's shape, its beats as written, and the scene's memory after it. */
+  shape?: PageShape;
+  beats?: BeatTrace[];
+  memory?: SceneMemory;
 }
 
 /**
@@ -661,6 +672,8 @@ interface SayOpts {
 }
 
 export function composePage(stage: Stage, scene: Scene): Composed {
+  // M8 §1: every page after the office is planned, then written.
+  if (isNightScene(scene)) return composeScene(stage, scene);
   const { view, cast, dealer } = stage;
   const gaps: string[] = [];
   const laid: Laid[] = [];
