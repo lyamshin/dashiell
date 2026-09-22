@@ -1559,7 +1559,7 @@ export const PURPOSE_TEXT_FIRST: Record<Purpose, string[]> = {
   'find-the-killer-police-wont': [
     'I want the one who killed {V} found. The precinct has stopped looking. That is why I am here.',
     'I want the one who killed {V} found. Nobody at the precinct is looking any more. I am asking you instead.',
-    'I want the one who killed {V} found. The precinct has stopped looking for anybody at all. So I came up the stairs.',
+    'I want the one who killed {V} found. The precinct has stopped looking for anybody at all. So I came to you.',
   ],
   'clear-my-name': [
     'I want it established that it was not me. Before anybody says otherwise.',

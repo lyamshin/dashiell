@@ -141,6 +141,7 @@ import {
   retainerFor,
   speechParagraphs,
   splitBriefing,
+  type SpokenLine,
 } from './office.js';
 
 export type HourBand = 'midnight-2' | '2-4' | '4-6' | '6-8';
@@ -2514,10 +2515,31 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // §A.3: the trade, in her mouth, before the first thing she came to say —
   // which is where the golden puts it ("I write the tickets at Feldman's
   // pawnshop on Orchard Street. I know what things are worth.").
+  //
+  // Hone 2 integration: the generator now writes the trade in her mouth itself
+  // (`professionFirst`, with a "What do you do?" prompt). She introduces
+  // herself unasked, once, first: the generator's line is lifted out of the
+  // body, its prompt spent rather than printed, and put at the head. Only when
+  // the generator has not written it does the engine's own copy stand in.
+  const normLine = (text: string): string =>
+    text.toLowerCase().replace(/[“”"'’.,;:!?]/g, '').replace(/\s+/g, ' ').trim();
+  const professionAt =
+    spokenProfession === null
+      ? -1
+      : split.speech.findIndex((line) => {
+          const a = normLine(line.text);
+          const b = normLine(spokenProfession);
+          return a === b || a.startsWith(b.slice(0, 40)) || b.startsWith(a.slice(0, 40));
+        });
   const speech =
     spokenProfession === null
       ? split.speech
-      : [{ topic: 'other' as const, text: spokenProfession }, ...split.speech];
+      : professionAt >= 0
+        ? [
+            { ...(split.speech[professionAt] as SpokenLine), topic: 'other' as const, prompt: undefined },
+            ...split.speech.filter((_, i) => i !== professionAt),
+          ]
+        : [{ topic: 'other' as const, text: spokenProfession }, ...split.speech];
   const turns = briefingTurns(speech);
   const asked = turns.filter((turn) => turn.prompt !== null).length +
     (split.closePrompt === null ? 0 : 1);
