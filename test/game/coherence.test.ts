@@ -232,6 +232,60 @@ describe('similes', () => {
 });
 
 /* ------------------------------------------------------------------ *
+ * The transition, which is the first line on nearly every page.
+ * ------------------------------------------------------------------ */
+
+describe('the transition', () => {
+  /** The transition each page opened on, in order, pages without one dropped. */
+  const openings = (state: RunState): string[] =>
+    state.log.flatMap((page) => {
+      const id = page.cardsUsed.find((c) => deckOf(c) === 'transitions');
+      return id ? [id] : [];
+    });
+
+  it('never opens two pages running the same way, and rarely twice in five', () => {
+    let repeats = 0;
+    let windows = 0;
+    for (const state of [...oracleRuns(60), ...wanderRuns(20)]) {
+      const used = openings(state);
+      for (let i = 1; i < used.length; i++) {
+        expect(used[i], `page ${i} repeats the page before`).not.toBe(used[i - 1]);
+      }
+      for (let i = 1; i < used.length; i++) {
+        windows++;
+        if (used.slice(Math.max(0, i - 4), i).includes(used[i] as string)) repeats++;
+      }
+    }
+    expect(windows, 'no run used a transition at all').toBeGreaterThan(20);
+    // "Preferably" not twice in five: the deck is thin in some hour bands and
+    // the page would rather repeat than open on nothing.
+    expect(repeats / windows).toBeLessThan(0.05);
+  });
+
+  it('rotates an anchor-flavoured opening among the anchors in play', () => {
+    const byId = new Map(ALL_CARDS.map((c) => [c.id, c]));
+    let pairs = 0;
+    let same = 0;
+    for (let seed = 1; seed <= 60; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      if (v.kase.anchors.length < 2) continue;
+      const anchors = openings(playOracle(v).state).map((id) => {
+        const card = byId.get(id);
+        const anchor = card ? tagOf('transitions', card, 'anchorTemplate') : undefined;
+        return typeof anchor === 'string' ? anchor : null;
+      });
+      for (let i = 1; i < anchors.length; i++) {
+        if (anchors[i] === null || anchors[i - 1] === null) continue;
+        pairs++;
+        if (anchors[i] === anchors[i - 1]) same++;
+      }
+    }
+    expect(pairs, 'no case opened two pages running on an anchor').toBeGreaterThan(20);
+    expect(same / pairs).toBeLessThan(0.2);
+  });
+});
+
+/* ------------------------------------------------------------------ *
  * A.5 — weather is a fact about the night.
  * ------------------------------------------------------------------ */
 
@@ -382,7 +436,13 @@ describe('motif overlap between adjacent image blocks', () => {
    * the engine is held to here is the one it can actually hold.
    */
   const TARGET = 0.6;
-  const FLOOR = 0.3; // measured 0.333 after the first tagging pass (2026-09-21): a regression guard, not the goal
+  // Measured 0.333 after the first tagging pass, 0.301 after the M4b polish
+  // pass put a memory on the transition (2026-09-21). The drop is bought on
+  // purpose and is all in one place: the highest-scoring transition for a case
+  // is the same card every page, and opening three pages running on "Somebody
+  // was singing the same two verses under a window" is worse prose than one
+  // less shared word. A regression guard, not the goal.
+  const FLOOR = 0.28;
 
   it('reports the coherence number for the decks as they stand', () => {
     const pages = oracleRuns().flatMap((s) => s.log);
@@ -561,8 +621,12 @@ describe('motif overlap between adjacent image blocks', () => {
     }
     const walk = byPair.get('transition → arrival');
     expect(walk, 'no run ever walked anywhere').toBeDefined();
+    // 1.09 before the transition got a memory, 0.75 after: this is the pair
+    // the memory is paid for out of, because the transition is the card it
+    // takes the choice away from. It is still the best pair on the page by a
+    // wide margin, which is the statement this test exists to make.
     expect((walk as { n: number; shared: number }).shared / (walk as { n: number }).n).toBeGreaterThan(
-      1,
+      0.6,
     );
   });
 });

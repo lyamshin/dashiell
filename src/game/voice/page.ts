@@ -45,7 +45,16 @@ import {
   WATCHER_POSTS,
   type NothingLine,
 } from '../voice-data.js';
-import { DECKS, Dealer, tagIs, tagOf, type Card, type Slots } from './cards.js';
+import {
+  DECKS,
+  Dealer,
+  tagIs,
+  tagOf,
+  type Card,
+  type Match,
+  type Slots,
+  type TagValue,
+} from './cards.js';
 import {
   appendMark,
   capitalizeFirst,
@@ -602,30 +611,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
   /* -------------------------------------------------------- transition */
   if (stage.cost > 0 && scene.kind !== 'open') {
-    const anchorIds = view.kase.anchors.map((a) => a.templateId);
-    const drawn = dealer.draw(
-      'transitions',
-      [
-        (c) => {
-          const anchor = tagOf('transitions', c, 'anchorTemplate');
-          return (
-            typeof anchor === 'string' &&
-            anchorIds.includes(anchor) &&
-            tagIs('transitions', c, 'hourBand', band)
-          );
-        },
-        (c) => {
-          const anchor = tagOf('transitions', c, 'anchorTemplate');
-          return typeof anchor === 'string' && anchorIds.includes(anchor);
-        },
-        (c) =>
-          tagOf('transitions', c, 'anchorTemplate') === undefined &&
-          tagIs('transitions', c, 'hourBand', band),
-      ],
-      base,
-      true,
-      ctx,
-    );
+    const drawn = drawTransition(dealer, view, band, base, ctx);
     say(drawn?.text ?? dealer.random.pick(PLAIN_TRANSITIONS), 'transition', {
       motifs: drawn?.motifs,
       score: drawn?.score,
@@ -1440,6 +1426,65 @@ export function stripAttribution(text: string, surname: string): string {
 /* ------------------------------------------------------------------ *
  * Cards.
  * ------------------------------------------------------------------ */
+
+/**
+ * The first line on a page: the walk that got him here.
+ *
+ * `transitions` is a `free` deck, which means a card may come round again in a
+ * later run and in a later page — but the dealer orders a rung by §A.2's score
+ * first, and the highest-scoring card for a case with a `drunk-singing` anchor
+ * is the same card every time. Seed 7 opened pages three, four and five with
+ * "Somebody was singing the same two verses under a window a block over" and
+ * the night stopped moving.
+ *
+ * So the page keeps off what the last few pages opened with. One transition is
+ * dealt a page, so the last four ids from the deck are the last four pages
+ * that had one: the top of the ladder refuses all four, the middle refuses the
+ * page before, and only after both have come up empty does a card get to
+ * repeat itself. Inside that, an anchor-flavoured card prefers an anchor other
+ * than the one the last page used, so a case with three anchors in the air
+ * sounds like a case with three anchors in the air.
+ */
+export const TRANSITION_MEMORY = 4;
+
+function drawTransition(
+  dealer: Dealer,
+  view: CaseView,
+  band: HourBand,
+  base: Slots,
+  ctx: MotifContext,
+): { text: string; motifs: string[]; score: number } | null {
+  const anchorIds = view.kase.anchors.map((a) => a.templateId);
+  const recent = dealer.recent('transitions', TRANSITION_MEMORY);
+  const lastId = recent[recent.length - 1];
+  const lastCard = lastId ? DECKS.transitions.find((c) => c.id === lastId) : undefined;
+  const lastAnchor = lastCard ? tagOf('transitions', lastCard, 'anchorTemplate') : undefined;
+
+  const anchorOf = (c: Card): TagValue | undefined => tagOf('transitions', c, 'anchorTemplate');
+  const onAnchor = (c: Card): boolean => {
+    const anchor = anchorOf(c);
+    return typeof anchor === 'string' && anchorIds.includes(anchor);
+  };
+  const rotates = (c: Card): boolean => anchorOf(c) !== lastAnchor;
+  const inBand = (c: Card): boolean => tagIs('transitions', c, 'hourBand', band);
+
+  const ladder: Match[] = [
+    (c) => onAnchor(c) && rotates(c) && inBand(c),
+    (c) => onAnchor(c) && rotates(c),
+    (c) => anchorOf(c) === undefined && inBand(c),
+    (c) => onAnchor(c) && inBand(c),
+    onAnchor,
+    (c) => anchorOf(c) === undefined,
+  ];
+  const keepOff = (ids: readonly string[]): Match[] =>
+    ladder.map((m) => (c: Card) => m(c) && !ids.includes(c.id));
+
+  const drawn =
+    dealer.draw('transitions', keepOff(recent), base, true, ctx) ??
+    dealer.draw('transitions', keepOff(lastId === undefined ? [] : [lastId]), base, true, ctx) ??
+    dealer.draw('transitions', ladder, base, true, ctx);
+  return drawn ? { text: drawn.text, motifs: drawn.motifs, score: drawn.score } : null;
+}
 
 function plainArrival(dealer: Dealer, shortName: string | undefined): string {
   return tidyPunctuation(
