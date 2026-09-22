@@ -153,6 +153,7 @@ export function newRun(
     found,
     at: base.at,
     gaps: composed.gaps,
+    imageMotifs: composed.imageMotifs,
   };
   const state: RunState = {
     ...base,
@@ -318,6 +319,7 @@ export function step(
   let asideBand: string | null = null;
   let portrayed: Id[] = [];
   let appeared: Id[] = [];
+  let imageMotifs: string[][] = [];
   let theory = state.theory;
   let lastSimile = state.lastSimile;
   let previousMotifs = state.previousMotifs;
@@ -487,6 +489,7 @@ export function step(
     // has something to avoid.
     lastSimile = composed.simileTarget ?? state.lastSimile;
     previousMotifs = composed.motifs;
+    imageMotifs = composed.imageMotifs;
   }
 
   const actionsUsed = state.actionsUsed + cost;
@@ -535,6 +538,7 @@ export function step(
     found: gained,
     at,
     gaps,
+    imageMotifs,
   };
   next.log = [...state.log, page];
   return { state: next, page };
@@ -618,6 +622,7 @@ export function stepInput(
   const dealer = dealerFor(state, persistedBurned);
   const blocks: Block[] = [];
   let gaps: string[] = [];
+  let composedMotifs: string[][] = [];
   if (problem.kind === 'absent-person' || problem.kind === 'unknown-topic') {
     const person = problem.personId ? view.personById.get(problem.personId) : undefined;
     const composed = composePage(
@@ -642,6 +647,7 @@ export function stepInput(
     );
     blocks.push(...composed.blocks);
     gaps = composed.gaps;
+    composedMotifs = composed.imageMotifs;
     if (problem.kind === 'absent-person' && person?.foundAt) {
       blocks.push({
         kind: 'note',
@@ -669,6 +675,7 @@ export function stepInput(
     found: [],
     at: state.at,
     gaps,
+    imageMotifs: composedMotifs,
   };
   const next: RunState = {
     ...state,

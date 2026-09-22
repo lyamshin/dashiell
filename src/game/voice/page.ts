@@ -350,6 +350,37 @@ export interface Composed {
   simileTarget: string | null;
   /** Every motif this page's cards carried, for the next page's context. */
   motifs: string[];
+  /**
+   * The motifs of the image-bearing blocks that survived the budget, in page
+   * order. This is what the coherence number is measured on (§A.2): the mean
+   * number of motifs two blocks standing next to each other have in common.
+   */
+  imageMotifs: string[][];
+}
+
+/**
+ * §A.2's number, and the one the milestone is judged on: the mean count of
+ * motifs shared by two image-bearing blocks that are next to each other on a
+ * page. Zero means every image on the page is an island, which is what M4b
+ * was written to fix. Pages with fewer than two image blocks contribute
+ * nothing either way.
+ */
+export function meanSharedMotifs(pages: { imageMotifs?: string[][] }[]): {
+  mean: number;
+  pairs: number;
+} {
+  let total = 0;
+  let pairs = 0;
+  for (const page of pages) {
+    const blocks = page.imageMotifs ?? [];
+    for (let i = 1; i < blocks.length; i++) {
+      const a = blocks[i - 1] as string[];
+      const b = blocks[i] as string[];
+      total += a.filter((m) => b.includes(m)).length;
+      pairs++;
+    }
+  }
+  return { mean: pairs === 0 ? 0 : total / pairs, pairs };
 }
 
 const WORD_TARGET_LOW = 120;
@@ -433,12 +464,22 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     previous: stage.previousMotifs,
   });
   const usedMotifs: string[] = [];
-  /** The context handed to every draw, with `before` moving as the page grows. */
+  /**
+   * The context handed to every draw, with `before` moving as the page grows.
+   *
+   * §A.2's adjacency bonus is "+1 if it shares a motif with the block
+   * immediately before it", and the first block on a page has nothing before
+   * it — except that on an exchange page the engine already knows what comes
+   * next, because the portrait is fixed at case start. So the transition
+   * opens against its *neighbour*, which is the block after it. The rule is
+   * line-to-line adjacency; which side the neighbour is on is an accident of
+   * the order the engine happens to draw in.
+   */
   const ctx: MotifContext & { before: string[] } = {
     night: cast.roll.weather,
     page: motifSet,
     previous: new Set(stage.previousMotifs),
-    before: [],
+    before: scene.kind === 'ask' ? (cast.portraits[scene.personId]?.motifs ?? []) : [],
   };
 
   // §A.1: two images, not three, on a page that also has an exchange or a
@@ -935,6 +976,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     theory: reaction.theory,
     simileTarget,
     motifs: usedMotifs,
+    imageMotifs: laid.filter((l) => l.image).map((l) => l.motifs),
   };
 }
 

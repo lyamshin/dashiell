@@ -361,6 +361,7 @@
       "coverage": [["outcome", "parDelta"]]
     },
     "office": {
+      "optional": true,
       "file": "office.json",
       "deckValues": ["office"],
       "idPrefix": "OFF",
@@ -376,6 +377,7 @@
       "coverage": [["circumstance"], ["circumstance", "weather"]]
     },
     "entrances": {
+      "optional": true,
       "file": "entrances.json",
       "deckValues": ["entrances", "entrance"],
       "idPrefix": "ENT",
@@ -394,6 +396,7 @@
       "coverage": [["temper", "class"], ["class", "gender"]]
     },
     "hiring": {
+      "optional": true,
       "file": "hiring.json",
       "deckValues": ["hiring"],
       "idPrefix": "HIR",

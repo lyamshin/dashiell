@@ -128,6 +128,12 @@ export interface Page {
    * hidden: this is the list the content team works from.
    */
   gaps: string[];
+  /**
+   * M4b §A.2. The motifs of the image-bearing blocks that survived the image
+   * budget, in page order. The coherence number — the mean count of motifs two
+   * adjacent image blocks share — is measured off this and nothing else.
+   */
+  imageMotifs: string[][];
 }
 
 export interface Report {
