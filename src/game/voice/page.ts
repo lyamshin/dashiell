@@ -1631,7 +1631,7 @@ export function pairBodyWords(
  * v2's two pages measured one at a time, and this followed it.
  */
 export const SHORT_TARGET = 0.36;
-export const SHORT_TOP_UPS = 4;
+export const SHORT_TOP_UPS = 5;
 
 /**
  * §B.2 — how many follow-ups one page may ask beyond its opening question.
@@ -1665,7 +1665,7 @@ export const ATTRIBUTIONS = 2;
  * the end; this is the same number asked early enough to do something about it
  * with the client's own words rather than with a beat the engine wrote.
  */
-export const BREATH_SHARE_FLOOR = 0.25;
+export const BREATH_SHARE_FLOOR = SHORT_TARGET;
 
 /** The short-sentence share of what is on the page so far (§B.3). */
 export function shortShare(laid: Laid[]): number {
@@ -2563,7 +2563,11 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * repetition a reader notices, whichever page it falls on. When the pool is
    * spent the shape comes round again rather than the page going without.
    */
-  const beatLine = (pool: readonly string[]): string => {
+  const beatLine = (allShapes: readonly string[]): string => {
+    // §A.3: a beat never opens on the surname. The paragraph it follows is the
+    // client's own speech, and rule 7 asks its first word to reach back into
+    // that paragraph — which "She" does and "Kreuzer" does not.
+    const pool = allShapes.filter((shape) => !shape.includes('{name}'));
     const fresh = pool.filter((shape) => {
       const text = fillPlain(shape, plainSlots);
       return text.length > 0 && !dealer.used(`beat:${text}`) && !spentBeats.includes(text);
@@ -2664,9 +2668,13 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     kind: 'note',
     // The noun agrees with the person in the chair, and "your" says what the
     // line always meant: the two free questions are Dashiell's to ask.
+    //
+    // Hone 2 §A.3: the pronoun, not the surname. The page named her in full
+    // four paragraphs ago and has said the name in every attribution since;
+    // the last line of it is not where English reaches for the name again.
     text:
-      `${client.surname} is still in the chair. Two questions on the house — ` +
-      `a ${nounOf(client)} hiring you answers your questions.`,
+      `${pronounOf(client) === 'she' ? 'She' : 'He'} is still in the chair. ` +
+      `Two questions on the house — a ${nounOf(client)} hiring you answers your questions.`,
   });
 }
 
