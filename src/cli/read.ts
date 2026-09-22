@@ -8,6 +8,10 @@
  * `--random` uses the imperfect player instead of the oracle: somebody who
  * follows the interesting lead rather than the right one, spends the whole
  * budget, and files whoever the monologue was accusing at eight o'clock.
+ *
+ * `--route "go the suite; examine the suite; …"` plays exactly those commands
+ * instead (M8: how the golden's own route is rendered for comparison). No
+ * report is filed.
  */
 
 import { generateCase, type CaseType, type Difficulty } from '../gen/index.js';
@@ -72,7 +76,15 @@ const view = buildView(kase);
 let state: RunState;
 let report: Report | null = null;
 let commands: string[] = [];
-if (flags.has('random')) {
+const route = values.get('route');
+if (route !== undefined) {
+  commands = route
+    .split(';')
+    .map((c) => c.trim())
+    .filter((c) => c.length > 0);
+  state = newRun(view, { detectiveName: detective });
+  for (const command of commands) state = stepInput(state, command, view).state;
+} else if (flags.has('random')) {
   const run = playWandering(view, seed, detective);
   state = run.state;
   report = run.report;

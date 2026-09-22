@@ -510,7 +510,7 @@ export const CARRIED_QUESTIONS_PLAIN: string[] = ['{subject}, {clause}.'];
 export const MORGUE_LEADS: string[] = [
   'The coroner’s man had left a note on the back of an intake form.',
   'The coroner’s note was on the table under a glass, left for whoever came next.',
-  'Somebody from the coroner’s office had left a note behind.',
+  'The coroner’s office had left a note behind, for whoever came next.',
 ];
 
 /** A question that got nothing, told afterwards. {name} is the one asked. */

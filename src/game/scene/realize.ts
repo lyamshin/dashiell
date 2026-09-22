@@ -76,6 +76,8 @@ interface Para {
   imageN?: number;
   /** The "I wrote it down" that opens the thinking. */
   noted?: boolean;
+  /** Texture riding inside a paragraph of something else, and which beat it was. */
+  riders?: { text: string; kind: 'weather' | 'ambient' | 'simile'; beat: number }[];
 }
 
 export interface Realized {
@@ -270,6 +272,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         // establish paragraph hold it), and it is texture: only a card written
         // for tonight's sky, this kind of place and this hour.
         const weatherAt = beats.findIndex((b, j) => j > i && b.kind === 'texture' && b.texture === 'weather');
+        let weather: { text: string; beat: number } | null = null;
         if (weatherAt >= 0) {
           const band = hourBandOf(stage.minutes);
           const kind = place?.kind ?? 'semi';
@@ -282,7 +285,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
             { place: here },
           );
           if (w && !isSubjectless(w.text) && figuresIn(w.text) === 0) {
-            push({ text: w.text, voice: 'establish', beats: [weatherAt], texture: 'weather', imageN: countSentences(w.text) });
+            weather = { text: w.text, beat: weatherAt };
             mark(weatherAt, { tag: 'weather', text: w.text });
           }
         }
@@ -294,10 +297,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const precinct = beat.precinct ? PRECINCT_LINES[beat.precinct] : undefined;
         const given = beat.precinct !== undefined ? sceneGiven(stage) : '';
         const para = push({
-          text: [parts[0], watch?.text, precinct, given].filter((s): s is string => !!s && s.length > 0).join(' '),
+          text: [weather?.text, parts[0], watch?.text, precinct, given]
+            .filter((s): s is string => !!s && s.length > 0)
+            .join(' '),
           voice: 'establish',
-          beats: [i],
-          imageN: drawn ? countSentences(drawn.text) : 0,
+          beats: weather ? [i, weather.beat] : [i],
+          imageN: (drawn ? countSentences(drawn.text) : 0) + (weather ? countSentences(weather.text) : 0),
+          ...(weather ? { riders: [{ text: weather.text, kind: 'weather' as const, beat: weather.beat }] } : {}),
         });
         mark(i, {
           tag: key,
@@ -386,9 +392,15 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         }
         const clue = view.findableById.get(beat.clueId) as Clue;
         const text = findText(stage, clue, plan, gaps);
-        // The first find of a search goes in the paragraph the search opened.
+        // The first find of a search goes in the paragraph the search opened;
+        // the first thing found beside the body goes in the body's paragraph.
         const prev = last();
-        if (prev && prev.voice === 'act' && prev.clueId === undefined) {
+        const besideBody =
+          prev !== undefined &&
+          prev.voice === 'presence' &&
+          prev.clueId === undefined &&
+          plan.beats.some((b) => b.kind === 'presence' && b.people.length === 0 && (b.scene === 'body' || b.scene === 'body-again'));
+        if (prev && ((prev.voice === 'act' && prev.clueId === undefined) || besideBody)) {
           prev.text = `${prev.text} ${text}`;
           prev.clueId = clue.id;
           prev.voice = 'find';
@@ -541,9 +553,17 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       // After the finds and before the thinking, where the golden lets a room breathe.
       const at = paras.findIndex((p) => p.voice === 'thought' || p.noted === true);
       const n = countSentences(drawn.text);
-      const para: Para = { text: drawn.text, voice: 'narrator', beats: [ambientAt], texture: 'ambient', imageN: n };
-      if (at > 0) paras.splice(at, 0, para);
-      else paras.push(para);
+      const host = at > 0 ? paras[at - 1] : undefined;
+      if (host && host.voice !== 'errand' && host.voice !== 'exchange' && host.noted !== true) {
+        host.text = `${host.text} ${drawn.text}`;
+        host.imageN = (host.imageN ?? 0) + n;
+        host.beats.push(ambientAt);
+        host.riders = [...(host.riders ?? []), { text: drawn.text, kind: 'ambient', beat: ambientAt }];
+      } else {
+        const para: Para = { text: drawn.text, voice: 'narrator', beats: [ambientAt], texture: 'ambient', imageN: n };
+        if (at > 0) paras.splice(at, 0, para);
+        else paras.push(para);
+      }
       mark(ambientAt, { tag: 'ambient', text: drawn.text });
     }
   }
@@ -551,9 +571,18 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   for (const kind of CUT_ORDER) {
     while (count() > NIGHT_CEILING) {
       const at = paras.findIndex((p) => p.texture === kind);
-      if (at < 0) break;
-      const cut = paras.splice(at, 1)[0] as Para;
-      for (const j of cut.beats) traces[j] = { ...(traces[j] as BeatTrace), rendered: false };
+      if (at >= 0) {
+        const cut = paras.splice(at, 1)[0] as Para;
+        for (const j of cut.beats) traces[j] = { ...(traces[j] as BeatTrace), rendered: false };
+        continue;
+      }
+      const host = paras.find((p) => (p.riders ?? []).some((r) => r.kind === kind));
+      if (!host) break;
+      const rider = (host.riders ?? []).find((r) => r.kind === kind) as NonNullable<Para['riders']>[number];
+      host.text = host.text.replace(rider.text, '').replace(/\s{2,}/g, ' ').trim();
+      host.riders = (host.riders ?? []).filter((r) => r !== rider);
+      host.imageN = Math.max(0, (host.imageN ?? 0) - countSentences(rider.text));
+      traces[rider.beat] = { ...(traces[rider.beat] as BeatTrace), rendered: false };
     }
   }
 
@@ -862,6 +891,19 @@ function exchange(
           )} to ${spokenClock(lastRow.tick)}. All of it is in the book if you want the book.`
         : 'I was where I was and I could not tell you the hours of it.';
     out.push({ text: withBusiness(`“${fact}”`), voice: 'exchange' });
+  }
+  // Golden page 5: the carried question gets the name back, and then the
+  // question it was carrying — where the subject was — before the answer.
+  const first = scene.clues[0];
+  const placed =
+    first !== undefined &&
+    subject !== undefined &&
+    first.establishes.some(
+      (f) => (f.kind === 'personAt' || f.kind === 'personNotAt') && f.personId === subject.id,
+    );
+  if (beat.carried && subject && placed) {
+    out.push({ text: `“${subject.name}.”`, voice: 'exchange' });
+    out.push({ text: `“Where was ${subject.surname} tonight?”`, voice: 'exchange' });
   }
   scene.clues.forEach((clue, i) => answerClue(clue, i > 0));
   if (scene.self) {

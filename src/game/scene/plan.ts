@@ -524,9 +524,12 @@ export function planPage(input: PlanInput): Plan {
     // detective's view of whoever is here (§4), newcomers first.
     if (opening.length > 0) addThoughts(thoughtsFor(thoughtInput));
     if (first || shape === 'return') {
+      // The last person the page described first, so the thinking picks up
+      // the name the paragraph before it ended on.
       const viewed = presence.beat.people
         .filter((p) => first || p.firstSight)
         .slice(0, 2)
+        .reverse()
         .map((p) =>
           viewOf(
             view,
