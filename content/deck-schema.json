@@ -13,6 +13,14 @@
       "intensity": { "values": [1, 2, 3] }
     }
   },
+  "$commonTagsNote": "M4b §A.2, §A.3, §A.5. Three tags every card in every deck may carry, merged underneath each deck's own (a deck that already declares one of them — arrivals.weather is required, portraits.gender is — keeps its own stricter spec). `motifs` is a LIST of one to three words from content/motifs.json and nowhere else; the validator rejects anything outside that vocabulary and reports per-deck coverage. Zero motifs is allowed on a card with no image in it. `weather` is the sky the card implies, including by its clothing — a raincoat, a collar up, wet boots — and a card that names another sky than the night's is excluded from the run entirely, not merely ranked down. `gender` marks a card with a gendered pronoun in it; the engine filters on the subject's gender for similes about a body or a voice, and for business.",
+  "commonTags": {
+    "motifs": { "required": false, "list": true, "vocab": "motifs", "max": 3 },
+    "weather": { "required": false, "default": "any", "vocab": "weather", "extraValues": ["any"] },
+    "gender": { "required": false, "default": "any", "values": ["m", "f", "any"] }
+  },
+  "$vocabFilesNote": "A vocabulary too long to keep in two places lives in its own file, and both readers — scripts/validate-decks.mjs and src/game/voice/cards.ts — resolve it from there. The motif vocabulary is the only one so far: 70 words in seven groups, and duplicating it here is how it would drift.",
+  "vocabFiles": { "motifs": "motifs.json" },
   "vocab": {
     "mood": ["flat", "wry", "menace", "grief", "tired", "tender"],
     "fixtureRole": [
@@ -338,6 +346,58 @@
         "parDelta": { "required": true, "values": ["under", "at", "over"] }
       },
       "coverage": [["outcome", "parDelta"]]
+    },
+    "office": {
+      "file": "office.json",
+      "deckValues": ["office"],
+      "idPrefix": "OFF",
+      "placeholderPrefix": "off-p",
+      "burn": "within-run",
+      "target": 30,
+      "$comment": "M4b §B.2.1. Two rooms over a tailor's, at midnight, before anybody has knocked. This is the one deck where Dashiell's circumstance is allowed to be plot: behind on rent means the envelope is on the desk and the retainer matters. One card is the first paragraph of every run, so the deck is small and every card in it has to be able to open a book.",
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "circumstance": { "required": true, "vocab": "circumstance", "extraValues": ["any"] },
+        "weather": { "required": false, "default": "any", "vocab": "weather", "extraValues": ["any"] }
+      },
+      "coverage": [["circumstance"], ["circumstance", "weather"]]
+    },
+    "entrances": {
+      "file": "entrances.json",
+      "deckValues": ["entrances", "entrance"],
+      "idPrefix": "ENT",
+      "placeholderPrefix": "ent-p",
+      "burn": "within-run",
+      "target": 40,
+      "$comment": "M4b §B.2.2. How the client comes through the door. The engine weaves the client's portrait into this per §A.4, so a card should leave room for a person rather than describe one: what the door did, what they did with their hat, how long they stood there. `familiar: yes` is for a client Dashiell already knows — the roll says so — and the card may say as much.",
+      "slots": ["detective", "name", "place", "object", "time"],
+      "tags": {
+        "temper": { "required": true, "vocab": "temper", "extraValues": ["any"] },
+        "class": { "required": true, "vocab": "suspectClass" },
+        "gender": { "required": false, "default": "any", "values": ["m", "f", "any"] },
+        "familiar": { "required": false, "default": "no", "values": ["yes", "no", "any"] },
+        "weather": { "required": false, "default": "any", "vocab": "weather", "extraValues": ["any"] }
+      },
+      "coverage": [["temper", "class"], ["class", "gender"]]
+    },
+    "hiring": {
+      "file": "hiring.json",
+      "deckValues": ["hiring"],
+      "idPrefix": "HIR",
+      "placeholderPrefix": "hir-p",
+      "burn": "within-run",
+      "target": 20,
+      "$comment": "M4b §B.2.3. The exchange that hires him, as one frame. `{fact}` is the client's own clue — why Dashiell was hired — and `{retainer}` is what the money looks like on the desk, by the client's class: twenty dollars from a working man, fifty from a professional, a hundred from money, and a roll with a rubber band round it from the underworld. The engine fills `{retainer}`; a card that leaves it out gets no money in it, and this is the one page where the money is the point.",
+      "slots": ["detective", "name", "place", "object", "time", "fact", "retainer", "business", "colour", "dashiell"],
+      "requiredSlots": ["fact"],
+      "warnSlots": {
+        "retainer": "the page never says what the job pays, and §B.2 asks that the player always knows they are being paid"
+      },
+      "tags": {
+        "temper": { "required": true, "vocab": "temper", "extraValues": ["any"] },
+        "familiar": { "required": false, "default": "no", "values": ["yes", "no", "any"] }
+      },
+      "coverage": [["temper", "familiar"]]
     },
     "witness": {
       "file": "witness.json",
