@@ -45,7 +45,18 @@ function isRunState(value: unknown): value is RunState {
     Array.isArray(v.log) &&
     Array.isArray(v.met) &&
     Array.isArray(v.accounts) &&
-    typeof v.reportOpen === 'boolean'
+    typeof v.reportOpen === 'boolean' &&
+    // M4b. A run saved before the office existed has no client in the chair
+    // and no motifs behind it, and the engine would read `undefined` off it
+    // three pages later. A save from an older shape is not a save: the menu
+    // comes back and the player opens a case. Nothing else in here versions,
+    // because nothing else in here ever changed shape.
+    typeof v.clientInOffice === 'boolean' &&
+    typeof v.clientAsks === 'number' &&
+    typeof v.sceneSeen === 'boolean' &&
+    Array.isArray(v.previousMotifs) &&
+    typeof v.appearances === 'object' &&
+    v.appearances !== null
   );
 }
 

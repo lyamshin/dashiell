@@ -178,6 +178,7 @@ export function renderCastText(view: CaseView, state: RunState): string {
   const cast = state.cast;
   const out: string[] = ['THE ROLL', '═'.repeat(WIDTH), ''];
   out.push(`  ${state.detectiveName}: ${cast.roll.circumstance}, ${cast.roll.relationship}, ${cast.roll.weather} night.`);
+  out.push(`  The office: ${view.office.name}.`);
   const known = Object.entries(cast.roll.knows) as [Id, { how: string; warmth: number }][];
   if (known.length === 0) out.push('  Knows nobody in this neighbourhood.');
   for (const [id, acq] of known) {
