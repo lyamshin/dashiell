@@ -9,6 +9,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -21,6 +24,7 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -33,6 +37,7 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -45,6 +50,9 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -57,6 +65,10 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "stairs",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -69,6 +81,9 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -81,6 +96,11 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "rain",
+      "dawn",
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -93,6 +113,10 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [
+      "money",
+      "funeral"
+    ],
     "status": "generated"
   },
   {
@@ -105,6 +129,10 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [
+      "face",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -117,6 +145,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -129,6 +160,12 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [
+      "cold",
+      "money",
+      "door"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -141,6 +178,9 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -153,6 +193,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "theater"
+    ],
     "status": "generated"
   },
   {
@@ -165,6 +208,9 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [
+      "theater"
+    ],
     "status": "generated"
   },
   {
@@ -177,6 +223,9 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [
+      "memory"
+    ],
     "status": "generated"
   },
   {
@@ -189,6 +238,7 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -201,6 +251,7 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -213,6 +264,9 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -225,6 +279,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -237,6 +294,10 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "late",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -249,6 +310,7 @@
       "register": "evasion",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -261,6 +323,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -273,6 +338,11 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "clock",
+      "street",
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -285,6 +355,9 @@
       "register": "evasion",
       "intensity": 2
     },
+    "motifs": [
+      "law"
+    ],
     "status": "generated"
   },
   {
@@ -297,6 +370,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -309,6 +385,9 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -321,6 +400,7 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -333,6 +413,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -345,6 +428,9 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -357,6 +443,10 @@
       "register": "evasion",
       "intensity": 2
     },
+    "motifs": [
+      "counter",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -369,6 +459,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -381,6 +474,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -393,6 +489,7 @@
       "register": "lie",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -405,6 +502,9 @@
       "register": "lie",
       "intensity": 2
     },
+    "motifs": [
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -417,6 +517,7 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -429,6 +530,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -441,6 +545,10 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [
+      "coat",
+      "stairs"
+    ],
     "status": "generated"
   },
   {
@@ -453,6 +561,9 @@
       "register": "lie",
       "intensity": 2
     },
+    "motifs": [
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -465,6 +576,9 @@
       "register": "lie",
       "intensity": 1
     },
+    "motifs": [
+      "dawn"
+    ],
     "status": "generated"
   },
   {
@@ -477,6 +591,7 @@
       "register": "evasion",
       "intensity": 1
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -489,6 +604,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -501,6 +619,7 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -513,6 +632,7 @@
       "register": "lie",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -525,6 +645,9 @@
       "register": "lie",
       "intensity": 2
     },
+    "motifs": [
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -537,6 +660,7 @@
       "register": "evasion",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -549,6 +673,9 @@
       "register": "truth",
       "intensity": 2
     },
+    "motifs": [
+      "telephone"
+    ],
     "status": "generated"
   },
   {
@@ -561,6 +688,9 @@
       "register": "truth",
       "intensity": 1
     },
+    "motifs": [
+      "food"
+    ],
     "status": "generated"
   },
   {
@@ -573,6 +703,7 @@
       "register": "lie",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -585,6 +716,9 @@
       "register": "lie",
       "intensity": 2
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -597,6 +731,7 @@
       "register": "evasion",
       "intensity": 2
     },
+    "motifs": [],
     "status": "generated"
   }
 ]
