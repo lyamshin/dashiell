@@ -27,6 +27,7 @@
 import { TICKS, type Case, type Tick } from '../gen/types.js';
 import { check, renderedFacts, type Violation } from '../gen/correspond.js';
 import { establishedFrom, threadsFor, type CaseView } from './derive.js';
+import { candidateThoughts } from './scene/thought.js';
 import type { Block, Page, RunState } from './types.js';
 import { ALL_CARDS } from './voice/cards.js';
 import * as VOICE_DATA from './voice-data.js';
@@ -307,7 +308,7 @@ export function checkPage(
  * an errand line that does not trace back to the notebook.
  */
 export type PageViolation = Omit<Violation, 'rule'> & {
-  rule: Violation['rule'] | 'errand-untraced';
+  rule: Violation['rule'] | 'errand-untraced' | 'thought-untraced' | 'bridge-untraced';
 };
 
 /**
@@ -429,6 +430,9 @@ export function checkErrand(
       break;
     }
   }
+  // M8 §7: a name on the page gets its clause, and the clause of anybody in
+  // the case is their relation to the victim, whom every page may name.
+  allowed.add(view.victim.surname);
   // Nobody the trace does not account for is named in the line.
   for (const person of view.kase.people) {
     if (allowed.has(person.surname)) continue;
@@ -439,14 +443,152 @@ export function checkErrand(
   return out;
 }
 
+/**
+ * M8 §5–§6 — the thoughts and the bridge, traced.
+ *
+ * A thought is a statement of inference and must trace to the clue facts and
+ * the state that licensed it: every clue it cites is in the notebook, and the
+ * planner's own derivation, run again from the notebook alone, produces the
+ * same class about the same people. `observer-placed` is checked against the
+ * truth timeline a second time, because it is the one class allowed to read
+ * it. A bridge names only a lead that is actually open once the page is read,
+ * opened by a clue this page delivered, asked of the lead's own source, about
+ * somebody the notebook now knows. Neither may name a person its trace does
+ * not account for, beyond the victim.
+ */
+export function checkBeats(
+  view: CaseView,
+  page: Page,
+  foundBefore: readonly string[],
+  accountsBefore: readonly string[],
+  accountsAfter: readonly string[],
+  metAfter: ReadonlySet<string>,
+): PageViolation[] {
+  const beats = page.beats ?? [];
+  if (beats.length === 0) return [];
+  const out: PageViolation[] = [];
+  const foundAfter = [...foundBefore, ...page.found];
+  const have = new Set(foundAfter);
+  const newClues = page.found
+    .map((id) => view.findableById.get(id))
+    .filter((c): c is NonNullable<typeof c> => c !== undefined);
+  const candidates = candidateThoughts({
+    view,
+    newClues,
+    foundBefore,
+    foundAfter,
+    accountsBefore,
+    accountsAfter,
+  });
+  const namedOnly = (text: string | undefined, ids: readonly string[], where: string, rule: PageViolation['rule']): void => {
+    if (!text) return;
+    // A room named for somebody ("Ruggiero’s") is a place, not a person.
+    let bare = text;
+    for (const pl of view.places) bare = bare.split(pl.shortName).join('');
+    text = bare;
+    const allowed = new Set<string>([view.victim.surname, ...ids.map((id) => view.personById.get(id)?.surname ?? '')]);
+    for (const person of view.kase.people) {
+      if (allowed.has(person.surname)) continue;
+      // A clause the name pass put on somebody the trace names is the case's.
+      if (new RegExp(`\\b${person.surname}\\b`).test(text)) {
+        out.push({ where, rule, detail: `names ${person.surname}, whom the trace does not account for`, text });
+      }
+    }
+  };
+  for (const [i, b] of beats.entries()) {
+    if (!b.rendered) continue;
+    const where = `page ${page.n} beat ${i} ${b.kind}`;
+    if (b.kind === 'thought') {
+      const fail = (detail: string): void => {
+        out.push({ where, rule: 'thought-untraced', detail, text: b.text ?? '' });
+      };
+      for (const id of b.clueIds ?? []) if (!have.has(id)) fail(`cites ${id}, which is not in the notebook`);
+      const cls = b.tag ?? '';
+      const [first, second] = b.personIds ?? [];
+      if (cls === 'nothing') {
+        if (page.found.length > 0) fail('"nothing" on a page that found something');
+      } else if (cls === 'view') {
+        if (!beats.some((x) => x.kind === 'presence' && (x.personIds ?? []).includes(first ?? ''))) {
+          fail('a view of somebody who is not in the room');
+        }
+      } else if (cls === 'context') {
+        // Context asserts nothing, which is its whole licence.
+      } else if (cls === 'contradicts' && page.found.length === 0) {
+        // An evening just taken down, against a placement already in hand.
+        const clue = view.findableById.get((b.clueIds ?? [])[0] ?? '');
+        const claimed = view.claimedOf.get(first ?? '') ?? [];
+        const ok = (clue?.establishes ?? []).some(
+          (f) =>
+            (f.kind === 'personAt' || f.kind === 'personNotAt') &&
+            f.personId === first &&
+            (claimed[f.tick] ?? null) !== null &&
+            (f.kind === 'personAt' ? claimed[f.tick] !== f.place : claimed[f.tick] === f.place),
+        );
+        if (!ok || !accountsAfter.includes(first ?? '')) fail('a contradiction the notebook does not hold');
+      } else {
+        const match = candidates.some(
+          (c) =>
+            c.cls === cls &&
+            (c.subjectId === undefined || (b.personIds ?? []).includes(c.subjectId)) &&
+            (c.sourceId === undefined || (b.personIds ?? []).includes(c.sourceId)),
+        );
+        if (!match) fail(`${cls} is not what the page's clues and the notebook license`);
+        if (cls === 'observer-placed') {
+          const cand = candidates.find((c) => c.cls === 'observer-placed' && (b.personIds ?? []).includes(c.sourceId ?? ''));
+          const truth = cand ? view.truthOf.get(cand.sourceId ?? '')?.[cand.tick ?? -1] : undefined;
+          if (!cand || truth !== cand.placeId) fail('observer-placed where the truth does not put the observer');
+        }
+      }
+      void second;
+      namedOnly(b.text, b.personIds ?? [], where, 'thought-untraced');
+    }
+    if (b.kind === 'bridge') {
+      const fail = (detail: string): void => {
+        out.push({ where, rule: 'bridge-untraced', detail, text: b.text ?? '' });
+      };
+      const target = view.findableById.get(b.targetId ?? '');
+      const opener = (b.clueIds ?? [])[0];
+      if (!target) {
+        fail('bridges to nothing');
+        continue;
+      }
+      if (have.has(target.id)) fail('bridges to a lead already taken');
+      if (!opener || !page.found.includes(opener)) fail('the lead was not opened by this page');
+      else if (!view.findableById.get(opener)?.leadsTo.includes(target.id)) fail('the opener does not lead there');
+      const [who, subject] = b.personIds ?? [];
+      if (target.source.type === 'person') {
+        if (who !== target.source.personId) fail('{who} is not the lead’s source');
+        if (subject !== undefined) {
+          const named = target.source.topic.toLowerCase().includes((view.personById.get(subject)?.surname ?? '§').toLowerCase());
+          const open = threadsFor(view, foundAfter).some((t) =>
+            t.label.toLowerCase().includes((view.personById.get(subject)?.surname ?? '§').toLowerCase()),
+          );
+          if (!named) fail('{subject} is not in the lead');
+          if (!metAfter.has(subject) && !open) fail('{subject} is somebody the notebook does not know');
+        }
+      }
+      namedOnly(b.text, b.personIds ?? [], where, 'bridge-untraced');
+    }
+  }
+  return out;
+}
+
 /** Every violation in a whole run, page by page as the player read them. */
 export function checkRun(view: CaseView, state: RunState): PageViolation[] {
   const out: PageViolation[] = [];
   const found: string[] = [];
+  const accounts: string[] = [];
   const visited = new Set<string>();
   for (const page of state.log) {
     out.push(...checkErrand(view, page, [...found], visited));
+    const accountsAfter = [
+      ...accounts,
+      ...page.blocks.flatMap((b) => (b.kind === 'timeline' && !accounts.includes(b.personId) ? [b.personId] : [])),
+    ];
+    const met = new Set<string>(state.met);
+    out.push(...checkBeats(view, page, [...found], [...accounts], accountsAfter, met));
     found.push(...page.found);
+    accounts.splice(0, accounts.length, ...new Set(accountsAfter));
     visited.add(page.at);
     out.push(...checkPage(view.kase, view, page, found));
   }

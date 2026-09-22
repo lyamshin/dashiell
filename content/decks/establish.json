@@ -1,0 +1,1586 @@
+[
+  {
+    "id": "est-001",
+    "deck": "establish",
+    "text": "{place} was reached by a narrow stair round the back, the kind that creaked on every other step. The lock was nothing special, a five-cent job any building super could open. At this hour the rest of that floor stayed quiet, every door shut.",
+    "tags": {
+      "place": "res-apartment",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-002",
+    "deck": "establish",
+    "text": "You got to {place} past a row of mailboxes with half the names worn off. It was one door among six on that landing, no different to look at than the rest. Past midnight the building had gone still, the way a place did once everyone in it was either asleep or pretending to be.",
+    "tags": {
+      "place": "res-apartment",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-003",
+    "deck": "establish",
+    "text": "{place} belonged to {owner}, four flights up from a street door that didn't lock. The stairwell smelled of somebody's dinner from hours before. It was late enough that no one on the floor was going to ask any questions about who came up.",
+    "tags": {
+      "place": "res-apartment",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-004",
+    "deck": "establish",
+    "text": "The building holding {place} was the ordinary kind: walk-up, no elevator, a super who lived in the basement and kept odd hours. By this hour the halls had gone still, the traffic sound from the street had thinned to almost nothing.",
+    "tags": {
+      "place": "res-apartment",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-005",
+    "deck": "establish",
+    "text": "{place} took up the parlor floor of a brownstone gone a little shabby at the stoop. The street door was unlocked, the inner one not. This late, the block outside had emptied to nothing but the streetlamps.",
+    "tags": {
+      "place": "res-brownstone",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-006",
+    "deck": "establish",
+    "text": "You reached {place} by a short flight up from the sidewalk, past an iron railing somebody had painted over twice. It was the kind of house that had been somebody's whole address once, before it got cut into floors. At this hour there wasn't a light on anywhere else on the block.",
+    "tags": {
+      "place": "res-brownstone",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-007",
+    "deck": "establish",
+    "text": "{place} was {owner}'s rooms, kept much as they had always been, from back when the whole building was one address instead of several. The parlor windows faced the street, curtained. Past midnight, no one on that block was still awake to notice a caller.",
+    "tags": {
+      "place": "res-brownstone",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-008",
+    "deck": "establish",
+    "text": "The brownstone holding {place} had a stoop worn smooth in the middle, four generations of feet having done it. Inside, the hall ran straight back to a stair nobody had oiled in years. It was quiet enough at this hour to hear the stair complain under a single set of footsteps.",
+    "tags": {
+      "place": "res-brownstone",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-009",
+    "deck": "establish",
+    "text": "{place} sat over the drugstore, up a flight that started just past the pharmacy's side door. The stairs were bare wood, no runner, no light past the second landing. This late the drugstore below had been closed for hours, its window dark.",
+    "tags": {
+      "place": "res-walkup",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-010",
+    "deck": "establish",
+    "text": "You climbed to {place} by an outside stair fixed along the rear wall, the kind landlords added when the front one got too crowded. It smelled of the drugstore's syrups even three flights up. At this hour nobody else on the stair was coming or going.",
+    "tags": {
+      "place": "res-walkup",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-011",
+    "deck": "establish",
+    "text": "{place} belonged to {owner}, above a drugstore that had kept its lights lit later than most. The stairwell window looked down on the street lamp on the corner. Past midnight the building had gone as quiet as it ever got.",
+    "tags": {
+      "place": "res-walkup",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-012",
+    "deck": "establish",
+    "text": "The walk-up over the drugstore was a narrow building, one room deep, stairs running up the middle of it. {place} was at the top, under the roof, where the heat from the store below never quite reached. It was late enough that the drugstore's own noise had stopped hours before.",
+    "tags": {
+      "place": "res-walkup",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-013",
+    "deck": "establish",
+    "text": "{place} was on an upper floor of a residential hotel, the kind of building where the rent was paid by the week and the desk clerk didn't ask many questions. The door off the hallway looked no different from the others nearby. At this hour the hall lights had been turned down to save the current.",
+    "tags": {
+      "place": "res-suite",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-014",
+    "deck": "establish",
+    "text": "You reached {place} by an elevator that ran on its own schedule, or by the stairs if you didn't want to wait on it. The hotel kept no doorman this far from the lobby. Past midnight the floor was silent enough to hear a window rattle in its frame.",
+    "tags": {
+      "place": "res-suite",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-015",
+    "deck": "establish",
+    "text": "{place} was kept by {owner}, one of the better rooms in a hotel that rented mostly by the week. The hallway carpet had gone thin down the middle from years of the same walk. This late, every other door on the floor was shut and dark underneath.",
+    "tags": {
+      "place": "res-suite",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-016",
+    "deck": "establish",
+    "text": "The hotel holding {place} was six floors of brick, plain outside and plainer in. A house phone sat on a table by the stairs, unanswered at this hour. The building had the particular quiet of a place where everybody paying by the week had learned to keep to themselves.",
+    "tags": {
+      "place": "res-suite",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-017",
+    "deck": "establish",
+    "text": "{place} sat behind the main house, a smaller building built into what had once been a yard. You reached it by a passage between the two, unlit, uneven underfoot. At this hour the main house showed no lights either.",
+    "tags": {
+      "place": "res-backhouse",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-018",
+    "deck": "establish",
+    "text": "You got to {place} down a narrow lane that ran behind the block, the kind that only the people who lived on it ever used. The door was off to one side, away from the street. Past midnight the lane was as empty as it ever got.",
+    "tags": {
+      "place": "res-backhouse",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-019",
+    "deck": "establish",
+    "text": "{place} belonged to {owner}, tucked behind a larger house, out of sight the way a poor relation so often was. The path in was gravel, loud underfoot. This late there was nobody else back there to hear it.",
+    "tags": {
+      "place": "res-backhouse",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-020",
+    "deck": "establish",
+    "text": "The back lot holding {place} had been somebody's stable once, then somebody's storage, now somebody's rooms. A single window faced the passage in. At this hour the passage was dark end to end.",
+    "tags": {
+      "place": "res-backhouse",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-021",
+    "deck": "establish",
+    "text": "{place} was reached by a door off the top-floor hallway, propped with a brick more often than it was locked. The tar underfoot had gone soft with the day's heat and stiff again by night. At this hour the roof held no one but whoever wanted to be there.",
+    "tags": {
+      "place": "rooftop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-022",
+    "deck": "establish",
+    "text": "You got onto {place} by an iron fire escape bolted along the rear wall, the last flight of it a straight ladder. Water tanks stood at either end like a pair of sentries nobody had posted. Past midnight the building below was dark all the way down.",
+    "tags": {
+      "place": "rooftop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-023",
+    "deck": "establish",
+    "text": "{place} ran flat and tarred over the whole building, used by the tenement for what a yard would have been if the building had one. A clothesline ran between two pipes, empty now. This late nobody else had a reason to be up there.",
+    "tags": {
+      "place": "rooftop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-024",
+    "deck": "establish",
+    "text": "The roof holding {place} had a low parapet around it and a door that didn't latch right. Chimneys stood up out of it in a row. At this hour the street below had gone quiet enough to hear a footstep two floors down.",
+    "tags": {
+      "place": "rooftop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-025",
+    "deck": "establish",
+    "text": "{place} ran behind a row of stores, wide enough for a delivery cart and no wider. Ash cans stood along one wall, most of them full. At this hour the stores fronting the street were shut, their back doors bolted.",
+    "tags": {
+      "place": "back-alley",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-026",
+    "deck": "establish",
+    "text": "You reached {place} through a gap between two buildings that most people walked past without noticing. The ground was brick, uneven, slick in patches. Past midnight nobody had a reason to be back there who didn't already have business.",
+    "tags": {
+      "place": "back-alley",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-027",
+    "deck": "establish",
+    "text": "{place} sat behind a delicatessen, in the strip of ground a block sets aside for its garbage and its deliveries. A single bulb over a back door threw what light there was. This late that bulb was usually the only one lit on the whole block.",
+    "tags": {
+      "place": "back-alley",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-028",
+    "deck": "establish",
+    "text": "The alley making up {place} was narrow, walled in on both sides, open only at the two ends. It ran its length past a stack of crates nobody had come back for. At this hour it was as quiet as any part of the block got.",
+    "tags": {
+      "place": "back-alley",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-029",
+    "deck": "establish",
+    "text": "{place} was two rooms over a tailor's shop, reached by a side door and a straight flight of stairs. The tailor's own sign hung dark below. Past midnight the whole building had the particular stillness of a place with no one living in it.",
+    "tags": {
+      "place": "office-over-tailor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-030",
+    "deck": "establish",
+    "text": "You climbed to {place} past a window full of bolts of cloth, dark now, and up a stair that had somebody's name stenciled on the door at the top. It kept the hours of a business, which meant at this hour it kept none at all. The street below was as quiet as the building.",
+    "tags": {
+      "place": "office-over-tailor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-031",
+    "deck": "establish",
+    "text": "{place} belonged to {owner}, above a shop that closed at six and left the block to itself after. The stair up was narrow enough for one person at a time. This late nobody else had cause to be climbing it.",
+    "tags": {
+      "place": "office-over-tailor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-032",
+    "deck": "establish",
+    "text": "The rooms making up {place} sat above a tailor's, the smell of pressing cloth still faint on the stairs hours after the iron had gone cold. A frosted-glass door marked the entrance. At this hour the building held nobody but whoever had a key.",
+    "tags": {
+      "place": "office-over-tailor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-033",
+    "deck": "establish",
+    "text": "{place} was a stretch of dock roofed over, stacked with crates and coiled rope nobody had put away for the night. You reached it through a gate meant to stay locked and mostly didn't. This late the pier was empty of the men who worked it by day.",
+    "tags": {
+      "place": "pier-shed",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-034",
+    "deck": "establish",
+    "text": "You got onto {place} along the water side of the shed, past pilings slick underfoot even on a dry night. The shed itself was corrugated iron, loud in any wind at all. Past midnight there was no watchman posted, and no reason for anyone honest to be there.",
+    "tags": {
+      "place": "pier-shed",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-035",
+    "deck": "establish",
+    "text": "{place} ran the length of the pier under a low roof, crates stacked three high in places. A single lamp near the gate did most of the lighting for the whole shed. At this hour the water beyond it was the only thing making any noise.",
+    "tags": {
+      "place": "pier-shed",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-036",
+    "deck": "establish",
+    "text": "The shed covering {place} smelled of tar and rope and the river underneath both. By day it was full of men with hand trucks; by night it belonged to whoever had a reason to be there after the gate was shut. This late that was almost nobody.",
+    "tags": {
+      "place": "pier-shed",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-037",
+    "deck": "establish",
+    "text": "{place} sat behind a laundry, a square of packed dirt strung with lines for drying. You reached it through the laundry itself, once the front had shut for the night, or around by a gate that didn't lock. At this hour the lines were empty, the wash long since taken in.",
+    "tags": {
+      "place": "laundry-yard",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-038",
+    "deck": "establish",
+    "text": "You got to {place} down a passage beside the laundry building, narrow enough to touch both walls at once. The ground back there stayed damp even on a dry day, from the runoff. Past midnight nobody was hanging wash or taking it down.",
+    "tags": {
+      "place": "laundry-yard",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-039",
+    "deck": "establish",
+    "text": "{place} belonged to the laundry, a yard for drying what the building's presses turned out by day. Steam still clung faintly to the air even hours after the machines had stopped. This late the whole building behind it was dark, the day's work done.",
+    "tags": {
+      "place": "laundry-yard",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-040",
+    "deck": "establish",
+    "text": "The drying yard making up {place} was walled in on three sides, open only where the passage met the street. Empty lines crossed it in rows, waiting on morning. At this hour there was nothing back there but the lines and whatever the wind had left tangled in them.",
+    "tags": {
+      "place": "laundry-yard",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-041",
+    "deck": "establish",
+    "text": "{place} was up two flights from a street door {watcher} kept a closer eye on than most tenants realized. The stairs were bare, the banister loose in two places. At this hour most of the building was dark, save for a single lit window two flights up.",
+    "tags": {
+      "place": "walkup-flat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-042",
+    "deck": "establish",
+    "text": "You reached {place} by a narrow stair that ran straight up from the entry, past doors with nothing on them but a number. Past midnight the building had settled into the particular quiet of people who all had to be up early. It was the kind of place where a late caller got noticed, whether or not anyone said so.",
+    "tags": {
+      "place": "walkup-flat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-043",
+    "deck": "establish",
+    "text": "{place} looked straight down onto the street, three windows in a row. The lock on the street door hadn't worked in years, which was its own kind of honesty. This late there was nobody on the stairs but whoever was coming up them.",
+    "tags": {
+      "place": "walkup-flat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-044",
+    "deck": "establish",
+    "text": "The walk-up holding {place} was owned by {owner}, six units over a street-level door with a mail slot for each. {watcher} had the ground-floor rooms and heard most of what happened on the stairs. At this hour, though, even {watcher} had usually gone to bed.",
+    "tags": {
+      "place": "walkup-flat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-045",
+    "deck": "establish",
+    "text": "{place} was the entry hall of the building, marble underfoot and a bank of brass mailboxes along one wall. At this hour the lobby was empty but for whoever was waiting on the car.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-046",
+    "deck": "establish",
+    "text": "You came into {place} through a set of glass doors that locked themselves at midnight, working only from a buzzer after that. It was the kind of building that wanted you to know it had standards. Past midnight the lobby's own lights had been dimmed to half.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-047",
+    "deck": "establish",
+    "text": "{place} sat just inside the building's street doors, a small room meant to make an impression before the elevator ever came. A mirror ran the length of one wall, spotted at the corners. This late it reflected mostly the empty room itself.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-048",
+    "deck": "establish",
+    "text": "The vestibule holding {place} kept a night bell for callers after the desk had closed. At this hour the bell rang rarely, and everyone in the building knew it when it did.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-049",
+    "deck": "establish",
+    "text": "{place} was a back room in a rooming house, reached down a hall that ran past four other doors just like it. At this hour the house had gone still, every door shut for the night.",
+    "tags": {
+      "place": "rooming-house-room",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-050",
+    "deck": "establish",
+    "text": "You got to {place} up a narrow staircase built onto the house's rear wall, past a hall table where the mail was left. The house took in boarders by the week, and it showed in the worn spots on the runner. Past midnight there was no sound in the halls but the settling of an old building.",
+    "tags": {
+      "place": "rooming-house-room",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-051",
+    "deck": "establish",
+    "text": "{place} sat behind the house, over the kitchen, warmer than the front rooms in winter and worse in summer. The window looked out on a narrow yard. This late the whole house had the hush of people who share walls and know it.",
+    "tags": {
+      "place": "rooming-house-room",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-052",
+    "deck": "establish",
+    "text": "The rooming house holding {place} took in boarders one to a door, meals included at set hours. {watcher} had run it for years, and knew every tenant's habits better than they knew them themselves. At this hour, though, even {watcher} had turned in.",
+    "tags": {
+      "place": "rooming-house-room",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-053",
+    "deck": "establish",
+    "text": "{place} kept a plain front, no sign past a painted name over the door. At this hour the stools were mostly empty, the regulars gone home or gone quiet.",
+    "tags": {
+      "place": "dolans-bar",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-054",
+    "deck": "establish",
+    "text": "You got into {place} through a door that stuck in damp weather and opened easy the rest of the time. A long bar ran down one side, a few tables along the other. Past midnight the crowd had thinned to whoever wasn't ready to head home yet.",
+    "tags": {
+      "place": "dolans-bar",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-055",
+    "deck": "establish",
+    "text": "{place} was the kind of bar a block kept for itself, known by name to everyone who drank there and by nobody past it. This late the radio behind the bar was the loudest thing in the room.",
+    "tags": {
+      "place": "dolans-bar",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-056",
+    "deck": "establish",
+    "text": "The bar making up {place} ran the length of the room, brass rail worn bright at the foot rail. A mirror behind the bottles had gone cloudy at the edges. At this hour there were more empty stools than full ones.",
+    "tags": {
+      "place": "dolans-bar",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-057",
+    "deck": "establish",
+    "text": "{place} sat under a hat shop, down six steps and through a door you had to knock on. At this hour most of the stools were empty.",
+    "tags": {
+      "place": "speakeasy",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-058",
+    "deck": "establish",
+    "text": "You got into {place} by the hat shop's side entrance, then down a narrow stair to a door with a slot cut in it. By day the street knew the shop as a place to buy a hat; after midnight it was something else entirely. Past midnight the room upstairs had long since gone dark.",
+    "tags": {
+      "place": "speakeasy",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-059",
+    "deck": "establish",
+    "text": "{place} was a long room with a low ceiling, a bar down one side and a scatter of tables along the other. This late the crowd had thinned to whoever had nowhere better to be.",
+    "tags": {
+      "place": "speakeasy",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-060",
+    "deck": "establish",
+    "text": "The room under the hat shop, where {place} was, had no sign and needed none. A hallway from the street door ran back to the bar, dim on purpose. At this hour the tables at the back were the ones still occupied.",
+    "tags": {
+      "place": "speakeasy",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-061",
+    "deck": "establish",
+    "text": "{place} ran the width of the building, red carpet worn thin down the middle where every pair of feet crossed to the elevator. At this hour the lobby had emptied to a few chairs nobody was sitting in.",
+    "tags": {
+      "place": "hotel-lobby",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-062",
+    "deck": "establish",
+    "text": "You came into {place} through a revolving door that stuck if you pushed it too hard. A desk sat at the far end, a night clerk behind it half paying attention. Past midnight the lobby's usual traffic had thinned to almost nothing.",
+    "tags": {
+      "place": "hotel-lobby",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-063",
+    "deck": "establish",
+    "text": "{place} was the lobby of a hotel, marble floor, brass fittings polished by somebody's nightly round. This late the chairs by the window sat empty, cushions still holding the shape of whoever had last used them.",
+    "tags": {
+      "place": "hotel-lobby",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-064",
+    "deck": "establish",
+    "text": "The hotel kept {place} lit even at this hour, a habit of hotels that never fully close. A spittoon by the door sat polished and unused. Past midnight there was more lobby than there were people in it.",
+    "tags": {
+      "place": "hotel-lobby",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-065",
+    "deck": "establish",
+    "text": "{place} ran up the middle of the building, bare bulbs on alternating landings, the rest left dark to save the current. At this hour the building had settled into the particular quiet of people sleeping four to a room.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-066",
+    "deck": "establish",
+    "text": "You got into {place} through a street door that hadn't locked properly in years. The stairs themselves were worn into a shallow dip in the middle of each tread. Past midnight there was nobody on them but whoever was climbing.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-067",
+    "deck": "establish",
+    "text": "{place} smelled of a dozen different dinners layered over each other, the way a stairwell did in a building with no other place to cook. This late the chair sat empty, though rarely for long.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-068",
+    "deck": "establish",
+    "text": "The tenement holding {place} was six stories of narrow rooms and one stair between all of them. A window at each landing looked out on the airshaft, black at this hour. It was quiet enough to hear a door two floors up.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-069",
+    "deck": "establish",
+    "text": "{place} sat below street level, down a short flight from a door with no window in it. At this hour half the tables were covered, the balls put away for the night.",
+    "tags": {
+      "place": "pool-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-070",
+    "deck": "establish",
+    "text": "You got into {place} through a door that opened onto a haze of smoke reaching clear up to the landing. Green felt tables ran in two rows under low-hanging lamps. Past midnight only a table or two still had anybody standing over it.",
+    "tags": {
+      "place": "pool-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-071",
+    "deck": "establish",
+    "text": "{place} was a room of tables and cues and a radio nobody ever turned all the way off. This late the crowd had thinned to the ones with nowhere better to be.",
+    "tags": {
+      "place": "pool-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-072",
+    "deck": "establish",
+    "text": "The hall making up {place} kept its lamps low over the tables, leaving the rest of that room dark by comparison. A rack of cues lined one wall, half of them missing tips. At this hour the room was quieter than it had any right to look, given the hour it usually kept.",
+    "tags": {
+      "place": "pool-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-073",
+    "deck": "establish",
+    "text": "{place} was the room behind a pawnshop's counter, reached past the counter itself and a curtain that didn't quite close. At this hour the front of the store was shuttered, the window grille down.",
+    "tags": {
+      "place": "pawnshop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-074",
+    "deck": "establish",
+    "text": "You got to {place} through the shop itself, dark at this hour but for a single bulb over the register. Shelves ran floor to ceiling, ticketed and crowded. Past midnight nobody minded the front of the store, so no one saw who slipped through to the back.",
+    "tags": {
+      "place": "pawnshop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-075",
+    "deck": "establish",
+    "text": "{place} sat behind a pawnshop, a small room crowded with what hadn't sold and what hadn't been decided about yet. This late the shop's grille was down and the street outside it was as quiet as the room.",
+    "tags": {
+      "place": "pawnshop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-076",
+    "deck": "establish",
+    "text": "The back room holding {place} had one window, barred, looking onto an air shaft. A desk took up most of the free floor space. At this hour nobody was up front to hear anything that happened in the back.",
+    "tags": {
+      "place": "pawnshop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-077",
+    "deck": "establish",
+    "text": "{place} sat over a laundry, reached by a stair along the building's side wall, a paper lantern hung at the bottom of it. At this hour the tables were down to the last few customers who hadn't left yet.",
+    "tags": {
+      "place": "chop-suey",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-078",
+    "deck": "establish",
+    "text": "You climbed to {place} past a window painted over halfway up, steam from the kitchen below still faintly in the stairwell. It kept later hours than most places on the block, which was most of its business. Past midnight it was still doing a slow trade.",
+    "tags": {
+      "place": "chop-suey",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-079",
+    "deck": "establish",
+    "text": "{place} was a long room over a laundry, tables close together, a counter along the back wall. This late the kitchen noise had died down to almost nothing.",
+    "tags": {
+      "place": "chop-suey",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-080",
+    "deck": "establish",
+    "text": "The room above the laundry, where {place} was, kept its lamps low and its door unlocked well past midnight. A calendar on the wall was two months behind. At this hour there were more empty chairs than full ones, but the place was still open.",
+    "tags": {
+      "place": "chop-suey",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-081",
+    "deck": "establish",
+    "text": "{place} sat just off the front hall, the room where a boarding house's tenants were meant to receive callers, and mostly didn't. At this hour it was empty, the furniture in it arranged for a use nobody was making of it that night.",
+    "tags": {
+      "place": "boarding-parlor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-082",
+    "deck": "establish",
+    "text": "You reached {place} by way of the house's own front door, the first room off the hall. A piano stood against one wall, rarely played and dusted anyway. Past midnight the house around it had gone quiet, every boarder behind a shut door.",
+    "tags": {
+      "place": "boarding-parlor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-083",
+    "deck": "establish",
+    "text": "{place} was kept formal, the way a landlady kept the one room in the house meant to be seen by outsiders. This late the room's own lamp was usually the only one lit downstairs.",
+    "tags": {
+      "place": "boarding-parlor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-084",
+    "deck": "establish",
+    "text": "The parlour making up {place} had a horsehair sofa nobody sat on if they could help it and a clock that ran five minutes fast. It was the first room past the entry, and the last one anybody used at this hour.",
+    "tags": {
+      "place": "boarding-parlor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-085",
+    "deck": "establish",
+    "text": "{place} was shuttered at this hour, the chairs empty, the mirrors dark. You got in through the same door as by day, if you had a key or knew whom to ask.",
+    "tags": {
+      "place": "barber-shop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-086",
+    "deck": "establish",
+    "text": "You reached {place} through the front door, glass painted with the shop's name, locked past business hours. Strop and razor sat put away on the shelf behind the chairs. Past midnight the shop had no cause to be lit at all, which made a lit shop worth noticing.",
+    "tags": {
+      "place": "barber-shop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-087",
+    "deck": "establish",
+    "text": "{place} kept two chairs and a bench for waiting, a calendar from a barber's supply house tacked up behind the register. This late the shop was usually closed, its grille down over the window.",
+    "tags": {
+      "place": "barber-shop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-088",
+    "deck": "establish",
+    "text": "The shop holding {place} smelled of bay rum even with the chairs empty and the lights off. Its hours ran to early evening most days. At this hour it took a key, or somebody who already had one, to get inside at all.",
+    "tags": {
+      "place": "barber-shop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-089",
+    "deck": "establish",
+    "text": "{place} was a wide bay, cars nosed in along both walls, oil-stained concrete underfoot. At this hour most of the cars sat idle, covers pulled over the ones that wouldn't be needed before morning.",
+    "tags": {
+      "place": "hotel-garage",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-090",
+    "deck": "establish",
+    "text": "You got into {place} through a rolling door left cracked open for the night man's convenience. The smell of gasoline hung in the air, thick enough to notice from the street. Past midnight there was usually one man on duty and not much to do.",
+    "tags": {
+      "place": "hotel-garage",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-091",
+    "deck": "establish",
+    "text": "{place} served the hotel's guests and a few others besides, a garage big enough for a dozen cars and loud with machinery by day. This late the bay was quiet but for a radio somewhere in the back.",
+    "tags": {
+      "place": "hotel-garage",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-092",
+    "deck": "establish",
+    "text": "The garage holding {place} kept a workbench along one wall and a stack of tires along the other. A single bulb over the office did most of the lighting for the whole bay. At this hour there was little traffic in or out.",
+    "tags": {
+      "place": "hotel-garage",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-093",
+    "deck": "establish",
+    "text": "{place} sat off the church's main room, reached by a side door that was never locked, not even at this hour. A rack of candles stood near the entrance, most of them burned down. It was quiet in the particular way a church was quiet, which was different from the quiet of an empty street.",
+    "tags": {
+      "place": "side-chapel",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-094",
+    "deck": "establish",
+    "text": "You got into {place} through a side door built for exactly this: coming and going without troubling the main entrance. The pews inside were few, old, dark with age. Past midnight there was nobody there but whoever had come to be alone.",
+    "tags": {
+      "place": "side-chapel",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-095",
+    "deck": "establish",
+    "text": "{place} was small, a side chapel built for private prayer rather than the Sunday crowd. No one minded who used the door, and no one was posted to notice. At this hour the candles gave what light there was.",
+    "tags": {
+      "place": "side-chapel",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-096",
+    "deck": "establish",
+    "text": "The chapel holding {place} kept its own door separate from the church's main one, open at all hours for whoever needed it. It smelled of wax and old stone. This late it was as empty as a church got.",
+    "tags": {
+      "place": "side-chapel",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-097",
+    "deck": "establish",
+    "text": "{place} sat over a bakery, reached by an outside stair that smelled of bread even hours after the ovens had gone cold. The hall itself was one long room, folding chairs stacked along the walls. At this hour it was empty, the chairs still set from whatever meeting had last used them.",
+    "tags": {
+      "place": "union-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-098",
+    "deck": "establish",
+    "text": "You climbed to {place} up a flight bolted to the outside of the building, the bakery's own stair, shared by whoever rented the hall above it. No one kept watch over who came and went after hours. Past midnight the hall stayed as still as the bakery underneath it.",
+    "tags": {
+      "place": "union-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-099",
+    "deck": "establish",
+    "text": "{place} was the local's meeting hall, used for whatever the union needed a room for: votes, speeches, the occasional dance. Nobody minded who used the stairs once the day's business was done. This late the hall's own lamps were usually out, the room lit only from the street.",
+    "tags": {
+      "place": "union-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-100",
+    "deck": "establish",
+    "text": "The hall over the bakery, where {place} was, kept a long table at one end and a lectern nobody had put away. It served the union by night and stood empty most other hours. At this hour there was nobody in it at all, unless somebody had a reason to be.",
+    "tags": {
+      "place": "union-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-101",
+    "deck": "establish",
+    "text": "{place} sat on the corner, a wood stand with a corrugated roof and papers weighted down against the wind. At this hour there was little foot traffic to sell to.",
+    "tags": {
+      "place": "corner-newsstand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-102",
+    "deck": "establish",
+    "text": "You could reach {place} from any direction, being a corner and nothing more. A single bulb hung over the papers for the benefit of anyone reading headlines after dark. Past midnight the stand was more habit than business.",
+    "tags": {
+      "place": "corner-newsstand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-103",
+    "deck": "establish",
+    "text": "{place} had held that corner since before most of the buildings near it went up, one of the fixtures a neighborhood collects without meaning to. It was quiet enough to hear the presses two blocks off, if the wind was right.",
+    "tags": {
+      "place": "corner-newsstand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-104",
+    "deck": "establish",
+    "text": "The stand at the corner, where {place} was, kept a small shelf of magazines under glass, the rest of the stock left open to the weather. This late there was hardly a customer to be seen.",
+    "tags": {
+      "place": "corner-newsstand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-105",
+    "deck": "establish",
+    "text": "{place} kept its lights on all night, a wall of little glass doors and a slot for a nickel behind each one. At this hour half the tables sat empty, napkin holders lined up straight.",
+    "tags": {
+      "place": "automat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-106",
+    "deck": "establish",
+    "text": "You got into {place} through a door that never locked, the whole point of a place like it being that it was always open. A few late customers sat over cold coffee at separate tables. Past midnight the room had the particular hush of a place built for crowds and currently holding none.",
+    "tags": {
+      "place": "automat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-107",
+    "deck": "establish",
+    "text": "{place} ran the length of a storefront, mirrors on the walls doubling a room that was already more empty than full at this hour. This late it drew the kind of customer who had nowhere better to sit.",
+    "tags": {
+      "place": "automat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-108",
+    "deck": "establish",
+    "text": "The cafeteria holding {place} never closed, which left it one of the few lit windows on the block after midnight. Rows of small glass compartments lined the walls, half of them empty of whatever they'd held earlier. At this hour the room held more chairs than people.",
+    "tags": {
+      "place": "automat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-109",
+    "deck": "establish",
+    "text": "{place} had a marquee dark at this hour, the last show having let out hours before. You'd have needed a reason and a key to get inside past this point.",
+    "tags": {
+      "place": "movie-house",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-110",
+    "deck": "establish",
+    "text": "You reached {place} through a lobby with the popcorn machine covered and the ticket booth shuttered. By day it ran three shows; by this hour it ran none. Past midnight the building sat as dark as anything else on the block.",
+    "tags": {
+      "place": "movie-house",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-111",
+    "deck": "establish",
+    "text": "{place} was a picture house with a lobby of red carpet gone thin down the aisle where the crowds walked in twice a day. This late the building held nobody at all, unless somebody had reason to be inside it.",
+    "tags": {
+      "place": "movie-house",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-112",
+    "deck": "establish",
+    "text": "The picture house making up {place} kept posters in glass cases out front, advertising a show already over for the night. The doors were locked, the lobby dark past the glass. At this hour it was just another shut storefront on the block.",
+    "tags": {
+      "place": "movie-house",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-113",
+    "deck": "establish",
+    "text": "{place} kept a band going most nights until the crowd thinned enough to send home. At this hour the music had usually stopped, the floor swept, the last couples gone.",
+    "tags": {
+      "place": "dance-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-114",
+    "deck": "establish",
+    "text": "You got into {place} through a lobby with a coat check nobody was minding at this hour. The dance floor beyond it sat empty under house lights turned up too bright for the room's own good. Past midnight the hall looked smaller than it had a few hours before, full.",
+    "tags": {
+      "place": "dance-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-115",
+    "deck": "establish",
+    "text": "{place} was a hall built for a band and a crowd and not much else. This late the chairs were stacked, the floor bare, the whole place smelling faintly of cigarettes and floor wax.",
+    "tags": {
+      "place": "dance-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-116",
+    "deck": "establish",
+    "text": "The dance hall making up {place} kept its lights low for dancing and merciless for cleaning up after. By this hour it was well past the second. A single bulb over the bandstand was usually the only one still lit.",
+    "tags": {
+      "place": "dance-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-117",
+    "deck": "establish",
+    "text": "{place} kept a soda fountain running most of the day and a light on well past it. You could get in through the front, the only door the shop had.",
+    "tags": {
+      "place": "drugstore",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-118",
+    "deck": "establish",
+    "text": "You reached {place} through a door with a bell that announced every customer whether {watcher} was looking up or not. Shelves of bottles ran behind the counter, labeled in handwriting that hadn't changed in years. Past midnight there was little trade beyond whoever needed something and couldn't wait for morning.",
+    "tags": {
+      "place": "drugstore",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-119",
+    "deck": "establish",
+    "text": "{place} was a drugstore with a soda fountain, one of the few storefronts on the block still lit at this hour. This late the stools at the fountain sat empty, a rag folded over the nearest one.",
+    "tags": {
+      "place": "drugstore",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-120",
+    "deck": "establish",
+    "text": "The drugstore with the soda fountain, where {place} was, ran a single bulb over the register, the rest of the shop left half dark to save the current. At this hour it drew the kind of customer with a headache or nowhere else open.",
+    "tags": {
+      "place": "drugstore",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-121",
+    "deck": "establish",
+    "text": "{place} sat outside a theater, a line painted on the curb where the cabs were meant to wait their turn. At this hour there were more cabs waiting than fares to fill them.",
+    "tags": {
+      "place": "cab-stand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-122",
+    "deck": "establish",
+    "text": "You found {place} easily enough, being nothing more than a stretch of curb and the cabs lined up along it. A cabbie or two leaned against their fenders, waiting. Past midnight the theater behind it had let out its last crowd hours before.",
+    "tags": {
+      "place": "cab-stand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-123",
+    "deck": "establish",
+    "text": "{place} served a theater's crowds by evening and whoever else needed a cab the rest of the time. This late the wait for a fare ran longer than the ride usually did.",
+    "tags": {
+      "place": "cab-stand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "est-124",
+    "deck": "establish",
+    "text": "The stand outside the theater, where {place} was, kept its position by custom more than by any sign marking it. At this hour the marquee behind it was dark, the crowds long gone. A cab or two idled at the curb regardless.",
+    "tags": {
+      "place": "cab-stand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-125",
+    "deck": "establish",
+    "text": "{place} ran along an iron structure two stories up, reached by a stair that rattled with every train, moving or not. Nobody was posted to mind who came up it. At this hour the trains ran on a longer schedule, and the platform sat mostly empty between them.",
+    "tags": {
+      "place": "el-platform",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-126",
+    "deck": "establish",
+    "text": "You climbed to {place} by an open iron stair, the street noise falling away with every step up. A change booth stood at the top, unmanned this late. Past midnight the wait between trains stretched long enough to notice.",
+    "tags": {
+      "place": "el-platform",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-127",
+    "deck": "establish",
+    "text": "{place} sat exposed to the street below on every side, a bench or two and a set of tracks running through the middle of it. No one watched who used it, day or night. At this hour there was hardly anybody on it to watch.",
+    "tags": {
+      "place": "el-platform",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-128",
+    "deck": "establish",
+    "text": "The elevated platform making up {place} caught the sound of every train for blocks before it caught sight of it. Nobody minded who came up the stairs or how long they waited. This late, that was almost nobody at all.",
+    "tags": {
+      "place": "el-platform",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-129",
+    "deck": "establish",
+    "text": "{place} sat under a row of trees along one side of the square, the kind of bench nobody owns and everybody uses. No one was posted to mind who sat there. At this hour the square around it was empty, the paths unlit past the nearest lamp.",
+    "tags": {
+      "place": "square-benches",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-130",
+    "deck": "establish",
+    "text": "You could reach {place} from any of the paths crossing the square, all of them converging near that one row of benches. Past midnight there was nobody on them but whoever had nowhere better to be. The square itself had gone as quiet as a square got.",
+    "tags": {
+      "place": "square-benches",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-131",
+    "deck": "establish",
+    "text": "{place} was public in the plainest sense, open on every side, watched by no one in particular. A lamp at the corner of the square gave what light reached the benches at all. This late they sat empty more often than not.",
+    "tags": {
+      "place": "square-benches",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-132",
+    "deck": "establish",
+    "text": "{place} sat among the benches at the square's north end, facing a fountain that had been shut off for the season. Nobody minded who used them, at this hour least of all. The square was still enough to hear a step on the gravel path.",
+    "tags": {
+      "place": "square-benches",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-133",
+    "deck": "establish",
+    "text": "{place} sat where the street ran out, the pavement giving way to a wooden apron and the water beyond it. No one was posted to watch who came down to it. At this hour the ferries ran on a reduced schedule, long gaps between crossings.",
+    "tags": {
+      "place": "ferry-slip",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-134",
+    "deck": "establish",
+    "text": "You reached {place} by walking the street straight to its end, the slip itself unmistakable once you got there. A waiting room stood nearby, unlit and locked past a certain hour. Past midnight there was hardly anyone waiting on the next boat.",
+    "tags": {
+      "place": "ferry-slip",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-135",
+    "deck": "establish",
+    "text": "{place} served whoever needed to cross the river at whatever hour they needed to do it, though the crossings themselves thinned out badly after dark. Nobody minded who waited there. This late the water made more noise than anything on land around it.",
+    "tags": {
+      "place": "ferry-slip",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-136",
+    "deck": "establish",
+    "text": "{place} sat where the street met the water, and it smelled of tar and river both. No one watched the gate at this hour; there was no one posted to. It was as quiet a stretch of the waterfront as the city had to offer, this late.",
+    "tags": {
+      "place": "ferry-slip",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-137",
+    "deck": "establish",
+    "text": "{place} stood at the corner, an iron-and-glass kiosk over a stair down into the ground. Nobody was posted to mind who went down it. At this hour trains ran less often, and the stair saw long stretches with nobody on it at all.",
+    "tags": {
+      "place": "subway-kiosk",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-138",
+    "deck": "establish",
+    "text": "You reached {place} from any corner of the intersection, the kiosk itself the only marker needed. Past midnight the trains slowed to a schedule that made waiting for one its own kind of patience. The street around the kiosk had gone quiet by comparison.",
+    "tags": {
+      "place": "subway-kiosk",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-139",
+    "deck": "establish",
+    "text": "{place} was open at all hours, being a stair and not a building, and no one minded who used it. A single bulb lit the top step, brighter than anything the bottom ever got. This late that stair saw fewer people than at any other hour of the day.",
+    "tags": {
+      "place": "subway-kiosk",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-140",
+    "deck": "establish",
+    "text": "The kiosk at the corner, where {place} was, threw a little iron shadow over the stair going down. Nobody watched who came up it or went down it, day or night. At this hour it was as empty as the street around it.",
+    "tags": {
+      "place": "subway-kiosk",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-141",
+    "deck": "establish",
+    "text": "{place} was two rooms above a laundry, reached by a side stair that started just past the laundry's own door. The sign on the street-level glass read somebody else's trade, not mine. At this hour the building below had long since gone dark and cold.",
+    "tags": {
+      "place": "office",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-142",
+    "deck": "establish",
+    "text": "You climbed to {place} up a narrow flight that ran alongside the laundry, closed for the night by the time anyone was likely to be coming up. The stairs let out at a single door with my name lettered on the glass. Past midnight the block outside was as quiet as the stairwell.",
+    "tags": {
+      "place": "office",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-143",
+    "deck": "establish",
+    "text": "{place} sat over the laundry that gave the block its smell by day and none of it by night, the presses cold for hours. Two rooms, a desk, a window looking out over the street. This late the building held nobody but whoever climbed those stairs on purpose.",
+    "tags": {
+      "place": "office",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "est-144",
+    "deck": "establish",
+    "text": "The rooms making up {place}, over the laundry, kept no better hours than the man who rented them. A single lamp on the desk did what the overhead bulb wouldn't. At this hour the street below had emptied out the way it always did once the last trolley had gone by.",
+    "tags": {
+      "place": "office",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

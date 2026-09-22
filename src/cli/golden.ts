@@ -23,6 +23,7 @@ import { generateCase, type Difficulty } from '../gen/index.js';
 import { buildView } from '../game/derive.js';
 import { playOracle } from '../game/oracle.js';
 import { renderPageText } from '../game/transcript.js';
+import type { Page } from '../game/types.js';
 import { parseArgs } from './args.js';
 
 const { values } = parseArgs(process.argv.slice(2));
@@ -64,6 +65,32 @@ interface Row {
   cost: number;
   gaps: string[];
   words: number;
+  /**
+   * M8 §10. Which of the page shapes this page is — `office`, `arrive` (a
+   * first visit), `return`, `search`, `ask`, `repeat` or `other` — so the
+   * night harness can hold each page to the golden page of its own shape.
+   */
+  shape: string;
+  /** The command that wrote the page. Empty for the office. */
+  command: string;
+}
+
+/**
+ * The page's shape. The planner writes it on the page since M8; a page from
+ * before that is classified here from the command that wrote it, so the same
+ * harness can measure a baseline and a branch.
+ */
+function shapeOf(page: Page, command: string, earlier: readonly Page[]): string {
+  if (page.shape !== undefined) return page.shape;
+  if (page.n === 0) return 'office';
+  const verb = command.trim().split(/\s+/)[0] ?? '';
+  if (verb === 'go') return earlier.some((p) => p.at === page.at) ? 'return' : 'arrive';
+  if (page.cost === 0 && page.found.length === 0 && (verb === 'examine' || verb === 'ask')) {
+    if (page.blocks.some((b) => b.kind === 'note' && /already/.test(b.text))) return 'repeat';
+  }
+  if (verb === 'examine') return 'search';
+  if (verb === 'ask') return 'ask';
+  return 'other';
 }
 
 rmSync(out, { recursive: true, force: true });
@@ -75,6 +102,7 @@ for (let seed = 1; seed <= seeds; seed++) {
   const view = buildView(kase);
   const run = playOracle(view, detective);
   const state = run.state;
+  const commands = ['', ...run.steps.map((s) => s.command)];
   for (const page of state.log.slice(0, pages)) {
     const text = bodyOf(renderPageText(page, view, state, { gaps: false }));
     const file = `seed${String(seed).padStart(2, '0')}-p${page.n + 1}.txt`;
@@ -88,6 +116,8 @@ for (let seed = 1; seed <= seeds; seed++) {
       cost: page.cost,
       gaps: page.gaps,
       words: text.trim().split(/\s+/).filter((w) => w.length > 0).length,
+      shape: shapeOf(page, commands[page.n] ?? '', state.log.slice(0, page.n)),
+      command: commands[page.n] ?? '',
     });
   }
 }

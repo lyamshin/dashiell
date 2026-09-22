@@ -75,7 +75,7 @@ export interface Portrait {
    * their tags, or when the deck is not on disk at all, and then the three
    * components below are what the page has. The page logs the gap either way.
    */
-  pair?: { text: string; recall: string; cardId: string };
+  pair?: { text: string; recall: string; cardId: string; action?: string };
 }
 
 export interface CastSheet {
@@ -208,7 +208,15 @@ export function rollCast(
       burned.add(card.id);
       cardIds.push(card.id);
       for (const m of motifsOf(card)) if (!motifs.includes(m)) motifs.push(m);
-      pair = { text: tidyPunctuation(text), recall, cardId: card.id };
+      // M8 §4: the recall as something the person does, filled like the text.
+      const action =
+        typeof card.recallAction === 'string' ? fillText(card.recallAction, pronounSlots(person)) : null;
+      pair = {
+        text: tidyPunctuation(text),
+        recall,
+        cardId: card.id,
+        ...(action ? { action: tidyPunctuation(action.charAt(0).toUpperCase() + action.slice(1)) } : {}),
+      };
       break;
     }
 
@@ -245,6 +253,17 @@ export function pronounSlots(person: Person): Slots {
     him: female ? 'her' : 'him',
     name: person.surname,
   };
+}
+
+/** Fill a card's second text field the way `fill` fills its text. */
+function fillText(template: string, slots: Slots): string | null {
+  let out = template;
+  for (const m of new Set(template.match(/\{(\w+)\}/g) ?? [])) {
+    const value = slots[m.slice(1, -1)];
+    if (value === undefined || value.length === 0) return null;
+    out = out.split(m).join(value);
+  }
+  return out;
 }
 
 /** A stable small number off an id, so a choice can be made without state. */

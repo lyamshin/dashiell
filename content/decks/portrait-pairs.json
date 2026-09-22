@@ -4,6 +4,7 @@
     "deck": "portrait-pairs",
     "text": "{He} reached for a card case before I asked for one. It came out empty, and {he} put it away without a word. Somebody used to keep it filled for {him}.",
     "recall": "the empty card case",
+    "recallAction": "{name} reached for the empty card case again and put it back.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -20,6 +21,7 @@
     "deck": "portrait-pairs",
     "text": "{He} turned the ring on {his} smallest finger the whole time {he} answered me, crest side down against the palm. When {he} finally let it rest, the crest faced out again. {He} had not meant to hide it, only to have something to do with {his} hands.",
     "recall": "the ring turned inward",
+    "recallAction": "{name} was turning the ring on {his} smallest finger again.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -36,6 +38,7 @@
     "deck": "portrait-pairs",
     "text": "A watch chain crossed {his} waistcoat same as any man's. There was no watch on the end of it, only a fob, and {he} checked the time on a wrist watch instead, twice in five minutes.",
     "recall": "the chain without a watch",
+    "recallAction": "{name} checked the wrist watch again and let the empty chain alone.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -66,6 +69,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore a collar that stood away from {his} throat by half an inch, a size bought for a heavier man. {He} had lost the weight since and not the collars.",
     "recall": "the collar too loose",
+    "recallAction": "{name} ran a finger round the inside of the loose collar again.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -80,6 +84,7 @@
     "deck": "portrait-pairs",
     "text": "{He} carried a stick with a silver head but never put weight on it, only turned it in {his} hand while {he} talked. Once, crossing to the window, {he} forgot it against the chair and had to go back for it.",
     "recall": "the cane never leaned on",
+    "recallAction": "{name} was turning the silver-headed stick in {his} hand again.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -94,6 +99,7 @@
     "deck": "portrait-pairs",
     "text": "{He} carried a fountain pen with a gold nib worn to one man's angle of writing, and offered to sign whatever I set before {him}. The pen was dry. {He} had not written anything of {his} own in some time.",
     "recall": "the dry fountain pen",
+    "recallAction": "{name} had the dry fountain pen out again, capped.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -110,6 +116,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept {his} gloves on until {he} shook my hand, then peeled them off finger by finger. The left one had split along the seam at the thumb and had not been mended.",
     "recall": "the split glove seam",
+    "recallAction": "{name} was working the split glove off finger by finger again.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -126,6 +133,7 @@
     "deck": "portrait-pairs",
     "text": "{He} offered a cigarette from a silver case with initials worked into the lid, and the initials were not {his}. {He} did not explain it, and I did not ask twice.",
     "recall": "the case with wrong initials",
+    "recallAction": "{name} had the silver case out again, the wrong initials up.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -142,6 +150,7 @@
     "deck": "portrait-pairs",
     "text": "{He} still wore yesterday's flower in {his} buttonhole, wilted past anything a florist would sell. {He} touched it once to check it was still there, then let it be.",
     "recall": "yesterday's wilted flower",
+    "recallAction": "{name} touched the wilted flower in {his} buttonhole again.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -170,6 +179,7 @@
     "deck": "portrait-pairs",
     "text": "{He} carried reading spectacles hooked to {his} lapel by a black ribbon and never put them on, even to read the paper I handed {him}. {He} held it at arm's length instead and squinted through the whole of it.",
     "recall": "the spectacles never worn",
+    "recallAction": "{name} held the paper at arm's length again and left the spectacles on the ribbon.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -186,6 +196,7 @@
     "deck": "portrait-pairs",
     "text": "{He} paid me from a pocketbook worn soft at the fold, and a photograph slid partway out with the bills: a young woman, turned face down before I could see more than the edge of her. {He} pushed it back in without looking at it.",
     "recall": "the hidden photograph",
+    "recallAction": "{name} had a hand on the pocketbook again, over the photograph.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -203,6 +214,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept {his} derby in {his} hands the whole visit instead of setting it down, working the brim between {his} fingers until it had gone soft. Nothing else could have worn it down that way.",
     "recall": "the soft-worn derby brim",
+    "recallAction": "{name} was working the brim of the derby between {his} fingers again.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -219,6 +231,7 @@
     "deck": "portrait-pairs",
     "text": "{He} opened a compact before answering anything hard, checked nothing in it, and closed it again. The powder inside was worn through to bare metal in one spot, from the same two fingers every time.",
     "recall": "the worn compact powder",
+    "recallAction": "{name} opened the compact again, looked at nothing, and shut it.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -235,6 +248,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept a spare hairpin tucked behind one ear instead of in {his} hair, ready before it was needed. It was a habit, not an accident; {he} reached for it without looking, twice, while we talked.",
     "recall": "the spare hairpin",
+    "recallAction": "{name} reached for the hairpin behind {his} ear again without looking.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -265,6 +279,7 @@
     "deck": "portrait-pairs",
     "text": "{He} took the pin from {his} hat the moment {he} sat and held it the whole time, turning it between two fingers instead of setting it anywhere. When {he} rose to go, {he} put it back without looking, by feel alone.",
     "recall": "the hatpin held throughout",
+    "recallAction": "{name} was turning the hatpin between two fingers again.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -296,6 +311,7 @@
     "deck": "portrait-pairs",
     "text": "A brooch sat crooked on {his} coat when {he} came in, pinned in a hurry. Partway through talking {he} reached up without looking and set it straight, then went on without missing a word.",
     "recall": "the crooked brooch righted",
+    "recallAction": "{name} touched the brooch again to be sure it was still straight.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -312,6 +328,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore a wedding ring on the right hand, not the left. {He} caught me noticing and turned the hand over, palm up, so the ring was out of sight.",
     "recall": "the misplaced wedding ring",
+    "recallAction": "{name} turned the ringed hand palm up again.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -328,6 +345,7 @@
     "deck": "portrait-pairs",
     "text": "{He} spoke in two registers: bright and carrying while the door stood open, low and plain the moment it closed. {He} gave no sign of noticing the change.",
     "recall": "the two voices",
+    "recallAction": "{name} dropped into the low, plain voice again once the door was shut.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -345,6 +363,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore a fur collar worn thin in a single patch at the throat, smaller than a thumbprint, from {his} own hand going there whenever the talk turned hard. It went there twice while {he} sat with me.",
     "recall": "the worn fur collar",
+    "recallAction": "{name}'s hand went to the worn place on the fur collar again.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -359,6 +378,7 @@
     "deck": "portrait-pairs",
     "text": "{He} used a handkerchief with two letters worked into the corner in blue thread, and neither matched the name {he} had given me at the door.",
     "recall": "the wrong-lettered handkerchief",
+    "recallAction": "{name} had the wrong-lettered handkerchief out again.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -373,6 +393,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore spectacles on a chain, riding low on {his} nose. {He} looked over the top of them the whole time instead of through the lenses, the lenses themselves untouched by anything {he} read.",
     "recall": "the spectacles unused",
+    "recallAction": "{name} looked at me over the top of the spectacles again.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -389,6 +410,7 @@
     "deck": "portrait-pairs",
     "text": "The rings on {his} left hand had gone loose with age and {he} kept turning them right side up out of old habit, though there was nothing left to turn them for.",
     "recall": "the loose rings turned",
+    "recallAction": "{name} was turning the loose rings right side up again.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -405,6 +427,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore a locket under {his} collar instead of over it, and opened it once without meaning to, reaching for a button. {He} closed it before I could see what was inside and did not open it again.",
     "recall": "the locket worn hidden",
+    "recallAction": "{name} touched the locket under {his} collar again and left it shut.",
     "tags": {
       "gender": "f",
       "class": "money",
@@ -437,6 +460,7 @@
     "deck": "portrait-pairs",
     "text": "{He} left a calling card on the desk with one corner turned down before {he} said a word, an old custom {he} plainly still kept without thinking about why.",
     "recall": "the turned-down card corner",
+    "recallAction": "{name} turned down the corner of a card again without thinking about it.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -451,6 +475,7 @@
     "deck": "portrait-pairs",
     "text": "One cufflink was cut in the shape of a compass, the needle set loose inside it, and it still spun when {he} touched it — which {he} did every time a question came too close.",
     "recall": "the spinning compass cufflink",
+    "recallAction": "{name} touched the compass cufflink again and set the needle spinning.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -481,6 +506,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore a school ring on a chain instead of a finger, too small for the hand now and too old to throw away. {He} touched it through the shirt more than once.",
     "recall": "the outgrown school ring",
+    "recallAction": "{name} touched the school ring through {his} shirt again.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -495,6 +521,7 @@
     "deck": "portrait-pairs",
     "text": "Before signing anything {he} pressed {his} fingers flat against the page for a moment first, an old clerk's habit from a time when the ink was slower to dry than it is now.",
     "recall": "the habit of blotting",
+    "recallAction": "{name} pressed {his} fingers flat against the table again.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -511,6 +538,7 @@
     "deck": "portrait-pairs",
     "text": "{He} took a moment partway through the visit to sharpen a pencil {he} never once used, and put it away again, sharp, without a word of explanation.",
     "recall": "the unused sharpened pencil",
+    "recallAction": "{name} had the sharpened pencil out again and did not use it.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -525,6 +553,7 @@
     "deck": "portrait-pairs",
     "text": "{He} named a figure before I had asked for one, flat, the same tone {he} would use pricing anything else. It was a habit worn in by years of doing exactly that.",
     "recall": "the unasked-for figure",
+    "recallAction": "{name} named a figure again before anybody asked for one.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -555,6 +584,7 @@
     "deck": "portrait-pairs",
     "text": "{He} carried a watch that ran eleven minutes fast, and {he} checked it twice against the clock on my wall without correcting either one. It had run fast for years, {he} said, and {he} had stopped minding.",
     "recall": "the watch kept fast",
+    "recallAction": "{name} checked the fast watch against the clock again and corrected neither.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -571,6 +601,7 @@
     "deck": "portrait-pairs",
     "text": "{He} carried a small pillbox in one pocket and touched it twice during the visit, though {he} never once opened it. It rattled faintly the one time {he} shifted in the chair.",
     "recall": "the pillbox never opened",
+    "recallAction": "{name} touched the pillbox in {his} pocket again.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -585,6 +616,7 @@
     "deck": "portrait-pairs",
     "text": "The card case {he} carried had gone round at the corners from years of it, and the initials stamped into it were worn to a shadow of themselves. {He} passed it to me to hold a card, then took it back before I could read the shadow at all.",
     "recall": "the worn card case",
+    "recallAction": "{name} turned the worn card case over in {his} hand again.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -599,6 +631,7 @@
     "deck": "portrait-pairs",
     "text": "The first two answers came out as orders, flat and final, the old habit of a person used to being obeyed. By the third {he} noticed it and softened {his} tone.",
     "recall": "the orders softened",
+    "recallAction": "{name} started to give an order again and softened it halfway.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -615,6 +648,7 @@
     "deck": "portrait-pairs",
     "text": "{He} had a callus worn in a band straight across the palm, the mark of rope handled bare-handed for years. {He} caught it once on the edge of my desk and did not seem to feel it.",
     "recall": "the rope-burn callus",
+    "recallAction": "{name} rubbed a thumb across the band of callus again.",
     "tags": {
       "gender": "m",
       "class": "working",
@@ -632,6 +666,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore a union button pinned to the underside of {his} lapel instead of the front, where it would show only if the coat blew open. {He} checked it was there twice, by touch, without looking down.",
     "recall": "the hidden union button",
+    "recallAction": "{name} felt under {his} lapel for the union button again.",
     "tags": {
       "gender": "m",
       "class": "working",
@@ -648,6 +683,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept {his} hands half closed even empty, the shape of a grip {he} used all day and could not quite let go of at night.",
     "recall": "the half-closed hands",
+    "recallAction": "{name}'s hands had closed halfway again round nothing.",
     "tags": {
       "gender": "m",
       "class": "working",
@@ -679,6 +715,7 @@
     "deck": "portrait-pairs",
     "text": "A pawn ticket rode folded in {his} hatband, soft at the creases from being taken out and put back more times than a ticket usually is. {He} did not take {his} hat off the whole visit.",
     "recall": "the folded pawn ticket",
+    "recallAction": "{name} touched the pawn ticket in {his} hatband again.",
     "tags": {
       "gender": "m",
       "class": "working",
@@ -729,6 +766,7 @@
     "deck": "portrait-pairs",
     "text": "A stickpin held a tie that had seen better collars, the pin worth more than the shirt under it. {He} touched it whenever the talk turned to money, and left it alone the rest of the time.",
     "recall": "the stickpin worth more",
+    "recallAction": "{name} touched the stickpin again when money came up.",
     "tags": {
       "gender": "m",
       "class": "working",
@@ -760,6 +798,7 @@
     "deck": "portrait-pairs",
     "text": "{He} had left {his} cap in {his} coat pocket instead of on {his} head, folded small, the sort of thing a man does when {he} does not want to be taken for what {he} is.",
     "recall": "the folded hidden cap",
+    "recallAction": "{name} patted the pocket with the folded cap in it again.",
     "tags": {
       "gender": "m",
       "class": "working",
@@ -776,6 +815,7 @@
     "deck": "portrait-pairs",
     "text": "{He} had knuckles swollen thick over the years, not from fighting but from the same motion repeated for decades. {He} flexed them once, slow, before {he} answered anything.",
     "recall": "the work-swollen knuckles",
+    "recallAction": "{name} flexed the swollen knuckles again, slow, before answering.",
     "tags": {
       "gender": "m",
       "class": "working",
@@ -826,6 +866,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore spectacles mended at one hinge with a twist of wire instead of being taken to be fixed properly. {He} pushed them up with one finger, the same finger, every time they slid.",
     "recall": "the wire-mended spectacles",
+    "recallAction": "{name} pushed the wire-mended spectacles up again with the same finger.",
     "tags": {
       "gender": "m",
       "class": "working",
@@ -890,6 +931,7 @@
     "deck": "portrait-pairs",
     "text": "{He} had a hard ring worn into {his} middle finger just below the nail, the shape of a thimble {he} was not wearing. {He} rubbed at it now and then out of habit, though the thimble itself was somewhere else.",
     "recall": "the thimble-shaped callus",
+    "recallAction": "{name} rubbed at the thimble callus again.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -907,6 +949,7 @@
     "deck": "portrait-pairs",
     "text": "A hairpin held the hem of {his} skirt together at one seam instead of {his} hair, closing a tear that had not yet made it to a needle. It showed only when {he} crossed {his} legs, and {he} kept them uncrossed the rest of the visit.",
     "recall": "the pinned-up hem",
+    "recallAction": "{name} kept {his} legs uncrossed again, over the pinned hem.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -921,6 +964,7 @@
     "deck": "portrait-pairs",
     "text": "A pale scar crossed the inside of {his} forearm, old and flat, the width of a mangle's roller. {He} wore {his} sleeve down over it out of habit rather than to hide it.",
     "recall": "the mangle-roller scar",
+    "recallAction": "{name} pulled the sleeve down over the scar again.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -938,6 +982,7 @@
     "deck": "portrait-pairs",
     "text": "{He} carried a union card folded small in a stocking top instead of a handbag, and it came out once, by accident, tangled with a folded bill. {He} tucked it away again fast.",
     "recall": "the hidden union card",
+    "recallAction": "{name} touched the top of a stocking again, where the union card was.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -952,6 +997,7 @@
     "deck": "portrait-pairs",
     "text": "{He} spoke flat and careful the one time {he} named an employer, the tone of somebody giving a name they'd rather not give. The rest of the visit {he} talked easy.",
     "recall": "the careful flattened voice",
+    "recallAction": "{name} went flat and careful again at the name of an employer.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -968,6 +1014,7 @@
     "deck": "portrait-pairs",
     "text": "One glove had been mended at the thumb with thread a shade off the wool, close but not matched. {He} wore it anyway and did not try to hide the seam.",
     "recall": "the mismatched mended glove",
+    "recallAction": "{name} smoothed the mended glove again and let the seam show.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -984,6 +1031,7 @@
     "deck": "portrait-pairs",
     "text": "{He} held two fingers apart a fixed distance before answering almost any question of size or distance, checking it silently against something remembered before saying a number out loud.",
     "recall": "the measured finger-span",
+    "recallAction": "{name} held two fingers apart again before saying a number.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -1001,6 +1049,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept one hand inside {his} coat pocket the whole time, working something between finger and thumb in a slow circle. It was a rosary; one bead had come loose from the string and knocked faintly against the others.",
     "recall": "the loose rosary bead",
+    "recallAction": "{name} was working the rosary in {his} pocket again, the loose bead knocking.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -1017,6 +1066,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore spectacles on a ribbon at {his} throat, the lenses gone faintly cloudy with age and scrubbing. {He} put them on to look at me once, took them off again, and seemed satisfied with what the one look had told {him}.",
     "recall": "the clouded spectacle lenses",
+    "recallAction": "{name} put the clouded spectacles on again for one look and took them off.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -1033,6 +1083,7 @@
     "deck": "portrait-pairs",
     "text": "{He} had hands red at the knuckle no matter the season, chapped past the point where rest between jobs could heal them fully anymore. {He} kept them folded in {his} lap, still, the one part of {him} that did not move while {he} talked.",
     "recall": "the permanently chapped hands",
+    "recallAction": "{name} folded the chapped hands in {his} lap again and kept them still.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -1050,6 +1101,7 @@
     "deck": "portrait-pairs",
     "text": "{He} had worn {his} accent smooth everywhere except the numbers: {he} still said them the old way, without noticing, every time money or a date came up.",
     "recall": "the accent on the numbers",
+    "recallAction": "{name} said a number the old way again without noticing.",
     "tags": {
       "gender": "f",
       "class": "working",
@@ -1066,6 +1118,7 @@
     "deck": "portrait-pairs",
     "text": "{He} tapped two fingers against {his} temple instead of writing anything down, trusting memory over a note that somebody else might read.",
     "recall": "the temple tapped twice",
+    "recallAction": "{name} tapped two fingers against {his} temple again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1097,6 +1150,7 @@
     "deck": "portrait-pairs",
     "text": "A betting slip sat folded into a small hard square in {his} breast pocket, torn clean in half at some point and kept anyway. {He} did not take it out, only patted the pocket once, the way a person checks a thing is still there.",
     "recall": "the torn betting slip",
+    "recallAction": "{name} patted the breast pocket with the betting slip in it again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1113,6 +1167,7 @@
     "deck": "portrait-pairs",
     "text": "A key hung on a string under {his} shirt, hidden from sight until {he} leaned forward and it caught the light at the collar. {He} tucked it back in without being asked to.",
     "recall": "the key on a string",
+    "recallAction": "{name} tucked the key on its string back under {his} shirt again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1129,6 +1184,7 @@
     "deck": "portrait-pairs",
     "text": "A badge with {his} name stamped on it was pinned to the inside of {his} coat instead of the outside, unpinned, {he} said, the minute {he} was off the job. {He} had forgotten to take it off before coming.",
     "recall": "the hidden name badge",
+    "recallAction": "{name} touched the badge inside {his} coat again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1145,6 +1201,7 @@
     "deck": "portrait-pairs",
     "text": "{He} stood near the door through two offers of a chair before finally taking one, and even then sat closest to it of the two chairs in the room.",
     "recall": "the chair nearest the door",
+    "recallAction": "{name} had taken the chair nearest the door again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1178,6 +1235,7 @@
     "deck": "portrait-pairs",
     "text": "{He} named the figure once, quietly, a beat before saying it out loud: the habit of a person who has priced the same thing too many times to trust the number without checking it.",
     "recall": "the price said twice",
+    "recallAction": "{name} said a figure under {his} breath again before saying it out loud.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1194,6 +1252,7 @@
     "deck": "portrait-pairs",
     "text": "A union button sat pinned to {his} lapel, the fabric around the pin gone thin and pale from decades in the same spot. {He} had never moved it to a newer coat.",
     "recall": "the decades-old union button",
+    "recallAction": "{name} touched the old union button on {his} lapel again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1210,6 +1269,7 @@
     "deck": "portrait-pairs",
     "text": "{He} counted under {his} breath without meaning to, the rhythm of some trade {he} had not worked at in years surfacing whenever {his} hands were idle.",
     "recall": "the trade's old count",
+    "recallAction": "{name} was counting under {his} breath again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1227,6 +1287,7 @@
     "deck": "portrait-pairs",
     "text": "{He} tapped a pencil twice against the desk before writing anything down, never once, never three times: a small ritual {he} seemed not to know {he} was keeping.",
     "recall": "the pencil tapped twice",
+    "recallAction": "{name} tapped a pencil twice against the table again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1243,6 +1304,7 @@
     "deck": "portrait-pairs",
     "text": "{He} had hands still strong, scarred faintly across every knuckle from years at some trade, and {he} kept them folded now, quiet, in a lap that did not otherwise move.",
     "recall": "the strong scarred hands",
+    "recallAction": "{name} kept the scarred hands folded again, quiet.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1260,6 +1322,7 @@
     "deck": "portrait-pairs",
     "text": "{He} took the chair that faced both the door and the window instead of the one I offered, and did it so smoothly I did not notice until {he} was already sitting in it.",
     "recall": "the chair facing both exits",
+    "recallAction": "{name} had taken the chair that faced the door and the window again.",
     "tags": {
       "gender": "m",
       "class": "underworld",
@@ -1293,6 +1356,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore a pinky ring turned stone-side in, showing only a plain gold band, until {he} wanted it noticed. Then {he} turned it out again with one thumb, without a word about it either way.",
     "recall": "the ring turned to hide",
+    "recallAction": "{name} turned the pinky ring stone-side out again with one thumb.",
     "tags": {
       "gender": "m",
       "class": "underworld",
@@ -1309,6 +1373,7 @@
     "deck": "portrait-pairs",
     "text": "{He} laughed only once, wide, and a back tooth was missing where it would not usually show. {He} cut the laugh short right after, the way a man does who did not mean to let it out that far.",
     "recall": "the missing back tooth",
+    "recallAction": "{name} cut a laugh short again.",
     "tags": {
       "gender": "m",
       "class": "underworld",
@@ -1325,6 +1390,7 @@
     "deck": "portrait-pairs",
     "text": "{He} counted the bills by feel, thumb running the edges, without once looking down at {his} own hands. {He} kept {his} eyes on me for all of it.",
     "recall": "money counted by feel",
+    "recallAction": "{name} was running a thumb along the edges of some bills again without looking down.",
     "tags": {
       "gender": "m",
       "class": "underworld",
@@ -1342,6 +1408,7 @@
     "deck": "portrait-pairs",
     "text": "A blue mark showed at {his} wrist when the cuff rode up, old and blurred past reading now. {He} pulled the sleeve back down before I had gotten a proper look.",
     "recall": "the faded wrist mark",
+    "recallAction": "{name} pulled the cuff down over the mark on {his} wrist again.",
     "tags": {
       "gender": "m",
       "class": "underworld",
@@ -1358,6 +1425,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept {his} voice level through every question I put to {him}, easy and flat whether the answer was nothing or something. The flatness never once cracked, which told me more than a crack would have.",
     "recall": "the unbroken flat voice",
+    "recallAction": "{name} kept {his} voice as flat as before.",
     "tags": {
       "gender": "m",
       "class": "underworld",
@@ -1388,6 +1456,7 @@
     "deck": "portrait-pairs",
     "text": "{He} watched my hands more than my face while I talked, and kept {his} own flat on {his} lap the whole time, in plain sight.",
     "recall": "the hands watched instead",
+    "recallAction": "{name} was watching my hands again instead of my face.",
     "tags": {
       "gender": "f",
       "class": "underworld",
@@ -1404,6 +1473,7 @@
     "deck": "portrait-pairs",
     "text": "{He} answered the first question in three sentences, and when I circled back to it later {he} gave me the same three sentences again, in the same order, word for word.",
     "recall": "the rehearsed three sentences",
+    "recallAction": "{name} gave the same three sentences again, in the same order.",
     "tags": {
       "gender": "f",
       "class": "underworld",
@@ -1418,6 +1488,7 @@
     "deck": "portrait-pairs",
     "text": "{He} lit a cigarette early on and let it burn down untouched in the ashtray, never raising it once. It was there to keep {his} hands busy, not to smoke.",
     "recall": "the untouched burning cigarette",
+    "recallAction": "{name} had lit another cigarette and let it burn in the tray.",
     "tags": {
       "gender": "f",
       "class": "underworld",
@@ -1434,6 +1505,7 @@
     "deck": "portrait-pairs",
     "text": "{He} priced three things out loud without being asked: a coat on the rack, a ring on {his} own hand, the desk itself, the way a person does who has spent years telling what a thing will fetch.",
     "recall": "the habit of pricing aloud",
+    "recallAction": "{name} priced something out loud again without being asked.",
     "tags": {
       "gender": "f",
       "class": "underworld",
@@ -1467,6 +1539,7 @@
     "deck": "portrait-pairs",
     "text": "{He} dropped {his} voice almost to nothing at one name in particular, then brought it back to full strength on the very next word, no different than before.",
     "recall": "the voice that dropped",
+    "recallAction": "{name} dropped {his} voice again at one name.",
     "tags": {
       "gender": "f",
       "class": "underworld",
@@ -1483,6 +1556,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept {his} hands perfectly still in {his} lap the whole visit, a stillness too complete to be natural, the kind a person learns rather than has.",
     "recall": "the practiced stillness",
+    "recallAction": "{name} kept {his} hands too still again.",
     "tags": {
       "gender": "f",
       "class": "underworld",
@@ -1499,6 +1573,7 @@
     "deck": "portrait-pairs",
     "text": "{He} touched the inside of {his} coat twice without reaching in, the old reflex of checking for something that was not there anymore.",
     "recall": "the empty pocket checked",
+    "recallAction": "{name} touched the inside of {his} coat again without reaching in.",
     "tags": {
       "gender": "any",
       "class": "underworld",
@@ -1515,6 +1590,7 @@
     "deck": "portrait-pairs",
     "text": "{He} flipped a coin off {his} thumb and caught it without looking down, over and over, the whole time {he} talked. {He} did not seem to know {he} was doing it.",
     "recall": "the unlooked-at coin flip",
+    "recallAction": "The coin was going over {his} knuckles again.",
     "tags": {
       "gender": "any",
       "class": "underworld",
@@ -1531,6 +1607,7 @@
     "deck": "portrait-pairs",
     "text": "{He} repeated the last word of every question back before answering it, a small pause built in every time: a second bought before the answer, every single time.",
     "recall": "the repeated last word",
+    "recallAction": "{name} repeated the last word of the question again before answering.",
     "tags": {
       "gender": "any",
       "class": "underworld",
@@ -1545,6 +1622,7 @@
     "deck": "portrait-pairs",
     "text": "One hand stayed below the desk's edge for most of the visit, out of sight, and came up only once, empty, to make a point.",
     "recall": "the hand out of sight",
+    "recallAction": "{name} kept one hand out of sight again.",
     "tags": {
       "gender": "any",
       "class": "underworld",
@@ -1559,6 +1637,7 @@
     "deck": "portrait-pairs",
     "text": "{He} spoke in short sentences and said, without being asked, that {he} used to talk longer before {he} learned better. {He} did not say when {he} had learned it.",
     "recall": "the shortened sentences",
+    "recallAction": "{name} answered in short sentences again.",
     "tags": {
       "gender": "any",
       "class": "underworld",
@@ -1575,6 +1654,7 @@
     "deck": "portrait-pairs",
     "text": "The side of {his} middle finger carried a permanent gray-blue stain, the mark of a pen held the same way through years of writing. {He} rubbed at it without thinking, the way a person rubs at something that never actually comes off.",
     "recall": "the permanent ink stain",
+    "recallAction": "{name} rubbed at the ink stain on {his} finger again.",
     "tags": {
       "gender": "m",
       "class": "professional",
@@ -1592,6 +1672,7 @@
     "deck": "portrait-pairs",
     "text": "{He} checked {his} watch exactly on the hour, to the minute, twice while I had {him} in front of me. Neither time was {he} in any hurry to be somewhere else.",
     "recall": "the hourly watch check",
+    "recallAction": "{name} checked {his} watch again as the hour came round.",
     "tags": {
       "gender": "m",
       "class": "professional",
@@ -1608,6 +1689,7 @@
     "deck": "portrait-pairs",
     "text": "{He} pushed {his} spectacles up onto {his} forehead to look at me plainly and left them there the rest of the visit, forgetting them twice and reaching for {his} own face to find them.",
     "recall": "the forgotten spectacles",
+    "recallAction": "{name} reached for the spectacles on {his} forehead again.",
     "tags": {
       "gender": "m",
       "class": "professional",
@@ -1624,6 +1706,7 @@
     "deck": "portrait-pairs",
     "text": "{He} folded {his} hands the same exact way each time before saying anything difficult: thumbs crossed left over right, never the other way round.",
     "recall": "the precisely folded hands",
+    "recallAction": "{name} folded {his} hands again, thumbs left over right.",
     "tags": {
       "gender": "m",
       "class": "professional",
@@ -1640,6 +1723,7 @@
     "deck": "portrait-pairs",
     "text": "{He} set {his} case at the desk's corner, squared to the edge, and adjusted it a half-inch when {he} thought I was not looking.",
     "recall": "the squared-off case",
+    "recallAction": "{name} squared {his} case to the table's edge again.",
     "tags": {
       "gender": "m",
       "class": "professional",
@@ -1654,6 +1738,7 @@
     "deck": "portrait-pairs",
     "text": "{He} corrected {his} own words twice mid-sentence, trading a plain term for a more exact one both times, the habit of a man paid to have the exact word ready.",
     "recall": "the mid-sentence correction",
+    "recallAction": "{name} corrected a word again in the middle of a sentence.",
     "tags": {
       "gender": "m",
       "class": "professional",
@@ -1701,6 +1786,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept a pencil behind one ear the whole visit and never once reached for it, though {he} touched the spot twice, an unconscious check that it was still there.",
     "recall": "the forgotten pencil",
+    "recallAction": "{name} touched the pencil behind {his} ear again.",
     "tags": {
       "gender": "f",
       "class": "professional",
@@ -1715,6 +1801,7 @@
     "deck": "portrait-pairs",
     "text": "A line of shorthand marks showed faint on the inside of {his} wrist, ink notes taken in a hurry and not yet washed off. {He} pulled the sleeve down over it the moment {he} noticed me reading it.",
     "recall": "the shorthand on the wrist",
+    "recallAction": "{name} pulled {his} sleeve down over the shorthand again.",
     "tags": {
       "gender": "f",
       "class": "professional",
@@ -1732,6 +1819,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wore a watch strapped with the face turned in, against the inside of the wrist instead of out. It let {him} check the time without anyone seeing {him} do it, and {he} used it twice while we talked.",
     "recall": "the watch worn face-in",
+    "recallAction": "{name} turned a wrist again to read the watch worn face-in.",
     "tags": {
       "gender": "f",
       "class": "professional",
@@ -1748,6 +1836,7 @@
     "deck": "portrait-pairs",
     "text": "{He} wrote a line on a pad without looking down at it once, {his} eyes on me the whole time, and the words came out straight and legible anyway.",
     "recall": "the note written blind",
+    "recallAction": "{name} wrote a line on a pad again without looking down.",
     "tags": {
       "gender": "f",
       "class": "professional",
@@ -1765,6 +1854,7 @@
     "deck": "portrait-pairs",
     "text": "{He} laughed exactly once during the whole visit, a single breath in and nothing let out after it, the same clipped sound each of the three or four times something might have called for more.",
     "recall": "the laugh cut short",
+    "recallAction": "{name} gave the one clipped laugh again.",
     "tags": {
       "gender": "f",
       "class": "professional",
@@ -1781,6 +1871,7 @@
     "deck": "portrait-pairs",
     "text": "{He} kept the same even calm in {his} voice whatever {he} was telling me, hard news or easy, the trained sound of years spent saying difficult things to frightened people.",
     "recall": "the trained soothing voice",
+    "recallAction": "{name} kept the same even calm again.",
     "tags": {
       "gender": "f",
       "class": "professional",
@@ -1797,6 +1888,7 @@
     "deck": "portrait-pairs",
     "text": "{He} pressed two fingers to {his} own wrist partway through a sentence, out of some old habit, and gave no sign of knowing {he} was doing it.",
     "recall": "the pulse checked absently",
+    "recallAction": "{name} pressed two fingers to {his} own wrist again.",
     "tags": {
       "gender": "f",
       "class": "professional",
@@ -1813,6 +1905,7 @@
     "deck": "portrait-pairs",
     "text": "{He} counted points off on {his} fingers while explaining anything, and stopped every single time at three, whether the list needed a fourth or not.",
     "recall": "the count stopped at three",
+    "recallAction": "{name} counted off on {his} fingers again and stopped at three.",
     "tags": {
       "gender": "any",
       "class": "professional",
@@ -1829,6 +1922,7 @@
     "deck": "portrait-pairs",
     "text": "{He} repeated a hard word back slowly the first time it came up, testing the sound of it once before using it out loud.",
     "recall": "the word tested aloud",
+    "recallAction": "{name} tried a hard word out slowly again before using it.",
     "tags": {
       "gender": "any",
       "class": "professional",
@@ -1845,6 +1939,7 @@
     "deck": "portrait-pairs",
     "text": "{He} capped and uncapped a fountain pen through every pause in the conversation, never once touching it to paper the whole visit.",
     "recall": "the pen capped and uncapped",
+    "recallAction": "{name} was capping and uncapping a fountain pen again.",
     "tags": {
       "gender": "any",
       "class": "professional",
@@ -1861,6 +1956,7 @@
     "deck": "portrait-pairs",
     "text": "{He} squared a single sheet of paper against the desk's edge before saying anything, though there was nothing else on the desk for it to be squared against.",
     "recall": "the paper squared alone",
+    "recallAction": "{name} squared a single sheet of paper against the table again.",
     "tags": {
       "gender": "any",
       "class": "professional",
@@ -1877,6 +1973,7 @@
     "deck": "portrait-pairs",
     "text": "{He} answered most questions by turning them around into the shape of a statement, the exact words handed back in a different order. It was an old habit, the kind worn permanent by years spent in rooms where a wrong word costs something.",
     "recall": "the question turned to statement",
+    "recallAction": "{name} turned a question round into a statement again.",
     "tags": {
       "gender": "any",
       "class": "professional",

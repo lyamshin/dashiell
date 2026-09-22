@@ -3658,5 +3658,869 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "err-b001",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b002",
+    "deck": "errand",
+    "text": "{who} was the one who would know where {subject} had been.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b003",
+    "deck": "errand",
+    "text": "I came to put {subject} to {who}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b004",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} would have the answer.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b005",
+    "deck": "errand",
+    "text": "I came for {who}’s evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b006",
+    "deck": "errand",
+    "text": "{who} had an evening to account for.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b007",
+    "deck": "errand",
+    "text": "I wanted to hear {who} tell the evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b008",
+    "deck": "errand",
+    "text": "It was {who}’s own night I wanted now.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b009",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b010",
+    "deck": "errand",
+    "text": "I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b011",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} was the one to put it to.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b012",
+    "deck": "errand",
+    "text": "I wanted what {who} knew about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b013",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b014",
+    "deck": "errand",
+    "text": "I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b015",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} would know it.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b016",
+    "deck": "errand",
+    "text": "I wanted {who}’s word on {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b017",
+    "deck": "errand",
+    "text": "{place} was next, and I meant to go through it.",
+    "tags": {
+      "because": "said",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b018",
+    "deck": "errand",
+    "text": "I came to go through {place}.",
+    "tags": {
+      "because": "said",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b019",
+    "deck": "errand",
+    "text": "Whatever was in {place}, I wanted to see it.",
+    "tags": {
+      "because": "said",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b020",
+    "deck": "errand",
+    "text": "The next thing was the room itself.",
+    "tags": {
+      "because": "said",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b021",
+    "deck": "errand",
+    "text": "I came for {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b022",
+    "deck": "errand",
+    "text": "{subject} was what I had come to see.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b023",
+    "deck": "errand",
+    "text": "I wanted to see {subject} for myself.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b024",
+    "deck": "errand",
+    "text": "{subject} was next.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b025",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b026",
+    "deck": "errand",
+    "text": "{who} was the one who would know where {subject} had been.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b027",
+    "deck": "errand",
+    "text": "I came to put {subject} to {who}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b028",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} would have the answer.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b029",
+    "deck": "errand",
+    "text": "I came for {who}’s evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b030",
+    "deck": "errand",
+    "text": "{who} had an evening to account for.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b031",
+    "deck": "errand",
+    "text": "I wanted to hear {who} tell the evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b032",
+    "deck": "errand",
+    "text": "It was {who}’s own night I wanted now.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b033",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b034",
+    "deck": "errand",
+    "text": "I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b035",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} was the one to put it to.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b036",
+    "deck": "errand",
+    "text": "I wanted what {who} knew about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b037",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b038",
+    "deck": "errand",
+    "text": "I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b039",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} would know it.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b040",
+    "deck": "errand",
+    "text": "I wanted {who}’s word on {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b041",
+    "deck": "errand",
+    "text": "{place} was next, and I meant to go through it.",
+    "tags": {
+      "because": "document",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b042",
+    "deck": "errand",
+    "text": "I came to go through {place}.",
+    "tags": {
+      "because": "document",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b043",
+    "deck": "errand",
+    "text": "Whatever was in {place}, I wanted to see it.",
+    "tags": {
+      "because": "document",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b044",
+    "deck": "errand",
+    "text": "The next thing was the room itself.",
+    "tags": {
+      "because": "document",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b045",
+    "deck": "errand",
+    "text": "I came for {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b046",
+    "deck": "errand",
+    "text": "{subject} was what I had come to see.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b047",
+    "deck": "errand",
+    "text": "I wanted to see {subject} for myself.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b048",
+    "deck": "errand",
+    "text": "{subject} was next.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b049",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b050",
+    "deck": "errand",
+    "text": "{who} was the one who would know where {subject} had been.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b051",
+    "deck": "errand",
+    "text": "I came to put {subject} to {who}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b052",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} would have the answer.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b053",
+    "deck": "errand",
+    "text": "I came for {who}’s evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b054",
+    "deck": "errand",
+    "text": "{who} had an evening to account for.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b055",
+    "deck": "errand",
+    "text": "I wanted to hear {who} tell the evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b056",
+    "deck": "errand",
+    "text": "It was {who}’s own night I wanted now.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b057",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b058",
+    "deck": "errand",
+    "text": "I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b059",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} was the one to put it to.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b060",
+    "deck": "errand",
+    "text": "I wanted what {who} knew about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b061",
+    "deck": "errand",
+    "text": "{who} would know about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b062",
+    "deck": "errand",
+    "text": "I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b063",
+    "deck": "errand",
+    "text": "{subject} was the question, and {who} would know it.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b064",
+    "deck": "errand",
+    "text": "I wanted {who}’s word on {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b065",
+    "deck": "errand",
+    "text": "{place} was next, and I meant to go through it.",
+    "tags": {
+      "because": "found",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b066",
+    "deck": "errand",
+    "text": "I came to go through {place}.",
+    "tags": {
+      "because": "found",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b067",
+    "deck": "errand",
+    "text": "Whatever was in {place}, I wanted to see it.",
+    "tags": {
+      "because": "found",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b068",
+    "deck": "errand",
+    "text": "The next thing was the room itself.",
+    "tags": {
+      "because": "found",
+      "for": "search-room",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b069",
+    "deck": "errand",
+    "text": "I came for {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b070",
+    "deck": "errand",
+    "text": "{subject} was what I had come to see.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b071",
+    "deck": "errand",
+    "text": "I wanted to see {subject} for myself.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b072",
+    "deck": "errand",
+    "text": "{subject} was next.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

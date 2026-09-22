@@ -1,0 +1,496 @@
+[
+  {
+    "id": "brg-001",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} would know where {subject} had been tonight.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-002",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} would know where {subject} had been tonight, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-003",
+    "deck": "bridge",
+    "text": "{subject} was {tie}, and {who} was the one to ask about {subject}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-004",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I wanted {who}’s word on {subject}, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-005",
+    "deck": "bridge",
+    "text": "The next name was {subject}, {tie}. {who} was the one to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-006",
+    "deck": "bridge",
+    "text": "The next name was {subject}, {tie}. {who} could tell me more, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-007",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} might know {subject}, and I meant to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-008",
+    "deck": "bridge",
+    "text": "{who} would know about {subject}, {tie}. {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-009",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. That was the next question, and it was for {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-010",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. The question was for {who}, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-011",
+    "deck": "bridge",
+    "text": "{who} could tell me where {subject}, {tie}, had spent the evening.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-012",
+    "deck": "bridge",
+    "text": "{who} could tell me where {subject}, {tie}, had spent the evening, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-013",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} might know where {subject} had been.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-014",
+    "deck": "bridge",
+    "text": "I wanted to know where {subject} had been. {subject} was {tie}, and {who} might say.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-015",
+    "deck": "bridge",
+    "text": "{subject}, {tie}, was the next question. I would put it to {who} at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-016",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} would know about {subject}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-017",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} would know about {subject}, and {who} was at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-018",
+    "deck": "bridge",
+    "text": "{subject} was {tie}, and {who} was the one to ask about {subject}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-019",
+    "deck": "bridge",
+    "text": "The next name was {subject}, {tie}. {who} was the one to ask.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-020",
+    "deck": "bridge",
+    "text": "The next name was {subject}, {tie}. I would ask {who}, at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-021",
+    "deck": "bridge",
+    "text": "{who} could tell me about {subject}, {tie}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-022",
+    "deck": "bridge",
+    "text": "{who} could tell me about {subject}, {tie}, and {who} was at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-023",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I wanted {who}’s word on {subject}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-024",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I wanted {who}’s word on {subject}, at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-025",
+    "deck": "bridge",
+    "text": "{subject}, {tie}, was the next question, and it was for {who}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-026",
+    "deck": "bridge",
+    "text": "{who} might know what {subject}, {tie}, had seen tonight.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-027",
+    "deck": "bridge",
+    "text": "{who} might know what {subject}, {tie}, had seen tonight. {who} was at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-028",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} was the one who might say more.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-029",
+    "deck": "bridge",
+    "text": "I wanted to know about {subject}, {tie}. {who} was the one to ask.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-030",
+    "deck": "bridge",
+    "text": "I wanted to know about {subject}, {tie}. {who} was at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-031",
+    "deck": "bridge",
+    "text": "Somebody had to account for {subject} at {tie}. {who} was the one to ask.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-032",
+    "deck": "bridge",
+    "text": "Somebody had to account for {subject} at {tie}. {who} might, at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-033",
+    "deck": "bridge",
+    "text": "{who} might know about {subject}, and about {tie}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-034",
+    "deck": "bridge",
+    "text": "{who} might know about {subject}, and about {tie}. {who} was at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-035",
+    "deck": "bridge",
+    "text": "Nobody had told me about {subject} at {tie} yet. {who} might.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-036",
+    "deck": "bridge",
+    "text": "The next question was {subject}, and the hour was {tie}. {who} would know, at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-037",
+    "deck": "bridge",
+    "text": "I still had nothing on {subject} at {tie}. {who} was the one to put it to.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-038",
+    "deck": "bridge",
+    "text": "{who} was next. The question was {subject}, around {tie}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-039",
+    "deck": "bridge",
+    "text": "{who} was next, at {where}. The question was {subject}, around {tie}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-040",
+    "deck": "bridge",
+    "text": "{subject} and {tie}: that was the next question, and it was for {who}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-041",
+    "deck": "bridge",
+    "text": "I wanted to know about {subject} around {tie}. {who} was the one who might say.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-042",
+    "deck": "bridge",
+    "text": "I wanted to know about {subject} around {tie}. {who} might say, and {who} was at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-043",
+    "deck": "bridge",
+    "text": "I had {subject} and I had {tie}, and nothing to join them. {who} might.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-044",
+    "deck": "bridge",
+    "text": "The hour was {tie}. {who} was the one to ask about {subject}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-045",
+    "deck": "bridge",
+    "text": "The hour was {tie}. I would ask {who} about {subject}, at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-s01",
+    "deck": "bridge",
+    "text": "{subject} was the next place to go through.",
+    "tags": {
+      "tie": "place",
+      "lead": "search"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-s02",
+    "deck": "bridge",
+    "text": "Something had pointed at {subject}. The next thing was to go through it.",
+    "tags": {
+      "tie": "place",
+      "lead": "search"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-s03",
+    "deck": "bridge",
+    "text": "That pointed at {subject}, and I meant to look it over myself.",
+    "tags": {
+      "tie": "place",
+      "lead": "search"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-s04",
+    "deck": "bridge",
+    "text": "The next place worth going through was {subject}.",
+    "tags": {
+      "tie": "place",
+      "lead": "search"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

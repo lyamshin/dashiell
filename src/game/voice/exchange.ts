@@ -145,6 +145,31 @@ export function registerFor(view: CaseView, speakerId: Id, clue: Clue | null): R
   return 'truth';
 }
 
+/**
+ * M8: can this utterance say a span in its `{time}`? A span brings its own
+ * preposition ("from ten until half past"), so the slot has to stand free:
+ * at the head of the card or after a comma or a stop, and followed by one.
+ * "By {time}", "around {time}", "{time} on" take one hour and only one.
+ */
+export function takesSpan(text: string): boolean {
+  const at = text.indexOf('{time}');
+  if (at < 0) return true;
+  const before = text.slice(0, at);
+  const after = text.slice(at + '{time}'.length);
+  const free = before.length === 0 || /[,.?:;]\s*$/.test(before);
+  return free && /^[,.?!;]/.test(after);
+}
+
+/**
+ * M8: a placement said as a list with no verb — "{subject}, {place}, {time}.
+ * Gone before the next round." — reads as a broken sentence once a place
+ * with a street in it and a span are in it. The golden's short answers have a
+ * verb or stand whole ("At the walk-up on Ninth. From ten until half past.").
+ */
+export function verblessPlacement(text: string): boolean {
+  return /\{subject\},\s*\{place\}/.test(text) || /^\{time\}\.\s*\{place\}\./.test(text);
+}
+
 /** Does this utterance carry everything its fact kind has to carry? */
 export function carriesFact(card: Card, kind: string): boolean {
   for (const slot of MANDATORY[kind] ?? []) {
@@ -269,15 +294,23 @@ function utteranceFor(
   // true sentence into a false one, so only {detective} survives from them.
   const slots: Slots = { detective: base.detective, ...beat.slots };
   const kindIs = (c: Card): boolean =>
-    tagOf('utterances', c, 'factKind') === beat.kind && carriesFact(c, beat.kind);
+    tagOf('utterances', c, 'factKind') === beat.kind &&
+    carriesFact(c, beat.kind) &&
+    (beat.span !== true || takesSpan(c.text)) &&
+    !verblessPlacement(c.text);
   const drawn = dealer.draw(
     'utterances',
-    [
+    // A written card before a placeholder, at every rung (M8: the placeholders
+    // are the ones that claim habits nobody established — "same as any night").
+    ((rungs: ((c: Card) => boolean)[]) => [
+      ...rungs.map((r) => (c: Card) => r(c) && c.status !== 'placeholder'),
+      ...rungs,
+    ])([
       (c) => kindIs(c) && tagIs('utterances', c, 'temper', temper) && tagIs('utterances', c, 'register', register),
       (c) => kindIs(c) && tagIs('utterances', c, 'temper', temper),
       (c) => kindIs(c) && tagIs('utterances', c, 'register', register),
       kindIs,
-    ],
+    ]),
     slots,
     true,
   );

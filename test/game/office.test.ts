@@ -212,7 +212,9 @@ describe('the client’s two free questions', () => {
     const text = (state.log.at(-1)?.blocks ?? [])
       .map((b) => (b.kind === 'prose' || b.kind === 'note' ? b.text : ''))
       .join('\n');
-    expect(text).toContain(view.placeById.get(view.client.foundAt ?? '')?.shortName as string);
+    // M8 §7: the client's goodbye belongs to the office page, not to the top
+    // of the walk to the scene. The notebook's lead list says where he is.
+    expect(text).not.toMatch(/That[’']s where I[’']ll be/);
     const at = run(state, `go ${view.placeById.get(view.client.foundAt ?? '')?.shortName}`);
     expect(peopleHereNow(view, at.at, at).map((p) => p.id)).toContain(view.client.id);
   });

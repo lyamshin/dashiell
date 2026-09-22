@@ -42,7 +42,8 @@ import type {
   Thread,
   TopicRef,
 } from './types.js';
-import { EMPTY_REPORT } from './types.js';
+import { EMPTY_REPORT, EMPTY_SCENE } from './types.js';
+import type { BeatTrace, PageShape, SceneMemory } from './types.js';
 import { actionsLeft, isOver, minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
 import {
@@ -248,6 +249,8 @@ function stageFor(
     previousMotifs: state.previousMotifs,
     showedOff: showedOff([...state.burned, ...at.persisted]),
     here: peopleHereNow(view, at.at, { clientInOffice: at.clientHere, found: at.foundAfter }),
+    memory: state.scene ?? EMPTY_SCENE,
+    visitedBefore: [...new Set(state.log.map((p) => p.at))],
   };
 }
 
@@ -533,6 +536,9 @@ export function step(
   const asked: { key: string; clues: Id[] }[] = [];
   const searched: Id[] = [];
   let errand: ErrandTrace | undefined;
+  let shape: PageShape | undefined;
+  let beats: BeatTrace[] | undefined;
+  let memory: SceneMemory | undefined;
 
   switch (command.kind) {
     case 'look':
@@ -590,6 +596,7 @@ export function step(
     case 'examine': {
       if (price.reason === 'search-again') {
         blocks = repeatBlocks(view, state, command);
+        shape = 'repeat';
         break;
       }
       cost = price.cost;
@@ -628,6 +635,7 @@ export function step(
       // §1.4: the same question twice is read back out of the notebook, free.
       if (price.reason === 'ask-again') {
         blocks = repeatBlocks(view, state, command);
+        shape = 'repeat';
         break;
       }
       cost = price.cost;
@@ -706,6 +714,7 @@ export function step(
         account,
         volunteer,
         free: waived === 1,
+        topicRef: topicRefOf(command.topic),
         ...(askedSelf
           ? {
               self: {
@@ -740,6 +749,9 @@ export function step(
     blocks = composed.blocks;
     gaps = composed.gaps;
     if (composed.errand) errand = composed.errand;
+    if (composed.shape) shape = composed.shape;
+    if (composed.beats) beats = composed.beats;
+    if (composed.memory) memory = composed.memory;
     asideBand = composed.asideBand;
     portrayed = composed.portrayed;
     appeared = composed.appeared;
@@ -790,6 +802,7 @@ export function step(
     sceneSeen,
     asked: [...(state.asked ?? []), ...asked],
     searched: [...new Set([...(state.searched ?? []), ...searched])],
+    ...(memory ? { scene: memory } : state.scene ? { scene: state.scene } : {}),
   };
   const page: Page = {
     n: state.log.length,
@@ -804,6 +817,8 @@ export function step(
     plain,
     image,
     ...(errand === undefined ? {} : { errand }),
+    ...(shape === undefined ? {} : { shape }),
+    ...(beats === undefined ? {} : { beats }),
   };
   next.log = [...state.log, page];
   return { state: next, page };
@@ -831,6 +846,21 @@ export function topicSlots(view: CaseView, topic: TopicRef): Record<string, stri
       return { subject: surnameIn(view, topic.topic) };
     default:
       return {};
+  }
+}
+
+/** M8: the topic as plain data, for the planner. */
+function topicRefOf(topic: TopicRef): { kind: string; id?: Id; topic?: string } {
+  switch (topic.kind) {
+    case 'person':
+    case 'place':
+    case 'object':
+    case 'anchor':
+      return { kind: topic.kind, id: topic.id };
+    case 'exact':
+      return { kind: 'exact', topic: topic.topic };
+    default:
+      return { kind: topic.kind };
   }
 }
 
