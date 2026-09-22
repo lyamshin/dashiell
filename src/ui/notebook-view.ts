@@ -43,10 +43,30 @@ export function renderNotebook(
       person.surname,
       el('span', {
         class: 'role',
-        text: `, ${person.role}${person.isClient ? ' — our client' : ''}`,
+        text: `, ${person.role}${person.isClient ? ' — our client' : ''}${
+          person.isVictim ? ' — the victim' : ''
+        }`,
       }),
     );
     entry.append(who);
+    // M5 §4: the dossier, by the layer it was learned at, in plain sentences.
+    const layers: [string, string[]][] = [
+      ['on sight', person.dossier.onSight],
+      ['volunteered', person.dossier.volunteered],
+      ['from others', person.dossier.fromOthers],
+      ['documents', person.dossier.documents],
+    ];
+    for (const [label, lines] of layers) {
+      if (lines.length === 0) continue;
+      const row = el('div', { class: 'nb-layer' });
+      row.append(el('span', { class: 'layer', text: `${label} ` }), lines.join(' '));
+      entry.append(row);
+    }
+    // A third party is a name the case owns and nobody can knock on the door
+    // of. Italic, under the person whose tie names them, and never a lead.
+    for (const mention of person.mentions) {
+      entry.append(el('div', { class: 'nb-mention' }, el('em', { text: mention.text })));
+    }
     if (person.foundAt) {
       entry.append(el('div', { class: 'role', text: `found at ${person.foundAt}` }));
     }

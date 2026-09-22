@@ -149,6 +149,9 @@ export function fillPlain(template: string, slots: PlainSlots): string {
     if (value === undefined || value.length === 0) return '';
     out = out.split(name).join(value);
   }
+  // A shape that opens on a slot gets its capital here: the place names are
+  // written lower case — "the speakeasy" — and a sentence is not.
+  if (/^\{/.test(template)) out = out.charAt(0).toUpperCase() + out.slice(1);
   return tidyPunctuation(out);
 }
 
@@ -242,6 +245,34 @@ function endStop(text: string): string {
   const t = text.trim();
   if (t.length === 0) return '';
   return /[.!?]$/.test(t) ? t : `${t}.`;
+}
+
+/**
+ * Layer 0 as one sentence rather than three.
+ *
+ * The three facts a look at somebody gives up — man or woman, roughly how old,
+ * and the trade if the trade shows — are three entries in the notebook and one
+ * sentence on the page. "Hanrahan is a woman. She is in her forties. She is a
+ * private secretary." is a form being filled in; "Hanrahan is a private
+ * secretary in her forties" is somebody looking at somebody.
+ */
+export function onSightSentence(person: Person): string {
+  const d = person.dossier;
+  if (!d) return '';
+  const layer = (person.dossier?.layers ?? []).filter((f) => f.layer === 0);
+  const has = (kind: string): boolean => layer.some((f) => f.kind === kind);
+  const decade = DECADES[Math.floor(d.age / 10)];
+  const noun = d.gender === 'f' ? 'woman' : 'man';
+  const their = d.gender === 'f' ? 'her' : 'his';
+  const age = has('age') && decade ? `in ${their} ${decade}` : '';
+  const trade = has('profession')
+    ? d.profession.role.replace(/^A[n]?\s+/i, '').replace(/\.$/, '')
+    : '';
+  // The trade where the trade shows, else what a look gives up on its own.
+  const what = trade.length > 0 ? trade : has('gender') ? noun : '';
+  if (what.length === 0) return '';
+  const article = /^[aeiou]/i.test(what) ? 'an' : 'a';
+  return endStop(`${person.surname} is ${article} ${what}${age.length > 0 ? ` ${age}` : ''}`);
 }
 
 /** Every dossier fact this person carries at one layer, as sentences. */
@@ -626,6 +657,60 @@ export function beatTicks(view: CaseView, clue: Clue): Tick[] {
   }
   void view;
   return out;
+}
+
+/* ------------------------------------------------------------------ *
+ * §6 and §7 — the first room, and what the precinct found in it.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The note that heads the first sight of the scene.
+ *
+ * It said "They found Martin Sweeney here and then they found a telephone" in
+ * every case the engine had ever rendered, including the ones where nobody had
+ * died. Three case types and one moved body need four sentences:
+ *
+ * - **A murder at the scene**: what it always said.
+ * - **A body that was moved** (§6): what was found here, and the trope's own
+ *   given — that this room does not agree with it. The room it happened in is
+ *   somewhere else and is the fourth thing the report will ask.
+ * - **A robbery** (§7): the shelf the thing came off. The owner is alive, and
+ *   the note says where they are rather than what the coroner thought.
+ * - **A disappearance** (§7): the last place anybody saw them.
+ */
+export function openingNote(view: CaseView, placeId: Id): string {
+  const kase = view.kase;
+  const act = kase.act;
+  const place = view.placeById.get(placeId);
+  const head = `${capitalize(place?.name ?? 'the address')}, ${kase.neighborhood}.`;
+  const victim = view.victim;
+  switch (act.type) {
+    case 'robbery': {
+      const taken = act.taken?.name ?? 'what was taken';
+      const owner = victim.surname;
+      const where = victimAddressName(view);
+      return `${head} ${capitalize(taken)} came off a shelf in this room, and ${owner} is alive and at ${where}, which is the first thing anybody says about it.`;
+    }
+    case 'missing':
+      return `${head} This is where ${victim.surname} was last seen, and nobody in this neighbourhood has seen ${victim.surname} since.`;
+    default: {
+      if (act.bodyFoundAt && act.bodyFoundAt !== act.place && placeId === act.bodyFoundAt) {
+        // The trope's own given, which is the thing the room will not support.
+        const disagrees = act.givens.text.find((t) => t.includes(' not ')) ?? '';
+        return `${head} They found ${victim.name} here and then they found a telephone. ${disagrees}`.trim();
+      }
+      return `${head} They found ${victim.name} here and then they found a telephone.`;
+    }
+  }
+}
+
+/** Where a robbery's owner can be found, for the note above. */
+function victimAddressName(view: CaseView): string {
+  const here = view.peopleAt;
+  for (const [placeId, ids] of here) {
+    if (ids.includes(view.victim.id)) return view.placeById.get(placeId)?.shortName ?? 'an address';
+  }
+  return 'an address of their own';
 }
 
 /** "9:00 PM", for a plain sentence that has to name an hour. */

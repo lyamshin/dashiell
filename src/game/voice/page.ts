@@ -97,6 +97,8 @@ import {
   dossierKnown,
   layerOfClue,
   layerSentences,
+  onSightSentence,
+  openingNote,
   plainRatio,
   type PlainCount,
 } from './plain.js';
@@ -697,9 +699,9 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     // A page already at its length says the fact and stops; the dossier is in
     // the notebook either way, and a room with ten things in it is long enough.
     if (words(blocksOf(laid)) > WORD_TARGET_HIGH) return;
-    const lines = layerSentences(person, 0);
-    if (lines.length === 0) return;
-    say(lines.slice(0, 2).join(' '), 'narrator', { transparent: true });
+    const line = onSightSentence(person);
+    if (line.length === 0) return;
+    say(line, 'narrator', { transparent: true });
   };
   // §3: a layer-2 fact rides along with the observation or the overheard line
   // that was about that person, one fact a clue, and is set down plainly after
@@ -830,12 +832,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
   /* ---------------------------------------------- first sight of the scene */
   if (scene.kind === 'travel' && scene.openingClues && scene.openingClues.length > 0) {
-    put({
-      kind: 'note',
-      text: `${capitalize(place?.name ?? 'the address')}, ${view.kase.neighborhood}. They found ${
-        view.victim.name
-      } here and then they found a telephone.`,
-    });
+    put({ kind: 'note', text: openingNote(view, stage.at) });
     for (const clue of scene.openingClues) {
       const line = findLine(dealer, view, clue, stage.at, base, ctx);
       say(line.text, 'find', {

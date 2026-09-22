@@ -120,9 +120,26 @@ export function renderNotebookText(view: CaseView, state: RunState): string {
   for (const person of book.people) {
     out.push(
       `  ${person.surname}, ${person.role}${person.isClient ? ' — our client' : ''}${
-        person.foundAt ? ` (${person.foundAt})` : ''
-      }`,
+        person.isVictim ? ' — the victim' : ''
+      }${person.foundAt ? ` (${person.foundAt})` : ''}`,
     );
+    // M5 §4: the dossier, by the layer it was learned at. A layer with nothing
+    // in it is not printed, because nothing has been learned at it yet.
+    const layers: [string, string[]][] = [
+      ['on sight', person.dossier.onSight],
+      ['volunteered', person.dossier.volunteered],
+      ['from others', person.dossier.fromOthers],
+      ['documents', person.dossier.documents],
+    ];
+    for (const [label, lines] of layers) {
+      if (lines.length === 0) continue;
+      out.push(wrap(`${label}: ${lines.join(' ')}`, WIDTH, '    '));
+    }
+    // Third parties in italics: named, traceable, and not somebody you can go
+    // and knock on the door of.
+    for (const mention of person.mentions) {
+      out.push(wrap(`_${mention.text}_`, WIDTH, '    '));
+    }
     if (person.account) {
       out.push(wrap(`says: ${person.account.map((a) => `${a.span} ${a.place}`).join('; ')}`, WIDTH, '    '));
     }

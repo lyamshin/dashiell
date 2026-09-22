@@ -24,6 +24,7 @@ import {
   spanLabel,
 } from './derive.js';
 import type { RunState, Thread } from './types.js';
+import { dossierKnown } from './voice/plain.js';
 
 export interface NotebookClock {
   time: string;
@@ -46,12 +47,39 @@ export interface NotebookRecord {
   text: string;
 }
 
+/**
+ * M5 §4 — a person's dossier, by the layer it was learned at. Never a layer
+ * that has not been learned: the notebook is what is in hand and nothing else.
+ */
+export interface NotebookDossier {
+  /** Layer 0, the moment they are in the room: sex, rough age, visible trade. */
+  onSight: string[];
+  /** Layer 1, after `ask X about themselves`. */
+  volunteered: string[];
+  /** Layer 2, off the observations and the overheard lines about them. */
+  fromOthers: string[];
+  /** Layer 3, out of the documents. */
+  documents: string[];
+}
+
+/** A third party a backstory names. Never a person, never interviewable. */
+export interface NotebookMention {
+  id: Id;
+  name: string;
+  text: string;
+}
+
 export interface NotebookPerson {
   id: Id;
   surname: string;
   role: string;
   foundAt: string | null;
   isClient: boolean;
+  /** The victim's own entry (§4). Standing and discovery, no alibi. */
+  isVictim: boolean;
+  dossier: NotebookDossier;
+  /** Third parties this person's tie names, in italics, under them. */
+  mentions: NotebookMention[];
   facts: NotebookFact[];
   /** Everything this person said, in the generator's words, in order found. */
   records: NotebookRecord[];
@@ -96,6 +124,45 @@ export interface Notebook {
   findableCount: number;
 }
 
+/** `dossierKnown`'s four layers, under the names the notebook prints. */
+function layered(known: {
+  layer0: string[];
+  layer1: string[];
+  layer2: string[];
+  layer3: string[];
+}): NotebookDossier {
+  return {
+    onSight: known.layer0,
+    volunteered: known.layer1,
+    fromOthers: known.layer2,
+    documents: known.layer3,
+  };
+}
+
+/**
+ * The victim's entry (§4). Everything in it came out of the briefing, which
+ * the client delivered on page one, so all of it is in hand from the first
+ * page: who they were in this neighbourhood, and how the case came to light.
+ */
+function victimDossier(
+  view: CaseView,
+  learned: Parameters<typeof dossierKnown>[2],
+): NotebookDossier {
+  const bio = view.kase.victimBio;
+  const known = layered(dossierKnown(view, view.victim.id, { ...learned, met: [view.victim.id] }));
+  const fromOthers = [...known.fromOthers];
+  if (bio.discovery) fromOthers.unshift(bio.discovery.foundText);
+  if (bio.lastSeen) fromOthers.unshift(bio.lastSeen.text);
+  return {
+    onSight: [bio.standing, ...known.onSight],
+    // A robbery's owner is alive and can be asked about themselves like
+    // anybody else; a murder's victim never gives their own account.
+    volunteered: known.volunteered,
+    fromOthers,
+    documents: known.documents,
+  };
+}
+
 export function buildNotebook(view: CaseView, state: RunState): Notebook {
   const kase = view.kase;
   const est = establishedFrom(view, state.found, state.accounts);
@@ -103,8 +170,18 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
   visited.add(state.at);
 
   const met = new Set(state.met);
+  const learned = {
+    found: state.found,
+    met: state.met,
+    selfTold: state.selfTold,
+    gossip: state.gossip,
+  };
+  const mentionById = new Map(kase.mentions.map((m) => [m.id, m]));
+  // §4: the victim has an entry of their own — standing and how the case came
+  // to light, both of which the briefing handed over on page one — and no
+  // alibi, because an alibi is a thing the living are asked for.
   const people: NotebookPerson[] = kase.people
-    .filter((p) => p.kind !== 'victim' && met.has(p.id))
+    .filter((p) => p.kind === 'victim' || met.has(p.id))
     .map((p) => {
       const placements = (est.placements.get(p.id) ?? [])
         .slice()
@@ -135,12 +212,27 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
             c !== undefined && c.source.type === 'person' && c.source.personId === p.id,
         )
         .map((c) => ({ clueId: c.id, text: c.text }));
+      const known: NotebookDossier =
+        p.kind === 'victim'
+          ? victimDossier(view, learned)
+          : layered(dossierKnown(view, p.id, learned));
+      // A third party is named by a tie, and a tie is layer 2: until somebody
+      // has said something about this person, the name has not come up.
+      const third = p.dossier?.tie.third;
+      const mention = third ? mentionById.get(third) : undefined;
+      const mentions: NotebookMention[] =
+        mention && known.fromOthers.length > 0
+          ? [{ id: mention.id, name: mention.name, text: mention.text }]
+          : [];
       return {
         id: p.id,
         surname: p.surname,
         role: p.role,
         foundAt: p.foundAt ? placeName(view, p.foundAt) : null,
         isClient: p.isClient === true,
+        isVictim: p.kind === 'victim',
+        dossier: known,
+        mentions,
         facts,
         records,
         account: account
