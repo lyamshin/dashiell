@@ -840,7 +840,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   },
   {
     id: 'arch-pawnman',
-    role: 'a pawnbroker’s man',
+    role: 'a pawnbroker’s clerk',
     relationships: ['rel-customer', 'rel-creditor', 'rel-rival'],
     motives: ['debt', 'exposure', 'revenge'],
     secrets: ['fence', 'forged-identity', 'dope'],

@@ -4,6 +4,7 @@ import {
   type Anchor,
   type Case,
   type Clue,
+  type Dossier,
   type Fact,
   type Id,
   type Person,
@@ -19,10 +20,10 @@ import {
  * can actually get hold of. The full candidate pool goes to its own file.
  */
 export function renderTruthSheet(c: Case): string {
-  /** Short name. The full name of a place is printed once, in section 3. */
+  /** Short name. The full name of a place is printed once, in section 8. */
   const PL = (id: Id | null | undefined): string =>
     id ? (c.places.find((p) => p.id === id)?.shortName ?? id) : '—';
-  /** Surname. The full name of a person is printed once, in section 2. */
+  /** Surname. The full name of a person is printed once, in section 3. */
   const P = (id: Id | null | undefined): string =>
     id ? (c.people.find((p) => p.id === id)?.surname ?? id) : '—';
   const person = (id: Id): Person => c.people.find((p) => p.id === id) as Person;
@@ -49,6 +50,11 @@ export function renderTruthSheet(c: Case): string {
   );
   out.push('');
   out.push(
+    `**Type** ${c.act.type} · **Trope** ${c.act.tropeId} · ` +
+      `**Unknowns** ${c.act.unknowns.join(', ')}`,
+  );
+  out.push('');
+  out.push(
     `**Par** ${c.par} actions · **Slack** ${c.slack} · **Budget** ${c.budget} · ` +
       `**Findable** ${findable.length} (spine ${byRole('spine').length}, corroboration ${byRole('corroboration').length}, ` +
       `noise ${byRole('noise').length} + ${byRole('disqualifier').length} disqualifiers) · ` +
@@ -70,8 +76,38 @@ export function renderTruthSheet(c: Case): string {
   );
   out.push('');
 
+  /* 2b. The Act --------------------------------------------------------- */
+  out.push('## 2. The Act');
+  out.push('');
+  out.push(
+    `**${c.act.type}** · **${c.act.tropeId}** · actor **${P(c.act.actorId)}** · ` +
+      `at **${PL(c.act.place)}** · at **${clock(c.act.tick)}**`,
+  );
+  out.push('');
+  const actBits: string[] = [];
+  if (c.act.bodyFoundAt) actBits.push(`found at ${PL(c.act.bodyFoundAt)}`);
+  if (c.act.taken) actBits.push(`taken: ${c.act.taken.name}`);
+  if (c.act.entry) actBits.push(`entry: ${c.act.entry}`);
+  if (c.act.goodsWentTo) actBits.push(`goods went to ${PL(c.act.goodsWentTo)}`);
+  if (c.act.whereabouts) {
+    actBits.push(
+      `whereabouts: ${c.act.whereabouts === 'gone' ? 'gone' : PL(c.act.whereabouts)}`,
+    );
+  }
+  if (c.act.fate) actBits.push(`fate: ${c.act.fate}`);
+  if (actBits.length > 0) {
+    out.push(actBits.map((b) => `- ${b}`).join('\n'));
+    out.push('');
+  }
+  out.push('**Givens** — what the briefing states and the report does not ask:');
+  out.push('');
+  for (const line of c.act.givens.text) out.push(`- ${line}`);
+  out.push('');
+  out.push(`**Unknowns** — exactly what the report asks: **${c.act.unknowns.join('**, **')}**.`);
+  out.push('');
+
   /* 3. Dramatis Personae ------------------------------------------------ */
-  out.push('## 2. Dramatis Personae');
+  out.push('## 3. Dramatis Personae');
   out.push('');
   out.push('| Name | Role | Relationship | Class of secret | Motive | Found at | Killer |');
   out.push('| --- | --- | --- | --- | --- | --- | --- |');
@@ -89,8 +125,110 @@ export function renderTruthSheet(c: Case): string {
   }
   out.push('');
 
-  /* 4. Places ----------------------------------------------------------- */
-  out.push('## 3. Places');
+  /* 4. Dossiers --------------------------------------------------------- */
+  out.push('## 4. Dossiers');
+  out.push('');
+  out.push(
+    'Every person, by layer: **0** on sight, **1** volunteered, **2** from other ' +
+      'people, **3** in the documents.',
+  );
+  out.push('');
+  const bio = c.victimBio;
+  out.push(`### ${victim.surname} — the victim`);
+  out.push('');
+  out.push(
+    `${bio.age}, ${bio.gender === 'f' ? 'a woman' : 'a man'}, ${bio.profession.role}. ` +
+      `Wants: ${bio.want}.`,
+  );
+  out.push('');
+  out.push(`- **Standing** — ${bio.standing}`);
+  out.push(`- **Profession** — ${victim.surname} ${bio.profession.detail}.`);
+  if (bio.discovery) {
+    out.push(
+      `- **Found** — ${bio.discovery.foundText} By ${P(bio.discovery.foundById)}, at ` +
+        `${PL(bio.discovery.foundAt)}, at ${clock(bio.discovery.foundTick)}. ` +
+        `Precinct: ${bio.discovery.precinct}.`,
+    );
+  }
+  if (bio.lastSeen) {
+    out.push(
+      `- **Last seen** — ${bio.lastSeen.text} By ${P(bio.lastSeen.byId)}, at ` +
+        `${PL(bio.lastSeen.place)}, at ${clock(bio.lastSeen.tick)}.`,
+    );
+  }
+  out.push('');
+  out.push(...dossierLines(bio));
+  out.push('');
+
+  for (const p of [...suspects, ...fixtures]) {
+    const d = p.dossier;
+    if (!d) continue;
+    out.push(
+      `### ${p.surname}${p.isKiller ? ' — the killer' : ''}${p.isClient ? ' — the client' : ''}`,
+    );
+    out.push('');
+    out.push(
+      `${d.age}, ${d.gender === 'f' ? 'a woman' : 'a man'}, ${d.profession.role}. ` +
+        `Wants: ${d.want}. Tie: ${d.tie.text}${d.tie.since ? `, ${d.tie.since}` : ''}.`,
+    );
+    out.push('');
+    out.push(...dossierLines(d));
+    out.push('');
+  }
+
+  /* 5. The Client ------------------------------------------------------- */
+  const client = person(c.clientId);
+  const brief = c.clientBrief;
+  out.push('## 5. The Client');
+  out.push('');
+  out.push(
+    `**${client.surname}**, ${client.dossier?.tie.text ?? 'known to the victim'}. ` +
+      `Purpose: **${brief.purpose}**${client.isKiller ? ' — and the killer' : ''}.`,
+  );
+  out.push('');
+  out.push(`- **Why** — ${brief.purposeText}`);
+  out.push(`- **What it costs** — ${brief.cost}`);
+  out.push(
+    `- **Points at** — ${P(brief.points.personId)}: ${brief.points.reason}. ` +
+      `Honest: **${brief.points.honest ? 'yes' : 'no'}**.`,
+  );
+  out.push('');
+  out.push('**Tells:**');
+  out.push('');
+  for (const t of brief.tellTexts) out.push(`- ${t}`);
+  out.push('');
+  out.push('**Withholds:**');
+  out.push('');
+  if (brief.withholdTexts.length === 0) out.push('- Nothing the case turns on.');
+  for (const t of brief.withholdTexts) out.push(`- ${t}`);
+  out.push('');
+  out.push('**Their own evening, as they tell it:**');
+  out.push('');
+  for (const t of brief.ownEvening) out.push(`- ${t}`);
+  out.push('');
+
+  /* 6. The Briefing ----------------------------------------------------- */
+  out.push('## 6. The Briefing');
+  out.push('');
+  out.push(
+    `${c.briefing.length} plain sentences, derived. This is the model of the plain ` +
+      'register: the engine renders it, and Phase 2 measures pages against it.',
+  );
+  out.push('');
+  c.briefing.forEach((line, i) => out.push(`${i + 1}. ${line}`));
+  out.push('');
+
+  /* 7. Mentions --------------------------------------------------------- */
+  out.push('## 7. Mentions');
+  out.push('');
+  if (c.mentions.length === 0) out.push('- Nobody outside the case is named.');
+  for (const m of c.mentions) {
+    out.push(`- **${m.name}** (${m.id}) — ${m.role}. ${m.text}`);
+  }
+  out.push('');
+
+  /* 8. Places ----------------------------------------------------------- */
+  out.push('## 8. Places');
   out.push('');
   for (const place of c.places) {
     const objects = place.objects
@@ -111,7 +249,7 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
 
   /* 5. Anchors ---------------------------------------------------------- */
-  out.push('## 4. Anchors');
+  out.push('## 9. Anchors');
   out.push('');
   out.push(
     `The coroner gives ${clock(c.coronerWindow[0])}–${clock(c.coronerWindow[1])}, four ticks wide. ` +
@@ -124,7 +262,7 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
 
   /* 6. Timelines -------------------------------------------------------- */
-  out.push('## 5. Timelines');
+  out.push('## 10. Timelines');
   out.push('');
   for (const p of [victim, ...suspects]) {
     const s = schedule(p.id);
@@ -157,7 +295,7 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
 
   /* 7. Secrets in play -------------------------------------------------- */
-  out.push('## 6. Secrets in play');
+  out.push('## 11. Secrets in play');
   out.push('');
   for (const p of suspects) {
     if (p.secret) out.push(`- **${p.surname}** (${p.secret.type}): ${p.secret.description}`);
@@ -168,7 +306,7 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
 
   /* 8. Clue list -------------------------------------------------------- */
-  out.push(`## 7. Clue list — the ${findable.length} findable`);
+  out.push(`## 12. Clue list — the ${findable.length} findable`);
   out.push('');
   out.push(
     `The opening three, free at the start: ${c.starting.join(', ')}. ` +
@@ -185,13 +323,13 @@ export function renderTruthSheet(c: Case): string {
   }
 
   /* 9. Clue graph ------------------------------------------------------- */
-  out.push('## 8. Clue graph');
+  out.push('## 13. Clue graph');
   out.push('');
   out.push(...mermaid(c));
   out.push('');
 
   /* 10. Deduction path -------------------------------------------------- */
-  out.push('## 9. Deduction path');
+  out.push('## 14. Deduction path');
   out.push('');
   out.push(
     `Par is **${c.par} actions** and the budget is par plus ${c.slack}: **${c.budget}**. ` +
@@ -239,7 +377,7 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
 
   /* 11. Red herrings ---------------------------------------------------- */
-  out.push('## 10. Red herrings');
+  out.push('## 15. Red herrings');
   out.push('');
   const liars = suspects.filter((p) => !p.isKiller && (schedule(p.id)?.lies ?? []).includes(M));
   out.push('**Innocents who lie about the murder tick:**');
@@ -277,6 +415,29 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
 
   return out.join('\n');
+}
+
+/** A dossier's facts, grouped by the layer they can be learned at. */
+function dossierLines(d: Dossier): string[] {
+  const out: string[] = [];
+  const titles: Record<number, string> = {
+    0: 'Layer 0, on sight',
+    1: 'Layer 1, volunteered',
+    2: 'Layer 2, from other people',
+    3: 'Layer 3, in the documents',
+  };
+  for (const layer of [0, 1, 2, 3] as const) {
+    const mine = d.layers.filter((f) => f.layer === layer);
+    if (mine.length === 0) continue;
+    out.push(`**${titles[layer]}**`);
+    out.push('');
+    for (const f of mine) out.push(`- _${f.kind}_ — ${f.text}`);
+    out.push('');
+  }
+  out.push('**Self-account** (layer 1, what they say when asked about themselves)');
+  out.push('');
+  for (const s of d.selfAccount) out.push(`- ${s}`);
+  return out;
 }
 
 function anchorWhen(a: Anchor): string {

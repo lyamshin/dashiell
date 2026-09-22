@@ -374,6 +374,19 @@ function wireSpine(rng: Rng, spine: Clue[], starting: Set<Id>): Record<Id, Id[]>
       if (!p.leadsTo.includes(c.id)) p.leadsTo.push(c.id);
     }
   }
+  /*
+   * Every opening clue has to lead somewhere. The free three are the only way
+   * into the graph, and one of them that leads nowhere is a dead end on page
+   * one — the client tells you why you were hired and hands you nothing.
+   * The random wiring above drops one about one case in fifty.
+   */
+  const children = spine.filter((c) => !starting.has(c.id));
+  if (children.length > 0) {
+    for (const c of spine) {
+      if (!starting.has(c.id) || c.leadsTo.length > 0) continue;
+      c.leadsTo.push(rng.pick(children).id);
+    }
+  }
   const snapshot: Record<Id, Id[]> = {};
   for (const c of spine) snapshot[c.id] = c.leadsTo.slice();
   return snapshot;

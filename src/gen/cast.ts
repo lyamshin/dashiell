@@ -67,11 +67,17 @@ const FIXTURE_ROLE_TEXT: Record<FixtureRole, string> = {
   druggist: 'the druggist',
 };
 
+/**
+ * Where the role's own words decide it. M5 states a person's gender as a fact
+ * in their dossier, so "the man behind the counter" has to be a man.
+ */
 const FIXTURE_GENDER: Partial<Record<FixtureRole, 'male' | 'female'>> = {
   landlady: 'female',
   'beat-cop': 'male',
   doorman: 'male',
   'elevator-man': 'male',
+  counterman: 'male',
+  cabbie: 'male',
 };
 
 /**
