@@ -6,6 +6,10 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "cold"
+    ],
+    "weather": "cold",
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range trn-pNNN; the content deck uses TRN-NNN. One card per anchor template is the target."
   },
@@ -16,6 +20,7 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -25,6 +30,10 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "dawn",
+      "sea"
+    ],
     "status": "placeholder"
   },
   {
@@ -34,6 +43,7 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -44,6 +54,10 @@
       "hourBand": "any",
       "anchorTemplate": "el-train"
     },
+    "motifs": [
+      "el",
+      "street"
+    ],
     "status": "placeholder"
   },
   {
@@ -54,6 +68,7 @@
       "hourBand": "any",
       "anchorTemplate": "cop-pass"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -64,6 +79,10 @@
       "hourBand": "4-6",
       "anchorTemplate": "milk-wagon"
     },
+    "motifs": [
+      "street",
+      "work"
+    ],
     "status": "placeholder"
   },
   {
@@ -74,6 +93,10 @@
       "hourBand": "any",
       "anchorTemplate": "church-bells"
     },
+    "motifs": [
+      "bells",
+      "street"
+    ],
     "status": "placeholder"
   },
   {
@@ -84,6 +107,9 @@
       "hourBand": "any",
       "anchorTemplate": "steam-whistle"
     },
+    "motifs": [
+      "sea"
+    ],
     "status": "placeholder"
   },
   {
@@ -94,6 +120,11 @@
       "hourBand": "any",
       "anchorTemplate": "last-edition"
     },
+    "motifs": [
+      "paper",
+      "door",
+      "street"
+    ],
     "status": "placeholder"
   },
   {
@@ -104,6 +135,9 @@
       "hourBand": "any",
       "anchorTemplate": "theater-out"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "placeholder"
   },
   {
@@ -113,6 +147,9 @@
     "tags": {
       "hourBand": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "placeholder"
   },
   {
@@ -123,6 +160,11 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "bar-radio"
     },
+    "motifs": [
+      "radio",
+      "street",
+      "boxing"
+    ],
     "status": "generated"
   },
   {
@@ -133,6 +175,11 @@
       "hourBand": "2-4",
       "anchorTemplate": "bar-radio"
     },
+    "motifs": [
+      "radio",
+      "quiet",
+      "baseball"
+    ],
     "status": "generated"
   },
   {
@@ -143,6 +190,10 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "regular-stool"
     },
+    "motifs": [
+      "counter",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -153,6 +204,10 @@
       "hourBand": "2-4",
       "anchorTemplate": "regular-stool"
     },
+    "motifs": [
+      "street",
+      "bar"
+    ],
     "status": "generated"
   },
   {
@@ -163,6 +218,7 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "cop-pass"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -173,6 +229,10 @@
       "hourBand": "4-6",
       "anchorTemplate": "cop-pass"
     },
+    "motifs": [
+      "footsteps",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -183,6 +243,9 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "piano-lesson"
     },
+    "motifs": [
+      "piano"
+    ],
     "status": "generated"
   },
   {
@@ -193,6 +256,10 @@
       "hourBand": "2-4",
       "anchorTemplate": "piano-lesson"
     },
+    "motifs": [
+      "piano",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -203,6 +270,9 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "el-train"
     },
+    "motifs": [
+      "el"
+    ],
     "status": "generated"
   },
   {
@@ -213,6 +283,9 @@
       "hourBand": "4-6",
       "anchorTemplate": "el-train"
     },
+    "motifs": [
+      "el"
+    ],
     "status": "generated"
   },
   {
@@ -223,6 +296,10 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "church-bells"
     },
+    "motifs": [
+      "bells",
+      "church"
+    ],
     "status": "generated"
   },
   {
@@ -233,6 +310,9 @@
       "hourBand": "6-8",
       "anchorTemplate": "church-bells"
     },
+    "motifs": [
+      "bells"
+    ],
     "status": "generated"
   },
   {
@@ -243,6 +323,10 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "last-edition"
     },
+    "motifs": [
+      "paper",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -253,6 +337,10 @@
       "hourBand": "2-4",
       "anchorTemplate": "last-edition"
     },
+    "motifs": [
+      "paper",
+      "late"
+    ],
     "status": "generated"
   },
   {
@@ -263,6 +351,10 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "fuse"
     },
+    "motifs": [
+      "window",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -273,6 +365,9 @@
       "hourBand": "2-4",
       "anchorTemplate": "fuse"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -283,6 +378,10 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "rain"
     },
+    "motifs": [
+      "rain"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -293,6 +392,10 @@
       "hourBand": "4-6",
       "anchorTemplate": "rain"
     },
+    "motifs": [
+      "rain"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -303,6 +406,10 @@
       "hourBand": "4-6",
       "anchorTemplate": "milk-wagon"
     },
+    "motifs": [
+      "street",
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -313,6 +420,10 @@
       "hourBand": "2-4",
       "anchorTemplate": "milk-wagon"
     },
+    "motifs": [
+      "bells",
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -323,6 +434,10 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "theater-out"
     },
+    "motifs": [
+      "traffic",
+      "theater"
+    ],
     "status": "generated"
   },
   {
@@ -333,6 +448,9 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "theater-out"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -343,6 +461,11 @@
       "hourBand": "4-6",
       "anchorTemplate": "garage-shift"
     },
+    "motifs": [
+      "street",
+      "machinery",
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -353,6 +476,9 @@
       "hourBand": "2-4",
       "anchorTemplate": "garage-shift"
     },
+    "motifs": [
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -363,6 +489,11 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "drunk-singing"
     },
+    "motifs": [
+      "singing",
+      "window",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -373,6 +504,10 @@
       "hourBand": "2-4",
       "anchorTemplate": "drunk-singing"
     },
+    "motifs": [
+      "singing",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -383,6 +518,9 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "dumbwaiter"
     },
+    "motifs": [
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -393,6 +531,9 @@
       "hourBand": "2-4",
       "anchorTemplate": "dumbwaiter"
     },
+    "motifs": [
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -403,6 +544,10 @@
       "hourBand": "4-6",
       "anchorTemplate": "ice-delivery"
     },
+    "motifs": [
+      "shoulders",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -413,6 +558,10 @@
       "hourBand": "6-8",
       "anchorTemplate": "ice-delivery"
     },
+    "motifs": [
+      "cold",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -423,6 +572,9 @@
       "hourBand": "midnight-2",
       "anchorTemplate": "steam-whistle"
     },
+    "motifs": [
+      "sea"
+    ],
     "status": "generated"
   },
   {
@@ -433,6 +585,9 @@
       "hourBand": "4-6",
       "anchorTemplate": "steam-whistle"
     },
+    "motifs": [
+      "sea"
+    ],
     "status": "generated"
   },
   {
@@ -442,6 +597,7 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -451,6 +607,10 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "clock",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -460,6 +620,9 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "cigarette"
+    ],
     "status": "generated"
   },
   {
@@ -469,6 +632,9 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "late"
+    ],
     "status": "generated"
   },
   {
@@ -478,6 +644,9 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -487,6 +656,7 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -496,6 +666,9 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -505,6 +678,9 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -514,6 +690,9 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -523,6 +702,7 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -532,6 +712,9 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [
+      "late"
+    ],
     "status": "generated"
   },
   {
@@ -541,6 +724,7 @@
     "tags": {
       "hourBand": "midnight-2"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -550,6 +734,9 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [
+      "late"
+    ],
     "status": "generated"
   },
   {
@@ -559,6 +746,9 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [
+      "late"
+    ],
     "status": "generated"
   },
   {
@@ -568,6 +758,10 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [
+      "wind",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -577,6 +771,10 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [
+      "clock",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -586,6 +784,9 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [
+      "late"
+    ],
     "status": "generated"
   },
   {
@@ -595,6 +796,7 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -604,6 +806,9 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [
+      "cigarette"
+    ],
     "status": "generated"
   },
   {
@@ -613,6 +818,9 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -622,6 +830,7 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -631,6 +840,7 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -640,6 +850,9 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [
+      "breath"
+    ],
     "status": "generated"
   },
   {
@@ -649,6 +862,7 @@
     "tags": {
       "hourBand": "2-4"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -658,6 +872,9 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "dawn"
+    ],
     "status": "generated"
   },
   {
@@ -667,6 +884,9 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "dawn"
+    ],
     "status": "generated"
   },
   {
@@ -676,6 +896,9 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "late"
+    ],
     "status": "generated"
   },
   {
@@ -685,6 +908,9 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -694,6 +920,9 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "roof"
+    ],
     "status": "generated"
   },
   {
@@ -703,6 +932,9 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "dawn"
+    ],
     "status": "generated"
   },
   {
@@ -712,6 +944,9 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -721,6 +956,7 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -730,6 +966,9 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "dawn"
+    ],
     "status": "generated"
   },
   {
@@ -739,6 +978,7 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -748,6 +988,10 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -757,6 +1001,10 @@
     "tags": {
       "hourBand": "4-6"
     },
+    "motifs": [
+      "dawn",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -766,6 +1014,10 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [
+      "dawn",
+      "traffic"
+    ],
     "status": "generated"
   },
   {
@@ -775,6 +1027,7 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -784,6 +1037,10 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [
+      "dawn",
+      "traffic"
+    ],
     "status": "generated"
   },
   {
@@ -793,6 +1050,7 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -802,6 +1060,7 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -811,6 +1070,7 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -820,6 +1080,7 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -829,6 +1090,10 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [
+      "dawn",
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -838,6 +1103,9 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [
+      "traffic"
+    ],
     "status": "generated"
   },
   {
@@ -847,6 +1115,9 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -856,6 +1127,10 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [
+      "dawn",
+      "traffic"
+    ],
     "status": "generated"
   },
   {
@@ -865,6 +1140,7 @@
     "tags": {
       "hourBand": "6-8"
     },
+    "motifs": [],
     "status": "generated"
   }
 ]

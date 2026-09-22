@@ -11,7 +11,7 @@
  */
 
 import { generateCase, type Difficulty } from '../gen/index.js';
-import { buildView } from '../game/derive.js';
+import { buildView, gameBudget, gamePar } from '../game/derive.js';
 import { playOracle, playWandering } from '../game/oracle.js';
 import { fileReport } from '../game/reducer.js';
 import { scoreReport } from '../game/scoring.js';
@@ -65,7 +65,12 @@ const out: string[] = [];
 out.push(
   `${detective.toUpperCase()} · case ${kase.seed} · difficulty ${kase.difficulty} · ${kase.neighborhood}`,
 );
-out.push(`par ${kase.par}, budget ${kase.budget}, ${kase.findable.length} things to find`);
+// M4b §B.3: the game's par and budget, which are the case's plus the walk
+// from the office. The generator's own numbers are in brackets after them.
+out.push(
+  `par ${gamePar(kase)}, budget ${gameBudget(kase)} (generator: ${kase.par}/${kase.budget}), ` +
+    `${kase.findable.length} things to find`,
+);
 out.push('');
 out.push(renderCastText(view, state));
 out.push('');

@@ -1,7 +1,7 @@
 /** The little menu a clickable noun opens. */
 
 import type { CaseView, Noun } from '../game/derive.js';
-import { peopleHere } from '../game/derive.js';
+import { peopleHereNow } from '../game/derive.js';
 import type { RunState } from '../game/types.js';
 import { el } from './dom.js';
 
@@ -96,7 +96,7 @@ function entriesFor(noun: Noun, view: CaseView, state: RunState): Entry[] {
     case 'anchor': {
       const anchor = view.anchorById.get(noun.id);
       if (!anchor) return [];
-      return peopleHere(view, state.at).map((p) => ({
+      return peopleHereNow(view, state.at, state).map((p) => ({
         group: `About ${anchor.name}`,
         label: `Ask ${p.surname}`,
         command: `ask ${p.surname} about ${anchor.name}`,
@@ -107,18 +107,18 @@ function entriesFor(noun: Noun, view: CaseView, state: RunState): Entry[] {
       if (!person) return [];
       if (person.kind === 'victim') {
         // Nobody asks the victim. Ask about him instead.
-        return peopleHere(view, state.at).map((p) => ({
+        return peopleHereNow(view, state.at, state).map((p) => ({
           group: `About ${person.surname}`,
           label: `Ask ${p.surname}`,
           command: `ask ${p.surname} about ${person.surname}`,
         }));
       }
-      const here = peopleHere(view, state.at).some((p) => p.id === person.id);
+      const here = peopleHereNow(view, state.at, state).some((p) => p.id === person.id);
       if (!here) {
         const room = view.placeById.get(person.foundAt ?? '')?.shortName;
         const out: Entry[] = [];
         if (room) out.push({ label: `Go to ${room}, where ${person.surname} is`, command: `go ${room}` });
-        for (const p of peopleHere(view, state.at)) {
+        for (const p of peopleHereNow(view, state.at, state)) {
           out.push({
             group: `About ${person.surname}`,
             label: `Ask ${p.surname}`,
@@ -150,7 +150,7 @@ function entriesFor(noun: Noun, view: CaseView, state: RunState): Entry[] {
           command: `ask ${person.surname} about ${other.surname}`,
         });
       }
-      for (const place of view.kase.places) {
+      for (const place of view.places) {
         out.push({
           group: 'Rooms',
           label: place.shortName,

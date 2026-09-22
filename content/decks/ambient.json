@@ -8,6 +8,7 @@
       "caseState": "cold",
       "circumstance": "any"
     },
+    "motifs": [],
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range amb-pNNN; the content deck uses AMB-NNN."
   },
@@ -20,6 +21,7 @@
       "caseState": "warm",
       "circumstance": "any"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -31,6 +33,7 @@
       "caseState": "hot",
       "circumstance": "any"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -42,6 +45,7 @@
       "caseState": "tight",
       "circumstance": "any"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -53,6 +57,10 @@
       "caseState": "any",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money",
+      "coat"
+    ],
     "status": "placeholder"
   },
   {
@@ -64,6 +72,7 @@
       "caseState": "any",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -75,6 +84,10 @@
       "caseState": "any",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "drink",
+      "eyes"
+    ],
     "status": "placeholder"
   },
   {
@@ -86,6 +99,10 @@
       "caseState": "any",
       "circumstance": "flush"
     },
+    "motifs": [
+      "coat",
+      "money"
+    ],
     "status": "placeholder"
   },
   {
@@ -97,6 +114,9 @@
       "caseState": "any",
       "circumstance": "any"
     },
+    "motifs": [
+      "dawn"
+    ],
     "status": "placeholder"
   },
   {
@@ -108,6 +128,12 @@
       "caseState": "any",
       "circumstance": "any"
     },
+    "motifs": [
+      "cold",
+      "telephone",
+      "office"
+    ],
+    "weather": "cold",
     "status": "placeholder"
   },
   {
@@ -119,6 +145,10 @@
       "caseState": "cold",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "paper",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -130,6 +160,10 @@
       "caseState": "warm",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "cigarette",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -141,6 +175,9 @@
       "caseState": "hot",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -152,6 +189,9 @@
       "caseState": "tight",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -163,6 +203,7 @@
       "caseState": "cold",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -174,6 +215,7 @@
       "caseState": "warm",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -185,6 +227,9 @@
       "caseState": "hot",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -196,6 +241,9 @@
       "caseState": "tight",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -207,6 +255,9 @@
       "caseState": "cold",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -218,6 +269,7 @@
       "caseState": "warm",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -229,6 +281,9 @@
       "caseState": "hot",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -240,6 +295,7 @@
       "caseState": "tight",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -251,6 +307,9 @@
       "caseState": "cold",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -262,6 +321,7 @@
       "caseState": "warm",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -273,6 +333,9 @@
       "caseState": "hot",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -284,6 +347,7 @@
       "caseState": "tight",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -295,6 +359,9 @@
       "caseState": "cold",
       "circumstance": "flush"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -306,6 +373,10 @@
       "caseState": "warm",
       "circumstance": "flush"
     },
+    "motifs": [
+      "money",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -317,6 +388,7 @@
       "caseState": "hot",
       "circumstance": "flush"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -328,6 +400,9 @@
       "caseState": "tight",
       "circumstance": "flush"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -339,6 +414,7 @@
       "caseState": "cold",
       "circumstance": "flush"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -350,6 +426,9 @@
       "caseState": "warm",
       "circumstance": "flush"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -361,6 +440,10 @@
       "caseState": "hot",
       "circumstance": "flush"
     },
+    "motifs": [
+      "late",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -372,6 +455,9 @@
       "caseState": "tight",
       "circumstance": "flush"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -383,6 +469,9 @@
       "caseState": "cold",
       "circumstance": "flush"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -394,6 +483,9 @@
       "caseState": "warm",
       "circumstance": "flush"
     },
+    "motifs": [
+      "dawn"
+    ],
     "status": "generated"
   },
   {
@@ -405,6 +497,9 @@
       "caseState": "hot",
       "circumstance": "flush"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -416,6 +511,9 @@
       "caseState": "tight",
       "circumstance": "flush"
     },
+    "motifs": [
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -427,6 +525,7 @@
       "caseState": "cold",
       "circumstance": "flush"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -438,6 +537,9 @@
       "caseState": "warm",
       "circumstance": "flush"
     },
+    "motifs": [
+      "food"
+    ],
     "status": "generated"
   },
   {
@@ -449,6 +551,9 @@
       "caseState": "hot",
       "circumstance": "flush"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -460,6 +565,7 @@
       "caseState": "tight",
       "circumstance": "flush"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -471,6 +577,7 @@
       "caseState": "cold",
       "circumstance": "hungover"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -482,6 +589,10 @@
       "caseState": "warm",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "clock",
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -493,6 +604,9 @@
       "caseState": "hot",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "glass"
+    ],
     "status": "generated"
   },
   {
@@ -504,6 +618,9 @@
       "caseState": "tight",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "footsteps"
+    ],
     "status": "generated"
   },
   {
@@ -515,6 +632,9 @@
       "caseState": "cold",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "mouth"
+    ],
     "status": "generated"
   },
   {
@@ -526,6 +646,9 @@
       "caseState": "warm",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -537,6 +660,9 @@
       "caseState": "hot",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "food"
+    ],
     "status": "generated"
   },
   {
@@ -548,6 +674,7 @@
       "caseState": "tight",
       "circumstance": "hungover"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -559,6 +686,7 @@
       "caseState": "cold",
       "circumstance": "hungover"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -570,6 +698,9 @@
       "caseState": "warm",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -581,6 +712,9 @@
       "caseState": "hot",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -592,6 +726,7 @@
       "caseState": "tight",
       "circumstance": "hungover"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -603,6 +738,9 @@
       "caseState": "cold",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "dawn"
+    ],
     "status": "generated"
   },
   {
@@ -614,6 +752,7 @@
       "caseState": "warm",
       "circumstance": "hungover"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -625,6 +764,7 @@
       "caseState": "hot",
       "circumstance": "hungover"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -636,6 +776,9 @@
       "caseState": "tight",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -647,6 +790,7 @@
       "caseState": "cold",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -658,6 +802,9 @@
       "caseState": "warm",
       "circumstance": "bruised"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -669,6 +816,7 @@
       "caseState": "hot",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -680,6 +828,7 @@
       "caseState": "tight",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -691,6 +840,7 @@
       "caseState": "cold",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -702,6 +852,10 @@
       "caseState": "warm",
       "circumstance": "bruised"
     },
+    "motifs": [
+      "coat",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -713,6 +867,7 @@
       "caseState": "hot",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -724,6 +879,9 @@
       "caseState": "tight",
       "circumstance": "bruised"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -735,6 +893,10 @@
       "caseState": "cold",
       "circumstance": "bruised"
     },
+    "motifs": [
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -746,6 +908,9 @@
       "caseState": "warm",
       "circumstance": "bruised"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -757,6 +922,7 @@
       "caseState": "hot",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -768,6 +934,7 @@
       "caseState": "tight",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -779,6 +946,11 @@
       "caseState": "cold",
       "circumstance": "bruised"
     },
+    "motifs": [
+      "cold",
+      "dawn"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -790,6 +962,7 @@
       "caseState": "warm",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -801,6 +974,7 @@
       "caseState": "hot",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -812,6 +986,7 @@
       "caseState": "tight",
       "circumstance": "bruised"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -823,6 +998,9 @@
       "caseState": "cold",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -834,6 +1012,10 @@
       "caseState": "warm",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [
+      "drink",
+      "mouth"
+    ],
     "status": "generated"
   },
   {
@@ -845,6 +1027,7 @@
       "caseState": "hot",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -856,6 +1039,7 @@
       "caseState": "tight",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -867,6 +1051,9 @@
       "caseState": "cold",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -878,6 +1065,7 @@
       "caseState": "warm",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -889,6 +1077,7 @@
       "caseState": "hot",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -900,6 +1089,9 @@
       "caseState": "tight",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -911,6 +1103,9 @@
       "caseState": "cold",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -922,6 +1117,10 @@
       "caseState": "warm",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [
+      "photograph",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -933,6 +1132,7 @@
       "caseState": "hot",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -944,6 +1144,10 @@
       "caseState": "tight",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [
+      "money",
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -955,6 +1159,7 @@
       "caseState": "cold",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -966,6 +1171,9 @@
       "caseState": "warm",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -977,6 +1185,7 @@
       "caseState": "hot",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -988,6 +1197,7 @@
       "caseState": "tight",
       "circumstance": "off-a-divorce-case"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -999,6 +1209,7 @@
       "caseState": "cold",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1010,6 +1221,10 @@
       "caseState": "warm",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "eyes",
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -1021,6 +1236,9 @@
       "caseState": "hot",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -1032,6 +1250,9 @@
       "caseState": "tight",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -1043,6 +1264,7 @@
       "caseState": "cold",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1054,6 +1276,7 @@
       "caseState": "warm",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1065,6 +1288,11 @@
       "caseState": "hot",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "glass",
+      "window",
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -1076,6 +1304,7 @@
       "caseState": "tight",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1087,6 +1316,7 @@
       "caseState": "cold",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1098,6 +1328,9 @@
       "caseState": "warm",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -1109,6 +1342,9 @@
       "caseState": "hot",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1120,6 +1356,7 @@
       "caseState": "tight",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1131,6 +1368,10 @@
       "caseState": "cold",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "dawn",
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -1142,6 +1383,9 @@
       "caseState": "warm",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -1153,6 +1397,7 @@
       "caseState": "hot",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1164,6 +1409,7 @@
       "caseState": "tight",
       "circumstance": "sleepless"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1175,6 +1421,9 @@
       "caseState": "cold",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1186,6 +1435,7 @@
       "caseState": "warm",
       "circumstance": "just-paid"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1197,6 +1447,9 @@
       "caseState": "hot",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1208,6 +1461,9 @@
       "caseState": "tight",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1219,6 +1475,9 @@
       "caseState": "cold",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1230,6 +1489,7 @@
       "caseState": "warm",
       "circumstance": "just-paid"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1241,6 +1501,7 @@
       "caseState": "hot",
       "circumstance": "just-paid"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1252,6 +1513,9 @@
       "caseState": "tight",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1263,6 +1527,7 @@
       "caseState": "cold",
       "circumstance": "just-paid"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1274,6 +1539,9 @@
       "caseState": "warm",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1285,6 +1553,9 @@
       "caseState": "hot",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1296,6 +1567,7 @@
       "caseState": "tight",
       "circumstance": "just-paid"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1307,6 +1579,9 @@
       "caseState": "cold",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1318,6 +1593,10 @@
       "caseState": "warm",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -1329,6 +1608,9 @@
       "caseState": "hot",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1340,6 +1622,9 @@
       "caseState": "tight",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1351,6 +1636,9 @@
       "caseState": "cold",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1362,6 +1650,9 @@
       "caseState": "hot",
       "circumstance": "behind-on-rent"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1373,6 +1664,7 @@
       "caseState": "tight",
       "circumstance": "hungover"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1384,6 +1676,9 @@
       "caseState": "cold",
       "circumstance": "hungover"
     },
+    "motifs": [
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -1395,6 +1690,9 @@
       "caseState": "hot",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -1406,6 +1704,9 @@
       "caseState": "warm",
       "circumstance": "sleepless"
     },
+    "motifs": [
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -1417,6 +1718,9 @@
       "caseState": "hot",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1428,6 +1732,9 @@
       "caseState": "warm",
       "circumstance": "just-paid"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   }
 ]

@@ -1,0 +1,581 @@
+[
+  {
+    "id": "ent-001",
+    "deck": "entrances",
+    "text": "{name} came in wearing mink and said nothing until she'd chosen where to sit.",
+    "tags": {
+      "temper": "enigma",
+      "class": "money",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-002",
+    "deck": "entrances",
+    "text": "{name} didn't sit. He said his piece in under two minutes and waited by the door.",
+    "tags": {
+      "temper": "enigma",
+      "class": "money",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-003",
+    "deck": "entrances",
+    "text": "{name} shook the rain off his hat at the door. Plainly enough, he asked if this was where a man came for help.",
+    "tags": {
+      "temper": "plain",
+      "class": "money",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "hat",
+      "rain",
+      "door"
+    ],
+    "weather": "rain",
+    "status": "generated"
+  },
+  {
+    "id": "ent-004",
+    "deck": "entrances",
+    "text": "{name} came in composed, her gloves still on, and took the chair before I could offer it twice.",
+    "tags": {
+      "temper": "plain",
+      "class": "money",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-005",
+    "deck": "entrances",
+    "text": "\"{detective}.\" {name} said it easy, the way you say a name you've used before.",
+    "tags": {
+      "temper": "plain",
+      "class": "money",
+      "gender": "any",
+      "familiar": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-006",
+    "deck": "entrances",
+    "text": "{name} was talking before the door shut behind her, about the cab, the weather, anything but the reason she'd come.",
+    "tags": {
+      "temper": "yap",
+      "class": "money",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-007",
+    "deck": "entrances",
+    "text": "{name} filled the doorway first, then the office. He told me about his tailor before he told me why he'd climbed the stairs.",
+    "tags": {
+      "temper": "yap",
+      "class": "money",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "door",
+      "stairs"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-008",
+    "deck": "entrances",
+    "text": "\"{detective}, you old crook,\" {name} said, already talking, already sitting himself down uninvited.",
+    "tags": {
+      "temper": "yap",
+      "class": "money",
+      "gender": "m",
+      "familiar": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-009",
+    "deck": "entrances",
+    "text": "\"{detective}.\" That was all {name} said. It was enough of a greeting for both of us.",
+    "tags": {
+      "temper": "enigma",
+      "class": "money",
+      "gender": "any",
+      "familiar": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-010",
+    "deck": "entrances",
+    "text": "{name} came up the stairs slow, the way people climb them when they're not sure they want to arrive.",
+    "tags": {
+      "temper": "plain",
+      "class": "money",
+      "gender": "any",
+      "familiar": "no"
+    },
+    "motifs": [
+      "stairs"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-011",
+    "deck": "entrances",
+    "text": "{name} stood in the doorway a moment, cap still on, before he came all the way in.",
+    "tags": {
+      "temper": "enigma",
+      "class": "working",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "door",
+      "hat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-012",
+    "deck": "entrances",
+    "text": "{name} didn't sit until I told her to. She needed help, she said, and nothing more.",
+    "tags": {
+      "temper": "enigma",
+      "class": "working",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-013",
+    "deck": "entrances",
+    "text": "{name} came in with her coat still buttoned against the cold. Straight off, she asked what a thing like this would cost.",
+    "tags": {
+      "temper": "plain",
+      "class": "working",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [
+      "coat",
+      "cold"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "ent-014",
+    "deck": "entrances",
+    "text": "{name} wiped his boots twice on the mat, more out of habit than any care for my floor.",
+    "tags": {
+      "temper": "plain",
+      "class": "working",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-015",
+    "deck": "entrances",
+    "text": "\"It's me, {detective},\" {name} said, same as always at that door.",
+    "tags": {
+      "temper": "plain",
+      "class": "working",
+      "gender": "any",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-016",
+    "deck": "entrances",
+    "text": "{name} came in already explaining, hat in his hands, talking faster than the stairs should have left him breath for.",
+    "tags": {
+      "temper": "yap",
+      "class": "working",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "hat",
+      "stairs",
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-017",
+    "deck": "entrances",
+    "text": "{name} talked the whole walk to the chair. Her sister, her landlord, and eventually the reason she'd come.",
+    "tags": {
+      "temper": "yap",
+      "class": "working",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-018",
+    "deck": "entrances",
+    "text": "\"{detective}, it's been a while,\" {name} said, and she kept talking well past the point where I could agree to anything.",
+    "tags": {
+      "temper": "yap",
+      "class": "working",
+      "gender": "f",
+      "familiar": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-019",
+    "deck": "entrances",
+    "text": "\"{detective}.\" {name} said it, and left it at that, same as he always did.",
+    "tags": {
+      "temper": "enigma",
+      "class": "working",
+      "gender": "m",
+      "familiar": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-020",
+    "deck": "entrances",
+    "text": "{name} knocked twice, waited for the second, and came in only after I answered.",
+    "tags": {
+      "temper": "plain",
+      "class": "working",
+      "gender": "any",
+      "familiar": "no"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-021",
+    "deck": "entrances",
+    "text": "{name} came in without knocking. He stood by the door, clearly meaning to use it again soon.",
+    "tags": {
+      "temper": "enigma",
+      "class": "underworld",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-022",
+    "deck": "entrances",
+    "text": "{name} looked the office over once and said nothing about it. She waited for me to ask first.",
+    "tags": {
+      "temper": "enigma",
+      "class": "underworld",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-023",
+    "deck": "entrances",
+    "text": "{name} kept his coat on and put his hat within reach, on the desk.",
+    "tags": {
+      "temper": "plain",
+      "class": "underworld",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "coat",
+      "hat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-024",
+    "deck": "entrances",
+    "text": "{name} checked the window before she checked me. She sat with her back to the wall.",
+    "tags": {
+      "temper": "plain",
+      "class": "underworld",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [
+      "window"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-025",
+    "deck": "entrances",
+    "text": "\"{detective}, long time,\" {name} said, and meant it more than most people who say it do.",
+    "tags": {
+      "temper": "plain",
+      "class": "underworld",
+      "gender": "any",
+      "familiar": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-026",
+    "deck": "entrances",
+    "text": "{name} was already talking about a friend of a friend before I'd gotten a word out, and kept it up while he sat.",
+    "tags": {
+      "temper": "yap",
+      "class": "underworld",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-027",
+    "deck": "entrances",
+    "text": "{name} came in trailing perfume and a story about a car that wasn't quite hers, told fast and loud.",
+    "tags": {
+      "temper": "yap",
+      "class": "underworld",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-028",
+    "deck": "entrances",
+    "text": "\"{detective}, you son of a gun,\" {name} said, loud enough for the stairs to hear it too.",
+    "tags": {
+      "temper": "yap",
+      "class": "underworld",
+      "gender": "any",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "stairs"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-029",
+    "deck": "entrances",
+    "text": "{name} said my name once, low in her throat. That did the rest of the talking.",
+    "tags": {
+      "temper": "enigma",
+      "class": "underworld",
+      "gender": "f",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-030",
+    "deck": "entrances",
+    "text": "{name} shut the door soft, the way careful people do when doors matter to them.",
+    "tags": {
+      "temper": "plain",
+      "class": "underworld",
+      "gender": "any",
+      "familiar": "no"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-031",
+    "deck": "entrances",
+    "text": "{name} came in exactly on the hour, said his name, and waited for me to catch up.",
+    "tags": {
+      "temper": "enigma",
+      "class": "professional",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-032",
+    "deck": "entrances",
+    "text": "{name} set a card on the desk instead of introducing herself. She let it make the case.",
+    "tags": {
+      "temper": "enigma",
+      "class": "professional",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-033",
+    "deck": "entrances",
+    "text": "{name} hung his own coat, without being asked, and sat with the ease of a man used to waiting rooms.",
+    "tags": {
+      "temper": "plain",
+      "class": "professional",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-034",
+    "deck": "entrances",
+    "text": "{name} carried a folder under her arm and the look of somebody used to being believed.",
+    "tags": {
+      "temper": "plain",
+      "class": "professional",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-035",
+    "deck": "entrances",
+    "text": "\"{detective}, good to see you're still at this address,\" {name} said, shaking rain off a good umbrella.",
+    "tags": {
+      "temper": "plain",
+      "class": "professional",
+      "gender": "any",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "rain"
+    ],
+    "weather": "rain",
+    "status": "generated"
+  },
+  {
+    "id": "ent-036",
+    "deck": "entrances",
+    "text": "{name} was already diagnosing the room, the stairs, and my evident lack of a secretary, before he sat down.",
+    "tags": {
+      "temper": "yap",
+      "class": "professional",
+      "gender": "m",
+      "familiar": "no"
+    },
+    "motifs": [
+      "stairs"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-037",
+    "deck": "entrances",
+    "text": "{name} talked through the whole business of getting seated: her gloves, her appointment book, and finally the reason for coming.",
+    "tags": {
+      "temper": "yap",
+      "class": "professional",
+      "gender": "f",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-038",
+    "deck": "entrances",
+    "text": "\"{detective}, you look exactly the same,\" {name} said, which either meant I hadn't slept or she hadn't looked closely.",
+    "tags": {
+      "temper": "yap",
+      "class": "professional",
+      "gender": "f",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "sleep"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "ent-039",
+    "deck": "entrances",
+    "text": "{name} nodded instead of saying my name. He'd traded enough favors with me for the formality not to matter.",
+    "tags": {
+      "temper": "enigma",
+      "class": "professional",
+      "gender": "m",
+      "familiar": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ent-040",
+    "deck": "entrances",
+    "text": "{name} came up the stairs at an unhurried pace, the hour plainly no concern at all.",
+    "tags": {
+      "temper": "plain",
+      "class": "professional",
+      "gender": "any",
+      "familiar": "no"
+    },
+    "motifs": [
+      "stairs"
+    ],
+    "status": "generated"
+  }
+]

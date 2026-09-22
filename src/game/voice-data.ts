@@ -285,3 +285,111 @@ export const FAMILIAR_GREETINGS: string[] = [
   '{name} saw me coming and did not look surprised about it.',
   'There was no introducing to do. {name} has known me longer than the coat has.',
 ];
+
+/* ------------------------------------------------------------------ *
+ * M4b. Line-to-line glue (§A.6) and the office (§B.2).
+ * ------------------------------------------------------------------ */
+
+/**
+ * Carry a noun (§A.6). When the block before mentions a prop the cards are
+ * tagged for — the ledger, the glass, the keys — the thought that follows it
+ * may open on that prop instead of on nothing. Six templates, used sparingly:
+ * the device works because it is rare, and a page that does it twice is a page
+ * doing a trick.
+ */
+export const CARRY_TEMPLATES: string[] = [
+  'The {noun} stayed open.',
+  'The {noun} was still where it had been.',
+  'Nobody had moved the {noun}.',
+  'I kept coming back to the {noun}.',
+  'That {noun} again.',
+  'The {noun} had not changed its mind about anything.',
+];
+
+/**
+ * The office at this hour, when `content/decks/office.json` is not on disk
+ * yet. Two lines, and the page says so in its gap log.
+ */
+export const OFFICE_LINES: string[] = [
+  'The office at midnight is two rooms and a transom that will not shut. I had the lamp on over the desk and nothing underneath it worth the current.',
+  'The rent was on the desk in an envelope I had not opened. The radiator had given up around ten and I had not argued with it.',
+];
+
+/** The client through the door, when `entrances.json` is not on disk yet. */
+export const ENTRANCE_LINES: string[] = [
+  '{name} came up the stairs slowly enough that I heard every one of them, and then stood in the doorway until I said to sit down.',
+  'The door went without a knock in front of it. {name} had been out on the landing a while, working up to the knock and then skipping it.',
+];
+
+/**
+ * The hiring, when `hiring.json` is not on disk yet. Both carry `{fact}` and
+ * `{retainer}`, because §B.2 asks that the player always know two things on
+ * page one: what the job is, and that they are being paid for it.
+ */
+export const HIRING_LINES: string[] = [
+  '“{fact}” The money came out after the words did: {retainer}, laid on the blotter like it settled the question. “I’ll look into it,” I said. “I don’t promise you what I find.”',
+  '“{fact}” {name} said it to the window rather than to me. {retainer} went on the desk between us and neither of us looked at it. I said I would take the work, and then I took it.',
+];
+
+/** The client leaving, with the address the detective can find them at after. */
+export const CLIENT_LEAVING: string[] = [
+  '“I’ll be at {place} if you want me.” {name} took the stairs faster going down than coming up.',
+  '{name} was finished talking. “{place}. That’s where I’ll be.” Then the door, and then the stairs, and then the street.',
+  'There was nothing else in {name} to get tonight. “{place},” on the way out, which is an address and a promise and neither one of them much.',
+];
+
+/** What the retainer looks like on the desk, by what kind of person paid it. */
+export const RETAINERS: Record<string, string> = {
+  working: 'twenty dollars',
+  professional: 'fifty dollars',
+  money: 'a hundred dollars',
+  underworld: 'a roll with a rubber band round it',
+  any: 'twenty dollars',
+};
+
+/** Where two rooms over a shop would be, in each of the twelve neighbourhoods. */
+export const OFFICE_STREETS: Record<string, string> = {
+  'the Tenderloin': 'West Twenty-Eighth Street',
+  'Hell’s Kitchen': 'Tenth Avenue',
+  Yorkville: 'East Eighty-Sixth Street',
+  'the Lower East Side': 'Rivington Street',
+  Chelsea: 'Eighth Avenue',
+  Harlem: 'Lenox Avenue',
+  'the Bowery': 'Great Jones Street',
+  Gramercy: 'Irving Place',
+  'the Gas House District': 'East Eighteenth Street',
+  'Greenwich Village': 'Bleecker Street',
+  'the Upper West Side': 'Columbus Avenue',
+  'Little Italy': 'Mulberry Street',
+};
+
+/** And what is downstairs from him. */
+export const OFFICE_TRADES: string[] = [
+  'a tailor’s',
+  'a printer’s',
+  'a locksmith’s',
+  'a hat shop',
+  'a Chinese laundry',
+  'a pawnshop',
+];
+
+/** Where each fixture stands, for the one-sentence presence roll (§A.4). */
+export const WATCHER_POSTS: Record<string, string> = {
+  bartender: 'behind the bar',
+  doorman: 'on the door',
+  newsstand: 'at the stand',
+  counterman: 'behind the counter',
+  'ticket-taker': 'in the booth',
+  'elevator-man': 'by the car',
+  landlady: 'in the hall',
+  'beat-cop': 'on the corner',
+  cabbie: 'on the stand',
+  druggist: 'behind the counter',
+};
+
+/** And where everybody else is standing, by what kind of room it is. */
+export const GUEST_POSTS: Record<string, string[]> = {
+  private: ['by the window', 'at the far end of the room'],
+  semi: ['at the far end', 'near the door'],
+  public: ['across the way', 'on the corner of it'],
+};

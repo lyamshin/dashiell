@@ -1,0 +1,265 @@
+[
+  {
+    "id": "hir-001",
+    "deck": "hiring",
+    "text": "{business} \"{fact}\" I named the fee. {retainer} went into the drawer without another word between us.",
+    "tags": {
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-002",
+    "deck": "hiring",
+    "text": "\"{fact}.\" That was the whole of it. I took {retainer} and didn't ask for more explaining than I'd been given.",
+    "tags": {
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-003",
+    "deck": "hiring",
+    "text": "{business} \"{fact}, and that's all I'll say on it.\" {retainer} went into my coat, folded once.",
+    "tags": {
+      "temper": "enigma",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money",
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-004",
+    "deck": "hiring",
+    "text": "\"{fact}, {detective}.\" {name} didn't waste breath explaining further. I took {retainer} the way I always did from {name}, without counting it.",
+    "tags": {
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-005",
+    "deck": "hiring",
+    "text": "{business} \"{fact}.\" Short, the way {name} always told it. {retainer} went into my pocket before {name} finished standing up.",
+    "tags": {
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-006",
+    "deck": "hiring",
+    "text": "\"{fact}. You know the rate.\" I did. I held out my hand, and {retainer} landed in it.",
+    "tags": {
+      "temper": "enigma",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "hands",
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-007",
+    "deck": "hiring",
+    "text": "{business} \"{fact}\" I asked what the trouble was worth to {name}. \"{retainer},\" {name} said, and counted it onto the blotter.",
+    "tags": {
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-008",
+    "deck": "hiring",
+    "text": "{business} \"{fact}\" I named {retainer} plainly, the way I'd name a price for anything else. {name} paid it without a blink.",
+    "tags": {
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-009",
+    "deck": "hiring",
+    "text": "\"{fact}\" {business} I took {retainer} and wrote {name}'s business into the notebook before either of us thought better of it.",
+    "tags": {
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "motifs": [
+      "paper",
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-010",
+    "deck": "hiring",
+    "text": "{business} \"{fact}\" {dashiell} {name} put {retainer} on the desk and waited for me to pick it up first.",
+    "tags": {
+      "temper": "plain",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-011",
+    "deck": "hiring",
+    "text": "{business} \"{fact}, {detective}.\" I skipped the usual formalities with {name}. {retainer} came out before I'd even named a figure.",
+    "tags": {
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-012",
+    "deck": "hiring",
+    "text": "\"{fact}. You remember how I work,\" {name} said. {dashiell} I took {retainer} the way I always had from {name}.",
+    "tags": {
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-013",
+    "deck": "hiring",
+    "text": "{business} \"{fact}\" {name} didn't argue the fee, same as last time. {retainer} went away without my checking it twice.",
+    "tags": {
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-014",
+    "deck": "hiring",
+    "text": "\"{fact}, {detective}.\" {business} {retainer} changed hands quick, the way it does between people who've done this before.",
+    "tags": {
+      "temper": "plain",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-015",
+    "deck": "hiring",
+    "text": "{business} \"{fact}\" and a good deal I hadn't asked for besides. I let {name} talk until {retainer} came up, and took it the moment it did.",
+    "tags": {
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-016",
+    "deck": "hiring",
+    "text": "\"{fact}\" {business} {name} kept talking well past the point where {retainer} had already changed hands.",
+    "tags": {
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-017",
+    "deck": "hiring",
+    "text": "{business} \"{fact}, and that's only the half of it.\" I took {retainer} early, before {name} could talk it back down.",
+    "tags": {
+      "temper": "yap",
+      "familiar": "no"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-018",
+    "deck": "hiring",
+    "text": "\"{fact}, {detective}, same as always,\" {name} said, and kept talking through the part where {retainer} landed on my desk. I picked it up without breaking {name}'s stride.",
+    "tags": {
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-019",
+    "deck": "hiring",
+    "text": "{business} \"{fact}\" {dashiell} {name} was still explaining when I pocketed {retainer}, which never once slowed {name} down.",
+    "tags": {
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hir-020",
+    "deck": "hiring",
+    "text": "\"{fact}, and here's the rest of it whether you asked or not,\" {name} said. I took {retainer} before {name} had gotten halfway through the second sentence.",
+    "tags": {
+      "temper": "yap",
+      "familiar": "yes"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  }
+]

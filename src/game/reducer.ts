@@ -36,7 +36,14 @@ import type { Block, Command, Page, Report, RunState, Thread, TopicRef } from '.
 import { EMPTY_REPORT } from './types.js';
 import { actionsLeft, isOver, minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
-import { claimedAccount, leadFor, peopleHere, threadsFor, topicKey } from './derive.js';
+import {
+  claimedAccount,
+  gameBudget,
+  leadFor,
+  peopleHereNow,
+  threadsFor,
+  topicKey,
+} from './derive.js';
 import { parse } from './parser.js';
 import {
   Dealer,
@@ -65,6 +72,26 @@ function dealerFor(state: RunState, persistedBurned: string[]): Dealer {
   return new Dealer(seed, state.burned, persistedBurned);
 }
 
+/** The client's own brief — why Dashiell was hired. Page one's `{fact}`. */
+export function clientClueOf(view: CaseView): Clue | null {
+  for (const id of view.kase.starting) {
+    const clue = view.findableById.get(id);
+    if (clue?.kind === 'client') return clue;
+  }
+  return null;
+}
+
+/**
+ * The report from the scene and the coroner's note. M3 handed these over on
+ * page one; M4b hands them over on the first arrival at the scene, free,
+ * because page one is now the office and a detective has not seen the body yet.
+ */
+export function sceneCluesOf(view: CaseView): Clue[] {
+  return view.kase.starting
+    .map((id) => view.findableById.get(id))
+    .filter((c): c is Clue => c !== undefined && c.kind !== 'client');
+}
+
 export function newRun(
   view: CaseView,
   opts: { detectiveName: string; persistedBurned?: string[] },
@@ -76,7 +103,8 @@ export function newRun(
     seed: kase.seed,
     difficulty: kase.difficulty,
     detectiveName: opts.detectiveName,
-    at: kase.solution.murderPlaceId,
+    // §B.2: the run starts at the office, at midnight.
+    at: view.office.id,
     actionsUsed: 0,
     found: [],
     threads: [],
@@ -91,11 +119,17 @@ export function newRun(
     volunteered: [],
     asideBands: [],
     portrayed: [],
+    appearances: {},
     theory: null,
     lastSimile: null,
+    previousMotifs: [],
+    clientInOffice: true,
+    clientAsks: 0,
+    sceneSeen: false,
   };
 
-  const found = kase.starting.slice();
+  const clientClue = clientClueOf(view);
+  const found = clientClue ? [clientClue.id] : [];
   const dealer = dealerFor(base, persisted);
   const composed = composePage(
     stageFor(base, view, dealer, {
@@ -104,11 +138,12 @@ export function newRun(
       foundAfter: found,
       accountsAfter: [],
       persisted,
+      clientHere: true,
     }),
-    { kind: 'open' },
+    { kind: 'open', clientClue },
   );
 
-  const here = peopleHere(view, base.at).map((p) => p.id);
+  const here = peopleHereNow(view, base.at, base).map((p) => p.id);
   const page: Page = {
     n: 0,
     head: view.placeById.get(base.at)?.shortName ?? kase.neighborhood,
@@ -118,6 +153,7 @@ export function newRun(
     found,
     at: base.at,
     gaps: composed.gaps,
+    imageMotifs: composed.imageMotifs,
   };
   const state: RunState = {
     ...base,
@@ -127,11 +163,20 @@ export function newRun(
     threads: makeThreads(view, found),
     asideBands: composed.asideBand ? [composed.asideBand] : [],
     portrayed: composed.portrayed,
+    appearances: countAppearances({}, composed.appeared),
     theory: composed.theory,
     lastSimile: composed.simileTarget,
+    previousMotifs: composed.motifs,
     log: [page],
   };
   return state;
+}
+
+/** How many pages each person has been portrayed on, for §A.6's callback. */
+function countAppearances(before: Record<Id, number>, appeared: Id[]): Record<Id, number> {
+  const out = { ...before };
+  for (const id of new Set(appeared)) out[id] = (out[id] ?? 0) + 1;
+  return out;
 }
 
 /** Everything the page grammar needs that is not the scene itself. */
@@ -145,9 +190,12 @@ function stageFor(
     foundAfter: Id[];
     accountsAfter: Id[];
     persisted: string[];
+    /** Whether the client is still in the office while this page happens. */
+    clientHere?: boolean;
   },
 ): Stage {
   const used = state.actionsUsed + at.cost;
+  const budget = gameBudget(view.kase);
   return {
     view,
     cast: state.cast,
@@ -155,19 +203,23 @@ function stageFor(
     detectiveName: state.detectiveName,
     at: at.at,
     cost: at.cost,
-    minutes: minutesAfter(used, view.kase.budget),
-    actionsLeft: actionsLeft(used, view.kase.budget),
+    minutes: minutesAfter(used, budget),
+    actionsLeft: actionsLeft(used, budget),
     foundBefore: state.found,
     foundAfter: at.foundAfter,
     accountsBefore: state.accounts,
     accountsAfter: at.accountsAfter,
     describedPlaces: describedPlaces(state),
     portrayed: state.portrayed,
+    appearances: state.appearances,
+    met: state.met,
     asideBands: state.asideBands,
     pageIndex: state.log.length,
     previousTheory: state.theory,
     lastSimile: state.lastSimile,
+    previousMotifs: state.previousMotifs,
     showedOff: showedOff([...state.burned, ...at.persisted]),
+    here: peopleHereNow(view, at.at, { clientInOffice: at.clientHere }),
   };
 }
 
@@ -266,8 +318,16 @@ export function step(
   let gaps: string[] = [];
   let asideBand: string | null = null;
   let portrayed: Id[] = [];
+  let appeared: Id[] = [];
+  let imageMotifs: string[][] = [];
   let theory = state.theory;
   let lastSimile = state.lastSimile;
+  let previousMotifs = state.previousMotifs;
+  // §B.2.4: the client is in the office until he is asked twice or walked out
+  // on, whichever comes first, and after that he is at his own address.
+  let clientInOffice = state.clientInOffice;
+  let clientAsks = state.clientAsks;
+  let sceneSeen = state.sceneSeen;
 
   switch (command.kind) {
     case 'look':
@@ -281,7 +341,23 @@ export function step(
       cost = 1;
       at = command.placeId;
       head = view.placeById.get(command.placeId)?.shortName ?? head;
-      scene = { kind: 'travel', to: command.placeId, already: false };
+      // The scene report and the coroner's note, on the first arrival, free.
+      const firstSight = at === view.sceneId && !state.sceneSeen;
+      const opening = firstSight
+        ? sceneCluesOf(view).filter((c) => !state.found.includes(c.id))
+        : [];
+      if (firstSight) sceneSeen = true;
+      gained = opening.map((c) => c.id);
+      // Walking out of the office ends the client's visit.
+      const leaves = state.at === view.office.id && clientInOffice;
+      if (leaves) clientInOffice = false;
+      scene = {
+        kind: 'travel',
+        to: command.placeId,
+        already: false,
+        ...(opening.length > 0 ? { openingClues: opening } : {}),
+        ...(leaves ? { clientLeaves: true } : {}),
+      };
       break;
     }
     case 'notebook':
@@ -317,7 +393,7 @@ export function step(
     }
     case 'ask': {
       const person = view.personById.get(command.personId);
-      const here = peopleHere(view, state.at).some((p) => p.id === command.personId);
+      const here = peopleHereNow(view, state.at, state).some((p) => p.id === command.personId);
       if (!person || !here) {
         // A mistake at the prompt. Free.
         scene = {
@@ -332,8 +408,19 @@ export function step(
         break;
       }
       cost = 1;
-      // The free first ask. Unearned slack, and it should feel like luck.
-      if (knowsHim(state.cast.roll, person.id) && !state.freeAsked.includes(person.id)) {
+      // §B.2.4: while the client is in the office, his first two questions are
+      // free. A man hiring you answers your questions. Like the free first ask
+      // this is slack handed to the player and never a shorter route, so it is
+      // counted as waived and par's accounting does not move.
+      const clientOnTheHouse =
+        clientInOffice && person.id === view.client.id && state.at === view.office.id && clientAsks < 2;
+      if (clientOnTheHouse) {
+        cost = 0;
+        waived = 1;
+        clientAsks += 1;
+        if (clientAsks >= 2) clientInOffice = false;
+      } else if (knowsHim(state.cast.roll, person.id) && !state.freeAsked.includes(person.id)) {
+        // The free first ask. Unearned slack, and it should feel like luck.
         cost = 0;
         waived = 1;
         freeAsked.push(person.id);
@@ -370,6 +457,7 @@ export function step(
         account,
         volunteer,
         free: waived === 1,
+        ...(clientOnTheHouse && !clientInOffice ? { clientLeaves: true } : {}),
       };
       break;
     }
@@ -386,6 +474,8 @@ export function step(
         foundAfter: found,
         accountsAfter,
         persisted: persistedBurned,
+        // The client is on the page he leaves on, and gone from the next one.
+        clientHere: state.clientInOffice,
       }),
       scene,
     );
@@ -393,14 +483,17 @@ export function step(
     gaps = composed.gaps;
     asideBand = composed.asideBand;
     portrayed = composed.portrayed;
+    appeared = composed.appeared;
     theory = composed.theory;
     // A page with no simile keeps the last one, so the page after it still
     // has something to avoid.
     lastSimile = composed.simileTarget ?? state.lastSimile;
+    previousMotifs = composed.motifs;
+    imageMotifs = composed.imageMotifs;
   }
 
   const actionsUsed = state.actionsUsed + cost;
-  const overNow = isOver(actionsUsed, kase.budget);
+  const overNow = isOver(actionsUsed, gameBudget(kase));
   if (cost > 0 && overNow && !state.reportOpen) {
     blocks.push({
       kind: 'note',
@@ -418,7 +511,7 @@ export function step(
       view,
       state.met,
       found,
-      peopleHere(view, at).map((p) => p.id),
+      peopleHereNow(view, at, { clientInOffice }).map((p) => p.id),
     ),
     accounts: accountsAfter,
     threads: makeThreads(view, found),
@@ -428,8 +521,13 @@ export function step(
     volunteered: [...state.volunteered, ...volunteered],
     asideBands: asideBand ? [...state.asideBands, asideBand] : state.asideBands,
     portrayed: [...new Set([...state.portrayed, ...portrayed])],
+    appearances: countAppearances(state.appearances, appeared),
     theory,
     lastSimile,
+    previousMotifs,
+    clientInOffice,
+    clientAsks,
+    sceneSeen,
   };
   const page: Page = {
     n: state.log.length,
@@ -440,6 +538,7 @@ export function step(
     found: gained,
     at,
     gaps,
+    imageMotifs,
   };
   next.log = [...state.log, page];
   return { state: next, page };
@@ -511,13 +610,19 @@ export function stepInput(
   view: CaseView,
   persistedBurned: string[] = [],
 ): StepResult {
-  const result = parse(view, state.at, raw);
+  const result = parse(
+    view,
+    state.at,
+    raw,
+    peopleHereNow(view, state.at, state).map((p) => p.id),
+  );
   if (result.ok) return step(state, result.command, view, persistedBurned);
 
   const problem = result.problem;
   const dealer = dealerFor(state, persistedBurned);
   const blocks: Block[] = [];
   let gaps: string[] = [];
+  let composedMotifs: string[][] = [];
   if (problem.kind === 'absent-person' || problem.kind === 'unknown-topic') {
     const person = problem.personId ? view.personById.get(problem.personId) : undefined;
     const composed = composePage(
@@ -527,6 +632,7 @@ export function stepInput(
         foundAfter: state.found,
         accountsAfter: state.accounts,
         persisted: persistedBurned,
+        clientHere: state.clientInOffice,
       }),
       {
         kind: 'nothing',
@@ -541,6 +647,7 @@ export function stepInput(
     );
     blocks.push(...composed.blocks);
     gaps = composed.gaps;
+    composedMotifs = composed.imageMotifs;
     if (problem.kind === 'absent-person' && person?.foundAt) {
       blocks.push({
         kind: 'note',
@@ -568,6 +675,7 @@ export function stepInput(
     found: [],
     at: state.at,
     gaps,
+    imageMotifs: composedMotifs,
   };
   const next: RunState = {
     ...state,

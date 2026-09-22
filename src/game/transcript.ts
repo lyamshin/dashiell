@@ -11,7 +11,7 @@ import { clock } from '../gen/types.js';
 import type { Id, Tick } from '../gen/types.js';
 import { clockAfter } from './clock.js';
 import type { CaseView } from './derive.js';
-import { accountRuns, claimedAccount, personName, spanLabel } from './derive.js';
+import { accountRuns, claimedAccount, gameBudget, personName, spanLabel } from './derive.js';
 import { buildNotebook } from './notebook.js';
 import { countWords } from './voice/page.js';
 import type { Verdict } from './scoring.js';
@@ -48,6 +48,9 @@ function renderBlock(block: Block, view: CaseView): string[] {
     case 'note':
       return [wrap(block.text)];
     case 'presence': {
+      // M4b §A.4: the engine writes the roll as one sentence so the book and
+      // this print the same words. The list is the pre-M4b fallback.
+      if (block.text) return [wrap(block.text)];
       if (block.personIds.length === 0) return [wrap(EMPTY_ROOM)];
       const names = block.personIds.map((id) => {
         const p = view.personById.get(id);
@@ -89,7 +92,7 @@ export function renderPageText(
   state: RunState,
   opts: TranscriptOptions = {},
 ): string {
-  const budget = view.kase.budget;
+  const budget = gameBudget(view.kase);
   const usedBy = state.log.slice(0, page.n + 1).reduce((n, p) => n + p.cost, 0);
   const rule = '─'.repeat(WIDTH);
   const head = `${page.head}${' '.repeat(
@@ -175,6 +178,7 @@ export function renderCastText(view: CaseView, state: RunState): string {
   const cast = state.cast;
   const out: string[] = ['THE ROLL', '═'.repeat(WIDTH), ''];
   out.push(`  ${state.detectiveName}: ${cast.roll.circumstance}, ${cast.roll.relationship}, ${cast.roll.weather} night.`);
+  out.push(`  The office: ${view.office.name}.`);
   const known = Object.entries(cast.roll.knows) as [Id, { how: string; warmth: number }][];
   if (known.length === 0) out.push('  Knows nobody in this neighbourhood.');
   for (const [id, acq] of known) {

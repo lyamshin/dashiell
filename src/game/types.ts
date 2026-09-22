@@ -97,7 +97,13 @@ export type ProseVoice =
  */
 export type Block =
   | { kind: 'prose'; text: string; voice: ProseVoice; clueId?: Id }
-  | { kind: 'presence'; personIds: Id[] }
+  /**
+   * Who is in the room. M4b §A.4 makes this one sentence — "Carbone and Mosley
+   * at the far end, Doyle behind the bar" — written by the engine so that the
+   * book and the transcript print the same words. `personIds` stays, because
+   * the book makes every name in it clickable.
+   */
+  | { kind: 'presence'; personIds: Id[]; text?: string }
   /** A person's own claimed account of the evening. */
   | { kind: 'timeline'; personId: Id; rows: { tick: number; placeId: Id | null }[] }
   | { kind: 'help' }
@@ -122,6 +128,12 @@ export interface Page {
    * hidden: this is the list the content team works from.
    */
   gaps: string[];
+  /**
+   * M4b §A.2. The motifs of the image-bearing blocks that survived the image
+   * budget, in page order. The coherence number — the mean count of motifs two
+   * adjacent image blocks share — is measured off this and nothing else.
+   */
+  imageMotifs: string[][];
 }
 
 export interface Report {
@@ -201,6 +213,30 @@ export interface RunState {
    * else. Four pages of "the room was ... as ..." is one page repeated.
    */
   lastSimile: string | null;
+
+  /* --------------------------------------------------- M4b: coherence */
+
+  /**
+   * How many pages each person has been portrayed on. The second meeting
+   * repeats the first meeting's detail once (§A.6's callback) and every one
+   * after that varies.
+   */
+  appearances: Record<Id, number>;
+  /**
+   * The motifs the previous page's cards carried (§A.2). A motif may carry
+   * across a page turn once; an echo of one that tonight is not about costs
+   * a card three points.
+   */
+  previousMotifs: string[];
+
+  /* ------------------------------------------------------ M4b: the office */
+
+  /** The client is in the chair. He leaves after two questions, or when we do. */
+  clientInOffice: boolean;
+  /** How many of the two questions on the house have been spent. */
+  clientAsks: number;
+  /** Whether the scene has been arrived at, and its report handed over. */
+  sceneSeen: boolean;
 }
 
 export const SAVE_KEY = 'dashiell:run';

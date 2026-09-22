@@ -189,7 +189,8 @@ describe('a mistake never costs an action', () => {
       expect(state.log.length).toBe(pages + 1);
     }
     expect(state.actionsUsed).toBe(before);
-    expect(state.found.length).toBe(view.kase.starting.length);
+    // M4b §B.2: page one hands over the client's brief and nothing else.
+    expect(state.found.length).toBe(1);
   });
 
   it('charges nothing for asking somebody who is not in the room', () => {

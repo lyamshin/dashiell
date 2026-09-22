@@ -6,7 +6,7 @@
 import { clock } from '../gen/types.js';
 import type { Id } from '../gen/types.js';
 import type { CaseView } from './derive.js';
-import { METHOD_POOL, MOTIVE_POOL, personName, placeName } from './derive.js';
+import { METHOD_POOL, MOTIVE_POOL, gamePar, personName, placeName } from './derive.js';
 import type { Report, RunState } from './types.js';
 import { Dealer, tagIs } from './voice/index.js';
 
@@ -102,7 +102,9 @@ export function scoreReport(view: CaseView, state: RunState, report: Report): Ve
     outcome,
     fields,
     actionsUsed: state.actionsUsed,
-    par: view.kase.par,
+    // M4b §B.3: the night is judged against the game's par, which is the
+    // case's plus the walk from the office.
+    par: gamePar(view.kase),
     closing: closingFor(view, state, fields, outcome, points),
   };
 }
@@ -131,7 +133,7 @@ function closingFor(
   // night went and by whether it beat par. It burns run to run like the
   // similes do, so a player who files four cases reads four last pages.
   const parDelta =
-    state.actionsUsed < kase.par ? 'under' : state.actionsUsed === kase.par ? 'at' : 'over';
+    state.actionsUsed < gamePar(kase) ? 'under' : state.actionsUsed === gamePar(kase) ? 'at' : 'over';
   const deckOutcome =
     outcome === 'solved' ? 'hanged' : outcome === 'thin' ? 'thin-case' : outcome;
   const dealer = new Dealer((kase.seed * 8191 + points) >>> 0, [], []);
@@ -160,7 +162,7 @@ function closingFor(
       out.push(
         `${killer} hangs in the spring. I am told it rained. Five out of five, and ${parLine(
           state.actionsUsed,
-          kase.par,
+          gamePar(kase),
         ).toLowerCase()}`,
       );
       break;
@@ -187,7 +189,7 @@ function closingFor(
       out.push(
         `A conviction, in the end, and everybody agrees not to talk about how. ${points} out of five. ${parLine(
           state.actionsUsed,
-          kase.par,
+          gamePar(kase),
         )}`,
       );
       break;

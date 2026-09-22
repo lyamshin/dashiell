@@ -28,6 +28,30 @@ const SCHEMA_PATH = join(ROOT, 'content', 'deck-schema.json');
 
 const schema = JSON.parse(readFileSync(SCHEMA_PATH, 'utf8'));
 
+/**
+ * M4b §A.2 — a vocabulary too long to keep in two places lives in its own
+ * file, and the schema says which. `content/motifs.json` is the only one so
+ * far: seventy words in seven groups, and it is closed. A word outside it is
+ * an error and not a warning, because scoring on a word nothing else uses is
+ * scoring on nothing.
+ */
+for (const [name, file] of Object.entries(schema.vocabFiles ?? {})) {
+  const path = join(ROOT, 'content', file);
+  const loaded = JSON.parse(readFileSync(path, 'utf8'));
+  schema.vocab[name] = Object.values(loaded.groups ?? {}).flat();
+}
+const MOTIF_VOCAB = new Set(schema.vocab.motifs ?? []);
+const MOTIF_MAX = schema.commonFields?.motifs?.max ?? 3;
+const WEATHER_VALUES = new Set([
+  ...(schema.vocab.weather ?? []),
+  ...(schema.commonFields?.weather?.extraValues ?? []),
+]);
+
+/** A deck's tags, with the schema's `commonTags` underneath its own. */
+function tagsOf(deckName) {
+  return { ...(schema.commonTags ?? {}), ...schema.decks[deckName].tags };
+}
+
 /* ------------------------------------------------------------------ args */
 
 const argv = process.argv.slice(2);
@@ -80,7 +104,7 @@ function decksToCheck() {
 /* ---------------------------------------------------------------- schema */
 
 function allowedValues(deckName, tagName) {
-  const tag = schema.decks[deckName].tags[tagName];
+  const tag = tagsOf(deckName)[tagName];
   const out = [];
   if (tag.vocab) out.push(...schema.vocab[tag.vocab]);
   if (tag.values) out.push(...tag.values);
@@ -91,9 +115,10 @@ function allowedValues(deckName, tagName) {
 /** Every tag value on a card, with legacy names folded onto modern ones. */
 function readTags(deckName, card) {
   const spec = schema.decks[deckName];
+  void spec;
   const raw = card.tags && typeof card.tags === 'object' ? card.tags : {};
   const out = {};
-  for (const [tagName, tag] of Object.entries(spec.tags)) {
+  for (const [tagName, tag] of Object.entries(tagsOf(deckName))) {
     let value = raw[tagName];
     if (value === undefined && tag.alias !== undefined) value = raw[tag.alias];
     if (value === undefined && tag.default !== undefined) value = tag.default;
@@ -129,9 +154,17 @@ function validateDeck(deckName, path) {
     thin: [],
     cells: 0,
     filled: 0,
+    /** M4b §A.2 coverage: how many cards carry a motif, and which. */
+    tagged: 0,
+    motifCounts: {},
+    unusedMotifs: [],
   };
   if (!report.exists) {
-    report.errors.push(`${spec.file} does not exist yet`);
+    // M4b §B.4's three decks are written on another branch. The engine is
+    // required to run without them and falls back to a hand-written line, so
+    // a missing optional deck is a gap and never fatal.
+    if (spec.optional) report.gaps.push(`${spec.file} is not written yet`);
+    else report.errors.push(`${spec.file} does not exist yet`);
     return report;
   }
 
@@ -195,7 +228,39 @@ function validateDeck(deckName, path) {
       report.errors.push(`${where}: missing tags`);
       return;
     }
-    for (const [tagName, tag] of Object.entries(spec.tags)) {
+    /* M4b: motifs and weather are top-level fields beside `tags`, and are
+     * read from inside `tags` too so that a deck written the other way still
+     * validates and still scores. */
+    const rawMotifs = card.motifs !== undefined ? card.motifs : raw.motifs;
+    if (rawMotifs !== undefined) {
+      if (!Array.isArray(rawMotifs)) {
+        report.errors.push(`${where}: motifs is not an array`);
+      } else {
+        if (rawMotifs.length > MOTIF_MAX) {
+          report.errors.push(
+            `${where}: ${rawMotifs.length} motifs; one to ${MOTIF_MAX} is the rule`,
+          );
+        }
+        for (const m of rawMotifs) {
+          if (typeof m !== 'string' || !MOTIF_VOCAB.has(m)) {
+            report.errors.push(
+              `${where}: motif ${JSON.stringify(m)} is not in content/motifs.json`,
+            );
+            continue;
+          }
+          report.motifCounts[m] = (report.motifCounts[m] ?? 0) + 1;
+        }
+        if (rawMotifs.length > 0) report.tagged++;
+      }
+    }
+    const rawWeather = card.weather !== undefined ? card.weather : raw.weather;
+    if (rawWeather !== undefined && !WEATHER_VALUES.has(rawWeather)) {
+      report.errors.push(
+        `${where}: weather = ${JSON.stringify(rawWeather)} is not one of ${[...WEATHER_VALUES].join(' | ')}`,
+      );
+    }
+
+    for (const [tagName, tag] of Object.entries(tagsOf(deckName))) {
       const present = raw[tagName] !== undefined ? raw[tagName] : raw[tag.alias];
       if (present === undefined) {
         if (tag.required) report.errors.push(`${where}: missing required tag "${tagName}"`);
@@ -212,9 +277,11 @@ function validateDeck(deckName, path) {
       }
     }
     const optional = schema.common.optionalTags ?? {};
+    const deckTags = tagsOf(deckName);
     for (const tagName of Object.keys(raw)) {
-      if (spec.tags[tagName]) continue;
-      if (Object.values(spec.tags).some((t) => t.alias === tagName)) continue;
+      if (deckTags[tagName]) continue;
+      if (tagName === 'motifs' || tagName === 'weather') continue;
+      if (Object.values(deckTags).some((t) => t.alias === tagName)) continue;
       if (optional[tagName]) {
         if (!optional[tagName].values.includes(raw[tagName])) {
           report.errors.push(`${where}: ${tagName} = ${JSON.stringify(raw[tagName])} is out of range`);
@@ -307,6 +374,7 @@ function validateDeck(deckName, path) {
     }
   }
 
+  report.unusedMotifs = [...MOTIF_VOCAB].filter((m) => report.motifCounts[m] === undefined);
   return report;
 }
 
@@ -335,9 +403,18 @@ if (flags.has('json')) {
   }
   lines.push('');
   for (const r of reports) {
-    const head = `${r.deck} — ${r.filled}/${r.cells} tag combinations covered`;
+    const motifs = r.count === 0 ? '' : `, ${r.tagged}/${r.count} cards tagged with motifs`;
+    const head = `${r.deck} — ${r.filled}/${r.cells} tag combinations covered${motifs}`;
     if (r.errors.length === 0 && r.gaps.length === 0 && r.thin.length === 0 && quiet) continue;
     lines.push(head);
+    if (!quiet && r.count > 0) {
+      const top = Object.entries(r.motifCounts)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .slice(0, 8)
+        .map(([m, n]) => `${m} ${n}`)
+        .join(', ');
+      lines.push(`  motifs  ${top.length > 0 ? top : 'none — this deck has not been tagged yet'}`);
+    }
     if (r.legacy) lines.push(`  legacy: ${r.legacy}`);
     for (const e of r.errors) lines.push(`  ERROR   ${e}`);
     // One line per kind of warning, however many cards raised it: a legacy
@@ -361,10 +438,19 @@ if (flags.has('json')) {
   const errors = reports.reduce((n, r) => n + r.errors.length, 0);
   const gaps = reports.reduce((n, r) => n + r.gaps.length, 0);
   const cards = reports.reduce((n, r) => n + r.count, 0);
+  const tagged = reports.reduce((n, r) => n + r.tagged, 0);
+  const usedMotifs = new Set();
+  for (const r of reports) for (const m of Object.keys(r.motifCounts)) usedMotifs.add(m);
   lines.push(
     `${cards} cards across ${reports.length} decks · ${errors} error${
       errors === 1 ? '' : 's'
     } · ${gaps} empty tag combination${gaps === 1 ? '' : 's'}`,
+  );
+  lines.push(
+    `motifs: ${tagged} of ${cards} cards tagged · ${usedMotifs.size} of ${MOTIF_VOCAB.size} ` +
+      `vocabulary words used${
+        usedMotifs.size === 0 ? ' — nothing scores until the tagging pass lands' : ''
+      }`,
   );
   process.stdout.write(lines.join('\n') + '\n');
 }

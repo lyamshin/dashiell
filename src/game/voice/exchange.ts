@@ -25,6 +25,7 @@ import type { Tick } from '../../gen/types.js';
 import type { CastSheet, Temper } from './cast.js';
 import { genderHintOf, temperOf } from './cast.js';
 import { Dealer, SCHEMA, tagIs, tagOf, type Card, type Slots } from './cards.js';
+import type { MotifContext } from './motifs.js';
 import { beatsOf, findKindOf, strippedQuote, type Beat } from './facts.js';
 import { knowsHim } from './roll.js';
 import { COLOUR_LINES, RECORD_LEADS } from '../voice-data.js';
@@ -213,7 +214,8 @@ export function businessLine(
   slots: Slots,
   exclude: ReadonlySet<string> = new Set(),
   gaps?: string[],
-): { text: string; cardId: string } | null {
+  ctx?: MotifContext,
+): { text: string; cardId: string; motifs: string[] } | null {
   const role = person?.fixtureRole ?? 'suspect';
   const gender = person ? genderHintOf(person) : 'any';
   // Gender is a filter and not a rung: a card that says "she" is wrong on a
@@ -237,12 +239,13 @@ export function businessLine(
     ],
     slots,
     true,
+    ctx,
   );
   if (!drawn) {
     gaps?.push(`no-business: ${role} × ${temper} × ${gender} has no card of its own to deal`);
     return null;
   }
-  return { text: drawn.text, cardId: drawn.cardId };
+  return { text: drawn.text, cardId: drawn.cardId, motifs: drawn.motifs };
 }
 
 export interface Answer {

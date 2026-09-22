@@ -16,8 +16,8 @@
 import type { Clue, Id, Tick } from '../gen/types.js';
 import { Rng } from '../gen/rng.js';
 import type { CaseView } from './derive.js';
-import { establishedFrom, leadFor } from './derive.js';
-import { newRun, stepInput } from './reducer.js';
+import { establishedFrom, gameBudget, gamePar, leadFor } from './derive.js';
+import { newRun, sceneCluesOf, stepInput } from './reducer.js';
 import { leadingTheory } from './voice/reactive.js';
 import type { Report, RunState } from './types.js';
 
@@ -85,6 +85,8 @@ function groupsFor(view: CaseView, wanted: Clue[]): Group[] {
 function plan(view: CaseView, from: Id, groups: Group[]): string[] | null {
   if (groups.length === 0) return [];
   if (groups.length > 22) return null;
+  // The office is never worth walking to: nothing findable is in it, and a
+  // route through it is a route one action longer than the same route without.
   const places = view.kase.places.map((p) => p.id);
   const start = Math.max(0, places.indexOf(from));
   const n = groups.length;
@@ -149,18 +151,26 @@ export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleRe
   const kase = view.kase;
   let state = newRun(view, { detectiveName });
   const spine = kase.findable.filter((c) => c.role === 'spine');
-  const wanted = spine.filter((c) => !state.found.includes(c.id));
+  // M4b §B.2: the night opens at the office, the client's brief is already in
+  // hand, and the scene report and the coroner's note are handed over free on
+  // the first arrival at the scene. So the oracle's first action is `go
+  // <scene>` — which is the one action §B.3 adds to par — and it plans the
+  // rest of the route from the scene, exactly as `computePar` does.
+  const free = new Set(sceneCluesOf(view).map((c) => c.id));
+  const wanted = spine.filter((c) => !state.found.includes(c.id) && !free.has(c.id));
   const steps: OracleStep[] = [];
 
-  const script = plan(view, state.at, groupsFor(view, wanted));
+  const toTheScene = `go ${view.placeById.get(view.sceneId)?.shortName ?? ''}`;
+  const rest = plan(view, view.sceneId, groupsFor(view, wanted));
+  const script = rest === null ? null : [toTheScene, ...rest];
   const fail = (reason: string): OracleResult => ({
     ok: false,
     reason,
     actions: state.actionsUsed + state.waived,
     spent: state.actionsUsed,
     waived: state.waived,
-    par: kase.par,
-    budget: kase.budget,
+    par: gamePar(kase),
+    budget: gameBudget(kase),
     steps,
     missing: spine.filter((c) => !state.found.includes(c.id)).map((c) => c.id),
     state,
@@ -184,7 +194,8 @@ export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleRe
   const missing = spine.filter((c) => !state.found.includes(c.id)).map((c) => c.id);
   const actions = state.actionsUsed + state.waived;
   if (missing.length > 0) return fail('the script ran out before the spine did');
-  if (actions > kase.par) return fail(`took ${actions} actions against a par of ${kase.par}`);
+  const par = gamePar(kase);
+  if (actions > par) return fail(`took ${actions} actions against a par of ${par}`);
 
   return {
     ok: true,
@@ -192,8 +203,8 @@ export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleRe
     actions,
     spent: state.actionsUsed,
     waived: state.waived,
-    par: kase.par,
-    budget: kase.budget,
+    par,
+    budget: gameBudget(kase),
     steps,
     missing: [],
     state,
@@ -237,7 +248,7 @@ export function playWandering(
   };
 
   let guard = 0;
-  while (state.actionsUsed < kase.budget && guard++ < 80) {
+  while (state.actionsUsed < gameBudget(kase) && guard++ < 80) {
     const here = state.threads.filter((t) => t.placeId === state.at);
     const elsewhere = state.threads.filter((t) => t.placeId !== state.at);
     let command: string | null = null;
@@ -262,7 +273,7 @@ export function playWandering(
       );
       command = unsearched
         ? 'examine'
-        : `go ${rng.pick(kase.places.filter((p) => p.id !== state.at)).shortName}`;
+        : `go ${rng.pick(view.places.filter((p) => p.id !== state.at)).shortName}`;
     }
 
     const result = stepInput(state, command, view);

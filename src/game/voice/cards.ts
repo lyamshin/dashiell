@@ -18,6 +18,12 @@
 
 import { Rng } from '../../gen/rng.js';
 import { tidyPunctuation } from './prose.js';
+import {
+  MOTIFS,
+  readMotifs,
+  scoreMotifs,
+  type MotifContext,
+} from './motifs.js';
 import schemaJson from '../../../content/deck-schema.json';
 import similesJson from '../../../content/decks/similes.json';
 import placesJson from '../../../content/decks/places.json';
@@ -33,6 +39,9 @@ import transitionsJson from '../../../content/decks/transitions.json';
 import ambientJson from '../../../content/decks/ambient.json';
 import asidesJson from '../../../content/decks/asides.json';
 import endingsJson from '../../../content/decks/endings.json';
+import officeJson from '../../../content/decks/office.json';
+import entrancesJson from '../../../content/decks/entrances.json';
+import hiringJson from '../../../content/decks/hiring.json';
 
 export type DeckName =
   | 'similes'
@@ -48,7 +57,11 @@ export type DeckName =
   | 'asides'
   | 'places'
   | 'endings'
-  | 'witness';
+  | 'witness'
+  /* M4b §B.4. Written on the content branch; absent decks deal nothing. */
+  | 'office'
+  | 'entrances'
+  | 'hiring';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -58,7 +71,20 @@ export interface Card {
   id: string;
   deck: string;
   text: string;
-  tags: Record<string, TagValue>;
+  /**
+   * Per-deck tags, plus `gender` (§A.3), which M4b adds to every deck and
+   * which lives inside `tags` because that is where the business deck has had
+   * it since M4 and because the dealer matches on it like any other tag.
+   */
+  tags: Record<string, TagValue | TagValue[]>;
+  /**
+   * M4b §A.2 and §A.5, both **top-level** fields beside `tags` rather than
+   * inside it: a list is not something the dealer can match on, and the night
+   * excludes a card outright rather than ranking it. `tags.motifs` and
+   * `tags.weather` are read too, so a deck written the other way still scores.
+   */
+  motifs?: string[];
+  weather?: string;
   avoidNear?: string[];
   status: string;
   notes?: string;
@@ -71,6 +97,8 @@ interface TagSpec {
   vocab?: string;
   values?: TagValue[];
   extraValues?: TagValue[];
+  /** A tag whose value is a list of vocabulary words rather than one word. */
+  list?: boolean;
 }
 
 interface DeckSpec {
@@ -91,11 +119,24 @@ interface DeckSpec {
 
 interface Schema {
   common: { slots: string[]; statuses: string[]; optionalTags: Record<string, { values: TagValue[] }> };
+  /** M4b: the three tags every deck carries. Merged under each deck's own. */
+  commonTags?: Record<string, TagSpec>;
   vocab: Record<string, TagValue[]>;
   decks: Record<string, DeckSpec>;
 }
 
 export const SCHEMA = schemaJson as unknown as Schema;
+
+/**
+ * A deck's tags, with the schema's `commonTags` underneath its own. `motifs`,
+ * `weather` and `gender` belong to every deck now; a deck that already
+ * declares one of them — `arrivals.weather` is required, `portraits.gender`
+ * is — keeps its own stricter spec.
+ */
+export function tagSpecs(deck: DeckName): Record<string, TagSpec> {
+  const own = SCHEMA.decks[deck]?.tags ?? {};
+  return { ...(SCHEMA.commonTags ?? {}), ...own };
+}
 
 const RAW: Record<DeckName, unknown> = {
   similes: similesJson,
@@ -112,7 +153,14 @@ const RAW: Record<DeckName, unknown> = {
   ambient: ambientJson,
   asides: asidesJson,
   endings: endingsJson,
+  office: officeJson,
+  entrances: entrancesJson,
+  hiring: hiringJson,
 };
+
+/** Which of §B.4's three decks were not on disk. The opening says so. */
+/** The three M4b decks are on disk now and imported like the rest; nothing is missing. */
+export const MISSING_DECKS: readonly DeckName[] = [];
 
 export const DECK_NAMES = Object.keys(RAW) as DeckName[];
 
@@ -127,6 +175,31 @@ for (const name of DECK_NAMES) for (const card of DECKS[name]) CARD_DECK.set(car
 
 export function deckOf(cardId: string): DeckName | null {
   return CARD_DECK.get(cardId) ?? null;
+}
+
+/**
+ * Swap a deck's contents for the length of one call, and put them back.
+ *
+ * The only reason this exists: M4b forbids touching `content/decks/`, and the
+ * motif scoring (§A.2) cannot be shown to work against decks that are not
+ * tagged yet. A test builds a small tagged deck inline, runs the engine on it
+ * and measures. Nothing in `src/` calls it.
+ */
+export function withDecks<T>(decks: Partial<Record<DeckName, Card[]>>, fn: () => T): T {
+  const saved: Partial<Record<DeckName, Card[]>> = {};
+  for (const [name, cards] of Object.entries(decks) as [DeckName, Card[]][]) {
+    saved[name] = DECKS[name].slice();
+    DECKS[name].splice(0, DECKS[name].length, ...cards);
+    for (const card of cards) CARD_DECK.set(card.id, name);
+  }
+  try {
+    return fn();
+  } finally {
+    for (const [name, cards] of Object.entries(saved) as [DeckName, Card[]][]) {
+      DECKS[name].splice(0, DECKS[name].length, ...cards);
+      for (const card of cards) CARD_DECK.set(card.id, name);
+    }
+  }
 }
 
 export function burnTier(deck: DeckName): BurnTier {
@@ -153,11 +226,24 @@ export const CROSS_RUN_TOTAL = DECK_NAMES.filter((d) => burnTier(d) === 'run-to-
  * reads back as `any`.
  */
 export function tagOf(deck: DeckName, card: Card, name: string): TagValue | undefined {
-  const spec = SCHEMA.decks[deck]?.tags[name];
-  const direct = card.tags[name];
+  const spec = tagSpecs(deck)[name];
+  const direct = scalar(card.tags[name]);
   if (direct !== undefined) return direct;
-  if (spec?.alias !== undefined && card.tags[spec.alias] !== undefined) return card.tags[spec.alias];
+  if (spec?.alias !== undefined) {
+    const aliased = scalar(card.tags[spec.alias]);
+    if (aliased !== undefined) return aliased;
+  }
   return spec?.default;
+}
+
+/** A list-valued tag is not a tag you can compare. `motifsOf` reads those. */
+function scalar(value: TagValue | TagValue[] | undefined): TagValue | undefined {
+  return Array.isArray(value) ? undefined : value;
+}
+
+/** The motifs on a card (§A.2), from `tags.motifs` or the top-level field. */
+export function motifsOf(card: Card): string[] {
+  return readMotifs(card);
 }
 
 /** Match a tag, treating "any" on the card as a wildcard. */
@@ -198,6 +284,10 @@ export interface Drawn {
   text: string;
   cardId: string;
   deck: DeckName;
+  /** The card's motifs, so the page can thread the next block onto them. */
+  motifs: string[];
+  /** What §A.2 scored it at, for the image budget's trim (§A.1). */
+  score: number;
 }
 
 export type Match = (card: Card) => boolean;
@@ -236,12 +326,12 @@ export class Dealer {
     }
   }
 
-  private take(deck: DeckName, card: Card, slots: Slots): Drawn | null {
+  private take(deck: DeckName, card: Card, slots: Slots, score: number): Drawn | null {
     const text = fill(card, slots);
     if (text === null) return null;
     this.run.add(card.id);
     this.spent.push(card.id);
-    return { text, cardId: card.id, deck };
+    return { text, cardId: card.id, deck, motifs: motifsOf(card), score };
   }
 
   /**
@@ -249,24 +339,46 @@ export class Dealer {
    * widest. Nothing repeats until the deck's whole pool is spent, at which
    * point it reshuffles — M3's lesson: widen all the way to the deck before
    * reaching back for a card already read.
+   *
+   * M4b §A.2 adds closeness on top of the tag match, which stays the hard
+   * filter: inside one rung of the ladder the cards are ordered by their motif
+   * score, and a card whose weather contradicts the night is not in the rung
+   * at all. Ties are broken by the seeded shuffle exactly as before, so the
+   * same seed is still the same night.
    */
-  draw(deck: DeckName, matches: Match[], slots: Slots = {}, strict = false): Drawn | null {
+  draw(
+    deck: DeckName,
+    matches: Match[],
+    slots: Slots = {},
+    strict = false,
+    ctx?: MotifContext,
+  ): Drawn | null {
     const pool = DECKS[deck] ?? [];
     if (pool.length === 0) return null;
     // `strict` refuses the last widening step. A frame with the wrong register
     // still carries the fact and is worth having; an utterance for the wrong
     // fact kind is a lie, so the utterance deck is always drawn strictly.
     const ladder: Match[] = strict ? [...matches] : [...matches, () => true];
+    const scoreOf = (card: Card): number =>
+      ctx ? scoreMotifs(motifsOf(card), card, ctx) : 0;
+    /** Best first: score, then a card this run has not read yet. */
+    const order = (cards: Card[]): { card: Card; score: number }[] =>
+      this.rng
+        .shuffle(cards)
+        .map((card) => ({ card, score: scoreOf(card) }))
+        .filter((c) => c.score !== -Infinity)
+        .sort(
+          (a, b) =>
+            b.score - a.score || Number(this.run.has(a.card.id)) - Number(this.run.has(b.card.id)),
+        );
+
     for (const match of ladder) {
       const fresh = pool.filter((c) => match(c) && !this.burned(deck, c.id));
       // A `free` deck may repeat, but it should not repeat while anything
       // else fits: within a page and within a run, prefer what has not been
       // dealt yet. Transitions and business are furniture, not wallpaper.
-      const shuffled = this.rng
-        .shuffle(fresh)
-        .sort((a, b) => Number(this.run.has(a.id)) - Number(this.run.has(b.id)));
-      for (const card of shuffled) {
-        const drawn = this.take(deck, card, slots);
+      for (const { card, score } of order(fresh)) {
+        const drawn = this.take(deck, card, slots, score);
         if (drawn) return drawn;
       }
     }
@@ -277,8 +389,8 @@ export class Dealer {
     for (const match of ladder) {
       const all = pool.filter(match);
       if (all.length === 0) continue;
-      for (const card of this.rng.shuffle(all)) {
-        const drawn = this.take(deck, card, slots);
+      for (const { card, score } of order(all)) {
+        const drawn = this.take(deck, card, slots, score);
         if (drawn) {
           this.reshuffles.add(deck);
           return drawn;
@@ -295,9 +407,14 @@ export class Dealer {
     return out;
   }
 
-  /** Look without spending: does anything unburned fit? */
-  has(deck: DeckName, match: Match): boolean {
-    return (DECKS[deck] ?? []).some((c) => match(c) && !this.burned(deck, c.id));
+  /** Look without spending: does anything unburned fit, and suit the night? */
+  has(deck: DeckName, match: Match, ctx?: MotifContext): boolean {
+    return (DECKS[deck] ?? []).some(
+      (c) =>
+        match(c) &&
+        !this.burned(deck, c.id) &&
+        (!ctx || scoreMotifs(motifsOf(c), c, ctx) !== -Infinity),
+    );
   }
 }
 
@@ -316,10 +433,14 @@ export interface DeckReport {
   gaps: string[];
   cells: number;
   filled: number;
+  /** M4b §A.2: how many of this deck's cards carry at least one motif. */
+  tagged: number;
+  /** Which motifs this deck uses at all, most used first. */
+  motifsUsed: { motif: string; count: number }[];
 }
 
 function allowedValues(deck: DeckName, tagName: string): TagValue[] {
-  const spec = SCHEMA.decks[deck]?.tags[tagName];
+  const spec = tagSpecs(deck)[tagName];
   if (!spec) return [];
   const out: TagValue[] = [];
   if (spec.vocab) out.push(...(SCHEMA.vocab[spec.vocab] ?? []));
@@ -335,16 +456,47 @@ export function validateDecks(): DeckReport[] {
     const errors: string[] = [];
     const byStatus: Record<string, number> = {};
     const seen = new Set<string>();
-    const knownSlots = new Set([...SCHEMA.common.slots, ...(spec.slots ?? [])]);
+    const knownSlots = new Set([...SCHEMA.common.slots, ...(spec?.slots ?? [])]);
+    const specTags = tagSpecs(deck);
+    const motifCount = new Map<string, number>();
+    let tagged = 0;
 
     for (const card of cards) {
       byStatus[card.status] = (byStatus[card.status] ?? 0) + 1;
       if (seen.has(card.id)) errors.push(`${card.id}: duplicate id`);
       seen.add(card.id);
-      if (!spec.deckValues.includes(card.deck)) errors.push(`${card.id}: deck "${card.deck}"`);
+      if (spec && !spec.deckValues.includes(card.deck)) errors.push(`${card.id}: deck "${card.deck}"`);
       if (!SCHEMA.common.statuses.includes(card.status))
         errors.push(`${card.id}: status "${card.status}"`);
-      for (const [tagName, tagSpec] of Object.entries(spec.tags)) {
+
+      /* The motif vocabulary is closed (§A.2): a word outside it is an error,
+       * never a warning, because a vocabulary that grows to fit the cards
+       * stops being one and the scoring stops meaning anything. */
+      const rawWeather = card.weather ?? card.tags.weather;
+      if (
+        typeof rawWeather === 'string' &&
+        !['clear', 'rain', 'fog', 'cold', 'any'].includes(rawWeather)
+      ) {
+        errors.push(`${card.id}: weather = ${rawWeather}`);
+      }
+      const rawMotifs = card.motifs ?? card.tags.motifs;
+      if (rawMotifs !== undefined) {
+        const words = Array.isArray(rawMotifs)
+          ? rawMotifs.map((w) => String(w))
+          : String(rawMotifs).split(/[,\s]+/).filter((w) => w.length > 0);
+        for (const word of words) {
+          if (!MOTIFS.has(word.trim().toLowerCase()))
+            errors.push(`${card.id}: motif "${word}" is not in content/motifs.json`);
+        }
+        if (words.length > 3)
+          errors.push(`${card.id}: ${words.length} motifs; one to three is the rule`);
+      }
+      const motifs = motifsOf(card);
+      if (motifs.length > 0) tagged++;
+      for (const m of motifs) motifCount.set(m, (motifCount.get(m) ?? 0) + 1);
+
+      for (const [tagName, tagSpec] of Object.entries(specTags)) {
+        if (tagSpec.list) continue;
         const value = tagOf(deck, card, tagName);
         if (value === undefined) {
           if (tagSpec.required) errors.push(`${card.id}: missing tag "${tagName}"`);
@@ -356,7 +508,7 @@ export function validateDecks(): DeckReport[] {
       for (const slot of slotsOf(card)) {
         if (!knownSlots.has(slot)) errors.push(`${card.id}: slot {${slot}}`);
       }
-      for (const slot of spec.requiredSlots ?? []) {
+      for (const slot of spec?.requiredSlots ?? []) {
         if (!card.text.includes(`{${slot}}`)) errors.push(`${card.id}: needs {${slot}}`);
       }
     }
@@ -364,7 +516,10 @@ export function validateDecks(): DeckReport[] {
     const gaps: string[] = [];
     let cells = 0;
     let filled = 0;
-    for (const tuple of spec.coverage ?? []) {
+    if (MISSING_DECKS.includes(deck)) {
+      gaps.push(`the deck file is not on disk yet; the engine falls back and logs the gap`);
+    }
+    for (const tuple of spec?.coverage ?? []) {
       const axes = tuple.map((name) => ({
         name,
         values: allowedValues(deck, name).filter((v) => v !== 'any'),
@@ -386,13 +541,17 @@ export function validateDecks(): DeckReport[] {
     return {
       deck,
       count: cards.length,
-      target: spec.target ?? null,
-      burn: spec.burn,
+      target: spec?.target ?? null,
+      burn: spec?.burn ?? 'free',
       byStatus,
       errors,
       gaps,
       cells,
       filled,
+      tagged,
+      motifsUsed: [...motifCount.entries()]
+        .map(([motif, count]) => ({ motif, count }))
+        .sort((a, b) => b.count - a.count || a.motif.localeCompare(b.motif)),
     };
   });
 }

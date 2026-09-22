@@ -18,6 +18,7 @@ import {
   accountRuns,
   claimedAccount,
   establishedFrom,
+  gameBudget,
   personName,
   placeName,
   spanLabel,
@@ -153,7 +154,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
       };
     });
 
-  const places: NotebookPlace[] = kase.places.map((pl) => ({
+  const places: NotebookPlace[] = view.places.map((pl) => ({
     id: pl.id,
     shortName: pl.shortName,
     name: pl.name,
@@ -210,10 +211,10 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
 
   return {
     clock: {
-      time: clockAfter(state.actionsUsed, kase.budget),
-      actionsLeft: actionsLeft(state.actionsUsed, kase.budget),
-      budget: kase.budget,
-      perAction: minutesPerAction(kase.budget),
+      time: clockAfter(state.actionsUsed, gameBudget(kase)),
+      actionsLeft: actionsLeft(state.actionsUsed, gameBudget(kase)),
+      budget: gameBudget(kase),
+      perAction: minutesPerAction(gameBudget(kase)),
     },
     people,
     places,

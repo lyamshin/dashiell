@@ -8,6 +8,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "counter"
+    ],
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range bus-pNNN; the content deck uses BUS-NNN. Role was \"any\", but the prop is the role: this is a counterman’s counter, not anybody’s."
   },
@@ -20,6 +23,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "cigarette"
+    ],
     "status": "placeholder"
   },
   {
@@ -31,6 +37,10 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "ledger",
+      "hands"
+    ],
     "status": "placeholder",
     "notes": "Role was \"any\", but the prop is the role: this is a landlady’s counter, not anybody’s."
   },
@@ -43,6 +53,9 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "glass"
+    ],
     "status": "placeholder",
     "notes": "Role was \"any\", but the prop is the role: this is a bartender’s counter, not anybody’s."
   },
@@ -55,6 +68,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "placeholder"
   },
   {
@@ -66,6 +82,10 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "hat",
+      "hands"
+    ],
     "status": "placeholder"
   },
   {
@@ -77,6 +97,10 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "door",
+      "hands"
+    ],
     "status": "placeholder"
   },
   {
@@ -88,6 +112,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -99,6 +124,9 @@
       "temper": "any",
       "gender": "any"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "placeholder"
   },
   {
@@ -110,6 +138,9 @@
       "temper": "any",
       "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "placeholder"
   },
   {
@@ -121,6 +152,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "bar"
+    ],
     "status": "generated"
   },
   {
@@ -132,6 +166,10 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "glass",
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -143,6 +181,10 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "hands",
+      "bar"
+    ],
     "status": "generated"
   },
   {
@@ -154,6 +196,10 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "drink",
+      "shoulders"
+    ],
     "status": "generated"
   },
   {
@@ -165,6 +211,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "glass"
+    ],
     "status": "generated"
   },
   {
@@ -176,6 +225,10 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "money",
+      "bar"
+    ],
     "status": "generated"
   },
   {
@@ -187,6 +240,9 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "glass"
+    ],
     "status": "generated"
   },
   {
@@ -198,6 +254,9 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -209,6 +268,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "bar"
+    ],
     "status": "generated"
   },
   {
@@ -220,6 +282,9 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -231,6 +296,10 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "door",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -242,6 +311,10 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "shoulders",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -253,6 +326,9 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -264,6 +340,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -275,6 +354,9 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -286,6 +368,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -297,6 +382,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -308,6 +394,7 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -319,6 +406,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -330,6 +420,7 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -341,6 +432,7 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -352,6 +444,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -363,6 +458,9 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -374,6 +472,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "cigarette"
+    ],
     "status": "generated"
   },
   {
@@ -385,6 +486,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -396,6 +500,9 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -407,6 +514,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -418,6 +528,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "counter"
+    ],
     "status": "generated"
   },
   {
@@ -429,6 +542,7 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -440,6 +554,10 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "money",
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -451,6 +569,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -462,6 +583,7 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -473,6 +595,9 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -484,6 +609,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -495,6 +621,10 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "hands",
+      "shoulders"
+    ],
     "status": "generated"
   },
   {
@@ -506,6 +636,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -517,6 +648,7 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -528,6 +660,9 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -539,6 +674,7 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -550,6 +686,7 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -561,6 +698,7 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -572,6 +710,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -583,6 +724,7 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -594,6 +736,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -605,6 +748,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -616,6 +762,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -627,6 +776,7 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -638,6 +788,7 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -649,6 +800,7 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -660,6 +812,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -671,6 +826,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -682,6 +840,7 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -693,6 +852,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -704,6 +864,7 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -715,6 +876,10 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "keys",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -726,6 +891,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -737,6 +905,9 @@
       "temper": "enigma",
       "gender": "f"
     },
+    "motifs": [
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -748,6 +919,11 @@
       "temper": "plain",
       "gender": "f"
     },
+    "motifs": [
+      "money",
+      "ledger",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -759,6 +935,7 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -770,6 +947,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -781,6 +961,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -792,6 +973,11 @@
       "temper": "yap",
       "gender": "f"
     },
+    "motifs": [
+      "late",
+      "money",
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -803,6 +989,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -814,6 +1001,9 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -825,6 +1015,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -836,6 +1029,9 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -847,6 +1043,9 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -858,6 +1057,7 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -869,6 +1069,7 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -880,6 +1081,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -891,6 +1095,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -902,6 +1109,7 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -913,6 +1121,10 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "hands",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -924,6 +1136,7 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -935,6 +1148,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "mirror"
+    ],
     "status": "generated"
   },
   {
@@ -946,6 +1162,9 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "glass"
+    ],
     "status": "generated"
   },
   {
@@ -957,6 +1176,10 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "money",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -968,6 +1191,7 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -979,6 +1203,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -990,6 +1217,10 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "street",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -1001,6 +1232,10 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "traffic",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1012,6 +1247,7 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1023,6 +1259,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -1034,6 +1273,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "counter"
+    ],
     "status": "generated"
   },
   {
@@ -1045,6 +1287,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -1056,6 +1301,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -1067,6 +1315,7 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1078,6 +1327,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1089,6 +1339,7 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1100,6 +1351,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1111,6 +1363,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1122,6 +1377,9 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "cigarette"
+    ],
     "status": "generated"
   },
   {
@@ -1133,6 +1391,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1144,6 +1405,10 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "coat",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -1155,6 +1420,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "shoulders"
+    ],
     "status": "generated"
   },
   {
@@ -1166,6 +1434,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1177,6 +1448,10 @@
       "temper": "enigma",
       "gender": "m"
     },
+    "motifs": [
+      "door",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1188,6 +1463,9 @@
       "temper": "enigma",
       "gender": "f"
     },
+    "motifs": [
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -1199,6 +1477,9 @@
       "temper": "enigma",
       "gender": "f"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -1210,6 +1491,9 @@
       "temper": "enigma",
       "gender": "any"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1221,6 +1505,10 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "cigarette",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1232,6 +1520,7 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1243,6 +1532,10 @@
       "temper": "plain",
       "gender": "f"
     },
+    "motifs": [
+      "coat",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -1254,6 +1547,7 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1265,6 +1559,9 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -1276,6 +1573,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "photograph"
+    ],
     "status": "generated"
   },
   {
@@ -1287,6 +1587,9 @@
       "temper": "plain",
       "gender": "any"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -1298,6 +1601,9 @@
       "temper": "plain",
       "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1309,6 +1615,9 @@
       "temper": "plain",
       "gender": "m"
     },
+    "motifs": [
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -1320,6 +1629,10 @@
       "temper": "plain",
       "gender": "f"
     },
+    "motifs": [
+      "paper",
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -1331,6 +1644,9 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1342,6 +1658,9 @@
       "temper": "yap",
       "gender": "f"
     },
+    "motifs": [
+      "glass"
+    ],
     "status": "generated"
   },
   {
@@ -1353,6 +1672,9 @@
       "temper": "yap",
       "gender": "m"
     },
+    "motifs": [
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -1364,6 +1686,9 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "cigarette"
+    ],
     "status": "generated"
   },
   {
@@ -1375,6 +1700,9 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "photograph"
+    ],
     "status": "generated"
   },
   {
@@ -1386,6 +1714,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1397,6 +1726,9 @@
       "temper": "yap",
       "gender": "f"
     },
+    "motifs": [
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -1408,6 +1740,9 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -1419,6 +1754,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1430,6 +1766,7 @@
       "temper": "yap",
       "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   }
 ]
