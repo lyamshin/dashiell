@@ -468,3 +468,20 @@ export function describePerson(input: WeaveInput): string {
 export function pronounOf(person: Person | undefined): 'he' | 'she' {
   return person && genderHintOf(person) === 'f' ? 'she' : 'he';
 }
+
+/** His or her. */
+export function possessiveOf(person: Person | undefined): 'his' | 'her' {
+  return person && genderHintOf(person) === 'f' ? 'her' : 'his';
+}
+
+/**
+ * Man or woman.
+ *
+ * The engine has a handful of sentences it assembles in code around a noun
+ * rather than a pronoun — "a man hiring you", "the wrong man" — and half the
+ * cast is not a man. The dossier says which, and every person in the case has
+ * one, so there is no reason for the engine to guess.
+ */
+export function nounOf(person: Person | undefined): 'man' | 'woman' {
+  return person && genderHintOf(person) === 'f' ? 'woman' : 'man';
+}

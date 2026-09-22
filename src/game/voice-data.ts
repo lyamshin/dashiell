@@ -273,7 +273,7 @@ export const RECORD_LEADS: string[] = [
   'What I got, I got the long way round, and it goes in the book as it came:',
   'It took three passes at it. What came out was this:',
   'I put it another way, and then a third way, and this is what it came to:',
-  'Nothing he would say twice. Here is the once:',
+  'Nothing they would say twice. Here is the once:',
 ];
 
 /** The transition when the transitions deck has nothing that fits. */

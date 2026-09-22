@@ -385,7 +385,9 @@ describe('the report', () => {
       killerId: innocent?.id ?? null,
     });
     expect(verdict.outcome).toBe('wrong-man');
-    expect(verdict.closing.join(' ')).toMatch(/the name of the one who did it|wrong man/);
+    // The noun agrees with the person the report named, which is why "wrong
+    // man" is now "wrong man|woman" here.
+    expect(verdict.closing.join(' ')).toMatch(/the name of the one who did it|wrong (man|woman)/i);
   });
 });
 

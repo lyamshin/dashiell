@@ -56,7 +56,7 @@ export const PLAIN_GOING: string[] = [
   'I got to {place} a little after that.',
   'I made for {place}.',
   'I went up the block to {place}.',
-  'I gave the driver {place} and paid him at the kerb.',
+  'I gave the driver {place} and paid at the kerb.',
   'That left {place}, so I went to {place}.',
 ];
 

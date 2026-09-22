@@ -43,6 +43,7 @@ import {
   frameColour,
   genderHintOf,
   insideQuotes,
+  nounOf,
   leadingTheory,
   oddsFor,
   pastTenseHabit,
@@ -1750,5 +1751,61 @@ describe('a frame that asks for business twice', () => {
         }
       }
     }
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * The engine's own sentences agree with who they are about.
+ *
+ * The decks are tagged and the dealer filters on the tag, so a card never
+ * calls a woman "he". The sentences the engine *assembles in code* had no
+ * such check on them, and page one closed on "a man hiring you answers his
+ * questions" whoever was in the chair.
+ * ------------------------------------------------------------------ */
+
+describe('the engine’s assembled sentences', () => {
+  const textOfRun = (state: RunState): string =>
+    state.log
+      .flatMap((p) => p.blocks.map((b) => ('text' in b ? String(b.text ?? '') : '')))
+      .join('\n');
+
+  it('gives the hiring line the gender of the person in the chair', () => {
+    const seen = new Set<string>();
+    for (const seed of [1, 2, 3, 4, 5, 6, 7, 8, 11, 19, 23]) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      const page = newRun(v, { detectiveName: 'Dashiell' }).log[0];
+      const text = (page?.blocks ?? [])
+        .map((b) => ('text' in b ? String(b.text ?? '') : ''))
+        .join(' ');
+      const noun = genderHintOf(v.client) === 'f' ? 'woman' : 'man';
+      const wrong = noun === 'woman' ? 'man' : 'woman';
+      expect(text, `seed ${seed}`).toContain(`a ${noun} hiring you answers your questions`);
+      expect(text, `seed ${seed}`).not.toContain(`a ${wrong} hiring you`);
+      seen.add(noun);
+    }
+    // Both halves of the rule are exercised, or only one of them is tested.
+    expect([...seen].sort()).toEqual(['man', 'woman']);
+  });
+
+  it('never leaves a male pronoun in a sentence it wrote about a woman', () => {
+    // The shapes the engine fills itself, over a run that takes everything:
+    // the client's address, the timeline heading, the record lead.
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      const text = textOfRun(exhaust(seed, 2));
+      for (const bad of ['the address he gave me', 'nothing he will say', 'nowhere he will say']) {
+        // These three had no gender behind them at all: they said "he" about
+        // whoever it was. None of them is written that way any more.
+        expect(text, `seed ${seed}`).not.toContain(bad);
+      }
+    }
+  });
+
+  it('leaves no assembled sentence calling somebody the case named a man', () => {
+    // The hand-written pools may still say "a man on the corner", who is
+    // nobody. What must not survive is a shape the engine fills with a name.
+    const changed = THEORY_TEMPLATES.changed.join(' ');
+    expect(changed).not.toContain('the wrong man');
+    expect(changed).toContain('{oldNoun}');
+    expect(nounOf(undefined)).toBe('man');
   });
 });

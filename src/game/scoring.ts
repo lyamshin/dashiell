@@ -24,6 +24,7 @@ import {
 } from './report-form.js';
 import type { Report, RunState } from './types.js';
 import { Dealer, tagIs } from './voice/index.js';
+import { nounOf, pronounOf } from './voice/cast.js';
 
 export type Outcome = 'solved' | 'wrong-man' | 'thin' | 'cold';
 
@@ -77,7 +78,7 @@ export function scoreReport(view: CaseView, state: RunState, report: Report): Ve
           ? 'solved'
           : 'thin';
 
-  const closing = closingFor(view, state, fields, outcome, points);
+  const closing = closingFor(view, state, fields, outcome, points, report);
   return {
     points,
     asked: fields.length,
@@ -116,6 +117,9 @@ interface ClosingContext {
   where: string;
   when: string;
   named: string;
+  /** Man or woman, and he or she, for the one the report named. */
+  namedNoun: string;
+  namedThem: string;
   taken: string;
   goods: string;
   whereabouts: string;
@@ -132,7 +136,7 @@ const MURDER: ClosingSet = {
   ],
   'wrong-man': (c) => [
     `They take ${c.named} at the arraignment and nobody in the room looks surprised except ${c.named}.`,
-    `It was ${c.actor}. ${c.actor} was at ${c.where} at ${c.when}. **The wrong man hangs**, and I signed the page that hanged him.`,
+    `It was ${c.actor}. ${c.actor} was at ${c.where} at ${c.when}. **The wrong ${c.namedNoun} hangs**, and I signed the page that hanged ${c.namedThem}.`,
   ],
   thin: (c) => [
     `They indict ${c.actor} on what I gave them, and what I gave them is thin. The ${c.wrong.join(', ')} never got nailed down, and the defence spends four days on it.`,
@@ -151,7 +155,7 @@ const ROBBERY: ClosingSet = {
   ],
   'wrong-man': (c) => [
     `They put it on ${c.named}, who has no answer for where they were and no money to buy one.`,
-    `It was ${c.actor}, and ${c.taken} went to ${c.goods} the same night. **The wrong man does the time**, and my name is on the page that sent him.`,
+    `It was ${c.actor}, and ${c.taken} went to ${c.goods} the same night. **The wrong ${c.namedNoun} does the time**, and my name is on the page that sent ${c.namedThem}.`,
   ],
   thin: (c) => [
     `They charge ${c.actor} with what I could prove, which is not the half of it. The ${c.wrong.join(', ')} never got settled, and a lawyer will make an afternoon of that.`,
@@ -194,17 +198,23 @@ function closingFor(
   fields: FieldResult[],
   outcome: Outcome,
   points: number,
+  report: Report,
 ): { paragraphs: string[]; gaps: string[] } {
   const kase = view.kase;
   const act = kase.act;
   const gaps: string[] = [];
   const actor = personName(view, kase.solution.killerId);
+  const namedId = answerFor(report, 'who');
+  const namedPerson = namedId === null ? undefined : view.personById.get(namedId);
   const ctx: ClosingContext = {
     actor,
     victim: view.victim.surname,
     where: placeName(view, kase.solution.murderPlaceId),
     when: clock(kase.solution.murderTick as Tick),
     named: fields.find((f) => f.key === 'who')?.given ?? 'somebody',
+    // Half the cast is not a man, and the report says which one it named.
+    namedNoun: nounOf(namedPerson),
+    namedThem: namedPerson === undefined ? 'them' : objectPronounOf(namedPerson),
     taken: act.taken?.name ?? 'what was taken',
     goods: act.goodsWentTo ? placeName(view, act.goodsWentTo) : 'wherever it went',
     whereabouts:
@@ -255,6 +265,11 @@ function closingFor(
   );
   if (ending) out.push(ending.text);
   return { paragraphs: out, gaps };
+}
+
+/** Him or her, for a sentence where the person is what was done to. */
+function objectPronounOf(person: Parameters<typeof pronounOf>[0]): string {
+  return pronounOf(person) === 'she' ? 'her' : 'him';
 }
 
 /** The unknowns the report got wrong, as a noun phrase the deck can print. */
