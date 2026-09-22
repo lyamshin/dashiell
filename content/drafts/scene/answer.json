@@ -1,0 +1,452 @@
+[
+  {
+    "id": "ans-001",
+    "deck": "answer",
+    "text": "{name}'s word had been worth the walk.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-002",
+    "deck": "answer",
+    "text": "{name} had sent me right. There it was.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-003",
+    "deck": "answer",
+    "text": "Whatever {name} knew, {name} had known it straight. I had it now.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-004",
+    "deck": "answer",
+    "text": "{name} hadn't steered me wrong. I had what I came for.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-005",
+    "deck": "answer",
+    "text": "It checked out. {name}'s tip was good.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-006",
+    "deck": "answer",
+    "text": "{name} had been worth listening to. I wrote it down and moved on.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-007",
+    "deck": "answer",
+    "text": "That closed the errand {name} had sent me on.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-008",
+    "deck": "answer",
+    "text": "{name} had pointed true. I had it in hand now.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-009",
+    "deck": "answer",
+    "text": "It was there, just as {name} said it would be.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-010",
+    "deck": "answer",
+    "text": "{name}'s lead had paid for itself.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-011",
+    "deck": "answer",
+    "text": "I had come on {name}'s word, and {name}'s word had held up.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-012",
+    "deck": "answer",
+    "text": "Whatever else the night held, {name} had sent me somewhere worth going.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-013",
+    "deck": "answer",
+    "text": "It had been worth the trip: {subject}, plain and in hand.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-014",
+    "deck": "answer",
+    "text": "That was the errand answered. {subject} had been there to find.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-015",
+    "deck": "answer",
+    "text": "{subject} was where it should have been. I hadn't wasted the walk.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-016",
+    "deck": "answer",
+    "text": "Whatever {name} thought was here, it wasn't. I crossed it off.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-017",
+    "deck": "answer",
+    "text": "{name} had been wrong about this one. It happened.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-018",
+    "deck": "answer",
+    "text": "Nothing was in it. {name}'s lead had run dry.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-019",
+    "deck": "answer",
+    "text": "{name}'s tip had run its course. It hadn't held up.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-020",
+    "deck": "answer",
+    "text": "Nothing here backed up what {name} had said.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-021",
+    "deck": "answer",
+    "text": "{name} had sent me chasing nothing. I let it go.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-022",
+    "deck": "answer",
+    "text": "It wasn't here, whatever {name} had believed.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-023",
+    "deck": "answer",
+    "text": "I crossed {name}'s lead off the list.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-024",
+    "deck": "answer",
+    "text": "{name} had been mistaken, or misinformed, or both. Either way, nothing.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-025",
+    "deck": "answer",
+    "text": "That closed {name}'s lead for good.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-026",
+    "deck": "answer",
+    "text": "Whatever {name} had heard, it wasn't true, not here.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-027",
+    "deck": "answer",
+    "text": "It came to nothing, and {name}'s tip went with it.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-028",
+    "deck": "answer",
+    "text": "There was no {subject} here. The lead had run out.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-029",
+    "deck": "answer",
+    "text": "Whatever had been here once, it wasn't {subject}, and it wasn't now.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-030",
+    "deck": "answer",
+    "text": "{subject} wasn't here, and no amount of looking was going to change that.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-031",
+    "deck": "answer",
+    "text": "It wasn't what {name} sent me for. It might be worth more.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-032",
+    "deck": "answer",
+    "text": "{name} had sent me for one thing. I walked out with another.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-033",
+    "deck": "answer",
+    "text": "That wasn't {name}'s errand answered, but it was answered all the same, just differently.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-034",
+    "deck": "answer",
+    "text": "{name} hadn't meant this to turn up. It had, and it mattered.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-035",
+    "deck": "answer",
+    "text": "Not what {name} was after, but not nothing either.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-036",
+    "deck": "answer",
+    "text": "{name} would want to hear about this, even though it wasn't what {name} asked for.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-037",
+    "deck": "answer",
+    "text": "It missed {name}'s question and landed on a better one.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-038",
+    "deck": "answer",
+    "text": "{name} had sent me for one answer. I came back with a different one.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-039",
+    "deck": "answer",
+    "text": "That wasn't the errand {name} gave me, but it earned the trip.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-040",
+    "deck": "answer",
+    "text": "{name} hadn't asked for this, but {name} would want it.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-041",
+    "deck": "answer",
+    "text": "It changed the errand {name} had sent me on.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-042",
+    "deck": "answer",
+    "text": "Not what {name} expected. Worth more, maybe.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-043",
+    "deck": "answer",
+    "text": "Not {subject}. Something else, and it changed things.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-044",
+    "deck": "answer",
+    "text": "{subject} was not in it. What was there instead mattered more.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-045",
+    "deck": "answer",
+    "text": "It wasn't {subject} I walked out with, but it wasn't nothing.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

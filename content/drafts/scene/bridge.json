@@ -1,0 +1,452 @@
+[
+  {
+    "id": "brg-001",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. That was worth knowing on its own, and {who} would know more.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-002",
+    "deck": "bridge",
+    "text": "Being {tie} put {subject} in it. I wanted to hear the rest from {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-003",
+    "deck": "bridge",
+    "text": "{tie} — that alone was worth a question, and {who} was who to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-004",
+    "deck": "bridge",
+    "text": "{subject}, {tie}, was somebody worth asking about. {who} could say more.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-005",
+    "deck": "bridge",
+    "text": "That {subject} was {tie} changed things. {who} would know the rest of it.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-006",
+    "deck": "bridge",
+    "text": "{subject} was {tie}, and nobody had mentioned it yet. {who} would know why.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-007",
+    "deck": "bridge",
+    "text": "A person who was {tie} was worth a look. {who} knew {subject} best.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-008",
+    "deck": "bridge",
+    "text": "{subject} being {tie} was reason enough by itself. {who} was who to ask, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-009",
+    "deck": "bridge",
+    "text": "{tie}. I had not heard that before. {who} would know more, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-010",
+    "deck": "bridge",
+    "text": "I had not known {subject} was {tie}. {who} would, and I meant to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-011",
+    "deck": "bridge",
+    "text": "{subject} was {tie} — that was new, and worth chasing. {who} could tell me the rest.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-012",
+    "deck": "bridge",
+    "text": "That put {subject} in the story: {tie}. {who} was next.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-013",
+    "deck": "bridge",
+    "text": "{subject}, {tie}, was somebody I had not asked about yet. {who} would know where to start.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-014",
+    "deck": "bridge",
+    "text": "Being {tie} gave {subject} a place in this. {who} knew {subject} well enough to say more.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-015",
+    "deck": "bridge",
+    "text": "{tie} was the kind of thing that opened a case up. {who} was who I would ask, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-016",
+    "deck": "bridge",
+    "text": "{subject} had a connection to the place: {tie}. {who} would know what that connection meant.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-017",
+    "deck": "bridge",
+    "text": "{tie}. That was enough to send me to {who} next.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-018",
+    "deck": "bridge",
+    "text": "Whoever was {tie} belonged in this. I wanted {who}’s word on {subject}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-019",
+    "deck": "bridge",
+    "text": "{subject} turned out to be {tie}. That was a thread I had not pulled yet.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-020",
+    "deck": "bridge",
+    "text": "It mattered that {subject} was {tie}. {who} could say how much.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-021",
+    "deck": "bridge",
+    "text": "I had not placed {subject} there before. {tie} changed that. {who} would know more.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-022",
+    "deck": "bridge",
+    "text": "{tie} — a fact nobody had mentioned. {who} was who to ask about it.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-023",
+    "deck": "bridge",
+    "text": "That tied {subject} to the place: {tie}. {who} knew the rest, and {who} was at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-024",
+    "deck": "bridge",
+    "text": "{subject}, it turned out, was {tie}. I wanted {who}’s account of it.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-025",
+    "deck": "bridge",
+    "text": "Knowing {subject} was {tie} opened a door. {who} was the one standing behind it.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-026",
+    "deck": "bridge",
+    "text": "{tie}. It put {subject} somewhere I had not looked yet, and {who} could say where next.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-027",
+    "deck": "bridge",
+    "text": "{subject} being {tie} was news to me. {who} would fill in the rest.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-028",
+    "deck": "bridge",
+    "text": "That gave {subject} a reason to have been there: {tie}. {who} knew the details.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-029",
+    "deck": "bridge",
+    "text": "I wanted to know more about {subject} being {tie}. {who} was where to start, at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-030",
+    "deck": "bridge",
+    "text": "{tie} put {subject} in the story in a way nothing else had. {who} was next.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-031",
+    "deck": "bridge",
+    "text": "{subject} had been placed at a particular hour: {tie}. {who} could say what it meant.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-032",
+    "deck": "bridge",
+    "text": "{tie}. That put the clock on {subject}, and {who} was who to ask about it.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-033",
+    "deck": "bridge",
+    "text": "Whoever was {tie} mattered for that half hour alone. I wanted {who}’s word on {subject}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-034",
+    "deck": "bridge",
+    "text": "{subject} turned out to be {tie}. That was an hour worth asking about.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-035",
+    "deck": "bridge",
+    "text": "It mattered that {subject} was {tie}. {who} could say how much.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-036",
+    "deck": "bridge",
+    "text": "I had not accounted for {subject} at that hour before. {tie} changed that. {who} would know more.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-037",
+    "deck": "bridge",
+    "text": "{tie} — a fact nobody had mentioned about that hour. {who} was who to ask.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-038",
+    "deck": "bridge",
+    "text": "That put a clock on {subject}: {tie}. {who} knew the rest, and {who} was at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-039",
+    "deck": "bridge",
+    "text": "{subject}, it turned out, was {tie}. I wanted {who}’s account of that hour.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-040",
+    "deck": "bridge",
+    "text": "Knowing {subject} was {tie} narrowed things. {who} was the one holding the answer.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-041",
+    "deck": "bridge",
+    "text": "{tie}. It put {subject} at an hour I had not asked about, and {who} could say more.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-042",
+    "deck": "bridge",
+    "text": "{subject} being {tie} was news to me. {who} would fill in the hour.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-043",
+    "deck": "bridge",
+    "text": "That gave the hour a name: {tie}. {who} knew the details.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-044",
+    "deck": "bridge",
+    "text": "I wanted to know more about {subject} at that hour. {who} was where to start, at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-045",
+    "deck": "bridge",
+    "text": "{tie} put a time on {subject} that nothing else had. {who} was next.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]
