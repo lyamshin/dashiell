@@ -46,6 +46,8 @@ import { knowsHim } from '../voice/roll.js';
 import { clientLeavingLine } from '../voice/office.js';
 import type { Scene, Stage } from '../voice/page.js';
 import { hourBandOf } from '../voice/page.js';
+import { NO_CONTEXT } from '../voice/motifs.js';
+import { openingNote, opensOnSubject, pronounSubject, countSentences } from '../voice/plain.js';
 
 /** §8: night pages have no hard ceiling below this. */
 export const NIGHT_CEILING = 600;
@@ -70,10 +72,17 @@ interface Para {
   beats: number[];
   /** Texture, which the length rule may cut. */
   texture?: 'weather' | 'ambient' | 'simile';
+  /** §1's measurement: how many of its sentences came off an image card. */
+  imageN?: number;
+  /** The "I wrote it down" that opens the thinking. */
+  noted?: boolean;
 }
 
 export interface Realized {
   blocks: Block[];
+  /** M5 §1's counts: sentences that carry no image, and sentences off an image card. */
+  plain: number;
+  image: number;
   traces: BeatTrace[];
   errand?: ErrandTrace;
   gaps: string[];
@@ -127,6 +136,8 @@ function deal(
     ladder.map((m) => (c: Card) => m(c) && agrees(c)),
     slots,
     true,
+    // The night's sky: a card that names another is never dealt (M4b §A.5).
+    NO_CONTEXT(stage.cast.roll.weather),
   );
   return drawn ? { text: drawn.text, cardId: drawn.cardId } : null;
 }
@@ -271,7 +282,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
             { place: here },
           );
           if (w && !isSubjectless(w.text) && figuresIn(w.text) === 0) {
-            push({ text: w.text, voice: 'establish', beats: [weatherAt], texture: 'weather' });
+            push({ text: w.text, voice: 'establish', beats: [weatherAt], texture: 'weather', imageN: countSentences(w.text) });
             mark(weatherAt, { tag: 'weather', text: w.text });
           }
         }
@@ -281,10 +292,12 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
             ? deal(stage, 'watch', [(c) => tagIs('watch', c, 'watcher', watchRole)], { watcher: watcher?.surname, place: here })
             : null;
         const precinct = beat.precinct ? PRECINCT_LINES[beat.precinct] : undefined;
+        const given = beat.precinct !== undefined ? sceneGiven(stage) : '';
         const para = push({
-          text: [parts[0], watch?.text, precinct].filter((s): s is string => !!s && s.length > 0).join(' '),
+          text: [parts[0], watch?.text, precinct, given].filter((s): s is string => !!s && s.length > 0).join(' '),
           voice: 'establish',
           beats: [i],
+          imageN: drawn ? countSentences(drawn.text) : 0,
         });
         mark(i, {
           tag: key,
@@ -378,6 +391,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         if (prev && prev.voice === 'act' && prev.clueId === undefined) {
           prev.text = `${prev.text} ${text}`;
           prev.clueId = clue.id;
+          prev.voice = 'find';
           prev.beats.push(i);
         } else {
           push({ text, voice: 'find', clueId: clue.id, beats: [i] });
@@ -413,12 +427,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const run: number[] = [];
         for (let j = i; j < beats.length && (beats[j] as Beat).kind === 'thought'; j++) run.push(j);
         const found = scene.kind === 'ask' && plan.beats.some((b) => b.kind === 'find');
-        if (found) {
+        const onlyContext = run.every((j) => (beats[j] as Extract<Beat, { kind: 'thought' }>).thought.cls === 'context');
+        if (found && !onlyContext) {
           const noted = dealer.random.pick(PLAIN_NOTED);
           const again = run.some((j) => (beats[j] as Extract<Beat, { kind: 'thought' }>).thought.cls === 'observer-placed')
             ? ` ${dealer.random.pick(LOOKED_AGAIN)}`
             : '';
-          push({ text: `${noted}${again}`, voice: 'narrator', beats: [] });
+          push({ text: `${noted}${again}`, voice: 'narrator', beats: [], noted: true });
         }
         const lines: string[] = [];
         for (const j of run) {
@@ -515,20 +530,19 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   const count = (): number => paras.reduce((n, p) => n + wordCount(p.text), 0);
   if (ambientAt >= 0 && count() < (low as number)) {
     const band = hourBandOf(stage.minutes);
+    const plainCard = (c: Card): boolean => figuresIn(c.text) === 0 && !isSubjectless(c.text);
     const drawn = deal(
       stage,
       'ambient',
-      [(c) => tagIs('ambient', c, 'hourBand', band), () => true],
+      [(c) => plainCard(c) && tagIs('ambient', c, 'hourBand', band), plainCard],
       { place: here },
     );
-    if (drawn && figuresIn(drawn.text) === 0 && !isSubjectless(drawn.text)) {
+    if (drawn) {
       // After the finds and before the thinking, where the golden lets a room breathe.
-      const at = paras.findIndex((p) => p.voice === 'thought' || p.voice === 'narrator');
-      const para: Para = { text: drawn.text, voice: 'find', beats: [ambientAt], texture: 'ambient' };
-      const host = at > 0 ? paras[at - 1] : undefined;
-      if (host && host.voice !== 'errand' && host.voice !== 'exchange' && host.clueId === undefined) {
-        host.text = `${host.text} ${drawn.text}`;
-      } else if (at > 0) paras.splice(at, 0, para);
+      const at = paras.findIndex((p) => p.voice === 'thought' || p.noted === true);
+      const n = countSentences(drawn.text);
+      const para: Para = { text: drawn.text, voice: 'narrator', beats: [ambientAt], texture: 'ambient', imageN: n };
+      if (at > 0) paras.splice(at, 0, para);
       else paras.push(para);
       mark(ambientAt, { tag: 'ambient', text: drawn.text });
     }
@@ -548,6 +562,43 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   const named = new Set<Id>();
   for (const p of paras) p.text = introduceNames(p.text, people, named);
 
+  /* ---------------------------------- Hone 2 §A.3: the surname twice running */
+  let lastSubject: string | null = null;
+  for (const p of paras) {
+    const sentences = sentencesOf(p.text);
+    let changed = false;
+    for (const [k, sentence] of sentences.entries()) {
+      if (/^[“"]/.test(sentence)) {
+        lastSubject = null;
+        continue;
+      }
+      const who = view.kase.people.find((x) => opensOnSubject(sentence, x.surname));
+      if (!who) {
+        lastSubject = null;
+        continue;
+      }
+      if (lastSubject === who.surname && p.voice !== 'errand') {
+        const fixed = pronounSubject(sentence, who.surname, pronounOf(who));
+        if (fixed !== sentence) {
+          sentences[k] = fixed;
+          changed = true;
+          lastSubject = null;
+          continue;
+        }
+      }
+      lastSubject = who.surname;
+    }
+    if (changed) p.text = sentences.join(' ');
+  }
+  let plainN = 0;
+  let imageN = 0;
+  for (const p of paras) {
+    const n = countSentences(p.text);
+    const img = Math.min(n, p.imageN ?? 0);
+    imageN += img;
+    plainN += n - img;
+  }
+
   const blocks: Block[] = paras.map((p) =>
     p.clueId === undefined
       ? { kind: 'prose', text: tidyPunctuation(p.text), voice: p.voice }
@@ -566,12 +617,31 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
     const first = blocks[0];
     if (first && first.kind === 'prose' && first.voice === 'errand') errand = { ...errand, text: first.text };
   }
-  return { blocks, traces, ...(errand ? { errand } : {}), gaps };
+  return { blocks, plain: plainN, image: imageN, traces, ...(errand ? { errand } : {}), gaps };
 }
 
 /* ------------------------------------------------------------------ *
  * The pieces.
  * ------------------------------------------------------------------ */
+
+/**
+ * The trope's own given about the room, on the first sight of it: the body
+ * that was moved, the shelf that was emptied, the place somebody was last
+ * seen. The office already said the rest.
+ */
+function sceneGiven(stage: Stage): string {
+  const { view } = stage;
+  const act = view.kase.act;
+  const note = openingNote(view, stage.at);
+  // The note opens on the place's full name and the neighbourhood; the
+  // establish paragraph has said where we are.
+  const body = note.slice(note.indexOf('.') + 1).trim();
+  if (act.type === 'murder') {
+    const after = body.split('a telephone.')[1]?.trim() ?? '';
+    return after.length > 0 ? pastTense(after) : '';
+  }
+  return pastTense(body);
+}
 
 /** One person in the room: what they are doing, and on first sight who they are. */
 function presenceLine(stage: Stage, p: PresencePerson): string {
@@ -607,10 +677,7 @@ function presenceLine(stage: Stage, p: PresencePerson): string {
 function findText(stage: Stage, clue: Clue, plan: Plan, gaps: string[]): string {
   const { view } = stage;
   const here = view.placeById.get(stage.at)?.shortName ?? '';
-  // "Found at the back lot: A clipping…" is the record's filing line; the
-  // page is standing in the room and says what was there.
-  const filed = clue.text.replace(/^Found at [^:]{1,60}:\s*/, '');
-  let fact = pastTense(stripHere(capitalize(filed), here));
+  let fact = pageFact(clue, here, view);
   // The presence beat already said where the body is; "Sweeney was found at
   // the suite." after it is the record's address, not a find.
   const body = plan.beats.some((b) => b.kind === 'presence' && (b.scene === 'body' || b.scene === 'body-again'));
@@ -626,6 +693,19 @@ function findText(stage: Stage, clue: Clue, plan: Plan, gaps: string[]): string 
   }
   void gaps;
   return capitalize(fact);
+}
+
+/**
+ * A clue's record as the page tells it (§7): past tense, standing in the room,
+ * without the record's filing line. Every word of the fact survives; only the
+ * tense and the address change.
+ */
+export function pageFact(clue: Clue, here: string, view: Stage['view']): string {
+  void view;
+  // "Found at the back lot: A clipping…" is the record's filing line; the
+  // page is standing in the room and says what was there.
+  const filed = clue.text.replace(/^Found at [^:]{1,60}:\s*/, '');
+  return pastTense(stripHere(capitalize(filed), here));
 }
 
 /** Slots for a thought card (see the deck's `$comment` for what each means). */
@@ -657,6 +737,8 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
     time: t.tick === undefined ? undefined : spokenClock(t.tick),
     victim: view.victim.surname,
     other,
+    // The room it happened in, by its short name (the content branch's slot).
+    scene: view.placeById.get(view.sceneId)?.shortName,
   };
 }
 
@@ -765,7 +847,7 @@ function exchange(
     for (const more of spoken.rest) {
       const q = briefingQuestion(dealer.random, 'follow-named', { ...slots, victim: view.victim.surname }, [], more);
       if (q.length > 0) out.push({ text: `“${q}”`, voice: 'exchange' });
-      out.push({ text: say(more), voice: 'exchange' });
+      out.push({ text: say(more), voice: 'exchange', clueId: clue.id });
     }
   };
 

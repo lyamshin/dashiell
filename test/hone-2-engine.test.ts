@@ -285,7 +285,10 @@ describe('a portrait pair and a beat', () => {
       }
     }
     // The assertion is worth nothing if no pair with a claim ever reached a page.
-    expect(checked).toBeGreaterThan(20);
+    // M8 §4: the pair is printed on the page a person is first portrayed on —
+    // the office, for the client — and afterwards only its recall phrase is,
+    // once a visit, so forty seeds reach about one checked page each.
+    expect(checked).toBeGreaterThan(10);
   });
 });
 

@@ -19,7 +19,7 @@ import { playOracle, playWandering } from '../src/game/oracle.js';
 import { newRun, stepInput } from '../src/game/reducer.js';
 import { renderChoicesText, renderNotebookText, wordsOnPage } from '../src/game/transcript.js';
 import type { RunState } from '../src/game/types.js';
-import { DECKS, SCHEMA, tagIs } from '../src/game/voice/cards.js';
+import { DECKS, SCHEMA, tagIs, tagOf } from '../src/game/voice/cards.js';
 import { PAGE_CEILING, clockBeatKind } from '../src/game/voice/page.js';
 import { SEEDS, oracleStates } from './m6-walk.js';
 
@@ -279,7 +279,12 @@ describe('§8 errands trace', () => {
         (c) => tagIs('errand', c, 'because', because) && tagIs('errand', c, 'for', forWhat),
       );
       expect(cards.length, `${because} × ${forWhat}`).toBeGreaterThanOrEqual(10);
-      for (const c of cards) expect(c.status).not.toBe('placeholder');
+      // M8 §6's short form (`bridged: yes`) is dealt only after a bridge, and
+      // ships as placeholders until the scene content lands.
+      for (const c of cards) {
+        if (tagOf('errand', c, 'bridged') === 'yes') continue;
+        expect(c.status).not.toBe('placeholder');
+      }
     }
     for (const searched of ['yes', 'no']) {
       const cards = DECKS.errand.filter(

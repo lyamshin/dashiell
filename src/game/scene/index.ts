@@ -16,7 +16,6 @@ import type { Id } from '../../gen/types.js';
 import { establishedFrom } from '../derive.js';
 import type { Composed, Scene, Stage } from '../voice/page.js';
 import { reactiveMonologue } from '../voice/reactive.js';
-import { countSentences } from '../voice/plain.js';
 import { planPage, type PlanAction } from './plan.js';
 import { realize } from './realize.js';
 
@@ -25,7 +24,7 @@ export * from './thought.js';
 export * from './bridge.js';
 export * from './text.js';
 export * from './coverage.js';
-export { realize, NIGHT_CEILING, NIGHT_TARGETS, CUT_ORDER, thoughtSlots } from './realize.js';
+export { realize, pageFact, NIGHT_CEILING, NIGHT_TARGETS, CUT_ORDER, thoughtSlots } from './realize.js';
 
 /** The scenes the planner writes. The office opening and parser pages keep their own path. */
 export function isNightScene(scene: Scene): boolean {
@@ -83,6 +82,7 @@ export function composeScene(stage: Stage, scene: Scene): Composed {
     visitedBefore: stage.visitedBefore ?? [],
     ...(stage.memory ? { memory: stage.memory } : {}),
     seed: stage.view.kase.seed,
+    weather: stage.cast.roll.weather,
   });
   const written = realize(plan, stage, scene);
 
@@ -108,19 +108,10 @@ export function composeScene(stage: Stage, scene: Scene): Composed {
     used: () => false,
   });
 
-  // §1's measurement, kept for the harness: the place and the texture are
-  // the image-bearing paragraphs of a night page, and the rest is plain.
-  let plain = 0;
-  let image = 0;
-  for (const b of written.blocks) {
-    if (b.kind !== 'prose') {
-      if (b.kind === 'timeline') plain += 1;
-      continue;
-    }
-    const n = countSentences(b.text);
-    if (b.voice === 'establish') image += n;
-    else plain += n;
-  }
+  // §1's measurement, kept for the harness: the place card and the texture
+  // are a night page's image sentences, and everything else is plain.
+  const plain = written.plain;
+  const image = written.image;
   for (const deck of stage.dealer.takeReshuffles()) {
     written.gaps.push(`deck-exhausted: ${deck} came round again inside one run`);
   }

@@ -26,7 +26,9 @@ import { threadsFor } from '../derive.js';
 import { openerOf, type ErrandPlan } from '../errand.js';
 import type { Activity, BeatKind, PageShape, SceneMemory } from '../types.js';
 import { EMPTY_SCENE } from '../types.js';
-import { DECKS, fill, tagIs, tagOf, type Card } from '../voice/cards.js';
+import { DECKS, fill, motifsOf, tagIs, tagOf, type Card } from '../voice/cards.js';
+import { NO_CONTEXT, scoreMotifs } from '../voice/motifs.js';
+import type { Weather } from '../voice/roll.js';
 import { planBridge, subjectOfTopic, type BridgePlan } from './bridge.js';
 import { bandOf, hourAgrees } from './text.js';
 import { thoughtsFor, viewOf, type Thought } from './thought.js';
@@ -151,6 +153,8 @@ export interface PlanInput {
   memory?: SceneMemory;
   /** The run's seed, for the choices the planner makes without a dealer. */
   seed: number;
+  /** The night's sky, so no activity contradicts it. */
+  weather?: string;
 }
 
 /** Which beats each shape must carry (§10's coverage check reads this). */
@@ -219,13 +223,18 @@ export function chooseActivity(
   minutes: number,
   visit: number,
   seed: number,
+  weather?: string,
 ): Activity {
   const place = view.placeById.get(placeId);
   const kind = place?.kind ?? 'semi';
   const band = bandOf(minutes);
   const role = activityRole(person);
   const roleIs = (c: Card, want: string): boolean => tagOf('activity', c, 'role') === want;
-  const fits = (c: Card): boolean => hourAgrees(c.text, minutes) && tagIs('activity', c, 'band', band);
+  const sky = weather === undefined ? null : NO_CONTEXT(weather as Weather);
+  const fits = (c: Card): boolean =>
+    hourAgrees(c.text, minutes) &&
+    tagIs('activity', c, 'band', band) &&
+    (sky === null || scoreMotifs(motifsOf(c), c, sky) !== -Infinity);
   const ladder: ((c: Card) => boolean)[] = [
     (c) => roleIs(c, role) && tagIs('activity', c, 'placeKind', kind) && tagOf('activity', c, 'band') === band,
     (c) => roleIs(c, role) && tagIs('activity', c, 'placeKind', kind),
@@ -424,7 +433,7 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
     const activity =
       kept !== undefined && kept.visit === memory.visit && kept.placeId === input.at
         ? kept
-        : chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed);
+        : chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather);
     activities[person.id] = activity;
     const firstSight = !input.met.includes(person.id);
     // A recall phrase, once a visit, for somebody already portrayed.
@@ -507,6 +516,7 @@ export function planPage(input: PlanInput): Plan {
     const presence = presenceFor(input, memory, !first);
     memory = presence.memory;
     beats.push(presence.beat);
+    if (!establish) beats.push({ kind: 'texture', required: false, texture: 'ambient' });
 
     const opening = action.kind === 'travel' ? (action.openingClues ?? []) : [];
     for (const clue of opening) beats.push({ kind: 'find', required: true, clueId: clue.id });
