@@ -16,9 +16,11 @@ import { buildNotebook } from '../../src/game/notebook.js';
 import { playOracle, playWandering } from '../../src/game/oracle.js';
 import { newRun, stepInput, topicSlots } from '../../src/game/reducer.js';
 import { wordsOnPage } from '../../src/game/transcript.js';
+import { COLOUR_LINES } from '../../src/game/voice-data.js';
 import type { RunState } from '../../src/game/types.js';
 import {
   ALL_CARDS,
+  COLOUR_FRAMES,
   CONTRADICTION_TEMPLATES,
   DECKS,
   MISSING_DECKS,
@@ -38,7 +40,9 @@ import {
   factOnPage,
   factsAgainst,
   fill,
+  frameColour,
   genderHintOf,
+  insideQuotes,
   leadingTheory,
   oddsFor,
   pastTenseHabit,
@@ -1186,6 +1190,62 @@ describe('business', () => {
     const drawn = businessLine(new Dealer(9, [], []), asPerson('landlady'), 'plain', {}, everything, gaps);
     expect(drawn).toBeNull();
     expect(gaps.join(' ')).toContain('no-business: landlady');
+  });
+});
+
+describe('the colour beat', () => {
+  it('frames it as speech, with the speaker’s gender on it', () => {
+    const quote = COLOUR_FRAMES[0] as string;
+    const reported = COLOUR_FRAMES.find((f) => f.includes('{Pronoun}')) as string;
+    const line = 'A dog got into the bakery Tuesday and came out white to the shoulders.';
+    // Inside quotation marks it is the speaker's own sentence, untouched.
+    expect(frameColour(line, quote, 'f')).toBe(`“${line}”`);
+    // Reported, it goes mid-sentence, so the capital that was only there
+    // because the sentence started comes off.
+    expect(frameColour(line, reported, 'f')).toContain('She');
+    expect(frameColour(line, reported, 'm')).toContain('He');
+    expect(frameColour(line, reported, 'any')).toContain('He');
+    expect(frameColour(line, reported, 'f')).toContain('a dog got into the bakery');
+    // A name keeps its capital.
+    expect(frameColour('Dolan has not paid a bill since March.', reported, 'm')).toContain(
+      'Dolan has not paid',
+    );
+  });
+
+  it('counts the quotation marks it is standing between', () => {
+    expect(insideQuotes('He said “')).toBe(true);
+    expect(insideQuotes('He said “so.” Then ')).toBe(false);
+    expect(insideQuotes('Counted the till. "')).toBe(true);
+    expect(insideQuotes('Counted the till. "So." ')).toBe(false);
+  });
+
+  it('never lets one stand as narration on the page', () => {
+    // "'Vitale turned up near 9:00 PM.' A dog got into the bakery Tuesday and
+    // came out white to the shoulders." is the detective describing a dog he
+    // never saw. Every colour beat on a page is either inside quotation marks
+    // or behind a reported-speech frame.
+    let seen = 0;
+    for (const seed of [1, 3, 7, 12, 19]) {
+      for (const page of exhaust(seed, 2).log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose') continue;
+          for (const line of COLOUR_LINES) {
+            for (const variant of [line, `${line.charAt(0).toLowerCase()}${line.slice(1)}`]) {
+              for (let at = block.text.indexOf(variant); at >= 0; ) {
+                const before = block.text.slice(0, at);
+                seen++;
+                expect(
+                  insideQuotes(before) || /(?::|\bthat)\s$/.test(before),
+                  `seed ${seed}: ${block.text}`,
+                ).toBe(true);
+                at = block.text.indexOf(variant, at + 1);
+              }
+            }
+          }
+        }
+      }
+    }
+    expect(seen, 'no run printed a colour beat at all').toBeGreaterThan(0);
   });
 });
 
