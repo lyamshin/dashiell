@@ -220,6 +220,139 @@ function sentence(p: string): string {
   return t.length === 0 ? '' : `${t.charAt(0).toUpperCase()}${t.slice(1)}`;
 }
 
+/* ------------------------------------------------------------------ *
+ * Tense.
+ *
+ * The three portrait components are three different parts of speech, and the
+ * weaving templates have to know it. A trait is a noun phrase ("a callus in the
+ * web of the thumb"), so is a piece of clothing ("a tie held with a dime-store
+ * pin"), and a habit is a present-tense verb phrase ("whistles two bars of the
+ * same tune between sentences"). Dropping a habit into a template written for a
+ * noun gives "Doyle came with a callus in the web of the thumb, and whistles two
+ * bars of the same tune the whole time", which is two tenses and a category
+ * error in one sentence.
+ *
+ * A habit therefore goes in one of two shapes only: as a sentence of its own
+ * after a colon or a stop, where a present-tense fragment is exactly right and
+ * reads as a standing fact about the man, or turned into the past tense and put
+ * in the same clause as everything else. The turning is done off a table, and
+ * only off a table: a habit whose verb is not in it takes the colon shape
+ * rather than an invented word.
+ * ------------------------------------------------------------------ */
+
+/** Third person singular to simple past, for the verbs the habit deck uses. */
+export const PAST_TENSE: Record<string, string> = {
+  /* irregular */
+  bites: 'bit',
+  runs: 'ran',
+  holds: 'held',
+  keeps: 'kept',
+  sits: 'sat',
+  stands: 'stood',
+  takes: 'took',
+  makes: 'made',
+  goes: 'went',
+  does: 'did',
+  says: 'said',
+  tells: 'told',
+  feels: 'felt',
+  finds: 'found',
+  leaves: 'left',
+  comes: 'came',
+  gets: 'got',
+  puts: 'put',
+  sets: 'set',
+  lets: 'let',
+  cuts: 'cut',
+  hits: 'hit',
+  sticks: 'stuck',
+  sweeps: 'swept',
+  draws: 'drew',
+  blows: 'blew',
+  throws: 'threw',
+  catches: 'caught',
+  brings: 'brought',
+  thinks: 'thought',
+  hangs: 'hung',
+  digs: 'dug',
+  rings: 'rang',
+  sings: 'sang',
+  swings: 'swung',
+  wrings: 'wrung',
+  sends: 'sent',
+  spends: 'spent',
+  bends: 'bent',
+  builds: 'built',
+  lights: 'lit',
+  lays: 'laid',
+  pays: 'paid',
+  writes: 'wrote',
+  rides: 'rode',
+  slides: 'slid',
+  hides: 'hid',
+  shakes: 'shook',
+  wakes: 'woke',
+  wears: 'wore',
+  tears: 'tore',
+  sees: 'saw',
+  speaks: 'spoke',
+  breaks: 'broke',
+  wets: 'wet',
+  /* regular, and spelled out rather than derived: the -s → -ed rule is only
+   * safe where somebody has checked the result is a word */
+  adjusts: 'adjusted',
+  blinks: 'blinked',
+  buttons: 'buttoned',
+  chews: 'chewed',
+  clears: 'cleared',
+  clicks: 'clicked',
+  counts: 'counted',
+  cracks: 'cracked',
+  drums: 'drummed',
+  drops: 'dropped',
+  examines: 'examined',
+  folds: 'folded',
+  hums: 'hummed',
+  licks: 'licked',
+  looks: 'looked',
+  pats: 'patted',
+  picks: 'picked',
+  polishes: 'polished',
+  presses: 'pressed',
+  repeats: 'repeated',
+  rolls: 'rolled',
+  rubs: 'rubbed',
+  shifts: 'shifted',
+  sighs: 'sighed',
+  smooths: 'smoothed',
+  sniffs: 'sniffed',
+  snaps: 'snapped',
+  straightens: 'straightened',
+  studies: 'studied',
+  sucks: 'sucked',
+  taps: 'tapped',
+  tucks: 'tucked',
+  tugs: 'tugged',
+  turns: 'turned',
+  twists: 'twisted',
+  whistles: 'whistled',
+  wipes: 'wiped',
+};
+
+/**
+ * A habit in the past tense, or null when the leading word is not a verb this
+ * table knows. Null is the honest answer and the caller has a shape for it.
+ */
+export function pastTenseHabit(habit: string): string | null {
+  const text = habit.trim();
+  const m = /^([A-Za-z]+)(.*)$/s.exec(text);
+  if (!m) return null;
+  const verb = (m[1] as string).toLowerCase();
+  const past = PAST_TENSE[verb];
+  if (past === undefined) return null;
+  return `${past}${m[2] as string}`;
+}
+
 /**
  * M4b §A.4 — portraits are woven, not listed.
  *
@@ -234,11 +367,16 @@ function sentence(p: string): string {
  * which second component goes with the trait is fixed per person, so the
  * callback below can repeat it exactly once.
  */
-export const PORTRAIT_TEMPLATES: { second: 'habit' | 'clothing' | 'none'; text: string }[] = [
-  { second: 'habit', text: '{Surname} had {trait}, and {second} while {pronoun} waited.' },
+export const PORTRAIT_TEMPLATES: {
+  second: 'habit' | 'clothing' | 'none';
+  /** The second component goes in as a past-tense clause, not as it is written. */
+  past?: boolean;
+  text: string;
+}[] = [
+  { second: 'habit', past: true, text: '{Surname} had {trait}, and {second} while {pronoun} waited.' },
   { second: 'clothing', text: '{Surname}: {trait}. {Second}.' },
-  { second: 'none', text: '{Trait} — that was {Surname}{business}.' },
-  { second: 'habit', text: '{Surname} came with {trait}, and {second} the whole time.' },
+  { second: 'none', text: '{Trait} — that was {Surname}.{business}' },
+  { second: 'habit', text: '{Surname}: {trait}. {Second}.' },
   { second: 'clothing', text: '{Second}, and above it {trait}. {Surname}.' },
 ];
 
@@ -278,7 +416,12 @@ export function describePerson(input: WeaveInput): string {
     // The callback: the second meeting repeats the first meeting's component,
     // and after that it varies. Never two components at once, ever.
     const later = times === 1 ? secondName : (parts[(times - 1) % parts.length] as keyof typeof has);
-    const one = has[later].length > 0 ? has[later] : (has[parts[0] as keyof typeof has] as string);
+    const which = has[later].length > 0 ? later : (parts[0] as keyof typeof has);
+    const one = has[which];
+    // "Doyle, and whistles two bars of the same tune" hangs a present-tense
+    // verb off an appositive. The habit takes the colon instead, where a
+    // present-tense fragment is a standing fact about the man and reads right.
+    if (which === 'habit') return `${surname}: ${one}.`;
     return `${surname}, and ${one}.`;
   }
 
@@ -287,7 +430,10 @@ export function describePerson(input: WeaveInput): string {
     (t) =>
       (t.second === 'none' ? true : has[t.second].length > 0) &&
       has.trait.length > 0 &&
-      (t.second !== 'none' || business.length > 0),
+      (t.second !== 'none' || business.length > 0) &&
+      // A template that puts the habit in the same clause as the rest needs
+      // the verb turned; where it cannot be turned the template is not usable.
+      (t.past !== true || pastTenseHabit(has[t.second as 'habit' | 'clothing']) !== null),
   );
   const pool = usable.filter((t) => t.second === secondName || t.second === 'none');
   const chosen =
@@ -295,7 +441,8 @@ export function describePerson(input: WeaveInput): string {
     null;
   if (!chosen) return `${surname}, and ${has[parts[0] as keyof typeof has]}.`;
 
-  const second = chosen.second === 'none' ? '' : has[chosen.second];
+  const raw = chosen.second === 'none' ? '' : has[chosen.second];
+  const second = chosen.past === true ? (pastTenseHabit(raw) ?? raw) : raw;
   return chosen.text
     .split('{Surname}')
     .join(surname)
@@ -309,8 +456,12 @@ export function describePerson(input: WeaveInput): string {
     .join(sentence(second))
     .split('{pronoun}')
     .join(pronoun)
+    // The business beat is a sentence of its own here, not a clause hung off
+    // "that was Carbone": the business deck writes both tenses and half of it
+    // is present ("A hat goes round in two hands"), which a comma would put
+    // inside a past-tense sentence.
     .split('{business}')
-    .join(business.length > 0 ? `, ${fragment(business)}` : '');
+    .join(business.length > 0 ? ` ${sentence(business)}` : '');
 }
 
 /** He or she, for the weaving templates. */

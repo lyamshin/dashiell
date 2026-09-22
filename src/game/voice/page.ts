@@ -706,7 +706,14 @@ export function composePage(stage: Stage, scene: Scene): Composed {
           : '';
       // The business beat is inside the portrait when the weave used it; a
       // weave that did not use it sets it down after, as its own sentence.
-      const carriedBusiness = approach !== null && portrait.includes(trimTail(approach.text));
+      // Case-insensitively: the weave may have lower-cased the first letter to
+      // set the beat down as a clause, and a case-sensitive `includes` then
+      // missed it and printed the same gesture twice — "that was Carbone, a
+      // hat goes round in two hands, brim to brim. A hat goes round in two
+      // hands, brim to brim."
+      const carriedBusiness =
+        approach !== null &&
+        portrait.toLowerCase().includes(trimTail(approach.text).toLowerCase());
       say(
         joinSentences(portrait, carriedBusiness ? '' : (approach?.text ?? ''), greeting),
         'approach',

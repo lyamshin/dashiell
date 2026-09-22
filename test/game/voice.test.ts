@@ -40,6 +40,7 @@ import {
   genderHintOf,
   leadingTheory,
   oddsFor,
+  pastTenseHabit,
   reactiveMonologue,
   rollCast,
   rollDashiell,
@@ -374,9 +375,15 @@ describe('portraits', () => {
         (p): p is string => typeof p === 'string' && p.length > 0,
       );
       // A weaving template may put a component at the head of a sentence, so
-      // the comparison is case-blind on the first letter and nowhere else.
-      const holds = (text: string, part: string): boolean =>
-        text.toLowerCase().includes(part.toLowerCase());
+      // the comparison is case-blind on the first letter and nowhere else —
+      // and a habit is the same detail whether the sentence around it wanted
+      // it in the present or turned it into the past.
+      const holds = (text: string, part: string): boolean => {
+        const lower = text.toLowerCase();
+        if (lower.includes(part.toLowerCase())) return true;
+        const past = pastTenseHabit(part);
+        return past !== null && lower.includes(past.toLowerCase());
+      };
       if (parts.length === 3) {
         expect(parts.filter((p) => holds(weave(0, 0), p)).length).toBeLessThanOrEqual(2);
       }
@@ -406,8 +413,81 @@ describe('portraits', () => {
           if (block.kind !== 'prose') continue;
           if (block.voice !== 'presence' && block.voice !== 'approach') continue;
           const lower = block.text.toLowerCase();
-          expect(parts.every((p) => lower.includes(p.toLowerCase()))).toBe(false);
+          const holds = (p: string): boolean => {
+            if (lower.includes(p.toLowerCase())) return true;
+            const past = pastTenseHabit(p);
+            return past !== null && lower.includes(past.toLowerCase());
+          };
+          expect(parts.every(holds)).toBe(false);
           expect((block.text.match(/;/g) ?? []).length).toBeLessThan(2);
+        }
+      }
+    }
+  });
+
+  it('turns a habit into the past tense only off the table, and says so otherwise', () => {
+    expect(pastTenseHabit('whistles two bars of the same tune between sentences')).toBe(
+      'whistled two bars of the same tune between sentences',
+    );
+    expect(pastTenseHabit('runs a thumbnail along the seam of the table')).toBe(
+      'ran a thumbnail along the seam of the table',
+    );
+    expect(pastTenseHabit('straightens picture frames that are already straight')).toBe(
+      'straightened picture frames that are already straight',
+    );
+    // Not a verb this table knows: the caller takes the colon shape instead of
+    // inventing a word.
+    expect(pastTenseHabit('counting the change twice before it goes in the pocket')).toBeNull();
+    expect(pastTenseHabit('a matchbook turning end over end, never struck')).toBeNull();
+  });
+
+  it('never hangs a present-tense habit off a past-tense clause', () => {
+    // "Doyle came with a callus in the web of the thumb, and whistles two bars
+    // of the same tune the whole time" is two tenses in one sentence. A habit
+    // left in the present goes after a stop or a colon, as its own sentence,
+    // and nowhere else.
+    const state = exhaust(7, 2);
+    const v = buildView(generateCase(7, { difficulty: 2 }));
+    let seen = 0;
+    for (const person of v.kase.people) {
+      const portrait = state.cast.portraits[person.id];
+      if (!portrait || portrait.habit.length === 0) continue;
+      for (let times = 0; times < 5; times++) {
+        for (let nth = 0; nth < 5; nth++) {
+          const text = describePerson({
+            cast: state.cast,
+            personId: person.id,
+            surname: person.surname,
+            times,
+            nth,
+            business: 'Counted the till under the bar.',
+            pronoun: 'he',
+          });
+          const at = text.toLowerCase().indexOf(portrait.habit.toLowerCase());
+          if (at < 0) continue;
+          seen++;
+          const before = text.slice(0, at).trimEnd();
+          expect(
+            before.length === 0 || /[.:]$/.test(before),
+            `${person.surname}, times ${times}: ${text}`,
+          ).toBe(true);
+        }
+      }
+    }
+    expect(seen, 'no weave used a habit as written').toBeGreaterThan(0);
+  });
+
+  it('never prints the same beat twice in one approach paragraph', () => {
+    for (const seed of [1, 3, 7, 12, 19]) {
+      for (const page of exhaust(seed, 2).log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose') continue;
+          if (block.voice !== 'approach' && block.voice !== 'presence') continue;
+          const said = block.text
+            .split(/(?<=[.!?])\s+/)
+            .map((s) => s.trim().toLowerCase())
+            .filter((s) => s.length > 0);
+          expect(new Set(said).size, `seed ${seed}: ${block.text}`).toBe(said.length);
         }
       }
     }
