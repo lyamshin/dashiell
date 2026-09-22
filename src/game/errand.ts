@@ -132,15 +132,22 @@ export function planErrand(
 
   const leads = state.threads.filter((t) => t.placeId === to);
 
-  if (firstSight) {
+  const opening = view.kase.starting.some((id) => {
+    const c = view.findableById.get(id);
+    return c !== undefined && c.kind !== 'client' && !state.found.includes(c.id);
+  });
+  if (firstSight && opening) {
     // The client said where it happened, or where it was found. The scene
     // opening follows and hands over the report; this only says why.
     const clientClue = state.found
       .map((id) => view.findableById.get(id))
       .find((c): c is Clue => c?.kind === 'client');
+    // The report the scene is about to hand over: a starting clue not yet in
+    // hand. A scene whose report somehow came to hand first is no longer a
+    // first sight in any sense a reader would notice, and falls through.
     const first = view.kase.starting
       .map((id) => view.findableById.get(id))
-      .find((c): c is Clue => c !== undefined && c.kind !== 'client');
+      .find((c): c is Clue => c !== undefined && c.kind !== 'client' && !state.found.includes(c.id));
     return {
       because: 'said',
       for: 'search-room',

@@ -533,7 +533,7 @@ export function meanSharedMotifs(pages: { imageMotifs?: string[][] }[]): {
 }
 
 const WORD_TARGET_LOW = 120;
-const WORD_TARGET_HIGH = 250;
+const WORD_TARGET_HIGH = 200;
 
 /**
  * The hard ceiling a page is trimmed down to, and page one's own.

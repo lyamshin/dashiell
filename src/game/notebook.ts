@@ -332,3 +332,106 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
     findableCount: kase.findable.length,
   };
 }
+
+/* ------------------------------------------------------------------ *
+ * M6 §4 — names on hover.
+ * ------------------------------------------------------------------ */
+
+/** What a hover card shows: a title line and a few short lines under it. */
+export interface HoverCard {
+  title: string;
+  lines: string[];
+}
+
+/** Every word the run has put on paper so far, and every record in hand. */
+function onPaper(view: CaseView, state: RunState): string {
+  const pages = state.log
+    .flatMap((p) => p.blocks)
+    .map((b) =>
+      b.kind === 'prose' || b.kind === 'note' ? b.text : b.kind === 'presence' ? (b.text ?? '') : '',
+    );
+  const records = state.found
+    .map((id) => view.findableById.get(id))
+    .map((c) => (c ? `${c.text}\n${c.textRecord ?? ''}` : ''));
+  return [...pages, ...records].join('\n');
+}
+
+/**
+ * A person's card. Only what the notebook holds: the full name if it has been
+ * said, the trade and the look, where they were met or who named them, and
+ * the newest line the notebook has about them. Somebody the notebook does not
+ * hold yet gets a card that says so and nothing else.
+ */
+export function personCard(view: CaseView, state: RunState, personId: Id): HoverCard | null {
+  const person = view.personById.get(personId);
+  if (!person) return null;
+  const book = buildNotebook(view, state);
+  const entry = book.people.find((p) => p.id === personId);
+  if (!entry) return { title: person.surname, lines: ['Not in the notebook yet.'] };
+
+  const title = onPaper(view, state).includes(person.name) ? person.name : person.surname;
+  const lines: string[] = [];
+  const role = `${entry.role}${entry.isClient ? ', our client' : ''}${entry.isVictim ? ', the victim' : ''}`;
+  lines.push(`${role.charAt(0).toUpperCase()}${role.slice(1)}.`);
+  const look = entry.dossier.onSight.find((l) =>
+    /\b(teens|twenties|thirties|forties|fifties|sixties|seventies)\b/.test(l),
+  );
+  if (look && !entry.isVictim) lines.push(look);
+
+  // Where they were met, or who named them.
+  const metAt = state.log.find((p) =>
+    p.blocks.some((b) => b.kind === 'presence' && b.personIds.includes(personId)),
+  );
+  if (metAt) {
+    lines.push(`Met at ${placeName(view, metAt.at)}.`);
+  } else if (!entry.isVictim) {
+    const namer = state.found
+      .map((id) => view.findableById.get(id))
+      .find((c) => c !== undefined && (c.textRecord ?? c.text).includes(person.surname));
+    if (namer) {
+      const by =
+        namer.source.type === 'person'
+          ? personName(view, namer.source.personId)
+          : placeName(view, namer.source.placeId);
+      lines.push(`Not met. Named by ${by}.`);
+    } else {
+      lines.push('Not met.');
+    }
+  }
+
+  // The newest line the notebook has about them.
+  const order = (clueId: Id): number => state.found.indexOf(clueId);
+  const candidates: { at: number; text: string }[] = [
+    ...entry.facts.map((f) => ({ at: order(f.clueId), text: `${f.text} (${f.source})` })),
+    ...entry.records.map((r) => ({ at: order(r.clueId), text: r.text })),
+  ];
+  const newest = candidates.sort((a, b) => b.at - a.at)[0];
+  if (newest) lines.push(newest.text);
+  else if (entry.account) {
+    lines.push(`Says: ${entry.account.map((a) => `${a.span} ${a.place}`).join('; ')}.`);
+  }
+  return { title, lines };
+}
+
+/** A place's card: what kind of place, who watches it, been or not, leads open here. */
+export function placeHoverCard(view: CaseView, state: RunState, placeId: Id): HoverCard | null {
+  const book = buildNotebook(view, state);
+  const place = book.places.find((p) => p.id === placeId);
+  if (!place) return null;
+  const lines: string[] = [];
+  const kind =
+    ({ private: 'Private', semi: 'Semi-public', public: 'Public' } as Record<string, string>)[
+      place.kind
+    ] ?? place.kind;
+  lines.push(`${kind}, ${place.watcher ? `watched by the ${place.watcher}` : 'unwatched'}.`);
+  lines.push(place.visited ? 'Been.' : 'Not been.');
+  const leads = state.threads.filter((t) => t.placeId === placeId);
+  if (leads.length > 0) {
+    lines.push(
+      `${leads.length === 1 ? 'One lead' : `${leads.length} leads`} open here: ${leads
+        .map((l) => l.label)
+        .join('; ')}.`,
+    );
+  }
+  return { title: place.shortName, lines };
+}
