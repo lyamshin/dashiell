@@ -72,7 +72,21 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
   seen(
     `${client.name} is ${dossier?.age ?? 40} years old and ${dossier?.profession.role ?? client.role}.`,
   );
-  if (dossier) seen(`${client.surname} ${dossier.profession.detail}.`);
+  /*
+   * Hone 2 §A.3 and §Track B. What the client does for a living is the one
+   * thing on this page they would say themselves, and the golden has them say
+   * it in the second breath: "I write the tickets at Feldman's pawnshop on
+   * Orchard Street. I know what things are worth." The record keeps the third
+   * person, because the sheet files a person by name; the room gets the first.
+   * A card with no written first-person form falls back to Dashiell saying it,
+   * which is what every card did before.
+   */
+  if (dossier) {
+    const detailText = `${client.surname} ${dossier.profession.detail}.`;
+    const detailFirst = dossier.profession.detailFirst;
+    if (detailFirst === undefined) seen(detailText);
+    else said(detailText, detailFirst, dossier.profession.prompt);
+  }
 
   /* 2. What happened, in the victim's terms. ------------------------------ */
   said(bio.standing);

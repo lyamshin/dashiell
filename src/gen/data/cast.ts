@@ -92,6 +92,14 @@ export interface Archetype {
   ageBand: [number, number];
   /** What the work looks like up close. `{place}` is allowed. */
   professionDetails: string[];
+  /**
+   * The same details in the person's own mouth, one for one with
+   * `professionDetails`. Hone 2 §Track B: a client on page one says what they
+   * do rather than being described doing it, and says it the way somebody
+   * says it who has been asked before — two or three sentences, one of them
+   * short. The record keeps the third person for the sheet.
+   */
+  professionFirst: string[];
   /** Weighted by repetition: what a person of this kind wants. */
   wants: Want[];
   /** True when the work shows on sight — a uniform, a hook, hands. */
@@ -142,9 +150,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} bought into {victim}’s business the year {third} walked out of it',
     ],
     backstoryFirst: [
-      '{victim} and I took the lease together in {year} and we have been arguing about it since',
-      'I put up the money and {victim} put up the name, and neither of us ever wrote it down',
-      'I bought into {victim}’s business the year {third} walked out of it',
+      '{victim} and I took the lease together in {year}. We have been arguing about it since. Not once in front of anybody.',
+      'I put up the money. {victim} put up the name. Neither of us ever wrote any of it down.',
+      'I bought into {victim}’s business the year {third} walked out of it. I have wondered about that since. It seemed a bargain at the time.',
     ],
     since: ['since {year}', 'going on eight years', 'three years this spring'],
     purposes: {
@@ -163,9 +171,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} put {person}’s rent up twice in a year and {person} paid it twice',
     ],
     backstoryFirst: [
-      'I have rented from {victim} since {year} and I have the same window and the same complaint',
-      'I took the rooms over {place} from {victim} and I have been two weeks behind since the spring',
-      '{victim} put my rent up twice in a year and I paid it twice',
+      'I have rented from {victim} since {year}. The same window. The same complaint about it, every year.',
+      'I took the rooms over {place} from {victim}. I have been two weeks behind since the spring. Two weeks, never three.',
+      '{victim} put my rent up twice in a year. I paid it twice. I did not argue either time.',
     ],
     since: ['since {year}', 'since the flu year', 'four years in the same rooms'],
     purposes: {
@@ -184,9 +192,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} put {victim} into the rooms as a favour to {third} and regretted it inside a month',
     ],
     backstoryFirst: [
-      '{victim} rented from me and was three months behind when it happened',
-      'I have held the paper on the building {victim} lived in since {year}',
-      'I put {victim} into the rooms as a favour to {third} and regretted it inside a month',
+      '{victim} rented from me. Three months behind when it happened, and I had said nothing about it.',
+      'I have held the paper on the building {victim} lived in since {year}. I hold it still.',
+      'I put {victim} into the rooms as a favour to {third}. Inside a month I regretted it. The favour was never returned.',
     ],
     since: ['since {year}', 'the better part of ten years', 'two leases running'],
     purposes: {
@@ -205,9 +213,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} kept {victim}’s books until {third} was brought in over {person}’s head',
     ],
     backstoryFirst: [
-      'I worked for {victim} for four years and was let go in {year} without a reference',
-      '{victim} put me out of a job over forty dollars that was never found',
-      'I kept {victim}’s books until {third} was brought in over my head',
+      'I worked for {victim} four years. I was let go in {year}, without a reference.',
+      '{victim} put me out of a job over forty dollars. The money was never found. I did not take it.',
+      'I kept {victim}’s books until {third} was brought in over my head. Nobody told me first.',
     ],
     since: ['since {year}', 'four years, and then nothing', 'until last winter'],
     purposes: {
@@ -226,9 +234,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} lent {victim} money in front of {third} and has been reminded of it ever since',
     ],
     backstoryFirst: [
-      'I have been carrying {victim}’s paper since {year} and renewing it every ninety days',
-      '{victim} borrowed from me to cover a note and never mentioned it to anybody',
-      'I lent {victim} money in front of {third} and have been reminded of it ever since',
+      'I have carried {victim}’s paper since {year}, and renewed it every ninety days. Every ninety days, on the day.',
+      '{victim} borrowed from me to cover a note. It was never mentioned to anybody. Not by either of us.',
+      'I lent {victim} money in front of {third}. That was a mistake. I have been reminded of it ever since.',
     ],
     since: ['since {year}', 'three renewals running', 'going back to the war'],
     purposes: {
@@ -247,9 +255,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} signed a note to {victim} that {third} witnessed and nobody has torn up',
     ],
     backstoryFirst: [
-      'I have owed {victim} money since {year} and have not been asked for it lately',
-      '{victim} carried me through a bad winter and has been collecting on it ever since',
-      'I signed a note to {victim} that {third} witnessed and nobody has torn up',
+      'I have owed {victim} money since {year}. Nobody has asked for it lately. That is what worries me.',
+      '{victim} carried me through a bad winter. The collecting has not stopped since. I am still paying.',
+      'I signed a note to {victim}. {third} witnessed it. Nobody has torn it up.',
     ],
     since: ['since {year}', 'since the flu year', 'two winters running'],
     purposes: {
@@ -268,9 +276,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} brought {person} the business {third} would not touch',
     ],
     backstoryFirst: [
-      'I have drawn every paper {victim} ever signed, going back to {year}',
-      'I keep {victim}’s will in a box and have read it more often than {victim} did',
-      '{victim} brought me the business {third} would not touch',
+      'I have drawn every paper {victim} ever signed. That goes back to {year}. All of it in my own hand.',
+      '{victim}’s will is in my box. I have read it more often than {victim} did.',
+      '{victim} brought me the business {third} would not touch. I took it.',
     ],
     since: ['since {year}', 'for eleven years', 'going back to the war'],
     purposes: {
@@ -289,9 +297,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} came over on the same boat with {third} and split up inside a year',
     ],
     backstoryFirst: [
-      '{victim} and I are cousins and were raised four doors apart',
-      'I am {victim}’s cousin on the mother’s side and have not been asked to dinner since {year}',
-      '{victim} and I came over on the same boat with {third} and split up inside a year',
+      '{victim} and I are cousins. We were raised four doors apart.',
+      'I am {victim}’s cousin on the mother’s side. I have not been asked to dinner since {year}. Not once.',
+      '{victim}, {third} and I came over on the same boat. Inside a year we had split up. That was the end of it.',
     ],
     since: ['all their lives', 'since {year}', 'since they were children on the same block'],
     purposes: {
@@ -310,9 +318,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} stood up at {person}’s wedding and {third} has never let either of them forget it',
     ],
     backstoryFirst: [
-      'I married {victim}’s sister in {year} and have been in the family ever since',
-      'I am {victim}’s brother-in-law and have been told so at every holiday',
-      '{victim} stood up at my wedding and {third} has never let either of us forget it',
+      'I married {victim}’s sister in {year}. I have been in the family ever since. For better or worse.',
+      'I am {victim}’s brother-in-law. At every holiday somebody has told me so.',
+      '{victim} stood up at my wedding. {third} has never let either of us forget it.',
     ],
     since: ['since {year}', 'since the wedding', 'nine years of Sundays'],
     purposes: {
@@ -332,9 +340,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} both bid for what {third} was selling, and {victim} got it',
     ],
     backstoryFirst: [
-      '{victim} and I have been in the same trade on the same street since {year}',
-      'I took two of {victim}’s best accounts and {victim} took one of them back',
-      '{victim} and I both bid for what {third} was selling, and {victim} got it',
+      '{victim} and I have been in the same trade on the same street since {year}. Neither of us moved.',
+      'I took two of {victim}’s best accounts. {victim} took one of them back. We were even enough.',
+      '{third} had something to sell. {victim} and I both bid for it. {victim} got it.',
     ],
     since: ['since {year}', 'six years of it', 'since they were both starting out'],
     purposes: {
@@ -354,9 +362,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} separated over {third} and never went near a court about it',
     ],
     backstoryFirst: [
-      'I married {victim} in {year} and we have lived apart for three of those years',
-      'I am {victim}’s wife in law and nothing else, and have been since {year}',
-      '{victim} and I separated over {third} and never went near a court about it',
+      'I married {victim} in {year}. Three of those years we have lived apart.',
+      'I am {victim}’s wife in law and nothing else. That has been true since {year}.',
+      '{victim} and I separated over {third}. We never went near a court about it. No papers, no lawyers.',
     ],
     since: ['since {year}', 'three years apart', 'since the winter they stopped speaking'],
     purposes: {
@@ -375,9 +383,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} knows what {victim} took, and when, and how much of it was necessary',
     ],
     backstoryFirst: [
-      'I have sat nights with {victim} since {year}, six nights out of seven',
-      'I was put in to nurse {victim} by {third} and stayed on after the fee stopped',
-      'I know what {victim} took, and when, and how much of it was necessary',
+      'I have sat nights with {victim} since {year}. Six nights out of seven.',
+      '{third} put me in to nurse {victim}. The fee stopped. I stayed on anyway.',
+      'I know what {victim} took, and when. I know how much of it was necessary. Not all of it.',
     ],
     since: ['since {year}', 'since the spring', 'eleven months of nights'],
     purposes: {
@@ -396,9 +404,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} was hired on {third}’s word and has been more use than {third} ever was',
     ],
     backstoryFirst: [
-      'I have answered {victim}’s letters since {year} and read them all first',
-      'I keep {victim}’s diary and know which of the entries are true',
-      'I was hired on {third}’s word and have been more use than {third} ever was',
+      'I have answered {victim}’s letters since {year}. I read them all first. That is the work.',
+      'I keep {victim}’s diary. I know which of the entries are true. Not many of them.',
+      'I was hired on {third}’s word. I have been more use than {third} ever was. A good deal more.',
     ],
     since: ['since {year}', 'for six years', 'since the rooms changed'],
     purposes: {
@@ -418,9 +426,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim}’s daughter have been engaged since {year}, and {third} calls it a long engagement',
     ],
     backstoryFirst: [
-      'I have been engaged to {victim}’s daughter since {year}, with no date set',
-      'I asked {victim} for the daughter and was told to come back when there was money',
-      '{victim}’s daughter and I have been engaged since {year}, and {third} calls it a long engagement',
+      'I have been engaged to {victim}’s daughter since {year}. No date has been set.',
+      'I asked {victim} for the daughter. I was told to come back when there was money. I have not been back.',
+      '{victim}’s daughter and I have been engaged since {year}. {third} calls it a long engagement. It is.',
     ],
     since: ['since {year}', 'two years engaged', 'since last Easter'],
     purposes: {
@@ -439,9 +447,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person}, {victim} and {third} were inseparable for ten years and have not been in a room together since',
     ],
     backstoryFirst: [
-      '{victim} and I grew up on the same block and have known each other since {year}',
-      '{victim} and I were boys together and neither of us ever left the neighbourhood',
-      '{victim}, {third} and I were inseparable for ten years and have not been in a room together since',
+      'We grew up on the same block, {victim} and I. We have known each other since {year}. That is a long time.',
+      '{victim} and I were boys together. Neither of us ever left the neighbourhood. Neither of us tried.',
+      '{victim}, {third} and I were inseparable for ten years. We have not been in a room together since. Not once.',
     ],
     since: ['all their lives', 'since {year}', 'since they were boys on the same stoop'],
     purposes: {
@@ -460,9 +468,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {third} are both named in it, and only one of them knows',
     ],
     backstoryFirst: [
-      'I have been named in {victim}’s will since {year} and have known it that long',
-      '{victim} told me there was something in the will and never said how much',
-      '{third} and I are both named in it, and only one of us knows',
+      'I have been named in {victim}’s will since {year}. I have known it that long.',
+      '{victim} told me there was something in the will. How much was never said. I did not ask.',
+      '{third} and I are both named in it. Only one of us knows. I have said nothing to {third}.',
     ],
     since: ['since {year}', 'since the will was redrawn', 'for as long as there has been a will'],
     purposes: {
@@ -481,9 +489,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} talked to the district attorney in {year} and {third} has not spoken to {person} since',
     ],
     backstoryFirst: [
-      'I gave a statement about the people {victim} worked for and have been careful ever since',
-      'I am due before the grand jury about {victim}’s people, and the date is set',
-      'I talked to the district attorney in {year} and {third} has not spoken to me since',
+      'I gave a statement about the people {victim} worked for. Since then I have been careful. Very careful.',
+      'I am due before the grand jury about {victim}’s people. The date is set. I cannot put it off.',
+      'I talked to the district attorney in {year}. {third} has not spoken to me since. Not a word.',
     ],
     since: ['since {year}', 'since the indictment', 'since last autumn'],
     purposes: {
@@ -502,9 +510,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} came to {victim} on {third}’s introduction and has stayed a customer',
     ],
     backstoryFirst: [
-      'I have bought from {victim} for years and settled at the end of every month',
-      'I have been on {victim}’s books as a customer since {year}',
-      'I came to {victim} on {third}’s introduction and have stayed a customer',
+      'I bought from {victim} for years. Everybody on the block did, but I settled at the end of every month.',
+      'I have been on {victim}’s books since {year}. A customer, and never anything else.',
+      '{third} introduced me to {victim}. I never went anywhere else after that.',
     ],
     since: ['since {year}', 'for years', 'since the shop opened'],
     purposes: {
@@ -523,9 +531,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} share a wall, a landing and a long argument about {third}',
     ],
     backstoryFirst: [
-      'I live across the airshaft from {victim} and can hear the wireless through it',
-      'I have lived on the same landing as {victim} since {year}',
-      '{victim} and I share a wall, a landing and a long argument about {third}',
+      'I live across the airshaft from {victim}. The wireless comes through it. I hear all of it.',
+      'I have lived on the same landing as {victim} since {year}. The same landing, all that time.',
+      '{victim} and I share a wall and a landing. We share a long argument about {third}. It is not settled.',
     ],
     since: ['since {year}', 'five years on the same landing', 'since the building changed hands'],
     purposes: {
@@ -559,6 +567,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'draws an allowance on the first of the month and has it spent by the eighth',
       'keeps a desk at a brokerage where nobody expects him before noon',
     ],
+    professionFirst: [
+      'I have no occupation. Nobody can put a name to it. I have an account at three tailors.',
+      'I draw an allowance on the first of the month. It is spent by the eighth. Every month.',
+      'I keep a desk at a brokerage. Nobody there expects me before noon.',
+    ],
     wants: ['money', 'money', 'to-be-somebody', 'to-keep-what-they-have'],
     visibleProfession: false,
   },
@@ -578,6 +591,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'lives on an annuity and the rent from a house in Flushing',
       'has not worked since her marriage and does not mean to start',
     ],
+    professionFirst: [
+      'I keep rooms on the avenue. A girl comes in three mornings a week.',
+      'I live on an annuity. There is rent from a house in Flushing as well.',
+      'I have not worked since my marriage. I do not mean to start.',
+    ],
     wants: ['respectability', 'respectability', 'to-keep-what-they-have', 'to-be-left-alone'],
     visibleProfession: false,
   },
@@ -594,6 +612,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the curb outside the Exchange in all weathers',
       'trades on the street for men who would rather not be seen doing it',
       'carries three telephone numbers and no office',
+    ],
+    professionFirst: [
+      'I work the curb outside the Exchange. In all weathers.',
+      'I trade on the street. My customers would rather not be seen doing it themselves.',
+      'I carry three telephone numbers. I have no office.',
     ],
     wants: ['money', 'money', 'to-be-somebody', 'to-keep-what-they-have'],
     visibleProfession: false,
@@ -612,6 +635,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has a standing table at a place the bill never comes to',
       'keeps a card index of everybody worth a paragraph',
     ],
+    professionFirst: [
+      'I file three columns a week. I dine out for all of them.',
+      'I have a standing table at a place the bill never comes to. It never has.',
+      'I keep a card index. Everybody in it is worth a paragraph.',
+    ],
     wants: ['to-be-somebody', 'to-be-somebody', 'money', 'respectability'],
     visibleProfession: false,
   },
@@ -628,6 +656,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'owns four buildings on the same street and collects in person',
       'carries the rent book himself on the first of the month',
       'has a boilerman, a lawyer and no partners',
+    ],
+    professionFirst: [
+      'I own four buildings on the same street. I collect in person.',
+      'I carry the rent book myself. On the first of the month.',
+      'I have a boilerman and a lawyer. No partners.',
     ],
     wants: ['to-keep-what-they-have', 'to-keep-what-they-have', 'money', 'to-be-feared'],
     visibleProfession: false,
@@ -647,6 +680,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'practises alone and takes whatever walks up the stairs',
       'has a list of clients and will not read any of it aloud',
     ],
+    professionFirst: [
+      'I keep two rooms over a bank. One clerk does the typing.',
+      'I practise alone. I take whatever walks up the stairs.',
+      'I have a list of clients. I will not read any of it aloud.',
+    ],
     wants: ['respectability', 'respectability', 'money', 'to-keep-what-they-have'],
     visibleProfession: false,
   },
@@ -662,6 +700,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'keeps the books for two firms and a lodge',
       'sits the same desk from eight until six and rules the columns by hand',
       'does the payroll on Thursdays and the ledgers the rest of the week',
+    ],
+    professionFirst: [
+      'I keep the books for two firms. And a lodge.',
+      'I sit the same desk, eight until six. The columns are ruled by hand. My hand.',
+      'I do the payroll on Thursdays. The ledgers take the rest of the week.',
     ],
     wants: ['to-be-left-alone', 'to-be-left-alone', 'respectability', 'money'],
     visibleProfession: false,
@@ -680,6 +723,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has a registry card and takes the cases nobody else will',
       'nursed overseas and has not been out of work since',
     ],
+    professionFirst: [
+      'I sit nights with patients the hospitals have sent home. It is night work.',
+      'I have a registry card. I take the cases nobody else will.',
+      'I nursed overseas. I have not been out of work since.',
+    ],
     wants: ['to-be-forgiven', 'respectability', 'money', 'to-be-left-alone'],
     visibleProfession: true,
   },
@@ -696,6 +744,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'pulls teeth for the neighbourhood at a dollar a time',
       'bought the practice second-hand and is still paying for the chair',
     ],
+    professionFirst: [
+      'I have a chair. A waiting room, and a girl on the door.',
+      'I pull teeth for the neighbourhood. A dollar a time.',
+      'I bought the practice second-hand. I am still paying for the chair.',
+    ],
     wants: ['respectability', 'money', 'to-be-left-alone'],
     visibleProfession: false,
   },
@@ -711,6 +764,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'answers the letters, keeps the diary, and knows what is in both',
       'has worked for three men in six years and left none of them badly',
       'takes the dictation and does the banking',
+    ],
+    professionFirst: [
+      'I answer the letters. I keep the diary. I know what is in both.',
+      'I have worked for three men in six years. None of them badly.',
+      'I take the dictation. I do the banking as well.',
     ],
     wants: ['to-be-somebody', 'respectability', 'to-get-out', 'money'],
     visibleProfession: false,
@@ -729,6 +787,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the precincts at night and the courts in the morning',
       'has a press card and no salary',
     ],
+    professionFirst: [
+      'I sell two hundred words at a time. To whichever desk is short.',
+      'I work the precincts at night. The courts in the morning.',
+      'I have a press card. I have no salary.',
+    ],
     wants: ['to-be-somebody', 'money', 'to-get-out'],
     visibleProfession: false,
   },
@@ -744,6 +807,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'takes pupils in the front room from four until seven and hears every scale twice',
       'teaches at the settlement house three afternoons a week',
       'has eleven pupils and a piano that wants tuning',
+    ],
+    professionFirst: [
+      'I take pupils in the front room, four until seven. I hear every scale twice.',
+      'I teach at the settlement house. Three afternoons a week.',
+      'I have eleven pupils. The piano wants tuning.',
     ],
     wants: ['to-be-left-alone', 'respectability', 'to-be-forgiven'],
     visibleProfession: false,
@@ -761,6 +829,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'walks fire jobs for the company and writes up what he finds',
       'settles claims for a casualty office and is paid to doubt people',
       'has a district that runs from the river to Eighth Avenue',
+    ],
+    professionFirst: [
+      'I walk fire jobs for the company. I write up what I find.',
+      'I settle claims for a casualty office. I am paid to doubt people. It is a living.',
+      'I have a district. It runs from the river to Eighth Avenue.',
     ],
     wants: ['money', 'respectability', 'to-keep-what-they-have'],
     visibleProfession: false,
@@ -781,6 +854,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has the third and fourth floors and is finished at four',
       'has been on the same floors for six years and knows every door on them',
     ],
+    professionFirst: [
+      'I do eleven rooms a day. The linen after that.',
+      'I have the third and fourth floors. I am finished at four.',
+      'Six years on the same floors. I know every door on them.',
+    ],
     wants: ['to-get-out', 'to-get-out', 'money', 'to-be-left-alone'],
     visibleProfession: true,
   },
@@ -797,6 +875,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the Elizabeth Street pier when there is work',
       'shapes up at seven and takes whatever the boss hands out',
       'has a hook, a union button and three days a week',
+    ],
+    professionFirst: [
+      'I work the Elizabeth Street pier. When there is work.',
+      'I shape up at seven. I take whatever the boss hands out.',
+      'I have a hook and a union button. Three days a week.',
     ],
     wants: ['money', 'to-be-feared', 'to-keep-what-they-have'],
     visibleProfession: true,
@@ -815,6 +898,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works a machine in a loft and is paid by the dozen',
       'sews for a house on the avenue and is never named in it',
     ],
+    professionFirst: [
+      'I finish coats at home. By the piece. The bundles go back on Fridays.',
+      'I work a machine in a loft. I am paid by the dozen.',
+      'I sew for a house on the avenue. My name is not in it. It never was.',
+    ],
     wants: ['to-get-out', 'money', 'to-be-forgiven', 'respectability'],
     visibleProfession: true,
   },
@@ -832,6 +920,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'drives nights and sleeps while the city works',
       'owns the cab and owes on it',
     ],
+    professionFirst: [
+      'I work the stand outside the hotel. Six until the small hours.',
+      'I drive nights. I sleep while the city works.',
+      'I own the cab. I owe on it.',
+    ],
     wants: ['money', 'to-be-left-alone', 'to-keep-what-they-have'],
     visibleProfession: true,
   },
@@ -848,6 +941,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has a shop under the stairs and a boy who delivers',
       'makes to measure for men who settle at Christmas',
     ],
+    professionFirst: [
+      'I press and turn coats. The shop is the width of a hallway.',
+      'I have a shop under the stairs. A boy does the delivering.',
+      'I make to measure. My customers settle at Christmas.',
+    ],
     wants: ['respectability', 'money', 'to-keep-what-they-have'],
     visibleProfession: true,
   },
@@ -863,6 +961,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the fly floor and is out of the house by eleven',
       'sets and strikes for whatever is playing',
       'has been on the same crew since the house opened',
+    ],
+    professionFirst: [
+      'I work the fly floor. I am out of the house by eleven.',
+      'I set and strike for whatever is playing. The play changes. The work does not.',
+      'I have been on the same crew since the house opened. The same crew, all of it.',
     ],
     wants: ['money', 'to-be-left-alone', 'to-be-somebody'],
     visibleProfession: true,
@@ -881,6 +984,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the exchange and knows every number on the floor',
       'plugs the calls through and is not supposed to listen',
     ],
+    professionFirst: [
+      'I sit the board, four until midnight. I hear both ends of everything. Both ends.',
+      'I work the exchange. I know every number on the floor.',
+      'I plug the calls through. I am not supposed to listen.',
+    ],
     wants: ['to-get-out', 'to-be-somebody', 'money'],
     visibleProfession: true,
   },
@@ -896,6 +1004,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has the desk from six at night until six in the morning',
       'runs the house while the day manager sleeps',
       'keeps the register, the keys, and a memory of who is not in the register',
+    ],
+    professionFirst: [
+      'I have the desk from six at night until six in the morning. Twelve hours of it.',
+      'I run the house. The day manager sleeps through it.',
+      'I keep the register. I keep the keys. I remember who is not in the register.',
     ],
     wants: ['to-keep-what-they-have', 'respectability', 'money'],
     visibleProfession: true,
@@ -913,6 +1026,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'makes the rounds of the agencies at eleven and is home by one',
       'did two seasons in the line and is waiting on a third',
       'rehearses when there is anything to rehearse for',
+    ],
+    professionFirst: [
+      'I make the rounds of the agencies at eleven. I am home by one.',
+      'I did two seasons in the line. I am waiting on a third.',
+      'I rehearse when there is anything to rehearse for. There is not, at present.',
     ],
     wants: ['to-be-somebody', 'to-get-out', 'money'],
     visibleProfession: false,
@@ -932,6 +1050,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'runs a book on the horses for four blocks and no further',
       'writes the odds on a slate and rubs them off before six',
     ],
+    professionFirst: [
+      'I take bets. In a small way, out of the back of a cigar store.',
+      'I run a book on the horses. Four blocks, and no further.',
+      'I write the odds on a slate. They are rubbed off before six.',
+    ],
     wants: ['money', 'to-be-feared', 'to-be-left-alone'],
     visibleProfession: false,
   },
@@ -950,6 +1073,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'delivers the vote on the block and the coal in February',
       'sits in the clubhouse and settles what can be settled there',
     ],
+    professionFirst: [
+      'I carry the district for the club. I am paid in favours.',
+      'I deliver the vote on the block. The coal comes in February.',
+      'I sit in the clubhouse. I settle what can be settled there.',
+    ],
     wants: ['to-be-feared', 'to-be-somebody', 'money'],
     visibleProfession: false,
   },
@@ -966,6 +1094,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'writes the tickets behind the grille and knows what a thing is worth',
       'minds the shop while the broker is at the auctions',
       'handles the redemptions, and the ones nobody comes back for',
+    ],
+    professionFirst: [
+      'I write the tickets behind the grille. I know what things are worth.',
+      'I mind the shop. The broker is at the auctions.',
+      'I handle the redemptions. And the ones nobody comes back for.',
     ],
     wants: ['money', 'to-be-left-alone', 'to-keep-what-they-have'],
     visibleProfession: false,
@@ -984,6 +1117,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'keeps the wrong people out and the right people quiet',
       'has the door from nine until they close',
     ],
+    professionFirst: [
+      'I stand the door at a club with no sign on it. I know every face that comes to it. Every one.',
+      'I keep the wrong people out. I keep the right people quiet.',
+      'I have the door from nine until they close. Every night of it.',
+    ],
     wants: ['to-be-feared', 'money', 'to-keep-what-they-have'],
     visibleProfession: true,
   },
@@ -1000,6 +1138,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'carries the slips between four corners and a candy store',
       'collects the plays in the morning and pays out in the afternoon',
       'runs policy for a bank uptown and is trusted with the bag',
+    ],
+    professionFirst: [
+      'I carry the slips. Four corners and a candy store.',
+      'I collect the plays in the morning. I pay out in the afternoon.',
+      'I run policy for a bank uptown. They trust me with the bag.',
     ],
     wants: ['money', 'to-be-somebody', 'to-get-out'],
     visibleProfession: false,
@@ -1398,23 +1541,61 @@ export const PURPOSE_TEXT: Record<Purpose, string> = {
 };
 
 /**
- * The same eight, in the client's own mouth. Page one has them in the room
- * saying it, and a frightened person says "me".
+ * The same eight, in the client's own mouth, three ways each.
  *
- * Each line is the predicate after "I", so that the briefing assembles the
- * sentence the same way it assembles the third-person one: `${surname} ${third}`
- * against `I ${first}`.
+ * Hone 2 §Track B. These used to be the predicate after "I" — one clause a
+ * purpose, the same length every time, and the page read like a form being
+ * filled in. They are whole sentences now, written the way the golden's client
+ * says hers: "I want what I am owed. If the man who killed him has my money,
+ * then yes, I want him too." Two or three sentences, one of them six words or
+ * fewer, and every fact of the third-person line still in them.
+ *
+ * The variant is drawn by the same index as the question in `PURPOSE_PROMPTS`,
+ * so the answer and the question that asks for it were written together. Each
+ * one opens on "I ", because the briefing's third-person twin opens on a name
+ * and page one's opens on the person in the chair.
  */
-export const PURPOSE_TEXT_FIRST: Record<Purpose, string> = {
-  'find-the-killer-police-wont':
-    'want the one who killed {V} found, because the precinct has stopped looking',
-  'clear-my-name': 'want it established that it was not me, before anybody says otherwise',
-  'keep-it-quiet': 'want it settled quietly, before it is settled loudly',
-  'find-it-before-the-cops': 'want it found before the police find it',
-  'get-it-back': 'want it back, and do not much care who took it',
-  'bring-them-home': 'want {V} found and brought home',
-  'make-sure-they-stay-gone': 'want to know {V} is gone for good, and where',
-  'settle-a-debt-with-the-dead': 'have something owing with {V} that death did not settle',
+export const PURPOSE_TEXT_FIRST: Record<Purpose, string[]> = {
+  'find-the-killer-police-wont': [
+    'I want the one who killed {V} found. The precinct has stopped looking. That is why I am here.',
+    'I want the one who killed {V} found. Nobody at the precinct is looking any more. I am asking you instead.',
+    'I want the one who killed {V} found. The precinct has stopped looking for anybody at all. So I came up the stairs.',
+  ],
+  'clear-my-name': [
+    'I want it established that it was not me. Before anybody says otherwise.',
+    'I want it established that it was not me, and I want it done before anybody says otherwise. That is all I want.',
+    'I want it established that it was not me. Somebody will say otherwise. I would rather be first.',
+  ],
+  'keep-it-quiet': [
+    'I want it settled quietly. Before somebody settles it loudly.',
+    'I want it settled quietly, because the other way it gets settled loudly. I have seen that happen.',
+    'I want it settled quietly. If I wait, it gets settled loudly instead.',
+  ],
+  'find-it-before-the-cops': [
+    'I want it found. Before the police find it.',
+    'I want it found first. The police will find it if I do not.',
+    'I want it in my hands before the police have it. That is the whole errand.',
+  ],
+  'get-it-back': [
+    'I want it back. I do not much care who took it.',
+    'I want it back. Who took it is a smaller question than where it is.',
+    'I want the thing back. The man who took it does not interest me much.',
+  ],
+  'bring-them-home': [
+    'I want {V} found. I want {V} brought home.',
+    'I want {V} found and brought home. That is all of it.',
+    'I want {V} home. Found first, and then home.',
+  ],
+  'make-sure-they-stay-gone': [
+    'I want to know {V} is gone for good. And where.',
+    'I want to know where {V} is, and that {V} is gone for good. Both of those.',
+    'I want to know {V} is gone for good. I want to know where. Those two things.',
+  ],
+  'settle-a-debt-with-the-dead': [
+    'I have something owing with {V}. Death did not settle it.',
+    'I have something owing with {V} that death did not settle. It is still owing.',
+    'I want what I am owed. {V} and I had something between us that death did not settle.',
+  ],
 };
 
 /**
@@ -1435,39 +1616,52 @@ export const PURPOSE_PROMPTS: Record<Purpose, string[]> = {
   'clear-my-name': [
     'What is it you are afraid will be said?',
     'You think somebody will put it on you.',
-    'Whose word are you worried about?',
+    'You want it said before somebody else says it.',
   ],
   'keep-it-quiet': [
-    'What is it you want kept quiet?',
+    'How do you want this settled?',
     'You would rather nobody heard about this.',
-    'And you want it settled without a word said.',
+    'What happens if it is settled loudly?',
   ],
   'find-it-before-the-cops': [
     'What happens if the police find it first?',
-    'Why the hurry?',
-    'You want it in your hands before theirs.',
+    'Who else is looking for it?',
+    'You want it in your hands before the police have it.',
   ],
   'get-it-back': [
-    'What is it you want returned?',
     'Is it the thing you want, or the man?',
     'So the thing matters more than the man who took it.',
+    'What is it you want back?',
   ],
   'bring-them-home': [
     'What do you want done about {V}?',
     'You want {V} found.',
-    'And if {V} does not want to be found?',
+    'Found, or found and brought back?',
   ],
   'make-sure-they-stay-gone': [
     'What is it you want to know about {V}?',
     'You want to be sure {V} is gone.',
-    'And if {V} comes back?',
+    'What would satisfy you about {V}?',
   ],
   'settle-a-debt-with-the-dead': [
-    'So you want the one who killed {V}.',
-    'What do you want out of it?',
-    'Money, then.',
+    'What is it {V} left unsettled with you?',
+    'What is still between you and {V}?',
+    'So it is the money you want.',
   ],
 };
+
+/**
+ * §A.1 and Hone 2 §Track B — the question the profession sentence answers.
+ *
+ * The plainest question on the page, and the only one whose answer is what the
+ * client does for a living. Drawn by the same index as the detail itself, so
+ * the question and the sentence that answers it were written side by side.
+ */
+export const PROFESSION_PROMPTS: string[] = [
+  'What do you do?',
+  'What line of work are you in?',
+  'What is it you do for a living?',
+];
 
 /**
  * One purpose assumes a body, and two of the three case types do not have one.
@@ -1475,9 +1669,13 @@ export const PURPOSE_PROMPTS: Record<Purpose, string[]> = {
  * walk back in on Thursday. The debt is the same debt and the sentence is not,
  * so the living get their own wording.
  */
-export const PURPOSE_TEXT_LIVING: Partial<Record<Purpose, { third: string; first: string }>> = {
+export const PURPOSE_TEXT_LIVING: Partial<Record<Purpose, { third: string; first: string[] }>> = {
   'settle-a-debt-with-the-dead': {
     third: 'has something owing with {V} and means to be paid, whichever way this ends',
-    first: 'have something owing with {V} and mean to be paid, whichever way this ends',
+    first: [
+      'I have something owing with {V}. I mean to be paid, whichever way this ends.',
+      'I want what I am owed. {V} has it, and I mean to be paid whichever way this ends.',
+      'I have something owing with {V}, and I mean to be paid. However this ends.',
+    ],
   },
 };

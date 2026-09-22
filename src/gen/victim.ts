@@ -6,6 +6,7 @@ import {
   type Id,
   type Person,
   type Precinct,
+  type Tick,
   type VictimBio,
 } from './types.js';
 import type { Cast } from './cast.js';
@@ -56,6 +57,40 @@ export const DISCOVERY_PROMPTS: Record<'murder' | 'robbery' | 'missing', string[
   ],
 };
 
+/**
+ * Hone 2 §Track B — the answer, written beside its question.
+ *
+ * One sentence a shape was one length a shape, and the worst of it was that
+ * the sentence never fitted the question: "Who found {V}?" was answered with
+ * "I found Sweeney at the suite at half past eleven", which answers three
+ * questions and leads with the wrong one. Three variants now, indexed to match
+ * `DISCOVERY_PROMPTS`, each opening on the fact its question asked for. The
+ * golden's is the first of the murder three: "I found him." — "Half past
+ * eleven, in his rooms."
+ *
+ * `{V}` is the victim, `{L}` the place, `{T}` the hour as somebody says it and
+ * `{Tc}` the same hour opening a sentence, `{thing}` what was taken. Every
+ * variant carries all of the shape's facts, and none of them opens a sentence
+ * on `{thing}`, whose article is lower case and would read as a stumble.
+ */
+export const DISCOVERY_TEXT_FIRST: Record<'murder' | 'robbery' | 'missing', string[]> = {
+  murder: [
+    'I found {V}. {Tc}, at {L}.',
+    'I did. I found {V} at {L}, at {T}.',
+    '{Tc}. That is when I found {V} at {L}.',
+  ],
+  robbery: [
+    'I found the door at {L} shut, and {thing} gone. It was {T}.',
+    'I did, at {T}. The door at {L} was shut, and {thing} gone.',
+    '{Tc}. I got to {L} and found the door shut, with {thing} gone.',
+  ],
+  missing: [
+    '{Tc}. I saw {V} at {L}, and nobody has seen {V} since.',
+    'At {L}, at {T}. I saw {V} there. Nobody has seen {V} since.',
+    'I did. I saw {V} at {L} at {T}. Nobody has seen {V} since.',
+  ],
+};
+
 const PRECINCT_BY_TROPE: Record<Id, Precinct[]> = {
   'body-at-scene': ['came-and-went', 'took-a-statement'],
   'body-moved': ['called-it-a-fall'],
@@ -100,12 +135,14 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
       text: `${who(byId)} saw ${V} at ${PL(build.victimSeenPlace)} at ${clock(build.victimSeenAt)}, and nobody has seen ${V} since.`,
     };
     if (byId === cast.client.id) {
-      bio.lastSeen.textFirst = `I saw ${V} at ${PL(build.victimSeenPlace)} at ${spokenClock(build.victimSeenAt)}, and nobody has seen ${V} since.`;
-      bio.lastSeen.prompt = promptFor(rng, 'missing', {
+      const said = spokenPair(rng, 'missing', {
         V,
         L: PL(build.victimSeenPlace),
         thing: 'it',
+        ...hourSlots(build.victimSeenAt),
       });
+      bio.lastSeen.textFirst = said.text;
+      bio.lastSeen.prompt = said.prompt;
     }
     return bio;
   }
@@ -126,41 +163,57 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
     // The one who walked in on it is often the one who then walks up the
     // stairs to hire somebody, and on page one they are saying it themselves.
     if (discovery.byId === cast.client.id) {
-      bio.discovery.foundTextFirst =
-        act.type === 'robbery'
-          ? `I found the door at ${PL(discovery.placeId)} shut and ${taken ?? 'the box'} gone, at ${spokenClock(discovery.tick)}.`
-          : `I found ${V} at ${PL(discovery.placeId)} at ${spokenClock(discovery.tick)}.`;
-      bio.discovery.foundPrompt = promptFor(
-        rng,
-        act.type === 'robbery' ? 'robbery' : 'murder',
-        { V, L: PL(discovery.placeId), thing: taken ?? 'the box' },
-      );
+      const said = spokenPair(rng, act.type === 'robbery' ? 'robbery' : 'murder', {
+        V,
+        L: PL(discovery.placeId),
+        thing: taken ?? 'the box',
+        ...hourSlots(discovery.tick),
+      });
+      bio.discovery.foundTextFirst = said.text;
+      bio.discovery.foundPrompt = said.prompt;
     }
   }
   return bio;
 }
 
-/** One of the three shapes, filled. A shape with an empty slot is skipped. */
-function promptFor(
+/** The hour as somebody says it, mid-sentence and at the head of one. */
+function hourSlots(tick: Tick): { T: string; Tc: string } {
+  const spoken = spokenClock(tick);
+  return { T: spoken, Tc: spoken.charAt(0).toUpperCase() + spoken.slice(1) };
+}
+
+/** A template with every slot filled, or null when one of them is empty. */
+function fill(template: string, slots: Record<string, string>): string | null {
+  let text = template;
+  for (const name of new Set(template.match(/\{(\w+)\}/g) ?? [])) {
+    const value = slots[name.slice(1, -1)];
+    if (value === undefined || value.length === 0) return null;
+    text = text.split(name).join(value);
+  }
+  return text;
+}
+
+/**
+ * One of the three shapes and the question written beside it, filled.
+ *
+ * Hone 2 §Track B: the sentence and its question are drawn on one index, so
+ * the answer is the one the question asked for — "Who found {V}?" is answered
+ * "I did", and not with the hour. A pair either side of which has an empty
+ * slot is skipped, and the rotation moves both together.
+ */
+function spokenPair(
   rng: Rng,
   shape: 'murder' | 'robbery' | 'missing',
   slots: Record<string, string>,
-): string {
-  const pool = DISCOVERY_PROMPTS[shape];
-  const start = rng.int(pool.length);
-  for (let i = 0; i < pool.length; i++) {
-    const template = pool[(start + i) % pool.length] as string;
-    let text = template;
-    let ok = true;
-    for (const name of new Set(template.match(/\{(\w+)\}/g) ?? [])) {
-      const value = slots[name.slice(1, -1)];
-      if (value === undefined || value.length === 0) {
-        ok = false;
-        break;
-      }
-      text = text.split(name).join(value);
-    }
-    if (ok) return text;
+): { text: string; prompt: string } {
+  const prompts = DISCOVERY_PROMPTS[shape];
+  const sentences = DISCOVERY_TEXT_FIRST[shape];
+  const start = rng.int(prompts.length);
+  for (let i = 0; i < prompts.length; i++) {
+    const at = (start + i) % prompts.length;
+    const prompt = fill(prompts[at] as string, slots);
+    const text = fill(sentences[at] as string, slots);
+    if (prompt !== null && text !== null) return { text, prompt };
   }
-  return '';
+  return { text: '', prompt: '' };
 }
