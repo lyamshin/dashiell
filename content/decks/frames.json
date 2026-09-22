@@ -8,6 +8,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range frm-pNNN; the content deck uses FRM-NNN. Every frame must carry {fact}."
   },
@@ -20,6 +21,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -31,6 +33,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -42,6 +45,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -53,6 +57,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -64,6 +69,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -75,6 +81,9 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "placeholder"
   },
   {
@@ -86,6 +95,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -97,6 +107,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -108,6 +119,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -119,6 +131,9 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "placeholder"
   },
   {
@@ -130,6 +145,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -141,6 +157,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -152,6 +169,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -163,6 +181,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -174,6 +193,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -185,6 +205,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -196,6 +217,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -207,6 +229,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -218,6 +241,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -229,6 +253,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -240,6 +265,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -251,6 +277,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -262,6 +289,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -273,6 +301,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -284,6 +313,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -295,6 +325,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -306,6 +337,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -317,6 +349,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -328,6 +361,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -339,6 +373,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -350,6 +385,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -361,6 +397,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -372,6 +409,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -383,6 +421,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -394,6 +433,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -405,6 +445,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -416,6 +457,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -427,6 +469,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -438,6 +481,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -449,6 +493,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -460,6 +505,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -471,6 +517,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -482,6 +529,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -493,6 +541,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -504,6 +553,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -515,6 +565,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -526,6 +577,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -537,6 +589,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -548,6 +601,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -559,6 +613,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -570,6 +625,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -581,6 +637,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -592,6 +649,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -603,6 +661,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -614,6 +673,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -625,6 +685,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -636,6 +697,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -647,6 +709,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -658,6 +721,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -669,6 +733,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -680,6 +745,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -691,6 +757,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -702,6 +769,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -713,6 +781,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -724,6 +793,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -735,6 +805,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -746,6 +817,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -757,6 +829,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -768,6 +841,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -779,6 +853,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -790,6 +865,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -801,6 +877,10 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [
+      "eyes",
+      "work"
+    ],
     "status": "generated"
   },
   {
@@ -812,6 +892,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -823,6 +904,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -834,6 +916,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -845,6 +928,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -856,6 +940,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -867,6 +952,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -878,6 +964,9 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [
+      "memory"
+    ],
     "status": "generated"
   },
   {
@@ -889,6 +978,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -900,6 +990,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -911,6 +1002,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -922,6 +1014,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -933,6 +1026,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -944,6 +1038,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -955,6 +1050,9 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [
+      "memory"
+    ],
     "status": "generated"
   },
   {
@@ -966,6 +1064,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -977,6 +1076,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -988,6 +1088,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -999,6 +1100,7 @@
       "temper": "enigma",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1010,6 +1112,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1021,6 +1124,9 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -1032,6 +1138,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1043,6 +1150,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1054,6 +1162,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1065,6 +1174,7 @@
       "temper": "enigma",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1076,6 +1186,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1087,6 +1198,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1098,6 +1210,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1109,6 +1222,9 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [
+      "memory"
+    ],
     "status": "generated"
   },
   {
@@ -1120,6 +1236,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1131,6 +1248,7 @@
       "temper": "plain",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1142,6 +1260,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1153,6 +1272,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1164,6 +1284,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1175,6 +1296,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1186,6 +1308,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1197,6 +1320,7 @@
       "temper": "plain",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1208,6 +1332,9 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [
+      "memory"
+    ],
     "status": "generated"
   },
   {
@@ -1219,6 +1346,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1230,6 +1358,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1241,6 +1370,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1252,6 +1382,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1263,6 +1394,7 @@
       "temper": "yap",
       "familiar": "no"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1274,6 +1406,9 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [
+      "memory"
+    ],
     "status": "generated"
   },
   {
@@ -1285,6 +1420,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1296,6 +1432,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1307,6 +1444,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1318,6 +1456,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1329,6 +1468,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1340,6 +1480,7 @@
       "temper": "yap",
       "familiar": "yes"
     },
+    "motifs": [],
     "status": "generated"
   }
 ]
