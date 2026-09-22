@@ -52,11 +52,31 @@ export interface Relationship {
   opposeVictimGender?: boolean;
   /** Three or more specifics for the tie. Slots as above. */
   backstory: string[];
+  /**
+   * The same specifics in the client's own mouth, one for one with
+   * `backstory`. The third person serves the truth sheet and the notebook;
+   * this serves page one, where the person is in the room saying it. Written
+   * rather than transformed: a conjugating rewrite is right about two hundred
+   * phrases out of two hundred until somebody writes the two hundred and
+   * first.
+   */
+  backstoryFirst: string[];
   /** "since '18", "going back to the war", "three years this spring". */
   since: string[];
-  /** Why a person in this relationship would hire a detective, by case type. */
-  purposes: Record<CaseType, Purpose[]>;
+  /**
+   * Why a person in this relationship would hire a detective, by case type,
+   * and how often. Eligibility is the first half of the rule and the weight is
+   * the second: a purpose is in a cell only when its `cost` sentence is *true*
+   * of that relationship — only somebody with a stake in the goods "cannot
+   * report the loss without saying where the thing came from" — and the weight
+   * then says how much of that cell it takes. A missing weight means the
+   * purpose is not open to this relationship in this kind of case.
+   */
+  purposes: Record<CaseType, PurposeWeights>;
 }
+
+/** A cell of the purpose table: the purposes that fit, and their weights. */
+export type PurposeWeights = Partial<Record<Purpose, number>>;
 
 export interface Archetype {
   id: Id;
@@ -121,11 +141,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} put up the money and {victim} put up the name, and neither of them ever wrote it down',
       '{person} bought into {victim}’s business the year {third} walked out of it',
     ],
+    backstoryFirst: [
+      '{victim} and I took the lease together in {year} and we have been arguing about it since',
+      'I put up the money and {victim} put up the name, and neither of us ever wrote it down',
+      'I bought into {victim}’s business the year {third} walked out of it',
+    ],
     since: ['since {year}', 'going on eight years', 'three years this spring'],
     purposes: {
-      murder: ['keep-it-quiet', 'find-the-killer-police-wont', 'settle-a-debt-with-the-dead'],
-      robbery: ['find-it-before-the-cops', 'get-it-back', 'keep-it-quiet'],
-      missing: ['bring-them-home', 'keep-it-quiet'],
+      murder: { 'find-the-killer-police-wont': 30, 'keep-it-quiet': 26, 'settle-a-debt-with-the-dead': 26, 'clear-my-name': 18 },
+      robbery: { 'get-it-back': 30, 'find-it-before-the-cops': 26, 'keep-it-quiet': 20, 'settle-a-debt-with-the-dead': 12, 'clear-my-name': 12 },
+      missing: { 'bring-them-home': 34, 'keep-it-quiet': 28, 'settle-a-debt-with-the-dead': 24, 'clear-my-name': 14 },
     },
   },
   {
@@ -137,11 +162,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} took the rooms over {place} from {victim} and has been two weeks behind since the spring',
       '{victim} put {person}’s rent up twice in a year and {person} paid it twice',
     ],
+    backstoryFirst: [
+      'I have rented from {victim} since {year} and I have the same window and the same complaint',
+      'I took the rooms over {place} from {victim} and I have been two weeks behind since the spring',
+      '{victim} put my rent up twice in a year and I paid it twice',
+    ],
     since: ['since {year}', 'since the flu year', 'four years in the same rooms'],
     purposes: {
-      murder: ['clear-my-name', 'find-the-killer-police-wont'],
-      robbery: ['clear-my-name', 'get-it-back'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 50, 'keep-it-quiet': 28, 'clear-my-name': 22 },
+      robbery: { 'find-it-before-the-cops': 48, 'keep-it-quiet': 30, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 46, 'keep-it-quiet': 32, 'clear-my-name': 22 },
     },
   },
   {
@@ -153,11 +183,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} has held the paper on the building {victim} lived in since {year}',
       '{person} put {victim} into the rooms as a favour to {third} and regretted it inside a month',
     ],
+    backstoryFirst: [
+      '{victim} rented from me and was three months behind when it happened',
+      'I have held the paper on the building {victim} lived in since {year}',
+      'I put {victim} into the rooms as a favour to {third} and regretted it inside a month',
+    ],
     since: ['since {year}', 'the better part of ten years', 'two leases running'],
     purposes: {
-      murder: ['keep-it-quiet', 'clear-my-name'],
-      robbery: ['keep-it-quiet', 'find-it-before-the-cops'],
-      missing: ['make-sure-they-stay-gone', 'clear-my-name'],
+      murder: { 'keep-it-quiet': 36, 'find-the-killer-police-wont': 32, 'settle-a-debt-with-the-dead': 20, 'clear-my-name': 12 },
+      robbery: { 'find-it-before-the-cops': 40, 'keep-it-quiet': 34, 'settle-a-debt-with-the-dead': 14, 'clear-my-name': 12 },
+      missing: { 'make-sure-they-stay-gone': 38, 'keep-it-quiet': 32, 'settle-a-debt-with-the-dead': 18, 'clear-my-name': 12 },
     },
   },
   {
@@ -169,11 +204,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} put {person} out of a job over forty dollars that was never found',
       '{person} kept {victim}’s books until {third} was brought in over {person}’s head',
     ],
+    backstoryFirst: [
+      'I worked for {victim} for four years and was let go in {year} without a reference',
+      '{victim} put me out of a job over forty dollars that was never found',
+      'I kept {victim}’s books until {third} was brought in over my head',
+    ],
     since: ['since {year}', 'four years, and then nothing', 'until last winter'],
     purposes: {
-      murder: ['clear-my-name', 'settle-a-debt-with-the-dead'],
-      robbery: ['clear-my-name', 'get-it-back'],
-      missing: ['clear-my-name', 'bring-them-home'],
+      murder: { 'settle-a-debt-with-the-dead': 42, 'find-the-killer-police-wont': 34, 'clear-my-name': 24 },
+      robbery: { 'get-it-back': 42, 'settle-a-debt-with-the-dead': 36, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 44, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 22 },
     },
   },
   {
@@ -185,11 +225,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} borrowed from {person} to cover a note and never mentioned it to anybody',
       '{person} lent {victim} money in front of {third} and has been reminded of it ever since',
     ],
+    backstoryFirst: [
+      'I have been carrying {victim}’s paper since {year} and renewing it every ninety days',
+      '{victim} borrowed from me to cover a note and never mentioned it to anybody',
+      'I lent {victim} money in front of {third} and have been reminded of it ever since',
+    ],
     since: ['since {year}', 'three renewals running', 'going back to the war'],
     purposes: {
-      murder: ['settle-a-debt-with-the-dead', 'find-the-killer-police-wont'],
-      robbery: ['get-it-back', 'find-it-before-the-cops'],
-      missing: ['make-sure-they-stay-gone', 'bring-them-home'],
+      murder: { 'settle-a-debt-with-the-dead': 42, 'find-the-killer-police-wont': 32, 'keep-it-quiet': 26 },
+      robbery: { 'get-it-back': 34, 'settle-a-debt-with-the-dead': 34, 'find-it-before-the-cops': 32 },
+      missing: { 'settle-a-debt-with-the-dead': 34, 'make-sure-they-stay-gone': 34, 'bring-them-home': 32 },
     },
   },
   {
@@ -201,11 +246,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} carried {person} through a bad winter and has been collecting on it ever since',
       '{person} signed a note to {victim} that {third} witnessed and nobody has torn up',
     ],
+    backstoryFirst: [
+      'I have owed {victim} money since {year} and have not been asked for it lately',
+      '{victim} carried me through a bad winter and has been collecting on it ever since',
+      'I signed a note to {victim} that {third} witnessed and nobody has torn up',
+    ],
     since: ['since {year}', 'since the flu year', 'two winters running'],
     purposes: {
-      murder: ['clear-my-name', 'settle-a-debt-with-the-dead'],
-      robbery: ['clear-my-name', 'keep-it-quiet'],
-      missing: ['clear-my-name', 'bring-them-home'],
+      murder: { 'find-the-killer-police-wont': 36, 'keep-it-quiet': 34, 'clear-my-name': 30 },
+      robbery: { 'find-it-before-the-cops': 44, 'keep-it-quiet': 34, 'clear-my-name': 22 },
+      missing: { 'make-sure-they-stay-gone': 46, 'keep-it-quiet': 32, 'clear-my-name': 22 },
     },
   },
   {
@@ -217,11 +267,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} keeps {victim}’s will in a box and has read it more often than {victim} did',
       '{victim} brought {person} the business {third} would not touch',
     ],
+    backstoryFirst: [
+      'I have drawn every paper {victim} ever signed, going back to {year}',
+      'I keep {victim}’s will in a box and have read it more often than {victim} did',
+      '{victim} brought me the business {third} would not touch',
+    ],
     since: ['since {year}', 'for eleven years', 'going back to the war'],
     purposes: {
-      murder: ['keep-it-quiet', 'find-the-killer-police-wont'],
-      robbery: ['keep-it-quiet', 'find-it-before-the-cops'],
-      missing: ['keep-it-quiet', 'bring-them-home'],
+      murder: { 'keep-it-quiet': 40, 'find-the-killer-police-wont': 32, 'settle-a-debt-with-the-dead': 28 },
+      robbery: { 'find-it-before-the-cops': 42, 'keep-it-quiet': 34, 'settle-a-debt-with-the-dead': 24 },
+      missing: { 'keep-it-quiet': 36, 'bring-them-home': 34, 'make-sure-they-stay-gone': 30 },
     },
   },
   {
@@ -233,11 +288,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} is {victim}’s cousin on the mother’s side and has not been asked to dinner since {year}',
       '{person} and {victim} came over on the same boat with {third} and split up inside a year',
     ],
+    backstoryFirst: [
+      '{victim} and I are cousins and were raised four doors apart',
+      'I am {victim}’s cousin on the mother’s side and have not been asked to dinner since {year}',
+      '{victim} and I came over on the same boat with {third} and split up inside a year',
+    ],
     since: ['all their lives', 'since {year}', 'since they were children on the same block'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['get-it-back', 'find-it-before-the-cops'],
-      missing: ['bring-them-home', 'find-the-killer-police-wont'],
+      murder: { 'find-the-killer-police-wont': 42, 'settle-a-debt-with-the-dead': 30, 'clear-my-name': 28 },
+      robbery: { 'find-it-before-the-cops': 42, 'keep-it-quiet': 34, 'clear-my-name': 24 },
+      missing: { 'bring-them-home': 46, 'clear-my-name': 28, 'keep-it-quiet': 26 },
     },
   },
   {
@@ -249,11 +309,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} is {victim}’s brother-in-law and has been told so at every holiday',
       '{victim} stood up at {person}’s wedding and {third} has never let either of them forget it',
     ],
+    backstoryFirst: [
+      'I married {victim}’s sister in {year} and have been in the family ever since',
+      'I am {victim}’s brother-in-law and have been told so at every holiday',
+      '{victim} stood up at my wedding and {third} has never let either of us forget it',
+    ],
     since: ['since {year}', 'since the wedding', 'nine years of Sundays'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'keep-it-quiet'],
-      robbery: ['get-it-back', 'keep-it-quiet'],
-      missing: ['bring-them-home', 'keep-it-quiet'],
+      murder: { 'find-the-killer-police-wont': 36, 'keep-it-quiet': 36, 'clear-my-name': 28 },
+      robbery: { 'find-it-before-the-cops': 40, 'keep-it-quiet': 36, 'clear-my-name': 24 },
+      missing: { 'bring-them-home': 40, 'keep-it-quiet': 32, 'make-sure-they-stay-gone': 28 },
     },
   },
   {
@@ -266,11 +331,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} took two of {victim}’s best accounts and {victim} took one of them back',
       '{person} and {victim} both bid for what {third} was selling, and {victim} got it',
     ],
+    backstoryFirst: [
+      '{victim} and I have been in the same trade on the same street since {year}',
+      'I took two of {victim}’s best accounts and {victim} took one of them back',
+      '{victim} and I both bid for what {third} was selling, and {victim} got it',
+    ],
     since: ['since {year}', 'six years of it', 'since they were both starting out'],
     purposes: {
-      murder: ['clear-my-name', 'keep-it-quiet'],
-      robbery: ['clear-my-name', 'find-it-before-the-cops'],
-      missing: ['clear-my-name', 'make-sure-they-stay-gone'],
+      murder: { 'clear-my-name': 38, 'keep-it-quiet': 36, 'find-the-killer-police-wont': 26 },
+      robbery: { 'find-it-before-the-cops': 44, 'keep-it-quiet': 28, 'clear-my-name': 28 },
+      missing: { 'make-sure-they-stay-gone': 42, 'clear-my-name': 32, 'keep-it-quiet': 26 },
     },
   },
   {
@@ -283,11 +353,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} is {victim}’s wife in law and nothing else, and has been since {year}',
       '{person} and {victim} separated over {third} and never went near a court about it',
     ],
+    backstoryFirst: [
+      'I married {victim} in {year} and we have lived apart for three of those years',
+      'I am {victim}’s wife in law and nothing else, and have been since {year}',
+      '{victim} and I separated over {third} and never went near a court about it',
+    ],
     since: ['since {year}', 'three years apart', 'since the winter they stopped speaking'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['get-it-back', 'clear-my-name'],
-      missing: ['bring-them-home', 'make-sure-they-stay-gone'],
+      murder: { 'find-the-killer-police-wont': 36, 'keep-it-quiet': 34, 'clear-my-name': 30 },
+      robbery: { 'get-it-back': 44, 'keep-it-quiet': 34, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 40, 'make-sure-they-stay-gone': 34, 'clear-my-name': 26 },
     },
   },
   {
@@ -299,11 +374,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} was put in to nurse {victim} by {third} and stayed on after the fee stopped',
       '{person} knows what {victim} took, and when, and how much of it was necessary',
     ],
+    backstoryFirst: [
+      'I have sat nights with {victim} since {year}, six nights out of seven',
+      'I was put in to nurse {victim} by {third} and stayed on after the fee stopped',
+      'I know what {victim} took, and when, and how much of it was necessary',
+    ],
     since: ['since {year}', 'since the spring', 'eleven months of nights'],
     purposes: {
-      murder: ['clear-my-name', 'find-the-killer-police-wont'],
-      robbery: ['clear-my-name', 'get-it-back'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'clear-my-name': 36, 'find-the-killer-police-wont': 36, 'settle-a-debt-with-the-dead': 28 },
+      robbery: { 'clear-my-name': 30, 'find-it-before-the-cops': 38, 'settle-a-debt-with-the-dead': 32 },
+      missing: { 'bring-them-home': 40, 'clear-my-name': 32, 'settle-a-debt-with-the-dead': 28 },
     },
   },
   {
@@ -315,11 +395,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} keeps {victim}’s diary and knows which of the entries are true',
       '{person} was hired on {third}’s word and has been more use than {third} ever was',
     ],
+    backstoryFirst: [
+      'I have answered {victim}’s letters since {year} and read them all first',
+      'I keep {victim}’s diary and know which of the entries are true',
+      'I was hired on {third}’s word and have been more use than {third} ever was',
+    ],
     since: ['since {year}', 'for six years', 'since the rooms changed'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['clear-my-name', 'find-it-before-the-cops'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 36, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 30 },
+      robbery: { 'find-it-before-the-cops': 44, 'settle-a-debt-with-the-dead': 32, 'clear-my-name': 24 },
+      missing: { 'bring-them-home': 36, 'keep-it-quiet': 34, 'clear-my-name': 30 },
     },
   },
   {
@@ -332,11 +417,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} asked {victim} for the daughter and was told to come back when there was money',
       '{person} and {victim}’s daughter have been engaged since {year}, and {third} calls it a long engagement',
     ],
+    backstoryFirst: [
+      'I have been engaged to {victim}’s daughter since {year}, with no date set',
+      'I asked {victim} for the daughter and was told to come back when there was money',
+      '{victim}’s daughter and I have been engaged since {year}, and {third} calls it a long engagement',
+    ],
     since: ['since {year}', 'two years engaged', 'since last Easter'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['get-it-back', 'clear-my-name'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 46, 'keep-it-quiet': 30, 'clear-my-name': 24 },
+      robbery: { 'find-it-before-the-cops': 44, 'keep-it-quiet': 34, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 48, 'keep-it-quiet': 28, 'clear-my-name': 24 },
     },
   },
   {
@@ -348,11 +438,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} were boys together and neither of them ever left the neighbourhood',
       '{person}, {victim} and {third} were inseparable for ten years and have not been in a room together since',
     ],
+    backstoryFirst: [
+      '{victim} and I grew up on the same block and have known each other since {year}',
+      '{victim} and I were boys together and neither of us ever left the neighbourhood',
+      '{victim}, {third} and I were inseparable for ten years and have not been in a room together since',
+    ],
     since: ['all their lives', 'since {year}', 'since they were boys on the same stoop'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'settle-a-debt-with-the-dead'],
-      robbery: ['get-it-back', 'clear-my-name'],
-      missing: ['bring-them-home', 'find-the-killer-police-wont'],
+      murder: { 'find-the-killer-police-wont': 42, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 24 },
+      robbery: { 'settle-a-debt-with-the-dead': 40, 'find-it-before-the-cops': 38, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 46, 'settle-a-debt-with-the-dead': 30, 'clear-my-name': 24 },
     },
   },
   {
@@ -364,11 +459,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} told {person} there was something in the will and never said how much',
       '{person} and {third} are both named in it, and only one of them knows',
     ],
+    backstoryFirst: [
+      'I have been named in {victim}’s will since {year} and have known it that long',
+      '{victim} told me there was something in the will and never said how much',
+      '{third} and I are both named in it, and only one of us knows',
+    ],
     since: ['since {year}', 'since the will was redrawn', 'for as long as there has been a will'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['get-it-back', 'find-it-before-the-cops'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 38, 'keep-it-quiet': 34, 'clear-my-name': 28 },
+      robbery: { 'get-it-back': 46, 'keep-it-quiet': 32, 'clear-my-name': 22 },
+      missing: { 'make-sure-they-stay-gone': 38, 'bring-them-home': 34, 'keep-it-quiet': 28 },
     },
   },
   {
@@ -380,11 +480,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} is due before the grand jury about {victim}’s people, and the date is set',
       '{person} talked to the district attorney in {year} and {third} has not spoken to {person} since',
     ],
+    backstoryFirst: [
+      'I gave a statement about the people {victim} worked for and have been careful ever since',
+      'I am due before the grand jury about {victim}’s people, and the date is set',
+      'I talked to the district attorney in {year} and {third} has not spoken to me since',
+    ],
     since: ['since {year}', 'since the indictment', 'since last autumn'],
     purposes: {
-      murder: ['clear-my-name', 'find-the-killer-police-wont'],
-      robbery: ['clear-my-name', 'keep-it-quiet'],
-      missing: ['clear-my-name', 'make-sure-they-stay-gone'],
+      murder: { 'keep-it-quiet': 36, 'find-the-killer-police-wont': 36, 'clear-my-name': 28 },
+      robbery: { 'get-it-back': 40, 'keep-it-quiet': 38, 'clear-my-name': 22 },
+      missing: { 'make-sure-they-stay-gone': 44, 'keep-it-quiet': 34, 'clear-my-name': 22 },
     },
   },
   {
@@ -396,11 +501,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} has been on {victim}’s books as a customer since {year}',
       '{person} came to {victim} on {third}’s introduction and has stayed a customer',
     ],
+    backstoryFirst: [
+      'I have bought from {victim} for years and settled at the end of every month',
+      'I have been on {victim}’s books as a customer since {year}',
+      'I came to {victim} on {third}’s introduction and have stayed a customer',
+    ],
     since: ['since {year}', 'for years', 'since the shop opened'],
     purposes: {
-      murder: ['clear-my-name', 'settle-a-debt-with-the-dead'],
-      robbery: ['get-it-back', 'clear-my-name'],
-      missing: ['clear-my-name', 'bring-them-home'],
+      murder: { 'settle-a-debt-with-the-dead': 42, 'find-the-killer-police-wont': 34, 'clear-my-name': 24 },
+      robbery: { 'find-it-before-the-cops': 40, 'settle-a-debt-with-the-dead': 38, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 44, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 22 },
     },
   },
   {
@@ -412,11 +522,16 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} has lived on the same landing as {victim} since {year}',
       '{person} and {victim} share a wall, a landing and a long argument about {third}',
     ],
+    backstoryFirst: [
+      'I live across the airshaft from {victim} and can hear the wireless through it',
+      'I have lived on the same landing as {victim} since {year}',
+      '{victim} and I share a wall, a landing and a long argument about {third}',
+    ],
     since: ['since {year}', 'five years on the same landing', 'since the building changed hands'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['clear-my-name', 'find-it-before-the-cops'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 48, 'keep-it-quiet': 28, 'clear-my-name': 24 },
+      robbery: { 'find-it-before-the-cops': 48, 'keep-it-quiet': 30, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 46, 'keep-it-quiet': 32, 'clear-my-name': 22 },
     },
   },
 ];
@@ -1280,4 +1395,37 @@ export const PURPOSE_TEXT: Record<Purpose, string> = {
   'bring-them-home': 'wants {V} found and brought home',
   'make-sure-they-stay-gone': 'wants to know {V} is gone for good, and where',
   'settle-a-debt-with-the-dead': 'has something owing with {V} that death did not settle',
+};
+
+/**
+ * The same eight, in the client's own mouth. Page one has them in the room
+ * saying it, and a frightened person says "me".
+ *
+ * Each line is the predicate after "I", so that the briefing assembles the
+ * sentence the same way it assembles the third-person one: `${surname} ${third}`
+ * against `I ${first}`.
+ */
+export const PURPOSE_TEXT_FIRST: Record<Purpose, string> = {
+  'find-the-killer-police-wont':
+    'want the one who killed {V} found, because the precinct has stopped looking',
+  'clear-my-name': 'want it established that it was not me, before anybody says otherwise',
+  'keep-it-quiet': 'want it settled quietly, before it is settled loudly',
+  'find-it-before-the-cops': 'want it found before the police find it',
+  'get-it-back': 'want it back, and do not much care who took it',
+  'bring-them-home': 'want {V} found and brought home',
+  'make-sure-they-stay-gone': 'want to know {V} is gone for good, and where',
+  'settle-a-debt-with-the-dead': 'have something owing with {V} that death did not settle',
+};
+
+/**
+ * One purpose assumes a body, and two of the three case types do not have one.
+ * A robbery's owner is alive and standing at an address; a missing person may
+ * walk back in on Thursday. The debt is the same debt and the sentence is not,
+ * so the living get their own wording.
+ */
+export const PURPOSE_TEXT_LIVING: Partial<Record<Purpose, { third: string; first: string }>> = {
+  'settle-a-debt-with-the-dead': {
+    third: 'has something owing with {V} and means to be paid, whichever way this ends',
+    first: 'have something owing with {V} and mean to be paid, whichever way this ends',
+  },
 };

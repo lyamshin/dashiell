@@ -10,12 +10,19 @@ import { describe, expect, it } from 'vitest';
 import {
   TICKS,
   generateCase,
+  type BriefingLine,
   type Case,
+  type CaseType,
   type Difficulty,
   type Id,
   type Unknown,
 } from '../src/gen/index.js';
-import { ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID } from '../src/gen/data/cast.js';
+import {
+  ARCHETYPE_BY_ID,
+  RELATIONSHIPS,
+  RELATIONSHIP_BY_ID,
+  VICTIM_ARCHETYPE_BY_ID,
+} from '../src/gen/data/cast.js';
 import { NAME_POOLS } from '../src/gen/data/names.js';
 import { TROPES, TROPE_BY_ID, TROPE_IDS } from '../src/gen/tropes/index.js';
 import { checkCase, formatViolations, renderedFacts } from '../src/gen/correspond.js';
@@ -38,6 +45,9 @@ for (const difficulty of DIFFICULTIES) {
 }
 
 const scheduleOf = (c: Case, id: Id) => c.schedules.find((s) => s.personId === id);
+
+/** One briefing line the client says, for the tests that damage a good one. */
+const said = (text: string): BriefingLine => ({ text, spoken: text, speaker: 'client' });
 
 /* ------------------------------------------------------------------ *
  * Part 1 — dossiers.
@@ -259,13 +269,121 @@ describe('the client brief over seeds 1..200 at every difficulty', () => {
       const rel = RELATIONSHIP_BY_ID[client.relationshipId as Id];
       expect(rel, `seed ${c.seed}: the client has no relationship card`).toBeDefined();
       expect(
-        rel?.purposes[c.act.type],
+        Object.keys(rel?.purposes[c.act.type] ?? {}),
         `seed ${c.seed}: ${c.clientBrief.purpose} for ${client.relationshipId} × ${c.act.type}`,
       ).toContain(c.clientBrief.purpose);
       used.add(c.clientBrief.purpose);
     }
     // Every purpose in the table is reachable, or the table is decoration.
     expect(used.size).toBeGreaterThanOrEqual(7);
+  });
+
+  /**
+   * The purpose table, as a distribution and as a set of claims.
+   *
+   * Before the weights the draw was uniform over whatever list the cell held,
+   * so a purpose that almost every relationship could honestly claim won by
+   * arithmetic: `clear-my-name` was 46.5% of four hundred cases, and
+   * `make-sure-they-stay-gone` was 1.5%. Two rules now hold it in shape — no
+   * purpose over 30%, and every purpose at least 5% of the case type that
+   * allows it — and one rule holds it honest: the sentence about what the
+   * purpose costs has to be true of the relationship claiming it.
+   */
+  it('lets no purpose take more than 30% of the cases, at any difficulty', () => {
+    for (const difficulty of DIFFICULTIES) {
+      const cases = everyDifficulty.filter((c) => c.difficulty === difficulty);
+      const counts = new Map<string, number>();
+      for (const c of cases) {
+        counts.set(c.clientBrief.purpose, (counts.get(c.clientBrief.purpose) ?? 0) + 1);
+      }
+      for (const [purpose, n] of counts) {
+        const share = n / cases.length;
+        expect(share, `d${difficulty}: ${purpose} is ${(100 * share).toFixed(1)}%`).toBeLessThanOrEqual(0.3);
+      }
+      // And all eight are reachable, or the table is decoration.
+      expect(counts.size, `d${difficulty}`).toBe(8);
+    }
+  });
+
+  it('gives every purpose at least 5% of the case type that allows it', () => {
+    const byType = new Map<CaseType, Map<string, number>>();
+    const totals = new Map<CaseType, number>();
+    const eligible = new Map<CaseType, Set<string>>();
+    for (const c of everyDifficulty) {
+      const type = c.act.type;
+      totals.set(type, (totals.get(type) ?? 0) + 1);
+      const row = byType.get(type) ?? new Map<string, number>();
+      row.set(c.clientBrief.purpose, (row.get(c.clientBrief.purpose) ?? 0) + 1);
+      byType.set(type, row);
+    }
+    for (const rel of RELATIONSHIPS) {
+      for (const type of ['murder', 'robbery', 'missing'] as CaseType[]) {
+        const set = eligible.get(type) ?? new Set<string>();
+        for (const p of Object.keys(rel.purposes[type])) set.add(p);
+        eligible.set(type, set);
+      }
+    }
+    for (const [type, wanted] of eligible) {
+      const row = byType.get(type) ?? new Map<string, number>();
+      const of = totals.get(type) ?? 0;
+      for (const purpose of wanted) {
+        const share = (row.get(purpose) ?? 0) / (of || 1);
+        expect(
+          share,
+          `${type} × ${purpose} is ${(100 * share).toFixed(1)}% of ${of} cases`,
+        ).toBeGreaterThanOrEqual(0.05);
+      }
+    }
+  });
+
+  it('only offers a purpose to a relationship the cost sentence is true of', () => {
+    // §1.4: "it must make sense". The ones with a stake in the goods are the
+    // only ones who cannot report the loss without saying where the thing came
+    // from — the owner is the victim, so what is left is a partner, a spouse,
+    // an heir, the employee who was answerable for it, and the underworld tie
+    // who had a share.
+    const stake = new Set([
+      'rel-partner',
+      'rel-spouse',
+      'rel-willed',
+      'rel-employee',
+      'rel-creditor',
+      'rel-witness',
+    ]);
+    for (const rel of RELATIONSHIPS) {
+      for (const type of ['murder', 'robbery', 'missing'] as CaseType[]) {
+        const cell = rel.purposes[type];
+        for (const purpose of Object.keys(cell)) {
+          const where = `${rel.id} × ${type}`;
+          // The three that name the goods only exist where there are goods.
+          if (purpose === 'get-it-back') {
+            expect(stake.has(rel.id), `${where}: get-it-back with no stake`).toBe(true);
+            expect(type, where).toBe('robbery');
+          }
+          if (purpose === 'find-it-before-the-cops') expect(type, where).toBe('robbery');
+          // And the three that need somebody to be gone.
+          if (purpose === 'bring-them-home' || purpose === 'make-sure-they-stay-gone') {
+            expect(type, where).toBe('missing');
+          }
+          // "The one who killed {V}" is a sentence about a body.
+          if (purpose === 'find-the-killer-police-wont') expect(type, where).toBe('murder');
+        }
+        // Every weight is a positive number, or the cell is decoration.
+        for (const w of Object.values(cell)) expect(w).toBeGreaterThan(0);
+        expect(Object.keys(cell).length, `${rel.id} × ${type}`).toBeGreaterThanOrEqual(3);
+      }
+    }
+  });
+
+  it('says the debt sentence without a death in it when nobody died', () => {
+    // A robbery's owner is alive and standing at an address, and a missing
+    // person may walk back in on Thursday.
+    for (const c of everyDifficulty) {
+      if (c.clientBrief.purpose !== 'settle-a-debt-with-the-dead') continue;
+      const both = `${c.clientBrief.purposeText} ${c.clientBrief.purposeTextFirst}`;
+      if (c.act.type === 'murder') expect(both, `seed ${c.seed}`).toContain('death did not settle');
+      else expect(both, `seed ${c.seed}`).not.toContain('death');
+    }
   });
 
   it('points honestly at the lower difficulties, and never when the client did it', () => {
@@ -534,15 +652,45 @@ describe('correspondence over seeds 1..200 at every difficulty', () => {
     const c = corpus[6] as Case;
     const bad = checkCase({
       ...c,
-      briefing: [...c.briefing, 'Thaddeus Ellery came by at 10:00 PM and said nothing.'],
+      briefing: [...c.briefing, said('Thaddeus Ellery came by at 10:00 PM and said nothing.')],
     });
     expect(bad.some((v) => v.rule === 'unknown-name')).toBe(true);
   });
 
   it('catches a time that is not a half hour of the evening', () => {
     const c = corpus[6] as Case;
-    const bad = checkCase({ ...c, briefing: [...c.briefing, 'It was over by 3:15 AM.'] });
+    const bad = checkCase({ ...c, briefing: [...c.briefing, said('It was over by 3:15 AM.')] });
     expect(bad.some((v) => v.rule === 'bad-time')).toBe(true);
+  });
+
+  it('checks what the client says as well as what the record says', () => {
+    // The spoken half of a briefing line is rendered on page one and nowhere
+    // else, so it is the half nothing else would catch.
+    const c = corpus[6] as Case;
+    const bad = checkCase({
+      ...c,
+      briefing: [
+        ...c.briefing,
+        {
+          text: 'Nothing happened that anybody minded.',
+          spoken: 'Thaddeus Ellery came by and said nothing.',
+          speaker: 'client',
+        },
+      ],
+    });
+    expect(bad.some((v) => v.rule === 'unknown-name' && v.where.endsWith('spoken'))).toBe(true);
+  });
+
+  it('reads an hour said out loud as the hour it is', () => {
+    // "Half past eleven" is 11:30 PM and is checked as such: the first person
+    // does not buy a sentence an exemption from the clock.
+    const spoken = { spoken: true };
+    expect(renderedFacts('I found him at half past eleven.', spoken).times).toEqual(['11:30 PM']);
+    expect(renderedFacts('It was nine o’clock when I left.', spoken).times).toEqual(['9:00 PM']);
+    expect(renderedFacts('Nothing was said about the hour.', spoken).times).toEqual([]);
+    // And only where somebody is talking: a simile that says "six o'clock" is
+    // an image, and the run's last page says "Eight o'clock" about a morning.
+    expect(renderedFacts('His face shut like a rolltop desk at six o’clock.').times).toEqual([]);
   });
 
   it('catches a movement the schedules do not support', () => {
@@ -591,7 +739,7 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
         `seed ${c.seed} d${c.difficulty}: ${c.briefing.length} sentences`,
       ).toBeGreaterThanOrEqual(10);
       expect(c.briefing.length).toBeLessThanOrEqual(16);
-      for (const line of c.briefing) {
+      for (const line of c.briefingText) {
         expect(line).toMatch(/[.!?]$/);
         expect(line).not.toContain('{');
         expect(line.trim()).toBe(line);
@@ -606,10 +754,10 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
     for (const c of everyDifficulty) {
       const client = c.people.find((p) => p.id === c.clientId) as { name: string; surname: string };
       const victim = c.people.find((p) => p.kind === 'victim') as { surname: string };
-      const text = c.briefing.join(' ');
+      const text = c.briefingText.join(' ');
       // 1. who came in
-      expect(c.briefing[0]).toMatch(/^A (man|woman) came up the stairs/);
-      expect(c.briefing[1]).toContain(client.name);
+      expect(c.briefingText[0]).toMatch(/^A (man|woman) came up the stairs/);
+      expect(c.briefingText[1]).toContain(client.name);
       // 2. what happened, in the victim's terms
       expect(text).toContain(victim.surname);
       expect(text).toContain(c.victimBio.standing);
@@ -630,7 +778,7 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
   it('never states an unknown the report is going to ask for', () => {
     for (const c of everyDifficulty) {
       const killer = c.people.find((p) => p.id === c.solution.killerId) as { surname: string };
-      const text = c.briefing.join(' ');
+      const text = c.briefingText.join(' ');
       if (!c.act.unknowns.includes('who')) continue;
       // The client may point at the killer — that is a suspicion, not a
       // given — and a client who is the killer introduces themselves.
@@ -639,6 +787,85 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
       expect(text, `seed ${c.seed} names the killer in the briefing`).not.toContain(
         killer.surname,
       );
+    }
+  });
+
+  /**
+   * The client speaks in the first person.
+   *
+   * The generator writes each sentence twice: the record's form, which is what
+   * the sheet prints and the notebook files, and the client's own words, which
+   * are what page one puts in quotation marks. The rule the engine used to
+   * excuse with a line of narration — "she gave it to me in the third person"
+   * — is now a rule about the data: nothing the client says out loud refers to
+   * the client by name.
+   */
+  it('gives the client their own words for every sentence they say', () => {
+    for (const c of everyDifficulty) {
+      const client = c.people.find((p) => p.id === c.clientId) as { surname: string };
+      const where = `seed ${c.seed} d${c.difficulty}`;
+      expect(c.briefingText, where).toEqual(c.briefing.map((l) => l.text));
+      expect(c.briefing.some((l) => l.speaker === 'narration'), where).toBe(true);
+      expect(c.briefing.some((l) => l.speaker === 'client'), where).toBe(true);
+      for (const line of c.briefing) {
+        if (line.speaker === 'narration') {
+          // Dashiell's own observation. Nobody says it, so it has no spoken form.
+          expect(line.spoken, `${where}: ${line.text}`).toBeNull();
+          continue;
+        }
+        expect(line.spoken, `${where}: ${line.text}`).not.toBeNull();
+        expect(line.spoken).toMatch(/[.!?]$/);
+        expect(line.spoken).not.toContain('{');
+        // The whole of it: a sentence the client says never names the client.
+        expect(line.spoken, `${where}: the client says their own name`).not.toContain(
+          client.surname,
+        );
+      }
+    }
+  });
+
+  it('says the client’s own four sentences in the first person', () => {
+    for (const c of everyDifficulty) {
+      const said = c.briefing.filter((l) => l.speaker === 'client').map((l) => l.spoken ?? '');
+      const where = `seed ${c.seed} d${c.difficulty}`;
+      // Why they are hiring, what it costs them, their tie, and the pointer.
+      expect(said, where).toContain(c.clientBrief.purposeTextFirst);
+      expect(said, where).toContain(c.clientBrief.costFirst);
+      expect(c.clientBrief.purposeTextFirst).toMatch(/^I /);
+      expect(c.clientBrief.costFirst).toMatch(/\bI\b/);
+      const pointed = c.people.find((p) => p.id === c.clientBrief.points.personId) as {
+        surname: string;
+      };
+      expect(said, where).toContain(`Start with ${pointed.surname}.`);
+      // The tie, which is the one sentence about the client that another card
+      // wrote: "I am a customer of Sweeney's", not "Kreuzer is".
+      expect(said.some((s) => s.startsWith('I am ')), where).toBe(true);
+    }
+  });
+
+  it('keeps the third person for the sheet, and only for the sheet', () => {
+    for (const c of everyDifficulty) {
+      const client = c.people.find((p) => p.id === c.clientId) as { surname: string };
+      // The record still says who it is about — that is what makes it filable.
+      expect(c.briefingText.join(' '), `seed ${c.seed}`).toContain(client.surname);
+      expect(c.clientBrief.purposeText.startsWith(client.surname)).toBe(true);
+    }
+  });
+
+  it('says the pointer’s reason the way somebody would say it', () => {
+    for (const c of everyDifficulty) {
+      const pointed = c.people.find((p) => p.id === c.clientBrief.points.personId) as {
+        surname: string;
+      };
+      const spoken = c.clientBrief.points.reasonSpoken;
+      // The name is said once, at the head of it, and after that it is a
+      // pronoun: "Grasso blamed Sweeney for the ruin of his business."
+      const first = spoken.indexOf(pointed.surname);
+      expect(first, `seed ${c.seed}: ${spoken}`).toBeGreaterThanOrEqual(0);
+      expect(
+        spoken.slice(first + pointed.surname.length),
+        `seed ${c.seed}: ${spoken}`,
+      ).not.toContain(pointed.surname);
     }
   });
 });

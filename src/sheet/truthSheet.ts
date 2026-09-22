@@ -225,11 +225,13 @@ export function renderTruthSheet(c: Case): string {
   out.push('## 6. The Briefing');
   out.push('');
   out.push(
-    `${c.briefing.length} plain sentences, derived. This is the model of the plain ` +
+    `${c.briefingText.length} plain sentences, derived. This is the model of the plain ` +
       'register: the engine renders it, and Phase 2 measures pages against it.',
   );
   out.push('');
-  c.briefing.forEach((line, i) => out.push(`${i + 1}. ${line}`));
+  // The record's form. What the client actually says out loud is the engine's
+  // business, and page one is where it is read.
+  c.briefingText.forEach((line, i) => out.push(`${i + 1}. ${line}`));
   out.push('');
 
   /* 7. Mentions --------------------------------------------------------- */

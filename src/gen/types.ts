@@ -250,6 +250,12 @@ export interface Tie {
   text: string;
   /** The backstory: one plain sentence with a specific in it. */
   backstory: string;
+  /**
+   * The same sentence in this person's own mouth, when the card carries one.
+   * The third person serves the sheet and the notebook; the first serves the
+   * briefing, where the client is in the room saying it.
+   */
+  backstoryFirst?: string;
   since?: string;
   /** A third party named in the backstory. An id into `case.mentions`. */
   third?: Id;
@@ -314,6 +320,12 @@ export interface Discovery {
   foundAt: Id;
   foundTick: Tick;
   foundText: string;
+  /**
+   * The same sentence in the finder's own mouth, set only when the finder is
+   * the client — "I found Sweeney at the suite at half past eleven". The
+   * briefing is the only thing that renders it, and only the client speaks.
+   */
+  foundTextFirst?: string;
   precinct: Precinct;
 }
 
@@ -323,6 +335,8 @@ export interface LastSeen {
   place: Id;
   tick: Tick;
   text: string;
+  /** The same, in the client's mouth, when the client is the one who saw them. */
+  textFirst?: string;
 }
 
 export interface VictimBio extends Dossier {
@@ -348,8 +362,12 @@ export interface ClientBrief {
   purpose: Purpose;
   /** The purpose as one plain sentence. */
   purposeText: string;
+  /** The same sentence in the client's own mouth, for the briefing. */
+  purposeTextFirst: string;
   /** What it costs them to hire somebody, in one plain sentence. */
   cost: string;
+  /** The same, in the client's own mouth. */
+  costFirst: string;
   /** What the client states at the briefing. True unless the purpose says not. */
   tells: Fact[];
   /** The same, as sentences, in the same order. */
@@ -357,8 +375,17 @@ export interface ClientBrief {
   /** What the client knows and does not say. Their own secret, at least. */
   withholds: Fact[];
   withholdTexts: string[];
-  /** Whom the client suspects, and why. */
-  points: { personId: Id; reason: string; honest: boolean };
+  /**
+   * Whom the client suspects, and why.
+   *
+   * `reason` names the suspected person twice where the motive template does —
+   * "Grasso blamed Sweeney for the ruin of Grasso's business" — because the
+   * sheet reads a line at a time and a pronoun in it would have no antecedent.
+   * `reasonSpoken` is the same fact as somebody would actually say it, with the
+   * second mention as a pronoun. It is still the third person: the client is
+   * talking about somebody else.
+   */
+  points: { personId: Id; reason: string; reasonSpoken: string; honest: boolean };
   /** The client's account of their own night, from their claimed schedule. */
   ownEvening: string[];
 }
@@ -478,14 +505,54 @@ export interface Case {
   victimBio: VictimBio;
   /** Why the client walked in, what they say and what they keep back. */
   clientBrief: ClientBrief;
-  /** 10–16 plain declarative sentences. The model of the plain register. */
-  briefing: string[];
+  /**
+   * 10–16 plain declarative sentences, each with who says it and how they say
+   * it. The model of the plain register.
+   */
+  briefing: BriefingLine[];
+  /**
+   * The same sentences as bare third-person strings, in the same order: what
+   * the truth sheet prints and what the notebook writes down. The page reads
+   * `briefing`; everything that files the case away reads this.
+   */
+  briefingText: string[];
+}
+
+/**
+ * One sentence of the briefing.
+ *
+ * `text` is the record's form — third person, the client's own name in it —
+ * and is what the truth sheet and the notebook keep. `spoken` is the form that
+ * goes on page one when the client says it out loud, which is the first person
+ * where the sentence is about them and the same words where it is not. A
+ * narration line has no spoken form, because Dashiell is the one saying it.
+ */
+export interface BriefingLine {
+  text: string;
+  spoken: string | null;
+  speaker: 'client' | 'narration';
 }
 
 /** "Salvatore Vitale" -> "Vitale". Names are always given-then-family. */
 export function surnameOf(fullName: string): string {
   const parts = fullName.trim().split(/\s+/);
   return (parts[parts.length - 1] ?? fullName) as string;
+}
+
+/** The hours as words, for the six o'clock to half past eleven of an evening. */
+const SPOKEN_HOURS = ['six', 'seven', 'eight', 'nine', 'ten', 'eleven'] as const;
+
+/**
+ * The same hour as somebody says it out loud: "half past eleven", not
+ * "11:30 PM". Nobody in a chair at midnight reads a clock face aloud, and the
+ * briefing's first-person sentences are somebody talking.
+ *
+ * The evening is twelve half hours long, so the set of strings this can return
+ * is closed and small, and the correspondence checker reads it back.
+ */
+export function spokenClock(tick: Tick): string {
+  const hour = SPOKEN_HOURS[Math.floor(tick / 2)] ?? 'eleven';
+  return tick % 2 === 0 ? `${hour} o’clock` : `half past ${hour}`;
 }
 
 /** "6:00 PM" .. "11:30 PM" */

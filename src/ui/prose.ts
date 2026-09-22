@@ -6,6 +6,7 @@ import type { CaseView, Noun } from '../game/derive.js';
 import { accountRuns, claimedAccount, segmentNouns, spanLabel } from '../game/derive.js';
 import type { Block, Page } from '../game/types.js';
 import { HELP_LINES, HELP_NOTE, EMPTY_ROOM, PRESENCE_LEAD } from '../game/voice-data.js';
+import { pronounOf } from '../game/voice/cast.js';
 import { el } from './dom.js';
 
 export type NounClick = (noun: Noun, anchor: HTMLElement) => void;
@@ -95,6 +96,8 @@ function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLEleme
     }
     case 'timeline': {
       const person = view.personById.get(block.personId);
+      // Whose evening this is, so the sentence about them agrees with them.
+      const they = pronounOf(person);
       const account = claimedAccount(view, block.personId);
       const heading = el('p', {
         class: 'note',
@@ -110,7 +113,7 @@ function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLEleme
         const td = el('td');
         td.append(
           proseWithNouns(
-            view.placeById.get(row.placeId ?? '')?.shortName ?? 'nowhere he will say',
+            view.placeById.get(row.placeId ?? '')?.shortName ?? `nowhere ${they} will say`,
             view,
             onNoun,
           ),
@@ -119,7 +122,10 @@ function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLEleme
         table.append(tr);
       }
       if (rows.length === 0) {
-        return [heading, el('p', { class: 'note', text: `${clock(0)} onward: nothing he will say.` })];
+        return [
+          heading,
+          el('p', { class: 'note', text: `${clock(0)} onward: nothing ${they} will say.` }),
+        ];
       }
       return [heading, table];
     }

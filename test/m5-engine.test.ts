@@ -144,9 +144,12 @@ describe('the briefing page', () => {
       const page = state.log[0] as Page;
       const text = textOf(page).replace(/\s+/g, ' ');
       const familiar = knowsHim(state.cast.roll, view.client.id);
-      const missing = view.kase.briefing.filter(
-        (line, i) => !(familiar && i === 0) && !text.includes(bare(line)),
-      );
+      // The client's sentences reach the page in the client's own words, so
+      // that is the form to look for; Dashiell's reach it as written.
+      const missing = view.kase.briefing
+        .map((line, i) => ({ said: line.spoken ?? line.text, i }))
+        .filter(({ said, i }) => !(familiar && i === 0) && !text.includes(bare(said)))
+        .map(({ said }) => said);
       expect(missing, `seed ${seed}`).toEqual([]);
     }
   });
@@ -368,9 +371,10 @@ describe('the report', () => {
       expect(cold.outcome).toBe('cold');
       expect(cold.closing.join(' ')).not.toEqual(solved.closing.join(' '));
 
-      // And a type the endings deck has no card for logs the gap.
-      if (type === 'murder') expect(solved.gaps).toEqual([]);
-      else expect(solved.gaps.join(' ')).toContain('missing-deck: endings');
+      // The deck has cards for all three types now, so none of them logs a
+      // gap. It logged one for a robbery and a disappearance until the
+      // sixteen cards landed.
+      expect(solved.gaps, type).toEqual([]);
     }
   });
 
@@ -382,7 +386,9 @@ describe('the report', () => {
       killerId: innocent?.id ?? null,
     });
     expect(verdict.outcome).toBe('wrong-man');
-    expect(verdict.closing.join(' ')).toMatch(/the name of the one who did it|wrong man/);
+    // The noun agrees with the person the report named, which is why "wrong
+    // man" is now "wrong man|woman" here.
+    expect(verdict.closing.join(' ')).toMatch(/the name of the one who did it|wrong (man|woman)/i);
   });
 });
 

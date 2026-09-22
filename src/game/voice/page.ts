@@ -67,6 +67,7 @@ import {
   classOf,
   describePerson,
   genderHintOf,
+  nounOf,
   pronounOf,
   temperOf,
   type CastSheet,
@@ -88,8 +89,6 @@ import {
   PLAIN_FLOOR,
   SELF_ALREADY,
   SELF_QUESTIONS,
-  BRIEFING_LEADS,
-  briefingLead,
   clueAbout,
   connective,
   type ConnectiveKind,
@@ -737,7 +736,8 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       clientLeavingLine(
         dealer,
         client.surname,
-        view.placeById.get(client.foundAt ?? '')?.shortName ?? 'the address he gave me',
+        view.placeById.get(client.foundAt ?? '')?.shortName ??
+          `the address ${pronounOf(client)} gave me`,
       ),
       'narrator',
     );
@@ -1718,13 +1718,6 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   const seen = [...(split.entrance ? [split.entrance] : []), ...split.narration];
   if (seen.length > 0) t.say(seen.join(' '), 'narrator', { transparent: true });
   const speech = speechParagraphs(split.speech);
-  if (speech.length > 0) {
-    t.say(
-      briefingLead(BRIEFING_LEADS, dealer.random.int(BRIEFING_LEADS.length), gender === 'f' ? 'f' : 'm'),
-      'narrator',
-      { transparent: true },
-    );
-  }
   for (const paragraph of speech) {
     t.say(paragraph, 'exchange', {
       personId: client.id,
@@ -1761,7 +1754,11 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   /* 5. Two questions on the house, while he is still standing there. */
   t.put({
     kind: 'note',
-    text: `${client.surname} is still in the chair. Two questions on the house — a man hiring you answers his questions.`,
+    // The noun agrees with the person in the chair, and "your" says what the
+    // line always meant: the two free questions are Dashiell's to ask.
+    text:
+      `${client.surname} is still in the chair. Two questions on the house — ` +
+      `a ${nounOf(client)} hiring you answers your questions.`,
   });
 }
 

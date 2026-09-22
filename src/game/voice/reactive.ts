@@ -22,6 +22,7 @@ import { clock } from '../../gen/types.js';
 import { Rng } from '../../gen/rng.js';
 import type { CaseView, Established } from '../derive.js';
 import { personName, placeName } from '../derive.js';
+import { nounOf } from './cast.js';
 import { isWarm, type DashiellRoll } from './roll.js';
 import { tidyPunctuation } from './prose.js';
 
@@ -217,7 +218,7 @@ const THEORY_CHANGED_LEAN = [
 ];
 
 const THEORY_CHANGED = [
-  'I had been looking at the wrong man. It is {name}.',
+  'I had been looking at the wrong {oldNoun}. It is {name}.',
   'For two hours it was {old}. It is not {old}. It is {name}.',
   'I put {old} back in the hat and took out {name}.',
 ];
@@ -382,6 +383,12 @@ export function reactiveMonologue(input: ReactiveInput): ReactiveResult {
     const slots = {
       name: personName(view, theory),
       old: input.previousTheory === null ? '' : personName(view, input.previousTheory),
+      // "The wrong man" is only right about half the cast, and the case says
+      // which: the one Dashiell had been looking at until this page.
+      oldNoun:
+        input.previousTheory === null
+          ? 'one'
+          : nounOf(view.personById.get(input.previousTheory)),
     };
     lines.push(pick(rng, theoryPool(strength, input.previousTheory !== null), slots));
   }

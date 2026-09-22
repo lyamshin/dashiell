@@ -163,31 +163,31 @@ export interface BriefingSplit {
   entrance: string | null;
   /** The rest of what he saw: who she is, and what she does for money. */
   narration: string[];
-  /** What she said: the standing, the givens, the tie, the purpose. */
+  /**
+   * What she said, in her own words: the standing, the givens, the tie, the
+   * purpose. The first person where the sentence is about her.
+   */
   speech: string[];
   /** The last of it — the pointer — which the hiring frame carries. */
   close: string[];
 }
 
 /**
- * The rule set, and it is one rule.
+ * The rule set, and the generator now carries it.
  *
- * `buildBriefing` writes the client's own description first — who came in,
- * what they are, what they do for money — and then, beginning at the victim's
- * standing, everything the client is in the room to say. The standing is the
- * seam: before it, Dashiell narrating what walked in; from it on, the client
- * talking. Both halves are the generator's sentences, verbatim and entire.
+ * Every sentence of `case.briefing` says who it belongs to and, when it is the
+ * client's, what they actually say — the first person where the sentence is
+ * about them, the same words where it is about somebody else. The engine used
+ * to find the seam by matching the victim's standing and then apologise for
+ * the register with a line of narration; it now reads `speaker` and prints
+ * `spoken`.
  */
 export function splitBriefing(view: CaseView, familiar: boolean): BriefingSplit {
   const briefing = view.kase.briefing;
-  const standing = normalizeLine(view.kase.victimBio.standing);
-  let seam = briefing.findIndex((line) => normalizeLine(line) === standing);
-  // A briefing whose standing did not survive `tidy` keeps the spec's shape:
-  // one entrance sentence and up to two about the person who walked in.
-  if (seam < 0) seam = Math.min(3, briefing.length);
-
-  const head = briefing.slice(0, seam);
-  const body = briefing.slice(seam);
+  const head = briefing.filter((line) => line.speaker === 'narration').map((line) => line.text);
+  const body = briefing
+    .filter((line) => line.speaker === 'client')
+    .map((line) => line.spoken ?? line.text);
   // The pointer and its reason are the last two, and they are the job.
   const closeFrom = Math.max(0, body.length - 2);
   return {
@@ -196,10 +196,6 @@ export function splitBriefing(view: CaseView, familiar: boolean): BriefingSplit 
     speech: body.slice(0, closeFrom),
     close: body.slice(closeFrom),
   };
-}
-
-function normalizeLine(text: string): string {
-  return text.replace(/\s+/g, ' ').replace(/\.+$/, '').trim().toLowerCase();
 }
 
 /**

@@ -13,6 +13,7 @@ import { clockAfter } from './clock.js';
 import type { CaseView } from './derive.js';
 import { accountRuns, claimedAccount, gameBudget, personName, spanLabel } from './derive.js';
 import { buildNotebook } from './notebook.js';
+import { pronounOf } from './voice/cast.js';
 import { countWords } from './voice/page.js';
 import type { Verdict } from './scoring.js';
 import type { Block, Page, RunState } from './types.js';
@@ -64,7 +65,10 @@ function renderBlock(block: Block, view: CaseView): string[] {
         ? accountRuns(account).filter((r) => r.placeId !== null)
         : block.rows.map((r) => ({ from: r.tick as Tick, to: r.tick as Tick, placeId: r.placeId }));
       const head = `${personName(view, block.personId)} gives me the evening, and I write it down as told:`;
-      if (rows.length === 0) return [wrap(`${head}\n  ${clock(0 as Tick)} onward: nothing he will say.`)];
+      const they = pronounOf(view.personById.get(block.personId));
+      if (rows.length === 0) {
+        return [wrap(`${head}\n  ${clock(0 as Tick)} onward: nothing ${they} will say.`)];
+      }
       return [
         [
           wrap(head),

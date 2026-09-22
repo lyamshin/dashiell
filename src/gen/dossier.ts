@@ -146,7 +146,11 @@ export function buildDossier(input: DossierInput): Dossier {
   let third: Mention | undefined;
   let tie: Tie;
   if (relationship) {
-    const backstoryTemplate = rng.pick(relationship.backstory);
+    // The card is picked by index, because the first-person variants are one
+    // for one with the third-person ones and the pair has to stay together.
+    const backstoryIndex = rng.int(relationship.backstory.length);
+    const backstoryTemplate = relationship.backstory[backstoryIndex] as string;
+    const backstoryFirstTemplate = relationship.backstoryFirst[backstoryIndex];
     if (backstoryTemplate.includes('{third}')) {
       third = input.mentions.mentionFor(input.mentions.freeRole(rng));
     }
@@ -163,6 +167,9 @@ export function buildDossier(input: DossierInput): Dossier {
       backstory: asSentence(fillSlots(backstoryTemplate, ctx)),
       since: fillSlots(rng.pick(relationship.since), ctx),
     };
+    if (backstoryFirstTemplate !== undefined) {
+      tie.backstoryFirst = asSentence(fillSlots(backstoryFirstTemplate, ctx));
+    }
     if (third) tie.third = third.id;
   } else {
     // The victim and the fixtures have no relationship card, so the caller
