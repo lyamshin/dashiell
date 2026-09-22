@@ -112,7 +112,13 @@ describe('the oracle playthrough', () => {
     // picks up two of them in a room where par counted them separately. The
     // hard contracts above — every spine clue collected, never over par — are
     // untouched, and `minSlack` is still 0, so the two models still meet.
-    expect(exact / rows.length).toBeGreaterThan(0.82);
+    //
+    // M5 §6 lowered it again, from 0.82 to 0.80, against a measured 0.817.
+    // `body-moved` now opens the night at the foot of the stairs rather than
+    // in the room it happened in, and par is recomputed from there; over a
+    // longer route the game's `examine` has one more chance to pick up two
+    // spine clues where par counted them apart. `minSlack` is still 0.
+    expect(exact / rows.length).toBeGreaterThan(0.8);
     expect(Math.min(...slackFound)).toBe(0);
   });
 

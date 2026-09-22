@@ -88,8 +88,11 @@ import {
   PLAIN_FLOOR,
   SELF_ALREADY,
   SELF_QUESTIONS,
+  BRIEFING_LEADS,
+  briefingLead,
   clueAbout,
   connective,
+  type ConnectiveKind,
   countSentences,
   dossierKnown,
   layerOfClue,
@@ -106,7 +109,15 @@ import {
   placeMotifs,
   type MotifContext,
 } from './motifs.js';
-import { clientLeavingLine, entranceCard, hiringFrame, officeCard, retainerFor } from './office.js';
+import {
+  clientLeavingLine,
+  entranceCard,
+  hiringFrame,
+  officeCard,
+  retainerFor,
+  speechParagraphs,
+  splitBriefing,
+} from './office.js';
 
 export type HourBand = 'midnight-2' | '2-4' | '4-6' | '6-8';
 
@@ -489,6 +500,10 @@ export function meanSharedMotifs(pages: { imageMotifs?: string[][] }[]): {
 const WORD_TARGET_LOW = 120;
 const WORD_TARGET_HIGH = 250;
 
+/** The hard ceiling a page is trimmed down to, and page one's own. */
+export const PAGE_CEILING = 300;
+export const OPENING_CEILING = 380;
+
 /**
  * How long a page reads. Prose and notes are counted word for word; a claimed
  * timeline is counted at what it takes up on the paper, because it is text on
@@ -528,6 +543,8 @@ interface Laid {
   plainN: number;
   /** ...and how many came off a deck card that does. */
   imageN: number;
+  /** This block has the page's one simile attached to it and cannot be cut. */
+  hosts?: boolean;
 }
 
 interface SayOpts {
@@ -546,6 +563,13 @@ interface SayOpts {
    * image sentences as the business and colour beats spliced into it.
    */
   imageSentences?: number;
+  /**
+   * M5 §1: a plain sentence is transparent to §A.2's adjacency bonus. A
+   * connective carries no motif by design, and letting it reset the context
+   * would mean every image card after it was scored against nothing — which
+   * is how the plain register would quietly undo M4b's closeness.
+   */
+  transparent?: boolean;
 }
 
 export function composePage(stage: Stage, scene: Scene): Composed {
@@ -640,7 +664,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       imageN,
     });
     for (const m of motifs) if (!usedMotifs.includes(m)) usedMotifs.push(m);
-    ctx.before = motifs;
+    if (opts.transparent !== true) ctx.before = motifs;
   };
   // A block the engine wrote out of the case's own fields: the roll of who is
   // in the room, a claimed timeline, a note. Plain by construction.
@@ -664,15 +688,18 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const line = connective(dealer.random, kind, plainSlots, lastConnective);
     if (line.length === 0) return;
     lastConnective = line;
-    say(line, 'narrator');
+    say(line, 'narrator', { transparent: true });
   };
   // Layer 0, the moment somebody is in front of him: what a longshoreman's
   // hands and a chambermaid's uniform say before anybody opens their mouth.
   const onSight = (person: Person): void => {
     if (stage.met.includes(person.id) || person.kind === 'victim') return;
+    // A page already at its length says the fact and stops; the dossier is in
+    // the notebook either way, and a room with ten things in it is long enough.
+    if (words(blocksOf(laid)) > WORD_TARGET_HIGH) return;
     const lines = layerSentences(person, 0);
     if (lines.length === 0) return;
-    say(lines.slice(0, 2).join(' '), 'narrator');
+    say(lines.slice(0, 2).join(' '), 'narrator', { transparent: true });
   };
   // §3: a layer-2 fact rides along with the observation or the overheard line
   // that was about that person, one fact a clue, and is set down plainly after
@@ -686,6 +713,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   };
   const rideAlong = (clue: Clue): void => {
     if (layerOfClue(clue) !== 2) return;
+    if (words(blocksOf(laid)) > WORD_TARGET_HIGH) return;
     const about = clueAbout(clue);
     if (!about || about === view.victim.id) return;
     const person = view.personById.get(about);
@@ -695,7 +723,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const next = layerSentences(person, 2)[known.layer2.length + used];
     if (next === undefined) return;
     ridden.set(about, used + 1);
-    say(next, 'narrator');
+    say(next, 'narrator', { transparent: true });
   };
 
   /* --------------------------------------------- §B.2.4: the client leaves */
@@ -770,7 +798,9 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         name: (stage.here[0] as Person).surname,
         place: place?.shortName,
       });
-    } else {
+    } else if (scene.kind === 'look') {
+      // An empty room the detective walked into says so once, in the presence
+      // roll; an empty room he came back to gets the half hour he spent in it.
       plainly('quiet');
     }
     for (const person of stage.here.slice(0, 2)) onSight(person);
@@ -1040,6 +1070,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     }
     if (scene.clues.length === 0) {
       say(nothingLeft(dealer, place?.shortName), 'nothing');
+      plainly('quiet');
     }
   }
 
@@ -1165,7 +1196,48 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     laid.splice(worst, 1);
   }
 
+  /* ---------------------------------------------------- the hard ceiling */
+  // With the full decks a find page or a yapper's volunteer can push past 300
+  // words even after the trims above; drop the optional blocks from the end
+  // until it fits. The record is never among them. Thinking goes first, then
+  // texture; the exchange and the finds stay.
+  // M5 §2: the office card and the entrance are page one and are not texture,
+  // so the first two passes leave anything the grammar marked as kept alone
+  // and the third takes it only when nothing else will do.
+  // Page one carries the whole briefing and is meant to be the longest page in
+  // the run: sixteen plain sentences is what the client came to say, and the
+  // office card and the entrance are the two images §2 keeps around it.
+  const ceiling = scene.kind === 'open' ? OPENING_CEILING : PAGE_CEILING;
+  const CUT_ORDER: { voices: ReadonlySet<string>; keep: number }[] = [
+    { voices: new Set(['aside', 'ambient', 'monologue']), keep: 2 },
+    { voices: new Set(['transition', 'arrival', 'approach', 'place', 'presence']), keep: 2 },
+    { voices: new Set(['transition', 'arrival', 'approach', 'place', 'presence']), keep: 9 },
+    // A room holding nine findable things is a page of nothing but finds, and
+    // the plain sentences riding along with them are the only thing left to
+    // cut. The floor is enforced after this, on what survives.
+    { voices: new Set(['narrator', 'nothing']), keep: 9 },
+  ];
+  for (const tier of CUT_ORDER) {
+    while (words(blocksOf(laid)) > ceiling) {
+      let cut = -1;
+      for (let i = laid.length - 1; i >= 0; i--) {
+        const l = laid[i] as Laid;
+        const b = l.block;
+        if (l.keep >= tier.keep) continue;
+        if (b.kind === 'prose' && tier.voices.has(b.voice) && b.clueId === undefined) {
+          cut = i;
+          break;
+        }
+      }
+      if (cut < 0) break;
+      laid.splice(cut, 1);
+    }
+  }
+
   /* ------------------------------------------------ §A.3: one simile, bound */
+  // After the ceiling, so that a simile is never hung on a block the ceiling
+  // is about to cut, and only when the page can afford the image: a simile is
+  // an image clause, and §1's floor outranks it.
   let simileTarget: string | null = null;
   if (scene.kind !== 'nothing' && words(blocksOf(laid)) < WORD_TARGET_HIGH - 25) {
     const wanted = simileTargetsFor(view, scene, blocksOf(laid), stage.at, focusClue).filter(
@@ -1180,34 +1252,30 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     if (placed) simileTarget = placed;
   }
 
-  /* ---------------------------------------------------- the hard ceiling */
-  // With the full decks a find page or a yapper's volunteer can push past 300
-  // words even after the trims above; drop the optional blocks from the end
-  // until it fits. The record is never among them. Thinking goes first, then
-  // texture; the exchange and the finds stay.
-  const CUT_ORDER: ReadonlySet<string>[] = [
-    new Set(['aside', 'ambient', 'monologue']),
-    new Set(['transition', 'arrival', 'approach', 'place']),
-  ];
-  for (const cuttable of CUT_ORDER) {
-    while (words(blocksOf(laid)) > 300) {
-      let cut = -1;
-      for (let i = laid.length - 1; i >= 0; i--) {
-        const b = (laid[i] as Laid).block;
-        if (b.kind === 'prose' && cuttable.has(b.voice) && b.clueId === undefined) {
-          cut = i;
-          break;
-        }
-      }
-      if (cut < 0) break;
-      laid.splice(cut, 1);
-    }
-  }
-
-  /* ------------------------------------------- M5 §1: the plain floor */
-  // Last, after the simile and the ceiling, because both of them move the
-  // number: a simile is an image clause on whatever block hosts it, and the
-  // ceiling drops thinking before it drops weather.
+  /* ------------------------------------------------- M5 §1: the plain floor */
+  // Last, because everything above it moves the number: the image trim, the
+  // ceiling and the simile all change what is on the page. Top up first and
+  // drop second. A page that has come out image-heavy is usually a page with
+  // nothing to say — a walk into a room already described, with nobody in it —
+  // and the answer to that is a plain sentence about where he is, not the
+  // deletion of the only two lines on it. Only when the page has no room for
+  // another plain sentence does an image block come off, and the block the
+  // simile is a clause of is never the one that goes.
+  const topUpSlots: Slots = { place: place?.shortName, name: stage.here[0]?.surname };
+  let topUps = 0;
+  topUpPlain(
+    laid,
+    () => {
+      const before = laid.length;
+      // A room with somebody in it says who; a room with nobody says so.
+      const kind: ConnectiveKind =
+        topUps === 0 && stage.here.length > 0 ? 'present' : topUps === 1 ? 'arriving' : 'quiet';
+      topUps++;
+      plainly(kind, topUpSlots);
+      return laid.length > before;
+    },
+    () => words(blocksOf(laid)) < WORD_TARGET_HIGH,
+  );
   enforcePlainFloor(laid);
 
   for (const deck of dealer.takeReshuffles()) {
@@ -1257,6 +1325,24 @@ function plainSentencesIn(block: Block): number {
   }
 }
 
+/**
+ * M5 §1 — reach the floor by saying something plain, before reaching it by
+ * deleting something.
+ *
+ * The connectives are furniture and are allowed to repeat, which is exactly
+ * what makes them the right thing to add: "I let myself into the speakeasy"
+ * costs the page nothing and carries the one fact a reader needs, which is
+ * where he is. At most three, and never past the page's word target.
+ */
+function topUpPlain(laid: Laid[], add: () => boolean, hasRoom: () => boolean, limit = 3): number {
+  let added = 0;
+  while (added < limit && plainRatio(countsOf(laid)) < PLAIN_FLOOR && hasRoom()) {
+    if (!add()) break;
+    added++;
+  }
+  return added;
+}
+
 /** §1's number for a page under construction. */
 function countsOf(laid: Laid[]): PlainCount {
   let plain = 0;
@@ -1285,6 +1371,7 @@ export function enforcePlainFloor(laid: Laid[], floor = PLAIN_FLOOR): number {
     for (let i = 0; i < laid.length; i++) {
       const l = laid[i] as Laid;
       if (!l.image || l.imageN === 0) continue;
+      if (l.hosts === true) continue;
       const b = l.block;
       if (b.kind === 'prose' && b.clueId !== undefined) continue;
       const w = laid[worst] as Laid | undefined;
@@ -1474,6 +1561,7 @@ function placeSimile(
     const b = block.block;
     if (b.kind !== 'prose') continue;
     block.block = { ...b, text: attachSimile(b.text, drawn.text) };
+    block.hosts = true;
     // §1: the simile is a clause off a deck card, so the block it joins is one
     // sentence more image than it was. A clause that joined a plain sentence
     // takes that sentence with it.
@@ -1571,8 +1659,15 @@ interface OpenTools {
 
 /**
  * The office at midnight, somebody on the stairs, and a retainer on the
- * blotter. Four beats, in order: where he is, who came in, what the job is and
- * what it pays, and then two questions on the house.
+ * blotter. Five beats, in order: where he is, who came in, what he saw, what
+ * she came to say, what it pays, and then two questions on the house.
+ *
+ * M5 §2 replaces the old `{fact}` — one sentence of client brief inside one
+ * hiring frame — with the whole of `case.briefing`. The client's sentences go
+ * in her mouth and Dashiell's stay in his, split at the victim's standing, and
+ * the pointer is what the hiring frame carries, because the pointer is the
+ * job. Sixteen plain sentences on page one, and the register the rest of the
+ * run is measured against is the first thing the player reads.
  */
 function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t: OpenTools): void {
   const { view, cast, dealer } = stage;
@@ -1621,9 +1716,35 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     keep: 2,
   });
 
-  /* 3. The hiring: the client's own clue, and the money. */
+  /* 3. The briefing (M5 §2). What he saw, and then what she said. */
+  const split = splitBriefing(view, familiar);
+  const seen = [...(split.entrance ? [split.entrance] : []), ...split.narration];
+  if (seen.length > 0) t.say(seen.join(' '), 'narrator', { transparent: true });
+  const speech = speechParagraphs(split.speech);
+  if (speech.length > 0) {
+    t.say(
+      briefingLead(BRIEFING_LEADS, dealer.random.int(BRIEFING_LEADS.length), gender === 'f' ? 'f' : 'm'),
+      'narrator',
+      { transparent: true },
+    );
+  }
+  for (const paragraph of speech) {
+    t.say(paragraph, 'exchange', {
+      personId: client.id,
+      register: 'truth',
+      targets: ['voice', 'silence'],
+      transparent: true,
+    });
+  }
+
+  /* 4. The hiring: the pointer, which is the job, and the money. */
   const clue = scene.clientClue;
-  const fact = clue ? stripAttribution(clue.text, client.surname) : null;
+  const fact =
+    split.close.length > 0
+      ? split.close.join(' ')
+      : clue
+        ? stripAttribution(clue.text, client.surname)
+        : null;
   const hiring = hiringFrame(dealer, { temper, klass, gender, familiar }, { ...slots, fact: fact ?? undefined }, t.ctx);
   if (hiring.gap) t.gaps.push(hiring.gap);
   if (fact === null) {
@@ -1640,7 +1761,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     targets: ['voice', 'silence'],
   });
 
-  /* 4. Two questions on the house, while he is still standing there. */
+  /* 5. Two questions on the house, while he is still standing there. */
   t.put({
     kind: 'note',
     text: `${client.surname} is still in the chair. Two questions on the house — a man hiring you answers his questions.`,

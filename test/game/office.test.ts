@@ -17,6 +17,7 @@ import {
   gameBudget,
   gamePar,
   officeName,
+  parShift,
   peopleHereNow,
 } from '../../src/game/derive.js';
 import { playOracle, playWandering } from '../../src/game/oracle.js';
@@ -221,10 +222,13 @@ describe('the client’s two free questions', () => {
  * ------------------------------------------------------------------ */
 
 describe('the scene report and the coroner’s note', () => {
+  // M5 §6 moved the first room off the scene for `body-moved`: the report is
+  // handed over where the precinct found the body, which for that one trope is
+  // not where it happened. `view.startId` is the room the night opens in.
   it('arrive free, on the first sight of the scene, and only once', () => {
     for (let seed = 1; seed <= 20; seed++) {
       const v = buildView(generateCase(seed, { difficulty: 2 }));
-      const name = v.placeById.get(v.sceneId)?.shortName as string;
+      const name = v.placeById.get(v.startId)?.shortName as string;
       let state = newRun(v, { detectiveName: 'Dashiell' });
       const wanted = sceneCluesOf(v).map((c) => c.id);
       expect(state.found, `seed ${seed}`).not.toContain(wanted[0]);
@@ -237,7 +241,7 @@ describe('the scene report and the coroner’s note', () => {
       state = arrival.state;
 
       // Going back does not hand them over twice.
-      const elsewhere = v.kase.places.find((p) => p.id !== v.sceneId)?.shortName as string;
+      const elsewhere = v.kase.places.find((p) => p.id !== v.startId)?.shortName as string;
       const again = stepInput(stepInput(state, `go ${elsewhere}`, v).state, `go ${name}`, v);
       expect(again.page.found).toEqual([]);
     }
@@ -258,12 +262,22 @@ describe('the scene report and the coroner’s note', () => {
  * ------------------------------------------------------------------ */
 
 describe('par and budget', () => {
-  it('adds one to each and leaves the slack exactly where it was', () => {
+  // M5 §6: the walk from the office is still one action, and for `body-moved`
+  // the walk from the foot of the stairs to the room it happened in is however
+  // many more the route costs. Par and the budget both move by that shift, so
+  // the slack between them is exactly what the generator set.
+  it('adds one to each, plus whatever the start costs, and leaves the slack alone', () => {
     for (const difficulty of [1, 2, 3] as Difficulty[]) {
       for (let seed = 1; seed <= 30; seed++) {
         const kase = generateCase(seed, { difficulty });
-        expect(gamePar(kase)).toBe(kase.par + 1);
-        expect(gameBudget(kase)).toBe(kase.budget + 1);
+        // The shift can go either way. The foot of the stairs is a room like
+        // any other: sometimes it is further from the spine than the scene is
+        // and sometimes it is nearer, and par is whatever the route costs
+        // from where the night actually opens.
+        const shift = parShift(kase);
+        if (kase.act.tropeId !== 'body-moved') expect(shift).toBe(0);
+        expect(gamePar(kase)).toBe(kase.par + 1 + shift);
+        expect(gameBudget(kase)).toBe(kase.budget + 1 + shift);
         expect(gameBudget(kase) - gamePar(kase)).toBe(kase.budget - kase.par);
       }
     }
@@ -283,11 +297,11 @@ describe('par and budget', () => {
     }
   });
 
-  it('starts every oracle run with the walk to the scene', () => {
+  it('starts every oracle run with the walk to the first room', () => {
     for (let seed = 1; seed <= 30; seed++) {
       const v = buildView(generateCase(seed, { difficulty: 2 }));
       const result = playOracle(v);
-      expect(result.steps[0]?.command).toBe(`go ${v.placeById.get(v.sceneId)?.shortName}`);
+      expect(result.steps[0]?.command).toBe(`go ${v.placeById.get(v.startId)?.shortName}`);
     }
   });
 

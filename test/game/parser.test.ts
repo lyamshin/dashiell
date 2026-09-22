@@ -4,7 +4,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { generateCase } from '../../src/gen/index.js';
-import { buildView } from '../../src/game/derive.js';
+import { buildView, victimAddress } from '../../src/game/derive.js';
 import { parse } from '../../src/game/parser.js';
 import { newRun, stepInput } from '../../src/game/reducer.js';
 import type { Command } from '../../src/game/types.js';
@@ -163,8 +163,27 @@ describe('what the parser refuses', () => {
     expect(problem.kind).toBe('absent-person');
   });
 
-  it('will not interview the victim', () => {
-    expect(bad(scene, `ask ${view.victim.surname} about that evening`).kind).toBe('unknown-noun');
+  // M5 §7: whether the victim can be spoken to is a fact about the case type,
+  // not a rule about the word "victim". A murder's is on a slab; a robbery's
+  // owner is alive and is standing at an address; a missing person cannot be
+  // asked anything until the case has put them somewhere. Seed 7 is a robbery,
+  // so here the refusal is the ordinary one about a man in another room.
+  it('will not interview a murder’s victim, and will interview a robbery’s owner', () => {
+    const murder = buildView(generateCase(3, { difficulty: 2 }));
+    expect(murder.kase.act.type).toBe('murder');
+    const refusal = parse(
+      murder,
+      murder.kase.solution.murderPlaceId,
+      `ask ${murder.victim.surname} about that evening`,
+    );
+    expect(refusal.ok).toBe(false);
+    if (!refusal.ok) expect(refusal.problem.kind).toBe('unknown-noun');
+
+    expect(view.kase.act.type).toBe('robbery');
+    const owner = view.kase.people.find((p) => p.kind === 'victim');
+    const at = victimAddress(view.kase) as string;
+    const asked = parse(view, at, `ask ${owner?.surname} about that evening`);
+    expect(asked.ok, 'the owner of a stolen thing answers questions').toBe(true);
   });
 });
 

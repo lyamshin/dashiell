@@ -16,7 +16,7 @@
 import type { Clue, Id, Tick } from '../gen/types.js';
 import { Rng } from '../gen/rng.js';
 import type { CaseView } from './derive.js';
-import { establishedFrom, gameBudget, gamePar, leadFor } from './derive.js';
+import { establishedFrom, gameBudget, gamePar, leadFor, peopleHere } from './derive.js';
 import { newRun, sceneCluesOf, stepInput } from './reducer.js';
 import { leadingTheory } from './voice/reactive.js';
 import type { Report, RunState } from './types.js';
@@ -160,8 +160,10 @@ export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleRe
   const wanted = spine.filter((c) => !state.found.includes(c.id) && !free.has(c.id));
   const steps: OracleStep[] = [];
 
-  const toTheScene = `go ${view.placeById.get(view.sceneId)?.shortName ?? ''}`;
-  const rest = plan(view, view.sceneId, groupsFor(view, wanted));
+  // M5 §6: the first room is the scene for seven tropes and the foot of the
+  // stairs for `body-moved`, and par is computed from wherever it is.
+  const toTheScene = `go ${view.placeById.get(view.startId)?.shortName ?? ''}`;
+  const rest = plan(view, view.startId, groupsFor(view, wanted));
   const script = rest === null ? null : [toTheScene, ...rest];
   const fail = (reason: string): OracleResult => ({
     ok: false,
@@ -262,7 +264,9 @@ export function playWandering(
     }
 
     // Every so often he does the human thing instead of the efficient one.
-    const peopleHereIds = view.peopleAt.get(state.at) ?? [];
+    // M5 §7: whoever is actually standing here, which is not the same list as
+    // `peopleAt` once a robbery's owner and a found missing person are on it.
+    const peopleHereIds = peopleHere(view, state.at, state.found).map((p) => p.id);
     const unasked = peopleHereIds.filter((id) => !state.accounts.includes(id));
     if ((command === null || rng.chance(0.3)) && unasked.length > 0) {
       command = `ask ${view.personById.get(rng.pick(unasked))?.surname} about that evening`;
