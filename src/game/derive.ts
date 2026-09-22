@@ -40,6 +40,7 @@ import { TICKS, clock } from '../gen/types.js';
 import { Rng } from '../gen/rng.js';
 import { METHOD_TEMPLATES } from '../gen/data/methods.js';
 import { MOTIVE_TEMPLATES } from '../gen/data/motives.js';
+import { computePar } from '../gen/select.js';
 import { OFFICE_STREETS, OFFICE_TRADES } from './voice-data.js';
 import type { TopicRef } from './types.js';
 
@@ -61,6 +62,8 @@ export function topicKey(t: TopicRef): string {
       return `anchor:${t.id}`;
     case 'evening':
       return 'evening';
+    case 'self':
+      return 'self';
     case 'hire':
       return 'hire';
     case 'exact':
@@ -127,24 +130,74 @@ export function buildOffice(kase: Case): Place {
 }
 
 /**
- * M4b §B.3 — par and budget in the game.
+ * M5 §6 — where the night's first room is.
  *
- * The generator does not change. What changes is that the night now opens one
- * room away from everything: the walk from the office to wherever he is going
- * is an action the generator never counted, so the game adds one to par and
- * one to the budget and the slack between them is exactly what it was.
+ * For every trope but one it is the scene: the room the act happened in, which
+ * is where the free scene report and the coroner's note are handed over. For
+ * `body-moved` it is the stair or the areaway the body was carried to, because
+ * the case is about the fact that those are not the same room. The player
+ * starts where the precinct started, and `where` — the fourth unknown that
+ * trope asks — is a real question rather than a room he is already standing in.
  */
+export function startPlaceOf(kase: Case): Id {
+  const act = kase.act;
+  if (act.tropeId === 'body-moved' && act.bodyFoundAt && act.bodyFoundAt !== act.place) {
+    return act.bodyFoundAt;
+  }
+  return kase.solution.murderPlaceId;
+}
+
+/**
+ * M4b §B.3, M5 §6 — par and budget in the game.
+ *
+ * The generator does not change. What changes is that the night opens one room
+ * away from everything: the walk from the office to the first room is an
+ * action the generator never counted, so the game adds one.
+ *
+ * And, since M5, the first room is not always the generator's scene. Par is a
+ * statement about routes, so when the route starts somewhere else the route is
+ * costed again from there, with the generator's own exhaustive search. For
+ * every trope but `body-moved` this returns the number the generator wrote
+ * down; for `body-moved` it is that number plus whatever the walk to the true
+ * scene costs, and the oracle is held to it.
+ */
+export function caseParFrom(kase: Case, startId: Id): number {
+  const spine = kase.findable.filter((c) => c.role === 'spine');
+  const starting = new Set(kase.starting);
+  const cost = computePar(
+    spine,
+    starting,
+    kase.places.map((p) => p.id),
+    startId,
+  );
+  return Number.isFinite(cost) ? cost : kase.par;
+}
+
 export function gamePar(kase: Case): number {
-  return kase.par + 1;
+  const start = startPlaceOf(kase);
+  if (start === kase.solution.murderPlaceId) return kase.par + 1;
+  return caseParFrom(kase, start) + 1;
+}
+
+/** How much the start moving off the scene cost this case. Zero for seven tropes. */
+export function parShift(kase: Case): number {
+  return gamePar(kase) - (kase.par + 1);
 }
 
 export function gameBudget(kase: Case): number {
-  return kase.budget + 1;
+  return kase.budget + 1 + parShift(kase);
 }
 
 export interface CaseView {
   kase: Case;
+  /** Where the act happened. The answer to `where`, when `where` is asked. */
   sceneId: Id;
+  /**
+   * M5 §6: the room the night opens in and where the free report is handed
+   * over. The scene, except for `body-moved`, where it is the stair the body
+   * was carried to.
+   */
+  startId: Id;
   /** The office (§B.1). Not in `kase.places`; always in `view.places`. */
   office: Place;
   /** The case's six rooms and the office, which is the list the game walks. */
@@ -187,6 +240,17 @@ export function buildView(kase: Case): CaseView {
     if (!p.foundAt) continue;
     peopleAt.get(p.foundAt)?.push(p.id);
   }
+  // M5 §7. The generator never gives the victim an address for the next day,
+  // because in two cases out of three there is no next day for them. In a
+  // robbery there is: the owner of the stolen thing had an evening like
+  // anybody else's and is standing somewhere in the morning. In a
+  // disappearance there is one too, once somebody has been found — and until
+  // then `peopleHereNow` keeps them off the page.
+  const victimPerson = kase.people.find((p) => p.kind === 'victim');
+  const victimPlace = victimAddress(kase);
+  if (victimPerson && victimPlace && peopleAt.has(victimPlace)) {
+    (peopleAt.get(victimPlace) as Id[]).push(victimPerson.id);
+  }
 
   const placeClues = new Map<Id, Clue[]>();
   const exactBuckets = new Map<Id, Map<string, Clue[]>>();
@@ -218,6 +282,7 @@ export function buildView(kase: Case): CaseView {
   const view: CaseView = {
     kase,
     sceneId: kase.solution.murderPlaceId,
+    startId: startPlaceOf(kase),
     office,
     places,
     victim,
@@ -279,11 +344,53 @@ export function topicsAnsweredBy(clue: Clue, view: CaseView): string[] {
   return [...out];
 }
 
+/**
+ * Where the victim is the morning after, in the two cases where they are
+ * somewhere. A robbery's owner is wherever their evening left them; a missing
+ * person is at their whereabouts, if it is a room and not the wind.
+ */
+export function victimAddress(kase: Case): Id | null {
+  const act = kase.act;
+  if (act.type === 'robbery') {
+    const line = kase.schedules.find((s) => s.personId === kase.people.find((p) => p.kind === 'victim')?.id);
+    const last = [...(line?.truth ?? [])].reverse().find((p) => p !== null) ?? null;
+    return last ?? kase.places.find((p) => p.isResidence)?.id ?? null;
+  }
+  if (act.type === 'missing') {
+    return act.whereabouts && act.whereabouts !== 'gone' ? act.whereabouts : null;
+  }
+  return null;
+}
+
+/**
+ * M5 §7 — can the detective put a question to the victim tonight?
+ *
+ * A murder's victim never. A robbery's owner always: they are alive, they are
+ * at an address, and the engine must never say otherwise. A missing person
+ * only once the case has put them somewhere after the hour they vanished —
+ * which is what the whole of `left` is about, and is the one door the trope's
+ * sightings open.
+ */
+export function victimReachable(kase: Case, found: readonly Id[]): boolean {
+  if (kase.act.type === 'robbery') return true;
+  if (kase.act.type !== 'missing') return false;
+  const victimId = kase.people.find((p) => p.kind === 'victim')?.id;
+  if (!victimId) return false;
+  const byId = new Map(kase.findable.map((c) => [c.id, c]));
+  for (const id of found) {
+    for (const f of byId.get(id)?.establishes ?? []) {
+      if (f.kind === 'personAt' && f.personId === victimId && f.tick > kase.act.tick) return true;
+    }
+  }
+  return false;
+}
+
 /** Everyone the detective can walk up to at `placeId`. Never the victim. */
-export function peopleHere(view: CaseView, placeId: Id): Person[] {
+export function peopleHere(view: CaseView, placeId: Id, found: readonly Id[] = []): Person[] {
   return (view.peopleAt.get(placeId) ?? [])
     .map((id) => view.personById.get(id))
-    .filter((p): p is Person => p !== undefined);
+    .filter((p): p is Person => p !== undefined)
+    .filter((p) => p.kind !== 'victim' || victimReachable(view.kase, found));
 }
 
 /**
@@ -295,9 +402,9 @@ export function peopleHere(view: CaseView, placeId: Id): Person[] {
 export function peopleHereNow(
   view: CaseView,
   placeId: Id,
-  state: { clientInOffice?: boolean },
+  state: { clientInOffice?: boolean; found?: readonly Id[] },
 ): Person[] {
-  const here = peopleHere(view, placeId);
+  const here = peopleHere(view, placeId, state.found ?? []);
   if (placeId !== view.office.id || state.clientInOffice !== true) return here;
   return here.some((p) => p.id === view.client.id) ? here : [view.client, ...here];
 }

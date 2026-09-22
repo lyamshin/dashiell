@@ -2,6 +2,7 @@
  * The voice. M3's `voice.ts` decorated around a clue; this decides what a page
  * *is*.
  *
+ *   plain.ts     the register with no image in it: facts, connectives, reports
  *   roll.ts      who the detective is tonight, and who already knows him
  *   cast.ts      temper and portraits, rolled once and never again
  *   cards.ts     the decks, the schema, the burn tiers, the dealer
@@ -14,6 +15,7 @@
  */
 
 export * from './prose.js';
+export * from './plain.js';
 export * from './motifs.js';
 export * from './cards.js';
 export * from './roll.js';

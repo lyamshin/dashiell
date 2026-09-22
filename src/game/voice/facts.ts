@@ -200,12 +200,25 @@ export function strippedQuote(clue: Clue, speaker: Person | undefined): string |
   return null;
 }
 
-/** Which of the four `find` clue kinds a clue is, if it is one of them. */
-export function findKindOf(clue: Clue): 'physical' | 'document' | 'morgue' | 'scene' | null {
+/**
+ * Which of the four `find` clue kinds a clue is, if it is one of them.
+ *
+ * M5 §7: the `morgue` kind is how the reducer finds the free opening clues and
+ * it keeps its name in the generator, but a robbery has no body and a
+ * disappearance has no body either. The opening report on those two is a desk
+ * sergeant's, filed, and the deck's document cards are the ones written for a
+ * piece of paper in a drawer. A coroner's card on a stolen envelope was the
+ * engine saying somebody had died.
+ */
+export function findKindOf(
+  view: CaseView,
+  clue: Clue,
+): 'physical' | 'document' | 'morgue' | 'scene' | null {
   switch (clue.kind) {
+    case 'morgue':
+      return view.kase.act.type === 'murder' ? 'morgue' : 'document';
     case 'physical':
     case 'document':
-    case 'morgue':
     case 'scene':
       return clue.kind;
     default:

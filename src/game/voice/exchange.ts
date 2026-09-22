@@ -27,8 +27,10 @@ import { genderHintOf, temperOf } from './cast.js';
 import { Dealer, SCHEMA, tagIs, tagOf, type Card, type Slots } from './cards.js';
 import type { MotifContext } from './motifs.js';
 import { beatsOf, findKindOf, strippedQuote, type Beat } from './facts.js';
+import { countSentences, deckKnows, plainBeat } from './plain.js';
 import { knowsHim } from './roll.js';
 import { COLOUR_LINES, RECORD_LEADS } from '../voice-data.js';
+import { PLAIN_LEADS } from './plain.js';
 import { tidyPunctuation } from './prose.js';
 
 export type Register = 'truth' | 'lie' | 'evasion';
@@ -166,7 +168,13 @@ export interface SpokenClue {
    * the question, and the second is something Dashiell had to ask again for.
    */
   rest: string[];
-  mode: 'utterance' | 'quote' | 'record';
+  /**
+   * `plain` is M5 §1's third job: the utterance deck had no card for this fact
+   * — because the fact is a robbery's or a disappearance's, and every card for
+   * it is about a corpse — so the fact is said plainly in the detective's own
+   * voice instead of the flat record being dropped on the page.
+   */
+  mode: 'utterance' | 'quote' | 'record' | 'plain';
   cardIds: string[];
 }
 
@@ -190,7 +198,14 @@ export function speakClue(
 
   if (beats.length > 0 && beats.length <= 3) {
     const said: string[] = [];
+    let plainOnly = false;
     for (const beat of beats) {
+      // §1: a fact kind the deck does not know for this case type is not a
+      // missing card, it is a card that would be a lie. Say it plainly.
+      if (!deckKnows(view, beat.kind)) {
+        plainOnly = true;
+        break;
+      }
       const drawn = utteranceFor(dealer, beat, temper, register, base);
       if (!drawn) {
         said.length = 0;
@@ -199,6 +214,23 @@ export function speakClue(
       }
       cardIds.push(drawn.cardId);
       said.push(drawn.text);
+    }
+    if (plainOnly) {
+      const lines = beats.map((b) => plainBeat(view, b)).filter((t) => t.length > 0);
+      if (lines.length > 0) {
+        gaps.push(
+          `plain-register: ${view.kase.act.type} has no utterance for ${beats
+            .map((b) => b.kind)
+            .join(', ')} (${clue.id}); the plain register said it`,
+        );
+        return {
+          clueId: clue.id,
+          text: lines[0] as string,
+          rest: lines.slice(1),
+          mode: 'plain',
+          cardIds,
+        };
+      }
     }
     if (said.length === beats.length) {
       // `beatsOf` has already put the placement first: where somebody was
@@ -341,6 +373,12 @@ export interface Answer {
   text: string;
   mode: SpokenClue['mode'];
   cardIds: string[];
+  /**
+   * M5 §1: how many sentences of the finished paragraph came off an image
+   * deck. The fact itself never does; the business beat and the colour beat
+   * spliced into the frame always do.
+   */
+  imageSentences: number;
 }
 
 /**
@@ -384,11 +422,19 @@ export function frameAnswer(
     return COLOUR_LINES[0] as string;
   };
 
-  if (spoken.mode === 'record') {
-    const lead = RECORD_LEADS[dealer.random.int(RECORD_LEADS.length)] as string;
+  if (spoken.mode === 'record' || spoken.mode === 'plain') {
+    const pool = spoken.mode === 'plain' ? PLAIN_LEADS : RECORD_LEADS;
+    const lead = (pool[dealer.random.int(pool.length)] as string)
+      .split('{name}')
+      .join(person?.surname ?? 'He');
     const business = nextBusiness();
     const head = business.length > 0 ? `${business} ` : '';
-    return { text: `${head}${lead} ${spoken.text}`, mode: spoken.mode, cardIds };
+    return {
+      text: `${head}${lead} ${spoken.text}`,
+      mode: spoken.mode,
+      cardIds,
+      imageSentences: business.length > 0 ? countSentences(business) : 0,
+    };
   }
 
   const want = familiar ? 'yes' : 'no';
@@ -416,11 +462,21 @@ export function frameAnswer(
   if (!frame) {
     const business = nextBusiness();
     const head = business.length > 0 ? `${business} ` : '';
-    return { text: `${head}“${spoken.text}”`, mode: spoken.mode, cardIds };
+    return {
+      text: `${head}“${spoken.text}”`,
+      mode: spoken.mode,
+      cardIds,
+      imageSentences: business.length > 0 ? countSentences(business) : 0,
+    };
   }
   cardIds.push(frame.cardId);
   let text = frame.text;
-  while (text.includes(BUSINESS_MARK)) text = text.replace(BUSINESS_MARK, nextBusiness());
+  let imageSentences = 0;
+  while (text.includes(BUSINESS_MARK)) {
+    const beat = nextBusiness();
+    imageSentences += beat.length > 0 ? countSentences(beat) : 0;
+    text = text.replace(BUSINESS_MARK, beat);
+  }
   // A colour beat outside the frame's quotation marks is not narration: it is
   // the person still talking, and it is framed as such.
   const gender = person ? genderHintOf(person) : 'any';
@@ -435,9 +491,10 @@ export function frameAnswer(
     const said = insideQuotes(text.slice(0, at))
       ? line
       : frameColour(line, COLOUR_FRAMES[frame % COLOUR_FRAMES.length] as string, gender);
+    imageSentences += countSentences(said);
     text = text.slice(0, at) + said + text.slice(at + COLOUR_MARK.length);
   }
-  return { text: tidyPunctuation(text), mode: spoken.mode, cardIds };
+  return { text: tidyPunctuation(text), mode: spoken.mode, cardIds, imageSentences };
 }
 
 /** Which of Dashiell's line kinds a topic asks for. */

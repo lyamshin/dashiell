@@ -9,7 +9,7 @@
 
 import type { Id } from '../gen/types.js';
 import type { CaseView } from './derive.js';
-import { peopleHere, topicKey } from './derive.js';
+import { peopleHere, topicKey, victimReachable } from './derive.js';
 import type { ParseResult, TopicRef } from './types.js';
 
 const fold = (s: string): string =>
@@ -169,6 +169,18 @@ export function matchTopics(
 
   if (n === 'that evening' || n === 'the evening' || n === 'evening' || n === 'their evening')
     return [{ value: { kind: 'evening' }, label: 'that evening', strength: 3 }];
+  // M5 §3. A pseudo-clue like "that evening", and typed the same way.
+  if (
+    n === 'themselves' ||
+    n === 'themself' ||
+    n === 'himself' ||
+    n === 'herself' ||
+    n === 'them' ||
+    n === 'himself or herself' ||
+    n === 'who they are' ||
+    n === 'their life'
+  )
+    return [{ value: { kind: 'self' }, label: 'themselves', strength: 3 }];
   if (n === 'why i was hired' || n === 'the case' || n === 'why i am here')
     return [{ value: { kind: 'hire' }, label: 'why I was hired', strength: 3 }];
 
@@ -196,7 +208,13 @@ export function matchTopics(
  * from the moment he leaves (M4b §B.2). Left out, it falls back to the
  * generator's own placement, which is right on every page but the first.
  */
-export function parse(view: CaseView, at: Id, raw: string, present?: Id[]): ParseResult {
+export function parse(
+  view: CaseView,
+  at: Id,
+  raw: string,
+  present?: Id[],
+  found: readonly Id[] = [],
+): ParseResult {
   const trimmed = raw.trim();
   if (trimmed.length === 0)
     return { ok: false, problem: { kind: 'empty', message: '' } };
@@ -351,15 +369,23 @@ export function parse(view: CaseView, at: Id, raw: string, present?: Id[]): Pars
           },
         };
       const personId = (who[0] as Candidate<Id>).value;
-      if (personId === view.victim.id)
+      // M5 §7. A murder's victim is on a slab and always was. A robbery's
+      // owner is alive, and the engine may never say otherwise. A missing
+      // person cannot be asked anything until the case has put them somewhere.
+      if (personId === view.victim.id && !victimReachable(view.kase, found)) {
+        const type = view.kase.act.type;
         return {
           ok: false,
           problem: {
             kind: 'unknown-noun',
-            message: `${view.victim.surname} is on a slab. Ask somebody else about ${view.victim.surname}.`,
+            message:
+              type === 'missing'
+                ? `Nobody knows where ${view.victim.surname} is. That is the job.`
+                : `${view.victim.surname} is on a slab. Ask somebody else about ${view.victim.surname}.`,
           },
         };
-      const here = present ?? peopleHere(view, at).map((p) => p.id);
+      }
+      const here = present ?? peopleHere(view, at, found).map((p) => p.id);
       if (!here.includes(personId)) {
         return {
           ok: false,
