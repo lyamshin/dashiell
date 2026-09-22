@@ -33,7 +33,7 @@ export const payroll: Trope = {
     return {
       facts,
       text: [
-        `${taken?.name ?? 'The payroll envelope'} went from ${seen} to ${L} the way it goes every Friday, and ${V} carried it.`,
+        `${cap(taken?.name ?? 'the payroll envelope')} went from ${seen} to ${L} the way it goes every Friday, and ${V} carried it.`,
         `${V} had it at ${seen} at ${clock(Math.max(0, M - 1))}, buttoned into an inside pocket.`,
         `It was gone from ${L} by ${clock(M)}.`,
         `Nobody was hurt and nothing was broken.`,

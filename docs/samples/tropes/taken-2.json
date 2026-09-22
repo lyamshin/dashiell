@@ -1,0 +1,7707 @@
+{
+  "seed": 2,
+  "attempts": 1,
+  "difficulty": 2,
+  "detectiveName": "Dashiell",
+  "neighborhood": "the Gas House District",
+  "places": [
+    {
+      "id": "corner-newsstand",
+      "name": "the newsstand on the corner",
+      "shortName": "the newsstand",
+      "kind": "public",
+      "objects": [
+        "obj-roofkey",
+        "obj-newspapers",
+        "obj-pawn-ticket"
+      ],
+      "isResidence": false,
+      "nearScene": true,
+      "watcher": "newsstand"
+    },
+    {
+      "id": "subway-kiosk",
+      "name": "the subway kiosk at the corner",
+      "shortName": "the subway kiosk",
+      "kind": "public",
+      "objects": [
+        "obj-timetable",
+        "obj-umbrella"
+      ],
+      "isResidence": false,
+      "nearScene": true
+    },
+    {
+      "id": "drugstore",
+      "name": "Kaplan’s drugstore with the soda fountain",
+      "shortName": "Kaplan’s",
+      "kind": "public",
+      "objects": [
+        "obj-telephone",
+        "obj-chloral"
+      ],
+      "isResidence": false,
+      "nearScene": false,
+      "watcher": "druggist"
+    },
+    {
+      "id": "res-apartment",
+      "name": "Prentiss’s apartment on the fourth floor",
+      "shortName": "the fourth floor",
+      "kind": "private",
+      "objects": [
+        "obj-revolver",
+        "obj-photograph"
+      ],
+      "isResidence": true,
+      "nearScene": false
+    },
+    {
+      "id": "dance-hall",
+      "name": "the Arcadia dance hall",
+      "shortName": "the Arcadia",
+      "kind": "public",
+      "objects": [
+        "obj-ashtray",
+        "obj-cigarette-case"
+      ],
+      "isResidence": false,
+      "nearScene": false,
+      "watcher": "ticket-taker"
+    },
+    {
+      "id": "laundry-yard",
+      "name": "the drying yard behind the laundry",
+      "shortName": "the drying yard",
+      "kind": "private",
+      "objects": [
+        "obj-icepick",
+        "obj-cord",
+        "obj-mop-bucket"
+      ],
+      "isResidence": false,
+      "nearScene": false
+    }
+  ],
+  "objects": [
+    {
+      "id": "obj-timetable",
+      "name": "a pasted-up timetable",
+      "homePlace": "subway-kiosk"
+    },
+    {
+      "id": "obj-roofkey",
+      "name": "the roof-door key",
+      "homePlace": "corner-newsstand"
+    },
+    {
+      "id": "obj-newspapers",
+      "name": "a folded stack of evening papers",
+      "homePlace": "corner-newsstand"
+    },
+    {
+      "id": "obj-pawn-ticket",
+      "name": "a spike of pawn tickets",
+      "homePlace": "corner-newsstand"
+    },
+    {
+      "id": "obj-umbrella",
+      "name": "a brass umbrella stand",
+      "homePlace": "subway-kiosk"
+    },
+    {
+      "id": "obj-telephone",
+      "name": "a wall telephone",
+      "homePlace": "drugstore"
+    },
+    {
+      "id": "obj-chloral",
+      "name": "a bottle of chloral drops",
+      "homePlace": "drugstore"
+    },
+    {
+      "id": "obj-revolver",
+      "name": "a nickel-plated revolver",
+      "homePlace": "res-apartment"
+    },
+    {
+      "id": "obj-photograph",
+      "name": "a framed photograph",
+      "homePlace": "res-apartment"
+    },
+    {
+      "id": "obj-ashtray",
+      "name": "a standing ashtray",
+      "homePlace": "dance-hall"
+    },
+    {
+      "id": "obj-cigarette-case",
+      "name": "a silver cigarette case",
+      "homePlace": "dance-hall"
+    },
+    {
+      "id": "obj-icepick",
+      "name": "an ice pick",
+      "homePlace": "laundry-yard"
+    },
+    {
+      "id": "obj-cord",
+      "name": "a length of sash cord",
+      "homePlace": "laundry-yard"
+    },
+    {
+      "id": "obj-mop-bucket",
+      "name": "a mop and bucket",
+      "homePlace": "laundry-yard"
+    }
+  ],
+  "people": [
+    {
+      "id": "p-victim",
+      "name": "Eunice Prentiss",
+      "surname": "Prentiss",
+      "role": "a theatrical agent",
+      "kind": "victim",
+      "isKiller": false,
+      "archetypeId": "vic-agent",
+      "gender": "f",
+      "dossier": {
+        "age": 56,
+        "gender": "f",
+        "profession": {
+          "role": "a theatrical agent",
+          "detail": "had the say over who worked in the spring and who did not"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "the one this is about",
+          "backstory": "Prentiss had half the neighbourhood waiting on a telephone call that never came."
+        },
+        "selfAccount": [
+          "Prentiss is 56 years old and a theatrical agent.",
+          "Prentiss had the say over who worked in the spring and who did not.",
+          "Prentiss is the one this is about."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A theatrical agent.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Prentiss had the say over who worked in the spring and who did not.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Prentiss had half the neighbourhood waiting on a telephone call that never came.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Prentiss wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s1",
+      "name": "Constance Ainsworth",
+      "surname": "Ainsworth",
+      "role": "a dentist with a chair and a waiting room",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-dentist",
+      "relationshipId": "rel-tenant",
+      "relationshipToVictim": "Prentiss’s tenant",
+      "secret": {
+        "type": "dope",
+        "label": "Buying morphine",
+        "description": "Ainsworth buys morphine at the Arcadia from 9:30 PM and would rather be thought a murderer than a hop-head.",
+        "cells": [
+          {
+            "tick": 7,
+            "place": "dance-hall"
+          }
+        ]
+      },
+      "motive": {
+        "type": "debt",
+        "description": "owed Prentiss four thousand dollars and was past due on it"
+      },
+      "foundAt": "dance-hall",
+      "gender": "f",
+      "dossier": {
+        "age": 45,
+        "gender": "f",
+        "profession": {
+          "role": "a dentist with a chair and a waiting room",
+          "detail": "bought the practice second-hand and is still paying for the chair"
+        },
+        "want": "to-be-left-alone",
+        "tie": {
+          "relationshipId": "rel-tenant",
+          "text": "Prentiss’s tenant",
+          "backstory": "Prentiss put Ainsworth’s rent up twice in a year and Ainsworth paid it twice.",
+          "since": "four years in the same rooms"
+        },
+        "selfAccount": [
+          "Ainsworth is 45 years old and a dentist with a chair and a waiting room.",
+          "Ainsworth bought the practice second-hand and is still paying for the chair.",
+          "Ainsworth is Prentiss’s tenant."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A dentist with a chair and a waiting room.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Ainsworth bought the practice second-hand and is still paying for the chair.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Prentiss put Ainsworth’s rent up twice in a year and Ainsworth paid it twice.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Ainsworth wants to be left alone.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Ainsworth has been Prentiss’s tenant, four years in the same rooms.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Ainsworth’s sleeves are buttoned at the wrist in a warm room."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s2",
+      "name": "Elsa Dettweiler",
+      "surname": "Dettweiler",
+      "role": "a switchboard operator",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-switchboard",
+      "relationshipId": "rel-tenant",
+      "relationshipToVictim": "Prentiss’s tenant",
+      "secret": {
+        "type": "hidden-family",
+        "label": "A child boarded out",
+        "description": "Dettweiler goes to Kaplan’s from 9:30 PM to see a child nobody is supposed to know about.",
+        "cells": [
+          {
+            "tick": 7,
+            "place": "drugstore"
+          }
+        ]
+      },
+      "foundAt": "drugstore",
+      "isClient": true,
+      "gender": "f",
+      "dossier": {
+        "age": 22,
+        "gender": "f",
+        "profession": {
+          "role": "a switchboard operator",
+          "detail": "works the exchange and knows every number on the floor"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-tenant",
+          "text": "Prentiss’s tenant",
+          "backstory": "Prentiss put Dettweiler’s rent up twice in a year and Dettweiler paid it twice.",
+          "since": "since the flu year"
+        },
+        "selfAccount": [
+          "Dettweiler is 22 years old and a switchboard operator.",
+          "Dettweiler works the exchange and knows every number on the floor.",
+          "Dettweiler is Prentiss’s tenant."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "Not much past twenty.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A switchboard operator.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Dettweiler works the exchange and knows every number on the floor.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Prentiss put Dettweiler’s rent up twice in a year and Dettweiler paid it twice.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Dettweiler wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Dettweiler has been Prentiss’s tenant, since the flu year.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Dettweiler sends money out of every pay envelope and cannot say where it goes."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s3",
+      "name": "Frieda Obermann",
+      "surname": "Obermann",
+      "role": "a widow with rooms on the avenue",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-widow",
+      "relationshipId": "rel-willed",
+      "relationshipToVictim": "named in Prentiss’s will",
+      "secret": {
+        "type": "secret-drinking",
+        "label": "Drinking in secret",
+        "description": "Obermann drinks alone at the Arcadia from 7:00 PM to 7:30 PM and will claim to have been anywhere else.",
+        "cells": [
+          {
+            "tick": 2,
+            "place": "dance-hall"
+          },
+          {
+            "tick": 3,
+            "place": "dance-hall"
+          }
+        ]
+      },
+      "motive": {
+        "type": "insurance",
+        "description": "was the beneficiary of a ten-thousand-dollar policy on Prentiss’s life"
+      },
+      "foundAt": "dance-hall",
+      "gender": "f",
+      "dossier": {
+        "age": 61,
+        "gender": "f",
+        "profession": {
+          "role": "a widow with rooms on the avenue",
+          "detail": "lives on an annuity and the rent from a house in Flushing"
+        },
+        "want": "to-keep-what-they-have",
+        "tie": {
+          "relationshipId": "rel-willed",
+          "text": "named in Prentiss’s will",
+          "backstory": "Prentiss told Obermann there was something in the will and never said how much.",
+          "since": "since ’27"
+        },
+        "selfAccount": [
+          "Obermann is 61 years old and a widow with rooms on the avenue.",
+          "Obermann lives on an annuity and the rent from a house in Flushing.",
+          "Obermann is named in Prentiss’s will."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her sixties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A widow with rooms on the avenue.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Obermann lives on an annuity and the rent from a house in Flushing.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Prentiss told Obermann there was something in the will and never said how much.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Obermann wants to keep what they have and add nothing to it.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Obermann has been named in Prentiss’s will, since ’27.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Obermann had taken a drink and had gone to some trouble about the smell of it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s4",
+      "name": "Prescott Ellery",
+      "surname": "Ellery",
+      "role": "a lawyer with one clerk",
+      "kind": "suspect",
+      "isKiller": true,
+      "archetypeId": "arch-lawyer",
+      "relationshipId": "rel-engaged",
+      "relationshipToVictim": "engaged to Prentiss’s daughter",
+      "secret": {
+        "type": "murder",
+        "label": "Murder",
+        "description": "Ellery is at the fourth floor from 9:30 PM, alone with Prentiss, who is not seen again after 9:30 PM.",
+        "cells": [
+          {
+            "tick": 7,
+            "place": "res-apartment"
+          }
+        ],
+        "partnerId": "p-victim"
+      },
+      "motive": {
+        "type": "inheritance",
+        "description": "stands to inherit from Prentiss"
+      },
+      "foundAt": "subway-kiosk",
+      "gender": "m",
+      "dossier": {
+        "age": 58,
+        "gender": "m",
+        "profession": {
+          "role": "a lawyer with one clerk",
+          "detail": "has a list of clients and will not read any of it aloud"
+        },
+        "want": "respectability",
+        "tie": {
+          "relationshipId": "rel-engaged",
+          "text": "engaged to Prentiss’s daughter",
+          "backstory": "Ellery asked Prentiss for the daughter and was told to come back when there was money.",
+          "since": "since ’25"
+        },
+        "selfAccount": [
+          "Ellery is 58 years old and a lawyer with one clerk.",
+          "Ellery has a list of clients and will not read any of it aloud.",
+          "Ellery is engaged to Prentiss’s daughter."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A lawyer with one clerk.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Ellery has a list of clients and will not read any of it aloud.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Ellery asked Prentiss for the daughter and was told to come back when there was money.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Ellery wants to be thought respectable by people who are not.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Ellery has been engaged to Prentiss’s daughter, since ’25.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s5",
+      "name": "Morris Feldman",
+      "surname": "Feldman",
+      "role": "a ward heeler",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-heeler",
+      "relationshipId": "rel-partner",
+      "relationshipToVictim": "Prentiss’s business partner",
+      "secret": {
+        "type": "gambling-debt",
+        "label": "Gambling debt",
+        "description": "Feldman slips off to Kaplan’s from 9:30 PM to 10:00 PM to settle with a bookmaker.",
+        "cells": [
+          {
+            "tick": 7,
+            "place": "drugstore"
+          },
+          {
+            "tick": 8,
+            "place": "drugstore"
+          }
+        ]
+      },
+      "foundAt": "corner-newsstand",
+      "gender": "m",
+      "dossier": {
+        "age": 57,
+        "gender": "m",
+        "profession": {
+          "role": "a ward heeler",
+          "detail": "sits in the clubhouse and settles what can be settled there"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-partner",
+          "text": "Prentiss’s business partner",
+          "backstory": "Feldman and Prentiss took the lease together in ’18 and have been arguing about it since.",
+          "since": "three years this spring"
+        },
+        "selfAccount": [
+          "Feldman is 57 years old and a ward heeler.",
+          "Feldman sits in the clubhouse and settles what can be settled there.",
+          "Feldman is Prentiss’s business partner."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A ward heeler.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Feldman sits in the clubhouse and settles what can be settled there.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Feldman and Prentiss took the lease together in ’18 and have been arguing about it since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Feldman wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Feldman has been Prentiss’s business partner, three years this spring.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Feldman was asking around for a hundred dollars in a hurry earlier in the week."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s6",
+      "name": "Vincenzo Ruggiero",
+      "surname": "Ruggiero",
+      "role": "a doorman at a club with no sign on it",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-bouncer",
+      "relationshipId": "rel-debtor",
+      "relationshipToVictim": "in Prentiss’s debt",
+      "secret": {
+        "type": "fence",
+        "label": "Fencing stolen goods",
+        "description": "Ruggiero hands a parcel of stolen goods to a man at the subway kiosk from 10:00 PM to 10:30 PM.",
+        "cells": [
+          {
+            "tick": 8,
+            "place": "subway-kiosk"
+          },
+          {
+            "tick": 9,
+            "place": "subway-kiosk"
+          }
+        ]
+      },
+      "foundAt": "dance-hall",
+      "gender": "m",
+      "dossier": {
+        "age": 26,
+        "gender": "m",
+        "profession": {
+          "role": "a doorman at a club with no sign on it",
+          "detail": "has the door from nine until they close"
+        },
+        "want": "to-keep-what-they-have",
+        "tie": {
+          "relationshipId": "rel-debtor",
+          "text": "in Prentiss’s debt",
+          "backstory": "Ruggiero signed a note to Prentiss that Agnes Sweeney witnessed and nobody has torn up.",
+          "since": "since ’18",
+          "third": "m-1"
+        },
+        "selfAccount": [
+          "Ruggiero is 26 years old and a doorman at a club with no sign on it.",
+          "Ruggiero has the door from nine until they close.",
+          "Ruggiero is in Prentiss’s debt."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In the late twenties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A doorman at a club with no sign on it.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Ruggiero has the door from nine until they close.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Ruggiero signed a note to Prentiss that Agnes Sweeney witnessed and nobody has torn up.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Ruggiero wants to keep what they have and add nothing to it.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Ruggiero has been in Prentiss’s debt, since ’18.",
+            "layer": 2
+          },
+          {
+            "kind": "third",
+            "text": "Agnes Sweeney is a woman they had both been seeing.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Ruggiero was carrying a parcel into the subway kiosk and came out without it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f1",
+      "name": "Concetta Vitale",
+      "surname": "Vitale",
+      "role": "the news dealer",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "newsstand",
+      "foundAt": "corner-newsstand",
+      "gender": "f",
+      "dossier": {
+        "age": 65,
+        "gender": "f",
+        "profession": {
+          "role": "the news dealer",
+          "detail": "runs the stand at the newsstand and misses nothing that crosses the pavement"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "at the stand at the newsstand, every day of the year",
+          "backstory": "Vitale is at the stand at the newsstand, every day of the year."
+        },
+        "selfAccount": [
+          "Vitale is 65 years old and the news dealer.",
+          "Vitale runs the stand at the newsstand and misses nothing that crosses the pavement.",
+          "Vitale is at the stand at the newsstand, every day of the year."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her sixties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The news dealer.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Vitale runs the stand at the newsstand and misses nothing that crosses the pavement.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Vitale is at the stand at the newsstand, every day of the year.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Vitale wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f2",
+      "name": "Rocco Carbone",
+      "surname": "Carbone",
+      "role": "the druggist",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "druggist",
+      "foundAt": "drugstore",
+      "gender": "m",
+      "dossier": {
+        "age": 58,
+        "gender": "m",
+        "profession": {
+          "role": "the druggist",
+          "detail": "stands the counter at Kaplan’s and writes down every prescription twice"
+        },
+        "want": "respectability",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "behind the counter at Kaplan’s",
+          "backstory": "Carbone is behind the counter at Kaplan’s."
+        },
+        "selfAccount": [
+          "Carbone is 58 years old and the druggist.",
+          "Carbone stands the counter at Kaplan’s and writes down every prescription twice.",
+          "Carbone is behind the counter at Kaplan’s."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The druggist.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Carbone stands the counter at Kaplan’s and writes down every prescription twice.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Carbone is behind the counter at Kaplan’s.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Carbone wants to be thought respectable by people who are not.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f3",
+      "name": "Prudence Stannard",
+      "surname": "Stannard",
+      "role": "the ticket-taker",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "ticket-taker",
+      "foundAt": "dance-hall",
+      "gender": "f",
+      "dossier": {
+        "age": 54,
+        "gender": "f",
+        "profession": {
+          "role": "the ticket-taker",
+          "detail": "has taken tickets at the Arcadia since the house opened"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "on the door at the Arcadia, every performance",
+          "backstory": "Stannard is on the door at the Arcadia, every performance."
+        },
+        "selfAccount": [
+          "Stannard is 54 years old and the ticket-taker.",
+          "Stannard has taken tickets at the Arcadia since the house opened.",
+          "Stannard is on the door at the Arcadia, every performance."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The ticket-taker.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Stannard has taken tickets at the Arcadia since the house opened.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Stannard is on the door at the Arcadia, every performance.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Stannard wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-cop",
+      "name": "Antonio Tramonti",
+      "surname": "Tramonti",
+      "role": "the patrolman on the beat",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "beat-cop",
+      "foundAt": "corner-newsstand",
+      "gender": "m",
+      "dossier": {
+        "age": 51,
+        "gender": "m",
+        "profession": {
+          "role": "the patrolman on the beat",
+          "detail": "walks the same eight corners every night and rattles every door on them"
+        },
+        "want": "to-be-feared",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "the patrolman whose post takes in the newsstand",
+          "backstory": "Tramonti is the patrolman whose post takes in the newsstand."
+        },
+        "selfAccount": [
+          "Tramonti is 51 years old and the patrolman on the beat.",
+          "Tramonti walks the same eight corners every night and rattles every door on them.",
+          "Tramonti is the patrolman whose post takes in the newsstand."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The patrolman on the beat.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Tramonti walks the same eight corners every night and rattles every door on them.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Tramonti is the patrolman whose post takes in the newsstand.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Tramonti wants to be the one people are careful around.",
+            "layer": 2
+          }
+        ]
+      }
+    }
+  ],
+  "method": {
+    "id": "the-timetable",
+    "name": "a train out, and the timetable it was read off",
+    "noise": 0,
+    "evidenceObjectId": "obj-timetable",
+    "bodyEvidence": "The precinct took a statement and filed it. A grown person is allowed to go where they like.",
+    "accessRequirement": {
+      "place": "subway-kiosk",
+      "beforeTick": 7
+    }
+  },
+  "anchors": [
+    {
+      "templateId": "ice-delivery",
+      "name": "the ice being brought in",
+      "ticks": [
+        6
+      ],
+      "traces": [
+        {
+          "kind": "sighting"
+        },
+        {
+          "kind": "knowledge",
+          "description": "the iceman dropped a block on the step and it went in three"
+        },
+        {
+          "kind": "mark",
+          "description": "a wet patch down one side of a coat"
+        }
+      ],
+      "timing": "when the ice came",
+      "highTiming": "as the ice was being brought in",
+      "sceneFact": "The ice was brought in at {T} and the iceman’s book has the delivery timed and signed for.",
+      "masks": false,
+      "placeId": "drugstore"
+    },
+    {
+      "templateId": "dumbwaiter",
+      "name": "the dumbwaiter squeal",
+      "ticks": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "traces": [
+        {
+          "kind": "sound",
+          "description": "a noise the whole shaft hears and nobody in the building can sleep through"
+        },
+        {
+          "kind": "knowledge",
+          "description": "the car came up with somebody’s wash still in it, and stuck halfway"
+        }
+      ],
+      "timing": "when the dumbwaiter went up",
+      "highTiming": "as the dumbwaiter was going up",
+      "sceneFact": "The dumbwaiter car was worked at {T}, as it is on the hour and the half hour.",
+      "masks": false,
+      "placeId": "res-apartment"
+    },
+    {
+      "templateId": "cop-pass",
+      "name": "the beat cop’s pass",
+      "ticks": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "traces": [
+        {
+          "kind": "sighting"
+        }
+      ],
+      "timing": "when the cop came round",
+      "highTiming": "as the cop was coming round",
+      "sceneFact": "The patrolman’s round brought him two streets off at {T}.",
+      "masks": false,
+      "route": [
+        "corner-newsstand",
+        "subway-kiosk",
+        "drugstore",
+        "dance-hall"
+      ]
+    }
+  ],
+  "nearScene": [
+    "subway-kiosk",
+    "corner-newsstand"
+  ],
+  "soundMasked": false,
+  "schedules": [
+    {
+      "personId": "p-victim",
+      "truth": [
+        "corner-newsstand",
+        "corner-newsstand",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "subway-kiosk",
+        "drugstore",
+        "res-apartment",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk"
+      ],
+      "claimed": [
+        "corner-newsstand",
+        "corner-newsstand",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "subway-kiosk",
+        "drugstore",
+        "res-apartment",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s1",
+      "truth": [
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "res-apartment",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimed": [
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "res-apartment",
+        "drugstore",
+        "dance-hall",
+        "dance-hall",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        7
+      ]
+    },
+    {
+      "personId": "p-s2",
+      "truth": [
+        "laundry-yard",
+        "laundry-yard",
+        "laundry-yard",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimed": [
+        "laundry-yard",
+        "laundry-yard",
+        "laundry-yard",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "corner-newsstand",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "p-s6",
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        7
+      ]
+    },
+    {
+      "personId": "p-s3",
+      "truth": [
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimed": [
+        "subway-kiosk",
+        "dance-hall",
+        "subway-kiosk",
+        "subway-kiosk",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        2,
+        3
+      ]
+    },
+    {
+      "personId": "p-s4",
+      "truth": [
+        "subway-kiosk",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "res-apartment",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk"
+      ],
+      "claimed": [
+        "subway-kiosk",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "drugstore",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "p-s6",
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        7
+      ]
+    },
+    {
+      "personId": "p-s5",
+      "truth": [
+        "dance-hall",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "drugstore",
+        "drugstore",
+        "corner-newsstand",
+        "dance-hall",
+        "subway-kiosk"
+      ],
+      "claimed": [
+        "dance-hall",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "dance-hall",
+        "subway-kiosk"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        7,
+        8
+      ]
+    },
+    {
+      "personId": "p-s6",
+      "truth": [
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "subway-kiosk",
+        "laundry-yard",
+        "laundry-yard"
+      ],
+      "claimed": [
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "corner-newsstand",
+        "corner-newsstand",
+        "laundry-yard",
+        "laundry-yard"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        8,
+        9
+      ]
+    },
+    {
+      "personId": "p-f1",
+      "truth": [
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "drugstore",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand"
+      ],
+      "claimed": [
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "drugstore",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-f2",
+      "truth": [
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimed": [
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-f3",
+      "truth": [
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "drugstore",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall"
+      ],
+      "claimed": [
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "drugstore",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-cop",
+      "truth": [
+        null,
+        "corner-newsstand",
+        null,
+        null,
+        "subway-kiosk",
+        null,
+        null,
+        "drugstore",
+        null,
+        null,
+        "dance-hall",
+        null
+      ],
+      "claimed": [
+        null,
+        "corner-newsstand",
+        null,
+        null,
+        "subway-kiosk",
+        null,
+        null,
+        "drugstore",
+        null,
+        null,
+        "dance-hall",
+        null
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    }
+  ],
+  "observations": [
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "subway-kiosk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "subway-kiosk",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "place": "dance-hall",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-victim",
+      "place": "corner-newsstand",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s5",
+      "place": "dance-hall",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-cop",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-cop",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-victim",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-cop",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s4",
+      "place": "drugstore",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-victim",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "place": "drugstore",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s4",
+      "place": "drugstore",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f3",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s4",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-f3",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f1",
+      "place": "drugstore",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-cop",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-cop",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-cop",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-f1",
+      "place": "drugstore",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-victim",
+      "place": "subway-kiosk",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "place": "res-apartment",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-cop",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-victim",
+      "place": "res-apartment",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-cop",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-cop",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "corner-newsstand",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dance-hall",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-cop",
+      "place": "dance-hall",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s1",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s3",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s5",
+      "place": "dance-hall",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-cop",
+      "place": "dance-hall",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s5",
+      "place": "dance-hall",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "place": "subway-kiosk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "subway-kiosk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s1",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s2",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s3",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    }
+  ],
+  "candidates": [
+    {
+      "id": "c001",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ainsworth says Dettweiler was at the subway kiosk at 7:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c002",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Ainsworth says Dettweiler was at Kaplan’s from 11:00 PM to 11:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "subway-kiosk",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ainsworth says Obermann was at the subway kiosk at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c004",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Ainsworth says Obermann was at the Arcadia from 10:00 PM to 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Ainsworth says Obermann was at Kaplan’s from 11:00 PM to 11:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ainsworth says Ellery was at the subway kiosk at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "Ainsworth says Ellery was at the Arcadia at 8:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ainsworth says Ruggiero was at the subway kiosk from 7:00 PM to 7:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "Ainsworth says Ruggiero was at the Arcadia at 8:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c010",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "subway-kiosk",
+          "tick": 5
+        }
+      ],
+      "text": "Dettweiler says Prentiss was at the subway kiosk at 8:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Dettweiler says Ainsworth was at the subway kiosk at 7:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Dettweiler says Ainsworth was at Kaplan’s from 11:00 PM to 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c013",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Dettweiler says Obermann was at Kaplan’s from 11:00 PM to 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Dettweiler says Ellery was at the subway kiosk at 8:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c043",
+        "c087"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c015",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 8
+        }
+      ],
+      "text": "Dettweiler says Feldman was at Kaplan’s at 10:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Dettweiler says Ruggiero was at the subway kiosk from 7:30 PM to 8:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c017",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Obermann says Ainsworth was at the subway kiosk at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Obermann says Ainsworth was at the Arcadia from 9:30 PM to 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c024",
+        "t001"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c019",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Obermann says Ainsworth was at Kaplan’s from 11:00 PM to 11:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c020",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Obermann says Dettweiler was at Kaplan’s from 11:00 PM to 11:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c021",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Obermann says Ellery was at the subway kiosk at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c022",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 6
+        }
+      ],
+      "text": "Obermann says Feldman was at the newsstand from 8:00 PM to 9:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 1
+        }
+      ],
+      "text": "Obermann says Ruggiero was at the Arcadia at 6:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "Obermann says Ruggiero was at the Arcadia at 9:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c043"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c025",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 3
+        }
+      ],
+      "text": "Ellery says Prentiss was at Kaplan’s from 7:00 PM to 7:30 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ellery says Ainsworth was at the subway kiosk at 6:00 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c027",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "Ellery says Ainsworth was at the Arcadia at 8:30 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ellery says Dettweiler was at the subway kiosk at 8:00 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "subway-kiosk",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ellery says Obermann was at the subway kiosk at 6:00 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "subway-kiosk",
+          "tick": 11
+        }
+      ],
+      "text": "Ellery says Feldman was at the subway kiosk at 11:30 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ellery says Ruggiero was at the subway kiosk at 8:00 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 9
+        }
+      ],
+      "text": "Ellery says Ruggiero was at the subway kiosk from 10:00 PM to 10:30 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c033",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 6
+        }
+      ],
+      "text": "Ellery says Ruggiero was at the Arcadia from 8:30 PM to 9:00 PM.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c034",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "corner-newsstand",
+          "tick": 1
+        }
+      ],
+      "text": "Feldman says Prentiss was at the newsstand at 6:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 6
+        }
+      ],
+      "text": "Feldman says Obermann was at the newsstand from 8:00 PM to 9:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c036",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 11
+        }
+      ],
+      "text": "Feldman says Ellery was at the subway kiosk at 11:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c037",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 0
+        }
+      ],
+      "text": "Feldman says Ruggiero was at the Arcadia at 6:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ruggiero says Ainsworth was at the subway kiosk from 7:00 PM to 7:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c039",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "Ruggiero says Ainsworth was at the Arcadia at 8:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "Ruggiero says Ainsworth was at the Arcadia at 9:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ruggiero says Dettweiler was at the subway kiosk from 7:30 PM to 8:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 1
+        }
+      ],
+      "text": "Ruggiero says Obermann was at the Arcadia at 6:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "Ruggiero says Obermann was at the Arcadia at 9:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c096",
+        "c006"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c044",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ruggiero says Ellery was at the subway kiosk at 8:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c045",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 6
+        }
+      ],
+      "text": "Ruggiero says Ellery was at the Arcadia from 8:30 PM to 9:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 0
+        }
+      ],
+      "text": "Ruggiero says Feldman was at the Arcadia at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c047",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "corner-newsstand",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "corner-newsstand",
+          "tick": 1
+        }
+      ],
+      "text": "Vitale says Prentiss was at the newsstand from 6:00 PM to 6:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c048",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 4
+        }
+      ],
+      "text": "Vitale says Prentiss was at Kaplan’s at 8:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c049",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 6
+        }
+      ],
+      "text": "Vitale says Obermann was at the newsstand from 8:30 PM to 9:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 3
+        }
+      ],
+      "text": "Vitale says Feldman was at the newsstand from 6:30 PM to 7:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 6
+        }
+      ],
+      "text": "Vitale says Feldman was at the newsstand from 8:30 PM to 9:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c052",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 9
+        }
+      ],
+      "text": "Vitale says Feldman was at the newsstand at 10:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c053",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 4
+        }
+      ],
+      "text": "Carbone says Prentiss was at Kaplan’s from 7:00 PM to 8:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 6
+        }
+      ],
+      "text": "Carbone says Prentiss was at Kaplan’s at 9:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c055",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Carbone says Ainsworth was at Kaplan’s from 11:00 PM to 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Carbone says Dettweiler was at Kaplan’s from 9:30 PM to 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c057",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Carbone says Obermann was at Kaplan’s from 11:00 PM to 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 3
+        }
+      ],
+      "text": "Carbone says Ellery was at Kaplan’s from 6:30 PM to 7:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c059",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 8
+        }
+      ],
+      "text": "Carbone says Feldman was at Kaplan’s from 9:30 PM to 10:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c056",
+        "c014",
+        "c109"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 3
+        }
+      ],
+      "text": "Stannard says Prentiss was at Kaplan’s at 7:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c061",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 5
+        }
+      ],
+      "text": "Stannard says Ainsworth was at the Arcadia from 8:00 PM to 8:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c062",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Stannard says Ainsworth was at the Arcadia from 9:30 PM to 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Stannard says Obermann was at the Arcadia from 6:30 PM to 7:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Stannard says Obermann was at the Arcadia from 9:30 PM to 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c065",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 3
+        }
+      ],
+      "text": "Stannard says Ellery was at Kaplan’s at 7:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c066",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 6
+        }
+      ],
+      "text": "Stannard says Ellery was at the Arcadia from 8:30 PM to 9:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c067",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 0
+        }
+      ],
+      "text": "Stannard says Feldman was at the Arcadia at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c068",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 10
+        }
+      ],
+      "text": "Stannard says Feldman was at the Arcadia at 11:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c069",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 1
+        }
+      ],
+      "text": "Stannard says Ruggiero was at the Arcadia from 6:00 PM to 6:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c070",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "Stannard says Ruggiero was at the Arcadia from 8:30 PM to 9:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c071",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "corner-newsstand",
+          "tick": 1
+        }
+      ],
+      "text": "Tramonti says Prentiss was at the newsstand at 6:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Tramonti says Dettweiler was at the subway kiosk at 8:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c073",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Tramonti says Dettweiler was at Kaplan’s at 9:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c074",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Tramonti says Ellery was at the subway kiosk at 8:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c075",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 1
+        }
+      ],
+      "text": "Tramonti says Feldman was at the newsstand at 6:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c076",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Tramonti says Feldman was at Kaplan’s at 9:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c077",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 10
+        }
+      ],
+      "text": "Tramonti says Feldman was at the Arcadia at 11:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c078",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Tramonti says Ruggiero was at the subway kiosk at 8:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c079",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ainsworth’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Carbone was at Kaplan’s at 9:30 PM and says Ainsworth was not.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c080",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Ainsworth’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Tramonti was at Kaplan’s at 9:30 PM and says Ainsworth was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c081",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Dettweiler’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 7
+        }
+      ],
+      "text": "Vitale was at the newsstand at 9:30 PM and says Dettweiler was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c082",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dettweiler’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 7
+        }
+      ],
+      "text": "Dettweiler names Ruggiero as the company for it. Ruggiero was at the Arcadia at 9:30 PM, and says Dettweiler was not there.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c083",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Obermann’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "subway-kiosk",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Ainsworth was at the subway kiosk from 7:00 PM to 7:30 PM and says Obermann was not.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Obermann’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Dettweiler was at the subway kiosk at 7:30 PM and says Obermann was not.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c085",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Obermann’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "subway-kiosk",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Ruggiero was at the subway kiosk from 7:00 PM to 7:30 PM and says Obermann was not.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c086",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ellery’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Carbone was at Kaplan’s at 9:30 PM and says Ellery was not.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c024",
+        "c011"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c087",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Ellery’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Tramonti was at Kaplan’s at 9:30 PM and says Ellery was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c088",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ellery’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Ellery names Ruggiero as the company for it. Ruggiero was at the Arcadia at 9:30 PM, and says Ellery was not there.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c089",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Feldman’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 8
+        }
+      ],
+      "text": "Vitale was at the newsstand from 9:30 PM to 10:00 PM and says Feldman was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c090",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Ruggiero’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 9
+        }
+      ],
+      "text": "Feldman was at the newsstand at 10:30 PM and says Ruggiero was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c091",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Ruggiero’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 9
+        }
+      ],
+      "text": "Vitale was at the newsstand from 10:00 PM to 10:30 PM and says Ruggiero was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c092",
+      "kind": "scene",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "victimDeadBy",
+          "tick": 7
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Prentiss is not at the fourth floor and has not been since that evening. The room was left tidy and the bed was not slept in. The dumbwaiter car was worked at 9:30 PM, as it is on the hour and the half hour.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "c095",
+        "c108",
+        "c059",
+        "c086",
+        "c018",
+        "c113",
+        "c140"
+      ],
+      "role": "spine",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c093",
+      "kind": "morgue",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            5,
+            8
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Nobody can put it closer than between 8:30 PM and 10:00 PM, which is two hours of nothing useful. The precinct took a statement and filed it. A grown person is allowed to go where they like.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "c095",
+        "t002",
+        "c086",
+        "c018",
+        "c040"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c094",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-timetable",
+          "fromPlace": "subway-kiosk"
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "A pasted-up timetable is gone from the subway kiosk. The timetable has been pulled off the wall, and the corner of it is still pasted there.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c095",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Prentiss that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 6
+        }
+      ],
+      "text": "Carbone puts Prentiss at Kaplan’s when the ice came, which was 9:00 PM, and in no hurry to be anywhere.",
+      "place": "drugstore",
+      "leadsTo": [
+        "t002"
+      ],
+      "role": "spine",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c096",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "res-apartment",
+          "tick": 7
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 7
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Vitale was at the newsstand at 9:30 PM and heard a door pulled shut on an empty room from the direction of the fourth floor, as the dumbwaiter was going up.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c097",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "corner-newsstand",
+          "tick": 1
+        }
+      ],
+      "text": "Tramonti came round at 6:30 PM and had Feldman at the newsstand.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c098",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 4
+        }
+      ],
+      "text": "Tramonti came round at 8:00 PM and had Dettweiler at the subway kiosk.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c099",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 4
+        }
+      ],
+      "text": "Tramonti came round at 8:00 PM and had Ellery at the subway kiosk.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c100",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 4
+        }
+      ],
+      "text": "Tramonti came round at 8:00 PM and had Ruggiero at the subway kiosk.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c101",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Tramonti came round at 9:30 PM and had Dettweiler at Kaplan’s.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c102",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Tramonti came round at 9:30 PM and had Feldman at Kaplan’s.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c103",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 10
+        }
+      ],
+      "text": "Tramonti came round at 11:00 PM and had Feldman at the Arcadia.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c104",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s1",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Found at the fourth floor: A promissory note for $4,000 signed by Ainsworth, endorsed to Prentiss, three months past due.",
+      "place": "res-apartment",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c105",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ainsworth and Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s1",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Ruggiero says Prentiss told Ainsworth that Friday was the end of it, one way or the other.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c106",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "insurance"
+        }
+      ],
+      "text": "Found at the fourth floor: A policy on Prentiss’s life for $10,000, twenty months old, with Obermann named on the face of it.",
+      "place": "res-apartment",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c107",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Obermann and Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "insurance"
+        }
+      ],
+      "text": "Ellery says Prentiss asked Obermann straight out who had been paying the premiums, and got no answer.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c108",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "inheritance"
+        }
+      ],
+      "text": "Found at the fourth floor: A draft codicil in Prentiss’s hand striking Ellery out of the will, dated last Tuesday and unsigned.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "c059",
+        "c056"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c109",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ellery and Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "inheritance"
+        }
+      ],
+      "text": "Ainsworth says Prentiss told Ellery the lawyer was coming Thursday and that the arrangement would be changed.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c118"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c110",
+      "kind": "client",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "why I was hired"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "insurance"
+        }
+      ],
+      "text": "Dettweiler hired us, and wants it known that Obermann was the beneficiary of a ten-thousand-dollar policy on Prentiss’s life, and would rather we started there.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c108"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Vitale on Ainsworth: Ainsworth’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c112",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Stannard on Ainsworth: Somebody at the Arcadia sells what a druggist will not, and Ainsworth knows which door.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c113",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Obermann on Ainsworth: Ainsworth was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c114",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Arcadia, folded the way one particular hand folds them.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c111"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c115",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Arcadia signed by a doctor who has been dead since the spring.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "The man who sells it at the Arcadia gives it up rather than be held: Ainsworth was there from 9:30 PM, and stayed until it took hold.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "The doctor Ainsworth used to see confirms the habit and the hour: Ainsworth was at the Arcadia from 9:30 PM, and could not have crossed the street unhelped.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Dettweiler"
+      },
+      "establishes": [],
+      "text": "Carbone on Dettweiler: Dettweiler sends money out of every pay envelope and cannot say where it goes.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c120"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b3"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Dettweiler"
+      },
+      "establishes": [],
+      "text": "Tramonti on Dettweiler: A woman at Kaplan’s asked for Dettweiler by a name Dettweiler has not used in years.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dettweiler"
+      },
+      "establishes": [],
+      "text": "Ruggiero on Dettweiler: Dettweiler keeps a photograph and will not be asked about it twice.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b3"
+    },
+    {
+      "id": "c121",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "A board-and-keep receipt at Kaplan’s, monthly, eight years of them.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "A child’s shoe at Kaplan’s, and nobody at Kaplan’s has any children.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "The woman who keeps the child says it straight out: Dettweiler was at Kaplan’s from 9:30 PM, the same as every week, and left with the same face as always.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b3"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "The parish register at Kaplan’s has the christening in it, and the board money receipted through the evening in question.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Obermann"
+      },
+      "establishes": [],
+      "text": "Stannard on Obermann: Obermann had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Obermann"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Obermann: Obermann is on a temperance pledge that Obermann mentions before anybody asks.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Obermann"
+      },
+      "establishes": [],
+      "text": "Ellery on Obermann: Somebody at the Arcadia says Obermann is in more often than Obermann lets on.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c128",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A tab at the Arcadia in a name that is not Obermann’s, in Obermann’s handwriting.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c128"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The man behind the counter at the Arcadia knows exactly: Obermann was on the same stool from 7:00 PM to 7:30 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The tab at the Arcadia is dated and timed, from 7:00 PM to 7:30 PM, and Obermann was there to run it up.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Vitale on Feldman: Feldman was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Stannard on Feldman: A man nobody knew was waiting for Feldman at Kaplan’s and would not give a name.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Feldman"
+      },
+      "establishes": [],
+      "text": "Obermann on Feldman: Feldman goes very quiet when the racing wire is mentioned.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c135",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "Betting slips at Kaplan’s in Feldman’s pocketbook, all of them losers, all of them this month.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c136",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [],
+      "text": "A book of markers at Kaplan’s with Feldman’s initials against four of them.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 8
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Feldman was at Kaplan’s from 9:30 PM to 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 8
+        }
+      ],
+      "text": "The book at Kaplan’s has the payment entered against Feldman’s name and the time beside it, from 9:30 PM to 10:00 PM, in the clerk’s own hand.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c139",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Obermann on Ruggiero: Ruggiero was carrying a parcel into the subway kiosk and came out without it.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Vitale on Ruggiero: There is a man who meets people at the subway kiosk and nobody will say his name out loud.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c141"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Stannard on Ruggiero: Ruggiero has been selling things that were never Ruggiero’s to sell.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
+    },
+    {
+      "id": "c142",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the subway kiosk, and the shop it came from closed two years ago.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c143",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the subway kiosk in a name that does not exist, made out at the hour in question.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c144",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 9
+        }
+      ],
+      "text": "The receiver at the subway kiosk would rather talk than be held: Ruggiero was there from 10:00 PM to 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Ruggiero will take over this one.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
+    },
+    {
+      "id": "c145",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 9
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Ruggiero at the subway kiosk from 10:00 PM to 10:30 PM with both hands full.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "t001",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "subway-kiosk",
+          "tick": 8
+        }
+      ],
+      "text": "The register at the subway kiosk has a room paid for at 10:00 PM, cash, a week in advance, in a name nobody at the desk could read back.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "t002",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "the room at the subway kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 8
+        }
+      ],
+      "text": "Dettweiler says Ellery paid for a room at the subway kiosk at 10:00 PM and went up with somebody who was not walking easily, and that the somebody had Prentiss’s coat over one arm.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c014",
+        "c129"
+      ],
+      "role": "spine"
+    }
+  ],
+  "findable": [
+    {
+      "id": "c092",
+      "kind": "scene",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "victimDeadBy",
+          "tick": 7
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Prentiss is not at the fourth floor and has not been since that evening. The room was left tidy and the bed was not slept in. The dumbwaiter car was worked at 9:30 PM, as it is on the hour and the half hour.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "c095",
+        "c108",
+        "c059",
+        "c086",
+        "c018",
+        "c113",
+        "c140"
+      ],
+      "role": "spine",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c093",
+      "kind": "morgue",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            5,
+            8
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Nobody can put it closer than between 8:30 PM and 10:00 PM, which is two hours of nothing useful. The precinct took a statement and filed it. A grown person is allowed to go where they like.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "c095",
+        "t002",
+        "c086",
+        "c018",
+        "c040"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c110",
+      "kind": "client",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "why I was hired"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "insurance"
+        }
+      ],
+      "text": "Dettweiler hired us, and wants it known that Obermann was the beneficiary of a ten-thousand-dollar policy on Prentiss’s life, and would rather we started there.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c108"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c095",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Prentiss that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 6
+        }
+      ],
+      "text": "Carbone puts Prentiss at Kaplan’s when the ice came, which was 9:00 PM, and in no hurry to be anywhere.",
+      "place": "drugstore",
+      "leadsTo": [
+        "t002"
+      ],
+      "role": "spine",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c108",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "inheritance"
+        }
+      ],
+      "text": "Found at the fourth floor: A draft codicil in Prentiss’s hand striking Ellery out of the will, dated last Tuesday and unsigned.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "c059",
+        "c056"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c059",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Feldman"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 8
+        }
+      ],
+      "text": "Carbone says Feldman was at Kaplan’s from 9:30 PM to 10:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c056",
+        "c014",
+        "c109"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Dettweiler"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Carbone says Dettweiler was at Kaplan’s from 9:30 PM to 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "t002",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "the room at the subway kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 8
+        }
+      ],
+      "text": "Dettweiler says Ellery paid for a room at the subway kiosk at 10:00 PM and went up with somebody who was not walking easily, and that the somebody had Prentiss’s coat over one arm.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c014",
+        "c129"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c086",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ellery’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Carbone was at Kaplan’s at 9:30 PM and says Ellery was not.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c024",
+        "c011"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 4
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Dettweiler says Ellery was at the subway kiosk at 8:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c043",
+        "c087"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 9
+        }
+      ],
+      "text": "Obermann says Ainsworth was at the Arcadia from 9:30 PM to 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c024",
+        "t001"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "Obermann says Ruggiero was at the Arcadia at 9:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c043"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Obermann"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "Ruggiero says Obermann was at the Arcadia at 9:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c096",
+        "c006"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "t001",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "subway-kiosk",
+          "tick": 8
+        }
+      ],
+      "text": "The register at the subway kiosk has a room paid for at 10:00 PM, cash, a week in advance, in a name nobody at the desk could read back.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c096",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "res-apartment",
+          "tick": 7
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 7
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Vitale was at the newsstand at 9:30 PM and heard a door pulled shut on an empty room from the direction of the fourth floor, as the dumbwaiter was going up.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c109",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ellery and Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "inheritance"
+        }
+      ],
+      "text": "Ainsworth says Prentiss told Ellery the lawyer was coming Thursday and that the arrangement would be changed.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c118"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ellery"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ainsworth says Ellery was at the subway kiosk at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c087",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Ellery’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Tramonti was at Kaplan’s at 9:30 PM and says Ellery was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Dettweiler says Ainsworth was at the subway kiosk at 7:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "Ruggiero says Ainsworth was at the Arcadia at 9:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c113",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Obermann on Ainsworth: Ainsworth was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c114",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Arcadia, folded the way one particular hand folds them.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c111"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Vitale on Ainsworth: Ainsworth’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        }
+      ],
+      "text": "The man who sells it at the Arcadia gives it up rather than be held: Ainsworth was there from 9:30 PM, and stayed until it took hold.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b1"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A tab at the Arcadia in a name that is not Obermann’s, in Obermann’s handwriting.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c128"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c128",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Obermann"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Obermann: Obermann is on a temperance pledge that Obermann mentions before anybody asks.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The man behind the counter at the Arcadia knows exactly: Obermann was on the same stool from 7:00 PM to 7:30 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b2"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Dettweiler"
+      },
+      "establishes": [],
+      "text": "Carbone on Dettweiler: Dettweiler sends money out of every pay envelope and cannot say where it goes.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c120"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b3"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Dettweiler"
+      },
+      "establishes": [],
+      "text": "Ruggiero on Dettweiler: Dettweiler keeps a photograph and will not be asked about it twice.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b3"
+    },
+    {
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "hidden-family"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "The woman who keeps the child says it straight out: Dettweiler was at Kaplan’s from 9:30 PM, the same as every week, and left with the same face as always.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b3"
+    },
+    {
+      "id": "c140",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Vitale on Ruggiero: There is a man who meets people at the subway kiosk and nobody will say his name out loud.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c141"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
+    },
+    {
+      "id": "c141",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Stannard on Ruggiero: Ruggiero has been selling things that were never Ruggiero’s to sell.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c144"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
+    },
+    {
+      "id": "c144",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 9
+        }
+      ],
+      "text": "The receiver at the subway kiosk would rather talk than be held: Ruggiero was there from 10:00 PM to 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Ruggiero will take over this one.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b4"
+    }
+  ],
+  "starting": [
+    "c092",
+    "c093",
+    "c110"
+  ],
+  "clientId": "p-s2",
+  "par": 12,
+  "slack": 6,
+  "budget": 18,
+  "coronerWindow": [
+    5,
+    8
+  ],
+  "solution": {
+    "killerId": "p-s4",
+    "methodId": "the-timetable",
+    "motiveType": "inheritance",
+    "murderTick": 7,
+    "murderPlaceId": "res-apartment"
+  },
+  "act": {
+    "type": "missing",
+    "tropeId": "taken",
+    "actorId": "p-s4",
+    "tick": 7,
+    "place": "res-apartment",
+    "method": {
+      "id": "the-timetable",
+      "name": "a train out, and the timetable it was read off",
+      "noise": 0,
+      "evidenceObjectId": "obj-timetable",
+      "bodyEvidence": "The precinct took a statement and filed it. A grown person is allowed to go where they like.",
+      "accessRequirement": {
+        "place": "subway-kiosk",
+        "beforeTick": 7
+      }
+    },
+    "givens": {
+      "facts": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 6
+        }
+      ],
+      "text": [
+        "Prentiss has not been seen since 9:00 PM on Tuesday evening.",
+        "Carbone saw Prentiss at Kaplan’s at 9:00 PM.",
+        "Prentiss’s coat and hat are still on the hook and the money is still in the drawer.",
+        "The precinct came, looked at the room, and said to wait a day or two."
+      ]
+    },
+    "unknowns": [
+      "who",
+      "whereabouts",
+      "why"
+    ],
+    "whereabouts": "subway-kiosk",
+    "fate": "taken"
+  },
+  "mentions": [
+    {
+      "id": "m-1",
+      "name": "Agnes Sweeney",
+      "surname": "Sweeney",
+      "gender": "f",
+      "role": "a woman they had both been seeing",
+      "text": "Agnes Sweeney is a woman they had both been seeing."
+    }
+  ],
+  "victimBio": {
+    "age": 56,
+    "gender": "f",
+    "profession": {
+      "role": "a theatrical agent",
+      "detail": "had the say over who worked in the spring and who did not"
+    },
+    "want": "money",
+    "tie": {
+      "relationshipId": "rel-none",
+      "text": "the one this is about",
+      "backstory": "Prentiss had half the neighbourhood waiting on a telephone call that never came."
+    },
+    "selfAccount": [
+      "Prentiss is 56 years old and a theatrical agent.",
+      "Prentiss had the say over who worked in the spring and who did not.",
+      "Prentiss is the one this is about."
+    ],
+    "layers": [
+      {
+        "kind": "gender",
+        "text": "A woman.",
+        "layer": 0
+      },
+      {
+        "kind": "age",
+        "text": "In her fifties.",
+        "layer": 0
+      },
+      {
+        "kind": "profession",
+        "text": "A theatrical agent.",
+        "layer": 1
+      },
+      {
+        "kind": "detail",
+        "text": "Prentiss had the say over who worked in the spring and who did not.",
+        "layer": 1
+      },
+      {
+        "kind": "tie",
+        "text": "Prentiss had half the neighbourhood waiting on a telephone call that never came.",
+        "layer": 2
+      },
+      {
+        "kind": "want",
+        "text": "Prentiss wants money, and is not particular about the shape it arrives in.",
+        "layer": 2
+      }
+    ],
+    "standing": "Prentiss had half the neighbourhood waiting on a telephone call that never came.",
+    "lastSeen": {
+      "byId": "p-f2",
+      "place": "drugstore",
+      "tick": 6,
+      "text": "Carbone saw Prentiss at Kaplan’s at 9:00 PM, and nobody has seen Prentiss since."
+    }
+  },
+  "clientBrief": {
+    "purpose": "clear-my-name",
+    "purposeText": "Dettweiler wants it established that it was not them, before anybody says otherwise.",
+    "cost": "Dettweiler was near enough to it that night to know exactly how it looks, and says so first.",
+    "tells": [
+      {
+        "kind": "personAt",
+        "personId": "p-victim",
+        "place": "drugstore",
+        "tick": 6
+      },
+      {
+        "kind": "hasMotive",
+        "personId": "p-s3",
+        "motiveType": "insurance"
+      }
+    ],
+    "tellTexts": [
+      "Prentiss has not been seen since 9:00 PM on Tuesday evening.",
+      "Carbone saw Prentiss at Kaplan’s at 9:00 PM.",
+      "Prentiss’s coat and hat are still on the hook and the money is still in the drawer.",
+      "The precinct came, looked at the room, and said to wait a day or two.",
+      "Dettweiler would rather we started with Obermann: Obermann was the beneficiary of a ten-thousand-dollar policy on Prentiss’s life."
+    ],
+    "withholds": [
+      {
+        "kind": "secretExplained",
+        "personId": "p-s2",
+        "secretType": "hidden-family"
+      }
+    ],
+    "withholdTexts": [
+      "Dettweiler does not mention it, but Dettweiler goes to Kaplan’s from 9:30 PM to see a child nobody is supposed to know about."
+    ],
+    "points": {
+      "personId": "p-s3",
+      "reason": "Obermann was the beneficiary of a ten-thousand-dollar policy on Prentiss’s life",
+      "honest": true
+    },
+    "ownEvening": [
+      "Dettweiler says she was at the drying yard from 6:00 PM to 7:00 PM.",
+      "Dettweiler says she was at the subway kiosk from 7:30 PM to 9:00 PM.",
+      "Dettweiler says she was at the newsstand at 9:30 PM.",
+      "Dettweiler says she was at Kaplan’s from 10:00 PM to 11:30 PM."
+    ]
+  },
+  "briefing": [
+    "A woman came up the stairs after midnight, and sat down.",
+    "Elsa Dettweiler is 22 years old and a switchboard operator.",
+    "Dettweiler works the exchange and knows every number on the floor.",
+    "Prentiss had half the neighbourhood waiting on a telephone call that never came.",
+    "Prentiss has not been seen since 9:00 PM on Tuesday evening.",
+    "Carbone saw Prentiss at Kaplan’s at 9:00 PM.",
+    "Prentiss’s coat and hat are still on the hook and the money is still in the drawer.",
+    "The precinct came, looked at the room, and said to wait a day or two.",
+    "Carbone saw Prentiss at Kaplan’s at 9:00 PM, and nobody has seen Prentiss since.",
+    "Dettweiler is Prentiss’s tenant.",
+    "Prentiss put Dettweiler’s rent up twice in a year and Dettweiler paid it twice.",
+    "Dettweiler wants it established that it was not them, before anybody says otherwise.",
+    "Dettweiler was near enough to it that night to know exactly how it looks, and says so first.",
+    "Dettweiler wants us to start with Obermann.",
+    "Obermann was the beneficiary of a ten-thousand-dollar policy on Prentiss’s life."
+  ],
+  "deduction": {
+    "timeOfDeath": [
+      "c093",
+      "c095",
+      "c092",
+      "c096"
+    ],
+    "timeOfDeathAnchors": [
+      "dumbwaiter",
+      "ice-delivery"
+    ],
+    "exculpations": {
+      "p-s1": [
+        "c018",
+        "c040",
+        "c116"
+      ],
+      "p-s2": [
+        "c056",
+        "c123"
+      ],
+      "p-s3": [
+        "c043"
+      ],
+      "p-s5": [
+        "c059"
+      ],
+      "p-s6": [
+        "c024"
+      ]
+    },
+    "inculpation": [
+      "c086",
+      "c087"
+    ],
+    "access": [
+      "c014",
+      "c006"
+    ],
+    "method": [
+      "c092",
+      "c093",
+      "c096"
+    ],
+    "motive": [
+      "c108",
+      "c109"
+    ]
+  }
+}

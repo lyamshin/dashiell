@@ -2,46 +2,431 @@
 
 **Seed** 16 · **Difficulty** 2 · **Attempts** 1 · **Detective** Dashiell
 
-**Par** 11 actions · **Slack** 6 · **Budget** 17 · **Findable** 34 (spine 12, corroboration 8, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 146
+**Type** robbery · **Trope** payroll · **Unknowns** who, goods, how
+
+**Par** 12 actions · **Slack** 6 · **Budget** 18 · **Findable** 34 (spine 12, corroboration 8, noise 10 + 4 disqualifiers) · **Noise ratio** 41% · **Candidate pool** 150
 
 ## 1. The Truth
 
-Michael Feeney, a curb broker, in the victim’s debt, killed Karl Brauer, a buildings inspector, with a gunshot at the office at 10:00 PM. Feeney was about to be exposed by the victim (exposure). Feeney had been at the Hallam earlier in the evening, where the weapon lived, and was alone with Brauer when it happened. Margolis hired us.
+Michael Feeney, a curb broker, in Brauer’s debt, took a payroll envelope from the office, which belonged to Karl Brauer, a buildings inspector, at 10:30 PM, by a cord made fast to the fire escape. Feeney was about to be exposed by Brauer (exposure). Feeney had been at the back lot earlier in the evening, where the means lived, and was alone at the office when it happened. Bledsoe hired us.
 
-## 2. Dramatis Personae
+## 2. The Act
+
+**robbery** · **payroll** · actor **Feeney** · at **the office** · at **10:30 PM**
+
+- taken: a payroll envelope
+- entry: window
+- goods went to the back lot
+
+**Givens** — what the briefing states and the report does not ask:
+
+- A payroll envelope went from Zelinsky’s to the office the way it goes every Friday, and Brauer carried it.
+- Brauer had it at Zelinsky’s at 10:00 PM, buttoned into an inside pocket.
+- It was gone from the office by 10:30 PM.
+- Nobody was hurt and nothing was broken.
+
+**Unknowns** — exactly what the report asks: **who**, **goods**, **how**.
+
+## 3. Dramatis Personae
 
 | Name | Role | Relationship | Class of secret | Motive | Found at | Killer |
 | --- | --- | --- | --- | --- | --- | --- |
 | Karl Brauer | a buildings inspector | the victim | — | — | — | — |
-| Rivka Zeldin | a switchboard operator | the victim’s tenant | affair | — | the Hallam | — |
-| Fannie Feldman | a chambermaid | the victim’s tenant | fence | revenge | the El platform | — |
-| Booker Bledsoe | a dentist with rooms on the third floor | in the victim’s debt | affair | — | Zelinsky’s | — |
-| Edward Doyle | a doorman at a club with no sign on it | in the victim’s debt | fence | debt | Zelinsky’s | — |
-| Michael Feeney | a curb broker | in the victim’s debt | murder (+ gambling-debt) | exposure | Zelinsky’s | **YES** |
-| Abraham Margolis (client) | a young man living on expectations | the victim’s brother-in-law | gambling-debt | — | the Bijou | — |
-| Elsa Schilling | the man behind the counter | fixture (counterman) | — | — | Zelinsky’s | — |
-| Wilhelm Reinhardt | the elevator man | fixture (elevator-man) | — | — | the Hallam | — |
-| Gittel Hurwitz | the ticket-taker | fixture (ticket-taker) | — | — | the Bijou | — |
-| Rutherford Stannard | the patrolman on the beat | fixture (beat-cop) | — | — | the Bijou | — |
+| Rivka Zeldin | a switchboard operator | Brauer’s tenant | affair | — | the Hallam | — |
+| Fannie Feldman | a chambermaid | Brauer’s tenant | fence | revenge | the Bijou | — |
+| Booker Bledsoe (client) | a dentist with a chair and a waiting room | in Brauer’s debt | affair | — | the Hallam | — |
+| Edward Doyle | a doorman at a club with no sign on it | in Brauer’s debt | fence | debt | the El platform | — |
+| Michael Feeney | a curb broker | in Brauer’s debt | murder (+ gambling-debt) | exposure | the El platform | **YES** |
+| Abraham Margolis | a young man living on expectations | Brauer’s brother-in-law | gambling-debt | — | the El platform | — |
+| Louis Abramowitz | the man behind the counter | fixture (counterman) | — | — | Zelinsky’s | — |
+| Rocco Vitale | the elevator man | fixture (elevator-man) | — | — | the Hallam | — |
+| Alonzo Broadnax | the ticket-taker | fixture (ticket-taker) | — | — | the Bijou | — |
+| Ezekiel Colquitt | the patrolman on the beat | fixture (beat-cop) | — | — | the Bijou | — |
 
-## 3. Places
+## 4. Dossiers
 
-- **Zelinsky’s pawnshop, the back room** (semi) — watched by counterman (Schilling); objects: a silver cigarette case, a bronze bookend — within earshot of the scene
-- **the office over the tailor’s shop** (private) — unwatched; objects: a japanned cash box, an Underwood typewriter — **THE SCENE**
-- **the vestibule of the Hallam apartments** (private) — watched by elevator-man (Reinhardt); objects: a nickel-plated revolver, a day ledger, a camel-hair overcoat on a hook — where the weapon lived
-- **the Bijou picture house** (public) — watched by ticket-taker (Hurwitz); objects: a standing ashtray, a length of sash cord
-- **the victim’s house on the back lot** (private) — unwatched; objects: the roof-door key, a mechanic’s toolbox — the victim’s address
+Every person, by layer: **0** on sight, **1** volunteered, **2** from other people, **3** in the documents.
+
+### Brauer — the victim
+
+55, a man, a buildings inspector. Wants: to-keep-what-they-have.
+
+- **Standing** — Brauer was the reason three houses on the street were still standing open.
+- **Profession** — Brauer walked the buildings with a book and wrote in it what he was asked to.
+- **Found** — Zeldin found the door at the office shut and a payroll envelope gone, at 11:30 PM. By Zeldin, at the office, at 11:30 PM. Precinct: took-a-statement.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In his fifties.
+
+**Layer 1, volunteered**
+
+- _profession_ — A buildings inspector.
+- _detail_ — Brauer walked the buildings with a book and wrote in it what he was asked to.
+
+**Layer 2, from other people**
+
+- _tie_ — Brauer was the reason three houses on the street were still standing open.
+- _want_ — Brauer wants to keep what they have and add nothing to it.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Brauer is 55 years old and a buildings inspector.
+- Brauer walked the buildings with a book and wrote in it what he was asked to.
+- Brauer is the one this is about.
+
+### Zeldin
+
+37, a woman, a switchboard operator. Wants: to-get-out. Tie: Brauer’s tenant, four years in the same rooms.
+
+**Layer 0, on sight**
+
+- _gender_ — A woman.
+- _age_ — In her thirties.
+- _profession_ — A switchboard operator.
+
+**Layer 1, volunteered**
+
+- _detail_ — Zeldin sits the board from four until midnight and hears both ends of everything.
+
+**Layer 2, from other people**
+
+- _tie_ — Brauer put Zeldin’s rent up twice in a year and Zeldin paid it twice.
+- _want_ — Zeldin wants out of the neighbourhood and has wanted it for years.
+- _since_ — Zeldin has been Brauer’s tenant, four years in the same rooms.
+
+**Layer 3, in the documents**
+
+- _secret-hint_ — Zeldin was seen going into the Hallam alone and came out with somebody half an hour later.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Zeldin is 37 years old and a switchboard operator.
+- Zeldin sits the board from four until midnight and hears both ends of everything.
+- Zeldin is Brauer’s tenant.
+
+### Feldman
+
+33, a woman, a chambermaid. Wants: to-get-out. Tie: Brauer’s tenant, since ’22.
+
+**Layer 0, on sight**
+
+- _gender_ — A woman.
+- _age_ — In her thirties.
+- _profession_ — A chambermaid.
+
+**Layer 1, volunteered**
+
+- _detail_ — Feldman has the third and fourth floors and is finished at four.
+
+**Layer 2, from other people**
+
+- _tie_ — Brauer put Feldman’s rent up twice in a year and Feldman paid it twice.
+- _want_ — Feldman wants out of the neighbourhood and has wanted it for years.
+- _since_ — Feldman has been Brauer’s tenant, since ’22.
+
+**Layer 3, in the documents**
+
+- _secret-hint_ — Feldman was carrying a parcel into Zelinsky’s and came out without it.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Feldman is 33 years old and a chambermaid.
+- Feldman has the third and fourth floors and is finished at four.
+- Feldman is Brauer’s tenant.
+
+### Bledsoe — the client
+
+56, a man, a dentist with a chair and a waiting room. Wants: money. Tie: in Brauer’s debt, two winters running.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In his fifties.
+
+**Layer 1, volunteered**
+
+- _profession_ — A dentist with a chair and a waiting room.
+- _detail_ — Bledsoe pulls teeth for the neighbourhood at a dollar a time.
+
+**Layer 2, from other people**
+
+- _tie_ — Bledsoe has owed Brauer money since ’20 and has not been asked for it lately.
+- _want_ — Bledsoe wants money, and is not particular about the shape it arrives in.
+- _since_ — Bledsoe has been in Brauer’s debt, two winters running.
+
+**Layer 3, in the documents**
+
+- _secret-hint_ — Bledsoe was seen going into the Hallam alone and came out with somebody half an hour later.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Bledsoe is 56 years old and a dentist with a chair and a waiting room.
+- Bledsoe pulls teeth for the neighbourhood at a dollar a time.
+- Bledsoe is in Brauer’s debt.
+
+### Doyle
+
+44, a man, a doorman at a club with no sign on it. Wants: money. Tie: in Brauer’s debt, since the flu year.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In his forties.
+- _profession_ — A doorman at a club with no sign on it.
+
+**Layer 1, volunteered**
+
+- _detail_ — Doyle keeps the wrong people out and the right people quiet.
+
+**Layer 2, from other people**
+
+- _tie_ — Brauer carried Doyle through a bad winter and has been collecting on it ever since.
+- _want_ — Doyle wants money, and is not particular about the shape it arrives in.
+- _since_ — Doyle has been in Brauer’s debt, since the flu year.
+
+**Layer 3, in the documents**
+
+- _secret-hint_ — Doyle was carrying a parcel into Zelinsky’s and came out without it.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Doyle is 44 years old and a doorman at a club with no sign on it.
+- Doyle keeps the wrong people out and the right people quiet.
+- Doyle is in Brauer’s debt.
+
+### Feeney — the killer
+
+38, a man, a curb broker. Wants: to-be-somebody. Tie: in Brauer’s debt, two winters running.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In his thirties.
+
+**Layer 1, volunteered**
+
+- _profession_ — A curb broker.
+- _detail_ — Feeney works the curb outside the Exchange in all weathers.
+
+**Layer 2, from other people**
+
+- _tie_ — Brauer carried Feeney through a bad winter and has been collecting on it ever since.
+- _want_ — Feeney wants a name people know.
+- _since_ — Feeney has been in Brauer’s debt, two winters running.
+
+**Layer 3, in the documents**
+
+- _secret-hint_ — Feeney was asking around for a hundred dollars in a hurry earlier in the week.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Feeney is 38 years old and a curb broker.
+- Feeney works the curb outside the Exchange in all weathers.
+- Feeney is in Brauer’s debt.
+
+### Margolis
+
+25, a man, a young man living on expectations. Wants: to-be-somebody. Tie: Brauer’s brother-in-law, since ’27.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In the late twenties.
+
+**Layer 1, volunteered**
+
+- _profession_ — A young man living on expectations.
+- _detail_ — Margolis has no occupation anybody can name and an account at three tailors.
+
+**Layer 2, from other people**
+
+- _tie_ — Brauer stood up at Margolis’s wedding and Lorraine Renfro has never let either of them forget it.
+- _want_ — Margolis wants a name people know.
+- _since_ — Margolis has been Brauer’s brother-in-law, since ’27.
+- _third_ — Lorraine Renfro is the landlady at the old address.
+
+**Layer 3, in the documents**
+
+- _secret-hint_ — Margolis was asking around for a hundred dollars in a hurry earlier in the week.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Margolis is 25 years old and a young man living on expectations.
+- Margolis has no occupation anybody can name and an account at three tailors.
+- Margolis is Brauer’s brother-in-law.
+
+### Abramowitz
+
+38, a man, the man behind the counter. Wants: to-get-out. Tie: behind the counter at Zelinsky’s.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In his thirties.
+- _profession_ — The man behind the counter.
+
+**Layer 1, volunteered**
+
+- _detail_ — Abramowitz serves at Zelinsky’s and has never once been asked his name.
+
+**Layer 2, from other people**
+
+- _tie_ — Abramowitz is behind the counter at Zelinsky’s.
+- _want_ — Abramowitz wants out of the neighbourhood and has wanted it for years.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Abramowitz is 38 years old and the man behind the counter.
+- Abramowitz serves at Zelinsky’s and has never once been asked his name.
+- Abramowitz is behind the counter at Zelinsky’s.
+
+### Vitale
+
+35, a man, the elevator man. Wants: money. Tie: in the car at the Hallam.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In his thirties.
+- _profession_ — The elevator man.
+
+**Layer 1, volunteered**
+
+- _detail_ — Vitale runs the car at the Hallam and knows which floor everybody wants before they say it.
+
+**Layer 2, from other people**
+
+- _tie_ — Vitale is in the car at the Hallam.
+- _want_ — Vitale wants money, and is not particular about the shape it arrives in.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Vitale is 35 years old and the elevator man.
+- Vitale runs the car at the Hallam and knows which floor everybody wants before they say it.
+- Vitale is in the car at the Hallam.
+
+### Broadnax
+
+49, a man, the ticket-taker. Wants: to-be-left-alone. Tie: on the door at the Bijou, every performance.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In his forties.
+- _profession_ — The ticket-taker.
+
+**Layer 1, volunteered**
+
+- _detail_ — Broadnax has taken tickets at the Bijou since the house opened.
+
+**Layer 2, from other people**
+
+- _tie_ — Broadnax is on the door at the Bijou, every performance.
+- _want_ — Broadnax wants to be left alone.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Broadnax is 49 years old and the ticket-taker.
+- Broadnax has taken tickets at the Bijou since the house opened.
+- Broadnax is on the door at the Bijou, every performance.
+
+### Colquitt
+
+31, a man, the patrolman on the beat. Wants: to-keep-what-they-have. Tie: the patrolman whose post takes in the Bijou.
+
+**Layer 0, on sight**
+
+- _gender_ — A man.
+- _age_ — In his thirties.
+- _profession_ — The patrolman on the beat.
+
+**Layer 1, volunteered**
+
+- _detail_ — Colquitt came on at six and will go off at two, the same as every night.
+
+**Layer 2, from other people**
+
+- _tie_ — Colquitt is the patrolman whose post takes in the Bijou.
+- _want_ — Colquitt wants to keep what they have and add nothing to it.
+
+**Self-account** (layer 1, what they say when asked about themselves)
+
+- Colquitt is 31 years old and the patrolman on the beat.
+- Colquitt came on at six and will go off at two, the same as every night.
+- Colquitt is the patrolman whose post takes in the Bijou.
+
+## 5. The Client
+
+**Bledsoe**, in Brauer’s debt. Purpose: **keep-it-quiet**.
+
+- **Why** — Bledsoe wants it settled quietly, before it is settled loudly.
+- **What it costs** — Bledsoe is paying to have something found and then not said.
+- **Points at** — Feeney: Feeney was about to be exposed by Brauer. Honest: **yes**.
+
+**Tells:**
+
+- A payroll envelope went from Zelinsky’s to the office the way it goes every Friday, and Brauer carried it.
+- Brauer had it at Zelinsky’s at 10:00 PM, buttoned into an inside pocket.
+- It was gone from the office by 10:30 PM.
+- Nobody was hurt and nothing was broken.
+- Bledsoe would rather we started with Feeney: Feeney was about to be exposed by Brauer.
+
+**Withholds:**
+
+- Bledsoe does not mention it, but Bledsoe is with Zeldin at the Hallam from 6:00 PM to 7:00 PM, and both will say they were somewhere else.
+
+**Their own evening, as they tell it:**
+
+- Bledsoe says he was at the El platform from 6:00 PM to 7:00 PM.
+- Bledsoe says he was at the Hallam from 7:30 PM to 8:00 PM.
+- Bledsoe says he was at the back lot from 8:30 PM to 9:30 PM.
+- Bledsoe says he was at the El platform at 10:00 PM.
+
+## 6. The Briefing
+
+16 plain sentences, derived. This is the model of the plain register: the engine renders it, and Phase 2 measures pages against it.
+
+1. A man came up the stairs after midnight, and sat down.
+2. Booker Bledsoe is 56 years old and a dentist with a chair and a waiting room.
+3. Bledsoe pulls teeth for the neighbourhood at a dollar a time.
+4. Brauer was the reason three houses on the street were still standing open.
+5. A payroll envelope went from Zelinsky’s to the office the way it goes every Friday, and Brauer carried it.
+6. Brauer had it at Zelinsky’s at 10:00 PM, buttoned into an inside pocket.
+7. It was gone from the office by 10:30 PM.
+8. Nobody was hurt and nothing was broken.
+9. Zeldin found the door at the office shut and a payroll envelope gone, at 11:30 PM.
+10. The precinct took a statement at the desk and filed it.
+11. Bledsoe is in Brauer’s debt.
+12. Bledsoe has owed Brauer money since ’20 and has not been asked for it lately.
+13. Bledsoe wants it settled quietly, before it is settled loudly.
+14. Bledsoe is paying to have something found and then not said.
+15. Bledsoe wants us to start with Feeney.
+16. Feeney was about to be exposed by Brauer.
+
+## 7. Mentions
+
+- **Lorraine Renfro** (m-1) — the landlady at the old address. Lorraine Renfro is the landlady at the old address.
+
+## 8. Places
+
+- **Zelinsky’s pawnshop, the back room** (semi) — watched by counterman (Abramowitz); objects: a nickel-plated revolver, a silver cigarette case — within earshot of the scene
+- **the office over the tailor’s shop** (private) — unwatched; objects: a payroll envelope, a japanned cash box, a bronze bookend — **THE SCENE**
+- **the vestibule of the Hallam apartments** (private) — watched by elevator-man (Vitale); objects: a camel-hair overcoat on a hook, the roof-door key, a day ledger
+- **the Bijou picture house** (public) — watched by ticket-taker (Broadnax); objects: a standing ashtray
+- **Brauer’s house on the back lot** (private) — unwatched; objects: a length of sash cord, a framed photograph, a mechanic’s toolbox — the victim’s address; where the weapon lived
 - **the El platform at Twenty-Third Street** (public) — unwatched; objects: a pasted-up timetable, a folded stack of evening papers — within earshot of the scene
 
-## 4. Anchors
+## 9. Anchors
 
-The coroner gives 9:30 PM–11:00 PM, four ticks wide. These are what close it: **ice-delivery** and **steam-whistle**.
+The coroner gives 9:00 PM–10:30 PM, four ticks wide. These are what close it: **ice-delivery** and **steam-whistle**.
 
-- **the ice being brought in** — at 9:30 PM; at Zelinsky’s. Somebody reliable notes who was there. Only those present know that the iceman dropped a block on the step and it went in three. Those present carry it: a wet patch down one side of a coat.
-- **the whistle off the river** — at 6:00 PM, 8:00 PM, 10:00 PM; across the whole neighbourhood. You can time things by it: two long and one short, and you can hear it a mile inland.
+- **the ice being brought in** — at 10:00 PM; at Zelinsky’s. Somebody reliable notes who was there. Only those present know that the iceman dropped a block on the step and it went in three. Those present carry it: a wet patch down one side of a coat.
+- **the whistle off the river** — at 6:30 PM, 8:30 PM, 10:30 PM; across the whole neighbourhood. You can time things by it: two long and one short, and you can hear it a mile inland.
 - **the beat cop’s pass** — at 7:00 PM, 8:30 PM, 10:00 PM, 11:30 PM; on a round through the Bijou → Zelinsky’s → the El platform. Somebody reliable notes who was there.
 
-## 5. Timelines
+## 10. Timelines
 
 ### Brauer — the victim
 
@@ -50,32 +435,32 @@ The coroner gives 9:30 PM–11:00 PM, four ticks wide. These are what close it: 
 | 0 | 6:00 PM | the Bijou | the Bijou | — |
 | 1 | 6:30 PM | the Bijou | the Bijou | — |
 | 2 | 7:00 PM | the Bijou | the Bijou | — |
-| 3 | 7:30 PM | the Bijou | the Bijou | — |
-| 4 | 8:00 PM | the El platform | the El platform | — |
-| 5 | 8:30 PM | the El platform | the El platform | — |
-| 6 | 9:00 PM | the office | the office | — |
-| 7 | 9:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 8 | 10:00 PM | the office ☠ | the office | — |
-| 9 | 10:30 PM | — | — | — |
-| 10 | 11:00 PM | — | — | — |
-| 11 | 11:30 PM | — | — | — |
+| 3 | 7:30 PM | the Hallam | the Hallam | — |
+| 4 | 8:00 PM | the Bijou | the Bijou | — |
+| 5 | 8:30 PM | the Bijou | the Bijou | — |
+| 6 | 9:00 PM | the Bijou | the Bijou | — |
+| 7 | 9:30 PM | the Bijou | the Bijou | — |
+| 8 | 10:00 PM | Zelinsky’s | Zelinsky’s | — |
+| 9 | 10:30 PM | Zelinsky’s | Zelinsky’s | — |
+| 10 | 11:00 PM | Zelinsky’s | Zelinsky’s | — |
+| 11 | 11:30 PM | the back lot | the back lot | — |
 
 ### Zeldin
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the Hallam | the Hallam | — |
-| 1 | 6:30 PM | the Hallam | the Hallam | — |
-| 2 | 7:00 PM | the El platform | the El platform | — |
-| 3 | 7:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 4 | 8:00 PM | Zelinsky’s | Zelinsky’s | — |
+| 0 | 6:00 PM | the Hallam | **the Bijou** | — |
+| 1 | 6:30 PM | the Hallam | **the Bijou** | — |
+| 2 | 7:00 PM | the Hallam | **the Bijou** | — |
+| 3 | 7:30 PM | the Hallam | the Hallam | — |
+| 4 | 8:00 PM | the Hallam | the Hallam | — |
 | 5 | 8:30 PM | the back lot | the back lot | — |
-| 6 | 9:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 7 | 9:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 8 | 10:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 9 | 10:30 PM | the Hallam | **Zelinsky’s** | — |
-| 10 | 11:00 PM | the Hallam | **Zelinsky’s** | — |
-| 11 | 11:30 PM | the Hallam | **Zelinsky’s** | — |
+| 6 | 9:00 PM | the back lot | the back lot | — |
+| 7 | 9:30 PM | the back lot | the back lot | — |
+| 8 | 10:00 PM | the back lot | the back lot | — |
+| 9 | 10:30 PM | Zelinsky’s | Zelinsky’s | — |
+| 10 | 11:00 PM | Zelinsky’s | Zelinsky’s | — |
+| 11 | 11:30 PM | the office | the office | — |
 
 ### Feldman
 
@@ -85,90 +470,90 @@ The coroner gives 9:30 PM–11:00 PM, four ticks wide. These are what close it: 
 | 1 | 6:30 PM | the back lot | the back lot | — |
 | 2 | 7:00 PM | Zelinsky’s | Zelinsky’s | — |
 | 3 | 7:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 4 | 8:00 PM | the El platform | the El platform | — |
-| 5 | 8:30 PM | the El platform | the El platform | — |
-| 6 | 9:00 PM | the El platform | the El platform | — |
-| 7 | 9:30 PM | the El platform | the El platform | — |
-| 8 | 10:00 PM | Zelinsky’s | **the El platform** | — |
-| 9 | 10:30 PM | Zelinsky’s | **the El platform** | — |
-| 10 | 11:00 PM | the Hallam | the Hallam | — |
-| 11 | 11:30 PM | Zelinsky’s | Zelinsky’s | — |
+| 4 | 8:00 PM | Zelinsky’s | Zelinsky’s | — |
+| 5 | 8:30 PM | the Hallam | the Hallam | — |
+| 6 | 9:00 PM | the Bijou | the Bijou | — |
+| 7 | 9:30 PM | the Bijou | the Bijou | — |
+| 8 | 10:00 PM | the Bijou | the Bijou | — |
+| 9 | 10:30 PM | Zelinsky’s | **the Bijou** | Doyle |
+| 10 | 11:00 PM | the Bijou | the Bijou | — |
+| 11 | 11:30 PM | the Bijou | the Bijou | — |
 
 ### Bledsoe
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 1 | 6:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 2 | 7:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 3 | 7:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 4 | 8:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 5 | 8:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 6 | 9:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 7 | 9:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 8 | 10:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 9 | 10:30 PM | the Hallam | **the Bijou** | — |
-| 10 | 11:00 PM | the Hallam | **the Bijou** | — |
-| 11 | 11:30 PM | the Hallam | **the Bijou** | — |
+| 0 | 6:00 PM | the Hallam | **the El platform** | Margolis |
+| 1 | 6:30 PM | the Hallam | **the El platform** | Margolis |
+| 2 | 7:00 PM | the Hallam | **the El platform** | Margolis |
+| 3 | 7:30 PM | the Hallam | the Hallam | — |
+| 4 | 8:00 PM | the Hallam | the Hallam | — |
+| 5 | 8:30 PM | the back lot | the back lot | — |
+| 6 | 9:00 PM | the back lot | the back lot | — |
+| 7 | 9:30 PM | the back lot | the back lot | — |
+| 8 | 10:00 PM | the El platform | the El platform | — |
+| 9 | 10:30 PM | Zelinsky’s | Zelinsky’s | — |
+| 10 | 11:00 PM | Zelinsky’s | Zelinsky’s | — |
+| 11 | 11:30 PM | Zelinsky’s | Zelinsky’s | — |
 
 ### Doyle
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the El platform | the El platform | — |
-| 1 | 6:30 PM | the Bijou | the Bijou | — |
-| 2 | 7:00 PM | the Hallam | the Hallam | — |
+| 0 | 6:00 PM | the Bijou | the Bijou | — |
+| 1 | 6:30 PM | the back lot | the back lot | — |
+| 2 | 7:00 PM | the El platform | the El platform | — |
 | 3 | 7:30 PM | the office | the office | — |
-| 4 | 8:00 PM | the El platform | the El platform | — |
+| 4 | 8:00 PM | the office | the office | — |
 | 5 | 8:30 PM | the El platform | the El platform | — |
-| 6 | 9:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 7 | 9:30 PM | Zelinsky’s | **the Bijou** | Zeldin |
-| 8 | 10:00 PM | Zelinsky’s | **the Bijou** | Zeldin |
-| 9 | 10:30 PM | Zelinsky’s | Zelinsky’s | — |
+| 6 | 9:00 PM | the El platform | the El platform | — |
+| 7 | 9:30 PM | the El platform | the El platform | — |
+| 8 | 10:00 PM | the El platform | the El platform | — |
+| 9 | 10:30 PM | Zelinsky’s | **the Bijou** | Feldman |
 | 10 | 11:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 11 | 11:30 PM | the Hallam | the Hallam | — |
+| 11 | 11:30 PM | Zelinsky’s | Zelinsky’s | — |
 
 ### Feeney — the killer
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the Hallam | the Hallam | — |
-| 1 | 6:30 PM | the Hallam | the Hallam | — |
-| 2 | 7:00 PM | the Hallam | the Hallam | — |
-| 3 | 7:30 PM | Zelinsky’s | **the El platform** | — |
-| 4 | 8:00 PM | Zelinsky’s | **the El platform** | — |
-| 5 | 8:30 PM | Zelinsky’s | Zelinsky’s | — |
-| 6 | 9:00 PM | Zelinsky’s | Zelinsky’s | — |
-| 7 | 9:30 PM | the office | **Zelinsky’s** | Feldman |
-| 8 | 10:00 PM | the office ☠ | **Zelinsky’s** | Feldman |
-| 9 | 10:30 PM | the El platform | the El platform | — |
-| 10 | 11:00 PM | the El platform | the El platform | — |
-| 11 | 11:30 PM | the El platform | the El platform | — |
+| 0 | 6:00 PM | the back lot | the back lot | — |
+| 1 | 6:30 PM | the back lot | the back lot | — |
+| 2 | 7:00 PM | the Bijou | the Bijou | — |
+| 3 | 7:30 PM | the El platform | **the back lot** | — |
+| 4 | 8:00 PM | the El platform | **the back lot** | — |
+| 5 | 8:30 PM | the El platform | the El platform | — |
+| 6 | 9:00 PM | the El platform | the El platform | — |
+| 7 | 9:30 PM | the office | **Zelinsky’s** | — |
+| 8 | 10:00 PM | the office | **Zelinsky’s** | — |
+| 9 | 10:30 PM | the office ☠ | **Zelinsky’s** | — |
+| 10 | 11:00 PM | the Bijou | the Bijou | — |
+| 11 | 11:30 PM | the Bijou | the Bijou | — |
 
 ### Margolis
 
 | Tick | Time | Truth | Claimed | Companion claimed |
 | --- | --- | --- | --- | --- |
-| 0 | 6:00 PM | the back lot | the back lot | — |
-| 1 | 6:30 PM | the office | the office | — |
-| 2 | 7:00 PM | the Bijou | the Bijou | — |
-| 3 | 7:30 PM | the Bijou | the Bijou | — |
-| 4 | 8:00 PM | the Bijou | the Bijou | — |
-| 5 | 8:30 PM | the Bijou | the Bijou | — |
-| 6 | 9:00 PM | the Bijou | the Bijou | — |
-| 7 | 9:30 PM | the Hallam | the Hallam | — |
-| 8 | 10:00 PM | Zelinsky’s | **the Hallam** | Bledsoe |
-| 9 | 10:30 PM | the Bijou | the Bijou | — |
-| 10 | 11:00 PM | the El platform | the El platform | — |
-| 11 | 11:30 PM | the El platform | the El platform | — |
+| 0 | 6:00 PM | the office | the office | — |
+| 1 | 6:30 PM | the back lot | the back lot | — |
+| 2 | 7:00 PM | the back lot | the back lot | — |
+| 3 | 7:30 PM | the back lot | the back lot | — |
+| 4 | 8:00 PM | the El platform | the El platform | — |
+| 5 | 8:30 PM | the El platform | the El platform | — |
+| 6 | 9:00 PM | the El platform | the El platform | — |
+| 7 | 9:30 PM | the El platform | the El platform | — |
+| 8 | 10:00 PM | Zelinsky’s | **the back lot** | Feldman |
+| 9 | 10:30 PM | Zelinsky’s | **the back lot** | Feldman |
+| 10 | 11:00 PM | the Bijou | the Bijou | — |
+| 11 | 11:30 PM | the Bijou | the Bijou | — |
 
 ### Fixtures (never lie, never withhold)
 
-| Tick | Time | Schilling (the man behind the counter) | Reinhardt (the elevator man) | Hurwitz (the ticket-taker) | Stannard (the patrolman on the beat) |
+| Tick | Time | Abramowitz (the man behind the counter) | Vitale (the elevator man) | Broadnax (the ticket-taker) | Colquitt (the patrolman on the beat) |
 | --- | --- | --- | --- | --- | --- |
 | 0 | 6:00 PM | Zelinsky’s | the Hallam | the Bijou | — |
-| 1 | 6:30 PM | Zelinsky’s | the Hallam | the Bijou | — |
-| 2 | 7:00 PM | the El platform | the Hallam | the Bijou | the Bijou |
+| 1 | 6:30 PM | the Hallam | the El platform | the Bijou | — |
+| 2 | 7:00 PM | Zelinsky’s | the Hallam | the Bijou | the Bijou |
 | 3 | 7:30 PM | Zelinsky’s | the Hallam | the Bijou | — |
 | 4 | 8:00 PM | Zelinsky’s | the Hallam | the Bijou | — |
 | 5 | 8:30 PM | Zelinsky’s | the Hallam | the Bijou | Zelinsky’s |
@@ -179,279 +564,280 @@ The coroner gives 9:30 PM–11:00 PM, four ticks wide. These are what close it: 
 | 10 | 11:00 PM | Zelinsky’s | the Hallam | the Bijou | — |
 | 11 | 11:30 PM | Zelinsky’s | the Hallam | the Bijou | the Bijou |
 
-## 6. Secrets in play
+## 11. Secrets in play
 
-- **Zeldin** (affair): Zeldin is with Bledsoe at the Hallam from 10:30 PM to 11:30 PM, and both will say they were somewhere else.
-- **Feldman** (fence): Feldman hands a parcel of stolen goods to a man at Zelinsky’s from 10:00 PM to 10:30 PM.
-- **Bledsoe** (affair): Bledsoe is with Zeldin at the Hallam from 10:30 PM to 11:30 PM, and both will say they were somewhere else.
-- **Doyle** (fence): Doyle hands a parcel of stolen goods to a man at Zelinsky’s from 9:30 PM to 10:00 PM.
-- **Feeney** (murder): Feeney is at the office from 9:30 PM to 10:00 PM, alone with Brauer when it happens at 10:00 PM.
-- **Feeney** also (gambling-debt): Feeney slips off to Zelinsky’s from 7:30 PM to 8:00 PM to settle with a bookmaker.
-- **Margolis** (gambling-debt): Margolis slips off to Zelinsky’s from 10:00 PM to settle with a bookmaker.
+- **Zeldin** (affair): Zeldin is with Bledsoe at the Hallam from 6:00 PM to 7:00 PM, and both will say they were somewhere else.
+- **Feldman** (fence): Feldman hands a parcel of stolen goods to a man at Zelinsky’s from 10:30 PM.
+- **Bledsoe** (affair): Bledsoe is with Zeldin at the Hallam from 6:00 PM to 7:00 PM, and both will say they were somewhere else.
+- **Doyle** (fence): Doyle hands a parcel of stolen goods to a man at Zelinsky’s from 10:30 PM.
+- **Feeney** (murder): Feeney is at the office from 9:30 PM to 10:30 PM, alone with what Brauer kept there, and takes it at 10:30 PM.
+- **Feeney** also (gambling-debt): Feeney slips off to the El platform from 7:30 PM to 8:00 PM to settle with a bookmaker.
+- **Margolis** (gambling-debt): Margolis slips off to Zelinsky’s from 10:00 PM to 10:30 PM to settle with a bookmaker.
 
-## 7. Clue list — the 34 findable
+## 12. Clue list — the 34 findable
 
-The opening three, free at the start: c092, c093, c117. Everything else has to be led to. The full candidate pool is in the companion file.
+The opening three, free at the start: c097, c098, c119. Everything else has to be led to. The full candidate pool is in the companion file.
 
 ### At Zelinsky’s
 
-- **c021** [spine] (observation; Bledsoe on Zeldin) → c058
-  - Bledsoe says Zeldin was at Zelinsky’s from 9:00 PM to 10:00 PM.
-  - _establishes: Zeldin at Zelinsky’s, 9:00 PM–10:00 PM_
-- **c100** [corroboration] (anchor; Schilling on the noise that evening) → c130
-  - Schilling was at Zelinsky’s at 10:00 PM and heard a shot from the direction of the office, as the whistle went off the river.
-  - _establishes: noise at the office at 10:00 PM; the victim dead by 10:00 PM; how it was done_
-- **c036** [corroboration] (observation; Doyle on Feeney) → (end)
-  - Doyle says Feeney was at the Hallam at 7:00 PM.
-  - _establishes: Feeney at the Hallam, 7:00 PM; Feeney could reach the weapon_
-- **c049** [corroboration] (observation; Schilling on Zeldin) → (end)
-  - Schilling says Zeldin was at Zelinsky’s from 9:00 PM to 10:00 PM.
-  - _establishes: Zeldin at Zelinsky’s, 9:00 PM–10:00 PM_
-- **c132** [corroboration] (overheard; the place itself) → (end)
-  - The goods turn up, tagged and dated, and the tag puts Feldman at Zelinsky’s from 10:00 PM to 10:30 PM with both hands full.
-  - _establishes: Feldman’s fence accounted for; Feldman at Zelinsky’s, 10:00 PM–10:30 PM_
-- **c054** [corroboration] (observation; Schilling on Bledsoe) → (end)
-  - Schilling says Bledsoe was at Zelinsky’s from 7:30 PM to 10:00 PM.
-  - _establishes: Bledsoe at Zelinsky’s, 7:30 PM–10:00 PM_
-- **c130** [noise {b1}] (physical; the place itself) → c127
+- **c100** [spine] (anchor; Abramowitz on Brauer that evening) → c051
+  - Abramowitz puts Brauer at Zelinsky’s when the ice came, which was 10:00 PM, and nothing had been touched then.
+  - _establishes: the victim alive at 10:00 PM; Brauer at Zelinsky’s, 10:00 PM_
+- **c051** [corroboration] (observation; Abramowitz on Zeldin) → c137
+  - Abramowitz says Zeldin was at Zelinsky’s from 10:30 PM to 11:00 PM.
+  - _establishes: Zeldin at Zelinsky’s, 10:30 PM–11:00 PM_
+- **c053** [corroboration] (observation; Abramowitz on Feldman) → (end)
+  - Abramowitz says Feldman was at Zelinsky’s at 10:30 PM.
+  - _establishes: Feldman at Zelinsky’s, 10:30 PM_
+- **c139** [noise {b1}] (physical; the place itself) → c135
   - A pawn ticket at Zelinsky’s in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- **c131** [disqualifier {b1}] (overheard; the place itself) → (end)
-  - The receiver at Zelinsky’s would rather talk than be held: Feldman was there from 10:00 PM to 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Feldman will take over this one.
-  - _establishes: Feldman’s fence accounted for; Feldman at Zelinsky’s, 10:00 PM–10:30 PM_
-- **c140** [noise {b2}] (overheard; Bledsoe on Margolis) → c141
-  - Bledsoe on Margolis: Margolis was asking around for a hundred dollars in a hurry earlier in the week.
+- **c135** [noise {b1}] (overheard; Abramowitz on Doyle) → c140
+  - Abramowitz on Doyle: Doyle was carrying a parcel into Zelinsky’s and came out without it.
   - _establishes: context only_
-- **c145** [disqualifier {b2}] (overheard; the place itself) → (end)
-  - The bookmaker’s runner is found and will say it: Margolis was at Zelinsky’s from 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
-  - _establishes: Margolis’s gambling-debt accounted for; Margolis at Zelinsky’s, 10:00 PM_
-- **c136** [noise {b3}] (physical; the place itself) → c134
+- **c140** [disqualifier {b1}] (overheard; the place itself) → (end)
+  - The receiver at Zelinsky’s would rather talk than be held: Doyle was there from 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Doyle will take over this one.
+  - _establishes: Doyle’s fence accounted for; Doyle at Zelinsky’s, 10:30 PM_
+- **c145** [noise {b3}] (physical; the place itself) → c147
+  - Betting slips at Zelinsky’s in Margolis’s pocketbook, all of them losers, all of them this month.
+  - _establishes: context only_
+- **c147** [disqualifier {b3}] (overheard; the place itself) → (end)
+  - The bookmaker’s runner is found and will say it: Margolis was at Zelinsky’s from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+  - _establishes: Margolis’s gambling-debt accounted for; Margolis at Zelinsky’s, 10:00 PM–10:30 PM_
+- **c132** [noise {b4}] (physical; the place itself) → c131
+  - A pawn ticket at Zelinsky’s in a name that does not exist, made out at the hour in question.
+  - _establishes: context only_
+- **c131** [noise {b4}] (physical; the place itself) → c133
   - Wrapping paper and a cut string at Zelinsky’s, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c134** [noise {b3}] (overheard; Schilling on Doyle) → c138
-  - Schilling on Doyle: There is a man who meets people at Zelinsky’s and nobody will say his name out loud.
-  - _establishes: context only_
-- **c138** [disqualifier {b3}] (overheard; the place itself) → (end)
-  - The receiver at Zelinsky’s would rather talk than be held: Doyle was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Doyle will take over this one.
-  - _establishes: Doyle’s fence accounted for; Doyle at Zelinsky’s, 9:30 PM–10:00 PM_
+- **c133** [disqualifier {b4}] (overheard; the place itself) → (end)
+  - The receiver at Zelinsky’s would rather talk than be held: Feldman was there from 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Feldman will take over this one.
+  - _establishes: Feldman’s fence accounted for; Feldman at Zelinsky’s, 10:30 PM_
 
 ### At the office
 
-- **c092** [spine ⟨opening⟩] (scene; the place itself) → c116, c086, c010, c100
-  - Brauer was found at the office. The cigarette he had going burned itself out on the sill where it fell. The whistle went off the river at 10:00 PM, two long and one short, and the boat’s log has the hour.
-  - _establishes: the victim dead by 10:00 PM; how it was done_
-- **c093** [spine ⟨opening⟩] (morgue; the place itself) → c007, c116, c054
-  - The coroner puts death between 9:30 PM and 11:00 PM — two hours of nothing useful. One bullet below the sternum. Powder burns on the shirt front: fired close.
-  - _establishes: death between 9:30 PM and 11:00 PM; how it was done_
+- **c097** [spine ⟨opening⟩] (scene; the place itself) → c023, c011
+  - A payroll envelope is gone from the office, which is Brauer’s. The window is down but not latched, and there is grit from the fire escape on the sill. The whistle went off the river at 10:30 PM, two long and one short, and the boat’s log has the hour.
+  - _establishes: the victim dead by 10:30 PM; how it was done_
+- **c098** [spine ⟨opening⟩] (morgue; the place itself) → c023, c007, c006, c093, c019
+  - The desk sergeant's report puts it between 9:00 PM and 10:30 PM — two hours of nothing useful. The precinct report says the window catch was sprung from outside and the sill was scraped.
+  - _establishes: death between 9:00 PM and 10:30 PM; how it was done_
 
 ### At the Hallam
 
-- **c007** [spine] (observation; Zeldin on Feeney) → c095, c005
-  - Zeldin says Feeney was at the Hallam from 6:00 PM to 6:30 PM.
-  - _establishes: Feeney at the Hallam, 6:00 PM–6:30 PM; Feeney could reach the weapon_
-- **c116** [spine] (overheard; Zeldin on Feeney and Brauer) → c086, c010, c006, c021, c115
-  - Zeldin says Brauer told Feeney that the story would run whether Feeney liked it or not.
+- **c119** [spine ⟨opening⟩] (client; Bledsoe on why I was hired) → c023, c007, c020, c019, c030
+  - Bledsoe hired us, and wants it known that Feeney was about to be exposed by Brauer, and would rather we started there.
   - _establishes: Feeney had a motive (exposure)_
-- **c095** [spine] (anchor; Zeldin on Brauer that evening) → c121
-  - Zeldin puts Brauer at Zelinsky’s when the ice came, which was 9:30 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 9:30 PM; Brauer at Zelinsky’s, 9:30 PM_
-- **c086** [spine] (observation; Zeldin on Feeney’s account) → c003, c089
-  - Zeldin was at Zelinsky’s from 9:30 PM to 10:00 PM and says Feeney was not.
-  - _establishes: Feeney not at Zelinsky’s, 9:30 PM–10:00 PM_
-- **c003** [spine] (observation; Zeldin on Feldman) → c136
-  - Zeldin says Feldman was at Zelinsky’s at 10:00 PM.
-  - _establishes: Feldman at Zelinsky’s, 10:00 PM_
-- **c010** [spine] (observation; Zeldin on Margolis) → c005
-  - Zeldin says Margolis was at Zelinsky’s at 10:00 PM.
-  - _establishes: Margolis at Zelinsky’s, 10:00 PM_
-- **c006** [spine] (observation; Zeldin on Doyle) → c132
-  - Zeldin says Doyle was at Zelinsky’s from 9:00 PM to 10:00 PM.
-  - _establishes: Doyle at Zelinsky’s, 9:00 PM–10:00 PM_
-- **c005** [spine] (observation; Zeldin on Bledsoe) → c036
-  - Zeldin says Bledsoe was at Zelinsky’s from 9:00 PM to 10:00 PM.
-  - _establishes: Bledsoe at Zelinsky’s, 9:00 PM–10:00 PM_
-- **c058** [corroboration] (observation; Reinhardt on Zeldin) → (end)
-  - Reinhardt says Zeldin was at the Hallam from 6:00 PM to 6:30 PM.
-  - _establishes: Zeldin at the Hallam, 6:00 PM–6:30 PM; Zeldin could reach the weapon_
-- **c126** [noise {b1}] (overheard; Reinhardt on Feldman) → c131
-  - Reinhardt on Feldman: Feldman was carrying a parcel into Zelinsky’s and came out without it.
+- **c023** [spine] (observation; Bledsoe on Margolis) → c006, c093, c100, c092
+  - Bledsoe says Margolis was at Zelinsky’s at 10:30 PM.
+  - _establishes: Margolis at Zelinsky’s, 10:30 PM_
+- **c007** [spine] (observation; Zeldin on Doyle) → c020, t001, c100
+  - Zeldin says Doyle was at Zelinsky’s from 10:30 PM to 11:00 PM.
+  - _establishes: Doyle at Zelinsky’s, 10:30 PM–11:00 PM_
+- **c006** [spine] (observation; Zeldin on Bledsoe) → c099
+  - Zeldin says Bledsoe was at Zelinsky’s from 10:30 PM to 11:00 PM.
+  - _establishes: Bledsoe at Zelinsky’s, 10:30 PM–11:00 PM_
+- **c093** [spine] (observation; Bledsoe on Feeney’s account) → c118, t002, c144
+  - Bledsoe was at Zelinsky’s at 10:30 PM and says Feeney was not.
+  - _establishes: Feeney not at Zelinsky’s, 10:30 PM_
+- **c020** [spine] (observation; Bledsoe on Feldman) → t001
+  - Bledsoe says Feldman was at Zelinsky’s at 10:30 PM.
+  - _establishes: Feldman at Zelinsky’s, 10:30 PM_
+- **c019** [spine] (observation; Bledsoe on Zeldin) → c030, c018
+  - Bledsoe says Zeldin was at Zelinsky’s from 10:30 PM to 11:00 PM.
+  - _establishes: Zeldin at Zelinsky’s, 10:30 PM–11:00 PM_
+- **c092** [corroboration] (observation; Zeldin on Feeney’s account) → (end)
+  - Zeldin was at Zelinsky’s at 10:30 PM and says Feeney was not.
+  - _establishes: Feeney not at Zelinsky’s, 10:30 PM_
+- **c018** [corroboration] (observation; Bledsoe on Zeldin) → (end)
+  - Bledsoe says Zeldin was at the back lot from 8:30 PM to 9:30 PM.
+  - _establishes: Zeldin at the back lot, 8:30 PM–9:30 PM; Zeldin could reach the weapon_
+- **c137** [noise {b1}] (overheard; Zeldin on Doyle) → c139
+  - Zeldin on Doyle: Doyle has been selling things that were never Doyle’s to sell.
   - _establishes: context only_
-- **c141** [noise {b2}] (overheard; Reinhardt on Margolis) → c142
-  - Reinhardt on Margolis: A man nobody knew was waiting for Margolis at Zelinsky’s and would not give a name.
-  - _establishes: context only_
-- **c121** [noise {b4}] (physical; the place itself) → c123
-  - Two glasses at the Hallam, one of them with a lip print on it, and only one of them paid for.
-  - _establishes: context only_
-- **c123** [noise {b4}] (physical; the place itself) → c124
+- **c125** [noise {b2}] (physical; the place itself) → c122
   - A man’s hat at the Hallam that fits nobody who admits to being there.
   - _establishes: context only_
-- **c124** [disqualifier {b4}] (overheard; the place itself) → (end)
-  - Bledsoe breaks and says it plainly: Bledsoe was with Zeldin at the Hallam for the whole of it, from 10:30 PM to 11:30 PM, and it is a marriage they are hiding, not a killing.
-  - _establishes: Zeldin’s affair accounted for; Zeldin at the Hallam, 10:30 PM–11:30 PM; Bledsoe’s affair accounted for; Bledsoe at the Hallam, 10:30 PM–11:30 PM_
+- **c126** [disqualifier {b2}] (overheard; the place itself) → (end)
+  - Bledsoe breaks and says it plainly: Bledsoe was with Zeldin at the Hallam for the whole of it, from 6:00 PM to 7:00 PM, and it is a marriage they are hiding, not a killing.
+  - _establishes: Zeldin’s affair accounted for; Zeldin at the Hallam, 6:00 PM–7:00 PM; Bledsoe’s affair accounted for; Bledsoe at the Hallam, 6:00 PM–7:00 PM_
+- **c144** [noise {b3}] (overheard; Bledsoe on Margolis) → c145
+  - Bledsoe on Margolis: Margolis goes very quiet when the racing wire is mentioned.
+  - _establishes: context only_
 
 ### At the Bijou
 
-- **c117** [spine ⟨opening⟩] (client; Margolis on why I was hired) → c007, c095, c003, c006, c021, c049
-  - Margolis hired us, and wants it known that Feldman blamed the victim for a ruin, and would rather we started there.
-  - _establishes: Feldman had a motive (revenge)_
-- **c127** [noise {b1}] (overheard; Stannard on Feldman) → c126
-  - Stannard on Feldman: There is a man who meets people at Zelinsky’s and nobody will say his name out loud.
-  - _establishes: context only_
-- **c142** [noise {b2}] (overheard; Stannard on Margolis) → c145
-  - Stannard on Margolis: Margolis goes very quiet when the racing wire is mentioned.
+- **c118** [corroboration] (overheard; Feldman on Feeney and Brauer) → c132
+  - Feldman says Brauer told Feeney that the story would run whether Feeney liked it or not.
+  - _establishes: Feeney had a motive (exposure)_
+- **c011** [corroboration] (observation; Feldman on Feeney) → (end)
+  - Feldman says Feeney was at the back lot at 6:30 PM.
+  - _establishes: Feeney at the back lot, 6:30 PM; Feeney could reach the weapon_
+- **c120** [noise {b2}] (overheard; Colquitt on Zeldin) → c125
+  - Colquitt on Zeldin: Zeldin was seen going into the Hallam alone and came out with somebody half an hour later.
   - _establishes: context only_
 
 ### At the back lot
 
-- **c115** [corroboration] (document; the place itself) → c140
-  - Found at the back lot: A typed page of dates and sums in Brauer’s file, headed with Feeney’s name.
-  - _establishes: Feeney had a motive (exposure)_
+- **c099** [corroboration] (physical; the place itself) → (end)
+  - A length of sash cord is gone from the back lot. A cut end of the same hemp is still tied to the rail it was taken from.
+  - _establishes: something gone from the back lot; how it was done_
+- **t002** [corroboration] (physical; the place itself) → c120
+  - A payroll envelope turned up at the back lot, behind the pipes, empty and slit along the fold.
+  - _establishes: something gone from the office_
 
 ### At the El platform
 
-- **c089** [corroboration] (denial; Feldman on Feeney’s account) → (end)
-  - Feeney names Feldman as the company for Zelinsky’s from 9:30 PM to 10:00 PM. Feldman says they were not together that evening.
-  - _establishes: Feeney not at Zelinsky’s, 9:30 PM–10:00 PM_
+- **c030** [spine] (observation; Doyle on Feeney) → c053
+  - Doyle says Feeney was at the back lot at 6:30 PM.
+  - _establishes: Feeney at the back lot, 6:30 PM; Feeney could reach the weapon_
+- **t001** [spine] (overheard; Margolis on the route that evening) → (end)
+  - Margolis sees Brauer come past Zelinsky’s at 10:00 PM every week of the year, and saw it that evening, with the envelope still buttoned in.
+  - _establishes: Brauer at Zelinsky’s, 10:00 PM_
+- **c122** [noise {b2}] (overheard; Margolis on Zeldin) → c126
+  - Margolis on Zeldin: Bledsoe answers for Zeldin before Zeldin can answer, and neither of them likes being asked twice.
+  - _establishes: context only_
 
-## 8. Clue graph
+## 13. Clue graph
 
 ```mermaid
 graph LR
   subgraph P1["Zelinsky’s"]
-    c021["c021 Bledsoe"]
-    c100["c100 Schilling"]
-    c036["c036 Doyle"]
-    c049["c049 Schilling"]
+    c100["c100 Abramowitz"]
+    c051["c051 Abramowitz"]
+    c053["c053 Abramowitz"]
+    c139["c139 the place"]
+    c135["c135 Abramowitz"]
+    c140["✗ c140 the place"]
+    c145["c145 the place"]
+    c147["✗ c147 the place"]
     c132["c132 the place"]
-    c054["c054 Schilling"]
-    c130["c130 the place"]
-    c131["✗ c131 the place"]
-    c140["c140 Bledsoe"]
-    c145["✗ c145 the place"]
-    c136["c136 the place"]
-    c134["c134 Schilling"]
-    c138["✗ c138 the place"]
+    c131["c131 the place"]
+    c133["✗ c133 the place"]
   end
   subgraph P2["the office"]
-    c092["▶ c092 the place"]
-    c093["▶ c093 the place"]
+    c097["▶ c097 the place"]
+    c098["▶ c098 the place"]
   end
   subgraph P3["the Hallam"]
+    c119["▶ c119 Bledsoe"]
+    c023["c023 Bledsoe"]
     c007["c007 Zeldin"]
-    c116["c116 Zeldin"]
-    c095["c095 Zeldin"]
-    c086["c086 Zeldin"]
-    c003["c003 Zeldin"]
-    c010["c010 Zeldin"]
     c006["c006 Zeldin"]
-    c005["c005 Zeldin"]
-    c058["c058 Reinhardt"]
-    c126["c126 Reinhardt"]
-    c141["c141 Reinhardt"]
-    c121["c121 the place"]
-    c123["c123 the place"]
-    c124["✗ c124 the place"]
+    c093["c093 Bledsoe"]
+    c020["c020 Bledsoe"]
+    c019["c019 Bledsoe"]
+    c092["c092 Zeldin"]
+    c018["c018 Bledsoe"]
+    c137["c137 Zeldin"]
+    c125["c125 the place"]
+    c126["✗ c126 the place"]
+    c144["c144 Bledsoe"]
   end
   subgraph P4["the Bijou"]
-    c117["▶ c117 Margolis"]
-    c127["c127 Stannard"]
-    c142["c142 Stannard"]
+    c118["c118 Feldman"]
+    c011["c011 Feldman"]
+    c120["c120 Colquitt"]
   end
   subgraph P5["the back lot"]
-    c115["c115 the place"]
+    c099["c099 the place"]
+    t002["t002 the place"]
   end
   subgraph P6["the El platform"]
-    c089["c089 Feldman"]
+    c030["c030 Doyle"]
+    t001["t001 Margolis"]
+    c122["c122 Margolis"]
   end
-  c092 --> c116
-  c092 --> c086
-  c092 --> c010
-  c092 --> c100
-  c093 --> c007
-  c093 --> c116
-  c093 --> c054
-  c117 --> c007
-  c117 --> c095
-  c117 --> c003
-  c117 --> c006
-  c117 --> c021
-  c117 --> c049
-  c007 --> c095
-  c007 --> c005
-  c116 --> c086
-  c116 --> c010
-  c116 --> c006
-  c116 --> c021
-  c116 --> c115
-  c095 -.-> c121
-  c086 --> c003
-  c086 --> c089
-  c003 -.-> c136
-  c010 --> c005
-  c006 --> c132
-  c005 --> c036
-  c021 --> c058
-  c115 -.-> c140
-  c100 -.-> c130
-  c130 -.-> c127
-  c127 -.-> c126
-  c126 --> c131
-  c140 -.-> c141
-  c141 -.-> c142
-  c142 --> c145
-  c136 -.-> c134
-  c134 --> c138
-  c121 -.-> c123
-  c123 --> c124
+  c097 --> c023
+  c097 --> c011
+  c098 --> c023
+  c098 --> c007
+  c098 --> c006
+  c098 --> c093
+  c098 --> c019
+  c119 --> c023
+  c119 --> c007
+  c119 --> c020
+  c119 --> c019
+  c119 --> c030
+  c023 --> c006
+  c023 --> c093
+  c023 --> c100
+  c023 --> c092
+  c007 --> c020
+  c007 --> t001
+  c007 --> c100
+  c006 --> c099
+  c093 --> c118
+  c093 --> t002
+  c093 -.-> c144
+  c020 --> t001
+  c019 --> c030
+  c019 --> c018
+  c030 --> c053
+  c100 --> c051
+  c118 -.-> c132
+  t002 -.-> c120
+  c051 -.-> c137
+  c137 -.-> c139
+  c139 -.-> c135
+  c135 --> c140
+  c120 -.-> c125
+  c125 -.-> c122
+  c122 --> c126
+  c144 -.-> c145
+  c145 --> c147
+  c132 -.-> c131
+  c131 --> c133
   classDef spine stroke-width:3px;
   classDef corrob stroke-width:1px;
   classDef noise stroke-dasharray: 4 3;
   classDef disq stroke-width:2px,stroke-dasharray: 1 0;
-  class c092,c093,c117,c007,c116,c095,c086,c003,c010,c006,c005,c021 spine;
-  class c089,c115,c100,c036,c058,c049,c132,c054 corrob;
-  class c130,c127,c126,c140,c141,c142,c136,c134,c121,c123 noise;
-  class c131,c145,c138,c124 disq;
+  class c097,c098,c119,c023,c007,c006,c093,c020,c019,c030,t001,c100 spine;
+  class c099,c118,c011,t002,c092,c018,c051,c053 corrob;
+  class c137,c139,c135,c120,c125,c122,c144,c145,c132,c131 noise;
+  class c140,c126,c147,c133 disq;
 ```
 
-## 9. Deduction path
+## 14. Deduction path
 
-Par is **11 actions** and the budget is par plus 6: **17**. Every id below is a spine clue; the inference is the sheet’s, not the clue’s.
+Par is **12 actions** and the budget is par plus 6: **18**. Every id below is a spine clue; the inference is the sheet’s, not the clue’s.
 
-**Time of death.** The coroner gives four ticks. The anchors close it to 10:00 PM: one puts Brauer alive at 9:30 PM, the other times the scene at 10:00 PM. _(c093, c095, c092; + 1 corroborating)_
+**Time of death.** The coroner gives four ticks. The anchors close it to 10:30 PM: one puts Brauer alive at 10:00 PM, the other times the scene at 10:30 PM. _(c098, c100, c097)_
 
 **Clearing the innocent.**
 
-- Zeldin was not at the office at 10:00 PM. _(c021; + 1 corroborating)_
-- Feldman was not at the office at 10:00 PM. _(c003; + 2 corroborating)_
-- Bledsoe was not at the office at 10:00 PM. _(c005; + 1 corroborating)_
-- Doyle was not at the office at 10:00 PM. _(c006; + 1 corroborating)_
-- Margolis was not at the office at 10:00 PM. _(c010; + 1 corroborating)_
+- Zeldin was not at the office at 10:30 PM. _(c019; + 1 corroborating)_
+- Feldman was not at the office at 10:30 PM. _(c020; + 2 corroborating)_
+- Bledsoe was not at the office at 10:30 PM. _(c006)_
+- Doyle was not at the office at 10:30 PM. _(c007; + 1 corroborating)_
+- Margolis was not at the office at 10:30 PM. _(c023; + 1 corroborating)_
 
-**Naming the killer.** Feeney claims Zelinsky’s at 10:00 PM. Two independent sources put that out of the question. _(c086; + 1 corroborating)_
+**Naming the killer.** Feeney claims Zelinsky’s at 10:30 PM. Two independent sources put that out of the question. _(c093; + 1 corroborating)_
 
-**The weapon.** Feeney was at the Hallam before 10:00 PM, where a nickel-plated revolver was kept. _(c007; + 1 corroborating)_
+**The weapon.** Feeney was at the back lot before 10:30 PM, where a length of sash cord was kept. _(c030; + 1 corroborating)_
 
-**Method.** A gunshot, on two physical sources. _(c092, c093; + 1 corroborating)_
+**Method.** A cord made fast to the fire escape, on two physical sources. _(c097, c098; + 1 corroborating)_
 
-**Motive.** exposure, on two independent sources. _(c116; + 1 corroborating)_
+**Motive.** exposure, on two independent sources. _(c119; + 1 corroborating)_
 
-## 10. Red herrings
+## 15. Red herrings
 
 **Innocents who lie about the murder tick:**
 
-- Feldman claims the El platform at 10:00 PM and was really at Zelinsky’s. Reason: Feldman hands a parcel of stolen goods to a man at Zelinsky’s from 10:00 PM to 10:30 PM.
-- Doyle claims the Bijou at 10:00 PM and was really at Zelinsky’s. Reason: Doyle hands a parcel of stolen goods to a man at Zelinsky’s from 9:30 PM to 10:00 PM.
-- Margolis claims the Hallam at 10:00 PM and was really at Zelinsky’s. Reason: Margolis slips off to Zelinsky’s from 10:00 PM to settle with a bookmaker.
+- Feldman claims the Bijou at 10:30 PM and was really at Zelinsky’s. Reason: Feldman hands a parcel of stolen goods to a man at Zelinsky’s from 10:30 PM.
+- Doyle claims the Bijou at 10:30 PM and was really at Zelinsky’s. Reason: Doyle hands a parcel of stolen goods to a man at Zelinsky’s from 10:30 PM.
+- Margolis claims the back lot at 10:30 PM and was really at Zelinsky’s. Reason: Margolis slips off to Zelinsky’s from 10:00 PM to 10:30 PM to settle with a bookmaker.
 
 **Innocents with a motive:**
 
-- Feldman — revenge: blamed the victim for a ruin.
-- Doyle — debt: owed the victim money.
+- Feldman — revenge: blamed Brauer for the ruin of Feldman’s business.
+- Doyle — debt: owed Brauer four thousand dollars and was past due on it.
 
 **Noise branches, and what knocks each one down:**
 
-- **b1** (Feldman, fence): c130 → c127 → c126 → **c131** — The receiver at Zelinsky’s would rather talk than be held: Feldman was there from 10:00 PM to 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Feldman will take over this one.
-- **b2** (Margolis, gambling-debt): c140 → c141 → c142 → **c145** — The bookmaker’s runner is found and will say it: Margolis was at Zelinsky’s from 10:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
-- **b3** (Doyle, fence): c136 → c134 → **c138** — The receiver at Zelinsky’s would rather talk than be held: Doyle was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Doyle will take over this one.
-- **b4** (Zeldin, affair): c121 → c123 → **c124** — Bledsoe breaks and says it plainly: Bledsoe was with Zeldin at the Hallam for the whole of it, from 10:30 PM to 11:30 PM, and it is a marriage they are hiding, not a killing.
+- **b1** (Doyle, fence): c137 → c139 → c135 → **c140** — The receiver at Zelinsky’s would rather talk than be held: Doyle was there from 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Doyle will take over this one.
+- **b2** (Zeldin, affair): c120 → c125 → c122 → **c126** — Bledsoe breaks and says it plainly: Bledsoe was with Zeldin at the Hallam for the whole of it, from 6:00 PM to 7:00 PM, and it is a marriage they are hiding, not a killing.
+- **b3** (Margolis, gambling-debt): c144 → c145 → **c147** — The bookmaker’s runner is found and will say it: Margolis was at Zelinsky’s from 10:00 PM to 10:30 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
+- **b4** (Feldman, fence): c132 → c131 → **c133** — The receiver at Zelinsky’s would rather talk than be held: Feldman was there from 10:30 PM handing over a parcel of somebody else’s silver, which is a charge Feldman will take over this one.
 

@@ -180,7 +180,7 @@ function run(
   const caseType = trope.type;
 
   for (let outer = 0; outer < OUTER_ATTEMPTS; outer++) {
-    const setting = buildSetting(rng, caseType);
+    const setting = buildSetting(rng, caseType, trope.id);
     if (!setting) {
       diagnostics?.rejections.push('the place deck would not deal a legal hand');
       continue;

@@ -66,13 +66,27 @@ export function renderTruthSheet(c: Case): string {
   /* 2. The Truth -------------------------------------------------------- */
   out.push('## 1. The Truth');
   out.push('');
+  // M5: one paragraph, three case types. What the actor did to whom changes;
+  // the machinery under it — alone at the place at the tick, having fetched
+  // the thing beforehand — does not.
+  const did =
+    c.act.type === 'robbery'
+      ? `took ${c.act.taken?.name ?? 'the goods'} from ${PL(ML)}, which belonged to ` +
+        `${victim.name}, ${victim.role}, at ${clock(M)}, by ${c.method.name}`
+      : c.act.type === 'missing'
+        ? `was the last to be with ${victim.name}, ${victim.role}, at ${PL(ML)} at ${clock(M)}, ` +
+          `and ${c.act.tropeId === 'left' ? 'saw them off' : 'took them'} by ${c.method.name}`
+        : `killed ${victim.name}, ${victim.role}, with ${c.method.name} at ${PL(ML)} at ${clock(M)}`;
+  const aloneWith =
+    c.act.type === 'robbery'
+      ? `and was alone at ${PL(ML)} when it happened`
+      : `and was alone with ${victim.surname} when it happened`;
   out.push(
-    `${killer.name}, ${killer.role}, ${killer.relationshipToVictim ?? 'known to the victim'}, killed ` +
-      `${victim.name}, ${victim.role}, with ${c.method.name} at ${PL(ML)} at ${clock(M)}. ` +
+    `${killer.name}, ${killer.role}, ${killer.relationshipToVictim ?? 'known to the victim'}, ${did}. ` +
       `${killer.surname} ${killer.motive?.description ?? 'had an unstated reason'} (${c.solution.motiveType}). ` +
-      `${killer.surname} had been at ${PL(c.method.accessRequirement.place)} earlier in the evening, where the weapon lived, ` +
-      `and was alone with ${victim.surname} when it happened. ` +
-      `${c.clientId === killer.id ? `${killer.surname} is also the client: the killer hired us.` : `${P(c.clientId)} hired us.`}`,
+      `${killer.surname} had been at ${PL(c.method.accessRequirement.place)} earlier in the evening, where the means lived, ` +
+      `${aloneWith}. ` +
+      `${c.clientId === killer.id ? `${killer.surname} is also the client: the one who did it hired us.` : `${P(c.clientId)} hired us.`}`,
   );
   out.push('');
 

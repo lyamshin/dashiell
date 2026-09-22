@@ -1,6 +1,6 @@
 import type { CaseType, FixtureRole, GameObject, Id, Place } from './types.js';
 import { NEIGHBORHOODS, PLACE_TEMPLATES, type PlaceTemplate } from './data/places.js';
-import { OBJECT_NAMES } from './data/objects.js';
+import { OBJECT_NAMES, SWAG_IDS } from './data/objects.js';
 import { MISSING_MEANS, MURDER_MEANS, ROBBERY_MEANS, type MeansTemplate } from './data/means.js';
 import { ANCHOR_TEMPLATES, canTimeScene, type AnchorTemplate } from './data/anchors.js';
 import type { Rng } from './rng.js';
@@ -32,6 +32,8 @@ export interface Setting {
   hasBeatCop: boolean;
   beatCopRoute: Id[];
   beatCopPhase: number;
+  /** Robbery: the thing that was worth taking, put at the scene on purpose. */
+  swagId?: Id;
   /** The anchor that puts the victim alive at M − 1. Always place-attached. */
   low: AnchorDraw;
   /** The anchor that times the scene at M. */
@@ -156,7 +158,11 @@ function attachable(t: AnchorTemplate, p: PlaceTemplate): boolean {
   return true;
 }
 
-export function buildSetting(rng: Rng, caseType: CaseType = 'murder'): Setting | null {
+export function buildSetting(
+  rng: Rng,
+  caseType: CaseType = 'murder',
+  tropeId = 'body-at-scene',
+): Setting | null {
   const neighborhood = rng.pick(NEIGHBORHOODS);
 
   const drawn = drawPlaces(rng);
@@ -238,6 +244,18 @@ export function buildSetting(rng: Rng, caseType: CaseType = 'murder'): Setting |
     homePlace: scene.accessPlaceId,
   });
   usedObjects.add(scene.method.evidenceObjectId);
+  // M5: a theft needs something worth stealing, and the room deck does not
+  // deal one reliably. A robbery puts exactly one at the scene, on purpose.
+  let swagId: Id | undefined;
+  if (caseType === 'robbery') {
+    swagId = tropeId === 'payroll' ? 'obj-payroll' : rng.pick(SWAG_IDS.slice(1));
+    objects.push({
+      id: swagId,
+      name: OBJECT_NAMES[swagId] as string,
+      homePlace: scene.murderPlaceId,
+    });
+    usedObjects.add(swagId);
+  }
   for (const t of drawn) {
     const want = rng.range(2, 3);
     const pool = rng.shuffle(t.objects.filter((o) => !usedObjects.has(o)));
@@ -281,5 +299,6 @@ export function buildSetting(rng: Rng, caseType: CaseType = 'murder'): Setting |
     high,
     extra,
     soundMasked: high.template.masks,
+    ...(swagId === undefined ? {} : { swagId }),
   };
 }

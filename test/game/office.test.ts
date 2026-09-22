@@ -191,7 +191,10 @@ describe('the client’s two free questions', () => {
       .map((b) => (b.kind === 'prose' || b.kind === 'note' ? b.text : ''))
       .join('\n');
     const where = view.placeById.get(view.client.foundAt ?? '')?.shortName as string;
-    expect(text).toContain(where);
+    // The card puts the room at the head of a quoted sentence, and M4b puts
+    // the first letter of a quoted sentence up, so the match is on the words
+    // and not on the case of the first one.
+    expect(text.toLowerCase()).toContain(where.toLowerCase());
     expect(text).toContain(view.client.surname);
   });
 

@@ -32,7 +32,7 @@ export const insideJob: Trope = {
     return {
       facts,
       text: [
-        `${taken?.name ?? 'The box'} was taken from ${L}, which is ${V}’s.`,
+        `${cap(taken?.name ?? 'the box')} was taken from ${L}, which is ${V}’s.`,
         `Nothing at ${L} was forced: the lock was turned and the door was shut again after.`,
         `The precinct puts it between ${clock(lo)} and ${clock(hi)}.`,
         `${V} is not saying much about what was in it.`,

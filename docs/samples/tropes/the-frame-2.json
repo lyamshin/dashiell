@@ -1,0 +1,7337 @@
+{
+  "seed": 2,
+  "attempts": 5,
+  "difficulty": 2,
+  "detectiveName": "Dashiell",
+  "neighborhood": "the Gas House District",
+  "places": [
+    {
+      "id": "corner-newsstand",
+      "name": "the newsstand on the corner",
+      "shortName": "the newsstand",
+      "kind": "public",
+      "objects": [
+        "obj-newspapers",
+        "obj-roofkey",
+        "obj-timetable"
+      ],
+      "isResidence": false,
+      "nearScene": true,
+      "watcher": "newsstand"
+    },
+    {
+      "id": "subway-kiosk",
+      "name": "the subway kiosk at the corner",
+      "shortName": "the subway kiosk",
+      "kind": "public",
+      "objects": [
+        "obj-umbrella"
+      ],
+      "isResidence": false,
+      "nearScene": true
+    },
+    {
+      "id": "drugstore",
+      "name": "Kaplan’s drugstore with the soda fountain",
+      "shortName": "Kaplan’s",
+      "kind": "public",
+      "objects": [
+        "obj-telephone",
+        "obj-chloral",
+        "obj-icepick"
+      ],
+      "isResidence": false,
+      "nearScene": false,
+      "watcher": "druggist"
+    },
+    {
+      "id": "res-apartment",
+      "name": "Doyle’s apartment on the fourth floor",
+      "shortName": "the fourth floor",
+      "kind": "private",
+      "objects": [
+        "obj-revolver",
+        "obj-photograph",
+        "obj-cashbox"
+      ],
+      "isResidence": true,
+      "nearScene": false
+    },
+    {
+      "id": "dance-hall",
+      "name": "the Arcadia dance hall",
+      "shortName": "the Arcadia",
+      "kind": "public",
+      "objects": [
+        "obj-ashtray",
+        "obj-cigarette-case"
+      ],
+      "isResidence": false,
+      "nearScene": false,
+      "watcher": "ticket-taker"
+    },
+    {
+      "id": "laundry-yard",
+      "name": "the drying yard behind the laundry",
+      "shortName": "the drying yard",
+      "kind": "private",
+      "objects": [
+        "obj-cord",
+        "obj-mop-bucket"
+      ],
+      "isResidence": false,
+      "nearScene": false
+    }
+  ],
+  "objects": [
+    {
+      "id": "obj-cord",
+      "name": "a length of sash cord",
+      "homePlace": "laundry-yard"
+    },
+    {
+      "id": "obj-newspapers",
+      "name": "a folded stack of evening papers",
+      "homePlace": "corner-newsstand"
+    },
+    {
+      "id": "obj-roofkey",
+      "name": "the roof-door key",
+      "homePlace": "corner-newsstand"
+    },
+    {
+      "id": "obj-timetable",
+      "name": "a pasted-up timetable",
+      "homePlace": "corner-newsstand"
+    },
+    {
+      "id": "obj-umbrella",
+      "name": "a brass umbrella stand",
+      "homePlace": "subway-kiosk"
+    },
+    {
+      "id": "obj-telephone",
+      "name": "a wall telephone",
+      "homePlace": "drugstore"
+    },
+    {
+      "id": "obj-chloral",
+      "name": "a bottle of chloral drops",
+      "homePlace": "drugstore"
+    },
+    {
+      "id": "obj-icepick",
+      "name": "an ice pick",
+      "homePlace": "drugstore"
+    },
+    {
+      "id": "obj-revolver",
+      "name": "a nickel-plated revolver",
+      "homePlace": "res-apartment"
+    },
+    {
+      "id": "obj-photograph",
+      "name": "a framed photograph",
+      "homePlace": "res-apartment"
+    },
+    {
+      "id": "obj-cashbox",
+      "name": "a japanned cash box",
+      "homePlace": "res-apartment"
+    },
+    {
+      "id": "obj-ashtray",
+      "name": "a standing ashtray",
+      "homePlace": "dance-hall"
+    },
+    {
+      "id": "obj-cigarette-case",
+      "name": "a silver cigarette case",
+      "homePlace": "dance-hall"
+    },
+    {
+      "id": "obj-mop-bucket",
+      "name": "a mop and bucket",
+      "homePlace": "laundry-yard"
+    }
+  ],
+  "people": [
+    {
+      "id": "p-victim",
+      "name": "Edward Doyle",
+      "surname": "Doyle",
+      "role": "a theatrical agent",
+      "kind": "victim",
+      "isKiller": false,
+      "archetypeId": "vic-agent",
+      "gender": "m",
+      "dossier": {
+        "age": 40,
+        "gender": "m",
+        "profession": {
+          "role": "a theatrical agent",
+          "detail": "had the say over who worked in the spring and who did not"
+        },
+        "want": "to-keep-what-they-have",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "the one this is about",
+          "backstory": "Doyle had half the neighbourhood waiting on a telephone call that never came."
+        },
+        "selfAccount": [
+          "Doyle is 40 years old and a theatrical agent.",
+          "Doyle had the say over who worked in the spring and who did not.",
+          "Doyle is the one this is about."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A theatrical agent.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Doyle had the say over who worked in the spring and who did not.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Doyle had half the neighbourhood waiting on a telephone call that never came.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Doyle wants to keep what they have and add nothing to it.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s1",
+      "name": "Patrick Corrigan",
+      "surname": "Corrigan",
+      "role": "a doorman at a club with no sign on it",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-bouncer",
+      "relationshipId": "rel-debtor",
+      "relationshipToVictim": "in Doyle’s debt",
+      "secret": {
+        "type": "fence",
+        "label": "Fencing stolen goods",
+        "description": "Corrigan hands a parcel of stolen goods to a man at the drying yard from 11:00 PM to 11:30 PM.",
+        "cells": [
+          {
+            "tick": 10,
+            "place": "laundry-yard"
+          },
+          {
+            "tick": 11,
+            "place": "laundry-yard"
+          }
+        ]
+      },
+      "foundAt": "laundry-yard",
+      "gender": "m",
+      "dossier": {
+        "age": 43,
+        "gender": "m",
+        "profession": {
+          "role": "a doorman at a club with no sign on it",
+          "detail": "stands the door at a club with no sign on it and knows every face that comes to it"
+        },
+        "want": "to-keep-what-they-have",
+        "tie": {
+          "relationshipId": "rel-debtor",
+          "text": "in Doyle’s debt",
+          "backstory": "Doyle carried Corrigan through a bad winter and has been collecting on it ever since.",
+          "since": "since ’24"
+        },
+        "selfAccount": [
+          "Corrigan is 43 years old and a doorman at a club with no sign on it.",
+          "Corrigan stands the door at a club with no sign on it and knows every face that comes to it.",
+          "Corrigan is in Doyle’s debt."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A doorman at a club with no sign on it.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Corrigan stands the door at a club with no sign on it and knows every face that comes to it.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Doyle carried Corrigan through a bad winter and has been collecting on it ever since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Corrigan wants to keep what they have and add nothing to it.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Corrigan has been in Doyle’s debt, since ’24.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Corrigan was carrying a parcel into the drying yard and came out without it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s2",
+      "name": "Bridget Brennan",
+      "surname": "Brennan",
+      "role": "a society columnist",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-society",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people Doyle worked for",
+      "secret": {
+        "type": "dope",
+        "label": "Buying morphine",
+        "description": "Brennan buys morphine at the subway kiosk from 10:30 PM to 11:00 PM and would rather be thought a murderer than a hop-head.",
+        "cells": [
+          {
+            "tick": 9,
+            "place": "subway-kiosk"
+          },
+          {
+            "tick": 10,
+            "place": "subway-kiosk"
+          }
+        ]
+      },
+      "foundAt": "corner-newsstand",
+      "gender": "f",
+      "dossier": {
+        "age": 42,
+        "gender": "f",
+        "profession": {
+          "role": "a society columnist",
+          "detail": "has a standing table at a place the bill never comes to"
+        },
+        "want": "respectability",
+        "tie": {
+          "relationshipId": "rel-witness",
+          "text": "a witness against the people Doyle worked for",
+          "backstory": "Brennan gave a statement about the people Doyle worked for and has been careful ever since.",
+          "since": "since last autumn"
+        },
+        "selfAccount": [
+          "Brennan is 42 years old and a society columnist.",
+          "Brennan has a standing table at a place the bill never comes to.",
+          "Brennan is a witness against the people Doyle worked for."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A society columnist.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Brennan has a standing table at a place the bill never comes to.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Brennan gave a statement about the people Doyle worked for and has been careful ever since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Brennan wants to be thought respectable by people who are not.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Brennan has been a witness against the people Doyle worked for, since last autumn.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Brennan’s sleeves are buttoned at the wrist in a warm room."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s3",
+      "name": "Alonzo Broadnax",
+      "surname": "Broadnax",
+      "role": "a hack driver",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-hackman",
+      "relationshipId": "rel-childhood",
+      "relationshipToVictim": "a childhood friend of Doyle’s from the same block",
+      "secret": {
+        "type": "fence",
+        "label": "Fencing stolen goods",
+        "description": "Broadnax hands a parcel of stolen goods to a man at the newsstand from 7:00 PM.",
+        "cells": [
+          {
+            "tick": 2,
+            "place": "corner-newsstand"
+          }
+        ]
+      },
+      "motive": {
+        "type": "revenge",
+        "description": "blamed Doyle for the ruin of Broadnax’s business"
+      },
+      "foundAt": "corner-newsstand",
+      "gender": "m",
+      "dossier": {
+        "age": 45,
+        "gender": "m",
+        "profession": {
+          "role": "a hack driver",
+          "detail": "owns the cab and owes on it"
+        },
+        "want": "to-be-left-alone",
+        "tie": {
+          "relationshipId": "rel-childhood",
+          "text": "a childhood friend of Doyle’s from the same block",
+          "backstory": "Broadnax and Doyle were boys together and neither of them ever left the neighbourhood.",
+          "since": "since they were boys on the same stoop"
+        },
+        "selfAccount": [
+          "Broadnax is 45 years old and a hack driver.",
+          "Broadnax owns the cab and owes on it.",
+          "Broadnax is a childhood friend of Doyle’s from the same block."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A hack driver.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Broadnax owns the cab and owes on it.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Broadnax and Doyle were boys together and neither of them ever left the neighbourhood.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Broadnax wants to be left alone.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Broadnax has been a childhood friend of Doyle’s from the same block, since they were boys on the same stoop.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Broadnax was carrying a parcel into the newsstand and came out without it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s4",
+      "name": "Marion Stannard",
+      "surname": "Stannard",
+      "role": "a dentist with a chair and a waiting room",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-dentist",
+      "relationshipId": "rel-neighbor",
+      "relationshipToVictim": "Doyle’s neighbour across the airshaft",
+      "secret": {
+        "type": "dope",
+        "label": "Buying morphine",
+        "description": "Stannard buys morphine at the Arcadia from 7:00 PM to 7:30 PM and would rather be thought a murderer than a hop-head.",
+        "cells": [
+          {
+            "tick": 2,
+            "place": "dance-hall"
+          },
+          {
+            "tick": 3,
+            "place": "dance-hall"
+          }
+        ]
+      },
+      "motive": {
+        "type": "property",
+        "description": "wanted Doyle out of the lease and the lease in Stannard’s name"
+      },
+      "foundAt": "dance-hall",
+      "isClient": true,
+      "gender": "f",
+      "dossier": {
+        "age": 39,
+        "gender": "f",
+        "profession": {
+          "role": "a dentist with a chair and a waiting room",
+          "detail": "bought the practice second-hand and is still paying for the chair"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-neighbor",
+          "text": "Doyle’s neighbour across the airshaft",
+          "backstory": "Stannard lives across the airshaft from Doyle and can hear the wireless through it.",
+          "since": "since the building changed hands"
+        },
+        "selfAccount": [
+          "Stannard is 39 years old and a dentist with a chair and a waiting room.",
+          "Stannard bought the practice second-hand and is still paying for the chair.",
+          "Stannard is Doyle’s neighbour across the airshaft."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A dentist with a chair and a waiting room.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Stannard bought the practice second-hand and is still paying for the chair.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Stannard lives across the airshaft from Doyle and can hear the wireless through it.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Stannard wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Stannard has been Doyle’s neighbour across the airshaft, since the building changed hands.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Stannard’s sleeves are buttoned at the wrist in a warm room."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s5",
+      "name": "Sadie Shapiro",
+      "surname": "Shapiro",
+      "role": "a chorus girl between engagements",
+      "kind": "suspect",
+      "isKiller": true,
+      "archetypeId": "arch-chorus",
+      "relationshipId": "rel-customer",
+      "relationshipToVictim": "a customer of Doyle’s",
+      "secret": {
+        "type": "murder",
+        "label": "Murder",
+        "description": "Shapiro is at the fourth floor from 6:30 PM to 7:00 PM, alone with Doyle when it happens at 7:00 PM.",
+        "cells": [
+          {
+            "tick": 1,
+            "place": "res-apartment"
+          },
+          {
+            "tick": 2,
+            "place": "res-apartment"
+          }
+        ],
+        "partnerId": "p-victim"
+      },
+      "motive": {
+        "type": "debt",
+        "description": "owed Doyle four thousand dollars and was past due on it"
+      },
+      "foundAt": "drugstore",
+      "gender": "f",
+      "dossier": {
+        "age": 32,
+        "gender": "f",
+        "profession": {
+          "role": "a chorus girl between engagements",
+          "detail": "makes the rounds of the agencies at eleven and is home by one"
+        },
+        "want": "to-be-somebody",
+        "tie": {
+          "relationshipId": "rel-customer",
+          "text": "a customer of Doyle’s",
+          "backstory": "Shapiro has bought from Doyle for years and settled at the end of every month.",
+          "since": "since ’26"
+        },
+        "selfAccount": [
+          "Shapiro is 32 years old and a chorus girl between engagements.",
+          "Shapiro makes the rounds of the agencies at eleven and is home by one.",
+          "Shapiro is a customer of Doyle’s."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A chorus girl between engagements.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Shapiro makes the rounds of the agencies at eleven and is home by one.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Shapiro has bought from Doyle for years and settled at the end of every month.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Shapiro wants a name people know.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Shapiro has been a customer of Doyle’s, since ’26.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s6",
+      "name": "Wilhelm Steinbach",
+      "surname": "Steinbach",
+      "role": "the night manager at the hotel",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-nightman",
+      "relationshipId": "rel-tenant",
+      "relationshipToVictim": "Doyle’s tenant",
+      "secret": {
+        "type": "secret-drinking",
+        "label": "Drinking in secret",
+        "description": "Steinbach drinks alone at the Arcadia from 7:00 PM to 7:30 PM and will claim to have been anywhere else.",
+        "cells": [
+          {
+            "tick": 2,
+            "place": "dance-hall"
+          },
+          {
+            "tick": 3,
+            "place": "dance-hall"
+          }
+        ]
+      },
+      "foundAt": "dance-hall",
+      "gender": "m",
+      "dossier": {
+        "age": 55,
+        "gender": "m",
+        "profession": {
+          "role": "the night manager at the hotel",
+          "detail": "has the desk from six at night until six in the morning"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-tenant",
+          "text": "Doyle’s tenant",
+          "backstory": "Steinbach has rented from Doyle since ’18 and has the same window and the same complaint.",
+          "since": "since the flu year"
+        },
+        "selfAccount": [
+          "Steinbach is 55 years old and the night manager at the hotel.",
+          "Steinbach has the desk from six at night until six in the morning.",
+          "Steinbach is Doyle’s tenant."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The night manager at the hotel.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Steinbach has the desk from six at night until six in the morning.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Steinbach has rented from Doyle since ’18 and has the same window and the same complaint.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Steinbach wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Steinbach has been Doyle’s tenant, since the flu year.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Steinbach had taken a drink and had gone to some trouble about the smell of it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f1",
+      "name": "Ernst Brauer",
+      "surname": "Brauer",
+      "role": "the news dealer",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "newsstand",
+      "foundAt": "corner-newsstand",
+      "gender": "m",
+      "dossier": {
+        "age": 59,
+        "gender": "m",
+        "profession": {
+          "role": "the news dealer",
+          "detail": "sells papers at the newsstand from before six until the last edition is gone"
+        },
+        "want": "to-keep-what-they-have",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "at the stand at the newsstand, every day of the year",
+          "backstory": "Brauer is at the stand at the newsstand, every day of the year."
+        },
+        "selfAccount": [
+          "Brauer is 59 years old and the news dealer.",
+          "Brauer sells papers at the newsstand from before six until the last edition is gone.",
+          "Brauer is at the stand at the newsstand, every day of the year."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The news dealer.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Brauer sells papers at the newsstand from before six until the last edition is gone.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Brauer is at the stand at the newsstand, every day of the year.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Brauer wants to keep what they have and add nothing to it.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f2",
+      "name": "Bernard Feldman",
+      "surname": "Feldman",
+      "role": "the druggist",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "druggist",
+      "foundAt": "drugstore",
+      "gender": "m",
+      "dossier": {
+        "age": 50,
+        "gender": "m",
+        "profession": {
+          "role": "the druggist",
+          "detail": "has had Kaplan’s since before the war and knows what everybody on the block takes"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "behind the counter at Kaplan’s",
+          "backstory": "Feldman is behind the counter at Kaplan’s."
+        },
+        "selfAccount": [
+          "Feldman is 50 years old and the druggist.",
+          "Feldman has had Kaplan’s since before the war and knows what everybody on the block takes.",
+          "Feldman is behind the counter at Kaplan’s."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The druggist.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Feldman has had Kaplan’s since before the war and knows what everybody on the block takes.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Feldman is behind the counter at Kaplan’s.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Feldman wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f3",
+      "name": "Rosaria Petrosino",
+      "surname": "Petrosino",
+      "role": "the ticket-taker",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "ticket-taker",
+      "foundAt": "dance-hall",
+      "gender": "f",
+      "dossier": {
+        "age": 31,
+        "gender": "f",
+        "profession": {
+          "role": "the ticket-taker",
+          "detail": "has taken tickets at the Arcadia since the house opened"
+        },
+        "want": "respectability",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "on the door at the Arcadia, every performance",
+          "backstory": "Petrosino is on the door at the Arcadia, every performance."
+        },
+        "selfAccount": [
+          "Petrosino is 31 years old and the ticket-taker.",
+          "Petrosino has taken tickets at the Arcadia since the house opened.",
+          "Petrosino is on the door at the Arcadia, every performance."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The ticket-taker.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Petrosino has taken tickets at the Arcadia since the house opened.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Petrosino is on the door at the Arcadia, every performance.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Petrosino wants to be thought respectable by people who are not.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-cop",
+      "name": "Louis Bernstein",
+      "surname": "Bernstein",
+      "role": "the patrolman on the beat",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "beat-cop",
+      "foundAt": "corner-newsstand",
+      "gender": "m",
+      "dossier": {
+        "age": 36,
+        "gender": "m",
+        "profession": {
+          "role": "the patrolman on the beat",
+          "detail": "has had this post for four years and can time the round to the minute"
+        },
+        "want": "to-keep-what-they-have",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "the patrolman whose post takes in the newsstand",
+          "backstory": "Bernstein is the patrolman whose post takes in the newsstand."
+        },
+        "selfAccount": [
+          "Bernstein is 36 years old and the patrolman on the beat.",
+          "Bernstein has had this post for four years and can time the round to the minute.",
+          "Bernstein is the patrolman whose post takes in the newsstand."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The patrolman on the beat.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Bernstein has had this post for four years and can time the round to the minute.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Bernstein is the patrolman whose post takes in the newsstand.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Bernstein wants to keep what they have and add nothing to it.",
+            "layer": 2
+          }
+        ]
+      }
+    }
+  ],
+  "method": {
+    "id": "strangle",
+    "name": "strangling with a cord",
+    "noise": 0,
+    "evidenceObjectId": "obj-cord",
+    "bodyEvidence": "A ligature furrow across the throat. Three fibres of hemp in the skin.",
+    "accessRequirement": {
+      "place": "laundry-yard",
+      "beforeTick": 2
+    }
+  },
+  "anchors": [
+    {
+      "templateId": "ice-delivery",
+      "name": "the ice being brought in",
+      "ticks": [
+        1
+      ],
+      "traces": [
+        {
+          "kind": "sighting"
+        },
+        {
+          "kind": "knowledge",
+          "description": "the iceman dropped a block on the step and it went in three"
+        },
+        {
+          "kind": "mark",
+          "description": "a wet patch down one side of a coat"
+        }
+      ],
+      "timing": "when the ice came",
+      "highTiming": "as the ice was being brought in",
+      "sceneFact": "The ice was brought in at {T} and the iceman’s book has the delivery timed and signed for.",
+      "masks": false,
+      "placeId": "drugstore"
+    },
+    {
+      "templateId": "dumbwaiter",
+      "name": "the dumbwaiter squeal",
+      "ticks": [
+        2,
+        5,
+        8,
+        11
+      ],
+      "traces": [
+        {
+          "kind": "sound",
+          "description": "a noise the whole shaft hears and nobody in the building can sleep through"
+        },
+        {
+          "kind": "knowledge",
+          "description": "the car came up with somebody’s wash still in it, and stuck halfway"
+        }
+      ],
+      "timing": "when the dumbwaiter went up",
+      "highTiming": "as the dumbwaiter was going up",
+      "sceneFact": "The dumbwaiter car was worked at {T}, as it is on the hour and the half hour.",
+      "masks": false,
+      "placeId": "res-apartment"
+    },
+    {
+      "templateId": "cop-pass",
+      "name": "the beat cop’s pass",
+      "ticks": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "traces": [
+        {
+          "kind": "sighting"
+        }
+      ],
+      "timing": "when the cop came round",
+      "highTiming": "as the cop was coming round",
+      "sceneFact": "The patrolman’s round brought him two streets off at {T}.",
+      "masks": false,
+      "route": [
+        "corner-newsstand",
+        "subway-kiosk",
+        "drugstore",
+        "dance-hall"
+      ]
+    }
+  ],
+  "nearScene": [
+    "subway-kiosk",
+    "corner-newsstand"
+  ],
+  "soundMasked": false,
+  "schedules": [
+    {
+      "personId": "p-victim",
+      "truth": [
+        "dance-hall",
+        "drugstore",
+        "res-apartment",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "claimed": [
+        "dance-hall",
+        "drugstore",
+        "res-apartment",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s1",
+      "truth": [
+        "laundry-yard",
+        "laundry-yard",
+        "corner-newsstand",
+        "subway-kiosk",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "laundry-yard",
+        "laundry-yard"
+      ],
+      "claimed": [
+        "laundry-yard",
+        "laundry-yard",
+        "corner-newsstand",
+        "subway-kiosk",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        10,
+        11
+      ]
+    },
+    {
+      "personId": "p-s2",
+      "truth": [
+        "subway-kiosk",
+        "dance-hall",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "subway-kiosk",
+        "subway-kiosk",
+        "res-apartment"
+      ],
+      "claimed": [
+        "subway-kiosk",
+        "dance-hall",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "laundry-yard",
+        "laundry-yard",
+        "res-apartment"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        9,
+        10
+      ]
+    },
+    {
+      "personId": "p-s3",
+      "truth": [
+        "laundry-yard",
+        "laundry-yard",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "drugstore"
+      ],
+      "claimed": [
+        "laundry-yard",
+        "laundry-yard",
+        "dance-hall",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "drugstore"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        "p-s1",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        2
+      ]
+    },
+    {
+      "personId": "p-s4",
+      "truth": [
+        "laundry-yard",
+        "laundry-yard",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk"
+      ],
+      "claimed": [
+        "laundry-yard",
+        "laundry-yard",
+        "subway-kiosk",
+        "subway-kiosk",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "subway-kiosk",
+        "subway-kiosk"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        "p-s3",
+        "p-s3",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        2,
+        3
+      ]
+    },
+    {
+      "personId": "p-s5",
+      "truth": [
+        "laundry-yard",
+        "res-apartment",
+        "res-apartment",
+        "subway-kiosk",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "dance-hall",
+        "drugstore",
+        "drugstore",
+        "subway-kiosk"
+      ],
+      "claimed": [
+        "laundry-yard",
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "dance-hall",
+        "drugstore",
+        "drugstore",
+        "subway-kiosk"
+      ],
+      "claimedCompanion": [
+        null,
+        "p-s4",
+        "p-s4",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        1,
+        2
+      ]
+    },
+    {
+      "personId": "p-s6",
+      "truth": [
+        "drugstore",
+        "drugstore",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "subway-kiosk",
+        "subway-kiosk",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "laundry-yard",
+        "laundry-yard"
+      ],
+      "claimed": [
+        "drugstore",
+        "drugstore",
+        "subway-kiosk",
+        "subway-kiosk",
+        "dance-hall",
+        "subway-kiosk",
+        "subway-kiosk",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "laundry-yard",
+        "laundry-yard"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        "p-s1",
+        "p-s1",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        2,
+        3
+      ]
+    },
+    {
+      "personId": "p-f1",
+      "truth": [
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "laundry-yard",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand"
+      ],
+      "claimed": [
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "laundry-yard",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand",
+        "corner-newsstand"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-f2",
+      "truth": [
+        "drugstore",
+        "drugstore",
+        "dance-hall",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimed": [
+        "drugstore",
+        "drugstore",
+        "dance-hall",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore",
+        "drugstore"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-f3",
+      "truth": [
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall"
+      ],
+      "claimed": [
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall",
+        "dance-hall"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-cop",
+      "truth": [
+        null,
+        "corner-newsstand",
+        null,
+        null,
+        "subway-kiosk",
+        null,
+        null,
+        "drugstore",
+        null,
+        null,
+        "dance-hall",
+        null
+      ],
+      "claimed": [
+        null,
+        "corner-newsstand",
+        null,
+        null,
+        "subway-kiosk",
+        null,
+        null,
+        "drugstore",
+        null,
+        null,
+        "dance-hall",
+        null
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    }
+  ],
+  "observations": [
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "laundry-yard",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "drugstore",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-victim",
+      "place": "dance-hall",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "place": "drugstore",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "laundry-yard",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "laundry-yard",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "laundry-yard",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "laundry-yard",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "laundry-yard",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "laundry-yard",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-cop",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-victim",
+      "place": "drugstore",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "drugstore",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s2",
+      "place": "dance-hall",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "place": "res-apartment",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f2",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "place": "res-apartment",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s1",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-f2",
+      "place": "dance-hall",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "place": "subway-kiosk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-cop",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dance-hall",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-cop",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s6",
+      "place": "corner-newsstand",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-cop",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s2",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s6",
+      "place": "corner-newsstand",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s5",
+      "place": "dance-hall",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s6",
+      "place": "corner-newsstand",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s6",
+      "place": "corner-newsstand",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "laundry-yard",
+      "tick": 10,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 10,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "corner-newsstand",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "place": "subway-kiosk",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "laundry-yard",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "corner-newsstand",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "drugstore",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-cop",
+      "place": "dance-hall",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-cop",
+      "subjectId": "p-f3",
+      "place": "dance-hall",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "laundry-yard",
+      "tick": 11,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f2",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "subway-kiosk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "subway-kiosk",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "laundry-yard",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s3",
+      "place": "drugstore",
+      "tick": 11,
+      "withheld": false
+    }
+  ],
+  "candidates": [
+    {
+      "id": "c001",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "Corrigan says Brennan was at the newsstand at 7:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c002",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 9
+        }
+      ],
+      "text": "Corrigan says Brennan was at the subway kiosk at 10:30 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Corrigan says Broadnax was at the drying yard from 6:00 PM to 6:30 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c004",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "Corrigan says Broadnax was at the newsstand at 7:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "laundry-yard",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Corrigan says Stannard was at the drying yard from 6:00 PM to 6:30 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Corrigan says Stannard was at the Arcadia from 8:30 PM to 10:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 9
+        }
+      ],
+      "text": "Corrigan says Stannard was at the subway kiosk at 10:30 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Corrigan says Shapiro was at the drying yard at 6:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Corrigan says Shapiro was at the subway kiosk at 7:30 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c010",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Corrigan says Shapiro was at the Arcadia at 10:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "Brennan says Corrigan was at the newsstand at 7:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c058",
+        "c079",
+        "c040",
+        "c001"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 8
+        }
+      ],
+      "text": "Brennan says Broadnax was at the newsstand from 7:00 PM to 10:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c013",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 8
+        }
+      ],
+      "text": "Brennan says Steinbach was at the newsstand from 9:30 PM to 10:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Broadnax says Corrigan was at the drying yard from 6:00 PM to 6:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c015",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 8
+        }
+      ],
+      "text": "Broadnax says Brennan was at the newsstand from 7:30 PM to 10:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "laundry-yard",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Broadnax says Stannard was at the drying yard from 6:00 PM to 6:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c017",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Broadnax says Shapiro was at the drying yard at 6:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 9
+        }
+      ],
+      "text": "Broadnax says Steinbach was at the newsstand from 9:30 PM to 10:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c019",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Stannard says Corrigan was at the drying yard from 6:00 PM to 6:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c020",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Stannard says Corrigan was at the Arcadia from 8:30 PM to 10:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c021",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 9
+        }
+      ],
+      "text": "Stannard says Corrigan was at the subway kiosk at 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c022",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 10
+        }
+      ],
+      "text": "Stannard says Brennan was at the subway kiosk from 10:30 PM to 11:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Stannard says Broadnax was at the drying yard from 6:00 PM to 6:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Stannard says Shapiro was at the drying yard at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c025",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Stannard says Shapiro was at the Arcadia at 10:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "subway-kiosk",
+          "tick": 11
+        }
+      ],
+      "text": "Stannard says Shapiro was at the subway kiosk at 11:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c027",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Stannard says Steinbach was at the Arcadia at 8:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Shapiro says Corrigan was at the drying yard at 6:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Shapiro says Corrigan was at the subway kiosk at 7:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Shapiro says Corrigan was at the Arcadia at 10:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Shapiro says Broadnax was at the drying yard at 6:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Shapiro says Stannard was at the drying yard at 6:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c033",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Shapiro says Stannard was at the Arcadia at 10:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c034",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 11
+        }
+      ],
+      "text": "Shapiro says Stannard was at the subway kiosk at 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Doyle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Steinbach says Doyle was at Kaplan’s at 6:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c036",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 11
+        }
+      ],
+      "text": "Steinbach says Corrigan was at the drying yard from 11:00 PM to 11:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c037",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 8
+        }
+      ],
+      "text": "Steinbach says Brennan was at the newsstand from 9:30 PM to 10:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 9
+        }
+      ],
+      "text": "Steinbach says Broadnax was at the newsstand from 9:30 PM to 10:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c039",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Steinbach says Stannard was at the Arcadia at 8:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "Brauer says Corrigan was at the newsstand at 7:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 5
+        }
+      ],
+      "text": "Brauer says Brennan was at the newsstand from 7:00 PM to 8:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c072",
+        "c058",
+        "c121"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 8
+        }
+      ],
+      "text": "Brauer says Brennan was at the newsstand from 9:30 PM to 10:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 5
+        }
+      ],
+      "text": "Brauer says Broadnax was at the newsstand from 7:00 PM to 8:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c044",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 10
+        }
+      ],
+      "text": "Brauer says Broadnax was at the newsstand from 9:30 PM to 11:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c045",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "corner-newsstand",
+          "tick": 9
+        }
+      ],
+      "text": "Brauer says Steinbach was at the newsstand from 9:30 PM to 10:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Doyle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Feldman says Doyle was at Kaplan’s at 6:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c047",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "drugstore",
+          "tick": 11
+        }
+      ],
+      "text": "Feldman says Broadnax was at Kaplan’s at 11:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c048",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Feldman says Stannard was at the Arcadia at 7:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c049",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Feldman says Shapiro was at Kaplan’s from 8:00 PM to 9:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 10
+        }
+      ],
+      "text": "Feldman says Shapiro was at Kaplan’s from 10:30 PM to 11:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "drugstore",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Feldman says Steinbach was at Kaplan’s from 6:00 PM to 6:30 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c052",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Feldman says Steinbach was at the Arcadia at 7:00 PM.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c053",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Doyle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "dance-hall",
+          "tick": 0
+        }
+      ],
+      "text": "Petrosino says Doyle was at the Arcadia at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Petrosino says Corrigan was at the Arcadia from 8:30 PM to 10:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c055",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dance-hall",
+          "tick": 1
+        }
+      ],
+      "text": "Petrosino says Brennan was at the Arcadia at 6:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Petrosino says Stannard was at the Arcadia from 7:00 PM to 10:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c024",
+        "c011",
+        "c023",
+        "c119"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c057",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Petrosino says Shapiro was at the Arcadia at 10:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Petrosino says Steinbach was at the Arcadia from 7:00 PM to 8:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c059",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 4
+        }
+      ],
+      "text": "Bernstein says Corrigan was at the subway kiosk at 8:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Bernstein says Shapiro was at Kaplan’s at 9:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c061",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Corrigan’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 10
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 11
+        }
+      ],
+      "text": "Petrosino was at the Arcadia from 11:00 PM to 11:30 PM and says Corrigan was not.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c062",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Corrigan’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "dance-hall",
+          "tick": 10
+        }
+      ],
+      "text": "Bernstein was at the Arcadia at 11:00 PM and says Corrigan was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Brennan’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "laundry-yard",
+          "tick": 10
+        }
+      ],
+      "text": "Steinbach was at the drying yard at 11:00 PM and says Brennan was not.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Broadnax’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Feldman was at the Arcadia at 7:00 PM and says Broadnax was not.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c065",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Broadnax’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Petrosino was at the Arcadia at 7:00 PM and says Broadnax was not.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c066",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Broadnax’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Broadnax names Corrigan as the company for it. Corrigan was at the newsstand at 7:00 PM, and says Broadnax was not there.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c067",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Stannard’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Corrigan was at the subway kiosk at 7:30 PM and says Stannard was not.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c068",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Stannard’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Shapiro was at the subway kiosk at 7:30 PM and says Stannard was not.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c069",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Stannard’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Stannard names Broadnax as the company for the subway kiosk from 7:00 PM to 7:30 PM. Broadnax says they were not together that evening.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c070",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Shapiro’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 1
+        }
+      ],
+      "text": "Brennan was at the Arcadia at 6:30 PM and says Shapiro was not.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c071",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Shapiro’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Feldman was at the Arcadia at 7:00 PM and says Shapiro was not.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Shapiro’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 1
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Petrosino was at the Arcadia from 6:30 PM to 7:00 PM and says Shapiro was not.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c024",
+        "t002"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c073",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Shapiro’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 1
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Shapiro names Stannard as the company for the Arcadia from 6:30 PM to 7:00 PM. Stannard says they were not together that evening.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c074",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Steinbach’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Shapiro was at the subway kiosk at 7:30 PM and says Steinbach was not.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c075",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Steinbach’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 2
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "subway-kiosk",
+          "tick": 3
+        }
+      ],
+      "text": "Steinbach names Corrigan as the company for the subway kiosk from 7:00 PM to 7:30 PM. Corrigan says they were not together that evening.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c076",
+      "kind": "scene",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "victimDeadBy",
+          "tick": 2
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Doyle was found at the fourth floor. His watch glass broke against the floor and the hands have not moved since. The dumbwaiter car was worked at 7:00 PM, as it is on the hour and the half hour.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "t001",
+        "c041",
+        "c056",
+        "c072"
+      ],
+      "role": "spine",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c077",
+      "kind": "morgue",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            1,
+            4
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "The coroner puts death between 6:30 PM and 8:00 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "t001",
+        "c056",
+        "c008",
+        "c106"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c078",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-cord",
+          "fromPlace": "laundry-yard"
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "A length of sash cord is gone from the drying yard. A cut end of the same hemp is still tied to the fitting it was taken from.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c079",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Doyle that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Steinbach puts Doyle at Kaplan’s when the ice came, which was 6:30 PM, and alive enough to argue about the weather.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "spine",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c080",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Doyle that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Feldman puts Doyle at Kaplan’s when the ice came, which was 6:30 PM, and alive enough to argue about the weather.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c081",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "res-apartment",
+          "tick": 2
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 2
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Corrigan was at the newsstand at 7:00 PM and heard a scuffle and a chair dragging from the direction of the fourth floor, as the dumbwaiter was going up.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c082",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "res-apartment",
+          "tick": 2
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 2
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Brennan was at the newsstand at 7:00 PM and heard a scuffle and a chair dragging from the direction of the fourth floor, as the dumbwaiter was going up.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c083",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "res-apartment",
+          "tick": 2
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 2
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Brauer was at the newsstand at 7:00 PM and heard a scuffle and a chair dragging from the direction of the fourth floor, as the dumbwaiter was going up.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c084",
+      "kind": "anchor",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "The ice being brought in was at 6:30 PM, and Steinbach was at Kaplan’s for it.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c085",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Steinbach still carries it: a wet patch down one side of a coat. The ice being brought in was at 6:30 PM, at Kaplan’s.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c086",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "subway-kiosk",
+          "tick": 4
+        }
+      ],
+      "text": "Bernstein came round at 8:00 PM and had Corrigan at the subway kiosk.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c087",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "drugstore",
+          "tick": 7
+        }
+      ],
+      "text": "Bernstein came round at 9:30 PM and had Shapiro at Kaplan’s.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "cop-pass"
+    },
+    {
+      "id": "c088",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "drugstore"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "revenge"
+        }
+      ],
+      "text": "Found at Kaplan’s: A clipping about the failure of Broadnax’s business, with Doyle’s name underlined twice in pencil.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c089",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Broadnax and Doyle"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "revenge"
+        }
+      ],
+      "text": "Bernstein says Broadnax said Doyle had taken everything and would be made to feel it.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c090",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "property"
+        }
+      ],
+      "text": "Found at the fourth floor: A lease assignment made out in Stannard’s name, waiting only on Doyle’s signature.",
+      "place": "res-apartment",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c091",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Stannard and Doyle"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "property"
+        }
+      ],
+      "text": "Brauer says Doyle told Stannard the lease would go to somebody else at the quarter day.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c092",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Found at the fourth floor: A promissory note for $4,000 signed by Shapiro, endorsed to Doyle, three months past due.",
+      "place": "res-apartment",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c093",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Shapiro and Doyle"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Petrosino says Doyle told Shapiro that Friday was the end of it, one way or the other.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c094",
+      "kind": "client",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "why I was hired"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Stannard hired us, and wants it known that Shapiro owed Doyle four thousand dollars and was past due on it, and would rather we started there.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c058",
+        "c071"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c095",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Corrigan"
+      },
+      "establishes": [],
+      "text": "Petrosino on Corrigan: Corrigan was carrying a parcel into the drying yard and came out without it.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c096",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Corrigan"
+      },
+      "establishes": [],
+      "text": "Broadnax on Corrigan: There is a man who meets people at the drying yard and nobody will say his name out loud.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c097",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Corrigan"
+      },
+      "establishes": [],
+      "text": "Shapiro on Corrigan: Corrigan has been selling things that were never Corrigan’s to sell.",
+      "place": "drugstore",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c098",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the drying yard, and the shop it came from closed two years ago.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c099",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the drying yard in a name that does not exist, made out at the hour in question.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c100",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 11
+        }
+      ],
+      "text": "The receiver at the drying yard would rather talk than be held: Corrigan was there from 11:00 PM to 11:30 PM handing over a parcel of somebody else’s silver, which is a charge Corrigan will take over this one.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c101",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "laundry-yard",
+          "tick": 11
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Corrigan at the drying yard from 11:00 PM to 11:30 PM with both hands full.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c102",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Feldman on Brennan: Brennan’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c107"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c103",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Bernstein on Brennan: Somebody at the subway kiosk sells what a druggist will not, and Brennan knows which door.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c104",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Stannard on Brennan: Brennan was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c105",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the subway kiosk, folded the way one particular hand folds them.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c106",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the subway kiosk signed by a doctor who has been dead since the spring.",
+      "place": "subway-kiosk",
+      "leadsTo": [
+        "c102"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c107",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 10
+        }
+      ],
+      "text": "The man who sells it at the subway kiosk gives it up rather than be held: Brennan was there from 10:30 PM to 11:00 PM, and stayed until it took hold.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c108",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 10
+        }
+      ],
+      "text": "The doctor Brennan used to see confirms the habit and the hour: Brennan was at the subway kiosk from 10:30 PM to 11:00 PM, and could not have crossed the street unhelped.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c109",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Broadnax"
+      },
+      "establishes": [],
+      "text": "Corrigan on Broadnax: Broadnax was carrying a parcel into the newsstand and came out without it.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c110",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Broadnax"
+      },
+      "establishes": [],
+      "text": "Brauer on Broadnax: There is a man who meets people at the newsstand and nobody will say his name out loud.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Broadnax"
+      },
+      "establishes": [],
+      "text": "Petrosino on Broadnax: Broadnax has been selling things that were never Broadnax’s to sell.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c112",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the newsstand, and the shop it came from closed two years ago.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c110"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c113",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "A pawn ticket at the newsstand in a name that does not exist, made out at the hour in question.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c114",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "The receiver at the newsstand would rather talk than be held: Broadnax was there from 7:00 PM handing over a parcel of somebody else’s silver, which is a charge Broadnax will take over this one.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c115",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "The goods turn up, tagged and dated, and the tag puts Broadnax at the newsstand from 7:00 PM with both hands full.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Brennan on Stannard: Stannard’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c117"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Feldman on Stannard: Somebody at the Arcadia sells what a druggist will not, and Stannard knows which door.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-cop",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Bernstein on Stannard: Stannard was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c119",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Arcadia, folded the way one particular hand folds them.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c120",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Arcadia signed by a doctor who has been dead since the spring.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c121",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The man who sells it at the Arcadia gives it up rather than be held: Stannard was there from 7:00 PM to 7:30 PM, and stayed until it took hold.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c112"
+      ],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c122",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The doctor Stannard used to see confirms the habit and the hour: Stannard was at the Arcadia from 7:00 PM to 7:30 PM, and could not have crossed the street unhelped.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Steinbach"
+      },
+      "establishes": [],
+      "text": "Brauer on Steinbach: Steinbach had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Steinbach"
+      },
+      "establishes": [],
+      "text": "Petrosino on Steinbach: Steinbach is on a temperance pledge that Steinbach mentions before anybody asks.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Steinbach"
+      },
+      "establishes": [],
+      "text": "Corrigan on Steinbach: Somebody at the Arcadia says Steinbach is in more often than Steinbach lets on.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c126",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c128"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c127",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A tab at the Arcadia in a name that is not Steinbach’s, in Steinbach’s handwriting.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The man behind the counter at the Arcadia knows exactly: Steinbach was on the same stool from 7:00 PM to 7:30 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c129",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The tab at the Arcadia is dated and timed, from 7:00 PM to 7:30 PM, and Steinbach was there to run it up.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "t001",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "res-apartment",
+          "tick": 2
+        }
+      ],
+      "text": "A length of sash cord was found at the newsstand wrapped in newspaper, and the newspaper is dated the day after Broadnax was last in the room.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c041",
+        "c011",
+        "c079",
+        "c082",
+        "c092"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "t002",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "res-apartment",
+          "tick": 2
+        }
+      ],
+      "text": "The book at the drying yard has a length of sash cord going out the day before, in a hand that is not Broadnax’s. Broadnax was at the newsstand at 7:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "corroboration"
+    }
+  ],
+  "findable": [
+    {
+      "id": "c076",
+      "kind": "scene",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "victimDeadBy",
+          "tick": 2
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Doyle was found at the fourth floor. His watch glass broke against the floor and the hands have not moved since. The dumbwaiter car was worked at 7:00 PM, as it is on the hour and the half hour.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "t001",
+        "c041",
+        "c056",
+        "c072"
+      ],
+      "role": "spine",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "c077",
+      "kind": "morgue",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            1,
+            4
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "The coroner puts death between 6:30 PM and 8:00 PM — two hours of nothing useful. A ligature furrow across the throat. Three fibres of hemp in the skin.",
+      "place": "res-apartment",
+      "leadsTo": [
+        "t001",
+        "c056",
+        "c008",
+        "c106"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c094",
+      "kind": "client",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "why I was hired"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Stannard hired us, and wants it known that Shapiro owed Doyle four thousand dollars and was past due on it, and would rather we started there.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c058",
+        "c071"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "t001",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "res-apartment",
+          "tick": 2
+        }
+      ],
+      "text": "A length of sash cord was found at the newsstand wrapped in newspaper, and the newspaper is dated the day after Broadnax was last in the room.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c041",
+        "c011",
+        "c079",
+        "c082",
+        "c092"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 5
+        }
+      ],
+      "text": "Brauer says Brennan was at the newsstand from 7:00 PM to 8:30 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c072",
+        "c058",
+        "c121"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Stannard"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 8
+        }
+      ],
+      "text": "Petrosino says Stannard was at the Arcadia from 7:00 PM to 10:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c024",
+        "c011",
+        "c023",
+        "c119"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Shapiro’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 1
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Petrosino was at the Arcadia from 6:30 PM to 7:00 PM and says Shapiro was not.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c024",
+        "t002"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Stannard says Shapiro was at the drying yard at 6:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "Brennan says Corrigan was at the newsstand at 7:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c058",
+        "c079",
+        "c040",
+        "c001"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 4
+        }
+      ],
+      "text": "Petrosino says Steinbach was at the Arcadia from 7:00 PM to 8:00 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c079",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Doyle that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "drugstore",
+          "tick": 1
+        }
+      ],
+      "text": "Steinbach puts Doyle at Kaplan’s when the ice came, which was 6:30 PM, and alive enough to argue about the weather.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "spine",
+      "anchorId": "ice-delivery"
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Shapiro"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Corrigan says Shapiro was at the drying yard at 6:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c071",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Shapiro’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dance-hall",
+          "tick": 2
+        }
+      ],
+      "text": "Feldman was at the Arcadia at 7:00 PM and says Shapiro was not.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c082",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "res-apartment",
+          "tick": 2
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 2
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Brennan was at the newsstand at 7:00 PM and heard a scuffle and a chair dragging from the direction of the fourth floor, as the dumbwaiter was going up.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "dumbwaiter"
+    },
+    {
+      "id": "t002",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "laundry-yard"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "res-apartment",
+          "tick": 2
+        }
+      ],
+      "text": "The book at the drying yard has a length of sash cord going out the day before, in a hand that is not Broadnax’s. Broadnax was at the newsstand at 7:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c092",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-apartment"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Found at the fourth floor: A promissory note for $4,000 signed by Shapiro, endorsed to Doyle, three months past due.",
+      "place": "res-apartment",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Broadnax"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "laundry-yard",
+          "tick": 1
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "strangle"
+        }
+      ],
+      "text": "Stannard says Broadnax was at the drying yard from 6:00 PM to 6:30 PM.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "Brauer says Corrigan was at the newsstand at 7:00 PM.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c001",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brennan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "Corrigan says Brennan was at the newsstand at 7:00 PM.",
+      "place": "laundry-yard",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c121",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The man who sells it at the Arcadia gives it up rather than be held: Stannard was there from 7:00 PM to 7:30 PM, and stayed until it took hold.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c112"
+      ],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Steinbach"
+      },
+      "establishes": [],
+      "text": "Brauer on Steinbach: Steinbach had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Steinbach"
+      },
+      "establishes": [],
+      "text": "Petrosino on Steinbach: Steinbach is on a temperance pledge that Steinbach mentions before anybody asks.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c126"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c126",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A bottle at the Arcadia pushed behind the pipes, the seal broken and the level down.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c128"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The man behind the counter at the Arcadia knows exactly: Steinbach was on the same stool from 7:00 PM to 7:30 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c119",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Arcadia, folded the way one particular hand folds them.",
+      "place": "dance-hall",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Brennan on Stannard: Stannard’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c117"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Stannard"
+      },
+      "establishes": [],
+      "text": "Feldman on Stannard: Somebody at the Arcadia sells what a druggist will not, and Stannard knows which door.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c122",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dance-hall"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dance-hall",
+          "tick": 3
+        }
+      ],
+      "text": "The doctor Stannard used to see confirms the habit and the hour: Stannard was at the Arcadia from 7:00 PM to 7:30 PM, and could not have crossed the street unhelped.",
+      "place": "dance-hall",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c112",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [],
+      "text": "Wrapping paper and a cut string at the newsstand, and the shop it came from closed two years ago.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c110"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c110",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Broadnax"
+      },
+      "establishes": [],
+      "text": "Brauer on Broadnax: There is a man who meets people at the newsstand and nobody will say his name out loud.",
+      "place": "corner-newsstand",
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c114",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "corner-newsstand"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "fence"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "corner-newsstand",
+          "tick": 2
+        }
+      ],
+      "text": "The receiver at the newsstand would rather talk than be held: Broadnax was there from 7:00 PM handing over a parcel of somebody else’s silver, which is a charge Broadnax will take over this one.",
+      "place": "corner-newsstand",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c106",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the subway kiosk signed by a doctor who has been dead since the spring.",
+      "place": "subway-kiosk",
+      "leadsTo": [
+        "c102"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c102",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Brennan"
+      },
+      "establishes": [],
+      "text": "Feldman on Brennan: Brennan’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "drugstore",
+      "leadsTo": [
+        "c107"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    },
+    {
+      "id": "c107",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "subway-kiosk"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "subway-kiosk",
+          "tick": 10
+        }
+      ],
+      "text": "The man who sells it at the subway kiosk gives it up rather than be held: Brennan was there from 10:30 PM to 11:00 PM, and stayed until it took hold.",
+      "place": "subway-kiosk",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b4"
+    }
+  ],
+  "starting": [
+    "c076",
+    "c077",
+    "c094"
+  ],
+  "clientId": "p-s4",
+  "par": 10,
+  "slack": 6,
+  "budget": 16,
+  "coronerWindow": [
+    1,
+    4
+  ],
+  "solution": {
+    "killerId": "p-s5",
+    "methodId": "strangle",
+    "motiveType": "debt",
+    "murderTick": 2,
+    "murderPlaceId": "res-apartment"
+  },
+  "act": {
+    "type": "murder",
+    "tropeId": "the-frame",
+    "actorId": "p-s5",
+    "tick": 2,
+    "place": "res-apartment",
+    "method": {
+      "id": "strangle",
+      "name": "strangling with a cord",
+      "noise": 0,
+      "evidenceObjectId": "obj-cord",
+      "bodyEvidence": "A ligature furrow across the throat. Three fibres of hemp in the skin.",
+      "accessRequirement": {
+        "place": "laundry-yard",
+        "beforeTick": 2
+      }
+    },
+    "givens": {
+      "facts": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            1,
+            4
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "strangle"
+        }
+      ],
+      "text": [
+        "Doyle was found dead at the fourth floor.",
+        "The coroner puts it between 6:30 PM and 8:00 PM.",
+        "It was strangling with a cord.",
+        "The precinct found the weapon in Broadnax’s rooms and stopped looking.",
+        "Broadnax says it was put there, and has been saying so since Tuesday."
+      ]
+    },
+    "unknowns": [
+      "who",
+      "why",
+      "when"
+    ],
+    "bodyFoundAt": "res-apartment",
+    "fate": "dead"
+  },
+  "mentions": [],
+  "victimBio": {
+    "age": 40,
+    "gender": "m",
+    "profession": {
+      "role": "a theatrical agent",
+      "detail": "had the say over who worked in the spring and who did not"
+    },
+    "want": "to-keep-what-they-have",
+    "tie": {
+      "relationshipId": "rel-none",
+      "text": "the one this is about",
+      "backstory": "Doyle had half the neighbourhood waiting on a telephone call that never came."
+    },
+    "selfAccount": [
+      "Doyle is 40 years old and a theatrical agent.",
+      "Doyle had the say over who worked in the spring and who did not.",
+      "Doyle is the one this is about."
+    ],
+    "layers": [
+      {
+        "kind": "gender",
+        "text": "A man.",
+        "layer": 0
+      },
+      {
+        "kind": "age",
+        "text": "In his forties.",
+        "layer": 0
+      },
+      {
+        "kind": "profession",
+        "text": "A theatrical agent.",
+        "layer": 1
+      },
+      {
+        "kind": "detail",
+        "text": "Doyle had the say over who worked in the spring and who did not.",
+        "layer": 1
+      },
+      {
+        "kind": "tie",
+        "text": "Doyle had half the neighbourhood waiting on a telephone call that never came.",
+        "layer": 2
+      },
+      {
+        "kind": "want",
+        "text": "Doyle wants to keep what they have and add nothing to it.",
+        "layer": 2
+      }
+    ],
+    "standing": "Doyle had half the neighbourhood waiting on a telephone call that never came.",
+    "discovery": {
+      "foundById": "p-s2",
+      "foundAt": "res-apartment",
+      "foundTick": 11,
+      "foundText": "Brennan found Doyle at the fourth floor at 11:30 PM.",
+      "precinct": "closed-it-in-an-hour"
+    }
+  },
+  "clientBrief": {
+    "purpose": "clear-my-name",
+    "purposeText": "Stannard wants it established that it was not them, before anybody says otherwise.",
+    "cost": "Stannard was near enough to it that night to know exactly how it looks, and says so first.",
+    "tells": [
+      {
+        "kind": "timeOfDeath",
+        "ticks": [
+          1,
+          4
+        ]
+      },
+      {
+        "kind": "methodEvidence",
+        "methodId": "strangle"
+      },
+      {
+        "kind": "hasMotive",
+        "personId": "p-s5",
+        "motiveType": "debt"
+      }
+    ],
+    "tellTexts": [
+      "Doyle was found dead at the fourth floor.",
+      "The coroner puts it between 6:30 PM and 8:00 PM.",
+      "It was strangling with a cord.",
+      "The precinct found the weapon in Broadnax’s rooms and stopped looking.",
+      "Broadnax says it was put there, and has been saying so since Tuesday.",
+      "Stannard would rather we started with Shapiro: Shapiro owed Doyle four thousand dollars and was past due on it."
+    ],
+    "withholds": [
+      {
+        "kind": "secretExplained",
+        "personId": "p-s4",
+        "secretType": "dope"
+      }
+    ],
+    "withholdTexts": [
+      "Stannard does not mention it, but Stannard buys morphine at the Arcadia from 7:00 PM to 7:30 PM and would rather be thought a murderer than a hop-head."
+    ],
+    "points": {
+      "personId": "p-s5",
+      "reason": "Shapiro owed Doyle four thousand dollars and was past due on it",
+      "honest": true
+    },
+    "ownEvening": [
+      "Stannard says she was at the drying yard from 6:00 PM to 6:30 PM.",
+      "Stannard says she was at the subway kiosk from 7:00 PM to 7:30 PM.",
+      "Stannard says she was at the Arcadia from 8:00 PM to 10:00 PM.",
+      "Stannard says she was at the subway kiosk from 10:30 PM to 11:30 PM."
+    ]
+  },
+  "briefing": [
+    "A woman came up the stairs after midnight, and sat down.",
+    "Marion Stannard is 39 years old and a dentist with a chair and a waiting room.",
+    "Stannard bought the practice second-hand and is still paying for the chair.",
+    "Doyle had half the neighbourhood waiting on a telephone call that never came.",
+    "Doyle was found dead at the fourth floor.",
+    "The coroner puts it between 6:30 PM and 8:00 PM.",
+    "It was strangling with a cord.",
+    "The precinct found the weapon in Broadnax’s rooms and stopped looking.",
+    "Brennan found Doyle at the fourth floor at 11:30 PM.",
+    "The precinct had somebody for it inside the hour.",
+    "Stannard is Doyle’s neighbour across the airshaft.",
+    "Stannard lives across the airshaft from Doyle and can hear the wireless through it.",
+    "Stannard wants it established that it was not them, before anybody says otherwise.",
+    "Stannard was near enough to it that night to know exactly how it looks, and says so first.",
+    "Stannard wants us to start with Shapiro.",
+    "Shapiro owed Doyle four thousand dollars and was past due on it."
+  ],
+  "deduction": {
+    "timeOfDeath": [
+      "c077",
+      "c079",
+      "c076",
+      "c082"
+    ],
+    "timeOfDeathAnchors": [
+      "dumbwaiter",
+      "ice-delivery"
+    ],
+    "exculpations": {
+      "p-s1": [
+        "c011",
+        "c040"
+      ],
+      "p-s2": [
+        "c041",
+        "c001"
+      ],
+      "p-s3": [
+        "t001",
+        "t002",
+        "c114"
+      ],
+      "p-s4": [
+        "c056",
+        "c121",
+        "c122"
+      ],
+      "p-s6": [
+        "c058",
+        "c128"
+      ]
+    },
+    "inculpation": [
+      "c072",
+      "c071"
+    ],
+    "access": [
+      "c024",
+      "c008"
+    ],
+    "method": [
+      "c076",
+      "c077",
+      "c082"
+    ],
+    "motive": [
+      "c094",
+      "c092"
+    ]
+  }
+}

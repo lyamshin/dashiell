@@ -114,8 +114,14 @@ export function elsewhere(ctx: ShapeContext, exclude: Id[] = []): Id {
   return (ctx.rng.pick(pool.length > 0 ? pool : ctx.setting.places) as { id: Id }).id;
 }
 
-/** Something at the scene that is worth stealing, and is not the means. */
+/**
+ * What the thief came for. A robbery has one thing at the scene that is worth
+ * the trouble — the setting puts it there on purpose, because a case about a
+ * theft cannot turn on whatever the room deck happened to deal.
+ */
 export function stealable(ctx: ShapeContext): GameObject {
+  const swag = ctx.objects.find((o) => o.id === ctx.setting.swagId);
+  if (swag) return swag;
   const here = ctx.objects.filter(
     (o) => o.homePlace === ctx.build.murderPlaceId && o.id !== ctx.method.evidenceObjectId,
   );

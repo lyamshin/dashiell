@@ -39,7 +39,19 @@ export const OBJECT_TEMPLATES: ObjectTemplate[] = [
   { id: 'obj-hatbox', name: 'a stack of hatboxes' },
   { id: 'obj-ashtray', name: 'a standing ashtray' },
   { id: 'obj-telephone', name: 'a wall telephone' },
+
+  /**
+   * M5: what a thief comes for. These are never dealt into a room at random;
+   * a robbery puts exactly one of them at the scene, because a case about a
+   * theft needs something worth the trouble of taking.
+   */
+  { id: 'obj-payroll', name: 'a payroll envelope' },
+  { id: 'obj-bonds', name: 'a packet of bearer bonds' },
+  { id: 'obj-jewels', name: 'a jewel case' },
 ];
+
+/** The goods, by trope. A payroll job takes a payroll. */
+export const SWAG_IDS: Id[] = ['obj-payroll', 'obj-bonds', 'obj-jewels', 'obj-cashbox'];
 
 export const OBJECT_NAMES: Record<Id, string> = Object.fromEntries(
   OBJECT_TEMPLATES.map((o) => [o.id, o.name]),

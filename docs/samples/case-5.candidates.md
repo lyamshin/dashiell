@@ -1,311 +1,321 @@
 # Harlem — case 5: the candidate pool
 
-145 true things about the evening. 34 of them are findable (marked ★); the rest are the truth the report is graded against, not the truth the player can reach.
+147 true things about the evening. 34 of them are findable (marked ★); the rest are the truth the report is graded against, not the truth the player can reach.
 
-## Bledsoe
+## Ashby
 
-- **c001** [observation] — on Dandridge Bledsoe says Dandridge was at the garage at 6:00 PM.
-  - _establishes: Dandridge at the garage, 6:00 PM; Dandridge could reach the weapon_
-- **c002** [observation] — on Dandridge Bledsoe says Dandridge was at the newsstand at 9:00 PM.
-  - _establishes: Dandridge at the newsstand, 9:00 PM_
-- **c003** [observation] — on Dandridge Bledsoe says Dandridge was at the Wyckoff at 10:30 PM.
-  - _establishes: Dandridge at the Wyckoff, 10:30 PM_
-- **c004** [observation] — on Marchetti Bledsoe says Marchetti was at the newsstand from 9:30 PM to 10:00 PM.
-  - _establishes: Marchetti at the newsstand, 9:30 PM–10:00 PM_
-- **c005** [observation] — on Salerno Bledsoe says Salerno was at the garage at 6:00 PM.
-  - _establishes: Salerno at the garage, 6:00 PM; Salerno could reach the weapon_
-- **c006** [observation] — on Salerno Bledsoe says Salerno was at the newsstand at 8:30 PM.
-  - _establishes: Salerno at the newsstand, 8:30 PM_
-- **c082** [denial] — on Dandridge’s account Dandridge names Bledsoe as the company for the garage from 8:00 PM to 8:30 PM. Bledsoe says they were not together that evening.
-  - _establishes: Dandridge not at the garage, 8:00 PM–8:30 PM_
-- **c084** [denial] — on Marchetti’s account Marchetti names Bledsoe as the company for it. Bledsoe was at the newsstand at 9:30 PM, and says Marchetti was not there.
-  - _establishes: Marchetti not at the El platform, 9:30 PM_
-- **c090** [observation] — on Rafferty’s account Bledsoe was at the garage at 6:00 PM and says Rafferty was not.
-  - _establishes: Rafferty not at the garage, 6:00 PM_
-- **c100** [anchor] — on the last edition coming off the truck Bledsoe claims the newsstand at 7:30 PM, which is when the last edition coming off the truck was on. Asked about it, Bledsoe cannot say that the late edition led with the bridge contract and not the hold-up — and everybody who was there can.
-  - _establishes: Bledsoe not at the newsstand, 7:30 PM_
-- **c107** [overheard] — on Thorndike and Kreuzer Bledsoe says Kreuzer told Thorndike that Friday was the end of it, one way or the other.
-  - _establishes: Thorndike had a motive (debt)_
-- ★ **c127** [overheard] — on Thorndike Bledsoe on Thorndike: Thorndike has been selling things that were never Thorndike’s to sell.
+- **c001** [observation] — on Shapiro Ashby says Shapiro was at the newsstand from 6:30 PM to 7:00 PM.
+  - _establishes: Shapiro at the newsstand, 6:30 PM–7:00 PM_
+- **c002** [observation] — on Marchetti Ashby says Marchetti was at the Wyckoff at 7:30 PM.
+  - _establishes: Marchetti at the Wyckoff, 7:30 PM; Marchetti could reach the weapon_
+- **c003** [observation] — on Kessler Ashby says Kessler was at Mrs. Teague’s from 9:00 PM to 9:30 PM.
+  - _establishes: Kessler at Mrs. Teague’s, 9:00 PM–9:30 PM_
+- ★ **c004** [observation] — on Quill Ashby says Quill was at the Wyckoff at 7:30 PM.
+  - _establishes: Quill at the Wyckoff, 7:30 PM; Quill could reach the weapon_
+- **c005** [observation] — on Brauer Ashby says Brauer was at the newsstand at 7:00 PM.
+  - _establishes: Brauer at the newsstand, 7:00 PM_
+- **c006** [observation] — on Grasso Ashby says Grasso was at Mrs. Teague’s from 9:00 PM to 9:30 PM.
+  - _establishes: Grasso at Mrs. Teague’s, 9:00 PM–9:30 PM_
+- ★ **c110** [client] — on why I was hired Ashby hired us, and wants it known that Quill wanted Shapiro out of the lease and the lease in Quill’s name, and would rather we started there.
+  - _establishes: Quill had a motive (property)_
+- **c126** [overheard] — on Kessler Ashby on Kessler: Kessler is on a temperance pledge that Kessler mentions before anybody asks.
   - _establishes: context only_
-
-## Dandridge
-
-- ★ **c007** [observation] — on Bledsoe Dandridge says Bledsoe was at the garage at 6:00 PM.
-  - _establishes: Bledsoe at the garage, 6:00 PM; Bledsoe could reach the weapon_
-- **c008** [observation] — on Bledsoe Dandridge says Bledsoe was at the newsstand at 9:00 PM.
-  - _establishes: Bledsoe at the newsstand, 9:00 PM_
-- **c009** [observation] — on Bledsoe Dandridge says Bledsoe was at the Wyckoff at 10:30 PM.
-  - _establishes: Bledsoe at the Wyckoff, 10:30 PM_
-- **c010** [observation] — on Marchetti Dandridge says Marchetti was at the newsstand at 6:30 PM.
-  - _establishes: Marchetti at the newsstand, 6:30 PM_
-- **c011** [observation] — on Marchetti Dandridge says Marchetti was at the newsstand from 11:00 PM to 11:30 PM.
-  - _establishes: Marchetti at the newsstand, 11:00 PM–11:30 PM_
-- **c012** [observation] — on Marchetti Dandridge says Marchetti was at the suite at 7:00 PM.
-  - _establishes: Marchetti at the suite, 7:00 PM_
-- **c013** [observation] — on Thorndike Dandridge says Thorndike was at the newsstand from 11:00 PM to 11:30 PM.
-  - _establishes: Thorndike at the newsstand, 11:00 PM–11:30 PM_
-- **c014** [observation] — on Salerno Dandridge says Salerno was at the garage at 6:00 PM.
-  - _establishes: Salerno at the garage, 6:00 PM; Salerno could reach the weapon_
-- **c015** [observation] — on Rafferty Dandridge says Rafferty was at the Wyckoff at 7:30 PM.
-  - _establishes: Rafferty at the Wyckoff, 7:30 PM_
-- **c016** [observation] — on Rafferty Dandridge says Rafferty was at the garage at 9:30 PM.
-  - _establishes: Rafferty at the garage, 9:30 PM_
-- **c085** [observation] — on Thorndike’s account Dandridge was at the garage at 9:30 PM and says Thorndike was not.
-  - _establishes: Thorndike not at the garage, 9:30 PM_
-- **c091** [observation] — on Rafferty’s account Dandridge was at the garage at 6:00 PM and says Rafferty was not.
-  - _establishes: Rafferty not at the garage, 6:00 PM_
-- ★ **c120** [overheard] — on Marchetti Dandridge on Marchetti: Marchetti has been selling things that were never Marchetti’s to sell.
+- ★ **c134** [overheard] — on Brauer Ashby on Brauer: Brauer answers to the name a half-second late, every time.
   - _establishes: context only_
+- ★ **t002** [overheard] — on Shapiro since Tuesday Ashby says there was somebody at the El platform at 11:30 PM reading the departures off a timetable, and that it was Shapiro.
+  - _establishes: Shapiro at the El platform, 11:30 PM_
 
 ## Marchetti
 
-- **c017** [observation] — on Kreuzer Marchetti says Kreuzer was at the El platform at 6:00 PM.
-  - _establishes: Kreuzer at the El platform, 6:00 PM_
-- **c018** [observation] — on Kreuzer Marchetti says Kreuzer was at the newsstand at 7:30 PM.
-  - _establishes: Kreuzer at the newsstand, 7:30 PM_
-- **c019** [observation] — on Bledsoe Marchetti says Bledsoe was at the newsstand at 10:00 PM.
-  - _establishes: Bledsoe at the newsstand, 10:00 PM_
-- **c020** [observation] — on Dandridge Marchetti says Dandridge was at the newsstand at 6:30 PM.
-  - _establishes: Dandridge at the newsstand, 6:30 PM_
-- **c021** [observation] — on Dandridge Marchetti says Dandridge was at the newsstand from 11:00 PM to 11:30 PM.
-  - _establishes: Dandridge at the newsstand, 11:00 PM–11:30 PM_
-- **c022** [observation] — on Dandridge Marchetti says Dandridge was at the suite at 7:00 PM.
-  - _establishes: Dandridge at the suite, 7:00 PM_
-- ★ **c023** [observation] — on Dandridge Marchetti says Dandridge was at Mrs. Teague’s from 8:00 PM to 8:30 PM.
-  - _establishes: Dandridge at Mrs. Teague’s, 8:00 PM–8:30 PM_
-- ★ **c024** [observation] — on Thorndike Marchetti says Thorndike was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Thorndike at Mrs. Teague’s, 8:00 PM_
-- **c025** [observation] — on Thorndike Marchetti says Thorndike was at the newsstand from 11:00 PM to 11:30 PM.
-  - _establishes: Thorndike at the newsstand, 11:00 PM–11:30 PM_
-- ★ **c026** [observation] — on Rafferty Marchetti says Rafferty was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Rafferty at Mrs. Teague’s, 8:00 PM_
-- **c077** [observation] — on Bledsoe’s account Marchetti was at the newsstand at 7:30 PM and says Bledsoe was not.
-  - _establishes: Bledsoe not at the newsstand, 7:30 PM_
-- **c097** [anchor] — on Kreuzer that evening Marchetti puts Kreuzer at the newsstand when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 7:30 PM; Kreuzer at the newsstand, 7:30 PM_
-- ★ **c110** [client] — on why I was hired Marchetti hired us, and wants it known that Bledsoe needed the victim silent, and would rather we started there.
-  - _establishes: Bledsoe had a motive (silence-a-witness)_
-- **c112** [overheard] — on Dandridge Marchetti on Dandridge: A woman at Mrs. Teague’s asked for Dandridge by a name Dandridge has not used in years.
+- **c007** [observation] — on Shapiro Marchetti says Shapiro was at the El platform at 10:00 PM.
+  - _establishes: Shapiro at the El platform, 10:00 PM_
+- **c008** [observation] — on Ashby Marchetti says Ashby was at the Wyckoff at 7:30 PM.
+  - _establishes: Ashby at the Wyckoff, 7:30 PM; Ashby could reach the weapon_
+- **c009** [observation] — on Kessler Marchetti says Kessler was at the El platform at 10:00 PM.
+  - _establishes: Kessler at the El platform, 10:00 PM_
+- ★ **c010** [observation] — on Quill Marchetti says Quill was at the Wyckoff from 7:30 PM to 8:00 PM.
+  - _establishes: Quill at the Wyckoff, 7:30 PM–8:00 PM; Quill could reach the weapon_
+- **c011** [observation] — on Quill Marchetti says Quill was at the El platform at 10:00 PM.
+  - _establishes: Quill at the El platform, 10:00 PM_
+- **c012** [observation] — on Brauer Marchetti says Brauer was at the Wyckoff at 6:00 PM.
+  - _establishes: Brauer at the Wyckoff, 6:00 PM; Brauer could reach the weapon_
+- **c013** [observation] — on Brauer Marchetti says Brauer was at the garage at 10:30 PM.
+  - _establishes: Brauer at the garage, 10:30 PM_
+- **c081** [observation] — on Kessler’s account Marchetti was at the Wyckoff from 6:00 PM to 6:30 PM and says Kessler was not.
+  - _establishes: Kessler not at the Wyckoff, 6:00 PM–6:30 PM_
+- **c087** [observation] — on Quill’s account Marchetti was at the garage at 10:30 PM and says Quill was not.
+  - _establishes: Quill not at the garage, 10:30 PM_
+- **c107** [overheard] — on Kessler and Shapiro Marchetti says Shapiro told Kessler that the story would run whether Kessler liked it or not.
+  - _establishes: Kessler had a motive (exposure)_
+
+## Kessler
+
+- **c014** [observation] — on Shapiro Kessler says Shapiro was at the El platform at 10:00 PM.
+  - _establishes: Shapiro at the El platform, 10:00 PM_
+- **c015** [observation] — on Ashby Kessler says Ashby was at Mrs. Teague’s from 9:00 PM to 9:30 PM.
+  - _establishes: Ashby at Mrs. Teague’s, 9:00 PM–9:30 PM_
+- **c016** [observation] — on Marchetti Kessler says Marchetti was at the El platform at 10:00 PM.
+  - _establishes: Marchetti at the El platform, 10:00 PM_
+- **c017** [observation] — on Quill Kessler says Quill was at the El platform at 10:00 PM.
+  - _establishes: Quill at the El platform, 10:00 PM_
+- ★ **c018** [observation] — on Brauer Kessler says Brauer was at the garage from 11:00 PM to 11:30 PM.
+  - _establishes: Brauer at the garage, 11:00 PM–11:30 PM_
+- **c019** [observation] — on Grasso Kessler says Grasso was at Mrs. Teague’s from 9:00 PM to 9:30 PM.
+  - _establishes: Grasso at Mrs. Teague’s, 9:00 PM–9:30 PM_
+- ★ **c020** [observation] — on Grasso Kessler says Grasso was at the garage at 11:00 PM.
+  - _establishes: Grasso at the garage, 11:00 PM_
+- ★ **c088** [observation] — on Quill’s account Kessler was at the garage at 11:00 PM and says Quill was not.
+  - _establishes: Quill not at the garage, 11:00 PM_
+- ★ **c098** [anchor] — on the noise that evening Kessler was at the garage at 11:00 PM and heard the street door going, and nobody coming back through it from the direction of the suite, just as the singing stopped.
+  - _establishes: noise at the suite at 11:00 PM; the victim dead by 11:00 PM; how it was done_
+- **c109** [overheard] — on Quill and Shapiro Kessler says Shapiro told Quill the lease would go to somebody else at the quarter day.
+  - _establishes: Quill had a motive (property)_
+- **c113** [overheard] — on Ashby Kessler on Ashby: Ashby keeps a photograph and will not be asked about it twice.
   - _establishes: context only_
-- **c133** [overheard] — on Salerno Marchetti on Salerno: A man nobody knew was waiting for Salerno at the newsstand and would not give a name.
+- ★ **c139** [overheard] — on Grasso Kessler on Grasso: Grasso was carrying a parcel into the garage and came out without it.
   - _establishes: context only_
+
+## Quill
+
+- **c021** [observation] — on Shapiro Quill says Shapiro was at the garage at 6:00 PM.
+  - _establishes: Shapiro at the garage, 6:00 PM_
+- **c022** [observation] — on Shapiro Quill says Shapiro was at the garage at 9:00 PM.
+  - _establishes: Shapiro at the garage, 9:00 PM_
+- **c023** [observation] — on Ashby Quill says Ashby was at the Wyckoff at 7:30 PM.
+  - _establishes: Ashby at the Wyckoff, 7:30 PM; Ashby could reach the weapon_
+- ★ **c024** [observation] — on Marchetti Quill says Marchetti was at the Wyckoff from 7:30 PM to 8:00 PM.
+  - _establishes: Marchetti at the Wyckoff, 7:30 PM–8:00 PM; Marchetti could reach the weapon_
+- **c025** [observation] — on Brauer Quill says Brauer was at the garage at 9:00 PM.
+  - _establishes: Brauer at the garage, 9:00 PM_
+- **c026** [observation] — on Grasso Quill says Grasso was at the garage from 6:00 PM to 7:00 PM.
+  - _establishes: Grasso at the garage, 6:00 PM–7:00 PM_
+- **c079** [observation] — on Marchetti’s account Quill was at the Wyckoff at 11:30 PM and says Marchetti was not.
+  - _establishes: Marchetti not at the Wyckoff, 11:30 PM_
+- **c104** [anchor] — on the shift change at the garage Quill claims the garage at 10:00 PM, which is when the shift change at the garage was on. Asked about it, Quill cannot say that the foreman was two men short and said in front of everybody what he thought of it — and everybody who was there can.
+  - _establishes: Quill not at the garage, 10:00 PM_
+- **c127** [overheard] — on Kessler Quill on Kessler: Somebody at Mrs. Teague’s says Kessler is in more often than Kessler lets on.
+  - _establishes: context only_
+
+## Brauer
+
+- **c027** [observation] — on Shapiro Brauer says Shapiro was at the newsstand from 7:00 PM to 7:30 PM.
+  - _establishes: Shapiro at the newsstand, 7:00 PM–7:30 PM_
+- **c028** [observation] — on Shapiro Brauer says Shapiro was at the garage from 8:30 PM to 9:00 PM.
+  - _establishes: Shapiro at the garage, 8:30 PM–9:00 PM_
+- **c029** [observation] — on Shapiro Brauer says Shapiro was at the El platform at 9:30 PM.
+  - _establishes: Shapiro at the El platform, 9:30 PM_
+- **c030** [observation] — on Ashby Brauer says Ashby was at the newsstand at 7:00 PM.
+  - _establishes: Ashby at the newsstand, 7:00 PM_
+- **c031** [observation] — on Marchetti Brauer says Marchetti was at the Wyckoff at 6:00 PM.
+  - _establishes: Marchetti at the Wyckoff, 6:00 PM; Marchetti could reach the weapon_
+- **c032** [observation] — on Marchetti Brauer says Marchetti was at the garage at 10:30 PM.
+  - _establishes: Marchetti at the garage, 10:30 PM_
+- ★ **c033** [observation] — on Kessler Brauer says Kessler was at the garage from 11:00 PM to 11:30 PM.
+  - _establishes: Kessler at the garage, 11:00 PM–11:30 PM_
+- **c034** [observation] — on Quill Brauer says Quill was at the garage at 9:00 PM.
+  - _establishes: Quill at the garage, 9:00 PM_
+- **c035** [observation] — on Quill Brauer says Quill was at the El platform at 9:30 PM.
+  - _establishes: Quill at the El platform, 9:30 PM_
+- **c036** [observation] — on Grasso Brauer says Grasso was at the garage from 8:00 PM to 8:30 PM.
+  - _establishes: Grasso at the garage, 8:00 PM–8:30 PM_
+- **c037** [observation] — on Grasso Brauer says Grasso was at the garage at 11:00 PM.
+  - _establishes: Grasso at the garage, 11:00 PM_
+- **c082** [observation] — on Kessler’s account Brauer was at the Wyckoff at 6:00 PM and says Kessler was not.
+  - _establishes: Kessler not at the Wyckoff, 6:00 PM_
+- **c086** [denial] — on Quill’s account Quill names Brauer as the company for the garage from 9:30 PM to 10:00 PM. Brauer says they were not together that evening.
+  - _establishes: Quill not at the garage, 9:30 PM–10:00 PM_
+- **c089** [observation] — on Quill’s account Brauer was at the garage from 10:30 PM to 11:00 PM and says Quill was not.
+  - _establishes: Quill not at the garage, 10:30 PM–11:00 PM_
+- **c099** [anchor] — on the noise that evening Brauer was at the garage at 11:00 PM and heard the street door going, and nobody coming back through it from the direction of the suite, just as the singing stopped.
+  - _establishes: noise at the suite at 11:00 PM; the victim dead by 11:00 PM; how it was done_
+- **c120** [overheard] — on Marchetti Brauer on Marchetti: Somebody at Mrs. Teague’s says Marchetti is in more often than Marchetti lets on.
+  - _establishes: context only_
+
+## Grasso
+
+- **c038** [observation] — on Shapiro Grasso says Shapiro was at the garage at 6:00 PM.
+  - _establishes: Shapiro at the garage, 6:00 PM_
+- **c039** [observation] — on Shapiro Grasso says Shapiro was at the garage at 8:30 PM.
+  - _establishes: Shapiro at the garage, 8:30 PM_
+- **c040** [observation] — on Shapiro Grasso says Shapiro was at the newsstand at 10:30 PM.
+  - _establishes: Shapiro at the newsstand, 10:30 PM_
+- **c041** [observation] — on Ashby Grasso says Ashby was at Mrs. Teague’s from 9:00 PM to 9:30 PM.
+  - _establishes: Ashby at Mrs. Teague’s, 9:00 PM–9:30 PM_
+- **c042** [observation] — on Kessler Grasso says Kessler was at Mrs. Teague’s from 9:00 PM to 9:30 PM.
+  - _establishes: Kessler at Mrs. Teague’s, 9:00 PM–9:30 PM_
+- **c043** [observation] — on Quill Grasso says Quill was at the garage from 6:00 PM to 7:00 PM.
+  - _establishes: Quill at the garage, 6:00 PM–7:00 PM_
+- **c044** [observation] — on Brauer Grasso says Brauer was at the garage from 8:00 PM to 8:30 PM.
+  - _establishes: Brauer at the garage, 8:00 PM–8:30 PM_
+- **c078** [observation] — on Ashby’s account Grasso was at the El platform at 11:30 PM and says Ashby was not.
+  - _establishes: Ashby not at the El platform, 11:30 PM_
+- ★ **c096** [anchor] — on Shapiro that evening Grasso puts Shapiro at the newsstand when the last edition came up, which was 10:30 PM, and in no hurry to be anywhere.
+  - _establishes: the victim alive at 10:30 PM; Shapiro at the newsstand, 10:30 PM_
 
 ## Thorndike
 
-- **c027** [observation] — on Dandridge Thorndike says Dandridge was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Dandridge at Mrs. Teague’s, 8:00 PM_
-- **c028** [observation] — on Dandridge Thorndike says Dandridge was at the newsstand from 11:00 PM to 11:30 PM.
-  - _establishes: Dandridge at the newsstand, 11:00 PM–11:30 PM_
-- ★ **c029** [observation] — on Marchetti Thorndike says Marchetti was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Marchetti at Mrs. Teague’s, 8:00 PM_
-- **c030** [observation] — on Marchetti Thorndike says Marchetti was at the newsstand from 11:00 PM to 11:30 PM.
-  - _establishes: Marchetti at the newsstand, 11:00 PM–11:30 PM_
-- **c031** [observation] — on Salerno Thorndike says Salerno was at the garage from 7:00 PM to 7:30 PM.
-  - _establishes: Salerno at the garage, 7:00 PM–7:30 PM; Salerno could reach the weapon_
-- **c032** [observation] — on Salerno Thorndike says Salerno was at the El platform at 9:00 PM.
-  - _establishes: Salerno at the El platform, 9:00 PM_
-- **c033** [observation] — on Salerno Thorndike says Salerno was at the El platform at 10:30 PM.
-  - _establishes: Salerno at the El platform, 10:30 PM_
-- **c034** [observation] — on Rafferty Thorndike says Rafferty was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Rafferty at Mrs. Teague’s, 8:00 PM_
-- **c139** [overheard] — on Rafferty Thorndike on Rafferty: Rafferty had taken a drink and had gone to some trouble about the smell of it.
+- **c045** [observation] — on Ashby Thorndike says Ashby was at the Wyckoff at 7:30 PM.
+  - _establishes: Ashby at the Wyckoff, 7:30 PM; Ashby could reach the weapon_
+- ★ **c046** [observation] — on Ashby Thorndike says Ashby was at Mrs. Teague’s at 11:00 PM.
+  - _establishes: Ashby at Mrs. Teague’s, 11:00 PM_
+- **c047** [observation] — on Marchetti Thorndike says Marchetti was at the Wyckoff from 6:00 PM to 8:00 PM.
+  - _establishes: Marchetti at the Wyckoff, 6:00 PM–8:00 PM; Marchetti could reach the weapon_
+- **c048** [observation] — on Marchetti Thorndike says Marchetti was at Mrs. Teague’s at 11:00 PM.
+  - _establishes: Marchetti at Mrs. Teague’s, 11:00 PM_
+- **c049** [observation] — on Kessler Thorndike says Kessler was at the Wyckoff at 10:30 PM.
+  - _establishes: Kessler at the Wyckoff, 10:30 PM; Kessler could reach the weapon_
+- **c050** [observation] — on Quill Thorndike says Quill was at the Wyckoff from 7:30 PM to 8:30 PM.
+  - _establishes: Quill at the Wyckoff, 7:30 PM–8:30 PM; Quill could reach the weapon_
+- **c051** [observation] — on Quill Thorndike says Quill was at the Wyckoff at 11:30 PM.
+  - _establishes: Quill at the Wyckoff, 11:30 PM_
+- **c052** [observation] — on Brauer Thorndike says Brauer was at the Wyckoff at 6:00 PM.
+  - _establishes: Brauer at the Wyckoff, 6:00 PM; Brauer could reach the weapon_
+- **c080** [observation] — on Marchetti’s account Thorndike was at the Wyckoff at 11:30 PM and says Marchetti was not.
+  - _establishes: Marchetti not at the Wyckoff, 11:30 PM_
+- **c083** [observation] — on Kessler’s account Thorndike was at the Wyckoff from 6:00 PM to 6:30 PM and says Kessler was not.
+  - _establishes: Kessler not at the Wyckoff, 6:00 PM–6:30 PM_
+- **c091** [observation] — on Grasso’s account Thorndike was at Mrs. Teague’s at 11:00 PM and says Grasso was not.
+  - _establishes: Grasso not at Mrs. Teague’s, 11:00 PM_
+- ★ **c111** [overheard] — on Ashby Thorndike on Ashby: Ashby sends money out of every pay envelope and cannot say where it goes.
+  - _establishes: context only_
+- **c132** [overheard] — on Brauer Thorndike on Brauer: Brauer’s registration card gives an address on a street that does not exist.
+  - _establishes: context only_
+- ★ **c140** [overheard] — on Grasso Thorndike on Grasso: There is a man who meets people at the garage and nobody will say his name out loud.
+  - _establishes: context only_
+
+## Zeldin
+
+- **c053** [observation] — on Ashby Zeldin says Ashby was at Mrs. Teague’s at 9:00 PM.
+  - _establishes: Ashby at Mrs. Teague’s, 9:00 PM_
+- ★ **c054** [observation] — on Ashby Zeldin says Ashby was at Mrs. Teague’s from 10:00 PM to 11:30 PM.
+  - _establishes: Ashby at Mrs. Teague’s, 10:00 PM–11:30 PM_
+- ★ **c055** [observation] — on Marchetti Zeldin says Marchetti was at Mrs. Teague’s from 11:00 PM to 11:30 PM.
+  - _establishes: Marchetti at Mrs. Teague’s, 11:00 PM–11:30 PM_
+- **c056** [observation] — on Kessler Zeldin says Kessler was at Mrs. Teague’s from 6:00 PM to 9:00 PM.
+  - _establishes: Kessler at Mrs. Teague’s, 6:00 PM–9:00 PM_
+- **c057** [observation] — on Grasso Zeldin says Grasso was at Mrs. Teague’s at 9:00 PM.
+  - _establishes: Grasso at Mrs. Teague’s, 9:00 PM_
+- **c084** [observation] — on Quill’s account Zeldin was at the garage at 9:30 PM and says Quill was not.
+  - _establishes: Quill not at the garage, 9:30 PM_
+- **c092** [observation] — on Grasso’s account Zeldin was at Mrs. Teague’s at 11:00 PM and says Grasso was not.
+  - _establishes: Grasso not at Mrs. Teague’s, 11:00 PM_
+- **c118** [overheard] — on Marchetti Zeldin on Marchetti: Marchetti had taken a drink and had gone to some trouble about the smell of it.
   - _establishes: context only_
 
 ## Salerno
 
-- ★ **c035** [observation] — on Bledsoe Salerno says Bledsoe was at the garage at 6:00 PM.
-  - _establishes: Bledsoe at the garage, 6:00 PM; Bledsoe could reach the weapon_
-- **c036** [observation] — on Bledsoe Salerno says Bledsoe was at the newsstand at 8:30 PM.
-  - _establishes: Bledsoe at the newsstand, 8:30 PM_
-- **c037** [observation] — on Dandridge Salerno says Dandridge was at the garage at 6:00 PM.
-  - _establishes: Dandridge at the garage, 6:00 PM; Dandridge could reach the weapon_
-- **c038** [observation] — on Thorndike Salerno says Thorndike was at the garage from 7:00 PM to 7:30 PM.
-  - _establishes: Thorndike at the garage, 7:00 PM–7:30 PM; Thorndike could reach the weapon_
-- **c039** [observation] — on Thorndike Salerno says Thorndike was at the El platform from 9:00 PM to 10:30 PM.
-  - _establishes: Thorndike at the El platform, 9:00 PM–10:30 PM_
-- **c083** [observation] — on Marchetti’s account Salerno was at the El platform at 9:30 PM and says Marchetti was not.
-  - _establishes: Marchetti not at the El platform, 9:30 PM_
-- **c088** [denial] — on Thorndike’s account Thorndike names Salerno as the company for it. Salerno was at the El platform from 9:30 PM to 10:00 PM, and says Thorndike was not there.
-  - _establishes: Thorndike not at the garage, 9:30 PM–10:00 PM_
-- **c092** [observation] — on Rafferty’s account Salerno was at the garage from 6:00 PM to 6:30 PM and says Rafferty was not.
-  - _establishes: Rafferty not at the garage, 6:00 PM–6:30 PM_
-
-## Rafferty
-
-- **c040** [observation] — on Kreuzer Rafferty says Kreuzer was at Mrs. Teague’s at 7:00 PM.
-  - _establishes: Kreuzer at Mrs. Teague’s, 7:00 PM_
-- **c041** [observation] — on Dandridge Rafferty says Dandridge was at the Wyckoff at 7:30 PM.
-  - _establishes: Dandridge at the Wyckoff, 7:30 PM_
-- **c042** [observation] — on Dandridge Rafferty says Dandridge was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Dandridge at Mrs. Teague’s, 8:00 PM_
-- **c043** [observation] — on Dandridge Rafferty says Dandridge was at the garage at 9:30 PM.
-  - _establishes: Dandridge at the garage, 9:30 PM_
-- **c044** [observation] — on Marchetti Rafferty says Marchetti was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Marchetti at Mrs. Teague’s, 8:00 PM_
-- ★ **c045** [observation] — on Thorndike Rafferty says Thorndike was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Thorndike at Mrs. Teague’s, 8:00 PM_
-- **c075** [observation] — on Bledsoe’s account Rafferty was at Mrs. Teague’s at 7:00 PM and says Bledsoe was not.
-  - _establishes: Bledsoe not at Mrs. Teague’s, 7:00 PM_
-- **c080** [observation] — on Dandridge’s account Rafferty was at the garage at 8:30 PM and says Dandridge was not.
-  - _establishes: Dandridge not at the garage, 8:30 PM_
-- **c086** [observation] — on Thorndike’s account Rafferty was at the garage from 9:30 PM to 10:00 PM and says Thorndike was not.
-  - _establishes: Thorndike not at the garage, 9:30 PM–10:00 PM_
-- **c113** [overheard] — on Dandridge Rafferty on Dandridge: Dandridge keeps a photograph and will not be asked about it twice.
+- **c058** [observation] — on Shapiro Salerno says Shapiro was at the newsstand from 6:30 PM to 8:00 PM.
+  - _establishes: Shapiro at the newsstand, 6:30 PM–8:00 PM_
+- **c059** [observation] — on Shapiro Salerno says Shapiro was at the newsstand at 10:30 PM.
+  - _establishes: Shapiro at the newsstand, 10:30 PM_
+- **c060** [observation] — on Ashby Salerno says Ashby was at the newsstand from 6:30 PM to 7:00 PM.
+  - _establishes: Ashby at the newsstand, 6:30 PM–7:00 PM_
+- **c061** [observation] — on Marchetti Salerno says Marchetti was at the newsstand from 8:30 PM to 9:30 PM.
+  - _establishes: Marchetti at the newsstand, 8:30 PM–9:30 PM_
+- **c062** [observation] — on Brauer Salerno says Brauer was at the newsstand from 7:00 PM to 7:30 PM.
+  - _establishes: Brauer at the newsstand, 7:00 PM–7:30 PM_
+- **c063** [observation] — on Grasso Salerno says Grasso was at the newsstand from 10:00 PM to 10:30 PM.
+  - _establishes: Grasso at the newsstand, 10:00 PM–10:30 PM_
+- **c097** [anchor] — on Shapiro that evening Salerno puts Shapiro at the newsstand when the last edition came up, which was 10:30 PM, and in no hurry to be anywhere.
+  - _establishes: the victim alive at 10:30 PM; Shapiro at the newsstand, 10:30 PM_
+- **c112** [overheard] — on Ashby Salerno on Ashby: A woman at Mrs. Teague’s asked for Ashby by a name Ashby has not used in years.
   - _establishes: context only_
-- **c134** [overheard] — on Salerno Rafferty on Salerno: Salerno goes very quiet when the racing wire is mentioned.
+- **c125** [overheard] — on Kessler Salerno on Kessler: Kessler had taken a drink and had gone to some trouble about the smell of it.
+  - _establishes: context only_
+- ★ **c133** [overheard] — on Brauer Salerno on Brauer: Two signatures of Brauer’s, a month apart, are in different hands.
+  - _establishes: context only_
+- **c141** [overheard] — on Grasso Salerno on Grasso: Grasso has been selling things that were never Grasso’s to sell.
   - _establishes: context only_
 
-## Feldman
+## Broadnax
 
-- **c046** [observation] — on Bledsoe Feldman says Bledsoe was at the Wyckoff from 10:30 PM to 11:30 PM.
-  - _establishes: Bledsoe at the Wyckoff, 10:30 PM–11:30 PM_
-- **c047** [observation] — on Dandridge Feldman says Dandridge was at the Wyckoff at 7:30 PM.
-  - _establishes: Dandridge at the Wyckoff, 7:30 PM_
-- **c048** [observation] — on Dandridge Feldman says Dandridge was at the Wyckoff from 10:00 PM to 10:30 PM.
-  - _establishes: Dandridge at the Wyckoff, 10:00 PM–10:30 PM_
-- **c049** [observation] — on Thorndike Feldman says Thorndike was at the Wyckoff at 6:00 PM.
-  - _establishes: Thorndike at the Wyckoff, 6:00 PM_
-- **c050** [observation] — on Thorndike Feldman says Thorndike was at the Wyckoff at 8:30 PM.
-  - _establishes: Thorndike at the Wyckoff, 8:30 PM_
-- **c051** [observation] — on Rafferty Feldman says Rafferty was at the Wyckoff at 7:30 PM.
-  - _establishes: Rafferty at the Wyckoff, 7:30 PM_
-- **c089** [observation] — on Salerno’s account Feldman was at the Wyckoff at 8:00 PM and says Salerno was not.
-  - _establishes: Salerno not at the Wyckoff, 8:00 PM_
-- ★ **c105** [overheard] — on Bledsoe and Kreuzer Feldman says Kreuzer said to Bledsoe that a man who testifies sleeps better.
-  - _establishes: Bledsoe had a motive (silence-a-witness)_
-- ★ **c125** [overheard] — on Thorndike Feldman on Thorndike: Thorndike was carrying a parcel into the El platform and came out without it.
-  - _establishes: context only_
-- **c140** [overheard] — on Rafferty Feldman on Rafferty: Rafferty is on a temperance pledge that Rafferty mentions before anybody asks.
-  - _establishes: context only_
-
-## Kessler
-
-- **c052** [observation] — on Kreuzer Kessler says Kreuzer was at Mrs. Teague’s at 7:00 PM.
-  - _establishes: Kreuzer at Mrs. Teague’s, 7:00 PM_
-- **c053** [observation] — on Dandridge Kessler says Dandridge was at Mrs. Teague’s from 8:00 PM to 8:30 PM.
-  - _establishes: Dandridge at Mrs. Teague’s, 8:00 PM–8:30 PM_
-- ★ **c054** [observation] — on Marchetti Kessler says Marchetti was at Mrs. Teague’s from 8:00 PM to 8:30 PM.
-  - _establishes: Marchetti at Mrs. Teague’s, 8:00 PM–8:30 PM_
-- **c055** [observation] — on Thorndike Kessler says Thorndike was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Thorndike at Mrs. Teague’s, 8:00 PM_
-- **c056** [observation] — on Rafferty Kessler says Rafferty was at Mrs. Teague’s from 6:00 PM to 7:00 PM.
-  - _establishes: Rafferty at Mrs. Teague’s, 6:00 PM–7:00 PM_
-- **c057** [observation] — on Rafferty Kessler says Rafferty was at Mrs. Teague’s at 8:00 PM.
-  - _establishes: Rafferty at Mrs. Teague’s, 8:00 PM_
-- **c076** [observation] — on Bledsoe’s account Kessler was at Mrs. Teague’s from 6:30 PM to 7:00 PM and says Bledsoe was not.
-  - _establishes: Bledsoe not at Mrs. Teague’s, 6:30 PM–7:00 PM_
-- **c118** [overheard] — on Marchetti Kessler on Marchetti: Marchetti was carrying a parcel into the newsstand and came out without it.
-  - _establishes: context only_
-
-## Steinbach
-
-- **c058** [observation] — on Kreuzer Steinbach says Kreuzer was at the newsstand at 7:30 PM.
-  - _establishes: Kreuzer at the newsstand, 7:30 PM_
-- **c059** [observation] — on Bledsoe Steinbach says Bledsoe was at the newsstand from 8:30 PM to 10:00 PM.
-  - _establishes: Bledsoe at the newsstand, 8:30 PM–10:00 PM_
-- **c060** [observation] — on Dandridge Steinbach says Dandridge was at the newsstand at 6:30 PM.
-  - _establishes: Dandridge at the newsstand, 6:30 PM_
-- **c061** [observation] — on Dandridge Steinbach says Dandridge was at the newsstand at 9:00 PM.
-  - _establishes: Dandridge at the newsstand, 9:00 PM_
-- **c062** [observation] — on Dandridge Steinbach says Dandridge was at the newsstand from 11:00 PM to 11:30 PM.
-  - _establishes: Dandridge at the newsstand, 11:00 PM–11:30 PM_
-- **c063** [observation] — on Marchetti Steinbach says Marchetti was at the newsstand at 6:30 PM.
-  - _establishes: Marchetti at the newsstand, 6:30 PM_
-- **c064** [observation] — on Marchetti Steinbach says Marchetti was at the newsstand at 7:30 PM.
-  - _establishes: Marchetti at the newsstand, 7:30 PM_
-- **c065** [observation] — on Marchetti Steinbach says Marchetti was at the newsstand from 9:30 PM to 11:30 PM.
-  - _establishes: Marchetti at the newsstand, 9:30 PM–11:30 PM_
-- **c066** [observation] — on Thorndike Steinbach says Thorndike was at the newsstand from 11:00 PM to 11:30 PM.
-  - _establishes: Thorndike at the newsstand, 11:00 PM–11:30 PM_
-- ★ **c067** [observation] — on Salerno Steinbach says Salerno was at the newsstand from 8:00 PM to 8:30 PM.
-  - _establishes: Salerno at the newsstand, 8:00 PM–8:30 PM_
-- ★ **c078** [observation] — on Bledsoe’s account Steinbach was at the newsstand from 7:30 PM to 8:00 PM and says Bledsoe was not.
-  - _establishes: Bledsoe not at the newsstand, 7:30 PM–8:00 PM_
-- ★ **c098** [anchor] — on Kreuzer that evening Steinbach puts Kreuzer at the newsstand when the last edition came up, which was 7:30 PM, and alive enough to argue about the weather.
-  - _establishes: the victim alive at 7:30 PM; Kreuzer at the newsstand, 7:30 PM_
-- ★ **c111** [overheard] — on Dandridge Steinbach on Dandridge: Dandridge sends money out of every pay envelope and cannot say where it goes.
-  - _establishes: context only_
-- ★ **c126** [overheard] — on Thorndike Steinbach on Thorndike: There is a man who meets people at the El platform and nobody will say his name out loud.
-  - _establishes: context only_
-- **c132** [overheard] — on Salerno Steinbach on Salerno: Salerno was asking around for a hundred dollars in a hurry earlier in the week.
-  - _establishes: context only_
-- **c141** [overheard] — on Rafferty Steinbach on Rafferty: Somebody at Mrs. Teague’s says Rafferty is in more often than Rafferty lets on.
-  - _establishes: context only_
-
-## Carbone
-
-- **c068** [observation] — on Bledsoe Carbone says Bledsoe was at the garage at 6:00 PM.
-  - _establishes: Bledsoe at the garage, 6:00 PM; Bledsoe could reach the weapon_
-- **c069** [observation] — on Dandridge Carbone says Dandridge was at the garage at 6:00 PM.
-  - _establishes: Dandridge at the garage, 6:00 PM; Dandridge could reach the weapon_
-- **c070** [observation] — on Dandridge Carbone says Dandridge was at the garage at 9:30 PM.
-  - _establishes: Dandridge at the garage, 9:30 PM_
-- ★ **c071** [observation] — on Thorndike Carbone says Thorndike was at the garage from 7:00 PM to 7:30 PM.
-  - _establishes: Thorndike at the garage, 7:00 PM–7:30 PM; Thorndike could reach the weapon_
-- **c072** [observation] — on Salerno Carbone says Salerno was at the garage from 6:00 PM to 7:30 PM.
-  - _establishes: Salerno at the garage, 6:00 PM–7:30 PM; Salerno could reach the weapon_
-- ★ **c073** [observation] — on Salerno Carbone says Salerno was at the newsstand at 8:00 PM.
-  - _establishes: Salerno at the newsstand, 8:00 PM_
-- **c074** [observation] — on Rafferty Carbone says Rafferty was at the garage from 8:30 PM to 11:30 PM.
-  - _establishes: Rafferty at the garage, 8:30 PM–11:30 PM_
-- ★ **c079** [observation] — on Bledsoe’s account Carbone was at the newsstand at 8:00 PM and says Bledsoe was not.
-  - _establishes: Bledsoe not at the newsstand, 8:00 PM_
-- **c081** [observation] — on Dandridge’s account Carbone was at the garage at 8:30 PM and says Dandridge was not.
-  - _establishes: Dandridge not at the garage, 8:30 PM_
-- **c087** [observation] — on Thorndike’s account Carbone was at the garage from 9:30 PM to 10:00 PM and says Thorndike was not.
-  - _establishes: Thorndike not at the garage, 9:30 PM–10:00 PM_
-- **c093** [observation] — on Rafferty’s account Carbone was at the garage from 6:00 PM to 6:30 PM and says Rafferty was not.
-  - _establishes: Rafferty not at the garage, 6:00 PM–6:30 PM_
-- **c109** [overheard] — on Rafferty and Kreuzer Carbone says Kreuzer told Rafferty the lawyer was coming Thursday and that the arrangement would be changed.
-  - _establishes: Rafferty had a motive (inheritance)_
-- ★ **c119** [overheard] — on Marchetti Carbone on Marchetti: There is a man who meets people at the newsstand and nobody will say his name out loud.
+- **c064** [observation] — on Shapiro Broadnax says Shapiro was at the garage at 6:00 PM.
+  - _establishes: Shapiro at the garage, 6:00 PM_
+- **c065** [observation] — on Shapiro Broadnax says Shapiro was at the garage from 8:30 PM to 9:00 PM.
+  - _establishes: Shapiro at the garage, 8:30 PM–9:00 PM_
+- **c066** [observation] — on Ashby Broadnax says Ashby was at the Wyckoff at 7:30 PM.
+  - _establishes: Ashby at the Wyckoff, 7:30 PM; Ashby could reach the weapon_
+- **c067** [observation] — on Marchetti Broadnax says Marchetti was at the Wyckoff at 7:30 PM.
+  - _establishes: Marchetti at the Wyckoff, 7:30 PM; Marchetti could reach the weapon_
+- **c068** [observation] — on Marchetti Broadnax says Marchetti was at the garage at 10:30 PM.
+  - _establishes: Marchetti at the garage, 10:30 PM_
+- **c069** [observation] — on Kessler Broadnax says Kessler was at the garage from 11:00 PM to 11:30 PM.
+  - _establishes: Kessler at the garage, 11:00 PM–11:30 PM_
+- **c070** [observation] — on Quill Broadnax says Quill was at the garage from 6:00 PM to 7:00 PM.
+  - _establishes: Quill at the garage, 6:00 PM–7:00 PM_
+- **c071** [observation] — on Quill Broadnax says Quill was at the garage at 9:00 PM.
+  - _establishes: Quill at the garage, 9:00 PM_
+- **c072** [observation] — on Quill Broadnax says Quill was at the Wyckoff at 7:30 PM.
+  - _establishes: Quill at the Wyckoff, 7:30 PM; Quill could reach the weapon_
+- **c073** [observation] — on Brauer Broadnax says Brauer was at the garage from 8:00 PM to 9:00 PM.
+  - _establishes: Brauer at the garage, 8:00 PM–9:00 PM_
+- **c074** [observation] — on Brauer Broadnax says Brauer was at the garage from 10:00 PM to 11:30 PM.
+  - _establishes: Brauer at the garage, 10:00 PM–11:30 PM_
+- **c075** [observation] — on Grasso Broadnax says Grasso was at the garage from 6:00 PM to 7:00 PM.
+  - _establishes: Grasso at the garage, 6:00 PM–7:00 PM_
+- **c076** [observation] — on Grasso Broadnax says Grasso was at the garage from 8:00 PM to 8:30 PM.
+  - _establishes: Grasso at the garage, 8:00 PM–8:30 PM_
+- **c077** [observation] — on Grasso Broadnax says Grasso was at the garage at 11:00 PM.
+  - _establishes: Grasso at the garage, 11:00 PM_
+- **c085** [observation] — on Quill’s account Broadnax was at the garage from 9:30 PM to 10:00 PM and says Quill was not.
+  - _establishes: Quill not at the garage, 9:30 PM–10:00 PM_
+- ★ **c090** [observation] — on Quill’s account Broadnax was at the garage from 10:30 PM to 11:00 PM and says Quill was not.
+  - _establishes: Quill not at the garage, 10:30 PM–11:00 PM_
+- **c100** [anchor] — on the noise that evening Broadnax was at the garage at 11:00 PM and heard the street door going, and nobody coming back through it from the direction of the suite, just as the singing stopped.
+  - _establishes: noise at the suite at 11:00 PM; the victim dead by 11:00 PM; how it was done_
+- ★ **c119** [overheard] — on Marchetti Broadnax on Marchetti: Marchetti is on a temperance pledge that Marchetti mentions before anybody asks.
   - _establishes: context only_
 
 ## the suite (the place itself)
 
-- ★ **c094** [scene] Kreuzer was found at the suite. The tap was left running and the basin had overflowed a clean ring onto the boards. The singing under the window stopped at 8:00 PM, when the shoe came down.
-  - _establishes: the victim dead by 8:00 PM; how it was done_
-- ★ **c095** [morgue] The coroner puts death between 6:30 PM and 8:00 PM — two hours of nothing useful. A single narrow puncture under the ribs. Very little blood outside the body.
-  - _establishes: death between 6:30 PM and 8:00 PM; how it was done_
-- **c106** [document] Found at the suite: A promissory note for $4,000 signed by Thorndike, endorsed to Kreuzer, three months past due.
-  - _establishes: Thorndike had a motive (debt)_
-- **c108** [document] Found at the suite: A draft codicil in Kreuzer’s hand striking Rafferty out of the will, dated last Tuesday and unsigned.
-  - _establishes: Rafferty had a motive (inheritance)_
+- ★ **c093** [scene] Shapiro is not at the suite and has not been since that evening. The lamp was left burning and the door was left on the latch. The singing under the window stopped at 11:00 PM, when the shoe came down.
+  - _establishes: the victim dead by 11:00 PM; how it was done_
+- ★ **c094** [morgue] Nobody can put it closer than between 9:30 PM and 11:00 PM, which is two hours of nothing useful. The precinct came, looked at the room, and said to wait a day or two.
+  - _establishes: death between 9:30 PM and 11:00 PM; how it was done_
+- ★ **c108** [document] Found at the suite: A lease assignment made out in Quill’s name, waiting only on Shapiro’s signature.
+  - _establishes: Quill had a motive (property)_
 
-## the garage (the place itself)
+## the Wyckoff (the place itself)
 
-- ★ **c096** [physical] An ice pick is gone from the garage. The block is out and half melted and the pick that belongs with it is gone.
-  - _establishes: something gone from the garage; how it was done_
-- **c102** [anchor] The shift change at the garage was at 11:00 PM, and Rafferty was at the garage for it.
-  - _establishes: Rafferty at the garage, 11:00 PM_
-- **c103** [physical] Rafferty still carries it: cylinder oil on a cuff. The shift change at the garage was at 11:00 PM, at the garage.
-  - _establishes: Rafferty at the garage, 11:00 PM_
+- **c095** [physical] A camel-hair overcoat on a hook is gone from the Wyckoff. The camel-hair coat is off its hook and the hook is the only empty one.
+  - _establishes: something gone from the Wyckoff; how it was done_
 
 ## the newsstand (the place itself)
 
-- **c099** [anchor] The last edition coming off the truck was at 7:30 PM, and Marchetti was at the newsstand for it.
-  - _establishes: Marchetti at the newsstand, 7:30 PM_
-- **c101** [physical] Marchetti still carries it: ink still wet enough to come off on a glove. The last edition coming off the truck was at 7:30 PM, at the newsstand.
-  - _establishes: Marchetti at the newsstand, 7:30 PM_
-- **c104** [document] Found at the newsstand: A subpoena naming Kreuzer before the grand jury, with Bledsoe’s name written in the margin.
-  - _establishes: Bledsoe had a motive (silence-a-witness)_
-- ★ **c121** [physical] Wrapping paper and a cut string at the newsstand, and the shop it came from closed two years ago.
+- **c101** [anchor] The last edition coming off the truck was at 10:30 PM, and Grasso was at the newsstand for it.
+  - _establishes: Grasso at the newsstand, 10:30 PM_
+- **c102** [physical] Grasso still carries it: ink still wet enough to come off on a glove. The last edition coming off the truck was at 10:30 PM, at the newsstand.
+  - _establishes: Grasso at the newsstand, 10:30 PM_
+
+## the garage (the place itself)
+
+- **c103** [anchor] The shift change at the garage was at 10:00 PM, and Brauer was at the garage for it.
+  - _establishes: Brauer at the garage, 10:00 PM_
+- **c105** [physical] Brauer still carries it: cylinder oil on a cuff. The shift change at the garage was at 10:00 PM, at the garage.
+  - _establishes: Brauer at the garage, 10:00 PM_
+- **c135** [physical] A union card in Brauer’s coat lining carries a different surname and a 1919 date.
   - _establishes: context only_
-- **c122** [physical] A pawn ticket at the newsstand in a name that does not exist, made out at the hour in question.
+- ★ **c136** [physical] A steamship ticket stub among Brauer’s things, in the name of a man who died at Belleau Wood.
   - _establishes: context only_
-- ★ **c123** [overheard] The receiver at the newsstand would rather talk than be held: Marchetti was there from 9:30 PM handing over a parcel of somebody else’s silver, which is a charge Marchetti will take over this one.
-  - _establishes: Marchetti’s fence accounted for; Marchetti at the newsstand, 9:30 PM_
-- **c124** [overheard] The goods turn up, tagged and dated, and the tag puts Marchetti at the newsstand from 9:30 PM with both hands full.
-  - _establishes: Marchetti’s fence accounted for; Marchetti at the newsstand, 9:30 PM_
-- **c135** [physical] Betting slips at the newsstand in Salerno’s pocketbook, all of them losers, all of them this month.
+- ★ **c137** [overheard] The name Brauer was born with turns up on a desertion warrant from 1918. Brauer has been hiding from the Army for eleven years and from nobody else.
+  - _establishes: Brauer’s forged-identity accounted for_
+- **c138** [overheard] The papers are forged and the reason is plain: Brauer was put out of the country once already and does not mean to be put out twice.
+  - _establishes: Brauer’s forged-identity accounted for_
+- ★ **c142** [physical] Wrapping paper and a cut string at the garage, and the shop it came from closed two years ago.
   - _establishes: context only_
-- **c136** [physical] A book of markers at the newsstand with Salerno’s initials against four of them.
+- **c143** [physical] A pawn ticket at the garage in a name that does not exist, made out at the hour in question.
   - _establishes: context only_
-- **c137** [overheard] The bookmaker’s runner is found and will say it: Salerno was at the newsstand from 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.
-  - _establishes: Salerno’s gambling-debt accounted for; Salerno at the newsstand, 8:00 PM_
-- **c138** [overheard] The book at the newsstand has the payment entered against Salerno’s name and the time beside it, from 8:00 PM, in the clerk’s own hand.
-  - _establishes: Salerno’s gambling-debt accounted for; Salerno at the newsstand, 8:00 PM_
+- ★ **c144** [overheard] The receiver at the garage would rather talk than be held: Grasso was there from 11:00 PM handing over a parcel of somebody else’s silver, which is a charge Grasso will take over this one.
+  - _establishes: Grasso’s fence accounted for; Grasso at the garage, 11:00 PM_
+- **c145** [overheard] The goods turn up, tagged and dated, and the tag puts Grasso at the garage from 11:00 PM with both hands full.
+  - _establishes: Grasso’s fence accounted for; Grasso at the garage, 11:00 PM_
+
+## the El platform (the place itself)
+
+- **c106** [document] Found at the El platform: A typed page of dates and sums in Shapiro’s file, headed with Kessler’s name.
+  - _establishes: Kessler had a motive (exposure)_
+- ★ **t001** [document] A pawn ticket written at the El platform at 11:30 PM, for a ring, in a hand that matches the rent book Shapiro signs.
+  - _establishes: Shapiro at the El platform, 11:30 PM_
 
 ## Mrs. Teague’s (the place itself)
 
@@ -313,42 +323,42 @@
   - _establishes: context only_
 - **c115** [physical] A child’s shoe at Mrs. Teague’s, and nobody at Mrs. Teague’s has any children.
   - _establishes: context only_
-- ★ **c116** [overheard] The woman who keeps the child says it straight out: Dandridge was at Mrs. Teague’s from 8:00 PM to 8:30 PM, the same as every week, and left with the same face as always.
-  - _establishes: Dandridge’s hidden-family accounted for; Dandridge at Mrs. Teague’s, 8:00 PM–8:30 PM_
-- ★ **c117** [overheard] The parish register at Mrs. Teague’s has the christening in it, and the board money receipted through the evening in question.
-  - _establishes: Dandridge’s hidden-family accounted for; Dandridge at Mrs. Teague’s, 8:00 PM–8:30 PM_
-- ★ **c142** [physical] A bottle at Mrs. Teague’s pushed behind the pipes, the seal broken and the level down.
+- ★ **c116** [overheard] The woman who keeps the child says it straight out: Ashby was at Mrs. Teague’s from 11:00 PM to 11:30 PM, the same as every week, and left with the same face as always.
+  - _establishes: Ashby’s hidden-family accounted for; Ashby at Mrs. Teague’s, 11:00 PM–11:30 PM_
+- **c117** [overheard] The parish register at Mrs. Teague’s has the christening in it, and the board money receipted through the evening in question.
+  - _establishes: Ashby’s hidden-family accounted for; Ashby at Mrs. Teague’s, 11:00 PM–11:30 PM_
+- ★ **c121** [physical] A bottle at Mrs. Teague’s pushed behind the pipes, the seal broken and the level down.
   - _establishes: context only_
-- ★ **c143** [physical] A tab at Mrs. Teague’s in a name that is not Rafferty’s, in Rafferty’s handwriting.
+- **c122** [physical] A tab at Mrs. Teague’s in a name that is not Marchetti’s, in Marchetti’s handwriting.
   - _establishes: context only_
-- ★ **c144** [overheard] The man behind the counter at Mrs. Teague’s knows exactly: Rafferty was on the same stool from 6:00 PM to 6:30 PM and was in no condition to walk anywhere, let alone do this.
-  - _establishes: Rafferty’s secret-drinking accounted for; Rafferty at Mrs. Teague’s, 6:00 PM–6:30 PM_
-- **c145** [overheard] The tab at Mrs. Teague’s is dated and timed, from 6:00 PM to 6:30 PM, and Rafferty was there to run it up.
-  - _establishes: Rafferty’s secret-drinking accounted for; Rafferty at Mrs. Teague’s, 6:00 PM–6:30 PM_
-
-## the El platform (the place itself)
-
-- **c128** [physical] Wrapping paper and a cut string at the El platform, and the shop it came from closed two years ago.
+- ★ **c123** [overheard] The man behind the counter at Mrs. Teague’s knows exactly: Marchetti was on the same stool from 11:00 PM to 11:30 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Marchetti’s secret-drinking accounted for; Marchetti at Mrs. Teague’s, 11:00 PM–11:30 PM_
+- ★ **c124** [overheard] The tab at Mrs. Teague’s is dated and timed, from 11:00 PM to 11:30 PM, and Marchetti was there to run it up.
+  - _establishes: Marchetti’s secret-drinking accounted for; Marchetti at Mrs. Teague’s, 11:00 PM–11:30 PM_
+- **c128** [physical] A bottle at Mrs. Teague’s pushed behind the pipes, the seal broken and the level down.
   - _establishes: context only_
-- **c129** [physical] A pawn ticket at the El platform in a name that does not exist, made out at the hour in question.
+- **c129** [physical] A tab at Mrs. Teague’s in a name that is not Kessler’s, in Kessler’s handwriting.
   - _establishes: context only_
-- ★ **c130** [overheard] The receiver at the El platform would rather talk than be held: Thorndike was there from 9:30 PM to 10:00 PM handing over a parcel of somebody else’s silver, which is a charge Thorndike will take over this one.
-  - _establishes: Thorndike’s fence accounted for; Thorndike at the El platform, 9:30 PM–10:00 PM_
-- **c131** [overheard] The goods turn up, tagged and dated, and the tag puts Thorndike at the El platform from 9:30 PM to 10:00 PM with both hands full.
-  - _establishes: Thorndike’s fence accounted for; Thorndike at the El platform, 9:30 PM–10:00 PM_
+- **c130** [overheard] The man behind the counter at Mrs. Teague’s knows exactly: Kessler was on the same stool from 6:00 PM to 6:30 PM and was in no condition to walk anywhere, let alone do this.
+  - _establishes: Kessler’s secret-drinking accounted for; Kessler at Mrs. Teague’s, 6:00 PM–6:30 PM_
+- **c131** [overheard] The tab at Mrs. Teague’s is dated and timed, from 6:00 PM to 6:30 PM, and Kessler was there to run it up.
+  - _establishes: Kessler’s secret-drinking accounted for; Kessler at Mrs. Teague’s, 6:00 PM–6:30 PM_
 
 ## Withheld observations
 
-- ~~Rafferty saw Kessler at Mrs. Teague’s, 6:00 PM, 6:30 PM~~ — lying about that time, will not say.
-- ~~Bledsoe saw Kreuzer at the El platform, 6:30 PM~~ — lying about that time, will not say.
-- ~~Bledsoe saw Kreuzer at the suite, 8:00 PM~~ — lying about that time, will not say.
-- ~~Dandridge saw Marchetti at Mrs. Teague’s, 8:00 PM, 8:30 PM~~ — lying about that time, will not say.
-- ~~Dandridge saw Thorndike at Mrs. Teague’s, 8:00 PM~~ — lying about that time, will not say.
-- ~~Dandridge saw Rafferty at Mrs. Teague’s, 8:00 PM~~ — lying about that time, will not say.
-- ~~Dandridge saw Kessler at Mrs. Teague’s, 8:00 PM, 8:30 PM~~ — lying about that time, will not say.
-- ~~Salerno saw Steinbach at the newsstand, 8:00 PM~~ — lying about that time, will not say.
-- ~~Salerno saw Carbone at the newsstand, 8:00 PM~~ — lying about that time, will not say.
-- ~~Marchetti saw Bledsoe at the newsstand, 9:30 PM~~ — lying about that time, will not say.
-- ~~Marchetti saw Steinbach at the newsstand, 9:30 PM~~ — lying about that time, will not say.
-- ~~Thorndike saw Salerno at the El platform, 9:30 PM, 10:00 PM~~ — lying about that time, will not say.
+- ~~Kessler saw Zeldin at Mrs. Teague’s, 6:00 PM, 6:30 PM~~ — lying about that time, will not say.
+- ~~Quill saw Shapiro at the El platform, 9:30 PM, 10:00 PM~~ — lying about that time, will not say.
+- ~~Quill saw Brauer at the El platform, 9:30 PM~~ — lying about that time, will not say.
+- ~~Quill saw Marchetti at the El platform, 10:00 PM~~ — lying about that time, will not say.
+- ~~Quill saw Kessler at the El platform, 10:00 PM~~ — lying about that time, will not say.
+- ~~Ashby saw Marchetti at Mrs. Teague’s, 11:00 PM, 11:30 PM~~ — lying about that time, will not say.
+- ~~Ashby saw Thorndike at Mrs. Teague’s, 11:00 PM~~ — lying about that time, will not say.
+- ~~Ashby saw Zeldin at Mrs. Teague’s, 11:00 PM, 11:30 PM~~ — lying about that time, will not say.
+- ~~Marchetti saw Ashby at Mrs. Teague’s, 11:00 PM, 11:30 PM~~ — lying about that time, will not say.
+- ~~Marchetti saw Thorndike at Mrs. Teague’s, 11:00 PM~~ — lying about that time, will not say.
+- ~~Marchetti saw Zeldin at Mrs. Teague’s, 11:00 PM, 11:30 PM~~ — lying about that time, will not say.
+- ~~Quill saw Shapiro at the suite, 11:00 PM~~ — lying about that time, will not say.
+- ~~Grasso saw Kessler at the garage, 11:00 PM~~ — lying about that time, will not say.
+- ~~Grasso saw Brauer at the garage, 11:00 PM~~ — lying about that time, will not say.
+- ~~Grasso saw Broadnax at the garage, 11:00 PM~~ — lying about that time, will not say.
 
