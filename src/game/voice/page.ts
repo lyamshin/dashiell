@@ -552,7 +552,23 @@ interface Laid {
   imageN: number;
   /** This block has the page's one simile attached to it and cannot be cut. */
   hosts?: boolean;
+  /**
+   * Which paragraph this line belongs to (the golden loop, §2's joiners).
+   *
+   * A block is not a paragraph. The engine wrote one paragraph per `say`,
+   * which is how a page of twelve blocks became twelve paragraphs of twenty
+   * words, each opening on a subject the one before it had never mentioned —
+   * the disjointedness GAP.md measures as paragraph cohesion. The golden
+   * writes the walk and the room it ends in as one paragraph, the entrance and
+   * the portrait and what she is as another, and each find with the fact that
+   * rode along on it as a third. Adjacent blocks carrying the same tag are
+   * joined at the end of assembly, while the paragraph stays a paragraph.
+   */
+  para?: string;
 }
+
+/** The longest a fused paragraph may get. Past this it is a wall, not a scene. */
+export const PARAGRAPH_CEILING = 55;
 
 interface SayOpts {
   clueId?: Id;
@@ -577,6 +593,8 @@ interface SayOpts {
    * is how the plain register would quietly undo M4b's closeness.
    */
   transparent?: boolean;
+  /** Which paragraph this line joins. See `Laid.para`. */
+  para?: string;
 }
 
 export function composePage(stage: Stage, scene: Scene): Composed {
@@ -669,13 +687,14 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       keep: opts.keep ?? 1,
       plainN: sentences - imageN,
       imageN,
+      ...(opts.para === undefined ? {} : { para: opts.para }),
     });
     for (const m of motifs) if (!usedMotifs.includes(m)) usedMotifs.push(m);
     if (opts.transparent !== true) ctx.before = motifs;
   };
   // A block the engine wrote out of the case's own fields: the roll of who is
   // in the room, a claimed timeline, a note. Plain by construction.
-  const put = (block: Block): void => {
+  const put = (block: Block, para?: string): void => {
     laid.push({
       block,
       image: false,
@@ -685,28 +704,33 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       keep: 9,
       plainN: plainSentencesIn(block),
       imageN: 0,
+      ...(para === undefined ? {} : { para }),
     });
   };
 
   /* ------------------------------------------ §1 and §3: the plain register */
   // One connective at a time, and never the same shape twice running.
   let lastConnective: string | null = null;
-  const plainly = (kind: Parameters<typeof connective>[1], plainSlots: Slots = {}): void => {
+  const plainly = (
+    kind: Parameters<typeof connective>[1],
+    plainSlots: Slots = {},
+    para?: string,
+  ): void => {
     const line = connective(dealer.random, kind, plainSlots, lastConnective);
     if (line.length === 0) return;
     lastConnective = line;
-    say(line, 'narrator', { transparent: true });
+    say(line, 'narrator', { transparent: true, ...(para === undefined ? {} : { para }) });
   };
   // Layer 0, the moment somebody is in front of him: what a longshoreman's
   // hands and a chambermaid's uniform say before anybody opens their mouth.
-  const onSight = (person: Person): void => {
+  const onSight = (person: Person, para?: string): void => {
     if (stage.met.includes(person.id) || person.kind === 'victim') return;
     // A page already at its length says the fact and stops; the dossier is in
     // the notebook either way, and a room with ten things in it is long enough.
     if (words(blocksOf(laid)) > WORD_TARGET_HIGH) return;
     const line = onSightSentence(person);
     if (line.length === 0) return;
-    say(line, 'narrator', { transparent: true });
+    say(line, 'narrator', { transparent: true, ...(para === undefined ? {} : { para }) });
   };
   // §3: a layer-2 fact rides along with the observation or the overheard line
   // that was about that person, one fact a clue, and is set down plainly after
@@ -718,7 +742,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     selfTold: stage.selfTold,
     gossip: stage.gossip,
   };
-  const rideAlong = (clue: Clue): void => {
+  const rideAlong = (clue: Clue, para?: string): void => {
     if (layerOfClue(clue) !== 2) return;
     if (words(blocksOf(laid)) > WORD_TARGET_HIGH) return;
     const about = clueAbout(clue);
@@ -730,7 +754,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const next = layerSentences(person, 2)[known.layer2.length + used];
     if (next === undefined) return;
     ridden.set(about, used + 1);
-    say(next, 'narrator', { transparent: true });
+    say(next, 'narrator', { transparent: true, ...(para === undefined ? {} : { para }) });
   };
 
   /* --------------------------------------------- §B.2.4: the client leaves */
@@ -755,6 +779,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     say(drawn?.text ?? dealer.random.pick(PLAIN_TRANSITIONS), 'transition', {
       motifs: drawn?.motifs,
       score: drawn?.score,
+      para: 'walk',
     });
   }
 
@@ -788,30 +813,33 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       say(arrival?.text ?? plainArrival(dealer, place?.shortName), 'arrival', {
         motifs: arrival?.motifs,
         score: arrival?.score,
+        para: 'walk',
       });
-      plainly('arriving', { place: place?.shortName });
+      plainly('arriving', { place: place?.shortName }, 'walk');
     }
     if (!stage.describedPlaces.includes(stage.at)) {
       const card = placeCard(dealer, view, stage.at, ctx);
       say(card?.text ?? plainArrival(dealer, place?.shortName), 'place', {
         motifs: card?.motifs,
         score: card?.score,
+        para: 'walk',
       });
     } else if (scene.kind === 'look') {
-      say(plainArrival(dealer, place?.shortName), 'narrator');
+      say(plainArrival(dealer, place?.shortName), 'narrator', { para: 'walk' });
     }
     put(presenceBlock(stage));
     if (stage.here.length > 0) {
-      plainly('present', {
-        name: (stage.here[0] as Person).surname,
-        place: place?.shortName,
-      });
+      plainly(
+        'present',
+        { name: (stage.here[0] as Person).surname, place: place?.shortName },
+        'room',
+      );
     } else if (scene.kind === 'look') {
       // An empty room the detective walked into says so once, in the presence
       // roll; an empty room he came back to gets the half hour he spent in it.
-      plainly('quiet');
+      plainly('quiet', {}, 'room');
     }
-    for (const person of stage.here.slice(0, 2)) onSight(person);
+    for (const person of stage.here.slice(0, 2)) onSight(person, 'room');
     // §A.1: the portraits are image-bearing and the budget is about to be
     // spent, so only as many as the page can afford are even drawn.
     for (const person of stage.here.slice(0, 2)) {
@@ -829,7 +857,12 @@ export function composePage(stage: Stage, scene: Scene): Composed {
           nth: stage.pageIndex,
         }),
         'presence',
-        { motifs: portrait?.motifs, personId: person.id, score: sharedWith(portrait?.motifs, motifSet) },
+        {
+          motifs: portrait?.motifs,
+          personId: person.id,
+          score: sharedWith(portrait?.motifs, motifSet),
+          para: 'room',
+        },
       );
       appeared.push(person.id);
       if (!seen) portrayed.push(person.id);
@@ -838,13 +871,17 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
   /* ---------------------------------------------- first sight of the scene */
   if (scene.kind === 'travel' && scene.openingClues && scene.openingClues.length > 0) {
-    put({ kind: 'note', text: openingNote(view, stage.at) });
+    const firstOpening = scene.openingClues[0];
+    // The note says what room this is; the first thing found in it says what
+    // is in the room. One paragraph, the way the golden writes a room.
+    put({ kind: 'note', text: openingNote(view, stage.at) }, `find-${firstOpening?.id ?? 'note'}`);
     for (const clue of scene.openingClues) {
       const line = findLine(dealer, view, clue, stage.at, base, ctx);
       say(line.text, 'find', {
         clueId: clue.id,
         motifs: line.motifs,
         score: line.score,
+        para: `find-${clue.id}`,
         ...(line.imageSentences === undefined ? {} : { imageSentences: line.imageSentences }),
       });
     }
@@ -925,9 +962,10 @@ export function composePage(stage: Stage, scene: Scene): Composed {
           score: sharedWith(cast.portraits[scene.personId]?.motifs, motifSet),
           // A page whose whole business is this person keeps their portrait.
           keep: 2,
+          para: 'approach',
         },
       );
-      onSight(person);
+      onSight(person, 'approach');
       if (scene.free) {
         put({ kind: 'note', text: 'No charge on this one. There never is, the first time.' });
       }
@@ -1067,13 +1105,14 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         clueId: clue.id,
         motifs: line.motifs,
         score: line.score,
+        para: `find-${clue.id}`,
         ...(line.imageSentences === undefined ? {} : { imageSentences: line.imageSentences }),
       });
-      rideAlong(clue);
+      rideAlong(clue, `find-${clue.id}`);
     }
     if (scene.clues.length === 0) {
-      say(nothingLeft(dealer, place?.shortName), 'nothing');
-      plainly('quiet');
+      say(nothingLeft(dealer, place?.shortName), 'nothing', { para: 'empty' });
+      plainly('quiet', {}, 'empty');
     }
   }
 
@@ -1110,7 +1149,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       // §A.6: the first thought may open on the prop the line before named.
       const glue = i === 0 && !carried ? carryNoun(dealer, ctx.before) : null;
       if (glue) carried = true;
-      say(glue ? joinSentences(glue, line) : line, 'monologue');
+      say(glue ? joinSentences(glue, line) : line, 'monologue', { para: 'think' });
       said++;
     }
     // A narrowing line the page dropped for length was never said, so the run
@@ -1147,6 +1186,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       motifs: ambient.motifs,
       score: ambient.score,
       keep: 0,
+      para: 'think',
     });
     return true;
   };
@@ -1274,7 +1314,8 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       const kind: ConnectiveKind =
         topUps === 0 && stage.here.length > 0 ? 'present' : topUps === 1 ? 'arriving' : 'quiet';
       topUps++;
-      plainly(kind, topUpSlots);
+      // One coda, not three one-line paragraphs at the foot of a thin page.
+      plainly(kind, topUpSlots, 'coda');
       return laid.length > before;
     },
     () => words(blocksOf(laid)) < WORD_TARGET_HIGH,
@@ -1284,6 +1325,14 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   for (const deck of dealer.takeReshuffles()) {
     gaps.push(`deck-exhausted: ${deck} came round again inside one run`);
   }
+
+  // §A.2's coherence number is measured on the image blocks as they were
+  // dealt, before the joiners below fuse any of them into a neighbour: the
+  // adjacency it scores is line to line, and a paragraph break is not a line.
+  const imageMotifs = laid.filter((l) => l.image).map((l) => l.motifs);
+
+  /* ------------------------------------------ the golden loop §2: joiners */
+  fuseParagraphs(laid);
 
   const counted = countsOf(laid);
   return {
@@ -1295,7 +1344,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     theory: reaction.theory,
     simileTarget,
     motifs: usedMotifs,
-    imageMotifs: laid.filter((l) => l.image).map((l) => l.motifs),
+    imageMotifs,
     plain: counted.plain,
     image: counted.image,
   };
@@ -1307,6 +1356,69 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
 function blocksOf(laid: Laid[]): Block[] {
   return laid.map((l) => l.block);
+}
+
+/* ------------------------------------------------------------------ *
+ * The golden loop, §2 — joiners.
+ * ------------------------------------------------------------------ */
+
+/**
+ * Fuse adjacent blocks that were tagged as belonging to the same paragraph.
+ *
+ * A block is a thing the engine had to say; a paragraph is a thing a reader
+ * reads. M4b made every `say` its own paragraph, which is why a page of twelve
+ * blocks came out as twelve paragraphs of twenty words, every one of them
+ * opening on a subject the paragraph before it had never mentioned. The golden
+ * writes the walk and the room it ends in as one paragraph, the entrance and
+ * the portrait and what she is as another, and a find with the fact that rode
+ * along on it as a third.
+ *
+ * Only prose and notes fuse, and only while the result stays under
+ * `PARAGRAPH_CEILING` words — a paragraph that runs past that is a wall, and
+ * the golden's longest is sixty-three. Two blocks that each carry a clue never
+ * fuse, because a block carries one `clueId` and the book underlines by it, so
+ * fusing would lose one. The fused block keeps the first block's kind, voice
+ * and clue, and the counts of both.
+ */
+export function fuseParagraphs(laid: Laid[], ceiling = PARAGRAPH_CEILING): number {
+  let fused = 0;
+  for (let i = laid.length - 1; i > 0; i--) {
+    const here = laid[i] as Laid;
+    const before = laid[i - 1] as Laid;
+    if (here.para === undefined || here.para !== before.para) continue;
+    const a = before.block;
+    const b = here.block;
+    if (a.kind !== 'prose' && a.kind !== 'note') continue;
+    if (b.kind !== 'prose' && b.kind !== 'note') continue;
+    if (a.kind === 'prose' && b.kind === 'prose' && a.clueId !== undefined && b.clueId !== undefined)
+      continue;
+    const text = joinSentences(a.text, b.text);
+    if (countWords([{ kind: 'note', text }]) > ceiling) continue;
+    const clueId = a.kind === 'prose' ? a.clueId : undefined;
+    const keptClue = clueId ?? (b.kind === 'prose' ? b.clueId : undefined);
+    // §A.3 binds a simile to the *voice* of the block it is a clause of — a
+    // face simile is only ever on a portrait — so the paragraph a portrait was
+    // fused into keeps the portrait's voice rather than its neighbour's.
+    const first = a.kind === 'prose' ? a : b.kind === 'prose' ? b : null;
+    const second = b.kind === 'prose' ? b : null;
+    const voice =
+      here.hosts === true && second ? second.voice : first ? first.voice : null;
+    before.block =
+      voice === null
+        ? { kind: 'note', text }
+        : { kind: 'prose', text, voice, ...(keptClue === undefined ? {} : { clueId: keptClue }) };
+    before.plainN += here.plainN;
+    before.imageN += here.imageN;
+    before.image = before.image || here.image;
+    // The paragraph now carries the simile, so a later fusion into it keeps
+    // the voice §A.3 bound the simile to.
+    if (here.hosts === true) before.hosts = true;
+    before.keep = Math.max(before.keep, here.keep);
+    for (const m of here.motifs) if (!before.motifs.includes(m)) before.motifs.push(m);
+    laid.splice(i, 1);
+    fused++;
+  }
+  return fused;
 }
 
 /**
@@ -1652,7 +1764,7 @@ export function askSlots(
 
 interface OpenTools {
   say: (text: string, voice: ProseVoice, opts?: SayOpts) => void;
-  put: (block: Block) => void;
+  put: (block: Block, para?: string) => void;
   base: Slots;
   ctx: MotifContext & { before: string[] };
   gaps: string[];
@@ -1683,15 +1795,25 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   const retainer = retainerFor(klass);
   const slots: Slots = { ...t.base, name: client.surname, subject: client.surname, retainer };
 
-  t.put({
-    kind: 'note',
-    text: `Midnight. ${capitalize(place?.name ?? 'the office')}, ${view.kase.neighborhood}.`,
-  });
+  t.put(
+    {
+      kind: 'note',
+      text: `Midnight. ${capitalize(place?.name ?? 'the office')}, ${view.kase.neighborhood}.`,
+    },
+    // The golden's first paragraph is the hour, the address and what the room
+    // is like at that hour, in one breath. So is this one.
+    'office',
+  );
 
   /* 1. The office at this hour. */
   const office = officeCard(dealer, cast.roll.circumstance, cast.roll.weather, slots, t.ctx);
   if (office.gap) t.gaps.push(office.gap);
-  t.say(office.text, 'place', { motifs: office.motifs, score: office.score, keep: 2 });
+  t.say(office.text, 'place', {
+    motifs: office.motifs,
+    score: office.score,
+    keep: 2,
+    para: 'office',
+  });
 
   /* 2. The entrance, with the client's portrait woven into it (§A.4). */
   const entrance = entranceCard(
@@ -1717,6 +1839,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     motifs: [...entrance.motifs, ...(cast.portraits[client.id]?.motifs ?? [])],
     score: entrance.score,
     keep: 2,
+    para: 'entrance',
   });
 
   /* 3. The briefing (M5 §2, turned into an exchange by the golden loop §3).
@@ -1731,7 +1854,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    */
   const split = splitBriefing(view, familiar);
   const seen = [...(split.entrance ? [split.entrance] : []), ...split.narration];
-  if (seen.length > 0) t.say(seen.join(' '), 'narrator', { transparent: true });
+  if (seen.length > 0) t.say(seen.join(' '), 'narrator', { transparent: true, para: 'entrance' });
 
   const victim = view.victim;
   const askSlots: Slots = {
@@ -1744,7 +1867,10 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   };
   // She gets into the chair before she starts: two flat sentences of business,
   // which is the shortest thing on the page and the page is starving for it.
-  t.say(pickShape(dealer.random, BRIEFING_SETTLE, plainSlots), 'narrator', { transparent: true });
+  t.say(pickShape(dealer.random, BRIEFING_SETTLE, plainSlots), 'narrator', {
+    transparent: true,
+    para: 'entrance',
+  });
 
   const turns = briefingTurns(split.speech);
   let lastAsk: string | null = null;
