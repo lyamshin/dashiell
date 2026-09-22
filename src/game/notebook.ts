@@ -218,7 +218,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
           (c): c is NonNullable<typeof c> =>
             c !== undefined && c.source.type === 'person' && c.source.personId === p.id,
         )
-        .map((c) => ({ clueId: c.id, text: c.text }));
+        .map((c) => ({ clueId: c.id, text: c.textRecord ?? c.text }));
       const known: NotebookDossier =
         p.kind === 'victim'
           ? victimDossier(view, learned)
@@ -268,7 +268,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
     clues: state.found
       .map((id) => view.findableById.get(id))
       .filter((c): c is NonNullable<typeof c> => c !== undefined && c.source.type === 'place' && c.source.placeId === pl.id)
-      .map((c) => ({ clueId: c.id, text: c.text })),
+      .map((c) => ({ clueId: c.id, text: c.textRecord ?? c.text })),
   }));
 
   const byPlace = new Map<Id, Thread[]>();

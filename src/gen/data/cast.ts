@@ -1418,6 +1418,58 @@ export const PURPOSE_TEXT_FIRST: Record<Purpose, string> = {
 };
 
 /**
+ * §A.1 — the question the purpose sentence answers, three ways.
+ *
+ * The golden's is "So you want the man who killed him." — a guess, said flat,
+ * which the client's next line corrects: "I want what I am owed." Each of
+ * these is answerable by one purpose's sentence and by no other sentence of
+ * the briefing, which is what separates a prompt from a prod. `{V}` is the
+ * victim's surname.
+ */
+export const PURPOSE_PROMPTS: Record<Purpose, string[]> = {
+  'find-the-killer-police-wont': [
+    'Why come to me instead of the precinct?',
+    'So you want the one who killed {V}.',
+    'What is it you want done about {V}?',
+  ],
+  'clear-my-name': [
+    'What is it you are afraid will be said?',
+    'You think somebody will put it on you.',
+    'Whose word are you worried about?',
+  ],
+  'keep-it-quiet': [
+    'What is it you want kept quiet?',
+    'You would rather nobody heard about this.',
+    'And you want it settled without a word said.',
+  ],
+  'find-it-before-the-cops': [
+    'What happens if the police find it first?',
+    'Why the hurry?',
+    'You want it in your hands before theirs.',
+  ],
+  'get-it-back': [
+    'What is it you want returned?',
+    'Is it the thing you want, or the man?',
+    'So the thing matters more than the man who took it.',
+  ],
+  'bring-them-home': [
+    'What do you want done about {V}?',
+    'You want {V} found.',
+    'And if {V} does not want to be found?',
+  ],
+  'make-sure-they-stay-gone': [
+    'What is it you want to know about {V}?',
+    'You want to be sure {V} is gone.',
+    'And if {V} comes back?',
+  ],
+  'settle-a-debt-with-the-dead': [
+    'So you want the one who killed {V}.',
+    'What do you want out of it?',
+    'Money, then.',
+  ],
+};
+
+/**
  * One purpose assumes a body, and two of the three case types do not have one.
  * A robbery's owner is alive and standing at an address; a missing person may
  * walk back in on Thursday. The debt is the same debt and the sentence is not,

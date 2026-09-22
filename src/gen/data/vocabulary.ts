@@ -25,11 +25,11 @@ export const KNOWN_WORDS: Set<string> = new Set([
   'Everybody', 'Everyone', 'Everything',
   'Few', 'Fifteen', 'Five', 'For', 'Forty', 'Found', 'Four', 'Fractures',
   'From',
-  'Half', 'He', 'Her', 'Here', 'His', 'How', 'However',
-  'I', 'If', 'In', 'Inside', 'Into', 'It', 'Its',
+  'Give', 'Half', 'He', 'Held', 'Her', 'Here', 'His', 'How', 'However',
+  'I', 'If', 'In', 'Inside', 'Into', 'Is', 'It', 'Its',
   'Just',
   'Ledger', 'Left', 'Like', 'Little',
-  'Many', 'Marks', 'May', 'More', 'Most', 'Much', 'My',
+  'Many', 'Marks', 'May', 'Money', 'More', 'Most', 'Much', 'My',
   'Near', 'Neither', 'Never', 'Nine', 'No', 'Nobody', 'None', 'Not',
   'Nothing', 'Now',
   'Of', 'Off', 'On', 'Once', 'One', 'Only', 'Or', 'Other', 'Out', 'Outside',
@@ -45,6 +45,7 @@ export const KNOWN_WORDS: Set<string> = new Set([
   'Very',
   'Was', 'We', 'Wedged', 'What', 'When', 'Where', 'Whether', 'Which', 'While',
   'Who', 'Whoever', 'Whose', 'Why', 'With', 'Within', 'Without', 'Wrapping',
+  'You', 'Your',
 
   /* Days, which the corpus names. */
   'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
