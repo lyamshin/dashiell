@@ -573,7 +573,7 @@ interface Laid {
 }
 
 /** The longest a fused paragraph may get. Past this it is a wall, not a scene. */
-export const PARAGRAPH_CEILING = 55;
+export const PARAGRAPH_CEILING = 60;
 
 /**
  * §5's carrying sentence: the band a joined pair has to land in to be one.
@@ -2142,6 +2142,8 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   const toCome =
     countWords([{ kind: 'note', text: [...split.speech.map((l) => l.text), ...split.close].join(' ') }]) +
     40;
+  // Whether the briefing is short enough to be interrupted as well as asked.
+  const room = t.count() + toCome < OPENING_CEILING - 40;
   if (t.count() + toCome < OPENING_CEILING - 8) {
     t.say(`“${dealer.random.pick(OFFICE_OPENERS)}”`, 'exchange', {
       personId: client.id,
@@ -2166,7 +2168,29 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
         });
       }
     }
-    for (const paragraph of speechParagraphs(turn.lines)) {
+    // Two sentences to a paragraph rather than three, with a prod between them
+    // where the page has room for one. Hammett's clients talk in long turns,
+    // but a turn nobody interrupts is a statement being read out: "And?" costs
+    // the page two words and turns four sentences into two answers.
+    const paragraphs = speechParagraphs(turn.lines, room ? 2 : 3);
+    for (const [n, paragraph] of paragraphs.entries()) {
+      if (n > 0) {
+        const prod = briefingQuestion(
+          dealer.random,
+          'follow',
+          askSlots,
+          spentAsks,
+          paragraphs[n - 1] ?? '',
+        );
+        if (prod.length > 0) {
+          spentAsks.push(prod);
+          t.say(`“${prod}”`, 'exchange', {
+            personId: client.id,
+            targets: DASHIELL_TARGETS,
+            transparent: true,
+          });
+        }
+      }
       t.say(paragraph, 'exchange', {
         personId: client.id,
         register: 'truth',

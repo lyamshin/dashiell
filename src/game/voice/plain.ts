@@ -236,7 +236,11 @@ export const ASK_POINTER: string[] = [
   'And who did {victim} cross?',
 ];
 
-/** The neutral prod, when no sharper question fits the next turn. */
+/**
+ * The neutral prod, when no sharper question fits the next turn, and the thing
+ * that turns one long turn into two answers. Half of them carry a slot so the
+ * joiner has something to pick up from the sentence before.
+ */
 export const ASK_FOLLOW: string[] = [
   'And?',
   'Go on.',
@@ -248,6 +252,12 @@ export const ASK_FOLLOW: string[] = [
   'I am listening.',
   'And then?',
   'Anything else?',
+  'Go on about {victim}.',
+  'What else about {victim}?',
+  'And {victim}?',
+  'And {place}?',
+  'What else at {place}?',
+  'Go back to {place}.',
 ];
 
 export type BriefingAsk = 'discovery' | 'tie' | 'purpose' | 'pointer' | 'follow';
@@ -329,9 +339,18 @@ export function briefingQuestion(
   after = '',
 ): string {
   const pool = ASKS[kind];
+  const spent = avoid === null ? [] : typeof avoid === 'string' ? [avoid] : avoid;
   const said = new Set(contentWordsOf(after));
   if (said.size === 0) return pickShape(rng, pool, slots, avoid);
-  const spent = avoid === null ? [] : typeof avoid === 'string' ? [avoid] : avoid;
+  // A noun handed over once is worth less the second time. Without this the
+  // joiner names the victim in every question on the page — "And Sweeney?",
+  // "Go on about Sweeney.", "Where was Sweeney found?" — because she says his
+  // name in every sentence she has, and a page of that is a tic and not a
+  // joint. A word already spent on a question still counts, at half.
+  const already = new Map<string, number>();
+  for (const question of spent) {
+    for (const w of new Set(contentWordsOf(question))) already.set(w, (already.get(w) ?? 0) + 1);
+  }
   const start = rng.int(pool.length);
   let best = '';
   let bestScore = 0;
@@ -341,7 +360,12 @@ export function briefingQuestion(
     if (text.length === 0) continue;
     if (spent.includes(template) || spent.includes(text)) continue;
     let score = 0;
-    for (const w of contentWordsOf(text)) if (said.has(w)) score++;
+    // Twice is a joint; three times is a tic, and the third one scores nothing.
+    for (const w of contentWordsOf(text)) {
+      if (!said.has(w)) continue;
+      const spentTimes = already.get(w) ?? 0;
+      score += spentTimes === 0 ? 2 : spentTimes === 1 ? 1 : 0;
+    }
     if (score > bestScore) {
       bestScore = score;
       best = text;
