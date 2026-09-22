@@ -102,6 +102,10 @@ export interface Person {
   foundAt?: Id;
   /** The one who hired Dashiell. Might be the killer. */
   isClient?: boolean;
+  /** Resolved, never a hint. Always agrees with the pool the name came from. */
+  gender?: 'm' | 'f';
+  /** M5. Everything the world knows about this person, tagged by layer. */
+  dossier?: Dossier;
 }
 
 export interface Method {
@@ -220,6 +224,196 @@ export type Fact =
   /** This person's secret is accounted for and is not the murder. */
   | { kind: 'secretExplained'; personId: Id; secretType: string };
 
+/* ------------------------------------------------------------------ M5 --
+ *
+ * Dossiers, the act, and the client's brief. The world is built before the
+ * puzzle: every person is somebody in particular, the victim had a life and
+ * was found by somebody, and the client walked in for a reason.
+ * ----------------------------------------------------------------------- */
+
+/** The broad thing a person wants out of life. Never the crime's motive. */
+export type Want =
+  | 'money'
+  | 'respectability'
+  | 'to-be-left-alone'
+  | 'to-get-out'
+  | 'to-keep-a-marriage'
+  | 'to-be-feared'
+  | 'to-be-forgiven'
+  | 'to-be-somebody'
+  | 'to-keep-what-they-have';
+
+/** How this person stands to the victim, with the specific that makes it real. */
+export interface Tie {
+  relationshipId: Id;
+  /** The relationship, with the victim named: "Sweeney’s tenant". */
+  text: string;
+  /** The backstory: one plain sentence with a specific in it. */
+  backstory: string;
+  since?: string;
+  /** A third party named in the backstory. An id into `case.mentions`. */
+  third?: Id;
+}
+
+/** How a fact about a person can be learned. See the layer table in the spec. */
+export type DossierLayer = 0 | 1 | 2 | 3;
+
+export interface DossierFact {
+  kind:
+    | 'age'
+    | 'gender'
+    | 'profession'
+    | 'detail'
+    | 'want'
+    | 'tie'
+    | 'since'
+    | 'third'
+    | 'secret-hint';
+  text: string;
+  layer: DossierLayer;
+}
+
+export interface Dossier {
+  /** Drawn from the archetype's age band. */
+  age: number;
+  /** Resolved, never a hint. */
+  gender: 'm' | 'f';
+  profession: { role: string; detail: string };
+  want: Want;
+  tie: Tie;
+  /** Two or three plain sentences they would say about themselves. */
+  selfAccount: string[];
+  layers: DossierFact[];
+}
+
+/**
+ * Somebody a backstory names who is not in the case. Generated once and used
+ * by that name everywhere after; the correspondence checker counts a mention
+ * as a known name.
+ */
+export interface Mention {
+  id: Id;
+  name: string;
+  surname: string;
+  gender: 'm' | 'f';
+  role: string;
+  /** One plain sentence introducing them. */
+  text: string;
+}
+
+/** What the precinct did about it before Dashiell was called. */
+export type Precinct =
+  | 'came-and-went'
+  | 'called-it-a-fall'
+  | 'took-a-statement'
+  | 'not-yet-called'
+  | 'closed-it-in-an-hour';
+
+export interface Discovery {
+  foundById: Id;
+  foundAt: Id;
+  foundTick: Tick;
+  foundText: string;
+  precinct: Precinct;
+}
+
+/** Who saw the missing person last, and where. The `missing` form of discovery. */
+export interface LastSeen {
+  byId: Id;
+  place: Id;
+  tick: Tick;
+  text: string;
+}
+
+export interface VictimBio extends Dossier {
+  /** Where they stood in the neighbourhood, in one plain sentence. */
+  standing: string;
+  /** Murder and robbery: the body, or the empty shelf, and who found it. */
+  discovery?: Discovery;
+  /** Missing: who saw them last, and when. */
+  lastSeen?: LastSeen;
+}
+
+export type Purpose =
+  | 'find-the-killer-police-wont'
+  | 'clear-my-name'
+  | 'keep-it-quiet'
+  | 'find-it-before-the-cops'
+  | 'get-it-back'
+  | 'bring-them-home'
+  | 'make-sure-they-stay-gone'
+  | 'settle-a-debt-with-the-dead';
+
+export interface ClientBrief {
+  purpose: Purpose;
+  /** The purpose as one plain sentence. */
+  purposeText: string;
+  /** What it costs them to hire somebody, in one plain sentence. */
+  cost: string;
+  /** What the client states at the briefing. True unless the purpose says not. */
+  tells: Fact[];
+  /** The same, as sentences, in the same order. */
+  tellTexts: string[];
+  /** What the client knows and does not say. Their own secret, at least. */
+  withholds: Fact[];
+  withholdTexts: string[];
+  /** Whom the client suspects, and why. */
+  points: { personId: Id; reason: string; honest: boolean };
+  /** The client's account of their own night, from their claimed schedule. */
+  ownEvening: string[];
+}
+
+export type CaseType = 'murder' | 'robbery' | 'missing';
+
+/** What the report still has to work out. Givens are not asked. */
+export type Unknown =
+  | 'who'
+  | 'why'
+  | 'when'
+  | 'where'
+  | 'how'
+  | 'entry'
+  | 'whereabouts'
+  | 'fate'
+  | 'goods';
+
+export interface Givens {
+  facts: Fact[];
+  text: string[];
+}
+
+export type Entry = 'key' | 'window' | 'let-in' | 'never-left' | 'combination';
+
+/**
+ * The one thing the case is about, separated from the machinery that does not
+ * care what it is. Schedules, secrets, lies, observations, anchors, selection
+ * and par all constrain "the actor alone at the place at the tick"; the act
+ * says what happened there.
+ */
+export interface Act {
+  type: CaseType;
+  tropeId: Id;
+  /** The one who did it. For `left`, the person who went. */
+  actorId: Id;
+  tick: Tick;
+  place: Id;
+  /** Murder. */
+  method?: Method;
+  /** Murder: where the body was found, when that is not where it happened. */
+  bodyFoundAt?: Id;
+  /** Robbery. */
+  taken?: GameObject;
+  entry?: Entry;
+  /** Robbery: the pawnshop, the locker, wherever the goods went. */
+  goodsWentTo?: Id;
+  /** Missing. */
+  whereabouts?: Id | 'gone';
+  fate?: 'left' | 'taken' | 'dead';
+  givens: Givens;
+  /** Exactly what the report asks. */
+  unknowns: Unknown[];
+}
+
 export interface Solution {
   killerId: Id;
   methodId: Id;
@@ -275,6 +469,17 @@ export interface Case {
   coronerWindow: [Tick, Tick];
   solution: Solution;
   deduction: DeductionPath;
+  /* --- M5 ------------------------------------------------------------- */
+  /** What the case is about, and what the report will ask. */
+  act: Act;
+  /** Third parties named in backstories. Never in `people`. */
+  mentions: Mention[];
+  /** The victim's life, and how the case came to light. */
+  victimBio: VictimBio;
+  /** Why the client walked in, what they say and what they keep back. */
+  clientBrief: ClientBrief;
+  /** 10–16 plain declarative sentences. The model of the plain register. */
+  briefing: string[];
 }
 
 /** "Salvatore Vitale" -> "Vitale". Names are always given-then-family. */

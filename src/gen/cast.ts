@@ -1,16 +1,27 @@
-import type { Difficulty, FixtureRole, Id, Person } from './types.js';
+import type { Difficulty, Dossier, FixtureRole, Id, Mention, Person } from './types.js';
 import { M_LIARS, surnameOf } from './types.js';
 import { NAME_POOLS } from './data/names.js';
 import {
   ARCHETYPE_BY_ID,
+  BACKSTORY_YEARS,
+  FIXTURE_CARDS,
   RELATIONSHIP_BY_ID,
   VICTIM_ARCHETYPES,
   type Archetype,
+  type FixtureCard,
   type SuspectClass,
   type VictimArchetype,
 } from './data/cast.js';
 import { MOTIVE_TEMPLATES, type MotiveTemplate } from './data/motives.js';
 import { SECRET_BY_TYPE, type SecretTemplate } from './data/secrets.js';
+import {
+  buildDossier,
+  createMentionPool,
+  fillSlots,
+  relationshipOf,
+  type MentionPool,
+  type Namer,
+} from './dossier.js';
 import type { Setting } from './setting.js';
 import type { Rng } from './rng.js';
 
@@ -32,6 +43,15 @@ export interface Cast {
   /** Innocents who will lie about the murder tick. */
   mLiarIds: Id[];
   client: Person;
+  /* --- M5 ------------------------------------------------------------- */
+  /** Third parties named in backstories and motives. Not people in the case. */
+  mentions: MentionPool;
+  /** Every person in the case, victim and fixtures included. */
+  dossiers: Record<Id, Dossier>;
+  /** The object of a person's motive, where the motive has one. */
+  motiveObject: Record<Id, Mention>;
+  /** Draws more period names out of the same pools, without collisions. */
+  namer: Namer;
 }
 
 const FIXTURE_ROLE_TEXT: Record<FixtureRole, string> = {
@@ -54,7 +74,11 @@ const FIXTURE_GENDER: Partial<Record<FixtureRole, 'male' | 'female'>> = {
   'elevator-man': 'male',
 };
 
-function makeNamer(rng: Rng): (gender?: 'male' | 'female') => string {
+/**
+ * M5: the namer now returns the gender it resolved, because a dossier states
+ * gender as a fact and it has to be the one the given name came out of.
+ */
+function makeNamer(rng: Rng): Namer {
   const usedGiven = new Set<string>();
   const usedFamily = new Set<string>();
   return (gender) => {
@@ -66,7 +90,7 @@ function makeNamer(rng: Rng): (gender?: 'male' | 'female') => string {
       if (usedGiven.has(given) || usedFamily.has(family)) continue;
       usedGiven.add(given);
       usedFamily.add(family);
-      return `${given} ${family}`;
+      return { name: `${given} ${family}`, gender: g === 'male' ? 'm' : 'f' };
     }
     throw new Error('name pool exhausted');
   };
@@ -135,17 +159,22 @@ function drawArchetypes(rng: Rng, victim: VictimArchetype): Archetype[] | null {
 
 export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): Cast | null {
   const name = makeNamer(rng);
+  const mentions = createMentionPool(name);
+  const motiveObject: Record<Id, Mention> = {};
 
   const victimArchetype = rng.pick(VICTIM_ARCHETYPES);
-  const victimName = name(genderOf(victimArchetype.genderHint));
+  const drawnVictim = name(genderOf(victimArchetype.genderHint));
+  const victimName = drawnVictim.name;
+  const victimSurname = surnameOf(victimName);
   const victim: Person = {
     id: 'p-victim',
     name: victimName,
-    surname: surnameOf(victimName),
+    surname: victimSurname,
     role: victimArchetype.role,
     kind: 'victim',
     archetypeId: victimArchetype.id,
     isKiller: false,
+    gender: drawnVictim.gender,
   };
 
   const archetypes = drawArchetypes(rng, victimArchetype);
@@ -159,7 +188,8 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
     const rel = RELATIONSHIP_BY_ID[relId];
     // The relationship is drawn before the name, because some relationships
     // only read one way round and so decide who this person is.
-    const fullName = name(genderFor(a, victimArchetype, relId));
+    const drawn = name(genderFor(a, victimArchetype, relId));
+    const fullName = drawn.name;
     suspects.push({
       id: `p-s${i + 1}`,
       name: fullName,
@@ -168,8 +198,11 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
       kind: 'suspect',
       archetypeId: a.id,
       relationshipId: relId,
-      relationshipToVictim: rel?.text ?? relId,
+      // M5 §3: the relationship names the victim. "Sweeney’s tenant", never
+      // "the victim's tenant".
+      relationshipToVictim: (rel?.text ?? relId).split('{V}').join(victimSurname),
       isKiller: false,
+      gender: drawn.gender,
     });
   }
 
@@ -181,6 +214,29 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
     return implied ? a.motives.filter((m) => implied.includes(m)) : a.motives.slice();
   };
 
+  /**
+   * M5 §3: a motive with no object is a category, not a motive. "Jealous"
+   * becomes "jealous of Sweeney over Rosa Ferrante", and Rosa Ferrante is
+   * invented once, here, and filed in the mentions.
+   */
+  const assignMotive = (p: Person, t: MotiveTemplate): void => {
+    let object: Mention | undefined;
+    if (t.objectRole !== undefined) {
+      object = mentions.mentionFor(t.objectRole);
+      motiveObject[p.id] = object;
+    }
+    p.motive = {
+      type: t.type,
+      description: fillSlots(t.descriptionTemplate, {
+        victim: victimSurname,
+        person: p.surname,
+        place: '',
+        year: '',
+        ...(object ? { object: object.name } : {}),
+      }),
+    };
+  };
+
   /* --- the killer, who always has a motive ----------------------------- */
   const killerCandidates = suspects.filter((p) => allowedMotives(p).length > 0);
   if (killerCandidates.length === 0) return null;
@@ -190,7 +246,7 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
 
   const killerMotiveType = rng.pick(allowedMotives(killer));
   const killerMotive = MOTIVE_TEMPLATES.find((m) => m.type === killerMotiveType) as MotiveTemplate;
-  killer.motive = { type: killerMotive.type, description: killerMotive.description };
+  assignMotive(killer, killerMotive);
 
   /* --- one to three innocents carry a motive too ----------------------- */
   const usedMotives = new Set<string>([killerMotiveType]);
@@ -202,7 +258,7 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
     if (fresh.length === 0) continue;
     const type = rng.pick(fresh);
     const t = MOTIVE_TEMPLATES.find((m) => m.type === type) as MotiveTemplate;
-    p.motive = { type: t.type, description: t.description };
+    assignMotive(p, t);
     usedMotives.add(type);
     given++;
   }
@@ -279,16 +335,17 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   const fixtures: Person[] = [];
   const watcherOf: Record<Id, Id> = {};
   setting.watchers.forEach((w, i) => {
-    const fixtureName = name(FIXTURE_GENDER[w.role]);
+    const drawn = name(FIXTURE_GENDER[w.role]);
     const person: Person = {
       id: `p-f${i + 1}`,
-      name: fixtureName,
-      surname: surnameOf(fixtureName),
+      name: drawn.name,
+      surname: surnameOf(drawn.name),
       role: FIXTURE_ROLE_TEXT[w.role],
       kind: 'fixture',
       fixtureRole: w.role,
       isKiller: false,
       foundAt: w.placeId,
+      gender: drawn.gender,
     };
     fixtures.push(person);
     watcherOf[w.placeId] = person.id;
@@ -296,16 +353,17 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
 
   let beatCop: Person | undefined;
   if (setting.hasBeatCop) {
-    const copName = name('male');
+    const drawn = name('male');
     beatCop = {
       id: 'p-cop',
-      name: copName,
-      surname: surnameOf(copName),
+      name: drawn.name,
+      surname: surnameOf(drawn.name),
       role: FIXTURE_ROLE_TEXT['beat-cop'],
       kind: 'fixture',
       fixtureRole: 'beat-cop',
       isKiller: false,
       foundAt: setting.beatCopRoute[0] as Id,
+      gender: drawn.gender,
     };
     fixtures.push(beatCop);
   }
@@ -313,6 +371,73 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   /* --- who hired us ------------------------------------------------------ */
   const client = rng.chance(0.25) ? killer : rng.pick(innocents);
   client.isClient = true;
+
+  /* --- M5: a dossier for everybody --------------------------------------- */
+  const dossiers: Record<Id, Dossier> = {};
+  const fixturePlaceOf: Record<Id, Id> = {};
+  for (const f of fixtures) if (f.foundAt) fixturePlaceOf[f.id] = f.foundAt;
+  /** A drawn room to hang a `{place}` slot on. Never the scene. */
+  const slotPlace = (personId: Id): string => {
+    const own = setting.places.find((pl) => pl.id === (fixturePlaceOf[personId] ?? ''));
+    if (own) return own.shortName;
+    const pool = setting.places.filter((pl) => pl.id !== setting.murderPlaceId);
+    return rng.pick(pool.length > 0 ? pool : setting.places).shortName;
+  };
+
+  dossiers[victim.id] = buildDossier({
+    rng,
+    surname: victim.surname,
+    gender: drawnVictim.gender,
+    archetype: victimArchetype,
+    relationship: null,
+    fallbackTie: {
+      text: 'the one this is about',
+      backstory: `${victimSurname} ${fillSlots(rng.pick(victimArchetype.standing), {
+        victim: victimSurname,
+        person: victimSurname,
+        place: slotPlace(victim.id),
+        year: rng.pick(BACKSTORY_YEARS),
+      })}.`,
+    },
+    victimSurname,
+    placeName: slotPlace(victim.id),
+    mentions,
+  });
+
+  for (const p of suspects) {
+    dossiers[p.id] = buildDossier({
+      rng,
+      surname: p.surname,
+      gender: p.gender as 'm' | 'f',
+      archetype: ARCHETYPE_BY_ID[p.archetypeId as Id] as Archetype,
+      relationship: relationshipOf(p.relationshipId),
+      victimSurname,
+      placeName: slotPlace(p.id),
+      mentions,
+    });
+    p.relationshipToVictim = dossiers[p.id]?.tie.text ?? p.relationshipToVictim;
+  }
+
+  for (const f of fixtures) {
+    const card = FIXTURE_CARDS[f.fixtureRole as string] as FixtureCard;
+    const where = slotPlace(f.id);
+    dossiers[f.id] = buildDossier({
+      rng,
+      surname: f.surname,
+      gender: f.gender as 'm' | 'f',
+      archetype: card,
+      relationship: null,
+      fallbackTie: {
+        text: card.tie.split('{place}').join(where),
+        backstory: `${f.surname} is ${card.tie.split('{place}').join(where)}.`,
+      },
+      victimSurname,
+      placeName: where,
+      mentions,
+    });
+  }
+
+  for (const p of [victim, ...suspects, ...fixtures]) p.dossier = dossiers[p.id];
 
   const cast: Cast = {
     people: [victim, ...suspects, ...fixtures],
@@ -327,6 +452,10 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
     innocentSecrets,
     mLiarIds: liarIds,
     client,
+    mentions,
+    dossiers,
+    motiveObject,
+    namer: name,
   };
   if (beatCop) cast.beatCop = beatCop;
   if (killerCoverSecret) cast.killerCoverSecret = killerCoverSecret;

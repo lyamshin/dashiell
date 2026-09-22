@@ -1,9 +1,12 @@
 import {
   SLACK,
   TICKS,
+  type Act,
   type Anchor,
   type Case,
+  type CaseType,
   type Difficulty,
+  type DossierFact,
   type Id,
   type Method,
   type Person,
@@ -17,6 +20,12 @@ import { buildSchedules, type ScheduleBuild } from './schedule.js';
 import { deriveCandidates, deriveObservations } from './clues.js';
 import { selectFindable } from './select.js';
 import { checkSolvability, type CaseUnderTest } from './solvability.js';
+import { pickTrope, type Trope, type TropeContext } from './tropes/index.js';
+import { buildVictimBio } from './victim.js';
+import { buildClientBrief } from './client.js';
+import { buildBriefing } from './briefing.js';
+import { SECRET_BY_TYPE } from './data/secrets.js';
+import type { Clue, Fact } from './types.js';
 
 const OUTER_ATTEMPTS = 120;
 const INNER_ATTEMPTS = 30;
@@ -27,12 +36,17 @@ export interface Diagnostics {
   rejections: string[];
 }
 
+export interface GenerateOptions {
+  detectiveName?: string;
+  difficulty?: Difficulty;
+  /** M5: force a shape, for reading. Leave both out and the weights decide. */
+  type?: CaseType;
+  tropeId?: Id;
+}
+
 /** The single public entry point. Same seed and difficulty, same case. */
-export function generateCase(
-  seed: number,
-  opts?: { detectiveName?: string; difficulty?: Difficulty },
-): Case {
-  return run(seed, opts?.detectiveName ?? 'Dashiell', opts?.difficulty ?? 2);
+export function generateCase(seed: number, opts?: GenerateOptions): Case {
+  return run(seed, opts?.detectiveName ?? 'Dashiell', opts?.difficulty ?? 2, undefined, opts);
 }
 
 /**
@@ -40,12 +54,16 @@ export function generateCase(
  * from the package index: `generateCase` is the public entry point. This is
  * for tuning the constraints and for the milestone notes.
  */
-export function diagnoseCase(seed: number, difficulty: Difficulty = 2): {
+export function diagnoseCase(
+  seed: number,
+  difficulty: Difficulty = 2,
+  opts?: GenerateOptions,
+): {
   case: Case;
   diagnostics: Diagnostics;
 } {
   const diagnostics: Diagnostics = { attempts: 0, rejections: [] };
-  const kase = run(seed, 'Dashiell', difficulty, diagnostics);
+  const kase = run(seed, 'Dashiell', difficulty, diagnostics, opts);
   diagnostics.attempts = kase.attempts;
   return { case: kase, diagnostics };
 }
@@ -136,6 +154,7 @@ function run(
   detectiveName: string,
   difficulty: Difficulty,
   diagnostics?: Diagnostics,
+  opts?: GenerateOptions,
 ): Case {
   const rng = new Rng(seed + difficulty * 7919);
   let attempts = 0;
@@ -144,8 +163,24 @@ function run(
   // solve it in, and the dial is how little room that leaves.
   const slack = SLACK[difficulty];
 
+  /*
+   * M5 §2: the trope is drawn once, before any retry, out of a stream of its
+   * own. Drawing it inside the loop would let the distribution be bent by
+   * which shapes happen to be cheap to build, and the whole point of the
+   * weights is that `body-at-scene` stays the commonest thing that happens.
+   */
+  const tropeRng = new Rng((seed * 2654435761 + difficulty * 40503) >>> 0);
+  // mulberry32's first output off a seed that moves by one is not well spread,
+  // and a trope is drawn from exactly one number. Three throwaway draws fix it.
+  for (let i = 0; i < 3; i++) tropeRng.next();
+  const trope: Trope = pickTrope(tropeRng, {
+    ...(opts?.type !== undefined ? { type: opts.type } : {}),
+    ...(opts?.tropeId !== undefined ? { tropeId: opts.tropeId } : {}),
+  });
+  const caseType = trope.type;
+
   for (let outer = 0; outer < OUTER_ATTEMPTS; outer++) {
-    const setting = buildSetting(rng);
+    const setting = buildSetting(rng, caseType);
     if (!setting) {
       diagnostics?.rejections.push('the place deck would not deal a legal hand');
       continue;
@@ -170,6 +205,8 @@ function run(
         cast,
         difficulty,
         murderTick: M,
+        caseType,
+        tropeId: trope.id,
         ...(diagnostics
           ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
           : {}),
@@ -213,8 +250,38 @@ function run(
         if (p.motive) clone.motive = { type: p.motive.type, description: p.motive.description };
         if (p.foundAt !== undefined) clone.foundAt = p.foundAt;
         if (p.isClient) clone.isClient = true;
+        if (p.gender !== undefined) clone.gender = p.gender;
+        const dossier = cast.dossiers[p.id];
+        if (dossier) clone.dossier = { ...dossier, layers: dossier.layers.slice() };
         return clone;
       });
+
+      /*
+       * M5 §1.1, layer 3: the secret's specifics are documents, and the
+       * documents only exist once the secret has a room and an hour. The
+       * dossier's last layer is therefore fastened on here, not in the cast.
+       */
+      for (const p of people) {
+        if (!p.dossier) continue;
+        const secret = p.id === cast.killer.id ? build.coverSecret : build.secrets[p.id];
+        const template = secret ? SECRET_BY_TYPE[secret.type] : undefined;
+        const hint = template?.hints[0];
+        if (!secret || !hint) continue;
+        const where = setting.places.find((pl) => pl.id === secret.cells[0]?.place)?.shortName ?? '';
+        const partnerId = secret.partnerId;
+        const partner = cast.people.find((q) => q.id === partnerId)?.surname ?? 'somebody';
+        const fact: DossierFact = {
+          kind: 'secret-hint',
+          layer: 3,
+          text: hint
+            .split('{P}').join(p.surname)
+            .split('{Q}').join(partner)
+            .split('{V}').join(cast.victim.surname)
+            .split('{L}').join(where || 'somewhere on the block')
+            .split('{T}').join('that evening'),
+        };
+        p.dossier.layers = [...p.dossier.layers, fact];
+      }
 
       const schedules: Schedule[] = cast.people.map((p) => ({
         personId: p.id,
@@ -232,6 +299,76 @@ function run(
       if (lo + 3 > TICKS - 1) lo = TICKS - 4;
       const coronerWindow: [Tick, Tick] = [lo, lo + 3];
 
+      /* --- the act, M5 §2 ------------------------------------------------ */
+      const shapeCtx = {
+        rng,
+        setting,
+        cast,
+        build,
+        method,
+        means: setting.method,
+        objects: setting.objects,
+        coronerWindow,
+      };
+      const shape = trope.shape(shapeCtx);
+      const act: Act = {
+        type: trope.type,
+        tropeId: trope.id,
+        // For a disappearance the actor is the one who went; for everything
+        // else it is the one who did it. The core simulation turns on a
+        // suspect either way, and for `left` that suspect is the one who saw
+        // them off and has been lying about the evening since.
+        actorId: trope.id === 'left' ? cast.victim.id : cast.killer.id,
+        tick: M,
+        place: build.murderPlaceId,
+        method,
+        givens: { facts: [], text: [] },
+        unknowns: trope.unknowns.slice(),
+        ...shape,
+      };
+
+      const tropeClues: Clue[] = [];
+      let tropeCounter = 0;
+      const placeName = (id: Id | null | undefined): string =>
+        id ? (setting.places.find((p) => p.id === id)?.shortName ?? id) : 'somewhere';
+      const whoOf = (id: Id): string => cast.people.find((p) => p.id === id)?.surname ?? id;
+      const tropeCtx: TropeContext = {
+        ...shapeCtx,
+        act,
+        placeName,
+        who: whoOf,
+        foundAt: (id) => (cast.people.find((p) => p.id === id)?.foundAt ?? build.murderPlaceId) as Id,
+        at: (id, t) => (build.truth[id] as (Id | null)[] | undefined)?.[t] ?? null,
+        truthful: (id, t) => !(build.lies[id] ?? []).includes(t),
+        add: (kind, source, place, establishes: Fact[], text) => {
+          tropeCounter += 1;
+          const clue: Clue = {
+            id: `t${String(tropeCounter).padStart(3, '0')}`,
+            kind,
+            source,
+            establishes,
+            text,
+            place,
+            leadsTo: [],
+            role: 'noise',
+          };
+          tropeClues.push(clue);
+          return clue;
+        },
+      };
+      act.givens = trope.givens(tropeCtx);
+
+      const victimBio = buildVictimBio({
+        rng,
+        cast,
+        setting,
+        build,
+        act,
+        dossier: cast.dossiers[cast.victim.id] as NonNullable<Person['dossier']>,
+      });
+      const clientBrief = buildClientBrief({ rng, cast, setting, build, act, difficulty });
+      const briefing = buildBriefing({ cast, act, bio: victimBio, brief: clientBrief });
+
       const candidates = deriveCandidates({
         rng,
         cast,
@@ -248,7 +385,14 @@ function run(
         highAnchor,
         coronerWindow,
         soundMasked: setting.soundMasked,
+        act,
+        brief: clientBrief,
       });
+
+      // The signature. Minted after the pool so its ids cannot collide, and
+      // folded into the pool so the selector treats it like anything else.
+      const signature = trope.signature(tropeCtx);
+      candidates.clues.push(...signature.clues);
 
       const selection = selectFindable({
         rng,
@@ -258,6 +402,7 @@ function run(
         difficulty,
         places: placeIds,
         sceneId: build.murderPlaceId,
+        extraRequirements: [signature.requirement],
         ...(diagnostics
           ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
           : {}),
@@ -270,7 +415,12 @@ function run(
         difficulty,
         detectiveName,
         neighborhood: setting.neighborhood,
-        places: setting.places,
+        // M5 §3: the victim's own address is named after them. The place deck
+        // carries `{V}` because it is dealt before anybody is named.
+        places: setting.places.map((p) => ({
+          ...p,
+          name: p.name.split('{V}').join(cast.victim.surname),
+        })),
         objects: setting.objects,
         people,
         method,
@@ -294,6 +444,11 @@ function run(
           murderTick: M,
           murderPlaceId: build.murderPlaceId,
         },
+        act,
+        mentions: cast.mentions.mentions.slice(),
+        victimBio,
+        clientBrief,
+        briefing,
       };
 
       const check = checkSolvability(underTest);

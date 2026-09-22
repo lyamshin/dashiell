@@ -117,23 +117,23 @@ export const SECRET_TEMPLATES: SecretTemplate[] = [
   },
   {
     type: 'blackmail',
-    label: 'Blackmailing the victim',
+    label: 'Blackmail',
     minTicks: 1,
     maxTicks: 2,
     partner: 'victim',
-    description: '{P} meets the victim alone at {L} from {T} and asks for money.',
+    description: '{P} meets {V} alone at {L} from {T} and asks for money.',
     hints: [
-      '{P} and the victim were heard at {L}, and one of them was doing all the talking.',
+      '{P} and {V} were heard at {L}, and one of them was doing all the talking.',
       '{P} has come into money lately and has no visible way of having come into money.',
-      'The victim had been drawing cash in amounts that did not match anything in the accounts.',
+      '{V} had been drawing cash in amounts that did not match anything in the accounts.',
     ],
     traces: [
-      'An envelope at {L} with nothing in it, addressed in the victim’s hand to no one.',
-      'A photograph at {L}, folded small, of something the victim would have paid to keep folded.',
+      'An envelope at {L} with nothing in it, addressed in {V}’s hand to no one.',
+      'A photograph at {L}, folded small, of something {V} would have paid to keep folded.',
     ],
     disqualifiers: [
-      'The victim’s bank book settles it: four payments, and {P} at {L} from {T} collecting the fifth. It is extortion, and an extortionist wants the man alive.',
-      'The thing {P} was holding over the victim turns up, and it was worth more to {P} every month than once.',
+      '{V}’s bank book settles it: four payments, and {P} at {L} from {T} collecting the fifth. It is extortion, and an extortionist wants {V} alive.',
+      'The thing {P} was holding over {V} turns up, and it was worth more to {P} every month than once.',
     ],
   },
   {

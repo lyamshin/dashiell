@@ -38,7 +38,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   {
     id: 'res-apartment',
     shortName: 'the fourth floor',
-    name: 'the victim’s apartment on the fourth floor',
+    name: '{V}’s apartment on the fourth floor',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
     objects: ['obj-revolver', 'obj-bookend', 'obj-cord', 'obj-chloral', 'obj-cashbox', 'obj-photograph'],
@@ -49,7 +49,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   {
     id: 'res-brownstone',
     shortName: 'the brownstone',
-    name: 'the victim’s rooms in the brownstone',
+    name: '{V}’s rooms in the brownstone',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
     objects: ['obj-bookend', 'obj-chloral', 'obj-cord', 'obj-photograph', 'obj-telephone'],
@@ -60,7 +60,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   {
     id: 'res-walkup',
     shortName: 'the walk-up',
-    name: 'the victim’s walk-up over the drugstore',
+    name: '{V}’s walk-up over the drugstore',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
     objects: ['obj-cord', 'obj-bookend', 'obj-chloral', 'obj-hatbox', 'obj-suitcase'],
@@ -71,7 +71,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   {
     id: 'res-suite',
     shortName: 'the suite',
-    name: 'the victim’s suite at the residential hotel',
+    name: '{V}’s suite at the residential hotel',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab'],
     objects: ['obj-revolver', 'obj-chloral', 'obj-ledger', 'obj-cigarette-case', 'obj-overcoat'],
@@ -82,7 +82,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   {
     id: 'res-backhouse',
     shortName: 'the back lot',
-    name: 'the victim’s house on the back lot',
+    name: '{V}’s house on the back lot',
     kind: 'private',
     murderMethods: ['poison', 'blunt', 'strangle', 'shot', 'stab', 'fall'],
     objects: ['obj-cord', 'obj-toolbox', 'obj-bookend', 'obj-roofkey', 'obj-photograph'],

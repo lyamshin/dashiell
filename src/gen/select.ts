@@ -445,6 +445,12 @@ export interface SelectContext {
   difficulty: Difficulty;
   places: Id[];
   sceneId: Id;
+  /**
+   * M5 §2.2: the trope's own essential fact set, declared alongside its
+   * unknowns and folded in here so that a signature clue is load-bearing —
+   * it goes into the spine, it is corroborated, and it is counted in par.
+   */
+  extraRequirements?: Requirement[];
   /** Optional sink for the reason a selection was abandoned. */
   reject?: (reason: string) => void;
 }
@@ -457,7 +463,10 @@ export function selectFindable(ctx: SelectContext): Selection | null {
   };
   const pool = candidates.clues;
   const solutionPool = pool.filter((c) => c.aboutSecretOf === undefined);
-  const reqs = buildRequirements(requirementInputFor(cast, build), pool);
+  const reqs = [
+    ...buildRequirements(requirementInputFor(cast, build), pool),
+    ...(ctx.extraRequirements ?? []).filter((r) => r.parts.every((p) => p.clues.length > 0)),
+  ];
   for (const r of reqs) {
     for (const part of r.parts) {
       if (part.clues.length === 0) return bail(`nothing at all establishes ${part.key}`);
