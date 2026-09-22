@@ -32,7 +32,16 @@
 
 import type { Clue, Id } from '../gen/types.js';
 import { TICKS, clock } from '../gen/types.js';
-import type { Block, Command, Page, Report, RunState, Thread, TopicRef } from './types.js';
+import type {
+  Block,
+  Command,
+  ErrandTrace,
+  Page,
+  Report,
+  RunState,
+  Thread,
+  TopicRef,
+} from './types.js';
 import { EMPTY_REPORT } from './types.js';
 import { actionsLeft, isOver, minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
@@ -44,6 +53,7 @@ import {
   threadsFor,
   topicKey,
 } from './derive.js';
+import { planErrand } from './errand.js';
 import { parse } from './parser.js';
 import { DA_AT_THE_DOOR } from './voice-data.js';
 import {
@@ -132,6 +142,8 @@ export function newRun(
     clientInOffice: true,
     clientAsks: 0,
     sceneSeen: false,
+    asked: [],
+    searched: [],
   };
 
   const clientClue = clientClueOf(view);
@@ -212,6 +224,7 @@ function stageFor(
     at: at.at,
     cost: at.cost,
     minutes: minutesAfter(used, budget),
+    minutesBefore: minutesAfter(state.actionsUsed, budget),
     actionsLeft: actionsLeft(used, budget),
     foundBefore: state.found,
     foundAfter: at.foundAfter,
@@ -307,6 +320,172 @@ export function answersTo(view: CaseView, personId: Id, topic: TopicRef, found: 
   return (view.exactBuckets.get(personId)?.get(topicString) ?? []).filter((c) => !have.has(c.id));
 }
 
+/* ------------------------------------------------------------------ *
+ * M6 §1.1 — what a command costs, before it is run.
+ * ------------------------------------------------------------------ */
+
+/** Why a command costs what it costs. `step` reads the reason; a button reads the number. */
+export interface Price {
+  cost: number;
+  /**
+   * Slack the clock never sees and par still counts: the client's two
+   * questions on the house, and the free first ask of somebody who knows him.
+   */
+  waived: number;
+  reason:
+    | 'free'
+    | 'still'
+    | 'move'
+    | 'search'
+    | 'search-again'
+    | 'ask'
+    | 'ask-again'
+    | 'house'
+    | 'familiar'
+    | 'self-told'
+    | 'nobody';
+}
+
+/** The key a question is remembered under: who, and the topic as the parser reads it. */
+export function askKey(personId: Id, topic: TopicRef): string {
+  return `${personId}|${topicKey(topic)}`;
+}
+
+/** Has this exact question been put before? */
+export function askedBefore(state: RunState, personId: Id, topic: TopicRef): boolean {
+  const key = askKey(personId, topic);
+  return (state.asked ?? []).some((a) => a.key === key);
+}
+
+/**
+ * The price of one command against one state. `step` charges exactly this and
+ * the choice model prints exactly this, so a button never says one thing and
+ * the clock another.
+ */
+export function priceOf(command: Command, state: RunState, view: CaseView): Price {
+  switch (command.kind) {
+    case 'look':
+    case 'notebook':
+    case 'help':
+    case 'file':
+      return { cost: 0, waived: 0, reason: 'free' };
+    case 'go':
+      return command.placeId === state.at
+        ? { cost: 0, waived: 0, reason: 'still' }
+        : { cost: 1, waived: 0, reason: 'move' };
+    case 'examine':
+      // §1.4: a room gives up everything it has to the first search, so the
+      // second one finds nothing and costs what nothing costs.
+      return (state.searched ?? []).includes(state.at)
+        ? { cost: 0, waived: 0, reason: 'search-again' }
+        : { cost: 1, waived: 0, reason: 'search' };
+    case 'ask': {
+      const person = view.personById.get(command.personId);
+      const here = peopleHereNow(view, state.at, {
+        clientInOffice: state.clientInOffice,
+        found: state.found,
+      }).some((p) => p.id === command.personId);
+      if (!person || !here) return { cost: 0, waived: 0, reason: 'nobody' };
+      // M5 §3's own repeat, which predates §1.4 and keeps its own page.
+      if (command.topic.kind === 'self' && state.selfTold.includes(person.id)) {
+        return { cost: 0, waived: 0, reason: 'self-told' };
+      }
+      if (askedBefore(state, person.id, command.topic)) {
+        return { cost: 0, waived: 0, reason: 'ask-again' };
+      }
+      const clientOnTheHouse =
+        state.clientInOffice &&
+        person.id === view.client.id &&
+        state.at === view.office.id &&
+        state.clientAsks < 2;
+      if (clientOnTheHouse) return { cost: 0, waived: 1, reason: 'house' };
+      if (knowsHim(state.cast.roll, person.id) && !state.freeAsked.includes(person.id)) {
+        return { cost: 0, waived: 1, reason: 'familiar' };
+      }
+      return { cost: 1, waived: 0, reason: 'ask' };
+    }
+  }
+}
+
+/**
+ * M6 §1.1. Actions a command will spend. A typed string is parsed exactly as
+ * `stepInput` parses it, and a string the parser refuses costs nothing,
+ * because a refused string is a free page.
+ */
+export function costOf(command: Command | string, state: RunState, view: CaseView): number {
+  if (typeof command !== 'string') return priceOf(command, state, view).cost;
+  const parsed = parseFor(state, command, view);
+  return parsed.ok ? priceOf(parsed.command, state, view).cost : 0;
+}
+
+function parseFor(state: RunState, raw: string, view: CaseView): ReturnType<typeof parse> {
+  return parse(
+    view,
+    state.at,
+    raw,
+    peopleHereNow(view, state.at, {
+      clientInOffice: state.clientInOffice,
+      found: state.found,
+    }).map((p) => p.id),
+    state.found,
+  );
+}
+
+/**
+ * §1.4. The page a repeated question or search writes: it says so, and reads
+ * the notebook's record of the first answer back. Nothing is dealt, nothing is
+ * found, and the clock does not move.
+ */
+function repeatBlocks(view: CaseView, state: RunState, command: Command): Block[] {
+  const records = (ids: Id[]): Block[] =>
+    ids
+      .map((id) => view.findableById.get(id))
+      .filter((c): c is Clue => c !== undefined)
+      .map((c) => ({ kind: 'note', text: `“${c.textRecord ?? c.text}”` }) as Block);
+  if (command.kind === 'examine') {
+    const place = view.placeById.get(state.at)?.shortName ?? 'the room';
+    const had = state.found.filter((id) => {
+      const c = view.findableById.get(id);
+      return c?.source.type === 'place' && c.source.placeId === state.at;
+    });
+    return [
+      {
+        kind: 'note',
+        text:
+          had.length > 0
+            ? `I had been through ${place} already. What it gave up is in the notebook, and I read it back instead of going through it twice.`
+            : `I had been through ${place} already. It gave up nothing then and would give up nothing now.`,
+      },
+      ...records(had),
+    ];
+  }
+  if (command.kind !== 'ask') return [];
+  const person = view.personById.get(command.personId);
+  const surname = person?.surname ?? 'them';
+  const key = askKey(command.personId, command.topic);
+  const first = (state.asked ?? []).find((a) => a.key === key);
+  const clues = first?.clues ?? [];
+  const out: Block[] = [];
+  if (command.topic.kind === 'evening' && state.accounts.includes(command.personId)) {
+    out.push({
+      kind: 'note',
+      text: `I had asked ${surname} that already. The answer is in the notebook, and I read it back instead of asking twice.`,
+    });
+    const account = claimedAccount(view, command.personId);
+    if (account) out.push({ kind: 'timeline', personId: command.personId, rows: account.rows });
+    return out;
+  }
+  out.push({
+    kind: 'note',
+    text:
+      clues.length > 0
+        ? `I had asked ${surname} that already. The answer is in the notebook, and I read it back instead of asking twice.`
+        : `I had asked ${surname} that already. It got nothing the first time, and asking again would get the same.`,
+  });
+  out.push(...records(clues));
+  return out;
+}
+
 export function step(
   state: RunState,
   command: Command,
@@ -343,6 +522,12 @@ export function step(
   let clientInOffice = state.clientInOffice;
   let clientAsks = state.clientAsks;
   let sceneSeen = state.sceneSeen;
+  // §1.1: the price is decided once, before anything happens, by the same
+  // function the buttons are labelled with.
+  const price = priceOf(command, state, view);
+  const asked: { key: string; clues: Id[] }[] = [];
+  const searched: Id[] = [];
+  let errand: ErrandTrace | undefined;
 
   switch (command.kind) {
     case 'look':
@@ -353,13 +538,15 @@ export function step(
         scene = { kind: 'travel', to: state.at, already: true };
         break;
       }
-      cost = 1;
+      cost = price.cost;
       at = command.placeId;
       head = view.placeById.get(command.placeId)?.shortName ?? head;
       // The scene report and the coroner's note, on the first arrival, free.
       // M5 §6: at the start place, which is the scene for seven tropes out of
       // eight and the foot of the stairs for `body-moved`.
       const firstSight = at === view.startId && !state.sceneSeen;
+      // M6 §2: why he came, derived from what the notebook held when he left.
+      const plan = planErrand(view, state, command.placeId, firstSight);
       const opening = firstSight
         ? sceneCluesOf(view).filter((c) => !state.found.includes(c.id))
         : [];
@@ -374,6 +561,7 @@ export function step(
         already: false,
         ...(opening.length > 0 ? { openingClues: opening } : {}),
         ...(leaves ? { clientLeaves: true } : {}),
+        errand: plan,
       };
       break;
     }
@@ -395,7 +583,12 @@ export function step(
       ];
       break;
     case 'examine': {
-      cost = 1;
+      if (price.reason === 'search-again') {
+        blocks = repeatBlocks(view, state, command);
+        break;
+      }
+      cost = price.cost;
+      searched.push(state.at);
       const available = (view.placeClues.get(state.at) ?? []).filter(
         (c) => !state.found.includes(c.id),
       );
@@ -427,21 +620,23 @@ export function step(
         };
         break;
       }
-      cost = 1;
+      // §1.4: the same question twice is read back out of the notebook, free.
+      if (price.reason === 'ask-again') {
+        blocks = repeatBlocks(view, state, command);
+        break;
+      }
+      cost = price.cost;
       // §B.2.4: while the client is in the office, his first two questions are
       // free. A man hiring you answers your questions. Like the free first ask
       // this is slack handed to the player and never a shorter route, so it is
       // counted as waived and par's accounting does not move.
-      const clientOnTheHouse =
-        clientInOffice && person.id === view.client.id && state.at === view.office.id && clientAsks < 2;
+      const clientOnTheHouse = price.reason === 'house';
       if (clientOnTheHouse) {
-        cost = 0;
         waived = 1;
         clientAsks += 1;
         if (clientAsks >= 2) clientInOffice = false;
-      } else if (knowsHim(state.cast.roll, person.id) && !state.freeAsked.includes(person.id)) {
+      } else if (price.reason === 'familiar') {
         // The free first ask. Unearned slack, and it should feel like luck.
-        cost = 0;
         waived = 1;
         freeAsked.push(person.id);
       }
@@ -456,7 +651,7 @@ export function step(
       let told: { personId: Id; text: string } | null = null;
       if (askedSelf) {
         if (toldAlready) {
-          cost = 0;
+          // priceOf already said 'self-told': free, and not waived slack.
           waived = 0;
           freeAsked.length = 0;
         } else {
@@ -480,6 +675,7 @@ export function step(
           ? []
           : answersTo(view, command.personId, command.topic, state.found);
       gained = answers.map((c) => c.id);
+      asked.push({ key: askKey(person.id, command.topic), clues: gained });
       const volunteer =
         answers.length > 0 || account || (askedSelf && !toldAlready)
           ? volunteerFrom(
@@ -538,6 +734,7 @@ export function step(
     );
     blocks = composed.blocks;
     gaps = composed.gaps;
+    if (composed.errand) errand = composed.errand;
     asideBand = composed.asideBand;
     portrayed = composed.portrayed;
     appeared = composed.appeared;
@@ -586,6 +783,8 @@ export function step(
     clientInOffice,
     clientAsks,
     sceneSeen,
+    asked: [...(state.asked ?? []), ...asked],
+    searched: [...new Set([...(state.searched ?? []), ...searched])],
   };
   const page: Page = {
     n: state.log.length,
@@ -599,6 +798,7 @@ export function step(
     imageMotifs,
     plain,
     image,
+    ...(errand === undefined ? {} : { errand }),
   };
   next.log = [...state.log, page];
   return { state: next, page };
@@ -672,16 +872,7 @@ export function stepInput(
   view: CaseView,
   persistedBurned: string[] = [],
 ): StepResult {
-  const result = parse(
-    view,
-    state.at,
-    raw,
-    peopleHereNow(view, state.at, {
-      clientInOffice: state.clientInOffice,
-      found: state.found,
-    }).map((p) => p.id),
-    state.found,
-  );
+  const result = parseFor(state, raw, view);
   if (result.ok) return step(state, result.command, view, persistedBurned);
 
   const problem = result.problem;

@@ -638,8 +638,12 @@ export function dossierSentence(person: Person, fact: DossierFact): string {
       return ageBandSentence(person) || `${surname} is ${person.dossier?.age ?? 40}.`;
     case 'profession': {
       // "A longshoreman." is a fragment the sheet prints under a heading.
-      const role = text.replace(/^A[n]?\s+/i, '').replace(/\.$/, '');
-      return role.length > 0 ? `${surname} is a ${role}.` : '';
+      // A fixture's trade is written with its own article — "The bartender.",
+      // "the man behind the counter" — and a second one in front of it made
+      // "Callahan is a The bartender." Take whichever article it came with off
+      // and put the right indefinite one on.
+      const role = text.replace(/^(an?|the)\s+/i, '').replace(/\.$/, '');
+      return role.length > 0 ? `${surname} is ${/^[aeiou]/i.test(role) ? 'an' : 'a'} ${role}.` : '';
     }
     default:
       break;
@@ -682,7 +686,7 @@ export function onSightSentence(person: Person): string {
   const their = d.gender === 'f' ? 'her' : 'his';
   const age = has('age') && decade ? `in ${their} ${decade}` : '';
   const trade = has('profession')
-    ? d.profession.role.replace(/^A[n]?\s+/i, '').replace(/\.$/, '')
+    ? d.profession.role.replace(/^(an?|the)\s+/i, '').replace(/\.$/, '')
     : '';
   // The trade where the trade shows, else what a look gives up on its own.
   const what = trade.length > 0 ? trade : has('gender') ? noun : '';

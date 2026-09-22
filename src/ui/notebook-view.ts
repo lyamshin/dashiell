@@ -133,8 +133,14 @@ export function renderNotebook(
     const list = el('ul');
     for (const lead of group.leads) {
       const li = el('li');
+      // M6 decision 3: a lead in another room is two clicks — going is one
+      // choice and one half hour, asking is another. This button does one.
       const button = el('button', { class: 'lead', type: 'button' });
-      button.append(lead.label, el('span', { class: 'cost', text: group.here ? '' : ' ··' }));
+      button.append(
+        el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }),
+        lead.label,
+        el('span', { class: 'cost', text: group.here ? '' : ' — go there first' }),
+      );
       button.addEventListener('click', () => onLead(lead));
       li.append(button);
       list.append(li);

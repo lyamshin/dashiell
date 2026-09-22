@@ -26,7 +26,7 @@
 
 import { TICKS, type Case, type Tick } from '../gen/types.js';
 import { check, renderedFacts, type Violation } from '../gen/correspond.js';
-import { establishedFrom, type CaseView } from './derive.js';
+import { establishedFrom, threadsFor, type CaseView } from './derive.js';
 import type { Block, Page, RunState } from './types.js';
 import { ALL_CARDS } from './voice/cards.js';
 import * as VOICE_DATA from './voice-data.js';
@@ -302,12 +302,152 @@ export function checkPage(
   return out;
 }
 
+/**
+ * A violation on a rendered page. The generator's rules, plus the one M6 adds:
+ * an errand line that does not trace back to the notebook.
+ */
+export type PageViolation = Omit<Violation, 'rule'> & {
+  rule: Violation['rule'] | 'errand-untraced';
+};
+
+/**
+ * M6 §2.1 — the errand line, traced.
+ *
+ * The line is derived and never invented, so every part of it has somewhere
+ * to go back to: the clue in the notebook that sent him (found before this
+ * page, and naming the target in its `leadsTo`), the lead it opened (not yet
+ * found, and in this room), the person who said it, the person he came to
+ * ask, and what about — which is in the lead's own words, and the lead's own
+ * words are printed in the notebook's list of leads. A line with no lead
+ * behind it has to be a room nobody sent him to; a return has to be a return.
+ * And no person the trace does not account for may be named in it at all.
+ */
+export function checkErrand(
+  view: CaseView,
+  page: Page,
+  foundBefore: readonly string[],
+  visitedBefore: ReadonlySet<string>,
+): PageViolation[] {
+  const trace = page.errand;
+  if (!trace) return [];
+  const out: PageViolation[] = [];
+  const where = `page ${page.n} errand`;
+  const fail = (detail: string): void => {
+    out.push({ where, rule: 'errand-untraced', detail, text: trace.text });
+  };
+  const first = page.blocks[0];
+  if (!first || first.kind !== 'prose' || first.voice !== 'errand' || first.text !== trace.text) {
+    fail('the errand line is not the first thing on the page, word for word');
+  }
+  const here = view.placeById.get(page.at);
+  if (trace.slots.place !== here?.shortName) fail(`{place} is "${trace.slots.place}", not here`);
+  const have = new Set(foundBefore);
+  const leadsHere = threadsFor(view, [...foundBefore]).filter((t) => t.placeId === page.at);
+
+  const allowed = new Set<string>();
+  switch (trace.kind) {
+    case 'office':
+      if (page.at !== view.office.id) fail('an office errand away from the office');
+      break;
+    case 'none':
+    case 'return':
+      if (leadsHere.length > 0) fail(`says nobody sent him, and ${leadsHere.length} lead(s) point here`);
+      if (trace.kind === 'none' && visitedBefore.has(page.at)) fail('a first visit to a room already visited');
+      if (trace.kind === 'return' && !visitedBefore.has(page.at)) fail('a return to a room never visited');
+      break;
+    case 'scene': {
+      const source = trace.sourceId ? view.findableById.get(trace.sourceId) : undefined;
+      if (!source || source.kind !== 'client' || !have.has(source.id)) {
+        fail('the scene errand is not the client’s brief in hand');
+      }
+      if (trace.slots.name !== view.client.surname) fail(`{name} is not the client`);
+      if (trace.targetId && !page.found.includes(trace.targetId)) {
+        fail('the scene errand points at something this page did not hand over');
+      }
+      allowed.add(view.client.surname);
+      break;
+    }
+    case 'lead': {
+      const source = trace.sourceId ? view.findableById.get(trace.sourceId) : undefined;
+      const target = trace.targetId ? view.findableById.get(trace.targetId) : undefined;
+      if (!source || !have.has(source.id)) {
+        fail('the clue that sent him is not in the notebook');
+        break;
+      }
+      if (!target || !source.leadsTo.includes(target.id)) {
+        fail('the clue that sent him does not lead where he went');
+        break;
+      }
+      if (have.has(target.id)) fail('the lead was already taken');
+      if (target.place !== page.at) fail('the lead is not in this room');
+      if (leadsHere.length !== trace.leads) fail(`${trace.leads} leads claimed, ${leadsHere.length} open`);
+      // §2.1 step 2: the newest opener among the leads here wins.
+      const at = (id: string): number => foundBefore.lastIndexOf(id);
+      for (const t of leadsHere) {
+        for (let i = foundBefore.length - 1; i > at(source.id); i--) {
+          const c = view.findableById.get(foundBefore[i] as string);
+          if (c?.leadsTo.includes(t.clueId)) {
+            fail(`a newer clue (${c.id}) opened a lead here`);
+            break;
+          }
+        }
+      }
+      const other = trace.text.includes('And there was the other thing.');
+      if (other !== (trace.leads === 2)) fail('"the other thing" without exactly two leads');
+      if (source.source.type === 'person') {
+        const said = view.personById.get(source.source.personId)?.surname;
+        if (trace.because !== 'said' || trace.slots.name !== said) fail('{name} is not who said it');
+        if (said) allowed.add(said);
+      } else {
+        if (trace.because === 'said') fail('a place clue is not something somebody said');
+        const from = view.placeById.get(source.source.placeId)?.shortName;
+        if (trace.slots.from !== undefined && trace.slots.from !== from) fail('{from} is not where it was found');
+      }
+      if (trace.for.startsWith('ask-')) {
+        if (target.source.type !== 'person') {
+          fail('an ask errand on a lead nobody answers');
+          break;
+        }
+        const who = view.personById.get(target.source.personId)?.surname ?? '';
+        if (trace.slots.who !== who) fail('{who} is not the person the lead says to ask');
+        allowed.add(who);
+        const subject = trace.slots.subject ?? '';
+        const topic = target.source.topic.toLowerCase();
+        const inTopic = topic.includes(subject.toLowerCase());
+        if (!inTopic && !(trace.for === 'ask-evening' && subject === who)) {
+          fail(`{subject} "${subject}" is not in the lead "${target.source.topic}"`);
+        }
+        if (trace.for === 'ask-person') allowed.add(subject);
+      } else if (trace.for === 'search-room' || trace.for === 'search-thing') {
+        if (target.source.type !== 'place') fail('a search errand on a lead somebody answers');
+        if (trace.for === 'search-thing') {
+          const subject = trace.slots.subject ?? '';
+          const text = (source.textRecord ?? source.text).toLowerCase();
+          if (!text.includes(subject.toLowerCase())) fail(`{subject} "${subject}" is not in the clue that sent him`);
+        }
+      }
+      break;
+    }
+  }
+  // Nobody the trace does not account for is named in the line.
+  for (const person of view.kase.people) {
+    if (allowed.has(person.surname)) continue;
+    if (new RegExp(`\\b${person.surname}\\b`).test(trace.text)) {
+      fail(`names ${person.surname}, whom the trace does not account for`);
+    }
+  }
+  return out;
+}
+
 /** Every violation in a whole run, page by page as the player read them. */
-export function checkRun(view: CaseView, state: RunState): Violation[] {
-  const out: Violation[] = [];
+export function checkRun(view: CaseView, state: RunState): PageViolation[] {
+  const out: PageViolation[] = [];
   const found: string[] = [];
+  const visited = new Set<string>();
   for (const page of state.log) {
+    out.push(...checkErrand(view, page, [...found], visited));
     found.push(...page.found);
+    visited.add(page.at);
     out.push(...checkPage(view.kase, view, page, found));
   }
   return out;

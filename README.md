@@ -47,6 +47,18 @@ the first question you put to them is free. The DA's office opens at eight and f
 whatever the precinct has, which gives you eight hours and, depending on the
 case, thirteen to twenty actions to spend in them.
 
+Every page ends in choices (M6): **Ask** the person in the room about
+something, **Search** the room or a thing in it, **Go to** another place, or
+open the notebook and file the report. Each button says what it costs of the
+night — "½ hr", "25 min", or "free" — and a button that takes an open lead is
+marked with a star. The same question twice, or the same room searched twice,
+is free and reads the notebook back. The running head shows the time and a
+strip of notches, one per call, and every page that moves you opens on a line
+saying why you came.
+
+Under the buttons the game still speaks the typed commands the transcript
+tool, the oracle and the tests use:
+
 | command | cost |
 |---|---|
 | `go <place>` | one action |
@@ -57,14 +69,9 @@ case, thirteen to twenty actions to spend in them.
 | `help` | free |
 | `file` | ends the night |
 
-Topics are anybody's surname, a room, a thing, something that happened at a
-fixed hour, `that evening` (which gets that person's own account of it), and
-`why I was hired`. Names are fuzzy — a given name, a surname or a prefix of
-either will do.
-
-Anything underlined is clickable, and so is every lead in the notebook; a lead
-walks you there first if you are not there already. Nothing you get wrong at
-the prompt ever costs you an action.
+Names and places in the prose show a card from the notebook on hover (a tap
+on a phone). A lead in the notebook is one click: the question if the person
+is in the room, the walk there if not.
 
 Your run is saved as you play, so a reload picks it up where you left it. The
 notebook is the record: every clue you find is written there word for word,
@@ -89,12 +96,15 @@ npm run read -- --seed 7                  # the oracle's night, page by page
 npm run read -- --seed 7 --random         # a plausible imperfect player
 npm run read -- --seed 7 --pages 4        # the first four pages only
 npm run read -- --seed 7 --no-gaps        # without the fallback log
+npm run read -- --seed 7 --no-choices     # without the choices under each page
 ```
 
 It prints the roll the night was played on, every page as a player would read
 it, the notebook at the end and the filed report. The `[gap: …]` lines under a
 page say where a deck had nothing and the engine had to fall back; that list
-is what the content team works from.
+is what the content team works from. Under each page are the choices it
+offered, one line per group: `*` marks a lead, `✓` something already done, and
+`>` the command the player took next.
 
 ## The decks
 
