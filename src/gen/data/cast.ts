@@ -142,9 +142,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} bought into {victim}’s business the year {third} walked out of it',
     ],
     backstoryFirst: [
-      '{victim} and I took the lease together in {year} and we have been arguing about it since',
-      'I put up the money and {victim} put up the name, and neither of us ever wrote it down',
-      'I bought into {victim}’s business the year {third} walked out of it',
+      '{victim} and I took the lease together in {year}. We have been arguing about it since. Not once in front of anybody.',
+      'I put up the money. {victim} put up the name. Neither of us ever wrote any of it down.',
+      'I bought into {victim}’s business the year {third} walked out of it. I have wondered about that since. It seemed a bargain at the time.',
     ],
     since: ['since {year}', 'going on eight years', 'three years this spring'],
     purposes: {
@@ -163,9 +163,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} put {person}’s rent up twice in a year and {person} paid it twice',
     ],
     backstoryFirst: [
-      'I have rented from {victim} since {year} and I have the same window and the same complaint',
-      'I took the rooms over {place} from {victim} and I have been two weeks behind since the spring',
-      '{victim} put my rent up twice in a year and I paid it twice',
+      'I have rented from {victim} since {year}. The same window. The same complaint about it, every year.',
+      'I took the rooms over {place} from {victim}. I have been two weeks behind since the spring. Two weeks, never three.',
+      '{victim} put my rent up twice in a year. I paid it twice. I did not argue either time.',
     ],
     since: ['since {year}', 'since the flu year', 'four years in the same rooms'],
     purposes: {
@@ -184,9 +184,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} put {victim} into the rooms as a favour to {third} and regretted it inside a month',
     ],
     backstoryFirst: [
-      '{victim} rented from me and was three months behind when it happened',
-      'I have held the paper on the building {victim} lived in since {year}',
-      'I put {victim} into the rooms as a favour to {third} and regretted it inside a month',
+      '{victim} rented from me. Three months behind when it happened, and I had said nothing about it.',
+      'I have held the paper on the building {victim} lived in since {year}. I hold it still.',
+      'I put {victim} into the rooms as a favour to {third}. Inside a month I regretted it. The favour was never returned.',
     ],
     since: ['since {year}', 'the better part of ten years', 'two leases running'],
     purposes: {
@@ -205,9 +205,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} kept {victim}’s books until {third} was brought in over {person}’s head',
     ],
     backstoryFirst: [
-      'I worked for {victim} for four years and was let go in {year} without a reference',
-      '{victim} put me out of a job over forty dollars that was never found',
-      'I kept {victim}’s books until {third} was brought in over my head',
+      'I worked for {victim} four years. I was let go in {year}, without a reference.',
+      '{victim} put me out of a job over forty dollars. The money was never found. I did not take it.',
+      'I kept {victim}’s books until {third} was brought in over my head. Nobody told me first.',
     ],
     since: ['since {year}', 'four years, and then nothing', 'until last winter'],
     purposes: {
@@ -226,9 +226,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} lent {victim} money in front of {third} and has been reminded of it ever since',
     ],
     backstoryFirst: [
-      'I have been carrying {victim}’s paper since {year} and renewing it every ninety days',
-      '{victim} borrowed from me to cover a note and never mentioned it to anybody',
-      'I lent {victim} money in front of {third} and have been reminded of it ever since',
+      'I have carried {victim}’s paper since {year}, and renewed it every ninety days. Every ninety days, on the day.',
+      '{victim} borrowed from me to cover a note. It was never mentioned to anybody. Not by either of us.',
+      'I lent {victim} money in front of {third}. That was a mistake. I have been reminded of it ever since.',
     ],
     since: ['since {year}', 'three renewals running', 'going back to the war'],
     purposes: {
@@ -247,9 +247,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} signed a note to {victim} that {third} witnessed and nobody has torn up',
     ],
     backstoryFirst: [
-      'I have owed {victim} money since {year} and have not been asked for it lately',
-      '{victim} carried me through a bad winter and has been collecting on it ever since',
-      'I signed a note to {victim} that {third} witnessed and nobody has torn up',
+      'I have owed {victim} money since {year}. Nobody has asked for it lately. That is what worries me.',
+      '{victim} carried me through a bad winter. The collecting has not stopped since. I am still paying.',
+      'I signed a note to {victim}. {third} witnessed it. Nobody has torn it up.',
     ],
     since: ['since {year}', 'since the flu year', 'two winters running'],
     purposes: {
@@ -268,9 +268,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} brought {person} the business {third} would not touch',
     ],
     backstoryFirst: [
-      'I have drawn every paper {victim} ever signed, going back to {year}',
-      'I keep {victim}’s will in a box and have read it more often than {victim} did',
-      '{victim} brought me the business {third} would not touch',
+      'I have drawn every paper {victim} ever signed. That goes back to {year}. All of it in my own hand.',
+      '{victim}’s will is in my box. I have read it more often than {victim} did.',
+      '{victim} brought me the business {third} would not touch. I took it.',
     ],
     since: ['since {year}', 'for eleven years', 'going back to the war'],
     purposes: {
@@ -289,9 +289,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} came over on the same boat with {third} and split up inside a year',
     ],
     backstoryFirst: [
-      '{victim} and I are cousins and were raised four doors apart',
-      'I am {victim}’s cousin on the mother’s side and have not been asked to dinner since {year}',
-      '{victim} and I came over on the same boat with {third} and split up inside a year',
+      '{victim} and I are cousins. We were raised four doors apart.',
+      'I am {victim}’s cousin on the mother’s side. I have not been asked to dinner since {year}. Not once.',
+      '{victim}, {third} and I came over on the same boat. Inside a year we had split up. That was the end of it.',
     ],
     since: ['all their lives', 'since {year}', 'since they were children on the same block'],
     purposes: {
@@ -310,9 +310,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{victim} stood up at {person}’s wedding and {third} has never let either of them forget it',
     ],
     backstoryFirst: [
-      'I married {victim}’s sister in {year} and have been in the family ever since',
-      'I am {victim}’s brother-in-law and have been told so at every holiday',
-      '{victim} stood up at my wedding and {third} has never let either of us forget it',
+      'I married {victim}’s sister in {year}. I have been in the family ever since. For better or worse.',
+      'I am {victim}’s brother-in-law. At every holiday somebody has told me so.',
+      '{victim} stood up at my wedding. {third} has never let either of us forget it.',
     ],
     since: ['since {year}', 'since the wedding', 'nine years of Sundays'],
     purposes: {
@@ -332,9 +332,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} both bid for what {third} was selling, and {victim} got it',
     ],
     backstoryFirst: [
-      '{victim} and I have been in the same trade on the same street since {year}',
-      'I took two of {victim}’s best accounts and {victim} took one of them back',
-      '{victim} and I both bid for what {third} was selling, and {victim} got it',
+      '{victim} and I have been in the same trade on the same street since {year}. Neither of us moved.',
+      'I took two of {victim}’s best accounts. {victim} took one of them back. We were even enough.',
+      '{third} had something to sell. {victim} and I both bid for it. {victim} got it.',
     ],
     since: ['since {year}', 'six years of it', 'since they were both starting out'],
     purposes: {
@@ -354,9 +354,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} separated over {third} and never went near a court about it',
     ],
     backstoryFirst: [
-      'I married {victim} in {year} and we have lived apart for three of those years',
-      'I am {victim}’s wife in law and nothing else, and have been since {year}',
-      '{victim} and I separated over {third} and never went near a court about it',
+      'I married {victim} in {year}. Three of those years we have lived apart.',
+      'I am {victim}’s wife in law and nothing else. That has been true since {year}.',
+      '{victim} and I separated over {third}. We never went near a court about it. No papers, no lawyers.',
     ],
     since: ['since {year}', 'three years apart', 'since the winter they stopped speaking'],
     purposes: {
@@ -375,9 +375,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} knows what {victim} took, and when, and how much of it was necessary',
     ],
     backstoryFirst: [
-      'I have sat nights with {victim} since {year}, six nights out of seven',
-      'I was put in to nurse {victim} by {third} and stayed on after the fee stopped',
-      'I know what {victim} took, and when, and how much of it was necessary',
+      'I have sat nights with {victim} since {year}. Six nights out of seven.',
+      '{third} put me in to nurse {victim}. The fee stopped. I stayed on anyway.',
+      'I know what {victim} took, and when. I know how much of it was necessary. Not all of it.',
     ],
     since: ['since {year}', 'since the spring', 'eleven months of nights'],
     purposes: {
@@ -396,9 +396,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} was hired on {third}’s word and has been more use than {third} ever was',
     ],
     backstoryFirst: [
-      'I have answered {victim}’s letters since {year} and read them all first',
-      'I keep {victim}’s diary and know which of the entries are true',
-      'I was hired on {third}’s word and have been more use than {third} ever was',
+      'I have answered {victim}’s letters since {year}. I read them all first. That is the work.',
+      'I keep {victim}’s diary. I know which of the entries are true. Not many of them.',
+      'I was hired on {third}’s word. I have been more use than {third} ever was. A good deal more.',
     ],
     since: ['since {year}', 'for six years', 'since the rooms changed'],
     purposes: {
@@ -418,9 +418,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim}’s daughter have been engaged since {year}, and {third} calls it a long engagement',
     ],
     backstoryFirst: [
-      'I have been engaged to {victim}’s daughter since {year}, with no date set',
-      'I asked {victim} for the daughter and was told to come back when there was money',
-      '{victim}’s daughter and I have been engaged since {year}, and {third} calls it a long engagement',
+      'I have been engaged to {victim}’s daughter since {year}. No date has been set.',
+      'I asked {victim} for the daughter. I was told to come back when there was money. I have not been back.',
+      '{victim}’s daughter and I have been engaged since {year}. {third} calls it a long engagement. It is.',
     ],
     since: ['since {year}', 'two years engaged', 'since last Easter'],
     purposes: {
@@ -439,9 +439,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person}, {victim} and {third} were inseparable for ten years and have not been in a room together since',
     ],
     backstoryFirst: [
-      '{victim} and I grew up on the same block and have known each other since {year}',
-      '{victim} and I were boys together and neither of us ever left the neighbourhood',
-      '{victim}, {third} and I were inseparable for ten years and have not been in a room together since',
+      'We grew up on the same block, {victim} and I. We have known each other since {year}. That is a long time.',
+      '{victim} and I were boys together. Neither of us ever left the neighbourhood. Neither of us tried.',
+      '{victim}, {third} and I were inseparable for ten years. We have not been in a room together since. Not once.',
     ],
     since: ['all their lives', 'since {year}', 'since they were boys on the same stoop'],
     purposes: {
@@ -460,9 +460,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {third} are both named in it, and only one of them knows',
     ],
     backstoryFirst: [
-      'I have been named in {victim}’s will since {year} and have known it that long',
-      '{victim} told me there was something in the will and never said how much',
-      '{third} and I are both named in it, and only one of us knows',
+      'I have been named in {victim}’s will since {year}. I have known it that long.',
+      '{victim} told me there was something in the will. How much was never said. I did not ask.',
+      '{third} and I are both named in it. Only one of us knows. I have said nothing to {third}.',
     ],
     since: ['since {year}', 'since the will was redrawn', 'for as long as there has been a will'],
     purposes: {
@@ -481,9 +481,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} talked to the district attorney in {year} and {third} has not spoken to {person} since',
     ],
     backstoryFirst: [
-      'I gave a statement about the people {victim} worked for and have been careful ever since',
-      'I am due before the grand jury about {victim}’s people, and the date is set',
-      'I talked to the district attorney in {year} and {third} has not spoken to me since',
+      'I gave a statement about the people {victim} worked for. Since then I have been careful. Very careful.',
+      'I am due before the grand jury about {victim}’s people. The date is set. I cannot put it off.',
+      'I talked to the district attorney in {year}. {third} has not spoken to me since. Not a word.',
     ],
     since: ['since {year}', 'since the indictment', 'since last autumn'],
     purposes: {
@@ -502,9 +502,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} came to {victim} on {third}’s introduction and has stayed a customer',
     ],
     backstoryFirst: [
-      'I have bought from {victim} for years and settled at the end of every month',
-      'I have been on {victim}’s books as a customer since {year}',
-      'I came to {victim} on {third}’s introduction and have stayed a customer',
+      'I bought from {victim} for years. Everybody on the block did, but I settled at the end of every month.',
+      'I have been on {victim}’s books since {year}. A customer, and never anything else.',
+      '{third} introduced me to {victim}. I never went anywhere else after that.',
     ],
     since: ['since {year}', 'for years', 'since the shop opened'],
     purposes: {
@@ -523,9 +523,9 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} and {victim} share a wall, a landing and a long argument about {third}',
     ],
     backstoryFirst: [
-      'I live across the airshaft from {victim} and can hear the wireless through it',
-      'I have lived on the same landing as {victim} since {year}',
-      '{victim} and I share a wall, a landing and a long argument about {third}',
+      'I live across the airshaft from {victim}. The wireless comes through it. I hear all of it.',
+      'I have lived on the same landing as {victim} since {year}. The same landing, all that time.',
+      '{victim} and I share a wall and a landing. We share a long argument about {third}. It is not settled.',
     ],
     since: ['since {year}', 'five years on the same landing', 'since the building changed hands'],
     purposes: {
