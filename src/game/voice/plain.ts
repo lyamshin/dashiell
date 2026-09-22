@@ -438,7 +438,6 @@ export const PLAIN_STOCK: string[] = [
 export const PLAIN_BEATS: string[] = [
   'Nothing moved.',
   'I waited.',
-  'Nobody said anything.',
   'I let it go.',
   'It was late.',
   'I moved on.',
@@ -448,8 +447,9 @@ export const PLAIN_BEATS: string[] = [
   'I let it sit.',
   'It would keep.',
   'I went on.',
-  'Nobody hurried me.',
-  'I did not argue.',
+  'I took my time.',
+  'I did not linger.',
+  'That was enough for now.',
 ];
 
 /**

@@ -1431,8 +1431,18 @@ function blocksOf(laid: Laid[]): Block[] {
  * true on any page of any case — because the pass puts them wherever the
  * arithmetic wants one and cannot know what the page has established.
  */
-export const SHORT_TARGET = 0.25;
-export const SHORT_TOP_UPS = 3;
+/**
+ * The floor the pass tops a page up to, and how many beats it may spend.
+ *
+ * §5 says "at least a quarter" and GAP.md's target is a **mean** of 0.28 over
+ * the fixed set. A page floor of a quarter gives a mean of 0.25, because the
+ * distribution either side of the floor is narrow — almost every page sits on
+ * it. The floor is set at 0.30 to land the mean where the target is, and not a
+ * point higher: past that the beats stop being rhythm and start being padding,
+ * and a page of four-word sentences is as flat as a page of eleven-word ones.
+ */
+export const SHORT_TARGET = 0.3;
+export const SHORT_TOP_UPS = 4;
 
 /** Which paragraphs will take a beat on the end: prose, and nobody speaking. */
 function takesABeat(l: Laid): boolean {

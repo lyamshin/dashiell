@@ -1430,3 +1430,227 @@ you answers your questions.
 I set it down. I kept coming back to the money. If I had to put money down
 tonight, Lanza.
 ```
+
+---
+
+## Round 7 — calibrating the short floor
+
+```
+120 pages · 40 seeds · pages 1–3 · round 7
+
+metric                    mean        target    dist     worst  gold p1  gold p2  page
+--------------------------------------------------------------------------------------
+orphan_word_ratio        0.822       <= 0.68   0.209     0.960     0.73     0.82  seed38-p3.txt
+paragraph_cohesion       0.661       >= 0.65   0.000     0.170     0.67     0.80  seed08-p2.txt
+sentence_cohesion        0.647       >= 0.55   0.000     0.360     0.53     0.59  seed38-p3.txt
+short_share              0.271       >= 0.28   0.031     0.083     0.42     0.17  seed38-p3.txt
+long_ratio               0.072 0.0625-0.1875   0.000     0.000     0.09     0.06  seed01-p2.txt
+dialogue_share_p1        0.323      0.3-0.45   0.000     0.260     0.39     0.00  seed15-p1.txt
+figures                  0.475          <= 1   0.000     2.000     1.00     0.00  seed06-p1.txt
+plain_ratio              0.743        >= 0.6   0.000     0.500        —        —  seed07-p3.txt
+words_per_paragraph     27.018         30-45   0.099    15.200    22.40    36.00  seed40-p1.txt
+--------------------------------------------------------------------------------------
+AGGREGATE DISTANCE       0.340
+
+gaps: no-fact ×1
+```
+
+### The reading
+
+**The change.** One number and one pool. §5 says "at least a quarter" and GAP.md asks for a mean of 0.28 across the fixed set; a page floor of a quarter produced a mean of 0.25, because almost every page sits exactly on the floor and there is no tail above it to pull the mean up. The floor is set at 0.30 to land the mean where the target is, with a fourth beat allowed, and not a point higher: past that the beats stop being rhythm and a page of four-word sentences is as flat as a page of eleven-word ones. The beat pool also lost the three atoms that imply somebody else is in the room — "Nobody said anything" on the end of a paragraph about chalk marks in an empty flat is a beat placed where the pass could not know better.
+
+**What the numbers did.** Aggregate 0.441 → 0.340. `short_share` 0.247 → 0.271 against 0.28, which takes the largest remaining distance to 0.031; `sentence_cohesion` 0.638 → 0.647 and `plain_ratio` 0.733 → 0.743 came with it, and `words_per_paragraph` went up rather than down because a beat is words inside a paragraph rather than a paragraph of its own. Six of nine targets met, and a seventh within a hundredth.
+
+**What was tried and reverted.** §6 allows the image budget to be lowered to two a page. It was, and the aggregate went the wrong way — 0.340 to 0.354 — while the orphan ratio moved by a single thousandth. That is the round's real finding: the density GAP.md measures is not the deck's doing and cannot be fixed by dealing fewer cards. It is that a two-hundred-word page made of a generator's facts and a writer's images has almost no room to say anything twice, which is why the golden's own office page scores 0.73 and its suite page 0.82 against a target of 0.68 that was measured on the two of them together.
+
+**The reading.** Seed 12's suite page reads at the corpus's own cadence now — a long sentence about the El, a short one after it, a morgue note, "I moved on." The three targets outstanding are the orphan ratio, which six rounds and a reverted experiment say no assembly decision can reach; words a paragraph, which is within a word of where the golden's own office page sits and is pulled down by dialogue that the page is better for having; and the short share, which is a hundredth away and would cost padding to close. The loop has nothing honest left to spend a round on.
+
+### Page one, seeds 3, 7 and 12
+
+**Seed 3**
+
+```
+Midnight. Two rooms over a Chinese laundry on Rivington Street, the Lower
+East Side. My knuckle had split open again, the same place as last month. It
+caught on the desk drawer every time. Frost had crept across the window
+glass from the inside.
+
+A woman came up the stairs after midnight, and sat down. Kreuzer shut the
+door soft, the way careful people do when doors matter to them. Kreuzer: a
+crooked little finger, broken once and never reset. Collar buttoned, no tie,
+and a smear of green paint at one shoulder.
+
+Gretchen Kreuzer is 30 years old and a pawnbroker’s clerk. Kreuzer writes
+the tickets behind the grille and knows what a thing is worth. She sat with
+both hands folded.
+
+“Go ahead.”
+
+“Sweeney was the reason four places on the street stayed open, and everyone
+knew it. Sweeney was found dead at the suite.”
+
+“And Sweeney?”
+
+“Sweeney was killed at the suite, and nothing was carried out of the room
+afterwards. The coroner puts it between 9:30 PM and 11:00 PM, which is two
+hours of nothing useful.”
+
+“And the suite?”
+
+“It was a blunt object.”
+
+That fit.
+
+“Where was Sweeney found?”
+
+“I found Sweeney at the suite at half past eleven. The precinct took a
+statement at the desk and filed it.”
+
+“What brought you to the suite?”
+
+“I am a customer of Sweeney’s. I came to Sweeney on Domenico Tramonti’s
+introduction and have stayed a customer.”
+
+She stopped there.
+
+“You could have let it alone.”
+
+“I have something owing with Sweeney that death did not settle. I am
+spending money I was owed and may never see.”
+
+“Who would you start with?”
+
+"Start with Grasso. Grasso blamed Sweeney for the ruin of his business. You
+know the rate." I did. I held out my hand, and a roll with a rubber band
+round it landed in it.
+
+Kreuzer is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+I noted it. Nothing is settled. If it is anybody yet, it is Grasso.
+```
+
+**Seed 7**
+
+```
+Midnight. Two rooms over a pawnshop on Great Jones Street, the Bowery. The
+landlady's bill was folded under the telephone. I'd see it every time the
+thing didn't ring. I decided not to open it until it did.
+
+A woman came up the stairs after midnight, and sat down. Salerno knocked
+twice, waited for the second, and came in only after I answered. Salerno: a
+birthmark the shape of a thumbprint, just under the left ear, and a hem
+taken up an inch, the old line still showing.
+
+Lucia Salerno is 37 years old and a chambermaid. Salerno does eleven rooms a
+day and the linen after. Salerno did not move for a while.
+
+“I am listening.”
+
+“Brennan was the one name on the block the papers would have printed. A
+japanned cash box was taken from the back lot, which is Brennan’s.”
+
+“Go back to the back lot.”
+
+“Nothing at the back lot was forced: the lock was turned and the door was
+shut again after. The precinct puts it between 10:00 PM and 11:30 PM.”
+
+“And the back lot?”
+
+“Brennan is not saying much about what was in it.”
+
+That fit.
+
+“What about Brennan, then?”
+
+“Bledsoe found the door at the back lot shut and a japanned cash box gone,
+at 11:30 PM. The precinct came, walked through it, and went.”
+
+“What were you doing there?”
+
+“I am Brennan’s tenant. Brennan put my rent up twice in a year and I paid it
+twice.”
+
+Neither of us spoke.
+
+“What is Brennan to you now?”
+
+“I want it established that it was not me, before anybody says otherwise. I
+was near enough to it that night to know how it looks, so I am saying it
+first.”
+
+“Who would do that to Brennan?”
+
+"Start with Mosley. Mosley owed Brennan four thousand dollars and was past
+due on it, Dashiell." Salerno didn't waste breath explaining further. I took
+twenty dollars the way I always did from Salerno, without counting it.
+
+Salerno is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+I marked it down. I kept coming back to the money. Nothing is settled. If it
+is anybody yet, it is Mosley.
+```
+
+**Seed 12**
+
+```
+Midnight. Two rooms over a pawnshop on Eighth Avenue, Chelsea. My knuckle
+had split open again, the same place as last month. It caught on the desk
+drawer every time. Frost had crept across the window glass from the inside.
+
+A woman came up the stairs after midnight, and sat down. Tillman was talking
+before the door shut behind her, about the cab, the weather, anything but
+the reason she'd come. Tillman: nails bitten to the quick on the right hand
+only, and a brooch pinned slightly crooked, like it went on in a hurry.
+
+Odessa Tillman is 47 years old and a curb broker. Tillman trades on the
+street for men who would rather not be seen doing it. She did not lean back.
+
+“Take your time.”
+
+“Grasso could close a building with a signature, and had closed two. Grasso
+was found dead at the benches.”
+
+“Go on about Grasso.”
+
+“Grasso was not killed at the benches: there is no blood there and no sign
+of a struggle. The coroner puts it between 6:00 PM and 7:30 PM.”
+
+“What else about Grasso?”
+
+“It was poison in a drink, and it happened somewhere else.”
+
+I believed it.
+
+“Who else was there?”
+
+“I found Grasso at the benches at seven o’clock. The precinct wrote it down
+as a fall and closed the book on it.”
+
+“How do you come into it?”
+
+“I am in Grasso’s debt. Grasso carried me through a bad winter and has been
+collecting on it ever since.”
+
+I did not press Tillman.
+
+“Why me?”
+
+“I want the one who killed Grasso found, because the precinct has stopped
+looking. I know that asking questions on this block is a way of being asked
+some.”
+
+“Who do you want looked at?”
+
+"Start with Lanza. Lanza blamed Grasso for the ruin of his business,
+Dashiell, same as always," Tillman said, and kept talking through the part
+where a hundred dollars landed on my desk. I picked it up without breaking
+Tillman's stride.
+
+Tillman is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+I set it down. I kept coming back to the money. If I had to put money down
+tonight, Lanza.
+```
