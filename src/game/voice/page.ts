@@ -1981,6 +1981,19 @@ function carryNoun(dealer: Dealer, before: readonly string[]): string | null {
  * and is separated by semicolons instead, and either way the last of three or
  * more is introduced by "and", so the end of the list is audible.
  */
+/**
+ * One person in the roll, with their role and where they are standing.
+ *
+ * §B.6. A role can name its own post — "the hackman on the stand" — and the
+ * watcher's post for a cabbie is "on the stand", so the roll printed
+ * "Bidwell, the hackman on the stand, on the stand". Where the role has said
+ * where they are, it is not said again.
+ */
+export function presenceClause(surname: string, role: string, post: string): string {
+  const named = role.toLowerCase().includes(post.toLowerCase());
+  return named ? `${surname}, ${role}` : `${surname}, ${role}, ${post}`;
+}
+
 export function presenceSentence(stage: Stage): string {
   const { view, cast } = stage;
   const place = view.placeById.get(stage.at);
@@ -2006,12 +2019,7 @@ export function presenceSentence(stage: Stage): string {
     if (!met) {
       flush();
       hasRole = true;
-      // §B.6. A role can name its own post — "the hackman on the stand" — and
-      // the watcher's post for a cabbie is "on the stand", so the roll printed
-      // "Bidwell, the hackman on the stand, on the stand". Where the role has
-      // already said where the person is, it is not said again.
-      const named = person.role.toLowerCase().includes(post.toLowerCase());
-      clauses.push(named ? `${person.surname}, ${person.role}` : `${person.surname}, ${person.role}, ${post}`);
+      clauses.push(presenceClause(person.surname, person.role, post));
       continue;
     }
     // §B.4. Somebody already met is named by what the reader remembers about
