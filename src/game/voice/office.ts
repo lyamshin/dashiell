@@ -13,6 +13,7 @@
  */
 
 import { Rng } from '../../gen/rng.js';
+import type { CaseView } from '../derive.js';
 import {
   CLIENT_LEAVING,
   ENTRANCE_LINES,
@@ -147,6 +148,72 @@ export function hiringFrame(
   );
   if (drawn) return { text: drawn.text, motifs: drawn.motifs, score: drawn.score, gap: null };
   return handwritten(HIRING_LINES, dealer.random, slots, 'hiring');
+}
+
+/* ------------------------------------------------------------------ *
+ * M5 §2 — the briefing, split into who said what.
+ * ------------------------------------------------------------------ */
+
+export interface BriefingSplit {
+  /**
+   * The first sentence: a woman came up the stairs after midnight. Dashiell's,
+   * and null when the roll says he knows her, because then the entrance card
+   * has already said it, better and with a name in it.
+   */
+  entrance: string | null;
+  /** The rest of what he saw: who she is, and what she does for money. */
+  narration: string[];
+  /** What she said: the standing, the givens, the tie, the purpose. */
+  speech: string[];
+  /** The last of it — the pointer — which the hiring frame carries. */
+  close: string[];
+}
+
+/**
+ * The rule set, and it is one rule.
+ *
+ * `buildBriefing` writes the client's own description first — who came in,
+ * what they are, what they do for money — and then, beginning at the victim's
+ * standing, everything the client is in the room to say. The standing is the
+ * seam: before it, Dashiell narrating what walked in; from it on, the client
+ * talking. Both halves are the generator's sentences, verbatim and entire.
+ */
+export function splitBriefing(view: CaseView, familiar: boolean): BriefingSplit {
+  const briefing = view.kase.briefing;
+  const standing = normalizeLine(view.kase.victimBio.standing);
+  let seam = briefing.findIndex((line) => normalizeLine(line) === standing);
+  // A briefing whose standing did not survive `tidy` keeps the spec's shape:
+  // one entrance sentence and up to two about the person who walked in.
+  if (seam < 0) seam = Math.min(3, briefing.length);
+
+  const head = briefing.slice(0, seam);
+  const body = briefing.slice(seam);
+  // The pointer and its reason are the last two, and they are the job.
+  const closeFrom = Math.max(0, body.length - 2);
+  return {
+    entrance: familiar ? null : (head[0] ?? null),
+    narration: head.slice(1),
+    speech: body.slice(0, closeFrom),
+    close: body.slice(closeFrom),
+  };
+}
+
+function normalizeLine(text: string): string {
+  return text.replace(/\s+/g, ' ').replace(/\.+$/, '').trim().toLowerCase();
+}
+
+/**
+ * The client's sentences, in paragraphs, as things they said out loud. Three
+ * to a paragraph: sixteen plain sentences in one block of quotation marks is a
+ * deposition, and four paragraphs of three or four is somebody talking.
+ */
+export function speechParagraphs(lines: string[], per = 3): string[] {
+  const out: string[] = [];
+  for (let i = 0; i < lines.length; i += per) {
+    const chunk = lines.slice(i, i + per).join(' ').trim();
+    if (chunk.length > 0) out.push(`“${chunk}”`);
+  }
+  return out;
 }
 
 /** 4. The client leaving, with the address he can be found at afterwards. */

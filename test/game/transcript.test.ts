@@ -10,6 +10,7 @@ import { buildView, gameBudget } from '../../src/game/derive.js';
 import { playOracle, playWandering } from '../../src/game/oracle.js';
 import { fileReport } from '../../src/game/reducer.js';
 import { scoreReport } from '../../src/game/scoring.js';
+import { truthReport } from '../../src/game/report-form.js';
 import {
   renderCastText,
   renderNotebookText,
@@ -43,17 +44,16 @@ describe('npm run read', () => {
         const notebook = renderNotebookText(view, run.state);
         expect(notebook).toContain('THE NOTEBOOK');
         expect(notebook).toContain('ESTABLISHED');
-        const report = {
-          killerId: view.kase.solution.killerId,
-          methodId: view.kase.solution.methodId,
-          motiveType: view.kase.solution.motiveType,
-          tick: view.kase.solution.murderTick,
-          placeId: view.kase.solution.murderPlaceId,
-        };
+        // M5 §5: the report asks this case's unknowns, which is three for a
+        // body found where it happened and four when it was moved, so a run
+        // that answers all of them scores out of however many it asked.
+        const report = truthReport(view);
+        const asked = view.kase.act.unknowns.length;
         const verdict = renderVerdictText(
           scoreReport(view, fileReport(run.state, report), report),
         );
-        expect(verdict).toContain('5 of 5');
+        expect(verdict).toContain(`${asked} of ${asked}`);
+        expect(verdict).toContain('solved');
       }
     }
   });

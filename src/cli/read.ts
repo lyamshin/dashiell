@@ -10,10 +10,12 @@
  * budget, and files whoever the monologue was accusing at eight o'clock.
  */
 
-import { generateCase, type Difficulty } from '../gen/index.js';
+import { generateCase, type CaseType, type Difficulty } from '../gen/index.js';
+import { TROPE_IDS } from '../gen/tropes/index.js';
 import { buildView, gameBudget, gamePar } from '../game/derive.js';
 import { playOracle, playWandering } from '../game/oracle.js';
 import { fileReport } from '../game/reducer.js';
+import { truthReport } from '../game/report-form.js';
 import { scoreReport } from '../game/scoring.js';
 import {
   renderCastText,
@@ -31,15 +33,30 @@ const seed = Number(values.get('seed') ?? 1);
 const difficulty = Number(values.get('difficulty') ?? 2);
 const pageLimit = values.has('pages') ? Number(values.get('pages')) : Infinity;
 const detective = values.get('detective') ?? 'Dashiell';
+// M5 §Deliverables: `npm run read` forces a shape the same way `npm run case`
+// does, so a trope can be read without hunting for a seed that deals it.
+const type = values.get('type');
+const trope = values.get('trope');
 
-if (!Number.isInteger(seed) || ![1, 2, 3].includes(difficulty)) {
+if (
+  !Number.isInteger(seed) ||
+  ![1, 2, 3].includes(difficulty) ||
+  (type !== undefined && !['murder', 'robbery', 'missing'].includes(type)) ||
+  (trope !== undefined && !TROPE_IDS.includes(trope))
+) {
   process.stderr.write(
-    'usage: npm run read -- --seed <integer> [--difficulty 1|2|3] [--random] [--pages N] [--no-gaps]\n',
+    'usage: npm run read -- --seed <integer> [--difficulty 1|2|3] [--random] [--pages N] ' +
+      `[--no-gaps] [--type murder|robbery|missing] [--trope <id>]\n  tropes: ${TROPE_IDS.join(', ')}\n`,
   );
   process.exit(1);
 }
 
-const kase = generateCase(seed, { difficulty: difficulty as Difficulty, detectiveName: detective });
+const kase = generateCase(seed, {
+  difficulty: difficulty as Difficulty,
+  detectiveName: detective,
+  ...(type === undefined ? {} : { type: type as CaseType }),
+  ...(trope === undefined ? {} : { tropeId: trope }),
+});
 const view = buildView(kase);
 
 let state: RunState;
@@ -52,13 +69,9 @@ if (flags.has('random')) {
   const run = playOracle(view, detective);
   state = run.state;
   if (!run.ok) process.stderr.write(`(the oracle could not finish: ${run.reason})\n`);
-  report = {
-    killerId: kase.solution.killerId,
-    methodId: kase.solution.methodId,
-    motiveType: kase.solution.motiveType,
-    tick: kase.solution.murderTick,
-    placeId: kase.solution.murderPlaceId,
-  };
+  // M5 §5: the oracle knows the route, not the answer. What it files is the
+  // truth of exactly the unknowns this case asks.
+  report = truthReport(view);
 }
 
 const out: string[] = [];

@@ -49,10 +49,13 @@ import {
   Dealer,
   askKindOf,
   composePage,
+  gossipTarget,
   knowsHim,
   portraitCardIds,
   rollCast,
+  selfAccountFor,
   showedOff,
+  temperOf,
   volunteerFrom,
   type Scene,
   type Stage,
@@ -112,6 +115,8 @@ export function newRun(
     log: [],
     met: [],
     accounts: [],
+    selfTold: [],
+    gossip: [],
     reportOpen: false,
     cast,
     freeAsked: [],
@@ -143,7 +148,7 @@ export function newRun(
     { kind: 'open', clientClue },
   );
 
-  const here = peopleHereNow(view, base.at, base).map((p) => p.id);
+  const here = peopleHereNow(view, base.at, { clientInOffice: true, found }).map((p) => p.id);
   const page: Page = {
     n: 0,
     head: view.placeById.get(base.at)?.shortName ?? kase.neighborhood,
@@ -154,6 +159,8 @@ export function newRun(
     at: base.at,
     gaps: composed.gaps,
     imageMotifs: composed.imageMotifs,
+    plain: composed.plain,
+    image: composed.image,
   };
   const state: RunState = {
     ...base,
@@ -213,13 +220,15 @@ function stageFor(
     portrayed: state.portrayed,
     appearances: state.appearances,
     met: state.met,
+    selfTold: state.selfTold,
+    gossip: state.gossip,
     asideBands: state.asideBands,
     pageIndex: state.log.length,
     previousTheory: state.theory,
     lastSimile: state.lastSimile,
     previousMotifs: state.previousMotifs,
     showedOff: showedOff([...state.burned, ...at.persisted]),
-    here: peopleHereNow(view, at.at, { clientInOffice: at.clientHere }),
+    here: peopleHereNow(view, at.at, { clientInOffice: at.clientHere, found: at.foundAfter }),
   };
 }
 
@@ -266,6 +275,7 @@ export function answersTo(view: CaseView, personId: Id, topic: TopicRef, found: 
   if (topic.kind === 'exact') {
     return (view.exactBuckets.get(personId)?.get(topic.topic) ?? []).filter((c) => !have.has(c.id));
   }
+  if (topic.kind === 'self') return [];
   if (topic.kind === 'evening' || topic.kind === 'hire') {
     if (topic.kind === 'hire') {
       const key = topicKey(topic);
@@ -312,6 +322,8 @@ export function step(
   let scene: Scene | null = null;
   let gained: Id[] = [];
   const accounts: Id[] = [];
+  const selfTold: Id[] = [];
+  const gossip: Id[] = [];
   const freeAsked: Id[] = [];
   const volunteered: Id[] = [];
   let blocks: Block[] = [];
@@ -320,6 +332,8 @@ export function step(
   let portrayed: Id[] = [];
   let appeared: Id[] = [];
   let imageMotifs: string[][] = [];
+  let plain = 0;
+  let image = 0;
   let theory = state.theory;
   let lastSimile = state.lastSimile;
   let previousMotifs = state.previousMotifs;
@@ -342,7 +356,9 @@ export function step(
       at = command.placeId;
       head = view.placeById.get(command.placeId)?.shortName ?? head;
       // The scene report and the coroner's note, on the first arrival, free.
-      const firstSight = at === view.sceneId && !state.sceneSeen;
+      // M5 §6: at the start place, which is the scene for seven tropes out of
+      // eight and the foot of the stairs for `body-moved`.
+      const firstSight = at === view.startId && !state.sceneSeen;
       const opening = firstSight
         ? sceneCluesOf(view).filter((c) => !state.found.includes(c.id))
         : [];
@@ -393,7 +409,10 @@ export function step(
     }
     case 'ask': {
       const person = view.personById.get(command.personId);
-      const here = peopleHereNow(view, state.at, state).some((p) => p.id === command.personId);
+      const here = peopleHereNow(view, state.at, {
+        clientInOffice: state.clientInOffice,
+        found: state.found,
+      }).some((p) => p.id === command.personId);
       if (!person || !here) {
         // A mistake at the prompt. Free.
         scene = {
@@ -427,13 +446,41 @@ export function step(
       }
       const account = command.topic.kind === 'evening' ? claimedAccount(view, person.id) : null;
       if (account) accounts.push(person.id);
+      // §3: `ask X about themselves`. A pseudo-clue like "that evening":
+      // always available, one action, and free the second time because the
+      // second time gets nothing. Free means free — it is not waived slack,
+      // because there is no route through it and par never counted it.
+      const askedSelf = command.topic.kind === 'self';
+      const toldAlready = askedSelf && state.selfTold.includes(person.id);
+      let told: { personId: Id; text: string } | null = null;
+      if (askedSelf) {
+        if (toldAlready) {
+          cost = 0;
+          waived = 0;
+          freeAsked.length = 0;
+        } else {
+          selfTold.push(person.id);
+          // §3: a yapper gives up the account and then a fact about somebody
+          // else. It goes in the notebook under that somebody, which is where
+          // a fact about them belongs.
+          if (temperOf(state.cast, person.id) === 'yap') {
+            told = gossipTarget(view, person.id, {
+              found: state.found,
+              met: state.met,
+              selfTold: state.selfTold,
+              gossip: state.gossip,
+            });
+            if (told) gossip.push(told.personId);
+          }
+        }
+      }
       const answers =
-        command.topic.kind === 'evening'
+        command.topic.kind === 'evening' || askedSelf
           ? []
           : answersTo(view, command.personId, command.topic, state.found);
       gained = answers.map((c) => c.id);
       const volunteer =
-        answers.length > 0 || account
+        answers.length > 0 || account || (askedSelf && !toldAlready)
           ? volunteerFrom(
               view,
               state.cast,
@@ -457,6 +504,15 @@ export function step(
         account,
         volunteer,
         free: waived === 1,
+        ...(askedSelf
+          ? {
+              self: {
+                told: toldAlready,
+                lines: selfAccountFor(person, temperOf(state.cast, person.id)),
+                ...(told === null ? {} : { gossip: told }),
+              },
+            }
+          : {}),
         ...(clientOnTheHouse && !clientInOffice ? { clientLeaves: true } : {}),
       };
       break;
@@ -490,6 +546,8 @@ export function step(
     lastSimile = composed.simileTarget ?? state.lastSimile;
     previousMotifs = composed.motifs;
     imageMotifs = composed.imageMotifs;
+    plain = composed.plain;
+    image = composed.image;
   }
 
   const actionsUsed = state.actionsUsed + cost;
@@ -511,9 +569,11 @@ export function step(
       view,
       state.met,
       found,
-      peopleHereNow(view, at, { clientInOffice }).map((p) => p.id),
+      peopleHereNow(view, at, { clientInOffice, found }).map((p) => p.id),
     ),
     accounts: accountsAfter,
+    selfTold: [...new Set([...state.selfTold, ...selfTold])],
+    gossip: [...state.gossip, ...gossip],
     threads: makeThreads(view, found),
     reportOpen: state.reportOpen || overNow || command.kind === 'file',
     freeAsked: [...state.freeAsked, ...freeAsked],
@@ -539,6 +599,8 @@ export function step(
     at,
     gaps,
     imageMotifs,
+    plain,
+    image,
   };
   next.log = [...state.log, page];
   return { state: next, page };
@@ -596,6 +658,8 @@ export function topicLabel(view: CaseView, topic: TopicRef): string {
       return view.anchorById.get(topic.id)?.name ?? 'that hour';
     case 'evening':
       return 'that evening';
+    case 'self':
+      return 'themselves';
     case 'hire':
       return 'why I was hired';
     case 'exact':
@@ -614,7 +678,11 @@ export function stepInput(
     view,
     state.at,
     raw,
-    peopleHereNow(view, state.at, state).map((p) => p.id),
+    peopleHereNow(view, state.at, {
+      clientInOffice: state.clientInOffice,
+      found: state.found,
+    }).map((p) => p.id),
+    state.found,
   );
   if (result.ok) return step(state, result.command, view, persistedBurned);
 
@@ -623,6 +691,8 @@ export function stepInput(
   const blocks: Block[] = [];
   let gaps: string[] = [];
   let composedMotifs: string[][] = [];
+  let composedPlain = 0;
+  let composedImage = 0;
   if (problem.kind === 'absent-person' || problem.kind === 'unknown-topic') {
     const person = problem.personId ? view.personById.get(problem.personId) : undefined;
     const composed = composePage(
@@ -648,6 +718,8 @@ export function stepInput(
     blocks.push(...composed.blocks);
     gaps = composed.gaps;
     composedMotifs = composed.imageMotifs;
+    composedPlain = composed.plain;
+    composedImage = composed.image;
     if (problem.kind === 'absent-person' && person?.foundAt) {
       blocks.push({
         kind: 'note',
@@ -676,6 +748,8 @@ export function stepInput(
     at: state.at,
     gaps,
     imageMotifs: composedMotifs,
+    plain: composedPlain,
+    image: composedImage,
   };
   const next: RunState = {
     ...state,

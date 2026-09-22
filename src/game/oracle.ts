@@ -16,7 +16,7 @@
 import type { Clue, Id, Tick } from '../gen/types.js';
 import { Rng } from '../gen/rng.js';
 import type { CaseView } from './derive.js';
-import { establishedFrom, gameBudget, gamePar, leadFor } from './derive.js';
+import { establishedFrom, gameBudget, gamePar, leadFor, peopleHere } from './derive.js';
 import { newRun, sceneCluesOf, stepInput } from './reducer.js';
 import { leadingTheory } from './voice/reactive.js';
 import type { Report, RunState } from './types.js';
@@ -160,8 +160,10 @@ export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleRe
   const wanted = spine.filter((c) => !state.found.includes(c.id) && !free.has(c.id));
   const steps: OracleStep[] = [];
 
-  const toTheScene = `go ${view.placeById.get(view.sceneId)?.shortName ?? ''}`;
-  const rest = plan(view, view.sceneId, groupsFor(view, wanted));
+  // M5 §6: the first room is the scene for seven tropes and the foot of the
+  // stairs for `body-moved`, and par is computed from wherever it is.
+  const toTheScene = `go ${view.placeById.get(view.startId)?.shortName ?? ''}`;
+  const rest = plan(view, view.startId, groupsFor(view, wanted));
   const script = rest === null ? null : [toTheScene, ...rest];
   const fail = (reason: string): OracleResult => ({
     ok: false,
@@ -233,6 +235,20 @@ export interface WanderResult {
  *
  * `npm run read -- --random` reads a run of his.
  */
+/** The last room a found clue puts the victim in after the hour they went. */
+function lastSightingAfter(view: CaseView, found: readonly Id[]): Id | null {
+  const victimId = view.victim.id;
+  let best: { tick: Tick; place: Id } | null = null;
+  for (const id of found) {
+    for (const f of view.findableById.get(id)?.establishes ?? []) {
+      if (f.kind !== 'personAt' || f.personId !== victimId) continue;
+      if (f.tick <= view.kase.act.tick) continue;
+      if (best === null || f.tick > best.tick) best = { tick: f.tick, place: f.place };
+    }
+  }
+  return best?.place ?? null;
+}
+
 export function playWandering(
   view: CaseView,
   seed: number,
@@ -262,7 +278,9 @@ export function playWandering(
     }
 
     // Every so often he does the human thing instead of the efficient one.
-    const peopleHereIds = view.peopleAt.get(state.at) ?? [];
+    // M5 §7: whoever is actually standing here, which is not the same list as
+    // `peopleAt` once a robbery's owner and a found missing person are on it.
+    const peopleHereIds = peopleHere(view, state.at, state.found).map((p) => p.id);
     const unasked = peopleHereIds.filter((id) => !state.accounts.includes(id));
     if ((command === null || rng.chance(0.3)) && unasked.length > 0) {
       command = `ask ${view.personById.get(rng.pick(unasked))?.surname} about that evening`;
@@ -283,12 +301,21 @@ export function playWandering(
   }
 
   const est = establishedFrom(view, state.found, state.accounts);
+  // M5 §5: he files the unknowns, and he files them off what he has. Where the
+  // case asks where somebody went, the best he can do is the last room a clue
+  // put them in after the hour they vanished; where it asks how a lock was
+  // turned or where the goods ended up, he has nothing and says so.
+  const seenAfter = lastSightingAfter(view, state.found);
   const report: Report = {
     killerId: leadingTheory(view, est),
     methodId: est.methodEvidence ? kase.method.id : null,
     motiveType: est.motives[0]?.motiveType ?? null,
     tick: est.deathTicks.length === 1 ? (est.deathTicks[0] as Tick) : null,
     placeId: kase.solution.murderPlaceId,
+    entry: null,
+    whereabouts: seenAfter,
+    fate: seenAfter === null ? null : 'left',
+    goodsPlaceId: null,
   };
   return { state, steps, report };
 }

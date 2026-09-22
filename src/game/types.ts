@@ -6,10 +6,10 @@
  * `src/gen/` knows this file exists.
  */
 
-import type { Difficulty, Id } from '../gen/types.js';
+import type { Difficulty, Entry, Id, Unknown } from '../gen/types.js';
 import type { CastSheet } from './voice/cast.js';
 
-export type { Difficulty, Id };
+export type { Difficulty, Entry, Id, Unknown };
 export type { CastSheet };
 
 /** What the player can ask a person about. */
@@ -21,6 +21,11 @@ export type TopicRef =
   | { kind: 'anchor'; id: Id }
   /** The person's own account of the night. Always answerable. */
   | { kind: 'evening' }
+  /**
+   * M5 §3. The person themselves: layer 1 of their dossier, in their own
+   * mouth. Always answerable, one action the first time and free after.
+   */
+  | { kind: 'self' }
   /** Only the client has anything to say. */
   | { kind: 'hire' }
   /**
@@ -129,6 +134,13 @@ export interface Page {
    */
   gaps: string[];
   /**
+   * M5 §1. Sentences on this page that carry no image, and sentences that came
+   * off a deck card that does. The ratio between them is the milestone's
+   * number, and the assembler holds it above a floor of 0.5.
+   */
+  plain: number;
+  image: number;
+  /**
    * M4b §A.2. The motifs of the image-bearing blocks that survived the image
    * budget, in page order. The coherence number — the mean count of motifs two
    * adjacent image blocks share — is measured off this and nothing else.
@@ -136,12 +148,34 @@ export interface Page {
   imageMotifs: string[][];
 }
 
+/**
+ * What the player files.
+ *
+ * M5 §5: the form asks exactly `case.act.unknowns`, which is three fields for
+ * a body at the scene, four when the body was moved, and a different three for
+ * an inside job. The five original keys stay because five of the nine unknowns
+ * are exactly them; the four that are new are optional, and a field the case
+ * does not ask is never read.
+ */
 export interface Report {
+  /** `who`. */
   killerId: Id | null;
+  /** `how`. */
   methodId: Id | null;
+  /** `why`. */
   motiveType: string | null;
+  /** `when`. */
   tick: number | null;
+  /** `where`. */
   placeId: Id | null;
+  /** `entry` — how they got in. */
+  entry?: Entry | null;
+  /** `whereabouts` — where the missing person is, or that they are gone. */
+  whereabouts?: Id | 'gone' | null;
+  /** `fate` — left, taken, or dead. */
+  fate?: 'left' | 'taken' | 'dead' | null;
+  /** `goods` — where what was taken went. */
+  goodsPlaceId?: Id | null;
 }
 
 export const EMPTY_REPORT: Report = {
@@ -150,6 +184,10 @@ export const EMPTY_REPORT: Report = {
   motiveType: null,
   tick: null,
   placeId: null,
+  entry: null,
+  whereabouts: null,
+  fate: null,
+  goodsPlaceId: null,
 };
 
 /** One open lead: a clue the player has been pointed at but not yet taken. */
@@ -181,6 +219,10 @@ export interface RunState {
   met: Id[];
   /** Persons whose claimed account of the evening has been taken down. */
   accounts: Id[];
+  /** M5 §3: people who have been asked about themselves. Layer 1, once each. */
+  selfTold: Id[];
+  /** M5 §3: people a yapper has given up a layer-2 fact about, unasked. */
+  gossip: Id[];
   /** True once the report form is open. It never closes. */
   reportOpen: boolean;
 

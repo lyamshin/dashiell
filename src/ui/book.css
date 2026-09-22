@@ -475,6 +475,28 @@ li.contradiction::before {
   color: var(--ink);
 }
 
+/*
+ * The dossier (M5 §4). What has been learned about somebody, by the layer it
+ * was learned at: on sight, volunteered, from others, out of the documents. A
+ * layer with nothing in it is not drawn at all.
+ */
+.nb-layer {
+  margin: 0.15rem 0 0.15rem 0.9rem;
+  color: var(--ink);
+}
+
+.nb-layer .layer {
+  color: var(--ink-faint);
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+
+/* A third party: a name the case owns, and nobody you can go and see. */
+.nb-mention {
+  margin: 0.15rem 0 0.3rem 1.4rem;
+  color: var(--ink-faint);
+}
+
 .nb-place.unvisited {
   color: var(--ink-faint);
 }

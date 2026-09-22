@@ -540,13 +540,21 @@ describe('the page grammar', () => {
    * of a room that happened to hold ten findable clues. Capping the finds a
    * page will carry is the engine's business, and Phase 2 has the page.
    */
-  it('keeps every page between 50 and 340 words, over 100 oracle runs', () => {
+  /**
+   * M5 §2 gave page one the whole briefing — sixteen plain declarative
+   * sentences, which is what the client came up the stairs to say — on top of
+   * the office card and the entrance. That page has its own ceiling of 380
+   * words and is the only page in a run allowed past 340; everything after it
+   * is trimmed to 300 exactly as before.
+   */
+  it('keeps every page between 50 and 380 words, over 100 oracle runs', () => {
     const offenders: string[] = [];
     for (let seed = 1; seed <= 100; seed++) {
       const v = buildView(generateCase(seed, { difficulty: 2 }));
       for (const page of playOracle(v).state.log) {
         const n = wordsOnPage(page);
-        if (n < 50 || n > 340) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
+        const ceiling = page.n === 0 ? 380 : 340;
+        if (n < 50 || n > ceiling) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
       }
     }
     expect(offenders).toEqual([]);
@@ -558,7 +566,8 @@ describe('the page grammar', () => {
       const v = buildView(generateCase(seed, { difficulty: 3 }));
       for (const page of playWandering(v, seed).state.log) {
         const n = wordsOnPage(page);
-        if (n < 50 || n > 340) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
+        const ceiling = page.n === 0 ? 380 : 340;
+        if (n < 50 || n > ceiling) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
       }
     }
     expect(offenders).toEqual([]);
@@ -654,7 +663,11 @@ describe('the utterance deck', () => {
       for (const page of state.log) {
         for (const gap of page.gaps) {
           expect(gap).toMatch(
-            /^(no-utterance|no-fact|too-many-facts|deck-exhausted|missing-deck|no-business|no-client-clue):/,
+            // M5 adds two: `plain-register` is a fact kind the utterance deck
+            // was never written for — every robbery's and every
+            // disappearance's — said plainly instead, and `no-deck-kind` is
+            // `ask-self`, which `dashiell-lines` has no cards for yet.
+            /^(no-utterance|no-fact|too-many-facts|deck-exhausted|missing-deck|no-business|no-client-clue|plain-register|no-deck-kind):/,
           );
           const id = /\(([^)]+)\)/.exec(gap)?.[1];
           if (id) expect(v.findableById.get(id)).toBeDefined();
