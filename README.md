@@ -39,6 +39,14 @@ A case is identified by its seed and its difficulty, and the URL says which:
 `http://localhost:5173/?seed=7&d=2`. Share the link and you share the case.
 Leave the seed off and the title page picks a random one.
 
+M7 adds tiers. The title page opens a new player on Raw (three people, three
+rooms, always at Beat), and a full-credit report opens the next tier:
+Coddled, Poached, Soft-boiled, Medium, Hard-boiled, then Over easy. The
+difficulty is Beat, Precinct, Homicide or The DA's Office. A tiered case adds
+`t=` to the link: `?seed=7&d=2&t=1` is Coddled at Precinct. A link without
+`t=` is the untiered case it always was. The profile (tiers cleared, bests,
+runs, wins) lives in `localStorage` under `dashiell:profile`.
+
 ### Playing
 
 You start at the scene at midnight. Some nights you already know somebody in
