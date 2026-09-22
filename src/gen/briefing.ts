@@ -88,14 +88,56 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
     else said(detailText, detailFirst, dossier.profession.prompt);
   }
 
-  /* 2. What happened, in the victim's terms. ------------------------------ */
-  said(bio.standing);
-  for (const line of act.givens.text.slice(0, GIVENS_IN_BRIEFING)) said(line);
+  /* 2. What happened, in the order the reader needs it. -------------------
+   *
+   * Hone 3 §1. The briefing used to open on the victim's standing — "Sweeney
+   * was the reason four places on the street stayed open" — and only get round
+   * to his being dead three sentences later. A reader who does not yet know
+   * there is a body has nowhere to put the standing, so the standing reads as
+   * a biography and the death, when it comes, reads as a correction.
+   *
+   * So the headline fact goes first, and it is a different fact per case type:
+   *
+   *   murder   the death, with the victim's full name, once — then who he was,
+   *            then where and how he was found, then what the precinct did.
+   *   robbery  the loss, then whose it was, then where and when.
+   *   missing  who is gone, then who they are, then when they were last seen.
+   *
+   * After that the three run together again: the tie, the purpose and its
+   * price, and the pointer. The record's order is the spoken order, so the
+   * truth sheet's Briefing section prints exactly this.
+   */
+  const givens = act.givens.text.slice(0, GIVENS_IN_BRIEFING);
+  const [headline, ...restOfGivens] = givens;
+  if (act.type === 'murder') {
+    // The one sentence the generator writes for the page rather than lifting
+    // from a trope. The full name is said here and nowhere else: a stranger
+    // names the dead man in full once, and after that he is a surname.
+    said(`${cast.victim.name} is dead.`);
+    said(bio.standing);
+    for (const line of givens) said(line);
+  } else if (act.type === 'robbery') {
+    // The loss is the trope's own first given — "A jewel case was taken from
+    // the suite, which is Sweeney's" — and it is already the headline. Whose
+    // it was follows it, which is what the possessive in it was reaching for.
+    if (headline !== undefined) said(headline);
+    said(bio.standing);
+    for (const line of restOfGivens) said(line);
+  } else {
+    if (headline !== undefined) said(headline);
+    said(bio.standing);
+  }
+
   if (bio.discovery) {
     said(bio.discovery.foundText, bio.discovery.foundTextFirst, bio.discovery.foundPrompt);
     said(PRECINCT_TEXT[bio.discovery.precinct]);
   } else if (bio.lastSeen) {
+    // Missing: the last sighting comes straight after who they are, and the
+    // rest of the trope's givens — the tidy rooms, the precinct's shrug —
+    // follow it, because they are what happened after rather than what
+    // happened. The givens carry their own precinct sentence in this shape.
     said(bio.lastSeen.text, bio.lastSeen.textFirst, bio.lastSeen.prompt);
+    for (const line of restOfGivens) said(line);
   }
 
   /* 3. How the client stands to the victim, with the specific. ------------ */
