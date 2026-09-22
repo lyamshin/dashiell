@@ -1164,6 +1164,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         opener?.text ?? '',
         usedBusiness,
         gaps,
+        pairBodyWords(cast, scene.personId, stage.appearances[scene.personId] ?? 0),
       );
       for (const id of answer.cardIds) usedBusiness.add(id);
       say(answer.text, spoken.mode === 'utterance' || spoken.mode === 'quote' ? 'exchange' : 'record', {
@@ -1204,6 +1205,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         opener?.text ?? '',
         usedBusiness,
         gaps,
+        pairBodyWords(cast, scene.personId, stage.appearances[scene.personId] ?? 0),
       );
       const said = simileRegisterOf(register, scene.volunteer.kind);
       say(answer.text, spoken.mode === 'utterance' || spoken.mode === 'quote' ? 'exchange' : 'record', {
@@ -2950,6 +2952,7 @@ function answerSelf(
     '',
     exclude,
     gaps,
+    pairBodyWords(stage.cast, scene.personId, stage.appearances[scene.personId] ?? 0),
   );
   say(answer.text, 'exchange', {
     personId: scene.personId,
@@ -3014,6 +3017,7 @@ function answerAccount(
     dashiell,
     exclude,
     gaps,
+    pairBodyWords(stage.cast, scene.personId, stage.appearances[scene.personId] ?? 0),
   );
   say(answer.text, answer.imageSentences);
   put({ kind: 'timeline', personId: scene.personId, rows: account.rows });

@@ -405,6 +405,11 @@ export function frameAnswer(
   dashiell: string,
   exclude: ReadonlySet<string> = new Set(),
   gaps?: string[],
+  /**
+   * Hone 2 §A.2. What the portrait pair on this page has already claimed, so
+   * no gesture spliced into the frame reaches for the same hands.
+   */
+  forbid: ReadonlySet<string> = new Set(),
 ): Answer {
   const cardIds = [...spoken.cardIds];
   // A frame that asks for business twice — the gesture on the way in and the
@@ -413,7 +418,7 @@ export function frameAnswer(
   // once with the same card. Twenty-eight of the frames ask twice.
   const spentBusiness = new Set(exclude);
   const nextBusiness = (): string => {
-    const drawn = businessLine(dealer, person, temper, slots, spentBusiness, gaps);
+    const drawn = businessLine(dealer, person, temper, slots, spentBusiness, gaps, undefined, forbid);
     if (!drawn) return '';
     spentBusiness.add(drawn.cardId);
     cardIds.push(drawn.cardId);
