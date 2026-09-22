@@ -28,6 +28,7 @@
  */
 
 import type { Clue, Id, Person, Tick } from '../../gen/types.js';
+import type { Rng } from '../../gen/rng.js';
 import { clock } from '../../gen/types.js';
 import { NIGHT_MINUTES } from '../types.js';
 import type { Block, ProseVoice } from '../types.js';
@@ -86,11 +87,20 @@ import {
 } from './exchange.js';
 import { findKindOf } from './facts.js';
 import {
+  BRIEFING_ACK,
+  BRIEFING_PAUSE,
+  BRIEFING_SETTLE,
+  OFFICE_OPENERS,
+  PLAIN_BEATS,
   PLAIN_FLOOR,
+  PLAIN_NOTED,
+  PLAIN_STOCK,
   SELF_ALREADY,
   SELF_QUESTIONS,
+  briefingQuestion,
   clueAbout,
   connective,
+  pickShape,
   type ConnectiveKind,
   countSentences,
   dossierKnown,
@@ -111,6 +121,7 @@ import {
   type MotifContext,
 } from './motifs.js';
 import {
+  briefingTurns,
   clientLeavingLine,
   entranceCard,
   hiringFrame,
@@ -546,7 +557,44 @@ interface Laid {
   imageN: number;
   /** This block has the page's one simile attached to it and cannot be cut. */
   hosts?: boolean;
+  /**
+   * Which paragraph this line belongs to (the golden loop, §2's joiners).
+   *
+   * A block is not a paragraph. The engine wrote one paragraph per `say`,
+   * which is how a page of twelve blocks became twelve paragraphs of twenty
+   * words, each opening on a subject the one before it had never mentioned —
+   * the disjointedness GAP.md measures as paragraph cohesion. The golden
+   * writes the walk and the room it ends in as one paragraph, the entrance and
+   * the portrait and what she is as another, and each find with the fact that
+   * rode along on it as a third. Adjacent blocks carrying the same tag are
+   * joined at the end of assembly, while the paragraph stays a paragraph.
+   */
+  para?: string;
+  /**
+   * The generator's own sentences inside this block, exactly as it wrote them.
+   * §5's join puts a sentence's first letter down to make a clause of it, and
+   * a sentence the generator wrote has to reach the page as it was written, so
+   * the join steps over any pair whose second half is one of these. It is the
+   * pair that is spared and not the paragraph: a paragraph with one of the
+   * generator's sentences in it may still carry the page's long one.
+   */
+  verbatim?: string[];
 }
+
+/** The longest a fused paragraph may get. Past this it is a wall, not a scene. */
+export const PARAGRAPH_CEILING = 60;
+
+/**
+ * §5's carrying sentence: the band a joined pair has to land in to be one.
+ *
+ * The style guide measures the corpus at a mean of 11.9 words and a p90 of 24,
+ * and says the tail is the whole game. `style-metrics.py` counts anything over
+ * twenty-five, and the golden runs one such sentence in eleven. Below the low
+ * mark a join buys nothing; above the high mark it is not a carrying sentence,
+ * it is a run-on.
+ */
+export const CARRY_LOW = 22;
+export const CARRY_HIGH = 34;
 
 interface SayOpts {
   clueId?: Id;
@@ -571,6 +619,15 @@ interface SayOpts {
    * is how the plain register would quietly undo M4b's closeness.
    */
   transparent?: boolean;
+  /** Which paragraph this line joins. See `Laid.para`. */
+  para?: string;
+  /**
+   * This line is the generator's words and reaches the page exactly as they
+   * were written. §5's carrying sentence leaves it alone: it joins two
+   * sentences with a comma and puts the second one's first letter down, which
+   * alters nothing a reader would call a word and everything a checker would.
+   */
+  verbatim?: boolean;
 }
 
 export function composePage(stage: Stage, scene: Scene): Composed {
@@ -663,13 +720,15 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       keep: opts.keep ?? 1,
       plainN: sentences - imageN,
       imageN,
+      ...(opts.para === undefined ? {} : { para: opts.para }),
+      ...(opts.verbatim === true ? { verbatim: [trimmed] } : {}),
     });
     for (const m of motifs) if (!usedMotifs.includes(m)) usedMotifs.push(m);
     if (opts.transparent !== true) ctx.before = motifs;
   };
   // A block the engine wrote out of the case's own fields: the roll of who is
   // in the room, a claimed timeline, a note. Plain by construction.
-  const put = (block: Block): void => {
+  const put = (block: Block, para?: string, verbatim?: boolean): void => {
     laid.push({
       block,
       image: false,
@@ -679,28 +738,43 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       keep: 9,
       plainN: plainSentencesIn(block),
       imageN: 0,
+      ...(para === undefined ? {} : { para }),
+      ...(verbatim === true && (block.kind === 'note' || block.kind === 'prose')
+        ? { verbatim: [block.text] }
+        : {}),
     });
   };
 
   /* ------------------------------------------ §1 and §3: the plain register */
   // One connective at a time, and never the same shape twice running.
-  let lastConnective: string | null = null;
-  const plainly = (kind: Parameters<typeof connective>[1], plainSlots: Slots = {}): void => {
-    const line = connective(dealer.random, kind, plainSlots, lastConnective);
+  // Every connective the page has already spent, not just the last one: the
+  // plain top-ups run after the arrival did, and a page that says "Nobody
+  // stopped me at the door of the cab stand" twice has said it once too often.
+  const spentConnectives: string[] = [];
+  const plainly = (
+    kind: Parameters<typeof connective>[1],
+    plainSlots: Slots = {},
+    para?: string,
+  ): void => {
+    const line = connective(dealer.random, kind, plainSlots, spentConnectives);
     if (line.length === 0) return;
-    lastConnective = line;
-    say(line, 'narrator', { transparent: true });
+    spentConnectives.push(line);
+    say(line, 'narrator', {
+      transparent: true,
+      verbatim: true,
+      ...(para === undefined ? {} : { para }),
+    });
   };
   // Layer 0, the moment somebody is in front of him: what a longshoreman's
   // hands and a chambermaid's uniform say before anybody opens their mouth.
-  const onSight = (person: Person): void => {
+  const onSight = (person: Person, para?: string): void => {
     if (stage.met.includes(person.id) || person.kind === 'victim') return;
     // A page already at its length says the fact and stops; the dossier is in
     // the notebook either way, and a room with ten things in it is long enough.
     if (words(blocksOf(laid)) > WORD_TARGET_HIGH) return;
     const line = onSightSentence(person);
     if (line.length === 0) return;
-    say(line, 'narrator', { transparent: true });
+    say(line, 'narrator', { transparent: true, ...(para === undefined ? {} : { para }) });
   };
   // §3: a layer-2 fact rides along with the observation or the overheard line
   // that was about that person, one fact a clue, and is set down plainly after
@@ -712,7 +786,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     selfTold: stage.selfTold,
     gossip: stage.gossip,
   };
-  const rideAlong = (clue: Clue): void => {
+  const rideAlong = (clue: Clue, para?: string): void => {
     if (layerOfClue(clue) !== 2) return;
     if (words(blocksOf(laid)) > WORD_TARGET_HIGH) return;
     const about = clueAbout(clue);
@@ -724,7 +798,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const next = layerSentences(person, 2)[known.layer2.length + used];
     if (next === undefined) return;
     ridden.set(about, used + 1);
-    say(next, 'narrator', { transparent: true });
+    say(next, 'narrator', {
+      transparent: true,
+      verbatim: true,
+      ...(para === undefined ? {} : { para }),
+    });
   };
 
   /* --------------------------------------------- §B.2.4: the client leaves */
@@ -749,12 +827,22 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     say(drawn?.text ?? dealer.random.pick(PLAIN_TRANSITIONS), 'transition', {
       motifs: drawn?.motifs,
       score: drawn?.score,
+      para: 'walk',
     });
   }
 
   /* --------------------------------------------- §B.2: the office opening */
   if (scene.kind === 'open') {
-    openTheOffice(stage, scene, { say, put, base, ctx, gaps, portrayed, appeared });
+    openTheOffice(stage, scene, {
+      say,
+      put,
+      count: () => words(blocksOf(laid)),
+      base,
+      ctx,
+      gaps,
+      portrayed,
+      appeared,
+    });
   }
 
   /* -------------------------------------- arrival, place and who is in it */
@@ -782,30 +870,40 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       say(arrival?.text ?? plainArrival(dealer, place?.shortName), 'arrival', {
         motifs: arrival?.motifs,
         score: arrival?.score,
+        para: 'walk',
       });
-      plainly('arriving', { place: place?.shortName });
+      plainly('arriving', { place: place?.shortName }, 'walk');
     }
     if (!stage.describedPlaces.includes(stage.at)) {
       const card = placeCard(dealer, view, stage.at, ctx);
       say(card?.text ?? plainArrival(dealer, place?.shortName), 'place', {
         motifs: card?.motifs,
         score: card?.score,
+        para: 'walk',
       });
     } else if (scene.kind === 'look') {
-      say(plainArrival(dealer, place?.shortName), 'narrator');
+      say(plainArrival(dealer, place?.shortName), 'narrator', { para: 'walk' });
     }
+    // §5's rhythm: a short sentence at the foot of the room, inside the room's
+    // own paragraph. Four words after a twenty-word card is the shape the
+    // golden's pages have and the engine's did not.
+    say(pickShape(dealer.random, PLAIN_STOCK, { place: place?.shortName }), 'narrator', {
+      transparent: true,
+      para: 'walk',
+    });
     put(presenceBlock(stage));
     if (stage.here.length > 0) {
-      plainly('present', {
-        name: (stage.here[0] as Person).surname,
-        place: place?.shortName,
-      });
+      plainly(
+        'present',
+        { name: (stage.here[0] as Person).surname, place: place?.shortName },
+        'room',
+      );
     } else if (scene.kind === 'look') {
       // An empty room the detective walked into says so once, in the presence
       // roll; an empty room he came back to gets the half hour he spent in it.
-      plainly('quiet');
+      plainly('quiet', {}, 'room');
     }
-    for (const person of stage.here.slice(0, 2)) onSight(person);
+    for (const person of stage.here.slice(0, 2)) onSight(person, 'room');
     // §A.1: the portraits are image-bearing and the budget is about to be
     // spent, so only as many as the page can afford are even drawn.
     for (const person of stage.here.slice(0, 2)) {
@@ -823,7 +921,12 @@ export function composePage(stage: Stage, scene: Scene): Composed {
           nth: stage.pageIndex,
         }),
         'presence',
-        { motifs: portrait?.motifs, personId: person.id, score: sharedWith(portrait?.motifs, motifSet) },
+        {
+          motifs: portrait?.motifs,
+          personId: person.id,
+          score: sharedWith(portrait?.motifs, motifSet),
+          para: 'room',
+        },
       );
       appeared.push(person.id);
       if (!seen) portrayed.push(person.id);
@@ -832,13 +935,17 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
   /* ---------------------------------------------- first sight of the scene */
   if (scene.kind === 'travel' && scene.openingClues && scene.openingClues.length > 0) {
-    put({ kind: 'note', text: openingNote(view, stage.at) });
+    const firstOpening = scene.openingClues[0];
+    // The note says what room this is; the first thing found in it says what
+    // is in the room. One paragraph, the way the golden writes a room.
+    put({ kind: 'note', text: openingNote(view, stage.at) }, `find-${firstOpening?.id ?? 'note'}`, true);
     for (const clue of scene.openingClues) {
       const line = findLine(dealer, view, clue, stage.at, base, ctx);
       say(line.text, 'find', {
         clueId: clue.id,
         motifs: line.motifs,
         score: line.score,
+        para: `find-${clue.id}`,
         ...(line.imageSentences === undefined ? {} : { imageSentences: line.imageSentences }),
       });
     }
@@ -919,9 +1026,10 @@ export function composePage(stage: Stage, scene: Scene): Composed {
           score: sharedWith(cast.portraits[scene.personId]?.motifs, motifSet),
           // A page whose whole business is this person keeps their portrait.
           keep: 2,
+          para: 'approach',
         },
       );
-      onSight(person);
+      onSight(person, 'approach');
       if (scene.free) {
         put({ kind: 'note', text: 'No charge on this one. There never is, the first time.' });
       }
@@ -1061,13 +1169,14 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         clueId: clue.id,
         motifs: line.motifs,
         score: line.score,
+        para: `find-${clue.id}`,
         ...(line.imageSentences === undefined ? {} : { imageSentences: line.imageSentences }),
       });
-      rideAlong(clue);
+      rideAlong(clue, `find-${clue.id}`);
     }
     if (scene.clues.length === 0) {
-      say(nothingLeft(dealer, place?.shortName), 'nothing');
-      plainly('quiet');
+      say(nothingLeft(dealer, place?.shortName), 'nothing', { para: 'empty' });
+      plainly('quiet', {}, 'empty');
     }
   }
 
@@ -1083,6 +1192,18 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   const touched = touchedPeople(view, stage.foundAfter.slice(stage.foundBefore.length), scene);
   let reaction: ReactiveResult = { lines: [], theory: stage.previousTheory, spent: [] };
   let carried = false;
+  // §5 again, and the golden's own move — "I wrote that down and went to find
+  // the night man again." A page that learned something says so in four words
+  // before it starts thinking about it, at the head of the thinking paragraph.
+  if (
+    scene.kind !== 'nothing' &&
+    stage.foundAfter.length > stage.foundBefore.length &&
+    // Page one carries the whole briefing and is the longest page in the run.
+    // Four more words is four words it has no room for.
+    words(blocksOf(laid)) < (scene.kind === 'open' ? OPENING_CEILING : PAGE_CEILING) - 20
+  ) {
+    say(dealer.random.pick(PLAIN_NOTED), 'narrator', { transparent: true, para: 'think' });
+  }
   if (scene.kind !== 'nothing') {
     reaction = reactiveMonologue({
       view,
@@ -1104,7 +1225,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       // §A.6: the first thought may open on the prop the line before named.
       const glue = i === 0 && !carried ? carryNoun(dealer, ctx.before) : null;
       if (glue) carried = true;
-      say(glue ? joinSentences(glue, line) : line, 'monologue');
+      say(glue ? joinSentences(glue, line) : line, 'monologue', { para: 'think' });
       said++;
     }
     // A narrowing line the page dropped for length was never said, so the run
@@ -1141,6 +1262,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       motifs: ambient.motifs,
       score: ambient.score,
       keep: 0,
+      para: 'think',
     });
     return true;
   };
@@ -1268,7 +1390,8 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       const kind: ConnectiveKind =
         topUps === 0 && stage.here.length > 0 ? 'present' : topUps === 1 ? 'arriving' : 'quiet';
       topUps++;
-      plainly(kind, topUpSlots);
+      // One coda, not three one-line paragraphs at the foot of a thin page.
+      plainly(kind, topUpSlots, 'coda');
       return laid.length > before;
     },
     () => words(blocksOf(laid)) < WORD_TARGET_HIGH,
@@ -1278,6 +1401,19 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   for (const deck of dealer.takeReshuffles()) {
     gaps.push(`deck-exhausted: ${deck} came round again inside one run`);
   }
+
+  // §A.2's coherence number is measured on the image blocks as they were
+  // dealt, before the joiners below fuse any of them into a neighbour: the
+  // adjacency it scores is line to line, and a paragraph break is not a line.
+  const imageMotifs = laid.filter((l) => l.image).map((l) => l.motifs);
+
+  /* ------------------------------------------ the golden loop §2: joiners */
+  fuseParagraphs(laid);
+
+  /* ------------------------------- the golden loop §5: short sentences, long */
+  enforceShortRhythm(laid, dealer.random, ceiling);
+  // The join costs the page the word "and", and the ceiling is the ceiling.
+  if (words(blocksOf(laid)) < ceiling) carryingSentence(laid);
 
   const counted = countsOf(laid);
   return {
@@ -1289,7 +1425,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     theory: reaction.theory,
     simileTarget,
     motifs: usedMotifs,
-    imageMotifs: laid.filter((l) => l.image).map((l) => l.motifs),
+    imageMotifs,
     plain: counted.plain,
     image: counted.image,
   };
@@ -1301,6 +1437,312 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
 function blocksOf(laid: Laid[]): Block[] {
   return laid.map((l) => l.block);
+}
+
+/* ------------------------------------------------------------------ *
+ * The golden loop, §5 — the carrying sentence.
+ * ------------------------------------------------------------------ */
+
+/**
+ * §5's first half, as the spec states it: **at least a quarter of a page's
+ * sentences are six words or fewer.**
+ *
+ * The decks cannot do this. A card is written to be a card — a finished image
+ * in eleven to twenty words — and a generated fact is written to be a fact,
+ * which takes as many words as the fact takes. Measured over the fixed set the
+ * engine printed one short sentence in seven, and a page of nothing but
+ * eleven-word sentences has no shape for a fact to land in.
+ *
+ * So the page counts itself at the end and tops up: a beat of five words or
+ * fewer, appended to the end of a paragraph that is not dialogue, until the
+ * quarter is met or three have gone in. The beats assert nothing — they are
+ * true on any page of any case — because the pass puts them wherever the
+ * arithmetic wants one and cannot know what the page has established.
+ */
+/**
+ * The floor the pass tops a page up to, and how many beats it may spend.
+ *
+ * §5 says "at least a quarter" and GAP.md's target is a **mean** of 0.28 over
+ * the fixed set. A page floor of a quarter gives a mean of 0.25, because the
+ * distribution either side of the floor is narrow — almost every page sits on
+ * it. The floor is set at 0.30 to land the mean where the target is, and not a
+ * point higher: past that the beats stop being rhythm and start being padding,
+ * and a page of four-word sentences is as flat as a page of eleven-word ones.
+ */
+export const SHORT_TARGET = 0.3;
+export const SHORT_TOP_UPS = 4;
+
+/** Which paragraphs will take a beat on the end: prose, and nobody speaking. */
+function takesABeat(l: Laid): boolean {
+  const b = l.block;
+  if (b.kind !== 'prose') return false;
+  if (/["“”]/.test(b.text)) return false;
+  return b.voice !== 'exchange' && b.voice !== 'record';
+}
+
+export function enforceShortRhythm(
+  laid: Laid[],
+  rng: Rng,
+  ceiling: number,
+  target = SHORT_TARGET,
+  limit = SHORT_TOP_UPS,
+): number {
+  const counts = (): { short: number; total: number } => {
+    let short = 0;
+    let total = 0;
+    for (const l of laid) {
+      const b = l.block;
+      if (b.kind !== 'prose' && b.kind !== 'note') continue;
+      for (const s of splitSentences(b.text)) {
+        total++;
+        if (wordCount(s) <= 6) short++;
+      }
+    }
+    return { short, total };
+  };
+  const hosts = laid.filter(takesABeat);
+  if (hosts.length === 0) return 0;
+  let added = 0;
+  let last: string | null = null;
+  // One beat a paragraph. A paragraph with two of them on the end is a page
+  // padding itself, which is the opposite of what the rhythm is for.
+  const most = Math.min(limit, hosts.length);
+  while (added < most) {
+    const { short, total } = counts();
+    if (total === 0 || short / total >= target) break;
+    if (words(blocksOf(laid)) > ceiling - 8) break;
+    const beat = pickShape(rng, PLAIN_BEATS, {}, last);
+    if (beat.length === 0) break;
+    last = beat;
+    // Spread them: the first goes on the last paragraph that will take one,
+    // the next on the one before it, so a page does not end in three beats.
+    const host = hosts[hosts.length - 1 - added] as Laid;
+    const b = host.block;
+    if (b.kind !== 'prose') break;
+    host.block = { ...b, text: joinSentences(b.text, beat) };
+    host.plainN += 1;
+    added++;
+  }
+  return added;
+}
+
+/** A sentence a comma and an "and" can turn into a clause without lying. */
+const CLAUSE_OPENERS: ReadonlySet<string> = new Set([
+  'the',
+  'a',
+  'an',
+  'it',
+  'they',
+  'there',
+  'that',
+  'this',
+  'she',
+  'he',
+  'nothing',
+  'nobody',
+  'somebody',
+  'every',
+  'half',
+  'two',
+  'one',
+  'no',
+  'people',
+  'his',
+  'her',
+  'their',
+  'down',
+  'so',
+]);
+
+const ABBREVIATION = /\b(?:Mr|Mrs|Ms|Dr|St|Jr|Sr|No)\.$/;
+
+/** A run of prose as its sentences, without breaking an abbreviation in two. */
+export function splitSentences(text: string): string[] {
+  const parts = text.split(/(?<=[.!?…])\s+(?=["“'A-Z])/);
+  const out: string[] = [];
+  for (const part of parts) {
+    const last = out[out.length - 1];
+    if (last !== undefined && ABBREVIATION.test(last)) out[out.length - 1] = `${last} ${part}`;
+    else out.push(part);
+  }
+  return out;
+}
+
+function wordCount(text: string): number {
+  return text.trim().split(/\s+/).filter((w) => w.length > 0).length;
+}
+
+/**
+ * §5 — one long sentence a page, made by joining two the page already says.
+ *
+ * "Rhythm is not a card; it is an assembly decision." Every card and every
+ * generated fact is written short to mid, so no deck can hand the page the one
+ * sentence per eight that carries the weight: the only way to have one is for
+ * the assembler to make it, and the only honest way to make one is to join two
+ * sentences that are already next to each other in the same paragraph. The
+ * words are not altered — a full stop becomes a comma and an "and" — and the
+ * paragraph they are in is one movement already, because the joiners put them
+ * there.
+ *
+ * Guards: never inside quotation marks, because those words are somebody's and
+ * the pause between them is theirs; never after a question or an exclamation,
+ * which is not a clause anything can hang off; only where the second sentence
+ * opens on a word that can go down to lower case without losing a name; and
+ * only where the result lands in the band. One a page, the longest candidate.
+ */
+export function carryingSentence(laid: Laid[], low = CARRY_LOW, high = CARRY_HIGH): boolean {
+  let best: { laid: Laid; sentences: string[]; at: number; total: number } | null = null;
+  for (const l of laid) {
+    const block = l.block;
+    if (block.kind !== 'prose' && block.kind !== 'note') continue;
+    if (/["“”]/.test(block.text)) continue;
+    // A clue's record reaches the page verbatim or it has not reached the
+    // page: the ground rule is that every fact arrives, and a lower-case
+    // letter where the generator wrote a capital is a fact the checker can no
+    // longer find. The simile is spared for the same reason — §A.3 put those
+    // words there as a clause already, and this would make a clause of a
+    // clause.
+    if (block.kind === 'prose' && block.clueId !== undefined) continue;
+    if (l.hosts === true) continue;
+    const sentences = splitSentences(block.text);
+    for (let i = 0; i + 1 < sentences.length; i++) {
+      const a = (sentences[i] as string).trim();
+      const b = (sentences[i + 1] as string).trim();
+      if (!/\.$/.test(a) || ABBREVIATION.test(a)) continue;
+      const head = /^([A-Za-z][A-Za-z'’]*)/.exec(b)?.[1];
+      if (head === undefined) continue;
+      if (head !== 'I' && !CLAUSE_OPENERS.has(head.toLowerCase())) continue;
+      // The second half is the one that loses its capital, so it is the one
+      // that has to be the engine's own words rather than the generator's.
+      if ((l.verbatim ?? []).some((v) => v.includes(b))) continue;
+      const total = wordCount(a) + wordCount(b);
+      // The first half has to be the one doing the carrying; two short atoms
+      // welded together is a longer short sentence, not a long one.
+      if (wordCount(a) < 8 || total < low || total > high) continue;
+      if (!best || total > best.total) best = { laid: l, sentences, at: i, total };
+    }
+  }
+  if (!best) return false;
+  const { sentences, at } = best;
+  const a = (sentences[at] as string).trim().replace(/\.$/, '');
+  const raw = (sentences[at + 1] as string).trim();
+  const b = raw.startsWith('I ') || raw === 'I' ? raw : `${raw.charAt(0).toLowerCase()}${raw.slice(1)}`;
+  sentences.splice(at, 2, `${a}, and ${b}`);
+  const text = tidyPunctuation(sentences.join(' '));
+  const block = best.laid.block;
+  best.laid.block =
+    block.kind === 'prose'
+      ? { kind: 'prose', text, voice: block.voice, ...(block.clueId === undefined ? {} : { clueId: block.clueId }) }
+      : { kind: 'note', text };
+  // §1's counts are left where they are on purpose. The join is a full stop
+  // become a comma; nothing was added to the page and nothing taken off it,
+  // and the ratio it measures is images against facts, neither of which moved.
+  return true;
+}
+
+/* ------------------------------------------------------------------ *
+ * The golden loop, §2 — joiners.
+ * ------------------------------------------------------------------ */
+
+/**
+ * Fuse adjacent blocks that were tagged as belonging to the same paragraph.
+ *
+ * A block is a thing the engine had to say; a paragraph is a thing a reader
+ * reads. M4b made every `say` its own paragraph, which is why a page of twelve
+ * blocks came out as twelve paragraphs of twenty words, every one of them
+ * opening on a subject the paragraph before it had never mentioned. The golden
+ * writes the walk and the room it ends in as one paragraph, the entrance and
+ * the portrait and what she is as another, and a find with the fact that rode
+ * along on it as a third.
+ *
+ * Only prose and notes fuse, and only while the result stays under
+ * `PARAGRAPH_CEILING` words — a paragraph that runs past that is a wall, and
+ * the golden's longest is sixty-three. Two blocks that each carry a clue never
+ * fuse, because a block carries one `clueId` and the book underlines by it, so
+ * fusing would lose one. The fused block keeps the first block's kind, voice
+ * and clue, and the counts of both.
+ */
+/**
+ * The shortest a paragraph may stand on its own.
+ *
+ * A one-sentence paragraph of nine words is not a paragraph, it is a block
+ * that got left out of one — "Nobody in here but the furniture." between the
+ * room and what was found in it. The golden has short paragraphs and they are
+ * all dialogue; its narration runs three and four sentences. Anything under
+ * this joins whichever neighbour it is nearer to in kind.
+ */
+export const PARAGRAPH_FLOOR = 20;
+
+export function fuseParagraphs(
+  laid: Laid[],
+  ceiling = PARAGRAPH_CEILING,
+  floor = PARAGRAPH_FLOOR,
+): number {
+  let fused = 0;
+  for (let i = laid.length - 1; i > 0; i--) {
+    const here = laid[i] as Laid;
+    const before = laid[i - 1] as Laid;
+    const tagged = here.para !== undefined && here.para === before.para;
+    // Untagged, but one of the two is too short to be a paragraph and neither
+    // is anybody speaking: a stray line joins the movement next to it rather
+    // than standing alone in the middle of the page.
+    const stray =
+      !tagged &&
+      takesABeat(here) &&
+      takesABeat(before) &&
+      (countWords([here.block]) < floor || countWords([before.block]) < floor);
+    if (!tagged && !stray) continue;
+    const a = before.block;
+    const b = here.block;
+    if (a.kind !== 'prose' && a.kind !== 'note') continue;
+    if (b.kind !== 'prose' && b.kind !== 'note') continue;
+    if (a.kind === 'prose' && b.kind === 'prose' && a.clueId !== undefined && b.clueId !== undefined)
+      continue;
+    const text = joinSentences(a.text, b.text);
+    if (countWords([{ kind: 'note', text }]) > ceiling) continue;
+    const clueId = a.kind === 'prose' ? a.clueId : undefined;
+    const keptClue = clueId ?? (b.kind === 'prose' ? b.clueId : undefined);
+    // Which voice the paragraph keeps, in order of who has a claim on it.
+    // §A.3 binds a simile to the voice of the block it is a clause of — a face
+    // simile is only ever on a portrait — and a clue's record is excused for
+    // being flat only under the two voices where flatness is the point, so the
+    // block that carries the clue keeps its own voice too. Otherwise the
+    // paragraph is the first block's and reads as what it opened as.
+    const first = a.kind === 'prose' ? a : b.kind === 'prose' ? b : null;
+    const second = b.kind === 'prose' ? b : null;
+    const carriesClue =
+      a.kind === 'prose' && a.clueId !== undefined
+        ? a
+        : b.kind === 'prose' && b.clueId !== undefined
+          ? b
+          : null;
+    const voice =
+      here.hosts === true && second
+        ? second.voice
+        : carriesClue
+          ? carriesClue.voice
+          : first
+            ? first.voice
+            : null;
+    before.block =
+      voice === null
+        ? { kind: 'note', text }
+        : { kind: 'prose', text, voice, ...(keptClue === undefined ? {} : { clueId: keptClue }) };
+    before.plainN += here.plainN;
+    before.imageN += here.imageN;
+    before.image = before.image || here.image;
+    // The paragraph now carries the simile, so a later fusion into it keeps
+    // the voice §A.3 bound the simile to; and a paragraph with the
+    // generator's own sentence anywhere inside it is a paragraph §5 leaves
+    // alone, because the join lands wherever the longest pair is.
+    if (here.hosts === true) before.hosts = true;
+    if (here.verbatim) before.verbatim = [...(before.verbatim ?? []), ...here.verbatim];
+    before.keep = Math.max(before.keep, here.keep);
+    for (const m of here.motifs) if (!before.motifs.includes(m)) before.motifs.push(m);
+    laid.splice(i, 1);
+    fused++;
+  }
+  return fused;
 }
 
 /**
@@ -1646,7 +2088,9 @@ export function askSlots(
 
 interface OpenTools {
   say: (text: string, voice: ProseVoice, opts?: SayOpts) => void;
-  put: (block: Block) => void;
+  put: (block: Block, para?: string) => void;
+  /** What the page weighs so far. The opening's optional lines ask before adding. */
+  count: () => number;
   base: Slots;
   ctx: MotifContext & { before: string[] };
   gaps: string[];
@@ -1677,17 +2121,41 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   const retainer = retainerFor(klass);
   const slots: Slots = { ...t.base, name: client.surname, subject: client.surname, retainer };
 
-  t.put({
-    kind: 'note',
-    text: `Midnight. ${capitalize(place?.name ?? 'the office')}, ${view.kase.neighborhood}.`,
-  });
+  t.put(
+    {
+      kind: 'note',
+      text: `Midnight. ${capitalize(place?.name ?? 'the office')}, ${view.kase.neighborhood}.`,
+    },
+    // The golden's first paragraph is the hour, the address and what the room
+    // is like at that hour, in one breath. So is this one.
+    'office',
+  );
 
   /* 1. The office at this hour. */
   const office = officeCard(dealer, cast.roll.circumstance, cast.roll.weather, slots, t.ctx);
   if (office.gap) t.gaps.push(office.gap);
-  t.say(office.text, 'place', { motifs: office.motifs, score: office.score, keep: 2 });
+  t.say(office.text, 'place', {
+    motifs: office.motifs,
+    score: office.score,
+    keep: 2,
+    para: 'office',
+  });
 
-  /* 2. The entrance, with the client's portrait woven into it (§A.4). */
+  /* 2. The entrance, with the client's portrait woven into it (§A.4).
+   *
+   * The generator's first narration sentence — somebody came up the stairs
+   * after midnight and sat down — goes in front of it rather than behind it.
+   * It used to arrive two paragraphs after the door had already shut and the
+   * portrait had already been read, which is the page telling the reader what
+   * happened before the thing it has just told them. The golden's order is
+   * stairs, knock, coat, hand, and this is that order: it also hands the
+   * entrance paragraph the word "midnight", which is the one the paragraph
+   * above it opens on.
+   */
+  const split = splitBriefing(view, familiar);
+  if (split.entrance)
+    t.say(split.entrance, 'narrator', { transparent: true, verbatim: true, para: 'entrance' });
+
   const entrance = entranceCard(
     dealer,
     { temper, klass, gender, familiar },
@@ -1711,23 +2179,133 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     motifs: [...entrance.motifs, ...(cast.portraits[client.id]?.motifs ?? [])],
     score: entrance.score,
     keep: 2,
+    para: 'entrance',
   });
 
-  /* 3. The briefing (M5 §2). What he saw, and then what she said. */
-  const split = splitBriefing(view, familiar);
-  const seen = [...(split.entrance ? [split.entrance] : []), ...split.narration];
-  if (seen.length > 0) t.say(seen.join(' '), 'narrator', { transparent: true });
-  const speech = speechParagraphs(split.speech);
-  for (const paragraph of speech) {
-    t.say(paragraph, 'exchange', {
+  /* 3. The briefing (M5 §2, turned into an exchange by the golden loop §3).
+   *
+   * What he saw, and then what she said — but not as four blocks of quoted
+   * declaratives with nobody asking anything. Her sentences are grouped by
+   * what they are about and Dashiell's short questions go between the groups,
+   * chosen by what the *next* group establishes: a question about the finding
+   * before the discovery, one about what she was doing there before the tie,
+   * "Why me?" before the purpose. The first turn gets no question, because it
+   * is what she came up the stairs to say.
+   */
+  if (split.narration.length > 0)
+    t.say(split.narration.join(' '), 'narrator', {
+      transparent: true,
+      verbatim: true,
+      para: 'entrance',
+    });
+
+  const victim = view.victim;
+  const askSlots: Slots = {
+    victim: victim.surname,
+    // Only a murder has somebody who was found. The owner of a stolen thing is
+    // alive and a missing person was never found, so a shape that asks who
+    // found them has its slot left empty and is skipped.
+    ...(view.kase.act.type === 'murder' ? { dead: victim.surname } : {}),
+    place: view.placeById.get(view.kase.act.place)?.shortName,
+  };
+  const plainSlots: Slots = {
+    name: client.surname,
+    Pronoun: pronounOf(client) === 'she' ? 'She' : 'He',
+  };
+  // She gets into the chair before she starts: two flat sentences of business,
+  // which is the shortest thing on the page and the page is starving for it.
+  t.say(pickShape(dealer.random, BRIEFING_SETTLE, plainSlots), 'narrator', {
+    transparent: true,
+    para: 'entrance',
+  });
+  // "Sit down." Two words, in quotation marks, before anybody has said
+  // anything: the shortest line on the page and the one that makes the rest of
+  // it an exchange rather than a statement somebody came to read out.
+  //
+  // It asks first. Page one carries the whole briefing and is meant to be the
+  // longest page in the run, and nothing on it after this point can be cut —
+  // the exchange and the record are never texture — so a sixteen-sentence
+  // briefing takes the whole ceiling and this line waits for a shorter case.
+  const toCome =
+    countWords([{ kind: 'note', text: [...split.speech.map((l) => l.text), ...split.close].join(' ') }]) +
+    40;
+  // Whether the briefing is short enough to be interrupted as well as asked.
+  const room = t.count() + toCome < OPENING_CEILING - 40;
+  if (t.count() + toCome < OPENING_CEILING - 8) {
+    t.say(`“${dealer.random.pick(OFFICE_OPENERS)}”`, 'exchange', {
       personId: client.id,
-      register: 'truth',
-      targets: ['voice', 'silence'],
+      targets: DASHIELL_TARGETS,
       transparent: true,
     });
   }
 
+  const turns = briefingTurns(split.speech);
+  const spentAsks: string[] = [];
+  // §2's joiner: the question picks up something she has just said.
+  let lastSaid = '';
+  for (const [i, turn] of turns.entries()) {
+    if (turn.ask) {
+      const question = briefingQuestion(dealer.random, turn.ask, askSlots, spentAsks, lastSaid);
+      if (question.length > 0) {
+        spentAsks.push(question);
+        t.say(`“${question}”`, 'exchange', {
+          personId: client.id,
+          targets: DASHIELL_TARGETS,
+          transparent: true,
+        });
+      }
+    }
+    // Two sentences to a paragraph rather than three, with a prod between them
+    // where the page has room for one. Hammett's clients talk in long turns,
+    // but a turn nobody interrupts is a statement being read out: "And?" costs
+    // the page two words and turns four sentences into two answers.
+    const paragraphs = speechParagraphs(turn.lines, room ? 2 : 3);
+    for (const [n, paragraph] of paragraphs.entries()) {
+      if (n > 0) {
+        const prod = briefingQuestion(
+          dealer.random,
+          'follow',
+          askSlots,
+          spentAsks,
+          paragraphs[n - 1] ?? '',
+        );
+        if (prod.length > 0) {
+          spentAsks.push(prod);
+          t.say(`“${prod}”`, 'exchange', {
+            personId: client.id,
+            targets: DASHIELL_TARGETS,
+            transparent: true,
+          });
+        }
+      }
+      t.say(paragraph, 'exchange', {
+        personId: client.id,
+        register: 'truth',
+        targets: ['voice', 'silence'],
+        transparent: true,
+      });
+    }
+    lastSaid = turn.lines.join(' ');
+    // Once, after the turn that carried what happened: him registering it and
+    // saying nothing else. Twice would be a tic.
+    if (i === 0) {
+      t.say(dealer.random.pick(BRIEFING_ACK), 'narrator', { transparent: true });
+    } else if (i === turns.length - 2) {
+      t.say(pickShape(dealer.random, BRIEFING_PAUSE, plainSlots), 'narrator', {
+        transparent: true,
+      });
+    }
+  }
+
   /* 4. The hiring: the pointer, which is the job, and the money. */
+  const pointer = briefingQuestion(dealer.random, 'pointer', askSlots, spentAsks, lastSaid);
+  if (pointer.length > 0) {
+    t.say(`“${pointer}”`, 'exchange', {
+      personId: client.id,
+      targets: DASHIELL_TARGETS,
+      transparent: true,
+    });
+  }
   const clue = scene.clientClue;
   const fact =
     split.close.length > 0

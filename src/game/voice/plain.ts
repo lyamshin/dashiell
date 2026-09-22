@@ -128,6 +128,348 @@ export const PLAIN_QUIET: string[] = [
   'The clock took its half hour and gave nothing back.',
 ];
 
+/* ------------------------------------------------------------------ *
+ * The briefing as an exchange (the golden loop, `docs/11-golden-loop.md` §3).
+ *
+ * The client's ten to sixteen sentences used to arrive as four blocks of
+ * quoted declaratives with nobody in the room asking anything, which is a
+ * deposition and not a scene. Hammett's clients talk in long turns, but it is
+ * the detective's short questions between them that make a turn sound spoken:
+ * "What were you doing in his rooms at half past eleven?" is what forces
+ * "Collecting."
+ *
+ * These are atoms and not cards, for the reason the head of this file gives:
+ * nothing in the plain register is dealt, scored for motifs or burned, and a
+ * deck entry would make all three true of them. `correspond-pages.ts` already
+ * harvests this module's exported strings into the engine's closed vocabulary,
+ * so a question written here is a question the checker can trace.
+ *
+ * Slots: `{victim}` the surname, `{they}`/`{them}`/`{their}` the victim's
+ * pronouns, `{place}` where it happened. No hour is ever named by a question —
+ * the client names the hours, and the page may only print the ones its own
+ * facts account for.
+ * ------------------------------------------------------------------ */
+
+/** Before the client says where and when it was found. Never says "body". */
+export const ASK_DISCOVERY: string[] = [
+  'Who found it?',
+  'When did you find it?',
+  'Where was it found?',
+  'What time was that?',
+  'Who was there first?',
+  'Where, exactly?',
+  'What did you see first?',
+  'Who else was there?',
+  'When did you know something was wrong?',
+  'Tell me how it was found.',
+  'And nobody called me until now?',
+  'Start with the finding of it.',
+  // The same questions with the page's own nouns in them, so the joiner has
+  // something to pick: a question that names what she has just named reads as
+  // an answer being asked for, and one that names nothing reads as a form.
+  'And {place}?',
+  'What about {place}?',
+  'Who was at {place}?',
+  'When was this, at {place}?',
+  'And {victim}?',
+  'What about {victim}, then?',
+  // `{dead}` is the victim's surname on a murder and nothing at all on a
+  // robbery or a disappearance, where the owner is alive and the missing
+  // person was never found. A shape whose slot is empty is skipped.
+  'Where was {dead} found?',
+  'Who found {dead}?',
+];
+
+/** Before the client says how they stand to the victim. */
+export const ASK_TIE: string[] = [
+  'What were you doing there?',
+  'What were you to {victim}?',
+  'What was your business with {victim}?',
+  'How do you come into it?',
+  'What brought you to {place}?',
+  'Why were you there at all?',
+  'How well did you know {victim}?',
+  'What was the arrangement?',
+  'Where do you come into this?',
+  'And you were there why?',
+  'How long have you known {victim}?',
+  'What put you in the same room?',
+];
+
+/** Before the client says why they are hiring. */
+export const ASK_PURPOSE: string[] = [
+  'Why me?',
+  'Why not the precinct?',
+  'What do you want done?',
+  'Why come to me with it?',
+  'What is it you want?',
+  'You could have let it alone.',
+  'What am I being hired for?',
+  'And you want what, out of it?',
+  'Why pay for this?',
+  'What do you want me to do?',
+  'Say what you want.',
+  'And you want it settled.',
+  'What is {victim} to you now?',
+  'And what does that get {victim}?',
+  'You want this settled for {victim}.',
+  'Why spend money on {victim} now?',
+];
+
+/** Before the client names who they would rather you looked at. */
+export const ASK_POINTER: string[] = [
+  'Who do you like for it?',
+  'Who would you start with?',
+  'Give me a name.',
+  'Who do you want looked at?',
+  'Who comes to mind?',
+  'Whose name have you got?',
+  'Where would you have me start?',
+  'Who had a reason?',
+  'Who is it you are thinking of?',
+  'Name somebody.',
+  'You have got somebody in mind.',
+  'Who, then?',
+  'Who wanted this of {victim}?',
+  'Who would do that to {victim}?',
+  'Who was not a friend of {victim}?',
+  'And who did {victim} cross?',
+];
+
+/**
+ * The neutral prod, when no sharper question fits the next turn, and the thing
+ * that turns one long turn into two answers. Half of them carry a slot so the
+ * joiner has something to pick up from the sentence before.
+ */
+export const ASK_FOLLOW: string[] = [
+  'And?',
+  'Go on.',
+  'Then what.',
+  'Keep going.',
+  'What else.',
+  'Then?',
+  'Say it.',
+  'I am listening.',
+  'And then?',
+  'Anything else?',
+  'Go on about {victim}.',
+  'What else about {victim}?',
+  'And {victim}?',
+  'And {place}?',
+  'What else at {place}?',
+  'Go back to {place}.',
+];
+
+export type BriefingAsk = 'discovery' | 'tie' | 'purpose' | 'pointer' | 'follow';
+
+const ASKS: Record<BriefingAsk, string[]> = {
+  discovery: ASK_DISCOVERY,
+  tie: ASK_TIE,
+  purpose: ASK_PURPOSE,
+  pointer: ASK_POINTER,
+  follow: ASK_FOLLOW,
+};
+
+/**
+ * The detective registering a fact he has just been handed, without comment.
+ * Three words is the point of them: the page is starving for short sentences
+ * and these are the shortest true thing on it.
+ */
+export const BRIEFING_ACK: string[] = [
+  'I knew it.',
+  'I noted it.',
+  'I said nothing.',
+  'That fit.',
+  'I believed it.',
+  'I let it stand.',
+  'I did not argue.',
+  'I had heard worse.',
+  'That was enough.',
+  'I took it in.',
+];
+
+/** A beat the speaker takes after a hard sentence, never explained. */
+export const BRIEFING_PAUSE: string[] = [
+  '{Pronoun} let that sit.',
+  '{Pronoun} said nothing for a while.',
+  '{name} did not go on right away.',
+  '{Pronoun} stopped there.',
+  '{Pronoun} took a moment.',
+  'I did not press {name}.',
+  'I let {name} sit with it.',
+  '{Pronoun} waited before going on.',
+  'Neither of us spoke.',
+  '{name} left it there.',
+];
+
+/**
+ * The business of staying in the chair, never of getting into it: the
+ * generator's own first sentence has already said she came up the stairs and
+ * sat down, and an atom that sat her down again would be the page arguing with
+ * itself. This is the golden's second half — "She did not take the coat off."
+ */
+export const BRIEFING_SETTLE: string[] = [
+  '{Pronoun} did not take the coat off.',
+  '{Pronoun} did not lean back.',
+  '{Pronoun} kept to the edge of the chair.',
+  '{name} kept the coat on.',
+  '{Pronoun} sat with both hands folded.',
+  '{Pronoun} sat straight and stayed that way.',
+  '{name} did not move for a while.',
+  '{Pronoun} put both feet flat on the floor.',
+  '{name} looked at the desk and not at me.',
+  '{Pronoun} kept one hand in a pocket.',
+];
+
+/**
+ * One of Dashiell's short questions, filled. Empty when no shape fits.
+ *
+ * `after` is what the client has just said, and it is the joiner (the golden
+ * loop §2): of the shapes that fit, the one that names something she has just
+ * named wins. "You want the man who did it" works in the golden because the
+ * man who did it is what her last four sentences were about; the same question
+ * with nothing of hers in it is a form being filled in. Where no shape shares
+ * anything, the pool is walked as usual and nothing is forced.
+ */
+export function briefingQuestion(
+  rng: Rng,
+  kind: BriefingAsk,
+  slots: PlainSlots = {},
+  avoid: string | null | readonly string[] = null,
+  after = '',
+): string {
+  const pool = ASKS[kind];
+  const spent = avoid === null ? [] : typeof avoid === 'string' ? [avoid] : avoid;
+  const said = new Set(contentWordsOf(after));
+  if (said.size === 0) return pickShape(rng, pool, slots, avoid);
+  // A noun handed over once is worth less the second time. Without this the
+  // joiner names the victim in every question on the page — "And Sweeney?",
+  // "Go on about Sweeney.", "Where was Sweeney found?" — because she says his
+  // name in every sentence she has, and a page of that is a tic and not a
+  // joint. A word already spent on a question still counts, at half.
+  const already = new Map<string, number>();
+  for (const question of spent) {
+    for (const w of new Set(contentWordsOf(question))) already.set(w, (already.get(w) ?? 0) + 1);
+  }
+  const start = rng.int(pool.length);
+  let best = '';
+  let bestScore = 0;
+  for (let i = 0; i < pool.length; i++) {
+    const template = pool[(start + i) % pool.length] as string;
+    const text = fillPlain(template, slots);
+    if (text.length === 0) continue;
+    if (spent.includes(template) || spent.includes(text)) continue;
+    let score = 0;
+    // Twice is a joint; three times is a tic, and the third one scores nothing.
+    for (const w of contentWordsOf(text)) {
+      if (!said.has(w)) continue;
+      const spentTimes = already.get(w) ?? 0;
+      score += spentTimes === 0 ? 2 : spentTimes === 1 ? 1 : 0;
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      best = text;
+    }
+    if (best.length === 0) best = text;
+  }
+  return best.length > 0 ? best : pickShape(rng, pool, slots, avoid);
+}
+
+/** The words a joiner can hand from one paragraph to the next. */
+function contentWordsOf(text: string): string[] {
+  return (text.match(/[A-Za-z’']+/g) ?? [])
+    .filter((w) => w.length > 3)
+    .map((w) => w.toLowerCase());
+}
+
+/* ------------------------------------------------------------------ *
+ * Rhythm (the golden loop, §5).
+ *
+ * Measured over a hundred and twenty pages, one sentence in seven was six
+ * words or shorter; the golden's office page runs two in five. Everything the
+ * engine printed was eleven words long, so nothing landed. These are the short
+ * sentences a page is assembled around: two to six words, no image in them at
+ * all, and true on every page of every case, because the assembler puts them
+ * wherever the rhythm wants one and they cannot be allowed to assert anything
+ * the case has not established.
+ * ------------------------------------------------------------------ */
+
+/** The notebook, after something has been found. The golden's "I wrote that down." */
+export const PLAIN_NOTED: string[] = [
+  'I wrote it down.',
+  'I wrote that down.',
+  'I got it down.',
+  'I put it in the book.',
+  'It went in the book.',
+  'I marked it down.',
+  'I took it down.',
+  'Down it went.',
+  'I had it on paper.',
+  'The book took it.',
+  'I noted it.',
+  'I set it down.',
+];
+
+/** Taking stock of a room, without saying what is in it. `{place}` is optional. */
+export const PLAIN_STOCK: string[] = [
+  'That was the room.',
+  'I had a look.',
+  'I looked it over.',
+  'I stood a while.',
+  'I went through {place}.',
+  'I gave {place} a look.',
+  'So much for {place}.',
+  'I looked twice.',
+  'I had seen worse rooms.',
+  'I did not sit down.',
+  'I kept my hat on.',
+  'I gave the room its minute.',
+];
+
+/**
+ * The beats §5's rhythm pass reaches for when a finished page is still short
+ * of a quarter of its sentences at six words or fewer.
+ *
+ * Every one of them is true on any page of any case, and every one is five
+ * words or fewer, because the pass counts them and a seventh word would make
+ * the addition pointless. They go at the end of a paragraph, never inside
+ * dialogue, and never more than three to a page.
+ */
+export const PLAIN_BEATS: string[] = [
+  'Nothing moved.',
+  'I waited.',
+  'I let it go.',
+  'It was late.',
+  'I moved on.',
+  'That was that.',
+  'I had time.',
+  'Not yet.',
+  'I let it sit.',
+  'It would keep.',
+  'I went on.',
+  'I took my time.',
+  'I did not linger.',
+  'That was enough for now.',
+];
+
+/**
+ * "Sit down." Dashiell's first line to somebody who has just come up two
+ * flights at midnight, before the client starts talking. The golden's, and
+ * two words long on purpose.
+ */
+export const OFFICE_OPENERS: string[] = [
+  'Sit down.',
+  'Take the chair.',
+  'Sit down and start at the beginning.',
+  'Shut the door.',
+  'Take your time.',
+  'Go ahead.',
+  'Let us have it.',
+  'Start anywhere.',
+  'Sit down, then.',
+  'I am listening.',
+];
+
 export type ConnectiveKind = 'going' | 'arriving' | 'present' | 'leaving' | 'quiet';
 
 const POOLS: Record<ConnectiveKind, string[]> = {
@@ -164,15 +506,37 @@ export function connective(
   rng: Rng,
   kind: ConnectiveKind,
   slots: PlainSlots = {},
-  avoid: string | null = null,
+  avoid: string | null | readonly string[] = null,
 ): string {
-  const pool = POOLS[kind];
-  const start = rng.int(pool.length);
-  for (let i = 0; i < pool.length; i++) {
-    const template = pool[(start + i) % pool.length] as string;
-    if (template === avoid) continue;
-    const text = fillPlain(template, slots);
-    if (text.length > 0) return text;
+  return pickShape(rng, POOLS[kind], slots, avoid);
+}
+
+/**
+ * Walk a pool from a random start and take the first shape whose slots are all
+ * filled, skipping the one the caller just used. Every plain pool is drawn this
+ * way: repetition is allowed — that is what the register is for — but not twice
+ * running out of the same pool.
+ */
+export function pickShape(
+  rng: Rng,
+  pool: readonly string[],
+  slots: PlainSlots = {},
+  avoid: string | null | readonly string[] = null,
+): string {
+  const spent = avoid === null ? [] : typeof avoid === 'string' ? [avoid] : avoid;
+  // Two passes: everything the page has already used is walked past first, and
+  // only if the pool has nothing left is a shape allowed to come round again.
+  for (let pass = 0; pass < 2; pass++) {
+    const start = rng.int(pool.length);
+    for (let i = 0; i < pool.length; i++) {
+      const template = pool[(start + i) % pool.length] as string;
+      const text = fillPlain(template, slots);
+      if (text.length === 0) continue;
+      // The caller may have kept either the shape or the sentence it became;
+      // both are the same repetition to a reader, so both are walked past.
+      if (pass === 0 && (spent.includes(template) || spent.includes(text))) continue;
+      return text;
+    }
   }
   return '';
 }

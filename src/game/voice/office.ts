@@ -13,7 +13,9 @@
  */
 
 import { Rng } from '../../gen/rng.js';
+import { PRECINCT_TEXT } from '../../gen/victim.js';
 import type { CaseView } from '../derive.js';
+import type { BriefingAsk } from './plain.js';
 import {
   CLIENT_LEAVING,
   ENTRANCE_LINES,
@@ -154,6 +156,36 @@ export function hiringFrame(
  * M5 §2 — the briefing, split into who said what.
  * ------------------------------------------------------------------ */
 
+/**
+ * What one of the client's sentences is *about*, so the page knows what
+ * question to put in front of it (the golden loop, §3).
+ *
+ * The generator writes the briefing in a fixed order out of fields the engine
+ * can read back — the victim's standing, the trope's givens, the discovery and
+ * what the precinct did with it, the client's tie and its backstory, the
+ * purpose and what it costs them, the pointer and its reason. Rather than
+ * count positions, which would go wrong the first time a case has no body to
+ * discover, each sentence is matched against the field it came out of. A
+ * sentence that matches nothing is `other` and rides along with its neighbour.
+ */
+export type BriefingTopic =
+  | 'standing'
+  | 'given'
+  | 'discovery'
+  | 'precinct'
+  | 'tie'
+  | 'backstory'
+  | 'purpose'
+  | 'cost'
+  | 'pointer'
+  | 'reason'
+  | 'other';
+
+export interface SpokenLine {
+  topic: BriefingTopic;
+  text: string;
+}
+
 export interface BriefingSplit {
   /**
    * The first sentence: a woman came up the stairs after midnight. Dashiell's,
@@ -167,9 +199,96 @@ export interface BriefingSplit {
    * What she said, in her own words: the standing, the givens, the tie, the
    * purpose. The first person where the sentence is about her.
    */
-  speech: string[];
+  speech: SpokenLine[];
   /** The last of it — the pointer — which the hiring frame carries. */
   close: string[];
+}
+
+/** One space between sentences and one full stop, as the generator tidies. */
+function tidyLine(text: string): string {
+  const trimmed = text.replace(/\s+/g, ' ').trim();
+  if (trimmed.length === 0) return '';
+  return /[.!?]$/.test(trimmed) ? trimmed : `${trimmed}.`;
+}
+
+/** Every briefing sentence the case's own fields account for, by topic. */
+export function briefingTopics(view: CaseView): Map<string, BriefingTopic> {
+  const kase = view.kase;
+  const bio = kase.victimBio;
+  const brief = kase.clientBrief;
+  const client = view.client;
+  const out = new Map<string, BriefingTopic>();
+  const put = (topic: BriefingTopic, text: string | undefined): void => {
+    const key = tidyLine(text ?? '');
+    if (key.length > 0 && !out.has(key)) out.set(key, topic);
+  };
+  put('standing', bio.standing);
+  for (const given of kase.act.givens.text) put('given', given);
+  if (bio.discovery) {
+    put('discovery', bio.discovery.foundText);
+    put('precinct', PRECINCT_TEXT[bio.discovery.precinct]);
+  }
+  if (bio.lastSeen) put('discovery', bio.lastSeen.text);
+  const tie = client.dossier?.tie;
+  if (tie) {
+    put('tie', `${client.surname} is ${tie.text}.`);
+    put('backstory', tie.backstory);
+  }
+  put('purpose', brief.purposeText);
+  put('cost', brief.cost);
+  const pointed = view.personById.get(brief.points.personId);
+  put('pointer', `${client.surname} wants us to start with ${pointed?.surname ?? ''}.`);
+  put('reason', `${brief.points.reason}.`);
+  return out;
+}
+
+/**
+ * The client's sentences grouped into turns, with the question that belongs in
+ * front of each. One turn a subject: what happened, how it was found, where
+ * she comes into it, what she wants. The first turn gets no question — she
+ * came here to say it — and the pointer is not here at all, because the hiring
+ * frame carries it.
+ */
+export interface BriefingTurn {
+  ask: BriefingAsk | null;
+  lines: string[];
+}
+
+const TURN_OF: Record<BriefingTopic, number> = {
+  standing: 0,
+  given: 0,
+  discovery: 1,
+  precinct: 1,
+  tie: 2,
+  backstory: 2,
+  purpose: 3,
+  cost: 3,
+  pointer: 3,
+  reason: 3,
+  other: -1,
+};
+
+const ASK_OF: (BriefingAsk | null)[] = [null, 'discovery', 'tie', 'purpose'];
+
+export function briefingTurns(speech: readonly SpokenLine[]): BriefingTurn[] {
+  const turns: BriefingTurn[] = [];
+  let current = -1;
+  for (const line of speech) {
+    const want = TURN_OF[line.topic];
+    // A sentence the fields do not account for belongs to the turn it arrived
+    // in, not to a turn of its own: the order is the generator's and it is the
+    // order she said them in.
+    const index = want < 0 ? Math.max(0, current) : want;
+    if (index !== current || turns.length === 0) {
+      turns.push({ ask: ASK_OF[index] ?? null, lines: [] });
+      current = index;
+    }
+    (turns[turns.length - 1] as BriefingTurn).lines.push(line.text);
+  }
+  // The first thing she says is what she came to say; nobody asks for it.
+  const first = turns[0];
+  if (first) first.ask = null;
+  return turns;
 }
 
 /**
@@ -184,17 +303,21 @@ export interface BriefingSplit {
  */
 export function splitBriefing(view: CaseView, familiar: boolean): BriefingSplit {
   const briefing = view.kase.briefing;
+  const topics = briefingTopics(view);
   const head = briefing.filter((line) => line.speaker === 'narration').map((line) => line.text);
   const body = briefing
     .filter((line) => line.speaker === 'client')
-    .map((line) => line.spoken ?? line.text);
+    .map((line) => ({
+      topic: topics.get(tidyLine(line.text)) ?? 'other',
+      text: line.spoken ?? line.text,
+    }));
   // The pointer and its reason are the last two, and they are the job.
   const closeFrom = Math.max(0, body.length - 2);
   return {
     entrance: familiar ? null : (head[0] ?? null),
     narration: head.slice(1),
     speech: body.slice(0, closeFrom),
-    close: body.slice(closeFrom),
+    close: body.slice(closeFrom).map((line) => line.text),
   };
 }
 
@@ -203,7 +326,7 @@ export function splitBriefing(view: CaseView, familiar: boolean): BriefingSplit 
  * to a paragraph: sixteen plain sentences in one block of quotation marks is a
  * deposition, and four paragraphs of three or four is somebody talking.
  */
-export function speechParagraphs(lines: string[], per = 3): string[] {
+export function speechParagraphs(lines: readonly string[], per = 3): string[] {
   const out: string[] = [];
   for (let i = 0; i < lines.length; i += per) {
     const chunk = lines.slice(i, i + per).join(' ').trim();

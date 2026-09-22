@@ -137,6 +137,13 @@ export function engineVocabulary(): EngineVocabulary {
     // buttoned, no tie". The word is the writer's either way.
     const first = /[A-Za-z][A-Za-z'’-]*/.exec(text)?.[0];
     if (first) names.add(`${first.charAt(0).toUpperCase()}${first.slice(1)}`);
+    // And the other way about. §5's carrying sentence turns a card's sentence
+    // into a clause and puts its first letter down, so a card that opens "The
+    // parlour held two boarders" reaches the page as "…, and the parlour held
+    // two boarders" — the same phrase the writer wrote, in the same card, and
+    // only now spelled the way the place templates spell it.
+    const lowered = `${text.charAt(0).toLowerCase()}${text.slice(1)}`;
+    for (const short of renderedFacts(lowered).places) places.add(short);
   }
   cachedVocabulary = { names, places };
   return cachedVocabulary;
