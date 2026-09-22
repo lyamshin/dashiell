@@ -671,8 +671,11 @@ describe('the utterance deck', () => {
             // M5 adds two: `plain-register` is a fact kind the utterance deck
             // was never written for — every robbery's and every
             // disappearance's — said plainly instead, and `no-deck-kind` is
-            // `ask-self`, which `dashiell-lines` has no cards for yet.
-            /^(no-utterance|no-fact|too-many-facts|deck-exhausted|missing-deck|no-business|no-client-clue|plain-register|no-deck-kind):/,
+            // `ask-self`, which `dashiell-lines` has no cards for yet. Hone 1
+            // adds two more: `missing-pair` is a person the portrait-pairs
+            // deck has nothing for, and `nameless-follow-up` is a page with
+            // nothing on it a follow-up could name.
+            /^(no-utterance|no-fact|too-many-facts|deck-exhausted|missing-deck|no-business|no-client-clue|plain-register|no-deck-kind|missing-pair|nameless-follow-up):/,
           );
           const id = /\(([^)]+)\)/.exec(gap)?.[1];
           if (id) expect(v.findableById.get(id)).toBeDefined();

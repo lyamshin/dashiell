@@ -70,6 +70,7 @@ import {
   genderHintOf,
   nounOf,
   pronounOf,
+  recallClause,
   temperOf,
   type CastSheet,
   type Temper,
@@ -1046,6 +1047,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       });
       appeared.push(scene.personId);
       if (!seen) portrayed.push(scene.personId);
+      if ((stage.appearances[scene.personId] ?? 0) === 0 && cast.portraits[scene.personId]?.pair === undefined) {
+        gaps.push(
+          `missing-pair: no portrait-pairs card fits ${person.surname}; the three-component portrait stood in`,
+        );
+      }
       const greeting =
         familiar && !seen
           ? dealer.random.pick(FAMILIAR_GREETINGS).split('{name}').join(person.surname)
@@ -1976,11 +1982,15 @@ function carryNoun(dealer: Dealer, before: readonly string[]): string | null {
  * more is introduced by "and", so the end of the list is audible.
  */
 export function presenceSentence(stage: Stage): string {
-  const { view } = stage;
+  const { view, cast } = stage;
   const place = view.placeById.get(stage.at);
   const guests = GUEST_POSTS[place?.kind ?? 'semi'] ?? (GUEST_POSTS.semi as string[]);
   const clauses: string[] = [];
   let hasRole = false;
+  // §B.4: one recall phrase a roll. A list where every name carries a clause
+  // is a list nobody reads to the end of, and the point of a recall is that
+  // the reader already has the detail — it wants naming once, not four times.
+  let recalled = false;
   let group: { post: string; names: string[] } | null = null;
   const flush = (): void => {
     if (!group) return;
@@ -1996,7 +2006,22 @@ export function presenceSentence(stage: Stage): string {
     if (!met) {
       flush();
       hasRole = true;
-      clauses.push(`${person.surname}, ${person.role}, ${post}`);
+      // §B.6. A role can name its own post — "the hackman on the stand" — and
+      // the watcher's post for a cabbie is "on the stand", so the roll printed
+      // "Bidwell, the hackman on the stand, on the stand". Where the role has
+      // already said where the person is, it is not said again.
+      const named = person.role.toLowerCase().includes(post.toLowerCase());
+      clauses.push(named ? `${person.surname}, ${person.role}` : `${person.surname}, ${person.role}, ${post}`);
+      continue;
+    }
+    // §B.4. Somebody already met is named by what the reader remembers about
+    // them: "Kreuzer, the broken finger, at the far end."
+    const recall = cast.portraits[person.id]?.pair?.recall;
+    if (!recalled && recall !== undefined && recall.length > 0) {
+      flush();
+      recalled = true;
+      hasRole = true;
+      clauses.push(`${person.surname}, ${recallClause(recall)}, ${post}`);
       continue;
     }
     if (group && group.post === post) group.names.push(person.surname);
@@ -2250,6 +2275,11 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   });
   t.appeared.push(client.id);
   t.portrayed.push(client.id);
+  if (cast.portraits[client.id]?.pair === undefined) {
+    t.gaps.push(
+      `missing-pair: no portrait-pairs card fits ${client.surname}; the three-component portrait stood in`,
+    );
+  }
   t.say(joinSentences(entrance.text, portrait), 'presence', {
     personId: client.id,
     motifs: [...entrance.motifs, ...(cast.portraits[client.id]?.motifs ?? [])],

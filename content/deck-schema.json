@@ -147,6 +147,24 @@
       },
       "coverage": [["component", "gender"], ["component", "class"]]
     },
+    "portrait-pairs": {
+      "$note": "Hone 1 Track C. A portrait written as a detail with the reason it is seen, in two or three plain sentences: \"She kept her left hand in the pocket until she sat down. When she took it out I saw why: the little finger had been broken once and never set.\" The portraits deck holds a trait, a habit and a piece of clothing as three independent cards, and no assembly rule can make a card follow a detail it does not know the noun of. `recall` is the phrase a later page calls the person by — \"the broken finger\" — so the detail comes back rather than being replaced. `{He}` `{he}` `{his}` `{him}` are filled from the person's gender; write the capitalised form where the sentence starts on it.",
+      "file": "portrait-pairs.json",
+      "optional": true,
+      "deckValues": ["portrait-pairs", "portrait-pair"],
+      "idPrefix": "PP",
+      "placeholderPrefix": "pp-p",
+      "burn": "run-to-run",
+      "target": 120,
+      "slots": ["He", "he", "his", "him", "name"],
+      "tags": {
+        "gender": { "required": true, "values": ["m", "f", "any"] },
+        "class": { "required": true, "vocab": "suspectClass" },
+        "ageBand": { "required": false, "default": "any", "values": ["young", "middle", "old", "any"] },
+        "setting": { "required": false, "default": "anywhere", "values": ["office", "anywhere"] }
+      },
+      "coverage": [["class", "gender"], ["class", "setting"]]
+    },
     "business": {
       "file": "business.json",
       "deckValues": ["business"],

@@ -61,7 +61,9 @@ export type DeckName =
   /* M4b §B.4. Written on the content branch; absent decks deal nothing. */
   | 'office'
   | 'entrances'
-  | 'hiring';
+  | 'hiring'
+  /* Hone 1 §B.4, the same way: written on the `portrait-pairs` branch. */
+  | 'portrait-pairs';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -86,6 +88,11 @@ export interface Card {
   motifs?: string[];
   weather?: string;
   avoidNear?: string[];
+  /**
+   * Hone 1 §B.4, `portrait-pairs` only: the phrase a later page calls this
+   * person by — "the broken finger". A card in any other deck has none.
+   */
+  recall?: string;
   status: string;
   notes?: string;
 }
@@ -156,11 +163,24 @@ const RAW: Record<DeckName, unknown> = {
   office: officeJson,
   entrances: entrancesJson,
   hiring: hiringJson,
+  /*
+   * Hone 1 §B.4. `content/decks/portrait-pairs.json` is Track C's and is not
+   * on this branch. A deck that is not on disk is an empty deck: the dealer
+   * finds nothing in it, the portrait falls back to the three-component weave
+   * the engine already has, and the page says so in its gap log. When the deck
+   * lands this becomes an import like the rest and `MISSING_DECKS` empties.
+   */
+  'portrait-pairs': [],
 };
 
-/** Which of §B.4's three decks were not on disk. The opening says so. */
-/** The three M4b decks are on disk now and imported like the rest; nothing is missing. */
-export const MISSING_DECKS: readonly DeckName[] = [];
+/**
+ * Which decks are not on disk. The pages that wanted one say so in their gaps.
+ *
+ * The three M4b decks landed; `portrait-pairs` is Hone 1 Track C's and is
+ * written on its own branch, so the engine is built against the schema and
+ * runs without the cards.
+ */
+export const MISSING_DECKS: readonly DeckName[] = ['portrait-pairs'];
 
 export const DECK_NAMES = Object.keys(RAW) as DeckName[];
 

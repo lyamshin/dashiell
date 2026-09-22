@@ -91,9 +91,37 @@ const STOP_THEN_LOWER =
  * `joinSentences`, each for a fragment it can see the whole of, and nowhere
  * else.
  */
+/**
+ * §B.6 — "the a bronze bookend".
+ *
+ * An object's name carries its own article, because the sheet prints it on a
+ * line of its own and "bronze bookend" is not a thing anybody says. A card
+ * that writes "behind the loose baseboard: the {object}" then puts a second
+ * article in front of the first. Neither side is wrong on its own, so neither
+ * side is where the fix goes: the seam is, and this is the seam.
+ *
+ * The frame's article is the one that stays — the clue is about a particular
+ * bookend and "the" is the word that says so — and the object's own goes. An
+ * "a" left in front of a vowel is corrected, so that a frame which did write
+ * "a {object}" does not end up with "a ice pick".
+ */
+export function collapseArticles(text: string): string {
+  return text.replace(
+    /\b(the|a|an|The|A|An)\s+(?:an?|the)\s+([A-Za-z])/g,
+    (_m, outer: string, first: string) => {
+      if (outer.toLowerCase() === 'the') return `${outer} ${first}`;
+      // A frame that wrote "a {object}" keeps its own article, and the article
+      // has to agree with whatever the object's name now starts with.
+      const vowel = /[aeiou]/i.test(first);
+      const article = outer[0] === 'A' ? (vowel ? 'An' : 'A') : vowel ? 'an' : 'a';
+      return `${article} ${first}`;
+    },
+  );
+}
+
 export function tidyPunctuation(text: string): string {
   return (
-    text
+    collapseArticles(text)
       // A full stop the card brought, followed by the mark the frame wanted.
       .replace(/\.\s*(?=[,;:])/g, '')
       // Two stops in a row, whichever way round.
