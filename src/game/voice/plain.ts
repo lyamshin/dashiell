@@ -344,6 +344,50 @@ export const PLAIN_STOCK: string[] = [
   'I gave the room its minute.',
 ];
 
+/**
+ * The beats §5's rhythm pass reaches for when a finished page is still short
+ * of a quarter of its sentences at six words or fewer.
+ *
+ * Every one of them is true on any page of any case, and every one is five
+ * words or fewer, because the pass counts them and a seventh word would make
+ * the addition pointless. They go at the end of a paragraph, never inside
+ * dialogue, and never more than three to a page.
+ */
+export const PLAIN_BEATS: string[] = [
+  'Nothing moved.',
+  'I waited.',
+  'Nobody said anything.',
+  'I let it go.',
+  'It was late.',
+  'I moved on.',
+  'That was that.',
+  'I had time.',
+  'Not yet.',
+  'I let it sit.',
+  'It would keep.',
+  'I went on.',
+  'Nobody hurried me.',
+  'I did not argue.',
+];
+
+/**
+ * "Sit down." Dashiell's first line to somebody who has just come up two
+ * flights at midnight, before the client starts talking. The golden's, and
+ * two words long on purpose.
+ */
+export const OFFICE_OPENERS: string[] = [
+  'Sit down.',
+  'Take the chair.',
+  'Sit down and start at the beginning.',
+  'Shut the door.',
+  'Take your time.',
+  'Go ahead.',
+  'Let us have it.',
+  'Start anywhere.',
+  'Sit down, then.',
+  'I am listening.',
+];
+
 export type ConnectiveKind = 'going' | 'arriving' | 'present' | 'leaving' | 'quiet';
 
 const POOLS: Record<ConnectiveKind, string[]> = {
@@ -380,7 +424,7 @@ export function connective(
   rng: Rng,
   kind: ConnectiveKind,
   slots: PlainSlots = {},
-  avoid: string | null = null,
+  avoid: string | null | readonly string[] = null,
 ): string {
   return pickShape(rng, POOLS[kind], slots, avoid);
 }
@@ -395,14 +439,22 @@ export function pickShape(
   rng: Rng,
   pool: readonly string[],
   slots: PlainSlots = {},
-  avoid: string | null = null,
+  avoid: string | null | readonly string[] = null,
 ): string {
-  const start = rng.int(pool.length);
-  for (let i = 0; i < pool.length; i++) {
-    const template = pool[(start + i) % pool.length] as string;
-    if (template === avoid) continue;
-    const text = fillPlain(template, slots);
-    if (text.length > 0) return text;
+  const spent = avoid === null ? [] : typeof avoid === 'string' ? [avoid] : avoid;
+  // Two passes: everything the page has already used is walked past first, and
+  // only if the pool has nothing left is a shape allowed to come round again.
+  for (let pass = 0; pass < 2; pass++) {
+    const start = rng.int(pool.length);
+    for (let i = 0; i < pool.length; i++) {
+      const template = pool[(start + i) % pool.length] as string;
+      const text = fillPlain(template, slots);
+      if (text.length === 0) continue;
+      // The caller may have kept either the shape or the sentence it became;
+      // both are the same repetition to a reader, so both are walked past.
+      if (pass === 0 && (spent.includes(template) || spent.includes(text))) continue;
+      return text;
+    }
   }
   return '';
 }

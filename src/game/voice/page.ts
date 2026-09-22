@@ -28,6 +28,7 @@
  */
 
 import type { Clue, Id, Person, Tick } from '../../gen/types.js';
+import type { Rng } from '../../gen/rng.js';
 import { clock } from '../../gen/types.js';
 import { NIGHT_MINUTES } from '../types.js';
 import type { Block, ProseVoice } from '../types.js';
@@ -89,6 +90,8 @@ import {
   BRIEFING_ACK,
   BRIEFING_PAUSE,
   BRIEFING_SETTLE,
+  OFFICE_OPENERS,
+  PLAIN_BEATS,
   PLAIN_FLOOR,
   PLAIN_NOTED,
   PLAIN_STOCK,
@@ -724,15 +727,18 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
   /* ------------------------------------------ §1 and §3: the plain register */
   // One connective at a time, and never the same shape twice running.
-  let lastConnective: string | null = null;
+  // Every connective the page has already spent, not just the last one: the
+  // plain top-ups run after the arrival did, and a page that says "Nobody
+  // stopped me at the door of the cab stand" twice has said it once too often.
+  const spentConnectives: string[] = [];
   const plainly = (
     kind: Parameters<typeof connective>[1],
     plainSlots: Slots = {},
     para?: string,
   ): void => {
-    const line = connective(dealer.random, kind, plainSlots, lastConnective);
+    const line = connective(dealer.random, kind, plainSlots, spentConnectives);
     if (line.length === 0) return;
-    lastConnective = line;
+    spentConnectives.push(line);
     say(line, 'narrator', { transparent: true, ...(para === undefined ? {} : { para }) });
   };
   // Layer 0, the moment somebody is in front of him: what a longshoreman's
@@ -799,7 +805,16 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
   /* --------------------------------------------- §B.2: the office opening */
   if (scene.kind === 'open') {
-    openTheOffice(stage, scene, { say, put, base, ctx, gaps, portrayed, appeared });
+    openTheOffice(stage, scene, {
+      say,
+      put,
+      count: () => words(blocksOf(laid)),
+      base,
+      ctx,
+      gaps,
+      portrayed,
+      appeared,
+    });
   }
 
   /* -------------------------------------- arrival, place and who is in it */
@@ -1367,8 +1382,10 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   /* ------------------------------------------ the golden loop §2: joiners */
   fuseParagraphs(laid);
 
-  /* ----------------------------------- the golden loop §5: one long sentence */
-  carryingSentence(laid);
+  /* ------------------------------- the golden loop §5: short sentences, long */
+  enforceShortRhythm(laid, dealer.random, ceiling);
+  // The join costs the page the word "and", and the ceiling is the ceiling.
+  if (words(blocksOf(laid)) < ceiling) carryingSentence(laid);
 
   const counted = countsOf(laid);
   return {
@@ -1397,6 +1414,79 @@ function blocksOf(laid: Laid[]): Block[] {
 /* ------------------------------------------------------------------ *
  * The golden loop, §5 — the carrying sentence.
  * ------------------------------------------------------------------ */
+
+/**
+ * §5's first half, as the spec states it: **at least a quarter of a page's
+ * sentences are six words or fewer.**
+ *
+ * The decks cannot do this. A card is written to be a card — a finished image
+ * in eleven to twenty words — and a generated fact is written to be a fact,
+ * which takes as many words as the fact takes. Measured over the fixed set the
+ * engine printed one short sentence in seven, and a page of nothing but
+ * eleven-word sentences has no shape for a fact to land in.
+ *
+ * So the page counts itself at the end and tops up: a beat of five words or
+ * fewer, appended to the end of a paragraph that is not dialogue, until the
+ * quarter is met or three have gone in. The beats assert nothing — they are
+ * true on any page of any case — because the pass puts them wherever the
+ * arithmetic wants one and cannot know what the page has established.
+ */
+export const SHORT_TARGET = 0.25;
+export const SHORT_TOP_UPS = 3;
+
+/** Which paragraphs will take a beat on the end: prose, and nobody speaking. */
+function takesABeat(l: Laid): boolean {
+  const b = l.block;
+  if (b.kind !== 'prose') return false;
+  if (/["“”]/.test(b.text)) return false;
+  return b.voice !== 'exchange' && b.voice !== 'record';
+}
+
+export function enforceShortRhythm(
+  laid: Laid[],
+  rng: Rng,
+  ceiling: number,
+  target = SHORT_TARGET,
+  limit = SHORT_TOP_UPS,
+): number {
+  const counts = (): { short: number; total: number } => {
+    let short = 0;
+    let total = 0;
+    for (const l of laid) {
+      const b = l.block;
+      if (b.kind !== 'prose' && b.kind !== 'note') continue;
+      for (const s of splitSentences(b.text)) {
+        total++;
+        if (wordCount(s) <= 6) short++;
+      }
+    }
+    return { short, total };
+  };
+  const hosts = laid.filter(takesABeat);
+  if (hosts.length === 0) return 0;
+  let added = 0;
+  let last: string | null = null;
+  // One beat a paragraph. A paragraph with two of them on the end is a page
+  // padding itself, which is the opposite of what the rhythm is for.
+  const most = Math.min(limit, hosts.length);
+  while (added < most) {
+    const { short, total } = counts();
+    if (total === 0 || short / total >= target) break;
+    if (words(blocksOf(laid)) > ceiling - 8) break;
+    const beat = pickShape(rng, PLAIN_BEATS, {}, last);
+    if (beat.length === 0) break;
+    last = beat;
+    // Spread them: the first goes on the last paragraph that will take one,
+    // the next on the one before it, so a page does not end in three beats.
+    const host = hosts[hosts.length - 1 - added] as Laid;
+    const b = host.block;
+    if (b.kind !== 'prose') break;
+    host.block = { ...b, text: joinSentences(b.text, beat) };
+    host.plainN += 1;
+    added++;
+  }
+  return added;
+}
 
 /** A sentence a comma and an "and" can turn into a clause without lying. */
 const CLAUSE_OPENERS: ReadonlySet<string> = new Set([
@@ -1916,6 +2006,8 @@ export function askSlots(
 interface OpenTools {
   say: (text: string, voice: ProseVoice, opts?: SayOpts) => void;
   put: (block: Block, para?: string) => void;
+  /** What the page weighs so far. The opening's optional lines ask before adding. */
+  count: () => number;
   base: Slots;
   ctx: MotifContext & { before: string[] };
   gaps: string[];
@@ -2022,6 +2114,24 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     transparent: true,
     para: 'entrance',
   });
+  // "Sit down." Two words, in quotation marks, before anybody has said
+  // anything: the shortest line on the page and the one that makes the rest of
+  // it an exchange rather than a statement somebody came to read out.
+  //
+  // It asks first. Page one carries the whole briefing and is meant to be the
+  // longest page in the run, and nothing on it after this point can be cut —
+  // the exchange and the record are never texture — so a sixteen-sentence
+  // briefing takes the whole ceiling and this line waits for a shorter case.
+  const toCome =
+    countWords([{ kind: 'note', text: [...split.speech.map((l) => l.text), ...split.close].join(' ') }]) +
+    40;
+  if (t.count() + toCome < OPENING_CEILING - 8) {
+    t.say(`“${dealer.random.pick(OFFICE_OPENERS)}”`, 'exchange', {
+      personId: client.id,
+      targets: DASHIELL_TARGETS,
+      transparent: true,
+    });
+  }
 
   const turns = briefingTurns(split.speech);
   let lastAsk: string | null = null;
