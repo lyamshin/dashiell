@@ -58,7 +58,15 @@ export const insideJob: Trope = {
         'document',
         { type: 'place', placeId: access },
         access,
-        [{ kind: 'hadAccess', personId: killer.id, methodId: ctx.method.id }],
+        [
+          { kind: 'hadAccess', personId: killer.id, methodId: ctx.method.id },
+          {
+            kind: 'personAt',
+            personId: killer.id,
+            place: access,
+            tick: ctx.build.killerAccessTick,
+          },
+        ],
         `The key list at ${ctx.placeName(access)} runs to four names, and ${ctx.who(killer.id)} is the third of them. The book has ${ctx.who(killer.id)} there at ${clock(ctx.build.killerAccessTick)}.`,
       ),
       ctx.add(

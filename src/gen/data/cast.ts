@@ -315,7 +315,7 @@ export const RELATIONSHIPS: Relationship[] = [
       '{person} keeps {victim}’s diary and knows which of the entries are true',
       '{person} was hired on {third}’s word and has been more use than {third} ever was',
     ],
-    since: ['since {year}', 'for six years', 'since the office moved'],
+    since: ['since {year}', 'for six years', 'since the rooms changed'],
     purposes: {
       murder: ['find-the-killer-police-wont', 'clear-my-name'],
       robbery: ['clear-my-name', 'find-it-before-the-cops'],
@@ -570,7 +570,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   },
   {
     id: 'arch-dentist',
-    role: 'a dentist with rooms on the third floor',
+    role: 'a dentist with a chair and a waiting room',
     relationships: ['rel-tenant', 'rel-neighbor', 'rel-debtor'],
     motives: ['debt', 'exposure', 'property'],
     secrets: ['dope', 'affair', 'forged-identity'],

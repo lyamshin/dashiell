@@ -35,7 +35,9 @@ export function buildBriefing(input: BriefingInput): string[] {
 
   /* 1. Who came in. Layer 0 and the profession detail. -------------------- */
   const gender = dossier?.gender === 'f' ? 'A woman' : 'A man';
-  out.push(`${gender} came up the stairs to the office after midnight.`);
+  // No room is named here: "the office" is Dashiell's own, and the generator
+  // has never heard of it. The engine sets the scene; this states the fact.
+  out.push(`${gender} came up the stairs after midnight, and sat down.`);
   out.push(
     `${client.name} is ${dossier?.age ?? 40} years old and ${dossier?.profession.role ?? client.role}.`,
   );

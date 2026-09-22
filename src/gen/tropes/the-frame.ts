@@ -63,7 +63,7 @@ export const theFrame: Trope = {
         { type: 'place', placeId: access },
         access,
         fact,
-        `The book at ${ctx.placeName(access)} has ${object} going out at ${clock(Math.max(0, M - 2))}, and the hand that wrote it is not ${ctx.who(framed.id)}’s. ${ctx.who(framed.id)} was at ${ctx.placeName(truth)} at ${clock(M)}.`,
+        `The book at ${ctx.placeName(access)} has ${object} going out the day before, in a hand that is not ${ctx.who(framed.id)}’s. ${ctx.who(framed.id)} was at ${ctx.placeName(truth)} at ${clock(M)}.`,
       ),
     ];
     return {

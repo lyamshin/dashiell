@@ -1,4 +1,4 @@
-import { TICKS, clock, type Fact, type Tick } from '../types.js';
+import { clock, type Fact } from '../types.js';
 import { elsewhere, essential, twoSources, type Trope } from './kit.js';
 
 /**
@@ -43,7 +43,6 @@ export const bodyMoved: Trope = {
     const L = ctx.act.place;
     const found = ctx.act.bodyFoundAt ?? L;
     const M = ctx.act.tick;
-    const after: Tick = Math.min(TICKS - 1, M + 1);
     const fact: Fact[] = [{ kind: 'personAt', personId: ctx.cast.victim.id, place: L, tick: M }];
     const [a] = twoSources(ctx);
     const clues = [
@@ -59,7 +58,7 @@ export const bodyMoved: Trope = {
         { type: 'person', personId: a.id, topic: 'a heavy fare that evening' },
         ctx.foundAt(a.id),
         fact,
-        `${ctx.who(a.id)} says somebody carried a heavy thing down from ${ctx.placeName(L)} to ${ctx.placeName(found)} at ${clock(after)}, wrapped in a rug, and did not want help with it.`,
+        `${ctx.who(a.id)} says somebody carried a heavy thing down from ${ctx.placeName(L)} to ${ctx.placeName(found)} in the half hour after ${clock(M)}, wrapped in a rug, and did not want help with it.`,
       ),
     ];
     return {

@@ -47,7 +47,10 @@ export const lockedRoom: Trope = {
         'document',
         { type: 'place', placeId: access },
         access,
-        [{ kind: 'hadAccess', personId: killer.id, methodId: ctx.method.id }],
+        [
+          { kind: 'hadAccess', personId: killer.id, methodId: ctx.method.id },
+          { kind: 'personAt', personId: killer.id, place: access, tick: t },
+        ],
         `The key book at ${ctx.placeName(access)} is signed out and in for every night this month, and at ${clock(t)} it is signed in ${ctx.who(killer.id)}’s hand.`,
       ),
       ctx.add(
