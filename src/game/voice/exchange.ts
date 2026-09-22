@@ -43,6 +43,94 @@ export type Register = 'truth' | 'lie' | 'evasion';
 const BUSINESS_MARK = 'business';
 const COLOUR_MARK = 'colour';
 
+/**
+ * How a digression gets onto the page (the colour beat).
+ *
+ * A yapper's aside is something the *person* said, and half the frames set the
+ * `{colour}` slot down outside the quotation marks, where it arrived as a
+ * sentence attached to nobody: "'Vitale turned up at Mrs. Teague's near 9:00
+ * PM.' A dog got into the bakery Tuesday and came out white to the shoulders."
+ * That is narration, in the detective's own voice, about a dog he never saw.
+ *
+ * Outside the quotes it is framed: as the speaker's aside inside quotation
+ * marks, or reported, with the person's gender on it. A frame that already has
+ * the slot inside its own quotation marks needs none of this, because the line
+ * is already in the speaker's mouth where the writer put it.
+ */
+export const COLOUR_FRAMES: string[] = [
+  '“{colour}”',
+  '{Pronoun} got onto something else for a minute: {colour}',
+  '{Pronoun} told me, unasked, that {colour}',
+];
+
+/** Is the text that follows this much of a line inside quotation marks? */
+export function insideQuotes(before: string): boolean {
+  let curly = 0;
+  let straight = 0;
+  for (const ch of before) {
+    if (ch === '“') curly++;
+    else if (ch === '”') curly--;
+    else if (ch === '"') straight++;
+  }
+  return curly > 0 || straight % 2 === 1;
+}
+
+/**
+ * Words a sentence opens on that are capitalised only because the sentence is.
+ * A reported beat puts the line mid-sentence, so those go back down; anything
+ * else keeping a capital is a name, and a name keeps it.
+ */
+const SENTENCE_OPENERS: ReadonlySet<string> = new Set([
+  'a',
+  'an',
+  'the',
+  'they',
+  'there',
+  'that',
+  'this',
+  'it',
+  'he',
+  'she',
+  'his',
+  'her',
+  'their',
+  'somebody',
+  'nobody',
+  'everybody',
+  'one',
+  'two',
+  'some',
+  'every',
+  'most',
+  'half',
+  'people',
+  'when',
+  'after',
+  'before',
+  'since',
+  'if',
+  'down',
+  'up',
+  'over',
+  'across',
+  'out',
+]);
+
+/** The colour beat, set down as something the person being asked said. */
+export function frameColour(line: string, template: string, gender: 'm' | 'f' | 'any'): string {
+  const quoted = template.startsWith('“');
+  const first = /^([A-Z][A-Za-z']*)/.exec(line)?.[1];
+  const lowered =
+    quoted || first === undefined || !SENTENCE_OPENERS.has(first.toLowerCase())
+      ? line
+      : `${line.charAt(0).toLowerCase()}${line.slice(1)}`;
+  return template
+    .split('{Pronoun}')
+    .join(gender === 'f' ? 'She' : 'He')
+    .split('{colour}')
+    .join(lowered);
+}
+
 const MANDATORY = (SCHEMA.decks.utterances?.mandatorySlots ?? {}) as Record<string, string[]>;
 
 /** Which register a speaker delivers a clue in. Pure, from the schedules. */
@@ -333,7 +421,22 @@ export function frameAnswer(
   cardIds.push(frame.cardId);
   let text = frame.text;
   while (text.includes(BUSINESS_MARK)) text = text.replace(BUSINESS_MARK, nextBusiness());
-  while (text.includes(COLOUR_MARK)) text = text.replace(COLOUR_MARK, nextColour());
+  // A colour beat outside the frame's quotation marks is not narration: it is
+  // the person still talking, and it is framed as such.
+  const gender = person ? genderHintOf(person) : 'any';
+  // Where in the frame list this answer starts, so the same three templates
+  // are not always used in the same order and a frame that asks for colour
+  // twice never frames both the same way.
+  const frameStart = dealer.random.int(COLOUR_FRAMES.length);
+  for (let frame = frameStart; ; frame++) {
+    const at = text.indexOf(COLOUR_MARK);
+    if (at < 0) break;
+    const line = nextColour();
+    const said = insideQuotes(text.slice(0, at))
+      ? line
+      : frameColour(line, COLOUR_FRAMES[frame % COLOUR_FRAMES.length] as string, gender);
+    text = text.slice(0, at) + said + text.slice(at + COLOUR_MARK.length);
+  }
   return { text: tidyPunctuation(text), mode: spoken.mode, cardIds };
 }
 

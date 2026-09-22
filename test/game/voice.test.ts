@@ -16,16 +16,20 @@ import { buildNotebook } from '../../src/game/notebook.js';
 import { playOracle, playWandering } from '../../src/game/oracle.js';
 import { newRun, stepInput, topicSlots } from '../../src/game/reducer.js';
 import { wordsOnPage } from '../../src/game/transcript.js';
+import { COLOUR_LINES } from '../../src/game/voice-data.js';
 import type { RunState } from '../../src/game/types.js';
 import {
   ALL_CARDS,
+  COLOUR_FRAMES,
   CONTRADICTION_TEMPLATES,
   DECKS,
   MISSING_DECKS,
   SCHEMA,
   THEORY_TEMPLATES,
+  WINDOW_TEMPLATES,
   Dealer,
   askSlots,
+  attachSimile,
   beatsOf,
   businessLine,
   burnTier,
@@ -36,9 +40,12 @@ import {
   factOnPage,
   factsAgainst,
   fill,
+  frameColour,
   genderHintOf,
+  insideQuotes,
   leadingTheory,
   oddsFor,
+  pastTenseHabit,
   reactiveMonologue,
   rollCast,
   rollDashiell,
@@ -373,9 +380,15 @@ describe('portraits', () => {
         (p): p is string => typeof p === 'string' && p.length > 0,
       );
       // A weaving template may put a component at the head of a sentence, so
-      // the comparison is case-blind on the first letter and nowhere else.
-      const holds = (text: string, part: string): boolean =>
-        text.toLowerCase().includes(part.toLowerCase());
+      // the comparison is case-blind on the first letter and nowhere else —
+      // and a habit is the same detail whether the sentence around it wanted
+      // it in the present or turned it into the past.
+      const holds = (text: string, part: string): boolean => {
+        const lower = text.toLowerCase();
+        if (lower.includes(part.toLowerCase())) return true;
+        const past = pastTenseHabit(part);
+        return past !== null && lower.includes(past.toLowerCase());
+      };
       if (parts.length === 3) {
         expect(parts.filter((p) => holds(weave(0, 0), p)).length).toBeLessThanOrEqual(2);
       }
@@ -405,8 +418,81 @@ describe('portraits', () => {
           if (block.kind !== 'prose') continue;
           if (block.voice !== 'presence' && block.voice !== 'approach') continue;
           const lower = block.text.toLowerCase();
-          expect(parts.every((p) => lower.includes(p.toLowerCase()))).toBe(false);
+          const holds = (p: string): boolean => {
+            if (lower.includes(p.toLowerCase())) return true;
+            const past = pastTenseHabit(p);
+            return past !== null && lower.includes(past.toLowerCase());
+          };
+          expect(parts.every(holds)).toBe(false);
           expect((block.text.match(/;/g) ?? []).length).toBeLessThan(2);
+        }
+      }
+    }
+  });
+
+  it('turns a habit into the past tense only off the table, and says so otherwise', () => {
+    expect(pastTenseHabit('whistles two bars of the same tune between sentences')).toBe(
+      'whistled two bars of the same tune between sentences',
+    );
+    expect(pastTenseHabit('runs a thumbnail along the seam of the table')).toBe(
+      'ran a thumbnail along the seam of the table',
+    );
+    expect(pastTenseHabit('straightens picture frames that are already straight')).toBe(
+      'straightened picture frames that are already straight',
+    );
+    // Not a verb this table knows: the caller takes the colon shape instead of
+    // inventing a word.
+    expect(pastTenseHabit('counting the change twice before it goes in the pocket')).toBeNull();
+    expect(pastTenseHabit('a matchbook turning end over end, never struck')).toBeNull();
+  });
+
+  it('never hangs a present-tense habit off a past-tense clause', () => {
+    // "Doyle came with a callus in the web of the thumb, and whistles two bars
+    // of the same tune the whole time" is two tenses in one sentence. A habit
+    // left in the present goes after a stop or a colon, as its own sentence,
+    // and nowhere else.
+    const state = exhaust(7, 2);
+    const v = buildView(generateCase(7, { difficulty: 2 }));
+    let seen = 0;
+    for (const person of v.kase.people) {
+      const portrait = state.cast.portraits[person.id];
+      if (!portrait || portrait.habit.length === 0) continue;
+      for (let times = 0; times < 5; times++) {
+        for (let nth = 0; nth < 5; nth++) {
+          const text = describePerson({
+            cast: state.cast,
+            personId: person.id,
+            surname: person.surname,
+            times,
+            nth,
+            business: 'Counted the till under the bar.',
+            pronoun: 'he',
+          });
+          const at = text.toLowerCase().indexOf(portrait.habit.toLowerCase());
+          if (at < 0) continue;
+          seen++;
+          const before = text.slice(0, at).trimEnd();
+          expect(
+            before.length === 0 || /[.:]$/.test(before),
+            `${person.surname}, times ${times}: ${text}`,
+          ).toBe(true);
+        }
+      }
+    }
+    expect(seen, 'no weave used a habit as written').toBeGreaterThan(0);
+  });
+
+  it('never prints the same beat twice in one approach paragraph', () => {
+    for (const seed of [1, 3, 7, 12, 19]) {
+      for (const page of exhaust(seed, 2).log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose') continue;
+          if (block.voice !== 'approach' && block.voice !== 'presence') continue;
+          const said = block.text
+            .split(/(?<=[.!?])\s+/)
+            .map((s) => s.trim().toLowerCase())
+            .filter((s) => s.length > 0);
+          expect(new Set(said).size, `seed ${seed}: ${block.text}`).toBe(said.length);
         }
       }
     }
@@ -649,6 +735,74 @@ describe('the reactive monologue', () => {
     expect(two.lines[0]).toBeDefined();
   });
 
+  it('counts the half hours it took off the window, and pins a window of one', () => {
+    const windowOf = (from: number[], to: number[], used?: (id: string) => boolean): string => {
+      const before = establishedFrom(view, [], []);
+      const after = establishedFrom(view, [], []);
+      before.deathTicks = from as never[];
+      after.deathTicks = to as never[];
+      const out = reactiveMonologue({
+        view,
+        roll,
+        before,
+        after,
+        touched: [],
+        actionsLeft: 9,
+        previousTheory: null,
+        seed: 5,
+        ...(used ? { used } : {}),
+      });
+      return out.lines.join(' ');
+    };
+
+    // Four half hours down to two: two were lost, and it says two.
+    const ids = new Set(WINDOW_TEMPLATES.narrowed.map((t) => t.id));
+    const counted = windowOf([0, 1, 2, 3], [0, 1], (id) => id !== 'narrowed-count');
+    expect(counted).toContain('two fewer half hours');
+    // Three down to two: one, and the noun agrees with it.
+    expect(windowOf([0, 1, 2], [0, 1], (id) => id !== 'narrowed-count')).toContain(
+      'one fewer half hour to argue',
+    );
+    expect(ids.size).toBe(3);
+
+    // Down to a single tick: a pool of its own, and no count at all.
+    const pinned = windowOf([0, 1, 2], [2]);
+    expect(WINDOW_TEMPLATES.pinned.some((t) => pinned.includes(t.text.split('{')[0] as string))).toBe(
+      true,
+    );
+    expect(pinned).not.toContain('fewer half');
+
+    // Set for the first time: nothing was taken away, so nothing is counted.
+    const set = windowOf([], [0, 1]);
+    expect(set).not.toContain('fewer half');
+    expect(set.length).toBeGreaterThan(0);
+  });
+
+  it('does not narrow the window twice in a run with the same sentence', () => {
+    for (let seed = 1; seed <= 40; seed++) {
+      const state = exhaust(seed, 2);
+      const said = new Map<string, number>();
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' || block.voice !== 'monologue') continue;
+          for (const pool of Object.values(WINDOW_TEMPLATES)) {
+            for (const t of pool) {
+              // Two templates can share an opening — "The window is {window}
+              // now…" and "The window is {window}, and…" — so a template is
+              // named by every one of its literal runs, not just the first.
+              const runs = t.text.split(/\{[a-z]+\}/).filter((s) => s.length >= 10);
+              if (runs.length === 0 || !runs.every((s) => block.text.includes(s))) continue;
+              said.set(t.id, (said.get(t.id) ?? 0) + 1);
+            }
+          }
+        }
+      }
+      for (const [id, n] of said) {
+        expect(n, `seed ${seed}: ${id} said ${n} times`).toBe(1);
+      }
+    }
+  });
+
   it('rationalizes for a warm acquaintance until two facts, then turns', () => {
     const warm = { ...roll, knows: { [suspect.id]: { how: 'old-flame' as const, warmth: 1 as const } } };
     const templatesFor = (n: number, previous: number): string => {
@@ -781,8 +935,13 @@ describe('the burn tiers', () => {
     const state = exhaust(7, 2);
     expect(state.burned.length).toBeGreaterThan(20);
     for (const id of state.burned) {
-      // Either a deck card or one of the hand-written lines.
-      expect(deckOf(id) !== null || /^(NA|ROOM)-\d+$/.test(id), id).toBe(true);
+      // A deck card, one of the hand-written lines, or a monologue line the
+      // run noted so as not to say it twice — those belong to no deck on
+      // purpose, and carry a prefix that says so.
+      expect(
+        deckOf(id) !== null || /^(NA|ROOM)-\d+$/.test(id) || id.startsWith('monologue:'),
+        id,
+      ).toBe(true);
     }
   });
 });
@@ -1034,6 +1193,62 @@ describe('business', () => {
   });
 });
 
+describe('the colour beat', () => {
+  it('frames it as speech, with the speaker’s gender on it', () => {
+    const quote = COLOUR_FRAMES[0] as string;
+    const reported = COLOUR_FRAMES.find((f) => f.includes('{Pronoun}')) as string;
+    const line = 'A dog got into the bakery Tuesday and came out white to the shoulders.';
+    // Inside quotation marks it is the speaker's own sentence, untouched.
+    expect(frameColour(line, quote, 'f')).toBe(`“${line}”`);
+    // Reported, it goes mid-sentence, so the capital that was only there
+    // because the sentence started comes off.
+    expect(frameColour(line, reported, 'f')).toContain('She');
+    expect(frameColour(line, reported, 'm')).toContain('He');
+    expect(frameColour(line, reported, 'any')).toContain('He');
+    expect(frameColour(line, reported, 'f')).toContain('a dog got into the bakery');
+    // A name keeps its capital.
+    expect(frameColour('Dolan has not paid a bill since March.', reported, 'm')).toContain(
+      'Dolan has not paid',
+    );
+  });
+
+  it('counts the quotation marks it is standing between', () => {
+    expect(insideQuotes('He said “')).toBe(true);
+    expect(insideQuotes('He said “so.” Then ')).toBe(false);
+    expect(insideQuotes('Counted the till. "')).toBe(true);
+    expect(insideQuotes('Counted the till. "So." ')).toBe(false);
+  });
+
+  it('never lets one stand as narration on the page', () => {
+    // "'Vitale turned up near 9:00 PM.' A dog got into the bakery Tuesday and
+    // came out white to the shoulders." is the detective describing a dog he
+    // never saw. Every colour beat on a page is either inside quotation marks
+    // or behind a reported-speech frame.
+    let seen = 0;
+    for (const seed of [1, 3, 7, 12, 19]) {
+      for (const page of exhaust(seed, 2).log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose') continue;
+          for (const line of COLOUR_LINES) {
+            for (const variant of [line, `${line.charAt(0).toLowerCase()}${line.slice(1)}`]) {
+              for (let at = block.text.indexOf(variant); at >= 0; ) {
+                const before = block.text.slice(0, at);
+                seen++;
+                expect(
+                  insideQuotes(before) || /(?::|\bthat)\s$/.test(before),
+                  `seed ${seed}: ${block.text}`,
+                ).toBe(true);
+                at = block.text.indexOf(variant, at + 1);
+              }
+            }
+          }
+        }
+      }
+    }
+    expect(seen, 'no run printed a colour beat at all').toBeGreaterThan(0);
+  });
+});
+
 describe('the seams between cards', () => {
   it('never leaves two stops where a card and a frame each brought one', () => {
     expect(tidyPunctuation('“Alive, I’d say..”')).toBe('“Alive, I’d say.”');
@@ -1049,13 +1264,70 @@ describe('the seams between cards', () => {
     expect(tidyPunctuation('He said so.: plainly')).toBe('He said so: plainly');
   });
 
-  it('does not put a full stop in front of a lower-case fragment', () => {
+  it('puts a capital on a sentence a slot started lower-case, and keeps the stop', () => {
+    // M4b polish: this used to become a comma, which spliced two finished
+    // sentences out of one card — "…still 1919 in here, the speakeasy doesn't
+    // card". A place name is lower-case because it always is, not because it
+    // is a fragment.
+    expect(tidyPunctuation('The room smells like 1919. {place} doesn’t card.'.replace('{place}', 'the speakeasy'))).toBe(
+      'The room smells like 1919. The speakeasy doesn’t card.',
+    );
     expect(tidyPunctuation('9:00 PM to 9:30 PM. the speakeasy.')).toBe(
-      '9:00 PM to 9:30 PM, the speakeasy.',
+      '9:00 PM to 9:30 PM. The speakeasy.',
     );
     // An abbreviation is one word with stops in it, not two sentences.
     expect(tidyPunctuation('The street at 3 a.m. was empty.')).toBe(
       'The street at 3 a.m. was empty.',
+    );
+    expect(tidyPunctuation('The stairs up to Mrs. teague’s have been swept.')).toBe(
+      'The stairs up to Mrs. teague’s have been swept.',
+    );
+  });
+
+  it('never swallows a full stop the writer put in a card', () => {
+    // The seam that produced "…still 1919 in here, the speakeasy doesn't card"
+    // was here: a card writes two sentences and the second one opens on a
+    // slot, so filling it must not turn the writer's stop into a comma.
+    const slots: Record<string, string> = {
+      place: 'the speakeasy',
+      name: 'Doyle',
+      subject: 'Doyle',
+      addressee: 'Doyle',
+      other: 'Mosley',
+      object: 'the ledger',
+      detective: 'Dashiell',
+      topic: 'the fight card',
+      fact: 'Doyle was there and said so',
+      time: '9:30 PM',
+      retainer: 'fifty dollars',
+      business: 'He counted the till',
+      colour: 'A dog got into the bakery',
+      dashiell: 'I asked again',
+      window: '9:30 PM',
+    };
+    const stops = (t: string): number => (t.match(/[.!?…]/g) ?? []).length;
+    for (const card of ALL_CARDS) {
+      if (slotsOf(card).length === 0) continue;
+      const filled = fill(card, slots);
+      if (filled === null) continue;
+      expect(stops(filled), `${card.id}: ${filled}`).toBe(stops(card.text));
+    }
+  });
+
+  it('gives a simile a comma only when it is a clause after a full stop', () => {
+    expect(attachSimile('His voice dropped.', 'soft as a hand over a mouthpiece.')).toBe(
+      'His voice dropped, soft as a hand over a mouthpiece.',
+    );
+    expect(attachSimile('His voice dropped.', 'like a hand over a mouthpiece.')).toBe(
+      'His voice dropped, like a hand over a mouthpiece.',
+    );
+    // A question is not a clause anything hangs off. The mark stays.
+    expect(attachSimile('“Where were you?”', 'flat as a nickel on a bar.')).toBe(
+      '“Where were you?” Flat as a nickel on a bar.',
+    );
+    // A simile written as a sentence of its own stays one.
+    expect(attachSimile('His voice dropped.', 'The words came out flat.')).toBe(
+      'His voice dropped. The words came out flat.',
     );
   });
 

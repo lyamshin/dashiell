@@ -252,3 +252,33 @@ migration, because there is nothing in a half-played case worth migrating.
 Reputation, persistence past the burn pile, Dashiell's evolution across runs.
 The generator: `src/gen/` has not been touched by this branch, and `npm run
 case`, `npm run batch` and the truth sheet produce byte-identical output.
+
+## Addendum — the M4b polish pass, and what it cost the number
+
+The coherence number moved when the transition got a memory. §A.2 orders every
+rung of the ladder by score, and the highest-scoring transition for a case with
+a `drunk-singing` anchor is the *same card* on every page of that case: seed 7
+opened pages three, four and five on "Somebody was singing the same two verses
+under a window a block over". A dealer that is only asked to be close is asked
+for the same card every time.
+
+So the page now keeps off the last four transitions — one is dealt a page, so
+the deck's last four ids are the last four pages that had one — and an
+anchor-flavoured card prefers an anchor other than the one the page before
+used. Both are preferences with a fallback, in that order, so a thin hour band
+still gets a line rather than nothing.
+
+Measured over the same 100 oracle runs, against the same synthetically tagged
+decks:
+
+| | mean | `transition → arrival` |
+|---|---|---|
+| before the polish pass | 0.333 | 1.09 |
+| anchor rotation only | 0.397 | 1.09 |
+| the memory only | 0.312 | 0.81 |
+| **both, as shipped** | **0.301** | **0.75** |
+
+The whole of the cost is on the one pair the memory takes the choice away
+from, and it is bought on purpose: three pages opening on the same sentence is
+worse prose than one fewer shared word. The test's floor moved from 0.3 to
+0.28 to match, and still reads as a regression guard rather than a goal.

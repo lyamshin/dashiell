@@ -96,11 +96,86 @@ const HARD_TURNED = [
   'I gave {name} a half hour, because of what {name} is to me. The second half hour I could not give.',
 ];
 
-const NARROWED = [
-  'The window is {window} now, and getting narrower is the only thing going right.',
-  'Whatever happened, it happened {window}. That is two fewer half hours to argue with.',
-  '{window}. I wrote the new hours in over the old ones.',
+/**
+ * The coroner's window, three ways, because three different things happen to
+ * it and one pool said all three the same way.
+ *
+ * M4b's pool had "That is two fewer half hours to argue with" in it, with the
+ * two written into the sentence. It went on a page that had knocked out one
+ * half hour, on a page that had established the window rather than narrowed
+ * it, and — worst — on a page that had closed the window to a single tick,
+ * where the sentence to say is not how many were lost but that there is only
+ * one left. The count is now counted, and a window closed to one tick and a
+ * window first set both have a pool of their own.
+ *
+ * Each line carries an id so the run can decline to say the same thing twice.
+ */
+export interface Narrowing {
+  id: string;
+  text: string;
+}
+
+/** The window came down by some half hours, and more than one is left. */
+const NARROWED: Narrowing[] = [
+  {
+    id: 'narrowed-window',
+    text: 'The window is {window} now, and getting narrower is the only thing going right.',
+  },
+  {
+    id: 'narrowed-count',
+    text: 'Whatever happened, it happened {window}. That is {count} fewer half {hours} to argue with.',
+  },
+  { id: 'narrowed-rewrote', text: '{window}. I wrote the new hours in over the old ones.' },
 ];
+
+/** The window came down to one half hour. There is nothing left to narrow. */
+const PINNED: Narrowing[] = [
+  { id: 'pinned-flat', text: 'That pins it to {window}.' },
+  {
+    id: 'pinned-keyhole',
+    text: 'One half hour left standing, and it is {window}. The window is a keyhole now.',
+  },
+  {
+    id: 'pinned-nothing-either-side',
+    text: '{window}, and nothing either side of it. Everything that matters happened inside it.',
+  },
+];
+
+/** There was no window at all and now there is one. Nothing was taken away. */
+const WINDOW_SET: Narrowing[] = [
+  { id: 'set-ground', text: 'The window is {window}, and that is the ground to stand on.' },
+  {
+    id: 'set-accounted',
+    text: 'Whatever happened, it happened {window}. That is the stretch every evening has to account for.',
+  },
+  { id: 'set-top-of-page', text: '{window}. I wrote the hours at the top of the page.' },
+];
+
+/** The three narrowing pools, exported so a test can tell which one it reached for. */
+export const WINDOW_TEMPLATES = {
+  narrowed: NARROWED,
+  pinned: PINNED,
+  set: WINDOW_SET,
+} as const;
+
+const NUMBER_WORDS = [
+  'no',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+  'ten',
+];
+
+/** A small count as a word, the way a man says it out loud. */
+export function numberWord(n: number): string {
+  return NUMBER_WORDS[n] ?? String(n);
+}
 
 const CLEARED = [
   '{name} was doing something else, and the something else is worse for {name} than for me.',
@@ -205,17 +280,43 @@ export interface ReactiveInput {
   /** The theory as of the previous page, from the run state. */
   previousTheory: Id | null;
   seed: number;
+  /** Whether this run has already said a narrowing line, by its id. */
+  used?: ((id: string) => boolean) | undefined;
 }
 
 export interface ReactiveResult {
   lines: string[];
   theory: Id | null;
+  /**
+   * Narrowing line ids this page reached for, each with the index of the line
+   * it became. The page drops a second thought when it is already long, and a
+   * line that was never printed was never said.
+   */
+  spent: { id: string; line: number }[];
 }
 
 function pick(rng: Rng, pool: string[], slots: Record<string, string>): string {
-  let text = rng.pick(pool);
+  return fillTemplate(rng.pick(pool), slots);
+}
+
+function fillTemplate(template: string, slots: Record<string, string>): string {
+  let text = template;
   for (const [k, v] of Object.entries(slots)) text = text.split(`{${k}}`).join(v);
   return tidyPunctuation(text.replace(/\{[a-z]+\}/g, ''));
+}
+
+/**
+ * A narrowing line the run has not used yet, if there is one. A night only
+ * narrows the window two or three times and hearing the same sentence for
+ * each of them is the tell that nothing is thinking behind it.
+ */
+function pickNarrowing(
+  rng: Rng,
+  pool: Narrowing[],
+  used?: (id: string) => boolean,
+): Narrowing {
+  const fresh = used ? pool.filter((t) => !used(t.id)) : pool;
+  return rng.pick(fresh.length > 0 ? fresh : pool) as Narrowing;
 }
 
 function windowLabel(ticks: Tick[]): string {
@@ -232,6 +333,7 @@ export function reactiveMonologue(input: ReactiveInput): ReactiveResult {
   const { view, roll, before, after, touched, actionsLeft } = input;
   const rng = new Rng(input.seed >>> 0);
   const lines: string[] = [];
+  const spent: { id: string; line: number }[] = [];
 
   /* A story that just died, or just wobbled. */
   for (const personId of touched) {
@@ -249,11 +351,22 @@ export function reactiveMonologue(input: ReactiveInput): ReactiveResult {
     break;
   }
 
-  /* The coroner's window, narrowed. */
-  if (after.deathTicks.length > 0 && after.deathTicks.length < before.deathTicks.length) {
-    lines.push(pick(rng, NARROWED, { window: windowLabel(after.deathTicks) }));
-  } else if (before.deathTicks.length === 0 && after.deathTicks.length > 0) {
-    lines.push(pick(rng, NARROWED, { window: windowLabel(after.deathTicks) }));
+  /* The coroner's window: set, narrowed, or closed to a single half hour. */
+  const narrowed = after.deathTicks.length > 0 && after.deathTicks.length < before.deathTicks.length;
+  const firstSet = before.deathTicks.length === 0 && after.deathTicks.length > 0;
+  if (narrowed || firstSet) {
+    const lost = firstSet ? 0 : before.deathTicks.length - after.deathTicks.length;
+    const pool =
+      after.deathTicks.length === 1 ? PINNED : firstSet ? WINDOW_SET : NARROWED;
+    const chosen = pickNarrowing(rng, pool, input.used);
+    spent.push({ id: chosen.id, line: lines.length });
+    lines.push(
+      fillTemplate(chosen.text, {
+        window: windowLabel(after.deathTicks),
+        count: numberWord(lost),
+        hours: lost === 1 ? 'hour' : 'hours',
+      }),
+    );
   }
 
   /* A secret explained: a red herring knocked down. */
@@ -278,7 +391,7 @@ export function reactiveMonologue(input: ReactiveInput): ReactiveResult {
     lines.push(pick(rng, CLOCK, { left: String(actionsLeft) }));
   }
 
-  return { lines: lines.slice(0, 2), theory };
+  return { lines: lines.slice(0, 2), theory, spent };
 }
 
 /** Who else put this person somewhere: the name the contradiction is against. */

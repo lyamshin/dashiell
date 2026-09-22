@@ -45,8 +45,24 @@ import {
   WATCHER_POSTS,
   type NothingLine,
 } from '../voice-data.js';
-import { DECKS, Dealer, tagIs, tagOf, type Card, type Slots } from './cards.js';
-import { appendMark, joinSentences, tidyPunctuation } from './prose.js';
+import {
+  DECKS,
+  Dealer,
+  tagIs,
+  tagOf,
+  type Card,
+  type Match,
+  type Slots,
+  type TagValue,
+} from './cards.js';
+import {
+  appendMark,
+  capitalizeFirst,
+  endsInPeriod,
+  endsSentence,
+  joinSentences,
+  tidyPunctuation,
+} from './prose.js';
 import {
   classOf,
   describePerson,
@@ -160,9 +176,55 @@ export const GENDERED_TARGETS: ReadonlySet<string> = new Set([
   'face',
   'hands',
   'voice',
+  'mouth',
   'clothes',
   'body',
+  // A `lie` simile is about the mouth it came out of — "Her denial came out
+  // flat as a nickel on a bar" — and twenty-two of the twenty-four cards under
+  // that target name a pronoun. It was not on this list, which is how a man
+  // got a "her".
+  'lie',
 ]);
+
+/**
+ * What a simile is a simile *about*, where its own words say so.
+ *
+ * A card that names a register is making a claim about the line it modifies:
+ * "Her denial came out flat" says the line was a denial, and putting it after
+ * an answer that denied nothing — or after Dashiell's own goodbye — is the
+ * engine asserting something the page does not contain. So a card whose text
+ * names one binds only to a line delivered in that register, and to no other
+ * block at all. The words are few and they are the load-bearing ones; anything
+ * else in the deck carries no register and goes wherever its target does.
+ */
+const REGISTER_WORDS: [RegExp, Register][] = [
+  [/\b(?:denial|denials|denied|lie|lies|lied|lying)\b/i, 'lie'],
+  [/\b(?:truth|truthful|confession|confessed)\b/i, 'truth'],
+];
+
+export function simileRegister(text: string): Register | null {
+  for (const [re, register] of REGISTER_WORDS) if (re.test(text)) return register;
+  return null;
+}
+
+/**
+ * Which of the two registers a block reads as, for the rule above. The
+ * exchange's own three registers collapse to two here: an evasion and a lie
+ * are both a line that is not the truth, and that is the whole of what a
+ * simile about a denial needs to know.
+ */
+export function simileRegisterOf(register: Register, kind?: string): Register {
+  return register !== 'truth' || kind === 'denial' ? 'lie' : 'truth';
+}
+
+/**
+ * Dashiell's own lines in an exchange. A simile about a voice, a mouth or a
+ * denial belongs to the person being interviewed; hung on the detective's
+ * goodbye it describes a speaker who is not there — "'That's all for now.'
+ * Her denial came out flat as a nickel on a bar." A pause is the one thing his
+ * line can be about, so `silence` stays and nothing else does.
+ */
+export const DASHIELL_TARGETS: string[] = ['silence'];
 
 /**
  * Short connectives, for a simile card written as a bare clause. Most cards in
@@ -177,13 +239,23 @@ const OPENS_AS_CLAUSE = /^(like|the way|as if|as though|as\b)/i;
  * Set a simile down as part of the sentence it modifies (§A.3): a comma when
  * the card opens on a connective, a full stop when it is a sentence of its own.
  * Either way it is in the same paragraph, which is the whole point.
+ *
+ * The comma is the only one the page grammar puts in, and it goes in under two
+ * conditions together: the simile begins lower-case, so it is a clause and not
+ * a sentence, and the line it joins ends on a full stop. A question or an
+ * exclamation is not a clause anybody can hang another clause off — "Where were
+ * you?, flat as a nickel on a bar" — so those keep their mark and the simile
+ * starts a sentence of its own.
  */
 export function attachSimile(host: string, simile: string): string {
   const s = simile.trim();
   if (s.length === 0) return host;
-  if (OPENS_AS_CLAUSE.test(s)) return tidyPunctuation(`${appendMark(host, ',')} ${s}`);
-  if (/^[a-z]/.test(s)) return tidyPunctuation(`${appendMark(host, ',')} ${s}`);
-  return joinSentences(host, s);
+  const clause = OPENS_AS_CLAUSE.test(s) || /^[a-z]/.test(s);
+  if (!clause) return joinSentences(host, s);
+  if (endsInPeriod(host) || !endsSentence(host)) {
+    return tidyPunctuation(`${appendMark(host, ',')} ${s}`);
+  }
+  return joinSentences(host, capitalizeFirst(s));
 }
 
 /**
@@ -417,6 +489,8 @@ interface Laid {
   targets: string[];
   /** Who the block is about, for the simile's gender filter. */
   personId?: Id;
+  /** Whether this line was delivered as the truth or as something else (§A.3). */
+  register?: Register;
   /** Higher survives the image trim. */
   keep: number;
 }
@@ -429,6 +503,8 @@ interface SayOpts {
   keep?: number;
   /** Override the default host list for this block's voice. */
   targets?: string[];
+  /** For a spoken line: which register a simile about it would have to match. */
+  register?: Register;
 }
 
 export function composePage(stage: Stage, scene: Scene): Composed {
@@ -508,6 +584,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       score: opts.score ?? 0,
       targets: opts.targets ?? hostedTargets(voice),
       ...(opts.personId === undefined ? {} : { personId: opts.personId }),
+      ...(opts.register === undefined ? {} : { register: opts.register }),
       keep: opts.keep ?? 1,
     });
     for (const m of motifs) if (!usedMotifs.includes(m)) usedMotifs.push(m);
@@ -534,30 +611,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
   /* -------------------------------------------------------- transition */
   if (stage.cost > 0 && scene.kind !== 'open') {
-    const anchorIds = view.kase.anchors.map((a) => a.templateId);
-    const drawn = dealer.draw(
-      'transitions',
-      [
-        (c) => {
-          const anchor = tagOf('transitions', c, 'anchorTemplate');
-          return (
-            typeof anchor === 'string' &&
-            anchorIds.includes(anchor) &&
-            tagIs('transitions', c, 'hourBand', band)
-          );
-        },
-        (c) => {
-          const anchor = tagOf('transitions', c, 'anchorTemplate');
-          return typeof anchor === 'string' && anchorIds.includes(anchor);
-        },
-        (c) =>
-          tagOf('transitions', c, 'anchorTemplate') === undefined &&
-          tagIs('transitions', c, 'hourBand', band),
-      ],
-      base,
-      true,
-      ctx,
-    );
+    const drawn = drawTransition(dealer, view, band, base, ctx);
     say(drawn?.text ?? dealer.random.pick(PLAIN_TRANSITIONS), 'transition', {
       motifs: drawn?.motifs,
       score: drawn?.score,
@@ -659,11 +713,24 @@ export function composePage(stage: Stage, scene: Scene): Composed {
      * answers the question; each one after it gets a follow-up in front of it,
      * so Dashiell is seen to ask again for what he did not get the first time.
      */
-    const sayTheRest = (spoken: SpokenClue, isFamiliar: boolean, withSlots: Slots): void => {
+    const sayTheRest = (
+      spoken: SpokenClue,
+      isFamiliar: boolean,
+      withSlots: Slots,
+      register: Register,
+    ): void => {
       for (const more of spoken.rest) {
         const follow = dashiellLine(dealer, 'follow-up', isFamiliar, withSlots);
-        say(follow?.text ?? '"And then."', 'exchange', { personId: scene.personId });
-        say(`"${more}"`, 'exchange', { clueId: spoken.clueId, personId: scene.personId });
+        say(follow?.text ?? '"And then."', 'exchange', {
+          personId: scene.personId,
+          targets: DASHIELL_TARGETS,
+        });
+        say(`"${more}"`, 'exchange', {
+          clueId: spoken.clueId,
+          personId: scene.personId,
+          targets: spokenTargets(register),
+          register,
+        });
       }
     };
 
@@ -689,7 +756,14 @@ export function composePage(stage: Stage, scene: Scene): Composed {
           : '';
       // The business beat is inside the portrait when the weave used it; a
       // weave that did not use it sets it down after, as its own sentence.
-      const carriedBusiness = approach !== null && portrait.includes(trimTail(approach.text));
+      // Case-insensitively: the weave may have lower-cased the first letter to
+      // set the beat down as a clause, and a case-sensitive `includes` then
+      // missed it and printed the same gesture twice — "that was Carbone, a
+      // hat goes round in two hands, brim to brim. A hat goes round in two
+      // hands, brim to brim."
+      const carriedBusiness =
+        approach !== null &&
+        portrait.toLowerCase().includes(trimTail(approach.text).toLowerCase());
       say(
         joinSentences(portrait, carriedBusiness ? '' : (approach?.text ?? ''), greeting),
         'approach',
@@ -708,15 +782,20 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
     /* Dashiell's line */
     const opener = dashiellLine(dealer, scene.askKind, familiar, slots);
-    if (opener) say(opener.text, 'exchange', { personId: scene.personId });
-    else say(`“${scene.topicLabel},” I said.`, 'exchange', { personId: scene.personId });
+    const asked = opener?.text ?? `“${scene.topicLabel},” I said.`;
+    say(asked, 'exchange', { personId: scene.personId, targets: DASHIELL_TARGETS });
 
     /* the answer */
     if (scene.account) {
       const register: Register = (view.liesOf.get(scene.personId)?.size ?? 0) > 0 ? 'lie' : 'truth';
       answerAccount(
         stage,
-        (text) => say(text, 'exchange', { personId: scene.personId, targets: ['voice', 'lie', 'silence'] }),
+        (text) =>
+          say(text, 'exchange', {
+            personId: scene.personId,
+            targets: spokenTargets(register),
+            register: simileRegisterOf(register),
+          }),
         put,
         scene,
         person,
@@ -732,9 +811,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     for (const [i, clue] of scene.clues.entries()) {
       if (i > 0) {
         const follow = dashiellLine(dealer, 'follow-up', familiar, slots);
-        if (follow) say(follow.text, 'exchange', { personId: scene.personId });
+        if (follow)
+          say(follow.text, 'exchange', { personId: scene.personId, targets: DASHIELL_TARGETS });
       }
       const register = registerFor(view, scene.personId, clue);
+      const said = simileRegisterOf(register, clue.kind);
       const spoken = speakClue(dealer, view, cast, clue, person, register, slots, gaps);
       const answer = frameAnswer(
         dealer,
@@ -752,9 +833,10 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', {
         clueId: clue.id,
         personId: scene.personId,
-        targets: register === 'truth' ? ['voice', 'silence'] : ['voice', 'lie', 'silence'],
+        targets: spokenTargets(said),
+        register: said,
       });
-      sayTheRest(spoken, familiar, slots);
+      sayTheRest(spoken, familiar, slots, said);
     }
     if (scene.clues.length === 0 && !scene.account) {
       say(nothingLine(dealer, 'present', slots), 'nothing');
@@ -780,15 +862,18 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         usedBusiness,
         gaps,
       );
+      const said = simileRegisterOf(register, scene.volunteer.kind);
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', {
         clueId: scene.volunteer.id,
         personId: scene.personId,
+        targets: spokenTargets(said),
+        register: said,
       });
-      sayTheRest(spoken, familiar, slots);
+      sayTheRest(spoken, familiar, slots, said);
     }
 
     const closer = dashiellLine(dealer, 'close', familiar, slots);
-    if (closer) say(closer.text, 'exchange', { personId: scene.personId });
+    if (closer) say(closer.text, 'exchange', { personId: scene.personId, targets: DASHIELL_TARGETS });
   }
 
   /* ------------------------------------------------------------ the find */
@@ -818,7 +903,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   const before: Established = establishedFrom(view, stage.foundBefore, stage.accountsBefore);
   const after: Established = establishedFrom(view, stage.foundAfter, stage.accountsAfter);
   const touched = touchedPeople(view, stage.foundAfter.slice(stage.foundBefore.length), scene);
-  let reaction: ReactiveResult = { lines: [], theory: stage.previousTheory };
+  let reaction: ReactiveResult = { lines: [], theory: stage.previousTheory, spent: [] };
   let carried = false;
   if (scene.kind !== 'nothing') {
     reaction = reactiveMonologue({
@@ -830,7 +915,9 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       actionsLeft: stage.actionsLeft,
       previousTheory: stage.previousTheory,
       seed: (stage.pageIndex + 1) * 7919 + view.kase.seed,
+      used: (id) => dealer.used(notedAs(id)),
     });
+    let said = 0;
     for (const [i, line] of reaction.lines.entries()) {
       // A page that is already long keeps the first thought and drops the
       // second. Two paragraphs of thinking on top of three finds is a page
@@ -840,7 +927,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       const glue = i === 0 && !carried ? carryNoun(dealer, ctx.before) : null;
       if (glue) carried = true;
       say(glue ? joinSentences(glue, line) : line, 'monologue');
+      said++;
     }
+    // A narrowing line the page dropped for length was never said, so the run
+    // has not spent it and may reach for it again.
+    for (const { id, line } of reaction.spent) if (line < said) dealer.note(notedAs(id));
   }
 
   /* ------------------------------------- ambient, aside, simile: the trim */
@@ -1004,6 +1095,22 @@ function sharedWith(motifs: readonly string[] | undefined, set: ReadonlySet<stri
   return n;
 }
 
+/**
+ * A monologue line's id, as the run's spend pile carries it.
+ *
+ * The prefix belongs to no deck, so `deckOf` returns null for it and nothing
+ * that reads the pile as cards — the burn tiers, the cross-run pile, the
+ * coherence tests — ever mistakes it for one.
+ */
+export function notedAs(id: string): string {
+  return `monologue:${id}`;
+}
+
+/** What a line spoken by the person being interviewed can host (§A.3). */
+function spokenTargets(register: Register): string[] {
+  return register === 'truth' ? ['voice', 'silence'] : ['voice', 'lie', 'silence'];
+}
+
 /** Which simile targets a block of this voice can be a clause of. */
 function hostedTargets(voice: ProseVoice | null): string[] {
   if (voice === null) return [];
@@ -1038,14 +1145,24 @@ function carryNoun(dealer: Dealer, before: readonly string[]): string | null {
 }
 
 /**
- * §A.4 — the presence roll as one sentence. "Carbone and Mosley at the far
- * end, Doyle behind the bar." Roles appear only for somebody not yet met.
+ * §A.4 — the presence roll as one sentence. "Carbone at the far end, Mosley
+ * near the door, and Doyle behind the bar." Roles appear only for somebody not
+ * yet met.
+ *
+ * A role is itself set off by commas — "Ainsworth, the landlady, in the hall" —
+ * so a comma between the people as well gives a reader four commas and no way
+ * to tell which of them separates two people: "Dandridge by the window,
+ * Ainsworth, the landlady, in the hall" reads as three people, one of them
+ * called The Landlady. When any clause carries a role the list goes up a level
+ * and is separated by semicolons instead, and either way the last of three or
+ * more is introduced by "and", so the end of the list is audible.
  */
 export function presenceSentence(stage: Stage): string {
   const { view } = stage;
   const place = view.placeById.get(stage.at);
   const guests = GUEST_POSTS[place?.kind ?? 'semi'] ?? (GUEST_POSTS.semi as string[]);
   const clauses: string[] = [];
+  let hasRole = false;
   let group: { post: string; names: string[] } | null = null;
   const flush = (): void => {
     if (!group) return;
@@ -1060,6 +1177,7 @@ export function presenceSentence(stage: Stage): string {
     const met = stage.met.includes(person.id);
     if (!met) {
       flush();
+      hasRole = true;
       clauses.push(`${person.surname}, ${person.role}, ${post}`);
       continue;
     }
@@ -1070,7 +1188,20 @@ export function presenceSentence(stage: Stage): string {
     }
   }
   flush();
-  return clauses.length === 0 ? '' : `${capitalize(clauses.join(', '))}.`;
+  return clauses.length === 0 ? '' : `${capitalize(joinClauses(clauses, hasRole))}.`;
+}
+
+/**
+ * The people in the room, as one list. Semicolons where a clause has a role
+ * with commas of its own; "and" before the last of three or more, where it
+ * marks the end of the list rather than getting in the way of a pair.
+ */
+export function joinClauses(clauses: string[], hasRole: boolean): string {
+  if (clauses.length <= 1) return clauses[0] ?? '';
+  const sep = hasRole ? '; ' : ', ';
+  if (clauses.length === 2) return clauses.join(sep);
+  const last = clauses[clauses.length - 1] as string;
+  return `${clauses.slice(0, -1).join(sep)}${sep}and ${last}`;
 }
 
 function listOf(names: string[]): string {
@@ -1114,7 +1245,11 @@ function placeSimile(
     const fits = (c: Card): boolean =>
       cap(c) &&
       tagIs('similes', c, 'target', target) &&
-      (gender === 'any' || tagIs('similes', c, 'gender', gender));
+      genderFits(c, gender) &&
+      // A card whose own words name a register binds to a line of that
+      // register and to nothing else — not to a truthful answer, and not to
+      // a block that was never anybody's answer at all.
+      registerFits(simileRegister(c.text), block.register);
     if (!dealer.has('similes', fits, ctx)) continue;
     const drawn = dealer.draw('similes', [fits], slots, true, ctx);
     if (!drawn) continue;
@@ -1127,15 +1262,36 @@ function placeSimile(
   return null;
 }
 
+/** Does a card carrying this register belong on a block carrying that one? */
+function registerFits(wanted: Register | null, have: Register | undefined): boolean {
+  return wanted === null || wanted === have;
+}
+
 /**
- * Whose gender a simile has to agree with. Only for a target that is a body or
- * a voice: "her hands" on a man is the tell the tag exists for, and a simile
- * about the street does not have a gender to get wrong.
+ * Whose gender a simile has to agree with.
+ *
+ * Whenever the block is about somebody — an answer they gave, a beat about
+ * their hands, their portrait — it is that person's, whatever the target is:
+ * "He counted the bills" under a `money` simile on a woman's line is the same
+ * wrong as "her hands" on a man, and the deck tags ten of the twenty-two money
+ * cards for a gender. A block about nobody has no gender to agree with, and a
+ * simile about the street never had one to get wrong.
  */
-function genderOfBlock(stage: Stage, block: Laid, target: string): 'm' | 'f' | 'any' {
-  if (!GENDERED_TARGETS.has(target) && !BODY_MOTIFS.has(target)) return 'any';
+function genderOfBlock(stage: Stage, block: Laid, target: string): 'm' | 'f' | 'none' | 'any' {
   const person = block.personId ? stage.view.personById.get(block.personId) : undefined;
-  return person ? genderHintOf(person) : 'any';
+  if (person) return genderHintOf(person);
+  // Nobody to agree with. A body or a voice still must not be given a card
+  // that names a pronoun — there is no one on the page for it to refer to —
+  // so only the cards written for nobody in particular will do.
+  if (GENDERED_TARGETS.has(target) || BODY_MOTIFS.has(target)) return 'none';
+  return 'any';
+}
+
+/** Does this simile's gender tag suit the block it would go on? */
+function genderFits(card: Card, gender: 'm' | 'f' | 'none' | 'any'): boolean {
+  if (gender === 'any') return true;
+  if (gender === 'none') return tagOf('similes', card, 'gender') === 'any';
+  return tagIs('similes', card, 'gender', gender);
 }
 
 /** The ask kinds where the question is about the person being asked. */
@@ -1255,6 +1411,10 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     personId: client.id,
     motifs: hiring.motifs,
     score: hiring.score,
+    // A man hiring you is not lying to you about why, whatever else he leaves
+    // out: a simile about a denial has no business on the brief.
+    register: 'truth',
+    targets: ['voice', 'silence'],
   });
 
   /* 4. Two questions on the house, while he is still standing there. */
@@ -1283,6 +1443,65 @@ export function stripAttribution(text: string, surname: string): string {
 /* ------------------------------------------------------------------ *
  * Cards.
  * ------------------------------------------------------------------ */
+
+/**
+ * The first line on a page: the walk that got him here.
+ *
+ * `transitions` is a `free` deck, which means a card may come round again in a
+ * later run and in a later page — but the dealer orders a rung by §A.2's score
+ * first, and the highest-scoring card for a case with a `drunk-singing` anchor
+ * is the same card every time. Seed 7 opened pages three, four and five with
+ * "Somebody was singing the same two verses under a window a block over" and
+ * the night stopped moving.
+ *
+ * So the page keeps off what the last few pages opened with. One transition is
+ * dealt a page, so the last four ids from the deck are the last four pages
+ * that had one: the top of the ladder refuses all four, the middle refuses the
+ * page before, and only after both have come up empty does a card get to
+ * repeat itself. Inside that, an anchor-flavoured card prefers an anchor other
+ * than the one the last page used, so a case with three anchors in the air
+ * sounds like a case with three anchors in the air.
+ */
+export const TRANSITION_MEMORY = 4;
+
+function drawTransition(
+  dealer: Dealer,
+  view: CaseView,
+  band: HourBand,
+  base: Slots,
+  ctx: MotifContext,
+): { text: string; motifs: string[]; score: number } | null {
+  const anchorIds = view.kase.anchors.map((a) => a.templateId);
+  const recent = dealer.recent('transitions', TRANSITION_MEMORY);
+  const lastId = recent[recent.length - 1];
+  const lastCard = lastId ? DECKS.transitions.find((c) => c.id === lastId) : undefined;
+  const lastAnchor = lastCard ? tagOf('transitions', lastCard, 'anchorTemplate') : undefined;
+
+  const anchorOf = (c: Card): TagValue | undefined => tagOf('transitions', c, 'anchorTemplate');
+  const onAnchor = (c: Card): boolean => {
+    const anchor = anchorOf(c);
+    return typeof anchor === 'string' && anchorIds.includes(anchor);
+  };
+  const rotates = (c: Card): boolean => anchorOf(c) !== lastAnchor;
+  const inBand = (c: Card): boolean => tagIs('transitions', c, 'hourBand', band);
+
+  const ladder: Match[] = [
+    (c) => onAnchor(c) && rotates(c) && inBand(c),
+    (c) => onAnchor(c) && rotates(c),
+    (c) => anchorOf(c) === undefined && inBand(c),
+    (c) => onAnchor(c) && inBand(c),
+    onAnchor,
+    (c) => anchorOf(c) === undefined,
+  ];
+  const keepOff = (ids: readonly string[]): Match[] =>
+    ladder.map((m) => (c: Card) => m(c) && !ids.includes(c.id));
+
+  const drawn =
+    dealer.draw('transitions', keepOff(recent), base, true, ctx) ??
+    dealer.draw('transitions', keepOff(lastId === undefined ? [] : [lastId]), base, true, ctx) ??
+    dealer.draw('transitions', ladder, base, true, ctx);
+  return drawn ? { text: drawn.text, motifs: drawn.motifs, score: drawn.score } : null;
+}
 
 function plainArrival(dealer: Dealer, shortName: string | undefined): string {
   return tidyPunctuation(

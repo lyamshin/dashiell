@@ -23,11 +23,16 @@ import type { Page, RunState } from '../../src/game/types.js';
 import {
   ALL_CARDS,
   DECKS,
+  GENDERED_TARGETS,
   IMAGE_VOICES,
   MOTIFS,
   SIMILE_HOSTS,
   contradictsWeather,
   deckOf,
+  genderHintOf,
+  joinClauses,
+  registerFor,
+  simileRegister,
   meanSharedMotifs,
   motifsOf,
   tagOf,
@@ -123,6 +128,92 @@ describe('similes', () => {
     }
   });
 
+  it('binds a voice or a denial to the answer, never to Dashiell’s own line', () => {
+    // "'That's all for now.' Her denial came out flat as a nickel on a bar."
+    // — the detective's goodbye, a man's answer, and nobody denying anything.
+    // A line the person being interviewed gave is a block with a clue on it;
+    // Dashiell's lines carry none.
+    const byId = new Map(ALL_CARDS.map((c) => [c.id, c]));
+    let bound = 0;
+    for (let seed = 1; seed <= 40; seed++) {
+      for (const page of playOracle(buildView(generateCase(seed, { difficulty: 2 }))).state.log) {
+        const id = page.cardsUsed.find((c) => deckOf(c) === 'similes');
+        if (!id) continue;
+        const card = byId.get(id) as Card;
+        const target = String(tagOf('similes', card, 'target'));
+        if (target !== 'voice' && target !== 'lie') continue;
+        // The claimed account is an answer with no clue of its own.
+        if (page.blocks.some((b) => b.kind === 'timeline')) continue;
+        const tail = card.text.replace(/^[^{]*\{[a-z]+\}/i, '').trim();
+        const host = page.blocks.find((b) => b.kind === 'prose' && b.text.includes(tail));
+        if (!host || host.kind !== 'prose') continue;
+        bound++;
+        expect(host.clueId, `seed ${seed} page ${page.n}: ${host.text}`).toBeDefined();
+      }
+    }
+    expect(bound, 'no run bound a voice simile at all').toBeGreaterThan(0);
+  });
+
+  it('agrees with the gender of the person whose line it is on', () => {
+    const byId = new Map(ALL_CARDS.map((c) => [c.id, c]));
+    let checked = 0;
+    for (let seed = 1; seed <= 60; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of playOracle(v).state.log) {
+        const id = page.cardsUsed.find((c) => deckOf(c) === 'similes');
+        if (!id) continue;
+        const card = byId.get(id) as Card;
+        const gender = String(tagOf('similes', card, 'gender'));
+        if (gender === 'any') continue;
+        if (!GENDERED_TARGETS.has(String(tagOf('similes', card, 'target')))) continue;
+        // Whose page it is: the one person whose words are on it.
+        const speakers = new Set<string>();
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' || block.clueId === undefined) continue;
+          const source = v.findableById.get(block.clueId)?.source;
+          if (source?.type === 'person') speakers.add(source.personId);
+        }
+        if (speakers.size !== 1) continue;
+        const person = v.personById.get([...speakers][0] as string);
+        const hint = person ? genderHintOf(person) : 'any';
+        if (hint === 'any') continue;
+        checked++;
+        expect(gender, `seed ${seed} page ${page.n}: ${person?.surname} got ${card.id}`).toBe(hint);
+      }
+    }
+    expect(checked, 'no run put a gendered simile on anybody').toBeGreaterThan(0);
+  });
+
+  it('puts a simile that names a denial only on a line that was not the truth', () => {
+    expect(simileRegister('Her denial came out flat as a nickel on a bar.')).toBe('lie');
+    expect(simileRegister('He lied the way a barker lies about the show inside.')).toBe('lie');
+    expect(simileRegister('The way a man’s hands never are when he’s telling the truth.')).toBe(
+      'truth',
+    );
+    expect(simileRegister('His voice dropped soft as a hand over a mouthpiece.')).toBeNull();
+
+    const byId = new Map(ALL_CARDS.map((c) => [c.id, c]));
+    for (let seed = 1; seed <= 60; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of playOracle(v).state.log) {
+        const id = page.cardsUsed.find((c) => deckOf(c) === 'similes');
+        if (!id) continue;
+        const card = byId.get(id) as Card;
+        if (simileRegister(card.text) !== 'lie') continue;
+        if (page.blocks.some((b) => b.kind === 'timeline')) continue;
+        const crooked = page.blocks.some((b) => {
+          if (b.kind !== 'prose' || b.clueId === undefined) return false;
+          const clue = v.findableById.get(b.clueId);
+          if (!clue) return false;
+          if (clue.kind === 'denial') return true;
+          if (clue.source.type !== 'person') return false;
+          return registerFor(v, clue.source.personId, clue) !== 'truth';
+        });
+        expect(crooked, `seed ${seed} page ${page.n}: ${card.id} on a straight answer`).toBe(true);
+      }
+    }
+  });
+
   it('only ever binds to a target some block on the page can host', () => {
     for (const state of oracleRuns(40)) {
       for (const page of state.log) {
@@ -137,6 +228,60 @@ describe('similes', () => {
         ).toBe(true);
       }
     }
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * The transition, which is the first line on nearly every page.
+ * ------------------------------------------------------------------ */
+
+describe('the transition', () => {
+  /** The transition each page opened on, in order, pages without one dropped. */
+  const openings = (state: RunState): string[] =>
+    state.log.flatMap((page) => {
+      const id = page.cardsUsed.find((c) => deckOf(c) === 'transitions');
+      return id ? [id] : [];
+    });
+
+  it('never opens two pages running the same way, and rarely twice in five', () => {
+    let repeats = 0;
+    let windows = 0;
+    for (const state of [...oracleRuns(60), ...wanderRuns(20)]) {
+      const used = openings(state);
+      for (let i = 1; i < used.length; i++) {
+        expect(used[i], `page ${i} repeats the page before`).not.toBe(used[i - 1]);
+      }
+      for (let i = 1; i < used.length; i++) {
+        windows++;
+        if (used.slice(Math.max(0, i - 4), i).includes(used[i] as string)) repeats++;
+      }
+    }
+    expect(windows, 'no run used a transition at all').toBeGreaterThan(20);
+    // "Preferably" not twice in five: the deck is thin in some hour bands and
+    // the page would rather repeat than open on nothing.
+    expect(repeats / windows).toBeLessThan(0.05);
+  });
+
+  it('rotates an anchor-flavoured opening among the anchors in play', () => {
+    const byId = new Map(ALL_CARDS.map((c) => [c.id, c]));
+    let pairs = 0;
+    let same = 0;
+    for (let seed = 1; seed <= 60; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      if (v.kase.anchors.length < 2) continue;
+      const anchors = openings(playOracle(v).state).map((id) => {
+        const card = byId.get(id);
+        const anchor = card ? tagOf('transitions', card, 'anchorTemplate') : undefined;
+        return typeof anchor === 'string' ? anchor : null;
+      });
+      for (let i = 1; i < anchors.length; i++) {
+        if (anchors[i] === null || anchors[i - 1] === null) continue;
+        pairs++;
+        if (anchors[i] === anchors[i - 1]) same++;
+      }
+    }
+    expect(pairs, 'no case opened two pages running on an anchor').toBeGreaterThan(20);
+    expect(same / pairs).toBeLessThan(0.2);
   });
 });
 
@@ -224,6 +369,56 @@ describe('portraits and presence', () => {
     }
     expect(rolls, 'no run put anybody in a room').toBeGreaterThan(0);
   });
+
+  it('sets the people off with semicolons when any of them carries a role', () => {
+    // A role is itself between commas, so a comma between the people as well
+    // reads as one more person: "Dandridge by the window, Ainsworth, the
+    // landlady, in the hall" is three names to a reader who does not already
+    // know the cast.
+    expect(
+      joinClauses(['Dandridge by the window', 'Ainsworth, the landlady, in the hall'], true),
+    ).toBe('Dandridge by the window; Ainsworth, the landlady, in the hall');
+    expect(
+      joinClauses(
+        ['Carbone at the far end', 'Mosley near the door', 'Doyle behind the bar'],
+        false,
+      ),
+    ).toBe('Carbone at the far end, Mosley near the door, and Doyle behind the bar');
+    expect(
+      joinClauses(
+        [
+          'Carbone at the far end',
+          'Mosley, a ward heeler, near the door',
+          'Doyle, the bartender, behind the bar',
+        ],
+        true,
+      ),
+    ).toBe(
+      'Carbone at the far end; Mosley, a ward heeler, near the door; and Doyle, the bartender, behind the bar',
+    );
+  });
+
+  it('never lets a role’s own commas double as the separator, over forty runs', () => {
+    let rolls = 0;
+    for (let seed = 1; seed <= 40; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of playOracle(v).state.log) {
+        for (const block of page.blocks) {
+          const text = block.kind === 'presence' ? block.text : undefined;
+          if (text === undefined || block.kind !== 'presence') continue;
+          if (block.personIds.length < 2) continue;
+          const named = block.personIds.some((id) => {
+            const role = v.personById.get(id)?.role;
+            return typeof role === 'string' && text.includes(`, ${role},`);
+          });
+          if (!named) continue;
+          rolls++;
+          expect(text, `seed ${seed}: ${text}`).toContain(';');
+        }
+      }
+    }
+    expect(rolls, 'no run printed a role beside another person').toBeGreaterThan(0);
+  });
 });
 
 /* ------------------------------------------------------------------ *
@@ -241,7 +436,13 @@ describe('motif overlap between adjacent image blocks', () => {
    * the engine is held to here is the one it can actually hold.
    */
   const TARGET = 0.6;
-  const FLOOR = 0.3; // measured 0.333 after the first tagging pass (2026-09-21): a regression guard, not the goal
+  // Measured 0.333 after the first tagging pass, 0.301 after the M4b polish
+  // pass put a memory on the transition (2026-09-21). The drop is bought on
+  // purpose and is all in one place: the highest-scoring transition for a case
+  // is the same card every page, and opening three pages running on "Somebody
+  // was singing the same two verses under a window" is worse prose than one
+  // less shared word. A regression guard, not the goal.
+  const FLOOR = 0.28;
 
   it('reports the coherence number for the decks as they stand', () => {
     const pages = oracleRuns().flatMap((s) => s.log);
@@ -420,8 +621,12 @@ describe('motif overlap between adjacent image blocks', () => {
     }
     const walk = byPair.get('transition → arrival');
     expect(walk, 'no run ever walked anywhere').toBeDefined();
+    // 1.09 before the transition got a memory, 0.75 after: this is the pair
+    // the memory is paid for out of, because the transition is the card it
+    // takes the choice away from. It is still the best pair on the page by a
+    // wide margin, which is the statement this test exists to make.
     expect((walk as { n: number; shared: number }).shared / (walk as { n: number }).n).toBeGreaterThan(
-      1,
+      0.6,
     );
   });
 });

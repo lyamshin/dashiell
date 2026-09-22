@@ -300,14 +300,36 @@ export type Match = (card: Card) => boolean;
 export class Dealer {
   private readonly rng: Rng;
   private readonly run: Set<string>;
+  /** The same ids in the order the run spent them, newest last. */
+  private readonly order: string[];
   private readonly persisted: Set<string>;
   private readonly reshuffles = new Set<DeckName>();
   readonly spent: string[] = [];
 
   constructor(seed: number, runBurned: Iterable<string>, persistedBurned: Iterable<string>) {
     this.rng = new Rng(seed >>> 0);
-    this.run = new Set(runBurned);
+    this.order = [...runBurned];
+    this.run = new Set(this.order);
     this.persisted = new Set(persistedBurned);
+  }
+
+  /**
+   * The last `n` cards this run dealt from `deck`, oldest first.
+   *
+   * A `free` deck may come round again — that is what the tier means — but a
+   * transition is the first line on a page, and the same first line on three
+   * pages running is not a free deck working, it is a reader losing their
+   * place. One transition is dealt a page, so the last four ids from that deck
+   * are the last four pages that had one, and the page grammar can keep off
+   * them without any state of its own.
+   */
+  recent(deck: DeckName, n: number): string[] {
+    const out: string[] = [];
+    for (let i = this.order.length - 1; i >= 0 && out.length < n; i--) {
+      const id = this.order[i] as string;
+      if (deckOf(id) === deck) out.push(id);
+    }
+    return out.reverse();
   }
 
   /** The dealer's own randomness, for the handful of hand-written lines. */
@@ -330,6 +352,7 @@ export class Dealer {
     const text = fill(card, slots);
     if (text === null) return null;
     this.run.add(card.id);
+    this.order.push(card.id);
     this.spent.push(card.id);
     return { text, cardId: card.id, deck, motifs: motifsOf(card), score };
   }
@@ -398,6 +421,28 @@ export class Dealer {
       }
     }
     return null;
+  }
+
+  /**
+   * A choice that was not a card, remembered like one.
+   *
+   * The reactive monologue is derived rather than dealt — it has to be *about*
+   * the board — but "do not say this twice in a night" is exactly what the
+   * dealer already knows how to do, and the run's spend is already carried in
+   * the save. So a narrowing line is noted here under an id no deck owns:
+   * `deckOf` returns null for it, so the burn tiers ignore it and the cross-run
+   * pile never sees it, and the run gets its memory for nothing.
+   */
+  note(id: string): void {
+    if (this.run.has(id)) return;
+    this.run.add(id);
+    this.order.push(id);
+    this.spent.push(id);
+  }
+
+  /** Has this id — a card or a noted choice — been spent this run? */
+  used(id: string): boolean {
+    return this.run.has(id);
   }
 
   /** Which decks had to come round again since this was last asked. */
