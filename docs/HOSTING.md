@@ -1,21 +1,19 @@
 # Hosting
 
-Dashiell is a static site: `npm run build` writes `dist/`, and nothing runs on a server. Cloudflare Pages serves it from the GitHub repo and rebuilds on every push to `main`.
+Dashiell is a static site: `npm run build` writes `dist/`, nothing runs on a server. It is served by **Cloudflare Pages**, which rebuilds on every push to `main`.
 
 ## One-time setup (Cloudflare dashboard)
 
-1. Workers & Pages → Create → Pages → Connect to Git → pick `lyamshin/dashiell`.
+1. Workers & Pages → **Create** → choose the **Pages** tab (not Workers) → **Import an existing Git repository** → `lyamshin/dashiell`.
 2. Build settings:
-   - Framework preset: **Vite** (or a Worker with deploy command `npx wrangler deploy`; `wrangler.jsonc` in the repo serves `dist` as static assets)
+   - Framework preset: **Vite**
    - Build command: `npm run build`
    - Build output directory: `dist`
-   - Node version is read from `.node-version` (22).
-3. Save and Deploy. The first build takes about a minute. The site appears at `<project>.pages.dev`.
-4. Custom domain: Pages project → Custom domains → add the domain. If the domain is registered at Cloudflare, DNS is set automatically; otherwise add the CNAME it shows you.
+   - Node version comes from `.node-version` (22).
+3. **Save and Deploy**. About a minute. The site appears at `<project>.pages.dev`.
+4. Custom domain: the Pages project → **Custom domains** → add it. If the domain is registered at Cloudflare, DNS is set automatically.
 
-## Every push to main redeploys
-
-Pull requests get preview URLs automatically. Nothing else to do.
+There is no deploy command in Pages. `wrangler.jsonc` only tells Pages where the build output is.
 
 ## Local
 
