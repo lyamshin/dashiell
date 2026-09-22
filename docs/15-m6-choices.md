@@ -4,7 +4,7 @@ The text box goes. Every page ends in big, clear buttons: ask, search, go. Each 
 
 This replaces the prompt as the way a person plays. It does not change the engine's rules, the generator, or what a clue is. The parser stays, because the transcript tool, the oracle player and the tests all drive the game with typed commands.
 
-The complexity tiers in `07-m5-shape.md` are the milestone after this one.
+The complexity tiers in `16-m7-tiers.md` are the milestone after this one.
 
 ## Decisions already made
 

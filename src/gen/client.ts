@@ -3,7 +3,6 @@ import {
   clock,
   type Act,
   type ClientBrief,
-  type Difficulty,
   type Fact,
   type Id,
   type Person,
@@ -25,6 +24,7 @@ import { SECRET_BY_TYPE } from './data/secrets.js';
 import { fillSlots } from './dossier.js';
 import { framedPerson } from './tropes/index.js';
 import type { Rng } from './rng.js';
+import type { Dials } from './shape.js';
 
 /**
  * M5 §1.4. Somebody walked up the stairs and asked for help, and until now
@@ -181,11 +181,12 @@ export interface ClientBriefInput {
   setting: Setting;
   build: ScheduleBuild;
   act: Act;
-  difficulty: Difficulty;
+  /** M7: the ladder decides the red herring; the shape, whether motives are in play. */
+  dials: Dials;
 }
 
 export function buildClientBrief(input: ClientBriefInput): ClientBrief {
-  const { rng, cast, setting, build, act, difficulty } = input;
+  const { rng, cast, setting, build, act, dials } = input;
   const client = cast.client;
   const V = cast.victim.surname;
   const PL = (id: Id | null | undefined): string =>
@@ -258,7 +259,7 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
       reason: `${who(target.id)} ${target.motive?.description ?? 'was in and out of there all week'}`,
       honest: false,
     };
-  } else if (difficulty === 3 && branchable.length > 0 && rng.chance(0.5)) {
+  } else if (dials.ladder.clientRedHerring && branchable.length > 0 && rng.chance(0.5)) {
     // The client's own red herring: the head of a noise branch, told straight.
     const target = rng.pick(branchable);
     const secret = build.secrets[target.id] as { type: string; cells: { place: Id }[] };
@@ -269,6 +270,16 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
       .split('{L}').join(PL(secret.cells[0]?.place))
       .split('{T}').join(clock(act.tick));
     pointsAt = { personId: target.id, reason: hint, honest: false };
+  } else if (dials.shape.innocentMotives === 0) {
+    // M7: below Medium only the culprit has a motive, so a client who named a
+    // motive would be naming the answer. The client names somebody and says
+    // only what anybody on the block could say about them.
+    const target = rng.pick(others) as Person;
+    pointsAt = {
+      personId: target.id,
+      reason: `${who(target.id)} was in and out of there all week`,
+      honest: false,
+    };
   } else {
     const pool = motived.length > 0 ? motived : others;
     const target =

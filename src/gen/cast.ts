@@ -1,5 +1,6 @@
-import type { Difficulty, Dossier, FixtureRole, Id, Mention, Person } from './types.js';
-import { M_LIARS, surnameOf } from './types.js';
+import type { Dossier, FixtureRole, Id, Mention, Person } from './types.js';
+import { surnameOf } from './types.js';
+import { liarsFor, type Dials } from './shape.js';
 import { NAME_POOLS } from './data/names.js';
 import {
   ARCHETYPE_BY_ID,
@@ -147,23 +148,27 @@ function genderFor(
   return genderOf(a.genderHint);
 }
 
-/** Six archetypes with distinct roles and at least one of three classes. */
-function drawArchetypes(rng: Rng, victim: VictimArchetype): Archetype[] | null {
+/**
+ * Six archetypes with distinct roles and at least one of three classes. M7: as
+ * many as the shape asks for, three at the least, which is one of each class.
+ */
+function drawArchetypes(rng: Rng, victim: VictimArchetype, count = 6): Archetype[] | null {
   const pool = victim.allowedSuspects
     .map((id) => ARCHETYPE_BY_ID[id])
     .filter((a): a is Archetype => a !== undefined)
     .filter((a) => relationshipsFor(a, victim).length > 0);
   const needed: SuspectClass[] = ['money', 'working', 'underworld'];
   for (let attempt = 0; attempt < 40; attempt++) {
-    const picked = rng.pickN(pool, 6);
-    if (picked.length < 6) return null;
+    const picked = rng.pickN(pool, count);
+    if (picked.length < count) return null;
     const classes = new Set(picked.map((a) => a.class));
     if (needed.every((c) => classes.has(c))) return picked;
   }
   return null;
 }
 
-export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): Cast | null {
+export function buildCast(rng: Rng, setting: Setting, dials: Dials): Cast | null {
+  const { shape, ladder } = dials;
   const name = makeNamer(rng);
   const mentions = createMentionPool(name);
   const motiveObject: Record<Id, Mention> = {};
@@ -183,7 +188,7 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
     gender: drawnVictim.gender,
   };
 
-  const archetypes = drawArchetypes(rng, victimArchetype);
+  const archetypes = drawArchetypes(rng, victimArchetype, shape.suspects);
   if (!archetypes) return null;
 
   const suspects: Person[] = [];
@@ -254,9 +259,14 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   const killerMotive = MOTIVE_TEMPLATES.find((m) => m.type === killerMotiveType) as MotiveTemplate;
   assignMotive(killer, killerMotive);
 
-  /* --- one to three innocents carry a motive too ----------------------- */
+  /* --- one to three innocents carry a motive too ----------------------- *
+   *
+   * M7: up to the shape's count, and none at all below Medium, where the
+   * report does not ask why and a second motive would be a question nobody
+   * is asking.
+   */
   const usedMotives = new Set<string>([killerMotiveType]);
-  const wantInnocentMotives = rng.range(1, 3);
+  const wantInnocentMotives = shape.innocentMotives > 0 ? rng.range(1, shape.innocentMotives) : 0;
   let given = 0;
   for (const p of rng.shuffle(innocents)) {
     if (given >= wantInnocentMotives) break;
@@ -268,7 +278,7 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
     usedMotives.add(type);
     given++;
   }
-  if (given === 0) return null;
+  if (given === 0 && wantInnocentMotives > 0) return null;
 
   /* --- secrets, constrained by what the drawn places can host ---------- */
   const hostedAnywhere = new Set<string>();
@@ -283,7 +293,7 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   // Forged identity needs no room: the lie is in the paperwork.
   hostedAnywhere.add('forged-identity');
 
-  const [liarMin, liarMax] = M_LIARS[difficulty];
+  const [liarMin, liarMax] = liarsFor(shape, ladder);
   const wantLiars = rng.range(liarMin, liarMax);
 
   // A secret that drags the victim along cannot sit on the murder tick: the
@@ -309,12 +319,20 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
     innocentSecrets[p.id] = SECRET_BY_TYPE[rng.pick(canLie(p))] as SecretTemplate;
   }
 
-  const rest = innocents.filter((p) => !liarIds.includes(p.id));
+  // M7: every innocent keeps a secret at Hard-boiled. Below it, only as many
+  // as the shape says, liars first; the rest are only what they seem.
+  const everyone = shape.innocentSecrets >= innocents.length;
+  const room = Math.max(0, shape.innocentSecrets - liars.length);
+  const rest = everyone
+    ? innocents.filter((p) => !liarIds.includes(p.id))
+    : rng
+        .shuffle(innocents.filter((p) => !liarIds.includes(p.id)))
+        .slice(0, room);
 
   // An affair takes two people who are both allowed one and a room that will
   // hold them, so it is settled before the singles are dealt with.
   let affairPair: Person[] = [];
-  if (hostedAnywhere.has('affair') && rng.chance(0.55)) {
+  if (hostedAnywhere.has('affair') && rest.length >= 2 && rng.chance(0.55)) {
     const eligible = rng.shuffle(rest).filter((p) => archetypeOf(p).secrets.includes('affair'));
     if (eligible.length >= 2) affairPair = eligible.slice(0, 2);
   }
@@ -330,7 +348,7 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   }
 
   let killerCoverSecret: SecretTemplate | undefined;
-  if (rng.chance(0.5)) {
+  if (shape.killerCoverSecret && rng.chance(0.5)) {
     const options = archetypeOf(killer).secrets.filter(
       (s) => s !== 'affair' && hostedAnywhere.has(s),
     );
@@ -375,7 +393,9 @@ export function buildCast(rng: Rng, setting: Setting, difficulty: Difficulty): C
   }
 
   /* --- who hired us ------------------------------------------------------ */
-  const client = rng.chance(0.25) ? killer : rng.pick(innocents);
+  // M7: never the culprit below Hard-boiled.
+  const client =
+    shape.clientMayBeCulprit && rng.chance(0.25) ? killer : rng.pick(innocents);
   client.isClient = true;
 
   /* --- M5: a dossier for everybody --------------------------------------- */

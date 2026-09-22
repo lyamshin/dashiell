@@ -27,7 +27,8 @@ export interface ScheduleBuild {
   killerClaimAtM: Id;
   accessPlaceId: Id;
   killerAccessTick: Tick;
-  innocentAccess: { personId: Id; tick: Tick };
+  /** Null only where access is not a leg of the proof (M7, below Poached). */
+  innocentAccess: { personId: Id; tick: Tick } | null;
   /** Innocents whose secret sits on the murder tick. */
   mLiars: Id[];
   /** Where the victim was seen alive, at M − 1. */
@@ -56,6 +57,11 @@ export interface ScheduleContext {
    */
   caseType: CaseType;
   tropeId: Id;
+  /**
+   * M7: somebody other than the culprit must be placeable near the weapon.
+   * Absent is true. Raw and Coddled do not ask how, so they do not need it.
+   */
+  otherAccess?: boolean;
   reject?: (reason: string) => void;
 }
 
@@ -241,13 +247,15 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   const handled = new Set<Id>(liars.map((p) => p.id));
   for (const p of cast.innocents) {
     if (handled.has(p.id)) continue;
-    const template = cast.innocentSecrets[p.id] as SecretTemplate;
+    const template = cast.innocentSecrets[p.id];
+    // M7: below Hard-boiled an innocent may have nothing to hide at all.
+    if (!template) continue;
     if (template.type === 'affair') {
       const partner = cast.innocents.find(
         (o) =>
           o.id !== p.id &&
           !handled.has(o.id) &&
-          (cast.innocentSecrets[o.id] as SecretTemplate).type === 'affair',
+          cast.innocentSecrets[o.id]?.type === 'affair',
       );
       if (!partner) return fail('an affair with nobody to have it with');
       if (!assign(p, template, false)) return fail('no free window for the affair');
@@ -493,7 +501,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     }
     if (innocentAccess) break;
   }
-  if (!innocentAccess) return fail('nobody but the killer could have reached the weapon');
+  if (!innocentAccess && ctx.otherAccess !== false) {
+    return fail('nobody but the killer could have reached the weapon');
+  }
 
   /* --- fill in the rest of the evening ---------------------------------- */
   const allowedPlace = (personId: Id, tick: Tick): Id[] => {
@@ -669,8 +679,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   const placeName = (id: Id): string => setting.places.find((p) => p.id === id)?.shortName ?? id;
 
   for (const p of cast.innocents) {
-    const template = cast.innocentSecrets[p.id] as SecretTemplate;
-    const secret = secrets[p.id] as Secret;
+    const template = cast.innocentSecrets[p.id];
+    const secret = secrets[p.id];
+    if (!template || !secret) continue;
     const ticks = secret.cells.map((c) => c.tick);
     const where = secret.cells.length > 0 ? placeName(secret.cells[0]?.place as Id) : '';
     secret.description = describeSecret(

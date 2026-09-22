@@ -1,5 +1,5 @@
 import { clock } from '../types.js';
-import { essential, twoSources, type Trope } from './kit.js';
+import { between, essential, methodGiven, twoSources, type Trope } from './kit.js';
 
 /**
  * One door, one key, and the key was where it belongs in the morning. The
@@ -24,14 +24,14 @@ export const lockedRoom: Trope = {
     return {
       facts: [
         { kind: 'timeOfDeath', ticks: [lo, hi] },
-        { kind: 'methodEvidence', methodId: ctx.method.id },
+        ...(methodGiven(ctx) ? [{ kind: 'methodEvidence' as const, methodId: ctx.method.id }] : []),
       ],
       text: [
         `${V} was found dead at ${L}.`,
         `The door at ${L} was locked and the windows were painted shut.`,
         `There is one key to ${L}, and it was on its hook at ${ctx.placeName(ctx.build.accessPlaceId)} this morning.`,
-        `The coroner puts it between ${clock(lo)} and ${clock(hi)}.`,
-        `It was ${ctx.method.name}.`,
+        `The coroner puts it ${between(lo, hi)}.`,
+        ...(methodGiven(ctx) ? [`It was ${ctx.method.name}.`] : []),
       ],
     };
   },

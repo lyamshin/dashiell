@@ -1,5 +1,4 @@
 import {
-  SLACK,
   TICKS,
   speakTimes,
   type Act,
@@ -26,6 +25,7 @@ import { buildVictimBio } from './victim.js';
 import { buildClientBrief } from './client.js';
 import { briefingStrings, buildBriefing } from './briefing.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
+import { resolveDials, slackFor, unknownsFor, type Dials, type ShapeOptions } from './shape.js';
 import type { Clue, Fact } from './types.js';
 
 const OUTER_ATTEMPTS = 120;
@@ -37,7 +37,13 @@ export interface Diagnostics {
   rejections: string[];
 }
 
-export interface GenerateOptions {
+/**
+ * M7: `shape` and `ladder` (or `tier` and `level`, the presets by name) set
+ * the size of the case and the dials of the night. Leave them all out and the
+ * case is Hard-boiled on the pre-M7 dials for `difficulty`, byte for byte what
+ * it was before M7.
+ */
+export interface GenerateOptions extends ShapeOptions {
   detectiveName?: string;
   difficulty?: Difficulty;
   /** M5: force a shape, for reading. Leave both out and the weights decide. */
@@ -45,9 +51,9 @@ export interface GenerateOptions {
   tropeId?: Id;
 }
 
-/** The single public entry point. Same seed and difficulty, same case. */
+/** The single public entry point. Same seed and options, same case. */
 export function generateCase(seed: number, opts?: GenerateOptions): Case {
-  return run(seed, opts?.detectiveName ?? 'Dashiell', opts?.difficulty ?? 2, undefined, opts);
+  return run(seed, opts?.detectiveName ?? 'Dashiell', resolveDials(opts), undefined, opts);
 }
 
 /**
@@ -64,7 +70,8 @@ export function diagnoseCase(
   diagnostics: Diagnostics;
 } {
   const diagnostics: Diagnostics = { attempts: 0, rejections: [] };
-  const kase = run(seed, 'Dashiell', difficulty, diagnostics, opts);
+  const dials = resolveDials({ ...opts, difficulty });
+  const kase = run(seed, 'Dashiell', dials, diagnostics, opts);
   diagnostics.attempts = kase.attempts;
   return { case: kase, diagnostics };
 }
@@ -150,19 +157,28 @@ function assignFoundAt(
   }
 }
 
+/**
+ * A salt per tier, so that Raw seed 7 and Coddled seed 7 are not the same
+ * neighbourhood with a room taken away. Zero for the no-options path, which is
+ * what keeps its streams where they were.
+ */
+function tierSalt(dials: Dials): number {
+  if (dials.plain) return 0;
+  const t = dials.shape.tier;
+  return typeof t === 'number' ? t + 1 : t === 'over-easy' ? 7 : 8;
+}
+
 function run(
   seed: number,
   detectiveName: string,
-  difficulty: Difficulty,
+  dials: Dials,
   diagnostics?: Diagnostics,
   opts?: GenerateOptions,
 ): Case {
-  const rng = new Rng(seed + difficulty * 7919);
+  const { shape, ladder, difficulty } = dials;
+  const salt = tierSalt(dials);
+  const rng = new Rng(seed + difficulty * 7919 + salt * 104729);
   let attempts = 0;
-  // The budget is no longer a number per difficulty. It is par plus slack, so
-  // a case that costs fourteen actions to solve is given fourteen plus six to
-  // solve it in, and the dial is how little room that leaves.
-  const slack = SLACK[difficulty];
 
   /*
    * M5 §2: the trope is drawn once, before any retry, out of a stream of its
@@ -170,23 +186,26 @@ function run(
    * which shapes happen to be cheap to build, and the whole point of the
    * weights is that `body-at-scene` stays the commonest thing that happens.
    */
-  const tropeRng = new Rng((seed * 2654435761 + difficulty * 40503) >>> 0);
+  const tropeRng = new Rng((seed * 2654435761 + difficulty * 40503 + salt * 7727) >>> 0);
   // mulberry32's first output off a seed that moves by one is not well spread,
   // and a trope is drawn from exactly one number. Three throwaway draws fix it.
   for (let i = 0; i < 3; i++) tropeRng.next();
+  // M7: a tier deals only its own tropes. Hard-boiled deals all eight, and a
+  // filter that keeps all eight leaves the weighted draw exactly where it was.
   const trope: Trope = pickTrope(tropeRng, {
     ...(opts?.type !== undefined ? { type: opts.type } : {}),
     ...(opts?.tropeId !== undefined ? { tropeId: opts.tropeId } : {}),
+    allowed: shape.tropes,
   });
   const caseType = trope.type;
 
   for (let outer = 0; outer < OUTER_ATTEMPTS; outer++) {
-    const setting = buildSetting(rng, caseType, trope.id);
+    const setting = buildSetting(rng, caseType, trope.id, shape);
     if (!setting) {
       diagnostics?.rejections.push('the place deck would not deal a legal hand');
       continue;
     }
-    const cast = buildCast(rng, setting, difficulty);
+    const cast = buildCast(rng, setting, dials);
     if (!cast) {
       diagnostics?.rejections.push('no cast fits the victim and the rooms');
       continue;
@@ -208,6 +227,7 @@ function run(
         murderTick: M,
         caseType,
         tropeId: trope.id,
+        otherAccess: shape.proof.includes('access'),
         ...(diagnostics
           ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
           : {}),
@@ -298,7 +318,15 @@ function run(
       let lo = M - offset;
       if (lo < 0) lo = 0;
       if (lo + 3 > TICKS - 1) lo = TICKS - 4;
-      const coronerWindow: [Tick, Tick] = [lo, lo + 3];
+      /*
+       * M7: the window narrows with the tier. Two hours at Hard-boiled, as
+       * before; an hour at Soft-boiled and Medium, always the half hour before
+       * and the half hour of, so that the one anchor it needs is one the
+       * detective has to find rather than the scene report handing it over;
+       * the exact half hour at Raw, Coddled and Poached.
+       */
+      const coronerWindow: [Tick, Tick] =
+        shape.coronerWidth === 4 ? [lo, lo + 3] : shape.coronerWidth === 2 ? [M - 1, M] : [M, M];
 
       /* --- the act, M5 §2 ------------------------------------------------ */
       const shapeCtx = {
@@ -310,8 +338,9 @@ function run(
         means: setting.method,
         objects: setting.objects,
         coronerWindow,
+        methodGiven: shape.methodGiven,
       };
-      const shape = trope.shape(shapeCtx);
+      const tropeShape = trope.shape(shapeCtx);
       const act: Act = {
         type: trope.type,
         tropeId: trope.id,
@@ -324,8 +353,8 @@ function run(
         place: build.murderPlaceId,
         method,
         givens: { facts: [], text: [] },
-        unknowns: trope.unknowns.slice(),
-        ...shape,
+        unknowns: unknownsFor(shape, trope.type, trope.unknowns),
+        ...tropeShape,
       };
 
       const tropeClues: Clue[] = [];
@@ -367,7 +396,7 @@ function run(
         act,
         dossier: cast.dossiers[cast.victim.id] as NonNullable<Person['dossier']>,
       });
-      const clientBrief = buildClientBrief({ rng, cast, setting, build, act, difficulty });
+      const clientBrief = buildClientBrief({ rng, cast, setting, build, act, dials });
       const briefing = buildBriefing({ cast, act, bio: victimBio, brief: clientBrief });
 
       const candidates = deriveCandidates({
@@ -388,6 +417,8 @@ function run(
         soundMasked: setting.soundMasked,
         act,
         brief: clientBrief,
+        knowledgeTests: shape.knowledgeTests,
+        pointerMotive: shape.innocentMotives > 0,
       });
 
       // The signature. Minted after the pool so its ids cannot collide, and
@@ -411,7 +442,7 @@ function run(
         cast,
         build,
         candidates,
-        difficulty,
+        dials,
         places: placeIds,
         sceneId: build.murderPlaceId,
         extraRequirements: [signature.requirement],
@@ -420,6 +451,10 @@ function run(
           : {}),
       });
       if (!selection) continue;
+      // The budget is par plus slack, so a case that costs fourteen actions to
+      // solve is given fourteen plus six to solve it in, and the dial is how
+      // little room that leaves. M7: below Medium the room shrinks with par.
+      const slack = slackFor(shape, ladder, selection.par);
 
       const underTest: CaseUnderTest = {
         seed,
@@ -462,6 +497,10 @@ function run(
         clientBrief,
         briefing,
         briefingText: briefingStrings(briefing),
+        // M7: a case dealt with options carries them, so that the checker, the
+        // sheet and the book can read back what it was dealt as. The
+        // no-options case carries nothing new, which keeps it byte-identical.
+        ...(dials.plain ? {} : { shape, ladder }),
       };
 
       const check = checkSolvability(underTest);

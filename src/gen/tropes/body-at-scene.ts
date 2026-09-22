@@ -1,5 +1,5 @@
 import { clock, type Fact } from '../types.js';
-import { essential, twoSources, type Trope } from './kit.js';
+import { essential, methodGiven, twoSources, type Trope } from './kit.js';
 
 /**
  * The commonest shape, and the one the rest are variations on: a body in a
@@ -22,10 +22,20 @@ export const bodyAtScene: Trope = {
     const V = ctx.who(ctx.cast.victim.id);
     const L = ctx.placeName(ctx.act.place);
     const [lo, hi] = ctx.coronerWindow;
+    const named = methodGiven(ctx);
     const facts: Fact[] = [
       { kind: 'timeOfDeath', ticks: [lo, hi] },
-      { kind: 'methodEvidence', methodId: ctx.method.id },
+      ...(named ? [{ kind: 'methodEvidence' as const, methodId: ctx.method.id }] : []),
     ];
+    // M7: two hours is nothing useful; an hour is something; the half hour is
+    // what Raw, Coddled and Poached are dealt, so the coroner says so.
+    const width = hi - lo + 1;
+    const coroner =
+      width === 1
+        ? `The coroner puts it at ${clock(lo)}, and will swear to the half hour.`
+        : width === 2
+          ? `The coroner puts it between ${clock(lo)} and ${clock(hi)}, and will not come closer than the hour.`
+          : `The coroner puts it between ${clock(lo)} and ${clock(hi)}, which is two hours of nothing useful.`;
     return {
       facts,
       text: [
@@ -51,8 +61,8 @@ export const bodyAtScene: Trope = {
          * where it is proved rather than twice where it is asserted.
          */
         `${V} was found dead at ${L}, and that is where it happened.`,
-        `The coroner puts it between ${clock(lo)} and ${clock(hi)}, which is two hours of nothing useful.`,
-        `It was ${ctx.method.name}.`,
+        coroner,
+        ...(named ? [`It was ${ctx.method.name}.`] : []),
       ],
     };
   },

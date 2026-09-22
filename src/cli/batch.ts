@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { generateCase, type CaseType, type Difficulty } from '../gen/index.js';
 import { TROPE_IDS } from '../gen/tropes/index.js';
 import { renderCandidateSheet, renderTruthSheet } from '../sheet/truthSheet.js';
-import { ignoreBrokenPipe, parseArgs } from './args.js';
+import { ignoreBrokenPipe, parseArgs, parseTierLevel } from './args.js';
 
 ignoreBrokenPipe();
 
@@ -17,18 +17,21 @@ const type = values.get('type');
 const trope = values.get('trope');
 /** `--prefix payroll` writes `payroll-3.md` instead of `case-3.md`. */
 const prefix = values.get('prefix') ?? 'case';
+// M7: `--tier` and `--level`, so twenty Raw cases can be read beside twenty Hard-boiled.
+const dialFlags = parseTierLevel(values);
 
 if (
   !Number.isInteger(count) ||
   count < 1 ||
-  ![1, 2, 3].includes(difficulty) ||
+  ![1, 2, 3, 4].includes(difficulty) ||
+  dialFlags === null ||
   (type !== undefined && !['murder', 'robbery', 'missing'].includes(type)) ||
   (trope !== undefined && !TROPE_IDS.includes(trope))
 ) {
   process.stderr.write(
     'usage: npm run batch -- --count <n> --out <dir> [--start <seed>] ' +
-      '[--difficulty 1|2|3] [--type murder|robbery|missing] [--trope <id>] ' +
-      '[--prefix <name>]\n',
+      '[--difficulty 1|2|3|4] [--type murder|robbery|missing] [--trope <id>] ' +
+      '[--tier 0..5|over-easy] [--level 1..4] [--prefix <name>]\n',
   );
   process.exit(1);
 }
@@ -42,6 +45,7 @@ for (let seed = start; seed < start + count; seed++) {
     difficulty: difficulty as Difficulty,
     ...(type === undefined ? {} : { type: type as CaseType }),
     ...(trope === undefined ? {} : { tropeId: trope }),
+    ...dialFlags,
   });
   attempts.push(kase.attempts);
   pars.push(kase.par);
@@ -55,7 +59,9 @@ const median = (xs: number[]): number => {
   return s[Math.floor((s.length - 1) / 2)] as number;
 };
 process.stdout.write(
-  `wrote ${count} cases (seeds ${start}..${start + count - 1}, difficulty ${difficulty}) to ${outDir}\n` +
+  `wrote ${count} cases (seeds ${start}..${start + count - 1}, difficulty ${difficulty}` +
+    `${dialFlags?.tier !== undefined ? `, tier ${dialFlags.tier}` : ''}` +
+    `${dialFlags?.level !== undefined ? `, level ${dialFlags.level}` : ''}) to ${outDir}\n` +
     `attempts: median ${median(attempts)}, max ${Math.max(...attempts)}\n` +
     `par: median ${median(pars)}, max ${Math.max(...pars)}\n`,
 );

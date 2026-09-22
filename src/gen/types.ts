@@ -14,6 +14,8 @@
  * activity gets one branch however many people share it.
  */
 
+import type { CaseShape, Ladder } from './shape.js';
+
 /** 0..11. Tick 0 is 6:00 PM, tick 11 is 11:30 PM. Half-hour steps. */
 export type Tick = number;
 
@@ -21,7 +23,8 @@ export type Id = string;
 
 export const TICKS = 12;
 
-export type Difficulty = 1 | 2 | 3;
+/** M7: 1 Beat, 2 Precinct, 3 Homicide, 4 The DA's Office. */
+export type Difficulty = 1 | 2 | 3 | 4;
 
 export type PlaceKind = 'private' | 'semi' | 'public';
 
@@ -553,6 +556,14 @@ export interface Case {
    * `briefing`; everything that files the case away reads this.
    */
   briefingText: string[];
+  /* --- M7 ------------------------------------------------------------- */
+  /**
+   * The size of the case and the dials of the night, when it was dealt with
+   * options. Absent on a no-options case, which is Hard-boiled on the pre-M7
+   * dials for its difficulty; `dialsOf` reads either back.
+   */
+  shape?: CaseShape;
+  ladder?: Ladder;
 }
 
 /**
@@ -657,10 +668,14 @@ export function speakTimes(text: string): string {
  * Spare actions over par, by difficulty. The budget is `par + slack`: a case
  * that costs more to solve is given more room to solve it in, and the dial is
  * how little room that is.
+ *
+ * M7: these are the dials of a no-options case, which is Hard-boiled. Levels
+ * 1 to 3 are the pre-M7 values, untouched; level 4, the DA's Office, is new.
+ * Anything dealt with a shape or a ladder reads `src/gen/shape.ts` instead.
  */
-export const SLACK: Record<Difficulty, number> = { 1: 8, 2: 6, 3: 4 };
+export const SLACK: Record<Difficulty, number> = { 1: 8, 2: 6, 3: 4, 4: 3 };
 
-/** Par outside this range is not a case: too small, or too long an evening. */
+/** Par outside this range is not a case: too small, or too long an evening. Hard-boiled's. */
 export const PAR_FLOOR = 9;
 export const PAR_CEILING = 18;
 
@@ -679,13 +694,14 @@ export const BRANCH_DEPTH: Record<Difficulty, [number, number]> = {
   1: [1, 2],
   2: [1, 3],
   3: [2, 3],
+  4: [2, 3],
 };
 
 /**
  * How many branches a case wants, by difficulty: shallow and many at 1, deep
  * and few at 3. Never fewer than three, which is a cast rejection instead.
  */
-export const BRANCH_COUNT: Record<Difficulty, number> = { 1: 5, 2: 4, 3: 3 };
+export const BRANCH_COUNT: Record<Difficulty, number> = { 1: 5, 2: 4, 3: 3, 4: 5 };
 export const BRANCH_COUNT_FLOOR = 3;
 
 /** How many innocents lie about the murder tick, by difficulty. */
@@ -693,4 +709,5 @@ export const M_LIARS: Record<Difficulty, [number, number]> = {
   1: [2, 2],
   2: [2, 3],
   3: [3, 3],
+  4: [3, 3],
 };
