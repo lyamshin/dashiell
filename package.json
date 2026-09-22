@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Dashiell — noir murder mystery roguelike. Milestone 3: the book.",
+  "description": "Dashiell \u2014 noir murder mystery roguelike. Milestone 3: the book.",
   "engines": {
     "node": ">=20"
   },
@@ -16,7 +16,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "read": "tsx src/cli/read.ts",
-    "decks": "node scripts/validate-decks.mjs"
+    "decks": "node scripts/validate-decks.mjs",
+    "deploy": "sh scripts/deploy.sh"
   },
   "devDependencies": {
     "tsx": "^4.19.2",
