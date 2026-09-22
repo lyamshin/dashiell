@@ -386,7 +386,10 @@ export function personCard(
   const metAt = state.log.find((p) =>
     p.blocks.some((b) => b.kind === 'presence' && b.personIds.includes(personId)),
   );
-  if (metAt) {
+  if (entry.isClient) {
+    // The client came up the stairs on page one, before any room's roll.
+    lines.push(`Met at ${view.office.shortName}.`);
+  } else if (metAt) {
     lines.push(`Met at ${placeName(view, metAt.at)}.`);
   } else if (!entry.isVictim) {
     const namer = state.found
