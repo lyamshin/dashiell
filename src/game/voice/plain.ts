@@ -691,6 +691,64 @@ export function onSightSentence(person: Person): string {
   return endStop(`${person.surname} is ${article} ${what}${age.length > 0 ? ` ${age}` : ''}`);
 }
 
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.3 — the dossier paragraph, reduced to a look.
+ * ------------------------------------------------------------------ */
+
+/**
+ * What Dashiell can see of somebody who has just sat down.
+ *
+ * The page opened on a record: "Gretchen Kreuzer is 30 years old and a
+ * pawnbroker's clerk. Kreuzer writes the tickets behind the grille and knows
+ * what a thing is worth." Nothing in the room told him either of those. He can
+ * see that she is a woman and roughly how old she is; her trade and what her
+ * trade looks like up close are hers to say, and the golden has her say them.
+ *
+ * So this is the whole of what his own eyes are allowed on page one: the full
+ * name once, because he writes it down, and the age as a band rather than a
+ * number, because a number is a record and a band is a look. The gender is
+ * dropped where the arrival sentence has already said it — "A woman came up
+ * the stairs after midnight" — rather than said twice in four lines.
+ */
+export function seenSentence(person: Person, genderAlreadySaid: boolean): string {
+  const d = person.dossier;
+  if (!d) return '';
+  const decade = DECADES[Math.floor(d.age / 10)];
+  const their = d.gender === 'f' ? 'her' : 'his';
+  const noun = d.gender === 'f' ? 'woman' : 'man';
+  const age = decade ? `in ${their} ${decade}` : `about ${Math.round(d.age / 5) * 5}`;
+  const what = genderAlreadySaid ? age : `a ${noun} ${age}`;
+  return endStop(`${person.name} was ${what}`);
+}
+
+/**
+ * The surname off the head of a sentence, and the pronoun in its place.
+ *
+ * Only the subject, and only where the sentence opens on it: "Kreuzer writes
+ * the tickets" is "She writes the tickets", and "Kreuzer, the woman with the
+ * broken finger" is left alone, because there the name is the thing being
+ * said. A possessive goes too, since "Kreuzer's hands" as a subject is the
+ * same repetition with an apostrophe in it.
+ */
+export function pronounSubject(text: string, surname: string, pronoun: 'he' | 'she'): string {
+  const escaped = surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const they = pronoun === 'she' ? 'She' : 'He';
+  const theirs = pronoun === 'she' ? 'Her' : 'His';
+  const possessive = new RegExp(`^${escaped}[’']s\\b`);
+  if (possessive.test(text)) return text.replace(possessive, theirs);
+  // A comma after the name is an appositive — "Kreuzer, the woman with the
+  // broken finger" — and the name is what that sentence is for.
+  const subject = new RegExp(`^${escaped}\\b(?!\\s*,)`);
+  if (subject.test(text)) return text.replace(subject, they);
+  return text;
+}
+
+/** Does this sentence open on this surname as its subject? */
+export function opensOnSubject(text: string, surname: string): boolean {
+  const escaped = surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`^${escaped}(?:[’']s)?\\b(?!\\s*,)`).test(text.trim());
+}
+
 /** Every dossier fact this person carries at one layer, as sentences. */
 export function layerSentences(person: Person, layer: 0 | 1 | 2 | 3): string[] {
   const facts = (person.dossier?.layers ?? []).filter((f) => f.layer === layer);

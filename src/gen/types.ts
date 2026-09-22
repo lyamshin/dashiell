@@ -295,7 +295,16 @@ export interface Dossier {
   age: number;
   /** Resolved, never a hint. */
   gender: 'm' | 'f';
-  profession: { role: string; detail: string };
+  /**
+   * What they do, and what it looks like up close.
+   *
+   * Hone 2 §Track B: `detailFirst` is the detail in their own mouth, and
+   * `prompt` is the question it answers — "What do you do?" Both are set only
+   * where the archetype carries a written first-person form, and the briefing
+   * is the only thing that renders them, because only the client is in the
+   * room to say it.
+   */
+  profession: { role: string; detail: string; detailFirst?: string; prompt?: string };
   want: Want;
   tie: Tie;
   /** Two or three plain sentences they would say about themselves. */

@@ -49,6 +49,7 @@ import {
 import {
   DECKS,
   Dealer,
+  motifsOf,
   tagIs,
   tagOf,
   type Card,
@@ -96,10 +97,10 @@ import {
   PLAIN_FLOOR,
   PLAIN_NOTED,
   PLAIN_STOCK,
-  CLIENT_CONTINUES,
   SELF_ALREADY,
   SELF_QUESTIONS,
   briefingQuestion,
+  fillPlain,
   clueAbout,
   connective,
   pickShape,
@@ -109,6 +110,9 @@ import {
   layerOfClue,
   layerSentences,
   onSightSentence,
+  opensOnSubject,
+  pronounSubject,
+  seenSentence,
   openingNote,
   plainRatio,
   type PlainCount,
@@ -118,20 +122,26 @@ import { reactiveMonologue, type ReactiveResult } from './reactive.js';
 import {
   BODY_MOTIFS,
   PROP_MOTIFS,
+  bodyConflict,
+  bodyWordsOf,
   pageMotifSet,
   placeMotifs,
   type MotifContext,
 } from './motifs.js';
 import {
   BRIEFING_ASK_CAP,
+  arrivalAtom,
   briefingTurns,
   clientLeavingLine,
   entranceCard,
   hiringFrame,
+  planBeats,
+  professionSpoken,
   officeCard,
   retainerFor,
   speechParagraphs,
   splitBriefing,
+  type SpokenLine,
 } from './office.js';
 
 export type HourBand = 'midnight-2' | '2-4' | '4-6' | '6-8';
@@ -1034,7 +1044,19 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     /* approach — who they are, and what their hands are doing */
     const seen = stage.portrayed.includes(scene.personId);
     if (person) {
-      const approach = businessLine(dealer, person, temper, slots, usedBusiness, gaps, ctx);
+      // Hone 2 §A.2. The pair is fixed at case start, so the page knows what
+      // this person's hands are already doing before it deals the gesture that
+      // would contradict it.
+      const approach = businessLine(
+        dealer,
+        person,
+        temper,
+        slots,
+        usedBusiness,
+        gaps,
+        ctx,
+        pairBodyWords(cast, scene.personId, stage.appearances[scene.personId] ?? 0),
+      );
       if (approach) usedBusiness.add(approach.cardId);
       const portrait = describePerson({
         cast,
@@ -1143,6 +1165,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         opener?.text ?? '',
         usedBusiness,
         gaps,
+        pairBodyWords(cast, scene.personId, stage.appearances[scene.personId] ?? 0),
       );
       for (const id of answer.cardIds) usedBusiness.add(id);
       say(answer.text, spoken.mode === 'utterance' || spoken.mode === 'quote' ? 'exchange' : 'record', {
@@ -1183,6 +1206,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         opener?.text ?? '',
         usedBusiness,
         gaps,
+        pairBodyWords(cast, scene.personId, stage.appearances[scene.personId] ?? 0),
       );
       const said = simileRegisterOf(register, scene.volunteer.kind);
       say(answer.text, spoken.mode === 'utterance' || spoken.mode === 'quote' ? 'exchange' : 'record', {
@@ -1460,6 +1484,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   // The join costs the page the word "and", and the ceiling is the ceiling.
   if (words(blocksOf(laid)) < ceiling) carryingSentence(laid);
 
+  /* ------------------------------------------ Hone 2 §A.3: pronouns, last */
+  // After every join, because the repetition it is about can be made by one:
+  // two blocks fused into one paragraph are two sentences running.
+  pronounRepeatedSubjects(laid, [...view.personById.values()]);
+
   const counted = countsOf(laid);
   return {
     blocks: blocksOf(laid),
@@ -1482,6 +1511,95 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
 function blocksOf(laid: Laid[]): Block[] {
   return laid.map((l) => l.block);
+}
+
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.3 — the surname twice running.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The surname is never the subject of two consecutive sentences on a page.
+ *
+ * "Lucia Salerno is 37 years old and a chambermaid. Salerno does eleven rooms
+ * a day and the linen after. Salerno kept the coat on." is a card index, not a
+ * person: after the first mention English uses a pronoun, and a page that does
+ * not is a page assembled out of records.
+ *
+ * The pass runs last, over the finished blocks in page order, because the
+ * repetition it is about can straddle a paragraph break — the dossier's second
+ * sentence and the settle beat under it are two blocks and one tic. Sentences
+ * inside quotation marks are somebody's speech and are left alone: the client
+ * naming a suspect twice is a person talking, and it is the only name she has
+ * for him.
+ */
+export function pronounRepeatedSubjects(laid: Laid[], people: readonly Person[]): number {
+  const named = people.filter((p) => p.surname.length > 0);
+  if (named.length === 0) return 0;
+  let last: string | null = null;
+  let swapped = 0;
+  for (const l of laid) {
+    const block = l.block;
+    if (block.kind !== 'prose' && block.kind !== 'note') continue;
+    const sentences = splitSentences(block.text);
+    let changed = false;
+    for (const [i, sentence] of sentences.entries()) {
+      const bare = sentence.trim();
+      // Dialogue is not narration, and it breaks the run either way.
+      if (/^[“"]/.test(bare)) {
+        last = null;
+        continue;
+      }
+      const person = named.find((p) => opensOnSubject(bare, p.surname));
+      if (person === undefined) {
+        last = null;
+        continue;
+      }
+      if (last === person.surname) {
+        const fixed = pronounSubject(bare, person.surname, pronounOf(person));
+        if (fixed !== bare) {
+          sentences[i] = sentence.replace(bare, fixed);
+          changed = true;
+          swapped++;
+          last = null;
+          continue;
+        }
+      }
+      last = person.surname;
+    }
+    if (changed) {
+      const text = sentences.join(' ');
+      l.block = block.kind === 'note' ? { ...block, text } : { ...block, text };
+    }
+  }
+  return swapped;
+}
+
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.2 — what the portrait pair has already claimed.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The parts and props this person's pair card is about, when the pair is the
+ * portrait on this page.
+ *
+ * A pair is printed whole on the first meeting and is a recall phrase after
+ * that — "Kreuzer, the woman with the broken finger" — so the claim is only
+ * live on the page that prints it. Empty where no pair fits the person, which
+ * is the three-component portrait's page and not this rule's business.
+ */
+export function pairBodyWords(
+  cast: CastSheet,
+  personId: Id,
+  times: number,
+): ReadonlySet<string> {
+  if (times !== 0) return new Set<string>();
+  const portrait = cast.portraits[personId];
+  const pair = portrait?.pair;
+  if (!pair) return new Set<string>();
+  // The pair card's own motifs, not the portrait's: `portrait.motifs` is the
+  // union of four cards, and three of them are not on this page.
+  const card = (DECKS['portrait-pairs'] ?? []).find((c) => c.id === pair.cardId);
+  return bodyWordsOf(pair.text, card ? motifsOf(card) : []);
 }
 
 /* ------------------------------------------------------------------ *
@@ -1516,7 +1634,7 @@ function blocksOf(laid: Laid[]): Block[] {
  * v2's two pages measured one at a time, and this followed it.
  */
 export const SHORT_TARGET = 0.36;
-export const SHORT_TOP_UPS = 4;
+export const SHORT_TOP_UPS = 5;
 
 /**
  * §B.2 — how many follow-ups one page may ask beyond its opening question.
@@ -1550,7 +1668,7 @@ export const ATTRIBUTIONS = 2;
  * the end; this is the same number asked early enough to do something about it
  * with the client's own words rather than with a beat the engine wrote.
  */
-export const BREATH_SHARE_FLOOR = 0.25;
+export const BREATH_SHARE_FLOOR = SHORT_TARGET;
 
 /** The short-sentence share of what is on the page so far (§B.3). */
 export function shortShare(laid: Laid[]): number {
@@ -2275,11 +2393,15 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * stairs, knock, coat, hand, and this is that order: it also hands the
    * entrance paragraph the word "midnight", which is the one the paragraph
    * above it opens on.
+   *
+   * Hone 2 §A.4 finishes the job. The atom used to seat her — "A woman came up
+   * the stairs after midnight, and sat down" — a sentence before a card that
+   * shuts the door behind her, so the page had her in the chair before she was
+   * through the doorway. The card is dealt first now, and the atom is cut to
+   * whatever fits in front of it: stairs, door, sit, speak, in that order, or
+   * nothing at all where the card climbs the stairs itself.
    */
   const split = splitBriefing(view, familiar);
-  if (split.entrance)
-    t.say(split.entrance, 'narrator', { transparent: true, verbatim: true, para: 'entrance' });
-
   const entrance = entranceCard(
     dealer,
     { temper, klass, gender, familiar },
@@ -2288,6 +2410,10 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     t.ctx,
   );
   if (entrance.gap) t.gaps.push(entrance.gap);
+  const arrival = arrivalAtom(split.entrance, entrance.text);
+  if (arrival !== null)
+    t.say(arrival, 'narrator', { transparent: true, verbatim: true, para: 'entrance' });
+
   const portrait = describePerson({
     cast,
     personId: client.id,
@@ -2321,8 +2447,28 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * "Why me?" before the purpose. The first turn gets no question, because it
    * is what she came up the stairs to say.
    */
-  if (split.narration.length > 0)
-    t.say(split.narration.join(' '), 'narrator', {
+  /*
+   * Hone 2 §A.3. The dossier paragraph was a record read aloud — "Gretchen
+   * Kreuzer is 30 years old and a pawnbroker's clerk. Kreuzer writes the
+   * tickets behind the grille and knows what a thing is worth." Nothing in the
+   * room told him either sentence.
+   *
+   * What is left is what he can see: the full name once and the age as a band.
+   * The trade and its detail are hers, and they go into her mouth as the first
+   * thing she says where the generator has written the first-person form.
+   * Until it has, the sentence stays where it is and takes a pronoun, because
+   * the surname twice in two sentences is the tic this rule is about.
+   */
+  const spokenProfession = professionSpoken(client);
+  const dossierLines: string[] = [seenSentence(client, arrival !== null)];
+  if (spokenProfession === null) {
+    for (const line of split.narration.slice(1)) {
+      dossierLines.push(pronounSubject(line, client.surname, pronounOf(client)));
+    }
+  }
+  const seenPara = dossierLines.filter((line) => line.length > 0).join(' ');
+  if (seenPara.length > 0)
+    t.say(seenPara, 'narrator', {
       transparent: true,
       verbatim: true,
       para: 'entrance',
@@ -2334,19 +2480,67 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   };
   /** Every plain beat the briefing has spent, so none of them comes twice. */
   const spentBeats: string[] = [];
-  // She gets into the chair before she starts: two flat sentences of business,
+  // She gets into the chair before she starts: one flat sentence of business,
   // which is the shortest thing on the page and the page is starving for it.
-  t.say(pickShape(dealer.random, BRIEFING_SETTLE, plainSlots), 'narrator', {
-    transparent: true,
-    para: 'entrance',
-  });
+  //
+  // Hone 2 §A.2: not a sentence about hands the pair has already given
+  // something else to do. "She flipped a coin off her thumb the whole time she
+  // talked" and "She sat with both hands folded" are two accounts of one pair
+  // of hands, and the page prints neither rather than both. Where the pool has
+  // nothing left that does not contradict the pair, the beat is dropped.
+  //
+  // Hone 2 §A.3: and never the surname. The dossier sentence above it has just
+  // said the name in full, and this beat is the next sentence of the same
+  // paragraph — full name once, then pronouns.
+  const claimed = pairBodyWords(cast, client.id, stage.appearances[client.id] ?? 0);
+  const settle = BRIEFING_SETTLE.filter(
+    (shape) => !shape.includes('{name}') && !bodyConflict(claimed, fillPlain(shape, plainSlots)),
+  );
+  if (settle.length > 0) {
+    t.say(pickShape(dealer.random, settle, plainSlots), 'narrator', {
+      transparent: true,
+      para: 'entrance',
+    });
+  } else {
+    t.gaps.push(
+      `pair-conflict: every settle beat claims what ${client.surname}'s pair card already has`,
+    );
+  }
   // §B.1. Dashiell's lines on page one are the generator's prompts and
   // nothing else: the discovery, the purpose, the pointer — the three
   // questions whose answers are three particular sentences and no others.
   // Everything between them is the client going on talking, because that is
   // what a client does and because a question at every paragraph break is a
   // form being filled in rather than a scene.
-  const turns = briefingTurns(split.speech);
+  // §A.3: the trade, in her mouth, before the first thing she came to say —
+  // which is where the golden puts it ("I write the tickets at Feldman's
+  // pawnshop on Orchard Street. I know what things are worth.").
+  //
+  // Hone 2 integration: the generator now writes the trade in her mouth itself
+  // (`professionFirst`, with a "What do you do?" prompt). She introduces
+  // herself unasked, once, first: the generator's line is lifted out of the
+  // body, its prompt spent rather than printed, and put at the head. Only when
+  // the generator has not written it does the engine's own copy stand in.
+  const normLine = (text: string): string =>
+    text.toLowerCase().replace(/[“”"'’.,;:!?]/g, '').replace(/\s+/g, ' ').trim();
+  const professionAt =
+    spokenProfession === null
+      ? -1
+      : split.speech.findIndex((line) => {
+          const a = normLine(line.text);
+          const b = normLine(spokenProfession);
+          return a === b || a.startsWith(b.slice(0, 40)) || b.startsWith(a.slice(0, 40));
+        });
+  const speech =
+    spokenProfession === null
+      ? split.speech
+      : professionAt >= 0
+        ? [
+            { ...(split.speech[professionAt] as SpokenLine), topic: 'other' as const, prompt: undefined },
+            ...split.speech.filter((_, i) => i !== professionAt),
+          ]
+        : [{ topic: 'other' as const, text: spokenProfession }, ...split.speech];
+  const turns = briefingTurns(speech);
   const asked = turns.filter((turn) => turn.prompt !== null).length +
     (split.closePrompt === null ? 0 : 1);
 
@@ -2378,6 +2572,36 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // to come from.
   const breathing = t.shortShare() < BREATH_SHARE_FLOOR;
   let attributions = 0;
+  // Hone 2 §A.1. The beats are budgeted before the first one is printed, so
+  // that the one the page keeps is the one the content earned rather than the
+  // first one the loop happened to reach.
+  const beats = planBeats(turns, {
+    closeIsSpeech: split.close.length > 0,
+    closePrompt: split.closePrompt,
+  });
+  /**
+   * A beat, drawn once in a run.
+   *
+   * The dealer already knows how to remember a choice that was not a card, and
+   * a beat is exactly that: the same five words twice in a night is the
+   * repetition a reader notices, whichever page it falls on. When the pool is
+   * spent the shape comes round again rather than the page going without.
+   */
+  const beatLine = (allShapes: readonly string[]): string => {
+    // §A.3: a beat never opens on the surname. The paragraph it follows is the
+    // client's own speech, and rule 7 asks its first word to reach back into
+    // that paragraph — which "She" does and "Kreuzer" does not.
+    const pool = allShapes.filter((shape) => !shape.includes('{name}'));
+    const fresh = pool.filter((shape) => {
+      const text = fillPlain(shape, plainSlots);
+      return text.length > 0 && !dealer.used(`beat:${text}`) && !spentBeats.includes(text);
+    });
+    const text = pickShape(dealer.random, fresh.length > 0 ? fresh : pool, plainSlots, spentBeats);
+    if (text.length === 0) return '';
+    spentBeats.push(text);
+    dealer.note(`beat:${text}`);
+    return text;
+  };
   for (const [i, turn] of turns.entries()) {
     if (turn.prompt !== null) {
       t.say(`“${turn.prompt}”`, 'exchange', {
@@ -2396,23 +2620,24 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
       attributions < ATTRIBUTIONS
         ? `${attributions === 0 ? pronounOf(client) : client.surname} said`
         : undefined;
+    // §A.1. Where the turn runs to more than one paragraph, the attribution
+    // goes at the seam rather than at the head: it is what joins two
+    // consecutive client paragraphs now that no beat may stand between them.
+    const plain = speechParagraphs(turn.lines, SPEECH_PER_PARAGRAPH, breathing);
     const paragraphs = speechParagraphs(
       turn.lines,
       SPEECH_PER_PARAGRAPH,
       breathing,
       attribution,
+      plain.length > 1 ? 1 : 0,
     );
     if (attribution !== undefined && paragraphs.some((p) => p.includes(attribution))) {
       attributions++;
     }
-    for (const [n, paragraph] of paragraphs.entries()) {
-      if (n > 0) {
-        const went = pickShape(dealer.random, CLIENT_CONTINUES, plainSlots, spentBeats);
-        if (went.length > 0) {
-          spentBeats.push(went);
-          t.say(went, 'narrator', { transparent: true });
-        }
-      }
+    // §A.1: nothing between two paragraphs of one turn. She was not
+    // interrupted, and a beat there says only what the quotation marks say.
+    // The turn either carries the attribution move or it runs on.
+    for (const paragraph of paragraphs) {
       t.say(paragraph, 'exchange', {
         personId: client.id,
         register: 'truth',
@@ -2420,14 +2645,13 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
         transparent: true,
       });
     }
-    // Once, after the turn that carried what happened: him registering it and
-    // saying nothing else. Twice would be a tic.
-    if (i === 0) {
-      t.say(dealer.random.pick(BRIEFING_ACK), 'narrator', { transparent: true });
-    } else if (i === turns.length - 2) {
-      t.say(pickShape(dealer.random, BRIEFING_PAUSE, plainSlots), 'narrator', {
-        transparent: true,
-      });
+    // §A.1: a beat only where the plan put one — after a one-word answer,
+    // after the purpose, or after the turn he already knew the half of — and
+    // never where the client is about to go on talking.
+    const beat = beats.find((b) => b.after === i);
+    if (beat) {
+      const line = beatLine(beat.kind === 'ack' ? BRIEFING_ACK : BRIEFING_PAUSE);
+      if (line.length > 0) t.say(line, 'narrator', { transparent: true });
     }
   }
 
@@ -2468,9 +2692,13 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     kind: 'note',
     // The noun agrees with the person in the chair, and "your" says what the
     // line always meant: the two free questions are Dashiell's to ask.
+    //
+    // Hone 2 §A.3: the pronoun, not the surname. The page named her in full
+    // four paragraphs ago and has said the name in every attribution since;
+    // the last line of it is not where English reaches for the name again.
     text:
-      `${client.surname} is still in the chair. Two questions on the house — ` +
-      `a ${nounOf(client)} hiring you answers your questions.`,
+      `${pronounOf(client) === 'she' ? 'She' : 'He'} is still in the chair. ` +
+      `Two questions on the house — a ${nounOf(client)} hiring you answers your questions.`,
   });
 }
 
@@ -2746,6 +2974,7 @@ function answerSelf(
     '',
     exclude,
     gaps,
+    pairBodyWords(stage.cast, scene.personId, stage.appearances[scene.personId] ?? 0),
   );
   say(answer.text, 'exchange', {
     personId: scene.personId,
@@ -2810,6 +3039,7 @@ function answerAccount(
     dashiell,
     exclude,
     gaps,
+    pairBodyWords(stage.cast, scene.personId, stage.appearances[scene.personId] ?? 0),
   );
   say(answer.text, answer.imageSentences);
   put({ kind: 'timeline', personId: scene.personId, rows: account.rows });

@@ -972,11 +972,15 @@ describe('the burn tiers', () => {
     const state = exhaust(7, 2);
     expect(state.burned.length).toBeGreaterThan(20);
     for (const id of state.burned) {
-      // A deck card, one of the hand-written lines, or a monologue line the
-      // run noted so as not to say it twice — those belong to no deck on
-      // purpose, and carry a prefix that says so.
+      // A deck card, one of the hand-written lines, or a line the run noted
+      // so as not to say it twice — a monologue's narrowing, or Hone 2's
+      // interstitial beat. Those belong to no deck on purpose, and carry a
+      // prefix that says so.
       expect(
-        deckOf(id) !== null || /^(NA|ROOM)-\d+$/.test(id) || id.startsWith('monologue:'),
+        deckOf(id) !== null ||
+          /^(NA|ROOM)-\d+$/.test(id) ||
+          id.startsWith('monologue:') ||
+          id.startsWith('beat:'),
         id,
       ).toBe(true);
     }

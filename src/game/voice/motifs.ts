@@ -152,6 +152,112 @@ export function scoreMotifs(
 }
 
 /* ------------------------------------------------------------------ *
+ * Hone 2 §A.2 — the body and the props a line has its hands on.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The words that say what a line is *doing with*, as opposed to what it is
+ * about.
+ *
+ * Motifs are a page's subject; this is narrower and it is about contradiction.
+ * A portrait pair that has the client flipping a coin off her thumb the whole
+ * time she talks cannot share a page with a beat that has her sitting with
+ * both hands folded — not because the two images clash, but because they are
+ * claims about the same hands and only one of them can be true.
+ *
+ * So each of these words maps onto the motif that names the part or the prop,
+ * and two lines conflict when the sets meet. The motif tags do most of it —
+ * the decks are tagged `hands`, `hat`, `coat` — and the word list catches the
+ * lines that carry no tags at all, which is every plain beat in `plain.ts`.
+ */
+export const BODY_WORDS: Record<string, string> = {
+  hand: 'hands',
+  hands: 'hands',
+  finger: 'hands',
+  fingers: 'hands',
+  fingernail: 'hands',
+  fingernails: 'hands',
+  nail: 'hands',
+  nails: 'hands',
+  thumb: 'hands',
+  thumbs: 'hands',
+  knuckle: 'hands',
+  knuckles: 'hands',
+  palm: 'hands',
+  palms: 'hands',
+  fist: 'hands',
+  fists: 'hands',
+  wrist: 'hands',
+  wrists: 'hands',
+  glove: 'hands',
+  gloves: 'hands',
+  ring: 'hands',
+  coin: 'money',
+  coins: 'money',
+  nickel: 'money',
+  dime: 'money',
+  bill: 'money',
+  bills: 'money',
+  banknote: 'money',
+  banknotes: 'money',
+  money: 'money',
+  hat: 'hat',
+  hats: 'hat',
+  brim: 'hat',
+  coat: 'coat',
+  coats: 'coat',
+  overcoat: 'coat',
+  sleeve: 'coat',
+  sleeves: 'coat',
+  lapel: 'coat',
+  lapels: 'coat',
+  collar: 'coat',
+  pocket: 'coat',
+  pockets: 'coat',
+  eye: 'eyes',
+  eyes: 'eyes',
+  mouth: 'mouth',
+  lip: 'mouth',
+  lips: 'mouth',
+  teeth: 'mouth',
+  jaw: 'mouth',
+  face: 'face',
+  shoulder: 'shoulders',
+  shoulders: 'shoulders',
+  cigarette: 'cigarette',
+  cigarettes: 'cigarette',
+};
+
+/**
+ * The parts and props a line lays a hand on: its own motifs, narrowed to the
+ * ones that name a body part or a thing held, plus whatever its words say.
+ */
+export function bodyWordsOf(text: string, motifs: readonly string[] = []): Set<string> {
+  const out = new Set<string>();
+  for (const m of motifs) {
+    if (BODY_MOTIFS.has(m) || m === 'hat' || m === 'coat' || m === 'money' || m === 'cigarette') {
+      out.add(m);
+    }
+  }
+  for (const word of text.toLowerCase().match(/[a-z]+/g) ?? []) {
+    const canon = BODY_WORDS[word];
+    if (canon !== undefined) out.add(canon);
+  }
+  return out;
+}
+
+/** Do these two lines claim the same hands, the same hat, the same coat? */
+export function bodyConflict(
+  words: ReadonlySet<string>,
+  text: string,
+  motifs: readonly string[] = [],
+): boolean {
+  if (words.size === 0) return false;
+  for (const w of bodyWordsOf(text, motifs)) if (words.has(w)) return true;
+  return false;
+}
+
+/* ------------------------------------------------------------------ *
  * Building the page's set.
  * ------------------------------------------------------------------ */
 

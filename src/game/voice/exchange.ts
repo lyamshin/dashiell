@@ -25,7 +25,7 @@ import type { Tick } from '../../gen/types.js';
 import type { CastSheet, Temper } from './cast.js';
 import { genderHintOf, temperOf } from './cast.js';
 import { Dealer, SCHEMA, tagIs, tagOf, type Card, type Slots } from './cards.js';
-import type { MotifContext } from './motifs.js';
+import { bodyConflict, readMotifs, type MotifContext } from './motifs.js';
 import { beatsOf, findKindOf, strippedQuote, type Beat } from './facts.js';
 import { countSentences, deckKnows, plainBeat } from './plain.js';
 import { knowsHim } from './roll.js';
@@ -335,6 +335,13 @@ export function businessLine(
   exclude: ReadonlySet<string> = new Set(),
   gaps?: string[],
   ctx?: MotifContext,
+  /**
+   * Hone 2 §A.2. The parts and props another line on this page has already
+   * claimed — the portrait pair's hands, its hat, its coat. A business card
+   * that reaches for the same ones contradicts it, and the page would rather
+   * have no gesture than two accounts of one pair of hands.
+   */
+  forbid: ReadonlySet<string> = new Set(),
 ): { text: string; cardId: string; motifs: string[] } | null {
   const role = person?.fixtureRole ?? 'suspect';
   const gender = person ? genderHintOf(person) : 'any';
@@ -345,7 +352,8 @@ export function businessLine(
     gender === 'any' || tagIs('business', c, 'gender', gender);
   // `business` is a free deck — it may come round again on a later page — but
   // not twice on the same one, where a reader would see it.
-  const ok = (c: Card): boolean => !exclude.has(c.id) && fitsGender(c);
+  const ok = (c: Card): boolean =>
+    !exclude.has(c.id) && fitsGender(c) && !bodyConflict(forbid, c.text, readMotifs(c));
   // Not `tagIs`: a card tagged `any` is a wildcard everywhere else, and here
   // it is its own rung, below anything written for the role itself.
   const roleIs = (c: Card, want: string): boolean => tagOf('business', c, 'role') === want;
@@ -397,6 +405,11 @@ export function frameAnswer(
   dashiell: string,
   exclude: ReadonlySet<string> = new Set(),
   gaps?: string[],
+  /**
+   * Hone 2 §A.2. What the portrait pair on this page has already claimed, so
+   * no gesture spliced into the frame reaches for the same hands.
+   */
+  forbid: ReadonlySet<string> = new Set(),
 ): Answer {
   const cardIds = [...spoken.cardIds];
   // A frame that asks for business twice — the gesture on the way in and the
@@ -405,7 +418,7 @@ export function frameAnswer(
   // once with the same card. Twenty-eight of the frames ask twice.
   const spentBusiness = new Set(exclude);
   const nextBusiness = (): string => {
-    const drawn = businessLine(dealer, person, temper, slots, spentBusiness, gaps);
+    const drawn = businessLine(dealer, person, temper, slots, spentBusiness, gaps, undefined, forbid);
     if (!drawn) return '';
     spentBusiness.add(drawn.cardId);
     cardIds.push(drawn.cardId);

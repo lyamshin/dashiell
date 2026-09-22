@@ -15,7 +15,7 @@ import { generateCase, type Difficulty } from '../src/gen/index.js';
 import { checkCase, formatViolations } from '../src/gen/correspond.js';
 import { BREATH_MAX, breathCarries, breathe, wordsIn } from '../src/gen/breath.js';
 import { DISCOVERY_PROMPTS } from '../src/gen/victim.js';
-import { PURPOSE_PROMPTS } from '../src/gen/data/cast.js';
+import { PROFESSION_PROMPTS, PURPOSE_PROMPTS } from '../src/gen/data/cast.js';
 import { POINTER_PROMPTS } from '../src/gen/client.js';
 import { buildView, type CaseView } from '../src/game/derive.js';
 import { checkRun } from '../src/game/correspond-pages.js';
@@ -81,13 +81,18 @@ describe('the prompts', () => {
     expect(POINTER_PROMPTS.length).toBeGreaterThanOrEqual(3);
   });
 
-  it('puts a prompt on two or three sentences of every briefing', () => {
+  // Hone 2 §Track B added a fourth: what the client does for a living, which
+  // she says first and unprompted, so the engine spends that question rather
+  // than printing it. The generator writes it all the same, because a page
+  // that opens on a question instead of on her is still a page this data can
+  // make. Dashiell's own cap is `BRIEFING_ASK_CAP` and has not moved.
+  it('puts a prompt on two to four sentences of every briefing', () => {
     for (let seed = 1; seed <= 60; seed++) {
       for (const difficulty of [1, 2, 3] as Difficulty[]) {
         const kase = generateCase(seed, { difficulty });
         const prompted = kase.briefing.filter((line) => line.prompt !== undefined);
         expect(prompted.length, `seed ${seed} d${difficulty}`).toBeGreaterThanOrEqual(2);
-        expect(prompted.length, `seed ${seed} d${difficulty}`).toBeLessThanOrEqual(3);
+        expect(prompted.length, `seed ${seed} d${difficulty}`).toBeLessThanOrEqual(4);
         // Never on a line Dashiell says himself: he does not ask himself things.
         for (const line of prompted) expect(line.speaker).toBe('client');
       }
@@ -114,6 +119,16 @@ describe('the prompts', () => {
         if (line.prompt === undefined) continue;
         expect(seen.has(line.prompt), `seed ${seed}: two sentences, one question`).toBe(false);
         seen.add(line.prompt);
+
+        // Hone 2 §Track B: the profession question, written beside the detail
+        // it asks for and drawn on the same index as that detail.
+        const client = kase.people.find((p) => p.id === kase.clientId);
+        const profession = client?.dossier?.profession;
+        if (profession?.prompt !== undefined && line.prompt === profession.prompt) {
+          expect(line.spoken, `seed ${seed}`).toBe(profession.detailFirst);
+          expect(PROFESSION_PROMPTS, line.prompt).toContain(line.prompt);
+          continue;
+        }
 
         const discovery = bio.discovery?.foundPrompt ?? bio.lastSeen?.prompt;
         if (line.prompt === discovery) {

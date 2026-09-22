@@ -53,18 +53,55 @@ const COST_TEXT: Record<Purpose, string> = {
   'settle-a-debt-with-the-dead': '{P} is spending money {P} was owed and may never see.',
 };
 
-/** The same eight, as the client says them on page one. */
-const COST_TEXT_FIRST: Record<Purpose, string> = {
-  'find-the-killer-police-wont':
-    'I know that asking questions on this block is a way of being asked some.',
-  'clear-my-name':
-    'I was near enough to it that night to know how it looks, so I am saying it first.',
-  'keep-it-quiet': 'I am paying to have something found and then not said.',
-  'find-it-before-the-cops': 'I would rather not explain to a sergeant what it was doing there.',
-  'get-it-back': 'I cannot report the loss without saying where the thing came from.',
-  'bring-them-home': 'I have been to the precinct twice already and was sent away twice.',
-  'make-sure-they-stay-gone': 'I do not want it known that this is what I am paying for.',
-  'settle-a-debt-with-the-dead': 'I am spending money I was owed and may never see.',
+/**
+ * The same eight, as the client says them on page one, three ways each.
+ *
+ * Hone 2 §Track B. The price of hiring somebody is the second thing the client
+ * says without being asked, and it used to be one twenty-word clause. Two or
+ * three sentences now, one of them short, and the variant is the same index as
+ * the purpose it sits beside: a purpose and its price, written together.
+ */
+const COST_TEXT_FIRST: Record<Purpose, string[]> = {
+  'find-the-killer-police-wont': [
+    'I know that asking questions on this block is a way of being asked some. I know that much.',
+    'On this block, asking questions is a way of being asked some. I know that. I came anyway.',
+    'I know what it costs to ask questions on this block. A person who asks gets asked.',
+  ],
+  'clear-my-name': [
+    'I was near enough to it that night. I know how it looks. I would rather say so myself.',
+    'I know how it looks. I was near enough to it that night, and I would rather say so first.',
+    'I was near enough that night. I know exactly how it looks, and I am saying so first.',
+  ],
+  'keep-it-quiet': [
+    'I am paying to have something found. And then not said.',
+    'I want it found. I do not want it said. That is what I am paying for.',
+    'I am paying for two things. One is that it is found. The other is that nobody hears about it.',
+  ],
+  'find-it-before-the-cops': [
+    'I would rather not explain to a sergeant what it was doing there. Or explain at all.',
+    'A sergeant would want to know what it was doing there. I would rather not say. Not to him.',
+    'I do not want a sergeant asking what it was doing there. I have no answer ready.',
+  ],
+  'get-it-back': [
+    'I cannot report the loss. Not without saying where the thing came from.',
+    'To report it I would have to say where it came from. I cannot do that.',
+    'I cannot go to the police. They would ask where the thing came from. I would have to answer.',
+  ],
+  'bring-them-home': [
+    'I have been to the precinct twice. I was sent away twice.',
+    'The precinct has had me twice. They sent me away twice. That is why I came here.',
+    'I went to the precinct twice. They sent me away twice. I am not going a third time.',
+  ],
+  'make-sure-they-stay-gone': [
+    'I do not want it known that this is what I am paying for. Not by anybody.',
+    'Nobody is to know what I am paying for. Not this. Not any of it.',
+    'This is what I am paying for. I do not want it known. Not by anybody on the block.',
+  ],
+  'settle-a-debt-with-the-dead': [
+    'I am spending money I was owed. I may never see it.',
+    'The money I am spending is money I was owed. I may never see any of it. I am spending it anyway.',
+    'I was owed this money. I am spending it to find out, and I may never see it back.',
+  ],
 };
 
 /**
@@ -179,14 +216,25 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
   const living = act.type === 'murder' ? undefined : PURPOSE_TEXT_LIVING[purpose];
   const slots = { victim: V, person: client.surname, place: '', year: '' };
   const purposeText = `${client.surname} ${fillSlots(living?.third ?? PURPOSE_TEXT[purpose], slots)}.`;
-  const purposeTextFirst = `I ${fillSlots(living?.first ?? PURPOSE_TEXT_FIRST[purpose], slots)}.`;
-  const cost = `${fillSlots(COST_TEXT[purpose], slots)}`;
-  const costFirst = `${fillSlots(COST_TEXT_FIRST[purpose], slots)}`;
-  // Three variants a purpose, drawn here beside the sentence they ask for.
-  const purposePrompt = fillSlots(
-    rng.pick(PURPOSE_PROMPTS[purpose] ?? PURPOSE_PROMPTS['find-the-killer-police-wont']),
+  /*
+   * Hone 2 §Track B. One draw covers three things: what the client says she
+   * wants, what she says it costs her, and the question Dashiell asks for it.
+   * They were written as a set — the question asks for the fact that answer
+   * gives, and the price is the same person's second breath — so drawing them
+   * apart would only let the engine pair a question with an answer no writer
+   * ever put behind it.
+   */
+  const prompts = PURPOSE_PROMPTS[purpose] ?? PURPOSE_PROMPTS['find-the-killer-police-wont'];
+  const variant = rng.int(prompts.length);
+  const firsts = living?.first ?? PURPOSE_TEXT_FIRST[purpose];
+  const costs = COST_TEXT_FIRST[purpose];
+  const purposeTextFirst = fillSlots(
+    (firsts[variant] ?? firsts[0]) as string,
     slots,
   );
+  const cost = `${fillSlots(COST_TEXT[purpose], slots)}`;
+  const costFirst = fillSlots((costs[variant] ?? costs[0]) as string, slots);
+  const purposePrompt = fillSlots((prompts[variant] ?? prompts[0]) as string, slots);
   // Most of them name the victim, which is also the noun her last sentence
   // ended on: the golden loop's §2 joiner, written into the question itself
   // rather than chosen for it afterwards.

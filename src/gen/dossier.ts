@@ -4,6 +4,7 @@ import {
   BACKSTORY_YEARS,
   MENTION_ROLE_BY_ID,
   MENTION_ROLES,
+  PROFESSION_PROMPTS,
   RELATIONSHIP_BY_ID,
   WANT_TEXT,
   type Relationship,
@@ -114,6 +115,13 @@ export interface DossierArchetype {
   role: string;
   ageBand: [number, number];
   professionDetails: string[];
+  /**
+   * Hone 2 §Track B. The same details in the person's own mouth, one for one
+   * with `professionDetails`. Optional here because the victim's card and the
+   * fixture cards have none: the victim is past saying anything, and a fixture
+   * is somebody Dashiell goes to rather than somebody who comes up the stairs.
+   */
+  professionFirst?: string[];
   wants: Want[];
   visibleProfession: boolean;
 }
@@ -139,7 +147,11 @@ export function buildDossier(input: DossierInput): Dossier {
   const { rng, archetype, relationship, surname, gender, victimSurname, placeName } = input;
   const [minAge, maxAge] = archetype.ageBand;
   const age = rng.range(minAge, maxAge);
-  const detail = rng.pick(archetype.professionDetails);
+  // Picked by index rather than by value, because the first-person form and
+  // the question that asks for it are one for one with the third-person one
+  // and the three have to stay together. Same single draw as `rng.pick`.
+  const detailIndex = rng.int(archetype.professionDetails.length);
+  const detail = archetype.professionDetails[detailIndex] as string;
   const want = rng.pick(archetype.wants) as Want;
   const year = rng.pick(BACKSTORY_YEARS);
 
@@ -183,12 +195,20 @@ export function buildDossier(input: DossierInput): Dossier {
     };
   }
 
-  const professionDetail = fillSlots(detail, {
+  const slotsForDetail: SlotContext = {
     victim: victimSurname,
     person: surname,
     place: placeName,
     year,
-  });
+  };
+  const professionDetail = fillSlots(detail, slotsForDetail);
+  const detailFirstTemplate = archetype.professionFirst?.[detailIndex];
+  const professionDetailFirst =
+    detailFirstTemplate === undefined ? undefined : fillSlots(detailFirstTemplate, slotsForDetail);
+  const professionPrompt =
+    detailFirstTemplate === undefined
+      ? undefined
+      : (PROFESSION_PROMPTS[detailIndex % PROFESSION_PROMPTS.length] as string);
 
   const selfAccount: string[] = [
     `${surname} is ${age} years old and ${archetype.role}.`,
@@ -217,7 +237,12 @@ export function buildDossier(input: DossierInput): Dossier {
   return {
     age,
     gender,
-    profession: { role: archetype.role, detail: professionDetail },
+    profession: {
+      role: archetype.role,
+      detail: professionDetail,
+      ...(professionDetailFirst === undefined ? {} : { detailFirst: professionDetailFirst }),
+      ...(professionPrompt === undefined ? {} : { prompt: professionPrompt }),
+    },
     want,
     tie,
     selfAccount,

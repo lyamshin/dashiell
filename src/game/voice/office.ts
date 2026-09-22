@@ -15,6 +15,7 @@
 import { Rng } from '../../gen/rng.js';
 import { PRECINCT_TEXT } from '../../gen/victim.js';
 import type { CaseView } from '../derive.js';
+import type { Person } from '../../gen/types.js';
 import {
   CLIENT_LEAVING,
   ENTRANCE_LINES,
@@ -301,6 +302,199 @@ export function briefingTurns(
   return turns;
 }
 
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.4 — stairs, door, sit, speak.
+ * ------------------------------------------------------------------ */
+
+/** How far into the room an entrance card has got by the time it ends. */
+export type EntranceStage = 'stairs' | 'door' | 'sit' | 'speak';
+
+const AT_THE_STAIRS = /\b(?:stairs|staircase|climbed|flight)\b/i;
+const AT_THE_DOOR =
+  /\b(?:door|doorway|knock(?:ed|s)?|came\s+in|come\s+in|walked\s+in|stepped\s+in|mat|threshold|landing)\b/i;
+const IN_THE_CHAIR = /\b(?:sit|sits|sat|seat|seated|seating|chair)\b/i;
+
+/**
+ * The earliest stage an entrance card reaches.
+ *
+ * The order of an arrival is fixed and a reader knows it: stairs, then the
+ * door, then the chair, then the first word. Seed 3 printed "A woman came up
+ * the stairs after midnight, and sat down. Kreuzer shut the door soft" — she
+ * was in the chair a sentence before she was through the door, which is the
+ * page contradicting itself in consecutive sentences.
+ *
+ * The earliest stage is the one that matters, because the plain arrival atom
+ * goes in front of the card and may not overtake it.
+ */
+export function entranceStage(text: string): EntranceStage {
+  if (AT_THE_STAIRS.test(text)) return 'stairs';
+  if (AT_THE_DOOR.test(text)) return 'door';
+  if (IN_THE_CHAIR.test(text)) return 'sit';
+  return 'speak';
+}
+
+/** The seating clause off the end of the arrival atom, and nothing else. */
+function upToTheStairs(atom: string): string {
+  const trimmed = atom.replace(/,?\s+and\s+(?:sat|seated|took)\b[^.!?]*/i, '').trim();
+  if (trimmed.length === 0) return atom;
+  return /[.!?]$/.test(trimmed) ? trimmed : `${trimmed}.`;
+}
+
+/**
+ * The generator's arrival sentence, cut to fit in front of the entrance card.
+ *
+ * Three answers. A card that names the stairs itself has already said the
+ * whole atom, better and with a name in it, so the atom goes. A card that
+ * starts at the door or in the chair keeps the atom's stairs and loses its
+ * seating, because the card is about to do the seating in the right order. A
+ * card that only speaks takes the atom whole: stairs, chair, and then the
+ * first word, which is the order the golden has.
+ */
+export function arrivalAtom(atom: string | null, cardText: string): string | null {
+  if (atom === null || atom.trim().length === 0) return null;
+  switch (entranceStage(cardText)) {
+    case 'stairs':
+      return null;
+    case 'door':
+    case 'sit':
+      return upToTheStairs(atom);
+    default:
+      return atom;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.3 — the profession in the client's own mouth.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The profession detail as the client says it, when the generator has written
+ * one.
+ *
+ * Hone 2's Track B writes `professionFirst` beside the archetype's
+ * `professionDetails` — "I write the tickets at Feldman's. I know what things
+ * are worth." — and until it lands the engine has to run without it. The field
+ * is read wherever the generator ends up hanging it, and its absence is not an
+ * error: the narration keeps the third-person sentence and pronouns it.
+ */
+export function professionSpoken(client: Person): string | null {
+  const dossier = client.dossier as unknown as Record<string, unknown> | undefined;
+  if (dossier === undefined) return null;
+  const profession = dossier.profession as Record<string, unknown> | undefined;
+  const candidates = [
+    profession?.detailFirst,
+    profession?.professionFirst,
+    profession?.first,
+    dossier.professionFirst,
+    (client as unknown as Record<string, unknown>).professionFirst,
+  ];
+  for (const value of candidates) {
+    if (typeof value === 'string' && value.trim().length > 0) return tidyLine(value);
+  }
+  return null;
+}
+
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.1 — the beat budget.
+ * ------------------------------------------------------------------ */
+
+/**
+ * How many interstitial beats a page may spend.
+ *
+ * An interstitial beat is a line of narration between two blocks of speech:
+ * "She went straight on.", "I said nothing.", "I let her sit with it." One is
+ * a pause; five are a tic, and seed 3's page one had five. The golden has two
+ * on its office page — "I knew it." after the standing, and "She let that sit."
+ * after a one-word answer — and both of them are about something.
+ *
+ * One a page, two where the page is long enough to have a middle: four or more
+ * exchanges, counting the client's turns and the close.
+ */
+export const BEAT_BUDGET_BASE = 1;
+export const BEAT_BUDGET_LONG = 2;
+export const BEAT_BUDGET_EXCHANGES = 4;
+
+/** A client answer this short is the golden's "Collecting." and earns a beat. */
+export const SHORT_ANSWER_WORDS = 4;
+
+export function beatBudget(exchanges: number): number {
+  return exchanges >= BEAT_BUDGET_EXCHANGES ? BEAT_BUDGET_LONG : BEAT_BUDGET_BASE;
+}
+
+/**
+ * Which beat goes where: what he registers, and what she sits with.
+ *
+ *   `ack`   Dashiell taking a fact without comment — the golden's "I knew it."
+ *   `pause` the client stopping — the golden's "She let that sit."
+ */
+export type BeatKind = 'ack' | 'pause';
+
+export interface BeatPlacement {
+  /** The index of the turn this beat follows. */
+  after: number;
+  kind: BeatKind;
+}
+
+/** The words of a spoken line, for the one-word-answer rule. */
+function wordsIn(text: string): number {
+  const bare = text.replace(/[“”"]/g, '').trim();
+  return bare.length === 0 ? 0 : bare.split(/\s+/).length;
+}
+
+/**
+ * The beats a briefing has earned, best first and then in page order.
+ *
+ * Two rules, and they are both refusals.
+ *
+ * **Never between two consecutive client turns.** A beat there is the page
+ * apologising for a paragraph break: she was not interrupted, nobody asked
+ * her anything, and "She went straight on." says only what the quotation
+ * marks already say. Those turns join with the attribution move — "…," she
+ * said. "…" — or they simply run on. So a position is legal only when what
+ * follows it is one of Dashiell's lines.
+ *
+ * **Only where the content earns a pause.** Three things earn one: a one-word
+ * answer (the golden's "Collecting."), the purpose or the pointer — the two
+ * questions a client answers slowly, because both of them are about what she
+ * wants rather than about what happened — and the first turn, which is the one
+ * he already knew the half of.
+ */
+export function planBeats(
+  turns: readonly BriefingTurn[],
+  opts: { closeIsSpeech: boolean; closePrompt: string | null },
+): BeatPlacement[] {
+  const exchanges = turns.length + (opts.closeIsSpeech ? 1 : 0);
+  const budget = beatBudget(exchanges);
+  if (budget === 0 || turns.length === 0) return [];
+  /** Is the next thing on the page one of Dashiell's lines rather than hers? */
+  const asked = (i: number): boolean => {
+    const next = turns[i + 1];
+    if (next !== undefined) return next.prompt !== null;
+    // After the last turn comes the close, which the pointer's question opens.
+    return opts.closeIsSpeech ? opts.closePrompt !== null : false;
+  };
+  const candidates: { at: BeatPlacement; rank: number }[] = [];
+  for (const [i, turn] of turns.entries()) {
+    if (!asked(i)) continue;
+    const last = turn.lines[turn.lines.length - 1];
+    if (last !== undefined && wordsIn(last.text) <= SHORT_ANSWER_WORDS) {
+      candidates.push({ at: { after: i, kind: 'pause' }, rank: 0 });
+      continue;
+    }
+    const topic = turn.lines[0]?.topic;
+    if (topic === 'purpose' || topic === 'pointer' || topic === 'cost') {
+      candidates.push({ at: { after: i, kind: 'pause' }, rank: 1 });
+      continue;
+    }
+    if (i === 0) candidates.push({ at: { after: i, kind: 'ack' }, rank: 2 });
+  }
+  return candidates
+    .sort((a, b) => a.rank - b.rank || a.at.after - b.at.after)
+    .slice(0, budget)
+    .sort((a, b) => a.at.after - b.at.after)
+    .map((c) => c.at);
+}
+
 /**
  * The rule set, and the generator now carries it.
  *
@@ -349,6 +543,16 @@ export function speechParagraphs(
   per = 3,
   breath = false,
   attribution?: string,
+  /**
+   * Hone 2 §A.1. Which paragraph of the turn carries the attribution.
+   *
+   * Zero is the head of the turn, which is where the golden puts it when the
+   * turn is one paragraph long. A turn that runs to two takes it at the seam
+   * instead: that is the join the beat used to stand in for, and "…," she
+   * said. "…" does the work the beat was doing without narrating a pause
+   * nobody took.
+   */
+  attributeAt = 0,
 ): string[] {
   const said = lines.map((line) => {
     if (typeof line === 'string') return line;
@@ -359,7 +563,7 @@ export function speechParagraphs(
   for (let i = 0; i < said.length; i += per) {
     const chunk = said.slice(i, i + per).join(' ').trim();
     if (chunk.length === 0) continue;
-    if (i === 0 && attribution !== undefined && attribution.length > 0) {
+    if (out.length === attributeAt && attribution !== undefined && attribution.length > 0) {
       const broken = attributed(chunk, attribution);
       if (broken !== null) {
         out.push(broken);

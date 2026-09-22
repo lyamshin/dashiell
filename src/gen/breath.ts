@@ -123,15 +123,22 @@ export function breathe(spoken: string): string[] {
   const text = spoken.replace(/\s+/g, ' ').trim();
   if (text.length === 0) return [];
 
-  for (const shape of SHAPES) {
-    const m = shape.re.exec(text);
-    if (m) return shape.parts(m).map(asSentence).filter((p) => p.length > 0);
-  }
-
-  // A sentence that is already two sentences is already breathed.
+  /*
+   * Hone 2 §Track B. A template that is already two or three sentences was
+   * breathed by hand, and the hand outranks every rule below it. This test
+   * used to sit under the shapes, which was harmless while every written form
+   * was one sentence long and wrong the moment one of them was two: a shape's
+   * regex would swallow the full stop in the middle and hand back a sentence
+   * nobody wrote.
+   */
   const sentences = text.split(/(?<=[.!?])\s+(?=[“"A-Z])/).filter((s) => s.trim().length > 0);
   if (sentences.length > 1) {
     return sentences.slice(0, BREATH_MAX).map(asSentence);
+  }
+
+  for (const shape of SHAPES) {
+    const m = shape.re.exec(text);
+    if (m) return shape.parts(m).map(asSentence).filter((p) => p.length > 0);
   }
 
   const first = splitOnce(text);
