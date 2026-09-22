@@ -1015,10 +1015,21 @@ li.contradiction::before {
 
 .tier-news p {
   margin: 0 0 0.4rem;
+  text-indent: 0;
 }
 
 .tier-news .tier-rule {
   margin: 0;
+}
+
+/* A thumb's width for every control on the title page and under the verdict. */
+@media (max-width: 600px) {
+  .open-case,
+  .plain-button,
+  .title-page input,
+  .title-page select {
+    min-height: 44px;
+  }
 }
 
 .title-page .footnote {
