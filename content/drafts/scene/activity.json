@@ -659,7 +659,7 @@
   {
     "id": "act-059",
     "deck": "activity",
-    "text": "{name} listens at the foot of the stairs before going up.",
+    "text": "{name} pauses low on the staircase, listening, before going up.",
     "tags": {
       "role": "landlady",
       "placeKind": "semi"
@@ -784,7 +784,7 @@
   {
     "id": "act-070",
     "deck": "activity",
-    "text": "{name} stands at the foot of the stairs, notebook open.",
+    "text": "{name} stands where the staircase starts, notebook open.",
     "tags": {
       "role": "beat-cop",
       "placeKind": "private"
@@ -1260,7 +1260,7 @@
   {
     "id": "act-112",
     "deck": "activity",
-    "text": "{name} is working figures on the back of an envelope.",
+    "text": "{name} works out a sum on an envelope's torn flap.",
     "tags": {
       "role": "arch-broker",
       "placeKind": "semi"
@@ -2008,7 +2008,7 @@
   {
     "id": "act-178",
     "deck": "activity",
-    "text": "{name} is typing at a desk, the carriage bell ringing at the end of each line.",
+    "text": "{name} is typing at a desk, the carriage bell ringing each time a line runs out.",
     "tags": {
       "role": "arch-secretary",
       "placeKind": "private"
@@ -3640,7 +3640,7 @@
   {
     "id": "act-322",
     "deck": "activity",
-    "text": "{name} stands at the head of the stairs, arms crossed.",
+    "text": "{name} stands where the stairs top out, arms crossed.",
     "tags": {
       "role": "arch-bouncer",
       "placeKind": "private"

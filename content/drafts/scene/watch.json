@@ -262,7 +262,7 @@
   {
     "id": "wch-027",
     "deck": "watch",
-    "text": "{watcher} stood at the door and watched the line the way the job asked.",
+    "text": "{watcher} kept the door and watched the line the way the job asked.",
     "tags": {
       "watcher": "ticket-taker"
     },
@@ -352,7 +352,7 @@
   {
     "id": "wch-036",
     "deck": "watch",
-    "text": "Whoever came or went by the elevator, {watcher} had a hand in it.",
+    "text": "Whoever came or went by the elevator, {watcher} was part of the trip.",
     "tags": {
       "watcher": "elevator-man"
     },
@@ -392,7 +392,7 @@
   {
     "id": "wch-040",
     "deck": "watch",
-    "text": "A landlady keeps track of her tenants' comings and goings as a matter of business, and {watcher} was thorough about it.",
+    "text": "A landlady keeps track of tenants' comings and goings as a matter of business, and {watcher} was thorough about it.",
     "tags": {
       "watcher": "landlady"
     },
@@ -502,7 +502,7 @@
   {
     "id": "wch-051",
     "deck": "watch",
-    "text": "{watcher} sat the stand and watched the street the way a driver does, waiting for a fare.",
+    "text": "{watcher} kept the stand, watching the street the way any driver waits on a fare.",
     "tags": {
       "watcher": "cabbie"
     },

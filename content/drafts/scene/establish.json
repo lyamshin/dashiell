@@ -2,7 +2,7 @@
   {
     "id": "est-001",
     "deck": "establish",
-    "text": "{place} is reached by a narrow stair at the back of the building, the kind that creaks on every other step. The lock was nothing special, a five-cent job any building super could open. At this hour the rest of the floor was quiet, every door shut.",
+    "text": "{place} is reached by a narrow stair round the back, the kind that creaks on every other step. The lock was nothing special, a five-cent job any building super could open. At this hour the rest of that floor stayed quiet, every door shut.",
     "tags": {
       "place": "res-apartment",
       "visit": "first"
@@ -35,7 +35,7 @@
   {
     "id": "est-004",
     "deck": "establish",
-    "text": "The building holding {place} was the ordinary kind: walk-up, no elevator, a super who lived in the basement and kept his own hours. By this hour the halls had gone still, the traffic sound from the street thinned to almost nothing.",
+    "text": "The building holding {place} was the ordinary kind: walk-up, no elevator, a super who lived in the basement and kept odd hours. By this hour the halls had gone still, the traffic sound from the street thinned to almost nothing.",
     "tags": {
       "place": "res-apartment",
       "visit": "first"
@@ -68,7 +68,7 @@
   {
     "id": "est-007",
     "deck": "establish",
-    "text": "{place} was {owner}'s rooms, kept much as the rest of the house once had been, before the rest of the house got let out in pieces. The parlor windows faced the street, curtained. Past midnight, no one on that block was still awake to notice a caller.",
+    "text": "{place} was {owner}'s rooms, kept much as they had always been, from back when the whole building was one address instead of several. The parlor windows faced the street, curtained. Past midnight, no one on that block was still awake to notice a caller.",
     "tags": {
       "place": "res-brownstone",
       "visit": "first"
@@ -101,7 +101,7 @@
   {
     "id": "est-010",
     "deck": "establish",
-    "text": "You climbed to {place} by an outside stair fixed to the back of the building, the kind landlords add when the front one gets too crowded. It smelled of the drugstore's syrups even three flights up. At this hour nobody else on the stair was coming or going.",
+    "text": "You climbed to {place} by an outside stair fixed along the rear wall, the kind landlords add when the front one gets too crowded. It smelled of the drugstore's syrups even three flights up. At this hour nobody else on the stair was coming or going.",
     "tags": {
       "place": "res-walkup",
       "visit": "first"
@@ -134,7 +134,7 @@
   {
     "id": "est-013",
     "deck": "establish",
-    "text": "{place} was on an upper floor of a residential hotel, the kind of building where the rent is paid by the week and the desk clerk doesn't ask many questions. The door off the hallway was one of a dozen just like it. At this hour the hall lights had been turned down to save the current.",
+    "text": "{place} was on an upper floor of a residential hotel, the kind of building where the rent is paid by the week and the desk clerk doesn't ask many questions. The door off the hallway looked no different from the others nearby. At this hour the hall lights had been turned down to save the current.",
     "tags": {
       "place": "res-suite",
       "visit": "first"
@@ -189,7 +189,7 @@
   {
     "id": "est-018",
     "deck": "establish",
-    "text": "You got to {place} down a narrow lane that ran behind the block, the kind that only the people who lived on it ever used. The door was around the side, away from the street. Past midnight the lane was as empty as it ever got.",
+    "text": "You got to {place} down a narrow lane that ran behind the block, the kind that only the people who lived on it ever used. The door was off to one side, away from the street. Past midnight the lane was as empty as it ever got.",
     "tags": {
       "place": "res-backhouse",
       "visit": "first"
@@ -222,7 +222,7 @@
   {
     "id": "est-021",
     "deck": "establish",
-    "text": "{place} was reached by a door off the top-floor hallway, propped with a brick more often than it was locked. The tar underfoot had gone soft with the day's heat and stiff again by night. At this hour there was nobody up there but whoever wanted to be.",
+    "text": "{place} was reached by a door off the top-floor hallway, propped with a brick more often than it was locked. The tar underfoot had gone soft with the day's heat and stiff again by night. At this hour the roof held no one but whoever wanted to be there.",
     "tags": {
       "place": "rooftop",
       "visit": "first"
@@ -233,7 +233,7 @@
   {
     "id": "est-022",
     "deck": "establish",
-    "text": "You got onto {place} by a fire escape that ran up the back of the building, the last flight of it a straight ladder. Water tanks stood at either end like a pair of sentries nobody had posted. Past midnight the building below was dark all the way down.",
+    "text": "You got onto {place} by an iron fire escape bolted along the rear wall, the last flight of it a straight ladder. Water tanks stood at either end like a pair of sentries nobody had posted. Past midnight the building below was dark all the way down.",
     "tags": {
       "place": "rooftop",
       "visit": "first"
@@ -332,7 +332,7 @@
   {
     "id": "est-031",
     "deck": "establish",
-    "text": "{place} belonged to {owner}, above a shop that closed at six and left the block to itself after. The stair up was narrow enough for one person at a time. This late there was no reason for anyone else to be climbing it.",
+    "text": "{place} belonged to {owner}, above a shop that closed at six and left the block to itself after. The stair up was narrow enough for one person at a time. This late nobody else had cause to be climbing it.",
     "tags": {
       "place": "office-over-tailor",
       "visit": "first"
@@ -354,7 +354,7 @@
   {
     "id": "est-033",
     "deck": "establish",
-    "text": "{place} was a stretch of dock roofed over against the weather, stacked with crates and coiled rope nobody had put away for the night. You reached it through a gate that was supposed to be locked and mostly wasn't. This late the pier was empty of the men who worked it by day.",
+    "text": "{place} was a stretch of dock roofed over against the weather, stacked with crates and coiled rope nobody had put away for the night. You reached it through a gate meant to stay locked and mostly didn't. This late the pier was empty of the men who worked it by day.",
     "tags": {
       "place": "pier-shed",
       "visit": "first"
@@ -431,7 +431,7 @@
   {
     "id": "est-040",
     "deck": "establish",
-    "text": "The drying yard making up {place} was walled in on three sides, open only where the passage came in from the street. Empty lines crossed it in rows, waiting on morning. At this hour there was nothing back there but the lines and whatever the wind had left tangled in them.",
+    "text": "The drying yard making up {place} was walled in on three sides, open only where the passage met the street. Empty lines crossed it in rows, waiting on morning. At this hour there was nothing back there but the lines and whatever the wind had left tangled in them.",
     "tags": {
       "place": "laundry-yard",
       "visit": "first"
@@ -442,7 +442,7 @@
   {
     "id": "est-041",
     "deck": "establish",
-    "text": "{place} was up two flights from a street door {watcher} kept an eye on more than she let on. The stairs were bare, the banister loose in two places. At this hour most of the building was dark, one window on the second floor still lit.",
+    "text": "{place} was up two flights from a street door {watcher} kept a closer eye on than most tenants realized. The stairs were bare, the banister loose in two places. At this hour most of the building was dark, save for a single lit window two flights up.",
     "tags": {
       "place": "walkup-flat",
       "visit": "first"
@@ -464,7 +464,7 @@
   {
     "id": "est-043",
     "deck": "establish",
-    "text": "{place} sat at the front of the building, over the street, three windows in a row. The lock on the street door hadn't worked in years, which was its own kind of honesty. This late there was nobody on the stairs but whoever was coming up them.",
+    "text": "{place} looked straight down onto the street, three windows in a row. The lock on the street door hadn't worked in years, which was its own kind of honesty. This late there was nobody on the stairs but whoever was coming up them.",
     "tags": {
       "place": "walkup-flat",
       "visit": "first"
@@ -475,7 +475,7 @@
   {
     "id": "est-044",
     "deck": "establish",
-    "text": "The walk-up holding {place} was owned by {owner}, six units over a street-level door with a mail slot for each. {watcher} lived on the ground floor and heard most of what happened on the stairs. At this hour, though, even {watcher} had usually gone to bed.",
+    "text": "The walk-up holding {place} was owned by {owner}, six units over a street-level door with a mail slot for each. {watcher} had the ground-floor rooms and heard most of what happened on the stairs. At this hour, though, even {watcher} had usually gone to bed.",
     "tags": {
       "place": "walkup-flat",
       "visit": "first"
@@ -530,7 +530,7 @@
   {
     "id": "est-049",
     "deck": "establish",
-    "text": "{place} was a back room at Mrs. Teague's, reached down a hall that ran past four other doors just like it. {watcher} kept rooms on the ground floor and heard the stairs better than any of her tenants liked. At this hour the house had gone still, every door shut for the night.",
+    "text": "{place} was a back room at Mrs. Teague's, reached down a hall that ran past four other doors just like it. {watcher} had the ground-floor rooms and heard the stairs better than any tenant liked. At this hour the house had gone still, every door shut for the night.",
     "tags": {
       "place": "rooming-house-room",
       "visit": "first"
@@ -541,7 +541,7 @@
   {
     "id": "est-050",
     "deck": "establish",
-    "text": "You got to {place} up a narrow staircase at the rear of the house, past a hall table where the mail was left. The house took in boarders by the week, and it showed in the worn spots on the runner. Past midnight there was no sound in the halls but the settling of an old building.",
+    "text": "You got to {place} up a narrow staircase built onto the house's rear wall, past a hall table where the mail was left. The house took in boarders by the week, and it showed in the worn spots on the runner. Past midnight there was no sound in the halls but the settling of an old building.",
     "tags": {
       "place": "rooming-house-room",
       "visit": "first"
@@ -552,7 +552,7 @@
   {
     "id": "est-051",
     "deck": "establish",
-    "text": "{place} sat at the back of the house, over the kitchen, warmer than the front rooms in winter and worse in summer. The window looked out on a narrow yard. This late the whole house had the hush of people who share walls and know it.",
+    "text": "{place} sat behind the house, over the kitchen, warmer than the front rooms in winter and worse in summer. The window looked out on a narrow yard. This late the whole house had the hush of people who share walls and know it.",
     "tags": {
       "place": "rooming-house-room",
       "visit": "first"
@@ -563,7 +563,7 @@
   {
     "id": "est-052",
     "deck": "establish",
-    "text": "Mrs. Teague's took in boarders in rooms just like {place}, one to a door, meals included at set hours. {watcher} ran the house the way she'd run it for years, and knew every tenant's habits better than they knew them themselves. At this hour, though, even {watcher} had turned in.",
+    "text": "Mrs. Teague's took in boarders in rooms just like {place}, one to a door, meals included at set hours. {watcher} had run the house for years, and knew every tenant's habits better than they knew them themselves. At this hour, though, even {watcher} had turned in.",
     "tags": {
       "place": "rooming-house-room",
       "visit": "first"
@@ -585,7 +585,7 @@
   {
     "id": "est-054",
     "deck": "establish",
-    "text": "You got into {place} through a door that stuck in damp weather and opened easy the rest of the time. A long bar ran down one side, a few tables along the other. Past midnight the crowd had thinned to whoever wasn't ready to call it a night.",
+    "text": "You got into {place} through a door that stuck in damp weather and opened easy the rest of the time. A long bar ran down one side, a few tables along the other. Past midnight the crowd had thinned to whoever wasn't ready to head home yet.",
     "tags": {
       "place": "dolans-bar",
       "visit": "first"
@@ -706,7 +706,7 @@
   {
     "id": "est-065",
     "deck": "establish",
-    "text": "{place} ran up the middle of the building, bare bulbs on alternating landings, the rest left dark to save the current. {watcher} lived on the ground floor and heard most of what went up and down. At this hour the building had settled into the particular quiet of people sleeping four to a room.",
+    "text": "{place} ran up the middle of the building, bare bulbs on alternating landings, the rest left dark to save the current. {watcher} had the ground-floor rooms and heard most of what went up and down. At this hour the building had settled into the particular quiet of people sleeping four to a room.",
     "tags": {
       "place": "tenement-stairwell",
       "visit": "first"
@@ -728,7 +728,7 @@
   {
     "id": "est-067",
     "deck": "establish",
-    "text": "{place} smelled of a dozen different dinners layered over each other, the way a stairwell does in a building with no other place to cook. {watcher} kept a chair near the bottom and used it more than tenants liked to think about. This late the chair was empty, but not for long stretches at a time.",
+    "text": "{place} smelled of a dozen different dinners layered over each other, the way a stairwell does in a building with no other place to cook. {watcher} kept a chair near the bottom and used it more than tenants liked to think about. This late the chair sat empty, though rarely for long.",
     "tags": {
       "place": "tenement-stairwell",
       "visit": "first"
@@ -761,7 +761,7 @@
   {
     "id": "est-070",
     "deck": "establish",
-    "text": "You got into {place} through a door that opened onto a haze of smoke even from the top of the stairs. Green felt tables ran in two rows under low-hanging lamps. Past midnight only a table or two still had anybody standing over it.",
+    "text": "You got into {place} through a door that opened onto a haze of smoke reaching clear up to the landing. Green felt tables ran in two rows under low-hanging lamps. Past midnight only a table or two still had anybody standing over it.",
     "tags": {
       "place": "pool-hall",
       "visit": "first"
@@ -783,7 +783,7 @@
   {
     "id": "est-072",
     "deck": "establish",
-    "text": "The hall making up {place} kept its lamps low over the tables and the rest of the room dark by comparison. A rack of cues lined one wall, half of them missing tips. At this hour the room was quieter than it had any right to look, given the hour it usually kept.",
+    "text": "The hall making up {place} kept its lamps low over the tables, leaving the rest of that room dark by comparison. A rack of cues lined one wall, half of them missing tips. At this hour the room was quieter than it had any right to look, given the hour it usually kept.",
     "tags": {
       "place": "pool-hall",
       "visit": "first"
@@ -794,7 +794,7 @@
   {
     "id": "est-073",
     "deck": "establish",
-    "text": "{place} was the back room of a pawnshop, reached past a counter and a curtain that didn't quite close. {watcher} minded the shop and the room both, most nights. At this hour the front of the store was shuttered, the window grille down.",
+    "text": "{place} was the room behind a pawnshop's counter, reached past the counter itself and a curtain that didn't quite close. {watcher} minded the shop and the room both, most nights. At this hour the front of the store was shuttered, the window grille down.",
     "tags": {
       "place": "pawnshop",
       "visit": "first"
@@ -805,7 +805,7 @@
   {
     "id": "est-074",
     "deck": "establish",
-    "text": "You got to {place} through the shop itself, dark at this hour but for a single bulb over the register. Shelves ran floor to ceiling, ticketed and crowded. Past midnight there was nobody in the front of the store to see who went through to the back.",
+    "text": "You got to {place} through the shop itself, dark at this hour but for a single bulb over the register. Shelves ran floor to ceiling, ticketed and crowded. Past midnight nobody minded the front of the store, so no one saw who slipped through to the back.",
     "tags": {
       "place": "pawnshop",
       "visit": "first"
@@ -827,7 +827,7 @@
   {
     "id": "est-076",
     "deck": "establish",
-    "text": "The back room of Zelinsky's, where {place} was, had one window, barred, looking onto an air shaft. A desk took up most of the free floor space. At this hour there was no one in the front of the shop to hear anything that happened in the back.",
+    "text": "The back room of Zelinsky's, where {place} was, had one window, barred, looking onto an air shaft. A desk took up most of the free floor space. At this hour nobody was up front to hear anything that happened in the back.",
     "tags": {
       "place": "pawnshop",
       "visit": "first"
@@ -838,7 +838,7 @@
   {
     "id": "est-077",
     "deck": "establish",
-    "text": "{place} sat over a laundry, reached by a stair at the side of the building with a paper lantern hung at the bottom of it. {watcher} ran the counter and most everything past it. At this hour the tables were down to the last few customers who hadn't left yet.",
+    "text": "{place} sat over a laundry, reached by a stair along the building's side wall, a paper lantern hung at the bottom of it. {watcher} ran the counter and most everything past it. At this hour the tables were down to the last few customers who hadn't left yet.",
     "tags": {
       "place": "chop-suey",
       "visit": "first"
@@ -893,7 +893,7 @@
   {
     "id": "est-082",
     "deck": "establish",
-    "text": "You reached {place} through the front door of the house, the first room off the hall. A piano stood against one wall, rarely played and dusted anyway. Past midnight the house around it had gone quiet, every boarder behind a shut door.",
+    "text": "You reached {place} by way of the house's own front door, the first room off the hall. A piano stood against one wall, rarely played and dusted anyway. Past midnight the house around it had gone quiet, every boarder behind a shut door.",
     "tags": {
       "place": "boarding-parlor",
       "visit": "first"
@@ -915,7 +915,7 @@
   {
     "id": "est-084",
     "deck": "establish",
-    "text": "The parlour making up {place} had a horsehair sofa nobody sat on if they could help it and a clock that ran five minutes fast. It was the first room past the front door, and the last one anybody used at this hour.",
+    "text": "The parlour making up {place} had a horsehair sofa nobody sat on if they could help it and a clock that ran five minutes fast. It was the first room past the entry, and the last one anybody used at this hour.",
     "tags": {
       "place": "boarding-parlor",
       "visit": "first"
@@ -937,7 +937,7 @@
   {
     "id": "est-086",
     "deck": "establish",
-    "text": "You reached {place} through the front door, glass painted with the shop's name, locked past business hours. Strop and razor sat put away on the shelf behind the chairs. Past midnight there was no reason for the shop to be lit at all, which made a lit shop worth noticing.",
+    "text": "You reached {place} through the front door, glass painted with the shop's name, locked past business hours. Strop and razor sat put away on the shelf behind the chairs. Past midnight the shop had no cause to be lit at all, which made a lit shop worth noticing.",
     "tags": {
       "place": "barber-shop",
       "visit": "first"
@@ -948,7 +948,7 @@
   {
     "id": "est-087",
     "deck": "establish",
-    "text": "{place} kept two chairs and a bench for waiting, a calendar from a barber's supply house on the wall behind the register. {watcher} ran the shop by day and sometimes kept later hours than the sign said. This late the shop was usually closed, its grille down over the window.",
+    "text": "{place} kept two chairs and a bench for waiting, a calendar from a barber's supply house tacked up behind the register. {watcher} ran the shop by day and sometimes kept later hours than the sign said. This late the shop was usually closed, its grille down over the window.",
     "tags": {
       "place": "barber-shop",
       "visit": "first"
@@ -981,7 +981,7 @@
   {
     "id": "est-090",
     "deck": "establish",
-    "text": "You got into {place} through a rolling door left cracked open for the night man's convenience. The smell of gasoline hung in the air, thick enough to notice from the street. Past midnight there was usually one man on duty and not much for him to do.",
+    "text": "You got into {place} through a rolling door left cracked open for the night man's convenience. The smell of gasoline hung in the air, thick enough to notice from the street. Past midnight there was usually one man on duty and not much to do.",
     "tags": {
       "place": "hotel-garage",
       "visit": "first"
@@ -1014,7 +1014,7 @@
   {
     "id": "est-093",
     "deck": "establish",
-    "text": "{place} sat off the main body of the church, reached by a side door that was never locked, not even at this hour. A rack of candles stood near the entrance, most of them burned down. It was quiet in the particular way a church is quiet, which is different from the quiet of an empty street.",
+    "text": "{place} sat off the church's main room, reached by a side door that was never locked, not even at this hour. A rack of candles stood near the entrance, most of them burned down. It was quiet in the particular way a church is quiet, which is different from the quiet of an empty street.",
     "tags": {
       "place": "side-chapel",
       "visit": "first"
@@ -1025,7 +1025,7 @@
   {
     "id": "est-094",
     "deck": "establish",
-    "text": "You got into {place} through a door around the side of the building, meant for exactly this: coming and going without troubling the main entrance. The pews inside were few, old, dark with age. Past midnight there was nobody there but whoever had come to be alone.",
+    "text": "You got into {place} through a side door built for exactly this: coming and going without troubling the main entrance. The pews inside were few, old, dark with age. Past midnight there was nobody there but whoever had come to be alone.",
     "tags": {
       "place": "side-chapel",
       "visit": "first"
@@ -1069,7 +1069,7 @@
   {
     "id": "est-098",
     "deck": "establish",
-    "text": "You climbed to {place} up a flight bolted to the outside of the building, the bakery's own stair, shared by whoever rented the hall above it. No one kept watch over who came and went after hours. Past midnight the hall was as still as the bakery below it.",
+    "text": "You climbed to {place} up a flight bolted to the outside of the building, the bakery's own stair, shared by whoever rented the hall above it. No one kept watch over who came and went after hours. Past midnight the hall stayed as still as the bakery underneath it.",
     "tags": {
       "place": "union-hall",
       "visit": "first"
@@ -1124,7 +1124,7 @@
   {
     "id": "est-103",
     "deck": "establish",
-    "text": "{place} had been on that corner longer than most of the buildings around it, one of the fixtures a neighborhood collects without meaning to. {watcher} ran it alone at this hour, the morning papers not due for hours yet. It was quiet enough to hear the presses two blocks off, if the wind was right.",
+    "text": "{place} had held that corner since before most of the buildings near it went up, one of the fixtures a neighborhood collects without meaning to. {watcher} ran it alone at this hour, the morning papers not due for hours yet. It was quiet enough to hear the presses two blocks off, if the wind was right.",
     "tags": {
       "place": "corner-newsstand",
       "visit": "first"
@@ -1135,7 +1135,7 @@
   {
     "id": "est-104",
     "deck": "establish",
-    "text": "The stand at the corner, where {place} was, kept a small shelf of magazines under glass and the rest of the stock open to the weather. {watcher} had seen every kind of customer the block produced. This late there was hardly a customer to be seen.",
+    "text": "The stand at the corner, where {place} was, kept a small shelf of magazines under glass, the rest of the stock left open to the weather. {watcher} had seen every kind of customer the block produced. This late there was hardly a customer to be seen.",
     "tags": {
       "place": "corner-newsstand",
       "visit": "first"
@@ -1179,7 +1179,7 @@
   {
     "id": "est-108",
     "deck": "establish",
-    "text": "The Automat, where {place} was, never closed, which made it one of the few lit windows on the block after midnight. Rows of small glass compartments lined the walls, half of them empty of whatever they'd held earlier. At this hour the room held more chairs than people.",
+    "text": "The Automat, where {place} was, never closed, which left it one of the few lit windows on the block after midnight. Rows of small glass compartments lined the walls, half of them empty of whatever they'd held earlier. At this hour the room held more chairs than people.",
     "tags": {
       "place": "automat",
       "visit": "first"
@@ -1289,7 +1289,7 @@
   {
     "id": "est-118",
     "deck": "establish",
-    "text": "You reached {place} through a door with a bell that announced every customer whether {watcher} was looking up or not. Shelves of bottles ran behind the counter, labeled in a hand that had been doing it for years. Past midnight there was little trade beyond whoever needed something and couldn't wait for morning.",
+    "text": "You reached {place} through a door with a bell that announced every customer whether {watcher} was looking up or not. Shelves of bottles ran behind the counter, labeled in handwriting that hadn't changed in years. Past midnight there was little trade beyond whoever needed something and couldn't wait for morning.",
     "tags": {
       "place": "drugstore",
       "visit": "first"
@@ -1311,7 +1311,7 @@
   {
     "id": "est-120",
     "deck": "establish",
-    "text": "The drugstore with the soda fountain, where {place} was, ran a single bulb over the register and left the rest of the shop half dark to save the current. At this hour it drew the kind of customer with a headache or nowhere else open. {watcher} had seen most of them before.",
+    "text": "The drugstore with the soda fountain, where {place} was, ran a single bulb over the register, the rest of the shop left half dark to save the current. At this hour it drew the kind of customer with a headache or nowhere else open. {watcher} had seen most of them before.",
     "tags": {
       "place": "drugstore",
       "visit": "first"
@@ -1399,7 +1399,7 @@
   {
     "id": "est-128",
     "deck": "establish",
-    "text": "The platform at Twenty-Third Street, where {place} was, caught the sound of every train for blocks before it caught sight of it. Nobody minded who came up the stairs or how long they waited. This late, that was almost nobody at all.",
+    "text": "{place} was the platform serving Twenty-Third Street, and it caught the sound of every train for blocks before it caught sight of it. Nobody minded who came up the stairs or how long they waited. This late, that was almost nobody at all.",
     "tags": {
       "place": "el-platform",
       "visit": "first"
@@ -1410,7 +1410,7 @@
   {
     "id": "est-129",
     "deck": "establish",
-    "text": "{place} sat under a row of trees at the edge of the square, the kind of bench nobody owns and everybody uses. No one was posted to mind who sat there. At this hour the square around it was empty, the paths unlit past the nearest lamp.",
+    "text": "{place} sat under a row of trees along one side of the square, the kind of bench nobody owns and everybody uses. No one was posted to mind who sat there. At this hour the square around it was empty, the paths unlit past the nearest lamp.",
     "tags": {
       "place": "square-benches",
       "visit": "first"
@@ -1443,7 +1443,7 @@
   {
     "id": "est-132",
     "deck": "establish",
-    "text": "The benches at the north end of the square, where {place} was, faced a fountain that had been shut off for the season. Nobody minded who used them, at this hour least of all. The square was still enough to hear a step on the gravel path.",
+    "text": "{place} sat among the benches at the square's north end, facing a fountain that had been shut off for the season. Nobody minded who used them, at this hour least of all. The square was still enough to hear a step on the gravel path.",
     "tags": {
       "place": "square-benches",
       "visit": "first"
@@ -1454,7 +1454,7 @@
   {
     "id": "est-133",
     "deck": "establish",
-    "text": "{place} sat at the foot of the street, where the pavement gave way to a wooden apron and the water beyond it. No one was posted to watch who came down to it. At this hour the ferries ran on a reduced schedule, long gaps between crossings.",
+    "text": "{place} sat where the street ran out, the pavement giving way to a wooden apron and the water beyond it. No one was posted to watch who came down to it. At this hour the ferries ran on a reduced schedule, long gaps between crossings.",
     "tags": {
       "place": "ferry-slip",
       "visit": "first"
@@ -1487,7 +1487,7 @@
   {
     "id": "est-136",
     "deck": "establish",
-    "text": "The slip at the foot of the street, where {place} was, smelled of tar and river both. No one watched the gate at this hour; there was no one posted to. It was as quiet a stretch of the waterfront as the city had to offer, this late.",
+    "text": "{place} sat where the street met the water, and it smelled of tar and river both. No one watched the gate at this hour; there was no one posted to. It was as quiet a stretch of the waterfront as the city had to offer, this late.",
     "tags": {
       "place": "ferry-slip",
       "visit": "first"
@@ -1520,7 +1520,7 @@
   {
     "id": "est-139",
     "deck": "establish",
-    "text": "{place} was open at all hours, being a stair and not a building, and no one minded who used it. A single light glowed at the top of the steps, more than the bottom got. This late that stair saw fewer people than at any other hour of the day.",
+    "text": "{place} was open at all hours, being a stair and not a building, and no one minded who used it. A single bulb lit the top step, brighter than anything the bottom ever got. This late that stair saw fewer people than at any other hour of the day.",
     "tags": {
       "place": "subway-kiosk",
       "visit": "first"
@@ -1564,7 +1564,7 @@
   {
     "id": "est-143",
     "deck": "establish",
-    "text": "{place} sat over the laundry that gave the block its smell by day and none of it by night, the presses cold for hours. Two rooms, a desk, a window that looked down on the street. This late there was nobody in the building but whoever climbed those stairs on purpose.",
+    "text": "{place} sat over the laundry that gave the block its smell by day and none of it by night, the presses cold for hours. Two rooms, a desk, a window looking out over the street. This late the building held nobody but whoever climbed those stairs on purpose.",
     "tags": {
       "place": "office",
       "visit": "first"

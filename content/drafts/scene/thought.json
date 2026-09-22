@@ -212,7 +212,7 @@
   {
     "id": "tht-022",
     "deck": "thought",
-    "text": "It put {subject} at the scene, not away from it, and that is the hour I needed.",
+    "text": "It put {subject} at the scene, not away from it. That was the hour I needed.",
     "tags": {
       "class": "implicates"
     },
@@ -782,7 +782,7 @@
   {
     "id": "tht-079",
     "deck": "thought",
-    "text": "That was the kind of evidence a method leaves behind.",
+    "text": "It was the sort of evidence a method leaves behind.",
     "tags": {
       "class": "method"
     },
@@ -792,7 +792,7 @@
   {
     "id": "tht-080",
     "deck": "thought",
-    "text": "It fit the way it had been done.",
+    "text": "It matched how the thing had been done.",
     "tags": {
       "class": "method"
     },
@@ -932,7 +932,7 @@
   {
     "id": "tht-094",
     "deck": "thought",
-    "text": "That was the kind of fact that turns a span into a minute.",
+    "text": "It was the sort of fact that turns a span into a minute.",
     "tags": {
       "class": "window"
     },
@@ -1052,7 +1052,7 @@
   {
     "id": "tht-106",
     "deck": "thought",
-    "text": "Whoever came up, came for a person and left the rest of it alone.",
+    "text": "Whoever came up, came for a person and let everything else be.",
     "tags": {
       "class": "not-robbery"
     },
@@ -1272,7 +1272,7 @@
   {
     "id": "tht-128",
     "deck": "thought",
-    "text": "That accounted for {subject}’s lie, but not for the rest of it.",
+    "text": "That accounted for {subject}’s lie. It did not account for the rest.",
     "tags": {
       "class": "secret"
     },
@@ -1322,7 +1322,7 @@
   {
     "id": "tht-133",
     "deck": "thought",
-    "text": "That closed it. There was nothing more to ask here.",
+    "text": "That closed it. Nothing more here was worth asking.",
     "tags": {
       "class": "dead-end"
     },
@@ -1382,7 +1382,7 @@
   {
     "id": "tht-139",
     "deck": "thought",
-    "text": "That put an end to it. There was no more here.",
+    "text": "That shut the door on it. There was no more here.",
     "tags": {
       "class": "dead-end"
     },
@@ -1402,7 +1402,7 @@
   {
     "id": "tht-141",
     "deck": "thought",
-    "text": "That was the end of that thread.",
+    "text": "The thread stopped there.",
     "tags": {
       "class": "dead-end"
     },
@@ -1472,7 +1472,7 @@
   {
     "id": "tht-148",
     "deck": "thought",
-    "text": "That had nothing to do with what happened.",
+    "text": "None of it touched what happened.",
     "tags": {
       "class": "context"
     },
@@ -1492,7 +1492,7 @@
   {
     "id": "tht-150",
     "deck": "thought",
-    "text": "That did not move the case one way or the other.",
+    "text": "That did not move the case at all.",
     "tags": {
       "class": "context"
     },
@@ -1602,7 +1602,7 @@
   {
     "id": "tht-161",
     "deck": "thought",
-    "text": "There was nothing in it, and I left it at that.",
+    "text": "Nothing was in it, and I left it there.",
     "tags": {
       "class": "nothing"
     },

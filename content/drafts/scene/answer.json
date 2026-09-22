@@ -142,7 +142,7 @@
   {
     "id": "ans-015",
     "deck": "answer",
-    "text": "{subject} was not there, and it was not going to be.",
+    "text": "{subject} was not there, and nothing said it would turn up.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -222,7 +222,7 @@
   {
     "id": "ans-023",
     "deck": "answer",
-    "text": "It was not here. Whatever {name} had thought, {subject} was not to be found.",
+    "text": "It was not here. Whatever {name} had thought, {subject} simply was not in this room.",
     "tags": {
       "outcome": "dead-end"
     },
