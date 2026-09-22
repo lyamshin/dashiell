@@ -49,6 +49,7 @@ import {
 import {
   DECKS,
   Dealer,
+  motifsOf,
   tagIs,
   tagOf,
   type Card,
@@ -118,6 +119,8 @@ import { reactiveMonologue, type ReactiveResult } from './reactive.js';
 import {
   BODY_MOTIFS,
   PROP_MOTIFS,
+  bodyConflict,
+  bodyWordsOf,
   pageMotifSet,
   placeMotifs,
   type MotifContext,
@@ -1035,7 +1038,19 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     /* approach — who they are, and what their hands are doing */
     const seen = stage.portrayed.includes(scene.personId);
     if (person) {
-      const approach = businessLine(dealer, person, temper, slots, usedBusiness, gaps, ctx);
+      // Hone 2 §A.2. The pair is fixed at case start, so the page knows what
+      // this person's hands are already doing before it deals the gesture that
+      // would contradict it.
+      const approach = businessLine(
+        dealer,
+        person,
+        temper,
+        slots,
+        usedBusiness,
+        gaps,
+        ctx,
+        pairBodyWords(cast, scene.personId, stage.appearances[scene.personId] ?? 0),
+      );
       if (approach) usedBusiness.add(approach.cardId);
       const portrait = describePerson({
         cast,
@@ -1483,6 +1498,34 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
 function blocksOf(laid: Laid[]): Block[] {
   return laid.map((l) => l.block);
+}
+
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.2 — what the portrait pair has already claimed.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The parts and props this person's pair card is about, when the pair is the
+ * portrait on this page.
+ *
+ * A pair is printed whole on the first meeting and is a recall phrase after
+ * that — "Kreuzer, the woman with the broken finger" — so the claim is only
+ * live on the page that prints it. Empty where no pair fits the person, which
+ * is the three-component portrait's page and not this rule's business.
+ */
+export function pairBodyWords(
+  cast: CastSheet,
+  personId: Id,
+  times: number,
+): ReadonlySet<string> {
+  if (times !== 0) return new Set<string>();
+  const portrait = cast.portraits[personId];
+  const pair = portrait?.pair;
+  if (!pair) return new Set<string>();
+  // The pair card's own motifs, not the portrait's: `portrait.motifs` is the
+  // union of four cards, and three of them are not on this page.
+  const card = (DECKS['portrait-pairs'] ?? []).find((c) => c.id === pair.cardId);
+  return bodyWordsOf(pair.text, card ? motifsOf(card) : []);
 }
 
 /* ------------------------------------------------------------------ *
@@ -2335,12 +2378,28 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   };
   /** Every plain beat the briefing has spent, so none of them comes twice. */
   const spentBeats: string[] = [];
-  // She gets into the chair before she starts: two flat sentences of business,
+  // She gets into the chair before she starts: one flat sentence of business,
   // which is the shortest thing on the page and the page is starving for it.
-  t.say(pickShape(dealer.random, BRIEFING_SETTLE, plainSlots), 'narrator', {
-    transparent: true,
-    para: 'entrance',
-  });
+  //
+  // Hone 2 §A.2: not a sentence about hands the pair has already given
+  // something else to do. "She flipped a coin off her thumb the whole time she
+  // talked" and "She sat with both hands folded" are two accounts of one pair
+  // of hands, and the page prints neither rather than both. Where the pool has
+  // nothing left that does not contradict the pair, the beat is dropped.
+  const claimed = pairBodyWords(cast, client.id, stage.appearances[client.id] ?? 0);
+  const settle = BRIEFING_SETTLE.filter(
+    (shape) => !bodyConflict(claimed, fillPlain(shape, plainSlots)),
+  );
+  if (settle.length > 0) {
+    t.say(pickShape(dealer.random, settle, plainSlots), 'narrator', {
+      transparent: true,
+      para: 'entrance',
+    });
+  } else {
+    t.gaps.push(
+      `pair-conflict: every settle beat claims what ${client.surname}'s pair card already has`,
+    );
+  }
   // §B.1. Dashiell's lines on page one are the generator's prompts and
   // nothing else: the discovery, the purpose, the pointer — the three
   // questions whose answers are three particular sentences and no others.
