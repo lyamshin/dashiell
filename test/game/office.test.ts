@@ -159,8 +159,15 @@ describe('the opening', () => {
  * ------------------------------------------------------------------ */
 
 describe('the client’s two free questions', () => {
+  // M6 §1.4 made the same question twice a free replay that does not spend
+  // one of his two, so the two questions here are two different ones.
   const askClient = (state: RunState): RunState =>
-    run(state, `ask ${view.client.surname} about that evening`);
+    run(
+      state,
+      state.clientAsks === 0
+        ? `ask ${view.client.surname} about that evening`
+        : `ask ${view.client.surname} about ${view.victim.surname}`,
+    );
 
   it('charges nothing for the first two and then he is gone', () => {
     let state = fresh();

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "hrs-p001",
+    "deck": "hours",
+    "text": "It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "placeholder",
+    "notes": "Placeholder (M6 §3). The clock's beats: an hour gone past, two calls left, the last one. Each replaces the page's transition and never adds to it."
+  },
+  {
+    "id": "hrs-p002",
+    "deck": "hours",
+    "text": "It had gone {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "hrs-p003",
+    "deck": "hours",
+    "text": "Somewhere a clock had gone past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "hrs-p004",
+    "deck": "hours",
+    "text": "Two calls left before eight, and I knew it.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "hrs-p005",
+    "deck": "hours",
+    "text": "That left two more calls before the DA had it.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "hrs-p006",
+    "deck": "hours",
+    "text": "Two more calls. After that the night was the DA's.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "hrs-p007",
+    "deck": "hours",
+    "text": "One call left. The next one was the last.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "hrs-p008",
+    "deck": "hours",
+    "text": "That left one call, and it would have to be the right one.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "hrs-p009",
+    "deck": "hours",
+    "text": "One more call and the night was over.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

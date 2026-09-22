@@ -1,0 +1,735 @@
+[
+  {
+    "id": "err-p001",
+    "deck": "errand",
+    "text": "Something {name} said sent me to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder",
+    "notes": "Placeholder (M6 §2.3). Reserved id range err-pNNN; the content pass writes ERR-NNN to about fifteen a pair. Plain register: why he came, in his own words, and nothing the notebook does not hold."
+  },
+  {
+    "id": "err-p002",
+    "deck": "errand",
+    "text": "{name} had pointed me at {place}. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p003",
+    "deck": "errand",
+    "text": "It was {name} who put {place} in the notebook. I wanted to put {subject} to {who}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p004",
+    "deck": "errand",
+    "text": "Something {name} said sent me to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p005",
+    "deck": "errand",
+    "text": "{name} had pointed me at {place}. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p006",
+    "deck": "errand",
+    "text": "It was {name} who put {place} in the notebook. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p007",
+    "deck": "errand",
+    "text": "Something {name} said sent me to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p008",
+    "deck": "errand",
+    "text": "{name} had pointed me at {place}. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p009",
+    "deck": "errand",
+    "text": "It was {name} who put {place} in the notebook. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p010",
+    "deck": "errand",
+    "text": "Something {name} said sent me to {place}. I came to hear {who} tell me the evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p011",
+    "deck": "errand",
+    "text": "{name} had pointed me at {place}. I wanted the evening out of {who}, hour by hour.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p012",
+    "deck": "errand",
+    "text": "It was {name} who put {place} in the notebook. The question was for {who}: where the evening went.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p013",
+    "deck": "errand",
+    "text": "Something {name} said sent me to {place}. I came to go through the room.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p014",
+    "deck": "errand",
+    "text": "{name} had pointed me at {place}. I meant to go through it properly.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p015",
+    "deck": "errand",
+    "text": "It was {name} who put {place} in the notebook. The room wanted going through.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p016",
+    "deck": "errand",
+    "text": "Something {name} said sent me to {place}. I came for {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p017",
+    "deck": "errand",
+    "text": "{name} had pointed me at {place}. I wanted a look at {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p018",
+    "deck": "errand",
+    "text": "It was {name} who put {place} in the notebook. The thing to go through was {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p019",
+    "deck": "errand",
+    "text": "A paper at {from} had sent me on to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p020",
+    "deck": "errand",
+    "text": "What was written down at {from} pointed at {place}. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p021",
+    "deck": "errand",
+    "text": "The paperwork at {from} sent me to {place}. I wanted to put {subject} to {who}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p022",
+    "deck": "errand",
+    "text": "A paper at {from} had sent me on to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p023",
+    "deck": "errand",
+    "text": "What was written down at {from} pointed at {place}. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p024",
+    "deck": "errand",
+    "text": "The paperwork at {from} sent me to {place}. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p025",
+    "deck": "errand",
+    "text": "A paper at {from} had sent me on to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p026",
+    "deck": "errand",
+    "text": "What was written down at {from} pointed at {place}. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p027",
+    "deck": "errand",
+    "text": "The paperwork at {from} sent me to {place}. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p028",
+    "deck": "errand",
+    "text": "A paper at {from} had sent me on to {place}. I came to hear {who} tell me the evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p029",
+    "deck": "errand",
+    "text": "What was written down at {from} pointed at {place}. I wanted the evening out of {who}, hour by hour.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p030",
+    "deck": "errand",
+    "text": "The paperwork at {from} sent me to {place}. The question was for {who}: where the evening went.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p031",
+    "deck": "errand",
+    "text": "A paper at {from} had sent me on to {place}. I came to go through the room.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p032",
+    "deck": "errand",
+    "text": "What was written down at {from} pointed at {place}. I meant to go through it properly.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p033",
+    "deck": "errand",
+    "text": "The paperwork at {from} sent me to {place}. The room wanted going through.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p034",
+    "deck": "errand",
+    "text": "A paper at {from} had sent me on to {place}. I came for {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p035",
+    "deck": "errand",
+    "text": "What was written down at {from} pointed at {place}. I wanted a look at {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p036",
+    "deck": "errand",
+    "text": "The paperwork at {from} sent me to {place}. The thing to go through was {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p037",
+    "deck": "errand",
+    "text": "Something I turned up at {from} pointed to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p038",
+    "deck": "errand",
+    "text": "What I found at {from} sent me to {place}. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p039",
+    "deck": "errand",
+    "text": "I had come away from {from} with a reason to try {place}. I wanted to put {subject} to {who}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p040",
+    "deck": "errand",
+    "text": "Something I turned up at {from} pointed to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p041",
+    "deck": "errand",
+    "text": "What I found at {from} sent me to {place}. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p042",
+    "deck": "errand",
+    "text": "I had come away from {from} with a reason to try {place}. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p043",
+    "deck": "errand",
+    "text": "Something I turned up at {from} pointed to {place}. I came to ask {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p044",
+    "deck": "errand",
+    "text": "What I found at {from} sent me to {place}. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p045",
+    "deck": "errand",
+    "text": "I had come away from {from} with a reason to try {place}. The question was for {who}, and it was about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p046",
+    "deck": "errand",
+    "text": "Something I turned up at {from} pointed to {place}. I came to hear {who} tell me the evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p047",
+    "deck": "errand",
+    "text": "What I found at {from} sent me to {place}. I wanted the evening out of {who}, hour by hour.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p048",
+    "deck": "errand",
+    "text": "I had come away from {from} with a reason to try {place}. The question was for {who}: where the evening went.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p049",
+    "deck": "errand",
+    "text": "Something I turned up at {from} pointed to {place}. I came to go through the room.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p050",
+    "deck": "errand",
+    "text": "What I found at {from} sent me to {place}. I meant to go through it properly.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p051",
+    "deck": "errand",
+    "text": "I had come away from {from} with a reason to try {place}. The room wanted going through.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p052",
+    "deck": "errand",
+    "text": "Something I turned up at {from} pointed to {place}. I came for {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p053",
+    "deck": "errand",
+    "text": "What I found at {from} sent me to {place}. I wanted a look at {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p054",
+    "deck": "errand",
+    "text": "I had come away from {from} with a reason to try {place}. The thing to go through was {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p055",
+    "deck": "errand",
+    "text": "Nobody sent me. I came to see.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p056",
+    "deck": "errand",
+    "text": "Nothing in the notebook pointed at {place}. I came to look at it for myself.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p057",
+    "deck": "errand",
+    "text": "No lead brought me to {place}. I wanted to see it.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p058",
+    "deck": "errand",
+    "text": "Nobody sent me back. I came back to see {place} again.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p059",
+    "deck": "errand",
+    "text": "Nothing new pointed at {place}. I came back all the same.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p060",
+    "deck": "errand",
+    "text": "I came back to {place} on nothing but a hunch.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p061",
+    "deck": "errand",
+    "text": "I had been through {place} already. I came back anyway, to stand in it and think.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p062",
+    "deck": "errand",
+    "text": "I came back to {place}, which I had already gone through once.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p063",
+    "deck": "errand",
+    "text": "Back at {place}, where I had been through everything once already.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p064",
+    "deck": "errand",
+    "text": "I went back to {place} to think.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p065",
+    "deck": "errand",
+    "text": "Back to the desk at {place}. Some things only add up sitting down.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "err-p066",
+    "deck": "errand",
+    "text": "I went back to {place} and the chair behind the desk.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

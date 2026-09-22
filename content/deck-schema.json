@@ -466,6 +466,43 @@
         "register": { "required": true, "vocab": "register" }
       },
       "coverage": [["fixtureRole", "register"]]
+    },
+    "errand": {
+      "file": "errand.json",
+      "deckValues": ["errand"],
+      "idPrefix": "ERR",
+      "placeholderPrefix": "err-p",
+      "burn": "free",
+      "target": 400,
+      "$comment": "M6 §2. Why the detective came, first on every page that moved him. Derived from the notebook, never invented: `because` is what sent him (a person said it, a paper named it, a thing found somewhere pointed here), `for` is the lead's shape. {name} is the person who said it, {from} is the room the paper or the thing came out of, {who} is the person he came to ask, {subject} is what the errand is about, {place} is here. Plain register, one clause of figure at most. `searched` only matters for a no-lead return. `reachable` lists the tag pairs the engine can deal; the validator reports each one below `minPerCoverageCell`, and a test holds each of them to three cards.",
+      "minPerCoverageCell": 3,
+      "reachable": [
+        ["said", "ask-person"], ["said", "ask-thing"], ["said", "ask-place"], ["said", "ask-evening"], ["said", "search-room"], ["said", "search-thing"],
+        ["document", "ask-person"], ["document", "ask-thing"], ["document", "ask-place"], ["document", "ask-evening"], ["document", "search-room"], ["document", "search-thing"],
+        ["found", "ask-person"], ["found", "ask-thing"], ["found", "ask-place"], ["found", "ask-evening"], ["found", "search-room"], ["found", "search-thing"],
+        ["none", "none"], ["return", "none"], ["office", "none"]
+      ],
+      "slots": ["detective", "name", "from", "who", "subject", "place"],
+      "tags": {
+        "because": { "required": true, "values": ["said", "document", "found", "none", "office", "return"] },
+        "for": { "required": true, "values": ["ask-person", "ask-thing", "ask-place", "ask-evening", "search-room", "search-thing", "none"] },
+        "searched": { "required": false, "default": "any", "values": ["yes", "no", "any"] }
+      }
+    },
+    "hours": {
+      "file": "hours.json",
+      "deckValues": ["hours"],
+      "idPrefix": "HRS",
+      "placeholderPrefix": "hrs-p",
+      "burn": "free",
+      "target": 30,
+      "$comment": "M6 §3. The clock's beats. `hour` when an action carries the clock across an hour ({hour} is the hour's word, one to seven), `two-left` when two calls remain, `last-call` when one does. Each replaces the page's passage-of-time beat and never adds to it.",
+      "slots": ["detective", "hour"],
+      "minPerCoverageCell": 3,
+      "tags": {
+        "beat": { "required": true, "values": ["hour", "two-left", "last-call"] }
+      },
+      "coverage": [["beat"]]
     }
   }
 }

@@ -27,7 +27,14 @@ export function deserializeRun(raw: string | null): RunState | null {
     return null;
   }
   if (!isRunState(parsed)) return null;
-  return parsed;
+  // M6 §1.4 added two lists. A run saved before them has asked nothing twice
+  // yet, as far as the repeat rule can tell, and that is the honest default.
+  const run = parsed as RunState & Partial<Pick<RunState, 'asked' | 'searched'>>;
+  return {
+    ...run,
+    asked: Array.isArray(run.asked) ? run.asked : [],
+    searched: Array.isArray(run.searched) ? run.searched : [],
+  };
 }
 
 function isRunState(value: unknown): value is RunState {

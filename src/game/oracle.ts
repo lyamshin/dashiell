@@ -55,6 +55,14 @@ interface Group {
   placeId: Id;
   /** Which of the wanted clues this one action delivers. */
   gains: Set<Id>;
+  /** Every clue this one action delivers, wanted or not. */
+  fetches: Set<Id>;
+  /**
+   * M6 §8: a question is only on the page once a lead has opened it, so the
+   * oracle may only ask it once one has. Clues whose `leadsTo` names any clue
+   * this action fetches. Empty for a search, which is always on the page.
+   */
+  openers: Set<Id>;
 }
 
 /** Every command that would fetch at least one of `wanted`, deduplicated. */
@@ -69,22 +77,65 @@ function groupsFor(view: CaseView, wanted: Clue[]): Group[] {
       continue;
     }
     const gains = new Set<Id>();
+    const fetches = new Set<Id>();
+    const openers = new Set<Id>();
     if (clue.source.type === 'place') {
-      for (const c of view.placeClues.get(clue.source.placeId) ?? [])
+      for (const c of view.placeClues.get(clue.source.placeId) ?? []) {
+        fetches.add(c.id);
         if (want.has(c.id)) gains.add(c.id);
+      }
     } else {
       const bucket = view.exactBuckets.get(clue.source.personId)?.get(clue.source.topic) ?? [];
-      for (const c of bucket) if (want.has(c.id)) gains.add(c.id);
+      for (const c of bucket) {
+        fetches.add(c.id);
+        if (want.has(c.id)) gains.add(c.id);
+      }
+      for (const c of view.kase.findable) {
+        if (c.leadsTo.some((t) => fetches.has(t))) openers.add(c.id);
+      }
     }
-    byCommand.set(lead.command, { command: lead.command, placeId: lead.placeId, gains });
+    byCommand.set(lead.command, {
+      command: lead.command,
+      placeId: lead.placeId,
+      gains,
+      fetches,
+      openers,
+    });
   }
   return [...byCommand.values()];
 }
 
-/** Shortest sequence of commands, counting travel. Breadth-first, exact. */
-function plan(view: CaseView, from: Id, groups: Group[]): string[] | null {
+/**
+ * Shortest sequence of commands, counting travel. Breadth-first, exact.
+ *
+ * M6 §8: gated the way the page is. A question is only offered once an open
+ * lead names it — the choices list exact topics as leads and nowhere else —
+ * so a group that asks is available only once something already in hand, or
+ * fetched by a group earlier on the route, leads to it. A search is always on
+ * the page. The gate can only lengthen a route, and `computePar` gates the
+ * spine the same way, so the route is still par's.
+ */
+function plan(
+  view: CaseView,
+  from: Id,
+  groups: Group[],
+  inHand: ReadonlySet<Id> = new Set(),
+): string[] | null {
   if (groups.length === 0) return [];
   if (groups.length > 22) return null;
+  // A search has no openers and is open from the start; a question with no
+  // opener anywhere in the case is one nothing will ever put on the page.
+  const isAsk = groups.map((g) => !g.command.startsWith('examine '));
+  const alwaysOpen = groups.map(
+    (g, i) => !isAsk[i] || [...g.openers].some((id) => inHand.has(id)),
+  );
+  const openedBy = groups.map((g) => {
+    let m = 0;
+    groups.forEach((other, j) => {
+      if ([...other.fetches].some((id) => g.openers.has(id))) m |= 1 << j;
+    });
+    return m;
+  });
   // The office is never worth walking to: nothing findable is in it, and a
   // route through it is a route one action longer than the same route without.
   const places = view.kase.places.map((p) => p.id);
@@ -118,6 +169,7 @@ function plan(view: CaseView, from: Id, groups: Group[]): string[] | null {
         if (m & (1 << i)) continue;
         const g = groups[i] as Group;
         if (g.placeId !== places[p]) continue;
+        if (isAsk[i] && !alwaysOpen[i] && (m & (openedBy[i] as number)) === 0) continue;
         let mask = m | (1 << i);
         // One command may cover several groups at once when they share a room
         // and a question; the group list is already deduplicated by command,
@@ -163,7 +215,10 @@ export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleRe
   // M5 §6: the first room is the scene for seven tropes and the foot of the
   // stairs for `body-moved`, and par is computed from wherever it is.
   const toTheScene = `go ${view.placeById.get(view.startId)?.shortName ?? ''}`;
-  const rest = plan(view, view.startId, groupsFor(view, wanted));
+  // In hand when the route starts: the client's brief, and the scene's report
+  // and the coroner's note, handed over on the walk in.
+  const inHand = new Set<Id>([...state.found, ...free]);
+  const rest = plan(view, view.startId, groupsFor(view, wanted), inHand);
   const script = rest === null ? null : [toTheScene, ...rest];
   const fail = (reason: string): OracleResult => ({
     ok: false,

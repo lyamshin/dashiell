@@ -14,11 +14,13 @@ import { generateCase, type CaseType, type Difficulty } from '../gen/index.js';
 import { TROPE_IDS } from '../gen/tropes/index.js';
 import { buildView, gameBudget, gamePar } from '../game/derive.js';
 import { playOracle, playWandering } from '../game/oracle.js';
-import { fileReport } from '../game/reducer.js';
+import { choicesFor } from '../game/choices.js';
+import { fileReport, newRun, stepInput } from '../game/reducer.js';
 import { truthReport } from '../game/report-form.js';
 import { scoreReport } from '../game/scoring.js';
 import {
   renderCastText,
+  renderChoicesText,
   renderNotebookText,
   renderPageText,
   renderVerdictText,
@@ -46,7 +48,7 @@ if (
 ) {
   process.stderr.write(
     'usage: npm run read -- --seed <integer> [--difficulty 1|2|3] [--random] [--pages N] ' +
-      `[--no-gaps] [--type murder|robbery|missing] [--trope <id>]\n  tropes: ${TROPE_IDS.join(', ')}\n`,
+      `[--no-gaps] [--no-choices] [--type murder|robbery|missing] [--trope <id>]\n  tropes: ${TROPE_IDS.join(', ')}\n`,
   );
   process.exit(1);
 }
@@ -61,13 +63,16 @@ const view = buildView(kase);
 
 let state: RunState;
 let report: Report | null = null;
+let commands: string[] = [];
 if (flags.has('random')) {
   const run = playWandering(view, seed, detective);
   state = run.state;
   report = run.report;
+  commands = run.steps.map((s) => s.command);
 } else {
   const run = playOracle(view, detective);
   state = run.state;
+  commands = run.steps.map((s) => s.command);
   if (!run.ok) process.stderr.write(`(the oracle could not finish: ${run.reason})\n`);
   // M5 §5: the oracle knows the route, not the answer. What it files is the
   // truth of exactly the unknowns this case asks.
@@ -88,9 +93,24 @@ out.push('');
 out.push(renderCastText(view, state));
 out.push('');
 
+// M6 §7: the state after each page, replayed from the same commands, so each
+// page can print the choices it offered and mark the one that was taken.
+const states: RunState[] = [newRun(view, { detectiveName: detective })];
+for (const command of commands) {
+  states.push(stepInput(states[states.length - 1] as RunState, command, view).state);
+}
+
 const shown = state.log.slice(0, Number.isFinite(pageLimit) ? pageLimit : undefined);
 for (const page of shown) {
   out.push(renderPageText(page, view, state, { gaps: !flags.has('no-gaps') }));
+  const after = states[page.n];
+  if (after && !flags.has('no-choices')) {
+    const groups = choicesFor(view, after);
+    if (groups.length > 0) {
+      out.push('');
+      out.push(renderChoicesText(groups, commands[page.n]));
+    }
+  }
   out.push('');
 }
 

@@ -16,7 +16,7 @@ import { buildNotebook } from './notebook.js';
 import { pronounOf } from './voice/cast.js';
 import { countWords } from './voice/page.js';
 import type { Verdict } from './scoring.js';
-import type { Block, Page, RunState } from './types.js';
+import type { Block, OfferedGroup, Page, RunState } from './types.js';
 import { EMPTY_ROOM, HELP_LINES, PRESENCE_LEAD } from './voice-data.js';
 
 const WIDTH = 76;
@@ -111,6 +111,50 @@ export function renderPageText(
     for (const gap of page.gaps) foot.push(`[gap: ${gap}]`);
   }
   return [head, rule, '', body, '', foot.join('\n')].join('\n');
+}
+
+/** "½ hr", "25 min", "free". The same words the book puts on a button. */
+function minutesText(minutes: number): string {
+  if (minutes <= 0) return 'free';
+  if (minutes === 30) return '½ hr';
+  return `${minutes} min`;
+}
+
+/**
+ * M6 §7. A page's choices, one line per group, so a reviewer can read a run
+ * without a browser: `*` marks a lead, `✓` a thing already done, and `>` the
+ * command that was taken next. The minutes most of the group costs go on the
+ * end of the line; a choice that costs something else says so beside itself.
+ */
+export function renderChoicesText(groups: readonly OfferedGroup[], chosen?: string): string {
+  const out: string[] = [];
+  const headWidth = Math.max(
+    8,
+    ...groups.map((g) => (g.kind === 'free' ? 'Free:' : `${g.heading}:`).length + 2),
+  );
+  for (const group of groups) {
+    const all = [...group.choices, ...(group.more ?? [])];
+    if (all.length === 0) continue;
+    const counts = new Map<number, number>();
+    for (const c of all) counts.set(c.minutes, (counts.get(c.minutes) ?? 0) + 1);
+    const usual = [...counts.entries()].sort((a, b) => b[1] - a[1] || b[0] - a[0])[0]?.[0] ?? 0;
+    const item = (c: (typeof all)[number]): string =>
+      `${c.command === chosen ? '>' : ''}${c.lead ? '*' : ''}${c.label}${c.done ? ' ✓' : ''}${
+        c.minutes === usual ? '' : ` (${minutesText(c.minutes)})`
+      }`;
+    const items = group.choices.map(item);
+    if (group.more && group.more.length > 0) {
+      items.push(`[other topics: ${group.more.map(item).join(' · ')}]`);
+    }
+    const head = (group.kind === 'free' ? 'Free:' : `${group.heading}:`).padEnd(headWidth);
+    const tail =
+      group.kind === 'free' ? '' : `   (${minutesText(usual)}${usual > 0 && all.length > 1 ? ' each' : ''})`;
+    const body = wrap(`${items.join(' · ')}${tail}`, WIDTH - 2 - headWidth);
+    const lines = body.split('\n');
+    out.push(`  ${head}${lines[0] ?? ''}`);
+    for (const line of lines.slice(1)) out.push(`  ${' '.repeat(headWidth)}${line}`);
+  }
+  return out.join('\n');
 }
 
 export function renderNotebookText(view: CaseView, state: RunState): string {

@@ -43,6 +43,8 @@ import officeJson from '../../../content/decks/office.json';
 import entrancesJson from '../../../content/decks/entrances.json';
 import hiringJson from '../../../content/decks/hiring.json';
 import portraitPairsJson from '../../../content/decks/portrait-pairs.json';
+import errandJson from '../../../content/decks/errand.json';
+import hoursJson from '../../../content/decks/hours.json';
 
 export type DeckName =
   | 'similes'
@@ -64,7 +66,10 @@ export type DeckName =
   | 'entrances'
   | 'hiring'
   /* Hone 1 §B.4, the same way: written on the `portrait-pairs` branch. */
-  | 'portrait-pairs';
+  | 'portrait-pairs'
+  /* M6 §2 and §3: why he came, and the clock's own beats. */
+  | 'errand'
+  | 'hours';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -165,6 +170,8 @@ const RAW: Record<DeckName, unknown> = {
   entrances: entrancesJson,
   hiring: hiringJson,
   'portrait-pairs': portraitPairsJson,
+  errand: errandJson,
+  hours: hoursJson,
 };
 
 /** Every deck is on disk and imported; nothing is missing. */

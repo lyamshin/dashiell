@@ -374,6 +374,26 @@ function validateDeck(deckName, path) {
     }
   }
 
+  /* M6 §2.3: a deck whose tag space is mostly unreachable lists the pairs the
+   * engine can actually deal, and only those are counted. */
+  if (Array.isArray(spec.reachable)) {
+    const tagNames = Object.keys(spec.tags ?? {}).slice(0, 2);
+    for (const pair of spec.reachable) {
+      const n = cards.filter((card) => {
+        if (typeof card !== 'object' || card === null || card.status === 'cut') return false;
+        const tags = readTags(deckName, card);
+        return pair.every((v, i) => tags[tagNames[i]] === v || tags[tagNames[i]] === 'any');
+      }).length;
+      const key = `${tagNames.join(' × ')}: ${pair.join(' × ')}`;
+      report.cells++;
+      if (n === 0) report.gaps.push(key);
+      else {
+        report.filled++;
+        if (n < min) report.thin.push(`${key} — ${n} of ${min}`);
+      }
+    }
+  }
+
   report.unusedMotifs = [...MOTIF_VOCAB].filter((m) => report.motifCounts[m] === undefined);
   return report;
 }

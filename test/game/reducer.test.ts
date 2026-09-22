@@ -105,14 +105,21 @@ describe('what an action costs', () => {
     expect(nothing.page.cost).toBe(1);
   });
 
-  it('charges one for a search, and nothing the room has left is still one', () => {
+  // M6 §1.4: with buttons a person will click something twice by accident, so
+  // a second search of a room costs nothing, says so, and finds nothing new.
+  // It used to be one action for nothing, which was fair at a prompt and is a
+  // trap under a button.
+  it('charges one for a search, and nothing for the same search again', () => {
     let state = fresh();
     state = run(state, 'examine');
     expect(state.actionsUsed).toBe(1);
     const before = state.found.length;
-    state = run(state, 'examine');
-    expect(state.actionsUsed).toBe(2);
-    expect(state.found.length).toBe(before);
+    const again = stepInput(state, 'examine', view);
+    expect(again.page.cost).toBe(0);
+    expect(again.state.actionsUsed).toBe(1);
+    expect(again.state.found.length).toBe(before);
+    const said = again.page.blocks.map((b) => (b.kind === 'note' ? b.text : '')).join(' ');
+    expect(said).toMatch(/already/);
   });
 
   it('charges nothing for look, notebook or help', () => {
@@ -138,7 +145,8 @@ describe('clue delivery', () => {
     expect(first.page.found.length).toBeGreaterThan(0);
     const second = stepInput(first.state, `ask ${doyle.surname} about ${topic}`, view);
     expect(second.page.found).toEqual([]);
-    expect(second.page.cost).toBe(1);
+    // M6 §1.4: the same question twice is read back out of the notebook, free.
+    expect(second.page.cost).toBe(0);
   });
 
   it('gives one question every clue filed under it', () => {

@@ -92,7 +92,13 @@ export type ProseVoice =
   | 'simile'
   | 'narrator'
   | 'nothing'
-  | 'record';
+  | 'record'
+  /**
+   * M6 §2. Why the detective came: one or two sentences, first on a page that
+   * moved him, set apart in italics. Never cut, never joined, never re-worded
+   * by a later pass, because the correspondence checker traces it verbatim.
+   */
+  | 'errand';
 
 /**
  * A run of prose on a page. `clueId` marks the paragraph that carries a
@@ -146,6 +152,66 @@ export interface Page {
    * adjacent image blocks share — is measured off this and nothing else.
    */
   imageMotifs: string[][];
+  /**
+   * M6 §2. What the errand line on this page was built from, so the
+   * correspondence checker can trace it back to the notebook. Absent on a page
+   * that did not move the detective.
+   */
+  errand?: ErrandTrace;
+  /**
+   * M6 §6. The choices this page offered, as the book showed them. The reducer
+   * never sets it; the book does, so a page turned back to can show its
+   * choices greyed. Pure data, and optional so a save from before M6 loads.
+   */
+  offered?: OfferedGroup[];
+}
+
+/** One choice as the book drew it, kept on the page it was offered under. */
+export interface OfferedChoice {
+  command: string;
+  label: string;
+  minutes: number;
+  lead: boolean;
+  done: boolean;
+  note?: string;
+}
+
+export interface OfferedGroup {
+  kind: 'ask' | 'search' | 'go' | 'free';
+  heading: string;
+  personId?: Id;
+  choices: OfferedChoice[];
+  more?: OfferedChoice[];
+}
+
+/**
+ * M6 §2.1 — the errand line, as data. `because` and `for` are the deck tags
+ * the card was dealt on; the ids are what the checker traces.
+ */
+export interface ErrandTrace {
+  because: 'said' | 'document' | 'found' | 'none' | 'office' | 'return';
+  for:
+    | 'ask-person'
+    | 'ask-thing'
+    | 'ask-place'
+    | 'ask-evening'
+    | 'search-room'
+    | 'search-thing'
+    | 'none';
+  /** `lead` for an open lead, `scene` for the client's pointer on first sight. */
+  kind: 'lead' | 'scene' | 'none' | 'office' | 'return';
+  /** The clue in the notebook that sent him: a found clue whose `leadsTo` includes `targetId`. */
+  sourceId?: Id;
+  /** The lead's target clue, not yet found. For `scene`, the first opening clue. */
+  targetId?: Id;
+  /** How many open leads pointed here. "And there was the other thing" at exactly two. */
+  leads: number;
+  /** For a no-lead return: whether the room had been gone through already. */
+  searched?: boolean;
+  /** The values the card's slots were filled with. */
+  slots: Record<string, string>;
+  /** Exactly the words on the page. */
+  text: string;
 }
 
 /**
@@ -279,6 +345,17 @@ export interface RunState {
   clientAsks: number;
   /** Whether the scene has been arrived at, and its report handed over. */
   sceneSeen: boolean;
+
+  /* ------------------------------------------------------- M6: repeats */
+
+  /**
+   * M6 §1.4. Every question put, as `personId|topicKey`, with the clues it
+   * delivered. The second identical question costs nothing and reads the
+   * notebook's record back instead of asking again.
+   */
+  asked: { key: string; clues: Id[] }[];
+  /** Rooms already gone through. A second search of one is free and finds nothing. */
+  searched: Id[];
 }
 
 export const SAVE_KEY = 'dashiell:run';

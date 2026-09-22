@@ -31,7 +31,8 @@ import type { Clue, Id, Person } from '../../gen/types.js';
 import type { Rng } from '../../gen/rng.js';
 import { spokenClock } from '../../gen/types.js';
 import { NIGHT_MINUTES } from '../types.js';
-import type { Block, ProseVoice } from '../types.js';
+import type { Block, ErrandTrace, ProseVoice } from '../types.js';
+import { OTHER_THING, type ErrandPlan } from '../errand.js';
 import type { CaseView, ClaimedAccount, Established } from '../derive.js';
 import { clueTick, establishedFrom } from '../derive.js';
 import {
@@ -396,6 +397,8 @@ export type Scene =
       openingClues?: Clue[];
       /** He walked out of the office and the client walked out with him. */
       clientLeaves?: boolean;
+      /** M6 §2: why he came, planned by the reducer out of the notebook. */
+      errand?: ErrandPlan;
     }
   | { kind: 'look' }
   | {
@@ -440,6 +443,11 @@ export interface Stage {
   cost: number;
   /** Minutes past midnight once this page's action is paid for. */
   minutes: number;
+  /**
+   * M6 §3. Minutes past midnight before it was paid for, so the page knows
+   * whether this action carried the clock across an hour.
+   */
+  minutesBefore?: number;
   actionsLeft: number;
   foundBefore: Id[];
   foundAfter: Id[];
@@ -495,6 +503,8 @@ export interface Composed {
   /** M5 §1: sentences on this page that carry no image, and sentences that do. */
   plain: number;
   image: number;
+  /** M6 §2: the errand line this page opened on, as the checker traces it. */
+  errand?: ErrandTrace;
 }
 
 /**
@@ -525,8 +535,15 @@ export function meanSharedMotifs(pages: { imageMotifs?: string[][] }[]): {
 const WORD_TARGET_LOW = 120;
 const WORD_TARGET_HIGH = 250;
 
-/** The hard ceiling a page is trimmed down to, and page one's own. */
-export const PAGE_CEILING = 300;
+/**
+ * The hard ceiling a page is trimmed down to, and page one's own.
+ *
+ * M6 §5 took it from 300 to 220: the page is prose and then choices now, and
+ * on a 1280×800 window the first group of choices has to be on the screen
+ * without anybody scrolling for it. `CUT_ORDER` does the cutting as before —
+ * thinking first, then texture — and the errand line is never among it.
+ */
+export const PAGE_CEILING = 220;
 export const OPENING_CEILING = 380;
 
 /**
@@ -823,6 +840,19 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     });
   };
 
+  /* ------------------------------------------------------- M6 §2: why */
+  // First on the page and set apart. Dealt from the errand deck on the tags
+  // the reducer derived; the slots are the notebook's own words, and the
+  // passes below never touch the block, so the checker can trace it verbatim.
+  let errand: ErrandTrace | undefined;
+  if (scene.kind === 'travel' && scene.errand) {
+    const text = errandLine(dealer, scene.errand, { ...base, ...scene.errand.slots }, gaps);
+    if (text.length > 0) {
+      say(text, 'errand', { transparent: true, verbatim: true, keep: 99 });
+      errand = { ...scene.errand, text };
+    }
+  }
+
   /* --------------------------------------------- §B.2.4: the client leaves */
   // Before the walk, because the walk is what he leaves for: two questions on
   // the house, or the detective picking up his hat, and the visit is over.
@@ -841,12 +871,20 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
   /* -------------------------------------------------------- transition */
   if (stage.cost > 0 && scene.kind !== 'open') {
-    const drawn = drawTransition(dealer, view, band, base, ctx);
-    say(drawn?.text ?? dealer.random.pick(PLAIN_TRANSITIONS), 'transition', {
-      motifs: drawn?.motifs,
-      score: drawn?.score,
-      para: 'walk',
-    });
+    // M6 §3: the clock speaks for itself when it has something to say — two
+    // calls left, the last call, an hour gone past — and when it does, it is
+    // the passage of time on this page and the transition is not dealt.
+    const beat = clockBeat(dealer, stage, gaps);
+    if (beat !== null) {
+      say(beat, 'narrator', { transparent: true, verbatim: true, keep: 9, para: 'walk' });
+    } else {
+      const drawn = drawTransition(dealer, view, band, base, ctx);
+      say(drawn?.text ?? dealer.random.pick(PLAIN_TRANSITIONS), 'transition', {
+        motifs: drawn?.motifs,
+        score: drawn?.score,
+        para: 'walk',
+      });
+    }
   }
 
   /* --------------------------------------------- §B.2: the office opening */
@@ -1492,6 +1530,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   const counted = countsOf(laid);
   return {
     blocks: blocksOf(laid),
+    ...(errand === undefined ? {} : { errand }),
     gaps,
     asideBand,
     portrayed,
@@ -1540,6 +1579,11 @@ export function pronounRepeatedSubjects(laid: Laid[], people: readonly Person[])
   for (const l of laid) {
     const block = l.block;
     if (block.kind !== 'prose' && block.kind !== 'note') continue;
+    // The errand line stands apart and reaches the page exactly as dealt.
+    if (block.kind === 'prose' && block.voice === 'errand') {
+      last = null;
+      continue;
+    }
     const sentences = splitSentences(block.text);
     let changed = false;
     for (const [i, sentence] of sentences.entries()) {
@@ -1690,7 +1734,7 @@ function takesABeat(l: Laid): boolean {
   const b = l.block;
   if (b.kind !== 'prose') return false;
   if (/["“”]/.test(b.text)) return false;
-  return b.voice !== 'exchange' && b.voice !== 'record';
+  return b.voice !== 'exchange' && b.voice !== 'record' && b.voice !== 'errand';
 }
 
 export function enforceShortRhythm(
@@ -1816,6 +1860,8 @@ export function carryingSentence(laid: Laid[], low = CARRY_LOW, high = CARRY_HIG
     // words there as a clause already, and this would make a clause of a
     // clause.
     if (block.kind === 'prose' && block.clueId !== undefined) continue;
+    // M6 §2: the errand line is traced word for word and never re-cut.
+    if (block.kind === 'prose' && block.voice === 'errand') continue;
     if (l.hosts === true) continue;
     const sentences = splitSentences(block.text);
     for (let i = 0; i + 1 < sentences.length; i++) {
@@ -1909,6 +1955,8 @@ export function fuseParagraphs(
     const b = here.block;
     if (a.kind !== 'prose' && a.kind !== 'note') continue;
     if (b.kind !== 'prose' && b.kind !== 'note') continue;
+    if ((a.kind === 'prose' && a.voice === 'errand') || (b.kind === 'prose' && b.voice === 'errand'))
+      continue;
     if (a.kind === 'prose' && b.kind === 'prose' && a.clueId !== undefined && b.clueId !== undefined)
       continue;
     const text = joinSentences(a.text, b.text);
@@ -2755,6 +2803,65 @@ export function stripAttribution(text: string, surname: string): string {
  * sounds like a case with three anchors in the air.
  */
 export const TRANSITION_MEMORY = 4;
+
+/* ------------------------------------------------------------------ *
+ * M6 §2 and §3 — the errand line and the clock's beats.
+ * ------------------------------------------------------------------ */
+
+/** The hour a clock beat names, as a word. The night never reaches eight on a beat. */
+const HOUR_WORDS = ['twelve', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
+
+/**
+ * §3. Two calls left, the last call, or an hour gone past — in that order of
+ * precedence, because a count of what is left is the thing a player acts on
+ * and the running head already shows the hour. Null when the clock has
+ * nothing to say and the page's transition should be dealt as usual.
+ */
+export function clockBeatKind(
+  stage: Pick<Stage, 'minutes' | 'minutesBefore' | 'actionsLeft' | 'cost'>,
+): { beat: 'last-call' | 'two-left' } | { beat: 'hour'; hour: string } | null {
+  if (stage.cost <= 0) return null;
+  if (stage.actionsLeft === 1) return { beat: 'last-call' };
+  if (stage.actionsLeft === 2) return { beat: 'two-left' };
+  const before = stage.minutesBefore;
+  if (before === undefined) return null;
+  const from = Math.floor(before / 60);
+  const to = Math.floor(stage.minutes / 60);
+  if (to > from && to >= 1 && to <= 7) return { beat: 'hour', hour: HOUR_WORDS[to] as string };
+  return null;
+}
+
+function clockBeat(dealer: Dealer, stage: Stage, gaps: string[]): string | null {
+  const kind = clockBeatKind(stage);
+  if (kind === null) return null;
+  const slots: Slots = kind.beat === 'hour' ? { hour: kind.hour } : {};
+  const drawn = dealer.draw('hours', [(c) => tagIs('hours', c, 'beat', kind.beat)], slots, true);
+  if (drawn) return drawn.text;
+  gaps.push(`no-card: hours has nothing for ${kind.beat}; a hand-written line stood in`);
+  if (kind.beat === 'hour') return `It was past ${kind.hour}.`;
+  return kind.beat === 'two-left' ? 'Two calls left before eight.' : 'One call left before eight.';
+}
+
+/** A card for the errand, or the plainest possible line when the deck has nothing. */
+function errandLine(dealer: Dealer, plan: ErrandPlan, slots: Slots, gaps: string[]): string {
+  const searched = plan.searched === true ? 'yes' : 'no';
+  const fits: Match = (c) =>
+    tagIs('errand', c, 'because', plan.because) &&
+    tagIs('errand', c, 'for', plan.for) &&
+    (plan.because !== 'return' || tagIs('errand', c, 'searched', searched));
+  const drawn = dealer.draw('errand', [fits], slots, true);
+  let text = drawn?.text ?? '';
+  if (text.length === 0) {
+    gaps.push(`no-card: errand has nothing for ${plan.because} × ${plan.for}; a hand-written line stood in`);
+    text =
+      plan.kind === 'office'
+        ? `I went back to ${slots.place ?? 'the office'} to think.`
+        : 'Nobody sent me. I came to see.';
+  }
+  // §2.2: two leads here. Name the newest and nod at the other; never list them.
+  if (plan.kind === 'lead' && plan.leads === 2) text = `${text} ${OTHER_THING}`;
+  return text;
+}
 
 function drawTransition(
   dealer: Dealer,
