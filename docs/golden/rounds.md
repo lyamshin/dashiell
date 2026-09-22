@@ -1876,3 +1876,259 @@ you answers your questions.
 I set it down. I kept coming back to the money. If I had to put money down
 tonight, Lanza.
 ```
+
+
+---
+
+# Hone 1
+
+Not a round of the loop: a separate pass, `docs/12-hone-1.md`, with the
+generator open. Three things the loop's report said it could not do from the
+engine alone — the client's questions written with their answers, the spoken
+hours, and a breath form for her sentences — plus the prod cap, the portrait
+pairs and the two content bugs.
+
+**The targets moved under it.** §B.5 recomputed them against golden v2 one page
+at a time and repaired a fault in `style-metrics.py` at the same time: the
+sentence splitter did not break after a closing quotation mark, so on a page of
+dialogue most sentences were measured glued to the one after them. Both tables
+below are measured with the repaired ruler against the new targets, so both are
+comparable to each other and neither is comparable to rounds 0 to 8.
+
+## Before — `main` at 9a12cef
+
+```
+120 pages · 40 seeds · pages 1–3 · Hone 1 before — main at 9a12cef
+
+metric                    mean        target    dist     worst  gold p1  gold p2  page
+--------------------------------------------------------------------------------------
+orphan_word_ratio        0.823       <= 0.82   0.003     0.960     0.77     0.89  seed38-p3.txt
+paragraph_cohesion       0.667       >= 0.66   0.000     0.170     0.53     0.80  seed08-p2.txt
+sentence_cohesion        0.627       >= 0.59   0.000     0.250     0.58     0.61  seed38-p3.txt
+short_share              0.352       >= 0.36   0.021     0.231     0.56     0.16  seed14-p3.txt
+long_ratio               0.041       <= 0.06   0.000     0.176     0.00     0.05  seed37-p3.txt
+dialogue_share_p1        0.392     0.33-0.53   0.000     0.330     0.43     0.00  seed15-p1.txt
+figures                  0.475        <= 0.5   0.000     2.000     1.00     0.00  seed06-p1.txt
+plain_ratio              0.743        >= 0.6   0.000     0.500        —        —  seed07-p3.txt
+words_per_paragraph     29.288         22-35   0.000    15.200    22.10    34.70  seed40-p1.txt
+--------------------------------------------------------------------------------------
+AGGREGATE DISTANCE       0.025
+
+gaps: no-fact ×1
+```
+
+## After
+
+```
+120 pages · 40 seeds · pages 1–3 · Hone 1 after
+
+metric                    mean        target    dist     worst  gold p1  gold p2  page
+--------------------------------------------------------------------------------------
+orphan_word_ratio        0.809       <= 0.82   0.000     0.930     0.77     0.89  seed32-p3.txt
+paragraph_cohesion       0.657       >= 0.66   0.004     0.170     0.53     0.80  seed08-p2.txt
+sentence_cohesion        0.626       >= 0.59   0.000     0.400     0.58     0.61  seed10-p3.txt
+short_share              0.372       >= 0.36   0.000     0.269     0.56     0.16  seed07-p2.txt
+long_ratio               0.040       <= 0.06   0.000     0.167     0.00     0.05  seed02-p3.txt
+dialogue_share_p1        0.330     0.33-0.53   0.000     0.280     0.43     0.00  seed03-p1.txt
+figures                  0.450        <= 0.5   0.000     2.000     1.00     0.00  seed06-p1.txt
+plain_ratio              0.755        >= 0.6   0.000     0.500        —        —  seed01-p3.txt
+words_per_paragraph     30.132         22-35   0.000    16.400    22.10    34.70  seed40-p1.txt
+--------------------------------------------------------------------------------------
+AGGREGATE DISTANCE       0.004
+
+gaps: missing-pair ×41
+```
+
+Eight of the nine are met and the ninth is four thousandths away. What moved,
+and why:
+
+| metric | before | after | why |
+|---|---|---|---|
+| orphan word ratio | 0.823 | **0.809** ✓ | the only target main missed. The spoken hours put words the page already has back into it — "half past eleven" twice is two words repeated where "11:30 PM" was a token that occurred once |
+| paragraph cohesion | 0.667 ✓ | 0.657 | the prods went. A prod was chosen to pick up a noun from the answer before it, so every one of them was a cohesive paragraph opening; the beats that replaced them open on the pronoun, which is cohesive too, but there are fewer of them |
+| sentence cohesion | 0.627 ✓ | 0.626 ✓ | unchanged |
+| short sentences | 0.352 | **0.372** ✓ | the breath form, and the rhythm floor following the target to 0.36 |
+| long sentences | 0.041 ✓ | 0.040 ✓ | unchanged |
+| dialogue share, page one | 0.392 ✓ | 0.330 ✓ | five of Dashiell's lines came off page one and three stayed. The golden's own attribution move — "I found Sweeney," she said. "Half past eleven, at the suite." — is what keeps it inside the band |
+| figures | 0.475 ✓ | 0.450 ✓ | unchanged |
+| plain ratio | 0.743 ✓ | 0.755 ✓ | the prompts are plain sentences |
+| words per paragraph | 29.3 ✓ | 30.1 ✓ | unchanged |
+| **aggregate** | **0.025** | **0.004** | |
+
+## Page one of seeds 3, 7 and 12, after
+
+```
+Midnight. Two rooms over a Chinese laundry on Rivington Street, the Lower
+East Side. My knuckle had split open again, the same place as last month. It
+caught on the desk drawer every time. Frost had crept across the window
+glass from the inside.
+
+A woman came up the stairs after midnight, and sat down. Kreuzer shut the
+door soft, the way careful people do when doors matter to them. Kreuzer: a
+crooked little finger, broken once and never reset. Collar buttoned, no tie,
+and a smear of green paint at one shoulder.
+
+Gretchen Kreuzer is 30 years old and a pawnbroker’s clerk. Kreuzer writes
+the tickets behind the grille and knows what a thing is worth. She sat with
+both hands folded.
+
+“Sweeney was the reason four places on the street stayed open,” she said.
+“Everyone knew it. Sweeney was found dead at the suite.”
+
+She went straight on.
+
+“Sweeney was killed at the suite. Nothing was carried out of the room
+afterwards. The coroner puts it between half past nine and eleven. Two hours
+of nothing useful.”
+
+She was not done.
+
+“It was a blunt object.”
+
+I said nothing.
+
+“Where did you find Sweeney, and when?”
+
+“I found Sweeney,” Kreuzer said. “Half past eleven, at the suite. The
+precinct took a statement at the desk and filed it.”
+
+She was not finished.
+
+“I am a customer of Sweeney’s. I came to Sweeney on Domenico Tramonti’s
+introduction and have stayed a customer.”
+
+I let Kreuzer sit with it.
+
+“Why come to me instead of the precinct?”
+
+“I want the one who killed Sweeney found. Because the precinct has stopped
+looking. I know that asking questions on this block is a way of being asked
+some.”
+
+“Who was no friend of Sweeney?”
+
+"Start with Grasso. Grasso blamed Sweeney for the ruin of his business. You
+know the rate." I did. I held out my hand, and a roll with a rubber band
+round it landed in it.
+
+Kreuzer is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+I wrote that down. Nothing is settled. If it is anybody yet, it is Grasso.
+```
+
+```
+Midnight. Two rooms over a pawnshop on Great Jones Street, the Bowery. The
+landlady's bill was folded under the telephone. I'd see it every time the
+thing didn't ring. I decided not to open it until it did.
+
+A woman came up the stairs after midnight, and sat down. Salerno knocked
+twice, waited for the second, and came in only after I answered. Salerno: a
+birthmark the shape of a thumbprint, just under the left ear, and a hem
+taken up an inch, the old line still showing.
+
+Lucia Salerno is 37 years old and a chambermaid. Salerno does eleven rooms a
+day and the linen after. Salerno did not move for a while.
+
+“I am listening.”
+
+“Brennan was the one name on the block the papers would have printed,” she
+said. “A japanned cash box was taken from the back lot, which is Brennan’s.”
+
+She kept talking.
+
+“Nothing at the back lot was forced: the lock was turned and the door was
+shut again after. The precinct puts it between ten o’clock and half past
+eleven.”
+
+She went straight on.
+
+“Brennan is not saying much about what was in it. Bledsoe found the door at
+the back lot shut and a japanned cash box gone, at half past eleven.”
+
+She was not finished.
+
+“The precinct came, walked through it, and went. I am Brennan’s tenant.”
+
+She had more of it.
+
+“Brennan put my rent up twice in a year and I paid it twice.”
+
+I knew it.
+
+“What is it you are afraid will be said?”
+
+“I want it established that it was not me, before anybody says otherwise,”
+Salerno said. “I was near enough to it that night to know how it looks. So I
+am saying it first.”
+
+“Who did Brennan cross?”
+
+"Start with Mosley. Mosley owed Brennan four thousand dollars and was past
+due on it, Dashiell." Salerno didn't waste breath explaining further. I took
+twenty dollars the way I always did from Salerno, without counting it.
+
+Salerno is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+I had it on paper. Nobody had moved the money. Nothing is settled. If it is
+anybody yet, it is Mosley.
+```
+
+```
+Midnight. Two rooms over a pawnshop on Eighth Avenue, Chelsea. My knuckle
+had split open again, the same place as last month. It caught on the desk
+drawer every time. Frost had crept across the window glass from the inside.
+
+A woman came up the stairs after midnight, and sat down. Tillman was talking
+before the door shut behind her, about the cab, the weather, anything but
+the reason she'd come. Tillman: nails bitten to the quick on the right hand
+only, and a brooch pinned slightly crooked, like it went on in a hurry.
+
+Odessa Tillman is 47 years old and a curb broker. Tillman trades on the
+street for men who would rather not be seen doing it. She did not lean back.
+
+“Grasso could close a building with a signature, and had closed two,” she
+said. “Grasso was found dead at the benches.”
+
+She had more of it.
+
+“Grasso was not killed at the benches: there is no blood there and no sign
+of a struggle. The coroner puts it between six o’clock and half past seven.”
+
+She went straight on.
+
+“It was poison in a drink. It happened somewhere else.”
+
+I said nothing.
+
+“Where did you find Grasso, and when?”
+
+“I found Grasso,” Tillman said. “Seven o’clock, at the benches. The precinct
+wrote it down as a fall and closed the book on it.”
+
+She did not stop there.
+
+“I am in Grasso’s debt. Grasso carried me through a bad winter and has been
+collecting on it ever since.”
+
+Neither of us spoke.
+
+“And you want it settled without a word said.”
+
+“I want it settled quietly, before it is settled loudly. I am paying to have
+something found and then not said.”
+
+“Who was no friend of Grasso?”
+
+"Start with Dandridge. Dandridge wanted Grasso out of the lease and the
+lease in his name, Dashiell, same as always," Tillman said, and kept talking
+through the part where a hundred dollars landed on my desk. I picked it up
+without breaking Tillman's stride.
+
+Tillman is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+I marked it down. The money had not changed its mind about anything. If I
+had to put money down tonight, Dandridge.
+```
