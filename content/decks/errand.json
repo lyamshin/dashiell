@@ -1,6 +1,6 @@
 [
   {
-    "id": "err-p001",
+    "id": "err-001",
     "deck": "errand",
     "text": "{name} sent me. I came to ask {who} about {subject}.",
     "tags": {
@@ -8,121 +8,516 @@
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder",
-    "notes": "Placeholder (M6 §2.3). Reserved id range err-pNNN; the content pass writes ERR-NNN to about fifteen a pair. Plain register: why he came, in his own words, and nothing the notebook does not hold."
+    "status": "generated"
   },
   {
-    "id": "err-p002",
+    "id": "err-002",
     "deck": "errand",
-    "text": "{name} had pointed me here. The question was for {who}, and it was about {subject}.",
+    "text": "{name} said enough to send me here. I wanted {who}'s word on {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p003",
+    "id": "err-003",
     "deck": "errand",
-    "text": "It was {name}'s lead. I wanted to put {subject} to {who}.",
+    "text": "It was {name}'s lead. The question was for {who}, about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p004",
+    "id": "err-004",
     "deck": "errand",
-    "text": "{name} sent me. I came to ask {who} about {subject}.",
+    "text": "{name} had pointed me here. I came to put {subject} to {who}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-005",
+    "deck": "errand",
+    "text": "{name} put me onto it. I had a question for {who}, about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-006",
+    "deck": "errand",
+    "text": "I had it from {name}. I wanted to hear what {who} knew about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-007",
+    "deck": "errand",
+    "text": "{name} gave me the reason. I meant to ask {who} what {who} knew of {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-008",
+    "deck": "errand",
+    "text": "{name} told me where to look. I wanted {who} on the subject of {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-009",
+    "deck": "errand",
+    "text": "{name}'s own words sent me. I came to hear {who} out on {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-010",
+    "deck": "errand",
+    "text": "It was what {name} said. It was {subject} I wanted from {who}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-011",
+    "deck": "errand",
+    "text": "{name} started me on this. I meant to ask {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-012",
+    "deck": "errand",
+    "text": "{name} had named it first. I wanted a word with {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-013",
+    "deck": "errand",
+    "text": "I came on {name}'s word. The question waiting was for {who}: about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-014",
+    "deck": "errand",
+    "text": "{name} had said as much. I had come to ask {who} about {subject}, nothing more.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-015",
+    "deck": "errand",
+    "text": "{name} set me on it. {who} was who I needed, on the matter of {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-016",
+    "deck": "errand",
+    "text": "{name} sent me. I came to ask {who} what {subject} meant.",
     "tags": {
       "because": "said",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p005",
+    "id": "err-017",
     "deck": "errand",
-    "text": "{name} had pointed me here. I had a question for {who} about {subject}.",
+    "text": "{name} said enough to send me here. I wanted {who}'s word on where {subject} came from.",
     "tags": {
       "because": "said",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p006",
+    "id": "err-018",
     "deck": "errand",
-    "text": "It was {name}'s lead. The question was for {who}, and it was about {subject}.",
+    "text": "It was {name}'s lead. The question was for {who}: what {who} knew of {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p007",
+    "id": "err-019",
     "deck": "errand",
-    "text": "{name} sent me. I came to ask {who} about {subject}.",
+    "text": "{name} had pointed me here. I meant to ask {who} where {subject} fit in.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-020",
+    "deck": "errand",
+    "text": "{name} put me onto it. I wanted an answer from {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-021",
+    "deck": "errand",
+    "text": "I had it from {name}. It was {subject} I wanted to ask {who} about.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-022",
+    "deck": "errand",
+    "text": "{name} gave me the reason. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-023",
+    "deck": "errand",
+    "text": "{name} told me where to look. I came to hear what {who} knew of {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-024",
+    "deck": "errand",
+    "text": "{name}'s own words sent me. I wanted a word with {who} on {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-025",
+    "deck": "errand",
+    "text": "It was what {name} said. The question waiting was for {who}, over {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-026",
+    "deck": "errand",
+    "text": "{name} started me on this. I meant to ask {who} about {subject}, nothing else.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-027",
+    "deck": "errand",
+    "text": "{name} had named it first. I wanted {who} to account for {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-028",
+    "deck": "errand",
+    "text": "I came on {name}'s word. I came to put {subject} to {who}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-029",
+    "deck": "errand",
+    "text": "{name} had said as much. I had one question for {who}: about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-030",
+    "deck": "errand",
+    "text": "{name} set me on it. {who} was who I wanted, on the matter of {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-031",
+    "deck": "errand",
+    "text": "{name} sent me. I meant to ask {who} about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p008",
+    "id": "err-032",
     "deck": "errand",
-    "text": "{name} had pointed me here. I had a question for {who} about {subject}.",
+    "text": "{name} said enough to send me here. I wanted {who}'s view of {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p009",
+    "id": "err-033",
     "deck": "errand",
-    "text": "It was {name}'s lead. The question was for {who}, and it was about {subject}.",
+    "text": "It was {name}'s lead. The question was for {who}: who'd been through {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p010",
+    "id": "err-034",
     "deck": "errand",
-    "text": "{name} sent me. I came to hear {who} tell me the evening.",
+    "text": "{name} had pointed me here. I meant to ask {who} who'd been through {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-035",
+    "deck": "errand",
+    "text": "{name} put me onto it. I wanted to hear from {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-036",
+    "deck": "errand",
+    "text": "I had it from {name}. It was {subject} I wanted {who}'s word on.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-037",
+    "deck": "errand",
+    "text": "{name} gave me the reason. I had one thing to ask {who}: about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-038",
+    "deck": "errand",
+    "text": "{name} told me where to look. I came to hear what {who} could tell me of {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-039",
+    "deck": "errand",
+    "text": "{name}'s own words sent me. I wanted a word with {who} about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-040",
+    "deck": "errand",
+    "text": "It was what {name} said. The question waiting was for {who}, about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-041",
+    "deck": "errand",
+    "text": "{name} started me on this. I meant to ask {who} about {subject}, and nothing past it.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-042",
+    "deck": "errand",
+    "text": "{name} had named it first. I wanted {who} to tell me about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-043",
+    "deck": "errand",
+    "text": "I came on {name}'s word. I came to raise {subject} with {who}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-044",
+    "deck": "errand",
+    "text": "{name} had said as much. I had a single question for {who}, about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-045",
+    "deck": "errand",
+    "text": "{name} set me on it. {who} was who I needed, about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-046",
+    "deck": "errand",
+    "text": "{name} sent me. I came to hear {who} out on the evening.",
     "tags": {
       "because": "said",
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p011",
+    "id": "err-047",
     "deck": "errand",
-    "text": "{name} had pointed me here. I wanted the evening out of {who}, hour by hour.",
+    "text": "{name} said enough to send me here. I wanted {who}'s evening, hour by hour.",
     "tags": {
       "because": "said",
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p012",
+    "id": "err-048",
     "deck": "errand",
     "text": "It was {name}'s lead. The question was for {who}: where the evening went.",
     "tags": {
@@ -130,10 +525,142 @@
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p013",
+    "id": "err-049",
+    "deck": "errand",
+    "text": "{name} had pointed me here. I meant to get {who}'s account of the evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-050",
+    "deck": "errand",
+    "text": "{name} put me onto it. I wanted to hear {who} walk through the evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-051",
+    "deck": "errand",
+    "text": "I had it from {name}. I came to ask {who} to account for the evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-052",
+    "deck": "errand",
+    "text": "{name} gave me the reason. I had one question for {who}: the evening, start to finish.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-053",
+    "deck": "errand",
+    "text": "{name} told me where to look. I wanted {who} to run through the evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-054",
+    "deck": "errand",
+    "text": "{name}'s own words sent me. I meant to hear the evening from {who}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-055",
+    "deck": "errand",
+    "text": "It was what {name} said. I came for {who}'s evening, plain and in order.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-056",
+    "deck": "errand",
+    "text": "{name} started me on this. I wanted to know where {who} had been all evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-057",
+    "deck": "errand",
+    "text": "{name} had named it first. The evening was what I wanted from {who}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-058",
+    "deck": "errand",
+    "text": "I came on {name}'s word. I came to hear {who} account for the hours.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-059",
+    "deck": "errand",
+    "text": "{name} had said as much. I meant to ask {who} to walk me through the evening.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-060",
+    "deck": "errand",
+    "text": "{name} set me on it. I wanted {who}'s evening laid out, start to finish.",
+    "tags": {
+      "because": "said",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-061",
     "deck": "errand",
     "text": "{name} sent me. I came to go through the room.",
     "tags": {
@@ -141,32 +668,164 @@
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p014",
+    "id": "err-062",
     "deck": "errand",
-    "text": "{name} had pointed me here. I meant to go through it properly.",
+    "text": "{name} said enough to send me here. I meant to go through it properly.",
     "tags": {
       "because": "said",
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p015",
+    "id": "err-063",
     "deck": "errand",
-    "text": "It was {name}'s lead. The room wanted going through.",
+    "text": "It was {name}'s lead. I came to search the place.",
     "tags": {
       "because": "said",
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p016",
+    "id": "err-064",
+    "deck": "errand",
+    "text": "{name} had pointed me here. I wanted the room gone through, corner to corner.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-065",
+    "deck": "errand",
+    "text": "{name} put me onto it. I meant to go over the room myself.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-066",
+    "deck": "errand",
+    "text": "I had it from {name}. I came to look the place over.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-067",
+    "deck": "errand",
+    "text": "{name} gave me the reason. I wanted to go through {place} myself.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-068",
+    "deck": "errand",
+    "text": "{name} told me where to look. I meant to search the room, top to bottom.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-069",
+    "deck": "errand",
+    "text": "{name}'s own words sent me. I came to go through what was there.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-070",
+    "deck": "errand",
+    "text": "It was what {name} said. I wanted a proper look at the room.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-071",
+    "deck": "errand",
+    "text": "{name} started me on this. I meant to turn the place over.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-072",
+    "deck": "errand",
+    "text": "{name} had named it first. I came to go through it, drawer by drawer.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-073",
+    "deck": "errand",
+    "text": "I came on {name}'s word. I wanted the room searched, not just looked at.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-074",
+    "deck": "errand",
+    "text": "{name} had said as much. I meant to go through {place} before anyone else did.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-075",
+    "deck": "errand",
+    "text": "{name} set me on it. I came to give the room a proper going-over.",
+    "tags": {
+      "because": "said",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-076",
     "deck": "errand",
     "text": "{name} sent me. I came for {subject}.",
     "tags": {
@@ -174,32 +833,164 @@
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p017",
+    "id": "err-077",
     "deck": "errand",
-    "text": "{name} had pointed me here. I wanted a look at {subject}.",
+    "text": "{name} said enough to send me here. I wanted my own look at {subject}.",
     "tags": {
       "because": "said",
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p018",
+    "id": "err-078",
     "deck": "errand",
-    "text": "It was {name}'s lead. The thing to go through was {subject}.",
+    "text": "It was {name}'s lead. I meant to find {subject}.",
     "tags": {
       "because": "said",
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p019",
+    "id": "err-079",
+    "deck": "errand",
+    "text": "{name} had pointed me here. I came to go through {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-080",
+    "deck": "errand",
+    "text": "{name} put me onto it. I wanted {subject}, and nothing else.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-081",
+    "deck": "errand",
+    "text": "I had it from {name}. I meant to lay hands on {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-082",
+    "deck": "errand",
+    "text": "{name} gave me the reason. I came looking for {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-083",
+    "deck": "errand",
+    "text": "{name} told me where to look. I wanted a proper look at {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-084",
+    "deck": "errand",
+    "text": "{name}'s own words sent me. I meant to turn up {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-085",
+    "deck": "errand",
+    "text": "It was what {name} said. The thing I wanted was {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-086",
+    "deck": "errand",
+    "text": "{name} started me on this. I came to find {subject}, if it was there to find.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-087",
+    "deck": "errand",
+    "text": "{name} had named it first. I wanted to see {subject} for myself.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-088",
+    "deck": "errand",
+    "text": "I came on {name}'s word. I meant to go through the room for {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-089",
+    "deck": "errand",
+    "text": "{name} had said as much. I came to run {subject} down.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-090",
+    "deck": "errand",
+    "text": "{name} set me on it. I wanted {subject} in hand.",
+    "tags": {
+      "because": "said",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-091",
     "deck": "errand",
     "text": "Paperwork at {from} sent me. I came to ask {who} about {subject}.",
     "tags": {
@@ -207,131 +998,659 @@
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p020",
+    "id": "err-092",
     "deck": "errand",
-    "text": "{from} had sent me on. The question was for {who}, and it was about {subject}.",
+    "text": "A paper at {from} pointed here. I wanted {who}'s word on {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p021",
+    "id": "err-093",
     "deck": "errand",
-    "text": "A paper had pointed here. I wanted to put {subject} to {who}.",
+    "text": "{from} had sent me on. The question was for {who}, about {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p022",
+    "id": "err-094",
     "deck": "errand",
-    "text": "Paperwork at {from} sent me. I came to ask {who} about {subject}.",
+    "text": "A paper had named it. I came to put {subject} to {who}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-095",
+    "deck": "errand",
+    "text": "Something on paper at {from} sent me. I had a question for {who}, about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-096",
+    "deck": "errand",
+    "text": "The papers at {from} said as much. I wanted to hear what {who} knew about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-097",
+    "deck": "errand",
+    "text": "I had it from a paper at {from}. I meant to ask {who} what {who} knew of {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-098",
+    "deck": "errand",
+    "text": "What was written at {from} sent me. I wanted {who} on the subject of {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-099",
+    "deck": "errand",
+    "text": "A document at {from} pointed here. I came to hear {who} out on {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-100",
+    "deck": "errand",
+    "text": "{from} had put it on paper. It was {subject} I wanted from {who}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-101",
+    "deck": "errand",
+    "text": "The paper trail ran from {from}. I meant to ask {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-102",
+    "deck": "errand",
+    "text": "It was down on paper, out of {from}. I wanted a word with {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-103",
+    "deck": "errand",
+    "text": "A record at {from} sent me. The question waiting was for {who}: about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-104",
+    "deck": "errand",
+    "text": "Something written at {from} sent me. I had come to ask {who} about {subject}, nothing more.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-105",
+    "deck": "errand",
+    "text": "A note out of {from} pointed here. {who} was who I needed, on the matter of {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-106",
+    "deck": "errand",
+    "text": "Paperwork at {from} sent me. I came to ask {who} what {subject} meant.",
     "tags": {
       "because": "document",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p023",
+    "id": "err-107",
     "deck": "errand",
-    "text": "{from} had sent me on. I had a question for {who} about {subject}.",
+    "text": "A paper at {from} pointed here. I wanted {who}'s word on where {subject} came from.",
     "tags": {
       "because": "document",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p024",
+    "id": "err-108",
     "deck": "errand",
-    "text": "A paper had pointed here. The question was for {who}, and it was about {subject}.",
+    "text": "{from} had sent me on. The question was for {who}: what {who} knew of {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p025",
+    "id": "err-109",
     "deck": "errand",
-    "text": "Paperwork at {from} sent me. I came to ask {who} about {subject}.",
+    "text": "A paper had named it. I meant to ask {who} where {subject} fit in.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-110",
+    "deck": "errand",
+    "text": "Something on paper at {from} sent me. I wanted an answer from {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-111",
+    "deck": "errand",
+    "text": "The papers at {from} said as much. It was {subject} I wanted to ask {who} about.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-112",
+    "deck": "errand",
+    "text": "I had it from a paper at {from}. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-113",
+    "deck": "errand",
+    "text": "What was written at {from} sent me. I came to hear what {who} knew of {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-114",
+    "deck": "errand",
+    "text": "A document at {from} pointed here. I wanted a word with {who} on {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-115",
+    "deck": "errand",
+    "text": "{from} had put it on paper. The question waiting was for {who}, over {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-116",
+    "deck": "errand",
+    "text": "The paper trail ran from {from}. I meant to ask {who} about {subject}, nothing else.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-117",
+    "deck": "errand",
+    "text": "It was down on paper, out of {from}. I wanted {who} to account for {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-118",
+    "deck": "errand",
+    "text": "A record at {from} sent me. I came to put {subject} to {who}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-119",
+    "deck": "errand",
+    "text": "Something written at {from} sent me. I had one question for {who}: about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-120",
+    "deck": "errand",
+    "text": "A note out of {from} pointed here. {who} was who I wanted, on the matter of {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-121",
+    "deck": "errand",
+    "text": "Paperwork at {from} sent me. I meant to ask {who} about {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p026",
+    "id": "err-122",
     "deck": "errand",
-    "text": "{from} had sent me on. I had a question for {who} about {subject}.",
+    "text": "A paper at {from} pointed here. I wanted {who}'s view of {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p027",
+    "id": "err-123",
     "deck": "errand",
-    "text": "A paper had pointed here. The question was for {who}, and it was about {subject}.",
+    "text": "{from} had sent me on. The question was for {who}: who'd been through {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p028",
+    "id": "err-124",
     "deck": "errand",
-    "text": "Paperwork at {from} sent me. I came to hear {who} tell me the evening.",
+    "text": "A paper had named it. I meant to ask {who} who'd been through {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-125",
+    "deck": "errand",
+    "text": "Something on paper at {from} sent me. I wanted to hear from {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-126",
+    "deck": "errand",
+    "text": "The papers at {from} said as much. It was {subject} I wanted {who}'s word on.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-127",
+    "deck": "errand",
+    "text": "I had it from a paper at {from}. I had one thing to ask {who}: about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-128",
+    "deck": "errand",
+    "text": "What was written at {from} sent me. I came to hear what {who} could tell me of {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-129",
+    "deck": "errand",
+    "text": "A document at {from} pointed here. I wanted a word with {who} about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-130",
+    "deck": "errand",
+    "text": "{from} had put it on paper. The question waiting was for {who}, about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-131",
+    "deck": "errand",
+    "text": "The paper trail ran from {from}. I meant to ask {who} about {subject}, and nothing past it.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-132",
+    "deck": "errand",
+    "text": "It was down on paper, out of {from}. I wanted {who} to tell me about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-133",
+    "deck": "errand",
+    "text": "A record at {from} sent me. I came to raise {subject} with {who}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-134",
+    "deck": "errand",
+    "text": "Something written at {from} sent me. I had a single question for {who}, about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-135",
+    "deck": "errand",
+    "text": "A note out of {from} pointed here. {who} was who I needed, about {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-136",
+    "deck": "errand",
+    "text": "Paperwork at {from} sent me. I came to hear {who} out on the evening.",
     "tags": {
       "because": "document",
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p029",
+    "id": "err-137",
     "deck": "errand",
-    "text": "{from} had sent me on. I wanted the evening out of {who}, hour by hour.",
+    "text": "A paper at {from} pointed here. I wanted {who}'s evening, hour by hour.",
     "tags": {
       "because": "document",
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p030",
+    "id": "err-138",
     "deck": "errand",
-    "text": "A paper had pointed here. The question was for {who}: where the evening went.",
+    "text": "{from} had sent me on. The question was for {who}: where the evening went.",
     "tags": {
       "because": "document",
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p031",
+    "id": "err-139",
+    "deck": "errand",
+    "text": "A paper had named it. I meant to get {who}'s account of the evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-140",
+    "deck": "errand",
+    "text": "Something on paper at {from} sent me. I wanted to hear {who} walk through the evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-141",
+    "deck": "errand",
+    "text": "The papers at {from} said as much. I came to ask {who} to account for the evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-142",
+    "deck": "errand",
+    "text": "I had it from a paper at {from}. I had one question for {who}: the evening, start to finish.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-143",
+    "deck": "errand",
+    "text": "What was written at {from} sent me. I wanted {who} to run through the evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-144",
+    "deck": "errand",
+    "text": "A document at {from} pointed here. I meant to hear the evening from {who}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-145",
+    "deck": "errand",
+    "text": "{from} had put it on paper. I came for {who}'s evening, plain and in order.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-146",
+    "deck": "errand",
+    "text": "The paper trail ran from {from}. I wanted to know where {who} had been all evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-147",
+    "deck": "errand",
+    "text": "It was down on paper, out of {from}. The evening was what I wanted from {who}.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-148",
+    "deck": "errand",
+    "text": "A record at {from} sent me. I came to hear {who} account for the hours.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-149",
+    "deck": "errand",
+    "text": "Something written at {from} sent me. I meant to ask {who} to walk me through the evening.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-150",
+    "deck": "errand",
+    "text": "A note out of {from} pointed here. I wanted {who}'s evening laid out, start to finish.",
+    "tags": {
+      "because": "document",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-151",
     "deck": "errand",
     "text": "Paperwork at {from} sent me. I came to go through the room.",
     "tags": {
@@ -339,32 +1658,164 @@
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p032",
+    "id": "err-152",
     "deck": "errand",
-    "text": "{from} had sent me on. I meant to go through it properly.",
+    "text": "A paper at {from} pointed here. I meant to go through it properly.",
     "tags": {
       "because": "document",
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p033",
+    "id": "err-153",
     "deck": "errand",
-    "text": "A paper had pointed here. The room wanted going through.",
+    "text": "{from} had sent me on. I came to search the place.",
     "tags": {
       "because": "document",
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p034",
+    "id": "err-154",
+    "deck": "errand",
+    "text": "A paper had named it. I wanted the room gone through, corner to corner.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-155",
+    "deck": "errand",
+    "text": "Something on paper at {from} sent me. I meant to go over the room myself.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-156",
+    "deck": "errand",
+    "text": "The papers at {from} said as much. I came to look the place over.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-157",
+    "deck": "errand",
+    "text": "I had it from a paper at {from}. I wanted to go through {place} myself.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-158",
+    "deck": "errand",
+    "text": "What was written at {from} sent me. I meant to search the room, top to bottom.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-159",
+    "deck": "errand",
+    "text": "A document at {from} pointed here. I came to go through what was there.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-160",
+    "deck": "errand",
+    "text": "{from} had put it on paper. I wanted a proper look at the room.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-161",
+    "deck": "errand",
+    "text": "The paper trail ran from {from}. I meant to turn the place over.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-162",
+    "deck": "errand",
+    "text": "It was down on paper, out of {from}. I came to go through it, drawer by drawer.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-163",
+    "deck": "errand",
+    "text": "A record at {from} sent me. I wanted the room searched, not just looked at.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-164",
+    "deck": "errand",
+    "text": "Something written at {from} sent me. I meant to go through {place} before anyone else did.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-165",
+    "deck": "errand",
+    "text": "A note out of {from} pointed here. I came to give the room a proper going-over.",
+    "tags": {
+      "because": "document",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-166",
     "deck": "errand",
     "text": "Paperwork at {from} sent me. I came for {subject}.",
     "tags": {
@@ -372,32 +1823,164 @@
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p035",
+    "id": "err-167",
     "deck": "errand",
-    "text": "{from} had sent me on. I wanted a look at {subject}.",
+    "text": "A paper at {from} pointed here. I wanted my own look at {subject}.",
     "tags": {
       "because": "document",
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p036",
+    "id": "err-168",
     "deck": "errand",
-    "text": "A paper had pointed here. The thing to go through was {subject}.",
+    "text": "{from} had sent me on. I meant to find {subject}.",
     "tags": {
       "because": "document",
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p037",
+    "id": "err-169",
+    "deck": "errand",
+    "text": "A paper had named it. I came to go through {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-170",
+    "deck": "errand",
+    "text": "Something on paper at {from} sent me. I wanted {subject}, and nothing else.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-171",
+    "deck": "errand",
+    "text": "The papers at {from} said as much. I meant to lay hands on {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-172",
+    "deck": "errand",
+    "text": "I had it from a paper at {from}. I came looking for {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-173",
+    "deck": "errand",
+    "text": "What was written at {from} sent me. I wanted a proper look at {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-174",
+    "deck": "errand",
+    "text": "A document at {from} pointed here. I meant to turn up {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-175",
+    "deck": "errand",
+    "text": "{from} had put it on paper. The thing I wanted was {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-176",
+    "deck": "errand",
+    "text": "The paper trail ran from {from}. I came to find {subject}, if it was there to find.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-177",
+    "deck": "errand",
+    "text": "It was down on paper, out of {from}. I wanted to see {subject} for myself.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-178",
+    "deck": "errand",
+    "text": "A record at {from} sent me. I meant to go through the room for {subject}.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-179",
+    "deck": "errand",
+    "text": "Something written at {from} sent me. I came to run {subject} down.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-180",
+    "deck": "errand",
+    "text": "A note out of {from} pointed here. I wanted {subject} in hand.",
+    "tags": {
+      "because": "document",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-181",
     "deck": "errand",
     "text": "Something at {from} sent me. I came to ask {who} about {subject}.",
     "tags": {
@@ -405,120 +1988,516 @@
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p038",
+    "id": "err-182",
     "deck": "errand",
-    "text": "{from} gave me a reason. The question was for {who}, and it was about {subject}.",
+    "text": "{from} gave me a reason. I wanted {who}'s word on {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p039",
+    "id": "err-183",
     "deck": "errand",
-    "text": "What I found sent me here. I wanted to put {subject} to {who}.",
+    "text": "What I found sent me here. The question was for {who}, about {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-person"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p040",
+    "id": "err-184",
     "deck": "errand",
-    "text": "Something at {from} sent me. I came to ask {who} about {subject}.",
+    "text": "A thing at {from} pointed here. I came to put {subject} to {who}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-185",
+    "deck": "errand",
+    "text": "What turned up at {from} sent me. I had a question for {who}, about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-186",
+    "deck": "errand",
+    "text": "I found something at {from} that pointed here. I wanted to hear what {who} knew about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-187",
+    "deck": "errand",
+    "text": "{from} handed me a reason. I meant to ask {who} what {who} knew of {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-188",
+    "deck": "errand",
+    "text": "It was what I found at {from}. I wanted {who} on the subject of {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-189",
+    "deck": "errand",
+    "text": "A find at {from} sent me on. I came to hear {who} out on {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-190",
+    "deck": "errand",
+    "text": "Something turned up at {from}. It was {subject} I wanted from {who}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-191",
+    "deck": "errand",
+    "text": "What I picked up at {from} sent me. I meant to ask {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-192",
+    "deck": "errand",
+    "text": "A thing found at {from} pointed me here. I wanted a word with {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-193",
+    "deck": "errand",
+    "text": "It came out of {from}. The question waiting was for {who}: about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-194",
+    "deck": "errand",
+    "text": "What was lying at {from} sent me. I had come to ask {who} about {subject}, nothing more.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-195",
+    "deck": "errand",
+    "text": "The find at {from} sent me on. {who} was who I needed, on the matter of {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-person"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-196",
+    "deck": "errand",
+    "text": "Something at {from} sent me. I came to ask {who} what {subject} meant.",
     "tags": {
       "because": "found",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p041",
+    "id": "err-197",
     "deck": "errand",
-    "text": "{from} gave me a reason. I had a question for {who} about {subject}.",
+    "text": "{from} gave me a reason. I wanted {who}'s word on where {subject} came from.",
     "tags": {
       "because": "found",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p042",
+    "id": "err-198",
     "deck": "errand",
-    "text": "What I found sent me here. The question was for {who}, and it was about {subject}.",
+    "text": "What I found sent me here. The question was for {who}: what {who} knew of {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p043",
+    "id": "err-199",
     "deck": "errand",
-    "text": "Something at {from} sent me. I came to ask {who} about {subject}.",
+    "text": "A thing at {from} pointed here. I meant to ask {who} where {subject} fit in.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-200",
+    "deck": "errand",
+    "text": "What turned up at {from} sent me. I wanted an answer from {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-201",
+    "deck": "errand",
+    "text": "I found something at {from} that pointed here. It was {subject} I wanted to ask {who} about.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-202",
+    "deck": "errand",
+    "text": "{from} handed me a reason. I had a question for {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-203",
+    "deck": "errand",
+    "text": "It was what I found at {from}. I came to hear what {who} knew of {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-204",
+    "deck": "errand",
+    "text": "A find at {from} sent me on. I wanted a word with {who} on {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-205",
+    "deck": "errand",
+    "text": "Something turned up at {from}. The question waiting was for {who}, over {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-206",
+    "deck": "errand",
+    "text": "What I picked up at {from} sent me. I meant to ask {who} about {subject}, nothing else.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-207",
+    "deck": "errand",
+    "text": "A thing found at {from} pointed me here. I wanted {who} to account for {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-208",
+    "deck": "errand",
+    "text": "It came out of {from}. I came to put {subject} to {who}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-209",
+    "deck": "errand",
+    "text": "What was lying at {from} sent me. I had one question for {who}: about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-210",
+    "deck": "errand",
+    "text": "The find at {from} sent me on. {who} was who I wanted, on the matter of {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-211",
+    "deck": "errand",
+    "text": "Something at {from} sent me. I meant to ask {who} about {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p044",
+    "id": "err-212",
     "deck": "errand",
-    "text": "{from} gave me a reason. I had a question for {who} about {subject}.",
+    "text": "{from} gave me a reason. I wanted {who}'s view of {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p045",
+    "id": "err-213",
     "deck": "errand",
-    "text": "What I found sent me here. The question was for {who}, and it was about {subject}.",
+    "text": "What I found sent me here. The question was for {who}: who'd been through {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-place"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p046",
+    "id": "err-214",
     "deck": "errand",
-    "text": "Something at {from} sent me. I came to hear {who} tell me the evening.",
+    "text": "A thing at {from} pointed here. I meant to ask {who} who'd been through {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-215",
+    "deck": "errand",
+    "text": "What turned up at {from} sent me. I wanted to hear from {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-216",
+    "deck": "errand",
+    "text": "I found something at {from} that pointed here. It was {subject} I wanted {who}'s word on.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-217",
+    "deck": "errand",
+    "text": "{from} handed me a reason. I had one thing to ask {who}: about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-218",
+    "deck": "errand",
+    "text": "It was what I found at {from}. I came to hear what {who} could tell me of {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-219",
+    "deck": "errand",
+    "text": "A find at {from} sent me on. I wanted a word with {who} about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-220",
+    "deck": "errand",
+    "text": "Something turned up at {from}. The question waiting was for {who}, about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-221",
+    "deck": "errand",
+    "text": "What I picked up at {from} sent me. I meant to ask {who} about {subject}, and nothing past it.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-222",
+    "deck": "errand",
+    "text": "A thing found at {from} pointed me here. I wanted {who} to tell me about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-223",
+    "deck": "errand",
+    "text": "It came out of {from}. I came to raise {subject} with {who}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-224",
+    "deck": "errand",
+    "text": "What was lying at {from} sent me. I had a single question for {who}, about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-225",
+    "deck": "errand",
+    "text": "The find at {from} sent me on. {who} was who I needed, about {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-place"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-226",
+    "deck": "errand",
+    "text": "Something at {from} sent me. I came to hear {who} out on the evening.",
     "tags": {
       "because": "found",
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p047",
+    "id": "err-227",
     "deck": "errand",
-    "text": "{from} gave me a reason. I wanted the evening out of {who}, hour by hour.",
+    "text": "{from} gave me a reason. I wanted {who}'s evening, hour by hour.",
     "tags": {
       "because": "found",
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p048",
+    "id": "err-228",
     "deck": "errand",
     "text": "What I found sent me here. The question was for {who}: where the evening went.",
     "tags": {
@@ -526,10 +2505,142 @@
       "for": "ask-evening"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p049",
+    "id": "err-229",
+    "deck": "errand",
+    "text": "A thing at {from} pointed here. I meant to get {who}'s account of the evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-230",
+    "deck": "errand",
+    "text": "What turned up at {from} sent me. I wanted to hear {who} walk through the evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-231",
+    "deck": "errand",
+    "text": "I found something at {from} that pointed here. I came to ask {who} to account for the evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-232",
+    "deck": "errand",
+    "text": "{from} handed me a reason. I had one question for {who}: the evening, start to finish.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-233",
+    "deck": "errand",
+    "text": "It was what I found at {from}. I wanted {who} to run through the evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-234",
+    "deck": "errand",
+    "text": "A find at {from} sent me on. I meant to hear the evening from {who}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-235",
+    "deck": "errand",
+    "text": "Something turned up at {from}. I came for {who}'s evening, plain and in order.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-236",
+    "deck": "errand",
+    "text": "What I picked up at {from} sent me. I wanted to know where {who} had been all evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-237",
+    "deck": "errand",
+    "text": "A thing found at {from} pointed me here. The evening was what I wanted from {who}.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-238",
+    "deck": "errand",
+    "text": "It came out of {from}. I came to hear {who} account for the hours.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-239",
+    "deck": "errand",
+    "text": "What was lying at {from} sent me. I meant to ask {who} to walk me through the evening.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-240",
+    "deck": "errand",
+    "text": "The find at {from} sent me on. I wanted {who}'s evening laid out, start to finish.",
+    "tags": {
+      "because": "found",
+      "for": "ask-evening"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-241",
     "deck": "errand",
     "text": "Something at {from} sent me. I came to go through the room.",
     "tags": {
@@ -537,10 +2648,10 @@
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p050",
+    "id": "err-242",
     "deck": "errand",
     "text": "{from} gave me a reason. I meant to go through it properly.",
     "tags": {
@@ -548,21 +2659,153 @@
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p051",
+    "id": "err-243",
     "deck": "errand",
-    "text": "What I found sent me here. The room wanted going through.",
+    "text": "What I found sent me here. I came to search the place.",
     "tags": {
       "because": "found",
       "for": "search-room"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p052",
+    "id": "err-244",
+    "deck": "errand",
+    "text": "A thing at {from} pointed here. I wanted the room gone through, corner to corner.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-245",
+    "deck": "errand",
+    "text": "What turned up at {from} sent me. I meant to go over the room myself.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-246",
+    "deck": "errand",
+    "text": "I found something at {from} that pointed here. I came to look the place over.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-247",
+    "deck": "errand",
+    "text": "{from} handed me a reason. I wanted to go through {place} myself.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-248",
+    "deck": "errand",
+    "text": "It was what I found at {from}. I meant to search the room, top to bottom.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-249",
+    "deck": "errand",
+    "text": "A find at {from} sent me on. I came to go through what was there.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-250",
+    "deck": "errand",
+    "text": "Something turned up at {from}. I wanted a proper look at the room.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-251",
+    "deck": "errand",
+    "text": "What I picked up at {from} sent me. I meant to turn the place over.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-252",
+    "deck": "errand",
+    "text": "A thing found at {from} pointed me here. I came to go through it, drawer by drawer.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-253",
+    "deck": "errand",
+    "text": "It came out of {from}. I wanted the room searched, not just looked at.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-254",
+    "deck": "errand",
+    "text": "What was lying at {from} sent me. I meant to go through {place} before anyone else did.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-255",
+    "deck": "errand",
+    "text": "The find at {from} sent me on. I came to give the room a proper going-over.",
+    "tags": {
+      "because": "found",
+      "for": "search-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-256",
     "deck": "errand",
     "text": "Something at {from} sent me. I came for {subject}.",
     "tags": {
@@ -570,32 +2813,164 @@
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p053",
+    "id": "err-257",
     "deck": "errand",
-    "text": "{from} gave me a reason. I wanted a look at {subject}.",
+    "text": "{from} gave me a reason. I wanted my own look at {subject}.",
     "tags": {
       "because": "found",
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p054",
+    "id": "err-258",
     "deck": "errand",
-    "text": "What I found sent me here. The thing to go through was {subject}.",
+    "text": "What I found sent me here. I meant to find {subject}.",
     "tags": {
       "because": "found",
       "for": "search-thing"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p055",
+    "id": "err-259",
+    "deck": "errand",
+    "text": "A thing at {from} pointed here. I came to go through {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-260",
+    "deck": "errand",
+    "text": "What turned up at {from} sent me. I wanted {subject}, and nothing else.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-261",
+    "deck": "errand",
+    "text": "I found something at {from} that pointed here. I meant to lay hands on {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-262",
+    "deck": "errand",
+    "text": "{from} handed me a reason. I came looking for {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-263",
+    "deck": "errand",
+    "text": "It was what I found at {from}. I wanted a proper look at {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-264",
+    "deck": "errand",
+    "text": "A find at {from} sent me on. I meant to turn up {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-265",
+    "deck": "errand",
+    "text": "Something turned up at {from}. The thing I wanted was {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-266",
+    "deck": "errand",
+    "text": "What I picked up at {from} sent me. I came to find {subject}, if it was there to find.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-267",
+    "deck": "errand",
+    "text": "A thing found at {from} pointed me here. I wanted to see {subject} for myself.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-268",
+    "deck": "errand",
+    "text": "It came out of {from}. I meant to go through the room for {subject}.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-269",
+    "deck": "errand",
+    "text": "What was lying at {from} sent me. I came to run {subject} down.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-270",
+    "deck": "errand",
+    "text": "The find at {from} sent me on. I wanted {subject} in hand.",
+    "tags": {
+      "because": "found",
+      "for": "search-thing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-271",
     "deck": "errand",
     "text": "Nobody sent me. I came to see.",
     "tags": {
@@ -603,21 +2978,32 @@
       "for": "none"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p056",
+    "id": "err-272",
     "deck": "errand",
-    "text": "Nothing in the notebook pointed at {place}. I came to look at it for myself.",
+    "text": "No one sent me to {place}. I came to look for myself.",
     "tags": {
       "because": "none",
       "for": "none"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p057",
+    "id": "err-273",
+    "deck": "errand",
+    "text": "Nothing in the notebook pointed at {place}. I came anyway.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-274",
     "deck": "errand",
     "text": "No lead brought me to {place}. I wanted to see it.",
     "tags": {
@@ -625,10 +3011,131 @@
       "for": "none"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p058",
+    "id": "err-275",
+    "deck": "errand",
+    "text": "I had no reason but to look, so I went to {place}.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-276",
+    "deck": "errand",
+    "text": "Nobody had sent me to {place}. I went on my own account.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-277",
+    "deck": "errand",
+    "text": "No thread led to {place}. I went to see it for myself.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-278",
+    "deck": "errand",
+    "text": "I came to {place} on nothing at all.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-279",
+    "deck": "errand",
+    "text": "Nothing pointed at {place}. I went to look it over.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-280",
+    "deck": "errand",
+    "text": "No one had named {place}. I wanted to see it all the same.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-281",
+    "deck": "errand",
+    "text": "I had nothing on {place}. I went to find out.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-282",
+    "deck": "errand",
+    "text": "Nobody had mentioned {place}. I went to see what was there.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-283",
+    "deck": "errand",
+    "text": "I came to {place} because nobody had told me not to.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-284",
+    "deck": "errand",
+    "text": "No lead touched {place}. I went to look anyway.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-285",
+    "deck": "errand",
+    "text": "I had no reason for {place}. I went to make one.",
+    "tags": {
+      "because": "none",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-286",
     "deck": "errand",
     "text": "Nobody sent me back. I came back to see {place} again.",
     "tags": {
@@ -637,10 +3144,10 @@
       "searched": "no"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p059",
+    "id": "err-287",
     "deck": "errand",
     "text": "Nothing new pointed at {place}. I came back all the same.",
     "tags": {
@@ -649,10 +3156,10 @@
       "searched": "no"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p060",
+    "id": "err-288",
     "deck": "errand",
     "text": "I came back to {place} on nothing but a hunch.",
     "tags": {
@@ -661,10 +3168,154 @@
       "searched": "no"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p061",
+    "id": "err-289",
+    "deck": "errand",
+    "text": "No fresh lead sent me to {place}. I went back anyway.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-290",
+    "deck": "errand",
+    "text": "I had nothing new on {place}. I went back to look again.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-291",
+    "deck": "errand",
+    "text": "Nobody had sent me back to {place}. I went on my own account.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-292",
+    "deck": "errand",
+    "text": "I came back to {place} for another look.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-293",
+    "deck": "errand",
+    "text": "Nothing pointed me back to {place}. I went all the same.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-294",
+    "deck": "errand",
+    "text": "I had no new reason for {place}. I went back regardless.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-295",
+    "deck": "errand",
+    "text": "No one sent me back to {place}. I wanted another look.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-296",
+    "deck": "errand",
+    "text": "I went back to {place} without being told to.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-297",
+    "deck": "errand",
+    "text": "Nothing new had turned up on {place}. I went back to check.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-298",
+    "deck": "errand",
+    "text": "I came back to {place} to look again, nothing more.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-299",
+    "deck": "errand",
+    "text": "No lead called me back to {place}. I went anyway.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-300",
+    "deck": "errand",
+    "text": "I had no fresh word on {place}. I went back to see it again.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-301",
     "deck": "errand",
     "text": "I had been through {place} already. I came back anyway, to stand in it and think.",
     "tags": {
@@ -673,10 +3324,10 @@
       "searched": "yes"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p062",
+    "id": "err-302",
     "deck": "errand",
     "text": "I came back to {place}, which I had already gone through once.",
     "tags": {
@@ -685,10 +3336,10 @@
       "searched": "yes"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p063",
+    "id": "err-303",
     "deck": "errand",
     "text": "Back at {place}, where I had been through everything once already.",
     "tags": {
@@ -697,10 +3348,154 @@
       "searched": "yes"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p064",
+    "id": "err-304",
+    "deck": "errand",
+    "text": "I had gone through {place} once. I came back to think it over.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-305",
+    "deck": "errand",
+    "text": "There was nothing left in {place} to find. I came back anyway.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-306",
+    "deck": "errand",
+    "text": "I had searched {place} already. I came back to see it with fresh eyes.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-307",
+    "deck": "errand",
+    "text": "I came back to {place}, though I had turned it over once already.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-308",
+    "deck": "errand",
+    "text": "I had gone through {place} once, and came back all the same.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-309",
+    "deck": "errand",
+    "text": "Nothing was left to find at {place}. I went back to stand in it.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-310",
+    "deck": "errand",
+    "text": "I came back to {place} to see it again, not to search it.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-311",
+    "deck": "errand",
+    "text": "I had already been through {place}. I went back to think, not to look.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-312",
+    "deck": "errand",
+    "text": "I came back to {place}. It had already given up what it had.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-313",
+    "deck": "errand",
+    "text": "I had gone over {place} once. I came back to be sure.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-314",
+    "deck": "errand",
+    "text": "There was nothing new at {place}. I came back to see it once more.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-315",
+    "deck": "errand",
+    "text": "I went back to {place}, already searched, to look at it again.",
+    "tags": {
+      "because": "return",
+      "for": "none",
+      "searched": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-316",
     "deck": "errand",
     "text": "I went back to {place} to think.",
     "tags": {
@@ -708,10 +3503,10 @@
       "for": "none"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p065",
+    "id": "err-317",
     "deck": "errand",
     "text": "Back to the desk at {place}. Some things only add up sitting down.",
     "tags": {
@@ -719,10 +3514,10 @@
       "for": "none"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "err-p066",
+    "id": "err-318",
     "deck": "errand",
     "text": "I went back to {place} and the chair behind the desk.",
     "tags": {
@@ -730,6 +3525,138 @@
       "for": "none"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
+  },
+  {
+    "id": "err-319",
+    "deck": "errand",
+    "text": "I went back to {place} to work it through.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-320",
+    "deck": "errand",
+    "text": "Nothing left to do but think. I went back to {place}.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-321",
+    "deck": "errand",
+    "text": "I went back to {place}. A case comes together sitting down, not standing up.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-322",
+    "deck": "errand",
+    "text": "I went back to {place} to put it in order.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-323",
+    "deck": "errand",
+    "text": "I went back to {place}, where the desk was waiting.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-324",
+    "deck": "errand",
+    "text": "I went back to {place} to sit with what I had.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-325",
+    "deck": "errand",
+    "text": "It was time to sit down with what I had. I went back to {place}.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-326",
+    "deck": "errand",
+    "text": "I went back to {place} to see what I had.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-327",
+    "deck": "errand",
+    "text": "I went back to {place}, to lay it all out.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-328",
+    "deck": "errand",
+    "text": "I went back to {place}. The desk was where the thinking happened.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-329",
+    "deck": "errand",
+    "text": "I went back to {place} to make sense of it.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-330",
+    "deck": "errand",
+    "text": "I went back to {place}, to look at what I had written down.",
+    "tags": {
+      "because": "office",
+      "for": "none"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]
