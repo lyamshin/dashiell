@@ -9,6 +9,11 @@
       "intensity": 1,
       "watcher": "bartender"
     },
+    "motifs": [
+      "quiet",
+      "footsteps",
+      "counter"
+    ],
     "status": "generated"
   },
   {
@@ -21,6 +26,11 @@
       "intensity": 1,
       "watcher": "bartender"
     },
+    "motifs": [
+      "radio",
+      "traffic",
+      "counter"
+    ],
     "status": "generated"
   },
   {
@@ -33,6 +43,10 @@
       "intensity": 2,
       "watcher": "bartender"
     },
+    "motifs": [
+      "drink",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -45,6 +59,10 @@
       "intensity": 1,
       "watcher": "doorman"
     },
+    "motifs": [
+      "door",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -57,6 +75,9 @@
       "intensity": 2,
       "watcher": "doorman"
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -69,6 +90,11 @@
       "intensity": 1,
       "watcher": "newsstand"
     },
+    "motifs": [
+      "paper",
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -81,6 +107,10 @@
       "intensity": 2,
       "watcher": "newsstand"
     },
+    "motifs": [
+      "street",
+      "wind"
+    ],
     "status": "generated"
   },
   {
@@ -93,6 +123,11 @@
       "intensity": 1,
       "watcher": "counterman"
     },
+    "motifs": [
+      "money",
+      "glass",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -105,6 +140,11 @@
       "intensity": 2,
       "watcher": "counterman"
     },
+    "motifs": [
+      "drink",
+      "door",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -117,6 +157,11 @@
       "intensity": 1,
       "watcher": "ticket-taker"
     },
+    "motifs": [
+      "theater",
+      "lamp",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -129,6 +174,11 @@
       "intensity": 2,
       "watcher": "ticket-taker"
     },
+    "motifs": [
+      "hands",
+      "eyes",
+      "theater"
+    ],
     "status": "generated"
   },
   {
@@ -141,6 +191,9 @@
       "intensity": 1,
       "watcher": "elevator-man"
     },
+    "motifs": [
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -153,6 +206,11 @@
       "intensity": 2,
       "watcher": "elevator-man"
     },
+    "motifs": [
+      "machinery",
+      "paper",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -165,6 +223,11 @@
       "intensity": 1,
       "watcher": "landlady"
     },
+    "motifs": [
+      "door",
+      "stairs",
+      "breath"
+    ],
     "status": "generated"
   },
   {
@@ -177,6 +240,11 @@
       "intensity": 2,
       "watcher": "landlady"
     },
+    "motifs": [
+      "stairs",
+      "money",
+      "kitchen"
+    ],
     "status": "generated"
   },
   {
@@ -189,6 +257,10 @@
       "intensity": 1,
       "watcher": "beat-cop"
     },
+    "motifs": [
+      "street",
+      "el"
+    ],
     "status": "generated"
   },
   {
@@ -201,6 +273,9 @@
       "intensity": 2,
       "watcher": "beat-cop"
     },
+    "motifs": [
+      "el"
+    ],
     "status": "generated"
   },
   {
@@ -213,6 +288,11 @@
       "intensity": 1,
       "watcher": "beat-cop"
     },
+    "motifs": [
+      "snow",
+      "el",
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -225,6 +305,9 @@
       "intensity": 1,
       "watcher": "cabbie"
     },
+    "motifs": [
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -237,6 +320,9 @@
       "intensity": 1,
       "watcher": "cabbie"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -249,6 +335,11 @@
       "intensity": 1,
       "watcher": "druggist"
     },
+    "motifs": [
+      "counter",
+      "medicine",
+      "food"
+    ],
     "status": "generated"
   },
   {
@@ -261,6 +352,10 @@
       "intensity": 2,
       "watcher": "druggist"
     },
+    "motifs": [
+      "counter",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -272,6 +367,11 @@
       "placeKind": "private",
       "intensity": 2
     },
+    "motifs": [
+      "cigarette",
+      "ledger",
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -283,6 +383,10 @@
       "placeKind": "private",
       "intensity": 2
     },
+    "motifs": [
+      "quiet",
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -294,6 +398,11 @@
       "placeKind": "private",
       "intensity": 3
     },
+    "motifs": [
+      "quiet",
+      "coat",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -305,6 +414,9 @@
       "placeKind": "private",
       "intensity": 2
     },
+    "motifs": [
+      "kitchen"
+    ],
     "status": "generated"
   },
   {
@@ -316,6 +428,11 @@
       "placeKind": "private",
       "intensity": 1
     },
+    "motifs": [
+      "heat",
+      "paper",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -327,6 +444,11 @@
       "placeKind": "private",
       "intensity": 1
     },
+    "motifs": [
+      "door",
+      "roof",
+      "animals"
+    ],
     "status": "generated"
   },
   {
@@ -338,6 +460,9 @@
       "placeKind": "private",
       "intensity": 3
     },
+    "motifs": [
+      "el"
+    ],
     "status": "generated"
   },
   {
@@ -349,6 +474,11 @@
       "placeKind": "private",
       "intensity": 2
     },
+    "motifs": [
+      "clock",
+      "alley",
+      "market"
+    ],
     "status": "generated"
   },
   {
@@ -360,6 +490,11 @@
       "placeKind": "private",
       "intensity": 2
     },
+    "motifs": [
+      "lamp",
+      "door",
+      "alley"
+    ],
     "status": "generated"
   },
   {
@@ -371,6 +506,11 @@
       "placeKind": "private",
       "intensity": 1
     },
+    "motifs": [
+      "rain",
+      "animals"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -382,6 +522,11 @@
       "placeKind": "private",
       "intensity": 1
     },
+    "motifs": [
+      "door",
+      "glass",
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -393,6 +538,11 @@
       "placeKind": "private",
       "intensity": 1
     },
+    "motifs": [
+      "drink",
+      "paper",
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -404,6 +554,9 @@
       "placeKind": "private",
       "intensity": 1
     },
+    "motifs": [
+      "piano"
+    ],
     "status": "generated"
   },
   {
@@ -415,6 +568,9 @@
       "placeKind": "private",
       "intensity": 2
     },
+    "motifs": [
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -426,6 +582,12 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [
+      "church",
+      "cold",
+      "memory"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -437,6 +599,10 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [
+      "traffic",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -448,6 +614,7 @@
       "placeKind": "public",
       "intensity": 1
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -459,6 +626,11 @@
       "placeKind": "public",
       "intensity": 2
     },
+    "motifs": [
+      "wind",
+      "paper",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -470,6 +642,10 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [
+      "cigarette",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -481,6 +657,11 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [
+      "room",
+      "quiet",
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -492,6 +673,11 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [
+      "heat",
+      "drink",
+      "mirror"
+    ],
     "status": "generated"
   },
   {
@@ -503,6 +689,7 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -514,6 +701,11 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [
+      "heat",
+      "glass",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -525,6 +717,11 @@
       "placeKind": "semi",
       "intensity": 2
     },
+    "motifs": [
+      "paper",
+      "lamp",
+      "kitchen"
+    ],
     "status": "generated"
   },
   {
@@ -536,6 +733,10 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -547,6 +748,10 @@
       "placeKind": "semi",
       "intensity": 1
     },
+    "motifs": [
+      "radio",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -558,6 +763,9 @@
       "placeKind": "public",
       "intensity": 1
     },
+    "motifs": [
+      "sea"
+    ],
     "status": "generated"
   },
   {
@@ -569,6 +777,12 @@
       "placeKind": "public",
       "intensity": 2
     },
+    "motifs": [
+      "sea",
+      "fog",
+      "coat"
+    ],
+    "weather": "fog",
     "status": "generated"
   },
   {
@@ -580,6 +794,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "room"
+    ],
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range plc-pNNN; the content deck uses PLACE-NNN. Unwatched and empty rooms were M3s documented gap."
   },
@@ -592,6 +809,10 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "quiet",
+      "window"
+    ],
     "status": "placeholder"
   },
   {
@@ -603,6 +824,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "ledger",
+      "office"
+    ],
     "status": "placeholder"
   },
   {
@@ -614,6 +839,10 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "hat",
+      "room"
+    ],
     "status": "placeholder"
   },
   {
@@ -625,6 +854,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "breath"
+    ],
     "status": "placeholder"
   },
   {
@@ -636,6 +868,11 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "cigarette",
+      "lamp",
+      "street"
+    ],
     "status": "placeholder"
   },
   {
@@ -647,6 +884,7 @@
       "watcher": "landlady",
       "empty": "yes"
     },
+    "motifs": [],
     "status": "placeholder"
   },
   {
@@ -658,6 +896,11 @@
       "watcher": "bartender",
       "empty": "yes"
     },
+    "motifs": [
+      "radio",
+      "counter",
+      "room"
+    ],
     "status": "placeholder"
   },
   {
@@ -669,6 +912,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "door",
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -680,6 +927,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "door",
+      "kitchen"
+    ],
     "status": "generated"
   },
   {
@@ -691,6 +942,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -702,6 +956,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "stairs",
+      "roof"
+    ],
     "status": "generated"
   },
   {
@@ -713,6 +971,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "office",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -724,6 +986,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -735,6 +1000,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "church"
+    ],
     "status": "generated"
   },
   {
@@ -746,6 +1014,11 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "clock",
+      "room",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -757,6 +1030,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "stairs"
+    ],
     "status": "generated"
   },
   {
@@ -768,6 +1044,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -779,6 +1059,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "hands",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -790,6 +1074,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -801,6 +1088,11 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "dawn",
+      "paper",
+      "animals"
+    ],
     "status": "generated"
   },
   {
@@ -812,6 +1104,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "sea"
+    ],
     "status": "generated"
   },
   {
@@ -823,6 +1118,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "paper",
+      "stairs"
+    ],
     "status": "generated"
   },
   {
@@ -834,6 +1133,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "el"
+    ],
     "status": "generated"
   },
   {
@@ -845,6 +1147,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -856,6 +1161,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "door",
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -867,6 +1176,11 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "cold",
+      "kitchen"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -878,6 +1192,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "mouth"
+    ],
     "status": "generated"
   },
   {
@@ -889,6 +1206,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "alley"
+    ],
     "status": "generated"
   },
   {
@@ -900,6 +1220,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "footsteps",
+      "sea"
+    ],
     "status": "generated"
   },
   {
@@ -911,6 +1235,10 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "quiet",
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -922,6 +1250,9 @@
       "watcher": "none",
       "empty": "no"
     },
+    "motifs": [
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -933,6 +1264,11 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "coat",
+      "clock",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -944,6 +1280,9 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "roof"
+    ],
     "status": "generated"
   },
   {
@@ -955,6 +1294,9 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -966,6 +1308,9 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -977,6 +1322,10 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "lamp",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -988,6 +1337,11 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "cold",
+      "church"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -999,6 +1353,9 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "kitchen"
+    ],
     "status": "generated"
   },
   {
@@ -1010,6 +1367,9 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "lamp"
+    ],
     "status": "generated"
   },
   {
@@ -1021,6 +1381,9 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1032,6 +1395,9 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "stairs"
+    ],
     "status": "generated"
   },
   {
@@ -1043,6 +1409,9 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "el"
+    ],
     "status": "generated"
   },
   {
@@ -1054,6 +1423,10 @@
       "watcher": "none",
       "empty": "yes"
     },
+    "motifs": [
+      "wind",
+      "alley"
+    ],
     "status": "generated"
   },
   {
@@ -1065,6 +1438,9 @@
       "watcher": "bartender",
       "empty": "yes"
     },
+    "motifs": [
+      "glass"
+    ],
     "status": "generated"
   },
   {
@@ -1076,6 +1452,10 @@
       "watcher": "doorman",
       "empty": "yes"
     },
+    "motifs": [
+      "lamp",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -1087,6 +1467,10 @@
       "watcher": "newsstand",
       "empty": "yes"
     },
+    "motifs": [
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -1098,6 +1482,11 @@
       "watcher": "counterman",
       "empty": "yes"
     },
+    "motifs": [
+      "glass",
+      "door",
+      "counter"
+    ],
     "status": "generated"
   },
   {
@@ -1109,6 +1498,9 @@
       "watcher": "ticket-taker",
       "empty": "yes"
     },
+    "motifs": [
+      "theater"
+    ],
     "status": "generated"
   },
   {
@@ -1120,6 +1512,10 @@
       "watcher": "elevator-man",
       "empty": "yes"
     },
+    "motifs": [
+      "machinery",
+      "counter"
+    ],
     "status": "generated"
   },
   {
@@ -1131,6 +1527,10 @@
       "watcher": "landlady",
       "empty": "yes"
     },
+    "motifs": [
+      "lamp",
+      "sleep"
+    ],
     "status": "generated"
   },
   {
@@ -1142,6 +1542,11 @@
       "watcher": "beat-cop",
       "empty": "yes"
     },
+    "motifs": [
+      "el",
+      "clock",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1153,6 +1558,9 @@
       "watcher": "cabbie",
       "empty": "yes"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1164,6 +1572,10 @@
       "watcher": "druggist",
       "empty": "yes"
     },
+    "motifs": [
+      "counter",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -1175,6 +1587,11 @@
       "watcher": "bartender",
       "empty": "yes"
     },
+    "motifs": [
+      "traffic",
+      "quiet",
+      "glass"
+    ],
     "status": "generated"
   },
   {
@@ -1186,6 +1603,10 @@
       "watcher": "newsstand",
       "empty": "yes"
     },
+    "motifs": [
+      "paper",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1197,6 +1618,9 @@
       "watcher": "bartender",
       "empty": "no"
     },
+    "motifs": [
+      "bar"
+    ],
     "status": "generated"
   },
   {
@@ -1208,6 +1632,10 @@
       "watcher": "doorman",
       "empty": "no"
     },
+    "motifs": [
+      "door",
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -1219,6 +1647,10 @@
       "watcher": "newsstand",
       "empty": "no"
     },
+    "motifs": [
+      "paper",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1230,6 +1662,10 @@
       "watcher": "counterman",
       "empty": "no"
     },
+    "motifs": [
+      "drink",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -1241,6 +1677,10 @@
       "watcher": "ticket-taker",
       "empty": "no"
     },
+    "motifs": [
+      "theater",
+      "traffic"
+    ],
     "status": "generated"
   },
   {
@@ -1252,6 +1692,11 @@
       "watcher": "elevator-man",
       "empty": "no"
     },
+    "motifs": [
+      "money",
+      "eyes",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -1263,6 +1708,9 @@
       "watcher": "landlady",
       "empty": "no"
     },
+    "motifs": [
+      "radio"
+    ],
     "status": "generated"
   },
   {
@@ -1274,6 +1722,10 @@
       "watcher": "beat-cop",
       "empty": "no"
     },
+    "motifs": [
+      "el",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1285,6 +1737,9 @@
       "watcher": "cabbie",
       "empty": "no"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1296,6 +1751,10 @@
       "watcher": "druggist",
       "empty": "no"
     },
+    "motifs": [
+      "medicine",
+      "counter"
+    ],
     "status": "generated"
   },
   {
@@ -1307,6 +1766,9 @@
       "watcher": "bartender",
       "empty": "no"
     },
+    "motifs": [
+      "bar"
+    ],
     "status": "generated"
   },
   {
@@ -1318,6 +1780,9 @@
       "watcher": "counterman",
       "empty": "no"
     },
+    "motifs": [
+      "counter"
+    ],
     "status": "generated"
   }
 ]
