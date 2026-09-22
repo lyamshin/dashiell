@@ -63,9 +63,20 @@ export interface Relationship {
   backstoryFirst: string[];
   /** "since '18", "going back to the war", "three years this spring". */
   since: string[];
-  /** Why a person in this relationship would hire a detective, by case type. */
-  purposes: Record<CaseType, Purpose[]>;
+  /**
+   * Why a person in this relationship would hire a detective, by case type,
+   * and how often. Eligibility is the first half of the rule and the weight is
+   * the second: a purpose is in a cell only when its `cost` sentence is *true*
+   * of that relationship — only somebody with a stake in the goods "cannot
+   * report the loss without saying where the thing came from" — and the weight
+   * then says how much of that cell it takes. A missing weight means the
+   * purpose is not open to this relationship in this kind of case.
+   */
+  purposes: Record<CaseType, PurposeWeights>;
 }
+
+/** A cell of the purpose table: the purposes that fit, and their weights. */
+export type PurposeWeights = Partial<Record<Purpose, number>>;
 
 export interface Archetype {
   id: Id;
@@ -137,9 +148,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'going on eight years', 'three years this spring'],
     purposes: {
-      murder: ['keep-it-quiet', 'find-the-killer-police-wont', 'settle-a-debt-with-the-dead'],
-      robbery: ['find-it-before-the-cops', 'get-it-back', 'keep-it-quiet'],
-      missing: ['bring-them-home', 'keep-it-quiet'],
+      murder: { 'find-the-killer-police-wont': 30, 'keep-it-quiet': 26, 'settle-a-debt-with-the-dead': 26, 'clear-my-name': 18 },
+      robbery: { 'get-it-back': 30, 'find-it-before-the-cops': 26, 'keep-it-quiet': 20, 'settle-a-debt-with-the-dead': 12, 'clear-my-name': 12 },
+      missing: { 'bring-them-home': 34, 'keep-it-quiet': 28, 'settle-a-debt-with-the-dead': 24, 'clear-my-name': 14 },
     },
   },
   {
@@ -158,9 +169,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'since the flu year', 'four years in the same rooms'],
     purposes: {
-      murder: ['clear-my-name', 'find-the-killer-police-wont'],
-      robbery: ['clear-my-name', 'get-it-back'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 50, 'keep-it-quiet': 28, 'clear-my-name': 22 },
+      robbery: { 'find-it-before-the-cops': 48, 'keep-it-quiet': 30, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 46, 'keep-it-quiet': 32, 'clear-my-name': 22 },
     },
   },
   {
@@ -179,9 +190,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'the better part of ten years', 'two leases running'],
     purposes: {
-      murder: ['keep-it-quiet', 'clear-my-name'],
-      robbery: ['keep-it-quiet', 'find-it-before-the-cops'],
-      missing: ['make-sure-they-stay-gone', 'clear-my-name'],
+      murder: { 'keep-it-quiet': 36, 'find-the-killer-police-wont': 32, 'settle-a-debt-with-the-dead': 20, 'clear-my-name': 12 },
+      robbery: { 'find-it-before-the-cops': 40, 'keep-it-quiet': 34, 'settle-a-debt-with-the-dead': 14, 'clear-my-name': 12 },
+      missing: { 'make-sure-they-stay-gone': 38, 'keep-it-quiet': 32, 'settle-a-debt-with-the-dead': 18, 'clear-my-name': 12 },
     },
   },
   {
@@ -200,9 +211,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'four years, and then nothing', 'until last winter'],
     purposes: {
-      murder: ['clear-my-name', 'settle-a-debt-with-the-dead'],
-      robbery: ['clear-my-name', 'get-it-back'],
-      missing: ['clear-my-name', 'bring-them-home'],
+      murder: { 'settle-a-debt-with-the-dead': 42, 'find-the-killer-police-wont': 34, 'clear-my-name': 24 },
+      robbery: { 'get-it-back': 42, 'settle-a-debt-with-the-dead': 36, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 44, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 22 },
     },
   },
   {
@@ -221,9 +232,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'three renewals running', 'going back to the war'],
     purposes: {
-      murder: ['settle-a-debt-with-the-dead', 'find-the-killer-police-wont'],
-      robbery: ['get-it-back', 'find-it-before-the-cops'],
-      missing: ['make-sure-they-stay-gone', 'bring-them-home'],
+      murder: { 'settle-a-debt-with-the-dead': 42, 'find-the-killer-police-wont': 32, 'keep-it-quiet': 26 },
+      robbery: { 'get-it-back': 34, 'settle-a-debt-with-the-dead': 34, 'find-it-before-the-cops': 32 },
+      missing: { 'settle-a-debt-with-the-dead': 34, 'make-sure-they-stay-gone': 34, 'bring-them-home': 32 },
     },
   },
   {
@@ -242,9 +253,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'since the flu year', 'two winters running'],
     purposes: {
-      murder: ['clear-my-name', 'settle-a-debt-with-the-dead'],
-      robbery: ['clear-my-name', 'keep-it-quiet'],
-      missing: ['clear-my-name', 'bring-them-home'],
+      murder: { 'find-the-killer-police-wont': 36, 'keep-it-quiet': 34, 'clear-my-name': 30 },
+      robbery: { 'find-it-before-the-cops': 44, 'keep-it-quiet': 34, 'clear-my-name': 22 },
+      missing: { 'make-sure-they-stay-gone': 46, 'keep-it-quiet': 32, 'clear-my-name': 22 },
     },
   },
   {
@@ -263,9 +274,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'for eleven years', 'going back to the war'],
     purposes: {
-      murder: ['keep-it-quiet', 'find-the-killer-police-wont'],
-      robbery: ['keep-it-quiet', 'find-it-before-the-cops'],
-      missing: ['keep-it-quiet', 'bring-them-home'],
+      murder: { 'keep-it-quiet': 40, 'find-the-killer-police-wont': 32, 'settle-a-debt-with-the-dead': 28 },
+      robbery: { 'find-it-before-the-cops': 42, 'keep-it-quiet': 34, 'settle-a-debt-with-the-dead': 24 },
+      missing: { 'keep-it-quiet': 36, 'bring-them-home': 34, 'make-sure-they-stay-gone': 30 },
     },
   },
   {
@@ -284,9 +295,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['all their lives', 'since {year}', 'since they were children on the same block'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['get-it-back', 'find-it-before-the-cops'],
-      missing: ['bring-them-home', 'find-the-killer-police-wont'],
+      murder: { 'find-the-killer-police-wont': 42, 'settle-a-debt-with-the-dead': 30, 'clear-my-name': 28 },
+      robbery: { 'find-it-before-the-cops': 42, 'keep-it-quiet': 34, 'clear-my-name': 24 },
+      missing: { 'bring-them-home': 46, 'clear-my-name': 28, 'keep-it-quiet': 26 },
     },
   },
   {
@@ -305,9 +316,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'since the wedding', 'nine years of Sundays'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'keep-it-quiet'],
-      robbery: ['get-it-back', 'keep-it-quiet'],
-      missing: ['bring-them-home', 'keep-it-quiet'],
+      murder: { 'find-the-killer-police-wont': 36, 'keep-it-quiet': 36, 'clear-my-name': 28 },
+      robbery: { 'find-it-before-the-cops': 40, 'keep-it-quiet': 36, 'clear-my-name': 24 },
+      missing: { 'bring-them-home': 40, 'keep-it-quiet': 32, 'make-sure-they-stay-gone': 28 },
     },
   },
   {
@@ -327,9 +338,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'six years of it', 'since they were both starting out'],
     purposes: {
-      murder: ['clear-my-name', 'keep-it-quiet'],
-      robbery: ['clear-my-name', 'find-it-before-the-cops'],
-      missing: ['clear-my-name', 'make-sure-they-stay-gone'],
+      murder: { 'clear-my-name': 38, 'keep-it-quiet': 36, 'find-the-killer-police-wont': 26 },
+      robbery: { 'find-it-before-the-cops': 44, 'keep-it-quiet': 28, 'clear-my-name': 28 },
+      missing: { 'make-sure-they-stay-gone': 42, 'clear-my-name': 32, 'keep-it-quiet': 26 },
     },
   },
   {
@@ -349,9 +360,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'three years apart', 'since the winter they stopped speaking'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['get-it-back', 'clear-my-name'],
-      missing: ['bring-them-home', 'make-sure-they-stay-gone'],
+      murder: { 'find-the-killer-police-wont': 36, 'keep-it-quiet': 34, 'clear-my-name': 30 },
+      robbery: { 'get-it-back': 44, 'keep-it-quiet': 34, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 40, 'make-sure-they-stay-gone': 34, 'clear-my-name': 26 },
     },
   },
   {
@@ -370,9 +381,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'since the spring', 'eleven months of nights'],
     purposes: {
-      murder: ['clear-my-name', 'find-the-killer-police-wont'],
-      robbery: ['clear-my-name', 'get-it-back'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'clear-my-name': 36, 'find-the-killer-police-wont': 36, 'settle-a-debt-with-the-dead': 28 },
+      robbery: { 'clear-my-name': 30, 'find-it-before-the-cops': 38, 'settle-a-debt-with-the-dead': 32 },
+      missing: { 'bring-them-home': 40, 'clear-my-name': 32, 'settle-a-debt-with-the-dead': 28 },
     },
   },
   {
@@ -391,9 +402,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'for six years', 'since the rooms changed'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['clear-my-name', 'find-it-before-the-cops'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 36, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 30 },
+      robbery: { 'find-it-before-the-cops': 44, 'settle-a-debt-with-the-dead': 32, 'clear-my-name': 24 },
+      missing: { 'bring-them-home': 36, 'keep-it-quiet': 34, 'clear-my-name': 30 },
     },
   },
   {
@@ -413,9 +424,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'two years engaged', 'since last Easter'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['get-it-back', 'clear-my-name'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 46, 'keep-it-quiet': 30, 'clear-my-name': 24 },
+      robbery: { 'find-it-before-the-cops': 44, 'keep-it-quiet': 34, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 48, 'keep-it-quiet': 28, 'clear-my-name': 24 },
     },
   },
   {
@@ -434,9 +445,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['all their lives', 'since {year}', 'since they were boys on the same stoop'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'settle-a-debt-with-the-dead'],
-      robbery: ['get-it-back', 'clear-my-name'],
-      missing: ['bring-them-home', 'find-the-killer-police-wont'],
+      murder: { 'find-the-killer-police-wont': 42, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 24 },
+      robbery: { 'settle-a-debt-with-the-dead': 40, 'find-it-before-the-cops': 38, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 46, 'settle-a-debt-with-the-dead': 30, 'clear-my-name': 24 },
     },
   },
   {
@@ -455,9 +466,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'since the will was redrawn', 'for as long as there has been a will'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['get-it-back', 'find-it-before-the-cops'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 38, 'keep-it-quiet': 34, 'clear-my-name': 28 },
+      robbery: { 'get-it-back': 46, 'keep-it-quiet': 32, 'clear-my-name': 22 },
+      missing: { 'make-sure-they-stay-gone': 38, 'bring-them-home': 34, 'keep-it-quiet': 28 },
     },
   },
   {
@@ -476,9 +487,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'since the indictment', 'since last autumn'],
     purposes: {
-      murder: ['clear-my-name', 'find-the-killer-police-wont'],
-      robbery: ['clear-my-name', 'keep-it-quiet'],
-      missing: ['clear-my-name', 'make-sure-they-stay-gone'],
+      murder: { 'keep-it-quiet': 36, 'find-the-killer-police-wont': 36, 'clear-my-name': 28 },
+      robbery: { 'get-it-back': 40, 'keep-it-quiet': 38, 'clear-my-name': 22 },
+      missing: { 'make-sure-they-stay-gone': 44, 'keep-it-quiet': 34, 'clear-my-name': 22 },
     },
   },
   {
@@ -497,9 +508,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'for years', 'since the shop opened'],
     purposes: {
-      murder: ['clear-my-name', 'settle-a-debt-with-the-dead'],
-      robbery: ['get-it-back', 'clear-my-name'],
-      missing: ['clear-my-name', 'bring-them-home'],
+      murder: { 'settle-a-debt-with-the-dead': 42, 'find-the-killer-police-wont': 34, 'clear-my-name': 24 },
+      robbery: { 'find-it-before-the-cops': 40, 'settle-a-debt-with-the-dead': 38, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 44, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 22 },
     },
   },
   {
@@ -518,9 +529,9 @@ export const RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'five years on the same landing', 'since the building changed hands'],
     purposes: {
-      murder: ['find-the-killer-police-wont', 'clear-my-name'],
-      robbery: ['clear-my-name', 'find-it-before-the-cops'],
-      missing: ['bring-them-home', 'clear-my-name'],
+      murder: { 'find-the-killer-police-wont': 48, 'keep-it-quiet': 28, 'clear-my-name': 24 },
+      robbery: { 'find-it-before-the-cops': 48, 'keep-it-quiet': 30, 'clear-my-name': 22 },
+      missing: { 'bring-them-home': 46, 'keep-it-quiet': 32, 'clear-my-name': 22 },
     },
   },
 ];
@@ -1404,4 +1415,17 @@ export const PURPOSE_TEXT_FIRST: Record<Purpose, string> = {
   'bring-them-home': 'want {V} found and brought home',
   'make-sure-they-stay-gone': 'want to know {V} is gone for good, and where',
   'settle-a-debt-with-the-dead': 'have something owing with {V} that death did not settle',
+};
+
+/**
+ * One purpose assumes a body, and two of the three case types do not have one.
+ * A robbery's owner is alive and standing at an address; a missing person may
+ * walk back in on Thursday. The debt is the same debt and the sentence is not,
+ * so the living get their own wording.
+ */
+export const PURPOSE_TEXT_LIVING: Partial<Record<Purpose, { third: string; first: string }>> = {
+  'settle-a-debt-with-the-dead': {
+    third: 'has something owing with {V} and means to be paid, whichever way this ends',
+    first: 'have something owing with {V} and mean to be paid, whichever way this ends',
+  },
 };

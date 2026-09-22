@@ -12,11 +12,17 @@ import {
   generateCase,
   type BriefingLine,
   type Case,
+  type CaseType,
   type Difficulty,
   type Id,
   type Unknown,
 } from '../src/gen/index.js';
-import { ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID } from '../src/gen/data/cast.js';
+import {
+  ARCHETYPE_BY_ID,
+  RELATIONSHIPS,
+  RELATIONSHIP_BY_ID,
+  VICTIM_ARCHETYPE_BY_ID,
+} from '../src/gen/data/cast.js';
 import { NAME_POOLS } from '../src/gen/data/names.js';
 import { TROPES, TROPE_BY_ID, TROPE_IDS } from '../src/gen/tropes/index.js';
 import { checkCase, formatViolations, renderedFacts } from '../src/gen/correspond.js';
@@ -263,13 +269,121 @@ describe('the client brief over seeds 1..200 at every difficulty', () => {
       const rel = RELATIONSHIP_BY_ID[client.relationshipId as Id];
       expect(rel, `seed ${c.seed}: the client has no relationship card`).toBeDefined();
       expect(
-        rel?.purposes[c.act.type],
+        Object.keys(rel?.purposes[c.act.type] ?? {}),
         `seed ${c.seed}: ${c.clientBrief.purpose} for ${client.relationshipId} × ${c.act.type}`,
       ).toContain(c.clientBrief.purpose);
       used.add(c.clientBrief.purpose);
     }
     // Every purpose in the table is reachable, or the table is decoration.
     expect(used.size).toBeGreaterThanOrEqual(7);
+  });
+
+  /**
+   * The purpose table, as a distribution and as a set of claims.
+   *
+   * Before the weights the draw was uniform over whatever list the cell held,
+   * so a purpose that almost every relationship could honestly claim won by
+   * arithmetic: `clear-my-name` was 46.5% of four hundred cases, and
+   * `make-sure-they-stay-gone` was 1.5%. Two rules now hold it in shape — no
+   * purpose over 30%, and every purpose at least 5% of the case type that
+   * allows it — and one rule holds it honest: the sentence about what the
+   * purpose costs has to be true of the relationship claiming it.
+   */
+  it('lets no purpose take more than 30% of the cases, at any difficulty', () => {
+    for (const difficulty of DIFFICULTIES) {
+      const cases = everyDifficulty.filter((c) => c.difficulty === difficulty);
+      const counts = new Map<string, number>();
+      for (const c of cases) {
+        counts.set(c.clientBrief.purpose, (counts.get(c.clientBrief.purpose) ?? 0) + 1);
+      }
+      for (const [purpose, n] of counts) {
+        const share = n / cases.length;
+        expect(share, `d${difficulty}: ${purpose} is ${(100 * share).toFixed(1)}%`).toBeLessThanOrEqual(0.3);
+      }
+      // And all eight are reachable, or the table is decoration.
+      expect(counts.size, `d${difficulty}`).toBe(8);
+    }
+  });
+
+  it('gives every purpose at least 5% of the case type that allows it', () => {
+    const byType = new Map<CaseType, Map<string, number>>();
+    const totals = new Map<CaseType, number>();
+    const eligible = new Map<CaseType, Set<string>>();
+    for (const c of everyDifficulty) {
+      const type = c.act.type;
+      totals.set(type, (totals.get(type) ?? 0) + 1);
+      const row = byType.get(type) ?? new Map<string, number>();
+      row.set(c.clientBrief.purpose, (row.get(c.clientBrief.purpose) ?? 0) + 1);
+      byType.set(type, row);
+    }
+    for (const rel of RELATIONSHIPS) {
+      for (const type of ['murder', 'robbery', 'missing'] as CaseType[]) {
+        const set = eligible.get(type) ?? new Set<string>();
+        for (const p of Object.keys(rel.purposes[type])) set.add(p);
+        eligible.set(type, set);
+      }
+    }
+    for (const [type, wanted] of eligible) {
+      const row = byType.get(type) ?? new Map<string, number>();
+      const of = totals.get(type) ?? 0;
+      for (const purpose of wanted) {
+        const share = (row.get(purpose) ?? 0) / (of || 1);
+        expect(
+          share,
+          `${type} × ${purpose} is ${(100 * share).toFixed(1)}% of ${of} cases`,
+        ).toBeGreaterThanOrEqual(0.05);
+      }
+    }
+  });
+
+  it('only offers a purpose to a relationship the cost sentence is true of', () => {
+    // §1.4: "it must make sense". The ones with a stake in the goods are the
+    // only ones who cannot report the loss without saying where the thing came
+    // from — the owner is the victim, so what is left is a partner, a spouse,
+    // an heir, the employee who was answerable for it, and the underworld tie
+    // who had a share.
+    const stake = new Set([
+      'rel-partner',
+      'rel-spouse',
+      'rel-willed',
+      'rel-employee',
+      'rel-creditor',
+      'rel-witness',
+    ]);
+    for (const rel of RELATIONSHIPS) {
+      for (const type of ['murder', 'robbery', 'missing'] as CaseType[]) {
+        const cell = rel.purposes[type];
+        for (const purpose of Object.keys(cell)) {
+          const where = `${rel.id} × ${type}`;
+          // The three that name the goods only exist where there are goods.
+          if (purpose === 'get-it-back') {
+            expect(stake.has(rel.id), `${where}: get-it-back with no stake`).toBe(true);
+            expect(type, where).toBe('robbery');
+          }
+          if (purpose === 'find-it-before-the-cops') expect(type, where).toBe('robbery');
+          // And the three that need somebody to be gone.
+          if (purpose === 'bring-them-home' || purpose === 'make-sure-they-stay-gone') {
+            expect(type, where).toBe('missing');
+          }
+          // "The one who killed {V}" is a sentence about a body.
+          if (purpose === 'find-the-killer-police-wont') expect(type, where).toBe('murder');
+        }
+        // Every weight is a positive number, or the cell is decoration.
+        for (const w of Object.values(cell)) expect(w).toBeGreaterThan(0);
+        expect(Object.keys(cell).length, `${rel.id} × ${type}`).toBeGreaterThanOrEqual(3);
+      }
+    }
+  });
+
+  it('says the debt sentence without a death in it when nobody died', () => {
+    // A robbery's owner is alive and standing at an address, and a missing
+    // person may walk back in on Thursday.
+    for (const c of everyDifficulty) {
+      if (c.clientBrief.purpose !== 'settle-a-debt-with-the-dead') continue;
+      const both = `${c.clientBrief.purposeText} ${c.clientBrief.purposeTextFirst}`;
+      if (c.act.type === 'murder') expect(both, `seed ${c.seed}`).toContain('death did not settle');
+      else expect(both, `seed ${c.seed}`).not.toContain('death');
+    }
   });
 
   it('points honestly at the lower difficulties, and never when the client did it', () => {

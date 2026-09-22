@@ -13,7 +13,13 @@ import {
 import type { Cast } from './cast.js';
 import type { Setting } from './setting.js';
 import type { ScheduleBuild } from './schedule.js';
-import { PURPOSE_TEXT, PURPOSE_TEXT_FIRST, RELATIONSHIP_BY_ID } from './data/cast.js';
+import {
+  PURPOSE_TEXT,
+  PURPOSE_TEXT_FIRST,
+  PURPOSE_TEXT_LIVING,
+  RELATIONSHIP_BY_ID,
+  type PurposeWeights,
+} from './data/cast.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
 import { fillSlots } from './dossier.js';
 import { framedPerson } from './tropes/index.js';
@@ -60,6 +66,9 @@ const COST_TEXT_FIRST: Record<Purpose, string> = {
   'settle-a-debt-with-the-dead': 'I am spending money I was owed and may never see.',
 };
 
+/** How much heavier the quiet purposes weigh when the client did it. */
+const KILLER_COVER_BIAS = 3;
+
 /** The pronouns a sentence about somebody else needs, by their gender. */
 function possessiveOf(person: Person | undefined): string {
   return person?.dossier?.gender === 'f' || person?.gender === 'f' ? 'her' : 'his';
@@ -91,6 +100,27 @@ export function spokenReason(reason: string, target: Person): string {
   return reason.slice(0, cut) + tail;
 }
 
+/**
+ * One draw from a cell of the purpose table (M5 §1.4).
+ *
+ * A cell is eligibility and weight in one: a purpose is in it only when the
+ * sentence about what it costs is true of that relationship, and the weight
+ * says how much of the cell it takes. Before the weights the draw was uniform
+ * over the eligible list, so `clear-my-name` — which almost every relationship
+ * can honestly claim — was 46.5% of four hundred cases by arithmetic alone.
+ */
+export function drawPurpose(rng: Rng, weights: PurposeWeights): Purpose | null {
+  const entries = (Object.entries(weights) as [Purpose, number][]).filter(([, w]) => w > 0);
+  if (entries.length === 0) return null;
+  const total = entries.reduce((sum, [, w]) => sum + w, 0);
+  let roll = rng.next() * total;
+  for (const [purpose, weight] of entries) {
+    roll -= weight;
+    if (roll < 0) return purpose;
+  }
+  return entries[entries.length - 1]?.[0] ?? null;
+}
+
 export interface ClientBriefInput {
   rng: Rng;
   cast: Cast;
@@ -110,16 +140,29 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
 
   /* --- purpose ---------------------------------------------------------- */
   const rel = RELATIONSHIP_BY_ID[client.relationshipId as Id];
-  const allowed = rel?.purposes[act.type] ?? ['find-the-killer-police-wont'];
-  // A killer who hires a detective is buying cover, so out of whatever the
-  // relationship allows, the killer takes the quietest option on offer.
-  const preferred = client.isKiller
-    ? allowed.filter((p) => p === 'keep-it-quiet' || p === 'clear-my-name')
-    : [];
-  const purpose = rng.pick(preferred.length > 0 ? preferred : allowed) as Purpose;
+  const allowed: PurposeWeights = rel?.purposes[act.type] ?? {
+    'find-the-killer-police-wont': 1,
+  };
+  // A killer who hires a detective is buying cover, so the quiet two weigh
+  // three times what the relationship gives them. They are not the only cover
+  // there is — walking in and asking for the killer to be found is the oldest
+  // one in the genre — so the rest of the cell stays in the draw. Restricting
+  // it outright was the old rule, and with the client the killer in a quarter
+  // of cases it put a quarter of every distribution on two purposes.
+  const cell: PurposeWeights = { ...allowed };
+  if (client.isKiller) {
+    for (const p of ['keep-it-quiet', 'clear-my-name'] as Purpose[]) {
+      const w = cell[p];
+      if (w !== undefined) cell[p] = w * KILLER_COVER_BIAS;
+    }
+  }
+  const purpose = (drawPurpose(rng, cell) ?? 'find-the-killer-police-wont') as Purpose;
+  // A robbery's owner is alive and a missing person may be, so the one purpose
+  // written around a death says it another way for them.
+  const living = act.type === 'murder' ? undefined : PURPOSE_TEXT_LIVING[purpose];
   const slots = { victim: V, person: client.surname, place: '', year: '' };
-  const purposeText = `${client.surname} ${fillSlots(PURPOSE_TEXT[purpose], slots)}.`;
-  const purposeTextFirst = `I ${fillSlots(PURPOSE_TEXT_FIRST[purpose], slots)}.`;
+  const purposeText = `${client.surname} ${fillSlots(living?.third ?? PURPOSE_TEXT[purpose], slots)}.`;
+  const purposeTextFirst = `I ${fillSlots(living?.first ?? PURPOSE_TEXT_FIRST[purpose], slots)}.`;
   const cost = `${fillSlots(COST_TEXT[purpose], slots)}`;
   const costFirst = `${fillSlots(COST_TEXT_FIRST[purpose], slots)}`;
 
