@@ -67,7 +67,7 @@ export function capitalizeFirst(text: string): string {
  * stops in it, and so are "Mrs. Teague's" and "St. Mark's Place".
  */
 const STOP_THEN_LOWER =
-  /(?<!\b[a-z])(?<!\b(?:[Mm]r|[Mm]rs|[Mm]s|[Dd]r|[Ss]t|[Jj]r|[Ss]r|[Nn]o))([.!?…])(\s+)([a-z])/g;
+  /(?<!\b[a-z])(?<!\b(?:[Mm]r|[Mm]rs|[Mm]s|[Dd]r|[Ss]t|[Jj]r|[Ss]r|[Nn]o))([.!?…])(\s+["\u201c'(]*)([a-z])/g;
 
 /**
  * Collapse the punctuation a join produced.
