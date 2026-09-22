@@ -704,12 +704,14 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   }
 
   /* --- who saw the subject last, and will say so ------------------------ */
-  const lastSeenBy = cast.people.find(
-    (p) =>
-      p.kind !== 'victim' &&
-      (truth[p.id] as (Id | null)[])[victimSeenAt] === victimSeenPlace &&
-      !(lies[p.id] ?? []).includes(victimSeenAt),
-  );
+  const sawThem = (p: Person): boolean =>
+    p.kind !== 'victim' &&
+    (truth[p.id] as (Id | null)[])[victimSeenAt] === victimSeenPlace &&
+    !(lies[p.id] ?? []).includes(victimSeenAt);
+  // Never the one who did it, when there is anybody else: "the last person to
+  // see them was the killer" is the answer, not a given.
+  const lastSeenBy =
+    cast.people.find((p) => p.id !== cast.killer.id && sawThem(p)) ?? cast.people.find(sawThem);
 
   const build: ScheduleBuild = {
     murderTick: M,

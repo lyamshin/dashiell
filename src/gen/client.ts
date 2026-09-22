@@ -89,7 +89,7 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
   const others = cast.suspects.filter((p) => p.id !== client.id);
   const motived = others.filter((p) => p.motive);
   const branchable = cast.innocents.filter(
-    (p) => p.id !== client.id && p.secret && SECRET_BY_TYPE[p.secret.type],
+    (p) => p.id !== client.id && build.secrets[p.id] && SECRET_BY_TYPE[build.secrets[p.id]!.type],
   );
 
   let points: ClientBrief['points'];
@@ -106,12 +106,12 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
   } else if (difficulty === 3 && branchable.length > 0 && rng.chance(0.5)) {
     // The client's own red herring: the head of a noise branch, told straight.
     const target = rng.pick(branchable);
-    const secret = target.secret as { type: string };
+    const secret = build.secrets[target.id] as { type: string; cells: { place: Id }[] };
     const hint = (SECRET_BY_TYPE[secret.type]?.hints[0] ?? '{P} has been hard to find lately.')
       .split('{P}').join(who(target.id))
       .split('{Q}').join(V)
       .split('{V}').join(V)
-      .split('{L}').join(PL(target.secret?.cells[0]?.place))
+      .split('{L}').join(PL(secret.cells[0]?.place))
       .split('{T}').join(clock(act.tick));
     points = { personId: target.id, reason: hint, honest: false };
   } else {
@@ -141,7 +141,9 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
   /* --- what they do not say --------------------------------------------- */
   const withholds: Fact[] = [];
   const withholdTexts: string[] = [];
-  const ownSecret = client.secret;
+  // The cast's people are the pre-schedule copies, so the secret is read off
+  // the build rather than off the person.
+  const ownSecret = build.secrets[client.id];
   if (ownSecret && !client.isKiller) {
     withholds.push({
       kind: 'secretExplained',
@@ -149,7 +151,7 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
       secretType: ownSecret.type,
     });
     withholdTexts.push(
-      `${client.surname} does not mention it, but ${ownSecret.description}`,
+      `${client.surname} does not mention it, but ${ownSecret.description || 'there is something being kept back.'}`,
     );
   }
   if (client.isKiller) {

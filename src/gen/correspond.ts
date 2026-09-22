@@ -394,8 +394,11 @@ export function checkCase(c: Case): Violation[] {
   brief.tellTexts.forEach((t, i) =>
     out.push(...check(c, t, { where: `client tell ${i + 1}`, allowTicks: [c.act.tick, Math.max(0, c.act.tick - 1) as Tick] })),
   );
+  // What the client keeps back is their own secret, which runs over its own
+  // hours, and the act, which runs over its own.
+  const clientTicks: Tick[] = [c.act.tick, ...secretTicksOf(c.clientId)];
   brief.withholdTexts.forEach((t, i) =>
-    out.push(...check(c, t, { where: `client withhold ${i + 1}`, allowTicks: [c.act.tick] })),
+    out.push(...check(c, t, { where: `client withhold ${i + 1}`, allowTicks: clientTicks })),
   );
   out.push(...check(c, brief.points.reason, { where: 'client pointer' }));
   brief.ownEvening.forEach((t, i) =>
