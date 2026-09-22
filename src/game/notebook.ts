@@ -362,10 +362,14 @@ function onPaper(view: CaseView, state: RunState): string {
  * the newest line the notebook has about them. Somebody the notebook does not
  * hold yet gets a card that says so and nothing else.
  */
-export function personCard(view: CaseView, state: RunState, personId: Id): HoverCard | null {
+export function personCard(
+  view: CaseView,
+  state: RunState,
+  personId: Id,
+  book: Notebook = buildNotebook(view, state),
+): HoverCard | null {
   const person = view.personById.get(personId);
   if (!person) return null;
-  const book = buildNotebook(view, state);
   const entry = book.people.find((p) => p.id === personId);
   if (!entry) return { title: person.surname, lines: ['Not in the notebook yet.'] };
 
@@ -414,8 +418,12 @@ export function personCard(view: CaseView, state: RunState, personId: Id): Hover
 }
 
 /** A place's card: what kind of place, who watches it, been or not, leads open here. */
-export function placeHoverCard(view: CaseView, state: RunState, placeId: Id): HoverCard | null {
-  const book = buildNotebook(view, state);
+export function placeHoverCard(
+  view: CaseView,
+  state: RunState,
+  placeId: Id,
+  book: Notebook = buildNotebook(view, state),
+): HoverCard | null {
   const place = book.places.find((p) => p.id === placeId);
   if (!place) return null;
   const lines: string[] = [];

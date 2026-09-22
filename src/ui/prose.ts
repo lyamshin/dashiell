@@ -1,4 +1,10 @@
-/** Turning a page's blocks into paper. The only file that underlines a noun. */
+/**
+ * Turning a page's blocks into paper. The only file that marks a name.
+ *
+ * M6 §4: a person's name and a place's name carry a hover card, and nothing
+ * else in the prose is a control any more. The buttons under the page are the
+ * actions; a name is something to look up.
+ */
 
 import { clock } from '../gen/types.js';
 import type { Tick } from '../gen/types.js';
@@ -8,59 +14,45 @@ import type { Block, Page } from '../game/types.js';
 import { HELP_LINES, HELP_NOTE, EMPTY_ROOM, PRESENCE_LEAD } from '../game/voice-data.js';
 import { pronounOf } from '../game/voice/cast.js';
 import { el } from './dom.js';
+import { attachCard, type CardSource } from './hover.js';
 
-export type NounClick = (noun: Noun, anchor: HTMLElement) => void;
+/** Where a name's card comes from. Null for a noun that has no card. */
+export type CardFor = (noun: Noun) => CardSource | null;
 
-/** A run of text with every person, room, thing and hour made clickable. */
-export function proseWithNouns(text: string, view: CaseView, onNoun: NounClick): DocumentFragment {
+/** A run of text with every person and room in it given a card. */
+export function proseWithNames(text: string, view: CaseView, cardFor: CardFor): DocumentFragment {
   const fragment = document.createDocumentFragment();
   for (const segment of segmentNouns(text, view)) {
-    if (!segment.noun) {
+    const noun = segment.noun;
+    const source = noun && (noun.kind === 'person' || noun.kind === 'place') ? cardFor(noun) : null;
+    if (!noun || !source) {
       fragment.append(document.createTextNode(segment.text));
       continue;
     }
-    const noun = segment.noun;
-    const button = el('button', {
-      class: 'noun',
-      type: 'button',
-      title: menuTitle(noun),
-    });
-    button.textContent = segment.text;
-    button.addEventListener('click', () => onNoun(noun, button));
-    fragment.append(button);
+    const name = el('span', { class: `noun noun--${noun.kind}`, tabindex: '0' });
+    name.textContent = segment.text;
+    attachCard(name, source);
+    fragment.append(name);
   }
   return fragment;
 }
 
-function menuTitle(noun: Noun): string {
-  switch (noun.kind) {
-    case 'person':
-      return 'Ask about…';
-    case 'place':
-      return 'Go there';
-    case 'object':
-      return 'Go through it';
-    case 'anchor':
-      return 'Ask about that hour';
-  }
+export function renderPage(page: Page, view: CaseView, cardFor: CardFor): HTMLElement[] {
+  return page.blocks.flatMap((block) => renderBlock(block, view, cardFor));
 }
 
-export function renderPage(page: Page, view: CaseView, onNoun: NounClick): HTMLElement[] {
-  return page.blocks.flatMap((block) => renderBlock(block, view, onNoun));
-}
-
-function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLElement[] {
+function renderBlock(block: Block, view: CaseView, cardFor: CardFor): HTMLElement[] {
   switch (block.kind) {
     case 'prose': {
       const p = el('p', {
         class: `prose--${block.voice}${block.clueId ? ' carries-clue' : ''}`,
       });
-      p.append(proseWithNouns(block.text, view, onNoun));
+      p.append(proseWithNames(block.text, view, cardFor));
       return [p];
     }
     case 'note': {
       const p = el('p', { class: 'note' });
-      p.append(proseWithNouns(block.text, view, onNoun));
+      p.append(proseWithNames(block.text, view, cardFor));
       return [p];
     }
     case 'presence': {
@@ -70,10 +62,10 @@ function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLEleme
         return [wrap];
       }
       // M4b §A.4: one sentence, written by the engine, with every name in it
-      // still clickable — `proseWithNouns` finds the surnames on its own.
+      // carrying its card — `proseWithNames` finds the surnames on its own.
       if (block.text) {
         const p = el('p', { class: 'prose--presence' });
-        p.append(proseWithNouns(block.text, view, onNoun));
+        p.append(proseWithNames(block.text, view, cardFor));
         wrap.append(p);
         return [wrap];
       }
@@ -83,12 +75,8 @@ function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLEleme
         const person = view.personById.get(id);
         if (!person) continue;
         const li = el('li');
-        const button = el('button', { class: 'noun', type: 'button', title: 'Ask about…' });
-        button.textContent = person.surname;
-        button.addEventListener('click', () =>
-          onNoun({ kind: 'person', id, text: person.surname }, button),
-        );
-        li.append(button, `, ${person.role}${person.isClient ? ' — our client' : ''}`);
+        li.append(proseWithNames(person.surname, view, cardFor));
+        li.append(`, ${person.role}${person.isClient ? ' — our client' : ''}`);
         list.append(li);
       }
       wrap.append(list);
@@ -112,10 +100,10 @@ function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLEleme
         tr.append(el('td', { text: spanLabel(row.from, row.to) }));
         const td = el('td');
         td.append(
-          proseWithNouns(
+          proseWithNames(
             view.placeById.get(row.placeId ?? '')?.shortName ?? `nowhere ${they} will say`,
             view,
-            onNoun,
+            cardFor,
           ),
         );
         tr.append(td);

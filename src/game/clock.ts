@@ -50,3 +50,70 @@ export function actionsLeft(used: number, budget: number): number {
 export function isOver(used: number, budget: number): boolean {
   return used >= budget;
 }
+
+/* ------------------------------------------------------------------ *
+ * M6 §3 — the clock, always in view.
+ * ------------------------------------------------------------------ */
+
+const NUMBER_WORDS = [
+  'no',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+  'ten',
+  'eleven',
+  'twelve',
+  'thirteen',
+  'fourteen',
+  'fifteen',
+  'sixteen',
+  'seventeen',
+  'eighteen',
+  'nineteen',
+  'twenty',
+];
+
+/** A count in words up to twenty, and in figures past it. */
+export function countWord(n: number): string {
+  return n >= 0 && n < NUMBER_WORDS.length ? (NUMBER_WORDS[n] as string) : String(n);
+}
+
+export type Notch = 'spent' | 'next' | 'left';
+
+export interface ClockStrip {
+  /** "3:25 AM", large, in the running head. */
+  time: string;
+  /** One per call in the night's budget: spent, the next one, or still to come. */
+  notches: Notch[];
+  /** "Six calls left before the DA files at eight." */
+  left: string;
+}
+
+/**
+ * The strip under the running head: one notch per call in the night's budget,
+ * the spent ones filled, the next one amber, and how many are left in words.
+ */
+export function clockStrip(used: number, budget: number): ClockStrip {
+  const spent = Math.max(0, Math.min(used, budget));
+  const notches: Notch[] = Array.from({ length: Math.max(0, budget) }, (_, i) =>
+    i < spent ? 'spent' : i === spent ? 'next' : 'left',
+  );
+  const n = actionsLeft(used, budget);
+  const word = countWord(n);
+  const left =
+    n === 0
+      ? 'No calls left. The DA files at eight.'
+      : `${word.charAt(0).toUpperCase()}${word.slice(1)} call${n === 1 ? '' : 's'} left before the DA files at eight.`;
+  return { time: clockAfter(used, budget), notches, left };
+}
+
+/** Actions spent by the end of page `n` of a log: what the strip shows on that page. */
+export function usedByPage(log: readonly { cost: number }[], n: number): number {
+  return log.slice(0, n + 1).reduce((sum, p) => sum + p.cost, 0);
+}

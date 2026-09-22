@@ -296,7 +296,7 @@ export function allChoices(groups: readonly ChoiceGroup[]): Choice[] {
  * person. The one with a marked lead, else the one most recently spoken to,
  * else the first to enter.
  */
-export function defaultAskPerson(groups: readonly ChoiceGroup[], state: RunState): Id | null {
+export function defaultAskPerson(groups: readonly OfferedGroup[], state: RunState): Id | null {
   const asks = groups.filter((g) => g.kind === 'ask' && g.personId !== undefined);
   if (asks.length === 0) return null;
   const marked = asks.find((g) => g.choices.some((c) => c.lead));

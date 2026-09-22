@@ -15,6 +15,7 @@
   --rule: #cdc3b0;
   --accent: #8c2f22;
   --accent-soft: #b8635400;
+  --amber: #c98a1b;
   --measure: 34rem;
   --gutter: 16px;
   color-scheme: light dark;
@@ -29,6 +30,7 @@
     --ink-faint: #756e63;
     --rule: #3a3833;
     --accent: #d08573;
+    --amber: #d9a441;
   }
 }
 
@@ -40,6 +42,7 @@
   --ink-faint: #756e63;
   --rule: #3a3833;
   --accent: #d08573;
+  --amber: #d9a441;
 }
 
 * {
@@ -108,7 +111,7 @@ button {
 
 @media (min-width: 900px) {
   .page {
-    padding: 2.6rem 2.6rem 1.6rem;
+    padding: 1.8rem 2.6rem 1.2rem;
   }
   .page--notebook {
     border-left: 1px solid var(--rule);
@@ -146,27 +149,6 @@ button {
   max-width: var(--measure);
   /* room for the scrollbar without shifting the measure */
   padding-right: 0.4rem;
-}
-
-.leaf.turning {
-  animation: turn 140ms ease-out;
-}
-
-@keyframes turn {
-  from {
-    opacity: 0;
-    transform: translateX(7px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .leaf.turning {
-    animation: none;
-  }
 }
 
 /* ----------------------------------------------------------------- prose */
@@ -291,68 +273,249 @@ button {
   outline: none;
 }
 
-/* ---------------------------------------------------------------- prompt */
+/* ------------------------------------------------------- M6: the clock */
 
-.prompt {
-  flex: 0 0 auto;
-  margin-top: 1.6rem;
-  border-top: 1px solid var(--rule);
-  padding-top: 0.8rem;
-  max-width: var(--measure);
+/*
+ * §3. The running head carries the time large, beside the place, and a strip
+ * of notches under it: one a call, the spent ones filled, the next one amber.
+ * The notch that fills when an action lands is the only thing on the page
+ * that moves.
+ */
+.runhead--clock {
+  display: block;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
 }
 
-.prompt form {
+.runhead-line {
   display: flex;
+  justify-content: space-between;
   align-items: baseline;
-  gap: 0.5ch;
+  gap: 1rem;
 }
 
-.prompt .caret {
-  font-family: 'Courier New', Courier, monospace;
-  color: var(--accent);
-  animation: blink 1.1s steps(1, end) infinite;
+.runhead-line .place {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0.15;
+.runhead-line .time {
+  font-size: 1.6rem;
+  line-height: 1.1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.notches {
+  display: flex;
+  gap: 3px;
+  margin-top: 0.45rem;
+}
+
+.notch {
+  flex: 1 1 0;
+  max-width: 1.4rem;
+  height: 7px;
+  border: 1px solid var(--rule);
+  border-radius: 1px;
+  background: transparent;
+}
+
+.notch--spent {
+  background: var(--ink-soft);
+  border-color: var(--ink-soft);
+}
+
+.notch--next {
+  background: var(--amber);
+  border-color: var(--amber);
+}
+
+.notch--fresh {
+  animation: notch-fill 520ms ease-out;
+  transform-origin: left center;
+}
+
+@keyframes notch-fill {
+  from {
+    background: var(--amber);
+    transform: scaleX(0.15);
+  }
+  to {
+    background: var(--ink-soft);
+    transform: scaleX(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .prompt .caret {
+  .notch--fresh {
     animation: none;
   }
 }
 
-.prompt input {
-  flex: 1 1 auto;
-  min-width: 0;
-  background: transparent;
-  border: 0;
-  outline: none;
-  color: var(--ink);
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.84rem;
-  letter-spacing: 0.02em;
-  padding: 0.15rem 0;
+.calls-left {
+  margin-top: 0.3rem;
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+  font-style: italic;
 }
 
-.prompt input::placeholder {
+/* ------------------------------------------------------ M6: the errand */
+
+/* §2. Why he came: first on the page, set apart, in italics. */
+.leaf p.prose--errand {
+  font-style: italic;
+  color: var(--ink-soft);
+  text-indent: 0;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.leaf p.prose--errand + p {
+  text-indent: 0;
+}
+
+/* ----------------------------------------------------- M6: the choices */
+
+/*
+ * §5. The page is prose, then choices. The prose scrolls inside its own
+ * margins; the choices sit under it and are always on the screen. A panel
+ * too tall for the window scrolls inside itself rather than pushing the
+ * first group off the bottom.
+ */
+.choices {
+  flex: 0 0 auto;
+  max-height: 42%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+  padding: 0.7rem 0.4rem 0.2rem 0;
+  max-width: var(--measure);
+}
+
+.choices--inert {
+  opacity: 0.5;
+}
+
+.choice-group {
+  margin: 0 0 0.7rem;
+}
+
+.choice-heading {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 0.35rem;
+}
+
+.choice-heading .noun {
+  letter-spacing: 0.12em;
+}
+
+.choice-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.choice,
+.who-btn {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45ch;
+  min-height: 1.9rem;
+  padding: 0.2rem 0.6rem;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink);
+  font-size: 0.82rem;
+  line-height: 1.3;
+  cursor: pointer;
+  text-align: left;
+}
+
+.choice:hover:not(:disabled),
+.choice:focus-visible,
+.who-btn:hover:not(:disabled),
+.who-btn:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.choice:disabled,
+.who-btn:disabled {
+  cursor: default;
+}
+
+.choice .mark,
+.who-btn .mark {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.choice--lead {
+  border-color: var(--accent);
+}
+
+.choice .mins {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  margin-left: 0.2ch;
+}
+
+.choice .aside {
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.choice--done .label {
+  color: var(--ink-soft);
+}
+
+.choice--done .check {
   color: var(--ink-faint);
 }
 
-.prompt .hint {
-  margin: 0.45rem 0 0;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.68rem;
+.choice--more {
+  border-style: dashed;
+}
+
+.who-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 0.7rem;
+}
+
+.who-btn--on {
+  border-color: var(--ink);
+  background: var(--paper-edge);
+}
+
+.pager {
+  flex: 0 0 auto;
+  margin: 0.4rem 0 0;
+  font-size: 0.72rem;
   color: var(--ink-faint);
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem 1rem;
+  max-width: var(--measure);
 }
 
-.prompt .hint button {
+.pager button {
   background: none;
   border: 0;
   padding: 0;
@@ -363,8 +526,76 @@ button {
   font: inherit;
 }
 
-.prompt .hint button:hover {
-  color: var(--accent);
+.pager button:disabled {
+  text-decoration: none;
+  opacity: 0.4;
+  cursor: default;
+}
+
+.turned-note {
+  margin-top: 0.8rem;
+}
+
+/*
+ * §5 on a phone: the buttons stack full width with a tap target of at least
+ * 44 pixels, and the prose scrolls above them.
+ */
+@media (max-width: 600px) {
+  .choice-list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .choice {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  /* The names to switch between are short: a row of them, still 44 tall. */
+  .who-btn {
+    min-height: 44px;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  .choice .mins {
+    margin-left: auto;
+  }
+  .choices {
+    max-height: 55%;
+  }
+  .runhead-line .time {
+    font-size: 1.4rem;
+  }
+}
+
+/* ----------------------------------------------------- M6: hover cards */
+
+.noun {
+  cursor: help;
+}
+
+.hover-card {
+  position: fixed;
+  z-index: 20;
+  max-width: min(20rem, calc(100vw - 16px));
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.hover-card .hc-title {
+  font-size: 0.92rem;
+  margin-bottom: 0.15rem;
+}
+
+.hover-card .hc-line {
+  color: var(--ink-soft);
 }
 
 /* -------------------------------------------------------------- notebook */
@@ -545,7 +776,9 @@ li.contradiction::before {
 
 /* ---------------------------------------------------- the notebook's tab */
 
-.tab {
+.tab,
+.nb-back,
+.nb-link {
   display: none;
 }
 
@@ -559,8 +792,27 @@ li.contradiction::before {
   body.notebook-open .page--prose {
     display: none;
   }
-  .tab {
+  body.notebook-open .nb-back {
     display: block;
+    flex: 0 0 auto;
+    margin-top: 0.8rem;
+    min-height: 44px;
+  }
+  .nb-link {
+    display: inline;
+    background: none;
+    border: 0;
+    padding: 0.4rem 0 0.4rem 0.8rem;
+    margin-left: auto;
+    font: inherit;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+  }
+  .tab {
+    display: none;
     position: fixed;
     right: 0;
     top: 40%;
@@ -803,45 +1055,6 @@ li.contradiction::before {
   font-weight: 400;
   color: var(--ink-faint);
   margin: 0;
-}
-
-/* ------------------------------------------------------------ the menu */
-
-.noun-menu {
-  position: absolute;
-  z-index: 10;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  padding: 0.3rem 0;
-  min-width: 13rem;
-  max-width: min(22rem, calc(100vw - 2 * var(--gutter)));
-  max-height: 17rem;
-  overflow-y: auto;
-  font-size: 0.82rem;
-}
-
-.noun-menu .group {
-  font-size: 0.64rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  padding: 0.5rem 0.8rem 0.15rem;
-}
-
-.noun-menu button {
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: 0;
-  padding: 0.22rem 0.8rem;
-  cursor: pointer;
-}
-
-.noun-menu button:hover,
-.noun-menu button:focus-visible {
-  background: var(--rule);
-  outline: none;
 }
 
 .sr-only {
