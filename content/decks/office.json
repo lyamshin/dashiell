@@ -1,0 +1,437 @@
+[
+  {
+    "id": "off-001",
+    "deck": "office",
+    "text": "The landlord's note sat on the blotter, unopened since Tuesday. I propped my feet up and let the radiator lose its fight with the cold.",
+    "tags": {
+      "circumstance": "behind-on-rent",
+      "weather": "cold"
+    },
+    "motifs": [
+      "money",
+      "cold"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "off-002",
+    "deck": "office",
+    "text": "Rent was three weeks gone. The envelope wasn't going to pay itself by sitting on the desk. I lit a cigarette off the lamp and let the smoke do the worrying.",
+    "tags": {
+      "circumstance": "behind-on-rent",
+      "weather": "any"
+    },
+    "motifs": [
+      "money",
+      "cigarette"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-003",
+    "deck": "office",
+    "text": "The landlady's bill was folded under the telephone. I'd see it every time the thing didn't ring. I decided not to open it until it did.",
+    "tags": {
+      "circumstance": "behind-on-rent",
+      "weather": "any"
+    },
+    "motifs": [
+      "money",
+      "telephone"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-004",
+    "deck": "office",
+    "text": "I owed six weeks on the office, and the office knew it. Cold came through the window sash I still hadn't fixed.",
+    "tags": {
+      "circumstance": "behind-on-rent",
+      "weather": "cold"
+    },
+    "motifs": [
+      "money",
+      "window",
+      "cold"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "off-005",
+    "deck": "office",
+    "text": "The rent envelope had a little window cut in it, so you could see the amount without opening the thing. Rain ticked against the office glass, steady, uninvited.",
+    "tags": {
+      "circumstance": "behind-on-rent",
+      "weather": "rain"
+    },
+    "motifs": [
+      "money",
+      "rain",
+      "window"
+    ],
+    "weather": "rain",
+    "status": "generated"
+  },
+  {
+    "id": "off-006",
+    "deck": "office",
+    "text": "I had money in the desk drawer for once, and the rent had stopped being a subject. I checked twice before I believed it.",
+    "tags": {
+      "circumstance": "flush",
+      "weather": "any"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-007",
+    "deck": "office",
+    "text": "The whiskey in the bottom drawer was the good kind, bought and not borrowed. I poured one and didn't count what was left.",
+    "tags": {
+      "circumstance": "flush",
+      "weather": "any"
+    },
+    "motifs": [
+      "drink"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-008",
+    "deck": "office",
+    "text": "Flush enough to run the radiator past midnight without doing the arithmetic. The cold stayed on its side of the glass tonight.",
+    "tags": {
+      "circumstance": "flush",
+      "weather": "cold"
+    },
+    "motifs": [
+      "money",
+      "cold",
+      "window"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "off-009",
+    "deck": "office",
+    "text": "New bills sat stiff in the coat pocket, still smelling of the bank. Moonlight came in flat across the blotter, and for once I didn't mind what it showed.",
+    "tags": {
+      "circumstance": "flush",
+      "weather": "clear"
+    },
+    "motifs": [
+      "money",
+      "coat",
+      "clear"
+    ],
+    "weather": "clear",
+    "status": "generated"
+  },
+  {
+    "id": "off-010",
+    "deck": "office",
+    "text": "My head kept its own time, out of step with the clock over the safe. I put the lamp low and was grateful for it.",
+    "tags": {
+      "circumstance": "hungover",
+      "weather": "any"
+    },
+    "motifs": [
+      "clock",
+      "lamp"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-011",
+    "deck": "office",
+    "text": "The coffee I'd made was cold by the time I remembered it. I drank it anyway, for the excuse of holding something.",
+    "tags": {
+      "circumstance": "hungover",
+      "weather": "any"
+    },
+    "motifs": [
+      "drink"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-012",
+    "deck": "office",
+    "text": "Last night's cigarette sat half-smoked in the ashtray. My stomach didn't care for the sight of it. I cracked the window and let the rain-smell in instead.",
+    "tags": {
+      "circumstance": "hungover",
+      "weather": "rain"
+    },
+    "motifs": [
+      "cigarette",
+      "window",
+      "rain"
+    ],
+    "weather": "rain",
+    "status": "generated"
+  },
+  {
+    "id": "off-013",
+    "deck": "office",
+    "text": "The telephone stayed quiet, which was its own mercy; one ring would have finished me. Cold came up through the floorboards, and I let the headache have the room.",
+    "tags": {
+      "circumstance": "hungover",
+      "weather": "cold"
+    },
+    "motifs": [
+      "telephone",
+      "cold"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "off-014",
+    "deck": "office",
+    "text": "My knuckle had split open again, the same place as last month. It caught on the desk drawer every time. Frost had crept across the window glass from the inside.",
+    "tags": {
+      "circumstance": "bruised",
+      "weather": "cold"
+    },
+    "motifs": [
+      "hands",
+      "cold",
+      "window"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "off-015",
+    "deck": "office",
+    "text": "The mirror over the washbasin showed more of the night before than I wanted explained. I turned the lamp away from it.",
+    "tags": {
+      "circumstance": "bruised",
+      "weather": "any"
+    },
+    "motifs": [
+      "mirror",
+      "lamp"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-016",
+    "deck": "office",
+    "text": "I favored the side that still ached and took the chair slow. The office didn't care what shape I came back in.",
+    "tags": {
+      "circumstance": "bruised",
+      "weather": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "off-017",
+    "deck": "office",
+    "text": "The jaw had gone from purple to something with less name to it. Even the low lamp showed that much. The mirror could wait for morning.",
+    "tags": {
+      "circumstance": "bruised",
+      "weather": "any"
+    },
+    "motifs": [
+      "face",
+      "lamp",
+      "mirror"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-018",
+    "deck": "office",
+    "text": "The last case's photographs were still in the drawer. I hadn't worked out whether to file them or burn them. Either felt like more trouble than the marriage was worth.",
+    "tags": {
+      "circumstance": "off-a-divorce-case",
+      "weather": "any"
+    },
+    "motifs": [
+      "photograph"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-019",
+    "deck": "office",
+    "text": "A woman's calling card sat under the paperweight, three days after I'd stopped needing it. I left it there instead of admitting I'd forgotten to throw it out.",
+    "tags": {
+      "circumstance": "off-a-divorce-case",
+      "weather": "any"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-020",
+    "deck": "office",
+    "text": "The ledger sat open to its last entry, a column of hotel names I was tired of reading. Fog had come up thick enough to blur the streetlamp across the way. I let it blur the ledger too, for a minute.",
+    "tags": {
+      "circumstance": "off-a-divorce-case",
+      "weather": "fog"
+    },
+    "motifs": [
+      "ledger",
+      "fog",
+      "window"
+    ],
+    "weather": "fog",
+    "status": "generated"
+  },
+  {
+    "id": "off-021",
+    "deck": "office",
+    "text": "Two weeks of somebody else's marriage had left hotel soap on my coat, and the fog outside hadn't cleared it yet. I hung the coat by the door and tried not to notice.",
+    "tags": {
+      "circumstance": "off-a-divorce-case",
+      "weather": "fog"
+    },
+    "motifs": [
+      "coat",
+      "fog",
+      "door"
+    ],
+    "weather": "fog",
+    "status": "generated"
+  },
+  {
+    "id": "off-022",
+    "deck": "office",
+    "text": "I hadn't slept since the night before the night before. The clock over the door had stopped pretending that mattered to it. I let it keep its own count.",
+    "tags": {
+      "circumstance": "sleepless",
+      "weather": "any"
+    },
+    "motifs": [
+      "clock",
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-023",
+    "deck": "office",
+    "text": "Midnight came and went, the way it does when a man isn't planning on bed regardless. I kept the lamp burning for the company more than the light.",
+    "tags": {
+      "circumstance": "sleepless",
+      "weather": "any"
+    },
+    "motifs": [
+      "midnight",
+      "lamp"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-024",
+    "deck": "office",
+    "text": "The building's quiet had a weight to it once the tenants below had gone home for good. Through the window the sky had gone perfectly clear. I hadn't looked up in a while.",
+    "tags": {
+      "circumstance": "sleepless",
+      "weather": "clear"
+    },
+    "motifs": [
+      "quiet",
+      "window",
+      "clear"
+    ],
+    "weather": "clear",
+    "status": "generated"
+  },
+  {
+    "id": "off-025",
+    "deck": "office",
+    "text": "Sleep was a stranger I'd stopped waiting up for. The window showed my own reflection and the dark behind it, which suited the hour fine.",
+    "tags": {
+      "circumstance": "sleepless",
+      "weather": "any"
+    },
+    "motifs": [
+      "sleep",
+      "window"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-026",
+    "deck": "office",
+    "text": "I gave up on bed around eleven and made my peace with the desk chair. The stairs outside creaked twice, some tenant coming in later than I was staying up.",
+    "tags": {
+      "circumstance": "sleepless",
+      "weather": "any"
+    },
+    "motifs": [
+      "sleep",
+      "stairs"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-027",
+    "deck": "office",
+    "text": "The retainer was still folded in my breast pocket. I'd checked for it twice on the walk up, which wasn't like me. I put it in the drawer, where it would keep its shape better than I would.",
+    "tags": {
+      "circumstance": "just-paid",
+      "weather": "any"
+    },
+    "motifs": [
+      "money",
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-028",
+    "deck": "office",
+    "text": "Money sat in the office for once instead of a promise of it. I lit the cigarette slower than usual, in no hurry for once. The cold stayed outside the glass where it belonged.",
+    "tags": {
+      "circumstance": "just-paid",
+      "weather": "cold"
+    },
+    "motifs": [
+      "money",
+      "cigarette",
+      "cold"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "off-029",
+    "deck": "office",
+    "text": "I'd paid the landlady on my way up, cash in an envelope same as she'd been asking for weeks. The stairs felt shorter for it. The office looked the same as always, which was its own kind of relief.",
+    "tags": {
+      "circumstance": "just-paid",
+      "weather": "any"
+    },
+    "motifs": [
+      "money",
+      "stairs"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-030",
+    "deck": "office",
+    "text": "The fee sat on the blotter where I'd dropped it, more money than the desk usually saw at this hour. I left the lamp burning a while longer than I needed, just to look at it.",
+    "tags": {
+      "circumstance": "just-paid",
+      "weather": "any"
+    },
+    "motifs": [
+      "money",
+      "lamp"
+    ],
+    "status": "generated"
+  }
+]
