@@ -1,5 +1,5 @@
 /**
- * `npm run read -- --seed 7 [--difficulty 2] [--random]`
+ * `npm run read -- --seed 7 [--difficulty 2] [--tier 0..5|over-easy] [--level 1..4] [--random]`
  *
  * Plays a case through and prints the whole run as prose, page by page,
  * exactly as a player would read it, then the notebook and the filed report.
@@ -24,7 +24,8 @@ import {
   renderVerdictText,
 } from '../game/transcript.js';
 import type { Report, RunState } from '../game/types.js';
-import { ignoreBrokenPipe, parseArgs } from './args.js';
+import { ignoreBrokenPipe, parseArgs, parseTierLevel } from './args.js';
+import { describeDials, dialsOf } from '../gen/shape.js';
 
 ignoreBrokenPipe();
 
@@ -37,16 +38,20 @@ const detective = values.get('detective') ?? 'Dashiell';
 // does, so a trope can be read without hunting for a seed that deals it.
 const type = values.get('type');
 const trope = values.get('trope');
+// M7: the tier and the level. Neither given is today's case.
+const dialFlags = parseTierLevel(values);
 
 if (
   !Number.isInteger(seed) ||
-  ![1, 2, 3].includes(difficulty) ||
+  ![1, 2, 3, 4].includes(difficulty) ||
+  dialFlags === null ||
   (type !== undefined && !['murder', 'robbery', 'missing'].includes(type)) ||
   (trope !== undefined && !TROPE_IDS.includes(trope))
 ) {
   process.stderr.write(
-    'usage: npm run read -- --seed <integer> [--difficulty 1|2|3] [--random] [--pages N] ' +
-      `[--no-gaps] [--type murder|robbery|missing] [--trope <id>]\n  tropes: ${TROPE_IDS.join(', ')}\n`,
+    'usage: npm run read -- --seed <integer> [--difficulty 1|2|3|4] [--random] [--pages N] ' +
+      `[--no-gaps] [--type murder|robbery|missing] [--trope <id>] ` +
+      `[--tier 0..5|over-easy] [--level 1..4]\n  tropes: ${TROPE_IDS.join(', ')}\n`,
   );
   process.exit(1);
 }
@@ -56,6 +61,7 @@ const kase = generateCase(seed, {
   detectiveName: detective,
   ...(type === undefined ? {} : { type: type as CaseType }),
   ...(trope === undefined ? {} : { tropeId: trope }),
+  ...dialFlags,
 });
 const view = buildView(kase);
 
@@ -78,6 +84,8 @@ const out: string[] = [];
 out.push(
   `${detective.toUpperCase()} · case ${kase.seed} · difficulty ${kase.difficulty} · ${kase.neighborhood}`,
 );
+// M7: a tiered case says what it was dealt as. A plain one prints as before.
+if (kase.shape !== undefined) out.push(describeDials(dialsOf(kase)));
 // M4b §B.3: the game's par and budget, which are the case's plus the walk
 // from the office. The generator's own numbers are in brackets after them.
 out.push(

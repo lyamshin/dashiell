@@ -158,6 +158,17 @@ export interface ClueContext {
   act: Act;
   /** M5: the client's brief. The `client` clue states its pointer. */
   brief: ClientBrief;
+  /**
+   * M7: knowledge tests arrive at Hard-boiled. Absent is true, as before.
+   * Without them a liar who claims a room with something memorable in it is
+   * never asked what it was.
+   */
+  knowledgeTests?: boolean;
+  /**
+   * M7: the client's pointer states a motive. Absent is true. Below Medium it
+   * never does, so the client clue puts only the name on the table.
+   */
+  pointerMotive?: boolean;
 }
 
 export function deriveCandidates(ctx: ClueContext): CandidateSet {
@@ -359,8 +370,15 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
    * window and stops, in all three shapes: a stock phrase is worth keeping
    * once and is worth nothing twice.
    */
-  const morgueOpening =
-    act.type === 'murder'
+  // M7: the coroner who can name the half hour says it as one.
+  const exact = ctx.coronerWindow[0] === ctx.coronerWindow[1];
+  const morgueOpening = exact
+    ? act.type === 'murder'
+      ? `The coroner puts death at ${clock(ctx.coronerWindow[0])}.`
+      : act.type === 'robbery'
+        ? `The desk sergeant's report puts it at ${clock(ctx.coronerWindow[0])}.`
+        : `Nobody can put it closer than ${clock(ctx.coronerWindow[0])}.`
+    : act.type === 'murder'
       ? `The coroner puts death between ${windowText}.`
       : act.type === 'robbery'
         ? `The desk sergeant's report puts it between ${windowText}.`
@@ -500,7 +518,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
         }
         continue;
       }
-      if (trace.kind === 'knowledge' && anchor.placeId) {
+      if (trace.kind === 'knowledge' && anchor.placeId && ctx.knowledgeTests !== false) {
         const place = anchor.placeId;
         for (const t of anchor.ticks) {
           for (const p of cast.suspects) {
@@ -583,9 +601,10 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     (motiveHolders[0] as Person);
   // The pointer is only a fact when it is a motive. A client who points at
   // their own red herring puts nothing on the table but the name.
-  const clientFacts: Fact[] = pointedAt.motive
-    ? [{ kind: 'hasMotive', personId: pointedAt.id, motiveType: pointedAt.motive.type }]
-    : [];
+  const clientFacts: Fact[] =
+    pointedAt.motive && ctx.pointerMotive !== false
+      ? [{ kind: 'hasMotive', personId: pointedAt.id, motiveType: pointedAt.motive.type }]
+      : [];
   const client = add(
     'client',
     { type: 'person', personId: cast.client.id, topic: 'why I was hired' },

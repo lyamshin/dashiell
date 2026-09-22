@@ -35,7 +35,8 @@ function isRunState(value: unknown): value is RunState {
   const v = value as Record<string, unknown>;
   return (
     typeof v.seed === 'number' &&
-    (v.difficulty === 1 || v.difficulty === 2 || v.difficulty === 3) &&
+    // M7: level 4, the DA's Office.
+    (v.difficulty === 1 || v.difficulty === 2 || v.difficulty === 3 || v.difficulty === 4) &&
     typeof v.detectiveName === 'string' &&
     typeof v.at === 'string' &&
     typeof v.actionsUsed === 'number' &&

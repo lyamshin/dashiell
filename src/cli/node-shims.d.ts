@@ -10,11 +10,20 @@ declare module 'node:fs' {
   export function writeFileSync(path: string, data: string, encoding?: string): void;
   export function mkdirSync(path: string, options?: { recursive?: boolean }): void;
   export function existsSync(path: string): boolean;
+  /** M7: the byte-identity test reads its baseline hashes. */
+  export function readFileSync(path: string | URL, encoding: string): string;
   /** The golden loop's page dump clears its output directory before filling it. */
   export function rmSync(
     path: string,
     options?: { recursive?: boolean; force?: boolean },
   ): void;
+}
+
+/** M7: the byte-identity test hashes each case the way the baseline did. */
+declare module 'node:crypto' {
+  export function createHash(algorithm: string): {
+    update(data: string): { digest(encoding: 'hex'): string };
+  };
 }
 
 declare module 'node:path' {
