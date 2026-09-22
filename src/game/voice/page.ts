@@ -570,6 +570,15 @@ interface Laid {
    * joined at the end of assembly, while the paragraph stays a paragraph.
    */
   para?: string;
+  /**
+   * The generator's own sentences inside this block, exactly as it wrote them.
+   * §5's join puts a sentence's first letter down to make a clause of it, and
+   * a sentence the generator wrote has to reach the page as it was written, so
+   * the join steps over any pair whose second half is one of these. It is the
+   * pair that is spared and not the paragraph: a paragraph with one of the
+   * generator's sentences in it may still carry the page's long one.
+   */
+  verbatim?: string[];
 }
 
 /** The longest a fused paragraph may get. Past this it is a wall, not a scene. */
@@ -612,6 +621,13 @@ interface SayOpts {
   transparent?: boolean;
   /** Which paragraph this line joins. See `Laid.para`. */
   para?: string;
+  /**
+   * This line is the generator's words and reaches the page exactly as they
+   * were written. §5's carrying sentence leaves it alone: it joins two
+   * sentences with a comma and puts the second one's first letter down, which
+   * alters nothing a reader would call a word and everything a checker would.
+   */
+  verbatim?: boolean;
 }
 
 export function composePage(stage: Stage, scene: Scene): Composed {
@@ -705,13 +721,14 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       plainN: sentences - imageN,
       imageN,
       ...(opts.para === undefined ? {} : { para: opts.para }),
+      ...(opts.verbatim === true ? { verbatim: [trimmed] } : {}),
     });
     for (const m of motifs) if (!usedMotifs.includes(m)) usedMotifs.push(m);
     if (opts.transparent !== true) ctx.before = motifs;
   };
   // A block the engine wrote out of the case's own fields: the roll of who is
   // in the room, a claimed timeline, a note. Plain by construction.
-  const put = (block: Block, para?: string): void => {
+  const put = (block: Block, para?: string, verbatim?: boolean): void => {
     laid.push({
       block,
       image: false,
@@ -722,6 +739,9 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       plainN: plainSentencesIn(block),
       imageN: 0,
       ...(para === undefined ? {} : { para }),
+      ...(verbatim === true && (block.kind === 'note' || block.kind === 'prose')
+        ? { verbatim: [block.text] }
+        : {}),
     });
   };
 
@@ -739,7 +759,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const line = connective(dealer.random, kind, plainSlots, spentConnectives);
     if (line.length === 0) return;
     spentConnectives.push(line);
-    say(line, 'narrator', { transparent: true, ...(para === undefined ? {} : { para }) });
+    say(line, 'narrator', {
+      transparent: true,
+      verbatim: true,
+      ...(para === undefined ? {} : { para }),
+    });
   };
   // Layer 0, the moment somebody is in front of him: what a longshoreman's
   // hands and a chambermaid's uniform say before anybody opens their mouth.
@@ -774,7 +798,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const next = layerSentences(person, 2)[known.layer2.length + used];
     if (next === undefined) return;
     ridden.set(about, used + 1);
-    say(next, 'narrator', { transparent: true, ...(para === undefined ? {} : { para }) });
+    say(next, 'narrator', {
+      transparent: true,
+      verbatim: true,
+      ...(para === undefined ? {} : { para }),
+    });
   };
 
   /* --------------------------------------------- §B.2.4: the client leaves */
@@ -910,7 +938,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     const firstOpening = scene.openingClues[0];
     // The note says what room this is; the first thing found in it says what
     // is in the room. One paragraph, the way the golden writes a room.
-    put({ kind: 'note', text: openingNote(view, stage.at) }, `find-${firstOpening?.id ?? 'note'}`);
+    put({ kind: 'note', text: openingNote(view, stage.at) }, `find-${firstOpening?.id ?? 'note'}`, true);
     for (const clue of scene.openingClues) {
       const line = findLine(dealer, view, clue, stage.at, base, ctx);
       say(line.text, 'find', {
@@ -1584,6 +1612,9 @@ export function carryingSentence(laid: Laid[], low = CARRY_LOW, high = CARRY_HIG
       const head = /^([A-Za-z][A-Za-z'’]*)/.exec(b)?.[1];
       if (head === undefined) continue;
       if (head !== 'I' && !CLAUSE_OPENERS.has(head.toLowerCase())) continue;
+      // The second half is the one that loses its capital, so it is the one
+      // that has to be the engine's own words rather than the generator's.
+      if ((l.verbatim ?? []).some((v) => v.includes(b))) continue;
       const total = wordCount(a) + wordCount(b);
       // The first half has to be the one doing the carrying; two short atoms
       // welded together is a longer short sentence, not a long one.
@@ -1631,12 +1662,36 @@ export function carryingSentence(laid: Laid[], low = CARRY_LOW, high = CARRY_HIG
  * fusing would lose one. The fused block keeps the first block's kind, voice
  * and clue, and the counts of both.
  */
-export function fuseParagraphs(laid: Laid[], ceiling = PARAGRAPH_CEILING): number {
+/**
+ * The shortest a paragraph may stand on its own.
+ *
+ * A one-sentence paragraph of nine words is not a paragraph, it is a block
+ * that got left out of one — "Nobody in here but the furniture." between the
+ * room and what was found in it. The golden has short paragraphs and they are
+ * all dialogue; its narration runs three and four sentences. Anything under
+ * this joins whichever neighbour it is nearer to in kind.
+ */
+export const PARAGRAPH_FLOOR = 20;
+
+export function fuseParagraphs(
+  laid: Laid[],
+  ceiling = PARAGRAPH_CEILING,
+  floor = PARAGRAPH_FLOOR,
+): number {
   let fused = 0;
   for (let i = laid.length - 1; i > 0; i--) {
     const here = laid[i] as Laid;
     const before = laid[i - 1] as Laid;
-    if (here.para === undefined || here.para !== before.para) continue;
+    const tagged = here.para !== undefined && here.para === before.para;
+    // Untagged, but one of the two is too short to be a paragraph and neither
+    // is anybody speaking: a stray line joins the movement next to it rather
+    // than standing alone in the middle of the page.
+    const stray =
+      !tagged &&
+      takesABeat(here) &&
+      takesABeat(before) &&
+      (countWords([here.block]) < floor || countWords([before.block]) < floor);
+    if (!tagged && !stray) continue;
     const a = before.block;
     const b = here.block;
     if (a.kind !== 'prose' && a.kind !== 'note') continue;
@@ -1647,13 +1702,28 @@ export function fuseParagraphs(laid: Laid[], ceiling = PARAGRAPH_CEILING): numbe
     if (countWords([{ kind: 'note', text }]) > ceiling) continue;
     const clueId = a.kind === 'prose' ? a.clueId : undefined;
     const keptClue = clueId ?? (b.kind === 'prose' ? b.clueId : undefined);
-    // §A.3 binds a simile to the *voice* of the block it is a clause of — a
-    // face simile is only ever on a portrait — so the paragraph a portrait was
-    // fused into keeps the portrait's voice rather than its neighbour's.
+    // Which voice the paragraph keeps, in order of who has a claim on it.
+    // §A.3 binds a simile to the voice of the block it is a clause of — a face
+    // simile is only ever on a portrait — and a clue's record is excused for
+    // being flat only under the two voices where flatness is the point, so the
+    // block that carries the clue keeps its own voice too. Otherwise the
+    // paragraph is the first block's and reads as what it opened as.
     const first = a.kind === 'prose' ? a : b.kind === 'prose' ? b : null;
     const second = b.kind === 'prose' ? b : null;
+    const carriesClue =
+      a.kind === 'prose' && a.clueId !== undefined
+        ? a
+        : b.kind === 'prose' && b.clueId !== undefined
+          ? b
+          : null;
     const voice =
-      here.hosts === true && second ? second.voice : first ? first.voice : null;
+      here.hosts === true && second
+        ? second.voice
+        : carriesClue
+          ? carriesClue.voice
+          : first
+            ? first.voice
+            : null;
     before.block =
       voice === null
         ? { kind: 'note', text }
@@ -1662,8 +1732,11 @@ export function fuseParagraphs(laid: Laid[], ceiling = PARAGRAPH_CEILING): numbe
     before.imageN += here.imageN;
     before.image = before.image || here.image;
     // The paragraph now carries the simile, so a later fusion into it keeps
-    // the voice §A.3 bound the simile to.
+    // the voice §A.3 bound the simile to; and a paragraph with the
+    // generator's own sentence anywhere inside it is a paragraph §5 leaves
+    // alone, because the join lands wherever the longest pair is.
     if (here.hosts === true) before.hosts = true;
+    if (here.verbatim) before.verbatim = [...(before.verbatim ?? []), ...here.verbatim];
     before.keep = Math.max(before.keep, here.keep);
     for (const m of here.motifs) if (!before.motifs.includes(m)) before.motifs.push(m);
     laid.splice(i, 1);
@@ -2081,7 +2154,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    */
   const split = splitBriefing(view, familiar);
   if (split.entrance)
-    t.say(split.entrance, 'narrator', { transparent: true, para: 'entrance' });
+    t.say(split.entrance, 'narrator', { transparent: true, verbatim: true, para: 'entrance' });
 
   const entrance = entranceCard(
     dealer,
@@ -2120,7 +2193,11 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * is what she came up the stairs to say.
    */
   if (split.narration.length > 0)
-    t.say(split.narration.join(' '), 'narrator', { transparent: true, para: 'entrance' });
+    t.say(split.narration.join(' '), 'narrator', {
+      transparent: true,
+      verbatim: true,
+      para: 'entrance',
+    });
 
   const victim = view.victim;
   const askSlots: Slots = {
