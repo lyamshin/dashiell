@@ -101,8 +101,12 @@ describe('the record', () => {
         for (const person of book.people) for (const r of person.records) written.set(r.clueId, r.text);
         for (const place of book.places) for (const r of place.clues) written.set(r.clueId, r.text);
         for (const id of state.found) {
+          // §A.3: the notebook is a record, so it keeps the clock faces.
+          // `textRecord` is the clue as the generator wrote it; `text` is the
+          // same sentence with its hours spoken, which is the page's form.
+          const clue = v.findableById.get(id);
           expect(written.get(id), `${id} is not in the notebook`).toBe(
-            v.findableById.get(id)?.text,
+            clue?.textRecord ?? clue?.text,
           );
         }
         // And it is nearly everything there is.

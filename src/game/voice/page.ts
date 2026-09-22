@@ -27,13 +27,13 @@
  * nothing in here touches the document.
  */
 
-import type { Clue, Id, Person, Tick } from '../../gen/types.js';
+import type { Clue, Id, Person } from '../../gen/types.js';
 import type { Rng } from '../../gen/rng.js';
-import { clock } from '../../gen/types.js';
+import { spokenClock } from '../../gen/types.js';
 import { NIGHT_MINUTES } from '../types.js';
 import type { Block, ProseVoice } from '../types.js';
 import type { CaseView, ClaimedAccount, Established } from '../derive.js';
-import { establishedFrom } from '../derive.js';
+import { clueTick, establishedFrom } from '../derive.js';
 import {
   CARRY_TEMPLATES,
   FAMILIAR_GREETINGS,
@@ -95,6 +95,7 @@ import {
   PLAIN_FLOOR,
   PLAIN_NOTED,
   PLAIN_STOCK,
+  CLIENT_CONTINUES,
   SELF_ALREADY,
   SELF_QUESTIONS,
   briefingQuestion,
@@ -121,6 +122,7 @@ import {
   type MotifContext,
 } from './motifs.js';
 import {
+  BRIEFING_ASK_CAP,
   briefingTurns,
   clientLeavingLine,
   entranceCard,
@@ -642,7 +644,12 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     detective: stage.detectiveName,
     place: place?.shortName,
     object: view.objectById.get(view.kase.method.evidenceObjectId)?.name,
-    time: clock(0 as Tick),
+    // §A.3: an hour on a page is an hour somebody says, never a clock face.
+    // And it is an hour the page is allowed to name: the open end of the
+    // coroner's window, which the briefing states and every page may print.
+    // It used to be six o'clock — tick zero, a default rather than a fact —
+    // so "Where were you at 6:00 PM?" asserted an hour nothing accounted for.
+    time: spokenClock(view.kase.coronerWindow[0]),
   };
 
   /* ------------------------------------------------- §A.2: the motif set */
@@ -837,6 +844,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       say,
       put,
       count: () => words(blocksOf(laid)),
+      shortShare: () => shortShare(laid),
       base,
       ctx,
       gaps,
@@ -961,23 +969,58 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     // doing the same thing twice in the same paragraph.
     const usedBusiness = new Set<string>();
 
+    /*
+     * §B.2 — the follow-ups, capped and never bare.
+     *
+     * Two a page beyond the opening question. Past that the answer runs on:
+     * the person is talking and nobody has to be seen prompting them. And a
+     * follow-up names what it is asking about — the victim, the place, the
+     * hour — because "And then?" could precede any answer in the game and a
+     * reader hears the engine asking for the next card.
+     */
+    const followSlots: Slots = {
+      ...slots,
+      victim: view.victim.surname,
+      ...(() => {
+        const focus = lastClue(scene) ?? scene.clues[0] ?? null;
+        const at = focus === null ? null : clueTick(focus);
+        return at === null ? {} : { time: spokenClock(at) };
+      })(),
+    };
+    const spentFollows: string[] = [];
+    let follows = 0;
+    /** One follow-up, or nothing at all. `after` is what was just said. */
+    const askAgain = (after: string): void => {
+      if (follows >= FOLLOW_CAP) return;
+      const named = briefingQuestion(
+        dealer.random,
+        'follow-named',
+        followSlots,
+        spentFollows,
+        after,
+      );
+      if (named.length === 0) {
+        gaps.push(
+          'nameless-follow-up: nothing on this page could be named in a follow-up; the answer ran on',
+        );
+        return;
+      }
+      spentFollows.push(named);
+      follows++;
+      say(`“${named}”`, 'exchange', {
+        personId: scene.personId,
+        targets: DASHIELL_TARGETS,
+      });
+    };
+
     /**
      * A clue that states two facts is two answers, not one breath. The first
-     * answers the question; each one after it gets a follow-up in front of it,
-     * so Dashiell is seen to ask again for what he did not get the first time.
+     * answers the question; each one after it may get a follow-up in front of
+     * it, while the page has one left to spend.
      */
-    const sayTheRest = (
-      spoken: SpokenClue,
-      isFamiliar: boolean,
-      withSlots: Slots,
-      register: Register,
-    ): void => {
+    const sayTheRest = (spoken: SpokenClue, register: Register): void => {
       for (const more of spoken.rest) {
-        const follow = dashiellLine(dealer, 'follow-up', isFamiliar, withSlots);
-        say(follow?.text ?? '"And then."', 'exchange', {
-          personId: scene.personId,
-          targets: DASHIELL_TARGETS,
-        });
+        askAgain(spoken.text);
         say(`"${more}"`, 'exchange', {
           clueId: spoken.clueId,
           personId: scene.personId,
@@ -1079,11 +1122,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       );
     }
     for (const [i, clue] of scene.clues.entries()) {
-      if (i > 0) {
-        const follow = dashiellLine(dealer, 'follow-up', familiar, slots);
-        if (follow)
-          say(follow.text, 'exchange', { personId: scene.personId, targets: DASHIELL_TARGETS });
-      }
+      if (i > 0) askAgain(scene.clues[i - 1]?.text ?? '');
       const register = registerFor(view, scene.personId, clue);
       const said = simileRegisterOf(register, clue.kind);
       const spoken = speakClue(dealer, view, cast, clue, person, register, slots, gaps);
@@ -1107,7 +1146,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         register: said,
         imageSentences: answer.imageSentences,
       });
-      sayTheRest(spoken, familiar, slots, said);
+      sayTheRest(spoken, said);
       rideAlong(clue);
     }
     /* §3 — about themselves. Layer 1, in their own mouth. */
@@ -1147,7 +1186,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         register: said,
         imageSentences: answer.imageSentences,
       });
-      sayTheRest(spoken, familiar, slots, said);
+      sayTheRest(spoken, said);
       rideAlong(scene.volunteer);
     }
 
@@ -1471,6 +1510,41 @@ function blocksOf(laid: Laid[]): Block[] {
  */
 export const SHORT_TARGET = 0.3;
 export const SHORT_TOP_UPS = 4;
+
+/**
+ * §B.2 — how many follow-ups one page may ask beyond its opening question.
+ *
+ * The golden loop's report: a long briefing out-questioned a short one and a
+ * reader felt the questionnaire underneath. The same is true of an interview
+ * that delivers four clues. Two, and then the person goes on talking.
+ */
+export const FOLLOW_CAP = 2;
+
+/**
+ * §B.3 — under this, the client breathes.
+ *
+ * Measured before the exchange goes down, so what is being asked is "have the
+ * three paragraphs this page opens with left any room for a short sentence".
+ * A quarter is the golden's own floor and the rule the rhythm pass enforces at
+ * the end; this is the same number asked early enough to do something about it
+ * with the client's own words rather than with a beat the engine wrote.
+ */
+export const BREATH_SHARE_FLOOR = 0.25;
+
+/** The short-sentence share of what is on the page so far (§B.3). */
+export function shortShare(laid: Laid[]): number {
+  let short = 0;
+  let total = 0;
+  for (const l of laid) {
+    const b = l.block;
+    if (b.kind !== 'prose' && b.kind !== 'note') continue;
+    for (const sentence of splitSentences(b.text)) {
+      total++;
+      if (wordCount(sentence) <= 6) short++;
+    }
+  }
+  return total === 0 ? 0 : short / total;
+}
 
 /** Which paragraphs will take a beat on the end: prose, and nobody speaking. */
 function takesABeat(l: Laid): boolean {
@@ -2091,6 +2165,8 @@ interface OpenTools {
   put: (block: Block, para?: string) => void;
   /** What the page weighs so far. The opening's optional lines ask before adding. */
   count: () => number;
+  /** §B.3: the share of short sentences laid down so far. */
+  shortShare: () => number;
   base: Slots;
   ctx: MotifContext & { before: string[] };
   gaps: string[];
@@ -2199,39 +2275,44 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
       para: 'entrance',
     });
 
-  const victim = view.victim;
-  const askSlots: Slots = {
-    victim: victim.surname,
-    // Only a murder has somebody who was found. The owner of a stolen thing is
-    // alive and a missing person was never found, so a shape that asks who
-    // found them has its slot left empty and is skipped.
-    ...(view.kase.act.type === 'murder' ? { dead: victim.surname } : {}),
-    place: view.placeById.get(view.kase.act.place)?.shortName,
-  };
   const plainSlots: Slots = {
     name: client.surname,
     Pronoun: pronounOf(client) === 'she' ? 'She' : 'He',
   };
+  /** Every plain beat the briefing has spent, so none of them comes twice. */
+  const spentBeats: string[] = [];
   // She gets into the chair before she starts: two flat sentences of business,
   // which is the shortest thing on the page and the page is starving for it.
   t.say(pickShape(dealer.random, BRIEFING_SETTLE, plainSlots), 'narrator', {
     transparent: true,
     para: 'entrance',
   });
+  // §B.1. Dashiell's lines on page one are the generator's prompts and
+  // nothing else: the discovery, the purpose, the pointer — the three
+  // questions whose answers are three particular sentences and no others.
+  // Everything between them is the client going on talking, because that is
+  // what a client does and because a question at every paragraph break is a
+  // form being filled in rather than a scene.
+  const turns = briefingTurns(split.speech);
+  const asked = turns.filter((turn) => turn.prompt !== null).length +
+    (split.closePrompt === null ? 0 : 1);
+
   // "Sit down." Two words, in quotation marks, before anybody has said
   // anything: the shortest line on the page and the one that makes the rest of
   // it an exchange rather than a statement somebody came to read out.
   //
-  // It asks first. Page one carries the whole briefing and is meant to be the
+  // It asks twice. Page one carries the whole briefing and is meant to be the
   // longest page in the run, and nothing on it after this point can be cut —
   // the exchange and the record are never texture — so a sixteen-sentence
   // briefing takes the whole ceiling and this line waits for a shorter case.
+  // And it is one of Dashiell's lines: where the briefing has three prompts of
+  // its own, the cap is already spent and he says nothing before she starts.
   const toCome =
     countWords([{ kind: 'note', text: [...split.speech.map((l) => l.text), ...split.close].join(' ') }]) +
     40;
-  // Whether the briefing is short enough to be interrupted as well as asked.
+  // Whether the briefing is short enough to be broken into short paragraphs.
   const room = t.count() + toCome < OPENING_CEILING - 40;
-  if (t.count() + toCome < OPENING_CEILING - 8) {
+  if (asked < BRIEFING_ASK_CAP && t.count() + toCome < OPENING_CEILING - 8) {
     t.say(`“${dealer.random.pick(OFFICE_OPENERS)}”`, 'exchange', {
       personId: client.id,
       targets: DASHIELL_TARGETS,
@@ -2239,43 +2320,30 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     });
   }
 
-  const turns = briefingTurns(split.speech);
-  const spentAsks: string[] = [];
-  // §2's joiner: the question picks up something she has just said.
-  let lastSaid = '';
+  // §B.3. The breath form goes in when the page has not got its quarter of
+  // short sentences yet, measured before the exchange is laid down — which is
+  // when the office card, the entrance and the portrait are all the page has,
+  // and when they are three long sentences the client is where the rhythm has
+  // to come from.
+  const breathing = t.shortShare() < BREATH_SHARE_FLOOR;
   for (const [i, turn] of turns.entries()) {
-    if (turn.ask) {
-      const question = briefingQuestion(dealer.random, turn.ask, askSlots, spentAsks, lastSaid);
-      if (question.length > 0) {
-        spentAsks.push(question);
-        t.say(`“${question}”`, 'exchange', {
-          personId: client.id,
-          targets: DASHIELL_TARGETS,
-          transparent: true,
-        });
-      }
+    if (turn.prompt !== null) {
+      t.say(`“${turn.prompt}”`, 'exchange', {
+        personId: client.id,
+        targets: DASHIELL_TARGETS,
+        transparent: true,
+      });
     }
-    // Two sentences to a paragraph rather than three, with a prod between them
-    // where the page has room for one. Hammett's clients talk in long turns,
-    // but a turn nobody interrupts is a statement being read out: "And?" costs
-    // the page two words and turns four sentences into two answers.
-    const paragraphs = speechParagraphs(turn.lines, room ? 2 : 3);
+    // Two sentences to a paragraph rather than three, and where a turn runs to
+    // more than one paragraph the break is a beat of narration rather than a
+    // prod: she was not asked anything, she simply kept going.
+    const paragraphs = speechParagraphs(turn.lines, room ? 2 : 3, breathing);
     for (const [n, paragraph] of paragraphs.entries()) {
       if (n > 0) {
-        const prod = briefingQuestion(
-          dealer.random,
-          'follow',
-          askSlots,
-          spentAsks,
-          paragraphs[n - 1] ?? '',
-        );
-        if (prod.length > 0) {
-          spentAsks.push(prod);
-          t.say(`“${prod}”`, 'exchange', {
-            personId: client.id,
-            targets: DASHIELL_TARGETS,
-            transparent: true,
-          });
+        const went = pickShape(dealer.random, CLIENT_CONTINUES, plainSlots, spentBeats);
+        if (went.length > 0) {
+          spentBeats.push(went);
+          t.say(went, 'narrator', { transparent: true });
         }
       }
       t.say(paragraph, 'exchange', {
@@ -2285,7 +2353,6 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
         transparent: true,
       });
     }
-    lastSaid = turn.lines.join(' ');
     // Once, after the turn that carried what happened: him registering it and
     // saying nothing else. Twice would be a tic.
     if (i === 0) {
@@ -2298,7 +2365,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   }
 
   /* 4. The hiring: the pointer, which is the job, and the money. */
-  const pointer = briefingQuestion(dealer.random, 'pointer', askSlots, spentAsks, lastSaid);
+  const pointer = split.closePrompt ?? '';
   if (pointer.length > 0) {
     t.say(`“${pointer}”`, 'exchange', {
       personId: client.id,
@@ -2661,9 +2728,9 @@ function answerAccount(
   const lastRow = claimed[claimed.length - 1];
   const fact =
     first && lastRow
-      ? `I was at ${stage.view.placeById.get(first.placeId as Id)?.shortName ?? 'home'} and then where I said, ${clock(
+      ? `I was at ${stage.view.placeById.get(first.placeId as Id)?.shortName ?? 'home'} and then where I said, ${spokenClock(
           first.tick,
-        )} to ${clock(lastRow.tick)}. All of it is in the book if you want the book.`
+        )} to ${spokenClock(lastRow.tick)}. All of it is in the book if you want the book.`
       : 'I was where I was and I could not tell you the hours of it.';
   const answer = frameAnswer(
     stage.dealer,

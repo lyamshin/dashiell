@@ -45,6 +45,7 @@ import {
   topicKey,
 } from './derive.js';
 import { parse } from './parser.js';
+import { DA_AT_THE_DOOR } from './voice-data.js';
 import {
   Dealer,
   askKindOf,
@@ -553,10 +554,7 @@ export function step(
   const actionsUsed = state.actionsUsed + cost;
   const overNow = isOver(actionsUsed, gameBudget(kase));
   if (cost > 0 && overNow && !state.reportOpen) {
-    blocks.push({
-      kind: 'note',
-      text: 'Eight o’clock. Somebody from the DA’s office is at the door with a folder and a pen, and the folder is mine whether I write in it or not.',
-    });
+    blocks.push({ kind: 'note', text: DA_AT_THE_DOOR });
   }
 
   const next: RunState = {

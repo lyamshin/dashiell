@@ -15,7 +15,6 @@
 import { Rng } from '../../gen/rng.js';
 import { PRECINCT_TEXT } from '../../gen/victim.js';
 import type { CaseView } from '../derive.js';
-import type { BriefingAsk } from './plain.js';
 import {
   CLIENT_LEAVING,
   ENTRANCE_LINES,
@@ -184,6 +183,14 @@ export type BriefingTopic =
 export interface SpokenLine {
   topic: BriefingTopic;
   text: string;
+  /**
+   * §A.1's question, when the generator wrote one for this sentence. A line
+   * with a prompt opens a turn; a line without one runs on inside the turn it
+   * arrived in, because the client is still talking.
+   */
+  prompt?: string;
+  /** §A.2's split form, for a page whose short-sentence share is low. */
+  breath?: string[];
 }
 
 export interface BriefingSplit {
@@ -202,6 +209,8 @@ export interface BriefingSplit {
   speech: SpokenLine[];
   /** The last of it — the pointer — which the hiring frame carries. */
   close: string[];
+  /** §A.1's question for the pointer, asked in front of the hiring frame. */
+  closePrompt: string | null;
 }
 
 /** One space between sentences and one full stop, as the generator tidies. */
@@ -242,52 +251,53 @@ export function briefingTopics(view: CaseView): Map<string, BriefingTopic> {
   return out;
 }
 
-/**
- * The client's sentences grouped into turns, with the question that belongs in
- * front of each. One turn a subject: what happened, how it was found, where
- * she comes into it, what she wants. The first turn gets no question — she
- * came here to say it — and the pointer is not here at all, because the hiring
- * frame carries it.
- */
 export interface BriefingTurn {
-  ask: BriefingAsk | null;
-  lines: string[];
+  /** §A.1's question, or null where the client simply goes on talking. */
+  prompt: string | null;
+  lines: SpokenLine[];
 }
 
-const TURN_OF: Record<BriefingTopic, number> = {
-  standing: 0,
-  given: 0,
-  discovery: 1,
-  precinct: 1,
-  tie: 2,
-  backstory: 2,
-  purpose: 3,
-  cost: 3,
-  pointer: 3,
-  reason: 3,
-  other: -1,
-};
+/**
+ * How many of Dashiell's lines page one is allowed (§B.1).
+ *
+ * The golden has four and two of them are not questions. The engine had eight
+ * on a long case, because it put a prod at every paragraph break and a
+ * question in front of every group — which is a questionnaire, and a reader
+ * feels the form underneath it. Three, and they are the generator's prompts:
+ * the discovery, the purpose, the pointer. "Sit down." takes the third only
+ * when the briefing has left one.
+ */
+export const BRIEFING_ASK_CAP = 3;
 
-const ASK_OF: (BriefingAsk | null)[] = [null, 'discovery', 'tie', 'purpose'];
-
-export function briefingTurns(speech: readonly SpokenLine[]): BriefingTurn[] {
+/**
+ * The client's sentences grouped into turns, one per question.
+ *
+ * The generator says which sentences are questionable: a prompt is written
+ * beside the sentence it asks for and nowhere else. A turn therefore begins
+ * wherever a prompt does, and everything after it — the precinct, the cost,
+ * the backstory — runs on inside that turn, because nobody asked and she has
+ * not stopped talking. The first turn has no question at all: it is what she
+ * came up the stairs to say.
+ */
+export function briefingTurns(
+  speech: readonly SpokenLine[],
+  cap = BRIEFING_ASK_CAP,
+): BriefingTurn[] {
   const turns: BriefingTurn[] = [];
-  let current = -1;
+  let asked = 0;
   for (const line of speech) {
-    const want = TURN_OF[line.topic];
-    // A sentence the fields do not account for belongs to the turn it arrived
-    // in, not to a turn of its own: the order is the generator's and it is the
-    // order she said them in.
-    const index = want < 0 ? Math.max(0, current) : want;
-    if (index !== current || turns.length === 0) {
-      turns.push({ ask: ASK_OF[index] ?? null, lines: [] });
-      current = index;
+    const prompt = line.prompt !== undefined && line.prompt.length > 0 && asked < cap
+      ? line.prompt
+      : null;
+    if (prompt !== null || turns.length === 0) {
+      if (prompt !== null) asked++;
+      turns.push({ prompt: turns.length === 0 ? null : prompt, lines: [] });
+      // The first thing she says is what she came to say; nobody asks for it,
+      // and a prompt that lands on it is spent rather than printed.
+      if (turns.length === 1 && prompt !== null) asked--;
     }
-    (turns[turns.length - 1] as BriefingTurn).lines.push(line.text);
+    (turns[turns.length - 1] as BriefingTurn).lines.push(line);
   }
-  // The first thing she says is what she came to say; nobody asks for it.
-  const first = turns[0];
-  if (first) first.ask = null;
   return turns;
 }
 
@@ -305,19 +315,23 @@ export function splitBriefing(view: CaseView, familiar: boolean): BriefingSplit 
   const briefing = view.kase.briefing;
   const topics = briefingTopics(view);
   const head = briefing.filter((line) => line.speaker === 'narration').map((line) => line.text);
-  const body = briefing
+  const body: SpokenLine[] = briefing
     .filter((line) => line.speaker === 'client')
     .map((line) => ({
       topic: topics.get(tidyLine(line.text)) ?? 'other',
       text: line.spoken ?? line.text,
+      ...(line.prompt === undefined ? {} : { prompt: line.prompt }),
+      ...(line.breath === undefined ? {} : { breath: line.breath }),
     }));
   // The pointer and its reason are the last two, and they are the job.
   const closeFrom = Math.max(0, body.length - 2);
+  const close = body.slice(closeFrom);
   return {
     entrance: familiar ? null : (head[0] ?? null),
     narration: head.slice(1),
     speech: body.slice(0, closeFrom),
-    close: body.slice(closeFrom).map((line) => line.text),
+    close: close.map((line) => line.text),
+    closePrompt: close.find((line) => line.prompt !== undefined)?.prompt ?? null,
   };
 }
 
@@ -325,11 +339,24 @@ export function splitBriefing(view: CaseView, familiar: boolean): BriefingSplit 
  * The client's sentences, in paragraphs, as things they said out loud. Three
  * to a paragraph: sixteen plain sentences in one block of quotation marks is a
  * deposition, and four paragraphs of three or four is somebody talking.
+ *
+ * §B.3: where the page is short of short sentences, a line goes in as the
+ * breath form the generator wrote for it — "I found him. Half past eleven, in
+ * his rooms." — which carries the same facts in three breaths instead of one.
  */
-export function speechParagraphs(lines: readonly string[], per = 3): string[] {
+export function speechParagraphs(
+  lines: readonly (string | SpokenLine)[],
+  per = 3,
+  breath = false,
+): string[] {
+  const said = lines.map((line) => {
+    if (typeof line === 'string') return line;
+    const split = line.breath ?? [];
+    return breath && split.length > 1 ? split.join(' ') : line.text;
+  });
   const out: string[] = [];
-  for (let i = 0; i < lines.length; i += per) {
-    const chunk = lines.slice(i, i + per).join(' ').trim();
+  for (let i = 0; i < said.length; i += per) {
+    const chunk = said.slice(i, i + per).join(' ').trim();
     if (chunk.length > 0) out.push(`“${chunk}”`);
   }
   return out;

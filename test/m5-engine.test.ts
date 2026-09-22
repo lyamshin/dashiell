@@ -145,11 +145,19 @@ describe('the briefing page', () => {
       const text = textOf(page).replace(/\s+/g, ' ');
       const familiar = knowsHim(state.cast.roll, view.client.id);
       // The client's sentences reach the page in the client's own words, so
-      // that is the form to look for; Dashiell's reach it as written.
+      // that is the form to look for; Dashiell's reach it as written. §A.2
+      // gives every spoken sentence a third form — the same content split
+      // where a person breathes — and the page uses it when it is short of
+      // short sentences, so either form counts as the sentence having arrived.
+      const forms = (line: (typeof view.kase.briefing)[number]): string[] => {
+        const said = line.spoken ?? line.text;
+        const breath = line.breath ?? [];
+        return breath.length > 1 ? [said, breath.join(' ')] : [said];
+      };
       const missing = view.kase.briefing
-        .map((line, i) => ({ said: line.spoken ?? line.text, i }))
-        .filter(({ said, i }) => !(familiar && i === 0) && !text.includes(bare(said)))
-        .map(({ said }) => said);
+        .map((line, i) => ({ said: forms(line), i }))
+        .filter(({ said, i }) => !(familiar && i === 0) && !said.some((f) => text.includes(bare(f))))
+        .map(({ said }) => said[0] as string);
       expect(missing, `seed ${seed}`).toEqual([]);
     }
   });
@@ -465,7 +473,10 @@ describe('robbery and missing on the page', () => {
         const owner = view.victim.surname;
         const state = playOracle(view).state;
         for (const page of state.log) {
-          for (const sentence of textOf(page).split(/(?<=[.!?])\s+/)) {
+          // A closing quotation mark after the stop is still the end of a
+          // sentence: without this the splitter runs a line of dialogue into
+          // the narration under it and reads the two as one.
+          for (const sentence of textOf(page).split(/(?<=[.!?][”’"']?)\s+/)) {
             if (!sentence.includes(owner)) continue;
             if (DEATH.test(sentence)) offenders.push(`${tropeId} ${seed} p${page.n}: ${sentence}`);
           }

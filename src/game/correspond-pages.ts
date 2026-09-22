@@ -217,6 +217,13 @@ export function ticksOn(view: CaseView, page: Page, found: readonly string[]): T
   // board rather than any one fact. They are derived from what is in hand, and
   // `establishedFrom` is where they are derived.
   for (const t of establishedFrom(view, [...found], []).deathTicks) add(t);
+  // A trope's givens name their own hours, and a given reaches the page in
+  // the opening note as well as in the briefing. They are the generator's and
+  // were checked at source; here they are what the page is allowed to print.
+  for (const f of view.kase.act.givens.facts) {
+    if ('tick' in f) add(f.tick);
+    if (f.kind === 'timeOfDeath') for (const t of f.ticks) add(t);
+  }
   // The briefing states the hour the body was found and the hour of the act,
   // and page one renders the briefing entire.
   const bio = view.kase.victimBio;
@@ -224,6 +231,46 @@ export function ticksOn(view: CaseView, page: Page, found: readonly string[]): T
   if (bio.lastSeen) add(bio.lastSeen.tick);
   add(view.kase.act.tick);
   return [...out];
+}
+
+/**
+ * The spoken hours the content writes as images rather than as claims.
+ *
+ * §A.3 put the hours on the page in the form people say them, so the page
+ * checker now reads spoken hours as claims about the evening — which it has to,
+ * or a whole class of assertion stops being checked. Two cards in seventeen
+ * decks say an hour out loud as writing rather than as evidence: a face that
+ * shuts "like a rolltop desk at six o'clock", and a witness who heard a door
+ * "at half past ten". Those were written by hand and are the same in every
+ * case, so the phrase around them is matched literally and the hour inside it
+ * is taken out before the times are read. Everything else on the page is the
+ * engine's or the generator's and is checked.
+ */
+const IMAGE_HOURS: { phrase: string; hour: string }[] = (() => {
+  const out: { phrase: string; hour: string }[] = [];
+  const strings: string[] = [];
+  for (const card of ALL_CARDS) strings.push(card.text);
+  collectStrings(VOICE_DATA, strings);
+  collectStrings(PLAIN, strings);
+  const re =
+    /(?:\S+\s){0,3}(half past (?:six|seven|eight|nine|ten|eleven)|(?:six|seven|eight|nine|ten|eleven) o['’]clock)(?:\s\S+){0,3}/gi;
+  for (const text of strings) {
+    for (const m of text.matchAll(re)) {
+      out.push({ phrase: m[0], hour: m[1] as string });
+    }
+  }
+  return out;
+})();
+
+/** The same text with the content's own spoken hours taken out of it. */
+export function withoutImageHours(text: string): string {
+  let out = text;
+  for (const { phrase, hour } of IMAGE_HOURS) {
+    const at = out.indexOf(phrase);
+    if (at < 0) continue;
+    out = `${out.slice(0, at)}${phrase.split(hour).join('')}${out.slice(at + phrase.length)}`;
+  }
+  return out;
 }
 
 /** Every violation on one rendered page. */
@@ -237,8 +284,9 @@ export function checkPage(
   const vocabulary = engineVocabulary();
   const office = view.office.shortName;
   const out: Violation[] = [];
-  for (const { where, text } of renderedText(view, page)) {
-    for (const violation of check(kase, text, { where, allowTicks })) {
+  for (const { where, text: raw } of renderedText(view, page)) {
+    const text = withoutImageHours(raw);
+    for (const violation of check(kase, text, { where, allowTicks, spoken: true })) {
       // A capitalized word the content already contains is content.
       const quoted = /"([^"]+)"/.exec(violation.detail)?.[1] ?? '';
       if (violation.rule === 'unknown-name' && vocabulary.names.has(quoted)) continue;

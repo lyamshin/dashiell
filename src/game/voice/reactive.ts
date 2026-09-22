@@ -18,7 +18,7 @@
  */
 
 import type { Id, Tick } from '../../gen/types.js';
-import { clock } from '../../gen/types.js';
+import { spokenClock } from '../../gen/types.js';
 import { Rng } from '../../gen/rng.js';
 import type { CaseView, Established } from '../derive.js';
 import { personName, placeName } from '../derive.js';
@@ -320,10 +320,14 @@ function pickNarrowing(
   return rng.pick(fresh.length > 0 ? fresh : pool) as Narrowing;
 }
 
+/**
+ * §A.3. The monologue is the detective thinking, and he thinks in hours, not
+ * in clock faces: "the window is half past nine to ten o'clock".
+ */
 function windowLabel(ticks: Tick[]): string {
   if (ticks.length === 0) return 'anybody’s guess';
-  if (ticks.length === 1) return clock(ticks[0] as Tick);
-  return `${clock(ticks[0] as Tick)} to ${clock(ticks[ticks.length - 1] as Tick)}`;
+  if (ticks.length === 1) return spokenClock(ticks[0] as Tick);
+  return `${spokenClock(ticks[0] as Tick)} to ${spokenClock(ticks[ticks.length - 1] as Tick)}`;
 }
 
 /**
