@@ -23,12 +23,16 @@ import type { Page, RunState } from '../../src/game/types.js';
 import {
   ALL_CARDS,
   DECKS,
+  GENDERED_TARGETS,
   IMAGE_VOICES,
   MOTIFS,
   SIMILE_HOSTS,
   contradictsWeather,
   deckOf,
+  genderHintOf,
   joinClauses,
+  registerFor,
+  simileRegister,
   meanSharedMotifs,
   motifsOf,
   tagOf,
@@ -120,6 +124,92 @@ describe('similes', () => {
       for (let i = 1; i < targets.length; i++) {
         if (targets[i] === null || targets[i - 1] === null) continue;
         expect(targets[i], `page ${i}`).not.toBe(targets[i - 1]);
+      }
+    }
+  });
+
+  it('binds a voice or a denial to the answer, never to Dashiell’s own line', () => {
+    // "'That's all for now.' Her denial came out flat as a nickel on a bar."
+    // — the detective's goodbye, a man's answer, and nobody denying anything.
+    // A line the person being interviewed gave is a block with a clue on it;
+    // Dashiell's lines carry none.
+    const byId = new Map(ALL_CARDS.map((c) => [c.id, c]));
+    let bound = 0;
+    for (let seed = 1; seed <= 40; seed++) {
+      for (const page of playOracle(buildView(generateCase(seed, { difficulty: 2 }))).state.log) {
+        const id = page.cardsUsed.find((c) => deckOf(c) === 'similes');
+        if (!id) continue;
+        const card = byId.get(id) as Card;
+        const target = String(tagOf('similes', card, 'target'));
+        if (target !== 'voice' && target !== 'lie') continue;
+        // The claimed account is an answer with no clue of its own.
+        if (page.blocks.some((b) => b.kind === 'timeline')) continue;
+        const tail = card.text.replace(/^[^{]*\{[a-z]+\}/i, '').trim();
+        const host = page.blocks.find((b) => b.kind === 'prose' && b.text.includes(tail));
+        if (!host || host.kind !== 'prose') continue;
+        bound++;
+        expect(host.clueId, `seed ${seed} page ${page.n}: ${host.text}`).toBeDefined();
+      }
+    }
+    expect(bound, 'no run bound a voice simile at all').toBeGreaterThan(0);
+  });
+
+  it('agrees with the gender of the person whose line it is on', () => {
+    const byId = new Map(ALL_CARDS.map((c) => [c.id, c]));
+    let checked = 0;
+    for (let seed = 1; seed <= 60; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of playOracle(v).state.log) {
+        const id = page.cardsUsed.find((c) => deckOf(c) === 'similes');
+        if (!id) continue;
+        const card = byId.get(id) as Card;
+        const gender = String(tagOf('similes', card, 'gender'));
+        if (gender === 'any') continue;
+        if (!GENDERED_TARGETS.has(String(tagOf('similes', card, 'target')))) continue;
+        // Whose page it is: the one person whose words are on it.
+        const speakers = new Set<string>();
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' || block.clueId === undefined) continue;
+          const source = v.findableById.get(block.clueId)?.source;
+          if (source?.type === 'person') speakers.add(source.personId);
+        }
+        if (speakers.size !== 1) continue;
+        const person = v.personById.get([...speakers][0] as string);
+        const hint = person ? genderHintOf(person) : 'any';
+        if (hint === 'any') continue;
+        checked++;
+        expect(gender, `seed ${seed} page ${page.n}: ${person?.surname} got ${card.id}`).toBe(hint);
+      }
+    }
+    expect(checked, 'no run put a gendered simile on anybody').toBeGreaterThan(0);
+  });
+
+  it('puts a simile that names a denial only on a line that was not the truth', () => {
+    expect(simileRegister('Her denial came out flat as a nickel on a bar.')).toBe('lie');
+    expect(simileRegister('He lied the way a barker lies about the show inside.')).toBe('lie');
+    expect(simileRegister('The way a man’s hands never are when he’s telling the truth.')).toBe(
+      'truth',
+    );
+    expect(simileRegister('His voice dropped soft as a hand over a mouthpiece.')).toBeNull();
+
+    const byId = new Map(ALL_CARDS.map((c) => [c.id, c]));
+    for (let seed = 1; seed <= 60; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const page of playOracle(v).state.log) {
+        const id = page.cardsUsed.find((c) => deckOf(c) === 'similes');
+        if (!id) continue;
+        const card = byId.get(id) as Card;
+        if (simileRegister(card.text) !== 'lie') continue;
+        if (page.blocks.some((b) => b.kind === 'timeline')) continue;
+        const crooked = page.blocks.some((b) => {
+          if (b.kind !== 'prose' || b.clueId === undefined) return false;
+          const clue = v.findableById.get(b.clueId);
+          if (!clue) return false;
+          if (clue.kind === 'denial') return true;
+          if (clue.source.type !== 'person') return false;
+          return registerFor(v, clue.source.personId, clue) !== 'truth';
+        });
+        expect(crooked, `seed ${seed} page ${page.n}: ${card.id} on a straight answer`).toBe(true);
       }
     }
   });

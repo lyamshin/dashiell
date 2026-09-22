@@ -167,9 +167,55 @@ export const GENDERED_TARGETS: ReadonlySet<string> = new Set([
   'face',
   'hands',
   'voice',
+  'mouth',
   'clothes',
   'body',
+  // A `lie` simile is about the mouth it came out of — "Her denial came out
+  // flat as a nickel on a bar" — and twenty-two of the twenty-four cards under
+  // that target name a pronoun. It was not on this list, which is how a man
+  // got a "her".
+  'lie',
 ]);
+
+/**
+ * What a simile is a simile *about*, where its own words say so.
+ *
+ * A card that names a register is making a claim about the line it modifies:
+ * "Her denial came out flat" says the line was a denial, and putting it after
+ * an answer that denied nothing — or after Dashiell's own goodbye — is the
+ * engine asserting something the page does not contain. So a card whose text
+ * names one binds only to a line delivered in that register, and to no other
+ * block at all. The words are few and they are the load-bearing ones; anything
+ * else in the deck carries no register and goes wherever its target does.
+ */
+const REGISTER_WORDS: [RegExp, Register][] = [
+  [/\b(?:denial|denials|denied|lie|lies|lied|lying)\b/i, 'lie'],
+  [/\b(?:truth|truthful|confession|confessed)\b/i, 'truth'],
+];
+
+export function simileRegister(text: string): Register | null {
+  for (const [re, register] of REGISTER_WORDS) if (re.test(text)) return register;
+  return null;
+}
+
+/**
+ * Which of the two registers a block reads as, for the rule above. The
+ * exchange's own three registers collapse to two here: an evasion and a lie
+ * are both a line that is not the truth, and that is the whole of what a
+ * simile about a denial needs to know.
+ */
+export function simileRegisterOf(register: Register, kind?: string): Register {
+  return register !== 'truth' || kind === 'denial' ? 'lie' : 'truth';
+}
+
+/**
+ * Dashiell's own lines in an exchange. A simile about a voice, a mouth or a
+ * denial belongs to the person being interviewed; hung on the detective's
+ * goodbye it describes a speaker who is not there — "'That's all for now.'
+ * Her denial came out flat as a nickel on a bar." A pause is the one thing his
+ * line can be about, so `silence` stays and nothing else does.
+ */
+export const DASHIELL_TARGETS: string[] = ['silence'];
 
 /**
  * Short connectives, for a simile card written as a bare clause. Most cards in
@@ -434,6 +480,8 @@ interface Laid {
   targets: string[];
   /** Who the block is about, for the simile's gender filter. */
   personId?: Id;
+  /** Whether this line was delivered as the truth or as something else (§A.3). */
+  register?: Register;
   /** Higher survives the image trim. */
   keep: number;
 }
@@ -446,6 +494,8 @@ interface SayOpts {
   keep?: number;
   /** Override the default host list for this block's voice. */
   targets?: string[];
+  /** For a spoken line: which register a simile about it would have to match. */
+  register?: Register;
 }
 
 export function composePage(stage: Stage, scene: Scene): Composed {
@@ -525,6 +575,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       score: opts.score ?? 0,
       targets: opts.targets ?? hostedTargets(voice),
       ...(opts.personId === undefined ? {} : { personId: opts.personId }),
+      ...(opts.register === undefined ? {} : { register: opts.register }),
       keep: opts.keep ?? 1,
     });
     for (const m of motifs) if (!usedMotifs.includes(m)) usedMotifs.push(m);
@@ -676,11 +727,24 @@ export function composePage(stage: Stage, scene: Scene): Composed {
      * answers the question; each one after it gets a follow-up in front of it,
      * so Dashiell is seen to ask again for what he did not get the first time.
      */
-    const sayTheRest = (spoken: SpokenClue, isFamiliar: boolean, withSlots: Slots): void => {
+    const sayTheRest = (
+      spoken: SpokenClue,
+      isFamiliar: boolean,
+      withSlots: Slots,
+      register: Register,
+    ): void => {
       for (const more of spoken.rest) {
         const follow = dashiellLine(dealer, 'follow-up', isFamiliar, withSlots);
-        say(follow?.text ?? '"And then."', 'exchange', { personId: scene.personId });
-        say(`"${more}"`, 'exchange', { clueId: spoken.clueId, personId: scene.personId });
+        say(follow?.text ?? '"And then."', 'exchange', {
+          personId: scene.personId,
+          targets: DASHIELL_TARGETS,
+        });
+        say(`"${more}"`, 'exchange', {
+          clueId: spoken.clueId,
+          personId: scene.personId,
+          targets: spokenTargets(register),
+          register,
+        });
       }
     };
 
@@ -732,15 +796,20 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
     /* Dashiell's line */
     const opener = dashiellLine(dealer, scene.askKind, familiar, slots);
-    if (opener) say(opener.text, 'exchange', { personId: scene.personId });
-    else say(`“${scene.topicLabel},” I said.`, 'exchange', { personId: scene.personId });
+    const asked = opener?.text ?? `“${scene.topicLabel},” I said.`;
+    say(asked, 'exchange', { personId: scene.personId, targets: DASHIELL_TARGETS });
 
     /* the answer */
     if (scene.account) {
       const register: Register = (view.liesOf.get(scene.personId)?.size ?? 0) > 0 ? 'lie' : 'truth';
       answerAccount(
         stage,
-        (text) => say(text, 'exchange', { personId: scene.personId, targets: ['voice', 'lie', 'silence'] }),
+        (text) =>
+          say(text, 'exchange', {
+            personId: scene.personId,
+            targets: spokenTargets(register),
+            register: simileRegisterOf(register),
+          }),
         put,
         scene,
         person,
@@ -756,9 +825,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     for (const [i, clue] of scene.clues.entries()) {
       if (i > 0) {
         const follow = dashiellLine(dealer, 'follow-up', familiar, slots);
-        if (follow) say(follow.text, 'exchange', { personId: scene.personId });
+        if (follow)
+          say(follow.text, 'exchange', { personId: scene.personId, targets: DASHIELL_TARGETS });
       }
       const register = registerFor(view, scene.personId, clue);
+      const said = simileRegisterOf(register, clue.kind);
       const spoken = speakClue(dealer, view, cast, clue, person, register, slots, gaps);
       const answer = frameAnswer(
         dealer,
@@ -776,9 +847,10 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', {
         clueId: clue.id,
         personId: scene.personId,
-        targets: register === 'truth' ? ['voice', 'silence'] : ['voice', 'lie', 'silence'],
+        targets: spokenTargets(said),
+        register: said,
       });
-      sayTheRest(spoken, familiar, slots);
+      sayTheRest(spoken, familiar, slots, said);
     }
     if (scene.clues.length === 0 && !scene.account) {
       say(nothingLine(dealer, 'present', slots), 'nothing');
@@ -804,15 +876,18 @@ export function composePage(stage: Stage, scene: Scene): Composed {
         usedBusiness,
         gaps,
       );
+      const said = simileRegisterOf(register, scene.volunteer.kind);
       say(answer.text, spoken.mode === 'record' ? 'record' : 'exchange', {
         clueId: scene.volunteer.id,
         personId: scene.personId,
+        targets: spokenTargets(said),
+        register: said,
       });
-      sayTheRest(spoken, familiar, slots);
+      sayTheRest(spoken, familiar, slots, said);
     }
 
     const closer = dashiellLine(dealer, 'close', familiar, slots);
-    if (closer) say(closer.text, 'exchange', { personId: scene.personId });
+    if (closer) say(closer.text, 'exchange', { personId: scene.personId, targets: DASHIELL_TARGETS });
   }
 
   /* ------------------------------------------------------------ the find */
@@ -1028,6 +1103,11 @@ function sharedWith(motifs: readonly string[] | undefined, set: ReadonlySet<stri
   return n;
 }
 
+/** What a line spoken by the person being interviewed can host (§A.3). */
+function spokenTargets(register: Register): string[] {
+  return register === 'truth' ? ['voice', 'silence'] : ['voice', 'lie', 'silence'];
+}
+
 /** Which simile targets a block of this voice can be a clause of. */
 function hostedTargets(voice: ProseVoice | null): string[] {
   if (voice === null) return [];
@@ -1162,7 +1242,11 @@ function placeSimile(
     const fits = (c: Card): boolean =>
       cap(c) &&
       tagIs('similes', c, 'target', target) &&
-      (gender === 'any' || tagIs('similes', c, 'gender', gender));
+      genderFits(c, gender) &&
+      // A card whose own words name a register binds to a line of that
+      // register and to nothing else — not to a truthful answer, and not to
+      // a block that was never anybody's answer at all.
+      registerFits(simileRegister(c.text), block.register);
     if (!dealer.has('similes', fits, ctx)) continue;
     const drawn = dealer.draw('similes', [fits], slots, true, ctx);
     if (!drawn) continue;
@@ -1175,15 +1259,36 @@ function placeSimile(
   return null;
 }
 
+/** Does a card carrying this register belong on a block carrying that one? */
+function registerFits(wanted: Register | null, have: Register | undefined): boolean {
+  return wanted === null || wanted === have;
+}
+
 /**
- * Whose gender a simile has to agree with. Only for a target that is a body or
- * a voice: "her hands" on a man is the tell the tag exists for, and a simile
- * about the street does not have a gender to get wrong.
+ * Whose gender a simile has to agree with.
+ *
+ * Whenever the block is about somebody — an answer they gave, a beat about
+ * their hands, their portrait — it is that person's, whatever the target is:
+ * "He counted the bills" under a `money` simile on a woman's line is the same
+ * wrong as "her hands" on a man, and the deck tags ten of the twenty-two money
+ * cards for a gender. A block about nobody has no gender to agree with, and a
+ * simile about the street never had one to get wrong.
  */
-function genderOfBlock(stage: Stage, block: Laid, target: string): 'm' | 'f' | 'any' {
-  if (!GENDERED_TARGETS.has(target) && !BODY_MOTIFS.has(target)) return 'any';
+function genderOfBlock(stage: Stage, block: Laid, target: string): 'm' | 'f' | 'none' | 'any' {
   const person = block.personId ? stage.view.personById.get(block.personId) : undefined;
-  return person ? genderHintOf(person) : 'any';
+  if (person) return genderHintOf(person);
+  // Nobody to agree with. A body or a voice still must not be given a card
+  // that names a pronoun — there is no one on the page for it to refer to —
+  // so only the cards written for nobody in particular will do.
+  if (GENDERED_TARGETS.has(target) || BODY_MOTIFS.has(target)) return 'none';
+  return 'any';
+}
+
+/** Does this simile's gender tag suit the block it would go on? */
+function genderFits(card: Card, gender: 'm' | 'f' | 'none' | 'any'): boolean {
+  if (gender === 'any') return true;
+  if (gender === 'none') return tagOf('similes', card, 'gender') === 'any';
+  return tagIs('similes', card, 'gender', gender);
 }
 
 /** The ask kinds where the question is about the person being asked. */
@@ -1303,6 +1408,10 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     personId: client.id,
     motifs: hiring.motifs,
     score: hiring.score,
+    // A man hiring you is not lying to you about why, whatever else he leaves
+    // out: a simile about a denial has no business on the brief.
+    register: 'truth',
+    targets: ['voice', 'silence'],
   });
 
   /* 4. Two questions on the house, while he is still standing there. */
