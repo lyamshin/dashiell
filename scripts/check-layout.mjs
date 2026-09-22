@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 /**
- * M6 §5 — is the first group of choices on the screen without scrolling?
+ * M6 §5, as the review corrected it: read, then choose.
  *
  * Walks the oracle's route for seeds 1..N at one difficulty through the real
  * book in a real browser, clicking the button whose command is the oracle's
- * next one, and on every page measures the first group of choices at two
- * window sizes: 1280×800 and a 390×844 phone. It also measures every button's
- * height on the phone, because §5 asks for a 44-pixel tap target.
+ * next one, and on every page, at 1280×800 and on a 390×844 phone, asserts:
+ * the running head (time and strip) is on screen at the top and at the bottom
+ * of the page's scroll; the prose is never clipped inside a box of its own;
+ * the last button can be scrolled to; nothing scrolls sideways; and on the
+ * phone every button is at least 44 pixels tall. Exits 1 on any failure.
  *
  *   npx tsx scripts/oracle-commands.ts --seeds 10 > out/routes.json
  *   npx vite --port 5186 &
@@ -36,46 +38,54 @@ const SIZES = [
   { name: 'phone', width: 390, height: 844 },
 ];
 
-/** Measure the page as it stands. */
+/**
+ * Measure the page as it stands, then scrolled to the bottom.
+ *
+ * The rule since the M6 review: read, then choose. The prose runs at its full
+ * length and is never clipped inside a box of its own; the choices follow it;
+ * the page scrolls as a whole; the running head, with the time and the strip,
+ * stays on screen wherever the page is scrolled to.
+ */
 async function measure(page) {
-  return page.evaluate(() => {
+  return page.evaluate(async () => {
     const vh = window.innerHeight;
     const vw = window.innerWidth;
+    const scroller = document.querySelector('.page--prose');
+    const head = document.querySelector('.runhead--clock');
+    const leaf = document.querySelector('.leaf');
     const panel = document.querySelector('.choices');
     const form = document.querySelector('form.report');
-    if (!panel) return { kind: form ? 'report' : 'none' };
-    const first = panel.querySelector('.choice-group');
-    const who = panel.querySelector('.who-row');
-    const lead = who ?? first;
-    const pb = panel.getBoundingClientRect();
-    const box = (el) => el.getBoundingClientRect();
-    const inView = (r) => r.top >= 0 && r.bottom <= vh + 0.5 && r.left >= 0 && r.right <= vw + 0.5;
-    const within = (r) => r.top >= pb.top - 0.5 && r.bottom <= pb.bottom + 0.5;
-    const g = box(first);
-    const heading = first.querySelector('.choice-heading');
-    const button = first.querySelector('button.choice');
-    const buttons = [...panel.querySelectorAll('button.choice, button.who-btn')];
-    const small = buttons.filter((b) => b.getBoundingClientRect().height < 44).length;
+    if (!scroller || !head || !leaf) return { kind: 'none' };
+    const headIn = () => {
+      const r = head.getBoundingClientRect();
+      return r.top >= -0.5 && r.bottom <= vh + 0.5 && r.height > 0;
+    };
+    const overflowY = getComputedStyle(leaf).overflowY;
+    const clipped =
+      overflowY === 'auto' || overflowY === 'scroll' || overflowY === 'hidden'
+        ? leaf.scrollHeight > leaf.clientHeight + 1
+        : false;
+    const headAtTop = headIn();
+    scroller.scrollTop = scroller.scrollHeight;
+    await new Promise((r) => requestAnimationFrame(() => r(null)));
+    const headAtBottom = headIn();
+    // Everything on the page, the last button included, can be scrolled to.
+    const last = [...document.querySelectorAll('.choices button, .pager button, form.report button')].at(-1);
+    const lastReachable = last ? last.getBoundingClientRect().bottom <= vh + 0.5 : true;
+    scroller.scrollTop = 0;
+    const buttons = panel ? [...panel.querySelectorAll('button.choice, button.who-btn')] : [];
     return {
-      kind: 'choices',
-      scrollX: document.documentElement.scrollWidth > vw,
-      scrolled: document.scrollingElement ? document.scrollingElement.scrollTop : 0,
-      panelTop: Math.round(pb.top),
-      panelBottom: Math.round(pb.bottom),
-      groupTop: Math.round(g.top),
-      groupBottom: Math.round(g.bottom),
-      whole: inView(g) && within(g) && (!who || (inView(box(who)) && within(box(who)))),
-      headingVisible: heading ? inView(box(heading)) && within(box(heading)) : true,
-      firstButtonVisible: button ? inView(box(button)) && within(box(button)) : false,
-      leadVisible: lead ? inView(box(lead)) : false,
-      buttons: buttons.length,
-      groupButtons: first.querySelectorAll('button').length,
-      groupButtonsVisible: [...first.querySelectorAll('button')].filter(
-        (b) => inView(box(b)) && within(box(b)),
-      ).length,
-      leafHeight: Math.round(document.querySelector('.leaf')?.getBoundingClientRect().height ?? 0),
-      small,
-      minHeight: Math.round(Math.min(...buttons.map((b) => b.getBoundingClientRect().height))),
+      kind: panel ? 'choices' : form ? 'report' : 'none',
+      headAtTop,
+      headAtBottom,
+      clipped,
+      lastReachable,
+      scrollX:
+        document.documentElement.scrollWidth > vw + 0.5 || scroller.scrollWidth > scroller.clientWidth + 0.5,
+      scrolls: scroller.scrollHeight > scroller.clientHeight + 1,
+      choicesBelowFold: panel ? panel.getBoundingClientRect().top > vh : false,
+      small: buttons.filter((b) => b.getBoundingClientRect().height < 44).length,
+      minHeight: buttons.length ? Math.round(Math.min(...buttons.map((b) => b.getBoundingClientRect().height))) : 0,
     };
   });
 }
@@ -132,30 +142,28 @@ try {
 
 const summary = {};
 for (const size of SIZES) {
-  const mine = rows.filter((r) => r.size === size.name && r.kind === 'choices');
+  const mine = rows.filter((r) => r.size === size.name && r.kind !== 'none');
+  const bad = (pred) => mine.filter(pred).map((r) => `seed ${r.seed} page ${r.page}`);
   summary[size.name] = {
     pages: mine.length,
-    reportPages: rows.filter((r) => r.size === size.name && r.kind === 'report').length,
-    wholeFirstGroupVisible: mine.filter((r) => r.whole).length,
-    headingAndFirstButtonVisible: mine.filter((r) => r.headingVisible && r.firstButtonVisible).length,
-    pageScrolled: mine.filter((r) => r.scrolled > 0).length,
-    horizontalScroll: mine.filter((r) => r.scrollX).length,
-    buttonsUnder44: mine.reduce((n, r) => n + r.small, 0),
-    smallestButton: Math.min(...mine.map((r) => r.minHeight)),
-    fewestFirstGroupButtonsVisible: Math.min(...mine.map((r) => r.groupButtonsVisible)),
-    meanShareOfFirstGroupVisible:
-      Math.round(
-        (100 * mine.reduce((n, r) => n + r.groupButtonsVisible / Math.max(1, r.groupButtons), 0)) /
-          Math.max(1, mine.length),
-      ) / 100,
-    proseHeight: {
-      min: Math.min(...mine.map((r) => r.leafHeight)),
-      median: mine.map((r) => r.leafHeight).sort((a, b) => a - b)[Math.floor(mine.length / 2)],
-    },
-    failures: mine
-      .filter((r) => !(r.headingVisible && r.firstButtonVisible))
-      .map((r) => `seed ${r.seed} page ${r.page}`),
-    partial: mine.filter((r) => !r.whole).map((r) => `seed ${r.seed} page ${r.page}`),
+    runningHeadAlwaysVisible: bad((r) => !r.headAtTop || !r.headAtBottom),
+    proseClipped: bad((r) => r.clipped),
+    lastButtonUnreachable: bad((r) => !r.lastReachable),
+    horizontalScroll: bad((r) => r.scrollX),
+    buttonsUnder44: size.name === 'phone' ? mine.reduce((n, r) => n + (r.small ?? 0), 0) : null,
+    smallestButton: Math.min(...mine.filter((r) => r.kind === 'choices').map((r) => r.minHeight)),
+    // Not a rule any more: how often the reader scrolls to reach the choices.
+    pagesThatScroll: mine.filter((r) => r.scrolls).length,
+    choicesStartBelowTheFold: mine.filter((r) => r.choicesBelowFold).length,
   };
 }
-process.stdout.write(`${JSON.stringify(summary, null, 1)}\n`);
+const failed = Object.entries(summary).some(
+  ([name, v]) =>
+    v.runningHeadAlwaysVisible.length +
+      v.proseClipped.length +
+      v.lastButtonUnreachable.length +
+      v.horizontalScroll.length >
+      0 || (name === 'phone' && v.buttonsUnder44 > 0),
+);
+process.stdout.write(`${JSON.stringify(summary, null, 1)}\n${failed ? 'FAIL' : 'PASS'}\n`);
+process.exit(failed ? 1 : 0);

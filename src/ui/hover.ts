@@ -64,17 +64,45 @@ function showCard(at: HTMLElement, source: CardSource): void {
   place(at, box);
 }
 
-/** Below the anchor, or above it when there is no room, and never off the side. */
+/** Everything on the screen a reader can click, which a card may never cover. */
+function clickables(): DOMRect[] {
+  return [...document.querySelectorAll('button, a[href], input, select, textarea')]
+    .map((el) => el.getBoundingClientRect())
+    .filter((r) => r.width > 0 && r.height > 0);
+}
+
+function overlap(a: DOMRect | { top: number; left: number; bottom: number; right: number }, b: DOMRect): number {
+  const w = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+  const h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+  return w > 0 && h > 0 ? w * h : 0;
+}
+
+/**
+ * Above the name or below it, whichever covers nothing a reader can click —
+ * the M6 review found a card from a button sitting over the row of buttons
+ * under it. Above first, because a name in the prose has prose above it and
+ * the choices below. If both would cover something, the one that covers less.
+ */
 function place(at: HTMLElement, box: HTMLElement): void {
   const a = at.getBoundingClientRect();
   const b = box.getBoundingClientRect();
   const margin = 8;
-  let top = a.bottom + 6;
-  if (top + b.height > window.innerHeight - margin) top = Math.max(margin, a.top - b.height - 6);
   let left = a.left;
   if (left + b.width > window.innerWidth - margin) left = window.innerWidth - margin - b.width;
+  left = Math.max(margin, left);
+  const candidates = [a.top - b.height - 6, a.bottom + 6].filter(
+    (top) => top >= margin && top + b.height <= window.innerHeight - margin,
+  );
+  if (candidates.length === 0) candidates.push(Math.max(margin, a.top - b.height - 6));
+  const targets = clickables();
+  const cost = (top: number): number =>
+    targets.reduce(
+      (n, r) => n + overlap({ top, left, bottom: top + b.height, right: left + b.width }, r),
+      0,
+    );
+  const top = candidates.reduce((best, t) => (cost(t) < cost(best) ? t : best));
   box.style.top = `${Math.round(top)}px`;
-  box.style.left = `${Math.round(Math.max(margin, left))}px`;
+  box.style.left = `${Math.round(left)}px`;
 }
 
 /**

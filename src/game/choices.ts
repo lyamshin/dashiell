@@ -20,6 +20,7 @@ import { gameBudget, peopleHereNow } from './derive.js';
 import { parse } from './parser.js';
 import { answersTo, askedBefore, priceOf } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
+import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
 
 export interface Choice extends OfferedChoice {
@@ -113,6 +114,62 @@ export function knownPeople(view: CaseView, state: RunState): Person[] {
   return out;
 }
 
+/** Does `text` name `needle` as a whole phrase, ignoring case and apostrophe style? */
+function names(text: string, needle: string): boolean {
+  const hay = fold(text);
+  const n = fold(needle);
+  let from = 0;
+  for (;;) {
+    const i = hay.indexOf(n, from);
+    if (i < 0) return false;
+    if (!/[a-z0-9]/.test(hay.charAt(i - 1)) && !/[a-z0-9]/.test(hay.charAt(i + n.length))) return true;
+    from = i + 1;
+  }
+}
+
+/**
+ * The places and things the notebook ties to one person: where they are
+ * found, the rooms of their own account and of every placement written under
+ * them, and any room or thing named in what they said, in a dossier line
+ * about them, or in a found clue that names them. Nothing here is anything
+ * the notebook does not already print beside their name.
+ */
+export function tiedTo(
+  view: CaseView,
+  state: RunState,
+  person: Person,
+  book: Notebook = buildNotebook(view, state),
+): { places: Id[]; objects: Id[] } {
+  const entry = book.people.find((p) => p.id === person.id);
+  const places = new Set<Id>();
+  const texts: string[] = [];
+  if (entry) {
+    if (person.foundAt && entry.foundAt) places.add(person.foundAt);
+    texts.push(...entry.records.map((r) => r.text));
+    texts.push(...entry.facts.map((f) => f.text));
+    texts.push(...(entry.account ?? []).map((a) => a.place));
+    const d = entry.dossier;
+    texts.push(...d.onSight, ...d.volunteered, ...d.fromOthers, ...d.documents);
+  }
+  for (const id of state.found) {
+    const clue = view.findableById.get(id);
+    const text = clue ? (clue.textRecord ?? clue.text) : '';
+    if (names(text, person.surname)) texts.push(text);
+  }
+  const blob = texts.join('\n');
+  for (const place of view.places) {
+    if (place.id === view.office.id) continue;
+    if (names(blob, place.shortName)) places.add(place.id);
+  }
+  places.delete(view.office.id);
+  const objects = knownObjects(view, state).filter((id) => {
+    const o = view.objectById.get(id);
+    return o !== undefined && names(blob, o.name);
+  });
+  // In the case's own order, so a person's list reads the same page to page.
+  return { places: view.places.map((p) => p.id).filter((id) => places.has(id)), objects };
+}
+
 /** What a command would fetch, if it were run now. Nothing for a repeat. */
 function gainsOf(view: CaseView, state: RunState, command: Command): Id[] {
   if (command.kind === 'examine') {
@@ -197,11 +254,14 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
     if (other.id === person.id) continue;
     rest.push(ask(other.surname, other.surname));
   }
-  for (const place of view.places) {
-    if (place.id === view.office.id) continue;
-    rest.push(ask(place.shortName, place.shortName));
+  // Only the places and things the notebook ties to this person (M6 review):
+  // every room in the case put to every person was twenty topics a page.
+  const tied = tiedTo(view, state, person);
+  for (const id of tied.places) {
+    const place = view.placeById.get(id);
+    if (place) rest.push(ask(place.shortName, place.shortName));
   }
-  for (const id of knownObjects(view, state)) {
+  for (const id of tied.objects) {
     const object = view.objectById.get(id);
     if (object) rest.push(ask(object.name, object.name));
   }

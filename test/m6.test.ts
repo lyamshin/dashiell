@@ -10,7 +10,7 @@ import { describe, expect, it } from 'vitest';
 
 import { generateCase, type Difficulty } from '../src/gen/index.js';
 import type { Id } from '../src/gen/types.js';
-import { allChoices, choicesFor, TOPIC_LIMIT } from '../src/game/choices.js';
+import { allChoices, choicesFor, tiedTo, TOPIC_LIMIT } from '../src/game/choices.js';
 import { clockStrip, minutesAfter, usedByPage } from '../src/game/clock.js';
 import { checkRun } from '../src/game/correspond-pages.js';
 import { buildView, gameBudget, gamePar } from '../src/game/derive.js';
@@ -45,6 +45,51 @@ describe('§8 exact topics and the collapse', () => {
           for (const c of group.more ?? []) expect(c.lead).toBe(false);
           const firstPlain = group.choices.findIndex((c) => !c.lead);
           expect(group.choices.slice(firstPlain).some((c) => c.lead), 'leads come first').toBe(false);
+        }
+      }
+    }
+  });
+});
+
+describe('M6 review — ask topics are the person’s own', () => {
+  it('offers a place or a thing only when it is a lead or the notebook ties it to the person asked', () => {
+    const counts: number[] = [];
+    for (let seed = 1; seed <= SEEDS; seed++) {
+      const view = buildView(generateCase(seed, { difficulty: 2 }));
+      for (const s of oracleStates(view).states) {
+        for (const group of choicesFor(view, s)) {
+          if (group.kind !== 'ask') continue;
+          const person = view.personById.get(group.personId as string);
+          if (!person) continue;
+          const tied = tiedTo(view, s, person);
+          const tiedNames = new Set([
+            ...tied.places.map((id) => view.placeById.get(id)?.shortName),
+            ...tied.objects.map((id) => view.objectById.get(id)?.name),
+          ]);
+          const all = [...group.choices, ...(group.more ?? [])];
+          counts.push(all.length);
+          for (const c of all) {
+            if (c.lead) continue;
+            const isPlace = view.places.some((p) => p.shortName === c.label);
+            const isThing = view.kase.objects.some((o) => o.name === c.label);
+            if (isPlace || isThing) expect(tiedNames.has(c.label), `seed ${seed}: ${person.surname} × ${c.label}`).toBe(true);
+          }
+        }
+      }
+    }
+    counts.sort((a, b) => a - b);
+    // Before the review: median 20, max 28. The notes record the numbers.
+    expect(counts[Math.floor(counts.length / 2)]).toBeLessThanOrEqual(12);
+  });
+
+  it('never writes "is a The bartender" in a dossier line', () => {
+    for (let seed = 1; seed <= SEEDS; seed++) {
+      const view = buildView(generateCase(seed, { difficulty: 2 }));
+      const state = playOracle(view).state;
+      const book = buildNotebook(view, state);
+      for (const p of book.people) {
+        for (const line of [...p.dossier.onSight, ...p.dossier.volunteered]) {
+          expect(line, `seed ${seed}`).not.toMatch(/\b(a|an) (The|the|A|An|a|an) /);
         }
       }
     }

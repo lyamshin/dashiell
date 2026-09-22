@@ -16,7 +16,6 @@ import { choicesFor, defaultAskPerson } from '../game/choices.js';
 import { clockStrip, usedByPage } from '../game/clock.js';
 import { buildView, gameBudget, peopleHereNow, type CaseView, type Noun } from '../game/derive.js';
 import { buildNotebook, personCard, placeHoverCard } from '../game/notebook.js';
-import { matchPlaces } from '../game/parser.js';
 import { fileReport, newRun, stepInput } from '../game/reducer.js';
 import { scoreReport, type Verdict } from '../game/scoring.js';
 import {
@@ -172,7 +171,7 @@ export function mount(root: HTMLElement): void {
     document.body.classList.remove('notebook-open');
     render();
     // The new page starts at its top, whatever the last one was scrolled to.
-    root.querySelector('.leaf')?.scrollTo?.({ top: 0 });
+    root.querySelector('.page--prose')?.scrollTo?.({ top: 0 });
   }
 
   /**
@@ -227,13 +226,6 @@ export function mount(root: HTMLElement): void {
     if (noun.kind === 'person') return personSource(noun.id);
     if (noun.kind === 'place') return () => (view && state ? placeHoverCard(view, state, noun.id) : null);
     return null;
-  }
-
-  function placeCardForCommand(command: string): CardSource | null {
-    if (!view || !command.startsWith('go ')) return null;
-    const hit = matchPlaces(view, command.slice(3))[0];
-    if (!hit) return null;
-    return () => (view && state ? placeHoverCard(view, state, hit.value) : null);
   }
 
   /* ------------------------------------------------------------ drawing */
@@ -328,8 +320,6 @@ export function mount(root: HTMLElement): void {
             justSpent = 0;
             render();
           },
-          personCard: personSource,
-          placeCard: placeCardForCommand,
           nameOf: (id) => (view as CaseView).personById.get(id)?.surname ?? id,
         }),
       );

@@ -12,7 +12,7 @@ Spec: `docs/15-m6-choices.md`. Branch `m6-choices`.
 | 2 errands | `src/game/errand.ts` (`planErrand`), dealt in `composePage` from `content/decks/errand.json` (66 placeholder cards) |
 | 2.1 tracing | `checkErrand` in `src/game/correspond-pages.ts`, run by `checkRun`; new rule `errand-untraced` |
 | 3 clock | `clockStrip` / `usedByPage` in `src/game/clock.ts`; the beats in `content/decks/hours.json` (9 placeholder cards), dealt by `clockBeat` in `page.ts` |
-| 4 hover cards | `personCard` / `placeHoverCard` in `src/game/notebook.ts`; `src/ui/hover.ts` |
+| 4 hover cards | `personCard` / `placeHoverCard` in `src/game/notebook.ts`; `src/ui/hover.ts` (names in the prose only) |
 | 5 the page | `src/ui/book.ts`, `src/ui/choices-view.ts`, `src/ui/book.css`; `PAGE_CEILING` 300 → 220 |
 | 6 | `src/ui/menu.ts` deleted; the text prompt removed; the parser, `stepInput`, the oracle and `npm run read` unchanged in what they accept |
 | 7 transcript | `renderChoicesText` in `src/game/transcript.ts`; `npm run read` replays the route and prints each page's choices, `>` on the one taken (`--no-choices` to leave them off) |
@@ -20,7 +20,7 @@ Spec: `docs/15-m6-choices.md`. Branch `m6-choices`.
 
 ## Numbers
 
-**Tests:** 22 files, 461 tests, all passing (`npm test`, ~100 s wall).
+**Tests:** 22 files, 463 tests, all passing (`npm test`, ~100 s wall).
 `npm run build` clean. `npm run decks`: 0 errors; errand 21/21 reachable
 pairs at three cards or more, hours 3/3; the 26 empty tag combinations
 reported are the older decks' and unchanged.
@@ -93,40 +93,59 @@ pages over.
 
 ### The page in a browser
 
+After the review (see below) the rule is **read, then choose**: the prose runs
+at full length and is never clipped in a box of its own, the choices follow
+it, the page scrolls as a whole, and the running head — place, time, strip —
+is sticky at the top so the clock stays in view.
+
 `scripts/check-layout.mjs` (playwright-core driving the Chrome already on the
 machine; no browser download) walks the oracle's route for seeds 1–10 at
 difficulty 2 by clicking the button whose command is the oracle's next, and
-measures every page, 134 of them, at both sizes.
+checks every page, 134 of them, at both sizes. It exits 1 on any failure.
 
-| | 1280×800 | 390×844 |
+| assertion | 1280×800 | 390×844 |
 |---|---|---|
-| first group's heading and first button on screen | 134 / 134 | 134 / 134 |
-| whole first group on screen | 134 / 134 | 16 / 134 |
-| share of the first group's buttons on screen (mean) | 100% | 54% (never fewer than 2) |
-| page itself scrolled / horizontal scroll | 0 / 0 | 0 / 0 |
+| running head on screen at the top and at the bottom of the page's scroll | 134 / 134 | 134 / 134 |
+| prose clipped | 0 | 0 |
+| last button reachable by scrolling | 134 / 134 | 134 / 134 |
+| horizontal scroll | 0 | 0 |
 | buttons under 44 px | — | 0 (smallest 44) |
-| prose area height | 278 px | ~210 px |
+| *(not a rule)* choices start below the fold | 32 | 34 |
 
 I also clicked through by hand in the same browser: a repeat search (free, says
 so, notch count unchanged), a turned-back page (choices greyed and disabled),
 a two-person room (the name row, the default person carrying the lead), and a
-hover card on a name in a group heading.
+hover card on a name in the prose, which opens above the name, over prose,
+and not over any button.
+
+### Ask topics (review item 2)
+
+Each person's topics are now: open leads for them (marked), their evening,
+themselves, why I was hired for the client, the people the notebook knows,
+and only the places and things the notebook ties to that person
+(`tiedTo` in `src/game/choices.ts`): where they are found, the rooms of their
+own account and of each placement written under them, and any room or thing
+named in what they said, in a dossier line about them, or in a found clue
+that names them. Over forty seeds at difficulty 2, every oracle page, 1,423
+ask groups:
+
+| | median | max |
+|---|---|---|
+| before (every place, every known object) | 20 | 28 |
+| after | 10 | 15 |
+| page one, before → after | 11 → 6 | 14 → 9 |
+
+Every oracle command is still offered (it was always a lead, a search or a go).
 
 ## Where I judged differently from the spec
 
-1. **The layout pins the choices; the prose scrolls.** On 1280×800 a 220-word
-   page and a twelve-topic ask group do not both fit, and page one is 380
-   words. So the left page is a column: the running head and strip, the prose
-   in its own scrolling leaf, the choices under it (at most 42% of the page
-   height, scrolling inside themselves if they must), and the pager. The first
-   group is on screen on every page without the window scrolling, which is
-   what §5 asks; the price is that a long page's prose scrolls inside its
-   margins, which it already did before M6.
-2. **The phone shows the start of the first group, not all of it.** Buttons
-   stack full width at 44 px as §5 says, so a twelve-topic group is 600 px on
-   its own. The heading and at least the first two buttons are always on
-   screen; the rest scroll inside the panel. The row of names to switch
-   between people wraps across rather than stacking, still 44 px tall.
+1. **§5's "first group visible without scrolling" is withdrawn** (review item
+   1). The first version pinned the choices under a scrolling prose box, and
+   page one's briefing sat below the fold inside it. Now the page is read and
+   then chosen from, as described above.
+2. **Hover cards are on names in the prose only** (review item 3). A card on a
+   button covered the buttons beside it. A card opens above its name or below
+   it, whichever covers no clickable target, and above by preference.
 3. **"Why I was hired" is not marked on page one.** §5 lists it among the
    client's marked topics, but the brief it would fetch is the brief already
    in hand, so asking it takes no open lead; §8's "marked if and only if it
@@ -170,7 +189,7 @@ hover card on a name in a group heading.
 11. **Turned-back pages keep their choices on the page** (`Page.offered`,
     optional). The book sets it, not the reducer; a save from before M6 loads
     and its old pages simply show no choices.
-12. **Only people and places are marked in the prose now.** Objects and hours
+12. **Only people and places carry cards in the prose now.** Objects and hours
     were clickable because the menu could act on them; with the menu gone they
     are plain text.
 13. **The page-turn animation is gone** — §3 says nothing but the notch
@@ -182,9 +201,9 @@ hover card on a name in a group heading.
 
 ## Seen in passing, not touched
 
-- The notebook's on-sight line for a fixture reads "Callahan is a The
-  bartender." — `onSightSentence`/`dossierSentence` prefix an article to a
-  role that already has one. Pre-existing; not an M6 change.
+- Fixed in review: the notebook's on-sight line for a fixture read "Callahan
+  is a The bartender." `dossierSentence` and `onSightSentence` now take off
+  whatever article the role came with and put the right one on.
 - The errand cards are placeholders, three a pair. Several pairs are thin in
   a way a reader will notice within a night (the same three `said × ask-person`
   cards come round). The content pass to fifteen a pair is the fix.

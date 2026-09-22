@@ -120,6 +120,14 @@ button {
 
 .page--prose {
   position: relative;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* The running head is sticky at the very top, so it carries the top margin. */
+  padding-top: 0;
+}
+
+.page--prose > * {
+  flex-shrink: 0;
 }
 
 .runhead {
@@ -141,14 +149,14 @@ button {
   white-space: nowrap;
 }
 
+/*
+ * M6 review: read, then choose. The prose runs at its full length and is
+ * never clipped inside a box of its own; the choices follow it, and the page
+ * scrolls as a whole under a running head that stays put.
+ */
 .leaf {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  flex: 0 0 auto;
   max-width: var(--measure);
-  /* room for the scrollbar without shifting the measure */
-  padding-right: 0.4rem;
 }
 
 /* ----------------------------------------------------------------- prose */
@@ -283,9 +291,14 @@ button {
  */
 .runhead--clock {
   display: block;
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  background: var(--paper);
   text-transform: none;
   letter-spacing: 0;
   margin-bottom: 1rem;
+  padding-top: 1.4rem;
   padding-bottom: 0.55rem;
 }
 
@@ -384,16 +397,11 @@ button {
 /* ----------------------------------------------------- M6: the choices */
 
 /*
- * §5. The page is prose, then choices. The prose scrolls inside its own
- * margins; the choices sit under it and are always on the screen. A panel
- * too tall for the window scrolls inside itself rather than pushing the
- * first group off the bottom.
+ * §5. The page is prose, then choices: all of the prose, and the choices
+ * after it, in the one scroll the page has.
  */
 .choices {
   flex: 0 0 auto;
-  max-height: 42%;
-  overflow-y: auto;
-  overscroll-behavior: contain;
   margin-top: 0.9rem;
   border-top: 1px solid var(--rule);
   padding: 0.7rem 0.4rem 0.2rem 0;
@@ -560,9 +568,6 @@ button {
   }
   .choice .mins {
     margin-left: auto;
-  }
-  .choices {
-    max-height: 55%;
   }
   .runhead-line .time {
     font-size: 1.4rem;

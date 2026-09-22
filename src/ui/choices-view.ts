@@ -4,12 +4,14 @@
  * Big, plain buttons, grouped by what they do. Every one of them issues a
  * typed command through `stepInput`, which is the only way the book moves the
  * game. A turned-back page draws the choices it offered, greyed and inert.
+ *
+ * No hover cards on buttons: a card on a button sat over the buttons beside
+ * it (M6 review). The names in the prose carry the cards.
  */
 
 import type { Id } from '../game/types.js';
 import type { OfferedChoice, OfferedGroup } from '../game/types.js';
 import { el } from './dom.js';
-import { attachCard, type CardSource } from './hover.js';
 
 /** "½ hr" when it is thirty, "25 min" otherwise, "free" when nothing. */
 export function minutesText(minutes: number): string {
@@ -34,8 +36,6 @@ export interface ChoicesOptions {
   onChoose: (choice: OfferedChoice, group: OfferedGroup) => void;
   onSelectPerson: (personId: Id) => void;
   onToggleMore: () => void;
-  personCard: (personId: Id) => CardSource;
-  placeCard: (command: string) => CardSource | null;
   nameOf: (personId: Id) => string;
 }
 
@@ -69,10 +69,6 @@ function choiceButton(
   if (choice.note) button.append(el('span', { class: 'aside', text: choice.note }));
   button.append(el('span', { class: 'mins', text: minutesText(choice.minutes) }));
   if (!opts.inert) button.addEventListener('click', () => opts.onChoose(choice, group));
-  if (group.kind === 'go') {
-    const card = opts.placeCard(choice.command);
-    if (card) attachCard(button, card);
-  }
   return button;
 }
 
@@ -102,7 +98,6 @@ export function renderChoices(groups: readonly OfferedGroup[], opts: ChoicesOpti
       button.append(el('span', { class: 'label', text: opts.nameOf(id) }));
       if (opts.inert) button.disabled = true;
       else button.addEventListener('click', () => opts.onSelectPerson(id));
-      attachCard(button, opts.personCard(id));
       row.append(button);
     }
     panel.append(row);
@@ -113,12 +108,9 @@ export function renderChoices(groups: readonly OfferedGroup[], opts: ChoicesOpti
     if (group.choices.length === 0) continue;
     const section = el('section', { class: `choice-group choice-group--${group.kind}` });
     if (group.kind === 'ask' && group.personId) {
-      const heading = el('h3', { class: 'choice-heading' });
-      const name = el('span', { class: 'noun noun--person', tabindex: '0' });
-      name.textContent = opts.nameOf(group.personId);
-      attachCard(name, opts.personCard(group.personId));
-      heading.append('Ask ', name, ' about');
-      section.append(heading);
+      section.append(
+        el('h3', { class: 'choice-heading', text: `Ask ${opts.nameOf(group.personId)} about` }),
+      );
     } else if (group.heading.length > 0) {
       section.append(el('h3', { class: 'choice-heading', text: group.heading }));
     }
