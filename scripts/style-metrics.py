@@ -10,8 +10,20 @@ FIG = re.compile(r"\b(like a|like an|like the|as if|as though|the way a|the way 
 PRON = re.compile(r"^(I|She|He|It|They|We|You|That|This|Her|His|The)\b")
 
 def sentences(text):
+    """The sentences of a passage, closing quotation marks included.
+
+    The split used to look only at the character before the space, so a
+    sentence that ended inside quotation marks — `on." She did not wait` —
+    was glued to the one after it. On a page of dialogue that is most of
+    them: seed 14's office page measured twenty-seven sentences of which two
+    were short, when it has thirty-four of which nine are. Four of the
+    metrics below are functions of the sentence list, so the bug moved all
+    four, and it moved them most on exactly the page the golden is about.
+    Python's `re` has no variable-length lookbehind, so the closing mark is
+    written as a second fixed-width alternative rather than an option.
+    """
     text = re.sub(r"\s+", " ", text)
-    parts = re.split(r"(?<=[.!?…])\s+(?=[\"“'A-Z])", text)
+    parts = re.split(r"(?:(?<=[.!?…])|(?<=[.!?…][”’\"']))\s+(?=[\"“'A-Z])", text)
     return [p.strip() for p in parts if p.strip()]
 
 def paragraphs(text):

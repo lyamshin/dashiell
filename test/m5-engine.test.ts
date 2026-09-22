@@ -149,15 +149,20 @@ describe('the briefing page', () => {
       // gives every spoken sentence a third form — the same content split
       // where a person breathes — and the page uses it when it is short of
       // short sentences, so either form counts as the sentence having arrived.
-      const forms = (line: (typeof view.kase.briefing)[number]): string[] => {
+      // §B.1 also puts "…," she said. "…" through the middle of one turn a
+      // page, so a breath that arrived may arrive a piece at a time; a piece
+      // whose full stop became a comma is the same words either way.
+      const arrived = (line: (typeof view.kase.briefing)[number]): boolean => {
         const said = line.spoken ?? line.text;
+        if (text.includes(bare(said))) return true;
         const breath = line.breath ?? [];
-        return breath.length > 1 ? [said, breath.join(' ')] : [said];
+        if (breath.length < 2) return false;
+        return text.includes(bare(breath.join(' '))) || breath.every((p) => text.includes(bare(p)));
       };
       const missing = view.kase.briefing
-        .map((line, i) => ({ said: forms(line), i }))
-        .filter(({ said, i }) => !(familiar && i === 0) && !said.some((f) => text.includes(bare(f))))
-        .map(({ said }) => said[0] as string);
+        .map((line, i) => ({ said: line.spoken ?? line.text, line, i }))
+        .filter(({ line, i }) => !(familiar && i === 0) && !arrived(line))
+        .map(({ said }) => said);
       expect(missing, `seed ${seed}`).toEqual([]);
     }
   });

@@ -311,7 +311,7 @@ export const CLIENT_CONTINUES: string[] = [
   '{name} was not finished.',
   '{Pronoun} had more of it.',
   '{Pronoun} said the rest of it to the desk.',
-  'There was more.',
+  '{Pronoun} was not done.',
   '{Pronoun} went straight on.',
 ];
 

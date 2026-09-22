@@ -76,9 +76,10 @@ const COST_TEXT_FIRST: Record<Purpose, string> = {
  */
 export const POINTER_PROMPTS: string[] = [
   'Who do you like for it?',
-  'Who would you have me start with?',
-  'Give me a name.',
-  'Who is it you are thinking of?',
+  'Who would do that to {V}?',
+  'Who did {V} cross?',
+  'Who was no friend of {V}?',
+  'Who had a reason to want {V} out of the way?',
   'Whose name have you got?',
 ];
 
@@ -186,7 +187,10 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
     rng.pick(PURPOSE_PROMPTS[purpose] ?? PURPOSE_PROMPTS['find-the-killer-police-wont']),
     slots,
   );
-  const pointerPrompt = rng.pick(POINTER_PROMPTS);
+  // Most of them name the victim, which is also the noun her last sentence
+  // ended on: the golden loop's §2 joiner, written into the question itself
+  // rather than chosen for it afterwards.
+  const pointerPrompt = fillSlots(rng.pick(POINTER_PROMPTS), slots);
 
   /* --- the pointer ------------------------------------------------------ */
   const others = cast.suspects.filter((p) => p.id !== client.id);

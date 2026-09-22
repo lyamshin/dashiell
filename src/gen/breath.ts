@@ -77,25 +77,42 @@ const JOINTS: { re: RegExp; lead: string }[] = [
   { re: /,\s+and\s+/, lead: '' },
   { re: /,\s+but\s+/, lead: 'But ' },
   { re: /,\s+so\s+/, lead: 'So ' },
+  // The reason keeps its conjunction and becomes a sentence of its own, which
+  // is how the register talks: "I want him found. Because the precinct has
+  // stopped looking."
+  { re: /,\s+because\s+/, lead: 'Because ' },
   { re: /\s+—\s+/, lead: '' },
 ];
 
 /** What a second piece has to open on to stand as a sentence of its own. */
 const STANDS_ALONE =
-  /^(?:(?:I|he|she|it|they|we|you|nobody|somebody|everybody|there|that|this|the|a|an|his|her|their|my|its|one|two|three|four|five|six|half)\b|[A-Z])/;
+  /^(?:(?:I|he|she|it|they|we|you|nobody|somebody|someone|everybody|everyone|anybody|people|neither|both|each|most|nothing|there|that|this|the|a|an|his|her|their|my|its|one|two|three|four|five|six|half)\b|[A-Z])/;
 
-/** Split once, at the first joint whose second half can stand up. */
+/**
+ * Split once, at the joint that leaves the shortest piece behind.
+ *
+ * §A.2 asks for at least one piece of six words or fewer where the sense
+ * allows, and a sentence with two joints in it usually has one that gives one
+ * and one that does not: "Sweeney was the reason four places stayed open, and
+ * everyone knew it" breaks into a ten-word clause and a three-word sentence,
+ * and the three-word sentence is the whole point of breaking it. So every
+ * joint is tried and the one whose smaller half is smallest wins; ties go to
+ * the joint written first, which is the order a writer would read them in.
+ */
 function splitOnce(text: string): string[] | null {
+  let best: { pieces: string[]; shortest: number } | null = null;
   for (const joint of JOINTS) {
     const m = joint.re.exec(text);
     if (!m) continue;
     const head = text.slice(0, m.index);
     const tail = text.slice(m.index + m[0].length);
-    if (wordsIn(head) < 3 || wordsIn(tail) < 3) continue;
+    if (wordsIn(head) < 3 || wordsIn(tail) < 2) continue;
     if (joint.lead.length === 0 && !STANDS_ALONE.test(tail)) continue;
-    return [asSentence(head), asSentence(`${joint.lead}${tail}`)];
+    const pieces = [asSentence(head), asSentence(`${joint.lead}${tail}`)];
+    const shortest = Math.min(...pieces.map(wordsIn));
+    if (!best || shortest < best.shortest) best = { pieces, shortest };
   }
-  return null;
+  return best === null ? null : best.pieces;
 }
 
 /**

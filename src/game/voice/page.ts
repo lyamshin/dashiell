@@ -1527,6 +1527,20 @@ export const SHORT_TOP_UPS = 4;
 export const FOLLOW_CAP = 2;
 
 /**
+ * How many of the client's sentences go in one paragraph of speech.
+ *
+ * Two. The golden's client speaks in ones and twos and the beat between them
+ * is what makes it a scene; three was the number when a prod sat between the
+ * paragraphs and the page could not afford one at every break. §B.1 took the
+ * prods out, so the break costs four words of narration and the paragraph can
+ * be the length the golden's are.
+ */
+export const SPEECH_PER_PARAGRAPH = 2;
+
+/** How many of the client's turns say who is talking. The golden's number. */
+export const ATTRIBUTIONS = 2;
+
+/**
  * §B.3 — under this, the client breathes.
  *
  * Measured before the exchange goes down, so what is being asked is "have the
@@ -2348,8 +2362,6 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   const toCome =
     countWords([{ kind: 'note', text: [...split.speech.map((l) => l.text), ...split.close].join(' ') }]) +
     40;
-  // Whether the briefing is short enough to be broken into short paragraphs.
-  const room = t.count() + toCome < OPENING_CEILING - 40;
   if (asked < BRIEFING_ASK_CAP && t.count() + toCome < OPENING_CEILING - 8) {
     t.say(`“${dealer.random.pick(OFFICE_OPENERS)}”`, 'exchange', {
       personId: client.id,
@@ -2364,6 +2376,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // and when they are three long sentences the client is where the rhythm has
   // to come from.
   const breathing = t.shortShare() < BREATH_SHARE_FLOOR;
+  let attributions = 0;
   for (const [i, turn] of turns.entries()) {
     if (turn.prompt !== null) {
       t.say(`“${turn.prompt}”`, 'exchange', {
@@ -2375,7 +2388,22 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     // Two sentences to a paragraph rather than three, and where a turn runs to
     // more than one paragraph the break is a beat of narration rather than a
     // prod: she was not asked anything, she simply kept going.
-    const paragraphs = speechParagraphs(turn.lines, room ? 2 : 3, breathing);
+    // The golden says who is talking twice on its office page and never
+    // again: "…," she said. "…". It goes at the head of a turn, where it
+    // breaks a long answer in two without anybody having to ask anything.
+    const attribution =
+      attributions < ATTRIBUTIONS
+        ? `${attributions === 0 ? pronounOf(client) : client.surname} said`
+        : undefined;
+    const paragraphs = speechParagraphs(
+      turn.lines,
+      SPEECH_PER_PARAGRAPH,
+      breathing,
+      attribution,
+    );
+    if (attribution !== undefined && paragraphs.some((p) => p.includes(attribution))) {
+      attributions++;
+    }
     for (const [n, paragraph] of paragraphs.entries()) {
       if (n > 0) {
         const went = pickShape(dealer.random, CLIENT_CONTINUES, plainSlots, spentBeats);

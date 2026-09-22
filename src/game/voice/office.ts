@@ -348,6 +348,7 @@ export function speechParagraphs(
   lines: readonly (string | SpokenLine)[],
   per = 3,
   breath = false,
+  attribution?: string,
 ): string[] {
   const said = lines.map((line) => {
     if (typeof line === 'string') return line;
@@ -357,9 +358,35 @@ export function speechParagraphs(
   const out: string[] = [];
   for (let i = 0; i < said.length; i += per) {
     const chunk = said.slice(i, i + per).join(' ').trim();
-    if (chunk.length > 0) out.push(`“${chunk}”`);
+    if (chunk.length === 0) continue;
+    if (i === 0 && attribution !== undefined && attribution.length > 0) {
+      const broken = attributed(chunk, attribution);
+      if (broken !== null) {
+        out.push(broken);
+        continue;
+      }
+    }
+    out.push(`“${chunk}”`);
   }
   return out;
+}
+
+/**
+ * The golden's own move: "I found him," she said. "Half past eleven, in his
+ * rooms." One turn, two sets of quotation marks, with who is talking said
+ * once in the middle of it where it holds nothing up.
+ *
+ * It needs two sentences to work on, and it will not break one that ends in a
+ * question or an exclamation, because neither of those becomes a clause in
+ * front of "she said". Null when the turn has nothing to break.
+ */
+export function attributed(chunk: string, attribution: string): string | null {
+  const at = chunk.search(/(?<=[.])\s+(?=[A-Z“"])/);
+  if (at < 0) return null;
+  const head = chunk.slice(0, at).trim().replace(/\.$/, '');
+  const tail = chunk.slice(at).trim();
+  if (head.length === 0 || tail.length === 0) return null;
+  return `“${head},” ${attribution}. “${tail}”`;
 }
 
 /** 4. The client leaving, with the address he can be found at afterwards. */

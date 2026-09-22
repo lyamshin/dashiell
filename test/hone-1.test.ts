@@ -130,7 +130,10 @@ describe('the prompts', () => {
           continue;
         }
         expect(line.prompt, `seed ${seed}`).toBe(brief.pointerPrompt);
-        expect(POINTER_PROMPTS).toContain(line.prompt);
+        expect(
+          POINTER_PROMPTS.some((t) => fills(t).test(line.prompt as string)),
+          line.prompt,
+        ).toBe(true);
         expect(line.spoken, `seed ${seed}`).toMatch(/^Start with /);
       }
     }
