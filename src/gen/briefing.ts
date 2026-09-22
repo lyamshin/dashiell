@@ -308,8 +308,10 @@ function pronounAfterFirst(turn: readonly BriefingLine[], target: Named): void {
       // anybody is a turn of pronouns with nothing behind them.
       if (seen === 1) return match;
       const before = whole.slice(0, offset);
-      const after = whole.slice(offset + match.length).replace(/^[\s,]+/, '');
+      const rest = whole.slice(offset + match.length);
+      const after = rest.replace(/^[\s,]+/, '');
       const possessive = /[’']s$/.test(match);
+      const opens = A_SENTENCE_OPENS.test(before);
       // What comes before decides first. "I came to Sweeney and paid" has a
       // verb after the name and a preposition in front of it, and only the
       // preposition is telling the truth about which pronoun it takes.
@@ -317,11 +319,19 @@ function pronounAfterFirst(turn: readonly BriefingLine[], target: Named): void {
         ? p.possessive
         : AN_OBJECT_FOLLOWS.test(before)
           ? p.object
-          : A_SUBJECT_FOLLOWS.test(after)
+          : // A bare name at the head of a sentence, with a small word after it
+            // and no comma in between, is that sentence's subject: "He could
+            // put a name on a bill", "He and I took the lease together". A
+            // comma means an apposition or a relative clause is coming, and
+            // then the name stays, because what follows is about to describe
+            // it and a pronoun has nothing for it to describe.
+            opens && /^\s+[a-z]/.test(rest)
             ? p.subject
-            : null;
+            : A_SUBJECT_FOLLOWS.test(after)
+              ? p.subject
+              : null;
       if (word === null) return match;
-      return A_SENTENCE_OPENS.test(before) ? word.charAt(0).toUpperCase() + word.slice(1) : word;
+      return opens ? word.charAt(0).toUpperCase() + word.slice(1) : word;
     });
   }
 }
