@@ -96,7 +96,7 @@ export function scoreReport(view: CaseView, state: RunState, report: Report): Ve
 function parLine(used: number, par: number): string {
   if (used < par) return `It took me ${used} calls. The book says ${par}. I will not be telling anybody.`;
   if (used === par) return `${used} calls, which is exactly what the night was worth.`;
-  return `It took me ${used} calls. A better man would have done it in ${par}.`;
+  return `It took me ${used} calls. A better detective would have done it in ${par}.`;
 }
 
 /**
@@ -132,7 +132,7 @@ interface ClosingContext {
 const MURDER: ClosingSet = {
   solved: (c) => [
     `The DA reads it twice and does not find anything to argue with. ${c.actor} killed ${c.victim} at ${c.where}, ${c.when}, and the jury takes ninety minutes over lunch.`,
-    `${c.actor} hangs in the spring. I am told it rained. ${c.points} out of ${c.asked}, and ${c.par.toLowerCase()}`,
+    `${c.actor} hangs in the spring. I am told it rained. ${c.points} out of ${c.asked}, and ${lowerFirst(c.par)}`,
   ],
   'wrong-man': (c) => [
     `They take ${c.named} at the arraignment and nobody in the room looks surprised except ${c.named}.`,
@@ -151,7 +151,7 @@ const MURDER: ClosingSet = {
 const ROBBERY: ClosingSet = {
   solved: (c) => [
     `Nobody hangs for a box. ${c.actor} took ${c.taken} out of ${c.where} at ${c.when}, and ${c.goods} is where it went, and the precinct sends two men round before breakfast.`,
-    `${c.victim} gets most of it back and thanks nobody. ${c.points} out of ${c.asked}, and ${c.par.toLowerCase()}`,
+    `${c.victim} gets most of it back and thanks nobody. ${c.points} out of ${c.asked}, and ${lowerFirst(c.par)}`,
   ],
   'wrong-man': (c) => [
     `They put it on ${c.named}, who has no answer for where they were and no money to buy one.`,
@@ -170,7 +170,7 @@ const ROBBERY: ClosingSet = {
 const MISSING: ClosingSet = {
   solved: (c) => [
     `${c.victim} is at ${c.whereabouts}, and has been since ${c.when}, and did not want finding.`,
-    `I write the address down and I do not write down what it cost to get it. ${c.points} out of ${c.asked}, and ${c.par.toLowerCase()}`,
+    `I write the address down and I do not write down what it cost to get it. ${c.points} out of ${c.asked}, and ${lowerFirst(c.par)}`,
   ],
   'wrong-man': (c) => [
     `I put ${c.named} in the report and the precinct spends a week on ${c.named} for nothing.`,
@@ -297,3 +297,8 @@ function missedLead(view: CaseView, state: RunState): string {
 }
 
 export type { Id };
+
+/** Lowercase only the first letter, so "I" and names inside the line survive. */
+function lowerFirst(text: string): string {
+  return text.startsWith('I ') ? text : `${text.charAt(0).toLowerCase()}${text.slice(1)}`;
+}
