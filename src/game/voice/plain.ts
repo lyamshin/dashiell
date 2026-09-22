@@ -300,6 +300,50 @@ export function briefingQuestion(
   return pickShape(rng, ASKS[kind], slots, avoid);
 }
 
+/* ------------------------------------------------------------------ *
+ * Rhythm (the golden loop, §5).
+ *
+ * Measured over a hundred and twenty pages, one sentence in seven was six
+ * words or shorter; the golden's office page runs two in five. Everything the
+ * engine printed was eleven words long, so nothing landed. These are the short
+ * sentences a page is assembled around: two to six words, no image in them at
+ * all, and true on every page of every case, because the assembler puts them
+ * wherever the rhythm wants one and they cannot be allowed to assert anything
+ * the case has not established.
+ * ------------------------------------------------------------------ */
+
+/** The notebook, after something has been found. The golden's "I wrote that down." */
+export const PLAIN_NOTED: string[] = [
+  'I wrote it down.',
+  'I wrote that down.',
+  'I got it down.',
+  'I put it in the book.',
+  'It went in the book.',
+  'I marked it down.',
+  'I took it down.',
+  'Down it went.',
+  'I had it on paper.',
+  'The book took it.',
+  'I noted it.',
+  'I set it down.',
+];
+
+/** Taking stock of a room, without saying what is in it. `{place}` is optional. */
+export const PLAIN_STOCK: string[] = [
+  'That was the room.',
+  'I had a look.',
+  'I looked it over.',
+  'I stood a while.',
+  'I went through {place}.',
+  'I gave {place} a look.',
+  'So much for {place}.',
+  'I looked twice.',
+  'I had seen worse rooms.',
+  'I did not sit down.',
+  'I kept my hat on.',
+  'I gave the room its minute.',
+];
+
 export type ConnectiveKind = 'going' | 'arriving' | 'present' | 'leaving' | 'quiet';
 
 const POOLS: Record<ConnectiveKind, string[]> = {

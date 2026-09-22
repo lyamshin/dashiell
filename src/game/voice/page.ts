@@ -90,6 +90,8 @@ import {
   BRIEFING_PAUSE,
   BRIEFING_SETTLE,
   PLAIN_FLOOR,
+  PLAIN_NOTED,
+  PLAIN_STOCK,
   SELF_ALREADY,
   SELF_QUESTIONS,
   briefingQuestion,
@@ -570,6 +572,18 @@ interface Laid {
 /** The longest a fused paragraph may get. Past this it is a wall, not a scene. */
 export const PARAGRAPH_CEILING = 55;
 
+/**
+ * §5's carrying sentence: the band a joined pair has to land in to be one.
+ *
+ * The style guide measures the corpus at a mean of 11.9 words and a p90 of 24,
+ * and says the tail is the whole game. `style-metrics.py` counts anything over
+ * twenty-five, and the golden runs one such sentence in eleven. Below the low
+ * mark a join buys nothing; above the high mark it is not a carrying sentence,
+ * it is a run-on.
+ */
+export const CARRY_LOW = 22;
+export const CARRY_HIGH = 34;
+
 interface SayOpts {
   clueId?: Id;
   motifs?: readonly string[];
@@ -827,6 +841,13 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     } else if (scene.kind === 'look') {
       say(plainArrival(dealer, place?.shortName), 'narrator', { para: 'walk' });
     }
+    // §5's rhythm: a short sentence at the foot of the room, inside the room's
+    // own paragraph. Four words after a twenty-word card is the shape the
+    // golden's pages have and the engine's did not.
+    say(pickShape(dealer.random, PLAIN_STOCK, { place: place?.shortName }), 'narrator', {
+      transparent: true,
+      para: 'walk',
+    });
     put(presenceBlock(stage));
     if (stage.here.length > 0) {
       plainly(
@@ -1128,6 +1149,18 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   const touched = touchedPeople(view, stage.foundAfter.slice(stage.foundBefore.length), scene);
   let reaction: ReactiveResult = { lines: [], theory: stage.previousTheory, spent: [] };
   let carried = false;
+  // §5 again, and the golden's own move — "I wrote that down and went to find
+  // the night man again." A page that learned something says so in four words
+  // before it starts thinking about it, at the head of the thinking paragraph.
+  if (
+    scene.kind !== 'nothing' &&
+    stage.foundAfter.length > stage.foundBefore.length &&
+    // Page one carries the whole briefing and is the longest page in the run.
+    // Four more words is four words it has no room for.
+    words(blocksOf(laid)) < (scene.kind === 'open' ? OPENING_CEILING : PAGE_CEILING) - 20
+  ) {
+    say(dealer.random.pick(PLAIN_NOTED), 'narrator', { transparent: true, para: 'think' });
+  }
   if (scene.kind !== 'nothing') {
     reaction = reactiveMonologue({
       view,
@@ -1334,6 +1367,9 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   /* ------------------------------------------ the golden loop §2: joiners */
   fuseParagraphs(laid);
 
+  /* ----------------------------------- the golden loop §5: one long sentence */
+  carryingSentence(laid);
+
   const counted = countsOf(laid);
   return {
     blocks: blocksOf(laid),
@@ -1356,6 +1392,121 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
 function blocksOf(laid: Laid[]): Block[] {
   return laid.map((l) => l.block);
+}
+
+/* ------------------------------------------------------------------ *
+ * The golden loop, §5 — the carrying sentence.
+ * ------------------------------------------------------------------ */
+
+/** A sentence a comma and an "and" can turn into a clause without lying. */
+const CLAUSE_OPENERS: ReadonlySet<string> = new Set([
+  'the',
+  'a',
+  'an',
+  'it',
+  'they',
+  'there',
+  'that',
+  'this',
+  'she',
+  'he',
+  'nothing',
+  'nobody',
+  'somebody',
+  'every',
+  'half',
+  'two',
+  'one',
+  'no',
+  'people',
+  'his',
+  'her',
+  'their',
+  'down',
+  'so',
+]);
+
+const ABBREVIATION = /\b(?:Mr|Mrs|Ms|Dr|St|Jr|Sr|No)\.$/;
+
+/** A run of prose as its sentences, without breaking an abbreviation in two. */
+export function splitSentences(text: string): string[] {
+  const parts = text.split(/(?<=[.!?…])\s+(?=["“'A-Z])/);
+  const out: string[] = [];
+  for (const part of parts) {
+    const last = out[out.length - 1];
+    if (last !== undefined && ABBREVIATION.test(last)) out[out.length - 1] = `${last} ${part}`;
+    else out.push(part);
+  }
+  return out;
+}
+
+function wordCount(text: string): number {
+  return text.trim().split(/\s+/).filter((w) => w.length > 0).length;
+}
+
+/**
+ * §5 — one long sentence a page, made by joining two the page already says.
+ *
+ * "Rhythm is not a card; it is an assembly decision." Every card and every
+ * generated fact is written short to mid, so no deck can hand the page the one
+ * sentence per eight that carries the weight: the only way to have one is for
+ * the assembler to make it, and the only honest way to make one is to join two
+ * sentences that are already next to each other in the same paragraph. The
+ * words are not altered — a full stop becomes a comma and an "and" — and the
+ * paragraph they are in is one movement already, because the joiners put them
+ * there.
+ *
+ * Guards: never inside quotation marks, because those words are somebody's and
+ * the pause between them is theirs; never after a question or an exclamation,
+ * which is not a clause anything can hang off; only where the second sentence
+ * opens on a word that can go down to lower case without losing a name; and
+ * only where the result lands in the band. One a page, the longest candidate.
+ */
+export function carryingSentence(laid: Laid[], low = CARRY_LOW, high = CARRY_HIGH): boolean {
+  let best: { laid: Laid; sentences: string[]; at: number; total: number } | null = null;
+  for (const l of laid) {
+    const block = l.block;
+    if (block.kind !== 'prose' && block.kind !== 'note') continue;
+    if (/["“”]/.test(block.text)) continue;
+    // A clue's record reaches the page verbatim or it has not reached the
+    // page: the ground rule is that every fact arrives, and a lower-case
+    // letter where the generator wrote a capital is a fact the checker can no
+    // longer find. The simile is spared for the same reason — §A.3 put those
+    // words there as a clause already, and this would make a clause of a
+    // clause.
+    if (block.kind === 'prose' && block.clueId !== undefined) continue;
+    if (l.hosts === true) continue;
+    const sentences = splitSentences(block.text);
+    for (let i = 0; i + 1 < sentences.length; i++) {
+      const a = (sentences[i] as string).trim();
+      const b = (sentences[i + 1] as string).trim();
+      if (!/\.$/.test(a) || ABBREVIATION.test(a)) continue;
+      const head = /^([A-Za-z][A-Za-z'’]*)/.exec(b)?.[1];
+      if (head === undefined) continue;
+      if (head !== 'I' && !CLAUSE_OPENERS.has(head.toLowerCase())) continue;
+      const total = wordCount(a) + wordCount(b);
+      // The first half has to be the one doing the carrying; two short atoms
+      // welded together is a longer short sentence, not a long one.
+      if (wordCount(a) < 8 || total < low || total > high) continue;
+      if (!best || total > best.total) best = { laid: l, sentences, at: i, total };
+    }
+  }
+  if (!best) return false;
+  const { sentences, at } = best;
+  const a = (sentences[at] as string).trim().replace(/\.$/, '');
+  const raw = (sentences[at + 1] as string).trim();
+  const b = raw.startsWith('I ') || raw === 'I' ? raw : `${raw.charAt(0).toLowerCase()}${raw.slice(1)}`;
+  sentences.splice(at, 2, `${a}, and ${b}`);
+  const text = tidyPunctuation(sentences.join(' '));
+  const block = best.laid.block;
+  best.laid.block =
+    block.kind === 'prose'
+      ? { kind: 'prose', text, voice: block.voice, ...(block.clueId === undefined ? {} : { clueId: block.clueId }) }
+      : { kind: 'note', text };
+  // §1's counts are left where they are on purpose. The join is a full stop
+  // become a comma; nothing was added to the page and nothing taken off it,
+  // and the ratio it measures is images against facts, neither of which moved.
+  return true;
 }
 
 /* ------------------------------------------------------------------ *
