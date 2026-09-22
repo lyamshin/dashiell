@@ -55,6 +55,15 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
    * them do.
    */
   const said = (text: string, spoken?: string, prompt?: string): void => {
+    // Hone 3 §2. A sentence the briefing has already said, or a shorter form
+    // of one, is not said again. Two shapes reach here: `left` writes a given
+    // that is word for word the victim's last sighting, and `taken` writes the
+    // same sentence with its tail cut off — so the missing-person briefing
+    // stated who saw them last, and then stated it again three sentences
+    // later. Containment either way catches both, and it is deliberately
+    // strict about it: nothing else the generator writes is a substring of
+    // anything else it writes.
+    if (alreadySaid(out, text)) return;
     const voice = speakTimes(spoken ?? asClient(text, client));
     out.push({
       text,
@@ -210,6 +219,25 @@ export function asClient(text: string, client: Person): string {
       return `${before}I ${conjugated}`;
     });
   return swapped.charAt(0).toUpperCase() + swapped.slice(1);
+}
+
+/**
+ * Has the briefing said this already, or a longer sentence that contains it?
+ *
+ * Hone 3 §2. The comparison is on the record's form, because that is the one
+ * the generator writes and the one the sheet files; two sentences that differ
+ * only in the person speaking them are still one fact.
+ */
+function alreadySaid(out: readonly BriefingLine[], text: string): boolean {
+  const bare = (s: string): string =>
+    s.toLowerCase().replace(/[.,;:!?’']/g, '').replace(/\s+/g, ' ').trim();
+  const now = bare(text);
+  if (now.length === 0) return false;
+  return out.some((line) => {
+    if (line.speaker !== 'client') return false;
+    const had = bare(line.text);
+    return had.includes(now) || now.includes(had);
+  });
 }
 
 /** One space between sentences, one full stop at the end, and no `{slots}`. */
