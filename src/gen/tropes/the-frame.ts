@@ -1,5 +1,5 @@
 import { clock, type Fact, type Person } from '../types.js';
-import { essential, type Trope } from './kit.js';
+import { between, essential, methodGiven, type Trope } from './kit.js';
 
 /**
  * Somebody has already been fitted for it. The weapon was in an innocent's
@@ -27,12 +27,12 @@ export const theFrame: Trope = {
     return {
       facts: [
         { kind: 'timeOfDeath', ticks: [lo, hi] },
-        { kind: 'methodEvidence', methodId: ctx.method.id },
+        ...(methodGiven(ctx) ? [{ kind: 'methodEvidence' as const, methodId: ctx.method.id }] : []),
       ],
       text: [
         `${V} was found dead at ${L}.`,
-        `The coroner puts it between ${clock(lo)} and ${clock(hi)}.`,
-        `It was ${ctx.method.name}.`,
+        `The coroner puts it ${between(lo, hi)}.`,
+        ...(methodGiven(ctx) ? [`It was ${ctx.method.name}.`] : []),
         `The precinct found the weapon in ${ctx.who(framed.id)}’s rooms and stopped looking.`,
         `${ctx.who(framed.id)} says it was put there, and has been saying so since Tuesday.`,
       ],

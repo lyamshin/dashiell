@@ -4,6 +4,7 @@ import { OBJECT_NAMES, SWAG_IDS } from './data/objects.js';
 import { MISSING_MEANS, MURDER_MEANS, ROBBERY_MEANS, type MeansTemplate } from './data/means.js';
 import { ANCHOR_TEMPLATES, canTimeScene, type AnchorTemplate } from './data/anchors.js';
 import type { Rng } from './rng.js';
+import type { CaseShape } from './shape.js';
 
 /** Which deck the means comes out of, and whether the place has to host it. */
 export const MEANS_DECK: Record<CaseType, MeansTemplate[]> = {
@@ -109,6 +110,43 @@ function drawPlaces(rng: Rng): PlaceTemplate[] | null {
   return rng.shuffle(chosen);
 }
 
+/**
+ * M7: any number of cards off the deck, with the shape's count of watchers.
+ *
+ * The victim's own address is always among them, and every other card that is
+ * not watched is somewhere nobody is posted — a scene, a secret's room, an
+ * errand. From five places up one of those is a public place with nobody
+ * posted at it, as in the six-card draw. Raw and Coddled deal one watcher:
+ * with three suspects a second watched room would clear everybody from behind
+ * one counter, and the proof would be a single conversation.
+ */
+function drawPlacesSized(rng: Rng, count: number, watchedRange: [number, number]): PlaceTemplate[] | null {
+  const residences = PLACE_TEMPLATES.filter((t) => t.isResidence);
+  const publicOpen = PLACE_TEMPLATES.filter((t) => t.kind === 'public' && !watched(t));
+  const watchedAny = PLACE_TEMPLATES.filter(watched);
+  const unwatched = PLACE_TEMPLATES.filter((t) => !watched(t) && !t.isResidence);
+
+  const want = Math.min(count - 1, rng.range(watchedRange[0], watchedRange[1]));
+  const chosen: PlaceTemplate[] = [rng.pick(residences)];
+  const usedRoles = new Set<FixtureRole>();
+  for (let i = 0; i < want; i++) {
+    const free = watchedAny.filter(
+      (t) => !chosen.includes(t) && !usedRoles.has(t.watcher as FixtureRole),
+    );
+    if (free.length === 0) return null;
+    const pick = rng.pick(free);
+    usedRoles.add(pick.watcher as FixtureRole);
+    chosen.push(pick);
+  }
+  if (count >= 5 && chosen.length < count) chosen.push(rng.pick(publicOpen));
+  while (chosen.length < count) {
+    const free = unwatched.filter((t) => !chosen.includes(t));
+    if (free.length === 0) return null;
+    chosen.push(rng.pick(free));
+  }
+  return rng.shuffle(chosen);
+}
+
 interface Scene {
   method: MeansTemplate;
   murderPlaceId: Id;
@@ -162,10 +200,15 @@ export function buildSetting(
   rng: Rng,
   caseType: CaseType = 'murder',
   tropeId = 'body-at-scene',
+  shape?: CaseShape,
 ): Setting | null {
   const neighborhood = rng.pick(NEIGHBORHOODS);
 
-  const drawn = drawPlaces(rng);
+  // M7: six cards is today's draw, untouched. Any other count is the sized one.
+  const drawn =
+    shape === undefined || shape.places === 6
+      ? drawPlaces(rng)
+      : drawPlacesSized(rng, shape.places, shape.watched);
   if (!drawn) return null;
 
   const scene = chooseScene(rng, drawn, MEANS_DECK[caseType], caseType === 'murder');

@@ -1,5 +1,5 @@
 import { clock, type Fact } from '../types.js';
-import { elsewhere, essential, twoSources, type Trope } from './kit.js';
+import { between, elsewhere, essential, methodGiven, twoSources, type Trope } from './kit.js';
 
 /**
  * The body was carried. The precinct found it at the foot of a stair or in an
@@ -32,8 +32,10 @@ export const bodyMoved: Trope = {
       text: [
         `${V} was found dead at ${found}.`,
         `${V} was not killed at ${found}: there is no blood there and no sign of a struggle.`,
-        `The coroner puts it between ${clock(lo)} and ${clock(hi)}.`,
-        `It was ${ctx.method.name}, and it happened somewhere else.`,
+        `The coroner puts it ${between(lo, hi)}.`,
+        methodGiven(ctx)
+          ? `It was ${ctx.method.name}, and it happened somewhere else.`
+          : 'It happened somewhere else.',
       ],
     };
   },

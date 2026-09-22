@@ -44,6 +44,12 @@ export interface ShapeContext {
   means: MeansTemplate;
   objects: GameObject[];
   coronerWindow: [Tick, Tick];
+  /**
+   * M7: whether the givens name the method. Coddled through Medium teach it,
+   * so their givens stay quiet about it and the report asks. Absent is true,
+   * which is every case before M7.
+   */
+  methodGiven?: boolean;
 }
 
 export interface TropeShape {
@@ -99,6 +105,20 @@ export interface Trope {
 }
 
 /* ---------------------------------------------------------------- helpers */
+
+/**
+ * M7: the coroner's window in a sentence, as wide as the tier made it —
+ * "between 9:00 PM and 11:00 PM", or "at 9:30 PM" when the coroner can name
+ * the half hour.
+ */
+export function between(lo: Tick, hi: Tick): string {
+  return lo === hi ? `at ${clock(lo)}` : `between ${clock(lo)} and ${clock(hi)}`;
+}
+
+/** Whether the givens may say what the method was. */
+export function methodGiven(ctx: ShapeContext): boolean {
+  return ctx.methodGiven !== false;
+}
 
 /** "9:00 PM to 10:00 PM", or a single time when the window is one tick. */
 export function window(lo: Tick, hi: Tick): string {

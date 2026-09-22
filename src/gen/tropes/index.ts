@@ -41,15 +41,23 @@ export const TROPE_IDS: Id[] = TROPES.map((t) => t.id);
  */
 export function pickTrope(
   rng: Rng,
-  opts?: { type?: CaseType; tropeId?: Id },
+  opts?: { type?: CaseType; tropeId?: Id; allowed?: Id[] },
 ): (typeof TROPES)[number] {
+  const allowed = opts?.allowed;
   if (opts?.tropeId) {
     const forced = TROPE_BY_ID[opts.tropeId];
     if (!forced) throw new Error(`no such trope: ${opts.tropeId}`);
+    if (allowed && !allowed.includes(forced.id)) {
+      throw new Error(`this tier does not deal ${opts.tropeId}`);
+    }
     return forced;
   }
-  const pool = TROPES.filter((t) => opts?.type === undefined || t.type === opts.type);
-  if (pool.length === 0) throw new Error(`no trope of type ${opts?.type}`);
+  // M7: a tier deals only its own tropes. Filtering by a list that holds all
+  // eight keeps the pool, and so the draw, exactly where it was.
+  const pool = TROPES.filter(
+    (t) => (opts?.type === undefined || t.type === opts.type) && (!allowed || allowed.includes(t.id)),
+  );
+  if (pool.length === 0) throw new Error(`no trope of type ${opts?.type} in this tier`);
   const total = pool.reduce((n, t) => n + t.weight, 0);
   let roll = rng.next() * total;
   for (const t of pool) {
