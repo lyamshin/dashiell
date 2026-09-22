@@ -1,10 +1,10 @@
 /** Obra Dinn's form: five dropdowns, and then it is over. */
 
 import type { CaseView } from '../game/derive.js';
-import { METHOD_POOL, MOTIVE_POOL, gameBudget } from '../game/derive.js';
-import { TICK_OPTIONS } from '../game/reducer.js';
+import { gameBudget } from '../game/derive.js';
+import { fieldsFor, withAnswer } from '../game/report-form.js';
 import type { Verdict } from '../game/scoring.js';
-import type { Report, RunState } from '../game/types.js';
+import { EMPTY_REPORT, type Report, type RunState } from '../game/types.js';
 import { el } from './dom.js';
 
 const UNKNOWN = 'I don’t know';
@@ -41,43 +41,23 @@ export function renderReportForm(
     }),
   );
 
-  const who = field(
-    'Who killed the victim',
-    kase.people
-      .filter((p) => p.kind === 'suspect')
-      .map((p) => ({ value: p.id, label: `${p.name} — ${p.role}` })),
-  );
-  const how = field(
-    'How',
-    METHOD_POOL.map((m) => ({ value: m.id, label: m.name })),
-  );
-  const why = field(
-    'Why',
-    MOTIVE_POOL.map((m) => ({ value: m.type, label: `${m.type} — ${m.description}` })),
-  );
-  const when = field(
-    'When',
-    TICK_OPTIONS.map((t) => ({ value: String(t.tick), label: t.label })),
-  );
-  const where = field(
-    'Where',
-    kase.places.map((p) => ({ value: p.id, label: p.name })),
-  );
-
-  for (const f of [who, how, why, when, where]) form.append(f.wrap);
+  // M5 §5: exactly `case.act.unknowns`, in the generator's own order, each a
+  // dropdown of this case's actual options. What the briefing stated is a
+  // given and is not on the form.
+  const specs = fieldsFor(view);
+  const built = specs.map((spec) => ({ spec, ui: field(spec.label, spec.options) }));
+  for (const f of built) form.append(f.ui.wrap);
 
   const submit = el('button', { class: 'open-case', type: 'submit', text: 'File it' });
   form.append(el('div', { class: 'after' }, submit));
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    onFile({
-      killerId: who.select.value || null,
-      methodId: how.select.value || null,
-      motiveType: why.select.value || null,
-      tick: when.select.value === '' ? null : Number(when.select.value),
-      placeId: where.select.value || null,
-    });
+    let report: Report = { ...EMPTY_REPORT };
+    for (const f of built) {
+      report = withAnswer(report, f.spec.key, f.ui.select.value || null);
+    }
+    onFile(report);
   });
 
   return form;
@@ -103,7 +83,9 @@ export function renderVerdict(
   }
   wrap.append(table);
 
-  wrap.append(el('p', { class: 'score', text: `${verdict.points} out of five.` }));
+  wrap.append(
+    el('p', { class: 'score', text: `${verdict.points} out of ${verdict.asked}.` }),
+  );
   for (const paragraph of verdict.closing) {
     const p = el('p');
     // The only formatting in a closing line is the one bold sentence the

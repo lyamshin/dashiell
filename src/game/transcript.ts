@@ -164,13 +164,15 @@ export function renderNotebookText(view: CaseView, state: RunState): string {
     for (const lead of group.leads) out.push(`    · ${lead.label}`);
   }
   out.push('', 'ESTABLISHED');
-  out.push(`  time of death: ${book.established.death}`);
-  out.push(`  method: ${book.established.method ?? 'nothing on the body yet'}`);
+  out.push(`  ${book.established.deathLabel}: ${book.established.death}`);
+  out.push(`  ${book.established.methodLabel}: ${book.established.method ?? 'nothing settled yet'}`);
   out.push(
     `  motives: ${book.established.motives.length > 0 ? book.established.motives.join('; ') : 'none known'}`,
   );
   out.push(
-    `  near the weapon: ${book.established.access.length > 0 ? book.established.access.join(', ') : 'nobody yet'}`,
+    `  ${book.established.accessLabel}: ${
+      book.established.access.length > 0 ? book.established.access.join(', ') : 'nobody yet'
+    }`,
   );
   out.push(
     `  accounted for: ${book.established.cleared.length > 0 ? book.established.cleared.join(', ') : 'nobody yet'}`,
@@ -185,8 +187,13 @@ export function renderVerdictText(verdict: Verdict): string {
       `  ${field.label.padEnd(26)}${field.given.padEnd(28)}${field.correct ? '✓' : `✗ ${field.truth}`}`,
     );
   }
-  out.push('', `  ${verdict.points} of 5 · ${verdict.outcome} · ${verdict.actionsUsed} actions against par ${verdict.par}`, '');
+  out.push(
+    '',
+    `  ${verdict.points} of ${verdict.asked} · ${verdict.outcome} · ${verdict.actionsUsed} actions against par ${verdict.par}`,
+    '',
+  );
   for (const paragraph of verdict.closing) out.push(wrap(paragraph), '');
+  for (const gap of verdict.gaps) out.push(`[gap: ${gap}]`, '');
   return out.join('\n');
 }
 

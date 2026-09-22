@@ -149,14 +149,14 @@ export function renderNotebook(
   const row = (term: string, value: string): void => {
     dl.append(el('dt', { text: `${term}:` }), el('dd', { text: value }));
   };
-  row('time of death', book.established.death);
-  row('method', book.established.method ?? 'nothing on the body yet');
+  row(book.established.deathLabel, book.established.death);
+  row(book.established.methodLabel, book.established.method ?? 'nothing settled yet');
   row(
     'motives',
     book.established.motives.length > 0 ? book.established.motives.join('; ') : 'none known',
   );
   row(
-    'near the weapon',
+    book.established.accessLabel,
     book.established.access.length > 0 ? book.established.access.join(', ') : 'nobody yet',
   );
   row(

@@ -235,6 +235,20 @@ export interface WanderResult {
  *
  * `npm run read -- --random` reads a run of his.
  */
+/** The last room a found clue puts the victim in after the hour they went. */
+function lastSightingAfter(view: CaseView, found: readonly Id[]): Id | null {
+  const victimId = view.victim.id;
+  let best: { tick: Tick; place: Id } | null = null;
+  for (const id of found) {
+    for (const f of view.findableById.get(id)?.establishes ?? []) {
+      if (f.kind !== 'personAt' || f.personId !== victimId) continue;
+      if (f.tick <= view.kase.act.tick) continue;
+      if (best === null || f.tick > best.tick) best = { tick: f.tick, place: f.place };
+    }
+  }
+  return best?.place ?? null;
+}
+
 export function playWandering(
   view: CaseView,
   seed: number,
@@ -287,12 +301,21 @@ export function playWandering(
   }
 
   const est = establishedFrom(view, state.found, state.accounts);
+  // M5 §5: he files the unknowns, and he files them off what he has. Where the
+  // case asks where somebody went, the best he can do is the last room a clue
+  // put them in after the hour they vanished; where it asks how a lock was
+  // turned or where the goods ended up, he has nothing and says so.
+  const seenAfter = lastSightingAfter(view, state.found);
   const report: Report = {
     killerId: leadingTheory(view, est),
     methodId: est.methodEvidence ? kase.method.id : null,
     motiveType: est.motives[0]?.motiveType ?? null,
     tick: est.deathTicks.length === 1 ? (est.deathTicks[0] as Tick) : null,
     placeId: kase.solution.murderPlaceId,
+    entry: null,
+    whereabouts: seenAfter,
+    fate: seenAfter === null ? null : 'left',
+    goodsPlaceId: null,
   };
   return { state, steps, report };
 }

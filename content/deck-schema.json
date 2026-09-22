@@ -354,9 +354,26 @@
       "burn": "free",
       "target": 24,
       "slots": ["detective", "name", "place", "object", "time", "missed", "killer"],
+      "$m5Note": "M5 §5. The endings are keyed by case type and by trope as well as by outcome. Every card on disk was written for a hanging, so `caseType` defaults to `murder` and a robbery or a disappearance draws nothing from this deck until the content branch writes one; the engine has a hand-written closing per (type, outcome) and logs the gap. `coverage` is deliberately not extended to the new axes: demanding eighteen more cells would report the whole of the unwritten work as gaps on every run.",
       "tags": {
         "outcome": { "required": true, "values": ["hanged", "wrong-man", "thin-case", "cold"] },
-        "parDelta": { "required": true, "values": ["under", "at", "over"] }
+        "parDelta": { "required": true, "values": ["under", "at", "over"] },
+        "caseType": { "required": false, "default": "murder", "values": ["murder", "robbery", "missing", "any"] },
+        "trope": {
+          "required": false,
+          "default": "any",
+          "values": [
+            "body-at-scene",
+            "body-moved",
+            "locked-room",
+            "the-frame",
+            "inside-job",
+            "payroll",
+            "left",
+            "taken",
+            "any"
+          ]
+        }
       },
       "coverage": [["outcome", "parDelta"]]
     },

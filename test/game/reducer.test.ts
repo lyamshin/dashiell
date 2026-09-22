@@ -12,6 +12,7 @@ import {
   stepInput,
 } from '../../src/game/reducer.js';
 import { scoreReport } from '../../src/game/scoring.js';
+import { truthReport, withAnswer } from '../../src/game/report-form.js';
 import { buildNotebook } from '../../src/game/notebook.js';
 import type { RunState } from '../../src/game/types.js';
 
@@ -247,79 +248,67 @@ describe('the clock', () => {
   });
 });
 
+/**
+ * M5 §5. The report asks `case.act.unknowns` and scores one point each, so
+ * these are written against whatever this seed's case happens to ask rather
+ * than against the five fields a murder used to have. Seed 7 is a robbery:
+ * who took it, how they got in, and where it went.
+ */
 describe('the report', () => {
-  const truth = view.kase.solution;
+  const truth = truthReport(view);
+  const asked = view.kase.act.unknowns.length;
 
-  it('scores five out of five and hangs the killer', () => {
-    const verdict = scoreReport(view, fresh(), {
-      killerId: truth.killerId,
-      methodId: truth.methodId,
-      motiveType: truth.motiveType,
-      tick: truth.murderTick,
-      placeId: truth.murderPlaceId,
-    });
-    expect(verdict.points).toBe(5);
+  it('scores every unknown the case asks, and nothing it does not', () => {
+    const verdict = scoreReport(view, fresh(), truth);
+    expect(verdict.asked).toBe(asked);
+    expect(verdict.points).toBe(asked);
     expect(verdict.outcome).toBe('solved');
-    expect(verdict.closing.join(' ')).toContain('hangs');
+    expect(verdict.fields.map((f) => f.key)).toEqual(view.kase.act.unknowns);
   });
 
-  it('hangs the wrong man when the wrong man is named', () => {
+  it('names the wrong man when the wrong man is named', () => {
     const innocent = view.kase.people.find((p) => p.kind === 'suspect' && !p.isKiller);
-    const verdict = scoreReport(view, fresh(), {
-      killerId: innocent?.id ?? null,
-      methodId: truth.methodId,
-      motiveType: truth.motiveType,
-      tick: truth.murderTick,
-      placeId: truth.murderPlaceId,
-    });
-    expect(verdict.points).toBe(4);
+    const verdict = scoreReport(view, fresh(), { ...truth, killerId: innocent?.id ?? null });
+    expect(verdict.points).toBe(asked - 1);
     expect(verdict.outcome).toBe('wrong-man');
     expect(verdict.closing.join(' ')).toContain('wrong man');
     // It says who really did it.
     expect(verdict.closing.join(' ')).toContain(
-      view.personById.get(truth.killerId)?.surname as string,
+      view.personById.get(view.kase.solution.killerId)?.surname as string,
     );
   });
 
-  it('convicts on a thin case when the killer is right and the rest is not', () => {
-    const verdict = scoreReport(view, fresh(), {
-      killerId: truth.killerId,
-      methodId: null,
-      motiveType: null,
-      tick: null,
-      placeId: truth.murderPlaceId,
-    });
+  it('is thin when the one who did it is right and the rest is not', () => {
+    let report = truth;
+    for (const key of view.kase.act.unknowns) {
+      if (key !== 'who') report = withAnswer(report, key, null);
+    }
+    const verdict = scoreReport(view, fresh(), report);
     expect(verdict.outcome).toBe('thin');
-    expect(verdict.points).toBe(2);
-    expect(verdict.closing.join(' ')).toMatch(/thin/);
+    expect(verdict.points).toBe(1);
+    expect(verdict.closing.join(' ')).toMatch(/thin|not the half/);
   });
 
-  it('goes cold when the killer is left blank', () => {
-    const verdict = scoreReport(view, fresh(), {
-      killerId: null,
-      methodId: truth.methodId,
-      motiveType: truth.motiveType,
-      tick: truth.murderTick,
-      placeId: truth.murderPlaceId,
-    });
+  it('goes cold when the first thing it asks is left blank', () => {
+    const first = view.kase.act.unknowns[0];
+    if (first === undefined) throw new Error('a case with no unknowns is not a case');
+    const verdict = scoreReport(view, fresh(), withAnswer(truth, first, null));
     expect(verdict.outcome).toBe('cold');
-    expect(verdict.points).toBe(4);
-    expect(verdict.closing.join(' ')).toContain('cold');
+    expect(verdict.points).toBe(asked - 1);
   });
 
   it('compares the night against par', () => {
     const state = fresh();
-    const verdict = scoreReport(view, { ...state, actionsUsed: gamePar(view.kase) + 3 }, {
-      killerId: truth.killerId,
-      methodId: truth.methodId,
-      motiveType: truth.motiveType,
-      tick: truth.murderTick,
-      placeId: truth.murderPlaceId,
-    });
+    const verdict = scoreReport(view, { ...state, actionsUsed: gamePar(view.kase) + 3 }, truth);
     expect(verdict.closing.join(' ')).toContain(String(gamePar(view.kase)));
   });
-});
 
+  it('logs a gap where the endings deck has no card for this case type', () => {
+    const verdict = scoreReport(view, fresh(), truth);
+    if (view.kase.act.type === 'murder') expect(verdict.gaps).toEqual([]);
+    else expect(verdict.gaps.join(' ')).toContain('missing-deck: endings');
+  });
+});
 describe('the notebook', () => {
   it('narrows the time of death as the facts come in', () => {
     // The coroner's note arrives at the scene now, not in the office (§B.2).

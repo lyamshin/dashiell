@@ -107,6 +107,13 @@ export interface NotebookThreads {
 }
 
 export interface NotebookEstablished {
+  /**
+   * M5 §7: what the board's three lines are called. A robbery has no time of
+   * death and nobody near a weapon, and the engine must never say it does.
+   */
+  deathLabel: string;
+  methodLabel: string;
+  accessLabel: string;
   death: string;
   method: string | null;
   motives: string[];
@@ -288,7 +295,16 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
             est.deathTicks[est.deathTicks.length - 1] as Tick,
           )} (${est.deathTicks.length} half-hours still open)`;
 
+  const type = kase.act.type;
   const established: NotebookEstablished = {
+    deathLabel:
+      type === 'murder'
+        ? 'time of death'
+        : type === 'robbery'
+          ? 'when it was taken'
+          : 'when they were last seen',
+    methodLabel: type === 'murder' ? 'method' : 'how it was done',
+    accessLabel: type === 'murder' ? 'near the weapon' : 'had the means',
     death,
     method: est.methodEvidence ? kase.method.name : null,
     motives: est.motives.map(

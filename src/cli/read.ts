@@ -15,6 +15,7 @@ import { TROPE_IDS } from '../gen/tropes/index.js';
 import { buildView, gameBudget, gamePar } from '../game/derive.js';
 import { playOracle, playWandering } from '../game/oracle.js';
 import { fileReport } from '../game/reducer.js';
+import { truthReport } from '../game/report-form.js';
 import { scoreReport } from '../game/scoring.js';
 import {
   renderCastText,
@@ -68,13 +69,9 @@ if (flags.has('random')) {
   const run = playOracle(view, detective);
   state = run.state;
   if (!run.ok) process.stderr.write(`(the oracle could not finish: ${run.reason})\n`);
-  report = {
-    killerId: kase.solution.killerId,
-    methodId: kase.solution.methodId,
-    motiveType: kase.solution.motiveType,
-    tick: kase.solution.murderTick,
-    placeId: kase.solution.murderPlaceId,
-  };
+  // M5 §5: the oracle knows the route, not the answer. What it files is the
+  // truth of exactly the unknowns this case asks.
+  report = truthReport(view);
 }
 
 const out: string[] = [];
