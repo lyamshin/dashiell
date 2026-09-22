@@ -375,8 +375,18 @@ export function renderTruthSheet(c: Case): string {
     const body = spineHits.length > 0 ? spineHits.join(', ') : 'no spine clue';
     return `_(${body}${rest > 0 ? `; + ${rest} corroborating` : ''})_`;
   };
+  // M7: the proof as this tier and level hold it.
+  const dials = dialsOf(c);
+  const width = c.coronerWindow[1] - c.coronerWindow[0] + 1;
+  const two = dials.ladder.corroboration === 'single' ? 'one source' : 'two independent sources';
+  const unasked = (leg: 'access' | 'method' | 'motive'): string =>
+    dials.shape.proof.includes(leg) ? '' : ' Not a leg of the proof at this tier.';
   out.push(
-    `**Time of death.** The coroner gives four ticks. The anchors close it to ${clock(M)}: one puts ${victim.surname} alive at ${clock(M - 1)}, the other times the scene at ${clock(M)}. ${(spineOnly(c.deduction.timeOfDeath))}`,
+    width === 4
+      ? `**Time of death.** The coroner gives four ticks. The anchors close it to ${clock(M)}: one puts ${victim.surname} alive at ${clock(M - 1)}, the other times the scene at ${clock(M)}. ${(spineOnly(c.deduction.timeOfDeath))}`
+      : width === 2
+        ? `**Time of death.** The coroner gives an hour. One anchor closes it to ${clock(M)}: it puts ${victim.surname} alive at ${clock(M - 1)}. ${(spineOnly(c.deduction.timeOfDeath))}`
+        : `**Time of death.** The coroner names the half hour: ${clock(M)}. ${(spineOnly(c.deduction.timeOfDeath))}`,
   );
   out.push('');
   out.push('**Clearing the innocent.**');
@@ -390,19 +400,19 @@ export function renderTruthSheet(c: Case): string {
   out.push('');
   out.push(
     `**Naming the killer.** ${killer.surname} claims ${PL(schedule(killer.id)?.claimed[M])} at ${clock(M)}. ` +
-      `Two independent sources put that out of the question. ${(spineOnly(c.deduction.inculpation))}`,
+      `${two === 'one source' ? 'One source puts' : 'Two independent sources put'} that out of the question. ${(spineOnly(c.deduction.inculpation))}`,
   );
   out.push('');
   out.push(
-    `**The weapon.** ${killer.surname} was at ${PL(c.method.accessRequirement.place)} before ${clock(M)}, where ${c.objects.find((o) => o.id === c.method.evidenceObjectId)?.name ?? 'the weapon'} was kept. ${(spineOnly(c.deduction.access))}`,
+    `**The weapon.** ${killer.surname} was at ${PL(c.method.accessRequirement.place)} before ${clock(M)}, where ${c.objects.find((o) => o.id === c.method.evidenceObjectId)?.name ?? 'the weapon'} was kept.${unasked('access')} ${(spineOnly(c.deduction.access))}`,
   );
   out.push('');
   out.push(
-    `**Method.** ${sentenceCase(c.method.name)}, on two physical sources. ${(spineOnly(c.deduction.method))}`,
+    `**Method.** ${sentenceCase(c.method.name)}, on ${two === 'one source' ? 'one physical source' : 'two physical sources'}.${unasked('method')} ${(spineOnly(c.deduction.method))}`,
   );
   out.push('');
   out.push(
-    `**Motive.** ${c.solution.motiveType}, on two independent sources. ${(spineOnly(c.deduction.motive))}`,
+    `**Motive.** ${c.solution.motiveType}, on ${two}.${unasked('motive')} ${(spineOnly(c.deduction.motive))}`,
   );
   out.push('');
 

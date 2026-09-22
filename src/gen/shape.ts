@@ -168,7 +168,7 @@ export const CODDLED: CaseShape = {
   methodGiven: false,
   proof: ['method'],
   par: [5, 6],
-  findable: 15,
+  findable: 17,
 };
 
 export const POACHED: CaseShape = {
@@ -181,7 +181,7 @@ export const POACHED: CaseShape = {
   liarsAtCrime: 1,
   proof: ['method', 'access'],
   par: [6, 7],
-  findable: 18,
+  findable: 21,
 };
 
 export const SOFT_BOILED: CaseShape = {
@@ -192,9 +192,9 @@ export const SOFT_BOILED: CaseShape = {
   coronerWidth: 2,
   anchorsRequired: 1,
   tropes: MURDER_TROPES,
-  proof: ['method', 'signature'],
+  proof: ['method', 'access', 'signature'],
   par: [7, 8],
-  findable: 21,
+  findable: 26,
 };
 
 export const MEDIUM: CaseShape = {
@@ -218,7 +218,7 @@ export const MEDIUM: CaseShape = {
   methodGiven: false,
   proof: ALL_LEGS,
   par: [9, 10],
-  findable: 27,
+  findable: 31,
   scaleSlack: false,
 };
 
