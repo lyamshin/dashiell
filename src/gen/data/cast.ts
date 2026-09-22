@@ -92,6 +92,14 @@ export interface Archetype {
   ageBand: [number, number];
   /** What the work looks like up close. `{place}` is allowed. */
   professionDetails: string[];
+  /**
+   * The same details in the person's own mouth, one for one with
+   * `professionDetails`. Hone 2 §Track B: a client on page one says what they
+   * do rather than being described doing it, and says it the way somebody
+   * says it who has been asked before — two or three sentences, one of them
+   * short. The record keeps the third person for the sheet.
+   */
+  professionFirst: string[];
   /** Weighted by repetition: what a person of this kind wants. */
   wants: Want[];
   /** True when the work shows on sight — a uniform, a hook, hands. */
@@ -559,6 +567,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'draws an allowance on the first of the month and has it spent by the eighth',
       'keeps a desk at a brokerage where nobody expects him before noon',
     ],
+    professionFirst: [
+      'I have no occupation. Nobody can put a name to it. I have an account at three tailors.',
+      'I draw an allowance on the first of the month. It is spent by the eighth. Every month.',
+      'I keep a desk at a brokerage. Nobody there expects me before noon.',
+    ],
     wants: ['money', 'money', 'to-be-somebody', 'to-keep-what-they-have'],
     visibleProfession: false,
   },
@@ -578,6 +591,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'lives on an annuity and the rent from a house in Flushing',
       'has not worked since her marriage and does not mean to start',
     ],
+    professionFirst: [
+      'I keep rooms on the avenue. A girl comes in three mornings a week.',
+      'I live on an annuity. There is rent from a house in Flushing as well.',
+      'I have not worked since my marriage. I do not mean to start.',
+    ],
     wants: ['respectability', 'respectability', 'to-keep-what-they-have', 'to-be-left-alone'],
     visibleProfession: false,
   },
@@ -594,6 +612,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the curb outside the Exchange in all weathers',
       'trades on the street for men who would rather not be seen doing it',
       'carries three telephone numbers and no office',
+    ],
+    professionFirst: [
+      'I work the curb outside the Exchange. In all weathers.',
+      'I trade on the street. My customers would rather not be seen doing it themselves.',
+      'I carry three telephone numbers. I have no office.',
     ],
     wants: ['money', 'money', 'to-be-somebody', 'to-keep-what-they-have'],
     visibleProfession: false,
@@ -612,6 +635,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has a standing table at a place the bill never comes to',
       'keeps a card index of everybody worth a paragraph',
     ],
+    professionFirst: [
+      'I file three columns a week. I dine out for all of them.',
+      'I have a standing table at a place the bill never comes to. It never has.',
+      'I keep a card index. Everybody in it is worth a paragraph.',
+    ],
     wants: ['to-be-somebody', 'to-be-somebody', 'money', 'respectability'],
     visibleProfession: false,
   },
@@ -628,6 +656,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'owns four buildings on the same street and collects in person',
       'carries the rent book himself on the first of the month',
       'has a boilerman, a lawyer and no partners',
+    ],
+    professionFirst: [
+      'I own four buildings on the same street. I collect in person.',
+      'I carry the rent book myself. On the first of the month.',
+      'I have a boilerman and a lawyer. No partners.',
     ],
     wants: ['to-keep-what-they-have', 'to-keep-what-they-have', 'money', 'to-be-feared'],
     visibleProfession: false,
@@ -647,6 +680,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'practises alone and takes whatever walks up the stairs',
       'has a list of clients and will not read any of it aloud',
     ],
+    professionFirst: [
+      'I keep two rooms over a bank. One clerk does the typing.',
+      'I practise alone. I take whatever walks up the stairs.',
+      'I have a list of clients. I will not read any of it aloud.',
+    ],
     wants: ['respectability', 'respectability', 'money', 'to-keep-what-they-have'],
     visibleProfession: false,
   },
@@ -662,6 +700,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'keeps the books for two firms and a lodge',
       'sits the same desk from eight until six and rules the columns by hand',
       'does the payroll on Thursdays and the ledgers the rest of the week',
+    ],
+    professionFirst: [
+      'I keep the books for two firms. And a lodge.',
+      'I sit the same desk, eight until six. The columns are ruled by hand. My hand.',
+      'I do the payroll on Thursdays. The ledgers take the rest of the week.',
     ],
     wants: ['to-be-left-alone', 'to-be-left-alone', 'respectability', 'money'],
     visibleProfession: false,
@@ -680,6 +723,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has a registry card and takes the cases nobody else will',
       'nursed overseas and has not been out of work since',
     ],
+    professionFirst: [
+      'I sit nights with patients the hospitals have sent home. It is night work.',
+      'I have a registry card. I take the cases nobody else will.',
+      'I nursed overseas. I have not been out of work since.',
+    ],
     wants: ['to-be-forgiven', 'respectability', 'money', 'to-be-left-alone'],
     visibleProfession: true,
   },
@@ -696,6 +744,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'pulls teeth for the neighbourhood at a dollar a time',
       'bought the practice second-hand and is still paying for the chair',
     ],
+    professionFirst: [
+      'I have a chair. A waiting room, and a girl on the door.',
+      'I pull teeth for the neighbourhood. A dollar a time.',
+      'I bought the practice second-hand. I am still paying for the chair.',
+    ],
     wants: ['respectability', 'money', 'to-be-left-alone'],
     visibleProfession: false,
   },
@@ -711,6 +764,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'answers the letters, keeps the diary, and knows what is in both',
       'has worked for three men in six years and left none of them badly',
       'takes the dictation and does the banking',
+    ],
+    professionFirst: [
+      'I answer the letters. I keep the diary. I know what is in both.',
+      'I have worked for three men in six years. None of them badly.',
+      'I take the dictation. I do the banking as well.',
     ],
     wants: ['to-be-somebody', 'respectability', 'to-get-out', 'money'],
     visibleProfession: false,
@@ -729,6 +787,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the precincts at night and the courts in the morning',
       'has a press card and no salary',
     ],
+    professionFirst: [
+      'I sell two hundred words at a time. To whichever desk is short.',
+      'I work the precincts at night. The courts in the morning.',
+      'I have a press card. I have no salary.',
+    ],
     wants: ['to-be-somebody', 'money', 'to-get-out'],
     visibleProfession: false,
   },
@@ -744,6 +807,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'takes pupils in the front room from four until seven and hears every scale twice',
       'teaches at the settlement house three afternoons a week',
       'has eleven pupils and a piano that wants tuning',
+    ],
+    professionFirst: [
+      'I take pupils in the front room, four until seven. I hear every scale twice.',
+      'I teach at the settlement house. Three afternoons a week.',
+      'I have eleven pupils. The piano wants tuning.',
     ],
     wants: ['to-be-left-alone', 'respectability', 'to-be-forgiven'],
     visibleProfession: false,
@@ -761,6 +829,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'walks fire jobs for the company and writes up what he finds',
       'settles claims for a casualty office and is paid to doubt people',
       'has a district that runs from the river to Eighth Avenue',
+    ],
+    professionFirst: [
+      'I walk fire jobs for the company. I write up what I find.',
+      'I settle claims for a casualty office. I am paid to doubt people. It is a living.',
+      'I have a district. It runs from the river to Eighth Avenue.',
     ],
     wants: ['money', 'respectability', 'to-keep-what-they-have'],
     visibleProfession: false,
@@ -781,6 +854,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has the third and fourth floors and is finished at four',
       'has been on the same floors for six years and knows every door on them',
     ],
+    professionFirst: [
+      'I do eleven rooms a day. The linen after that.',
+      'I have the third and fourth floors. I am finished at four.',
+      'Six years on the same floors. I know every door on them.',
+    ],
     wants: ['to-get-out', 'to-get-out', 'money', 'to-be-left-alone'],
     visibleProfession: true,
   },
@@ -797,6 +875,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the Elizabeth Street pier when there is work',
       'shapes up at seven and takes whatever the boss hands out',
       'has a hook, a union button and three days a week',
+    ],
+    professionFirst: [
+      'I work the Elizabeth Street pier. When there is work.',
+      'I shape up at seven. I take whatever the boss hands out.',
+      'I have a hook and a union button. Three days a week.',
     ],
     wants: ['money', 'to-be-feared', 'to-keep-what-they-have'],
     visibleProfession: true,
@@ -815,6 +898,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works a machine in a loft and is paid by the dozen',
       'sews for a house on the avenue and is never named in it',
     ],
+    professionFirst: [
+      'I finish coats at home. By the piece. The bundles go back on Fridays.',
+      'I work a machine in a loft. I am paid by the dozen.',
+      'I sew for a house on the avenue. My name is not in it. It never was.',
+    ],
     wants: ['to-get-out', 'money', 'to-be-forgiven', 'respectability'],
     visibleProfession: true,
   },
@@ -832,6 +920,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'drives nights and sleeps while the city works',
       'owns the cab and owes on it',
     ],
+    professionFirst: [
+      'I work the stand outside the hotel. Six until the small hours.',
+      'I drive nights. I sleep while the city works.',
+      'I own the cab. I owe on it.',
+    ],
     wants: ['money', 'to-be-left-alone', 'to-keep-what-they-have'],
     visibleProfession: true,
   },
@@ -848,6 +941,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has a shop under the stairs and a boy who delivers',
       'makes to measure for men who settle at Christmas',
     ],
+    professionFirst: [
+      'I press and turn coats. The shop is the width of a hallway.',
+      'I have a shop under the stairs. A boy does the delivering.',
+      'I make to measure. My customers settle at Christmas.',
+    ],
     wants: ['respectability', 'money', 'to-keep-what-they-have'],
     visibleProfession: true,
   },
@@ -863,6 +961,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the fly floor and is out of the house by eleven',
       'sets and strikes for whatever is playing',
       'has been on the same crew since the house opened',
+    ],
+    professionFirst: [
+      'I work the fly floor. I am out of the house by eleven.',
+      'I set and strike for whatever is playing. The play changes. The work does not.',
+      'I have been on the same crew since the house opened. The same crew, all of it.',
     ],
     wants: ['money', 'to-be-left-alone', 'to-be-somebody'],
     visibleProfession: true,
@@ -881,6 +984,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'works the exchange and knows every number on the floor',
       'plugs the calls through and is not supposed to listen',
     ],
+    professionFirst: [
+      'I sit the board, four until midnight. I hear both ends of everything. Both ends.',
+      'I work the exchange. I know every number on the floor.',
+      'I plug the calls through. I am not supposed to listen.',
+    ],
     wants: ['to-get-out', 'to-be-somebody', 'money'],
     visibleProfession: true,
   },
@@ -896,6 +1004,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'has the desk from six at night until six in the morning',
       'runs the house while the day manager sleeps',
       'keeps the register, the keys, and a memory of who is not in the register',
+    ],
+    professionFirst: [
+      'I have the desk from six at night until six in the morning. Twelve hours of it.',
+      'I run the house. The day manager sleeps through it.',
+      'I keep the register. I keep the keys. I remember who is not in the register.',
     ],
     wants: ['to-keep-what-they-have', 'respectability', 'money'],
     visibleProfession: true,
@@ -913,6 +1026,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'makes the rounds of the agencies at eleven and is home by one',
       'did two seasons in the line and is waiting on a third',
       'rehearses when there is anything to rehearse for',
+    ],
+    professionFirst: [
+      'I make the rounds of the agencies at eleven. I am home by one.',
+      'I did two seasons in the line. I am waiting on a third.',
+      'I rehearse when there is anything to rehearse for. There is not, at present.',
     ],
     wants: ['to-be-somebody', 'to-get-out', 'money'],
     visibleProfession: false,
@@ -932,6 +1050,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'runs a book on the horses for four blocks and no further',
       'writes the odds on a slate and rubs them off before six',
     ],
+    professionFirst: [
+      'I take bets. In a small way, out of the back of a cigar store.',
+      'I run a book on the horses. Four blocks, and no further.',
+      'I write the odds on a slate. They are rubbed off before six.',
+    ],
     wants: ['money', 'to-be-feared', 'to-be-left-alone'],
     visibleProfession: false,
   },
@@ -950,6 +1073,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'delivers the vote on the block and the coal in February',
       'sits in the clubhouse and settles what can be settled there',
     ],
+    professionFirst: [
+      'I carry the district for the club. I am paid in favours.',
+      'I deliver the vote on the block. The coal comes in February.',
+      'I sit in the clubhouse. I settle what can be settled there.',
+    ],
     wants: ['to-be-feared', 'to-be-somebody', 'money'],
     visibleProfession: false,
   },
@@ -966,6 +1094,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'writes the tickets behind the grille and knows what a thing is worth',
       'minds the shop while the broker is at the auctions',
       'handles the redemptions, and the ones nobody comes back for',
+    ],
+    professionFirst: [
+      'I write the tickets behind the grille. I know what things are worth.',
+      'I mind the shop. The broker is at the auctions.',
+      'I handle the redemptions. And the ones nobody comes back for.',
     ],
     wants: ['money', 'to-be-left-alone', 'to-keep-what-they-have'],
     visibleProfession: false,
@@ -984,6 +1117,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'keeps the wrong people out and the right people quiet',
       'has the door from nine until they close',
     ],
+    professionFirst: [
+      'I stand the door at a club with no sign on it. I know every face that comes to it. Every one.',
+      'I keep the wrong people out. I keep the right people quiet.',
+      'I have the door from nine until they close. Every night of it.',
+    ],
     wants: ['to-be-feared', 'money', 'to-keep-what-they-have'],
     visibleProfession: true,
   },
@@ -1000,6 +1138,11 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
       'carries the slips between four corners and a candy store',
       'collects the plays in the morning and pays out in the afternoon',
       'runs policy for a bank uptown and is trusted with the bag',
+    ],
+    professionFirst: [
+      'I carry the slips. Four corners and a candy store.',
+      'I collect the plays in the morning. I pay out in the afternoon.',
+      'I run policy for a bank uptown. They trust me with the bag.',
     ],
     wants: ['money', 'to-be-somebody', 'to-get-out'],
     visibleProfession: false,
