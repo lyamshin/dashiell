@@ -24,7 +24,7 @@
   {
     "id": "cry-003",
     "deck": "carry",
-    "text": "{name} thought {who} was worth a question. So did I, on {subject}.",
+    "text": "{name} thought {who} was worth a question. I wanted {subject} answered too.",
     "tags": {
       "for": "ask-person",
       "lead": "yes"
@@ -684,7 +684,7 @@
   {
     "id": "cry-063",
     "deck": "carry",
-    "text": "{name} thought {who}’s evening was worth going over. So did I.",
+    "text": "{name} thought {who}'s evening was worth going over. I agreed, and meant to hear it firsthand.",
     "tags": {
       "for": "ask-evening",
       "lead": "yes"
@@ -1124,7 +1124,7 @@
   {
     "id": "cry-103",
     "deck": "carry",
-    "text": "{name} thought the room was worth searching. So did I.",
+    "text": "{name} thought the room was worth searching. I meant to see for myself.",
     "tags": {
       "for": "search-room",
       "lead": "yes"

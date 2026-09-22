@@ -2,10 +2,10 @@
   {
     "id": "act-001",
     "deck": "activity",
-    "text": "{name} counts out change from an apron pocket, quick and practiced.",
+    "text": "{name} was drawing a beer and setting it down without being asked.",
     "tags": {
       "role": "bartender",
-      "placeKind": "public"
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -13,10 +13,10 @@
   {
     "id": "act-002",
     "deck": "activity",
-    "text": "{name} is restocking a shelf of bottles, checking labels against a list.",
+    "text": "{name} was running a rag along the length of the bar.",
     "tags": {
       "role": "bartender",
-      "placeKind": "public"
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -24,10 +24,10 @@
   {
     "id": "act-003",
     "deck": "activity",
-    "text": "{name} polishes a row of glasses held up to the light, checking each one twice.",
+    "text": "{name} was rinsing glasses in a basin, setting them out to dry.",
     "tags": {
       "role": "bartender",
-      "placeKind": "public",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -36,9 +36,9 @@
   {
     "id": "act-004",
     "deck": "activity",
-    "text": "{name} is behind the bar, putting clean glasses back on the shelf one at a time.",
+    "text": "{name} was standing just inside the door, watching the street through the glass.",
     "tags": {
-      "role": "bartender",
+      "role": "doorman",
       "placeKind": "semi"
     },
     "motifs": [],
@@ -47,9 +47,9 @@
   {
     "id": "act-005",
     "deck": "activity",
-    "text": "{name} draws a beer and sets it down without being asked.",
+    "text": "{name} was taking a coat from an arriving guest, checking it against a claim ticket.",
     "tags": {
-      "role": "bartender",
+      "role": "doorman",
       "placeKind": "semi"
     },
     "motifs": [],
@@ -58,9 +58,9 @@
   {
     "id": "act-006",
     "deck": "activity",
-    "text": "{name} runs a rag along the bar top, working down its length.",
+    "text": "{name} was straightening a line of umbrellas in the stand by the door.",
     "tags": {
-      "role": "bartender",
+      "role": "doorman",
       "placeKind": "semi",
       "band": "small-hours"
     },
@@ -70,10 +70,10 @@
   {
     "id": "act-007",
     "deck": "activity",
-    "text": "{name} is decanting something amber into a plain bottle with no label on it.",
+    "text": "{name} was stacking the evening papers, squaring the pile against the wind.",
     "tags": {
-      "role": "bartender",
-      "placeKind": "private"
+      "role": "newsstand",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -81,10 +81,10 @@
   {
     "id": "act-008",
     "deck": "activity",
-    "text": "{name} counts bottles against a slip of paper, marking off each one.",
+    "text": "{name} was making change out of a cigar box nailed to the counter.",
     "tags": {
-      "role": "bartender",
-      "placeKind": "private"
+      "role": "newsstand",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -92,10 +92,10 @@
   {
     "id": "act-009",
     "deck": "activity",
-    "text": "{name} rinses a set of glasses in a basin, setting them to dry on a cloth.",
+    "text": "{name} was calling out a headline to nobody in particular.",
     "tags": {
-      "role": "bartender",
-      "placeKind": "private",
+      "role": "newsstand",
+      "placeKind": "public",
       "band": "dawn"
     },
     "motifs": [],
@@ -104,9 +104,9 @@
   {
     "id": "act-010",
     "deck": "activity",
-    "text": "{name} holds a door for a couple heading out, touching a cap to them.",
+    "text": "{name} was ringing up a sale and dropping the coins in a drawer.",
     "tags": {
-      "role": "doorman",
+      "role": "counterman",
       "placeKind": "public"
     },
     "motifs": [],
@@ -115,9 +115,9 @@
   {
     "id": "act-011",
     "deck": "activity",
-    "text": "{name} checks a delivery against a clipboard, ticking off each item.",
+    "text": "{name} was wiping down the counter in long, even strokes.",
     "tags": {
-      "role": "doorman",
+      "role": "counterman",
       "placeKind": "public"
     },
     "motifs": [],
@@ -126,11 +126,11 @@
   {
     "id": "act-012",
     "deck": "activity",
-    "text": "{name} stands at the curb, watching for a cab to wave over.",
+    "text": "{name} was restocking a shelf, checking each item against a list.",
     "tags": {
-      "role": "doorman",
+      "role": "counterman",
       "placeKind": "public",
-      "band": "small-hours"
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -138,9 +138,9 @@
   {
     "id": "act-013",
     "deck": "activity",
-    "text": "{name} stands just inside the door, watching the street through the glass.",
+    "text": "{name} was racking a set of cues along the wall, straightening each one.",
     "tags": {
-      "role": "doorman",
+      "role": "counterman",
       "placeKind": "semi"
     },
     "motifs": [],
@@ -149,9 +149,9 @@
   {
     "id": "act-014",
     "deck": "activity",
-    "text": "{name} takes a coat from an arriving guest and checks it against a claim ticket.",
+    "text": "{name} was counting chips into stacks, sorting them by color.",
     "tags": {
-      "role": "doorman",
+      "role": "counterman",
       "placeKind": "semi"
     },
     "motifs": [],
@@ -160,11 +160,11 @@
   {
     "id": "act-015",
     "deck": "activity",
-    "text": "{name} straightens a line of umbrellas in the stand by the door.",
+    "text": "{name} was chalking a cue, setting it back on the rail.",
     "tags": {
-      "role": "doorman",
+      "role": "counterman",
       "placeKind": "semi",
-      "band": "dawn"
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -172,10 +172,10 @@
   {
     "id": "act-016",
     "deck": "activity",
-    "text": "{name} is polishing the brass fittings on a private entrance, taking care of every corner.",
+    "text": "{name} was tearing a ticket in half, waving the next person through.",
     "tags": {
-      "role": "doorman",
-      "placeKind": "private"
+      "role": "ticket-taker",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -183,10 +183,10 @@
   {
     "id": "act-017",
     "deck": "activity",
-    "text": "{name} checks a list of expected callers against the clock.",
+    "text": "{name} was counting the stubs in hand against a running total.",
     "tags": {
-      "role": "doorman",
-      "placeKind": "private"
+      "role": "ticket-taker",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -194,11 +194,11 @@
   {
     "id": "act-018",
     "deck": "activity",
-    "text": "{name} stands by a private door, hands behind the back.",
+    "text": "{name} was straightening the velvet rope by the entrance.",
     "tags": {
-      "role": "doorman",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "ticket-taker",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -206,10 +206,10 @@
   {
     "id": "act-019",
     "deck": "activity",
-    "text": "{name} stacks the evening papers, squaring the pile against the wind.",
+    "text": "{name} was working the gate open and shut, calling the floor out of habit.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "public"
+      "role": "elevator-man",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -217,10 +217,10 @@
   {
     "id": "act-020",
     "deck": "activity",
-    "text": "{name} makes change out of a cigar box nailed to the counter.",
+    "text": "{name} was polishing the brass rail inside the car with a rag.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "public"
+      "role": "elevator-man",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -228,10 +228,10 @@
   {
     "id": "act-021",
     "deck": "activity",
-    "text": "{name} calls out a headline to nobody in particular.",
+    "text": "{name} was sitting on a stool by the gate, waiting for a bell to ring.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "public",
+      "role": "elevator-man",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -240,10 +240,10 @@
   {
     "id": "act-022",
     "deck": "activity",
-    "text": "{name} folds a paper back along its crease before handing it over.",
+    "text": "{name} was going over a rent book at the kitchen table, column by column.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "semi"
+      "role": "landlady",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -251,10 +251,10 @@
   {
     "id": "act-023",
     "deck": "activity",
-    "text": "{name} counts the unsold copies, setting them aside for the morning man.",
+    "text": "{name} was checking a room's window latch, working it twice to be sure.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "semi"
+      "role": "landlady",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -262,10 +262,10 @@
   {
     "id": "act-024",
     "deck": "activity",
-    "text": "{name} sweeps cigarette butts off the stand's little counter.",
+    "text": "{name} was counting out coins from a rent envelope, stacking them by denomination.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "semi",
+      "role": "landlady",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -274,10 +274,10 @@
   {
     "id": "act-025",
     "deck": "activity",
-    "text": "{name} sorts a bundle of papers by delivery address, tying each with string.",
+    "text": "{name} was going over a rent book at the hall table, pencil in hand.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "private"
+      "role": "landlady",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -285,10 +285,10 @@
   {
     "id": "act-026",
     "deck": "activity",
-    "text": "{name} checks a ledger of accounts against the day's deliveries.",
+    "text": "{name} was listening from the bottom step before going up.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "private"
+      "role": "landlady",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -296,10 +296,10 @@
   {
     "id": "act-027",
     "deck": "activity",
-    "text": "{name} counts out the night's take by a low lamp.",
+    "text": "{name} was checking a lock, testing the door with a shake.",
     "tags": {
-      "role": "newsstand",
-      "placeKind": "private",
+      "role": "landlady",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -308,9 +308,9 @@
   {
     "id": "act-028",
     "deck": "activity",
-    "text": "{name} rings up a sale and drops the coins in a drawer.",
+    "text": "{name} was leaning against the fender, watching the corner for a fare.",
     "tags": {
-      "role": "counterman",
+      "role": "cabbie",
       "placeKind": "public"
     },
     "motifs": [],
@@ -319,9 +319,9 @@
   {
     "id": "act-029",
     "deck": "activity",
-    "text": "{name} wipes down the counter in long, even strokes.",
+    "text": "{name} was wiping down the windshield with a rag kept for the purpose.",
     "tags": {
-      "role": "counterman",
+      "role": "cabbie",
       "placeKind": "public"
     },
     "motifs": [],
@@ -330,11 +330,11 @@
   {
     "id": "act-030",
     "deck": "activity",
-    "text": "{name} restocks a shelf, checking each item against a list.",
+    "text": "{name} was checking the meter, tapping it once to be sure it read right.",
     "tags": {
-      "role": "counterman",
+      "role": "cabbie",
       "placeKind": "public",
-      "band": "after-midnight"
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -342,10 +342,10 @@
   {
     "id": "act-031",
     "deck": "activity",
-    "text": "{name} racks a set of cues along the wall, straightening each one.",
+    "text": "{name} was counting pills into a small envelope, folding the top down twice.",
     "tags": {
-      "role": "counterman",
-      "placeKind": "semi"
+      "role": "druggist",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -353,10 +353,10 @@
   {
     "id": "act-032",
     "deck": "activity",
-    "text": "{name} counts chips into stacks, sorting them by color.",
+    "text": "{name} was wiping down the soda fountain with a damp cloth.",
     "tags": {
-      "role": "counterman",
-      "placeKind": "semi"
+      "role": "druggist",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -364,11 +364,11 @@
   {
     "id": "act-033",
     "deck": "activity",
-    "text": "{name} chalks a cue and sets it back on the rail.",
+    "text": "{name} was checking a label against a prescription slip.",
     "tags": {
-      "role": "counterman",
-      "placeKind": "semi",
-      "band": "small-hours"
+      "role": "druggist",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -376,10 +376,10 @@
   {
     "id": "act-034",
     "deck": "activity",
-    "text": "{name} totals a column of figures, checking the sum twice.",
+    "text": "{name} was folding a newspaper closed without finishing it.",
     "tags": {
-      "role": "counterman",
-      "placeKind": "private"
+      "role": "arch-heir",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -387,10 +387,10 @@
   {
     "id": "act-035",
     "deck": "activity",
-    "text": "{name} counts out change from a cigar box kept under the counter.",
+    "text": "{name} was tapping a coin against the counter, waiting on nothing in particular.",
     "tags": {
-      "role": "counterman",
-      "placeKind": "private"
+      "role": "arch-heir",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -398,11 +398,11 @@
   {
     "id": "act-036",
     "deck": "activity",
-    "text": "{name} straightens a shelf of goods, turning each label to face out.",
+    "text": "{name} was checking a wristwatch, though nobody was expecting {name} anywhere.",
     "tags": {
-      "role": "counterman",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-heir",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -410,10 +410,10 @@
   {
     "id": "act-037",
     "deck": "activity",
-    "text": "{name} tears a ticket in half and waves the next person through.",
+    "text": "{name} was running a finger down a tab, working out the total.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "public"
+      "role": "arch-heir",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -421,10 +421,10 @@
   {
     "id": "act-038",
     "deck": "activity",
-    "text": "{name} counts the stubs in hand against a running total.",
+    "text": "{name} was setting a hat on the next seat over, leaving it there.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "public"
+      "role": "arch-heir",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -432,10 +432,10 @@
   {
     "id": "act-039",
     "deck": "activity",
-    "text": "{name} straightens the velvet rope by the entrance.",
+    "text": "{name} was ordering another round, not waiting to be asked twice.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "public",
+      "role": "arch-heir",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -444,10 +444,10 @@
   {
     "id": "act-040",
     "deck": "activity",
-    "text": "{name} checks a ticket against the light before letting anyone through.",
+    "text": "{name} was going through a stack of unopened bills, setting each one aside.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "semi"
+      "role": "arch-heir",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -455,10 +455,10 @@
   {
     "id": "act-041",
     "deck": "activity",
-    "text": "{name} sweeps the lobby floor between showings.",
+    "text": "{name} was straightening a necktie in a mirror, taking a long time about it.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "semi"
+      "role": "arch-heir",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -466,10 +466,10 @@
   {
     "id": "act-042",
     "deck": "activity",
-    "text": "{name} counts the night's receipts into a canvas bag.",
+    "text": "{name} was counting out a thin roll of bills, recounting it.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "semi",
+      "role": "arch-heir",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -478,10 +478,10 @@
   {
     "id": "act-043",
     "deck": "activity",
-    "text": "{name} totals up the evening's stubs at a small desk by the door.",
+    "text": "{name} was sitting with gloved hands folded, waiting for nothing to hurry.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "private"
+      "role": "arch-widow",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -489,10 +489,10 @@
   {
     "id": "act-044",
     "deck": "activity",
-    "text": "{name} checks a guest list against a slip of paper.",
+    "text": "{name} was checking a compact mirror, then closing it with a snap.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "private"
+      "role": "arch-widow",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -500,11 +500,11 @@
   {
     "id": "act-045",
     "deck": "activity",
-    "text": "{name} locks a cash box and slides it into a drawer.",
+    "text": "{name} was counting change from a small purse, coin by coin.",
     "tags": {
-      "role": "ticket-taker",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-widow",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -512,10 +512,10 @@
   {
     "id": "act-046",
     "deck": "activity",
-    "text": "{name} works the gate open and shut, calling the floor out of habit.",
+    "text": "{name} was sitting with a cup gone cold, not touching it.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "public"
+      "role": "arch-widow",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -523,10 +523,10 @@
   {
     "id": "act-047",
     "deck": "activity",
-    "text": "{name} polishes the brass rail inside the car with a rag.",
+    "text": "{name} was smoothing a coat that did not need smoothing.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "public"
+      "role": "arch-widow",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -534,10 +534,10 @@
   {
     "id": "act-048",
     "deck": "activity",
-    "text": "{name} checks the indicator dial, waiting on a call.",
+    "text": "{name} was checking a wristwatch and looking away from it.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "public",
+      "role": "arch-widow",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -546,10 +546,10 @@
   {
     "id": "act-049",
     "deck": "activity",
-    "text": "{name} runs the car up and down, calling floors to nobody riding.",
+    "text": "{name} was going through a box of correspondence, letter by letter.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "semi"
+      "role": "arch-widow",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -557,10 +557,10 @@
   {
     "id": "act-050",
     "deck": "activity",
-    "text": "{name} props the gate and sweeps out the car.",
+    "text": "{name} was straightening a photograph on the mantel that was already straight.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "semi"
+      "role": "arch-widow",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -568,10 +568,10 @@
   {
     "id": "act-051",
     "deck": "activity",
-    "text": "{name} checks the cable and the gate before the next run.",
+    "text": "{name} was counting out coins for a girl who came in mornings, stacking them by the door.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "semi",
+      "role": "arch-widow",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -580,10 +580,10 @@
   {
     "id": "act-052",
     "deck": "activity",
-    "text": "{name} sits on a stool by the gate, waiting for a bell to ring.",
+    "text": "{name} was scanning a folded page of quotations, a pencil marking a column.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "private"
+      "role": "arch-broker",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -591,10 +591,10 @@
   {
     "id": "act-053",
     "deck": "activity",
-    "text": "{name} wipes down the car's brass fittings, working corner to corner.",
+    "text": "{name} was checking a pocket watch against the street clock.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "private"
+      "role": "arch-broker",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -602,11 +602,11 @@
   {
     "id": "act-054",
     "deck": "activity",
-    "text": "{name} checks a passenger log against the hour.",
+    "text": "{name} was counting out change for a paper without looking up.",
     "tags": {
-      "role": "elevator-man",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-broker",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -614,10 +614,10 @@
   {
     "id": "act-055",
     "deck": "activity",
-    "text": "{name} counts a stack of mail, sorting it by floor.",
+    "text": "{name} was working figures across the back of an old receipt.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "public"
+      "role": "arch-broker",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -625,10 +625,10 @@
   {
     "id": "act-056",
     "deck": "activity",
-    "text": "{name} sweeps the front steps, working the broom in short strokes.",
+    "text": "{name} was tapping ash from a cigarette without breaking a sentence.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "public"
+      "role": "arch-broker",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -636,10 +636,10 @@
   {
     "id": "act-057",
     "deck": "activity",
-    "text": "{name} checks a delivery boy's bundle against a list at the door.",
+    "text": "{name} was checking a ticker tape pulled from a pocket.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "public",
+      "role": "arch-broker",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -648,10 +648,10 @@
   {
     "id": "act-058",
     "deck": "activity",
-    "text": "{name} goes over a rent book at the hall table, pencil in hand.",
+    "text": "{name} was going through a ledger, a finger running down the columns.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "semi"
+      "role": "arch-broker",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -659,10 +659,10 @@
   {
     "id": "act-059",
     "deck": "activity",
-    "text": "{name} pauses low on the staircase, listening, before going up.",
+    "text": "{name} was counting a stack of bills twice before putting it away.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "semi"
+      "role": "arch-broker",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -670,10 +670,10 @@
   {
     "id": "act-060",
     "deck": "activity",
-    "text": "{name} checks a lock, testing the door with a shake.",
+    "text": "{name} was dialing a telephone number from memory, waiting on the line to pick up.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "semi",
+      "role": "arch-broker",
+      "placeKind": "private",
       "band": "small-hours"
     },
     "motifs": [],
@@ -682,10 +682,10 @@
   {
     "id": "act-061",
     "deck": "activity",
-    "text": "{name} is going through a rent book at the kitchen table, column by column.",
+    "text": "{name} was scribbling a line into a small notebook, then closing it fast.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "private"
+      "role": "arch-society",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -693,10 +693,10 @@
   {
     "id": "act-062",
     "deck": "activity",
-    "text": "{name} checks a room's window latch, working it twice to be sure.",
+    "text": "{name} was checking a compact, then a wristwatch, then the door.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "private"
+      "role": "arch-society",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -704,11 +704,11 @@
   {
     "id": "act-063",
     "deck": "activity",
-    "text": "{name} counts out coins from a rent envelope, stacking them by denomination.",
+    "text": "{name} was tapping a cigarette against a case without lighting it.",
     "tags": {
-      "role": "landlady",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-society",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -716,10 +716,10 @@
   {
     "id": "act-064",
     "deck": "activity",
-    "text": "{name} walks a slow line down the block, trying doors as a matter of habit.",
+    "text": "{name} was going through a card index, flipping past name after name.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "public"
+      "role": "arch-society",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -727,10 +727,10 @@
   {
     "id": "act-065",
     "deck": "activity",
-    "text": "{name} checks a watch against the corner clock.",
+    "text": "{name} was ordering without looking at the menu.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "public"
+      "role": "arch-society",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -738,10 +738,10 @@
   {
     "id": "act-066",
     "deck": "activity",
-    "text": "{name} taps a nightstick against a railing, more out of habit than need.",
+    "text": "{name} was tapping ash into a tray, watching the room over the rim of a glass.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "public",
+      "role": "arch-society",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -750,10 +750,10 @@
   {
     "id": "act-067",
     "deck": "activity",
-    "text": "{name} leans in a doorway, watching the street through the glass.",
+    "text": "{name} was typing at a small desk, two fingers, fast.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "semi"
+      "role": "arch-society",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -761,10 +761,10 @@
   {
     "id": "act-068",
     "deck": "activity",
-    "text": "{name} writes a note in a small book, licking the pencil first.",
+    "text": "{name} was reading a paragraph back aloud, striking out a word.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "semi"
+      "role": "arch-society",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -772,10 +772,10 @@
   {
     "id": "act-069",
     "deck": "activity",
-    "text": "{name} checks a padlock on a gate down the block.",
+    "text": "{name} was filing a card into a box already thick with them.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "semi",
+      "role": "arch-society",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -784,10 +784,10 @@
   {
     "id": "act-070",
     "deck": "activity",
-    "text": "{name} stands where the staircase starts, notebook open.",
+    "text": "{name} was checking a rent book against a list of addresses.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "private"
+      "role": "arch-blockowner",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -795,10 +795,10 @@
   {
     "id": "act-071",
     "deck": "activity",
-    "text": "{name} checks a door for signs of forcing, running a hand along the frame.",
+    "text": "{name} was counting a stack of bills, licking a thumb between each one.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "private"
+      "role": "arch-blockowner",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -806,11 +806,11 @@
   {
     "id": "act-072",
     "deck": "activity",
-    "text": "{name} makes a note of the hour in a small book.",
+    "text": "{name} was tapping a cane against the pavement, looking up at a cornice.",
     "tags": {
-      "role": "beat-cop",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-blockowner",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -818,10 +818,10 @@
   {
     "id": "act-073",
     "deck": "activity",
-    "text": "{name} leans against the fender, watching the corner for a fare.",
+    "text": "{name} was going over a column of figures with a stub of pencil.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "public"
+      "role": "arch-blockowner",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -829,10 +829,10 @@
   {
     "id": "act-074",
     "deck": "activity",
-    "text": "{name} wipes down the windshield with a rag kept for the purpose.",
+    "text": "{name} was checking a set of keys against a tag on each.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "public"
+      "role": "arch-blockowner",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -840,10 +840,10 @@
   {
     "id": "act-075",
     "deck": "activity",
-    "text": "{name} checks the meter, tapping it once to be sure it reads right.",
+    "text": "{name} was counting change into a coat pocket without looking at it.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "public",
+      "role": "arch-blockowner",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -852,10 +852,10 @@
   {
     "id": "act-076",
     "deck": "activity",
-    "text": "{name} sits behind the wheel with the engine idling, waiting.",
+    "text": "{name} was going through a stack of leases, initialing each page.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "semi"
+      "role": "arch-blockowner",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -863,10 +863,10 @@
   {
     "id": "act-077",
     "deck": "activity",
-    "text": "{name} counts out the day's fares from a leather pouch.",
+    "text": "{name} was counting a roll of bills into a strongbox, closing the lid after.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "semi"
+      "role": "arch-blockowner",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -874,10 +874,10 @@
   {
     "id": "act-078",
     "deck": "activity",
-    "text": "{name} checks a tire, crouched by the running board.",
+    "text": "{name} was checking a set of building keys hung on a board.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "semi",
+      "role": "arch-blockowner",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -886,10 +886,10 @@
   {
     "id": "act-079",
     "deck": "activity",
-    "text": "{name} totals up a night's fares in a small notebook.",
+    "text": "{name} was reading a folded document, lips moving slightly over the clauses.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "private"
+      "role": "arch-lawyer",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -897,10 +897,10 @@
   {
     "id": "act-080",
     "deck": "activity",
-    "text": "{name} checks the oil, a rag over one hand.",
+    "text": "{name} was checking a pocket watch, then a slip of paper.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "private"
+      "role": "arch-lawyer",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -908,11 +908,11 @@
   {
     "id": "act-081",
     "deck": "activity",
-    "text": "{name} counts coins into small stacks on the seat.",
+    "text": "{name} was tapping a rolled document against a palm, thinking.",
     "tags": {
-      "role": "cabbie",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-lawyer",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -920,10 +920,10 @@
   {
     "id": "act-082",
     "deck": "activity",
-    "text": "{name} counts pills into a small envelope, folding the top down twice.",
+    "text": "{name} was going over a contract with a pencil, marking a clause.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "public"
+      "role": "arch-lawyer",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -931,10 +931,10 @@
   {
     "id": "act-083",
     "deck": "activity",
-    "text": "{name} wipes down the soda fountain with a damp cloth.",
+    "text": "{name} was tapping ash from a cigarette onto a saucer.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "public"
+      "role": "arch-lawyer",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -942,10 +942,10 @@
   {
     "id": "act-084",
     "deck": "activity",
-    "text": "{name} checks a label against a prescription slip.",
+    "text": "{name} was checking a list of names against a docket.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "public",
+      "role": "arch-lawyer",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -954,10 +954,10 @@
   {
     "id": "act-085",
     "deck": "activity",
-    "text": "{name} measures a powder onto a scale, adjusting the weights.",
+    "text": "{name} was drafting a letter at a desk crowded with paper.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "semi"
+      "role": "arch-lawyer",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -965,10 +965,10 @@
   {
     "id": "act-086",
     "deck": "activity",
-    "text": "{name} restocks a shelf of bottles, turning each label to face out.",
+    "text": "{name} was reading a will aloud to an empty room, checking each clause.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "semi"
+      "role": "arch-lawyer",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -976,10 +976,10 @@
   {
     "id": "act-087",
     "deck": "activity",
-    "text": "{name} rings up a sale and makes change from a drawer.",
+    "text": "{name} was filing a folder into a cabinet already crowded with them.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "semi",
+      "role": "arch-lawyer",
+      "placeKind": "private",
       "band": "small-hours"
     },
     "motifs": [],
@@ -988,10 +988,10 @@
   {
     "id": "act-088",
     "deck": "activity",
-    "text": "{name} is going through a ledger of accounts by lamplight.",
+    "text": "{name} was checking a receipt against a total, pencil behind an ear.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "private"
+      "role": "arch-bookkeeper",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -999,10 +999,10 @@
   {
     "id": "act-089",
     "deck": "activity",
-    "text": "{name} counts stock against an order sheet, marking off each item.",
+    "text": "{name} was counting change twice before handing it over.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "private"
+      "role": "arch-bookkeeper",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1010,11 +1010,11 @@
   {
     "id": "act-090",
     "deck": "activity",
-    "text": "{name} mixes something in a small glass, stirring it with a rod.",
+    "text": "{name} was totaling a column in a small book, pencil licked and ready.",
     "tags": {
-      "role": "druggist",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-bookkeeper",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -1022,10 +1022,10 @@
   {
     "id": "act-091",
     "deck": "activity",
-    "text": "{name} folds a newspaper closed without finishing it.",
+    "text": "{name} was going through a tab, checking the addition.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "public"
+      "role": "arch-bookkeeper",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1033,10 +1033,10 @@
   {
     "id": "act-092",
     "deck": "activity",
-    "text": "{name} taps a coin against the counter, waiting on nothing in particular.",
+    "text": "{name} was tapping a pencil against a ledger, thinking.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "public"
+      "role": "arch-bookkeeper",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1044,10 +1044,10 @@
   {
     "id": "act-093",
     "deck": "activity",
-    "text": "{name} checks a wristwatch, though nobody is expecting {name} anywhere.",
+    "text": "{name} was counting out coins into small stacks on the table.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "public",
+      "role": "arch-bookkeeper",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -1056,10 +1056,10 @@
   {
     "id": "act-094",
     "deck": "activity",
-    "text": "{name} runs a finger down a tab, working out the total.",
+    "text": "{name} was ruling a fresh column by hand, straightedge and all.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "semi"
+      "role": "arch-bookkeeper",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1067,10 +1067,10 @@
   {
     "id": "act-095",
     "deck": "activity",
-    "text": "{name} sets a hat on the next seat over and leaves it there.",
+    "text": "{name} was going through a ledger by lamplight, page after page.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "semi"
+      "role": "arch-bookkeeper",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1078,10 +1078,10 @@
   {
     "id": "act-096",
     "deck": "activity",
-    "text": "{name} orders another round without being asked twice.",
+    "text": "{name} was totaling a set of figures twice, checking the sums against each other.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "semi",
+      "role": "arch-bookkeeper",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -1090,10 +1090,10 @@
   {
     "id": "act-097",
     "deck": "activity",
-    "text": "{name} is going through a stack of unopened bills, setting each one aside.",
+    "text": "{name} was checking a small watch pinned to a collar.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "private"
+      "role": "arch-nurse",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1101,10 +1101,10 @@
   {
     "id": "act-098",
     "deck": "activity",
-    "text": "{name} straightens a necktie in a mirror, taking a long time about it.",
+    "text": "{name} was counting a set of pills into a paper cup.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "private"
+      "role": "arch-nurse",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1112,11 +1112,11 @@
   {
     "id": "act-099",
     "deck": "activity",
-    "text": "{name} counts out a thin roll of bills, recounting it.",
+    "text": "{name} was folding a length of gauze, corner to corner.",
     "tags": {
-      "role": "arch-heir",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-nurse",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -1124,10 +1124,10 @@
   {
     "id": "act-100",
     "deck": "activity",
-    "text": "{name} sits with gloved hands folded, waiting for nothing to hurry.",
+    "text": "{name} was going through a bag of supplies, checking each item off.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "public"
+      "role": "arch-nurse",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1135,10 +1135,10 @@
   {
     "id": "act-101",
     "deck": "activity",
-    "text": "{name} checks a compact mirror, then closes it with a snap.",
+    "text": "{name} was counting a pulse against a watch, lips moving with the count.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "public"
+      "role": "arch-nurse",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1146,10 +1146,10 @@
   {
     "id": "act-102",
     "deck": "activity",
-    "text": "{name} counts change from a small purse, coin by coin.",
+    "text": "{name} was smoothing a folded blanket over an arm.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "public",
+      "role": "arch-nurse",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -1158,10 +1158,10 @@
   {
     "id": "act-103",
     "deck": "activity",
-    "text": "{name} sits with a cup gone cold, not touching it.",
+    "text": "{name} was checking a patient's chart, pencil in hand.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "semi"
+      "role": "arch-nurse",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1169,10 +1169,10 @@
   {
     "id": "act-104",
     "deck": "activity",
-    "text": "{name} smooths a coat that does not need smoothing.",
+    "text": "{name} was measuring a dose into a small glass, holding it to the light.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "semi"
+      "role": "arch-nurse",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1180,10 +1180,10 @@
   {
     "id": "act-105",
     "deck": "activity",
-    "text": "{name} checks a wristwatch and looks away from it.",
+    "text": "{name} was sitting by a bed with a book unopened in a lap.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "semi",
+      "role": "arch-nurse",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -1192,10 +1192,10 @@
   {
     "id": "act-106",
     "deck": "activity",
-    "text": "{name} is going through a box of correspondence, letter by letter.",
+    "text": "{name} was checking a pocket watch against the hour written on a card.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "private"
+      "role": "arch-dentist",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1203,10 +1203,10 @@
   {
     "id": "act-107",
     "deck": "activity",
-    "text": "{name} straightens a photograph on the mantel that is already straight.",
+    "text": "{name} was wiping down a small case of instruments.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "private"
+      "role": "arch-dentist",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1214,11 +1214,11 @@
   {
     "id": "act-108",
     "deck": "activity",
-    "text": "{name} counts out coins for a girl who comes in mornings, stacking them by the door.",
+    "text": "{name} was counting appointment cards into a stack.",
     "tags": {
-      "role": "arch-widow",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-dentist",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -1226,10 +1226,10 @@
   {
     "id": "act-109",
     "deck": "activity",
-    "text": "{name} scans a folded page of quotations, pencil marking a column.",
+    "text": "{name} was going through a drawer of instruments, checking each one.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "public"
+      "role": "arch-dentist",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1237,10 +1237,10 @@
   {
     "id": "act-110",
     "deck": "activity",
-    "text": "{name} checks a pocket watch against the street clock.",
+    "text": "{name} was making a note on a patient card and filing it.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "public"
+      "role": "arch-dentist",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1248,10 +1248,10 @@
   {
     "id": "act-111",
     "deck": "activity",
-    "text": "{name} counts out change for a paper without looking up.",
+    "text": "{name} was counting the day's take into a small box.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "public",
+      "role": "arch-dentist",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -1260,10 +1260,10 @@
   {
     "id": "act-112",
     "deck": "activity",
-    "text": "{name} works out a sum on an envelope's torn flap.",
+    "text": "{name} was polishing a set of instruments laid out on a cloth.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "semi"
+      "role": "arch-dentist",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1271,10 +1271,10 @@
   {
     "id": "act-113",
     "deck": "activity",
-    "text": "{name} taps ash from a cigarette without breaking a sentence.",
+    "text": "{name} was checking a ledger of accounts against a stack of unpaid cards.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "semi"
+      "role": "arch-dentist",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1282,10 +1282,10 @@
   {
     "id": "act-114",
     "deck": "activity",
-    "text": "{name} checks a ticker tape pulled from a pocket.",
+    "text": "{name} was adjusting a lamp over an empty chair.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "semi",
+      "role": "arch-dentist",
+      "placeKind": "private",
       "band": "small-hours"
     },
     "motifs": [],
@@ -1294,10 +1294,10 @@
   {
     "id": "act-115",
     "deck": "activity",
-    "text": "{name} is going through a ledger, running a finger down the columns.",
+    "text": "{name} was checking a wristwatch, then a slip of paper with an address on it.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "private"
+      "role": "arch-secretary",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1305,10 +1305,10 @@
   {
     "id": "act-116",
     "deck": "activity",
-    "text": "{name} counts a stack of bills twice before putting it away.",
+    "text": "{name} was folding a letter into an envelope, sealing it.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "private"
+      "role": "arch-secretary",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1316,11 +1316,11 @@
   {
     "id": "act-117",
     "deck": "activity",
-    "text": "{name} dials a telephone number from memory, waiting on the line to pick up.",
+    "text": "{name} was counting change from a small purse.",
     "tags": {
-      "role": "arch-broker",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-secretary",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -1328,10 +1328,10 @@
   {
     "id": "act-118",
     "deck": "activity",
-    "text": "{name} is scribbling a line into a small notebook, then closing it fast.",
+    "text": "{name} was going through a stack of correspondence, sorting it into two piles.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "public"
+      "role": "arch-secretary",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1339,10 +1339,10 @@
   {
     "id": "act-119",
     "deck": "activity",
-    "text": "{name} checks a compact, then a wristwatch, then the door.",
+    "text": "{name} was checking a shorthand notebook against a typed page.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "public"
+      "role": "arch-secretary",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1350,10 +1350,10 @@
   {
     "id": "act-120",
     "deck": "activity",
-    "text": "{name} taps a cigarette against a case without lighting it.",
+    "text": "{name} was tapping a pencil against a desk blotter, thinking.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "public",
+      "role": "arch-secretary",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -1362,10 +1362,10 @@
   {
     "id": "act-121",
     "deck": "activity",
-    "text": "{name} is going through a card index, flipping past name after name.",
+    "text": "{name} was typing at a desk, the carriage bell ringing each time a line ran out.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "semi"
+      "role": "arch-secretary",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1373,10 +1373,10 @@
   {
     "id": "act-122",
     "deck": "activity",
-    "text": "{name} orders without looking at the menu.",
+    "text": "{name} was filing a folder into a drawer already thick with them.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "semi"
+      "role": "arch-secretary",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1384,10 +1384,10 @@
   {
     "id": "act-123",
     "deck": "activity",
-    "text": "{name} taps ash into a tray, watching the room over the rim of a glass.",
+    "text": "{name} was reading a line of dictation back, checking it against the notes.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "semi",
+      "role": "arch-secretary",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -1396,10 +1396,10 @@
   {
     "id": "act-124",
     "deck": "activity",
-    "text": "{name} is typing at a small desk, two fingers, fast.",
+    "text": "{name} was scribbling a line into a notebook, then folding it shut.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "private"
+      "role": "arch-reporter",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1407,10 +1407,10 @@
   {
     "id": "act-125",
     "deck": "activity",
-    "text": "{name} reads back a paragraph aloud, striking out a word.",
+    "text": "{name} was checking a pocket watch against a deadline only {name} knew.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "private"
+      "role": "arch-reporter",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1418,11 +1418,11 @@
   {
     "id": "act-126",
     "deck": "activity",
-    "text": "{name} files a card into a box already thick with them.",
+    "text": "{name} was tapping a pencil against a folded paper.",
     "tags": {
-      "role": "arch-society",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-reporter",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -1430,10 +1430,10 @@
   {
     "id": "act-127",
     "deck": "activity",
-    "text": "{name} checks a rent book against a list of addresses.",
+    "text": "{name} was going through a notebook, flipping back a page to check a name.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "public"
+      "role": "arch-reporter",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1441,10 +1441,10 @@
   {
     "id": "act-128",
     "deck": "activity",
-    "text": "{name} counts a stack of bills, licking a thumb between each one.",
+    "text": "{name} was tapping ash from a cigarette, eyes on the room.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "public"
+      "role": "arch-reporter",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1452,10 +1452,10 @@
   {
     "id": "act-129",
     "deck": "activity",
-    "text": "{name} taps a cane against the pavement, looking up at a cornice.",
+    "text": "{name} was checking a stack of carbon copies against the original.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "public",
+      "role": "arch-reporter",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -1464,10 +1464,10 @@
   {
     "id": "act-130",
     "deck": "activity",
-    "text": "{name} is going over a column of figures with a stub of pencil.",
+    "text": "{name} was typing fast, two fingers, glancing at a note propped against the machine.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "semi"
+      "role": "arch-reporter",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1475,10 +1475,10 @@
   {
     "id": "act-131",
     "deck": "activity",
-    "text": "{name} checks a set of keys against a tag on each.",
+    "text": "{name} was reading a paragraph back aloud, striking a line through half of it.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "semi"
+      "role": "arch-reporter",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1486,10 +1486,10 @@
   {
     "id": "act-132",
     "deck": "activity",
-    "text": "{name} counts change into a coat pocket without looking at it.",
+    "text": "{name} was counting a stack of notes into a coat pocket.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "semi",
+      "role": "arch-reporter",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -1498,10 +1498,10 @@
   {
     "id": "act-133",
     "deck": "activity",
-    "text": "{name} is going through a stack of leases, initialing each page.",
+    "text": "{name} was tapping out a rhythm on a tabletop, counting under breath.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "private"
+      "role": "arch-piano-teacher",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1509,10 +1509,10 @@
   {
     "id": "act-134",
     "deck": "activity",
-    "text": "{name} counts a roll of bills into a strongbox, closing the lid after.",
+    "text": "{name} was checking a small watch pinned to a collar.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "private"
+      "role": "arch-piano-teacher",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1520,11 +1520,11 @@
   {
     "id": "act-135",
     "deck": "activity",
-    "text": "{name} checks a set of building keys hung on a board.",
+    "text": "{name} was folding a sheet of music into a bag.",
     "tags": {
-      "role": "arch-blockowner",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-piano-teacher",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -1532,10 +1532,10 @@
   {
     "id": "act-136",
     "deck": "activity",
-    "text": "{name} reads a folded document, lips moving slightly over the clauses.",
+    "text": "{name} was humming a scale, half under breath, fingers moving on the tabletop.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "public"
+      "role": "arch-piano-teacher",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1543,10 +1543,10 @@
   {
     "id": "act-137",
     "deck": "activity",
-    "text": "{name} checks a pocket watch, then a slip of paper.",
+    "text": "{name} was checking a music book against a list of pupils.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "public"
+      "role": "arch-piano-teacher",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1554,10 +1554,10 @@
   {
     "id": "act-138",
     "deck": "activity",
-    "text": "{name} taps a rolled document against a palm, thinking.",
+    "text": "{name} was counting out coins for a lesson into a small tin.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "public",
+      "role": "arch-piano-teacher",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -1566,10 +1566,10 @@
   {
     "id": "act-139",
     "deck": "activity",
-    "text": "{name} is going over a contract with a pencil, marking a clause.",
+    "text": "{name} was running a hand along piano keys without pressing them down.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "semi"
+      "role": "arch-piano-teacher",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1577,10 +1577,10 @@
   {
     "id": "act-140",
     "deck": "activity",
-    "text": "{name} taps ash from a cigarette onto a saucer.",
+    "text": "{name} was straightening a stack of sheet music, squaring the edges.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "semi"
+      "role": "arch-piano-teacher",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1588,10 +1588,10 @@
   {
     "id": "act-141",
     "deck": "activity",
-    "text": "{name} checks a list of names against a docket.",
+    "text": "{name} was checking a metronome, winding it once.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "semi",
+      "role": "arch-piano-teacher",
+      "placeKind": "private",
       "band": "small-hours"
     },
     "motifs": [],
@@ -1600,10 +1600,10 @@
   {
     "id": "act-142",
     "deck": "activity",
-    "text": "{name} is drafting a letter at a desk crowded with paper.",
+    "text": "{name} was checking a claim form against a wristwatch.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "private"
+      "role": "arch-adjuster",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1611,10 +1611,10 @@
   {
     "id": "act-143",
     "deck": "activity",
-    "text": "{name} reads a will aloud to an empty room, checking each clause.",
+    "text": "{name} was writing a note in a small book, pressing hard on the pencil.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "private"
+      "role": "arch-adjuster",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1622,11 +1622,11 @@
   {
     "id": "act-144",
     "deck": "activity",
-    "text": "{name} files a folder into a cabinet already crowded with them.",
+    "text": "{name} was counting change from a coat pocket.",
     "tags": {
-      "role": "arch-lawyer",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-adjuster",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -1634,10 +1634,10 @@
   {
     "id": "act-145",
     "deck": "activity",
-    "text": "{name} checks a receipt against a total, pencil behind an ear.",
+    "text": "{name} was going through a folder of claims, checking each date.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "public"
+      "role": "arch-adjuster",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1645,10 +1645,10 @@
   {
     "id": "act-146",
     "deck": "activity",
-    "text": "{name} counts change twice before handing it over.",
+    "text": "{name} was tapping a pencil against a form, thinking.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "public"
+      "role": "arch-adjuster",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1656,10 +1656,10 @@
   {
     "id": "act-147",
     "deck": "activity",
-    "text": "{name} totals a column in a small book, licking the pencil first.",
+    "text": "{name} was checking a set of photographs against a written description.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "public",
+      "role": "arch-adjuster",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -1668,10 +1668,10 @@
   {
     "id": "act-148",
     "deck": "activity",
-    "text": "{name} is going through a tab, checking the addition.",
+    "text": "{name} was writing up a report at a small desk, pausing between lines.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "semi"
+      "role": "arch-adjuster",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1679,10 +1679,10 @@
   {
     "id": "act-149",
     "deck": "activity",
-    "text": "{name} taps a pencil against a ledger, thinking.",
+    "text": "{name} was checking a policy against a list of exclusions.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "semi"
+      "role": "arch-adjuster",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1690,10 +1690,10 @@
   {
     "id": "act-150",
     "deck": "activity",
-    "text": "{name} counts out coins into small stacks on the table.",
+    "text": "{name} was filing a claim folder into a case already thick with them.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "semi",
+      "role": "arch-adjuster",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -1702,10 +1702,10 @@
   {
     "id": "act-151",
     "deck": "activity",
-    "text": "{name} rules a fresh column by hand, straightedge and all.",
+    "text": "{name} was carrying a folded stack of linen against a hip.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "private"
+      "role": "arch-chambermaid",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1713,10 +1713,10 @@
   {
     "id": "act-152",
     "deck": "activity",
-    "text": "{name} is going through a ledger by lamplight, page after page.",
+    "text": "{name} was counting a set of keys on a ring, checking each tag.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "private"
+      "role": "arch-chambermaid",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1724,11 +1724,11 @@
   {
     "id": "act-153",
     "deck": "activity",
-    "text": "{name} totals a set of figures twice, checking the sums against each other.",
+    "text": "{name} was straightening a cap in a shop window's reflection.",
     "tags": {
-      "role": "arch-bookkeeper",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-chambermaid",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -1736,10 +1736,10 @@
   {
     "id": "act-154",
     "deck": "activity",
-    "text": "{name} checks a small watch pinned to a collar.",
+    "text": "{name} was folding a stack of towels into even squares.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "public"
+      "role": "arch-chambermaid",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1747,10 +1747,10 @@
   {
     "id": "act-155",
     "deck": "activity",
-    "text": "{name} counts a set of pills into a paper cup.",
+    "text": "{name} was checking a room list against a set of keys.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "public"
+      "role": "arch-chambermaid",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1758,10 +1758,10 @@
   {
     "id": "act-156",
     "deck": "activity",
-    "text": "{name} folds a length of gauze, corner to corner.",
+    "text": "{name} was sweeping a hallway in short, practiced strokes.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "public",
+      "role": "arch-chambermaid",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -1770,10 +1770,10 @@
   {
     "id": "act-157",
     "deck": "activity",
-    "text": "{name} is going through a bag of supplies, checking each item off.",
+    "text": "{name} was turning down a bed, corner by corner.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "semi"
+      "role": "arch-chambermaid",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1781,10 +1781,10 @@
   {
     "id": "act-158",
     "deck": "activity",
-    "text": "{name} counts a pulse against a watch, lips moving with the count.",
+    "text": "{name} was dusting a shelf, working left to right.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "semi"
+      "role": "arch-chambermaid",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1792,10 +1792,10 @@
   {
     "id": "act-159",
     "deck": "activity",
-    "text": "{name} smooths a folded blanket over an arm.",
+    "text": "{name} was counting linens into a stack, checking the count twice.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "semi",
+      "role": "arch-chambermaid",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -1804,10 +1804,10 @@
   {
     "id": "act-160",
     "deck": "activity",
-    "text": "{name} checks a patient's chart, pencil in hand.",
+    "text": "{name} was leaning against a lamppost, a hook hanging from a belt.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "private"
+      "role": "arch-longshoreman",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1815,10 +1815,10 @@
   {
     "id": "act-161",
     "deck": "activity",
-    "text": "{name} measures a dose into a small glass, holding it to the light.",
+    "text": "{name} was checking a union card against a slip of paper.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "private"
+      "role": "arch-longshoreman",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1826,11 +1826,11 @@
   {
     "id": "act-162",
     "deck": "activity",
-    "text": "{name} sits by a bed with a book unopened in a lap.",
+    "text": "{name} was counting change from a pocket, the coins clicking together.",
     "tags": {
-      "role": "arch-nurse",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-longshoreman",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -1838,10 +1838,10 @@
   {
     "id": "act-163",
     "deck": "activity",
-    "text": "{name} checks a pocket watch against the hour written on a card.",
+    "text": "{name} was sitting with a hook set on the table, turning a glass slowly.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "public"
+      "role": "arch-longshoreman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1849,10 +1849,10 @@
   {
     "id": "act-164",
     "deck": "activity",
-    "text": "{name} wipes down a small case of instruments.",
+    "text": "{name} was counting out coins for a round, stacking them by size.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "public"
+      "role": "arch-longshoreman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1860,10 +1860,10 @@
   {
     "id": "act-165",
     "deck": "activity",
-    "text": "{name} counts appointment cards into a stack.",
+    "text": "{name} was checking a callused palm against a splinter.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "public",
+      "role": "arch-longshoreman",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -1872,10 +1872,10 @@
   {
     "id": "act-166",
     "deck": "activity",
-    "text": "{name} is going through a drawer of instruments, checking each one.",
+    "text": "{name} was sitting with a hook laid across a knee, working a knot loose from a length of rope.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "semi"
+      "role": "arch-longshoreman",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1883,10 +1883,10 @@
   {
     "id": "act-167",
     "deck": "activity",
-    "text": "{name} makes a note on a patient card and files it.",
+    "text": "{name} was counting a thin roll of bills, recounting it.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "semi"
+      "role": "arch-longshoreman",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1894,10 +1894,10 @@
   {
     "id": "act-168",
     "deck": "activity",
-    "text": "{name} counts the day's take into a small box.",
+    "text": "{name} was checking a union button pinned to a coat.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "semi",
+      "role": "arch-longshoreman",
+      "placeKind": "private",
       "band": "small-hours"
     },
     "motifs": [],
@@ -1906,10 +1906,10 @@
   {
     "id": "act-169",
     "deck": "activity",
-    "text": "{name} is polishing a set of instruments laid out on a cloth.",
+    "text": "{name} was carrying a bundle of coats tied with string.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "private"
+      "role": "arch-seamstress",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1917,10 +1917,10 @@
   {
     "id": "act-170",
     "deck": "activity",
-    "text": "{name} checks a ledger of accounts against a stack of unpaid cards.",
+    "text": "{name} was checking a thimble against a finger, working it back on.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "private"
+      "role": "arch-seamstress",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -1928,11 +1928,11 @@
   {
     "id": "act-171",
     "deck": "activity",
-    "text": "{name} adjusts a lamp over an empty chair.",
+    "text": "{name} was counting change from a small purse.",
     "tags": {
-      "role": "arch-dentist",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-seamstress",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -1940,10 +1940,10 @@
   {
     "id": "act-172",
     "deck": "activity",
-    "text": "{name} checks a wristwatch, then a slip of paper with an address on it.",
+    "text": "{name} was going through a bundle of piecework, counting the pieces.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "public"
+      "role": "arch-seamstress",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1951,10 +1951,10 @@
   {
     "id": "act-173",
     "deck": "activity",
-    "text": "{name} folds a letter into an envelope and seals it.",
+    "text": "{name} was threading a needle by a low light, squinting at it.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "public"
+      "role": "arch-seamstress",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -1962,10 +1962,10 @@
   {
     "id": "act-174",
     "deck": "activity",
-    "text": "{name} counts change from a small purse.",
+    "text": "{name} was checking a seam against the light, a thumb running along it.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "public",
+      "role": "arch-seamstress",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -1974,10 +1974,10 @@
   {
     "id": "act-175",
     "deck": "activity",
-    "text": "{name} is going through a stack of correspondence, sorting it into two piles.",
+    "text": "{name} was working a needle through a hem, fast, even stitches.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "semi"
+      "role": "arch-seamstress",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1985,10 +1985,10 @@
   {
     "id": "act-176",
     "deck": "activity",
-    "text": "{name} checks a shorthand notebook against a typed page.",
+    "text": "{name} was counting finished coats into a stack, tying them with string.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "semi"
+      "role": "arch-seamstress",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -1996,10 +1996,10 @@
   {
     "id": "act-177",
     "deck": "activity",
-    "text": "{name} taps a pencil against a desk blotter, thinking.",
+    "text": "{name} was checking a pattern against a length of cloth spread on a table.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "semi",
+      "role": "arch-seamstress",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -2008,10 +2008,10 @@
   {
     "id": "act-178",
     "deck": "activity",
-    "text": "{name} is typing at a desk, the carriage bell ringing each time a line runs out.",
+    "text": "{name} was leaning against the cab, watching the corner for a fare.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "private"
+      "role": "arch-hackman",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2019,10 +2019,10 @@
   {
     "id": "act-179",
     "deck": "activity",
-    "text": "{name} files a folder into a drawer already thick with them.",
+    "text": "{name} was checking the meter twice, tapping the glass.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "private"
+      "role": "arch-hackman",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2030,11 +2030,11 @@
   {
     "id": "act-180",
     "deck": "activity",
-    "text": "{name} reads back a line of dictation, checking it against the notes.",
+    "text": "{name} was counting coins into a coat pocket, one at a time.",
     "tags": {
-      "role": "arch-secretary",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-hackman",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -2042,10 +2042,10 @@
   {
     "id": "act-181",
     "deck": "activity",
-    "text": "{name} scribbles a line into a notebook, then folds it shut.",
+    "text": "{name} was sitting behind the wheel, engine idling, waiting on a fare.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "public"
+      "role": "arch-hackman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2053,10 +2053,10 @@
   {
     "id": "act-182",
     "deck": "activity",
-    "text": "{name} checks a pocket watch against a deadline only {name} knows.",
+    "text": "{name} was wiping the windshield down with a rag kept for the purpose.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "public"
+      "role": "arch-hackman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2064,10 +2064,10 @@
   {
     "id": "act-183",
     "deck": "activity",
-    "text": "{name} taps a pencil against a folded paper.",
+    "text": "{name} was checking a tire, crouched by the running board.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "public",
+      "role": "arch-hackman",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -2076,10 +2076,10 @@
   {
     "id": "act-184",
     "deck": "activity",
-    "text": "{name} is going through a notebook, flipping back a page to check a name.",
+    "text": "{name} was totaling the night's fares in a small notebook, a pencil licked and ready.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "semi"
+      "role": "arch-hackman",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2087,10 +2087,10 @@
   {
     "id": "act-185",
     "deck": "activity",
-    "text": "{name} taps ash from a cigarette, eyes on the room.",
+    "text": "{name} was checking the oil level, a rag over one hand.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "semi"
+      "role": "arch-hackman",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2098,10 +2098,10 @@
   {
     "id": "act-186",
     "deck": "activity",
-    "text": "{name} checks a stack of carbon copies against the original.",
+    "text": "{name} was counting out change on the seat, stacking it by size.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "semi",
+      "role": "arch-hackman",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -2110,10 +2110,10 @@
   {
     "id": "act-187",
     "deck": "activity",
-    "text": "{name} is typing fast, two fingers, glancing at a note propped against the machine.",
+    "text": "{name} was carrying a suit on a hanger, brushing lint from the shoulder.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "private"
+      "role": "arch-tailor",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2121,10 +2121,10 @@
   {
     "id": "act-188",
     "deck": "activity",
-    "text": "{name} reads back a paragraph aloud, striking a line through half of it.",
+    "text": "{name} was checking a tape measure against a chalk mark.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "private"
+      "role": "arch-tailor",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2132,11 +2132,11 @@
   {
     "id": "act-189",
     "deck": "activity",
-    "text": "{name} counts a stack of notes into a coat pocket.",
+    "text": "{name} was folding a length of cloth over an arm.",
     "tags": {
-      "role": "arch-reporter",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-tailor",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -2144,10 +2144,10 @@
   {
     "id": "act-190",
     "deck": "activity",
-    "text": "{name} taps out a rhythm on a tabletop, counting under breath.",
+    "text": "{name} was going through a rack of coats, checking the tickets.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "public"
+      "role": "arch-tailor",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2155,10 +2155,10 @@
   {
     "id": "act-191",
     "deck": "activity",
-    "text": "{name} checks a small watch pinned to a collar.",
+    "text": "{name} was chalking a hem, kneeling by the cuff.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "public"
+      "role": "arch-tailor",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2166,10 +2166,10 @@
   {
     "id": "act-192",
     "deck": "activity",
-    "text": "{name} folds a sheet of music into a bag.",
+    "text": "{name} was pressing a seam flat with the side of a thumbnail.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "public",
+      "role": "arch-tailor",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -2178,10 +2178,10 @@
   {
     "id": "act-193",
     "deck": "activity",
-    "text": "{name} hums a scale, half under breath, fingers moving on the tabletop.",
+    "text": "{name} was working a needle through a lapel, fast and even.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "semi"
+      "role": "arch-tailor",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2189,10 +2189,10 @@
   {
     "id": "act-194",
     "deck": "activity",
-    "text": "{name} checks a music book against a list of pupils.",
+    "text": "{name} was checking a bolt of cloth against the light.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "semi"
+      "role": "arch-tailor",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2200,10 +2200,10 @@
   {
     "id": "act-195",
     "deck": "activity",
-    "text": "{name} counts out coins for a lesson into a small tin.",
+    "text": "{name} was counting a stack of finished coats, tying them with string.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "semi",
+      "role": "arch-tailor",
+      "placeKind": "private",
       "band": "small-hours"
     },
     "motifs": [],
@@ -2212,10 +2212,10 @@
   {
     "id": "act-196",
     "deck": "activity",
-    "text": "{name} runs a hand along piano keys without pressing them down.",
+    "text": "{name} was coiling a length of rope over one arm, looping it hand over hand.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "private"
+      "role": "arch-stagehand",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2223,10 +2223,10 @@
   {
     "id": "act-197",
     "deck": "activity",
-    "text": "{name} straightens a stack of sheet music, squaring the edges.",
+    "text": "{name} was checking a call sheet against a wristwatch.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "private"
+      "role": "arch-stagehand",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2234,11 +2234,11 @@
   {
     "id": "act-198",
     "deck": "activity",
-    "text": "{name} checks a metronome, winding it once.",
+    "text": "{name} was carrying a folded flat under one arm.",
     "tags": {
-      "role": "arch-piano-teacher",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-stagehand",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -2246,10 +2246,10 @@
   {
     "id": "act-199",
     "deck": "activity",
-    "text": "{name} checks a claim form against a wristwatch.",
+    "text": "{name} was going through a box of props, checking each against a list.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "public"
+      "role": "arch-stagehand",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2257,10 +2257,10 @@
   {
     "id": "act-200",
     "deck": "activity",
-    "text": "{name} writes a note in a small book, pressing hard on the pencil.",
+    "text": "{name} was testing a rope's give with a sharp tug.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "public"
+      "role": "arch-stagehand",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2268,10 +2268,10 @@
   {
     "id": "act-201",
     "deck": "activity",
-    "text": "{name} counts change from a coat pocket.",
+    "text": "{name} was checking a set of sandbags stacked against a wall.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "public",
+      "role": "arch-stagehand",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -2280,10 +2280,10 @@
   {
     "id": "act-202",
     "deck": "activity",
-    "text": "{name} is going through a folder of claims, checking each date.",
+    "text": "{name} was coiling a length of rope, hand over hand, into a tight loop.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "semi"
+      "role": "arch-stagehand",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2291,10 +2291,10 @@
   {
     "id": "act-203",
     "deck": "activity",
-    "text": "{name} taps a pencil against a form, thinking.",
+    "text": "{name} was checking a set of tools laid out on a cloth.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "semi"
+      "role": "arch-stagehand",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2302,10 +2302,10 @@
   {
     "id": "act-204",
     "deck": "activity",
-    "text": "{name} checks a set of photographs against a written description.",
+    "text": "{name} was counting a stack of call sheets into order.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "semi",
+      "role": "arch-stagehand",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -2314,10 +2314,10 @@
   {
     "id": "act-205",
     "deck": "activity",
-    "text": "{name} is writing up a report at a small desk, pausing between lines.",
+    "text": "{name} was checking a small watch pinned to a collar.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "private"
+      "role": "arch-switchboard",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2325,10 +2325,10 @@
   {
     "id": "act-206",
     "deck": "activity",
-    "text": "{name} checks a policy against a list of exclusions.",
+    "text": "{name} was counting change from a purse, coin by coin.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "private"
+      "role": "arch-switchboard",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2336,11 +2336,11 @@
   {
     "id": "act-207",
     "deck": "activity",
-    "text": "{name} files a claim folder into a case already thick with them.",
+    "text": "{name} was folding a magazine open to a page already read.",
     "tags": {
-      "role": "arch-adjuster",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-switchboard",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -2348,10 +2348,10 @@
   {
     "id": "act-208",
     "deck": "activity",
-    "text": "{name} carries a folded stack of linen against a hip.",
+    "text": "{name} was tapping a pencil against a list of numbers.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "public"
+      "role": "arch-switchboard",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2359,10 +2359,10 @@
   {
     "id": "act-209",
     "deck": "activity",
-    "text": "{name} counts a set of keys on a ring, checking each tag.",
+    "text": "{name} was counting out coins for a sandwich, stacking them small.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "public"
+      "role": "arch-switchboard",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2370,10 +2370,10 @@
   {
     "id": "act-210",
     "deck": "activity",
-    "text": "{name} straightens a cap in a shop window's reflection.",
+    "text": "{name} was checking a schedule against a wristwatch.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "public",
+      "role": "arch-switchboard",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -2382,10 +2382,10 @@
   {
     "id": "act-211",
     "deck": "activity",
-    "text": "{name} is folding a stack of towels into even squares.",
+    "text": "{name} was sitting with a cord in each hand, plugging one line into another.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "semi"
+      "role": "arch-switchboard",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2393,10 +2393,10 @@
   {
     "id": "act-212",
     "deck": "activity",
-    "text": "{name} checks a room list against a set of keys.",
+    "text": "{name} was checking a directory of numbers, a finger running down the column.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "semi"
+      "role": "arch-switchboard",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2404,10 +2404,10 @@
   {
     "id": "act-213",
     "deck": "activity",
-    "text": "{name} sweeps a hallway in short, practiced strokes.",
+    "text": "{name} was counting the calls logged that hour, tallying them in a book.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "semi",
+      "role": "arch-switchboard",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -2416,10 +2416,10 @@
   {
     "id": "act-214",
     "deck": "activity",
-    "text": "{name} is turning down a bed, corner by corner.",
+    "text": "{name} was checking a pocket watch against the street clock.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "private"
+      "role": "arch-nightman",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2427,10 +2427,10 @@
   {
     "id": "act-215",
     "deck": "activity",
-    "text": "{name} dusts a shelf, working left to right.",
+    "text": "{name} was counting change from a coat pocket.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "private"
+      "role": "arch-nightman",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2438,11 +2438,11 @@
   {
     "id": "act-216",
     "deck": "activity",
-    "text": "{name} counts linens into a stack, checking the count twice.",
+    "text": "{name} was folding a newspaper closed, setting it aside.",
     "tags": {
-      "role": "arch-chambermaid",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-nightman",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -2450,10 +2450,10 @@
   {
     "id": "act-217",
     "deck": "activity",
-    "text": "{name} leans against a lamppost, a hook hanging from a belt.",
+    "text": "{name} was going through the register, checking a name against a room number.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "public"
+      "role": "arch-nightman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2461,10 +2461,10 @@
   {
     "id": "act-218",
     "deck": "activity",
-    "text": "{name} checks a union card against a slip of paper.",
+    "text": "{name} was counting a set of keys hung on a board.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "public"
+      "role": "arch-nightman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2472,10 +2472,10 @@
   {
     "id": "act-219",
     "deck": "activity",
-    "text": "{name} counts change from a pocket, coins clicking together.",
+    "text": "{name} was checking a ledger of arrivals against the hour.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "public",
+      "role": "arch-nightman",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -2484,10 +2484,10 @@
   {
     "id": "act-220",
     "deck": "activity",
-    "text": "{name} sits with a hook set on the table, turning a glass slowly.",
+    "text": "{name} was sitting behind the desk, going through the night's mail.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "semi"
+      "role": "arch-nightman",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2495,10 +2495,10 @@
   {
     "id": "act-221",
     "deck": "activity",
-    "text": "{name} counts out coins for a round, stacking them by size.",
+    "text": "{name} was counting the till twice before locking it.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "semi"
+      "role": "arch-nightman",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2506,10 +2506,10 @@
   {
     "id": "act-222",
     "deck": "activity",
-    "text": "{name} checks a callused palm against a splinter.",
+    "text": "{name} was checking a set of room keys hung on a board.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "semi",
+      "role": "arch-nightman",
+      "placeKind": "private",
       "band": "small-hours"
     },
     "motifs": [],
@@ -2518,10 +2518,10 @@
   {
     "id": "act-223",
     "deck": "activity",
-    "text": "{name} sits with a hook laid across a knee, working a knot loose from a length of rope.",
+    "text": "{name} was checking a compact mirror, then closing it with a snap.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "private"
+      "role": "arch-chorus",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2529,10 +2529,10 @@
   {
     "id": "act-224",
     "deck": "activity",
-    "text": "{name} counts a thin roll of bills, recounting it.",
+    "text": "{name} was counting change from a small purse.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "private"
+      "role": "arch-chorus",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2540,11 +2540,11 @@
   {
     "id": "act-225",
     "deck": "activity",
-    "text": "{name} checks a union button pinned to a coat.",
+    "text": "{name} was folding an agency's listing into a pocket.",
     "tags": {
-      "role": "arch-longshoreman",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-chorus",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -2552,10 +2552,10 @@
   {
     "id": "act-226",
     "deck": "activity",
-    "text": "{name} carries a bundle of coats tied with string.",
+    "text": "{name} was sitting with a cup gone cold, not touching it.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "public"
+      "role": "arch-chorus",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2563,10 +2563,10 @@
   {
     "id": "act-227",
     "deck": "activity",
-    "text": "{name} checks a thimble against a finger, working it back on.",
+    "text": "{name} was tapping a rhythm against the table with two fingers, half a step behind the radio.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "public"
+      "role": "arch-chorus",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2574,10 +2574,10 @@
   {
     "id": "act-228",
     "deck": "activity",
-    "text": "{name} counts change from a small purse.",
+    "text": "{name} was checking a stocking seam, a thumb running up the back of a leg.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "public",
+      "role": "arch-chorus",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -2586,10 +2586,10 @@
   {
     "id": "act-229",
     "deck": "activity",
-    "text": "{name} is going through a bundle of piecework, counting the pieces.",
+    "text": "{name} was going through a small trunk of costumes, checking each piece.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "semi"
+      "role": "arch-chorus",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2597,10 +2597,10 @@
   {
     "id": "act-230",
     "deck": "activity",
-    "text": "{name} threads a needle by a low light, squinting at it.",
+    "text": "{name} was counting a thin roll of bills, recounting it.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "semi"
+      "role": "arch-chorus",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2608,10 +2608,10 @@
   {
     "id": "act-231",
     "deck": "activity",
-    "text": "{name} checks a seam against the light, running a thumb along it.",
+    "text": "{name} was checking a call sheet pinned to a mirror.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "semi",
+      "role": "arch-chorus",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -2620,10 +2620,10 @@
   {
     "id": "act-232",
     "deck": "activity",
-    "text": "{name} works a needle through a hem, fast, even stitches.",
+    "text": "{name} was chalking a number on a slate, then rubbing half of it off.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "private"
+      "role": "arch-bookmaker",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2631,10 +2631,10 @@
   {
     "id": "act-233",
     "deck": "activity",
-    "text": "{name} counts finished coats into a stack, tying them with string.",
+    "text": "{name} was counting change from a cigar box.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "private"
+      "role": "arch-bookmaker",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2642,11 +2642,11 @@
   {
     "id": "act-234",
     "deck": "activity",
-    "text": "{name} checks a pattern against a length of cloth spread on a table.",
+    "text": "{name} was checking a folded slip against a list.",
     "tags": {
-      "role": "arch-seamstress",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-bookmaker",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -2654,10 +2654,10 @@
   {
     "id": "act-235",
     "deck": "activity",
-    "text": "{name} leans against the cab, watching the corner for a fare.",
+    "text": "{name} was going through a stack of betting slips, sorting them by name.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "public"
+      "role": "arch-bookmaker",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2665,10 +2665,10 @@
   {
     "id": "act-236",
     "deck": "activity",
-    "text": "{name} checks the meter twice, tapping the glass.",
+    "text": "{name} was tapping a pencil against a slate of odds.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "public"
+      "role": "arch-bookmaker",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2676,10 +2676,10 @@
   {
     "id": "act-237",
     "deck": "activity",
-    "text": "{name} counts coins into a coat pocket, one at a time.",
+    "text": "{name} was counting out winnings into small stacks.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "public",
+      "role": "arch-bookmaker",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -2688,10 +2688,10 @@
   {
     "id": "act-238",
     "deck": "activity",
-    "text": "{name} sits behind the wheel, engine idling, waiting on a fare.",
+    "text": "{name} was counting a roll of bills, licking a thumb between each one.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "semi"
+      "role": "arch-bookmaker",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2699,10 +2699,10 @@
   {
     "id": "act-239",
     "deck": "activity",
-    "text": "{name} wipes the windshield down with a rag kept for the purpose.",
+    "text": "{name} was checking a ledger of debts against a list of names.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "semi"
+      "role": "arch-bookmaker",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2710,10 +2710,10 @@
   {
     "id": "act-240",
     "deck": "activity",
-    "text": "{name} checks a tire, crouched by the running board.",
+    "text": "{name} was rubbing a slate clean with a rag, wiping the day's odds away.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "semi",
+      "role": "arch-bookmaker",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -2722,10 +2722,10 @@
   {
     "id": "act-241",
     "deck": "activity",
-    "text": "{name} totals the night’s fares in a small notebook, licking a pencil.",
+    "text": "{name} was shaking a hand and moving to the next one down the line.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "private"
+      "role": "arch-heeler",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2733,10 +2733,10 @@
   {
     "id": "act-242",
     "deck": "activity",
-    "text": "{name} checks the oil level, a rag over one hand.",
+    "text": "{name} was checking a list of names against a ward map.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "private"
+      "role": "arch-heeler",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2744,11 +2744,11 @@
   {
     "id": "act-243",
     "deck": "activity",
-    "text": "{name} counts out change on the seat, stacking it by size.",
+    "text": "{name} was counting coal chits into a stack.",
     "tags": {
-      "role": "arch-hackman",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-heeler",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -2756,10 +2756,10 @@
   {
     "id": "act-244",
     "deck": "activity",
-    "text": "{name} carries a suit on a hanger, brushing lint from the shoulder.",
+    "text": "{name} was sitting at the head of a table, a coffee cup gone cold beside a ledger.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "public"
+      "role": "arch-heeler",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2767,10 +2767,10 @@
   {
     "id": "act-245",
     "deck": "activity",
-    "text": "{name} checks a tape measure against a chalk mark.",
+    "text": "{name} was tapping a pencil against a list of favors owed.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "public"
+      "role": "arch-heeler",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2778,10 +2778,10 @@
   {
     "id": "act-246",
     "deck": "activity",
-    "text": "{name} folds a length of cloth over an arm.",
+    "text": "{name} was counting a stack of tickets into a coat pocket.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "public",
+      "role": "arch-heeler",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -2790,10 +2790,10 @@
   {
     "id": "act-247",
     "deck": "activity",
-    "text": "{name} is going through a rack of coats, checking the tickets.",
+    "text": "{name} was going through a list of names, checking off who owed what.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "semi"
+      "role": "arch-heeler",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2801,10 +2801,10 @@
   {
     "id": "act-248",
     "deck": "activity",
-    "text": "{name} chalks a hem, kneeling by the cuff.",
+    "text": "{name} was counting a roll of bills into a drawer.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "semi"
+      "role": "arch-heeler",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2812,10 +2812,10 @@
   {
     "id": "act-249",
     "deck": "activity",
-    "text": "{name} presses a seam flat with the side of a thumbnail.",
+    "text": "{name} was checking a ledger of favors against a list of debts.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "semi",
+      "role": "arch-heeler",
+      "placeKind": "private",
       "band": "small-hours"
     },
     "motifs": [],
@@ -2824,10 +2824,10 @@
   {
     "id": "act-250",
     "deck": "activity",
-    "text": "{name} works a needle through a lapel, fast and even.",
+    "text": "{name} was checking a ticket stub against a number chalked on a board.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "private"
+      "role": "arch-pawnman",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2835,10 +2835,10 @@
   {
     "id": "act-251",
     "deck": "activity",
-    "text": "{name} checks a bolt of cloth against the light.",
+    "text": "{name} was counting change from a drawer, coin by coin.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "private"
+      "role": "arch-pawnman",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2846,11 +2846,11 @@
   {
     "id": "act-252",
     "deck": "activity",
-    "text": "{name} counts a stack of finished coats, tying them with string.",
+    "text": "{name} was folding a claim slip in half, tucking it into a pocket.",
     "tags": {
-      "role": "arch-tailor",
-      "placeKind": "private",
-      "band": "dawn"
+      "role": "arch-pawnman",
+      "placeKind": "public",
+      "band": "after-midnight"
     },
     "motifs": [],
     "status": "generated"
@@ -2858,10 +2858,10 @@
   {
     "id": "act-253",
     "deck": "activity",
-    "text": "{name} coils a length of rope over one arm, looping it hand over hand.",
+    "text": "{name} was going through a tray of tickets, sorting them by date.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "public"
+      "role": "arch-pawnman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2869,10 +2869,10 @@
   {
     "id": "act-254",
     "deck": "activity",
-    "text": "{name} checks a call sheet against a wristwatch.",
+    "text": "{name} was checking an item against a ledger, matching the number to a tag.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "public"
+      "role": "arch-pawnman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2880,10 +2880,10 @@
   {
     "id": "act-255",
     "deck": "activity",
-    "text": "{name} carries a folded flat under one arm.",
+    "text": "{name} was counting a stack of pawn tickets into order.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "public",
+      "role": "arch-pawnman",
+      "placeKind": "semi",
       "band": "small-hours"
     },
     "motifs": [],
@@ -2892,10 +2892,10 @@
   {
     "id": "act-256",
     "deck": "activity",
-    "text": "{name} is going through a box of props, checking each against a list.",
+    "text": "{name} was weighing a ring on a small scale, checking the mark twice.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "semi"
+      "role": "arch-pawnman",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2903,10 +2903,10 @@
   {
     "id": "act-257",
     "deck": "activity",
-    "text": "{name} tests a rope's give with a sharp tug.",
+    "text": "{name} was counting a drawer of cash, stacking the bills by denomination.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "semi"
+      "role": "arch-pawnman",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -2914,10 +2914,10 @@
   {
     "id": "act-258",
     "deck": "activity",
-    "text": "{name} checks a set of sandbags stacked against a wall.",
+    "text": "{name} was checking a ledger of redemptions against a stack of tickets.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "semi",
+      "role": "arch-pawnman",
+      "placeKind": "private",
       "band": "dawn"
     },
     "motifs": [],
@@ -2926,10 +2926,10 @@
   {
     "id": "act-259",
     "deck": "activity",
-    "text": "{name} coils a length of rope, hand over hand, into a tight loop.",
+    "text": "{name} was standing with arms crossed, watching the street from a doorway.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "private"
+      "role": "arch-bouncer",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2937,10 +2937,10 @@
   {
     "id": "act-260",
     "deck": "activity",
-    "text": "{name} checks a set of tools laid out on a cloth.",
+    "text": "{name} was checking a face against a mental list, waving it through.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "private"
+      "role": "arch-bouncer",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -2948,11 +2948,11 @@
   {
     "id": "act-261",
     "deck": "activity",
-    "text": "{name} counts a stack of call sheets into order.",
+    "text": "{name} was counting the line, roughly, without moving lips.",
     "tags": {
-      "role": "arch-stagehand",
-      "placeKind": "private",
-      "band": "after-midnight"
+      "role": "arch-bouncer",
+      "placeKind": "public",
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"
@@ -2960,10 +2960,10 @@
   {
     "id": "act-262",
     "deck": "activity",
-    "text": "{name} checks a small watch pinned to a collar.",
+    "text": "{name} was standing at the door, arms crossed, watching the room over the crowd.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "public"
+      "role": "arch-bouncer",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2971,10 +2971,10 @@
   {
     "id": "act-263",
     "deck": "activity",
-    "text": "{name} counts change from a purse, coin by coin.",
+    "text": "{name} was checking a coat for a bulge before waving someone through.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "public"
+      "role": "arch-bouncer",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -2982,10 +2982,10 @@
   {
     "id": "act-264",
     "deck": "activity",
-    "text": "{name} folds a magazine open to a page already read.",
+    "text": "{name} was counting heads without seeming to.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "public",
+      "role": "arch-bouncer",
+      "placeKind": "semi",
       "band": "dawn"
     },
     "motifs": [],
@@ -2994,10 +2994,10 @@
   {
     "id": "act-265",
     "deck": "activity",
-    "text": "{name} taps a pencil against a list of numbers.",
+    "text": "{name} was standing where the staircase topped out, arms crossed.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "semi"
+      "role": "arch-bouncer",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -3005,10 +3005,10 @@
   {
     "id": "act-266",
     "deck": "activity",
-    "text": "{name} counts out coins for a sandwich, stacking them small.",
+    "text": "{name} was checking a door was locked, testing the handle twice.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "semi"
+      "role": "arch-bouncer",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -3016,10 +3016,10 @@
   {
     "id": "act-267",
     "deck": "activity",
-    "text": "{name} checks a schedule against a wristwatch.",
+    "text": "{name} was counting a roll of bills held out flat, thumbing through it.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "semi",
+      "role": "arch-bouncer",
+      "placeKind": "private",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -3028,10 +3028,10 @@
   {
     "id": "act-268",
     "deck": "activity",
-    "text": "{name} sits with a cord in each hand, plugging one line into another.",
+    "text": "{name} was folding a slip into a pocket without breaking stride.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "private"
+      "role": "arch-runner",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -3039,10 +3039,10 @@
   {
     "id": "act-269",
     "deck": "activity",
-    "text": "{name} checks a directory of numbers, running a finger down the column.",
+    "text": "{name} was counting change from a pocket, quick and quiet.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "private"
+      "role": "arch-runner",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"
@@ -3050,11 +3050,11 @@
   {
     "id": "act-270",
     "deck": "activity",
-    "text": "{name} counts the calls logged that hour, tallying them in a book.",
+    "text": "{name} was checking a wristwatch against a corner clock.",
     "tags": {
-      "role": "arch-switchboard",
-      "placeKind": "private",
-      "band": "small-hours"
+      "role": "arch-runner",
+      "placeKind": "public",
+      "band": "dawn"
     },
     "motifs": [],
     "status": "generated"
@@ -3062,10 +3062,10 @@
   {
     "id": "act-271",
     "deck": "activity",
-    "text": "{name} checks a pocket watch against the street clock.",
+    "text": "{name} was going through a stack of slips, sorting them by number.",
     "tags": {
-      "role": "arch-nightman",
-      "placeKind": "public"
+      "role": "arch-runner",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -3073,10 +3073,10 @@
   {
     "id": "act-272",
     "deck": "activity",
-    "text": "{name} counts change from a coat pocket.",
+    "text": "{name} was counting out winnings into a small envelope.",
     "tags": {
-      "role": "arch-nightman",
-      "placeKind": "public"
+      "role": "arch-runner",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -3084,10 +3084,10 @@
   {
     "id": "act-273",
     "deck": "activity",
-    "text": "{name} folds a newspaper closed, setting it aside.",
+    "text": "{name} was checking a slip against a list of numbers.",
     "tags": {
-      "role": "arch-nightman",
-      "placeKind": "public",
+      "role": "arch-runner",
+      "placeKind": "semi",
       "band": "after-midnight"
     },
     "motifs": [],
@@ -3096,10 +3096,10 @@
   {
     "id": "act-274",
     "deck": "activity",
-    "text": "{name} is going through the register, checking a name against a room number.",
+    "text": "{name} was counting a bag of coins into stacks on the table.",
     "tags": {
-      "role": "arch-nightman",
-      "placeKind": "semi"
+      "role": "arch-runner",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -3107,10 +3107,10 @@
   {
     "id": "act-275",
     "deck": "activity",
-    "text": "{name} counts a set of keys hung on a board.",
+    "text": "{name} was checking a ledger of plays against a column of numbers.",
     "tags": {
-      "role": "arch-nightman",
-      "placeKind": "semi"
+      "role": "arch-runner",
+      "placeKind": "private"
     },
     "motifs": [],
     "status": "generated"
@@ -3118,657 +3118,11 @@
   {
     "id": "act-276",
     "deck": "activity",
-    "text": "{name} checks a ledger of arrivals against the hour.",
-    "tags": {
-      "role": "arch-nightman",
-      "placeKind": "semi",
-      "band": "small-hours"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-277",
-    "deck": "activity",
-    "text": "{name} sits behind the desk, going through the night's mail.",
-    "tags": {
-      "role": "arch-nightman",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-278",
-    "deck": "activity",
-    "text": "{name} counts the till twice before locking it.",
-    "tags": {
-      "role": "arch-nightman",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-279",
-    "deck": "activity",
-    "text": "{name} checks a set of room keys hung on a board.",
-    "tags": {
-      "role": "arch-nightman",
-      "placeKind": "private",
-      "band": "dawn"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-280",
-    "deck": "activity",
-    "text": "{name} checks a compact mirror, then closes it with a snap.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-281",
-    "deck": "activity",
-    "text": "{name} counts change from a small purse.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-282",
-    "deck": "activity",
-    "text": "{name} folds an agency's listing into a pocket.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "public",
-      "band": "small-hours"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-283",
-    "deck": "activity",
-    "text": "{name} sits with a cup gone cold, not touching it.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-284",
-    "deck": "activity",
-    "text": "{name} taps a rhythm against the table with two fingers, half a step behind the radio.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-285",
-    "deck": "activity",
-    "text": "{name} checks a stocking seam, running a thumb up the back of a leg.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "semi",
-      "band": "dawn"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-286",
-    "deck": "activity",
-    "text": "{name} is going through a small trunk of costumes, checking each piece.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-287",
-    "deck": "activity",
-    "text": "{name} counts a thin roll of bills, recounting it.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-288",
-    "deck": "activity",
-    "text": "{name} checks a call sheet pinned to a mirror.",
-    "tags": {
-      "role": "arch-chorus",
-      "placeKind": "private",
-      "band": "after-midnight"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-289",
-    "deck": "activity",
-    "text": "{name} chalks a number on a slate, then rubs half of it off.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-290",
-    "deck": "activity",
-    "text": "{name} counts change from a cigar box.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-291",
-    "deck": "activity",
-    "text": "{name} checks a folded slip against a list.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "public",
-      "band": "dawn"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-292",
-    "deck": "activity",
-    "text": "{name} is going through a stack of betting slips, sorting them by name.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-293",
-    "deck": "activity",
-    "text": "{name} taps a pencil against a slate of odds.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-294",
-    "deck": "activity",
-    "text": "{name} counts out winnings into small stacks.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "semi",
-      "band": "after-midnight"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-295",
-    "deck": "activity",
-    "text": "{name} counts a roll of bills, licking a thumb between each one.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-296",
-    "deck": "activity",
-    "text": "{name} checks a ledger of debts against a list of names.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-297",
-    "deck": "activity",
-    "text": "{name} rubs a slate clean with a rag, wiping the day's odds away.",
-    "tags": {
-      "role": "arch-bookmaker",
-      "placeKind": "private",
-      "band": "small-hours"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-298",
-    "deck": "activity",
-    "text": "{name} shakes a hand and moves to the next one down the line.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-299",
-    "deck": "activity",
-    "text": "{name} checks a list of names against a ward map.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-300",
-    "deck": "activity",
-    "text": "{name} counts coal chits into a stack.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "public",
-      "band": "after-midnight"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-301",
-    "deck": "activity",
-    "text": "{name} sits at the head of a table, a coffee cup gone cold beside a ledger.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-302",
-    "deck": "activity",
-    "text": "{name} taps a pencil against a list of favors owed.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-303",
-    "deck": "activity",
-    "text": "{name} counts a stack of tickets into a coat pocket.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "semi",
-      "band": "small-hours"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-304",
-    "deck": "activity",
-    "text": "{name} is going through a list of names, checking off who owes what.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-305",
-    "deck": "activity",
-    "text": "{name} counts a roll of bills into a drawer.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-306",
-    "deck": "activity",
-    "text": "{name} checks a ledger of favors against a list of debts.",
-    "tags": {
-      "role": "arch-heeler",
-      "placeKind": "private",
-      "band": "dawn"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-307",
-    "deck": "activity",
-    "text": "{name} checks a ticket stub against a number chalked on a board.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-308",
-    "deck": "activity",
-    "text": "{name} counts change from a drawer, coin by coin.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-309",
-    "deck": "activity",
-    "text": "{name} folds a claim slip in half and tucks it into a pocket.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "public",
-      "band": "small-hours"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-310",
-    "deck": "activity",
-    "text": "{name} is going through a tray of tickets, sorting them by date.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-311",
-    "deck": "activity",
-    "text": "{name} checks an item against a ledger, matching the number to a tag.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-312",
-    "deck": "activity",
-    "text": "{name} counts a stack of pawn tickets into order.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "semi",
-      "band": "dawn"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-313",
-    "deck": "activity",
-    "text": "{name} weighs a ring on a small scale, checking the mark twice.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-314",
-    "deck": "activity",
-    "text": "{name} counts a drawer of cash, stacking the bills by denomination.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-315",
-    "deck": "activity",
-    "text": "{name} checks a ledger of redemptions against a stack of tickets.",
-    "tags": {
-      "role": "arch-pawnman",
-      "placeKind": "private",
-      "band": "after-midnight"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-316",
-    "deck": "activity",
-    "text": "{name} stands with arms crossed, watching the street from a doorway.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-317",
-    "deck": "activity",
-    "text": "{name} checks a face against a mental list, and waves it through.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-318",
-    "deck": "activity",
-    "text": "{name} counts the line, roughly, without moving lips.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "public",
-      "band": "dawn"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-319",
-    "deck": "activity",
-    "text": "{name} stands at the door, arms crossed, watching the room over the crowd.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-320",
-    "deck": "activity",
-    "text": "{name} checks a coat for a bulge before waving someone through.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-321",
-    "deck": "activity",
-    "text": "{name} counts heads without seeming to.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "semi",
-      "band": "after-midnight"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-322",
-    "deck": "activity",
-    "text": "{name} stands where the stairs top out, arms crossed.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-323",
-    "deck": "activity",
-    "text": "{name} checks a door is locked, testing the handle twice.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-324",
-    "deck": "activity",
-    "text": "{name} counts a roll of bills held out flat, thumbing through it.",
-    "tags": {
-      "role": "arch-bouncer",
-      "placeKind": "private",
-      "band": "small-hours"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-325",
-    "deck": "activity",
-    "text": "{name} folds a slip into a pocket without breaking stride.",
-    "tags": {
-      "role": "arch-runner",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-326",
-    "deck": "activity",
-    "text": "{name} counts change from a pocket, quick and quiet.",
-    "tags": {
-      "role": "arch-runner",
-      "placeKind": "public"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-327",
-    "deck": "activity",
-    "text": "{name} checks a wristwatch against a corner clock.",
-    "tags": {
-      "role": "arch-runner",
-      "placeKind": "public",
-      "band": "after-midnight"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-328",
-    "deck": "activity",
-    "text": "{name} is going through a stack of slips, sorting them by number.",
-    "tags": {
-      "role": "arch-runner",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-329",
-    "deck": "activity",
-    "text": "{name} counts out winnings into a small envelope.",
-    "tags": {
-      "role": "arch-runner",
-      "placeKind": "semi"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-330",
-    "deck": "activity",
-    "text": "{name} checks a slip against a list of numbers.",
-    "tags": {
-      "role": "arch-runner",
-      "placeKind": "semi",
-      "band": "small-hours"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-331",
-    "deck": "activity",
-    "text": "{name} counts a bag of coins into stacks on the table.",
-    "tags": {
-      "role": "arch-runner",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-332",
-    "deck": "activity",
-    "text": "{name} checks a ledger of plays against a column of numbers.",
-    "tags": {
-      "role": "arch-runner",
-      "placeKind": "private"
-    },
-    "motifs": [],
-    "status": "generated"
-  },
-  {
-    "id": "act-333",
-    "deck": "activity",
-    "text": "{name} folds a stack of slips into a rubber band.",
+    "text": "{name} was folding a stack of slips into a rubber band.",
     "tags": {
       "role": "arch-runner",
       "placeKind": "private",
-      "band": "dawn"
+      "band": "small-hours"
     },
     "motifs": [],
     "status": "generated"

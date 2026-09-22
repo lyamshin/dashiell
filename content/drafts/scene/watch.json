@@ -2,7 +2,7 @@
   {
     "id": "wch-001",
     "deck": "watch",
-    "text": "{watcher} sees everyone who comes to the bar, and remembers who drinks alone.",
+    "text": "{watcher} saw everyone who came to the bar, and remembered who drank alone.",
     "tags": {
       "watcher": "bartender"
     },
@@ -12,7 +12,7 @@
   {
     "id": "wch-002",
     "deck": "watch",
-    "text": "Nothing crosses that bar that {watcher} doesn't clock.",
+    "text": "Nothing crossed that bar that {watcher} didn't clock.",
     "tags": {
       "watcher": "bartender"
     },
@@ -22,7 +22,7 @@
   {
     "id": "wch-003",
     "deck": "watch",
-    "text": "{watcher} keeps one eye on the glasses and one on the door.",
+    "text": "{watcher} kept half an eye on the glasses and half on the door.",
     "tags": {
       "watcher": "bartender"
     },
@@ -32,7 +32,7 @@
   {
     "id": "wch-004",
     "deck": "watch",
-    "text": "A bartender learns the regulars' faces before their names, and {watcher} was no different.",
+    "text": "A bartender learned the regulars' faces before their names, and {watcher} was no different.",
     "tags": {
       "watcher": "bartender"
     },
@@ -52,7 +52,7 @@
   {
     "id": "wch-006",
     "deck": "watch",
-    "text": "{watcher} watched the room the way anyone behind a bar does, without seeming to.",
+    "text": "{watcher} watched the room the way anyone behind a bar did, without seeming to.",
     "tags": {
       "watcher": "bartender"
     },
@@ -62,7 +62,7 @@
   {
     "id": "wch-007",
     "deck": "watch",
-    "text": "{watcher} stands at the door and knows every face that goes through it.",
+    "text": "{watcher} kept the door and knew every face that went through it.",
     "tags": {
       "watcher": "doorman"
     },
@@ -72,7 +72,7 @@
   {
     "id": "wch-008",
     "deck": "watch",
-    "text": "Nobody gets past {watcher} unremarked.",
+    "text": "Nobody got past {watcher} unremarked.",
     "tags": {
       "watcher": "doorman"
     },
@@ -82,7 +82,7 @@
   {
     "id": "wch-009",
     "deck": "watch",
-    "text": "{watcher} watches the lobby the way the job requires, which is closely.",
+    "text": "{watcher} watched the lobby the way the job required, which was closely.",
     "tags": {
       "watcher": "doorman"
     },
@@ -92,7 +92,7 @@
   {
     "id": "wch-010",
     "deck": "watch",
-    "text": "A doorman's whole trade is knowing who belongs, and {watcher} knew, or asked.",
+    "text": "A doorman's whole trade was knowing who belonged, and {watcher} knew, or asked.",
     "tags": {
       "watcher": "doorman"
     },
@@ -152,7 +152,7 @@
   {
     "id": "wch-016",
     "deck": "watch",
-    "text": "A newsstand is a good post for watching, and {watcher} had years of practice at it.",
+    "text": "A newsstand was a good post for watching, and {watcher} had years of practice at it.",
     "tags": {
       "watcher": "newsstand"
     },
@@ -212,7 +212,7 @@
   {
     "id": "wch-022",
     "deck": "watch",
-    "text": "A counterman sees every face twice, coming and going, and {watcher} was no different.",
+    "text": "A counterman saw every face twice, coming and going, and {watcher} was no different.",
     "tags": {
       "watcher": "counterman"
     },
@@ -222,7 +222,7 @@
   {
     "id": "wch-023",
     "deck": "watch",
-    "text": "{watcher} watched the room the way anyone does who stands in the same spot all day.",
+    "text": "{watcher} watched the room the way anyone did who stood in the same spot all day.",
     "tags": {
       "watcher": "counterman"
     },
@@ -262,7 +262,7 @@
   {
     "id": "wch-027",
     "deck": "watch",
-    "text": "{watcher} kept the door and watched the line the way the job asked.",
+    "text": "{watcher} minded the door and watched the line the way the job asked.",
     "tags": {
       "watcher": "ticket-taker"
     },
@@ -272,7 +272,7 @@
   {
     "id": "wch-028",
     "deck": "watch",
-    "text": "A ticket-taker sees the whole house go by, one face at a time, and {watcher} had seen plenty.",
+    "text": "A ticket-taker saw the whole house go by, one face at a time, and {watcher} had seen plenty.",
     "tags": {
       "watcher": "ticket-taker"
     },
@@ -332,7 +332,7 @@
   {
     "id": "wch-034",
     "deck": "watch",
-    "text": "An elevator man learns a building's business without asking for it, and {watcher} knew most of it.",
+    "text": "An elevator man learned a building's business without asking for it, and {watcher} knew most of it.",
     "tags": {
       "watcher": "elevator-man"
     },
@@ -382,7 +382,7 @@
   {
     "id": "wch-039",
     "deck": "watch",
-    "text": "{watcher} watched the door the way any landlady does, without appearing to.",
+    "text": "{watcher} watched the door the way any landlady did, without appearing to.",
     "tags": {
       "watcher": "landlady"
     },
@@ -392,7 +392,7 @@
   {
     "id": "wch-040",
     "deck": "watch",
-    "text": "A landlady keeps track of tenants' comings and goings as a matter of business, and {watcher} was thorough about it.",
+    "text": "A landlady kept track of tenants' comings and goings as a matter of business, and {watcher} was thorough about it.",
     "tags": {
       "watcher": "landlady"
     },
@@ -452,7 +452,7 @@
   {
     "id": "wch-046",
     "deck": "watch",
-    "text": "A beat cop learns a block the way a doctor learns a patient, and {watcher} knew this one well.",
+    "text": "A beat cop learned a block the way a doctor came to know a patient, and {watcher} knew this one well.",
     "tags": {
       "watcher": "beat-cop"
     },
@@ -502,7 +502,7 @@
   {
     "id": "wch-051",
     "deck": "watch",
-    "text": "{watcher} kept the stand, watching the street the way any driver waits on a fare.",
+    "text": "{watcher} kept the stand, watching the street the way any driver waited on a fare.",
     "tags": {
       "watcher": "cabbie"
     },
@@ -512,7 +512,7 @@
   {
     "id": "wch-052",
     "deck": "watch",
-    "text": "A hack driver notices who's in a hurry and who isn't, and {watcher} noticed both kinds.",
+    "text": "A hack driver could tell a hurried fare from a patient one, and {watcher} noticed both kinds.",
     "tags": {
       "watcher": "cabbie"
     },
@@ -522,7 +522,7 @@
   {
     "id": "wch-053",
     "deck": "watch",
-    "text": "{watcher} had the stand and the view that goes with it.",
+    "text": "{watcher} had the stand and the view that came with it.",
     "tags": {
       "watcher": "cabbie"
     },
@@ -572,7 +572,7 @@
   {
     "id": "wch-058",
     "deck": "watch",
-    "text": "A druggist's counter sees the whole neighborhood eventually, and {watcher} had seen most of it.",
+    "text": "A druggist's counter saw the whole neighborhood eventually, and {watcher} had seen most of it.",
     "tags": {
       "watcher": "druggist"
     },
@@ -582,7 +582,7 @@
   {
     "id": "wch-059",
     "deck": "watch",
-    "text": "{watcher} watched the aisle out of habit, the way anyone does who's been robbed once.",
+    "text": "{watcher} watched the aisle out of habit, the way anyone did who had been robbed once.",
     "tags": {
       "watcher": "druggist"
     },
@@ -602,7 +602,7 @@
   {
     "id": "wch-061",
     "deck": "watch",
-    "text": "Nobody minds who uses the stairs.",
+    "text": "Nobody minded who used the stairs.",
     "tags": {
       "watcher": "none"
     },
@@ -622,7 +622,7 @@
   {
     "id": "wch-063",
     "deck": "watch",
-    "text": "Nobody watches that door, and nobody ever has.",
+    "text": "Nobody watched that door, and nobody ever had.",
     "tags": {
       "watcher": "none"
     },
@@ -642,7 +642,7 @@
   {
     "id": "wch-065",
     "deck": "watch",
-    "text": "It was the kind of place nobody keeps an eye on.",
+    "text": "It was the kind of place nobody kept an eye on.",
     "tags": {
       "watcher": "none"
     },

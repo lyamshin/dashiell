@@ -32,7 +32,7 @@
   {
     "id": "ret-004",
     "deck": "return",
-    "text": "I came back to {place}. The second time is never the first.",
+    "text": "I came back to {place}. The second time was never the first.",
     "tags": {
       "placeKind": "public"
     },
@@ -152,7 +152,7 @@
   {
     "id": "ret-016",
     "deck": "return",
-    "text": "I returned to {place} the way a regular does, without being stopped.",
+    "text": "I returned to {place} the way a regular would, without being stopped.",
     "tags": {
       "placeKind": "semi"
     },
@@ -292,7 +292,7 @@
   {
     "id": "ret-030",
     "deck": "return",
-    "text": "Back at {place}. The second look is always the shorter one.",
+    "text": "Back at {place}. The second look was always the shorter one.",
     "tags": {
       "placeKind": "private"
     },

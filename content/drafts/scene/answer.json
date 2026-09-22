@@ -2,7 +2,7 @@
   {
     "id": "ans-001",
     "deck": "answer",
-    "text": "I had what I came for: {subject}.",
+    "text": "{name}'s word had been worth the walk.",
     "tags": {
       "outcome": "found"
     },
@@ -12,7 +12,7 @@
   {
     "id": "ans-002",
     "deck": "answer",
-    "text": "{subject}. That was the errand answered.",
+    "text": "{name} had sent me right. There it was.",
     "tags": {
       "outcome": "found"
     },
@@ -22,7 +22,7 @@
   {
     "id": "ans-003",
     "deck": "answer",
-    "text": "It was there to find, and I found it: {subject}.",
+    "text": "Whatever {name} knew, {name} had known it straight. I had it now.",
     "tags": {
       "outcome": "found"
     },
@@ -32,7 +32,7 @@
   {
     "id": "ans-004",
     "deck": "answer",
-    "text": "I had come for {subject}, and now I had it.",
+    "text": "{name} hadn't steered me wrong. I had what I came for.",
     "tags": {
       "outcome": "found"
     },
@@ -42,7 +42,7 @@
   {
     "id": "ans-005",
     "deck": "answer",
-    "text": "That settled it. I had {subject}.",
+    "text": "It checked out. {name}'s tip was good.",
     "tags": {
       "outcome": "found"
     },
@@ -52,7 +52,7 @@
   {
     "id": "ans-006",
     "deck": "answer",
-    "text": "I found {subject}, which was what I had come for.",
+    "text": "{name} had been worth listening to. I wrote it down and moved on.",
     "tags": {
       "outcome": "found"
     },
@@ -62,7 +62,7 @@
   {
     "id": "ans-007",
     "deck": "answer",
-    "text": "{subject} was there, and now it was mine to use.",
+    "text": "That closed the errand {name} had sent me on.",
     "tags": {
       "outcome": "found"
     },
@@ -72,7 +72,7 @@
   {
     "id": "ans-008",
     "deck": "answer",
-    "text": "I came away with {subject}, and nothing else was needed.",
+    "text": "{name} had pointed true. I had it in hand now.",
     "tags": {
       "outcome": "found"
     },
@@ -82,7 +82,7 @@
   {
     "id": "ans-009",
     "deck": "answer",
-    "text": "The errand paid off. I had {subject}.",
+    "text": "It was there, just as {name} said it would be.",
     "tags": {
       "outcome": "found"
     },
@@ -92,7 +92,7 @@
   {
     "id": "ans-010",
     "deck": "answer",
-    "text": "{subject}. I wrote it down and moved on.",
+    "text": "{name}'s lead had paid for itself.",
     "tags": {
       "outcome": "found"
     },
@@ -102,7 +102,7 @@
   {
     "id": "ans-011",
     "deck": "answer",
-    "text": "It was what {name} had sent me for, and I had it: {subject}.",
+    "text": "I had come on {name}'s word, and {name}'s word had held up.",
     "tags": {
       "outcome": "found"
     },
@@ -112,7 +112,7 @@
   {
     "id": "ans-012",
     "deck": "answer",
-    "text": "I had gotten {subject}, plain and complete.",
+    "text": "Whatever else the night held, {name} had sent me somewhere worth going.",
     "tags": {
       "outcome": "found"
     },
@@ -122,9 +122,9 @@
   {
     "id": "ans-013",
     "deck": "answer",
-    "text": "It was a dead end. There was no {subject} to find.",
+    "text": "It had been worth the trip: {subject}, plain and in hand.",
     "tags": {
-      "outcome": "dead-end"
+      "outcome": "found"
     },
     "motifs": [],
     "status": "generated"
@@ -132,9 +132,9 @@
   {
     "id": "ans-014",
     "deck": "answer",
-    "text": "Nothing came of it. {subject} was not here.",
+    "text": "That was the errand answered. {subject} had been there to find.",
     "tags": {
-      "outcome": "dead-end"
+      "outcome": "found"
     },
     "motifs": [],
     "status": "generated"
@@ -142,9 +142,9 @@
   {
     "id": "ans-015",
     "deck": "answer",
-    "text": "{subject} was not there, and nothing said it would turn up.",
+    "text": "{subject} was where it should have been. I hadn't wasted the walk.",
     "tags": {
-      "outcome": "dead-end"
+      "outcome": "found"
     },
     "motifs": [],
     "status": "generated"
@@ -152,7 +152,7 @@
   {
     "id": "ans-016",
     "deck": "answer",
-    "text": "I had come for {subject}, and it was not in this room.",
+    "text": "Whatever {name} thought was here, it wasn't. I crossed it off.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -162,7 +162,7 @@
   {
     "id": "ans-017",
     "deck": "answer",
-    "text": "The lead ran out. There was no {subject} to find here.",
+    "text": "{name} had been wrong about this one. It happened.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -172,7 +172,7 @@
   {
     "id": "ans-018",
     "deck": "answer",
-    "text": "It was a dead end, plain and simple.",
+    "text": "Nothing was in it. {name}'s lead had run dry.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -182,7 +182,7 @@
   {
     "id": "ans-019",
     "deck": "answer",
-    "text": "I had been sent for {subject}, and {subject} was not there.",
+    "text": "{name}'s tip had run its course. It hadn't held up.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -192,7 +192,7 @@
   {
     "id": "ans-020",
     "deck": "answer",
-    "text": "Nothing. The lead had led nowhere.",
+    "text": "Nothing here backed up what {name} had said.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -202,7 +202,7 @@
   {
     "id": "ans-021",
     "deck": "answer",
-    "text": "{name}’s lead was a dead end. There was no {subject} here.",
+    "text": "{name} had sent me chasing nothing. I let it go.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -212,7 +212,7 @@
   {
     "id": "ans-022",
     "deck": "answer",
-    "text": "I came away with nothing. The lead had run out.",
+    "text": "It wasn't here, whatever {name} had believed.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -222,7 +222,7 @@
   {
     "id": "ans-023",
     "deck": "answer",
-    "text": "It was not here. Whatever {name} had thought, {subject} simply was not in this room.",
+    "text": "I crossed {name}'s lead off the list.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -232,7 +232,7 @@
   {
     "id": "ans-024",
     "deck": "answer",
-    "text": "The trail stopped there. No {subject}, and no sense chasing it further.",
+    "text": "{name} had been mistaken, or misinformed, or both. Either way, nothing.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -242,9 +242,9 @@
   {
     "id": "ans-025",
     "deck": "answer",
-    "text": "I had not found {subject}. I had found something else instead.",
+    "text": "That closed {name}'s lead for good.",
     "tags": {
-      "outcome": "something-else"
+      "outcome": "dead-end"
     },
     "motifs": [],
     "status": "generated"
@@ -252,9 +252,9 @@
   {
     "id": "ans-026",
     "deck": "answer",
-    "text": "There was no {subject} here, but there was something else worth having.",
+    "text": "Whatever {name} had heard, it wasn't true, not here.",
     "tags": {
-      "outcome": "something-else"
+      "outcome": "dead-end"
     },
     "motifs": [],
     "status": "generated"
@@ -262,9 +262,9 @@
   {
     "id": "ans-027",
     "deck": "answer",
-    "text": "{subject} was not in it. What I found instead was worth the trip.",
+    "text": "It came to nothing, and {name}'s tip went with it.",
     "tags": {
-      "outcome": "something-else"
+      "outcome": "dead-end"
     },
     "motifs": [],
     "status": "generated"
@@ -272,9 +272,9 @@
   {
     "id": "ans-028",
     "deck": "answer",
-    "text": "I had come for {subject} and left with something I had not expected.",
+    "text": "There was no {subject} here. The lead had run out.",
     "tags": {
-      "outcome": "something-else"
+      "outcome": "dead-end"
     },
     "motifs": [],
     "status": "generated"
@@ -282,9 +282,9 @@
   {
     "id": "ans-029",
     "deck": "answer",
-    "text": "Not {subject}, as it turned out, but something that mattered more.",
+    "text": "Whatever had been here once, it wasn't {subject}, and it wasn't now.",
     "tags": {
-      "outcome": "something-else"
+      "outcome": "dead-end"
     },
     "motifs": [],
     "status": "generated"
@@ -292,9 +292,9 @@
   {
     "id": "ans-030",
     "deck": "answer",
-    "text": "I did not get what I came for. I got something better.",
+    "text": "{subject} wasn't here, and no amount of looking was going to change that.",
     "tags": {
-      "outcome": "something-else"
+      "outcome": "dead-end"
     },
     "motifs": [],
     "status": "generated"
@@ -302,7 +302,7 @@
   {
     "id": "ans-031",
     "deck": "answer",
-    "text": "{subject} was not the find. What was there instead changed the errand.",
+    "text": "It wasn't what {name} sent me for. It might be worth more.",
     "tags": {
       "outcome": "something-else"
     },
@@ -312,7 +312,7 @@
   {
     "id": "ans-032",
     "deck": "answer",
-    "text": "It was not {subject} I walked out with, but it was not nothing.",
+    "text": "{name} had sent me for one thing. I walked out with another.",
     "tags": {
       "outcome": "something-else"
     },
@@ -322,7 +322,7 @@
   {
     "id": "ans-033",
     "deck": "answer",
-    "text": "The errand missed {subject} and hit something else instead.",
+    "text": "That wasn't {name}'s errand answered, but it was answered all the same, just differently.",
     "tags": {
       "outcome": "something-else"
     },
@@ -332,7 +332,7 @@
   {
     "id": "ans-034",
     "deck": "answer",
-    "text": "I had come for {subject}. What I left with was a different question.",
+    "text": "{name} hadn't meant this to turn up. It had, and it mattered.",
     "tags": {
       "outcome": "something-else"
     },
@@ -342,7 +342,7 @@
   {
     "id": "ans-035",
     "deck": "answer",
-    "text": "No {subject}, but the room had more to say than that.",
+    "text": "Not what {name} was after, but not nothing either.",
     "tags": {
       "outcome": "something-else"
     },
@@ -352,7 +352,97 @@
   {
     "id": "ans-036",
     "deck": "answer",
-    "text": "I had not found what {name} sent me for. I had found something else.",
+    "text": "{name} would want to hear about this, even though it wasn't what {name} asked for.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-037",
+    "deck": "answer",
+    "text": "It missed {name}'s question and landed on a better one.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-038",
+    "deck": "answer",
+    "text": "{name} had sent me for one answer. I came back with a different one.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-039",
+    "deck": "answer",
+    "text": "That wasn't the errand {name} gave me, but it earned the trip.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-040",
+    "deck": "answer",
+    "text": "{name} hadn't asked for this, but {name} would want it.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-041",
+    "deck": "answer",
+    "text": "It changed the errand {name} had sent me on.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-042",
+    "deck": "answer",
+    "text": "Not what {name} expected. Worth more, maybe.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-043",
+    "deck": "answer",
+    "text": "Not {subject}. Something else, and it changed things.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-044",
+    "deck": "answer",
+    "text": "{subject} was not in it. What was there instead mattered more.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "ans-045",
+    "deck": "answer",
+    "text": "It wasn't {subject} I walked out with, but it wasn't nothing.",
     "tags": {
       "outcome": "something-else"
     },

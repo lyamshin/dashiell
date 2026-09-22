@@ -76,7 +76,32 @@ const SUSPECT_ARCHETYPES = [
   'arch-bookmaker', 'arch-heeler', 'arch-pawnman', 'arch-bouncer', 'arch-runner',
 ];
 
-const ACTIVITY_ROLES = [...FIXTURE_ROLES, ...SUSPECT_ARCHETYPES];
+// beat-cop is never a `watcher` for any place in src/gen/data/places.ts, so
+// it has no reachable placeKind and the activity deck drops it entirely
+// (coordinator review of PR #24 #6; noted in content/drafts/scene/README.md).
+// It's still valid for the `watch` deck's fixtureRole vocabulary, which
+// isn't scoped to places.ts assignments.
+const ACTIVITY_FIXTURE_ROLES = FIXTURE_ROLES.filter((r) => r !== 'beat-cop');
+const ACTIVITY_ROLES = [...ACTIVITY_FIXTURE_ROLES, ...SUSPECT_ARCHETYPES];
+
+// Which placeKind(s) each fixture role is actually reachable at, per its
+// `watcher` assignments in src/gen/data/places.ts. A suspect archetype can
+// turn up at any of the three, so it isn't restricted here.
+const FIXTURE_REACHABLE_PLACEKINDS = {
+  bartender: ['semi'],
+  doorman: ['semi'],
+  newsstand: ['public'],
+  counterman: ['public', 'semi'],
+  'ticket-taker': ['public'],
+  'elevator-man': ['private'],
+  landlady: ['private', 'semi'],
+  cabbie: ['public'],
+  druggist: ['public'],
+};
+const ACTIVITY_REACHABLE_CELLS = ACTIVITY_ROLES.flatMap((role) => {
+  const kinds = FIXTURE_REACHABLE_PLACEKINDS[role] ?? ['public', 'semi', 'private'];
+  return kinds.map((placeKind) => [role, placeKind]);
+});
 
 const THOUGHT_CLASSES = [
   'clears', 'implicates', 'observer-placed', 'unmentioned', 'contradicts',
@@ -133,6 +158,7 @@ const SCENE_DECKS = {
     },
     slots: ['name', 'place'],
     countKey: ['role', 'placeKind'],
+    reachableCells: ACTIVITY_REACHABLE_CELLS,
     target: 3,
   },
   thought: {
@@ -141,7 +167,10 @@ const SCENE_DECKS = {
     tags: {
       class: { values: THOUGHT_CLASSES },
     },
-    slots: ['subject', 'place', 'time', 'source', 'victim', 'other'],
+    // {scene} added on the coordinator's review of PR #24 #3: the place
+    // where it happened, distinct from {place} (an elsewhere a subject was
+    // placed). Not in §9's original slot list for this deck -- see README.
+    slots: ['subject', 'place', 'time', 'source', 'victim', 'other', 'scene'],
     countKey: ['class'],
     target: 12,
   },
@@ -311,11 +340,15 @@ function checkDeck(deckName, spec) {
   }
 
   // count targets: every reachable cell of the count key should exist.
-  const cellValues = spec.countKey.map((k) => {
-    const tagSpec = spec.tags[k];
-    return tagSpec.values;
-  });
-  const cells = cartesian(cellValues);
+  // Most decks reach every combination of their count-key tag values; a few
+  // (activity, after the coordinator's review of PR #24 #6) only reach a
+  // subset, given as `reachableCells` -- e.g. a bartender is only ever the
+  // watcher of a `semi` place, so activity has no `bartender`/`public` or
+  // `bartender`/`private` cell to fill, and checking for one would be
+  // checking for a card the generator can never deal.
+  const cells = spec.reachableCells ?? cartesian(
+    spec.countKey.map((k) => spec.tags[k].values),
+  );
   for (const combo of cells) {
     const key = combo.join(' × ');
     const n = counts.get(key) ?? 0;

@@ -2,7 +2,7 @@
   {
     "id": "brg-001",
     "deck": "bridge",
-    "text": "{subject} was {tie}. {who} would know how {subject} spent tonight.",
+    "text": "{subject} was {tie}. That was worth knowing on its own, and {who} would know more.",
     "tags": {
       "tie": "victim"
     },
@@ -12,7 +12,7 @@
   {
     "id": "brg-002",
     "deck": "bridge",
-    "text": "That made {subject} {tie}, which was reason enough to ask about {subject} next. {who} was the one to ask.",
+    "text": "Being {tie} put {subject} in it. I wanted to hear the rest from {who}.",
     "tags": {
       "tie": "victim"
     },
@@ -22,7 +22,7 @@
   {
     "id": "brg-003",
     "deck": "bridge",
-    "text": "{subject}, {tie}, was worth a question, and {who} could answer it.",
+    "text": "{tie} — that alone was worth a question, and {who} was who to ask.",
     "tags": {
       "tie": "victim"
     },
@@ -32,7 +32,7 @@
   {
     "id": "brg-004",
     "deck": "bridge",
-    "text": "A person who is {tie} matters to this the way nobody neutral does. I wanted {who}’s word on {subject}.",
+    "text": "{subject}, {tie}, was somebody worth asking about. {who} could say more.",
     "tags": {
       "tie": "victim"
     },
@@ -42,7 +42,7 @@
   {
     "id": "brg-005",
     "deck": "bridge",
-    "text": "{tie}. That alone made {subject} worth asking about, and {who} was who to ask.",
+    "text": "That {subject} was {tie} changed things. {who} would know the rest of it.",
     "tags": {
       "tie": "victim"
     },
@@ -52,7 +52,7 @@
   {
     "id": "brg-006",
     "deck": "bridge",
-    "text": "{subject} being {tie} was reason enough. I meant to put it to {who}.",
+    "text": "{subject} was {tie}, and nobody had mentioned it yet. {who} would know why.",
     "tags": {
       "tie": "victim"
     },
@@ -62,7 +62,7 @@
   {
     "id": "brg-007",
     "deck": "bridge",
-    "text": "Anyone who is {tie} is worth a question. {who} could answer for {subject}.",
+    "text": "A person who was {tie} was worth a look. {who} knew {subject} best.",
     "tags": {
       "tie": "victim"
     },
@@ -72,7 +72,7 @@
   {
     "id": "brg-008",
     "deck": "bridge",
-    "text": "{tie} — that was {subject}’s claim on my attention, and {who} had the rest of it.",
+    "text": "{subject} being {tie} was reason enough by itself. {who} was who to ask, at {where}.",
     "tags": {
       "tie": "victim"
     },
@@ -82,7 +82,7 @@
   {
     "id": "brg-009",
     "deck": "bridge",
-    "text": "{subject} was {tie}, and that alone earned a question. {who} would know where to start.",
+    "text": "{tie}. I had not heard that before. {who} would know more, and {who} was at {where}.",
     "tags": {
       "tie": "victim"
     },
@@ -92,7 +92,7 @@
   {
     "id": "brg-010",
     "deck": "bridge",
-    "text": "Being {tie} put {subject} on my list. {who} was the one who’d know more.",
+    "text": "I had not known {subject} was {tie}. {who} would, and I meant to ask.",
     "tags": {
       "tie": "victim"
     },
@@ -102,7 +102,7 @@
   {
     "id": "brg-011",
     "deck": "bridge",
-    "text": "{subject} was {tie}, which nobody had mentioned yet. I wanted to ask {who} about it.",
+    "text": "{subject} was {tie} — that was new, and worth chasing. {who} could tell me the rest.",
     "tags": {
       "tie": "victim"
     },
@@ -112,7 +112,7 @@
   {
     "id": "brg-012",
     "deck": "bridge",
-    "text": "That {subject} was {tie} changed things. {who} could tell me the rest.",
+    "text": "That put {subject} in the story: {tie}. {who} was next.",
     "tags": {
       "tie": "victim"
     },
@@ -122,7 +122,7 @@
   {
     "id": "brg-013",
     "deck": "bridge",
-    "text": "{tie} was enough of a reason by itself. Next I wanted {who} on the subject of {subject}.",
+    "text": "{subject}, {tie}, was somebody I had not asked about yet. {who} would know where to start.",
     "tags": {
       "tie": "victim"
     },
@@ -132,7 +132,7 @@
   {
     "id": "brg-014",
     "deck": "bridge",
-    "text": "I hadn’t known {subject} was {tie}. {who} would, and I meant to ask, and find {who} at {where}.",
+    "text": "Being {tie} gave {subject} a place in this. {who} knew {subject} well enough to say more.",
     "tags": {
       "tie": "victim"
     },
@@ -142,7 +142,7 @@
   {
     "id": "brg-015",
     "deck": "bridge",
-    "text": "{subject}’s being {tie} was the kind of thing that opens a case. {who} was who I’d ask, at {where}.",
+    "text": "{tie} was the kind of thing that opened a case up. {who} was who I would ask, at {where}.",
     "tags": {
       "tie": "victim"
     },
@@ -152,7 +152,7 @@
   {
     "id": "brg-016",
     "deck": "bridge",
-    "text": "{subject} was {tie}. {who} would know who’d been through there tonight.",
+    "text": "{subject} had a connection to the place: {tie}. {who} would know what that connection meant.",
     "tags": {
       "tie": "place"
     },
@@ -162,7 +162,7 @@
   {
     "id": "brg-017",
     "deck": "bridge",
-    "text": "That put {subject} at {tie}, and that was worth a question. {who} was who to ask.",
+    "text": "{tie}. That was enough to send me to {who} next.",
     "tags": {
       "tie": "place"
     },
@@ -172,7 +172,7 @@
   {
     "id": "brg-018",
     "deck": "bridge",
-    "text": "{subject}, {tie}, mattered because of it. {who} could say more.",
+    "text": "Whoever was {tie} belonged in this. I wanted {who}’s word on {subject}.",
     "tags": {
       "tie": "place"
     },
@@ -182,7 +182,7 @@
   {
     "id": "brg-019",
     "deck": "bridge",
-    "text": "Anyone {tie} is worth asking about. I wanted {who}’s word on {subject}.",
+    "text": "{subject} turned out to be {tie}. That was a thread I had not pulled yet.",
     "tags": {
       "tie": "place"
     },
@@ -192,7 +192,7 @@
   {
     "id": "brg-020",
     "deck": "bridge",
-    "text": "{tie}. That alone made {subject} worth a question, and {who} was who to put it to.",
+    "text": "It mattered that {subject} was {tie}. {who} could say how much.",
     "tags": {
       "tie": "place"
     },
@@ -202,7 +202,7 @@
   {
     "id": "brg-021",
     "deck": "bridge",
-    "text": "{subject} being {tie} was reason enough to ask further. {who} would know.",
+    "text": "I had not placed {subject} there before. {tie} changed that. {who} would know more.",
     "tags": {
       "tie": "place"
     },
@@ -212,7 +212,7 @@
   {
     "id": "brg-022",
     "deck": "bridge",
-    "text": "A person {tie} is a person who was there. {who} could tell me about {subject}.",
+    "text": "{tie} — a fact nobody had mentioned. {who} was who to ask about it.",
     "tags": {
       "tie": "place"
     },
@@ -222,7 +222,7 @@
   {
     "id": "brg-023",
     "deck": "bridge",
-    "text": "{tie} — that was {subject}’s claim on the case. {who} had the rest of it.",
+    "text": "That tied {subject} to the place: {tie}. {who} knew the rest, and {who} was at {where}.",
     "tags": {
       "tie": "place"
     },
@@ -232,7 +232,7 @@
   {
     "id": "brg-024",
     "deck": "bridge",
-    "text": "{subject} was {tie}, and nobody had said so yet. {who} would know more.",
+    "text": "{subject}, it turned out, was {tie}. I wanted {who}’s account of it.",
     "tags": {
       "tie": "place"
     },
@@ -242,7 +242,7 @@
   {
     "id": "brg-025",
     "deck": "bridge",
-    "text": "Being {tie} put {subject} in it. {who} was the one to ask.",
+    "text": "Knowing {subject} was {tie} opened a door. {who} was the one standing behind it.",
     "tags": {
       "tie": "place"
     },
@@ -252,7 +252,7 @@
   {
     "id": "brg-026",
     "deck": "bridge",
-    "text": "{subject} was {tie}, which changed where I looked next. I meant to ask {who}.",
+    "text": "{tie}. It put {subject} somewhere I had not looked yet, and {who} could say where next.",
     "tags": {
       "tie": "place"
     },
@@ -262,7 +262,7 @@
   {
     "id": "brg-027",
     "deck": "bridge",
-    "text": "That {subject} was {tie} was new to me. {who} would know the rest.",
+    "text": "{subject} being {tie} was news to me. {who} would fill in the rest.",
     "tags": {
       "tie": "place"
     },
@@ -272,7 +272,7 @@
   {
     "id": "brg-028",
     "deck": "bridge",
-    "text": "{tie} was enough by itself. Next came {who}, on the subject of {subject}, and I’d find {who} at {where}.",
+    "text": "That gave {subject} a reason to have been there: {tie}. {who} knew the details.",
     "tags": {
       "tie": "place"
     },
@@ -282,7 +282,7 @@
   {
     "id": "brg-029",
     "deck": "bridge",
-    "text": "I hadn’t known {subject} was {tie} until now. {who} would, and I meant to ask, at {where}.",
+    "text": "I wanted to know more about {subject} being {tie}. {who} was where to start, at {where}.",
     "tags": {
       "tie": "place"
     },
@@ -292,7 +292,7 @@
   {
     "id": "brg-030",
     "deck": "bridge",
-    "text": "{subject}’s being {tie} was the kind of thing worth following. {who} was who I’d ask, at {where}.",
+    "text": "{tie} put {subject} in the story in a way nothing else had. {who} was next.",
     "tags": {
       "tie": "place"
     },
@@ -302,7 +302,7 @@
   {
     "id": "brg-031",
     "deck": "bridge",
-    "text": "{subject} was {tie}. {who} would know how {subject} accounted for it.",
+    "text": "{subject} had been placed at a particular hour: {tie}. {who} could say what it meant.",
     "tags": {
       "tie": "time"
     },
@@ -312,7 +312,7 @@
   {
     "id": "brg-032",
     "deck": "bridge",
-    "text": "That placed {subject} {tie}, and that was worth asking about. {who} was who to ask.",
+    "text": "{tie}. That put the clock on {subject}, and {who} was who to ask about it.",
     "tags": {
       "tie": "time"
     },
@@ -322,7 +322,7 @@
   {
     "id": "brg-033",
     "deck": "bridge",
-    "text": "{subject}, {tie}, mattered for the hour it named. {who} could say more.",
+    "text": "Whoever was {tie} mattered for that half hour alone. I wanted {who}’s word on {subject}.",
     "tags": {
       "tie": "time"
     },
@@ -332,7 +332,7 @@
   {
     "id": "brg-034",
     "deck": "bridge",
-    "text": "Anyone {tie} is worth a question about that half hour. I wanted {who}’s word on {subject}.",
+    "text": "{subject} turned out to be {tie}. That was an hour worth asking about.",
     "tags": {
       "tie": "time"
     },
@@ -342,7 +342,7 @@
   {
     "id": "brg-035",
     "deck": "bridge",
-    "text": "{tie}. That alone put {subject} in the frame, and {who} was who to ask.",
+    "text": "It mattered that {subject} was {tie}. {who} could say how much.",
     "tags": {
       "tie": "time"
     },
@@ -352,7 +352,7 @@
   {
     "id": "brg-036",
     "deck": "bridge",
-    "text": "{subject} being {tie} was reason enough to press further. {who} would know.",
+    "text": "I had not accounted for {subject} at that hour before. {tie} changed that. {who} would know more.",
     "tags": {
       "tie": "time"
     },
@@ -362,7 +362,7 @@
   {
     "id": "brg-037",
     "deck": "bridge",
-    "text": "A person {tie} was somewhere at the hour that matters. {who} could tell me where.",
+    "text": "{tie} — a fact nobody had mentioned about that hour. {who} was who to ask.",
     "tags": {
       "tie": "time"
     },
@@ -372,7 +372,7 @@
   {
     "id": "brg-038",
     "deck": "bridge",
-    "text": "{tie} — that was {subject}’s claim on the clock. {who} had the rest of it.",
+    "text": "That put a clock on {subject}: {tie}. {who} knew the rest, and {who} was at {where}.",
     "tags": {
       "tie": "time"
     },
@@ -382,7 +382,7 @@
   {
     "id": "brg-039",
     "deck": "bridge",
-    "text": "{subject} was {tie}, and the office page hadn’t said so. {who} would know more.",
+    "text": "{subject}, it turned out, was {tie}. I wanted {who}’s account of that hour.",
     "tags": {
       "tie": "time"
     },
@@ -392,7 +392,7 @@
   {
     "id": "brg-040",
     "deck": "bridge",
-    "text": "Being {tie} put {subject} at the hour in question. {who} was the one to ask.",
+    "text": "Knowing {subject} was {tie} narrowed things. {who} was the one holding the answer.",
     "tags": {
       "tie": "time"
     },
@@ -402,7 +402,7 @@
   {
     "id": "brg-041",
     "deck": "bridge",
-    "text": "{subject} was {tie}, which changed the shape of the evening. I meant to ask {who}.",
+    "text": "{tie}. It put {subject} at an hour I had not asked about, and {who} could say more.",
     "tags": {
       "tie": "time"
     },
@@ -412,7 +412,7 @@
   {
     "id": "brg-042",
     "deck": "bridge",
-    "text": "That {subject} was {tie} was new to me. {who} would know the rest of it.",
+    "text": "{subject} being {tie} was news to me. {who} would fill in the hour.",
     "tags": {
       "tie": "time"
     },
@@ -422,7 +422,7 @@
   {
     "id": "brg-043",
     "deck": "bridge",
-    "text": "{tie} was enough by itself, for that hour. Next came {who}, on the subject of {subject}, at {where}.",
+    "text": "That gave the hour a name: {tie}. {who} knew the details.",
     "tags": {
       "tie": "time"
     },
@@ -432,7 +432,7 @@
   {
     "id": "brg-044",
     "deck": "bridge",
-    "text": "I hadn’t known {subject} was {tie} until now. {who} would, and I meant to ask, at {where}.",
+    "text": "I wanted to know more about {subject} at that hour. {who} was where to start, at {where}.",
     "tags": {
       "tie": "time"
     },
@@ -442,7 +442,7 @@
   {
     "id": "brg-045",
     "deck": "bridge",
-    "text": "{subject}’s being {tie} put the clock on it. {who} was who I’d ask, at {where}.",
+    "text": "{tie} put a time on {subject} that nothing else had. {who} was next.",
     "tags": {
       "tie": "time"
     },
