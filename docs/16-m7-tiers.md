@@ -28,20 +28,20 @@ Each tier prints its one new rule on the title page ("This time: somebody else i
 |---|---|---|---|
 | 0 | **Raw** | 3 suspects, 3 places. No secrets but the crime. The coroner names the exact half hour. Murder only, body at the scene. The client is never the culprit. The report asks **who**. Always Beat. | The choices, the notebook, the report |
 | 1 | **Coddled** | 4 suspects, 4 places. The report adds **how**, and method evidence enters. | Searching rooms; physical clues |
-| 2 | **Soft-boiled** | One innocent has a secret. | A liar is not a killer |
-| 3 | **Poached** | The coroner gives an hour, two half hours. One anchor is required to fix the time. Every murder trope is in the draw: body moved, locked room, the frame, inside job. | Time of death is something you establish; the scene can lie |
+| 2 | **Poached** | One innocent has a secret. | A liar is not a killer |
+| 3 | **Soft-boiled** | The coroner gives an hour, two half hours. One anchor is required to fix the time. Every murder trope is in the draw: body moved, locked room, the frame, inside job. | Time of death is something you establish; the scene can lie |
 | 4 | **Medium** | 5 suspects, 5 places. Three innocents have secrets, and up to two have innocent motives. The report adds **when**, **where** and **why**. Robbery and missing-person cases join the draw. | Branches, the disqualifier, motive alone names nobody |
 | 5 | **Hard-boiled** | 6 suspects, 6 places: today's full case. The coroner gives two hours. Two anchors, and knowledge tests. Every innocent has a secret, and the killer may carry a cover secret. **The client may be the culprit.** | The one paying you might have done it |
 | — | **Over easy** *(post-game)* | 8 suspects, 8 places, three liars at the crime's half hour. The sliders come unlocked as a custom case. | |
 
-Par targets by tier: Raw 4–5, Coddled 5–6, Soft-boiled 6–7, Poached 7–8, Medium 9–10, Hard-boiled 12–14 (today's case), Over easy 14–18. Today's `PAR_FLOOR` of 9 and the fixed findable target of 34 become per-shape values.
+Par targets by tier: Raw 4–5, Coddled 5–6, Poached 6–7, Soft-boiled 7–8, Medium 9–10, Hard-boiled 12–14 (today's case), Over easy 14–18. Today's `PAR_FLOOR` of 9 and the fixed findable target of 34 become per-shape values.
 
 **Unlocking.** A full-credit report at a tier unlocks the next. Losing never locks anything. Clearing Hard-boiled unlocks Over easy. The campaign is tiers 0 through 5, and the game counts as beaten at Hard-boiled.
 
 ### What changed from the draft
 
-- Eight tiers became six. The old tiers 2 and 3 split differently: the secret is Soft-boiled on its own, and the time window arrives with the full set of murder tropes at Poached. The old tiers 4 and 5 merged into Medium. The old tier 6 merged into Hard-boiled.
-- **Case types and tropes are now tier content.** M5 added them after the draft. Raw through Soft-boiled deal only murders with the body at the scene. Poached opens every murder trope. Medium adds robbery and missing persons.
+- Eight tiers became six. The old tiers 2 and 3 split differently: the secret is Poached on its own, and the time window arrives with the full set of murder tropes at Soft-boiled. The old tiers 4 and 5 merged into Medium. The old tier 6 merged into Hard-boiled.
+- **Case types and tropes are now tier content.** M5 added them after the draft. Raw through Poached deal only murders with the body at the scene. Soft-boiled opens every murder trope. Medium adds robbery and missing persons.
 - **The client.** The draft had a bystander client at Raw. Since M5 every case has a client in the office. Today the client is the culprit in a quarter of cases at every difficulty. Under tiers, the client is never the culprit below Hard-boiled, and a quarter of the time from Hard-boiled on.
 - **The report.** Since M5 the report asks only what the case left unknown. A tier's report fields are a ceiling: the report asks the tier's fields that the case left unknown. Tests must confirm every tier asks at least one question for every case type it deals.
 
