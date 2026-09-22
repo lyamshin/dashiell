@@ -83,7 +83,7 @@ import {
   type Register,
   type SpokenClue,
 } from './exchange.js';
-import { beatsOf, findKindOf } from './facts.js';
+import { findKindOf } from './facts.js';
 import {
   PLAIN_FLOOR,
   SELF_ALREADY,
