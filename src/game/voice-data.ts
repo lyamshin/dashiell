@@ -225,6 +225,10 @@ export const NOTHING_LEFT: string[] = [
 export const HELP_LINES: { command: string; gloss: string }[] = [
   { command: 'go <place>', gloss: 'Walk there. Costs an action.' },
   { command: 'ask <person> about <topic>', gloss: 'Put it to them. Costs an action.' },
+  {
+    command: 'ask <person> about themselves',
+    gloss: 'Who they are, in their own words. One action, once.',
+  },
   { command: 'examine <place or object>', gloss: 'Go through the room. Costs an action.' },
   { command: 'look', gloss: 'The room, and who is standing in it. Free.' },
   { command: 'notebook', gloss: 'Everything written down so far. Free.' },
@@ -233,7 +237,7 @@ export const HELP_LINES: { command: string; gloss: string }[] = [
 ];
 
 export const HELP_NOTE =
-  'Topics worth trying: anybody’s surname, a room, a thing, something that happened at a fixed hour, that evening, why I was hired. Underlined words on the page are clickable, and so is every lead in the notebook.';
+  'Topics worth trying: anybody’s surname, a room, a thing, something that happened at a fixed hour, that evening, themselves, why I was hired. Underlined words on the page are clickable, and so is every lead in the notebook.';
 
 /* ------------------------------------------------------------------ *
  * M4 additions. Still the hand-written half: lines about the shape of

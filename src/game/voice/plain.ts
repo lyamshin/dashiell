@@ -302,23 +302,70 @@ export function firstPerson(person: Person, sentence: string): string {
   for (const name of names) {
     const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const possessive = /[’']s$/.test(name);
-    text = text.replace(
-      new RegExp(`\\b${escaped}`, 'g'),
-      possessive ? 'my' : 'I',
-    );
+    text = text.replace(new RegExp(`\\b${escaped}`, 'g'), possessive ? 'my' : 'I');
   }
-  // "I is 31" and "I has been" are what a blunt swap leaves behind.
+  if (!/\bI\b|\bmy\b/.test(text)) return endStop(capitalize(text));
+
+  // The pronouns in the phrase were the person's own: "has not worked since
+  // her marriage" is "I have not worked since my marriage". Both sets go,
+  // whatever the dossier says the speaker is — a handful of the generator's
+  // profession details are written with a "he" in them and are handed to
+  // whoever drew the archetype, and in a person's own mouth it is "I" either
+  // way.
   text = text
-    .replace(/\bI is\b/g, "I'm")
-    .replace(/\bI was\b/g, 'I was')
-    .replace(/\bI has\b/g, 'I have')
-    .replace(/\bI does\b/g, 'I do')
-    .replace(/\bI wants\b/g, 'I want')
-    .replace(/\bI shapes\b/g, 'I shape')
-    .replace(/\bI (\w+)s\b(?= (?:up|out|in|at|the|a|an|for|to|on|with|behind|whatever|every|four|three|two))/g,
-      (_m, verb: string) => `I ${verb}`)
-    .replace(/^i\b/, 'I');
-  return endStop(capitalize(text));
+    .replace(/\b(?:he|she)\b/g, 'I')
+    .replace(/\b(?:his|her)\b/g, 'my')
+    .replace(/\b(?:him|hers)\b/g, 'me');
+
+  // The generator writes the details as subjectless verb phrases in the third
+  // person — "writes the tickets behind the grille and knows what a thing is
+  // worth" — so every clause in the sentence opens on a verb that has to be
+  // conjugated, not just the first. The clause heads are the word after "I",
+  // after "and", and after a comma.
+  text = text.replace(
+    /(^|\bI\s+|,\s+and\s+|\s+and\s+|,\s+)([a-z][a-z'’]*)\b/g,
+    (_m, head: string, verb: string) => `${head}${conjugate(verb)}`,
+  );
+  return endStop(capitalize(text.replace(/^i\b/, 'I')));
+}
+
+/** The irregulars, and then the rule. */
+const CONJUGATED: Record<string, string> = {
+  is: 'am',
+  has: 'have',
+  does: 'do',
+  goes: 'go',
+  was: 'was',
+  its: 'its',
+  this: 'this',
+  hours: 'hours',
+  cases: 'cases',
+  rooms: 'rooms',
+  years: 'years',
+  columns: 'columns',
+  letters: 'letters',
+  nights: 'nights',
+  coats: 'coats',
+  bundles: 'bundles',
+  pupils: 'pupils',
+  floors: 'floors',
+  buildings: 'buildings',
+};
+
+/**
+ * A third-person singular verb in the first person. `is` becomes `am`, a `-es`
+ * after a sibilant loses both letters, a `-ies` becomes `-y`, and anything
+ * else loses its `s`. Words that are not verbs — `his`, `this`, a plural noun
+ * that opens a clause — are left where they are.
+ */
+export function conjugate(word: string): string {
+  const known = CONJUGATED[word];
+  if (known !== undefined) return known;
+  if (!word.endsWith('s')) return word;
+  if (/(ss|us|is|as|ous)$/.test(word)) return word;
+  if (word.endsWith('ies')) return `${word.slice(0, -3)}y`;
+  if (/(ches|shes|xes|zes|sses)$/.test(word)) return word.slice(0, -2);
+  return word.slice(0, -1);
 }
 
 function capitalize(text: string): string {
@@ -689,7 +736,10 @@ export function openingNote(view: CaseView, placeId: Id): string {
       const taken = act.taken?.name ?? 'what was taken';
       const owner = victim.surname;
       const where = victimAddressName(view);
-      return `${head} ${capitalize(taken)} came off a shelf in this room, and ${owner} is alive and at ${where}, which is the first thing anybody says about it.`;
+      // §7: the free report here is the shelf and the way in, not a coroner.
+      const entry =
+        act.givens.text.find((t) => /forced|lock|key|window|let in|combination/i.test(t)) ?? '';
+      return `${head} ${capitalize(taken)} came off a shelf in this room, and ${owner} is alive and at ${where}, which is the first thing anybody says about it. ${entry}`.trim();
     }
     case 'missing':
       return `${head} This is where ${victim.surname} was last seen, and nobody in this neighbourhood has seen ${victim.surname} since.`;
