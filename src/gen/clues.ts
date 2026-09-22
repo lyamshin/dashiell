@@ -347,12 +347,24 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   );
 
   const windowText = `${clock(ctx.coronerWindow[0])} and ${clock(ctx.coronerWindow[1])}`;
+  /*
+   * Hone 3 §5. "Two hours of nothing useful" used to be here as well as in
+   * `body-at-scene`'s coroner given, so on those seeds the client said it on
+   * page one and the note on the table said it again on page two — the same
+   * six words, in two different mouths, about the same window.
+   *
+   * It is the client's. It is a judgement about whether the hour helps, which
+   * is what somebody hiring a detective is thinking about, and a coroner
+   * pencilling the back of an intake form is not. So the note states the
+   * window and stops, in all three shapes: a stock phrase is worth keeping
+   * once and is worth nothing twice.
+   */
   const morgueOpening =
     act.type === 'murder'
-      ? `The coroner puts death between ${windowText} — two hours of nothing useful.`
+      ? `The coroner puts death between ${windowText}.`
       : act.type === 'robbery'
-        ? `The desk sergeant's report puts it between ${windowText} — two hours of nothing useful.`
-        : `Nobody can put it closer than between ${windowText}, which is two hours of nothing useful.`;
+        ? `The desk sergeant's report puts it between ${windowText}.`
+        : `Nobody can put it closer than between ${windowText}.`;
   const morgue = add(
     'morgue',
     { type: 'place', placeId: L },
