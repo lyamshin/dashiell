@@ -26,6 +26,7 @@ import {
   THEORY_TEMPLATES,
   Dealer,
   askSlots,
+  attachSimile,
   beatsOf,
   businessLine,
   burnTier,
@@ -1049,13 +1050,70 @@ describe('the seams between cards', () => {
     expect(tidyPunctuation('He said so.: plainly')).toBe('He said so: plainly');
   });
 
-  it('does not put a full stop in front of a lower-case fragment', () => {
+  it('puts a capital on a sentence a slot started lower-case, and keeps the stop', () => {
+    // M4b polish: this used to become a comma, which spliced two finished
+    // sentences out of one card — "…still 1919 in here, the speakeasy doesn't
+    // card". A place name is lower-case because it always is, not because it
+    // is a fragment.
+    expect(tidyPunctuation('The room smells like 1919. {place} doesn’t card.'.replace('{place}', 'the speakeasy'))).toBe(
+      'The room smells like 1919. The speakeasy doesn’t card.',
+    );
     expect(tidyPunctuation('9:00 PM to 9:30 PM. the speakeasy.')).toBe(
-      '9:00 PM to 9:30 PM, the speakeasy.',
+      '9:00 PM to 9:30 PM. The speakeasy.',
     );
     // An abbreviation is one word with stops in it, not two sentences.
     expect(tidyPunctuation('The street at 3 a.m. was empty.')).toBe(
       'The street at 3 a.m. was empty.',
+    );
+    expect(tidyPunctuation('The stairs up to Mrs. teague’s have been swept.')).toBe(
+      'The stairs up to Mrs. teague’s have been swept.',
+    );
+  });
+
+  it('never swallows a full stop the writer put in a card', () => {
+    // The seam that produced "…still 1919 in here, the speakeasy doesn't card"
+    // was here: a card writes two sentences and the second one opens on a
+    // slot, so filling it must not turn the writer's stop into a comma.
+    const slots: Record<string, string> = {
+      place: 'the speakeasy',
+      name: 'Doyle',
+      subject: 'Doyle',
+      addressee: 'Doyle',
+      other: 'Mosley',
+      object: 'the ledger',
+      detective: 'Dashiell',
+      topic: 'the fight card',
+      fact: 'Doyle was there and said so',
+      time: '9:30 PM',
+      retainer: 'fifty dollars',
+      business: 'He counted the till',
+      colour: 'A dog got into the bakery',
+      dashiell: 'I asked again',
+      window: '9:30 PM',
+    };
+    const stops = (t: string): number => (t.match(/[.!?…]/g) ?? []).length;
+    for (const card of ALL_CARDS) {
+      if (slotsOf(card).length === 0) continue;
+      const filled = fill(card, slots);
+      if (filled === null) continue;
+      expect(stops(filled), `${card.id}: ${filled}`).toBe(stops(card.text));
+    }
+  });
+
+  it('gives a simile a comma only when it is a clause after a full stop', () => {
+    expect(attachSimile('His voice dropped.', 'soft as a hand over a mouthpiece.')).toBe(
+      'His voice dropped, soft as a hand over a mouthpiece.',
+    );
+    expect(attachSimile('His voice dropped.', 'like a hand over a mouthpiece.')).toBe(
+      'His voice dropped, like a hand over a mouthpiece.',
+    );
+    // A question is not a clause anything hangs off. The mark stays.
+    expect(attachSimile('“Where were you?”', 'flat as a nickel on a bar.')).toBe(
+      '“Where were you?” Flat as a nickel on a bar.',
+    );
+    // A simile written as a sentence of its own stays one.
+    expect(attachSimile('His voice dropped.', 'The words came out flat.')).toBe(
+      'His voice dropped. The words came out flat.',
     );
   });
 

@@ -46,7 +46,14 @@ import {
   type NothingLine,
 } from '../voice-data.js';
 import { DECKS, Dealer, tagIs, tagOf, type Card, type Slots } from './cards.js';
-import { appendMark, joinSentences, tidyPunctuation } from './prose.js';
+import {
+  appendMark,
+  capitalizeFirst,
+  endsInPeriod,
+  endsSentence,
+  joinSentences,
+  tidyPunctuation,
+} from './prose.js';
 import {
   classOf,
   describePerson,
@@ -177,13 +184,23 @@ const OPENS_AS_CLAUSE = /^(like|the way|as if|as though|as\b)/i;
  * Set a simile down as part of the sentence it modifies (§A.3): a comma when
  * the card opens on a connective, a full stop when it is a sentence of its own.
  * Either way it is in the same paragraph, which is the whole point.
+ *
+ * The comma is the only one the page grammar puts in, and it goes in under two
+ * conditions together: the simile begins lower-case, so it is a clause and not
+ * a sentence, and the line it joins ends on a full stop. A question or an
+ * exclamation is not a clause anybody can hang another clause off — "Where were
+ * you?, flat as a nickel on a bar" — so those keep their mark and the simile
+ * starts a sentence of its own.
  */
 export function attachSimile(host: string, simile: string): string {
   const s = simile.trim();
   if (s.length === 0) return host;
-  if (OPENS_AS_CLAUSE.test(s)) return tidyPunctuation(`${appendMark(host, ',')} ${s}`);
-  if (/^[a-z]/.test(s)) return tidyPunctuation(`${appendMark(host, ',')} ${s}`);
-  return joinSentences(host, s);
+  const clause = OPENS_AS_CLAUSE.test(s) || /^[a-z]/.test(s);
+  if (!clause) return joinSentences(host, s);
+  if (endsInPeriod(host) || !endsSentence(host)) {
+    return tidyPunctuation(`${appendMark(host, ',')} ${s}`);
+  }
+  return joinSentences(host, capitalizeFirst(s));
 }
 
 /**
