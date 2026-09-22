@@ -24,7 +24,6 @@ import {
   scoreMotifs,
   type MotifContext,
 } from './motifs.js';
-import { MISSING_OPTIONAL_DECKS, OPTIONAL_DECKS } from './optional-decks.js';
 import schemaJson from '../../../content/deck-schema.json';
 import similesJson from '../../../content/decks/similes.json';
 import placesJson from '../../../content/decks/places.json';
@@ -40,6 +39,9 @@ import transitionsJson from '../../../content/decks/transitions.json';
 import ambientJson from '../../../content/decks/ambient.json';
 import asidesJson from '../../../content/decks/asides.json';
 import endingsJson from '../../../content/decks/endings.json';
+import officeJson from '../../../content/decks/office.json';
+import entrancesJson from '../../../content/decks/entrances.json';
+import hiringJson from '../../../content/decks/hiring.json';
 
 export type DeckName =
   | 'similes'
@@ -151,13 +153,14 @@ const RAW: Record<DeckName, unknown> = {
   ambient: ambientJson,
   asides: asidesJson,
   endings: endingsJson,
-  office: OPTIONAL_DECKS.office,
-  entrances: OPTIONAL_DECKS.entrances,
-  hiring: OPTIONAL_DECKS.hiring,
+  office: officeJson,
+  entrances: entrancesJson,
+  hiring: hiringJson,
 };
 
 /** Which of §B.4's three decks were not on disk. The opening says so. */
-export const MISSING_DECKS: readonly DeckName[] = MISSING_OPTIONAL_DECKS;
+/** The three M4b decks are on disk now and imported like the rest; nothing is missing. */
+export const MISSING_DECKS: readonly DeckName[] = [];
 
 export const DECK_NAMES = Object.keys(RAW) as DeckName[];
 
