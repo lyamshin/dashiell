@@ -101,8 +101,12 @@ describe('the record', () => {
         for (const person of book.people) for (const r of person.records) written.set(r.clueId, r.text);
         for (const place of book.places) for (const r of place.clues) written.set(r.clueId, r.text);
         for (const id of state.found) {
+          // §A.3: the notebook is a record, so it keeps the clock faces.
+          // `textRecord` is the clue as the generator wrote it; `text` is the
+          // same sentence with its hours spoken, which is the page's form.
+          const clue = v.findableById.get(id);
           expect(written.get(id), `${id} is not in the notebook`).toBe(
-            v.findableById.get(id)?.text,
+            clue?.textRecord ?? clue?.text,
           );
         }
         // And it is nearly everything there is.
@@ -365,6 +369,9 @@ describe('portraits', () => {
     for (const person of v.kase.people) {
       const portrait = state.cast.portraits[person.id];
       expect(portrait, person.surname).toBeDefined();
+      // Hone 1 §B.4: a fitting pair replaces the weave. This test is about the
+      // weave, so it is measured with the pair set aside.
+      if (portrait?.pair) delete portrait.pair;
       const weave = (times: number, nth: number): string =>
         describePerson({
           cast: state.cast,
@@ -458,6 +465,8 @@ describe('portraits', () => {
     for (const person of v.kase.people) {
       const portrait = state.cast.portraits[person.id];
       if (!portrait || portrait.habit.length === 0) continue;
+      // Hone 1 §B.4: set the pair aside; the weave is what is under test.
+      if (portrait.pair) delete portrait.pair;
       for (let times = 0; times < 5; times++) {
         for (let nth = 0; nth < 5; nth++) {
           const text = describePerson({
@@ -667,8 +676,11 @@ describe('the utterance deck', () => {
             // M5 adds two: `plain-register` is a fact kind the utterance deck
             // was never written for — every robbery's and every
             // disappearance's — said plainly instead, and `no-deck-kind` is
-            // `ask-self`, which `dashiell-lines` has no cards for yet.
-            /^(no-utterance|no-fact|too-many-facts|deck-exhausted|missing-deck|no-business|no-client-clue|plain-register|no-deck-kind):/,
+            // `ask-self`, which `dashiell-lines` has no cards for yet. Hone 1
+            // adds two more: `missing-pair` is a person the portrait-pairs
+            // deck has nothing for, and `nameless-follow-up` is a page with
+            // nothing on it a follow-up could name.
+            /^(no-utterance|no-fact|too-many-facts|deck-exhausted|missing-deck|no-business|no-client-clue|plain-register|no-deck-kind|missing-pair|nameless-follow-up):/,
           );
           const id = /\(([^)]+)\)/.exec(gap)?.[1];
           if (id) expect(v.findableById.get(id)).toBeDefined();

@@ -194,7 +194,18 @@ export interface Clue {
   kind: ClueKind;
   source: ClueSource;
   establishes: Fact[];
+  /**
+   * What the clue says on a page: the hours in it spoken the way people say
+   * hours (§A.3). This is what the exchange quotes and what a find card
+   * carries.
+   */
   text: string;
+  /**
+   * The same sentence with the clock faces left in, for the surfaces that are
+   * records rather than prose: the truth sheet and the notebook. Set on every
+   * clue; a clue with no hour in it reads the same either way.
+   */
+  textRecord?: string;
   /** Where the clue is obtained: the place, or where the person is found. */
   place: Id;
   /** Other findable clues this one points at. Empty in the candidate pool. */
@@ -326,6 +337,13 @@ export interface Discovery {
    * briefing is the only thing that renders it, and only the client speaks.
    */
   foundTextFirst?: string;
+  /**
+   * §A.1. The question Dashiell asks that this sentence, and only this
+   * sentence, answers — "Where did you find {V}, and when?" Written by the
+   * same hand as `foundTextFirst` and set only when the client is the finder,
+   * because only a sentence somebody says can be asked for.
+   */
+  foundPrompt?: string;
   precinct: Precinct;
 }
 
@@ -337,6 +355,8 @@ export interface LastSeen {
   text: string;
   /** The same, in the client's mouth, when the client is the one who saw them. */
   textFirst?: string;
+  /** §A.1. The question `textFirst` answers, and nothing else does. */
+  prompt?: string;
 }
 
 export interface VictimBio extends Dossier {
@@ -364,6 +384,12 @@ export interface ClientBrief {
   purposeText: string;
   /** The same sentence in the client's own mouth, for the briefing. */
   purposeTextFirst: string;
+  /**
+   * §A.1. The question `purposeTextFirst` answers: "Why come to me instead of
+   * the precinct?" One of the three the briefing is allowed to ask, drawn per
+   * purpose so forty seeds do not ask it the same way.
+   */
+  purposePrompt: string;
   /** What it costs them to hire somebody, in one plain sentence. */
   cost: string;
   /** The same, in the client's own mouth. */
@@ -386,6 +412,8 @@ export interface ClientBrief {
    * talking about somebody else.
    */
   points: { personId: Id; reason: string; reasonSpoken: string; honest: boolean };
+  /** §A.1. The question the pointer answers: "Who do you like for it?" */
+  pointerPrompt: string;
   /** The client's account of their own night, from their claimed schedule. */
   ownEvening: string[];
 }
@@ -531,6 +559,21 @@ export interface BriefingLine {
   text: string;
   spoken: string | null;
   speaker: 'client' | 'narration';
+  /**
+   * §A.1. The question Dashiell would ask that this sentence answers, and that
+   * no other sentence of this briefing answers. Two or three of a briefing's
+   * sentences carry one — the discovery, the purpose, the pointer — and the
+   * rest run on as the client's own turn. A question that could precede any
+   * answer is a prod, not a prompt, and is left undefined.
+   */
+  prompt?: string;
+  /**
+   * §A.2. The spoken form split where a person would breathe: one to three
+   * short sentences carrying the same facts, at least one of them six words or
+   * fewer where the sense allows. The page uses it when its short-sentence
+   * share is under target; correspondence is checked on the joined form.
+   */
+  breath?: string[];
 }
 
 /** "Salvatore Vitale" -> "Vitale". Names are always given-then-family. */
@@ -562,6 +605,43 @@ export function clock(tick: Tick): string {
   const m = minutes % 60;
   const h12 = h24 > 12 ? h24 - 12 : h24;
   return `${h12}:${m === 0 ? '00' : String(m)} PM`;
+}
+
+/** Every clock string the evening can print, with the tick it means. */
+const TICK_OF_CLOCK: Map<string, Tick> = new Map(
+  Array.from({ length: TICKS }, (_, t) => [clock(t as Tick), t as Tick]),
+);
+
+/** "9:30 PM" back to the tick it is, or null when it is not one of ours. */
+export function tickOfClock(text: string): Tick | null {
+  return TICK_OF_CLOCK.get(text.trim()) ?? null;
+}
+
+const CLOCK_IN_TEXT = /\b\d{1,2}:\d{2}\s(?:AM|PM)\b/g;
+
+/**
+ * A sentence with the clock faces taken out of it (Hone 1 §A.3).
+ *
+ * Rule 9 of the golden: time is a fact of the world, never a clock reading as
+ * a mechanic. "The coroner puts it between 9:30 PM and 11:00 PM" is the
+ * generator's schedule table showing through the prose; "between half past
+ * nine and eleven" is the same fact said by somebody who was in the room.
+ *
+ * Every hour the evening can print is one of twelve, so the swap is a lookup
+ * and never a parse. What is left is smoothed at the one place English does it
+ * anyway: the far end of a range drops its "o'clock", because "between half
+ * past nine and eleven o'clock" is a phrase nobody says. The correspondence
+ * checker reads both forms back, the bare hour in a range included.
+ */
+export function speakTimes(text: string): string {
+  const swapped = text.replace(CLOCK_IN_TEXT, (m) => {
+    const tick = tickOfClock(m);
+    return tick === null ? m : spokenClock(tick);
+  });
+  return swapped.replace(
+    /\b(between|from) (half past (?:six|seven|eight|nine|ten|eleven)|(?:six|seven|eight|nine|ten|eleven) o’clock) (and|to) (six|seven|eight|nine|ten|eleven) o’clock\b/g,
+    '$1 $2 $3 $4',
+  );
 }
 
 /**

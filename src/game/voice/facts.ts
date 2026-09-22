@@ -22,7 +22,7 @@
  */
 
 import type { Clue, Fact, Id, Person, Tick } from '../../gen/types.js';
-import { clock } from '../../gen/types.js';
+import { spokenClock } from '../../gen/types.js';
 import { MOTIVE_POOL } from '../derive.js';
 import type { CaseView } from '../derive.js';
 
@@ -50,8 +50,13 @@ export interface Beat {
   slots: Record<string, string | undefined>;
 }
 
+/**
+ * §A.3. An hour in a slot goes into an utterance card, and an utterance card
+ * is somebody talking on a page. Nobody says "9:30 PM" out loud, so the spans
+ * and the hours here are spoken; the notebook and the sheet keep the faces.
+ */
 function tickSpan(from: Tick, to: Tick): string {
-  return from === to ? clock(from) : `${clock(from)} to ${clock(to)}`;
+  return from === to ? spokenClock(from) : `${spokenClock(from)} to ${spokenClock(to)}`;
 }
 
 /**
@@ -102,7 +107,7 @@ export function beatsOf(view: CaseView, clue: Clue): Beat[] {
         out.push({
           kind: 'noiseAt',
           subjectId: null,
-          slots: { place: placeName(f.place), time: clock(f.tick) },
+          slots: { place: placeName(f.place), time: spokenClock(f.tick) },
         });
         break;
       case 'timeOfDeath': {
@@ -114,7 +119,7 @@ export function beatsOf(view: CaseView, clue: Clue): Beat[] {
           slots: {
             subject: victim.surname,
             name: victim.surname,
-            window: `between ${clock(a)} and ${clock(b)}`,
+            window: `between ${spokenClock(a)} and ${spokenClock(b)}`,
           },
         });
         break;
@@ -136,7 +141,7 @@ export function beatsOf(view: CaseView, clue: Clue): Beat[] {
         out.push({
           kind: f.kind,
           subjectId: victim.id,
-          slots: { subject: victim.surname, name: victim.surname, time: clock(f.tick) },
+          slots: { subject: victim.surname, name: victim.surname, time: spokenClock(f.tick) },
         });
         break;
       case 'objectMissing':

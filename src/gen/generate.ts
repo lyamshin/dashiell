@@ -1,6 +1,7 @@
 import {
   SLACK,
   TICKS,
+  speakTimes,
   type Act,
   type Anchor,
   type Case,
@@ -393,6 +394,17 @@ function run(
       // folded into the pool so the selector treats it like anything else.
       const signature = trope.signature(tropeCtx);
       candidates.clues.push(...signature.clues);
+
+      /*
+       * §A.3. Every clue comes out twice, like every briefing line: the record
+       * keeps the clock face and the page gets the hour as somebody says it.
+       * Done here, before the selection copies anything, so both forms travel
+       * together wherever a clue goes.
+       */
+      for (const clue of candidates.clues) {
+        if (clue.textRecord === undefined) clue.textRecord = clue.text;
+        clue.text = speakTimes(clue.textRecord);
+      }
 
       const selection = selectFindable({
         rng,

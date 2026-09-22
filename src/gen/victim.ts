@@ -28,6 +28,34 @@ export const PRECINCT_TEXT: Record<Precinct, string> = {
   'closed-it-in-an-hour': 'The precinct had somebody for it inside the hour.',
 };
 
+/**
+ * §A.1 — the question the discovery sentence answers.
+ *
+ * Three per shape, so forty seeds do not open the same way. Every one of them
+ * asks for the two things the sentence carries and nothing else carries: where
+ * the client was standing when they found it, and at what hour. "And then?"
+ * would do for any answer in the briefing; none of these would.
+ *
+ * `{V}` is the victim's surname, `{L}` the place, `{thing}` what was taken.
+ */
+export const DISCOVERY_PROMPTS: Record<'murder' | 'robbery' | 'missing', string[]> = {
+  murder: [
+    'Where did you find {V}, and when?',
+    'Who found {V}?',
+    'What time did you find {V} at {L}?',
+  ],
+  robbery: [
+    'When did you find the door shut?',
+    'Who found it gone, and at what hour?',
+    'What time was it when you got to {L}?',
+  ],
+  missing: [
+    'When did you last see {V}?',
+    'Where did you see {V} last, and at what hour?',
+    'Who saw {V} last?',
+  ],
+};
+
 const PRECINCT_BY_TROPE: Record<Id, Precinct[]> = {
   'body-at-scene': ['came-and-went', 'took-a-statement'],
   'body-moved': ['called-it-a-fall'],
@@ -73,6 +101,11 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
     };
     if (byId === cast.client.id) {
       bio.lastSeen.textFirst = `I saw ${V} at ${PL(build.victimSeenPlace)} at ${spokenClock(build.victimSeenAt)}, and nobody has seen ${V} since.`;
+      bio.lastSeen.prompt = promptFor(rng, 'missing', {
+        V,
+        L: PL(build.victimSeenPlace),
+        thing: 'it',
+      });
     }
     return bio;
   }
@@ -97,7 +130,37 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
         act.type === 'robbery'
           ? `I found the door at ${PL(discovery.placeId)} shut and ${taken ?? 'the box'} gone, at ${spokenClock(discovery.tick)}.`
           : `I found ${V} at ${PL(discovery.placeId)} at ${spokenClock(discovery.tick)}.`;
+      bio.discovery.foundPrompt = promptFor(
+        rng,
+        act.type === 'robbery' ? 'robbery' : 'murder',
+        { V, L: PL(discovery.placeId), thing: taken ?? 'the box' },
+      );
     }
   }
   return bio;
+}
+
+/** One of the three shapes, filled. A shape with an empty slot is skipped. */
+function promptFor(
+  rng: Rng,
+  shape: 'murder' | 'robbery' | 'missing',
+  slots: Record<string, string>,
+): string {
+  const pool = DISCOVERY_PROMPTS[shape];
+  const start = rng.int(pool.length);
+  for (let i = 0; i < pool.length; i++) {
+    const template = pool[(start + i) % pool.length] as string;
+    let text = template;
+    let ok = true;
+    for (const name of new Set(template.match(/\{(\w+)\}/g) ?? [])) {
+      const value = slots[name.slice(1, -1)];
+      if (value === undefined || value.length === 0) {
+        ok = false;
+        break;
+      }
+      text = text.split(name).join(value);
+    }
+    if (ok) return text;
+  }
+  return '';
 }

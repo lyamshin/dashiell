@@ -58,7 +58,9 @@ describe('the opening spread', () => {
       ...book.people.flatMap((p) => p.records.map((c) => [c.clueId, c.text] as const)),
     ]);
     for (const id of view.kase.starting) {
-      expect(written.get(id)).toBe(view.findableById.get(id)?.text);
+      // The notebook is a record and keeps the clock faces (§A.3).
+      const clue = view.findableById.get(id);
+      expect(written.get(id)).toBe(clue?.textRecord ?? clue?.text);
     }
   });
 

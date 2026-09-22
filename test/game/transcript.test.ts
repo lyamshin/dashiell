@@ -77,7 +77,10 @@ describe('npm run read', () => {
       const run = playWandering(view, seed, 'Dashiell');
       const notebook = renderNotebookText(view, run.state).replace(/\s+/g, ' ');
       for (const id of run.state.found) {
-        const text = view.findableById.get(id)?.text.replace(/\s+/g, ' ') as string;
+        // The printed notebook is the record's form: clock faces, not hours
+        // as anybody says them (§A.3).
+        const clue = view.findableById.get(id);
+        const text = (clue?.textRecord ?? clue?.text ?? '').replace(/\s+/g, ' ');
         expect(notebook.includes(text), `${id} missing from the printed notebook`).toBe(true);
       }
     }

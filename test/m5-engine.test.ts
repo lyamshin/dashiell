@@ -145,10 +145,23 @@ describe('the briefing page', () => {
       const text = textOf(page).replace(/\s+/g, ' ');
       const familiar = knowsHim(state.cast.roll, view.client.id);
       // The client's sentences reach the page in the client's own words, so
-      // that is the form to look for; Dashiell's reach it as written.
+      // that is the form to look for; Dashiell's reach it as written. §A.2
+      // gives every spoken sentence a third form — the same content split
+      // where a person breathes — and the page uses it when it is short of
+      // short sentences, so either form counts as the sentence having arrived.
+      // §B.1 also puts "…," she said. "…" through the middle of one turn a
+      // page, so a breath that arrived may arrive a piece at a time; a piece
+      // whose full stop became a comma is the same words either way.
+      const arrived = (line: (typeof view.kase.briefing)[number]): boolean => {
+        const said = line.spoken ?? line.text;
+        if (text.includes(bare(said))) return true;
+        const breath = line.breath ?? [];
+        if (breath.length < 2) return false;
+        return text.includes(bare(breath.join(' '))) || breath.every((p) => text.includes(bare(p)));
+      };
       const missing = view.kase.briefing
-        .map((line, i) => ({ said: line.spoken ?? line.text, i }))
-        .filter(({ said, i }) => !(familiar && i === 0) && !text.includes(bare(said)))
+        .map((line, i) => ({ said: line.spoken ?? line.text, line, i }))
+        .filter(({ line, i }) => !(familiar && i === 0) && !arrived(line))
         .map(({ said }) => said);
       expect(missing, `seed ${seed}`).toEqual([]);
     }
@@ -465,7 +478,10 @@ describe('robbery and missing on the page', () => {
         const owner = view.victim.surname;
         const state = playOracle(view).state;
         for (const page of state.log) {
-          for (const sentence of textOf(page).split(/(?<=[.!?])\s+/)) {
+          // A closing quotation mark after the stop is still the end of a
+          // sentence: without this the splitter runs a line of dialogue into
+          // the narration under it and reads the two as one.
+          for (const sentence of textOf(page).split(/(?<=[.!?][”’"']?)\s+/)) {
             if (!sentence.includes(owner)) continue;
             if (DEATH.test(sentence)) offenders.push(`${tropeId} ${seed} p${page.n}: ${sentence}`);
           }

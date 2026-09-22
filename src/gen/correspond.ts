@@ -81,6 +81,14 @@ const TIME_RE = /\b\d{1,2}:\d{2}\s(?:AM|PM)\b/g;
  */
 const SPOKEN_TIME_RE =
   /\b(?:half past (six|seven|eight|nine|ten|eleven)|(six|seven|eight|nine|ten|eleven) o['’]clock)\b/gi;
+/**
+ * The far end of a spoken range, which drops its "o'clock" because nobody
+ * says "between half past nine and eleven o'clock" (§A.3). The hour is still
+ * a claim about the evening, so it is still read back.
+ */
+const RANGE_END_RE =
+  /\b(?:between|from) (?:half past (?:six|seven|eight|nine|ten|eleven)|(?:six|seven|eight|nine|ten|eleven) o['’]clock) (?:and|to) (six|seven|eight|nine|ten|eleven)\b(?! o['’]clock)/gi;
+
 const SPOKEN_HOUR_TICK: Record<string, Tick> = {
   six: 0,
   seven: 2,
@@ -107,6 +115,11 @@ export function spokenTimes(text: string): string[] {
     const base = word === undefined ? undefined : SPOKEN_HOUR_TICK[word];
     if (base === undefined) continue;
     out.push(clock((halfPast === undefined ? base : base + 1) as Tick));
+  }
+  for (const m of text.matchAll(RANGE_END_RE)) {
+    const word = m[1]?.toLowerCase();
+    const base = word === undefined ? undefined : SPOKEN_HOUR_TICK[word];
+    if (base !== undefined) out.push(clock(base));
   }
   return out;
 }
@@ -349,13 +362,26 @@ export function checkCase(c: Case): Violation[] {
   };
 
   for (const clue of c.candidates) {
+    // §A.3: a clue is written twice, like a briefing line. The record keeps
+    // the clock face; the page says the hour out loud. Both are rendered
+    // somewhere, so both are checked, and the spoken one is read as speech.
     out.push(
       ...check(c, clue.text, {
         where: `clue ${clue.id}`,
         facts: clue.establishes,
         allowTicks: secretTicksOf(clue.aboutSecretOf),
+        spoken: true,
       }),
     );
+    if (clue.textRecord !== undefined && clue.textRecord !== clue.text) {
+      out.push(
+        ...check(c, clue.textRecord, {
+          where: `clue ${clue.id} record`,
+          facts: clue.establishes,
+          allowTicks: secretTicksOf(clue.aboutSecretOf),
+        }),
+      );
+    }
   }
 
   /*
@@ -375,6 +401,27 @@ export function checkCase(c: Case): Violation[] {
       out.push(
         ...check(c, line.spoken, {
           where: `briefing ${i + 1} spoken`,
+          allowTicks: briefingTicks,
+          spoken: true,
+        }),
+      );
+    }
+    // §A.1: a prompt is a sentence somebody says, so it is checked like one.
+    if (line.prompt !== undefined) {
+      out.push(
+        ...check(c, line.prompt, {
+          where: `briefing ${i + 1} prompt`,
+          allowTicks: briefingTicks,
+          spoken: true,
+        }),
+      );
+    }
+    // §A.2: the split form is checked on the joined text, which must carry
+    // every name, place and hour the unsplit sentence carried.
+    if (line.breath !== undefined && line.breath.length > 0) {
+      out.push(
+        ...check(c, line.breath.join(' '), {
+          where: `briefing ${i + 1} breath`,
           allowTicks: briefingTicks,
           spoken: true,
         }),

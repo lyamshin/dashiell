@@ -12,7 +12,8 @@ import type { Case, Id, Person } from '../../gen/types.js';
 import { ARCHETYPE_BY_ID, VICTIM_ARCHETYPES } from '../../gen/data/cast.js';
 import { NAME_POOLS } from '../../gen/data/names.js';
 import weightsJson from '../../../content/temper-weights.json';
-import { DECKS, motifsOf, tagIs, type Card } from './cards.js';
+import { DECKS, fill, motifsOf, tagIs, type Card, type Slots } from './cards.js';
+import { tidyPunctuation } from './prose.js';
 import { contradictsWeather } from './motifs.js';
 import { rollDashiell, type DashiellRoll } from './roll.js';
 
@@ -66,6 +67,15 @@ export interface Portrait {
   cardIds: string[];
   /** The motifs of the three cards, for the page's motif set (§A.2). */
   motifs: string[];
+  /**
+   * Hone 1 §B.4 — the pair, when one fits this person.
+   *
+   * A detail with the reason it is seen, in the person's own pronouns, and the
+   * phrase a later page calls them by. Absent when the deck has nothing for
+   * their tags, or when the deck is not on disk at all, and then the three
+   * components below are what the page has. The page logs the gap either way.
+   */
+  pair?: { text: string; recall: string; cardId: string };
 }
 
 export interface CastSheet {
@@ -167,12 +177,48 @@ export function rollCast(
       for (const m of motifsOf(pick)) if (!motifs.includes(m)) motifs.push(m);
       parts[component] = pick.text;
     }
+    /*
+     * §B.4. One pair card in place of the list, drawn on the same tags and
+     * against the same burn pile. The office cards are written for somebody
+     * sitting down across a desk, so the client prefers them and everybody
+     * else takes what is left; a person the deck has nothing for keeps the
+     * three components, which is what the fallback is for.
+     */
+    const pairDeck = DECKS['portrait-pairs'];
+    const wantsOffice = person.isClient === true;
+    const pairFits = (c: Card): boolean =>
+      (gender === 'any' || tagIs('portrait-pairs', c, 'gender', gender)) &&
+      !contradictsWeather(motifsOf(c), c, weather);
+    const pairLadder: ((c: Card) => boolean)[] = [
+      (c) =>
+        pairFits(c) &&
+        tagIs('portrait-pairs', c, 'class', klass) &&
+        tagIs('portrait-pairs', c, 'setting', wantsOffice ? 'office' : 'anywhere'),
+      (c) => pairFits(c) && tagIs('portrait-pairs', c, 'class', klass),
+      pairFits,
+    ];
+    let pair: Portrait['pair'];
+    for (const rung of pairLadder) {
+      const fits = pairDeck.filter(rung);
+      const card = rng.shuffle(fits.filter((c) => !burned.has(c.id)))[0] ?? rng.shuffle(fits)[0];
+      if (!card) continue;
+      const text = fill(card, pronounSlots(person));
+      const recall = typeof card.recall === 'string' ? card.recall.trim() : '';
+      if (text === null || recall.length === 0) continue;
+      burned.add(card.id);
+      cardIds.push(card.id);
+      for (const m of motifsOf(card)) if (!motifs.includes(m)) motifs.push(m);
+      pair = { text: tidyPunctuation(text), recall, cardId: card.id };
+      break;
+    }
+
     portraits[person.id] = {
       trait: fragment(parts.trait ?? ''),
       habit: fragment(parts.habit ?? ''),
       clothing: fragment(parts.clothing ?? ''),
       cardIds,
       motifs,
+      ...(pair === undefined ? {} : { pair }),
     };
     // Which of habit and clothing goes beside the trait on the first meeting,
     // fixed per person so the callback (§A.6) can repeat it exactly once.
@@ -180,6 +226,25 @@ export function rollCast(
   }
 
   return { roll, temper, portraits, order };
+}
+
+/**
+ * The pronouns a portrait-pair card is written with (§B.4).
+ *
+ * The cards are written for one person at a time — "She kept her left hand in
+ * the pocket" — so the deck writes `{He}` `{he}` `{his}` `{him}` and the
+ * engine fills them from the gender the name already settled. The capitalised
+ * form is the writer's choice of where a sentence starts.
+ */
+export function pronounSlots(person: Person): Slots {
+  const female = genderHintOf(person) === 'f';
+  return {
+    He: female ? 'She' : 'He',
+    he: female ? 'she' : 'he',
+    his: female ? 'her' : 'his',
+    him: female ? 'her' : 'him',
+    name: person.surname,
+  };
 }
 
 /** A stable small number off an id, so a choice can be made without state. */
@@ -403,6 +468,20 @@ export function describePerson(input: WeaveInput): string {
   const { cast, personId, surname, times, pronoun } = input;
   const portrait = cast.portraits[personId];
   if (!portrait) return surname;
+
+  /*
+   * §B.4. Where a pair fits this person, it is the portrait: one detail with
+   * the reason it is seen, followed for two or three sentences, in place of
+   * the trait-and-one-more list. Every meeting after the first calls them by
+   * the phrase the pair left behind — "the woman with the broken finger" —
+   * which is the callback the three components were doing by repetition and
+   * is now doing with the same noun the reader already has.
+   */
+  const pair = portrait.pair;
+  if (pair) {
+    if (times === 0) return pair.text;
+    return `${surname}, the ${pronoun === 'she' ? 'woman' : 'man'} with ${recallClause(pair.recall)}.`;
+  }
   const has = { trait: portrait.trait, habit: portrait.habit, clothing: portrait.clothing };
   const parts = (['trait', 'habit', 'clothing'] as const).filter((k) => has[k].length > 0);
   if (parts.length === 0) return surname;
@@ -462,6 +541,15 @@ export function describePerson(input: WeaveInput): string {
     // inside a past-tense sentence.
     .split('{business}')
     .join(business.length > 0 ? ` ${sentence(business)}` : '');
+}
+
+/**
+ * A recall phrase as it goes after "with": the deck writes "the broken
+ * finger" and the clause wants it whole. A phrase already written as a
+ * possessive or a bare noun is left exactly as the writer wrote it.
+ */
+export function recallClause(recall: string): string {
+  return recall.trim().replace(/[.!?]+$/, '');
 }
 
 /** He or she, for the weaving templates. */

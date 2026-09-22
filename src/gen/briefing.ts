@@ -1,4 +1,5 @@
-import type { Act, BriefingLine, ClientBrief, Id, Person, VictimBio } from './types.js';
+import { speakTimes, type Act, type BriefingLine, type ClientBrief, type Id, type Person, type VictimBio } from './types.js';
+import { breathe } from './breath.js';
 import { PRECINCT_TEXT } from './victim.js';
 import type { Cast } from './cast.js';
 
@@ -45,9 +46,22 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
   const seen = (text: string): void => {
     out.push({ text, spoken: null, speaker: 'narration' });
   };
-  /** The client's, with the words they use for it. */
-  const said = (text: string, spoken?: string): void => {
-    out.push({ text, spoken: spoken ?? asClient(text, client), speaker: 'client' });
+  /**
+   * The client's, with the words they use for it.
+   *
+   * §A.3: the spoken form never reads a clock face aloud, so every hour in it
+   * is swapped for the hour as somebody says it. The record keeps the clock.
+   * §A.1: a sentence may carry the question it answers, and at most three of
+   * them do.
+   */
+  const said = (text: string, spoken?: string, prompt?: string): void => {
+    const voice = speakTimes(spoken ?? asClient(text, client));
+    out.push({
+      text,
+      spoken: voice,
+      speaker: 'client',
+      ...(prompt !== undefined && prompt.length > 0 ? { prompt } : {}),
+    });
   };
 
   /* 1. Who came in. Layer 0 and the profession detail. -------------------- */
@@ -64,10 +78,10 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
   said(bio.standing);
   for (const line of act.givens.text.slice(0, GIVENS_IN_BRIEFING)) said(line);
   if (bio.discovery) {
-    said(bio.discovery.foundText, bio.discovery.foundTextFirst);
+    said(bio.discovery.foundText, bio.discovery.foundTextFirst, bio.discovery.foundPrompt);
     said(PRECINCT_TEXT[bio.discovery.precinct]);
   } else if (bio.lastSeen) {
-    said(bio.lastSeen.text, bio.lastSeen.textFirst);
+    said(bio.lastSeen.text, bio.lastSeen.textFirst, bio.lastSeen.prompt);
   }
 
   /* 3. How the client stands to the victim, with the specific. ------------ */
@@ -77,7 +91,7 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
   }
 
   /* 4. Why they are hiring, and what it costs them. ----------------------- */
-  said(brief.purposeText, brief.purposeTextFirst);
+  said(brief.purposeText, brief.purposeTextFirst, brief.purposePrompt);
   said(brief.cost, brief.costFirst);
 
   /* 5. The pointer. ------------------------------------------------------- */
@@ -85,15 +99,26 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
   // The record says whom the client named; the client, in the room, just says
   // the name. The pointer is the job and it is the shortest sentence on the
   // page for exactly that reason.
-  said(`${client.surname} wants us to start with ${pointed.surname}.`, `Start with ${pointed.surname}.`);
+  said(
+    `${client.surname} wants us to start with ${pointed.surname}.`,
+    `Start with ${pointed.surname}.`,
+    brief.pointerPrompt,
+  );
   said(`${brief.points.reason}.`, `${brief.points.reasonSpoken}.`);
 
   return out
-    .map((line) => ({
-      text: tidy(line.text),
-      spoken: line.spoken === null ? null : tidy(line.spoken),
-      speaker: line.speaker,
-    }))
+    .map((line) => {
+      const spoken = line.spoken === null ? null : tidy(line.spoken);
+      return {
+        text: tidy(line.text),
+        spoken,
+        speaker: line.speaker,
+        ...(line.prompt === undefined ? {} : { prompt: tidy(line.prompt) }),
+        // §A.2: the third form. Every client sentence knows where it breathes,
+        // and the page decides whether it needs it.
+        ...(spoken === null ? {} : { breath: breathe(spoken) }),
+      };
+    })
     .filter((line) => line.text.length > 0);
 }
 

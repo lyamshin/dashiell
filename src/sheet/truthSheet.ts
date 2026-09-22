@@ -497,7 +497,7 @@ function clueLine(c: Case, clue: Clue): string {
     clue.source.type === 'person'
       ? `${c.people.find((p) => p.id === (clue.source as { personId: Id }).personId)?.surname ?? '?'} on ${(clue.source as { topic: string }).topic}`
       : `the place itself`;
-  return `- **${clue.id}** [${clue.role}${branch}${start}] (${clue.kind}; ${src})${leads}\n  - ${clue.text}\n  - _establishes: ${facts}_`;
+  return `- **${clue.id}** [${clue.role}${branch}${start}] (${clue.kind}; ${src})${leads}\n  - ${clue.textRecord ?? clue.text}\n  - _establishes: ${facts}_`;
 }
 
 function summarizeFacts(c: Case, facts: Fact[]): string {

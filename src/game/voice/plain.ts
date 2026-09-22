@@ -27,7 +27,7 @@
  */
 
 import type { Clue, Id, Person, Tick } from '../../gen/types.js';
-import { clock } from '../../gen/types.js';
+import { speakTimes, spokenClock } from '../../gen/types.js';
 import type { DossierFact } from '../../gen/types.js';
 import { Rng } from '../../gen/rng.js';
 import type { CaseView } from '../derive.js';
@@ -260,7 +260,33 @@ export const ASK_FOLLOW: string[] = [
   'Go back to {place}.',
 ];
 
-export type BriefingAsk = 'discovery' | 'tie' | 'purpose' | 'pointer' | 'follow';
+/**
+ * §B.2 — a follow-up that names what it is asking about.
+ *
+ * "And then?" can precede any answer, which is what makes it a prod rather
+ * than a question: the reader hears the engine asking for the next card. A
+ * follow-up on a page names the subject, the place or the hour it wants more
+ * of, and the page has all three. Every shape here carries a slot, so a shape
+ * whose slot the page cannot fill is skipped rather than emptied.
+ */
+export const ASK_FOLLOW_NAMED: string[] = [
+  'Go on about {victim}.',
+  'What else about {victim}?',
+  'And {victim}?',
+  'And {place}?',
+  'What else at {place}?',
+  'Go back to {place}.',
+  'What else did you see at {place}?',
+  'Who else was at {place}?',
+  'What about {victim} that night?',
+  'And after {time}?',
+  'Where were you at {time}?',
+  'What was {victim} doing at {place}?',
+  'Say the rest about {place}.',
+  'And {victim} at {place}?',
+];
+
+export type BriefingAsk = 'discovery' | 'tie' | 'purpose' | 'pointer' | 'follow' | 'follow-named';
 
 const ASKS: Record<BriefingAsk, string[]> = {
   discovery: ASK_DISCOVERY,
@@ -268,7 +294,33 @@ const ASKS: Record<BriefingAsk, string[]> = {
   purpose: ASK_PURPOSE,
   pointer: ASK_POINTER,
   follow: ASK_FOLLOW,
+  'follow-named': ASK_FOLLOW_NAMED,
 };
+
+/**
+ * The client going on talking, when nobody has asked her anything.
+ *
+ * §B.1 took the prods out of the briefing: a turn that runs to two paragraphs
+ * is broken by a beat of narration rather than by "And then?", because she was
+ * not interrupted and the page should not pretend she was.
+ */
+/*
+ * Every one of them opens on the pronoun and runs to five words or fewer.
+ * Both are load-bearing: the paragraph after a paragraph of her speech has to
+ * carry a reference back into it, which is what §7's cohesion measures, and
+ * the page is short of short sentences, which is what §5's rhythm measures.
+ * A beat that says "She said the rest of it to the desk" does neither.
+ */
+export const CLIENT_CONTINUES: string[] = [
+  '{Pronoun} went on.',
+  '{Pronoun} kept going.',
+  '{Pronoun} was not finished.',
+  '{Pronoun} had more of it.',
+  '{Pronoun} went straight on.',
+  '{Pronoun} did not stop there.',
+  '{Pronoun} was not done.',
+  '{Pronoun} kept talking.',
+];
 
 /**
  * The detective registering a fact he has just been handed, without comment.
@@ -1071,6 +1123,15 @@ export function beatTicks(view: CaseView, clue: Clue): Tick[] {
  * - **A disappearance** (§7): the last place anybody saw them.
  */
 export function openingNote(view: CaseView, placeId: Id): string {
+  return speakTimes(openingNoteRecord(view, placeId));
+}
+
+/**
+ * The same note with the clock faces still in it. §A.3 speaks the hours on
+ * their way to the page; a given is written for the record and reaches the
+ * page through here.
+ */
+function openingNoteRecord(view: CaseView, placeId: Id): string {
   const kase = view.kase;
   const act = kase.act;
   const place = view.placeById.get(placeId);
@@ -1108,7 +1169,7 @@ function victimAddressName(view: CaseView): string {
   return 'an address of their own';
 }
 
-/** "9:00 PM", for a plain sentence that has to name an hour. */
+/** "nine o'clock", for a plain sentence that has to name an hour (§A.3). */
 export function at(tick: Tick): string {
-  return clock(tick);
+  return spokenClock(tick);
 }

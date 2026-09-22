@@ -397,3 +397,14 @@ export const GUEST_POSTS: Record<string, string[]> = {
   semi: ['at the far end', 'near the door'],
   public: ['across the way', 'on the corner of it'],
 };
+
+/**
+ * The morning the run ends in, when the budget is gone.
+ *
+ * Written here rather than inline in the reducer because the correspondence
+ * checker reads this file: "Eight o'clock" is the morning after, not an hour
+ * of the evening, and the checker has to be able to tell the difference by
+ * seeing the phrase a writer wrote (§A.3).
+ */
+export const DA_AT_THE_DOOR =
+  'Eight o\u2019clock. Somebody from the DA\u2019s office is at the door with a folder and a pen, and the folder is mine whether I write in it or not.';

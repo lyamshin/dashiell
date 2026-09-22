@@ -42,6 +42,7 @@ import endingsJson from '../../../content/decks/endings.json';
 import officeJson from '../../../content/decks/office.json';
 import entrancesJson from '../../../content/decks/entrances.json';
 import hiringJson from '../../../content/decks/hiring.json';
+import portraitPairsJson from '../../../content/decks/portrait-pairs.json';
 
 export type DeckName =
   | 'similes'
@@ -61,7 +62,9 @@ export type DeckName =
   /* M4b §B.4. Written on the content branch; absent decks deal nothing. */
   | 'office'
   | 'entrances'
-  | 'hiring';
+  | 'hiring'
+  /* Hone 1 §B.4, the same way: written on the `portrait-pairs` branch. */
+  | 'portrait-pairs';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -86,6 +89,11 @@ export interface Card {
   motifs?: string[];
   weather?: string;
   avoidNear?: string[];
+  /**
+   * Hone 1 §B.4, `portrait-pairs` only: the phrase a later page calls this
+   * person by — "the broken finger". A card in any other deck has none.
+   */
+  recall?: string;
   status: string;
   notes?: string;
 }
@@ -156,10 +164,10 @@ const RAW: Record<DeckName, unknown> = {
   office: officeJson,
   entrances: entrancesJson,
   hiring: hiringJson,
+  'portrait-pairs': portraitPairsJson,
 };
 
-/** Which of §B.4's three decks were not on disk. The opening says so. */
-/** The three M4b decks are on disk now and imported like the rest; nothing is missing. */
+/** Every deck is on disk and imported; nothing is missing. */
 export const MISSING_DECKS: readonly DeckName[] = [];
 
 export const DECK_NAMES = Object.keys(RAW) as DeckName[];

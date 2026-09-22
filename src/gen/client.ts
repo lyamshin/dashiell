@@ -14,6 +14,7 @@ import type { Cast } from './cast.js';
 import type { Setting } from './setting.js';
 import type { ScheduleBuild } from './schedule.js';
 import {
+  PURPOSE_PROMPTS,
   PURPOSE_TEXT,
   PURPOSE_TEXT_FIRST,
   PURPOSE_TEXT_LIVING,
@@ -65,6 +66,22 @@ const COST_TEXT_FIRST: Record<Purpose, string> = {
   'make-sure-they-stay-gone': 'I do not want it known that this is what I am paying for.',
   'settle-a-debt-with-the-dead': 'I am spending money I was owed and may never see.',
 };
+
+/**
+ * §A.1 — the question the pointer answers.
+ *
+ * The shortest of the three, because the answer is a name and the page has
+ * been waiting for it since the stairs. Anything here is answerable only by
+ * the sentence that names somebody.
+ */
+export const POINTER_PROMPTS: string[] = [
+  'Who do you like for it?',
+  'Who would do that to {V}?',
+  'Who did {V} cross?',
+  'Who was no friend of {V}?',
+  'Who had a reason to want {V} out of the way?',
+  'Whose name have you got?',
+];
 
 /** How much heavier the quiet purposes weigh when the client did it. */
 const KILLER_COVER_BIAS = 3;
@@ -165,6 +182,15 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
   const purposeTextFirst = `I ${fillSlots(living?.first ?? PURPOSE_TEXT_FIRST[purpose], slots)}.`;
   const cost = `${fillSlots(COST_TEXT[purpose], slots)}`;
   const costFirst = `${fillSlots(COST_TEXT_FIRST[purpose], slots)}`;
+  // Three variants a purpose, drawn here beside the sentence they ask for.
+  const purposePrompt = fillSlots(
+    rng.pick(PURPOSE_PROMPTS[purpose] ?? PURPOSE_PROMPTS['find-the-killer-police-wont']),
+    slots,
+  );
+  // Most of them name the victim, which is also the noun her last sentence
+  // ended on: the golden loop's §2 joiner, written into the question itself
+  // rather than chosen for it afterwards.
+  const pointerPrompt = fillSlots(rng.pick(POINTER_PROMPTS), slots);
 
   /* --- the pointer ------------------------------------------------------ */
   const others = cast.suspects.filter((p) => p.id !== client.id);
@@ -282,6 +308,8 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
     purpose,
     purposeText,
     purposeTextFirst,
+    purposePrompt,
+    pointerPrompt,
     cost,
     costFirst,
     tells,

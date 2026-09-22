@@ -42,21 +42,67 @@ SM = load_metrics()
 # ---------------------------------------------------------------------------
 # The targets, as docs/golden/GAP.md states them.
 #
+# Hone 1 §B.5 recomputed them against golden v2 **per page**. The old set was
+# measured over the two golden pages taken as one text, and the golden loop's
+# report showed what that costs: the orphan-word target was 0.68 when the
+# golden's own office page scores 0.77 and its suite page 0.89, so three
+# quarters of the loop's outstanding distance was against a number that could
+# not have been hit. A target the golden itself misses is not a target, it is
+# a fault in the ruler.
+#
+# The other fault in the ruler was in `style-metrics.py`, and §B.5 fixed it:
+# the sentence splitter did not break after a closing quotation mark, so on a
+# page of dialogue most sentences were measured glued to the one after them.
+# Every number below is post-fix, the golden's included, and the numbers in
+# `docs/golden/REPORT.md` are pre-fix and are not comparable to them.
+#
+# Golden v2, one page at a time:
+#
+#   metric                office page   suite page
+#   orphan_word_ratio            0.77         0.89
+#   paragraph_cohesion           0.53         0.80
+#   sentence_cohesion            0.58         0.61
+#   short_share                  0.565        0.158
+#   long_ratio                   0.00         0.053
+#   dialogue_share               0.43         0.00
+#   figures                      1            0
+#   words_per_paragraph         22.1         34.7
+#
+# A `min` target is the mean of the two pages, because the engine's own number
+# is a mean over a hundred and twenty pages and that is the comparable figure.
+# The spec sets one by hand: orphan is the office page's value plus 0.05. A
+# `band` spans the two pages — what the golden does on one page and on the
+# other is the range the engine is asked to stay inside. `plain_ratio` is the
+# engine's own count of plain sentences against image ones and has no golden
+# value, so it keeps M5 §1's floor.
+#
 # kind is 'min' (at least), 'max' (at most) or 'band' (inside a range). `worst`
 # says which end of the spread is the bad end, so the worst page is the page a
 # stylist would actually open first.
 # ---------------------------------------------------------------------------
 
 TARGETS = [
-    ("orphan_word_ratio", "max", 0.68, None, "high"),
-    ("paragraph_cohesion", "min", 0.65, None, "low"),
-    ("sentence_cohesion", "min", 0.55, None, "low"),
-    ("short_share", "min", 0.28, None, "low"),
-    ("long_ratio", "band", 0.0625, 0.1875, "low"),
-    ("dialogue_share_p1", "band", 0.30, 0.45, "low"),
-    ("figures", "max", 1.0, None, "high"),
+    # the office page, plus the 0.05 the spec allows
+    ("orphan_word_ratio", "max", 0.82, None, "high"),
+    # (0.53 + 0.80) / 2
+    ("paragraph_cohesion", "min", 0.66, None, "low"),
+    # (0.58 + 0.61) / 2
+    ("sentence_cohesion", "min", 0.59, None, "low"),
+    # (0.565 + 0.158) / 2 — the golden's office page is more than half short
+    ("short_share", "min", 0.36, None, "low"),
+    # v2 carries one sentence over twenty-five words on its suite page and
+    # none at all on its office page, so this is a ceiling and not a band.
+    # The carrying sentence the golden loop built in round 3 stays; what the
+    # golden will not support is more than one of them a page.
+    ("long_ratio", "max", 0.06, None, "high"),
+    # the office page's own 0.43, a tenth either way
+    ("dialogue_share_p1", "band", 0.33, 0.53, "low"),
+    # rule 6: one figure per two pages, which is what the golden does
+    ("figures", "max", 0.5, None, "high"),
+    # M5 §1's floor; the golden has no plain/image count to read
     ("plain_ratio", "min", 0.60, None, "low"),
-    ("words_per_paragraph", "band", 30.0, 45.0, "low"),
+    # 22.1 on the office page, 34.7 on the suite page
+    ("words_per_paragraph", "band", 22.0, 35.0, "low"),
 ]
 
 
@@ -95,12 +141,23 @@ def golden_pages() -> list[tuple[str, dict]]:
     raw = open(path, encoding="utf-8").read()
     try:
         p1 = raw.split("## Page one — the office")[1].split("## Page two")[0]
-        p2 = raw.split("## Page two — the suite")[1].split("## What the golden does")[0]
+        # Everything under the professor's notes is commentary about the pages
+        # and not one of them. It used to be measured as part of page two,
+        # which is why the suite page reported sixty-nine words a paragraph.
+        p2 = raw.split("## Page two — the suite")[1].split("## Professor's notes")[0]
     except IndexError:
         return []
+
+    def prose(text):
+        """The page, without the headings and the italic briefs around it."""
+        return "\n".join(
+            line for line in text.splitlines()
+            if not line.startswith("#") and not line.startswith("*") and line.strip() != "---"
+        )
+
     out = []
-    for name, text in [("golden p1", p1), ("golden p2", p2.replace("---", ""))]:
-        m = SM.metrics(text)
+    for name, text in [("golden p1", p1), ("golden p2", p2)]:
+        m = SM.metrics(prose(text))
         sents = max(1, m["sentences"])
         m["short_share"] = round(m["short_sentences_le6"] / sents, 3)
         m["long_ratio"] = round(m["long_sentences_gt25"] / sents, 3)

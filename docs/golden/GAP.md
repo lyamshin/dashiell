@@ -28,16 +28,60 @@ Measured with `scripts/style-metrics.py` on seed 3, pages one and two. Golden: `
 
 ## Targets for the loop
 
-Measured over pages 1–3 of 40 seeds at difficulty 2 (not seed 3 alone), reported as mean and worst page:
+Measured over pages 1–3 of 40 seeds at difficulty 2 (not seed 3 alone),
+reported as mean and worst page.
 
-| metric | target |
-|---|---|
-| orphan word ratio | ≤ 0.68 mean |
-| paragraph cohesion | ≥ 0.65 mean |
-| sentence cohesion | ≥ 0.55 mean |
-| short sentences (≤6 words) | ≥ 28% |
-| long sentences (>25 words) | 1 per 8 sentences, ±half |
-| dialogue share on the briefing page | 0.30–0.45 |
-| figures per page | ≤ 1 |
-| plain ratio | ≥ 0.60 (already enforced at 0.5) |
-| words per paragraph | 30–45 |
+**Recomputed for Hone 1 (§B.5), against golden v2, one page at a time.** The
+table below used to be read off the two golden pages taken as one text, and
+the golden loop's report showed what that costs: the orphan-word target was
+0.68 when the golden's own office page scores 0.77 and its suite page 0.89, so
+three quarters of the loop's outstanding distance was against a number nothing
+could have hit. A target the golden itself misses is not a target.
+
+Two things changed with it. `scripts/style-metrics.py` did not break a sentence
+after a closing quotation mark, so on a page of dialogue most sentences were
+measured glued to the one after them — seed 14's office page came out at
+twenty-seven sentences of which two were short when it has thirty-nine of which
+fourteen are. Four of the metrics are functions of that list, so every number
+here is post-fix, the golden's included, and the numbers in `REPORT.md` are
+pre-fix and are not comparable to them.
+
+### Golden v2, measured one page at a time
+
+| metric | office page | suite page |
+|---|---|---|
+| orphan word ratio | 0.77 | 0.89 |
+| paragraph cohesion | 0.53 | 0.80 |
+| sentence cohesion | 0.58 | 0.61 |
+| short sentences (≤6 words) | 0.565 | 0.158 |
+| long sentences (>25 words) | 0.00 | 0.053 |
+| dialogue share | 0.43 | 0.00 |
+| figures | 1 | 0 |
+| words per paragraph | 22.1 | 34.7 |
+
+### The targets
+
+A floor is the mean of the two pages, because the engine's own number is a mean
+over a hundred and twenty pages and that is the comparable figure. A band spans
+them: what the golden does on one page and on the other is the range the engine
+is asked to stay inside. Orphan is the office page plus the 0.05 the spec
+allows. `plain_ratio` is the engine's own count of plain sentences against image
+ones and has no golden value, so it keeps M5 §1's floor.
+
+| metric | target | where it comes from |
+|---|---|---|
+| orphan word ratio | ≤ 0.82 | the office page, plus 0.05 |
+| paragraph cohesion | ≥ 0.66 | (0.53 + 0.80) / 2 |
+| sentence cohesion | ≥ 0.59 | (0.58 + 0.61) / 2 |
+| short sentences (≤6 words) | ≥ 0.36 | (0.565 + 0.158) / 2 |
+| long sentences (>25 words) | ≤ 0.06 | v2 carries one on its suite page and none on its office page |
+| dialogue share on the briefing page | 0.33–0.53 | the office page's 0.43, a tenth either way |
+| figures per page | ≤ 0.5 | rule 6: one figure per two pages |
+| plain ratio | ≥ 0.60 | M5 §1, unchanged |
+| words per paragraph | 22–35 | 22.1 on the office page, 34.7 on the suite page |
+
+The long-sentence target is now a ceiling rather than a band. Measured
+correctly, golden v2's office page has no sentence over twenty-five words and
+its suite page has one: the carrying sentence the loop built in round 3 stays,
+because it reads well and rule 8 asks for a longer sentence rather than a very
+long one, but more than one of them a page is more than the golden will support.
