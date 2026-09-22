@@ -732,13 +732,21 @@ describe('correspondence over seeds 1..200 at every difficulty', () => {
  * ------------------------------------------------------------------ */
 
 describe('the briefing over seeds 1..200 at every difficulty', () => {
-  it('runs to between ten and sixteen plain declarative sentences', () => {
+  // Hone 3 §1 moved the ceiling by one, from sixteen to seventeen. The
+  // briefing now opens on the death — "Edward Doyle is dead." — which is a
+  // sentence the trope's givens never carried: every murder shape said where
+  // the body was found and left the reader to infer from "found dead" that
+  // there was a death at all. On `body-at-scene` the count is unchanged,
+  // because §2 collapsed that trope's two scene sentences into one; on the
+  // other three murder shapes, whose givens state four separate facts, the
+  // briefing runs to seventeen.
+  it('runs to between ten and seventeen plain declarative sentences', () => {
     for (const c of everyDifficulty) {
       expect(
         c.briefing.length,
         `seed ${c.seed} d${c.difficulty}: ${c.briefing.length} sentences`,
       ).toBeGreaterThanOrEqual(10);
-      expect(c.briefing.length).toBeLessThanOrEqual(16);
+      expect(c.briefing.length).toBeLessThanOrEqual(17);
       for (const line of c.briefingText) {
         expect(line).toMatch(/[.!?]$/);
         expect(line).not.toContain('{');
@@ -824,13 +832,34 @@ describe('the briefing over seeds 1..200 at every difficulty', () => {
     }
   });
 
+  /**
+   * Hone 3 §3 rewrites the client's spoken forms after they are assembled: a
+   * person named earlier in the same turn becomes a pronoun. So the purpose
+   * sentence on the page is no longer character for character the template's
+   * `purposeTextFirst` — "I want to know where Pickering is" becomes "I want
+   * to know where she is" when the turn has already named her.
+   *
+   * The assertion is the same one, made where the substitution cannot hide a
+   * difference: both sides have every name and every third-person pronoun
+   * blanked, so a sentence that swapped one for the other matches and a
+   * sentence that changed anything else does not.
+   */
+  const pronounBlind = (text: string, surname: string): string => {
+    const escaped = surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return text
+      .replace(new RegExp(`\\b${escaped}(?:[’']s)?\\b`, 'g'), '·')
+      .replace(/\b(?:he|him|his|she|her|hers)\b/gi, '·');
+  };
+
   it('says the client’s own four sentences in the first person', () => {
     for (const c of everyDifficulty) {
       const said = c.briefing.filter((l) => l.speaker === 'client').map((l) => l.spoken ?? '');
       const where = `seed ${c.seed} d${c.difficulty}`;
+      const victim = c.people.find((p) => p.kind === 'victim') as { surname: string };
+      const blind = said.map((s) => pronounBlind(s, victim.surname));
       // Why they are hiring, what it costs them, their tie, and the pointer.
-      expect(said, where).toContain(c.clientBrief.purposeTextFirst);
-      expect(said, where).toContain(c.clientBrief.costFirst);
+      expect(blind, where).toContain(pronounBlind(c.clientBrief.purposeTextFirst, victim.surname));
+      expect(blind, where).toContain(pronounBlind(c.clientBrief.costFirst, victim.surname));
       expect(c.clientBrief.purposeTextFirst).toMatch(/^I /);
       expect(c.clientBrief.costFirst).toMatch(/\bI\b/);
       const pointed = c.people.find((p) => p.id === c.clientBrief.points.personId) as {
