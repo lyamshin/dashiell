@@ -1,8 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { generateCase, type Difficulty } from '../../src/gen/index.js';
-import { buildView, leadFor, threadsFor } from '../../src/game/derive.js';
+import { buildView, gameBudget, gamePar, leadFor, threadsFor } from '../../src/game/derive.js';
 import { clockAfter, minutesAfter, minutesPerAction } from '../../src/game/clock.js';
-import { answersTo, newRun, planThread, step, stepInput } from '../../src/game/reducer.js';
+import {
+  answersTo,
+  clientClueOf,
+  newRun,
+  planThread,
+  sceneCluesOf,
+  step,
+  stepInput,
+} from '../../src/game/reducer.js';
 import { scoreReport } from '../../src/game/scoring.js';
 import { buildNotebook } from '../../src/game/notebook.js';
 import type { RunState } from '../../src/game/types.js';
@@ -17,11 +25,18 @@ function run(state: RunState, ...inputs: string[]): RunState {
 }
 
 describe('the opening spread', () => {
-  it('deals the three starting clues, free, at the scene', () => {
+  /**
+   * M4b §B.2. Page one is the office at midnight and the client in the chair,
+   * not the scene: a private eye's case starts at his desk when somebody comes
+   * in to hire him. The client's own brief is in hand; the scene report and
+   * the coroner's note wait until he has walked over and looked.
+   */
+  it('starts at the office with the client and his brief', () => {
     const state = fresh();
-    expect(state.at).toBe(view.kase.solution.murderPlaceId);
+    expect(state.at).toBe(view.office.id);
     expect(state.actionsUsed).toBe(0);
-    expect(state.found).toEqual(view.kase.starting);
+    expect(state.found).toEqual([clientClueOf(view)?.id]);
+    expect(state.clientInOffice).toBe(true);
     expect(state.log).toHaveLength(1);
   });
 
@@ -34,8 +49,8 @@ describe('the opening spread', () => {
    * generator's sentence, verbatim, under the room it came from. Both halves
    * are asserted here because losing either one is losing the fairness.
    */
-  it('writes the three starting clues into the notebook verbatim', () => {
-    const state = fresh();
+  it('writes every starting clue into the notebook verbatim as it arrives', () => {
+    const state = run(fresh(), `go ${view.placeById.get(view.sceneId)?.shortName}`);
     const book = buildNotebook(view, state);
     const written = new Map([
       ...book.places.flatMap((p) => p.clues.map((c) => [c.clueId, c.text] as const)),
@@ -46,12 +61,18 @@ describe('the opening spread', () => {
     }
   });
 
-  it('carries every starting clue on the page too, dramatized', () => {
+  it('carries the client brief on page one and the scene report on arrival', () => {
     const state = fresh();
-    const carried = (state.log[0]?.blocks ?? [])
+    const carried = (page: number): string[] =>
+      (state.log[page]?.blocks ?? [])
+        .filter((b) => b.kind === 'prose' && b.clueId !== undefined)
+        .map((b) => (b as { clueId: string }).clueId);
+    expect(carried(0)).toEqual([clientClueOf(view)?.id]);
+    const after = run(state, `go ${view.placeById.get(view.sceneId)?.shortName}`);
+    const onArrival = (after.log[1]?.blocks ?? [])
       .filter((b) => b.kind === 'prose' && b.clueId !== undefined)
       .map((b) => (b as { clueId: string }).clueId);
-    expect(carried.sort()).toEqual(view.kase.starting.slice().sort());
+    expect(onArrival.slice().sort()).toEqual(sceneCluesOf(view).map((c) => c.id).sort());
   });
 });
 
@@ -129,7 +150,9 @@ describe('clue delivery', () => {
   it('gives a room every clue it has left, in one action', () => {
     const scene = view.kase.solution.murderPlaceId;
     const atScene = (view.placeClues.get(scene) ?? []).map((c) => c.id);
-    const state = fresh();
+    // Walk over first: the run starts at the office now (§B.2), and arriving
+    // at the scene is what hands over the report and the coroner's note.
+    const state = run(fresh(), `go ${view.placeById.get(scene)?.shortName}`);
     const result = stepInput(state, 'examine', view);
     const expected = atScene.filter((id) => !state.found.includes(id));
     expect(result.page.found.sort()).toEqual(expected.sort());
@@ -211,12 +234,13 @@ describe('the clock', () => {
     let state = fresh();
     const elsewhere = view.kase.places.filter((p) => p.id !== state.at);
     let i = 0;
-    while (state.actionsUsed < view.kase.budget) {
+    // M4b §B.3: the game's budget is the case's plus the walk from the office.
+    while (state.actionsUsed < gameBudget(view.kase)) {
       const target = elsewhere[i % elsewhere.length];
       state = run(state, `go ${target?.shortName}`);
       i++;
     }
-    expect(state.actionsUsed).toBe(view.kase.budget);
+    expect(state.actionsUsed).toBe(gameBudget(view.kase));
     expect(state.reportOpen).toBe(true);
     expect(buildNotebook(view, state).clock.time).toBe('8:00 AM');
     expect(buildNotebook(view, state).clock.actionsLeft).toBe(0);
@@ -285,23 +309,27 @@ describe('the report', () => {
 
   it('compares the night against par', () => {
     const state = fresh();
-    const verdict = scoreReport(view, { ...state, actionsUsed: view.kase.par + 3 }, {
+    const verdict = scoreReport(view, { ...state, actionsUsed: gamePar(view.kase) + 3 }, {
       killerId: truth.killerId,
       methodId: truth.methodId,
       motiveType: truth.motiveType,
       tick: truth.murderTick,
       placeId: truth.murderPlaceId,
     });
-    expect(verdict.closing.join(' ')).toContain(String(view.kase.par));
+    expect(verdict.closing.join(' ')).toContain(String(gamePar(view.kase)));
   });
 });
 
 describe('the notebook', () => {
   it('narrows the time of death as the facts come in', () => {
-    const state = fresh();
+    // The coroner's note arrives at the scene now, not in the office (§B.2).
+    const opening = fresh();
+    expect(buildNotebook(view, opening).established.death).toBe('Nothing established yet.');
+    expect(buildNotebook(view, opening).clock.actionsLeft).toBe(gameBudget(view.kase));
+    const state = run(opening, `go ${view.placeById.get(view.sceneId)?.shortName}`);
     const book = buildNotebook(view, state);
     expect(book.established.death).not.toBe('Nothing established yet.');
-    expect(book.clock.actionsLeft).toBe(view.kase.budget);
+    expect(book.clock.actionsLeft).toBe(gameBudget(view.kase) - 1);
   });
 
   it('flags a contradiction only once both halves are in hand', () => {

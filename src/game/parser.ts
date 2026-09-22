@@ -120,7 +120,7 @@ export function matchPlaces(view: CaseView, text: string): Candidate<Id>[] {
   const n = fold(text);
   if (n.length === 0) return [];
   const out: Candidate<Id>[] = [];
-  for (const p of view.kase.places) {
+  for (const p of view.places) {
     const s = score(n, [p.shortName, p.name]);
     if (s > 0) out.push({ value: p.id, label: p.shortName, strength: s });
   }
@@ -190,7 +190,13 @@ export function matchTopics(
   return kept;
 }
 
-export function parse(view: CaseView, at: Id, raw: string): ParseResult {
+/**
+ * `present` is who is standing in the room, which the reducer knows and this
+ * does not: the client is in the office on page one and at his own address
+ * from the moment he leaves (M4b §B.2). Left out, it falls back to the
+ * generator's own placement, which is right on every page but the first.
+ */
+export function parse(view: CaseView, at: Id, raw: string, present?: Id[]): ParseResult {
   const trimmed = raw.trim();
   if (trimmed.length === 0)
     return { ok: false, problem: { kind: 'empty', message: '' } };
@@ -353,8 +359,8 @@ export function parse(view: CaseView, at: Id, raw: string): ParseResult {
             message: `${view.victim.surname} is on a slab. Ask somebody else about ${view.victim.surname}.`,
           },
         };
-      const present = peopleHere(view, at).some((p) => p.id === personId);
-      if (!present) {
+      const here = present ?? peopleHere(view, at).map((p) => p.id);
+      if (!here.includes(personId)) {
         return {
           ok: false,
           problem: {

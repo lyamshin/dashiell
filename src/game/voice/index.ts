@@ -14,12 +14,14 @@
  */
 
 export * from './prose.js';
+export * from './motifs.js';
 export * from './cards.js';
 export * from './roll.js';
 export * from './cast.js';
 export * from './facts.js';
 export * from './exchange.js';
 export * from './reactive.js';
+export * from './office.js';
 export * from './page.js';
 
 import type { Clue, Id, Person } from '../../gen/types.js';

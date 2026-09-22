@@ -6,7 +6,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { generateCase, type Difficulty } from '../../src/gen/index.js';
-import { buildView } from '../../src/game/derive.js';
+import { buildView, gameBudget } from '../../src/game/derive.js';
 import { playOracle, playWandering } from '../../src/game/oracle.js';
 import { fileReport } from '../../src/game/reducer.js';
 import { scoreReport } from '../../src/game/scoring.js';
@@ -63,7 +63,7 @@ describe('npm run read', () => {
       const view = buildView(generateCase(seed, { difficulty: 2 }));
       const run = playWandering(view, seed, 'Dashiell');
       expect(run.state.log.length).toBeGreaterThan(3);
-      expect(run.state.actionsUsed).toBeLessThanOrEqual(view.kase.budget);
+      expect(run.state.actionsUsed).toBeLessThanOrEqual(gameBudget(view.kase));
       for (const page of run.state.log) {
         expect(renderPageText(page, view, run.state)).not.toMatch(/\{[a-z]+\}/);
       }

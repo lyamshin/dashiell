@@ -37,8 +37,10 @@ import type {
   Tick,
 } from '../gen/types.js';
 import { TICKS, clock } from '../gen/types.js';
+import { Rng } from '../gen/rng.js';
 import { METHOD_TEMPLATES } from '../gen/data/methods.js';
 import { MOTIVE_TEMPLATES } from '../gen/data/motives.js';
+import { OFFICE_STREETS, OFFICE_TRADES } from './voice-data.js';
 import type { TopicRef } from './types.js';
 
 export const METHOD_POOL = METHOD_TEMPLATES.map((m) => ({ id: m.id, name: m.name }));
@@ -83,9 +85,70 @@ function hasWord(haystack: string, needle: string): boolean {
   return !/[a-z0-9]/.test(before) && !/[a-z0-9]/.test(after);
 }
 
+/* ------------------------------------------------------------------ *
+ * M4b §B.1 — the seventh place.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The office is Dashiell's and it is not the generator's business. It is
+ * private, unwatched, never the scene, holds no findable clue, and is not
+ * counted against the place slider — the generator still draws six rooms and
+ * still computes par over those six. It exists so that a case can start where
+ * a case starts: at a desk, at midnight, with somebody on the stairs.
+ */
+export const OFFICE_ID = 'dashiell-office';
+
+/**
+ * Its full name varies with the neighbourhood — "two rooms over a tailor's on
+ * Rivington Street" — and is fixed per case, because a detective does not move
+ * office between page one and page two.
+ */
+export function officeName(kase: Case): string {
+  const street = OFFICE_STREETS[kase.neighborhood] ?? 'Great Jones Street';
+  const rng = new Rng((kase.seed * 2246822507 + 0x0ff1ce) >>> 0);
+  return `two rooms over ${rng.pick(OFFICE_TRADES)} on ${street}`;
+}
+
+export function buildOffice(kase: Case): Place {
+  // One of the generator's thirty-odd rooms is "the office over the tailor's",
+  // and it is called "the office" too. Two rooms with one short name is a
+  // prompt that cannot be typed into, so his own becomes "my office" on the
+  // nights the case drew that one. Everywhere else it is what §B.1 asks for.
+  const taken = kase.places.some((p) => p.shortName === 'the office');
+  return {
+    id: OFFICE_ID,
+    name: officeName(kase),
+    shortName: taken ? 'my office' : 'the office',
+    kind: 'private',
+    objects: [],
+    isResidence: false,
+    nearScene: false,
+  };
+}
+
+/**
+ * M4b §B.3 — par and budget in the game.
+ *
+ * The generator does not change. What changes is that the night now opens one
+ * room away from everything: the walk from the office to wherever he is going
+ * is an action the generator never counted, so the game adds one to par and
+ * one to the budget and the slack between them is exactly what it was.
+ */
+export function gamePar(kase: Case): number {
+  return kase.par + 1;
+}
+
+export function gameBudget(kase: Case): number {
+  return kase.budget + 1;
+}
+
 export interface CaseView {
   kase: Case;
   sceneId: Id;
+  /** The office (§B.1). Not in `kase.places`; always in `view.places`. */
+  office: Place;
+  /** The case's six rooms and the office, which is the list the game walks. */
+  places: Place[];
   victim: Person;
   client: Person;
   placeById: Map<Id, Place>;
@@ -108,7 +171,9 @@ export interface CaseView {
 }
 
 export function buildView(kase: Case): CaseView {
-  const placeById = new Map(kase.places.map((p) => [p.id, p]));
+  const office = buildOffice(kase);
+  const places = [...kase.places, office];
+  const placeById = new Map(places.map((p) => [p.id, p]));
   const personById = new Map(kase.people.map((p) => [p.id, p]));
   const objectById = new Map(kase.objects.map((o) => [o.id, o]));
   const anchorById = new Map(kase.anchors.map((a) => [a.templateId, a]));
@@ -117,7 +182,7 @@ export function buildView(kase: Case): CaseView {
   const client = personById.get(kase.clientId) as Person;
 
   const peopleAt = new Map<Id, Id[]>();
-  for (const p of kase.places) peopleAt.set(p.id, []);
+  for (const p of places) peopleAt.set(p.id, []);
   for (const p of kase.people) {
     if (!p.foundAt) continue;
     peopleAt.get(p.foundAt)?.push(p.id);
@@ -153,6 +218,8 @@ export function buildView(kase: Case): CaseView {
   const view: CaseView = {
     kase,
     sceneId: kase.solution.murderPlaceId,
+    office,
+    places,
     victim,
     client,
     placeById,
@@ -196,7 +263,7 @@ export function topicsAnsweredBy(clue: Clue, view: CaseView): string[] {
   for (const a of view.kase.anchors) {
     if (t.includes(fold(a.name))) out.add(`anchor:${a.templateId}`);
   }
-  for (const pl of view.kase.places) {
+  for (const pl of view.places) {
     if (t.includes(fold(pl.shortName))) out.add(`place:${pl.id}`);
   }
   for (const o of view.kase.objects) {
@@ -217,6 +284,22 @@ export function peopleHere(view: CaseView, placeId: Id): Person[] {
   return (view.peopleAt.get(placeId) ?? [])
     .map((id) => view.personById.get(id))
     .filter((p): p is Person => p !== undefined);
+}
+
+/**
+ * The same, with tonight's one moving part in it: while the client is still in
+ * the office, the client is in the office (§B.2). `Person.foundAt` is where
+ * the generator says he can be found the next day, and it stays true the
+ * moment he walks out.
+ */
+export function peopleHereNow(
+  view: CaseView,
+  placeId: Id,
+  state: { clientInOffice?: boolean },
+): Person[] {
+  const here = peopleHere(view, placeId);
+  if (placeId !== view.office.id || state.clientInOffice !== true) return here;
+  return here.some((p) => p.id === view.client.id) ? here : [view.client, ...here];
 }
 
 /* ------------------------------------------------------------------ *
@@ -443,7 +526,7 @@ function nounIndex(view: CaseView): NounEntry[] {
   for (const p of view.kase.people) {
     entries.push({ needle: fold(p.surname), make: (text) => ({ kind: 'person', id: p.id, text }) });
   }
-  for (const pl of view.kase.places) {
+  for (const pl of view.places) {
     entries.push({ needle: fold(pl.name), make: (text) => ({ kind: 'place', id: pl.id, text }) });
     entries.push({
       needle: fold(pl.shortName),

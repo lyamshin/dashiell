@@ -1,7 +1,7 @@
 /** Obra Dinn's form: five dropdowns, and then it is over. */
 
 import type { CaseView } from '../game/derive.js';
-import { METHOD_POOL, MOTIVE_POOL } from '../game/derive.js';
+import { METHOD_POOL, MOTIVE_POOL, gameBudget } from '../game/derive.js';
 import { TICK_OPTIONS } from '../game/reducer.js';
 import type { Verdict } from '../game/scoring.js';
 import type { Report, RunState } from '../game/types.js';
@@ -35,7 +35,7 @@ export function renderReportForm(
     el('p', {
       class: 'note',
       text:
-        state.actionsUsed >= kase.budget
+        state.actionsUsed >= gameBudget(kase)
           ? 'Eight o’clock, and the DA’s man is standing over the desk. Whatever is on the page is what gets filed.'
           : 'Filing is final. Leave a line blank and it goes in as I don’t know.',
     }),

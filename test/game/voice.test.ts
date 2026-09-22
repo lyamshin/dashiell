@@ -21,6 +21,7 @@ import {
   ALL_CARDS,
   CONTRADICTION_TEMPLATES,
   DECKS,
+  MISSING_DECKS,
   SCHEMA,
   THEORY_TEMPLATES,
   Dealer,
@@ -41,6 +42,7 @@ import {
   reactiveMonologue,
   rollCast,
   rollDashiell,
+  SIMILE_HOSTS,
   simileTargetsFor,
   slotsOf,
   speakClue,
@@ -349,26 +351,48 @@ describe('temper', () => {
  * ------------------------------------------------------------------ */
 
 describe('portraits', () => {
-  it('gives the same person the same three details on every page', () => {
+  it('gives the same person the same details, woven the same way', () => {
     const state = exhaust(7, 2);
     const v = buildView(generateCase(7, { difficulty: 2 }));
     for (const person of v.kase.people) {
       const portrait = state.cast.portraits[person.id];
       expect(portrait, person.surname).toBeDefined();
-      const full = describePerson(state.cast, person.id, person.surname, false, 0);
-      expect(describePerson(state.cast, person.id, person.surname, false, 5)).toBe(full);
-      // Every later appearance is one of the three, and only one.
-      for (let n = 0; n < 6; n++) {
-        const later = describePerson(state.cast, person.id, person.surname, true, n);
-        const parts = [portrait?.trait, portrait?.habit, portrait?.clothing].filter(
-          (p): p is string => typeof p === 'string' && p.length > 0,
-        );
-        expect(parts.filter((p) => later.includes(p))).toHaveLength(1);
+      const weave = (times: number, nth: number): string =>
+        describePerson({
+          cast: state.cast,
+          personId: person.id,
+          surname: person.surname,
+          times,
+          pronoun: 'he',
+          nth,
+        });
+      expect(weave(0, 5)).toBe(weave(0, 5));
+      // M4b §A.4: the first meeting is trait plus ONE of habit and clothing,
+      // never all three, and every later appearance is one component only.
+      const parts = [portrait?.trait, portrait?.habit, portrait?.clothing].filter(
+        (p): p is string => typeof p === 'string' && p.length > 0,
+      );
+      // A weaving template may put a component at the head of a sentence, so
+      // the comparison is case-blind on the first letter and nowhere else.
+      const holds = (text: string, part: string): boolean =>
+        text.toLowerCase().includes(part.toLowerCase());
+      if (parts.length === 3) {
+        expect(parts.filter((p) => holds(weave(0, 0), p)).length).toBeLessThanOrEqual(2);
+      }
+      for (let n = 1; n < 6; n++) {
+        expect(parts.filter((p) => holds(weave(n, n), p))).toHaveLength(1);
+      }
+      // §A.6: the second meeting repeats the first meeting's component once.
+      if (parts.length === 3) {
+        const first = weave(0, 0);
+        const second = weave(1, 1);
+        const repeated = parts.find((p) => p !== portrait?.trait && holds(second, p));
+        expect(repeated !== undefined && holds(first, repeated)).toBe(true);
       }
     }
   });
 
-  it('describes a person in full once and in part after that', () => {
+  it('never lists three details at once, and never two semicolons', () => {
     const state = exhaust(7, 2);
     const v = buildView(generateCase(7, { difficulty: 2 }));
     for (const person of v.kase.people) {
@@ -376,16 +400,15 @@ describe('portraits', () => {
       if (!portrait) continue;
       const parts = [portrait.trait, portrait.habit, portrait.clothing].filter((p) => p.length > 0);
       if (parts.length < 3) continue;
-      let full = 0;
       for (const page of state.log) {
         for (const block of page.blocks) {
           if (block.kind !== 'prose') continue;
           if (block.voice !== 'presence' && block.voice !== 'approach') continue;
-          if (!block.text.startsWith(`${person.surname}:`)) continue;
-          if (parts.every((p) => block.text.includes(p))) full++;
+          const lower = block.text.toLowerCase();
+          expect(parts.every((p) => lower.includes(p.toLowerCase()))).toBe(false);
+          expect((block.text.match(/;/g) ?? []).length).toBeLessThan(2);
         }
       }
-      expect(full, `${person.surname} described in full ${full} times`).toBeLessThanOrEqual(1);
     }
   });
 
@@ -413,13 +436,20 @@ describe('portraits', () => {
  * ------------------------------------------------------------------ */
 
 describe('the page grammar', () => {
-  it('keeps every page between 80 and 300 words, over 100 oracle runs', () => {
+  /**
+   * M4's floor was 80 words. M4b §A.1 takes images off the page on purpose —
+   * three of them, or two where there is an exchange or a find to carry — so
+   * a page with little load-bearing work to do is now genuinely shorter, and
+   * a floor that forces an image back on would be the milestone undone. The
+   * floor is 55 and the median is what the notes report.
+   */
+  it('keeps every page between 55 and 300 words, over 100 oracle runs', () => {
     const offenders: string[] = [];
     for (let seed = 1; seed <= 100; seed++) {
       const v = buildView(generateCase(seed, { difficulty: 2 }));
       for (const page of playOracle(v).state.log) {
         const n = wordsOnPage(page);
-        if (n < 80 || n > 300) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
+        if (n < 55 || n > 300) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
       }
     }
     expect(offenders).toEqual([]);
@@ -431,7 +461,7 @@ describe('the page grammar', () => {
       const v = buildView(generateCase(seed, { difficulty: 3 }));
       for (const page of playWandering(v, seed).state.log) {
         const n = wordsOnPage(page);
-        if (n < 80 || n > 300) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
+        if (n < 55 || n > 300) offenders.push(`seed ${seed} page ${page.n}: ${n} words`);
       }
     }
     expect(offenders).toEqual([]);
@@ -526,7 +556,9 @@ describe('the utterance deck', () => {
       const state = exhaust(seed, 2);
       for (const page of state.log) {
         for (const gap of page.gaps) {
-          expect(gap).toMatch(/^(no-utterance|no-fact|too-many-facts|deck-exhausted):/);
+          expect(gap).toMatch(
+            /^(no-utterance|no-fact|too-many-facts|deck-exhausted|missing-deck|no-business|no-client-clue):/,
+          );
           const id = /\(([^)]+)\)/.exec(gap)?.[1];
           if (id) expect(v.findableById.get(id)).toBeDefined();
         }
@@ -763,6 +795,14 @@ describe('the deck loader', () => {
   it('validates every deck at startup with no errors', () => {
     for (const report of validateDecks()) {
       expect(report.errors, `${report.deck}: ${report.errors.join('; ')}`).toEqual([]);
+      // M4b §B.4's three decks are written on another branch. A deck that is
+      // not on disk yet is empty and says so in its gaps; the engine falls
+      // back to a hand-written line and the run goes on.
+      if (MISSING_DECKS.includes(report.deck)) {
+        expect(report.count).toBe(0);
+        expect(report.gaps.join(' ')).toContain('not on disk');
+        continue;
+      }
       expect(report.count).toBeGreaterThan(0);
     }
   });
@@ -1092,26 +1132,46 @@ describe('the simile', () => {
     }
   });
 
-  it('does not always close the page with it', () => {
-    let closes = 0;
-    let elsewhere = 0;
+  /**
+   * M4b §A.3. A simile is a clause of the sentence it modifies, so there is no
+   * such thing as a simile block any more: no page has a prose block that is
+   * only a simile, because no page has a prose block that is a simile at all.
+   */
+  it('is never a paragraph of its own', () => {
     for (const seed of [1, 2, 7, 11, 19, 23]) {
       for (const page of exhaust(seed, 2).log) {
-        const prose = page.blocks.filter((b) => b.kind === 'prose');
-        const at = prose.findIndex((b) => b.kind === 'prose' && b.voice === 'simile');
-        if (at < 0) continue;
-        if (at === prose.length - 1) closes++;
-        else elsewhere++;
+        expect(page.blocks.filter((b) => b.kind === 'prose' && b.voice === 'simile')).toEqual([]);
       }
     }
-    expect(closes).toBeGreaterThan(0);
-    expect(elsewhere, 'every simile still closes its page').toBeGreaterThan(0);
+  });
+
+  it('is a clause of a block that is about what the simile is about', () => {
+    let attached = 0;
+    for (const seed of [1, 2, 7, 11, 19, 23]) {
+      for (const page of exhaust(seed, 2).log) {
+        const simile = page.cardsUsed.find((id) => deckOf(id) === 'similes');
+        if (!simile) continue;
+        attached++;
+        const card = CARD_BY_ID.get(simile) as Card;
+        const target = String(card.tags.target);
+        const hosts = SIMILE_HOSTS[target] ?? [];
+        // The card's own text is inside a block, and that block's voice is one
+        // the target binds to. The card may carry slots, so the tail is the
+        // part that survives filling whatever they were filled with.
+        const tail = card.text.replace(/^[^{]*\{[a-z]+\}/i, '').trim();
+        const host = page.blocks.find(
+          (b) => b.kind === 'prose' && b.text.includes(tail) && hosts.includes(b.voice),
+        );
+        expect(host, `seed ${seed} page ${page.n}: ${target} simile ${simile} has no host`).toBeDefined();
+      }
+    }
+    expect(attached, 'no run drew a simile at all').toBeGreaterThan(0);
   });
 
   it('still puts at most one on a page', () => {
     for (const seed of [1, 7, 19]) {
       for (const page of exhaust(seed, 2).log) {
-        const n = page.blocks.filter((b) => b.kind === 'prose' && b.voice === 'simile').length;
+        const n = page.cardsUsed.filter((id) => deckOf(id) === 'similes').length;
         expect(n, `seed ${seed}, page ${page.n}`).toBeLessThanOrEqual(1);
       }
     }

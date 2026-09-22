@@ -9,7 +9,7 @@
 
 import { generateCase, type Case, type Difficulty } from '../gen/index.js';
 import { CROSS_RUN_TOTAL, crossRunOnly } from '../game/voice/index.js';
-import { buildView, type CaseView, type Noun } from '../game/derive.js';
+import { buildView, gameBudget, type CaseView, type Noun } from '../game/derive.js';
 import { buildNotebook } from '../game/notebook.js';
 import { fileReport, newRun, planThread, remaining, stepInput } from '../game/reducer.js';
 import { scoreReport, type Verdict } from '../game/scoring.js';
@@ -127,8 +127,8 @@ export function mount(root: HTMLElement): void {
   function followLead(thread: Thread): void {
     if (!view || !state || !kase) return;
     const plan = planThread(state, thread);
-    if (plan.length > 1 && remaining(state, kase.budget) < 3) {
-      const left = remaining(state, kase.budget);
+    if (plan.length > 1 && remaining(state, gameBudget(kase)) < 3) {
+      const left = remaining(state, gameBudget(kase));
       const ok = window.confirm(
         `${thread.label} means walking there first. Two actions, and there ${
           left === 1 ? 'is 1' : `are ${left}`

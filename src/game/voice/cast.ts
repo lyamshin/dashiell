@@ -12,7 +12,8 @@ import type { Case, Id, Person } from '../../gen/types.js';
 import { ARCHETYPE_BY_ID, VICTIM_ARCHETYPES } from '../../gen/data/cast.js';
 import { NAME_POOLS } from '../../gen/data/names.js';
 import weightsJson from '../../../content/temper-weights.json';
-import { DECKS, tagIs, type Card } from './cards.js';
+import { DECKS, motifsOf, tagIs, type Card } from './cards.js';
+import { contradictsWeather } from './motifs.js';
 import { rollDashiell, type DashiellRoll } from './roll.js';
 
 export type Temper = 'enigma' | 'plain' | 'yap';
@@ -63,6 +64,8 @@ export interface Portrait {
   clothing: string;
   /** The card ids, so the burn pile can be told about them. */
   cardIds: string[];
+  /** The motifs of the three cards, for the page's motif set (§A.2). */
+  motifs: string[];
 }
 
 export interface CastSheet {
@@ -129,6 +132,9 @@ export function rollCast(
   const rng = new Rng((seed * 1103515245 + PORTRAIT_SALT) >>> 0);
   const burned = new Set(opts?.persistedBurned ?? []);
   const deck = DECKS.portraits;
+  // The night is rolled first, because a portrait has to agree with it (§A.5).
+  const roll = rollDashiell(kase, opts?.seed === undefined ? {} : { seed: opts.seed });
+  const weather = roll.weather;
 
   const temper: Record<Id, Temper> = {};
   const portraits: Record<Id, Portrait> = {};
@@ -139,11 +145,15 @@ export function rollCast(
     const gender = genderHintOf(person);
     const klass = classOf(person);
     const cardIds: string[] = [];
+    const motifs: string[] = [];
     const parts: Record<string, string> = {};
     for (const component of ['trait', 'habit', 'clothing'] as const) {
       const fits = (c: Card): boolean =>
         tagIs('portraits', c, 'component', component) &&
-        (tagIs('portraits', c, 'gender', gender) || gender === 'any');
+        (tagIs('portraits', c, 'gender', gender) || gender === 'any') &&
+        // §A.5: a portrait whose clothing implies a sky is a portrait for that
+        // night only. A collar up and wet boots on a clear night is the tell.
+        !contradictsWeather(motifsOf(c), c, weather);
       const exact = deck.filter((c) => fits(c) && tagIs('portraits', c, 'class', klass));
       const loose = deck.filter(fits);
       const pick =
@@ -154,6 +164,7 @@ export function rollCast(
       if (!pick) continue;
       burned.add(pick.id);
       cardIds.push(pick.id);
+      for (const m of motifsOf(pick)) if (!motifs.includes(m)) motifs.push(m);
       parts[component] = pick.text;
     }
     portraits[person.id] = {
@@ -161,11 +172,24 @@ export function rollCast(
       habit: fragment(parts.habit ?? ''),
       clothing: fragment(parts.clothing ?? ''),
       cardIds,
+      motifs,
     };
-    order[person.id] = 0;
+    // Which of habit and clothing goes beside the trait on the first meeting,
+    // fixed per person so the callback (§A.6) can repeat it exactly once.
+    order[person.id] = hash(person.id) % 2;
   }
 
-  return { roll: rollDashiell(kase, opts?.seed === undefined ? {} : { seed: opts.seed }), temper, portraits, order };
+  return { roll, temper, portraits, order };
+}
+
+/** A stable small number off an id, so a choice can be made without state. */
+function hash(id: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < id.length; i++) {
+    h ^= id.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0) % 1024;
 }
 
 export function temperOf(cast: CastSheet, personId: Id): Temper {
@@ -182,11 +206,6 @@ export function portraitCardIds(cast: CastSheet): string[] {
 }
 
 /**
- * The first time a person is on the page they get all three components; after
- * that one, and a different one each time, so the same man is described twice
- * without being described the same way twice.
- */
-/**
  * Portrait cards arrive as sentences ("A split thumbnail he kept looking at.").
  * On the page they are joined mid-sentence, so they are stored as fragments:
  * lower-case start, no full stop of their own. Otherwise the page reads
@@ -196,18 +215,105 @@ function fragment(p: string): string {
   return p.trim().replace(/[.!?]+$/, '').replace(/^([A-Z])(?![A-Z])/, (m) => m.toLowerCase());
 }
 
-export function describePerson(
-  cast: CastSheet,
-  personId: Id,
-  surname: string,
-  seenBefore: boolean,
-  nth: number,
-): string {
+function sentence(p: string): string {
+  const t = p.trim();
+  return t.length === 0 ? '' : `${t.charAt(0).toUpperCase()}${t.slice(1)}`;
+}
+
+/**
+ * M4b §A.4 — portraits are woven, not listed.
+ *
+ * M4 printed "Ainsworth: a birthmark the shape of a thumbprint; tucks loose
+ * hair behind one ear; shoes a half-size large" and called it a description.
+ * Three details separated by semicolons is a catalogue entry: the reader is
+ * handed three things to remember about somebody who has not yet done
+ * anything, and remembers none of them.
+ *
+ * So: **trait plus one of habit and clothing**, never all three, in a sentence
+ * that also says what the person is doing. Three templates, and the choice of
+ * which second component goes with the trait is fixed per person, so the
+ * callback below can repeat it exactly once.
+ */
+export const PORTRAIT_TEMPLATES: { second: 'habit' | 'clothing' | 'none'; text: string }[] = [
+  { second: 'habit', text: '{Surname} had {trait}, and {second} while {pronoun} waited.' },
+  { second: 'clothing', text: '{Surname}: {trait}. {Second}.' },
+  { second: 'none', text: '{Trait} — that was {Surname}{business}.' },
+  { second: 'habit', text: '{Surname} came with {trait}, and {second} the whole time.' },
+  { second: 'clothing', text: '{Second}, and above it {trait}. {Surname}.' },
+];
+
+export interface WeaveInput {
+  cast: CastSheet;
+  personId: Id;
+  surname: string;
+  /** How many pages this person has already been portrayed on. */
+  times: number;
+  /** What their hands are doing, when the page has a business beat for it. */
+  business?: string | undefined;
+  pronoun: 'he' | 'she';
+  /** A number off the page, so two people on one page do not weave alike. */
+  nth: number;
+}
+
+/**
+ * One person, woven. First meeting: two components and a verb. Later: one
+ * component as a clause, and the same one as last time exactly once (§A.6's
+ * callback — a repeated detail is what makes a stock detail feel authored),
+ * then a different one each time after that.
+ */
+export function describePerson(input: WeaveInput): string {
+  const { cast, personId, surname, times, pronoun } = input;
   const portrait = cast.portraits[personId];
   if (!portrait) return surname;
-  const parts = [portrait.trait, portrait.habit, portrait.clothing].filter((p) => p.length > 0);
+  const has = { trait: portrait.trait, habit: portrait.habit, clothing: portrait.clothing };
+  const parts = (['trait', 'habit', 'clothing'] as const).filter((k) => has[k].length > 0);
   if (parts.length === 0) return surname;
-  if (!seenBefore) return `${surname}: ${parts.join('; ')}.`;
-  const one = parts[nth % parts.length] as string;
-  return `${surname}, and ${one}.`;
+
+  // Which second component belongs to this person, fixed at case start.
+  const pick = cast.order[personId] ?? 0;
+  const secondName: 'habit' | 'clothing' =
+    has.habit.length > 0 && (pick === 0 || has.clothing.length === 0) ? 'habit' : 'clothing';
+
+  if (times > 0) {
+    // The callback: the second meeting repeats the first meeting's component,
+    // and after that it varies. Never two components at once, ever.
+    const later = times === 1 ? secondName : (parts[(times - 1) % parts.length] as keyof typeof has);
+    const one = has[later].length > 0 ? has[later] : (has[parts[0] as keyof typeof has] as string);
+    return `${surname}, and ${one}.`;
+  }
+
+  const business = (input.business ?? '').trim();
+  const usable = PORTRAIT_TEMPLATES.filter(
+    (t) =>
+      (t.second === 'none' ? true : has[t.second].length > 0) &&
+      has.trait.length > 0 &&
+      (t.second !== 'none' || business.length > 0),
+  );
+  const pool = usable.filter((t) => t.second === secondName || t.second === 'none');
+  const chosen =
+    (pool.length > 0 ? pool[input.nth % pool.length] : usable[input.nth % Math.max(1, usable.length)]) ??
+    null;
+  if (!chosen) return `${surname}, and ${has[parts[0] as keyof typeof has]}.`;
+
+  const second = chosen.second === 'none' ? '' : has[chosen.second];
+  return chosen.text
+    .split('{Surname}')
+    .join(surname)
+    .split('{trait}')
+    .join(has.trait)
+    .split('{Trait}')
+    .join(sentence(has.trait))
+    .split('{second}')
+    .join(second)
+    .split('{Second}')
+    .join(sentence(second))
+    .split('{pronoun}')
+    .join(pronoun)
+    .split('{business}')
+    .join(business.length > 0 ? `, ${fragment(business)}` : '');
+}
+
+/** He or she, for the weaving templates. */
+export function pronounOf(person: Person | undefined): 'he' | 'she' {
+  return person && genderHintOf(person) === 'f' ? 'she' : 'he';
 }

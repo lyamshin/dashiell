@@ -43,12 +43,13 @@ export function isMotif(word: string): boolean {
 /**
  * The motifs on a card.
  *
- * Canonically `tags.motifs`, an array of vocabulary words. Two other shapes
- * are accepted because two content branches are tagging in parallel and a
- * schema is a slower thing to agree on than a deck: a top-level `motifs`
- * field, and a single string of space- or comma-separated words. Anything not
- * in the vocabulary is dropped here and reported by the validator — the engine
- * never scores on a word it does not know.
+ * Canonically a **top-level** `motifs` field, a sibling of `tags`: that is
+ * where the two content branches are writing them, and `tags` is for the
+ * single-valued things the dealer matches on. `tags.motifs` is read as well,
+ * and so is a single string of space- or comma-separated words, because a deck
+ * that arrives in the other shape should score rather than silently count as
+ * untagged. Anything outside the vocabulary is dropped here and reported by
+ * the validator — the engine never scores on a word it does not know.
  */
 export function readMotifs(card: { tags?: unknown; motifs?: unknown }): string[] {
   const raw =
@@ -87,11 +88,15 @@ export const NO_CONTEXT = (night: Weather): MotifContext => ({
 });
 
 /**
- * What weather a card claims, if it claims any. `any` and an absent tag are
+ * What weather a card claims, if it claims any. `any` and an absent field are
  * both "fits whatever the night is".
+ *
+ * Top-level `weather` first, which is where the tagging pass writes it, then
+ * `tags.weather`, which is where the arrivals deck has had it since M4 and
+ * where its schema still requires it.
  */
-export function weatherOf(card: { tags?: unknown }): string | null {
-  const raw = (card.tags as Record<string, unknown> | undefined)?.weather;
+export function weatherOf(card: { tags?: unknown; weather?: unknown }): string | null {
+  const raw = card.weather ?? (card.tags as Record<string, unknown> | undefined)?.weather;
   if (typeof raw !== 'string' || raw.length === 0 || raw === 'any') return null;
   return raw;
 }
@@ -104,7 +109,11 @@ export function weatherOf(card: { tags?: unknown }): string | null {
  * night is the same lie as `weather: "rain"`, and the content pass will tag it
  * both ways depending on who is writing.
  */
-export function contradictsWeather(motifs: readonly string[], card: { tags?: unknown }, night: Weather): boolean {
+export function contradictsWeather(
+  motifs: readonly string[],
+  card: { tags?: unknown; weather?: unknown },
+  night: Weather,
+): boolean {
   const tagged = weatherOf(card);
   if (tagged !== null && tagged !== night) return true;
   for (const m of motifs) {
@@ -126,7 +135,7 @@ export const STALE_MOTIF_PENALTY = 3;
 
 export function scoreMotifs(
   motifs: readonly string[],
-  card: { tags?: unknown },
+  card: { tags?: unknown; weather?: unknown },
   ctx: MotifContext,
 ): number {
   if (contradictsWeather(motifs, card, ctx.night)) return -Infinity;

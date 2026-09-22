@@ -68,6 +68,14 @@ function renderBlock(block: Block, view: CaseView, onNoun: NounClick): HTMLEleme
         wrap.append(el('p', { class: 'note', text: EMPTY_ROOM }));
         return [wrap];
       }
+      // M4b §A.4: one sentence, written by the engine, with every name in it
+      // still clickable — `proseWithNouns` finds the surnames on its own.
+      if (block.text) {
+        const p = el('p', { class: 'prose--presence' });
+        p.append(proseWithNouns(block.text, view, onNoun));
+        wrap.append(p);
+        return [wrap];
+      }
       wrap.append(el('div', { text: PRESENCE_LEAD }));
       const list = el('ul');
       for (const id of block.personIds) {

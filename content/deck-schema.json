@@ -13,10 +13,23 @@
       "intensity": { "values": [1, 2, 3] }
     }
   },
-  "$commonTagsNote": "M4b §A.2, §A.3, §A.5. Three tags every card in every deck may carry, merged underneath each deck's own (a deck that already declares one of them — arrivals.weather is required, portraits.gender is — keeps its own stricter spec). `motifs` is a LIST of one to three words from content/motifs.json and nowhere else; the validator rejects anything outside that vocabulary and reports per-deck coverage. Zero motifs is allowed on a card with no image in it. `weather` is the sky the card implies, including by its clothing — a raincoat, a collar up, wet boots — and a card that names another sky than the night's is excluded from the run entirely, not merely ranked down. `gender` marks a card with a gendered pronoun in it; the engine filters on the subject's gender for similes about a body or a voice, and for business.",
+  "$commonFieldsNote": "M4b §A.2 and §A.5. Two fields every card in every deck may carry, written TOP-LEVEL — siblings of `tags`, not inside it. `motifs` is a list and `tags` is for the single values the dealer matches on; `weather` excludes a card from the night outright rather than ranking it, which is not what a tag does either. The engine also reads `tags.motifs` and `tags.weather`, so a deck written the other way still scores, and arrivals keeps its M4 `tags.weather` where its own spec requires it.",
+  "commonFields": {
+    "motifs": {
+      "list": true,
+      "vocab": "motifs",
+      "max": 3,
+      "$note": "One to three words from content/motifs.json and nowhere else. The validator rejects anything outside that vocabulary and reports per-deck coverage. Zero is allowed on a card with no image in it."
+    },
+    "weather": {
+      "default": "any",
+      "vocab": "weather",
+      "extraValues": ["any"],
+      "$note": "The sky the card implies, including by its clothing — a raincoat, a collar turned up, wet boots. A card that names another sky than the night's never appears in that run."
+    }
+  },
+  "$commonTagsNote": "M4b §A.3. One tag every deck may carry, merged underneath each deck's own, so a deck that already declares it — portraits.gender is required, business.gender has been optional since M4 — keeps its own stricter spec. It marks a card with a gendered pronoun in it; the engine filters on the subject's gender for similes about a body or a voice, and for business.",
   "commonTags": {
-    "motifs": { "required": false, "list": true, "vocab": "motifs", "max": 3 },
-    "weather": { "required": false, "default": "any", "vocab": "weather", "extraValues": ["any"] },
     "gender": { "required": false, "default": "any", "values": ["m", "f", "any"] }
   },
   "$vocabFilesNote": "A vocabulary too long to keep in two places lives in its own file, and both readers — scripts/validate-decks.mjs and src/game/voice/cards.ts — resolve it from there. The motif vocabulary is the only one so far: 70 words in seven groups, and duplicating it here is how it would drift.",

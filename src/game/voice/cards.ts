@@ -70,13 +70,19 @@ export interface Card {
   deck: string;
   text: string;
   /**
-   * Per-deck tags, plus the three M4b adds to every deck: `motifs` (a list,
-   * §A.2), `weather` (§A.5) and `gender` (§A.3). A list-valued tag is read
-   * back through `motifsOf`, never through `tagOf`.
+   * Per-deck tags, plus `gender` (§A.3), which M4b adds to every deck and
+   * which lives inside `tags` because that is where the business deck has had
+   * it since M4 and because the dealer matches on it like any other tag.
    */
   tags: Record<string, TagValue | TagValue[]>;
-  /** Some writers put the motifs beside the tags rather than inside them. */
+  /**
+   * M4b §A.2 and §A.5, both **top-level** fields beside `tags` rather than
+   * inside it: a list is not something the dealer can match on, and the night
+   * excludes a card outright rather than ranking it. `tags.motifs` and
+   * `tags.weather` are read too, so a deck written the other way still scores.
+   */
   motifs?: string[];
+  weather?: string;
   avoidNear?: string[];
   status: string;
   notes?: string;
@@ -166,6 +172,31 @@ for (const name of DECK_NAMES) for (const card of DECKS[name]) CARD_DECK.set(car
 
 export function deckOf(cardId: string): DeckName | null {
   return CARD_DECK.get(cardId) ?? null;
+}
+
+/**
+ * Swap a deck's contents for the length of one call, and put them back.
+ *
+ * The only reason this exists: M4b forbids touching `content/decks/`, and the
+ * motif scoring (§A.2) cannot be shown to work against decks that are not
+ * tagged yet. A test builds a small tagged deck inline, runs the engine on it
+ * and measures. Nothing in `src/` calls it.
+ */
+export function withDecks<T>(decks: Partial<Record<DeckName, Card[]>>, fn: () => T): T {
+  const saved: Partial<Record<DeckName, Card[]>> = {};
+  for (const [name, cards] of Object.entries(decks) as [DeckName, Card[]][]) {
+    saved[name] = DECKS[name].slice();
+    DECKS[name].splice(0, DECKS[name].length, ...cards);
+    for (const card of cards) CARD_DECK.set(card.id, name);
+  }
+  try {
+    return fn();
+  } finally {
+    for (const [name, cards] of Object.entries(saved) as [DeckName, Card[]][]) {
+      DECKS[name].splice(0, DECKS[name].length, ...cards);
+      for (const card of cards) CARD_DECK.set(card.id, name);
+    }
+  }
 }
 
 export function burnTier(deck: DeckName): BurnTier {
@@ -438,6 +469,13 @@ export function validateDecks(): DeckReport[] {
       /* The motif vocabulary is closed (§A.2): a word outside it is an error,
        * never a warning, because a vocabulary that grows to fit the cards
        * stops being one and the scoring stops meaning anything. */
+      const rawWeather = card.weather ?? card.tags.weather;
+      if (
+        typeof rawWeather === 'string' &&
+        !['clear', 'rain', 'fog', 'cold', 'any'].includes(rawWeather)
+      ) {
+        errors.push(`${card.id}: weather = ${rawWeather}`);
+      }
       const rawMotifs = card.motifs ?? card.tags.motifs;
       if (rawMotifs !== undefined) {
         const words = Array.isArray(rawMotifs)
