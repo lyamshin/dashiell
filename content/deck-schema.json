@@ -440,7 +440,8 @@
       "burn": "within-run",
       "target": 20,
       "$comment": "M4b §B.2.3. The exchange that hires him, as one frame. `{fact}` is the client's own clue — why Dashiell was hired — and `{retainer}` is what the money looks like on the desk, by the client's class: twenty dollars from a working man, fifty from a professional, a hundred from money, and a roll with a rubber band round it from the underworld. The engine fills `{retainer}`; a card that leaves it out gets no money in it, and this is the one page where the money is the point.",
-      "slots": ["detective", "name", "place", "object", "time", "fact", "retainer", "business", "colour", "dashiell"],
+      "$pronounNote": "Hone 3 §5. A hiring card is two or three sentences about one person, and seven of them named the client in both: \"…,\" Kreuzer said. I took a roll before Kreuzer had gotten halfway through the second sentence. The second mention takes a pronoun, and the engine supplies the three cases for the client the card was dealt for — `{pronoun}` she/he, `{them}` her/him, `{their}` her/his — so the card stays one card rather than becoming two with a gender tag on each. Say the name first and the pronoun after, never the other way about.",
+      "slots": ["detective", "name", "pronoun", "them", "their", "place", "object", "time", "fact", "retainer", "business", "colour", "dashiell"],
       "requiredSlots": ["fact"],
       "warnSlots": {
         "retainer": "the page never says what the job pays, and §B.2 asks that the player always knows they are being paid"

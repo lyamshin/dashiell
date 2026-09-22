@@ -29,8 +29,28 @@ export const bodyAtScene: Trope = {
     return {
       facts,
       text: [
-        `${V} was found dead at ${L}.`,
-        `${V} was killed at ${L}, and nothing was carried out of the room afterwards.`,
+        /*
+         * Hone 3 §2. This was two sentences — "{V} was found dead at {L}." and
+         * "{V} was killed at {L}, and nothing was carried out of the room
+         * afterwards." — and the first two thirds of the second one restated
+         * the first. On the page it came out as "Sweeney was found dead at the
+         * suite. Sweeney was killed at the suite.", which is the same fact
+         * twice with the same subject and the same place in it, and a reader
+         * hears the machine.
+         *
+         * For this trope the two are one fact: the room the body is in is the
+         * room it happened in, and that is the whole of what `body-at-scene`
+         * means. One sentence carries both, and `Givens.facts` is a flat list
+         * for the case rather than a list per sentence, so nothing the report
+         * or the notebook reads has moved.
+         *
+         * The clause that did carry a second fact — nothing was carried out —
+         * is this trope's signature, and both of its signature clues state it
+         * (the rug and the chair at the scene, and the door that nobody came
+         * out of carrying anything). So it is not lost by being said once
+         * where it is proved rather than twice where it is asserted.
+         */
+        `${V} was found dead at ${L}, and that is where it happened.`,
         `The coroner puts it between ${clock(lo)} and ${clock(hi)}, which is two hours of nothing useful.`,
         `It was ${ctx.method.name}.`,
       ],

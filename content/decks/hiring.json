@@ -42,7 +42,7 @@
   {
     "id": "hir-004",
     "deck": "hiring",
-    "text": "\"{fact}, {detective}.\" {name} didn't waste breath explaining further. I took {retainer} the way I always did from {name}, without counting it.",
+    "text": "\"{fact}, {detective}.\" {name} didn't waste breath explaining further. I took {retainer} the way I always did from {them}, without counting it.",
     "tags": {
       "temper": "enigma",
       "familiar": "yes"
@@ -55,7 +55,7 @@
   {
     "id": "hir-005",
     "deck": "hiring",
-    "text": "{business} \"{fact}.\" Short, the way {name} always told it. {retainer} went into my pocket before {name} finished standing up.",
+    "text": "{business} \"{fact}.\" Short, the way {name} always told it. {retainer} went into my pocket before {pronoun} finished standing up.",
     "tags": {
       "temper": "enigma",
       "familiar": "yes"
@@ -82,7 +82,7 @@
   {
     "id": "hir-007",
     "deck": "hiring",
-    "text": "{business} \"{fact}\" I asked what the trouble was worth to {name}. \"{retainer},\" {name} said, and counted it onto the blotter.",
+    "text": "{business} \"{fact}\" I asked what the trouble was worth to {name}. \"{retainer},\" {pronoun} said, and counted it onto the blotter.",
     "tags": {
       "temper": "plain",
       "familiar": "no"
@@ -148,7 +148,7 @@
   {
     "id": "hir-012",
     "deck": "hiring",
-    "text": "\"{fact}. You remember how I work,\" {name} said. {dashiell} I took {retainer} the way I always had from {name}.",
+    "text": "\"{fact}. You remember how I work,\" {name} said. {dashiell} I took {retainer} the way I always had from {them}.",
     "tags": {
       "temper": "plain",
       "familiar": "yes"
@@ -226,7 +226,7 @@
   {
     "id": "hir-018",
     "deck": "hiring",
-    "text": "\"{fact}, {detective}, same as always,\" {name} said, and kept talking through the part where {retainer} landed on my desk. I picked it up without breaking {name}'s stride.",
+    "text": "\"{fact}, {detective}, same as always,\" {name} said, and kept talking through the part where {retainer} landed on my desk. I picked it up without breaking {their} stride.",
     "tags": {
       "temper": "yap",
       "familiar": "yes"
@@ -239,7 +239,7 @@
   {
     "id": "hir-019",
     "deck": "hiring",
-    "text": "{business} \"{fact}\" {dashiell} {name} was still explaining when I pocketed {retainer}, which never once slowed {name} down.",
+    "text": "{business} \"{fact}\" {dashiell} {name} was still explaining when I pocketed {retainer}, which never once slowed {them} down.",
     "tags": {
       "temper": "yap",
       "familiar": "yes"
@@ -252,7 +252,7 @@
   {
     "id": "hir-020",
     "deck": "hiring",
-    "text": "\"{fact}, and here's the rest of it whether you asked or not,\" {name} said. I took {retainer} before {name} had gotten halfway through the second sentence.",
+    "text": "\"{fact}, and here's the rest of it whether you asked or not,\" {name} said. I took {retainer} before {pronoun} had gotten halfway through the second sentence.",
     "tags": {
       "temper": "yap",
       "familiar": "yes"

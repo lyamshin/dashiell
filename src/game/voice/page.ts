@@ -2361,7 +2361,21 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   const familiar = knowsHim(cast.roll, client.id);
   const gender = genderHintOf(client);
   const retainer = retainerFor(klass);
-  const slots: Slots = { ...t.base, name: client.surname, subject: client.surname, retainer };
+  // Hone 3 §5. A hiring card that comes back to the client a second time takes
+  // a pronoun rather than the name again: "…," Kreuzer said. I took a roll
+  // before she had gotten halfway through the second sentence. The three cases
+  // are supplied here because the card is dealt here and the client is who it
+  // is about; a card that never asks for them is unaffected.
+  const she = pronounOf(client) === 'she';
+  const slots: Slots = {
+    ...t.base,
+    name: client.surname,
+    subject: client.surname,
+    pronoun: she ? 'she' : 'he',
+    them: she ? 'her' : 'him',
+    their: she ? 'her' : 'his',
+    retainer,
+  };
 
   t.put(
     {

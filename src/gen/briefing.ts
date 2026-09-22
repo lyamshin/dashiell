@@ -6,10 +6,13 @@ import type { Cast } from './cast.js';
 /**
  * M5 §4. The briefing, derived.
  *
- * Ten to sixteen plain declarative sentences, in the order the spec lays down:
- * who came in and what they are, what happened in the victim's own terms, how
- * the client stands to them, why they are hiring and what it costs them, and
- * who they would rather you looked at. The retainer is the engine's line, so
+ * Ten to seventeen plain declarative sentences, in the order the spec lays
+ * down: who came in and what they are, what happened in the victim's own
+ * terms, how the client stands to them, why they are hiring and what it costs
+ * them, and who they would rather you looked at. (Hone 3 §1 moved the ceiling
+ * by one: the death is a sentence of its own now, and the murder shapes whose
+ * givens state four separate facts run to seventeen.) The retainer is the
+ * engine's line, so
  * it is not here, and neither is whether Dashiell knows them: that is a roll
  * the engine makes, and the generator emits the sentence without it.
  *
@@ -33,7 +36,7 @@ export interface BriefingInput {
   brief: ClientBrief;
 }
 
-/** The givens are capped at four in the briefing, to stay inside sixteen. */
+/** The givens are capped at four in the briefing, to stay inside the ceiling. */
 const GIVENS_IN_BRIEFING = 4;
 
 export function buildBriefing(input: BriefingInput): BriefingLine[] {
@@ -55,6 +58,15 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
    * them do.
    */
   const said = (text: string, spoken?: string, prompt?: string): void => {
+    // Hone 3 §2. A sentence the briefing has already said, or a shorter form
+    // of one, is not said again. Two shapes reach here: `left` writes a given
+    // that is word for word the victim's last sighting, and `taken` writes the
+    // same sentence with its tail cut off — so the missing-person briefing
+    // stated who saw them last, and then stated it again three sentences
+    // later. Containment either way catches both, and it is deliberately
+    // strict about it: nothing else the generator writes is a substring of
+    // anything else it writes.
+    if (alreadySaid(out, text)) return;
     const voice = speakTimes(spoken ?? asClient(text, client));
     out.push({
       text,
@@ -88,14 +100,56 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
     else said(detailText, detailFirst, dossier.profession.prompt);
   }
 
-  /* 2. What happened, in the victim's terms. ------------------------------ */
-  said(bio.standing);
-  for (const line of act.givens.text.slice(0, GIVENS_IN_BRIEFING)) said(line);
+  /* 2. What happened, in the order the reader needs it. -------------------
+   *
+   * Hone 3 §1. The briefing used to open on the victim's standing — "Sweeney
+   * was the reason four places on the street stayed open" — and only get round
+   * to his being dead three sentences later. A reader who does not yet know
+   * there is a body has nowhere to put the standing, so the standing reads as
+   * a biography and the death, when it comes, reads as a correction.
+   *
+   * So the headline fact goes first, and it is a different fact per case type:
+   *
+   *   murder   the death, with the victim's full name, once — then who he was,
+   *            then where and how he was found, then what the precinct did.
+   *   robbery  the loss, then whose it was, then where and when.
+   *   missing  who is gone, then who they are, then when they were last seen.
+   *
+   * After that the three run together again: the tie, the purpose and its
+   * price, and the pointer. The record's order is the spoken order, so the
+   * truth sheet's Briefing section prints exactly this.
+   */
+  const givens = act.givens.text.slice(0, GIVENS_IN_BRIEFING);
+  const [headline, ...restOfGivens] = givens;
+  if (act.type === 'murder') {
+    // The one sentence the generator writes for the page rather than lifting
+    // from a trope. The full name is said here and nowhere else: a stranger
+    // names the dead man in full once, and after that he is a surname.
+    said(`${cast.victim.name} is dead.`);
+    said(bio.standing);
+    for (const line of givens) said(line);
+  } else if (act.type === 'robbery') {
+    // The loss is the trope's own first given — "A jewel case was taken from
+    // the suite, which is Sweeney's" — and it is already the headline. Whose
+    // it was follows it, which is what the possessive in it was reaching for.
+    if (headline !== undefined) said(headline);
+    said(bio.standing);
+    for (const line of restOfGivens) said(line);
+  } else {
+    if (headline !== undefined) said(headline);
+    said(bio.standing);
+  }
+
   if (bio.discovery) {
     said(bio.discovery.foundText, bio.discovery.foundTextFirst, bio.discovery.foundPrompt);
     said(PRECINCT_TEXT[bio.discovery.precinct]);
   } else if (bio.lastSeen) {
+    // Missing: the last sighting comes straight after who they are, and the
+    // rest of the trope's givens — the tidy rooms, the precinct's shrug —
+    // follow it, because they are what happened after rather than what
+    // happened. The givens carry their own precinct sentence in this shape.
     said(bio.lastSeen.text, bio.lastSeen.textFirst, bio.lastSeen.prompt);
+    for (const line of restOfGivens) said(line);
   }
 
   /* 3. How the client stands to the victim, with the specific. ------------ */
@@ -120,6 +174,11 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
   );
   said(`${brief.points.reason}.`, `${brief.points.reasonSpoken}.`);
 
+  // Hone 3 §3. Last, because it reads the whole of what she says at once: the
+  // surname once a turn, and after that a pronoun. It runs before `breathe`,
+  // so the split form inherits the pronouns rather than contradicting them.
+  pronounWithinTurns(out, cast);
+
   return out
     .map((line) => {
       const spoken = line.spoken === null ? null : tidy(line.spoken);
@@ -134,6 +193,147 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
       };
     })
     .filter((line) => line.text.length > 0);
+}
+
+/* ------------------------------------------------------------------ *
+ * Hone 3 §3 — the surname once a turn, and then pronouns.
+ * ------------------------------------------------------------------ */
+
+/**
+ * A turn is a paragraph of the client's speech, and inside one a person is
+ * named once.
+ *
+ * "Sweeney was the reason four places stayed open. Sweeney was found dead at
+ * the suite. Sweeney was killed at the suite." is a record being read out, and
+ * the giveaway is the name at the head of every sentence. A person says the
+ * name once and then says "he", and that is the whole rule. Across turns the
+ * surname may come back, because a new turn is a new answer to a new question
+ * and the reader has had Dashiell's voice in between.
+ *
+ * Only the client's own words are touched. The record's form keeps every name
+ * in it, because the sheet files a person by name and the notebook is read out
+ * of order.
+ *
+ * The guard is ambiguity: if the turn names anybody else of the same gender,
+ * "he" has two possible antecedents and the surname stays. That is why the
+ * pointer's turn — "Start with Grasso." / "Grasso blamed Sweeney for the ruin
+ * of his business." — keeps both names: two men, one pronoun, and a reader who
+ * has to work out which.
+ */
+export function pronounWithinTurns(lines: BriefingLine[], cast: Cast): void {
+  /** Everybody a turn can name, as the briefing spells them. */
+  const everyone: Named[] = [];
+  for (const p of cast.people) {
+    const gender = p.dossier?.gender ?? cast.dossiers[p.id]?.gender;
+    if (gender === undefined) continue;
+    everyone.push({ token: p.surname, gender, target: p.id !== cast.client.id });
+  }
+  // A mention is written in full — "Domenico Tramonti" — and never otherwise.
+  for (const m of cast.mentions.mentions) {
+    everyone.push({ token: m.name, gender: m.gender, target: true });
+  }
+
+  for (const turn of clientTurns(lines)) {
+    const here = everyone.filter((n) => turn.some((l) => countsOf(l.spoken ?? '', n.token) > 0));
+    for (const target of here) {
+      if (!target.target) continue;
+      // Somebody else of the same gender is in this turn, so a pronoun would
+      // have two people to point at. The name stays.
+      if (here.some((n) => n !== target && n.gender === target.gender)) continue;
+      pronounAfterFirst(turn, target);
+    }
+  }
+}
+
+interface Named {
+  /** The string the briefing writes: a surname for a person, a full name for a mention. */
+  token: string;
+  gender: 'm' | 'f';
+  /** False for the client, who is talking and says "I". She is only a guard. */
+  target: boolean;
+}
+
+/**
+ * The client's sentences grouped the way the page groups them: a turn begins
+ * wherever the generator wrote a question, because that is what the engine's
+ * `briefingTurns` does with the same list.
+ */
+function clientTurns(lines: readonly BriefingLine[]): BriefingLine[][] {
+  const turns: BriefingLine[][] = [];
+  for (const line of lines) {
+    if (line.speaker !== 'client' || line.spoken === null) continue;
+    const opens = line.prompt !== undefined && line.prompt.length > 0;
+    if (turns.length === 0 || opens) turns.push([]);
+    (turns[turns.length - 1] as BriefingLine[]).push(line);
+  }
+  return turns;
+}
+
+function nameRe(token: string): RegExp {
+  const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`\\b${escaped}(?:[’']s)?\\b`, 'g');
+}
+
+function countsOf(text: string, token: string): number {
+  return (text.match(nameRe(token)) ?? []).length;
+}
+
+/**
+ * What a name can be doing in a sentence, told from the words either side of
+ * it. The lists are short on purpose: where neither fits, the name stays, and
+ * a sentence that keeps its surname is never wrong, only flat.
+ */
+const A_SUBJECT_FOLLOWS =
+  /^(?:is|was|were|are|has|had|have|does|did|do|will|would|never|always|only|still|owed|owes|owns|owned|ran|runs|kept|keeps|rented|rents|carried|carries|paid|pays|said|says|wanted|wants|blamed|blames|knew|knows|came|comes|went|goes|left|leaves|lived|lives|died|dies|put|puts|gave|gives|took|takes|bought|buys|sold|sells|stopped|stops|sat|sits|stood|stands|worked|works|made|makes|held|holds|let|lets)\b/;
+const AN_OBJECT_FOLLOWS =
+  /\b(?:to|for|from|with|at|about|of|on|after|before|against|beside|near|behind|like|than|killed|kills|saw|sees|seen|found|finds|hit|hits|owed|owes|introduced|blamed|blames|ruined|ruins|asked|asks|told|tells|paid|pays|sent|sends|wanted|wants|carried|carries|met|meets|knew|knows|heard|hears|watched|watches)\s+$/;
+/** The name is starting a sentence, so its replacement takes the capital. */
+const A_SENTENCE_OPENS = /(?:^|[.!?][”"’']?\s+|[“"]\s*)$/;
+
+const PRONOUNS: Record<'m' | 'f', { subject: string; object: string; possessive: string }> = {
+  m: { subject: 'he', object: 'him', possessive: 'his' },
+  f: { subject: 'she', object: 'her', possessive: 'her' },
+};
+
+/** Every mention of this person in this turn after the first, as a pronoun. */
+function pronounAfterFirst(turn: readonly BriefingLine[], target: Named): void {
+  const p = PRONOUNS[target.gender];
+  let seen = 0;
+  for (const line of turn) {
+    if (line.spoken === null) continue;
+    const whole = line.spoken;
+    line.spoken = whole.replace(nameRe(target.token), (match, offset: number) => {
+      seen += 1;
+      // The first one is the introduction, and a turn that never introduces
+      // anybody is a turn of pronouns with nothing behind them.
+      if (seen === 1) return match;
+      const before = whole.slice(0, offset);
+      const rest = whole.slice(offset + match.length);
+      const after = rest.replace(/^[\s,]+/, '');
+      const possessive = /[’']s$/.test(match);
+      const opens = A_SENTENCE_OPENS.test(before);
+      // What comes before decides first. "I came to Sweeney and paid" has a
+      // verb after the name and a preposition in front of it, and only the
+      // preposition is telling the truth about which pronoun it takes.
+      const word = possessive
+        ? p.possessive
+        : AN_OBJECT_FOLLOWS.test(before)
+          ? p.object
+          : // A bare name at the head of a sentence, with a small word after it
+            // and no comma in between, is that sentence's subject: "He could
+            // put a name on a bill", "He and I took the lease together". A
+            // comma means an apposition or a relative clause is coming, and
+            // then the name stays, because what follows is about to describe
+            // it and a pronoun has nothing for it to describe.
+            opens && /^\s+[a-z]/.test(rest)
+            ? p.subject
+            : A_SUBJECT_FOLLOWS.test(after)
+              ? p.subject
+              : null;
+      if (word === null) return match;
+      return opens ? word.charAt(0).toUpperCase() + word.slice(1) : word;
+    });
+  }
 }
 
 /** The bare sentences, in order, for the sheet and the notebook. */
@@ -168,6 +368,25 @@ export function asClient(text: string, client: Person): string {
       return `${before}I ${conjugated}`;
     });
   return swapped.charAt(0).toUpperCase() + swapped.slice(1);
+}
+
+/**
+ * Has the briefing said this already, or a longer sentence that contains it?
+ *
+ * Hone 3 §2. The comparison is on the record's form, because that is the one
+ * the generator writes and the one the sheet files; two sentences that differ
+ * only in the person speaking them are still one fact.
+ */
+function alreadySaid(out: readonly BriefingLine[], text: string): boolean {
+  const bare = (s: string): string =>
+    s.toLowerCase().replace(/[.,;:!?’']/g, '').replace(/\s+/g, ' ').trim();
+  const now = bare(text);
+  if (now.length === 0) return false;
+  return out.some((line) => {
+    if (line.speaker !== 'client') return false;
+    const had = bare(line.text);
+    return had.includes(now) || now.includes(had);
+  });
 }
 
 /** One space between sentences, one full stop at the end, and no `{slots}`. */

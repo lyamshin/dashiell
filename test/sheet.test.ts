@@ -138,7 +138,17 @@ describe('sheet hygiene — short names', () => {
         // the headline paragraph, which is where the case is stated in full,
         // and M5's client gets a second in the briefing, which is where the
         // client is introduced to Dashiell by name.
-        const allowed = 1 + (p.isKiller || p.kind === 'victim' ? 1 : 0) + (p.isClient ? 1 : 0);
+        //
+        // Hone 3 §1: so does the victim, on a murder. The briefing's first
+        // sentence is now the death — "Martin Sweeney is dead." — and the
+        // spec asks for the full name there, once, because that is the one
+        // place a stranger names the dead man in full before he becomes a
+        // surname. The sheet prints the briefing verbatim, so the allowance
+        // grows by one for the victim and by nothing else.
+        const allowed =
+          1 +
+          (p.isKiller || p.kind === 'victim' ? 1 : 0) +
+          (p.isClient || p.kind === 'victim' ? 1 : 0);
         expect(sheet.split(p.name).length - 1, `${p.name} in seed ${seed}`).toBeLessThanOrEqual(
           allowed,
         );
