@@ -6,8 +6,12 @@
     "tags": {
       "mood": "flat",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -17,8 +21,14 @@
     "tags": {
       "mood": "wry",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "money",
+      "mouth"
+    ],
     "status": "generated"
   },
   {
@@ -28,8 +38,14 @@
     "tags": {
       "mood": "tired",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "window",
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -39,8 +55,14 @@
     "tags": {
       "mood": "menace",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "quiet",
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -50,8 +72,13 @@
     "tags": {
       "mood": "menace",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -61,8 +88,12 @@
     "tags": {
       "mood": "grief",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -72,8 +103,12 @@
     "tags": {
       "mood": "tender",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -83,8 +118,13 @@
     "tags": {
       "mood": "wry",
       "target": "face",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -94,8 +134,12 @@
     "tags": {
       "mood": "flat",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -105,8 +149,12 @@
     "tags": {
       "mood": "tender",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -116,8 +164,13 @@
     "tags": {
       "mood": "tired",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hands",
+      "glass"
+    ],
     "status": "generated"
   },
   {
@@ -127,8 +180,13 @@
     "tags": {
       "mood": "wry",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hands",
+      "gambling"
+    ],
     "status": "generated"
   },
   {
@@ -138,8 +196,14 @@
     "tags": {
       "mood": "menace",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "hands",
+      "keys",
+      "counter"
+    ],
     "status": "generated"
   },
   {
@@ -149,8 +213,12 @@
     "tags": {
       "mood": "grief",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -160,8 +228,12 @@
     "tags": {
       "mood": "flat",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -171,8 +243,13 @@
     "tags": {
       "mood": "wry",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "hands",
+      "hat"
+    ],
     "status": "generated"
   },
   {
@@ -182,8 +259,14 @@
     "tags": {
       "mood": "flat",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "bar",
+      "voice",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -193,8 +276,12 @@
     "tags": {
       "mood": "wry",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -204,8 +291,13 @@
     "tags": {
       "mood": "menace",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -215,8 +307,12 @@
     "tags": {
       "mood": "grief",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -226,8 +322,13 @@
     "tags": {
       "mood": "tired",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "voice",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -237,8 +338,13 @@
     "tags": {
       "mood": "tender",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -248,8 +354,12 @@
     "tags": {
       "mood": "flat",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -259,8 +369,13 @@
     "tags": {
       "mood": "menace",
       "target": "voice",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "law"
+    ],
     "status": "generated"
   },
   {
@@ -270,8 +385,13 @@
     "tags": {
       "mood": "menace",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "room",
+      "funeral"
+    ],
     "status": "generated"
   },
   {
@@ -281,8 +401,13 @@
     "tags": {
       "mood": "flat",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "office",
+      "cigarette"
+    ],
     "status": "generated"
   },
   {
@@ -292,8 +417,13 @@
     "tags": {
       "mood": "tired",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "room",
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -303,8 +433,13 @@
     "tags": {
       "mood": "grief",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "church",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -314,8 +449,12 @@
     "tags": {
       "mood": "menace",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -325,8 +464,12 @@
     "tags": {
       "mood": "tender",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "kitchen"
+    ],
     "status": "generated"
   },
   {
@@ -336,8 +479,13 @@
     "tags": {
       "mood": "grief",
       "target": "room",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "room",
+      "funeral"
+    ],
     "status": "generated"
   },
   {
@@ -347,8 +495,13 @@
     "tags": {
       "mood": "flat",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "room",
+      "stairs"
+    ],
     "status": "generated"
   },
   {
@@ -358,8 +511,13 @@
     "tags": {
       "mood": "tired",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "church",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -369,8 +527,12 @@
     "tags": {
       "mood": "menace",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -380,8 +542,13 @@
     "tags": {
       "mood": "flat",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -391,8 +558,12 @@
     "tags": {
       "mood": "wry",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -402,8 +573,12 @@
     "tags": {
       "mood": "tired",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -413,8 +588,13 @@
     "tags": {
       "mood": "flat",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "alley",
+      "market"
+    ],
     "status": "generated"
   },
   {
@@ -424,8 +604,13 @@
     "tags": {
       "mood": "grief",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -435,8 +620,12 @@
     "tags": {
       "mood": "menace",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -446,8 +635,15 @@
     "tags": {
       "mood": "menace",
       "target": "weather",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "cold",
+      "money",
+      "street"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -457,8 +653,14 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "rain",
+      "money"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -468,8 +670,14 @@
     "tags": {
       "mood": "tired",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "heat",
+      "street"
+    ],
+    "weather": "clear",
     "status": "generated"
   },
   {
@@ -479,8 +687,14 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "wind",
+      "medicine"
+    ],
+    "weather": "clear",
     "status": "generated"
   },
   {
@@ -490,8 +704,13 @@
     "tags": {
       "mood": "tender",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "snow"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -501,8 +720,12 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -512,8 +735,13 @@
     "tags": {
       "mood": "flat",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "money",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -523,8 +751,13 @@
     "tags": {
       "mood": "wry",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "office",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -534,8 +767,13 @@
     "tags": {
       "mood": "wry",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "money",
+      "cigarette"
+    ],
     "status": "generated",
     "avoidNear": [
       "SIM-048"
@@ -548,8 +786,13 @@
     "tags": {
       "mood": "wry",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "money",
+      "paper"
+    ],
     "status": "generated",
     "avoidNear": [
       "SIM-049"
@@ -562,8 +805,13 @@
     "tags": {
       "mood": "menace",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "money",
+      "funeral"
+    ],
     "status": "generated"
   },
   {
@@ -573,8 +821,13 @@
     "tags": {
       "mood": "menace",
       "target": "money",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "money",
+      "animals"
+    ],
     "status": "generated"
   },
   {
@@ -584,8 +837,12 @@
     "tags": {
       "mood": "tender",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -595,8 +852,12 @@
     "tags": {
       "mood": "tired",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -606,8 +867,13 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "money",
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -617,8 +883,12 @@
     "tags": {
       "mood": "menace",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "gambling"
+    ],
     "status": "generated"
   },
   {
@@ -628,8 +898,13 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hat",
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -639,8 +914,10 @@
     "tags": {
       "mood": "flat",
       "target": "lie",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -650,8 +927,12 @@
     "tags": {
       "mood": "menace",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "law"
+    ],
     "status": "generated"
   },
   {
@@ -661,8 +942,13 @@
     "tags": {
       "mood": "menace",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "gambling"
+    ],
     "status": "generated"
   },
   {
@@ -672,8 +958,10 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -683,8 +971,10 @@
     "tags": {
       "mood": "flat",
       "target": "lie",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -694,8 +984,13 @@
     "tags": {
       "mood": "menace",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "quiet",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -705,8 +1000,15 @@
     "tags": {
       "mood": "tired",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "snow",
+      "room"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -716,8 +1018,13 @@
     "tags": {
       "mood": "grief",
       "target": "silence",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -727,8 +1034,13 @@
     "tags": {
       "mood": "menace",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "telephone"
+    ],
     "status": "generated"
   },
   {
@@ -738,8 +1050,13 @@
     "tags": {
       "mood": "flat",
       "target": "silence",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "bar",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -749,8 +1066,13 @@
     "tags": {
       "mood": "grief",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "funeral"
+    ],
     "status": "generated"
   },
   {
@@ -760,8 +1082,13 @@
     "tags": {
       "mood": "tender",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "stairs"
+    ],
     "status": "generated"
   },
   {
@@ -771,8 +1098,14 @@
     "tags": {
       "mood": "wry",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "drink",
+      "face",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -782,8 +1115,13 @@
     "tags": {
       "mood": "flat",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "drink",
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -793,8 +1131,13 @@
     "tags": {
       "mood": "tired",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "drink",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -804,8 +1147,12 @@
     "tags": {
       "mood": "flat",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -815,8 +1162,12 @@
     "tags": {
       "mood": "wry",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -826,8 +1177,12 @@
     "tags": {
       "mood": "tired",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -837,8 +1192,12 @@
     "tags": {
       "mood": "wry",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -848,8 +1207,14 @@
     "tags": {
       "mood": "grief",
       "target": "drink",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "f"
     },
+    "motifs": [
+      "drink",
+      "glass",
+      "photograph"
+    ],
     "status": "generated"
   },
   {
@@ -859,8 +1224,12 @@
     "tags": {
       "mood": "flat",
       "target": "body",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -870,8 +1239,12 @@
     "tags": {
       "mood": "flat",
       "target": "body",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -881,8 +1254,13 @@
     "tags": {
       "mood": "menace",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "paper",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -892,8 +1270,13 @@
     "tags": {
       "mood": "tired",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "hands",
+      "shoulders"
+    ],
     "status": "generated"
   },
   {
@@ -903,8 +1286,12 @@
     "tags": {
       "mood": "wry",
       "target": "body",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -914,8 +1301,12 @@
     "tags": {
       "mood": "grief",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -925,8 +1316,10 @@
     "tags": {
       "mood": "menace",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -936,8 +1329,10 @@
     "tags": {
       "mood": "tired",
       "target": "body",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -947,8 +1342,12 @@
     "tags": {
       "mood": "wry",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "shoulders"
+    ],
     "status": "generated"
   },
   {
@@ -958,8 +1357,12 @@
     "tags": {
       "mood": "grief",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -969,8 +1372,12 @@
     "tags": {
       "mood": "menace",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hat"
+    ],
     "status": "generated"
   },
   {
@@ -980,8 +1387,13 @@
     "tags": {
       "mood": "flat",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "paper",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -991,8 +1403,12 @@
     "tags": {
       "mood": "wry",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -1002,8 +1418,12 @@
     "tags": {
       "mood": "menace",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -1013,8 +1433,12 @@
     "tags": {
       "mood": "wry",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "hat"
+    ],
     "status": "generated"
   },
   {
@@ -1024,8 +1448,13 @@
     "tags": {
       "mood": "menace",
       "target": "clothes",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [
+      "coat",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1035,8 +1464,12 @@
     "tags": {
       "mood": "tired",
       "target": "city",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1046,8 +1479,12 @@
     "tags": {
       "mood": "flat",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1057,8 +1494,12 @@
     "tags": {
       "mood": "menace",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "station"
+    ],
     "status": "generated"
   },
   {
@@ -1068,8 +1509,12 @@
     "tags": {
       "mood": "tired",
       "target": "city",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "midnight"
+    ],
     "status": "generated"
   },
   {
@@ -1079,8 +1524,13 @@
     "tags": {
       "mood": "wry",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "bar",
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -1090,8 +1540,12 @@
     "tags": {
       "mood": "menace",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1101,8 +1555,10 @@
     "tags": {
       "mood": "grief",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -1112,8 +1568,12 @@
     "tags": {
       "mood": "tired",
       "target": "hands",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "placeholder",
     "notes": "Placeholder. Reserved id range sim-pNNN; the content deck uses SIM-NNN. Fills the six intensity-3 targets the M3 deck had none of."
   },
@@ -1124,8 +1584,13 @@
     "tags": {
       "mood": "menace",
       "target": "street",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "quiet"
+    ],
     "status": "placeholder"
   },
   {
@@ -1135,8 +1600,14 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "cold",
+      "coat"
+    ],
+    "weather": "cold",
     "status": "placeholder"
   },
   {
@@ -1146,8 +1617,14 @@
     "tags": {
       "mood": "grief",
       "target": "silence",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "room",
+      "food"
+    ],
     "status": "placeholder"
   },
   {
@@ -1157,8 +1634,12 @@
     "tags": {
       "mood": "flat",
       "target": "body",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "placeholder"
   },
   {
@@ -1168,8 +1649,12 @@
     "tags": {
       "mood": "tired",
       "target": "city",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "work"
+    ],
     "status": "placeholder"
   },
   {
@@ -1179,8 +1664,14 @@
     "tags": {
       "mood": "flat",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "office",
+      "face",
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -1190,8 +1681,13 @@
     "tags": {
       "mood": "tender",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "window"
+    ],
     "status": "generated"
   },
   {
@@ -1201,8 +1697,12 @@
     "tags": {
       "mood": "menace",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -1212,8 +1712,13 @@
     "tags": {
       "mood": "grief",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "food"
+    ],
     "status": "generated"
   },
   {
@@ -1223,8 +1728,13 @@
     "tags": {
       "mood": "flat",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1234,8 +1744,14 @@
     "tags": {
       "mood": "menace",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -1245,8 +1761,14 @@
     "tags": {
       "mood": "wry",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "mouth",
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1256,8 +1778,13 @@
     "tags": {
       "mood": "flat",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -1267,8 +1794,13 @@
     "tags": {
       "mood": "grief",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -1278,8 +1810,13 @@
     "tags": {
       "mood": "wry",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "cigarette"
+    ],
     "status": "generated"
   },
   {
@@ -1289,8 +1826,12 @@
     "tags": {
       "mood": "tired",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -1300,8 +1841,13 @@
     "tags": {
       "mood": "flat",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -1311,8 +1857,14 @@
     "tags": {
       "mood": "menace",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "quiet",
+      "law"
+    ],
     "status": "generated"
   },
   {
@@ -1322,8 +1874,13 @@
     "tags": {
       "mood": "tender",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "lamp"
+    ],
     "status": "generated"
   },
   {
@@ -1333,8 +1890,15 @@
     "tags": {
       "mood": "menace",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "rain",
+      "cold"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -1344,8 +1908,12 @@
     "tags": {
       "mood": "tired",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -1355,8 +1923,14 @@
     "tags": {
       "mood": "flat",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "quiet",
+      "photograph"
+    ],
     "status": "generated"
   },
   {
@@ -1366,8 +1940,14 @@
     "tags": {
       "mood": "grief",
       "target": "face",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "paper",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1377,8 +1957,14 @@
     "tags": {
       "mood": "flat",
       "target": "face",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "face",
+      "paper",
+      "law"
+    ],
     "status": "generated"
   },
   {
@@ -1388,8 +1974,13 @@
     "tags": {
       "mood": "tender",
       "target": "face",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "face",
+      "machinery"
+    ],
     "status": "generated"
   },
   {
@@ -1399,8 +1990,13 @@
     "tags": {
       "mood": "wry",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hands",
+      "gambling"
+    ],
     "status": "generated"
   },
   {
@@ -1410,8 +2006,14 @@
     "tags": {
       "mood": "tender",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "church",
+      "hands",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1421,8 +2023,13 @@
     "tags": {
       "mood": "menace",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hands",
+      "law"
+    ],
     "status": "generated"
   },
   {
@@ -1432,8 +2039,12 @@
     "tags": {
       "mood": "tired",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1443,8 +2054,13 @@
     "tags": {
       "mood": "menace",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hands",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -1454,8 +2070,14 @@
     "tags": {
       "mood": "tired",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "hands",
+      "window",
+      "animals"
+    ],
     "status": "generated"
   },
   {
@@ -1465,8 +2087,12 @@
     "tags": {
       "mood": "flat",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1476,8 +2102,12 @@
     "tags": {
       "mood": "grief",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1487,8 +2117,12 @@
     "tags": {
       "mood": "flat",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1498,8 +2132,12 @@
     "tags": {
       "mood": "tired",
       "target": "hands",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1509,8 +2147,12 @@
     "tags": {
       "mood": "wry",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1520,8 +2162,12 @@
     "tags": {
       "mood": "menace",
       "target": "hands",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1531,8 +2177,12 @@
     "tags": {
       "mood": "flat",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1542,8 +2192,12 @@
     "tags": {
       "mood": "tired",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1553,8 +2207,13 @@
     "tags": {
       "mood": "wry",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "hands",
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -1564,8 +2223,12 @@
     "tags": {
       "mood": "tender",
       "target": "hands",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1575,8 +2238,15 @@
     "tags": {
       "mood": "menace",
       "target": "hands",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "hands",
+      "el",
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -1586,8 +2256,14 @@
     "tags": {
       "mood": "grief",
       "target": "hands",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "f"
     },
+    "motifs": [
+      "hands",
+      "cigarette",
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -1597,8 +2273,13 @@
     "tags": {
       "mood": "flat",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -1608,8 +2289,12 @@
     "tags": {
       "mood": "menace",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -1619,8 +2304,14 @@
     "tags": {
       "mood": "menace",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "telephone",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1630,8 +2321,14 @@
     "tags": {
       "mood": "grief",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "voice",
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -1641,8 +2338,13 @@
     "tags": {
       "mood": "flat",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -1652,8 +2354,12 @@
     "tags": {
       "mood": "wry",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -1663,8 +2369,12 @@
     "tags": {
       "mood": "tired",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -1674,8 +2384,14 @@
     "tags": {
       "mood": "tired",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "voice",
+      "money",
+      "telephone"
+    ],
     "status": "generated"
   },
   {
@@ -1685,8 +2401,14 @@
     "tags": {
       "mood": "menace",
       "target": "voice",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [
+      "church",
+      "voice",
+      "bells"
+    ],
     "status": "generated"
   },
   {
@@ -1696,8 +2418,13 @@
     "tags": {
       "mood": "tender",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "voice",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -1707,8 +2434,12 @@
     "tags": {
       "mood": "tender",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -1718,8 +2449,12 @@
     "tags": {
       "mood": "grief",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "voice"
+    ],
     "status": "generated"
   },
   {
@@ -1729,8 +2464,13 @@
     "tags": {
       "mood": "menace",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "market"
+    ],
     "status": "generated"
   },
   {
@@ -1740,8 +2480,13 @@
     "tags": {
       "mood": "tired",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "voice",
+      "telephone"
+    ],
     "status": "generated"
   },
   {
@@ -1751,8 +2496,13 @@
     "tags": {
       "mood": "menace",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "law"
+    ],
     "status": "generated"
   },
   {
@@ -1762,8 +2512,13 @@
     "tags": {
       "mood": "wry",
       "target": "voice",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "voice",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -1773,8 +2528,13 @@
     "tags": {
       "mood": "grief",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "voice",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -1784,8 +2544,13 @@
     "tags": {
       "mood": "flat",
       "target": "voice",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "voice",
+      "traffic"
+    ],
     "status": "generated"
   },
   {
@@ -1795,8 +2560,13 @@
     "tags": {
       "mood": "flat",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "room",
+      "telephone"
+    ],
     "status": "generated"
   },
   {
@@ -1806,8 +2576,12 @@
     "tags": {
       "mood": "tired",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -1817,8 +2591,12 @@
     "tags": {
       "mood": "menace",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -1828,8 +2606,13 @@
     "tags": {
       "mood": "tender",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "kitchen",
+      "dawn"
+    ],
     "status": "generated"
   },
   {
@@ -1839,8 +2622,13 @@
     "tags": {
       "mood": "flat",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "room",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -1850,8 +2638,13 @@
     "tags": {
       "mood": "grief",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "church",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1861,8 +2654,13 @@
     "tags": {
       "mood": "flat",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "room",
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -1872,8 +2670,12 @@
     "tags": {
       "mood": "wry",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -1883,8 +2685,12 @@
     "tags": {
       "mood": "tired",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -1894,8 +2700,13 @@
     "tags": {
       "mood": "menace",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "office",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1905,8 +2716,15 @@
     "tags": {
       "mood": "flat",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "room",
+      "cold",
+      "door"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -1916,8 +2734,12 @@
     "tags": {
       "mood": "grief",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -1927,8 +2749,13 @@
     "tags": {
       "mood": "menace",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "room",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1938,8 +2765,12 @@
     "tags": {
       "mood": "menace",
       "target": "room",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "kitchen"
+    ],
     "status": "generated"
   },
   {
@@ -1949,8 +2780,13 @@
     "tags": {
       "mood": "flat",
       "target": "room",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "office",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1960,8 +2796,12 @@
     "tags": {
       "mood": "wry",
       "target": "room",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -1971,8 +2811,12 @@
     "tags": {
       "mood": "tired",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -1982,8 +2826,13 @@
     "tags": {
       "mood": "flat",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -1993,8 +2842,14 @@
     "tags": {
       "mood": "menace",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "bells",
+      "roof"
+    ],
     "status": "generated"
   },
   {
@@ -2004,8 +2859,12 @@
     "tags": {
       "mood": "wry",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -2015,8 +2874,14 @@
     "tags": {
       "mood": "flat",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "rain"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -2026,8 +2891,12 @@
     "tags": {
       "mood": "menace",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -2037,8 +2906,12 @@
     "tags": {
       "mood": "flat",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -2048,8 +2921,13 @@
     "tags": {
       "mood": "wry",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "theater"
+    ],
     "status": "generated"
   },
   {
@@ -2059,8 +2937,15 @@
     "tags": {
       "mood": "tired",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "cold",
+      "room"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -2070,8 +2955,13 @@
     "tags": {
       "mood": "grief",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "cigarette"
+    ],
     "status": "generated"
   },
   {
@@ -2081,8 +2971,12 @@
     "tags": {
       "mood": "flat",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "alley"
+    ],
     "status": "generated"
   },
   {
@@ -2092,8 +2986,14 @@
     "tags": {
       "mood": "menace",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "quiet",
+      "photograph"
+    ],
     "status": "generated"
   },
   {
@@ -2103,8 +3003,15 @@
     "tags": {
       "mood": "flat",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "rain",
+      "paper"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -2114,8 +3021,13 @@
     "tags": {
       "mood": "tired",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "theater"
+    ],
     "status": "generated"
   },
   {
@@ -2125,8 +3037,12 @@
     "tags": {
       "mood": "grief",
       "target": "street",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "street"
+    ],
     "status": "generated"
   },
   {
@@ -2136,8 +3052,13 @@
     "tags": {
       "mood": "menace",
       "target": "street",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "street",
+      "bells"
+    ],
     "status": "generated"
   },
   {
@@ -2147,8 +3068,14 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "fog",
+      "street"
+    ],
+    "weather": "fog",
     "status": "generated"
   },
   {
@@ -2158,8 +3085,14 @@
     "tags": {
       "mood": "menace",
       "target": "weather",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "wind",
+      "cold"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -2169,8 +3102,15 @@
     "tags": {
       "mood": "grief",
       "target": "weather",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "cold",
+      "quiet",
+      "face"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -2180,8 +3120,14 @@
     "tags": {
       "mood": "tired",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "heat",
+      "street"
+    ],
+    "weather": "clear",
     "status": "generated"
   },
   {
@@ -2191,8 +3137,14 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "rain",
+      "money"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -2202,8 +3154,14 @@
     "tags": {
       "mood": "tender",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "snow",
+      "cigarette"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -2213,8 +3171,14 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "cold",
+      "door"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -2224,8 +3188,14 @@
     "tags": {
       "mood": "wry",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "wind",
+      "animals"
+    ],
+    "weather": "clear",
     "status": "generated"
   },
   {
@@ -2235,8 +3205,10 @@
     "tags": {
       "mood": "menace",
       "target": "weather",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2246,8 +3218,14 @@
     "tags": {
       "mood": "menace",
       "target": "weather",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "cold",
+      "money"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -2257,8 +3235,15 @@
     "tags": {
       "mood": "menace",
       "target": "weather",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [
+      "wind",
+      "keys",
+      "roof"
+    ],
+    "weather": "clear",
     "status": "generated"
   },
   {
@@ -2268,8 +3253,10 @@
     "tags": {
       "mood": "tender",
       "target": "weather",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2279,8 +3266,13 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "rain"
+    ],
+    "weather": "rain",
     "status": "generated"
   },
   {
@@ -2290,8 +3282,14 @@
     "tags": {
       "mood": "flat",
       "target": "weather",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "cold",
+      "window"
+    ],
+    "weather": "cold",
     "status": "generated"
   },
   {
@@ -2301,8 +3299,12 @@
     "tags": {
       "mood": "flat",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2312,8 +3314,14 @@
     "tags": {
       "mood": "tired",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "church",
+      "money",
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -2323,8 +3331,12 @@
     "tags": {
       "mood": "wry",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2334,8 +3346,13 @@
     "tags": {
       "mood": "wry",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "money",
+      "bells"
+    ],
     "status": "generated"
   },
   {
@@ -2345,8 +3362,12 @@
     "tags": {
       "mood": "menace",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2356,8 +3377,14 @@
     "tags": {
       "mood": "tired",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "church",
+      "money",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -2367,8 +3394,14 @@
     "tags": {
       "mood": "flat",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "money",
+      "cigarette",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -2378,8 +3411,12 @@
     "tags": {
       "mood": "menace",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2389,8 +3426,12 @@
     "tags": {
       "mood": "wry",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2400,8 +3441,12 @@
     "tags": {
       "mood": "tired",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2411,8 +3456,14 @@
     "tags": {
       "mood": "flat",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "church",
+      "money",
+      "keys"
+    ],
     "status": "generated"
   },
   {
@@ -2422,8 +3473,12 @@
     "tags": {
       "mood": "wry",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2433,8 +3488,12 @@
     "tags": {
       "mood": "menace",
       "target": "money",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2444,8 +3503,12 @@
     "tags": {
       "mood": "tired",
       "target": "money",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2455,8 +3518,10 @@
     "tags": {
       "mood": "menace",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2466,8 +3531,12 @@
     "tags": {
       "mood": "flat",
       "target": "lie",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "church"
+    ],
     "status": "generated"
   },
   {
@@ -2477,8 +3546,13 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "coat",
+      "shoulders"
+    ],
     "status": "generated"
   },
   {
@@ -2488,8 +3562,10 @@
     "tags": {
       "mood": "menace",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2499,8 +3575,12 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -2510,8 +3590,10 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2521,8 +3603,12 @@
     "tags": {
       "mood": "menace",
       "target": "lie",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [
+      "sea"
+    ],
     "status": "generated"
   },
   {
@@ -2532,8 +3618,12 @@
     "tags": {
       "mood": "flat",
       "target": "lie",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "paper"
+    ],
     "status": "generated"
   },
   {
@@ -2543,8 +3633,10 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2554,8 +3646,12 @@
     "tags": {
       "mood": "menace",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -2565,8 +3661,10 @@
     "tags": {
       "mood": "flat",
       "target": "lie",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2576,8 +3674,12 @@
     "tags": {
       "mood": "tired",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -2587,8 +3689,13 @@
     "tags": {
       "mood": "flat",
       "target": "lie",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "bar",
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -2598,8 +3705,12 @@
     "tags": {
       "mood": "menace",
       "target": "lie",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -2609,8 +3720,10 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2620,8 +3733,10 @@
     "tags": {
       "mood": "wry",
       "target": "lie",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2631,8 +3746,13 @@
     "tags": {
       "mood": "menace",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -2642,8 +3762,14 @@
     "tags": {
       "mood": "grief",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "piano",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -2653,8 +3779,12 @@
     "tags": {
       "mood": "tired",
       "target": "silence",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -2664,8 +3794,13 @@
     "tags": {
       "mood": "flat",
       "target": "silence",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -2675,8 +3810,13 @@
     "tags": {
       "mood": "menace",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "telephone"
+    ],
     "status": "generated"
   },
   {
@@ -2686,8 +3826,13 @@
     "tags": {
       "mood": "grief",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "church",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -2697,8 +3842,13 @@
     "tags": {
       "mood": "tender",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "photograph"
+    ],
     "status": "generated"
   },
   {
@@ -2708,8 +3858,13 @@
     "tags": {
       "mood": "menace",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "theater"
+    ],
     "status": "generated"
   },
   {
@@ -2719,8 +3874,12 @@
     "tags": {
       "mood": "flat",
       "target": "silence",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -2730,8 +3889,14 @@
     "tags": {
       "mood": "tired",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "office",
+      "quiet",
+      "breath"
+    ],
     "status": "generated"
   },
   {
@@ -2741,8 +3906,12 @@
     "tags": {
       "mood": "flat",
       "target": "silence",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -2752,8 +3921,13 @@
     "tags": {
       "mood": "menace",
       "target": "silence",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "quiet",
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -2763,8 +3937,13 @@
     "tags": {
       "mood": "grief",
       "target": "silence",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -2774,8 +3953,12 @@
     "tags": {
       "mood": "menace",
       "target": "silence",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "any"
     },
+    "motifs": [
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -2785,8 +3968,13 @@
     "tags": {
       "mood": "flat",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "drink",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -2796,8 +3984,12 @@
     "tags": {
       "mood": "tired",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -2807,8 +3999,14 @@
     "tags": {
       "mood": "flat",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "drink",
+      "cigarette",
+      "face"
+    ],
     "status": "generated"
   },
   {
@@ -2818,8 +4016,13 @@
     "tags": {
       "mood": "wry",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "drink",
+      "late"
+    ],
     "status": "generated"
   },
   {
@@ -2829,8 +4032,12 @@
     "tags": {
       "mood": "flat",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -2840,8 +4047,14 @@
     "tags": {
       "mood": "grief",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "drink",
+      "glass",
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -2851,8 +4064,12 @@
     "tags": {
       "mood": "menace",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -2862,8 +4079,12 @@
     "tags": {
       "mood": "wry",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -2873,8 +4094,13 @@
     "tags": {
       "mood": "tired",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "drink",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -2884,8 +4110,12 @@
     "tags": {
       "mood": "tired",
       "target": "drink",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -2895,8 +4125,12 @@
     "tags": {
       "mood": "flat",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -2906,8 +4140,14 @@
     "tags": {
       "mood": "wry",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "office",
+      "drink",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -2917,8 +4157,14 @@
     "tags": {
       "mood": "tired",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "drink",
+      "glass",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -2928,8 +4174,12 @@
     "tags": {
       "mood": "flat",
       "target": "drink",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "drink"
+    ],
     "status": "generated"
   },
   {
@@ -2939,8 +4189,10 @@
     "tags": {
       "mood": "flat",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2950,8 +4202,10 @@
     "tags": {
       "mood": "flat",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -2961,8 +4215,12 @@
     "tags": {
       "mood": "menace",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -2972,8 +4230,13 @@
     "tags": {
       "mood": "flat",
       "target": "body",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "office",
+      "shoulders"
+    ],
     "status": "generated"
   },
   {
@@ -2983,8 +4246,12 @@
     "tags": {
       "mood": "menace",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "stairs"
+    ],
     "status": "generated"
   },
   {
@@ -2994,8 +4261,10 @@
     "tags": {
       "mood": "wry",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -3005,8 +4274,12 @@
     "tags": {
       "mood": "grief",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -3016,8 +4289,13 @@
     "tags": {
       "mood": "menace",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "late",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -3027,8 +4305,12 @@
     "tags": {
       "mood": "tired",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -3038,8 +4320,13 @@
     "tags": {
       "mood": "flat",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "quiet",
+      "photograph"
+    ],
     "status": "generated"
   },
   {
@@ -3049,8 +4336,12 @@
     "tags": {
       "mood": "wry",
       "target": "body",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "money"
+    ],
     "status": "generated"
   },
   {
@@ -3060,8 +4351,12 @@
     "tags": {
       "mood": "tired",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "bar"
+    ],
     "status": "generated"
   },
   {
@@ -3071,8 +4366,12 @@
     "tags": {
       "mood": "flat",
       "target": "body",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "clock"
+    ],
     "status": "generated"
   },
   {
@@ -3082,8 +4381,10 @@
     "tags": {
       "mood": "tired",
       "target": "body",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -3093,8 +4394,13 @@
     "tags": {
       "mood": "grief",
       "target": "body",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "door",
+      "photograph"
+    ],
     "status": "generated"
   },
   {
@@ -3104,8 +4410,10 @@
     "tags": {
       "mood": "menace",
       "target": "body",
-      "intensity": 3
+      "intensity": 3,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -3115,8 +4423,12 @@
     "tags": {
       "mood": "flat",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "hat"
+    ],
     "status": "generated"
   },
   {
@@ -3126,8 +4438,13 @@
     "tags": {
       "mood": "tired",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "coat",
+      "room"
+    ],
     "status": "generated"
   },
   {
@@ -3137,8 +4454,10 @@
     "tags": {
       "mood": "wry",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -3148,8 +4467,12 @@
     "tags": {
       "mood": "flat",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "hands"
+    ],
     "status": "generated"
   },
   {
@@ -3159,8 +4482,13 @@
     "tags": {
       "mood": "wry",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "church",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -3170,8 +4498,10 @@
     "tags": {
       "mood": "tired",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -3181,8 +4511,12 @@
     "tags": {
       "mood": "flat",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "gambling"
+    ],
     "status": "generated"
   },
   {
@@ -3192,8 +4526,14 @@
     "tags": {
       "mood": "tender",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "coat",
+      "hands",
+      "shoulders"
+    ],
     "status": "generated"
   },
   {
@@ -3203,8 +4543,13 @@
     "tags": {
       "mood": "tired",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "m"
     },
+    "motifs": [
+      "money",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -3214,8 +4559,12 @@
     "tags": {
       "mood": "wry",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "hat"
+    ],
     "status": "generated"
   },
   {
@@ -3225,8 +4574,12 @@
     "tags": {
       "mood": "tired",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -3236,8 +4589,12 @@
     "tags": {
       "mood": "flat",
       "target": "clothes",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "f"
     },
+    "motifs": [
+      "keys"
+    ],
     "status": "generated"
   },
   {
@@ -3247,8 +4604,12 @@
     "tags": {
       "mood": "menace",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "m"
     },
+    "motifs": [
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -3258,8 +4619,14 @@
     "tags": {
       "mood": "grief",
       "target": "clothes",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "f"
     },
+    "motifs": [
+      "cigarette",
+      "paper",
+      "coat"
+    ],
     "status": "generated"
   },
   {
@@ -3269,8 +4636,10 @@
     "tags": {
       "mood": "flat",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -3280,8 +4649,13 @@
     "tags": {
       "mood": "wry",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "late",
+      "door"
+    ],
     "status": "generated"
   },
   {
@@ -3291,8 +4665,13 @@
     "tags": {
       "mood": "tired",
       "target": "city",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "church",
+      "quiet"
+    ],
     "status": "generated"
   },
   {
@@ -3302,8 +4681,13 @@
     "tags": {
       "mood": "flat",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "midnight",
+      "ledger"
+    ],
     "status": "generated"
   },
   {
@@ -3313,8 +4697,12 @@
     "tags": {
       "mood": "menace",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "office"
+    ],
     "status": "generated"
   },
   {
@@ -3324,8 +4712,14 @@
     "tags": {
       "mood": "flat",
       "target": "city",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "dawn",
+      "street",
+      "medicine"
+    ],
     "status": "generated"
   },
   {
@@ -3335,8 +4729,12 @@
     "tags": {
       "mood": "flat",
       "target": "city",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "sea"
+    ],
     "status": "generated"
   },
   {
@@ -3346,8 +4744,12 @@
     "tags": {
       "mood": "tired",
       "target": "city",
-      "intensity": 1
+      "intensity": 1,
+      "gender": "any"
     },
+    "motifs": [
+      "radio"
+    ],
     "status": "generated"
   },
   {
@@ -3357,8 +4759,10 @@
     "tags": {
       "mood": "flat",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [],
     "status": "generated"
   },
   {
@@ -3368,8 +4772,12 @@
     "tags": {
       "mood": "menace",
       "target": "city",
-      "intensity": 2
+      "intensity": 2,
+      "gender": "any"
     },
+    "motifs": [
+      "ledger"
+    ],
     "status": "generated"
   }
 ]
