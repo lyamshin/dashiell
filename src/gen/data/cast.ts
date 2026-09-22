@@ -1398,23 +1398,61 @@ export const PURPOSE_TEXT: Record<Purpose, string> = {
 };
 
 /**
- * The same eight, in the client's own mouth. Page one has them in the room
- * saying it, and a frightened person says "me".
+ * The same eight, in the client's own mouth, three ways each.
  *
- * Each line is the predicate after "I", so that the briefing assembles the
- * sentence the same way it assembles the third-person one: `${surname} ${third}`
- * against `I ${first}`.
+ * Hone 2 §Track B. These used to be the predicate after "I" — one clause a
+ * purpose, the same length every time, and the page read like a form being
+ * filled in. They are whole sentences now, written the way the golden's client
+ * says hers: "I want what I am owed. If the man who killed him has my money,
+ * then yes, I want him too." Two or three sentences, one of them six words or
+ * fewer, and every fact of the third-person line still in them.
+ *
+ * The variant is drawn by the same index as the question in `PURPOSE_PROMPTS`,
+ * so the answer and the question that asks for it were written together. Each
+ * one opens on "I ", because the briefing's third-person twin opens on a name
+ * and page one's opens on the person in the chair.
  */
-export const PURPOSE_TEXT_FIRST: Record<Purpose, string> = {
-  'find-the-killer-police-wont':
-    'want the one who killed {V} found, because the precinct has stopped looking',
-  'clear-my-name': 'want it established that it was not me, before anybody says otherwise',
-  'keep-it-quiet': 'want it settled quietly, before it is settled loudly',
-  'find-it-before-the-cops': 'want it found before the police find it',
-  'get-it-back': 'want it back, and do not much care who took it',
-  'bring-them-home': 'want {V} found and brought home',
-  'make-sure-they-stay-gone': 'want to know {V} is gone for good, and where',
-  'settle-a-debt-with-the-dead': 'have something owing with {V} that death did not settle',
+export const PURPOSE_TEXT_FIRST: Record<Purpose, string[]> = {
+  'find-the-killer-police-wont': [
+    'I want the one who killed {V} found. The precinct has stopped looking. That is why I am here.',
+    'I want the one who killed {V} found. Nobody at the precinct is looking any more. I am asking you instead.',
+    'I want the one who killed {V} found. The precinct has stopped looking for anybody at all. So I came up the stairs.',
+  ],
+  'clear-my-name': [
+    'I want it established that it was not me. Before anybody says otherwise.',
+    'I want it established that it was not me, and I want it done before anybody says otherwise. That is all I want.',
+    'I want it established that it was not me. Somebody will say otherwise. I would rather be first.',
+  ],
+  'keep-it-quiet': [
+    'I want it settled quietly. Before somebody settles it loudly.',
+    'I want it settled quietly, because the other way it gets settled loudly. I have seen that happen.',
+    'I want it settled quietly. If I wait, it gets settled loudly instead.',
+  ],
+  'find-it-before-the-cops': [
+    'I want it found. Before the police find it.',
+    'I want it found first. The police will find it if I do not.',
+    'I want it in my hands before the police have it. That is the whole errand.',
+  ],
+  'get-it-back': [
+    'I want it back. I do not much care who took it.',
+    'I want it back. Who took it is a smaller question than where it is.',
+    'I want the thing back. The man who took it does not interest me much.',
+  ],
+  'bring-them-home': [
+    'I want {V} found. I want {V} brought home.',
+    'I want {V} found and brought home. That is all of it.',
+    'I want {V} home. Found first, and then home.',
+  ],
+  'make-sure-they-stay-gone': [
+    'I want to know {V} is gone for good. And where.',
+    'I want to know where {V} is, and that {V} is gone for good. Both of those.',
+    'I want to know {V} is gone for good. I want to know where. Those two things.',
+  ],
+  'settle-a-debt-with-the-dead': [
+    'I have something owing with {V}. Death did not settle it.',
+    'I have something owing with {V} that death did not settle. It is still owing.',
+    'I want what I am owed. {V} and I had something between us that death did not settle.',
+  ],
 };
 
 /**
@@ -1435,39 +1473,52 @@ export const PURPOSE_PROMPTS: Record<Purpose, string[]> = {
   'clear-my-name': [
     'What is it you are afraid will be said?',
     'You think somebody will put it on you.',
-    'Whose word are you worried about?',
+    'You want it said before somebody else says it.',
   ],
   'keep-it-quiet': [
-    'What is it you want kept quiet?',
+    'How do you want this settled?',
     'You would rather nobody heard about this.',
-    'And you want it settled without a word said.',
+    'What happens if it is settled loudly?',
   ],
   'find-it-before-the-cops': [
     'What happens if the police find it first?',
-    'Why the hurry?',
-    'You want it in your hands before theirs.',
+    'Who else is looking for it?',
+    'You want it in your hands before the police have it.',
   ],
   'get-it-back': [
-    'What is it you want returned?',
     'Is it the thing you want, or the man?',
     'So the thing matters more than the man who took it.',
+    'What is it you want back?',
   ],
   'bring-them-home': [
     'What do you want done about {V}?',
     'You want {V} found.',
-    'And if {V} does not want to be found?',
+    'Found, or found and brought back?',
   ],
   'make-sure-they-stay-gone': [
     'What is it you want to know about {V}?',
     'You want to be sure {V} is gone.',
-    'And if {V} comes back?',
+    'What would satisfy you about {V}?',
   ],
   'settle-a-debt-with-the-dead': [
-    'So you want the one who killed {V}.',
-    'What do you want out of it?',
-    'Money, then.',
+    'What is it {V} left unsettled with you?',
+    'What is still between you and {V}?',
+    'So it is the money you want.',
   ],
 };
+
+/**
+ * §A.1 and Hone 2 §Track B — the question the profession sentence answers.
+ *
+ * The plainest question on the page, and the only one whose answer is what the
+ * client does for a living. Drawn by the same index as the detail itself, so
+ * the question and the sentence that answers it were written side by side.
+ */
+export const PROFESSION_PROMPTS: string[] = [
+  'What do you do?',
+  'What line of work are you in?',
+  'What is it you do for a living?',
+];
 
 /**
  * One purpose assumes a body, and two of the three case types do not have one.
@@ -1475,9 +1526,13 @@ export const PURPOSE_PROMPTS: Record<Purpose, string[]> = {
  * walk back in on Thursday. The debt is the same debt and the sentence is not,
  * so the living get their own wording.
  */
-export const PURPOSE_TEXT_LIVING: Partial<Record<Purpose, { third: string; first: string }>> = {
+export const PURPOSE_TEXT_LIVING: Partial<Record<Purpose, { third: string; first: string[] }>> = {
   'settle-a-debt-with-the-dead': {
     third: 'has something owing with {V} and means to be paid, whichever way this ends',
-    first: 'have something owing with {V} and mean to be paid, whichever way this ends',
+    first: [
+      'I have something owing with {V}. I mean to be paid, whichever way this ends.',
+      'I want what I am owed. {V} has it, and I mean to be paid whichever way this ends.',
+      'I have something owing with {V}, and I mean to be paid. However this ends.',
+    ],
   },
 };
