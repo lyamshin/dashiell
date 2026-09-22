@@ -373,7 +373,12 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           }
           break;
         case 'objectMissing': {
-          if (f.fromPlace === scene || f.fromPlace === kase.act.place) {
+          // A thing gone that is also the means — the weapon from where it
+          // lived, the key off its hook, the timetable off the rack — is
+          // method, whatever the case is.
+          if (facts.some((g) => g.kind === 'methodEvidence')) {
+            out.push({ cls: 'method', objectId: f.objectId, placeId: f.fromPlace, clueIds: [clue.id] });
+          } else if (f.fromPlace === scene || f.fromPlace === kase.act.place) {
             if (clue.place !== f.fromPlace && kase.act.type === 'robbery') {
               out.push({ cls: 'goods', objectId: f.objectId, placeId: clue.place, clueIds: [clue.id] });
             } else {
