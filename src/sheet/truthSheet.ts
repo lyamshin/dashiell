@@ -10,6 +10,7 @@ import {
   type Person,
   type Tick,
 } from '../gen/types.js';
+import { describeDials, dialsOf } from '../gen/shape.js';
 
 /**
  * A designer's read-out of one case. Clarity over polish: this is the document
@@ -49,6 +50,16 @@ export function renderTruthSheet(c: Case): string {
     `**Seed** ${c.seed} · **Difficulty** ${c.difficulty} · **Attempts** ${c.attempts} · **Detective** ${c.detectiveName}`,
   );
   out.push('');
+  // M7: the tier and the level, and the dials under them.
+  {
+    const dials = dialsOf(c);
+    const tier = dials.shape.tier;
+    out.push(
+      `**Tier** ${typeof tier === 'number' ? `${tier} ` : ''}${dials.shape.name} · ` +
+        `**Level** ${dials.ladder.level} ${dials.ladder.name} · ${describeDials(dials)}`,
+    );
+    out.push('');
+  }
   out.push(
     `**Type** ${c.act.type} · **Trope** ${c.act.tropeId} · ` +
       `**Unknowns** ${c.act.unknowns.join(', ')}`,
@@ -268,8 +279,11 @@ export function renderTruthSheet(c: Case): string {
   out.push('## 9. Anchors');
   out.push('');
   out.push(
-    `The coroner gives ${clock(c.coronerWindow[0])}–${clock(c.coronerWindow[1])}, four ticks wide. ` +
-      `These are what close it: **${c.deduction.timeOfDeathAnchors.join('** and **')}**.`,
+    `The coroner gives ${clock(c.coronerWindow[0])}–${clock(c.coronerWindow[1])}, ` +
+      `${['', 'one tick', 'two ticks', 'three ticks', 'four ticks'][c.coronerWindow[1] - c.coronerWindow[0] + 1] ?? 'several ticks'} wide. ` +
+      (c.deduction.timeOfDeathAnchors.length > 0
+        ? `These are what close it: **${c.deduction.timeOfDeathAnchors.join('** and **')}**.`
+        : 'Nothing needs to close it.'),
   );
   out.push('');
   for (const a of c.anchors) {
@@ -429,6 +443,15 @@ export function renderTruthSheet(c: Case): string {
   }
   if (branchIds.length === 0) out.push('- None.');
   out.push('');
+  // M7: where a tier has too few secrets to carry its noise, the rest is the
+  // evening itself — an innocent seen somewhere at an hour that means nothing.
+  const loose = findable.filter((cl) => cl.role === 'noise' && !cl.branchId);
+  if (loose.length > 0) {
+    out.push('**Loose ends — true, and about nothing:**');
+    out.push('');
+    for (const cl of loose) out.push(`- **${cl.id}** — ${cl.textRecord ?? cl.text}`);
+    out.push('');
+  }
 
   return out.join('\n');
 }

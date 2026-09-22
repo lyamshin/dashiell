@@ -227,6 +227,7 @@ function run(
         murderTick: M,
         caseType,
         tropeId: trope.id,
+        otherAccess: shape.proof.includes('access'),
         ...(diagnostics
           ? { reject: (reason: string) => diagnostics.rejections.push(reason) }
           : {}),

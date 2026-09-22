@@ -124,7 +124,12 @@ function drawPlacesSized(rng: Rng, count: number, watchedRange: [number, number]
   const residences = PLACE_TEMPLATES.filter((t) => t.isResidence);
   const publicOpen = PLACE_TEMPLATES.filter((t) => t.kind === 'public' && !watched(t));
   const watchedAny = PLACE_TEMPLATES.filter(watched);
-  const unwatched = PLACE_TEMPLATES.filter((t) => !watched(t) && !t.isResidence);
+  // The same pools the six-card draw deals from: a semi-public room with
+  // nobody posted at it (the union hall, the side chapel) has never been dealt,
+  // and its anchors name rooms that would not be in the case.
+  const unwatched = PLACE_TEMPLATES.filter(
+    (t) => !watched(t) && !t.isResidence && (t.kind === 'private' || t.kind === 'public'),
+  );
 
   const want = Math.min(count - 1, rng.range(watchedRange[0], watchedRange[1]));
   const chosen: PlaceTemplate[] = [rng.pick(residences)];

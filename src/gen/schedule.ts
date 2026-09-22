@@ -27,7 +27,8 @@ export interface ScheduleBuild {
   killerClaimAtM: Id;
   accessPlaceId: Id;
   killerAccessTick: Tick;
-  innocentAccess: { personId: Id; tick: Tick };
+  /** Null only where access is not a leg of the proof (M7, below Poached). */
+  innocentAccess: { personId: Id; tick: Tick } | null;
   /** Innocents whose secret sits on the murder tick. */
   mLiars: Id[];
   /** Where the victim was seen alive, at M − 1. */
@@ -56,6 +57,11 @@ export interface ScheduleContext {
    */
   caseType: CaseType;
   tropeId: Id;
+  /**
+   * M7: somebody other than the culprit must be placeable near the weapon.
+   * Absent is true. Raw and Coddled do not ask how, so they do not need it.
+   */
+  otherAccess?: boolean;
   reject?: (reason: string) => void;
 }
 
@@ -495,7 +501,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     }
     if (innocentAccess) break;
   }
-  if (!innocentAccess) return fail('nobody but the killer could have reached the weapon');
+  if (!innocentAccess && ctx.otherAccess !== false) {
+    return fail('nobody but the killer could have reached the weapon');
+  }
 
   /* --- fill in the rest of the evening ---------------------------------- */
   const allowedPlace = (personId: Id, tick: Tick): Id[] => {
