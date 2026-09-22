@@ -304,15 +304,22 @@ const ASKS: Record<BriefingAsk, string[]> = {
  * is broken by a beat of narration rather than by "And then?", because she was
  * not interrupted and the page should not pretend she was.
  */
+/*
+ * Every one of them opens on the pronoun and runs to five words or fewer.
+ * Both are load-bearing: the paragraph after a paragraph of her speech has to
+ * carry a reference back into it, which is what §7's cohesion measures, and
+ * the page is short of short sentences, which is what §5's rhythm measures.
+ * A beat that says "She said the rest of it to the desk" does neither.
+ */
 export const CLIENT_CONTINUES: string[] = [
   '{Pronoun} went on.',
   '{Pronoun} kept going.',
-  '{Pronoun} did not wait for a question.',
-  '{name} was not finished.',
+  '{Pronoun} was not finished.',
   '{Pronoun} had more of it.',
-  '{Pronoun} said the rest of it to the desk.',
-  '{Pronoun} was not done.',
   '{Pronoun} went straight on.',
+  '{Pronoun} did not stop there.',
+  '{Pronoun} was not done.',
+  '{Pronoun} kept talking.',
 ];
 
 /**

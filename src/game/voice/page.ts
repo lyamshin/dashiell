@@ -1507,14 +1507,15 @@ function blocksOf(laid: Laid[]): Block[] {
 /**
  * The floor the pass tops a page up to, and how many beats it may spend.
  *
- * §5 says "at least a quarter" and GAP.md's target is a **mean** of 0.28 over
- * the fixed set. A page floor of a quarter gives a mean of 0.25, because the
- * distribution either side of the floor is narrow — almost every page sits on
- * it. The floor is set at 0.30 to land the mean where the target is, and not a
- * point higher: past that the beats stop being rhythm and start being padding,
- * and a page of four-word sentences is as flat as a page of eleven-word ones.
+ * §5 says "at least a quarter" and GAP.md's target is a **mean** over the
+ * fixed set. The distribution either side of the floor is narrow — almost
+ * every page sits on it — so the floor is set at the target rather than under
+ * it, and not a point higher: past that the beats stop being rhythm and start
+ * being padding, and a page of four-word sentences is as flat as a page of
+ * eleven-word ones. Hone 1 §B.5 moved the target to 0.36, the mean of golden
+ * v2's two pages measured one at a time, and this followed it.
  */
-export const SHORT_TARGET = 0.3;
+export const SHORT_TARGET = 0.36;
 export const SHORT_TOP_UPS = 4;
 
 /**
