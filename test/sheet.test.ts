@@ -5,17 +5,24 @@ import { renderCandidateSheet, renderTruthSheet } from '../src/sheet/truthSheet.
 describe('truth sheet', () => {
   it('emits the spec sections in order', () => {
     const sheet = renderTruthSheet(generateCase(7));
+    // M5 §5 adds five sections — The Act, Dossiers, The Client, The Briefing
+    // and Mentions — and everything after them moves down.
     const headings = [
       '## 1. The Truth',
-      '## 2. Dramatis Personae',
-      '## 3. Places',
-      '## 4. Anchors',
-      '## 5. Timelines',
-      '## 6. Secrets in play',
-      '## 7. Clue list',
-      '## 8. Clue graph',
-      '## 9. Deduction path',
-      '## 10. Red herrings',
+      '## 2. The Act',
+      '## 3. Dramatis Personae',
+      '## 4. Dossiers',
+      '## 5. The Client',
+      '## 6. The Briefing',
+      '## 7. Mentions',
+      '## 8. Places',
+      '## 9. Anchors',
+      '## 10. Timelines',
+      '## 11. Secrets in play',
+      '## 12. Clue list',
+      '## 13. Clue graph',
+      '## 14. Deduction path',
+      '## 15. Red herrings',
     ];
     let cursor = 0;
     for (const heading of headings) {
@@ -36,6 +43,8 @@ describe('truth sheet', () => {
     expect(sheet).toContain(`**Budget** ${c.budget}`);
     expect(sheet).toContain(`**Findable** ${c.findable.length}`);
     expect(sheet).toContain('**Noise ratio**');
+    expect(sheet).toContain(`**Type** ${c.act.type}`);
+    expect(sheet).toContain(`**Trope** ${c.act.tropeId}`);
   });
 
   it('marks the murder cell and bolds lies', () => {
@@ -51,7 +60,7 @@ describe('truth sheet', () => {
       const c = generateCase(seed);
       const sheet = renderTruthSheet(c);
       const findable = new Set(c.findable.map((cl) => cl.id));
-      const section = sheet.slice(sheet.indexOf('## 7. Clue list'), sheet.indexOf('## 8. Clue graph'));
+      const section = sheet.slice(sheet.indexOf('## 12. Clue list'), sheet.indexOf('## 13. Clue graph'));
       for (const cl of c.findable) expect(section).toContain(`**${cl.id}**`);
       for (const cl of c.candidates) {
         if (findable.has(cl.id)) continue;
@@ -64,7 +73,7 @@ describe('truth sheet', () => {
     for (let seed = 1; seed <= 10; seed++) {
       const c = generateCase(seed);
       const sheet = renderTruthSheet(c);
-      const graph = sheet.slice(sheet.indexOf('## 8. Clue graph'), sheet.indexOf('## 9. Deduction'));
+      const graph = sheet.slice(sheet.indexOf('## 13. Clue graph'), sheet.indexOf('## 14. Deduction'));
       expect(graph).toContain('```mermaid');
       expect(graph).toContain('graph LR');
       expect(graph).toContain('classDef noise');
@@ -80,7 +89,7 @@ describe('truth sheet', () => {
   it('spells out the anchors and what they let you fix', () => {
     const c = generateCase(13);
     const sheet = renderTruthSheet(c);
-    const section = sheet.slice(sheet.indexOf('## 4. Anchors'), sheet.indexOf('## 5. Timelines'));
+    const section = sheet.slice(sheet.indexOf('## 9. Anchors'), sheet.indexOf('## 10. Timelines'));
     for (const a of c.anchors) expect(section).toContain(a.name);
   });
 
@@ -106,7 +115,7 @@ describe('sheet hygiene — short names', () => {
     for (let seed = 1; seed <= 20; seed++) {
       const c = generateCase(seed);
       const sheet = renderTruthSheet(c);
-      const places = sheet.slice(sheet.indexOf('## 3. Places'), sheet.indexOf('## 4. Anchors'));
+      const places = sheet.slice(sheet.indexOf('## 8. Places'), sheet.indexOf('## 9. Anchors'));
       for (const p of c.places) {
         expect(sheet.split(p.name).length - 1, `${p.name} in seed ${seed}`).toBe(1);
         expect(places).toContain(p.name);
@@ -120,19 +129,21 @@ describe('sheet hygiene — short names', () => {
       const c = generateCase(seed);
       const sheet = renderTruthSheet(c);
       const cast = sheet.slice(
-        sheet.indexOf('## 2. Dramatis Personae'),
-        sheet.indexOf('## 3. Places'),
+        sheet.indexOf('## 3. Dramatis Personae'),
+        sheet.indexOf('## 4. Dossiers'),
       );
       for (const p of c.people) {
         expect(cast).toContain(p.name);
         // Once in the table; the killer and the victim get a second mention in
-        // the headline paragraph, which is where the case is stated in full.
-        const allowed = p.isKiller || p.kind === 'victim' ? 2 : 1;
+        // the headline paragraph, which is where the case is stated in full,
+        // and M5's client gets a second in the briefing, which is where the
+        // client is introduced to Dashiell by name.
+        const allowed = 1 + (p.isKiller || p.kind === 'victim' ? 1 : 0) + (p.isClient ? 1 : 0);
         expect(sheet.split(p.name).length - 1, `${p.name} in seed ${seed}`).toBeLessThanOrEqual(
           allowed,
         );
       }
-      const clues = sheet.slice(sheet.indexOf('## 7. Clue list'), sheet.indexOf('## 8. Clue graph'));
+      const clues = sheet.slice(sheet.indexOf('## 12. Clue list'), sheet.indexOf('## 13. Clue graph'));
       for (const p of c.people) expect(clues.includes(p.name)).toBe(false);
     }
   });

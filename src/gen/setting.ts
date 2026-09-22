@@ -1,9 +1,16 @@
-import type { FixtureRole, GameObject, Id, Place } from './types.js';
+import type { CaseType, FixtureRole, GameObject, Id, Place } from './types.js';
 import { NEIGHBORHOODS, PLACE_TEMPLATES, type PlaceTemplate } from './data/places.js';
-import { OBJECT_NAMES } from './data/objects.js';
-import { METHOD_TEMPLATES, type MethodTemplate } from './data/methods.js';
+import { OBJECT_NAMES, SWAG_IDS } from './data/objects.js';
+import { MISSING_MEANS, MURDER_MEANS, ROBBERY_MEANS, type MeansTemplate } from './data/means.js';
 import { ANCHOR_TEMPLATES, canTimeScene, type AnchorTemplate } from './data/anchors.js';
 import type { Rng } from './rng.js';
+
+/** Which deck the means comes out of, and whether the place has to host it. */
+export const MEANS_DECK: Record<CaseType, MeansTemplate[]> = {
+  murder: MURDER_MEANS,
+  robbery: ROBBERY_MEANS,
+  missing: MISSING_MEANS,
+};
 
 /** An anchor with a home but not yet a time. Ticks arrive once M is chosen. */
 export interface AnchorDraw {
@@ -16,7 +23,7 @@ export interface Setting {
   places: Place[];
   templates: Record<Id, PlaceTemplate>;
   objects: GameObject[];
-  method: MethodTemplate;
+  method: MeansTemplate;
   murderPlaceId: Id;
   accessPlaceId: Id;
   nearScene: Id[];
@@ -25,6 +32,8 @@ export interface Setting {
   hasBeatCop: boolean;
   beatCopRoute: Id[];
   beatCopPhase: number;
+  /** Robbery: the thing that was worth taking, put at the scene on purpose. */
+  swagId?: Id;
   /** The anchor that puts the victim alive at M − 1. Always place-attached. */
   low: AnchorDraw;
   /** The anchor that times the scene at M. */
@@ -101,26 +110,32 @@ function drawPlaces(rng: Rng): PlaceTemplate[] | null {
 }
 
 interface Scene {
-  method: MethodTemplate;
+  method: MeansTemplate;
   murderPlaceId: Id;
   accessPlaceId: Id;
 }
 
 /**
- * A method needs a place that can host it and a *different* drawn place where
- * its weapon lived, because the access leg of the proof is the killer being
- * seen fetching it.
+ * A means needs a place that can host it and a *different* drawn place where
+ * the thing it needs lived, because the access leg of the proof is the actor
+ * being seen fetching it.
+ *
+ * M5: only a murder is gated on `murderMethods`. A room can be broken into or
+ * walked out of whether or not anybody could be killed in it; what still has
+ * to be true is that the actor was alone there, which is why a watched place
+ * is never the scene in any of the three.
  */
-function chooseScene(rng: Rng, drawn: PlaceTemplate[]): Scene | null {
+function chooseScene(rng: Rng, drawn: PlaceTemplate[], means: MeansTemplate[], gated: boolean): Scene | null {
   const options: Scene[] = [];
   for (const scene of drawn) {
     // A watched place cannot be the scene: the watcher would be standing in
     // the room, which breaks "alone with the victim" and finds the body an
     // hour early.
     if (scene.watcher !== undefined) continue;
-    for (const methodId of scene.murderMethods) {
-      const method = METHOD_TEMPLATES.find((m) => m.id === methodId);
-      if (!method) continue;
+    const allowed = gated
+      ? means.filter((m) => scene.murderMethods.includes(m.id))
+      : means;
+    for (const method of allowed) {
       for (const home of drawn) {
         if (home.id === scene.id) continue;
         if (!home.objects.includes(method.evidenceObjectId)) continue;
@@ -143,13 +158,17 @@ function attachable(t: AnchorTemplate, p: PlaceTemplate): boolean {
   return true;
 }
 
-export function buildSetting(rng: Rng): Setting | null {
+export function buildSetting(
+  rng: Rng,
+  caseType: CaseType = 'murder',
+  tropeId = 'body-at-scene',
+): Setting | null {
   const neighborhood = rng.pick(NEIGHBORHOODS);
 
   const drawn = drawPlaces(rng);
   if (!drawn) return null;
 
-  const scene = chooseScene(rng, drawn);
+  const scene = chooseScene(rng, drawn, MEANS_DECK[caseType], caseType === 'murder');
   if (!scene) return null;
 
   /* --- who is posted where ------------------------------------------- */
@@ -225,6 +244,18 @@ export function buildSetting(rng: Rng): Setting | null {
     homePlace: scene.accessPlaceId,
   });
   usedObjects.add(scene.method.evidenceObjectId);
+  // M5: a theft needs something worth stealing, and the room deck does not
+  // deal one reliably. A robbery puts exactly one at the scene, on purpose.
+  let swagId: Id | undefined;
+  if (caseType === 'robbery') {
+    swagId = tropeId === 'payroll' ? 'obj-payroll' : rng.pick(SWAG_IDS.slice(1));
+    objects.push({
+      id: swagId,
+      name: OBJECT_NAMES[swagId] as string,
+      homePlace: scene.murderPlaceId,
+    });
+    usedObjects.add(swagId);
+  }
   for (const t of drawn) {
     const want = rng.range(2, 3);
     const pool = rng.shuffle(t.objects.filter((o) => !usedObjects.has(o)));
@@ -268,5 +299,6 @@ export function buildSetting(rng: Rng): Setting | null {
     high,
     extra,
     soundMasked: high.template.masks,
+    ...(swagId === undefined ? {} : { swagId }),
   };
 }

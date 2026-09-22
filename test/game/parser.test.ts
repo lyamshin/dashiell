@@ -12,7 +12,12 @@ import type { Command } from '../../src/game/types.js';
 const view = buildView(generateCase(7, { difficulty: 2 }));
 const scene = view.kase.solution.murderPlaceId;
 const speakeasy = view.kase.places.find((p) => p.shortName.includes('speakeasy'));
-const doyle = view.kase.people.find((p) => p.surname === 'Doyle');
+// Two suspects who are in the same room the next day, whoever the draw made
+// them. Naming them in the source made this file hostage to the rng stream.
+const doyle = view.kase.people.find((p) => p.kind === 'suspect') as { surname: string; id: string; foundAt?: string };
+const other = view.kase.people.find(
+  (p) => p.kind === 'suspect' && p.id !== doyle.id,
+) as { surname: string };
 
 function ok(at: string, input: string): Command {
   const r = parse(view, at, input);
@@ -57,16 +62,16 @@ describe('every command form', () => {
 
   it('reads ask, with the verb in several shapes', () => {
     const at = doyle?.foundAt as string;
-    const a = ok(at, 'ask Doyle about Brauer');
+    const a = ok(at, `ask ${doyle.surname} about ${other.surname}`);
     expect(a.kind).toBe('ask');
     expect((a as { personId: string }).personId).toBe(doyle?.id);
-    expect(ok(at, 'talk to Doyle about Brauer')).toEqual(a);
-    expect(ok(at, 'ASK DOYLE ABOUT BRAUER')).toEqual(a);
+    expect(ok(at, `talk to ${doyle.surname} about ${other.surname}`)).toEqual(a);
+    expect(ok(at, `ASK ${doyle.surname.toUpperCase()} ABOUT ${other.surname.toUpperCase()}`)).toEqual(a);
   });
 
   it('reads the fixed topics', () => {
     const at = doyle?.foundAt as string;
-    expect(ok(at, 'ask Doyle about that evening')).toEqual({
+    expect(ok(at, `ask ${doyle.surname} about that evening`)).toEqual({
       kind: 'ask',
       personId: doyle?.id,
       topic: { kind: 'evening' },

@@ -1,4 +1,13 @@
-import { TICKS, clock, type Difficulty, type Id, type Person, type Secret, type Tick } from './types.js';
+import {
+  TICKS,
+  clock,
+  type CaseType,
+  type Difficulty,
+  type Id,
+  type Person,
+  type Secret,
+  type Tick,
+} from './types.js';
 import type { Rng } from './rng.js';
 import type { Cast } from './cast.js';
 import type { Setting } from './setting.js';
@@ -24,6 +33,13 @@ export interface ScheduleBuild {
   /** Where the victim was seen alive, at M − 1. */
   victimSeenAt: Tick;
   victimSeenPlace: Id;
+  /* --- M5 ------------------------------------------------------------- */
+  /** Missing only: where the person's true schedule continues to, after M. */
+  whereabouts?: Id;
+  /** Who saw the subject last at M − 1, and will say so. */
+  lastSeenById?: Id;
+  /** Murder and robbery: who walked in on it, where, and when. */
+  discovery?: { placeId: Id; tick: Tick; byId: Id };
 }
 
 export interface ScheduleContext {
@@ -32,6 +48,14 @@ export interface ScheduleContext {
   cast: Cast;
   difficulty: Difficulty;
   murderTick: Tick;
+  /**
+   * M5 §2.1: the machinery is the same for all three. What changes is whether
+   * the subject's schedule ends at M (murder), carries on as if nothing had
+   * happened (robbery: nobody died, the owner had an evening), or carries on
+   * somewhere nobody is watching (missing).
+   */
+  caseType: CaseType;
+  tropeId: Id;
   reject?: (reason: string) => void;
 }
 
@@ -48,10 +72,12 @@ export function describeSecret(
   partnerName: string | null,
   placeName: string,
   ticks: Tick[],
+  victimName = 'the one who is dead',
 ): string {
   return template.description
     .split('{P}').join(personName)
     .split('{Q}').join(partnerName ?? 'someone')
+    .split('{V}').join(victimName)
     .split('{L}').join(placeName)
     .split('{T}').join(ticks.length > 0 ? tickRange(ticks) : 'no particular time');
 }
@@ -100,11 +126,35 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
   const victimSeenPlace = setting.low.placeId as Id;
   const victimSeenAt = M - 1;
   victimFixed[victimSeenAt] = victimSeenPlace;
-  victimFixed[M] = L;
+
+  /*
+   * Where the subject is at the tick itself, and what happens to them after.
+   *
+   * Murder: at the scene, and nowhere after it.
+   * Robbery: nowhere near it. Nobody died; the owner had an evening like
+   *   anybody else's, and what was at the scene was the goods.
+   * Missing: at the scene with whoever saw them off, and then at a place
+   *   nobody in this case is watching, for the rest of the night.
+   */
+  const isRobbery = ctx.caseType === 'robbery';
+  const isMissing = ctx.caseType === 'missing';
+  victimFixed[M] = isRobbery ? victimSeenPlace : L;
+
+  let whereabouts: Id | undefined;
+  if (isMissing && M + 1 <= TICKS - 1) {
+    const quiet = nonScene.filter((id) => setting.places.find((p) => p.id === id)?.watcher === undefined);
+    whereabouts = rng.pick(quiet.length > 0 ? quiet : nonScene);
+    for (let t = M + 1; t < TICKS; t++) victimFixed[t] = whereabouts;
+  }
 
   const killerFixed = fixedByPerson[cast.killer.id] as Record<number, Id>;
   for (let t = blockStart; t <= M; t++) killerFixed[t] = L;
-  if (M + 1 <= TICKS - 1) killerFixed[M + 1] = rng.pick(nonScene);
+  if (M + 1 <= TICKS - 1) {
+    // `taken` puts the one who took them in the same room at M + 1: the room
+    // that somebody paid cash for, which is the trope's signature.
+    killerFixed[M + 1] =
+      ctx.tropeId === 'taken' && whereabouts !== undefined ? whereabouts : rng.pick(nonScene);
+  }
 
   /* --- secrets ---------------------------------------------------------- */
   const secrets: Record<Id, Secret> = {};
@@ -493,7 +543,9 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     return line;
   };
 
-  truth[cast.victim.id] = fill(cast.victim.id, victimFixed, M);
+  // A murder ends the victim's evening at M. A robbery does not end anything,
+  // and a disappearance carries on somewhere nobody in this case can see.
+  truth[cast.victim.id] = fill(cast.victim.id, victimFixed, ctx.caseType === 'murder' ? M : TICKS - 1);
   for (const p of cast.suspects) {
     truth[p.id] = fill(p.id, fixedByPerson[p.id] as Record<number, Id>, TICKS - 1);
   }
@@ -509,6 +561,50 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     if (dest === undefined) continue;
     (truth[f.id] as (Id | null)[])[t] = dest;
     excursionUsed.add(f.id);
+  }
+
+  /* --- who found it, and when -------------------------------------------
+   *
+   * M5 §1.3. Somebody found the body, or the empty shelf, and the case is
+   * only a case because they did. That person has to have been in the room,
+   * which means the one exception to "nobody is at the scene after M": the
+   * one who walks in and finds it. Everybody else still stays out.
+   */
+  let discovery: { placeId: Id; tick: Tick; byId: Id } | undefined;
+  if (!isMissing && M + 1 <= TICKS - 1) {
+    const placeId =
+      ctx.tropeId === 'body-moved'
+        ? (rng.pick(nonScene) as Id)
+        : L;
+    const eligible = cast.people.filter((p) => p.id !== cast.killer.id && p.id !== cast.victim.id);
+    const ticks: Tick[] = [];
+    for (let t = M + 1; t < TICKS; t++) ticks.push(t);
+    let found: { tick: Tick; byId: Id } | undefined;
+    for (const t of ticks) {
+      const here = eligible.find((p) => (truth[p.id] as (Id | null)[])[t] === placeId);
+      if (here) {
+        found = { tick: t, byId: here.id };
+        break;
+      }
+    }
+    if (!found) {
+      // Send somebody in. A tick they are not busy lying about, and late.
+      const tick = (ticks[ticks.length - 1] ?? M + 1) as Tick;
+      // Never a fixture: a fixture gets one excursion a night and it is never
+      // into the scene. An innocent who is not lying about that tick.
+      const walkIn = cast.innocents.find((p) => !(secretCells[p.id] ?? []).includes(tick));
+      if (walkIn) {
+        (truth[walkIn.id] as (Id | null)[])[tick] = placeId;
+        found = { tick, byId: walkIn.id };
+      }
+    }
+    if (found) discovery = { placeId, tick: found.tick, byId: found.byId };
+  }
+  if (isRobbery && discovery === undefined) {
+    // The owner comes home and finds the shelf empty. Nobody died; they can.
+    const tick = (TICKS - 1) as Tick;
+    (truth[cast.victim.id] as (Id | null)[])[tick] = L;
+    discovery = { placeId: L, tick, byId: cast.victim.id };
   }
 
   /* --- lies, claims, companions ----------------------------------------- */
@@ -583,11 +679,17 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
       secret.partnerId ? nameOf(secret.partnerId) : null,
       where,
       ticks,
+      cast.victim.surname,
     );
   }
-  murderSecret.description =
-    `${cast.killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, ` +
-    `alone with ${cast.victim.surname} when it happens at ${clock(M)}.`;
+  murderSecret.description = isRobbery
+    ? `${cast.killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, ` +
+      `alone with what ${cast.victim.surname} kept there, and takes it at ${clock(M)}.`
+    : isMissing
+      ? `${cast.killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, ` +
+        `alone with ${cast.victim.surname}, who is not seen again after ${clock(M)}.`
+      : `${cast.killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, ` +
+        `alone with ${cast.victim.surname} when it happens at ${clock(M)}.`;
   if (coverSecret && cast.killerCoverSecret) {
     const ticks = coverSecret.cells.map((c) => c.tick);
     const where = coverSecret.cells.length > 0 ? placeName(coverSecret.cells[0]?.place as Id) : '';
@@ -597,8 +699,19 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
       null,
       where,
       ticks,
+      cast.victim.surname,
     );
   }
+
+  /* --- who saw the subject last, and will say so ------------------------ */
+  const sawThem = (p: Person): boolean =>
+    p.kind !== 'victim' &&
+    (truth[p.id] as (Id | null)[])[victimSeenAt] === victimSeenPlace &&
+    !(lies[p.id] ?? []).includes(victimSeenAt);
+  // Never the one who did it, when there is anybody else: "the last person to
+  // see them was the killer" is the answer, not a given.
+  const lastSeenBy =
+    cast.people.find((p) => p.id !== cast.killer.id && sawThem(p)) ?? cast.people.find(sawThem);
 
   const build: ScheduleBuild = {
     murderTick: M,
@@ -618,5 +731,8 @@ export function buildSchedules(ctx: ScheduleContext): ScheduleBuild | null {
     victimSeenPlace,
   };
   if (coverSecret) build.coverSecret = coverSecret;
+  if (whereabouts !== undefined) build.whereabouts = whereabouts;
+  if (lastSeenBy) build.lastSeenById = lastSeenBy.id;
+  if (discovery) build.discovery = discovery;
   return build;
 }

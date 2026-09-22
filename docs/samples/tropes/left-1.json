@@ -1,0 +1,7469 @@
+{
+  "seed": 1,
+  "attempts": 1,
+  "difficulty": 2,
+  "detectiveName": "Dashiell",
+  "neighborhood": "Chelsea",
+  "places": [
+    {
+      "id": "res-walkup",
+      "name": "Steinbach’s walk-up over the drugstore",
+      "shortName": "the walk-up",
+      "kind": "private",
+      "objects": [
+        "obj-hatbox",
+        "obj-chloral"
+      ],
+      "isResidence": true,
+      "nearScene": false
+    },
+    {
+      "id": "movie-house",
+      "name": "the Bijou picture house",
+      "shortName": "the Bijou",
+      "kind": "public",
+      "objects": [
+        "obj-cigarette-case",
+        "obj-ashtray"
+      ],
+      "isResidence": false,
+      "nearScene": true,
+      "watcher": "ticket-taker"
+    },
+    {
+      "id": "ferry-slip",
+      "name": "the ferry slip at the foot of the street",
+      "shortName": "the ferry slip",
+      "kind": "public",
+      "objects": [
+        "obj-timetable",
+        "obj-newspapers",
+        "obj-suitcase"
+      ],
+      "isResidence": false,
+      "nearScene": true
+    },
+    {
+      "id": "hallam-vestibule",
+      "name": "the vestibule of the Hallam apartments",
+      "shortName": "the Hallam",
+      "kind": "private",
+      "objects": [
+        "obj-overcoat",
+        "obj-umbrella",
+        "obj-ledger"
+      ],
+      "isResidence": false,
+      "nearScene": false,
+      "watcher": "elevator-man"
+    },
+    {
+      "id": "dolans-bar",
+      "name": "Dolan’s Bar",
+      "shortName": "Dolan’s",
+      "kind": "semi",
+      "objects": [
+        "obj-seltzer",
+        "obj-icepick"
+      ],
+      "isResidence": false,
+      "nearScene": false,
+      "watcher": "bartender"
+    },
+    {
+      "id": "pier-shed",
+      "name": "Pier 46, under the shed",
+      "shortName": "Pier 46",
+      "kind": "private",
+      "objects": [
+        "obj-cord",
+        "obj-toolbox"
+      ],
+      "isResidence": false,
+      "nearScene": false
+    }
+  ],
+  "objects": [
+    {
+      "id": "obj-timetable",
+      "name": "a pasted-up timetable",
+      "homePlace": "ferry-slip"
+    },
+    {
+      "id": "obj-hatbox",
+      "name": "a stack of hatboxes",
+      "homePlace": "res-walkup"
+    },
+    {
+      "id": "obj-chloral",
+      "name": "a bottle of chloral drops",
+      "homePlace": "res-walkup"
+    },
+    {
+      "id": "obj-cigarette-case",
+      "name": "a silver cigarette case",
+      "homePlace": "movie-house"
+    },
+    {
+      "id": "obj-ashtray",
+      "name": "a standing ashtray",
+      "homePlace": "movie-house"
+    },
+    {
+      "id": "obj-newspapers",
+      "name": "a folded stack of evening papers",
+      "homePlace": "ferry-slip"
+    },
+    {
+      "id": "obj-suitcase",
+      "name": "a strapped suitcase",
+      "homePlace": "ferry-slip"
+    },
+    {
+      "id": "obj-overcoat",
+      "name": "a camel-hair overcoat on a hook",
+      "homePlace": "hallam-vestibule"
+    },
+    {
+      "id": "obj-umbrella",
+      "name": "a brass umbrella stand",
+      "homePlace": "hallam-vestibule"
+    },
+    {
+      "id": "obj-ledger",
+      "name": "a day ledger",
+      "homePlace": "hallam-vestibule"
+    },
+    {
+      "id": "obj-seltzer",
+      "name": "a seltzer siphon",
+      "homePlace": "dolans-bar"
+    },
+    {
+      "id": "obj-icepick",
+      "name": "an ice pick",
+      "homePlace": "dolans-bar"
+    },
+    {
+      "id": "obj-cord",
+      "name": "a length of sash cord",
+      "homePlace": "pier-shed"
+    },
+    {
+      "id": "obj-toolbox",
+      "name": "a mechanic’s toolbox",
+      "homePlace": "pier-shed"
+    }
+  ],
+  "people": [
+    {
+      "id": "p-victim",
+      "name": "Elsa Steinbach",
+      "surname": "Steinbach",
+      "role": "the landlord of three tenements on Ninth Avenue",
+      "kind": "victim",
+      "isKiller": false,
+      "archetypeId": "vic-landlord",
+      "gender": "f",
+      "dossier": {
+        "age": 62,
+        "gender": "f",
+        "profession": {
+          "role": "the landlord of three tenements on Ninth Avenue",
+          "detail": "held three tenements on Ninth Avenue and the mortgages on two more"
+        },
+        "want": "to-keep-what-they-have",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "the one this is about",
+          "backstory": "Steinbach owned more of the street than anybody who lived on it."
+        },
+        "selfAccount": [
+          "Steinbach is 62 years old and the landlord of three tenements on Ninth Avenue.",
+          "Steinbach held three tenements on Ninth Avenue and the mortgages on two more.",
+          "Steinbach is the one this is about."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her sixties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The landlord of three tenements on Ninth Avenue.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Steinbach held three tenements on Ninth Avenue and the mortgages on two more.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Steinbach owned more of the street than anybody who lived on it.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Steinbach wants to keep what they have and add nothing to it.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s1",
+      "name": "Albrecht Wehrle",
+      "surname": "Wehrle",
+      "role": "a curb broker",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-broker",
+      "relationshipId": "rel-partner",
+      "relationshipToVictim": "Steinbach’s business partner",
+      "secret": {
+        "type": "embezzling",
+        "label": "Embezzling",
+        "description": "Wehrle goes through the books at the walk-up from 10:30 PM to 11:00 PM, while there is nobody to see.",
+        "cells": [
+          {
+            "tick": 9,
+            "place": "res-walkup"
+          },
+          {
+            "tick": 10,
+            "place": "res-walkup"
+          }
+        ]
+      },
+      "motive": {
+        "type": "debt",
+        "description": "owed Steinbach four thousand dollars and was past due on it"
+      },
+      "foundAt": "dolans-bar",
+      "gender": "m",
+      "dossier": {
+        "age": 36,
+        "gender": "m",
+        "profession": {
+          "role": "a curb broker",
+          "detail": "trades on the street for men who would rather not be seen doing it"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-partner",
+          "text": "Steinbach’s business partner",
+          "backstory": "Wehrle bought into Steinbach’s business the year Clementine Mosley walked out of it.",
+          "since": "three years this spring",
+          "third": "m-1"
+        },
+        "selfAccount": [
+          "Wehrle is 36 years old and a curb broker.",
+          "Wehrle trades on the street for men who would rather not be seen doing it.",
+          "Wehrle is Steinbach’s business partner."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A curb broker.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Wehrle trades on the street for men who would rather not be seen doing it.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Wehrle bought into Steinbach’s business the year Clementine Mosley walked out of it.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Wehrle wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Wehrle has been Steinbach’s business partner, three years this spring.",
+            "layer": 2
+          },
+          {
+            "kind": "third",
+            "text": "Clementine Mosley is a woman they had both been seeing.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Wehrle had a key to the walk-up that Wehrle had no business having."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s2",
+      "name": "Gittel Lefkowitz",
+      "surname": "Lefkowitz",
+      "role": "a seamstress",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-seamstress",
+      "relationshipId": "rel-neighbor",
+      "relationshipToVictim": "Steinbach’s neighbour across the airshaft",
+      "secret": {
+        "type": "union-organizing",
+        "label": "Organizing the shop",
+        "description": "Lefkowitz is at the ferry slip from 9:30 PM to 10:00 PM signing men up, which is a firing offence and worse.",
+        "cells": [
+          {
+            "tick": 7,
+            "place": "ferry-slip"
+          },
+          {
+            "tick": 8,
+            "place": "ferry-slip"
+          }
+        ]
+      },
+      "foundAt": "dolans-bar",
+      "gender": "f",
+      "dossier": {
+        "age": 34,
+        "gender": "f",
+        "profession": {
+          "role": "a seamstress",
+          "detail": "works a machine in a loft and is paid by the dozen"
+        },
+        "want": "to-be-forgiven",
+        "tie": {
+          "relationshipId": "rel-neighbor",
+          "text": "Steinbach’s neighbour across the airshaft",
+          "backstory": "Lefkowitz has lived on the same landing as Steinbach since ’20.",
+          "since": "since the building changed hands"
+        },
+        "selfAccount": [
+          "Lefkowitz is 34 years old and a seamstress.",
+          "Lefkowitz works a machine in a loft and is paid by the dozen.",
+          "Lefkowitz is Steinbach’s neighbour across the airshaft."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A seamstress.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Lefkowitz works a machine in a loft and is paid by the dozen.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Lefkowitz has lived on the same landing as Steinbach since ’20.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Lefkowitz wants to be forgiven for something nobody else remembers.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Lefkowitz has been Steinbach’s neighbour across the airshaft, since the building changed hands.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Lefkowitz has been seen with men from three different shops and none of them were drinking."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s3",
+      "name": "Karl Hochstetter",
+      "surname": "Hochstetter",
+      "role": "a ward heeler",
+      "kind": "suspect",
+      "isKiller": true,
+      "archetypeId": "arch-heeler",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people Steinbach worked for",
+      "secret": {
+        "type": "murder",
+        "label": "Murder",
+        "description": "Hochstetter is at Pier 46 from 8:00 PM, alone with Steinbach, who is not seen again after 8:00 PM.",
+        "cells": [
+          {
+            "tick": 4,
+            "place": "pier-shed"
+          }
+        ],
+        "partnerId": "p-victim"
+      },
+      "motive": {
+        "type": "exposure",
+        "description": "was about to be exposed by Steinbach"
+      },
+      "foundAt": "movie-house",
+      "gender": "m",
+      "dossier": {
+        "age": 54,
+        "gender": "m",
+        "profession": {
+          "role": "a ward heeler",
+          "detail": "sits in the clubhouse and settles what can be settled there"
+        },
+        "want": "to-be-somebody",
+        "tie": {
+          "relationshipId": "rel-witness",
+          "text": "a witness against the people Steinbach worked for",
+          "backstory": "Hochstetter gave a statement about the people Steinbach worked for and has been careful ever since.",
+          "since": "since ’26"
+        },
+        "selfAccount": [
+          "Hochstetter is 54 years old and a ward heeler.",
+          "Hochstetter sits in the clubhouse and settles what can be settled there.",
+          "Hochstetter is a witness against the people Steinbach worked for."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A ward heeler.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Hochstetter sits in the clubhouse and settles what can be settled there.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Hochstetter gave a statement about the people Steinbach worked for and has been careful ever since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Hochstetter wants a name people know.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Hochstetter has been a witness against the people Steinbach worked for, since ’26.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s4",
+      "name": "Beatrice Pickering",
+      "surname": "Pickering",
+      "role": "a stringer for the evening papers",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-reporter",
+      "relationshipId": "rel-neighbor",
+      "relationshipToVictim": "Steinbach’s neighbour across the airshaft",
+      "secret": {
+        "type": "gambling-debt",
+        "label": "Gambling debt",
+        "description": "Pickering slips off to Dolan’s from 6:30 PM to 7:00 PM to settle with a bookmaker.",
+        "cells": [
+          {
+            "tick": 1,
+            "place": "dolans-bar"
+          },
+          {
+            "tick": 2,
+            "place": "dolans-bar"
+          }
+        ]
+      },
+      "foundAt": "movie-house",
+      "gender": "f",
+      "dossier": {
+        "age": 28,
+        "gender": "f",
+        "profession": {
+          "role": "a stringer for the evening papers",
+          "detail": "sells two hundred words at a time to whichever desk is short"
+        },
+        "want": "to-be-somebody",
+        "tie": {
+          "relationshipId": "rel-neighbor",
+          "text": "Steinbach’s neighbour across the airshaft",
+          "backstory": "Pickering has lived on the same landing as Steinbach since ’20.",
+          "since": "since the building changed hands"
+        },
+        "selfAccount": [
+          "Pickering is 28 years old and a stringer for the evening papers.",
+          "Pickering sells two hundred words at a time to whichever desk is short.",
+          "Pickering is Steinbach’s neighbour across the airshaft."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In the late twenties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A stringer for the evening papers.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Pickering sells two hundred words at a time to whichever desk is short.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Pickering has lived on the same landing as Steinbach since ’20.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Pickering wants a name people know.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Pickering has been Steinbach’s neighbour across the airshaft, since the building changed hands.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Pickering was asking around for a hundred dollars in a hurry earlier in the week."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s5",
+      "name": "Nunzio Ruggiero",
+      "surname": "Ruggiero",
+      "role": "a dentist with a chair and a waiting room",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-dentist",
+      "relationshipId": "rel-tenant",
+      "relationshipToVictim": "Steinbach’s tenant",
+      "secret": {
+        "type": "dope",
+        "label": "Buying morphine",
+        "description": "Ruggiero buys morphine at the Bijou from 8:00 PM and would rather be thought a murderer than a hop-head.",
+        "cells": [
+          {
+            "tick": 4,
+            "place": "movie-house"
+          }
+        ]
+      },
+      "motive": {
+        "type": "property",
+        "description": "wanted Steinbach out of the lease and the lease in Ruggiero’s name"
+      },
+      "foundAt": "ferry-slip",
+      "isClient": true,
+      "gender": "m",
+      "dossier": {
+        "age": 32,
+        "gender": "m",
+        "profession": {
+          "role": "a dentist with a chair and a waiting room",
+          "detail": "has a chair, a waiting room and a girl on the door"
+        },
+        "want": "respectability",
+        "tie": {
+          "relationshipId": "rel-tenant",
+          "text": "Steinbach’s tenant",
+          "backstory": "Ruggiero has rented from Steinbach since ’24 and has the same window and the same complaint.",
+          "since": "since the flu year"
+        },
+        "selfAccount": [
+          "Ruggiero is 32 years old and a dentist with a chair and a waiting room.",
+          "Ruggiero has a chair, a waiting room and a girl on the door.",
+          "Ruggiero is Steinbach’s tenant."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A dentist with a chair and a waiting room.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Ruggiero has a chair, a waiting room and a girl on the door.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Ruggiero has rented from Steinbach since ’24 and has the same window and the same complaint.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Ruggiero wants to be thought respectable by people who are not.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Ruggiero has been Steinbach’s tenant, since the flu year.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Ruggiero’s sleeves are buttoned at the wrist in a warm room."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s6",
+      "name": "Pasquale Grasso",
+      "surname": "Grasso",
+      "role": "a hack driver",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-hackman",
+      "relationshipId": "rel-childhood",
+      "relationshipToVictim": "a childhood friend of Steinbach’s from the same block",
+      "secret": {
+        "type": "gambling-debt",
+        "label": "Gambling debt",
+        "description": "Grasso slips off to Dolan’s from 8:00 PM to settle with a bookmaker.",
+        "cells": [
+          {
+            "tick": 4,
+            "place": "dolans-bar"
+          }
+        ]
+      },
+      "foundAt": "dolans-bar",
+      "gender": "m",
+      "dossier": {
+        "age": 49,
+        "gender": "m",
+        "profession": {
+          "role": "a hack driver",
+          "detail": "drives nights and sleeps while the city works"
+        },
+        "want": "to-be-left-alone",
+        "tie": {
+          "relationshipId": "rel-childhood",
+          "text": "a childhood friend of Steinbach’s from the same block",
+          "backstory": "Grasso, Steinbach and Rivka Kessler were inseparable for ten years and have not been in a room together since.",
+          "since": "since they were boys on the same stoop",
+          "third": "m-2"
+        },
+        "selfAccount": [
+          "Grasso is 49 years old and a hack driver.",
+          "Grasso drives nights and sleeps while the city works.",
+          "Grasso is a childhood friend of Steinbach’s from the same block."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A hack driver.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Grasso drives nights and sleeps while the city works.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Grasso, Steinbach and Rivka Kessler were inseparable for ten years and have not been in a room together since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Grasso wants to be left alone.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Grasso has been a childhood friend of Steinbach’s from the same block, since they were boys on the same stoop.",
+            "layer": 2
+          },
+          {
+            "kind": "third",
+            "text": "Rivka Kessler is the landlady at the old address.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Grasso was asking around for a hundred dollars in a hurry earlier in the week."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f1",
+      "name": "James Hanrahan",
+      "surname": "Hanrahan",
+      "role": "the ticket-taker",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "ticket-taker",
+      "foundAt": "movie-house",
+      "gender": "m",
+      "dossier": {
+        "age": 48,
+        "gender": "m",
+        "profession": {
+          "role": "the ticket-taker",
+          "detail": "has taken tickets at the Bijou since the house opened"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "on the door at the Bijou, every performance",
+          "backstory": "Hanrahan is on the door at the Bijou, every performance."
+        },
+        "selfAccount": [
+          "Hanrahan is 48 years old and the ticket-taker.",
+          "Hanrahan has taken tickets at the Bijou since the house opened.",
+          "Hanrahan is on the door at the Bijou, every performance."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The ticket-taker.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Hanrahan has taken tickets at the Bijou since the house opened.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Hanrahan is on the door at the Bijou, every performance.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Hanrahan wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f2",
+      "name": "Bernard Weisglass",
+      "surname": "Weisglass",
+      "role": "the elevator man",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "elevator-man",
+      "foundAt": "hallam-vestibule",
+      "gender": "m",
+      "dossier": {
+        "age": 47,
+        "gender": "m",
+        "profession": {
+          "role": "the elevator man",
+          "detail": "has the car at the Hallam from three until eleven"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "in the car at the Hallam",
+          "backstory": "Weisglass is in the car at the Hallam."
+        },
+        "selfAccount": [
+          "Weisglass is 47 years old and the elevator man.",
+          "Weisglass has the car at the Hallam from three until eleven.",
+          "Weisglass is in the car at the Hallam."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The elevator man.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Weisglass has the car at the Hallam from three until eleven.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Weisglass is in the car at the Hallam.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Weisglass wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f3",
+      "name": "Eunice Prentiss",
+      "surname": "Prentiss",
+      "role": "the bartender",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "bartender",
+      "foundAt": "dolans-bar",
+      "gender": "f",
+      "dossier": {
+        "age": 30,
+        "gender": "f",
+        "profession": {
+          "role": "the bartender",
+          "detail": "works Dolan’s from four until they lock the door"
+        },
+        "want": "to-be-left-alone",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "behind the bar at Dolan’s, every night of the week",
+          "backstory": "Prentiss is behind the bar at Dolan’s, every night of the week."
+        },
+        "selfAccount": [
+          "Prentiss is 30 years old and the bartender.",
+          "Prentiss works Dolan’s from four until they lock the door.",
+          "Prentiss is behind the bar at Dolan’s, every night of the week."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The bartender.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Prentiss works Dolan’s from four until they lock the door.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Prentiss is behind the bar at Dolan’s, every night of the week.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Prentiss wants to be left alone.",
+            "layer": 2
+          }
+        ]
+      }
+    }
+  ],
+  "method": {
+    "id": "the-timetable",
+    "name": "a train out, and the timetable it was read off",
+    "noise": 0,
+    "evidenceObjectId": "obj-timetable",
+    "bodyEvidence": "The precinct took a statement and filed it. A grown person is allowed to go where they like.",
+    "accessRequirement": {
+      "place": "ferry-slip",
+      "beforeTick": 4
+    }
+  },
+  "anchors": [
+    {
+      "templateId": "fuse",
+      "name": "the fuse going in the building",
+      "ticks": [
+        3
+      ],
+      "traces": [
+        {
+          "kind": "sound",
+          "description": "a crack in the cellar and every light on the riser out at once"
+        },
+        {
+          "kind": "knowledge",
+          "description": "it was the second floor that went dark and not the whole house"
+        },
+        {
+          "kind": "mark",
+          "description": "candle smoke on the ceilings of everyone who sat it out"
+        }
+      ],
+      "timing": "when the lights went",
+      "highTiming": "just after the lights went",
+      "sceneFact": "The fuse went at {T} and the lights on that riser were dead from then until the morning.",
+      "masks": false,
+      "placeId": "hallam-vestibule"
+    },
+    {
+      "templateId": "church-bells",
+      "name": "the bells at St. Malachy’s",
+      "ticks": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "traces": [
+        {
+          "kind": "sound",
+          "description": "the half hours are rung and the whole hours are rung twice"
+        }
+      ],
+      "timing": "as the bells were going",
+      "highTiming": "while the bells were going",
+      "sceneFact": "The bells rang the half hour at {T}. The sexton rings them off the sacristy clock and it keeps good time.",
+      "masks": false
+    }
+  ],
+  "nearScene": [
+    "ferry-slip",
+    "movie-house"
+  ],
+  "soundMasked": false,
+  "schedules": [
+    {
+      "personId": "p-victim",
+      "truth": [
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "hallam-vestibule",
+        "pier-shed",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup"
+      ],
+      "claimed": [
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "hallam-vestibule",
+        "pier-shed",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s1",
+      "truth": [
+        "ferry-slip",
+        "dolans-bar",
+        "movie-house",
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup"
+      ],
+      "claimed": [
+        "ferry-slip",
+        "dolans-bar",
+        "movie-house",
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "movie-house",
+        "movie-house",
+        "res-walkup"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "p-s6",
+        "p-s6",
+        null
+      ],
+      "lies": [
+        9,
+        10
+      ]
+    },
+    {
+      "personId": "p-s2",
+      "truth": [
+        "ferry-slip",
+        "pier-shed",
+        "pier-shed",
+        "pier-shed",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "ferry-slip",
+        "ferry-slip",
+        "dolans-bar",
+        "dolans-bar",
+        "hallam-vestibule"
+      ],
+      "claimed": [
+        "ferry-slip",
+        "pier-shed",
+        "pier-shed",
+        "pier-shed",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "hallam-vestibule"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        7,
+        8
+      ]
+    },
+    {
+      "personId": "p-s3",
+      "truth": [
+        "ferry-slip",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "pier-shed",
+        "hallam-vestibule",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimed": [
+        "ferry-slip",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "hallam-vestibule",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        "p-s4",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        4
+      ]
+    },
+    {
+      "personId": "p-s4",
+      "truth": [
+        "ferry-slip",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimed": [
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "dolans-bar",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        1,
+        2
+      ]
+    },
+    {
+      "personId": "p-s5",
+      "truth": [
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "movie-house",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimed": [
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "dolans-bar",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        "p-s3",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        4
+      ]
+    },
+    {
+      "personId": "p-s6",
+      "truth": [
+        "dolans-bar",
+        "pier-shed",
+        "res-walkup",
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "res-walkup",
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip"
+      ],
+      "claimed": [
+        "dolans-bar",
+        "pier-shed",
+        "res-walkup",
+        "movie-house",
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "res-walkup",
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        "p-s1",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        4
+      ]
+    },
+    {
+      "personId": "p-f1",
+      "truth": [
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "ferry-slip",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimed": [
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "ferry-slip",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-f2",
+      "truth": [
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "movie-house",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule"
+      ],
+      "claimed": [
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "movie-house",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-f3",
+      "truth": [
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar"
+      ],
+      "claimed": [
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    }
+  ],
+  "observations": [
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-victim",
+      "place": "movie-house",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "pier-shed",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "pier-shed",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-victim",
+      "place": "movie-house",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 2,
+      "withheld": true
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-victim",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s1",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s1",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s6",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-victim",
+      "place": "hallam-vestibule",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "place": "pier-shed",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "place": "pier-shed",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f2",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-f2",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s3",
+      "place": "hallam-vestibule",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s6",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "place": "res-walkup",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "place": "res-walkup",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f1",
+      "place": "ferry-slip",
+      "tick": 7,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "place": "res-walkup",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "place": "res-walkup",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "ferry-slip",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s2",
+      "place": "hallam-vestibule",
+      "tick": 11,
+      "withheld": false
+    }
+  ],
+  "candidates": [
+    {
+      "id": "c001",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "movie-house",
+          "tick": 2
+        }
+      ],
+      "text": "Wehrle says Steinbach was at the Bijou at 7:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c002",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Wehrle says Lefkowitz was at the ferry slip at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Wehrle says Lefkowitz was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c004",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Wehrle says Hochstetter was at the ferry slip at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 1
+        }
+      ],
+      "text": "Wehrle says Hochstetter was at Dolan’s at 6:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Wehrle says Pickering was at the ferry slip at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 1
+        }
+      ],
+      "text": "Wehrle says Pickering was at Dolan’s at 6:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Wehrle says Ruggiero was at the ferry slip at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "movie-house",
+          "tick": 3
+        }
+      ],
+      "text": "Wehrle says Grasso was at the Bijou at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c010",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Wehrle says Grasso was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Lefkowitz says Wehrle was at the ferry slip at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Lefkowitz says Wehrle was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c064",
+        "c078",
+        "c093"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c013",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Lefkowitz says Hochstetter was at the ferry slip at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Lefkowitz says Pickering was at the ferry slip at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c015",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Lefkowitz says Ruggiero was at the ferry slip at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "pier-shed",
+          "tick": 1
+        }
+      ],
+      "text": "Lefkowitz says Grasso was at Pier 46 at 6:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c017",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Lefkowitz says Grasso was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Hochstetter says Wehrle was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c019",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 1
+        }
+      ],
+      "text": "Hochstetter says Wehrle was at Dolan’s at 6:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c020",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Hochstetter says Lefkowitz was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c133",
+        "c125"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c021",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Hochstetter says Pickering was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c022",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 3
+        }
+      ],
+      "text": "Hochstetter says Pickering was at Dolan’s from 6:30 PM to 7:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Hochstetter says Pickering was at the Bijou from 9:00 PM to 11:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Hochstetter says Ruggiero was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c025",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Hochstetter says Ruggiero was at the Bijou from 10:00 PM to 11:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Pickering says Wehrle was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c027",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Pickering says Lefkowitz was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Pickering says Hochstetter was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 3
+        }
+      ],
+      "text": "Pickering says Hochstetter was at Dolan’s at 7:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Pickering says Hochstetter was at the Bijou from 9:00 PM to 11:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Pickering says Ruggiero was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Pickering says Ruggiero was at the Bijou at 8:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c033",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Pickering says Ruggiero was at the Bijou from 10:00 PM to 11:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c034",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ruggiero says Wehrle was at the ferry slip at 6:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ruggiero says Lefkowitz was at the ferry slip at 6:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c036",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ruggiero says Hochstetter was at the ferry slip at 6:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c012",
+        "c064"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c037",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Ruggiero says Hochstetter was at the Bijou from 10:00 PM to 11:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ruggiero says Pickering was at the ferry slip at 6:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c039",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Ruggiero says Pickering was at the Bijou from 10:00 PM to 11:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "res-walkup",
+          "tick": 7
+        }
+      ],
+      "text": "Ruggiero says Grasso was at the walk-up at 9:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 3
+        }
+      ],
+      "text": "Grasso says Wehrle was at the Bijou at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Grasso says Wehrle was at Dolan’s from 8:30 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "pier-shed",
+          "tick": 1
+        }
+      ],
+      "text": "Grasso says Lefkowitz was at Pier 46 at 6:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c044",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Grasso says Lefkowitz was at Dolan’s from 8:30 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c045",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 8
+        }
+      ],
+      "text": "Grasso says Lefkowitz was at the ferry slip at 10:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "res-walkup",
+          "tick": 7
+        }
+      ],
+      "text": "Grasso says Ruggiero was at the walk-up at 9:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c047",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "movie-house",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "movie-house",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "movie-house",
+          "tick": 2
+        }
+      ],
+      "text": "Hanrahan says Steinbach was at the Bijou from 6:00 PM to 7:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c048",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 3
+        }
+      ],
+      "text": "Hanrahan says Wehrle was at the Bijou from 7:00 PM to 7:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c049",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 7
+        }
+      ],
+      "text": "Hanrahan says Lefkowitz was at the ferry slip at 9:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 6
+        }
+      ],
+      "text": "Hanrahan says Hochstetter was at the Bijou at 9:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Hanrahan says Hochstetter was at the Bijou from 10:00 PM to 11:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c052",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 6
+        }
+      ],
+      "text": "Hanrahan says Pickering was at the Bijou from 8:00 PM to 9:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c053",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Hanrahan says Pickering was at the Bijou from 10:00 PM to 11:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Hanrahan says Ruggiero was at the Bijou at 8:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c055",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 10
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Hanrahan says Ruggiero was at the Bijou from 10:00 PM to 11:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "movie-house",
+          "tick": 3
+        }
+      ],
+      "text": "Hanrahan says Grasso was at the Bijou at 7:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c057",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 3
+        }
+      ],
+      "text": "Weisglass says Steinbach was at the Hallam at 7:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "hallam-vestibule",
+          "tick": 11
+        }
+      ],
+      "text": "Weisglass says Lefkowitz was at the Hallam at 11:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c059",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 5
+        }
+      ],
+      "text": "Weisglass says Hochstetter was at the Hallam at 8:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Weisglass says Pickering was at the Bijou at 8:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "t001"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c061",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Weisglass says Ruggiero was at the Bijou at 8:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c062",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 1
+        }
+      ],
+      "text": "Prentiss says Wehrle was at Dolan’s at 6:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 8
+        }
+      ],
+      "text": "Prentiss says Wehrle was at Dolan’s from 8:00 PM to 10:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Prentiss says Lefkowitz was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "t002",
+        "c061",
+        "c063"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c065",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 10
+        }
+      ],
+      "text": "Prentiss says Lefkowitz was at Dolan’s from 10:30 PM to 11:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c066",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 3
+        }
+      ],
+      "text": "Prentiss says Hochstetter was at Dolan’s from 6:30 PM to 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c067",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 3
+        }
+      ],
+      "text": "Prentiss says Pickering was at Dolan’s from 6:30 PM to 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c068",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 0
+        }
+      ],
+      "text": "Prentiss says Grasso was at Dolan’s at 6:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c069",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Prentiss says Grasso was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c070",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Wehrle’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Hochstetter was at the Bijou from 10:30 PM to 11:00 PM and says Wehrle was not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c071",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Wehrle’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Pickering was at the Bijou from 10:30 PM to 11:00 PM and says Wehrle was not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Wehrle’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Ruggiero was at the Bijou from 10:30 PM to 11:00 PM and says Wehrle was not.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c073",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Wehrle’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Hanrahan was at the Bijou from 10:30 PM to 11:00 PM and says Wehrle was not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c074",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Wehrle’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Wehrle names Grasso as the company for it. Grasso was at the ferry slip from 10:30 PM to 11:00 PM, and says Wehrle was not there.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c075",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Lefkowitz’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 8
+        }
+      ],
+      "text": "Wehrle was at Dolan’s from 9:30 PM to 10:00 PM and says Lefkowitz was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c076",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Lefkowitz’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 8
+        }
+      ],
+      "text": "Prentiss was at Dolan’s from 9:30 PM to 10:00 PM and says Lefkowitz was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c077",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Hochstetter’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Wehrle was at Dolan’s at 8:00 PM and says Hochstetter was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c078",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Hochstetter’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Lefkowitz was at Dolan’s at 8:00 PM and says Hochstetter was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c079",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Hochstetter’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Prentiss was at Dolan’s at 8:00 PM and says Hochstetter was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c080",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Hochstetter’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Hochstetter names Pickering as the company for it. Pickering was at the Bijou at 8:00 PM, and says Hochstetter was not there.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c081",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Pickering’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 1
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 2
+        }
+      ],
+      "text": "Ruggiero was at the ferry slip from 6:30 PM to 7:00 PM and says Pickering was not.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c082",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ruggiero’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Wehrle was at Dolan’s at 8:00 PM and says Ruggiero was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c083",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ruggiero’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Lefkowitz was at Dolan’s at 8:00 PM and says Ruggiero was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ruggiero’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Prentiss was at Dolan’s at 8:00 PM and says Ruggiero was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c085",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ruggiero’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Ruggiero names Hochstetter as the company for Dolan’s at 8:00 PM. Hochstetter says they were not together that evening.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c086",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Grasso’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Pickering was at the Bijou at 8:00 PM and says Grasso was not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c087",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Grasso’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Hanrahan was at the Bijou at 8:00 PM and says Grasso was not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c088",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Grasso’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Weisglass was at the Bijou at 8:00 PM and says Grasso was not.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c089",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Grasso’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Grasso names Wehrle as the company for it. Wehrle was at Dolan’s at 8:00 PM, and says Grasso was not there.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c090",
+      "kind": "scene",
+      "source": {
+        "type": "place",
+        "placeId": "pier-shed"
+      },
+      "establishes": [
+        {
+          "kind": "victimDeadBy",
+          "tick": 4
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Steinbach is not at Pier 46 and has not been since that evening. The room was left tidy and the bed was not slept in. The bells rang the half hour at 8:00 PM. The sexton rings them off the sacristy clock and it keeps good time.",
+      "place": "pier-shed",
+      "leadsTo": [
+        "c036",
+        "c069",
+        "c060",
+        "t002",
+        "c095",
+        "c020",
+        "c003"
+      ],
+      "role": "spine",
+      "anchorId": "church-bells"
+    },
+    {
+      "id": "c091",
+      "kind": "morgue",
+      "source": {
+        "type": "place",
+        "placeId": "pier-shed"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            1,
+            4
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Nobody can put it closer than between 6:30 PM and 8:00 PM, which is two hours of nothing useful. The precinct took a statement and filed it. A grown person is allowed to go where they like.",
+      "place": "pier-shed",
+      "leadsTo": [
+        "c012",
+        "c069",
+        "c078",
+        "c060",
+        "c099",
+        "c028"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c092",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-timetable",
+          "fromPlace": "ferry-slip"
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "A pasted-up timetable is gone from the ferry slip. The timetable has been pulled off the wall, and the corner of it is still pasted there.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c093",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Steinbach that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 3
+        }
+      ],
+      "text": "Weisglass puts Steinbach at the Hallam when the lights went, which was 7:30 PM, and in no hurry to be anywhere.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine",
+      "anchorId": "fuse"
+    },
+    {
+      "id": "c094",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "pier-shed",
+          "tick": 4
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 4
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Pickering was at the Bijou at 8:00 PM and heard a door pulled shut on an empty room from the direction of Pier 46, while the bells were going.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "church-bells"
+    },
+    {
+      "id": "c095",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "pier-shed",
+          "tick": 4
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 4
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Hanrahan was at the Bijou at 8:00 PM and heard a door pulled shut on an empty room from the direction of Pier 46, while the bells were going.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "church-bells"
+    },
+    {
+      "id": "c096",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "pier-shed",
+          "tick": 4
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 4
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Weisglass was at the Bijou at 8:00 PM and heard a door pulled shut on an empty room from the direction of Pier 46, while the bells were going.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "church-bells"
+    },
+    {
+      "id": "c097",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s1",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Found at the walk-up: A promissory note for $4,000 signed by Wehrle, endorsed to Steinbach, three months past due.",
+      "place": "res-walkup",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c098",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Wehrle and Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s1",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Grasso says Steinbach told Wehrle that Friday was the end of it, one way or the other.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c099",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Found at the walk-up: A typed page of dates and sums in Steinbach’s file, headed with Hochstetter’s name.",
+      "place": "res-walkup",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c100",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Hochstetter and Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Pickering says Steinbach told Hochstetter that the story would run whether Hochstetter liked it or not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c101",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "property"
+        }
+      ],
+      "text": "Found at the ferry slip: A lease assignment made out in Ruggiero’s name, waiting only on Steinbach’s signature.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c102",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ruggiero and Steinbach"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "property"
+        }
+      ],
+      "text": "Prentiss says Steinbach told Ruggiero the lease would go to somebody else at the quarter day.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c103",
+      "kind": "client",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "why I was hired"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Ruggiero hired us, and wants it known that Hochstetter was about to be exposed by Steinbach, and would rather we started there.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c036",
+        "c093",
+        "c061",
+        "c080",
+        "c121"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c104",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Wehrle"
+      },
+      "establishes": [],
+      "text": "Prentiss on Wehrle: Wehrle had a key to the walk-up that Wehrle had no business having.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c105",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Wehrle"
+      },
+      "establishes": [],
+      "text": "Hochstetter on Wehrle: The accounts at the walk-up are in two hands, and the second hand only appears in the last column.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c106",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Wehrle"
+      },
+      "establishes": [],
+      "text": "Ruggiero on Wehrle: Somebody heard a drawer being worked at the walk-up some time after 10:30 PM to 11:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c107",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [],
+      "text": "A carbon of a deposit slip at the walk-up, made out in Wehrle’s hand to an account in another name.",
+      "place": "res-walkup",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c108",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [],
+      "text": "Ledger pages at the walk-up where the totals have been rubbed and written over.",
+      "place": "res-walkup",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c109",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "embezzling"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 10
+        }
+      ],
+      "text": "The bank confirms the account: Wehrle has been taking two hundred a month for a year, and was at the walk-up doing exactly that from 10:30 PM to 11:00 PM. It is theft, and it is not murder.",
+      "place": "res-walkup",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c110",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "embezzling"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 10
+        }
+      ],
+      "text": "The books at the walk-up settle it. Wehrle spent from 10:30 PM to 11:00 PM covering a hole in the accounts, which is why Wehrle would rather be suspected of anything else.",
+      "place": "res-walkup",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Weisglass on Lefkowitz: Lefkowitz has been seen with men from three different shops and none of them were drinking.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c112"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c112",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Wehrle on Lefkowitz: There is a list going round and Lefkowitz’s name is at the top of it.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c113",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Pickering on Lefkowitz: A private agency has had a man on Lefkowitz for a fortnight.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c114",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A sheaf of signed cards at the ferry slip, forty of them, in a strapped envelope.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c115",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A hall rental receipt at the ferry slip made out to a name that means nothing to anyone.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "union-organizing"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 8
+        }
+      ],
+      "text": "Forty men will swear to it if they have to: Lefkowitz was at the ferry slip from 9:30 PM to 10:00 PM taking their names, and the only thing Lefkowitz is guilty of is a charter.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "union-organizing"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 8
+        }
+      ],
+      "text": "The agency’s own operative confirms it. He was watching Lefkowitz at the ferry slip for the whole of it, from 9:30 PM to 10:00 PM, and wrote it up for his employer.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Pickering"
+      },
+      "establishes": [],
+      "text": "Hanrahan on Pickering: Pickering was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c119"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Pickering"
+      },
+      "establishes": [],
+      "text": "Prentiss on Pickering: A man nobody knew was waiting for Pickering at Dolan’s and would not give a name.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Pickering"
+      },
+      "establishes": [],
+      "text": "Lefkowitz on Pickering: Pickering goes very quiet when the racing wire is mentioned.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c121",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "Betting slips at Dolan’s in Pickering’s pocketbook, all of them losers, all of them this month.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c118"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "A book of markers at Dolan’s with Pickering’s initials against four of them.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 2
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Pickering was at Dolan’s from 6:30 PM to 7:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 2
+        }
+      ],
+      "text": "The book at Dolan’s has the payment entered against Pickering’s name and the time beside it, from 6:30 PM to 7:00 PM, in the clerk’s own hand.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Weisglass on Ruggiero: Ruggiero’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c129"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Wehrle on Ruggiero: Somebody at the Bijou sells what a druggist will not, and Ruggiero knows which door.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Pickering on Ruggiero: Ruggiero was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c128",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Bijou, folded the way one particular hand folds them.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Bijou signed by a doctor who has been dead since the spring.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Ruggiero was there from 8:00 PM, and stayed until it took hold.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "The doctor Ruggiero used to see confirms the habit and the hour: Ruggiero was at the Bijou from 8:00 PM, and could not have crossed the street unhelped.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s5"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Grasso"
+      },
+      "establishes": [],
+      "text": "Prentiss on Grasso: Grasso was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Grasso"
+      },
+      "establishes": [],
+      "text": "Lefkowitz on Grasso: A man nobody knew was waiting for Grasso at Dolan’s and would not give a name.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c135"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c134",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Grasso"
+      },
+      "establishes": [],
+      "text": "Hanrahan on Grasso: Grasso goes very quiet when the racing wire is mentioned.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c135",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "Betting slips at Dolan’s in Grasso’s pocketbook, all of them losers, all of them this month.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c137"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c136",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "A book of markers at Dolan’s with Grasso’s initials against four of them.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Grasso was at Dolan’s from 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c138",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "The book at Dolan’s has the payment entered against Grasso’s name and the time beside it, from 8:00 PM, in the clerk’s own hand.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "t001",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "res-walkup",
+          "tick": 5
+        }
+      ],
+      "text": "A pawn ticket written at the walk-up at 8:30 PM, for a ring, in a hand that matches the rent book Steinbach signs.",
+      "place": "res-walkup",
+      "leadsTo": [
+        "c111"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "t002",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Steinbach since Tuesday"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "res-walkup",
+          "tick": 7
+        }
+      ],
+      "text": "Weisglass says there was somebody at the walk-up at 9:30 PM reading the departures off a timetable, and that it was Steinbach.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine"
+    }
+  ],
+  "findable": [
+    {
+      "id": "c090",
+      "kind": "scene",
+      "source": {
+        "type": "place",
+        "placeId": "pier-shed"
+      },
+      "establishes": [
+        {
+          "kind": "victimDeadBy",
+          "tick": 4
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Steinbach is not at Pier 46 and has not been since that evening. The room was left tidy and the bed was not slept in. The bells rang the half hour at 8:00 PM. The sexton rings them off the sacristy clock and it keeps good time.",
+      "place": "pier-shed",
+      "leadsTo": [
+        "c036",
+        "c069",
+        "c060",
+        "t002",
+        "c095",
+        "c020",
+        "c003"
+      ],
+      "role": "spine",
+      "anchorId": "church-bells"
+    },
+    {
+      "id": "c091",
+      "kind": "morgue",
+      "source": {
+        "type": "place",
+        "placeId": "pier-shed"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            1,
+            4
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Nobody can put it closer than between 6:30 PM and 8:00 PM, which is two hours of nothing useful. The precinct took a statement and filed it. A grown person is allowed to go where they like.",
+      "place": "pier-shed",
+      "leadsTo": [
+        "c012",
+        "c069",
+        "c078",
+        "c060",
+        "c099",
+        "c028"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c103",
+      "kind": "client",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "why I was hired"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Ruggiero hired us, and wants it known that Hochstetter was about to be exposed by Steinbach, and would rather we started there.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c036",
+        "c093",
+        "c061",
+        "c080",
+        "c121"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c036",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Ruggiero says Hochstetter was at the ferry slip at 6:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c012",
+        "c064"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Lefkowitz says Wehrle was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c064",
+        "c078",
+        "c093"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Prentiss says Lefkowitz was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "t002",
+        "c061",
+        "c063"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c069",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Grasso"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Prentiss says Grasso was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c078",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Hochstetter’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Lefkowitz was at Dolan’s at 8:00 PM and says Hochstetter was not.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c093",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Steinbach that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 3
+        }
+      ],
+      "text": "Weisglass puts Steinbach at the Hallam when the lights went, which was 7:30 PM, and in no hurry to be anywhere.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine",
+      "anchorId": "fuse"
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Pickering"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Weisglass says Pickering was at the Bijou at 8:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "t001"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "t002",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Steinbach since Tuesday"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "res-walkup",
+          "tick": 7
+        }
+      ],
+      "text": "Weisglass says there was somebody at the walk-up at 9:30 PM reading the departures off a timetable, and that it was Steinbach.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c061",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ruggiero"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Weisglass says Ruggiero was at the Bijou at 8:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine"
+    },
+    {
+      "id": "c099",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s3",
+          "motiveType": "exposure"
+        }
+      ],
+      "text": "Found at the walk-up: A typed page of dates and sums in Steinbach’s file, headed with Hochstetter’s name.",
+      "place": "res-walkup",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Hochstetter"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s3",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Pickering says Hochstetter was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c080",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Hochstetter’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "Hochstetter names Pickering as the company for it. Pickering was at the Bijou at 8:00 PM, and says Hochstetter was not there.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c095",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "the noise that evening"
+      },
+      "establishes": [
+        {
+          "kind": "noiseAt",
+          "place": "pier-shed",
+          "tick": 4
+        },
+        {
+          "kind": "victimDeadBy",
+          "tick": 4
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Hanrahan was at the Bijou at 8:00 PM and heard a door pulled shut on an empty room from the direction of Pier 46, while the bells were going.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration",
+      "anchorId": "church-bells"
+    },
+    {
+      "id": "t001",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "res-walkup",
+          "tick": 5
+        }
+      ],
+      "text": "A pawn ticket written at the walk-up at 8:30 PM, for a ring, in a hand that matches the rent book Steinbach signs.",
+      "place": "res-walkup",
+      "leadsTo": [
+        "c111"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c020",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "the-timetable"
+        }
+      ],
+      "text": "Hochstetter says Lefkowitz was at the ferry slip at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c133",
+        "c125"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Wehrle"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 8
+        }
+      ],
+      "text": "Prentiss says Wehrle was at Dolan’s from 8:00 PM to 10:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Wehrle says Lefkowitz was at Dolan’s from 8:00 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Weisglass on Lefkowitz: Lefkowitz has been seen with men from three different shops and none of them were drinking.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c112"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c112",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Lefkowitz"
+      },
+      "establishes": [],
+      "text": "Wehrle on Lefkowitz: There is a list going round and Lefkowitz’s name is at the top of it.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c114"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c114",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [],
+      "text": "A sheaf of signed cards at the ferry slip, forty of them, in a strapped envelope.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c116"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c116",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "union-organizing"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 8
+        }
+      ],
+      "text": "Forty men will swear to it if they have to: Lefkowitz was at the ferry slip from 9:30 PM to 10:00 PM taking their names, and the only thing Lefkowitz is guilty of is a charter.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s2",
+      "branchId": "b1"
+    },
+    {
+      "id": "c121",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "Betting slips at Dolan’s in Pickering’s pocketbook, all of them losers, all of them this month.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c118"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Pickering"
+      },
+      "establishes": [],
+      "text": "Hanrahan on Pickering: Pickering was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c119"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Pickering"
+      },
+      "establishes": [],
+      "text": "Prentiss on Pickering: A man nobody knew was waiting for Pickering at Dolan’s and would not give a name.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c123"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c123",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 2
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Pickering was at Dolan’s from 6:30 PM to 7:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b2"
+    },
+    {
+      "id": "c133",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Grasso"
+      },
+      "establishes": [],
+      "text": "Lefkowitz on Grasso: A man nobody knew was waiting for Grasso at Dolan’s and would not give a name.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c135"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c135",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "Betting slips at Dolan’s in Grasso’s pocketbook, all of them losers, all of them this month.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c137"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c137",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "dolans-bar",
+          "tick": 4
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Grasso was at Dolan’s from 8:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b3"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ruggiero"
+      },
+      "establishes": [],
+      "text": "Weisglass on Ruggiero: Ruggiero’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c129"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Bijou signed by a doctor who has been dead since the spring.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c130"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    },
+    {
+      "id": "c130",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s5",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Ruggiero was there from 8:00 PM, and stayed until it took hold.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s5",
+      "branchId": "b4"
+    }
+  ],
+  "starting": [
+    "c090",
+    "c091",
+    "c103"
+  ],
+  "clientId": "p-s5",
+  "par": 12,
+  "slack": 6,
+  "budget": 18,
+  "coronerWindow": [
+    1,
+    4
+  ],
+  "solution": {
+    "killerId": "p-s3",
+    "methodId": "the-timetable",
+    "motiveType": "exposure",
+    "murderTick": 4,
+    "murderPlaceId": "pier-shed"
+  },
+  "act": {
+    "type": "missing",
+    "tropeId": "left",
+    "actorId": "p-victim",
+    "tick": 4,
+    "place": "pier-shed",
+    "method": {
+      "id": "the-timetable",
+      "name": "a train out, and the timetable it was read off",
+      "noise": 0,
+      "evidenceObjectId": "obj-timetable",
+      "bodyEvidence": "The precinct took a statement and filed it. A grown person is allowed to go where they like.",
+      "accessRequirement": {
+        "place": "ferry-slip",
+        "beforeTick": 4
+      }
+    },
+    "givens": {
+      "facts": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 3
+        }
+      ],
+      "text": [
+        "Steinbach has not been seen since 7:30 PM on Tuesday evening.",
+        "Weisglass saw Steinbach at the Hallam at 7:30 PM, and nobody has seen Steinbach since.",
+        "Steinbach’s rooms were left tidy and the rent was paid to the end of the month.",
+        "The precinct took a statement and filed it, because a grown person may go where they like."
+      ]
+    },
+    "unknowns": [
+      "whereabouts",
+      "why"
+    ],
+    "whereabouts": "res-walkup",
+    "fate": "left"
+  },
+  "mentions": [
+    {
+      "id": "m-1",
+      "name": "Clementine Mosley",
+      "surname": "Mosley",
+      "gender": "f",
+      "role": "a woman they had both been seeing",
+      "text": "Clementine Mosley is a woman they had both been seeing."
+    },
+    {
+      "id": "m-2",
+      "name": "Rivka Kessler",
+      "surname": "Kessler",
+      "gender": "f",
+      "role": "the landlady at the old address",
+      "text": "Rivka Kessler is the landlady at the old address."
+    }
+  ],
+  "victimBio": {
+    "age": 62,
+    "gender": "f",
+    "profession": {
+      "role": "the landlord of three tenements on Ninth Avenue",
+      "detail": "held three tenements on Ninth Avenue and the mortgages on two more"
+    },
+    "want": "to-keep-what-they-have",
+    "tie": {
+      "relationshipId": "rel-none",
+      "text": "the one this is about",
+      "backstory": "Steinbach owned more of the street than anybody who lived on it."
+    },
+    "selfAccount": [
+      "Steinbach is 62 years old and the landlord of three tenements on Ninth Avenue.",
+      "Steinbach held three tenements on Ninth Avenue and the mortgages on two more.",
+      "Steinbach is the one this is about."
+    ],
+    "layers": [
+      {
+        "kind": "gender",
+        "text": "A woman.",
+        "layer": 0
+      },
+      {
+        "kind": "age",
+        "text": "In her sixties.",
+        "layer": 0
+      },
+      {
+        "kind": "profession",
+        "text": "The landlord of three tenements on Ninth Avenue.",
+        "layer": 1
+      },
+      {
+        "kind": "detail",
+        "text": "Steinbach held three tenements on Ninth Avenue and the mortgages on two more.",
+        "layer": 1
+      },
+      {
+        "kind": "tie",
+        "text": "Steinbach owned more of the street than anybody who lived on it.",
+        "layer": 2
+      },
+      {
+        "kind": "want",
+        "text": "Steinbach wants to keep what they have and add nothing to it.",
+        "layer": 2
+      }
+    ],
+    "standing": "Steinbach owned more of the street than anybody who lived on it.",
+    "lastSeen": {
+      "byId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 3,
+      "text": "Weisglass saw Steinbach at the Hallam at 7:30 PM, and nobody has seen Steinbach since."
+    }
+  },
+  "clientBrief": {
+    "purpose": "bring-them-home",
+    "purposeText": "Ruggiero wants Steinbach found and brought home.",
+    "cost": "Ruggiero has been to the precinct twice already and was sent away twice.",
+    "tells": [
+      {
+        "kind": "personAt",
+        "personId": "p-victim",
+        "place": "hallam-vestibule",
+        "tick": 3
+      },
+      {
+        "kind": "hasMotive",
+        "personId": "p-s3",
+        "motiveType": "exposure"
+      }
+    ],
+    "tellTexts": [
+      "Steinbach has not been seen since 7:30 PM on Tuesday evening.",
+      "Weisglass saw Steinbach at the Hallam at 7:30 PM, and nobody has seen Steinbach since.",
+      "Steinbach’s rooms were left tidy and the rent was paid to the end of the month.",
+      "The precinct took a statement and filed it, because a grown person may go where they like.",
+      "Ruggiero would rather we started with Hochstetter: Hochstetter was about to be exposed by Steinbach."
+    ],
+    "withholds": [
+      {
+        "kind": "secretExplained",
+        "personId": "p-s5",
+        "secretType": "dope"
+      }
+    ],
+    "withholdTexts": [
+      "Ruggiero does not mention it, but Ruggiero buys morphine at the Bijou from 8:00 PM and would rather be thought a murderer than a hop-head."
+    ],
+    "points": {
+      "personId": "p-s3",
+      "reason": "Hochstetter was about to be exposed by Steinbach",
+      "honest": true
+    },
+    "ownEvening": [
+      "Ruggiero says he was at the ferry slip from 6:00 PM to 7:00 PM.",
+      "Ruggiero says he was at the walk-up at 7:30 PM.",
+      "Ruggiero says he was at Dolan’s at 8:00 PM.",
+      "Ruggiero says he was at the ferry slip from 8:30 PM to 9:00 PM."
+    ]
+  },
+  "briefing": [
+    "A man came up the stairs after midnight, and sat down.",
+    "Nunzio Ruggiero is 32 years old and a dentist with a chair and a waiting room.",
+    "Ruggiero has a chair, a waiting room and a girl on the door.",
+    "Steinbach owned more of the street than anybody who lived on it.",
+    "Steinbach has not been seen since 7:30 PM on Tuesday evening.",
+    "Weisglass saw Steinbach at the Hallam at 7:30 PM, and nobody has seen Steinbach since.",
+    "Steinbach’s rooms were left tidy and the rent was paid to the end of the month.",
+    "The precinct took a statement and filed it, because a grown person may go where they like.",
+    "Weisglass saw Steinbach at the Hallam at 7:30 PM, and nobody has seen Steinbach since.",
+    "Ruggiero is Steinbach’s tenant.",
+    "Ruggiero has rented from Steinbach since ’24 and has the same window and the same complaint.",
+    "Ruggiero wants Steinbach found and brought home.",
+    "Ruggiero has been to the precinct twice already and was sent away twice.",
+    "Ruggiero wants us to start with Hochstetter.",
+    "Hochstetter was about to be exposed by Steinbach."
+  ],
+  "deduction": {
+    "timeOfDeath": [
+      "c091",
+      "c093",
+      "c090",
+      "c095"
+    ],
+    "timeOfDeathAnchors": [
+      "church-bells",
+      "fuse"
+    ],
+    "exculpations": {
+      "p-s1": [
+        "c012",
+        "c063"
+      ],
+      "p-s2": [
+        "c064",
+        "c003"
+      ],
+      "p-s4": [
+        "c060"
+      ],
+      "p-s5": [
+        "c061",
+        "c130"
+      ],
+      "p-s6": [
+        "c069",
+        "c137"
+      ]
+    },
+    "inculpation": [
+      "c078",
+      "c080"
+    ],
+    "access": [
+      "c036",
+      "c028"
+    ],
+    "method": [
+      "c090",
+      "c091",
+      "c095"
+    ],
+    "motive": [
+      "c103",
+      "c099"
+    ]
+  }
+}

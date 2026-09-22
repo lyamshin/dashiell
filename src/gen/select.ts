@@ -374,6 +374,19 @@ function wireSpine(rng: Rng, spine: Clue[], starting: Set<Id>): Record<Id, Id[]>
       if (!p.leadsTo.includes(c.id)) p.leadsTo.push(c.id);
     }
   }
+  /*
+   * Every opening clue has to lead somewhere. The free three are the only way
+   * into the graph, and one of them that leads nowhere is a dead end on page
+   * one — the client tells you why you were hired and hands you nothing.
+   * The random wiring above drops one about one case in fifty.
+   */
+  const children = spine.filter((c) => !starting.has(c.id));
+  if (children.length > 0) {
+    for (const c of spine) {
+      if (!starting.has(c.id) || c.leadsTo.length > 0) continue;
+      c.leadsTo.push(rng.pick(children).id);
+    }
+  }
   const snapshot: Record<Id, Id[]> = {};
   for (const c of spine) snapshot[c.id] = c.leadsTo.slice();
   return snapshot;
@@ -445,6 +458,12 @@ export interface SelectContext {
   difficulty: Difficulty;
   places: Id[];
   sceneId: Id;
+  /**
+   * M5 §2.2: the trope's own essential fact set, declared alongside its
+   * unknowns and folded in here so that a signature clue is load-bearing —
+   * it goes into the spine, it is corroborated, and it is counted in par.
+   */
+  extraRequirements?: Requirement[];
   /** Optional sink for the reason a selection was abandoned. */
   reject?: (reason: string) => void;
 }
@@ -457,7 +476,10 @@ export function selectFindable(ctx: SelectContext): Selection | null {
   };
   const pool = candidates.clues;
   const solutionPool = pool.filter((c) => c.aboutSecretOf === undefined);
-  const reqs = buildRequirements(requirementInputFor(cast, build), pool);
+  const reqs = [
+    ...buildRequirements(requirementInputFor(cast, build), pool),
+    ...(ctx.extraRequirements ?? []).filter((r) => r.parts.every((p) => p.clues.length > 0)),
+  ];
   for (const r of reqs) {
     for (const part of r.parts) {
       if (part.clues.length === 0) return bail(`nothing at all establishes ${part.key}`);

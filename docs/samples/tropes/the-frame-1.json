@@ -1,0 +1,7144 @@
+{
+  "seed": 1,
+  "attempts": 1,
+  "difficulty": 2,
+  "detectiveName": "Dashiell",
+  "neighborhood": "Chelsea",
+  "places": [
+    {
+      "id": "res-walkup",
+      "name": "Corrigan’s walk-up over the drugstore",
+      "shortName": "the walk-up",
+      "kind": "private",
+      "objects": [
+        "obj-bookend",
+        "obj-chloral",
+        "obj-hatbox"
+      ],
+      "isResidence": true,
+      "nearScene": false
+    },
+    {
+      "id": "movie-house",
+      "name": "the Bijou picture house",
+      "shortName": "the Bijou",
+      "kind": "public",
+      "objects": [
+        "obj-cigarette-case",
+        "obj-ashtray",
+        "obj-cord"
+      ],
+      "isResidence": false,
+      "nearScene": true,
+      "watcher": "ticket-taker"
+    },
+    {
+      "id": "ferry-slip",
+      "name": "the ferry slip at the foot of the street",
+      "shortName": "the ferry slip",
+      "kind": "public",
+      "objects": [
+        "obj-suitcase",
+        "obj-timetable"
+      ],
+      "isResidence": false,
+      "nearScene": true
+    },
+    {
+      "id": "hallam-vestibule",
+      "name": "the vestibule of the Hallam apartments",
+      "shortName": "the Hallam",
+      "kind": "private",
+      "objects": [
+        "obj-overcoat",
+        "obj-umbrella",
+        "obj-ledger"
+      ],
+      "isResidence": false,
+      "nearScene": false,
+      "watcher": "elevator-man"
+    },
+    {
+      "id": "dolans-bar",
+      "name": "Dolan’s Bar",
+      "shortName": "Dolan’s",
+      "kind": "semi",
+      "objects": [
+        "obj-seltzer",
+        "obj-icepick"
+      ],
+      "isResidence": false,
+      "nearScene": false,
+      "watcher": "bartender"
+    },
+    {
+      "id": "pier-shed",
+      "name": "Pier 46, under the shed",
+      "shortName": "Pier 46",
+      "kind": "private",
+      "objects": [
+        "obj-toolbox"
+      ],
+      "isResidence": false,
+      "nearScene": false
+    }
+  ],
+  "objects": [
+    {
+      "id": "obj-bookend",
+      "name": "a bronze bookend",
+      "homePlace": "res-walkup"
+    },
+    {
+      "id": "obj-chloral",
+      "name": "a bottle of chloral drops",
+      "homePlace": "res-walkup"
+    },
+    {
+      "id": "obj-hatbox",
+      "name": "a stack of hatboxes",
+      "homePlace": "res-walkup"
+    },
+    {
+      "id": "obj-cigarette-case",
+      "name": "a silver cigarette case",
+      "homePlace": "movie-house"
+    },
+    {
+      "id": "obj-ashtray",
+      "name": "a standing ashtray",
+      "homePlace": "movie-house"
+    },
+    {
+      "id": "obj-cord",
+      "name": "a length of sash cord",
+      "homePlace": "movie-house"
+    },
+    {
+      "id": "obj-suitcase",
+      "name": "a strapped suitcase",
+      "homePlace": "ferry-slip"
+    },
+    {
+      "id": "obj-timetable",
+      "name": "a pasted-up timetable",
+      "homePlace": "ferry-slip"
+    },
+    {
+      "id": "obj-overcoat",
+      "name": "a camel-hair overcoat on a hook",
+      "homePlace": "hallam-vestibule"
+    },
+    {
+      "id": "obj-umbrella",
+      "name": "a brass umbrella stand",
+      "homePlace": "hallam-vestibule"
+    },
+    {
+      "id": "obj-ledger",
+      "name": "a day ledger",
+      "homePlace": "hallam-vestibule"
+    },
+    {
+      "id": "obj-seltzer",
+      "name": "a seltzer siphon",
+      "homePlace": "dolans-bar"
+    },
+    {
+      "id": "obj-icepick",
+      "name": "an ice pick",
+      "homePlace": "dolans-bar"
+    },
+    {
+      "id": "obj-toolbox",
+      "name": "a mechanic’s toolbox",
+      "homePlace": "pier-shed"
+    }
+  ],
+  "people": [
+    {
+      "id": "p-victim",
+      "name": "Edward Corrigan",
+      "surname": "Corrigan",
+      "role": "a retired dry-goods wholesaler",
+      "kind": "victim",
+      "isKiller": false,
+      "archetypeId": "vic-wholesaler",
+      "gender": "m",
+      "dossier": {
+        "age": 70,
+        "gender": "m",
+        "profession": {
+          "role": "a retired dry-goods wholesaler",
+          "detail": "ran a dry-goods house on Canal Street for thirty years"
+        },
+        "want": "respectability",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "the one this is about",
+          "backstory": "Corrigan had lent money to four families on the block and forgiven none of it."
+        },
+        "selfAccount": [
+          "Corrigan is 70 years old and a retired dry-goods wholesaler.",
+          "Corrigan ran a dry-goods house on Canal Street for thirty years.",
+          "Corrigan is the one this is about."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "Past seventy.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A retired dry-goods wholesaler.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Corrigan ran a dry-goods house on Canal Street for thirty years.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Corrigan had lent money to four families on the block and forgiven none of it.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Corrigan wants to be thought respectable by people who are not.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s1",
+      "name": "Esther Sirkin",
+      "surname": "Sirkin",
+      "role": "an insurance adjuster",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-adjuster",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people Corrigan worked for",
+      "secret": {
+        "type": "gambling-debt",
+        "label": "Gambling debt",
+        "description": "Sirkin slips off to Dolan’s from 8:30 PM to 9:00 PM to settle with a bookmaker.",
+        "cells": [
+          {
+            "tick": 5,
+            "place": "dolans-bar"
+          },
+          {
+            "tick": 6,
+            "place": "dolans-bar"
+          }
+        ]
+      },
+      "foundAt": "dolans-bar",
+      "gender": "f",
+      "dossier": {
+        "age": 36,
+        "gender": "f",
+        "profession": {
+          "role": "an insurance adjuster",
+          "detail": "walks fire jobs for the company and writes up what he finds"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-witness",
+          "text": "a witness against the people Corrigan worked for",
+          "backstory": "Sirkin gave a statement about the people Corrigan worked for and has been careful ever since.",
+          "since": "since the indictment"
+        },
+        "selfAccount": [
+          "Sirkin is 36 years old and an insurance adjuster.",
+          "Sirkin walks fire jobs for the company and writes up what he finds.",
+          "Sirkin is a witness against the people Corrigan worked for."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "An insurance adjuster.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Sirkin walks fire jobs for the company and writes up what he finds.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Sirkin gave a statement about the people Corrigan worked for and has been careful ever since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Sirkin wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Sirkin has been a witness against the people Corrigan worked for, since the indictment.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Sirkin was asking around for a hundred dollars in a hurry earlier in the week."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s2",
+      "name": "Bella Abramowitz",
+      "surname": "Abramowitz",
+      "role": "the night manager at the hotel",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-nightman",
+      "relationshipId": "rel-inlaw",
+      "relationshipToVictim": "Corrigan’s brother-in-law",
+      "secret": {
+        "type": "secret-drinking",
+        "label": "Drinking in secret",
+        "description": "Abramowitz drinks alone at Dolan’s from 8:30 PM to 9:00 PM and will claim to have been anywhere else.",
+        "cells": [
+          {
+            "tick": 5,
+            "place": "dolans-bar"
+          },
+          {
+            "tick": 6,
+            "place": "dolans-bar"
+          }
+        ]
+      },
+      "foundAt": "ferry-slip",
+      "gender": "f",
+      "dossier": {
+        "age": 54,
+        "gender": "f",
+        "profession": {
+          "role": "the night manager at the hotel",
+          "detail": "has the desk from six at night until six in the morning"
+        },
+        "want": "to-keep-what-they-have",
+        "tie": {
+          "relationshipId": "rel-inlaw",
+          "text": "Corrigan’s brother-in-law",
+          "backstory": "Abramowitz is Corrigan’s brother-in-law and has been told so at every holiday.",
+          "since": "since ’18"
+        },
+        "selfAccount": [
+          "Abramowitz is 54 years old and the night manager at the hotel.",
+          "Abramowitz has the desk from six at night until six in the morning.",
+          "Abramowitz is Corrigan’s brother-in-law."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The night manager at the hotel.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Abramowitz has the desk from six at night until six in the morning.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Abramowitz is Corrigan’s brother-in-law and has been told so at every holiday.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Abramowitz wants to keep what they have and add nothing to it.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Abramowitz has been Corrigan’s brother-in-law, since ’18.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Abramowitz had taken a drink and had gone to some trouble about the smell of it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s3",
+      "name": "Ilse Reinhardt",
+      "surname": "Reinhardt",
+      "role": "a society columnist",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-society",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people Corrigan worked for",
+      "secret": {
+        "type": "dope",
+        "label": "Buying morphine",
+        "description": "Reinhardt buys morphine at the Bijou from 7:30 PM and would rather be thought a murderer than a hop-head.",
+        "cells": [
+          {
+            "tick": 3,
+            "place": "movie-house"
+          }
+        ]
+      },
+      "foundAt": "movie-house",
+      "gender": "f",
+      "dossier": {
+        "age": 39,
+        "gender": "f",
+        "profession": {
+          "role": "a society columnist",
+          "detail": "keeps a card index of everybody worth a paragraph"
+        },
+        "want": "to-be-somebody",
+        "tie": {
+          "relationshipId": "rel-witness",
+          "text": "a witness against the people Corrigan worked for",
+          "backstory": "Reinhardt is due before the grand jury about Corrigan’s people, and the date is set.",
+          "since": "since last autumn"
+        },
+        "selfAccount": [
+          "Reinhardt is 39 years old and a society columnist.",
+          "Reinhardt keeps a card index of everybody worth a paragraph.",
+          "Reinhardt is a witness against the people Corrigan worked for."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A society columnist.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Reinhardt keeps a card index of everybody worth a paragraph.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Reinhardt is due before the grand jury about Corrigan’s people, and the date is set.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Reinhardt wants a name people know.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Reinhardt has been a witness against the people Corrigan worked for, since last autumn.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Reinhardt’s sleeves are buttoned at the wrist in a warm room."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s4",
+      "name": "Thaddeus Ainsworth",
+      "surname": "Ainsworth",
+      "role": "a doorman at a club with no sign on it",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-bouncer",
+      "relationshipId": "rel-childhood",
+      "relationshipToVictim": "a childhood friend of Corrigan’s from the same block",
+      "secret": {
+        "type": "dope",
+        "label": "Buying morphine",
+        "description": "Ainsworth buys morphine at the Bijou from 10:00 PM to 10:30 PM and would rather be thought a murderer than a hop-head.",
+        "cells": [
+          {
+            "tick": 8,
+            "place": "movie-house"
+          },
+          {
+            "tick": 9,
+            "place": "movie-house"
+          }
+        ]
+      },
+      "motive": {
+        "type": "debt",
+        "description": "owed Corrigan four thousand dollars and was past due on it"
+      },
+      "foundAt": "ferry-slip",
+      "gender": "m",
+      "dossier": {
+        "age": 33,
+        "gender": "m",
+        "profession": {
+          "role": "a doorman at a club with no sign on it",
+          "detail": "stands the door at a club with no sign on it and knows every face that comes to it"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-childhood",
+          "text": "a childhood friend of Corrigan’s from the same block",
+          "backstory": "Ainsworth, Corrigan and Gittel Feldman were inseparable for ten years and have not been in a room together since.",
+          "since": "all their lives",
+          "third": "m-1"
+        },
+        "selfAccount": [
+          "Ainsworth is 33 years old and a doorman at a club with no sign on it.",
+          "Ainsworth stands the door at a club with no sign on it and knows every face that comes to it.",
+          "Ainsworth is a childhood friend of Corrigan’s from the same block."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A doorman at a club with no sign on it.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Ainsworth stands the door at a club with no sign on it and knows every face that comes to it.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Ainsworth, Corrigan and Gittel Feldman were inseparable for ten years and have not been in a room together since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Ainsworth wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Ainsworth has been a childhood friend of Corrigan’s from the same block, all their lives.",
+            "layer": 2
+          },
+          {
+            "kind": "third",
+            "text": "Gittel Feldman is the landlady at the old address.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Ainsworth’s sleeves are buttoned at the wrist in a warm room."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s5",
+      "name": "Percival Prentiss",
+      "surname": "Prentiss",
+      "role": "a ward heeler",
+      "kind": "suspect",
+      "isKiller": true,
+      "archetypeId": "arch-heeler",
+      "relationshipId": "rel-witness",
+      "relationshipToVictim": "a witness against the people Corrigan worked for",
+      "secret": {
+        "type": "murder",
+        "label": "Murder",
+        "description": "Prentiss is at Pier 46 from 8:00 PM to 9:00 PM, alone with Corrigan when it happens at 9:00 PM.",
+        "cells": [
+          {
+            "tick": 4,
+            "place": "pier-shed"
+          },
+          {
+            "tick": 5,
+            "place": "pier-shed"
+          },
+          {
+            "tick": 6,
+            "place": "pier-shed"
+          }
+        ],
+        "partnerId": "p-victim"
+      },
+      "coverSecret": {
+        "type": "gambling-debt",
+        "label": "Gambling debt",
+        "description": "Prentiss slips off to Dolan’s from 6:30 PM to settle with a bookmaker.",
+        "cells": [
+          {
+            "tick": 1,
+            "place": "dolans-bar"
+          }
+        ]
+      },
+      "motive": {
+        "type": "silence-a-witness",
+        "description": "needed Corrigan silent before the grand jury"
+      },
+      "foundAt": "dolans-bar",
+      "isClient": true,
+      "gender": "m",
+      "dossier": {
+        "age": 36,
+        "gender": "m",
+        "profession": {
+          "role": "a ward heeler",
+          "detail": "carries the district for the club and is paid in favours"
+        },
+        "want": "to-be-feared",
+        "tie": {
+          "relationshipId": "rel-witness",
+          "text": "a witness against the people Corrigan worked for",
+          "backstory": "Prentiss gave a statement about the people Corrigan worked for and has been careful ever since.",
+          "since": "since last autumn"
+        },
+        "selfAccount": [
+          "Prentiss is 36 years old and a ward heeler.",
+          "Prentiss carries the district for the club and is paid in favours.",
+          "Prentiss is a witness against the people Corrigan worked for."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his thirties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A ward heeler.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Prentiss carries the district for the club and is paid in favours.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Prentiss gave a statement about the people Corrigan worked for and has been careful ever since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Prentiss wants to be the one people are careful around.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Prentiss has been a witness against the people Corrigan worked for, since last autumn.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Prentiss was asking around for a hundred dollars in a hurry earlier in the week."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-s6",
+      "name": "Wilhelm Brauer",
+      "surname": "Brauer",
+      "role": "a lawyer with one clerk",
+      "kind": "suspect",
+      "isKiller": false,
+      "archetypeId": "arch-lawyer",
+      "relationshipId": "rel-creditor",
+      "relationshipToVictim": "Corrigan’s creditor",
+      "secret": {
+        "type": "blackmail",
+        "label": "Blackmail",
+        "description": "Brauer meets Corrigan alone at the Hallam from 8:00 PM and asks for money.",
+        "cells": [
+          {
+            "tick": 4,
+            "place": "hallam-vestibule"
+          }
+        ],
+        "partnerId": "p-victim"
+      },
+      "foundAt": "hallam-vestibule",
+      "gender": "m",
+      "dossier": {
+        "age": 43,
+        "gender": "m",
+        "profession": {
+          "role": "a lawyer with one clerk",
+          "detail": "has a list of clients and will not read any of it aloud"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-creditor",
+          "text": "Corrigan’s creditor",
+          "backstory": "Brauer lent Corrigan money in front of Wilhelmina Kreuzer and has been reminded of it ever since.",
+          "since": "three renewals running",
+          "third": "m-2"
+        },
+        "selfAccount": [
+          "Brauer is 43 years old and a lawyer with one clerk.",
+          "Brauer has a list of clients and will not read any of it aloud.",
+          "Brauer is Corrigan’s creditor."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "A lawyer with one clerk.",
+            "layer": 1
+          },
+          {
+            "kind": "detail",
+            "text": "Brauer has a list of clients and will not read any of it aloud.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Brauer lent Corrigan money in front of Wilhelmina Kreuzer and has been reminded of it ever since.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Brauer wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          },
+          {
+            "kind": "since",
+            "text": "Brauer has been Corrigan’s creditor, three renewals running.",
+            "layer": 2
+          },
+          {
+            "kind": "third",
+            "text": "Wilhelmina Kreuzer is a sister who married out of the neighbourhood.",
+            "layer": 2
+          },
+          {
+            "kind": "secret-hint",
+            "layer": 3,
+            "text": "Brauer and Corrigan were heard at the Hallam, and one of them was doing all the talking."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f1",
+      "name": "Angelina Tramonti",
+      "surname": "Tramonti",
+      "role": "the ticket-taker",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "ticket-taker",
+      "foundAt": "movie-house",
+      "gender": "f",
+      "dossier": {
+        "age": 44,
+        "gender": "f",
+        "profession": {
+          "role": "the ticket-taker",
+          "detail": "takes the tickets at the Bijou and tears every one of them in half"
+        },
+        "want": "respectability",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "on the door at the Bijou, every performance",
+          "backstory": "Tramonti is on the door at the Bijou, every performance."
+        },
+        "selfAccount": [
+          "Tramonti is 44 years old and the ticket-taker.",
+          "Tramonti takes the tickets at the Bijou and tears every one of them in half.",
+          "Tramonti is on the door at the Bijou, every performance."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A woman.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In her forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The ticket-taker.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Tramonti takes the tickets at the Bijou and tears every one of them in half.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Tramonti is on the door at the Bijou, every performance.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Tramonti wants to be thought respectable by people who are not.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f2",
+      "name": "Rudolf Dettweiler",
+      "surname": "Dettweiler",
+      "role": "the elevator man",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "elevator-man",
+      "foundAt": "hallam-vestibule",
+      "gender": "m",
+      "dossier": {
+        "age": 46,
+        "gender": "m",
+        "profession": {
+          "role": "the elevator man",
+          "detail": "has run the car at the Hallam for eleven years and never lost a day"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "in the car at the Hallam",
+          "backstory": "Dettweiler is in the car at the Hallam."
+        },
+        "selfAccount": [
+          "Dettweiler is 46 years old and the elevator man.",
+          "Dettweiler has run the car at the Hallam for eleven years and never lost a day.",
+          "Dettweiler is in the car at the Hallam."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his forties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The elevator man.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Dettweiler has run the car at the Hallam for eleven years and never lost a day.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Dettweiler is in the car at the Hallam.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Dettweiler wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-f3",
+      "name": "Augustus Mosley",
+      "surname": "Mosley",
+      "role": "the bartender",
+      "kind": "fixture",
+      "isKiller": false,
+      "fixtureRole": "bartender",
+      "foundAt": "dolans-bar",
+      "gender": "m",
+      "dossier": {
+        "age": 55,
+        "gender": "m",
+        "profession": {
+          "role": "the bartender",
+          "detail": "pours at Dolan’s six nights a week and takes Mondays"
+        },
+        "want": "money",
+        "tie": {
+          "relationshipId": "rel-none",
+          "text": "behind the bar at Dolan’s, every night of the week",
+          "backstory": "Mosley is behind the bar at Dolan’s, every night of the week."
+        },
+        "selfAccount": [
+          "Mosley is 55 years old and the bartender.",
+          "Mosley pours at Dolan’s six nights a week and takes Mondays.",
+          "Mosley is behind the bar at Dolan’s, every night of the week."
+        ],
+        "layers": [
+          {
+            "kind": "gender",
+            "text": "A man.",
+            "layer": 0
+          },
+          {
+            "kind": "age",
+            "text": "In his fifties.",
+            "layer": 0
+          },
+          {
+            "kind": "profession",
+            "text": "The bartender.",
+            "layer": 0
+          },
+          {
+            "kind": "detail",
+            "text": "Mosley pours at Dolan’s six nights a week and takes Mondays.",
+            "layer": 1
+          },
+          {
+            "kind": "tie",
+            "text": "Mosley is behind the bar at Dolan’s, every night of the week.",
+            "layer": 2
+          },
+          {
+            "kind": "want",
+            "text": "Mosley wants money, and is not particular about the shape it arrives in.",
+            "layer": 2
+          }
+        ]
+      }
+    }
+  ],
+  "method": {
+    "id": "blunt",
+    "name": "a blunt object",
+    "noise": 1,
+    "evidenceObjectId": "obj-bookend",
+    "bodyEvidence": "One depressed fracture at the back of the skull. Death was not instant.",
+    "accessRequirement": {
+      "place": "res-walkup",
+      "beforeTick": 6
+    }
+  },
+  "anchors": [
+    {
+      "templateId": "fuse",
+      "name": "the fuse going in the building",
+      "ticks": [
+        5
+      ],
+      "traces": [
+        {
+          "kind": "sound",
+          "description": "a crack in the cellar and every light on the riser out at once"
+        },
+        {
+          "kind": "knowledge",
+          "description": "it was the second floor that went dark and not the whole house"
+        },
+        {
+          "kind": "mark",
+          "description": "candle smoke on the ceilings of everyone who sat it out"
+        }
+      ],
+      "timing": "when the lights went",
+      "highTiming": "just after the lights went",
+      "sceneFact": "The fuse went at {T} and the lights on that riser were dead from then until the morning.",
+      "masks": false,
+      "placeId": "hallam-vestibule"
+    },
+    {
+      "templateId": "church-bells",
+      "name": "the bells at St. Malachy’s",
+      "ticks": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "traces": [
+        {
+          "kind": "sound",
+          "description": "the half hours are rung and the whole hours are rung twice"
+        }
+      ],
+      "timing": "as the bells were going",
+      "highTiming": "while the bells were going",
+      "sceneFact": "The bells rang the half hour at {T}. The sexton rings them off the sacristy clock and it keeps good time.",
+      "masks": false
+    }
+  ],
+  "nearScene": [
+    "ferry-slip",
+    "movie-house"
+  ],
+  "soundMasked": false,
+  "schedules": [
+    {
+      "personId": "p-victim",
+      "truth": [
+        "res-walkup",
+        "res-walkup",
+        "movie-house",
+        "movie-house",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "pier-shed",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "claimed": [
+        "res-walkup",
+        "res-walkup",
+        "movie-house",
+        "movie-house",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "pier-shed",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-s1",
+      "truth": [
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "movie-house",
+        "pier-shed"
+      ],
+      "claimed": [
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "res-walkup",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "movie-house",
+        "pier-shed"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "p-s6",
+        "p-s6",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        5,
+        6
+      ]
+    },
+    {
+      "personId": "p-s2",
+      "truth": [
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "res-walkup",
+        "dolans-bar",
+        "dolans-bar",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "ferry-slip",
+        "ferry-slip"
+      ],
+      "claimed": [
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "res-walkup",
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "ferry-slip",
+        "ferry-slip"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        5,
+        6
+      ]
+    },
+    {
+      "personId": "p-s3",
+      "truth": [
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "movie-house"
+      ],
+      "claimed": [
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "movie-house",
+        "hallam-vestibule",
+        "movie-house",
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "movie-house"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        3
+      ]
+    },
+    {
+      "personId": "p-s4",
+      "truth": [
+        "ferry-slip",
+        "dolans-bar",
+        "res-walkup",
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "dolans-bar",
+        "dolans-bar",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "ferry-slip"
+      ],
+      "claimed": [
+        "ferry-slip",
+        "dolans-bar",
+        "res-walkup",
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "dolans-bar",
+        "dolans-bar",
+        "res-walkup",
+        "res-walkup",
+        "movie-house",
+        "ferry-slip"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "p-s5",
+        "p-s5",
+        null,
+        null
+      ],
+      "lies": [
+        8,
+        9
+      ]
+    },
+    {
+      "personId": "p-s5",
+      "truth": [
+        "movie-house",
+        "dolans-bar",
+        "dolans-bar",
+        "res-walkup",
+        "pier-shed",
+        "pier-shed",
+        "pier-shed",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "dolans-bar",
+        "ferry-slip"
+      ],
+      "claimed": [
+        "movie-house",
+        "ferry-slip",
+        "dolans-bar",
+        "res-walkup",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "dolans-bar",
+        "ferry-slip"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        "p-s1",
+        "p-s1",
+        "p-s1",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        1,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "personId": "p-s6",
+      "truth": [
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "ferry-slip"
+      ],
+      "claimed": [
+        "ferry-slip",
+        "ferry-slip",
+        "ferry-slip",
+        "res-walkup",
+        "ferry-slip",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "ferry-slip"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": [
+        4
+      ]
+    },
+    {
+      "personId": "p-f1",
+      "truth": [
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "hallam-vestibule",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimed": [
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "hallam-vestibule",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house",
+        "movie-house"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-f2",
+      "truth": [
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "ferry-slip",
+        "hallam-vestibule"
+      ],
+      "claimed": [
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "hallam-vestibule",
+        "ferry-slip",
+        "hallam-vestibule"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    },
+    {
+      "personId": "p-f3",
+      "truth": [
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar"
+      ],
+      "claimed": [
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar",
+        "dolans-bar"
+      ],
+      "claimedCompanion": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lies": []
+    }
+  ],
+  "observations": [
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "place": "res-walkup",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s5",
+      "place": "movie-house",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s3",
+      "place": "hallam-vestibule",
+      "tick": 0,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-victim",
+      "place": "res-walkup",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "ferry-slip",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s3",
+      "place": "hallam-vestibule",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s5",
+      "place": "dolans-bar",
+      "tick": 1,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "res-walkup",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "ferry-slip",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-victim",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s5",
+      "place": "dolans-bar",
+      "tick": 2,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s5",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s6",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-victim",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s1",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "place": "res-walkup",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-victim",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 3,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "place": "hallam-vestibule",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 4,
+      "withheld": true
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s1",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-victim",
+      "place": "hallam-vestibule",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 4,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-victim",
+      "place": "hallam-vestibule",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-victim",
+      "place": "hallam-vestibule",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 5,
+      "withheld": false
+    },
+    {
+      "observerId": "p-victim",
+      "subjectId": "p-s5",
+      "place": "pier-shed",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-victim",
+      "place": "pier-shed",
+      "tick": 6,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f1",
+      "place": "hallam-vestibule",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-f1",
+      "place": "hallam-vestibule",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s2",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 6,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "place": "hallam-vestibule",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "hallam-vestibule",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s4",
+      "place": "dolans-bar",
+      "tick": 7,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "place": "hallam-vestibule",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "hallam-vestibule",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 8,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": true
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "place": "hallam-vestibule",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-f2",
+      "place": "hallam-vestibule",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s5",
+      "place": "hallam-vestibule",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s6",
+      "place": "hallam-vestibule",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s1",
+      "place": "dolans-bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 9,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s1",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-f2",
+      "place": "ferry-slip",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-s5",
+      "place": "dolans-bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s1",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-f3",
+      "place": "dolans-bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s1",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s4",
+      "place": "movie-house",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f2",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s3",
+      "place": "dolans-bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f3",
+      "subjectId": "p-s5",
+      "place": "dolans-bar",
+      "tick": 10,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s5",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s2",
+      "subjectId": "p-s6",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s3",
+      "subjectId": "p-f1",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s5",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s4",
+      "subjectId": "p-s6",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s5",
+      "subjectId": "p-s6",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s2",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s4",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-s6",
+      "subjectId": "p-s5",
+      "place": "ferry-slip",
+      "tick": 11,
+      "withheld": false
+    },
+    {
+      "observerId": "p-f1",
+      "subjectId": "p-s3",
+      "place": "movie-house",
+      "tick": 11,
+      "withheld": false
+    }
+  ],
+  "candidates": [
+    {
+      "id": "c001",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "res-walkup",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "res-walkup",
+          "tick": 1
+        }
+      ],
+      "text": "Sirkin says Corrigan was at the walk-up from 6:00 PM to 6:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c002",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Sirkin says Abramowitz was at the walk-up at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c003",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Sirkin says Reinhardt was at the Bijou at 8:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c004",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 9
+        }
+      ],
+      "text": "Sirkin says Reinhardt was at Dolan’s from 9:30 PM to 10:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c005",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "res-walkup",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s4",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Sirkin says Ainsworth was at the walk-up at 7:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c006",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 7
+        }
+      ],
+      "text": "Sirkin says Ainsworth was at Dolan’s at 9:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c007",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Sirkin says Ainsworth was at the Bijou at 11:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Sirkin says Prentiss was at the walk-up at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c084",
+        "c096",
+        "c126"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c009",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Sirkin says Brauer was at the walk-up at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c010",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Abramowitz says Sirkin was at the walk-up at 7:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c011",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 0
+        }
+      ],
+      "text": "Abramowitz says Ainsworth was at the ferry slip at 6:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c012",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Abramowitz says Ainsworth was at the ferry slip at 11:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c013",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Abramowitz says Prentiss was at the walk-up at 7:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c014",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Abramowitz says Prentiss was at the ferry slip at 11:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c015",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "ferry-slip",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "ferry-slip",
+          "tick": 2
+        }
+      ],
+      "text": "Abramowitz says Brauer was at the ferry slip from 6:00 PM to 7:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c016",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Abramowitz says Brauer was at the ferry slip at 11:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c017",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Abramowitz says Brauer was at the walk-up at 7:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c018",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "movie-house",
+          "tick": 2
+        }
+      ],
+      "text": "Reinhardt says Corrigan was at the Bijou at 7:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c019",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Reinhardt says Sirkin was at the Bijou at 8:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c020",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 9
+        }
+      ],
+      "text": "Reinhardt says Sirkin was at Dolan’s from 9:00 PM to 10:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c021",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Reinhardt says Abramowitz was at Dolan’s at 9:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c022",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 7
+        }
+      ],
+      "text": "Reinhardt says Ainsworth was at Dolan’s from 9:00 PM to 9:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c023",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 10
+        }
+      ],
+      "text": "Reinhardt says Prentiss was at Dolan’s at 11:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c024",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 2
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Ainsworth says Sirkin was at the walk-up at 7:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c025",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 7
+        }
+      ],
+      "text": "Ainsworth says Sirkin was at Dolan’s from 9:00 PM to 9:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c026",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Ainsworth says Sirkin was at the Bijou at 11:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c027",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 0
+        }
+      ],
+      "text": "Ainsworth says Abramowitz was at the ferry slip at 6:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c028",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Ainsworth says Abramowitz was at the ferry slip at 11:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c029",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Ainsworth says Abramowitz was at Dolan’s at 9:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 7
+        }
+      ],
+      "text": "Ainsworth says Reinhardt was at Dolan’s from 9:00 PM to 9:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c031",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 1
+        }
+      ],
+      "text": "Ainsworth says Prentiss was at Dolan’s at 6:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c032",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Ainsworth says Prentiss was at the ferry slip at 11:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c033",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "ferry-slip",
+          "tick": 0
+        }
+      ],
+      "text": "Ainsworth says Brauer was at the ferry slip at 6:00 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c034",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Ainsworth says Brauer was at the ferry slip at 11:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c035",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Prentiss says Sirkin was at the walk-up at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c036",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Prentiss says Abramowitz was at the walk-up at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c037",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Prentiss says Abramowitz was at the ferry slip at 11:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c038",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 10
+        }
+      ],
+      "text": "Prentiss says Reinhardt was at Dolan’s at 11:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c039",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Prentiss says Ainsworth was at the ferry slip at 11:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c040",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Prentiss says Brauer was at the walk-up at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c041",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 9
+        }
+      ],
+      "text": "Prentiss says Brauer was at the Hallam from 9:30 PM to 10:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c042",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Prentiss says Brauer was at the ferry slip at 11:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c043",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 5
+        }
+      ],
+      "text": "Brauer says Corrigan was at the Hallam at 8:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c044",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s1",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Brauer says Sirkin was at the walk-up at 7:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c045",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 2
+        }
+      ],
+      "text": "Brauer says Abramowitz was at the ferry slip from 6:00 PM to 7:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c046",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Brauer says Abramowitz was at the ferry slip at 11:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c047",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s2",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Brauer says Abramowitz was at the walk-up at 7:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c048",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 0
+        }
+      ],
+      "text": "Brauer says Ainsworth was at the ferry slip at 6:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c049",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Brauer says Ainsworth was at the ferry slip at 11:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Brauer says Prentiss was at the walk-up at 7:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c051",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 9
+        }
+      ],
+      "text": "Brauer says Prentiss was at the Hallam from 9:30 PM to 10:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c052",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 11
+        }
+      ],
+      "text": "Brauer says Prentiss was at the ferry slip at 11:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c053",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "movie-house",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "movie-house",
+          "tick": 3
+        }
+      ],
+      "text": "Tramonti says Corrigan was at the Bijou from 7:00 PM to 7:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c054",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 4
+        }
+      ],
+      "text": "Tramonti says Sirkin was at the Bijou at 8:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c055",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Tramonti says Sirkin was at the Bijou at 11:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c056",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 2
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 3
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 5
+        }
+      ],
+      "text": "Tramonti says Reinhardt was at the Bijou from 7:00 PM to 8:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c057",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 11
+        }
+      ],
+      "text": "Tramonti says Reinhardt was at the Bijou at 11:30 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c058",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 10
+        }
+      ],
+      "text": "Tramonti says Ainsworth was at the Bijou from 10:00 PM to 11:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c059",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "movie-house",
+          "tick": 0
+        }
+      ],
+      "text": "Tramonti says Prentiss was at the Bijou at 6:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c060",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 6
+        }
+      ],
+      "text": "Tramonti says Brauer was at the Hallam at 9:00 PM.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c061",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 5
+        }
+      ],
+      "text": "Dettweiler says Corrigan was at the Hallam from 8:00 PM to 8:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c062",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 10
+        }
+      ],
+      "text": "Dettweiler says Abramowitz was at the ferry slip at 11:00 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c063",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 0
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 1
+        }
+      ],
+      "text": "Dettweiler says Reinhardt was at the Hallam from 6:00 PM to 6:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c064",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "hallam-vestibule",
+          "tick": 9
+        }
+      ],
+      "text": "Dettweiler says Prentiss was at the Hallam from 9:30 PM to 10:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c065",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 9
+        }
+      ],
+      "text": "Dettweiler says Brauer was at the Hallam from 8:00 PM to 10:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c095"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c066",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 9
+        }
+      ],
+      "text": "Mosley says Sirkin was at Dolan’s from 8:30 PM to 10:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c090",
+        "c065"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c067",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Abramowitz"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Mosley says Abramowitz was at Dolan’s from 8:30 PM to 9:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c068",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 10
+        }
+      ],
+      "text": "Mosley says Reinhardt was at Dolan’s from 9:00 PM to 11:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c096",
+        "c070",
+        "c066",
+        "c083",
+        "c119"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c069",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 1
+        }
+      ],
+      "text": "Mosley says Ainsworth was at Dolan’s at 6:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c070",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 7
+        }
+      ],
+      "text": "Mosley says Ainsworth was at Dolan’s from 9:00 PM to 9:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c066",
+        "c089",
+        "c104"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c071",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 1
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 2
+        }
+      ],
+      "text": "Mosley says Prentiss was at Dolan’s from 6:30 PM to 7:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c072",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 10
+        }
+      ],
+      "text": "Mosley says Prentiss was at Dolan’s at 11:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c073",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Sirkin’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 5
+        }
+      ],
+      "text": "Reinhardt was at the Bijou at 8:30 PM and says Sirkin was not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c074",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Sirkin’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 5
+        }
+      ],
+      "text": "Tramonti was at the Bijou at 8:30 PM and says Sirkin was not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c075",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Sirkin’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 5
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s1",
+          "place": "movie-house",
+          "tick": 6
+        }
+      ],
+      "text": "Sirkin names Brauer as the company for it. Brauer was at the Hallam from 8:30 PM to 9:00 PM, and says Sirkin was not there.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c076",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Abramowitz’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "ferry-slip",
+          "tick": 5
+        }
+      ],
+      "text": "Ainsworth was at the ferry slip at 8:30 PM and says Abramowitz was not.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c077",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Reinhardt’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s3",
+          "place": "hallam-vestibule",
+          "tick": 3
+        }
+      ],
+      "text": "Dettweiler was at the Hallam at 7:30 PM and says Reinhardt was not.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c078",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Ainsworth’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "res-walkup",
+          "tick": 9
+        }
+      ],
+      "text": "Abramowitz was at the walk-up at 10:30 PM and says Ainsworth was not.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c079",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Ainsworth’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "res-walkup",
+          "tick": 8
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s4",
+          "place": "res-walkup",
+          "tick": 9
+        }
+      ],
+      "text": "Ainsworth names Prentiss as the company for it. Prentiss was at the Hallam from 10:00 PM to 10:30 PM, and says Ainsworth was not there.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c080",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 1
+        }
+      ],
+      "text": "Abramowitz was at the ferry slip at 6:30 PM and says Prentiss was not.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c081",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "ferry-slip",
+          "tick": 1
+        }
+      ],
+      "text": "Brauer was at the ferry slip at 6:30 PM and says Prentiss was not.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c082",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Reinhardt was at Dolan’s at 9:00 PM and says Prentiss was not.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c083",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Ainsworth was at Dolan’s at 9:00 PM and says Prentiss was not.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Mosley was at Dolan’s from 8:00 PM to 9:00 PM and says Prentiss was not.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c068"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c085",
+      "kind": "denial",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Prentiss names Sirkin as the company for Dolan’s from 8:00 PM to 9:00 PM. Sirkin says they were not together that evening.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c086",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brauer’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s6",
+          "place": "ferry-slip",
+          "tick": 4
+        }
+      ],
+      "text": "Ainsworth was at the ferry slip at 8:00 PM and says Brauer was not.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c087",
+      "kind": "scene",
+      "source": {
+        "type": "place",
+        "placeId": "pier-shed"
+      },
+      "establishes": [
+        {
+          "kind": "victimDeadBy",
+          "tick": 6
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Corrigan was found at Pier 46. The lamp came down with him and the bulb is still warm in its socket, unbroken. The bells rang the half hour at 9:00 PM. The sexton rings them off the sacristy clock and it keeps good time.",
+      "place": "pier-shed",
+      "leadsTo": [
+        "t002",
+        "c008",
+        "c065",
+        "c017"
+      ],
+      "role": "spine",
+      "anchorId": "church-bells"
+    },
+    {
+      "id": "c088",
+      "kind": "morgue",
+      "source": {
+        "type": "place",
+        "placeId": "pier-shed"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            3,
+            6
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. One depressed fracture at the back of the skull. Death was not instant.",
+      "place": "pier-shed",
+      "leadsTo": [
+        "t002"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c089",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-bookend",
+          "fromPlace": "res-walkup"
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "A bronze bookend is gone from the walk-up. There is a clean square in the dust where it stood.",
+      "place": "res-walkup",
+      "leadsTo": [
+        "c113"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c090",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Corrigan that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 5
+        }
+      ],
+      "text": "Brauer puts Corrigan at the Hallam when the lights went, which was 8:30 PM, and alive enough to argue about the weather.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine",
+      "anchorId": "fuse"
+    },
+    {
+      "id": "c091",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Corrigan that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 5
+        }
+      ],
+      "text": "Dettweiler puts Corrigan at the Hallam when the lights went, which was 8:30 PM, and alive enough to argue about the weather.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "fuse"
+    },
+    {
+      "id": "c092",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 5
+        }
+      ],
+      "text": "Brauer still carries it: candle smoke on the ceilings of everyone who sat it out. The fuse going in the building was at 8:30 PM, at the Hallam.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "anchorId": "fuse"
+    },
+    {
+      "id": "c093",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Found at the walk-up: A promissory note for $4,000 signed by Ainsworth, endorsed to Corrigan, three months past due.",
+      "place": "res-walkup",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c094",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth and Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Reinhardt says Corrigan told Ainsworth that Friday was the end of it, one way or the other.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise"
+    },
+    {
+      "id": "c095",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Found at the Bijou: A subpoena naming Corrigan before the grand jury, with Prentiss’s name written in the margin.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c096",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Prentiss and Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Sirkin says Corrigan said to Prentiss that a man who testifies sleeps better.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c050",
+        "c030",
+        "c098"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c097",
+      "kind": "client",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "why I was hired"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Prentiss hired us, and wants it known that Ainsworth owed Corrigan four thousand dollars and was past due on it, and would rather we started there.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c084",
+        "c068",
+        "c070"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c098",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Sirkin"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Sirkin: Sirkin was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c102"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c099",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f1",
+        "topic": "Sirkin"
+      },
+      "establishes": [],
+      "text": "Tramonti on Sirkin: A man nobody knew was waiting for Sirkin at Dolan’s and would not give a name.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c100",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Sirkin"
+      },
+      "establishes": [],
+      "text": "Mosley on Sirkin: Sirkin goes very quiet when the racing wire is mentioned.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c101",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "Betting slips at Dolan’s in Sirkin’s pocketbook, all of them losers, all of them this month.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c103"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c102",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "A book of markers at Dolan’s with Sirkin’s initials against four of them.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c101"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c103",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Sirkin was at Dolan’s from 8:30 PM to 9:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c104",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "The book at Dolan’s has the payment entered against Sirkin’s name and the time beside it, from 8:30 PM to 9:00 PM, in the clerk’s own hand.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c105",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Abramowitz"
+      },
+      "establishes": [],
+      "text": "Brauer on Abramowitz: Abramowitz had taken a drink and had gone to some trouble about the smell of it.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c106",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Abramowitz"
+      },
+      "establishes": [],
+      "text": "Dettweiler on Abramowitz: Abramowitz is on a temperance pledge that Abramowitz mentions before anybody asks.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c107",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Abramowitz"
+      },
+      "establishes": [],
+      "text": "Reinhardt on Abramowitz: Somebody at Dolan’s says Abramowitz is in more often than Abramowitz lets on.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c108",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "A bottle at Dolan’s pushed behind the pipes, the seal broken and the level down.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c109",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "A tab at Dolan’s in a name that is not Abramowitz’s, in Abramowitz’s handwriting.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c110",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "The man behind the counter at Dolan’s knows exactly: Abramowitz was on the same stool from 8:30 PM to 9:00 PM and was in no condition to walk anywhere, let alone do this.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c111",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s2",
+          "secretType": "secret-drinking"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s2",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "The tab at Dolan’s is dated and timed, from 8:30 PM to 9:00 PM, and Abramowitz was there to run it up.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s2"
+    },
+    {
+      "id": "c112",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Mosley on Reinhardt: Reinhardt’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c117"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c113",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Abramowitz on Reinhardt: Somebody at the Bijou sells what a druggist will not, and Reinhardt knows which door.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c112"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c114",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Prentiss on Reinhardt: Reinhardt was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c115",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Bijou, folded the way one particular hand folds them.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c116",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Bijou signed by a doctor who has been dead since the spring.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 3
+        }
+      ],
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Reinhardt was there from 7:30 PM, and stayed until it took hold.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c118",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 3
+        }
+      ],
+      "text": "The doctor Reinhardt used to see confirms the habit and the hour: Reinhardt was at the Bijou from 7:30 PM, and could not have crossed the street unhelped.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s3"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Dettweiler on Ainsworth: Ainsworth’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c120",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Sirkin on Ainsworth: Somebody at the Bijou sells what a druggist will not, and Ainsworth knows which door.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c121",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Reinhardt on Ainsworth: Ainsworth was steady at nine and shaking at seven, and it was not nerves about the police.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Bijou, folded the way one particular hand folds them.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c123",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A prescription blank at the Bijou signed by a doctor who has been dead since the spring.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        }
+      ],
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Ainsworth was there from 10:00 PM to 10:30 PM, and stayed until it took hold.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c125",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        }
+      ],
+      "text": "The doctor Ainsworth used to see confirms the habit and the hour: Ainsworth was at the Bijou from 10:00 PM to 10:30 PM, and could not have crossed the street unhelped.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s4"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Brauer"
+      },
+      "establishes": [],
+      "text": "Mosley on Brauer: Brauer and Corrigan were heard at the Hallam, and one of them was doing all the talking.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c129"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Brauer"
+      },
+      "establishes": [],
+      "text": "Abramowitz on Brauer: Brauer has come into money lately and has no visible way of having come into money.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c131"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c128",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Brauer"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Brauer: Corrigan had been drawing cash in amounts that did not match anything in the accounts.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [],
+      "text": "An envelope at the Hallam with nothing in it, addressed in Corrigan’s hand to no one.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c127"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c130",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [],
+      "text": "A photograph at the Hallam, folded small, of something Corrigan would have paid to keep folded.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 4
+        }
+      ],
+      "text": "Corrigan’s bank book settles it: four payments, and Brauer at the Hallam from 8:00 PM collecting the fifth. It is extortion, and an extortionist wants Corrigan alive.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c132",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 4
+        }
+      ],
+      "text": "The thing Brauer was holding over Corrigan turns up, and it was worth more to Brauer every month than once.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "noise",
+      "aboutSecretOf": "p-s6"
+    },
+    {
+      "id": "t001",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "pier-shed",
+          "tick": 6
+        }
+      ],
+      "text": "A bronze bookend was found at the ferry slip wrapped in newspaper, and the newspaper is dated the day after Abramowitz was last in the room.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "t002",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "pier-shed",
+          "tick": 6
+        }
+      ],
+      "text": "The book at the walk-up has a bronze bookend going out the day before, in a hand that is not Abramowitz’s. Abramowitz was at Dolan’s at 9:00 PM.",
+      "place": "res-walkup",
+      "leadsTo": [
+        "c008",
+        "c090",
+        "t001"
+      ],
+      "role": "spine"
+    }
+  ],
+  "findable": [
+    {
+      "id": "c087",
+      "kind": "scene",
+      "source": {
+        "type": "place",
+        "placeId": "pier-shed"
+      },
+      "establishes": [
+        {
+          "kind": "victimDeadBy",
+          "tick": 6
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Corrigan was found at Pier 46. The lamp came down with him and the bulb is still warm in its socket, unbroken. The bells rang the half hour at 9:00 PM. The sexton rings them off the sacristy clock and it keeps good time.",
+      "place": "pier-shed",
+      "leadsTo": [
+        "t002",
+        "c008",
+        "c065",
+        "c017"
+      ],
+      "role": "spine",
+      "anchorId": "church-bells"
+    },
+    {
+      "id": "c088",
+      "kind": "morgue",
+      "source": {
+        "type": "place",
+        "placeId": "pier-shed"
+      },
+      "establishes": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            3,
+            6
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "The coroner puts death between 7:30 PM and 9:00 PM — two hours of nothing useful. One depressed fracture at the back of the skull. Death was not instant.",
+      "place": "pier-shed",
+      "leadsTo": [
+        "t002"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c097",
+      "kind": "client",
+      "source": {
+        "type": "person",
+        "personId": "p-s5",
+        "topic": "why I was hired"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s4",
+          "motiveType": "debt"
+        }
+      ],
+      "text": "Prentiss hired us, and wants it known that Ainsworth owed Corrigan four thousand dollars and was past due on it, and would rather we started there.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c084",
+        "c068",
+        "c070"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "t002",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "pier-shed",
+          "tick": 6
+        }
+      ],
+      "text": "The book at the walk-up has a bronze bookend going out the day before, in a hand that is not Abramowitz’s. Abramowitz was at Dolan’s at 9:00 PM.",
+      "place": "res-walkup",
+      "leadsTo": [
+        "c008",
+        "c090",
+        "t001"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c008",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Sirkin says Prentiss was at the walk-up at 7:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c084",
+        "c096",
+        "c126"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c084",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 4
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Mosley was at Dolan’s from 8:00 PM to 9:00 PM and says Prentiss was not.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c068"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c068",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 9
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 10
+        }
+      ],
+      "text": "Mosley says Reinhardt was at Dolan’s from 9:00 PM to 11:00 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c096",
+        "c070",
+        "c066",
+        "c083",
+        "c119"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c096",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s1",
+        "topic": "Prentiss and Corrigan"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Sirkin says Corrigan said to Prentiss that a man who testifies sleeps better.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c050",
+        "c030",
+        "c098"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c070",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Ainsworth"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "dolans-bar",
+          "tick": 7
+        }
+      ],
+      "text": "Mosley says Ainsworth was at Dolan’s from 9:00 PM to 9:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c066",
+        "c089",
+        "c104"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c066",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Sirkin"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 9
+        }
+      ],
+      "text": "Mosley says Sirkin was at Dolan’s from 8:30 PM to 10:30 PM.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c090",
+        "c065"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c090",
+      "kind": "anchor",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Corrigan that evening"
+      },
+      "establishes": [
+        {
+          "kind": "victimAliveAt",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-victim",
+          "place": "hallam-vestibule",
+          "tick": 5
+        }
+      ],
+      "text": "Brauer puts Corrigan at the Hallam when the lights went, which was 8:30 PM, and alive enough to argue about the weather.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "spine",
+      "anchorId": "fuse"
+    },
+    {
+      "id": "c065",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 4
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 7
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 9
+        }
+      ],
+      "text": "Dettweiler says Brauer was at the Hallam from 8:00 PM to 10:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c095"
+      ],
+      "role": "spine"
+    },
+    {
+      "id": "c083",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Prentiss’s account"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s5",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "Ainsworth was at Dolan’s at 9:00 PM and says Prentiss was not.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c095",
+      "kind": "document",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "hasMotive",
+          "personId": "p-s5",
+          "motiveType": "silence-a-witness"
+        }
+      ],
+      "text": "Found at the Bijou: A subpoena naming Corrigan before the grand jury, with Prentiss’s name written in the margin.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "t001",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "ferry-slip"
+      },
+      "establishes": [
+        {
+          "kind": "personNotAt",
+          "personId": "p-s2",
+          "place": "pier-shed",
+          "tick": 6
+        }
+      ],
+      "text": "A bronze bookend was found at the ferry slip wrapped in newspaper, and the newspaper is dated the day after Abramowitz was last in the room.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c050",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s6",
+        "topic": "Prentiss"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s5",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s5",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Brauer says Prentiss was at the walk-up at 7:30 PM.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c089",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "res-walkup"
+      },
+      "establishes": [
+        {
+          "kind": "objectMissing",
+          "objectId": "obj-bookend",
+          "fromPlace": "res-walkup"
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "A bronze bookend is gone from the walk-up. There is a clean square in the dust where it stood.",
+      "place": "res-walkup",
+      "leadsTo": [
+        "c113"
+      ],
+      "role": "corroboration"
+    },
+    {
+      "id": "c017",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Brauer"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "res-walkup",
+          "tick": 3
+        },
+        {
+          "kind": "hadAccess",
+          "personId": "p-s6",
+          "methodId": "blunt"
+        }
+      ],
+      "text": "Abramowitz says Brauer was at the walk-up at 7:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c104",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "The book at Dolan’s has the payment entered against Sirkin’s name and the time beside it, from 8:30 PM to 9:00 PM, in the clerk’s own hand.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "corroboration",
+      "aboutSecretOf": "p-s1"
+    },
+    {
+      "id": "c030",
+      "kind": "observation",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Reinhardt"
+      },
+      "establishes": [
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 6
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "dolans-bar",
+          "tick": 7
+        }
+      ],
+      "text": "Ainsworth says Reinhardt was at Dolan’s from 9:00 PM to 9:30 PM.",
+      "place": "ferry-slip",
+      "leadsTo": [],
+      "role": "corroboration"
+    },
+    {
+      "id": "c126",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Brauer"
+      },
+      "establishes": [],
+      "text": "Mosley on Brauer: Brauer and Corrigan were heard at the Hallam, and one of them was doing all the talking.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c129"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c129",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [],
+      "text": "An envelope at the Hallam with nothing in it, addressed in Corrigan’s hand to no one.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c127"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c127",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Brauer"
+      },
+      "establishes": [],
+      "text": "Abramowitz on Brauer: Brauer has come into money lately and has no visible way of having come into money.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c131"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c131",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "hallam-vestibule"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s6",
+          "secretType": "blackmail"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s6",
+          "place": "hallam-vestibule",
+          "tick": 4
+        }
+      ],
+      "text": "Corrigan’s bank book settles it: four payments, and Brauer at the Hallam from 8:00 PM collecting the fifth. It is extortion, and an extortionist wants Corrigan alive.",
+      "place": "hallam-vestibule",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s6",
+      "branchId": "b1"
+    },
+    {
+      "id": "c098",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s4",
+        "topic": "Sirkin"
+      },
+      "establishes": [],
+      "text": "Ainsworth on Sirkin: Sirkin was asking around for a hundred dollars in a hurry earlier in the week.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c102"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c102",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "A book of markers at Dolan’s with Sirkin’s initials against four of them.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c101"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c101",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [],
+      "text": "Betting slips at Dolan’s in Sirkin’s pocketbook, all of them losers, all of them this month.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c103"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c103",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "dolans-bar"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s1",
+          "secretType": "gambling-debt"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 5
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s1",
+          "place": "dolans-bar",
+          "tick": 6
+        }
+      ],
+      "text": "The bookmaker’s runner is found and will say it: Sirkin was at Dolan’s from 8:30 PM to 9:00 PM paying off eleven hundred dollars, a dollar at a time, and went nowhere near the killing.",
+      "place": "dolans-bar",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s1",
+      "branchId": "b2"
+    },
+    {
+      "id": "c113",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-s2",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Abramowitz on Reinhardt: Somebody at the Bijou sells what a druggist will not, and Reinhardt knows which door.",
+      "place": "ferry-slip",
+      "leadsTo": [
+        "c112"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c112",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f3",
+        "topic": "Reinhardt"
+      },
+      "establishes": [],
+      "text": "Mosley on Reinhardt: Reinhardt’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "dolans-bar",
+      "leadsTo": [
+        "c117"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c117",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s3",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s3",
+          "place": "movie-house",
+          "tick": 3
+        }
+      ],
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Reinhardt was there from 7:30 PM, and stayed until it took hold.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s3",
+      "branchId": "b3"
+    },
+    {
+      "id": "c119",
+      "kind": "overheard",
+      "source": {
+        "type": "person",
+        "personId": "p-f2",
+        "topic": "Ainsworth"
+      },
+      "establishes": [],
+      "text": "Dettweiler on Ainsworth: Ainsworth’s sleeves are buttoned at the wrist in a warm room.",
+      "place": "hallam-vestibule",
+      "leadsTo": [
+        "c122"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c122",
+      "kind": "physical",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [],
+      "text": "A paper of powder at the Bijou, folded the way one particular hand folds them.",
+      "place": "movie-house",
+      "leadsTo": [
+        "c124"
+      ],
+      "role": "noise",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    },
+    {
+      "id": "c124",
+      "kind": "overheard",
+      "source": {
+        "type": "place",
+        "placeId": "movie-house"
+      },
+      "establishes": [
+        {
+          "kind": "secretExplained",
+          "personId": "p-s4",
+          "secretType": "dope"
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 8
+        },
+        {
+          "kind": "personAt",
+          "personId": "p-s4",
+          "place": "movie-house",
+          "tick": 9
+        }
+      ],
+      "text": "The man who sells it at the Bijou gives it up rather than be held: Ainsworth was there from 10:00 PM to 10:30 PM, and stayed until it took hold.",
+      "place": "movie-house",
+      "leadsTo": [],
+      "role": "disqualifier",
+      "aboutSecretOf": "p-s4",
+      "branchId": "b4"
+    }
+  ],
+  "starting": [
+    "c087",
+    "c088",
+    "c097"
+  ],
+  "clientId": "p-s5",
+  "par": 12,
+  "slack": 6,
+  "budget": 18,
+  "coronerWindow": [
+    3,
+    6
+  ],
+  "solution": {
+    "killerId": "p-s5",
+    "methodId": "blunt",
+    "motiveType": "silence-a-witness",
+    "murderTick": 6,
+    "murderPlaceId": "pier-shed"
+  },
+  "act": {
+    "type": "murder",
+    "tropeId": "the-frame",
+    "actorId": "p-s5",
+    "tick": 6,
+    "place": "pier-shed",
+    "method": {
+      "id": "blunt",
+      "name": "a blunt object",
+      "noise": 1,
+      "evidenceObjectId": "obj-bookend",
+      "bodyEvidence": "One depressed fracture at the back of the skull. Death was not instant.",
+      "accessRequirement": {
+        "place": "res-walkup",
+        "beforeTick": 6
+      }
+    },
+    "givens": {
+      "facts": [
+        {
+          "kind": "timeOfDeath",
+          "ticks": [
+            3,
+            6
+          ]
+        },
+        {
+          "kind": "methodEvidence",
+          "methodId": "blunt"
+        }
+      ],
+      "text": [
+        "Corrigan was found dead at Pier 46.",
+        "The coroner puts it between 7:30 PM and 9:00 PM.",
+        "It was a blunt object.",
+        "The precinct found the weapon in Abramowitz’s rooms and stopped looking.",
+        "Abramowitz says it was put there, and has been saying so since Tuesday."
+      ]
+    },
+    "unknowns": [
+      "who",
+      "why",
+      "when"
+    ],
+    "bodyFoundAt": "pier-shed",
+    "fate": "dead"
+  },
+  "mentions": [
+    {
+      "id": "m-1",
+      "name": "Gittel Feldman",
+      "surname": "Feldman",
+      "gender": "f",
+      "role": "the landlady at the old address",
+      "text": "Gittel Feldman is the landlady at the old address."
+    },
+    {
+      "id": "m-2",
+      "name": "Wilhelmina Kreuzer",
+      "surname": "Kreuzer",
+      "gender": "f",
+      "role": "a sister who married out of the neighbourhood",
+      "text": "Wilhelmina Kreuzer is a sister who married out of the neighbourhood."
+    }
+  ],
+  "victimBio": {
+    "age": 70,
+    "gender": "m",
+    "profession": {
+      "role": "a retired dry-goods wholesaler",
+      "detail": "ran a dry-goods house on Canal Street for thirty years"
+    },
+    "want": "respectability",
+    "tie": {
+      "relationshipId": "rel-none",
+      "text": "the one this is about",
+      "backstory": "Corrigan had lent money to four families on the block and forgiven none of it."
+    },
+    "selfAccount": [
+      "Corrigan is 70 years old and a retired dry-goods wholesaler.",
+      "Corrigan ran a dry-goods house on Canal Street for thirty years.",
+      "Corrigan is the one this is about."
+    ],
+    "layers": [
+      {
+        "kind": "gender",
+        "text": "A man.",
+        "layer": 0
+      },
+      {
+        "kind": "age",
+        "text": "Past seventy.",
+        "layer": 0
+      },
+      {
+        "kind": "profession",
+        "text": "A retired dry-goods wholesaler.",
+        "layer": 1
+      },
+      {
+        "kind": "detail",
+        "text": "Corrigan ran a dry-goods house on Canal Street for thirty years.",
+        "layer": 1
+      },
+      {
+        "kind": "tie",
+        "text": "Corrigan had lent money to four families on the block and forgiven none of it.",
+        "layer": 2
+      },
+      {
+        "kind": "want",
+        "text": "Corrigan wants to be thought respectable by people who are not.",
+        "layer": 2
+      }
+    ],
+    "standing": "Corrigan had lent money to four families on the block and forgiven none of it.",
+    "discovery": {
+      "foundById": "p-s1",
+      "foundAt": "pier-shed",
+      "foundTick": 11,
+      "foundText": "Sirkin found Corrigan at Pier 46 at 11:30 PM.",
+      "precinct": "closed-it-in-an-hour"
+    }
+  },
+  "clientBrief": {
+    "purpose": "clear-my-name",
+    "purposeText": "Prentiss wants it established that it was not them, before anybody says otherwise.",
+    "cost": "Prentiss was near enough to it that night to know exactly how it looks, and says so first.",
+    "tells": [
+      {
+        "kind": "timeOfDeath",
+        "ticks": [
+          3,
+          6
+        ]
+      },
+      {
+        "kind": "methodEvidence",
+        "methodId": "blunt"
+      }
+    ],
+    "tellTexts": [
+      "Corrigan was found dead at Pier 46.",
+      "The coroner puts it between 7:30 PM and 9:00 PM.",
+      "It was a blunt object.",
+      "The precinct found the weapon in Abramowitz’s rooms and stopped looking.",
+      "Abramowitz says it was put there, and has been saying so since Tuesday.",
+      "Prentiss would rather we started with Ainsworth: Ainsworth owed Corrigan four thousand dollars and was past due on it."
+    ],
+    "withholds": [
+      {
+        "kind": "personAt",
+        "personId": "p-s5",
+        "place": "pier-shed",
+        "tick": 6
+      }
+    ],
+    "withholdTexts": [
+      "Prentiss does not mention being at Pier 46 at 9:00 PM, which is where Prentiss was."
+    ],
+    "points": {
+      "personId": "p-s4",
+      "reason": "Ainsworth owed Corrigan four thousand dollars and was past due on it",
+      "honest": false
+    },
+    "ownEvening": [
+      "Prentiss says he was at the Bijou at 6:00 PM.",
+      "Prentiss says he was at the ferry slip at 6:30 PM.",
+      "Prentiss says he was at Dolan’s at 7:00 PM.",
+      "Prentiss says he was at the walk-up at 7:30 PM."
+    ]
+  },
+  "briefing": [
+    "A man came up the stairs after midnight, and sat down.",
+    "Percival Prentiss is 36 years old and a ward heeler.",
+    "Prentiss carries the district for the club and is paid in favours.",
+    "Corrigan had lent money to four families on the block and forgiven none of it.",
+    "Corrigan was found dead at Pier 46.",
+    "The coroner puts it between 7:30 PM and 9:00 PM.",
+    "It was a blunt object.",
+    "The precinct found the weapon in Abramowitz’s rooms and stopped looking.",
+    "Sirkin found Corrigan at Pier 46 at 11:30 PM.",
+    "The precinct had somebody for it inside the hour.",
+    "Prentiss is a witness against the people Corrigan worked for.",
+    "Prentiss gave a statement about the people Corrigan worked for and has been careful ever since.",
+    "Prentiss wants it established that it was not them, before anybody says otherwise.",
+    "Prentiss was near enough to it that night to know exactly how it looks, and says so first.",
+    "Prentiss wants us to start with Ainsworth.",
+    "Ainsworth owed Corrigan four thousand dollars and was past due on it."
+  ],
+  "deduction": {
+    "timeOfDeath": [
+      "c088",
+      "c090",
+      "c087"
+    ],
+    "timeOfDeathAnchors": [
+      "church-bells",
+      "fuse"
+    ],
+    "exculpations": {
+      "p-s1": [
+        "c066",
+        "c104",
+        "c103"
+      ],
+      "p-s2": [
+        "t002",
+        "t001"
+      ],
+      "p-s3": [
+        "c068",
+        "c030"
+      ],
+      "p-s4": [
+        "c070"
+      ],
+      "p-s6": [
+        "c065"
+      ]
+    },
+    "inculpation": [
+      "c084",
+      "c083"
+    ],
+    "access": [
+      "c008",
+      "c050"
+    ],
+    "method": [
+      "c087",
+      "c088",
+      "c089"
+    ],
+    "motive": [
+      "c096",
+      "c095"
+    ]
+  }
+}

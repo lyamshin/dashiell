@@ -1,7 +1,9 @@
 import {
   TICKS,
   clock,
+  type Act,
   type Anchor,
+  type ClientBrief,
   type Clue,
   type Fact,
   type GameObject,
@@ -36,6 +38,10 @@ import type { Rng } from './rng.js';
 
 export function deriveObservations(cast: Cast, build: ScheduleBuild): Observation[] {
   const out: Observation[] = [];
+  // M5 §2.1: a missing person's true schedule carries on after the tick, and
+  // nobody observes it. The one who took them is the exception, and that one
+  // observation is the trope's signature clue rather than a derived one.
+  const goneAfter = build.whereabouts !== undefined ? build.murderTick : undefined;
   for (let t = 0; t < TICKS; t++) {
     for (const observer of cast.people) {
       const oPlace = (build.truth[observer.id] as (Id | null)[])[t];
@@ -43,6 +49,7 @@ export function deriveObservations(cast: Cast, build: ScheduleBuild): Observatio
       const withheld = (build.lies[observer.id] as Tick[]).includes(t);
       for (const subject of cast.people) {
         if (subject.id === observer.id) continue;
+        if (goneAfter !== undefined && subject.id === cast.victim.id && t > goneAfter) continue;
         const sPlace = (build.truth[subject.id] as (Id | null)[])[t];
         if (!sPlace || sPlace !== oPlace) continue;
         out.push({ observerId: observer.id, subjectId: subject.id, place: sPlace, tick: t, withheld });
@@ -147,6 +154,10 @@ export interface ClueContext {
   coronerWindow: [Tick, Tick];
   /** The scene-timing anchor buried the noise: nobody heard anything. */
   soundMasked: boolean;
+  /** M5: what the case is about. The scene report and the client clue read it. */
+  act: Act;
+  /** M5: the client's brief. The `client` clue states its pointer. */
+  brief: ClientBrief;
 }
 
 export function deriveCandidates(ctx: ClueContext): CandidateSet {
@@ -307,8 +318,22 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     }
   }
 
-  /* 3. The scene and the body. ------------------------------------------- */
+  /* 3. The scene and what was found there. ------------------------------- *
+   *
+   * M5 §2.1: one report, three cases. A body, an empty shelf, or a room with
+   * the lamp still burning in it. The facts it establishes are the same three
+   * in every case, because the machinery behind them is the same machinery.
+   */
   const high = ctx.highAnchor;
+  const act = ctx.act;
+  const V = who(cast.victim.id);
+  const foundPlace = act.bodyFoundAt ?? L;
+  const sceneOpening =
+    act.type === 'robbery'
+      ? `${cap(act.taken?.name ?? 'the box')} is gone from ${placeName(L)}, which is ${V}’s.`
+      : act.type === 'missing'
+        ? `${V} is not at ${placeName(L)} and has not been since that evening.`
+        : `${V} was found at ${placeName(foundPlace)}.`;
   const scene = add(
     'scene',
     { type: 'place', placeId: L },
@@ -317,11 +342,17 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       { kind: 'victimDeadBy', tick: M },
       { kind: 'methodEvidence', methodId: method.id },
     ],
-    `${who(cast.victim.id)} was found at ${placeName(L)}. ${ctx.sceneTrace} ` +
-      `${high.sceneFact.split('{T}').join(clock(M))}`,
+    `${sceneOpening} ${ctx.sceneTrace} ${high.sceneFact.split('{T}').join(clock(M))}`,
     { anchorId: high.templateId },
   );
 
+  const windowText = `${clock(ctx.coronerWindow[0])} and ${clock(ctx.coronerWindow[1])}`;
+  const morgueOpening =
+    act.type === 'murder'
+      ? `The coroner puts death between ${windowText} — two hours of nothing useful.`
+      : act.type === 'robbery'
+        ? `The desk sergeant's report puts it between ${windowText} — two hours of nothing useful.`
+        : `Nobody can put it closer than between ${windowText}, which is two hours of nothing useful.`;
   const morgue = add(
     'morgue',
     { type: 'place', placeId: L },
@@ -330,7 +361,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       { kind: 'timeOfDeath', ticks: [ctx.coronerWindow[0], ctx.coronerWindow[1]] },
       { kind: 'methodEvidence', methodId: method.id },
     ],
-    `The coroner puts death between ${clock(ctx.coronerWindow[0])} and ${clock(ctx.coronerWindow[1])} — two hours of nothing useful. ${method.bodyEvidence}`,
+    `${morgueOpening} ${method.bodyEvidence}`,
   );
 
   /* 4. The weapon. -------------------------------------------------------- */
@@ -364,7 +395,13 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
         { kind: 'victimAliveAt', tick: build.victimSeenAt },
         { kind: 'personAt', personId: cast.victim.id, place: lowPlace, tick: build.victimSeenAt },
       ],
-      `${who(w.id)} puts ${who(cast.victim.id)} at ${placeName(lowPlace)} ${low.timing}, which was ${clock(build.victimSeenAt)}, and alive enough to argue about the weather.`,
+      `${who(w.id)} puts ${V} at ${placeName(lowPlace)} ${low.timing}, which was ${clock(build.victimSeenAt)}, ${
+        act.type === 'murder'
+          ? 'and alive enough to argue about the weather'
+          : act.type === 'robbery'
+            ? 'and nothing had been touched then'
+            : 'and in no hurry to be anywhere'
+      }.`,
       { anchorId: low.templateId },
     );
   }
@@ -492,8 +529,13 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   for (const p of motiveHolders) {
     const template = MOTIVE_BY_TYPE[p.motive?.type as string];
     if (!template) continue;
+    // M5 §3: the object of a motive is named, here as everywhere else.
+    const object = cast.motiveObject[p.id]?.name;
     const fill = (s: string): string =>
-      s.split('{V}').join(who(cast.victim.id)).split('{P}').join(who(p.id));
+      s
+        .split('{V}').join(who(cast.victim.id))
+        .split('{P}').join(who(p.id))
+        .split('{O}').join(object ?? 'somebody');
     const residence = setting.places.find((pl) => pl.isResidence)?.id ?? L;
     const letterPlace = rng.chance(0.6) ? residence : rng.pick(setting.places).id;
     add(
@@ -516,17 +558,31 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     );
   }
 
-  /* 9. The client. --------------------------------------------------------- */
+  /* 9. The client. --------------------------------------------------------- *
+   *
+   * M5 §1.4: the opening exchange is the briefing now, and the briefing is
+   * derived. The clue kind stays, because it still carries the one fact the
+   * client puts on the table, and because the engine reaches for it by kind.
+   */
+  const brief = ctx.brief;
   const pointedAt =
-    motiveHolders.find((p) => p.id !== cast.client.id && p.isKiller && rng.chance(0.5)) ??
+    (cast.people.find((p) => p.id === brief.points.personId) as Person | undefined) ??
     motiveHolders.find((p) => p.id !== cast.client.id) ??
     (motiveHolders[0] as Person);
+  // The pointer is only a fact when it is a motive. A client who points at
+  // their own red herring puts nothing on the table but the name.
+  const clientFacts: Fact[] = pointedAt.motive
+    ? [{ kind: 'hasMotive', personId: pointedAt.id, motiveType: pointedAt.motive.type }]
+    : [];
   const client = add(
     'client',
     { type: 'person', personId: cast.client.id, topic: 'why I was hired' },
     foundAt(cast.client.id),
-    [{ kind: 'hasMotive', personId: pointedAt.id, motiveType: pointedAt.motive?.type as string }],
-    `${who(cast.client.id)} hired us, and wants it known that ${who(pointedAt.id)} ${pointedAt.motive?.description ?? 'had reason'}, and would rather we started there.`,
+    clientFacts,
+    // One sentence, in the shape it has always had, because the office page
+    // strips this exact opening off it to make the hiring line. The rest of
+    // what the client says is the briefing now, and the briefing is not a clue.
+    `${who(cast.client.id)} hired us, and wants it known that ${brief.points.reason.replace(/\.$/, '')}, and would rather we started there.`,
   );
 
   /* 10. Everything the innocents are hiding. -------------------------------
@@ -560,6 +616,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       s
         .split('{P}').join(who(p.id))
         .split('{Q}').join(partner ? who(partner.id) : secret.partnerId ? who(secret.partnerId) : 'somebody')
+        .split('{V}').join(who(cast.victim.id))
         .split('{L}').join(placeName(place))
         .split('{T}').join(ticks.length > 0 ? bareSpan(ticks) : 'that evening');
 
