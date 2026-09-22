@@ -133,7 +133,8 @@ describe('the briefing page', () => {
    * allowances, both of them the spec's:
    *
    * - The first sentence — who came up the stairs — is the one thing the
-   *   entrance card replaces when the roll says he knows the client (§2).
+   *   entrance card replaces when the roll says he knows the client (§2), and
+   *   Hone 2 §A.4 cuts it to whatever fits in front of that card.
    * - The hiring frame carries the last of it in `{fact}`, and a frame is
    *   written around a fact that does not end the sentence: "…and was past due
    *   on it, Dashiell, same as always," he said. The words are all there and
@@ -171,12 +172,20 @@ describe('the briefing page', () => {
       const narration = view.kase.briefing.filter((l) => l.speaker === 'narration');
       const record = narration[1]?.text ?? '';
       const detail = narration[2]?.text ?? '';
-      const seen = seenSentence(client, !familiar);
+      // With the gender said, where the arrival atom survived §A.4, and
+      // without it where the atom was dropped and nothing else has said it.
+      const seen = [seenSentence(client, true), seenSentence(client, false)];
       if (record.length > 0) {
-        expect(text.includes(bare(seen)), `seed ${seed}: what he can see`).toBe(true);
+        expect(
+          seen.some((line) => text.includes(bare(line))),
+          `seed ${seed}: what he can see`,
+        ).toBe(true);
       }
       const allowed = (line: (typeof view.kase.briefing)[number], i: number): boolean => {
-        if (familiar && i === 0) return true;
+        // §A.4 cuts the arrival atom to fit in front of the entrance card, and
+        // drops it where the card climbs the stairs itself. Either way the
+        // page says once that somebody came up the stairs.
+        if (i === 0) return familiar || /\bstairs\b/i.test(text);
         if (line.speaker !== 'narration') return false;
         if (line.text === record) return true;
         if (line.text === detail) {

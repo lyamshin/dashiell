@@ -303,6 +303,67 @@ export function briefingTurns(
 }
 
 /* ------------------------------------------------------------------ *
+ * Hone 2 §A.4 — stairs, door, sit, speak.
+ * ------------------------------------------------------------------ */
+
+/** How far into the room an entrance card has got by the time it ends. */
+export type EntranceStage = 'stairs' | 'door' | 'sit' | 'speak';
+
+const AT_THE_STAIRS = /\b(?:stairs|staircase|climbed|flight)\b/i;
+const AT_THE_DOOR =
+  /\b(?:door|doorway|knock(?:ed|s)?|came\s+in|come\s+in|walked\s+in|stepped\s+in|mat|threshold|landing)\b/i;
+const IN_THE_CHAIR = /\b(?:sit|sits|sat|seat|seated|seating|chair)\b/i;
+
+/**
+ * The earliest stage an entrance card reaches.
+ *
+ * The order of an arrival is fixed and a reader knows it: stairs, then the
+ * door, then the chair, then the first word. Seed 3 printed "A woman came up
+ * the stairs after midnight, and sat down. Kreuzer shut the door soft" — she
+ * was in the chair a sentence before she was through the door, which is the
+ * page contradicting itself in consecutive sentences.
+ *
+ * The earliest stage is the one that matters, because the plain arrival atom
+ * goes in front of the card and may not overtake it.
+ */
+export function entranceStage(text: string): EntranceStage {
+  if (AT_THE_STAIRS.test(text)) return 'stairs';
+  if (AT_THE_DOOR.test(text)) return 'door';
+  if (IN_THE_CHAIR.test(text)) return 'sit';
+  return 'speak';
+}
+
+/** The seating clause off the end of the arrival atom, and nothing else. */
+function upToTheStairs(atom: string): string {
+  const trimmed = atom.replace(/,?\s+and\s+(?:sat|seated|took)\b[^.!?]*/i, '').trim();
+  if (trimmed.length === 0) return atom;
+  return /[.!?]$/.test(trimmed) ? trimmed : `${trimmed}.`;
+}
+
+/**
+ * The generator's arrival sentence, cut to fit in front of the entrance card.
+ *
+ * Three answers. A card that names the stairs itself has already said the
+ * whole atom, better and with a name in it, so the atom goes. A card that
+ * starts at the door or in the chair keeps the atom's stairs and loses its
+ * seating, because the card is about to do the seating in the right order. A
+ * card that only speaks takes the atom whole: stairs, chair, and then the
+ * first word, which is the order the golden has.
+ */
+export function arrivalAtom(atom: string | null, cardText: string): string | null {
+  if (atom === null || atom.trim().length === 0) return null;
+  switch (entranceStage(cardText)) {
+    case 'stairs':
+      return null;
+    case 'door':
+    case 'sit':
+      return upToTheStairs(atom);
+    default:
+      return atom;
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * Hone 2 §A.3 — the profession in the client's own mouth.
  * ------------------------------------------------------------------ */
 

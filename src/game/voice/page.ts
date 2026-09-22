@@ -130,6 +130,7 @@ import {
 } from './motifs.js';
 import {
   BRIEFING_ASK_CAP,
+  arrivalAtom,
   briefingTurns,
   clientLeavingLine,
   entranceCard,
@@ -2389,11 +2390,15 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * stairs, knock, coat, hand, and this is that order: it also hands the
    * entrance paragraph the word "midnight", which is the one the paragraph
    * above it opens on.
+   *
+   * Hone 2 §A.4 finishes the job. The atom used to seat her — "A woman came up
+   * the stairs after midnight, and sat down" — a sentence before a card that
+   * shuts the door behind her, so the page had her in the chair before she was
+   * through the doorway. The card is dealt first now, and the atom is cut to
+   * whatever fits in front of it: stairs, door, sit, speak, in that order, or
+   * nothing at all where the card climbs the stairs itself.
    */
   const split = splitBriefing(view, familiar);
-  if (split.entrance)
-    t.say(split.entrance, 'narrator', { transparent: true, verbatim: true, para: 'entrance' });
-
   const entrance = entranceCard(
     dealer,
     { temper, klass, gender, familiar },
@@ -2402,6 +2407,10 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     t.ctx,
   );
   if (entrance.gap) t.gaps.push(entrance.gap);
+  const arrival = arrivalAtom(split.entrance, entrance.text);
+  if (arrival !== null)
+    t.say(arrival, 'narrator', { transparent: true, verbatim: true, para: 'entrance' });
+
   const portrait = describePerson({
     cast,
     personId: client.id,
@@ -2448,7 +2457,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * the surname twice in two sentences is the tic this rule is about.
    */
   const spokenProfession = professionSpoken(client);
-  const dossierLines: string[] = [seenSentence(client, split.entrance !== null)];
+  const dossierLines: string[] = [seenSentence(client, arrival !== null)];
   if (spokenProfession === null) {
     for (const line of split.narration.slice(1)) {
       dossierLines.push(pronounSubject(line, client.surname, pronounOf(client)));
