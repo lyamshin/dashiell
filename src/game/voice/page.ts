@@ -2058,7 +2058,21 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     para: 'office',
   });
 
-  /* 2. The entrance, with the client's portrait woven into it (§A.4). */
+  /* 2. The entrance, with the client's portrait woven into it (§A.4).
+   *
+   * The generator's first narration sentence — somebody came up the stairs
+   * after midnight and sat down — goes in front of it rather than behind it.
+   * It used to arrive two paragraphs after the door had already shut and the
+   * portrait had already been read, which is the page telling the reader what
+   * happened before the thing it has just told them. The golden's order is
+   * stairs, knock, coat, hand, and this is that order: it also hands the
+   * entrance paragraph the word "midnight", which is the one the paragraph
+   * above it opens on.
+   */
+  const split = splitBriefing(view, familiar);
+  if (split.entrance)
+    t.say(split.entrance, 'narrator', { transparent: true, para: 'entrance' });
+
   const entrance = entranceCard(
     dealer,
     { temper, klass, gender, familiar },
@@ -2095,13 +2109,16 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * "Why me?" before the purpose. The first turn gets no question, because it
    * is what she came up the stairs to say.
    */
-  const split = splitBriefing(view, familiar);
-  const seen = [...(split.entrance ? [split.entrance] : []), ...split.narration];
-  if (seen.length > 0) t.say(seen.join(' '), 'narrator', { transparent: true, para: 'entrance' });
+  if (split.narration.length > 0)
+    t.say(split.narration.join(' '), 'narrator', { transparent: true, para: 'entrance' });
 
   const victim = view.victim;
   const askSlots: Slots = {
     victim: victim.surname,
+    // Only a murder has somebody who was found. The owner of a stolen thing is
+    // alive and a missing person was never found, so a shape that asks who
+    // found them has its slot left empty and is skipped.
+    ...(view.kase.act.type === 'murder' ? { dead: victim.surname } : {}),
     place: view.placeById.get(view.kase.act.place)?.shortName,
   };
   const plainSlots: Slots = {
@@ -2134,12 +2151,14 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   }
 
   const turns = briefingTurns(split.speech);
-  let lastAsk: string | null = null;
+  const spentAsks: string[] = [];
+  // §2's joiner: the question picks up something she has just said.
+  let lastSaid = '';
   for (const [i, turn] of turns.entries()) {
     if (turn.ask) {
-      const question = briefingQuestion(dealer.random, turn.ask, askSlots, lastAsk);
+      const question = briefingQuestion(dealer.random, turn.ask, askSlots, spentAsks, lastSaid);
       if (question.length > 0) {
-        lastAsk = question;
+        spentAsks.push(question);
         t.say(`“${question}”`, 'exchange', {
           personId: client.id,
           targets: DASHIELL_TARGETS,
@@ -2155,6 +2174,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
         transparent: true,
       });
     }
+    lastSaid = turn.lines.join(' ');
     // Once, after the turn that carried what happened: him registering it and
     // saying nothing else. Twice would be a tic.
     if (i === 0) {
@@ -2167,7 +2187,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   }
 
   /* 4. The hiring: the pointer, which is the job, and the money. */
-  const pointer = briefingQuestion(dealer.random, 'pointer', askSlots, lastAsk);
+  const pointer = briefingQuestion(dealer.random, 'pointer', askSlots, spentAsks, lastSaid);
   if (pointer.length > 0) {
     t.say(`“${pointer}”`, 'exchange', {
       personId: client.id,

@@ -164,6 +164,20 @@ export const ASK_DISCOVERY: string[] = [
   'Tell me how it was found.',
   'And nobody called me until now?',
   'Start with the finding of it.',
+  // The same questions with the page's own nouns in them, so the joiner has
+  // something to pick: a question that names what she has just named reads as
+  // an answer being asked for, and one that names nothing reads as a form.
+  'And {place}?',
+  'What about {place}?',
+  'Who was at {place}?',
+  'When was this, at {place}?',
+  'And {victim}?',
+  'What about {victim}, then?',
+  // `{dead}` is the victim's surname on a murder and nothing at all on a
+  // robbery or a disappearance, where the owner is alive and the missing
+  // person was never found. A shape whose slot is empty is skipped.
+  'Where was {dead} found?',
+  'Who found {dead}?',
 ];
 
 /** Before the client says how they stand to the victim. */
@@ -196,6 +210,10 @@ export const ASK_PURPOSE: string[] = [
   'What do you want me to do?',
   'Say what you want.',
   'And you want it settled.',
+  'What is {victim} to you now?',
+  'And what does that get {victim}?',
+  'You want this settled for {victim}.',
+  'Why spend money on {victim} now?',
 ];
 
 /** Before the client names who they would rather you looked at. */
@@ -212,6 +230,10 @@ export const ASK_POINTER: string[] = [
   'Name somebody.',
   'You have got somebody in mind.',
   'Who, then?',
+  'Who wanted this of {victim}?',
+  'Who would do that to {victim}?',
+  'Who was not a friend of {victim}?',
+  'And who did {victim} cross?',
 ];
 
 /** The neutral prod, when no sharper question fits the next turn. */
@@ -264,7 +286,6 @@ export const BRIEFING_PAUSE: string[] = [
   '{Pronoun} stopped there.',
   '{Pronoun} took a moment.',
   'I did not press {name}.',
-  '{Pronoun} did not finish the sentence.',
   'I let {name} sit with it.',
   '{Pronoun} waited before going on.',
   'Neither of us spoke.',
@@ -290,14 +311,51 @@ export const BRIEFING_SETTLE: string[] = [
   '{Pronoun} kept one hand in a pocket.',
 ];
 
-/** One of Dashiell's short questions, filled. Empty when no shape fits. */
+/**
+ * One of Dashiell's short questions, filled. Empty when no shape fits.
+ *
+ * `after` is what the client has just said, and it is the joiner (the golden
+ * loop §2): of the shapes that fit, the one that names something she has just
+ * named wins. "You want the man who did it" works in the golden because the
+ * man who did it is what her last four sentences were about; the same question
+ * with nothing of hers in it is a form being filled in. Where no shape shares
+ * anything, the pool is walked as usual and nothing is forced.
+ */
 export function briefingQuestion(
   rng: Rng,
   kind: BriefingAsk,
   slots: PlainSlots = {},
-  avoid: string | null = null,
+  avoid: string | null | readonly string[] = null,
+  after = '',
 ): string {
-  return pickShape(rng, ASKS[kind], slots, avoid);
+  const pool = ASKS[kind];
+  const said = new Set(contentWordsOf(after));
+  if (said.size === 0) return pickShape(rng, pool, slots, avoid);
+  const spent = avoid === null ? [] : typeof avoid === 'string' ? [avoid] : avoid;
+  const start = rng.int(pool.length);
+  let best = '';
+  let bestScore = 0;
+  for (let i = 0; i < pool.length; i++) {
+    const template = pool[(start + i) % pool.length] as string;
+    const text = fillPlain(template, slots);
+    if (text.length === 0) continue;
+    if (spent.includes(template) || spent.includes(text)) continue;
+    let score = 0;
+    for (const w of contentWordsOf(text)) if (said.has(w)) score++;
+    if (score > bestScore) {
+      bestScore = score;
+      best = text;
+    }
+    if (best.length === 0) best = text;
+  }
+  return best.length > 0 ? best : pickShape(rng, pool, slots, avoid);
+}
+
+/** The words a joiner can hand from one paragraph to the next. */
+function contentWordsOf(text: string): string[] {
+  return (text.match(/[A-Za-z’']+/g) ?? [])
+    .filter((w) => w.length > 3)
+    .map((w) => w.toLowerCase());
 }
 
 /* ------------------------------------------------------------------ *
