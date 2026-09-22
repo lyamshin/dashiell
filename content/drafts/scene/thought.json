@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "tht-001",
+    "deck": "thought",
+    "text": "If {subject} was at {place} at {time}, {subject} was not where it happened.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-002",
+    "deck": "thought",
+    "text": "{subject} placed at {place} at {time} would put {subject} somewhere else when it counted.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-003",
+    "deck": "thought",
+    "text": "If that placement holds, {subject} was elsewhere at the hour that matters.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-004",
+    "deck": "thought",
+    "text": "It put {subject} at {place}, not at the scene, at the hour I needed to know about.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-005",
+    "deck": "thought",
+    "text": "If {subject} was really at {place} at {time}, that would clear {subject} of the hour.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-006",
+    "deck": "thought",
+    "text": "That placed {subject} away from the scene at {time}. If it is true, it clears {subject}.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-007",
+    "deck": "thought",
+    "text": "{subject} being at {place} at {time} would mean {subject} could not have been at the scene.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-008",
+    "deck": "thought",
+    "text": "If it holds up, {subject} was somewhere else entirely when it happened.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-009",
+    "deck": "thought",
+    "text": "That put {subject} at {place}, and {place} is nowhere near where it happened. Good news for {subject}, if it was true.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-010",
+    "deck": "thought",
+    "text": "If {subject} was at {place} at {time}, that is an alibi for the only hour that counts.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-011",
+    "deck": "thought",
+    "text": "It would clear {subject}, at least for the half hour that mattered, if it holds.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-012",
+    "deck": "thought",
+    "text": "{subject} at {place}, at {time}: that puts {subject} out of it, if the placement holds.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-013",
+    "deck": "thought",
+    "text": "If {subject} was at {place} at {time}, {subject} was close enough to matter.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-014",
+    "deck": "thought",
+    "text": "That put {subject} at the scene at the hour that counts, if it holds.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-015",
+    "deck": "thought",
+    "text": "{subject} being at {place} at {time} put {subject} where it happened, or near enough.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-016",
+    "deck": "thought",
+    "text": "If it is true, {subject} was there at the hour that matters, and that is not nothing.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-017",
+    "deck": "thought",
+    "text": "That placed {subject} at the scene when it happened. It does not clear {subject}.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-018",
+    "deck": "thought",
+    "text": "{subject} had access to {place}, which is where it happened.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-019",
+    "deck": "thought",
+    "text": "If {subject} could get into {place}, {subject} could have been there when it counted.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-020",
+    "deck": "thought",
+    "text": "That put {subject} close to it, at the hour that matters, if the placement is good.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-021",
+    "deck": "thought",
+    "text": "{subject} was there, or near enough to it, at {time}.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-022",
+    "deck": "thought",
+    "text": "It put {subject} at the scene, not away from it, and that is the hour I needed.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-023",
+    "deck": "thought",
+    "text": "If {subject} had the means, {subject} had what it took, whatever else is true.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-024",
+    "deck": "thought",
+    "text": "That gave {subject} both the place and the hour. It was not an alibi.",
+    "tags": {
+      "class": "implicates"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-025",
+    "deck": "thought",
+    "text": "An observation places the observer. If {source} saw it, {source} was there to see it, at {place}, at {time}.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-026",
+    "deck": "thought",
+    "text": "{source} said {subject} was at {place} at {time}. Seeing it put {source} there too.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-027",
+    "deck": "thought",
+    "text": "To watch {subject} at {place} at {time}, {source} had to be there as well.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-028",
+    "deck": "thought",
+    "text": "That was not just what {source} said about {subject}. It put {source} at {place} at {time} too.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-029",
+    "deck": "thought",
+    "text": "An observer has to be somewhere to observe. {source} was at {place}, at {time}, same as {subject}.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-030",
+    "deck": "thought",
+    "text": "{source} placed {subject} at {place} at {time}, and by saying so, placed {source} there too.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-031",
+    "deck": "thought",
+    "text": "It takes two to make an observation. {source} was at {place} at {time}, watching {subject}.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-032",
+    "deck": "thought",
+    "text": "That put {source} at {place} at {time}, whether {source} meant to say so or not.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-033",
+    "deck": "thought",
+    "text": "{source} could not have seen {subject} at {place} without being at {place}, at {time}.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-034",
+    "deck": "thought",
+    "text": "The claim placed {subject}. The seeing of it placed {source}, at the same hour and the same place.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-035",
+    "deck": "thought",
+    "text": "{source} was there to see {subject} at {place}, which means {source} was there too, at {time}.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-036",
+    "deck": "thought",
+    "text": "That is two placements in one line: {subject} at {place}, and {source} alongside, at {time}.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-037",
+    "deck": "thought",
+    "text": "{source} had sat across from me and never said a word of it.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-038",
+    "deck": "thought",
+    "text": "That was not in what {source} told me at the start. {source} had left it out.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-039",
+    "deck": "thought",
+    "text": "It was the kind of thing a person says first, if they mean to say it at all. {source} had not.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-040",
+    "deck": "thought",
+    "text": "{source} had an hour to say it and did not.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-041",
+    "deck": "thought",
+    "text": "Nobody had asked {source} about that hour before, but {source} had not offered it either.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-042",
+    "deck": "thought",
+    "text": "That was missing from {source}’s account, and I noticed the gap only now.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-043",
+    "deck": "thought",
+    "text": "{source} left it out the first time. I wondered why.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-044",
+    "deck": "thought",
+    "text": "It was not a lie, exactly. {source} had simply never said it.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-045",
+    "deck": "thought",
+    "text": "{source} had told me plenty and skipped that.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-046",
+    "deck": "thought",
+    "text": "A client who leaves things out is still a client. {source} had left this out.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-047",
+    "deck": "thought",
+    "text": "That was the first I had heard of it, and it should not have been.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-048",
+    "deck": "thought",
+    "text": "{source} never mentioned being there. Not once, in all that talk.",
+    "tags": {
+      "class": "unmentioned"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-049",
+    "deck": "thought",
+    "text": "{subject} had said otherwise. This did not agree with it.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-050",
+    "deck": "thought",
+    "text": "That was not what {subject} told me. One of the two was wrong.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-051",
+    "deck": "thought",
+    "text": "{subject}’s account did not match what I had just found.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-052",
+    "deck": "thought",
+    "text": "It contradicted {subject} plainly, and {subject} would have to explain it.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-053",
+    "deck": "thought",
+    "text": "{subject} had said one thing. This said another.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-054",
+    "deck": "thought",
+    "text": "Either {subject} was wrong about it, or {subject} had not told me the truth.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-055",
+    "deck": "thought",
+    "text": "That did not square with what {subject} claimed.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-056",
+    "deck": "thought",
+    "text": "{subject}’s story and this did not agree, and I noted where they split.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-057",
+    "deck": "thought",
+    "text": "It was a straight contradiction of {subject}’s own account.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-058",
+    "deck": "thought",
+    "text": "{subject} had told it differently, and now I had a reason to ask why.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-059",
+    "deck": "thought",
+    "text": "That put a hole in what {subject} had said.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-060",
+    "deck": "thought",
+    "text": "{subject} would have an explanation for this, or {subject} would not.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-061",
+    "deck": "thought",
+    "text": "{subject} had reason enough. This was it.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-062",
+    "deck": "thought",
+    "text": "That gave {subject} a reason, plain and ordinary.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-063",
+    "deck": "thought",
+    "text": "It was motive, and not a subtle one.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-064",
+    "deck": "thought",
+    "text": "{subject} had a reason to want it done, and now I had it in writing, or as good as.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-065",
+    "deck": "thought",
+    "text": "That answered why, for {subject} at least.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-066",
+    "deck": "thought",
+    "text": "It was the kind of reason that gets people killed.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-067",
+    "deck": "thought",
+    "text": "{subject} had cause, whatever else came of it.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-068",
+    "deck": "thought",
+    "text": "That gave {subject} a motive worth asking about.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-069",
+    "deck": "thought",
+    "text": "It was not proof of anything, but it was a reason.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-070",
+    "deck": "thought",
+    "text": "{subject} had wanted something, and this was what it was.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-071",
+    "deck": "thought",
+    "text": "That was motive enough for most people.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-072",
+    "deck": "thought",
+    "text": "It gave {subject} a reason where before there had been none.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-073",
+    "deck": "thought",
+    "text": "That was how it had been done.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-074",
+    "deck": "thought",
+    "text": "It matched the method, plain enough.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-075",
+    "deck": "thought",
+    "text": "{other} was the means, or close to it.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-076",
+    "deck": "thought",
+    "text": "It told me how, if not who.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-077",
+    "deck": "thought",
+    "text": "That was consistent with how it had happened.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-078",
+    "deck": "thought",
+    "text": "It answered the how, at least.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-079",
+    "deck": "thought",
+    "text": "That was the kind of evidence a method leaves behind.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-080",
+    "deck": "thought",
+    "text": "It fit the way it had been done.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-081",
+    "deck": "thought",
+    "text": "{other} was proof of how, whatever it said about who.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-082",
+    "deck": "thought",
+    "text": "It matched what the coroner had said about the method.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-083",
+    "deck": "thought",
+    "text": "That was the method, spelled out plainly.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-084",
+    "deck": "thought",
+    "text": "It told the story of how, and left who for later.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-085",
+    "deck": "thought",
+    "text": "That narrowed the window to somewhere inside {time}.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-086",
+    "deck": "thought",
+    "text": "The coroner had given me a span. This gave me a point inside it.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-087",
+    "deck": "thought",
+    "text": "If it happened at {time}, that explains why nobody heard it.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-088",
+    "deck": "thought",
+    "text": "That fell inside the coroner’s window, which made it useful.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-089",
+    "deck": "thought",
+    "text": "It was not the whole window, but it was a minute inside it.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-090",
+    "deck": "thought",
+    "text": "The window was hours wide. This narrowed it to {time}.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-091",
+    "deck": "thought",
+    "text": "That was an anchor, not a guess: it happened, or did not, at {time}.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-092",
+    "deck": "thought",
+    "text": "If it lines up with {time}, it is worth more than the coroner’s span alone.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-093",
+    "deck": "thought",
+    "text": "The coroner gave me two hours. This gave me one point inside them.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-094",
+    "deck": "thought",
+    "text": "That was the kind of fact that turns a span into a minute.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-095",
+    "deck": "thought",
+    "text": "It placed the hour more exactly than the coroner had managed.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-096",
+    "deck": "thought",
+    "text": "If {time} is right, that is the minute the coroner could not give me.",
+    "tags": {
+      "class": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-097",
+    "deck": "thought",
+    "text": "Nothing had been carried out. It was not a robbery.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-098",
+    "deck": "thought",
+    "text": "The drawers were shut and nothing was missing. Whoever came, came for a person, not for things.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-099",
+    "deck": "thought",
+    "text": "Nothing was gone. That ruled out robbery, whatever else was true.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-100",
+    "deck": "thought",
+    "text": "It was not theft. Nothing in the room said otherwise.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-101",
+    "deck": "thought",
+    "text": "Nothing had been taken. So it was not robbery that brought them here.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-102",
+    "deck": "thought",
+    "text": "The place had not been gone through for valuables. It was not that kind of crime.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-103",
+    "deck": "thought",
+    "text": "If anything had been stolen, it was not obvious, and nothing obvious was gone.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-104",
+    "deck": "thought",
+    "text": "Nothing missing meant nothing taken, and that meant it was not robbery.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-105",
+    "deck": "thought",
+    "text": "It was a fight, not a theft. Nothing in {place} said different.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-106",
+    "deck": "thought",
+    "text": "Whoever came up, came for a person and left the rest of it alone.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-107",
+    "deck": "thought",
+    "text": "Nothing had walked out of {place} that night. It was not robbery.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-108",
+    "deck": "thought",
+    "text": "So it was not robbery. Whoever did it wanted something else.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-109",
+    "deck": "thought",
+    "text": "{other} was gone. That was the shape of it: robbery.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-110",
+    "deck": "thought",
+    "text": "Something had been taken, and that changed the shape of it.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-111",
+    "deck": "thought",
+    "text": "The drawer was empty where {other} should have been. That was robbery.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-112",
+    "deck": "thought",
+    "text": "Whoever came for {other} got it, and left the rest.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-113",
+    "deck": "thought",
+    "text": "{other} was missing, and nothing else about the room explained why.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-114",
+    "deck": "thought",
+    "text": "That was theft, plain: {other} was gone and the room said so.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-115",
+    "deck": "thought",
+    "text": "Something had walked out of {place}, and it was not a person.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-116",
+    "deck": "thought",
+    "text": "{other} was not where it should have been. That was the whole shape of the case.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-117",
+    "deck": "thought",
+    "text": "It was robbery, not murder for its own sake: {other} was gone.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-118",
+    "deck": "thought",
+    "text": "The gap where {other} had been told the story by itself.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-119",
+    "deck": "thought",
+    "text": "Whoever came, came for {other}, and got it.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-120",
+    "deck": "thought",
+    "text": "That was what was missing, and it was enough to call it robbery.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-121",
+    "deck": "thought",
+    "text": "That explained the secret, and it was not murder.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-122",
+    "deck": "thought",
+    "text": "It was not what it looked like. It was {other}, and nothing more.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-123",
+    "deck": "thought",
+    "text": "The secret came out, and it was smaller than the case.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-124",
+    "deck": "thought",
+    "text": "That was the secret, and it did not reach as far as the killing.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-125",
+    "deck": "thought",
+    "text": "It explained {subject}’s silence, and it explained nothing else.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-126",
+    "deck": "thought",
+    "text": "So that was what {subject} had been hiding. It was not this.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-127",
+    "deck": "thought",
+    "text": "The secret was real. It was just not the murder.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-128",
+    "deck": "thought",
+    "text": "That accounted for {subject}’s lie, but not for the rest of it.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-129",
+    "deck": "thought",
+    "text": "It was a smaller crime hiding behind a bigger one.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-130",
+    "deck": "thought",
+    "text": "{subject} had been hiding {other}, not a killing.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-131",
+    "deck": "thought",
+    "text": "That was worth knowing, and it was worth setting aside.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-132",
+    "deck": "thought",
+    "text": "The secret explained the fear. It did not explain the body.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-133",
+    "deck": "thought",
+    "text": "That closed it. There was nothing more to ask here.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-134",
+    "deck": "thought",
+    "text": "It was a disqualifier, plain: this branch was finished.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-135",
+    "deck": "thought",
+    "text": "That ruled it out. I would not be coming back to this.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-136",
+    "deck": "thought",
+    "text": "Whatever I had hoped for, this was not it.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-137",
+    "deck": "thought",
+    "text": "That answered the question by closing it.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-138",
+    "deck": "thought",
+    "text": "It was not what I had been chasing. This was over.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-139",
+    "deck": "thought",
+    "text": "That put an end to it. There was no more here.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-140",
+    "deck": "thought",
+    "text": "It closed the door on that line of asking.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-141",
+    "deck": "thought",
+    "text": "That was the end of that thread.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-142",
+    "deck": "thought",
+    "text": "There was nothing further in it. I let it go.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-143",
+    "deck": "thought",
+    "text": "It disqualified the idea outright.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-144",
+    "deck": "thought",
+    "text": "That settled it in the negative, and settled it for good.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-145",
+    "deck": "thought",
+    "text": "It did not touch the case that I could see.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-146",
+    "deck": "thought",
+    "text": "That was true, and it did not matter.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-147",
+    "deck": "thought",
+    "text": "It was noise, honestly come by, and noise all the same.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-148",
+    "deck": "thought",
+    "text": "That had nothing to do with what happened.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-149",
+    "deck": "thought",
+    "text": "It was the kind of fact a case turns up without needing.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-150",
+    "deck": "thought",
+    "text": "That did not move the case one way or the other.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-151",
+    "deck": "thought",
+    "text": "It was true enough, and beside the point.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-152",
+    "deck": "thought",
+    "text": "That told me something about {subject}, and nothing about the case.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-153",
+    "deck": "thought",
+    "text": "It did not touch the killing that I could see.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-154",
+    "deck": "thought",
+    "text": "That was real, and it was not what I was looking for.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-155",
+    "deck": "thought",
+    "text": "It filled in the picture without changing it.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-156",
+    "deck": "thought",
+    "text": "That was worth knowing and worth setting aside.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-157",
+    "deck": "thought",
+    "text": "Half an hour, and nothing to show for it.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-158",
+    "deck": "thought",
+    "text": "There was nothing here. I looked anyway.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-159",
+    "deck": "thought",
+    "text": "It came to nothing.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-160",
+    "deck": "thought",
+    "text": "I found nothing worth the trip.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-161",
+    "deck": "thought",
+    "text": "There was nothing in it, and I left it at that.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-162",
+    "deck": "thought",
+    "text": "Nothing turned up, and I had not expected much.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-163",
+    "deck": "thought",
+    "text": "It was a wasted half hour, or close to it.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-164",
+    "deck": "thought",
+    "text": "There was nothing to find, and nothing was what I found.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-165",
+    "deck": "thought",
+    "text": "I had come for something and left with nothing.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-166",
+    "deck": "thought",
+    "text": "It was quiet, and quiet meant nothing to report.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-167",
+    "deck": "thought",
+    "text": "There was nothing here worth writing down.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-168",
+    "deck": "thought",
+    "text": "Empty-handed. That happens more than the stories say.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]
