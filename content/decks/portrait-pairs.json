@@ -1,0 +1,1892 @@
+[
+  {
+    "id": "pp-001",
+    "deck": "portrait-pairs",
+    "text": "{He} reached for a card case before I asked for one. It came out empty, and {he} put it away without a word. Somebody used to keep it filled for {him}.",
+    "recall": "the empty card case",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-002",
+    "deck": "portrait-pairs",
+    "text": "{He} turned the ring on {his} smallest finger the whole time {he} answered me, crest side down against the palm. When {he} finally let it rest, the crest faced out again. {He} had not meant to hide it, only to have something to do with {his} hands.",
+    "recall": "the ring turned inward",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-003",
+    "deck": "portrait-pairs",
+    "text": "A watch chain crossed {his} waistcoat same as any man's. There was no watch on the end of it, only a fob, and {he} checked the time on a wrist watch instead, twice in five minutes.",
+    "recall": "the chain without a watch",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-004",
+    "deck": "portrait-pairs",
+    "text": "The suit was cut this year and pressed that morning. The shoes were not: resoled at the heel in a coarser leather than the rest, the work of a cheaper man than the tailor upstairs.",
+    "recall": "the cheaply resoled shoes",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-005",
+    "deck": "portrait-pairs",
+    "text": "{He} wore a collar that stood away from {his} throat by half an inch, a size bought for a heavier man. {He} had lost the weight since and not the collars.",
+    "recall": "the collar too loose",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-006",
+    "deck": "portrait-pairs",
+    "text": "{He} carried a stick with a silver head but never put weight on it, only turned it in {his} hand while {he} talked. Once, crossing to the window, {he} forgot it against the chair and had to go back for it.",
+    "recall": "the cane never leaned on",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-007",
+    "deck": "portrait-pairs",
+    "text": "{He} carried a fountain pen with a gold nib worn to one man's angle of writing, and offered to sign whatever I set before {him}. The pen was dry. {He} had not written anything of {his} own in some time.",
+    "recall": "the dry fountain pen",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-008",
+    "deck": "portrait-pairs",
+    "text": "{He} kept {his} gloves on until {he} shook my hand, then peeled them off finger by finger. The left one had split along the seam at the thumb and had not been mended.",
+    "recall": "the split glove seam",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-009",
+    "deck": "portrait-pairs",
+    "text": "{He} offered a cigarette from a silver case with initials worked into the lid, and the initials were not {his}. {He} did not explain it, and I did not ask twice.",
+    "recall": "the case with wrong initials",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "cigarette"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-010",
+    "deck": "portrait-pairs",
+    "text": "{He} still wore yesterday's flower in {his} buttonhole, wilted past anything a florist would sell. {He} touched it once to check it was still there, then let it be.",
+    "recall": "yesterday's wilted flower",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-011",
+    "deck": "portrait-pairs",
+    "text": "{He} wore cufflinks that did not match: one gold and plain, the other silver and engraved. {He} had buttoned the plain one where it would show least.",
+    "recall": "the mismatched cufflinks",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-012",
+    "deck": "portrait-pairs",
+    "text": "{He} carried reading spectacles hooked to {his} lapel by a black ribbon and never put them on, even to read the paper I handed {him}. {He} held it at arm's length instead and squinted through the whole of it.",
+    "recall": "the spectacles never worn",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-013",
+    "deck": "portrait-pairs",
+    "text": "{He} paid me from a pocketbook worn soft at the fold, and a photograph slid partway out with the bills: a young woman, turned face down before I could see more than the edge of her. {He} pushed it back in without looking at it.",
+    "recall": "the hidden photograph",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "photograph",
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-014",
+    "deck": "portrait-pairs",
+    "text": "{He} kept {his} derby in {his} hands the whole visit instead of setting it down, working the brim between {his} fingers until it had gone soft. Nothing else could have worn it down that way.",
+    "recall": "the soft-worn derby brim",
+    "tags": {
+      "gender": "m",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-015",
+    "deck": "portrait-pairs",
+    "text": "{He} opened a compact before answering anything hard, checked nothing in it, and closed it again. The powder inside was worn through to bare metal in one spot, from the same two fingers every time.",
+    "recall": "the worn compact powder",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [
+      "mirror"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-016",
+    "deck": "portrait-pairs",
+    "text": "{He} kept a spare hairpin tucked behind one ear instead of in {his} hair, ready before it was needed. It was a habit, not an accident; {he} reached for it without looking, twice, while we talked.",
+    "recall": "the spare hairpin",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-017",
+    "deck": "portrait-pairs",
+    "text": "A dance card fell out of {his} handbag when {he} reached for a handkerchief, the kind girls keep from a party months gone. One name on it had been written over twice, heavier each time, though the others were plain pencil.",
+    "recall": "the name inked over twice",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "memory"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-018",
+    "deck": "portrait-pairs",
+    "text": "{He} took the pin from {his} hat the moment {he} sat and held it the whole time, turning it between two fingers instead of setting it anywhere. When {he} rose to go, {he} put it back without looking, by feel alone.",
+    "recall": "the hatpin held throughout",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hat",
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-019",
+    "deck": "portrait-pairs",
+    "text": "{He} wore gloves new enough that a price tag was still folded down inside one cuff, where a saleswoman had missed it. {He} had not noticed either, or had not cared to.",
+    "recall": "the forgotten price tag",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-020",
+    "deck": "portrait-pairs",
+    "text": "A brooch sat crooked on {his} coat when {he} came in, pinned in a hurry. Partway through talking {he} reached up without looking and set it straight, then went on without missing a word.",
+    "recall": "the crooked brooch righted",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-021",
+    "deck": "portrait-pairs",
+    "text": "{He} wore a wedding ring on the right hand, not the left. {He} caught me noticing and turned the hand over, palm up, so the ring was out of sight.",
+    "recall": "the misplaced wedding ring",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-022",
+    "deck": "portrait-pairs",
+    "text": "{He} spoke in two registers: bright and carrying while the door stood open, low and plain the moment it closed. {He} gave no sign of noticing the change.",
+    "recall": "the two voices",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice",
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-023",
+    "deck": "portrait-pairs",
+    "text": "{He} wore a fur collar worn thin in a single patch at the throat, smaller than a thumbprint, from {his} own hand going there whenever the talk turned hard. It went there twice while {he} sat with me.",
+    "recall": "the worn fur collar",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-024",
+    "deck": "portrait-pairs",
+    "text": "{He} used a handkerchief with two letters worked into the corner in blue thread, and neither matched the name {he} had given me at the door.",
+    "recall": "the wrong-lettered handkerchief",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-025",
+    "deck": "portrait-pairs",
+    "text": "{He} wore spectacles on a chain, riding low on {his} nose. {He} looked over the top of them the whole time instead of through the lenses, the lenses themselves untouched by anything {he} read.",
+    "recall": "the spectacles unused",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-026",
+    "deck": "portrait-pairs",
+    "text": "The rings on {his} left hand had gone loose with age and {he} kept turning them right side up out of old habit, though there was nothing left to turn them for.",
+    "recall": "the loose rings turned",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-027",
+    "deck": "portrait-pairs",
+    "text": "{He} wore a locket under {his} collar instead of over it, and opened it once without meaning to, reaching for a button. {He} closed it before I could see what was inside and did not open it again.",
+    "recall": "the locket worn hidden",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "photograph"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-028",
+    "deck": "portrait-pairs",
+    "text": "{He} had a voice thinned with age, but the accent under it had not: money in the vowels, the kind learned young and never lost. {He} sounded twenty years younger the moment {he} got angry.",
+    "recall": "the money in the vowels",
+    "tags": {
+      "gender": "f",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-029",
+    "deck": "portrait-pairs",
+    "text": "{He} left a calling card on the desk with one corner turned down before {he} said a word, an old custom {he} plainly still kept without thinking about why.",
+    "recall": "the turned-down card corner",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-030",
+    "deck": "portrait-pairs",
+    "text": "One cufflink was cut in the shape of a compass, the needle set loose inside it, and it still spun when {he} touched it — which {he} did every time a question came too close.",
+    "recall": "the spinning compass cufflink",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-031",
+    "deck": "portrait-pairs",
+    "text": "The pocketbook was new enough to still smell of the shop it came from, and a receipt was folded behind the bills for something {he} did not mention buying.",
+    "recall": "the unexplained receipt",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-032",
+    "deck": "portrait-pairs",
+    "text": "{He} wore a school ring on a chain instead of a finger, too small for the hand now and too old to throw away. {He} touched it through the shirt more than once.",
+    "recall": "the outgrown school ring",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-033",
+    "deck": "portrait-pairs",
+    "text": "Before signing anything {he} pressed {his} fingers flat against the page for a moment first, an old clerk's habit from a time when the ink was slower to dry than it is now.",
+    "recall": "the habit of blotting",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-034",
+    "deck": "portrait-pairs",
+    "text": "{He} took a moment partway through the visit to sharpen a pencil {he} never once used, and put it away again, sharp, without a word of explanation.",
+    "recall": "the unused sharpened pencil",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-035",
+    "deck": "portrait-pairs",
+    "text": "{He} named a figure before I had asked for one, flat, the same tone {he} would use pricing anything else. It was a habit worn in by years of doing exactly that.",
+    "recall": "the unasked-for figure",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-036",
+    "deck": "portrait-pairs",
+    "text": "The initials on {his} pocket square were not {his} own, an old set, a father's or a firm's, kept because the linen was good and nobody had thought to change it.",
+    "recall": "the borrowed initials",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-037",
+    "deck": "portrait-pairs",
+    "text": "{He} carried a watch that ran eleven minutes fast, and {he} checked it twice against the clock on my wall without correcting either one. It had run fast for years, {he} said, and {he} had stopped minding.",
+    "recall": "the watch kept fast",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-038",
+    "deck": "portrait-pairs",
+    "text": "{He} carried a small pillbox in one pocket and touched it twice during the visit, though {he} never once opened it. It rattled faintly the one time {he} shifted in the chair.",
+    "recall": "the pillbox never opened",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-039",
+    "deck": "portrait-pairs",
+    "text": "The card case {he} carried had gone round at the corners from years of it, and the initials stamped into it were worn to a shadow of themselves. {He} passed it to me to hold a card, then took it back before I could read the shadow at all.",
+    "recall": "the worn card case",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-040",
+    "deck": "portrait-pairs",
+    "text": "The first two answers came out as orders, flat and final, the old habit of a person used to being obeyed. By the third {he} noticed it and softened {his} tone.",
+    "recall": "the orders softened",
+    "tags": {
+      "gender": "any",
+      "class": "money",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-041",
+    "deck": "portrait-pairs",
+    "text": "{He} had a callus worn in a band straight across the palm, the mark of rope handled bare-handed for years. {He} caught it once on the edge of my desk and did not seem to feel it.",
+    "recall": "the rope-burn callus",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-042",
+    "deck": "portrait-pairs",
+    "text": "{He} wore a union button pinned to the underside of {his} lapel instead of the front, where it would show only if the coat blew open. {He} checked it was there twice, by touch, without looking down.",
+    "recall": "the hidden union button",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-043",
+    "deck": "portrait-pairs",
+    "text": "{He} kept {his} hands half closed even empty, the shape of a grip {he} used all day and could not quite let go of at night.",
+    "recall": "the half-closed hands",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-044",
+    "deck": "portrait-pairs",
+    "text": "{He} wore boots resoled at least twice, and the laces did not match: one black, one brown, tied the same careful double knot on each.",
+    "recall": "the mismatched bootlaces",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-045",
+    "deck": "portrait-pairs",
+    "text": "A pawn ticket rode folded in {his} hatband, soft at the creases from being taken out and put back more times than a ticket usually is. {He} did not take {his} hat off the whole visit.",
+    "recall": "the folded pawn ticket",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hat",
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-046",
+    "deck": "portrait-pairs",
+    "text": "The nail on {his} right thumb had gone black years ago under some weight and grown out that way ever since, a small dark half-moon that never changed.",
+    "recall": "the blackened thumbnail",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-047",
+    "deck": "portrait-pairs",
+    "text": "{He} had brushed {his} coat before coming, but sawdust still sat in the seams where a brush could not reach it. It was the kind of dust that gets into a coat over years, not one day.",
+    "recall": "the sawdust in the seams",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "coat",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-048",
+    "deck": "portrait-pairs",
+    "text": "A stickpin held a tie that had seen better collars, the pin worth more than the shirt under it. {He} touched it whenever the talk turned to money, and left it alone the rest of the time.",
+    "recall": "the stickpin worth more",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-049",
+    "deck": "portrait-pairs",
+    "text": "{He} had scrubbed {his} nails hard before coming, and the grease had come out of everywhere except the crease where the nail meets the skin. It does not wash out in one try.",
+    "recall": "the grease under the nails",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-050",
+    "deck": "portrait-pairs",
+    "text": "{He} had left {his} cap in {his} coat pocket instead of on {his} head, folded small, the sort of thing a man does when {he} does not want to be taken for what {he} is.",
+    "recall": "the folded hidden cap",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-051",
+    "deck": "portrait-pairs",
+    "text": "{He} had knuckles swollen thick over the years, not from fighting but from the same motion repeated for decades. {He} flexed them once, slow, before {he} answered anything.",
+    "recall": "the work-swollen knuckles",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-052",
+    "deck": "portrait-pairs",
+    "text": "Inside {his} hatband a name was inked in a hand not {his} own, the mark of a rooming house that stamps its lodgers' hats so they do not walk off with the wrong one. {He} had kept the hat long after {he} left the room it named.",
+    "recall": "the inked hatband name",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [
+      "hat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-053",
+    "deck": "portrait-pairs",
+    "text": "{He} had a voice gone permanently hoarse, worn down by years of shouting over machinery until it never came all the way back. {He} spoke low now because it was the only volume left {him}.",
+    "recall": "the machine-worn voice",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice",
+      "machinery"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-054",
+    "deck": "portrait-pairs",
+    "text": "{He} wore spectacles mended at one hinge with a twist of wire instead of being taken to be fixed properly. {He} pushed them up with one finger, the same finger, every time they slid.",
+    "recall": "the wire-mended spectacles",
+    "tags": {
+      "gender": "m",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-055",
+    "deck": "portrait-pairs",
+    "text": "{He} had a row of small marks across the pad of {his} thumb, each one the size of a needle's point, lined up close together the way they come from the same motion done over and over.",
+    "recall": "the row of needle pricks",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-056",
+    "deck": "portrait-pairs",
+    "text": "A laundry mark was stitched into {his} collar in red thread, two letters that were not {his} own. It is how a rooming house keeps one girl's wash from another's, and {he} had never had it picked out.",
+    "recall": "the laundry mark initials",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-057",
+    "deck": "portrait-pairs",
+    "text": "The first two fingers on {his} right hand stayed a faint blue at the base, dye that does not come out with soap, only fades with time between jobs.",
+    "recall": "the dye-stained fingers",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-058",
+    "deck": "portrait-pairs",
+    "text": "{He} had a hard ring worn into {his} middle finger just below the nail, the shape of a thimble {he} was not wearing. {He} rubbed at it now and then out of habit, though the thimble itself was somewhere else.",
+    "recall": "the thimble-shaped callus",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-059",
+    "deck": "portrait-pairs",
+    "text": "A hairpin held the hem of {his} skirt together at one seam instead of {his} hair, closing a tear that had not yet made it to a needle. It showed only when {he} crossed {his} legs, and {he} kept them uncrossed the rest of the visit.",
+    "recall": "the pinned-up hem",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-060",
+    "deck": "portrait-pairs",
+    "text": "A pale scar crossed the inside of {his} forearm, old and flat, the width of a mangle's roller. {He} wore {his} sleeve down over it out of habit rather than to hide it.",
+    "recall": "the mangle-roller scar",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-061",
+    "deck": "portrait-pairs",
+    "text": "{He} carried a union card folded small in a stocking top instead of a handbag, and it came out once, by accident, tangled with a folded bill. {He} tucked it away again fast.",
+    "recall": "the hidden union card",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-062",
+    "deck": "portrait-pairs",
+    "text": "{He} spoke flat and careful the one time {he} named an employer, the tone of somebody giving a name they'd rather not give. The rest of the visit {he} talked easy.",
+    "recall": "the careful flattened voice",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-063",
+    "deck": "portrait-pairs",
+    "text": "One glove had been mended at the thumb with thread a shade off the wool, close but not matched. {He} wore it anyway and did not try to hide the seam.",
+    "recall": "the mismatched mended glove",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-064",
+    "deck": "portrait-pairs",
+    "text": "{He} held two fingers apart a fixed distance before answering almost any question of size or distance, checking it silently against something remembered before saying a number out loud.",
+    "recall": "the measured finger-span",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-065",
+    "deck": "portrait-pairs",
+    "text": "{He} kept one hand inside {his} coat pocket the whole time, working something between finger and thumb in a slow circle. It was a rosary; one bead had come loose from the string and knocked faintly against the others.",
+    "recall": "the loose rosary bead",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-066",
+    "deck": "portrait-pairs",
+    "text": "{He} wore spectacles on a ribbon at {his} throat, the lenses gone faintly cloudy with age and scrubbing. {He} put them on to look at me once, took them off again, and seemed satisfied with what the one look had told {him}.",
+    "recall": "the clouded spectacle lenses",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-067",
+    "deck": "portrait-pairs",
+    "text": "{He} had hands red at the knuckle no matter the season, chapped past the point where rest between jobs could heal them fully anymore. {He} kept them folded in {his} lap, still, the one part of {him} that did not move while {he} talked.",
+    "recall": "the permanently chapped hands",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-068",
+    "deck": "portrait-pairs",
+    "text": "{He} had worn {his} accent smooth everywhere except the numbers: {he} still said them the old way, without noticing, every time money or a date came up.",
+    "recall": "the accent on the numbers",
+    "tags": {
+      "gender": "f",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-069",
+    "deck": "portrait-pairs",
+    "text": "{He} tapped two fingers against {his} temple instead of writing anything down, trusting memory over a note that somebody else might read.",
+    "recall": "the temple tapped twice",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-070",
+    "deck": "portrait-pairs",
+    "text": "The calluses on {his} hand sat only near the base of the fingers, not across the whole palm, the mark of one tool held one way, day after day.",
+    "recall": "the base-of-finger calluses",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-071",
+    "deck": "portrait-pairs",
+    "text": "A betting slip sat folded into a small hard square in {his} breast pocket, torn clean in half at some point and kept anyway. {He} did not take it out, only patted the pocket once, the way a person checks a thing is still there.",
+    "recall": "the torn betting slip",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [
+      "gambling"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-072",
+    "deck": "portrait-pairs",
+    "text": "A key hung on a string under {his} shirt, hidden from sight until {he} leaned forward and it caught the light at the collar. {He} tucked it back in without being asked to.",
+    "recall": "the key on a string",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "keys"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-073",
+    "deck": "portrait-pairs",
+    "text": "A badge with {his} name stamped on it was pinned to the inside of {his} coat instead of the outside, unpinned, {he} said, the minute {he} was off the job. {He} had forgotten to take it off before coming.",
+    "recall": "the hidden name badge",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-074",
+    "deck": "portrait-pairs",
+    "text": "{He} stood near the door through two offers of a chair before finally taking one, and even then sat closest to it of the two chairs in the room.",
+    "recall": "the chair nearest the door",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-075",
+    "deck": "portrait-pairs",
+    "text": "A fine white dust sat in the creases of {his} knuckles, plaster rather than flour, the kind that gets into the skin over a long day and does not fully wash out by morning.",
+    "recall": "the plaster in the knuckles",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-076",
+    "deck": "portrait-pairs",
+    "text": "{He} named the figure once, quietly, a beat before saying it out loud: the habit of a person who has priced the same thing too many times to trust the number without checking it.",
+    "recall": "the price said twice",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-077",
+    "deck": "portrait-pairs",
+    "text": "A union button sat pinned to {his} lapel, the fabric around the pin gone thin and pale from decades in the same spot. {He} had never moved it to a newer coat.",
+    "recall": "the decades-old union button",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-078",
+    "deck": "portrait-pairs",
+    "text": "{He} counted under {his} breath without meaning to, the rhythm of some trade {he} had not worked at in years surfacing whenever {his} hands were idle.",
+    "recall": "the trade's old count",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-079",
+    "deck": "portrait-pairs",
+    "text": "{He} tapped a pencil twice against the desk before writing anything down, never once, never three times: a small ritual {he} seemed not to know {he} was keeping.",
+    "recall": "the pencil tapped twice",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-080",
+    "deck": "portrait-pairs",
+    "text": "{He} had hands still strong, scarred faintly across every knuckle from years at some trade, and {he} kept them folded now, quiet, in a lap that did not otherwise move.",
+    "recall": "the strong scarred hands",
+    "tags": {
+      "gender": "any",
+      "class": "working",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-081",
+    "deck": "portrait-pairs",
+    "text": "{He} took the chair that faced both the door and the window instead of the one I offered, and did it so smoothly I did not notice until {he} was already sitting in it.",
+    "recall": "the chair facing both exits",
+    "tags": {
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [
+      "door",
+      "window"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-082",
+    "deck": "portrait-pairs",
+    "text": "The same two knuckles on {his} right hand had been split and healed rough more than once, the skin there thicker and paler than anywhere else on the hand.",
+    "recall": "the repeatedly split knuckles",
+    "tags": {
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-083",
+    "deck": "portrait-pairs",
+    "text": "{He} wore a pinky ring turned stone-side in, showing only a plain gold band, until {he} wanted it noticed. Then {he} turned it out again with one thumb, without a word about it either way.",
+    "recall": "the ring turned to hide",
+    "tags": {
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-084",
+    "deck": "portrait-pairs",
+    "text": "{He} laughed only once, wide, and a back tooth was missing where it would not usually show. {He} cut the laugh short right after, the way a man does who did not mean to let it out that far.",
+    "recall": "the missing back tooth",
+    "tags": {
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "mouth"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-085",
+    "deck": "portrait-pairs",
+    "text": "{He} counted the bills by feel, thumb running the edges, without once looking down at {his} own hands. {He} kept {his} eyes on me for all of it.",
+    "recall": "money counted by feel",
+    "tags": {
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [
+      "money",
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-086",
+    "deck": "portrait-pairs",
+    "text": "A blue mark showed at {his} wrist when the cuff rode up, old and blurred past reading now. {He} pulled the sleeve back down before I had gotten a proper look.",
+    "recall": "the faded wrist mark",
+    "tags": {
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-087",
+    "deck": "portrait-pairs",
+    "text": "{He} kept {his} voice level through every question I put to {him}, easy and flat whether the answer was nothing or something. The flatness never once cracked, which told me more than a crack would have.",
+    "recall": "the unbroken flat voice",
+    "tags": {
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-088",
+    "deck": "portrait-pairs",
+    "text": "{He} had a nose broken at least twice and set a little differently each time, so it ran crooked in two directions instead of one.",
+    "recall": "the twice-broken nose",
+    "tags": {
+      "gender": "m",
+      "class": "underworld",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-089",
+    "deck": "portrait-pairs",
+    "text": "{He} watched my hands more than my face while I talked, and kept {his} own flat on {his} lap the whole time, in plain sight.",
+    "recall": "the hands watched instead",
+    "tags": {
+      "gender": "f",
+      "class": "underworld",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-090",
+    "deck": "portrait-pairs",
+    "text": "{He} answered the first question in three sentences, and when I circled back to it later {he} gave me the same three sentences again, in the same order, word for word.",
+    "recall": "the rehearsed three sentences",
+    "tags": {
+      "gender": "f",
+      "class": "underworld",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-091",
+    "deck": "portrait-pairs",
+    "text": "{He} lit a cigarette early on and let it burn down untouched in the ashtray, never raising it once. It was there to keep {his} hands busy, not to smoke.",
+    "recall": "the untouched burning cigarette",
+    "tags": {
+      "gender": "f",
+      "class": "underworld",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "cigarette"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-092",
+    "deck": "portrait-pairs",
+    "text": "{He} priced three things out loud without being asked: a coat on the rack, a ring on {his} own hand, the desk itself, the way a person does who has spent years telling what a thing will fetch.",
+    "recall": "the habit of pricing aloud",
+    "tags": {
+      "gender": "f",
+      "class": "underworld",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-093",
+    "deck": "portrait-pairs",
+    "text": "A thin scar ran along {his} jaw, old and pale, covered with powder a shade lighter than the skin around it. It showed anyway, in the light from the window.",
+    "recall": "the powder-covered scar",
+    "tags": {
+      "gender": "f",
+      "class": "underworld",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "face",
+      "window"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-094",
+    "deck": "portrait-pairs",
+    "text": "{He} dropped {his} voice almost to nothing at one name in particular, then brought it back to full strength on the very next word, no different than before.",
+    "recall": "the voice that dropped",
+    "tags": {
+      "gender": "f",
+      "class": "underworld",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-095",
+    "deck": "portrait-pairs",
+    "text": "{He} kept {his} hands perfectly still in {his} lap the whole visit, a stillness too complete to be natural, the kind a person learns rather than has.",
+    "recall": "the practiced stillness",
+    "tags": {
+      "gender": "f",
+      "class": "underworld",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-096",
+    "deck": "portrait-pairs",
+    "text": "{He} touched the inside of {his} coat twice without reaching in, the old reflex of checking for something that was not there anymore.",
+    "recall": "the empty pocket checked",
+    "tags": {
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "coat"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-097",
+    "deck": "portrait-pairs",
+    "text": "{He} flipped a coin off {his} thumb and caught it without looking down, over and over, the whole time {he} talked. {He} did not seem to know {he} was doing it.",
+    "recall": "the unlooked-at coin flip",
+    "tags": {
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-098",
+    "deck": "portrait-pairs",
+    "text": "{He} repeated the last word of every question back before answering it, a small pause built in every time: a second bought before the answer, every single time.",
+    "recall": "the repeated last word",
+    "tags": {
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-099",
+    "deck": "portrait-pairs",
+    "text": "One hand stayed below the desk's edge for most of the visit, out of sight, and came up only once, empty, to make a point.",
+    "recall": "the hand out of sight",
+    "tags": {
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-100",
+    "deck": "portrait-pairs",
+    "text": "{He} spoke in short sentences and said, without being asked, that {he} used to talk longer before {he} learned better. {He} did not say when {he} had learned it.",
+    "recall": "the shortened sentences",
+    "tags": {
+      "gender": "any",
+      "class": "underworld",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-101",
+    "deck": "portrait-pairs",
+    "text": "The side of {his} middle finger carried a permanent gray-blue stain, the mark of a pen held the same way through years of writing. {He} rubbed at it without thinking, the way a person rubs at something that never actually comes off.",
+    "recall": "the permanent ink stain",
+    "tags": {
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "paper",
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-102",
+    "deck": "portrait-pairs",
+    "text": "{He} checked {his} watch exactly on the hour, to the minute, twice while I had {him} in front of me. Neither time was {he} in any hurry to be somewhere else.",
+    "recall": "the hourly watch check",
+    "tags": {
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-103",
+    "deck": "portrait-pairs",
+    "text": "{He} pushed {his} spectacles up onto {his} forehead to look at me plainly and left them there the rest of the visit, forgetting them twice and reaching for {his} own face to find them.",
+    "recall": "the forgotten spectacles",
+    "tags": {
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-104",
+    "deck": "portrait-pairs",
+    "text": "{He} folded {his} hands the same exact way each time before saying anything difficult: thumbs crossed left over right, never the other way round.",
+    "recall": "the precisely folded hands",
+    "tags": {
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-105",
+    "deck": "portrait-pairs",
+    "text": "{He} set {his} case at the desk's corner, squared to the edge, and adjusted it a half-inch when {he} thought I was not looking.",
+    "recall": "the squared-off case",
+    "tags": {
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-106",
+    "deck": "portrait-pairs",
+    "text": "{He} corrected {his} own words twice mid-sentence, trading a plain term for a more exact one both times, the habit of a man paid to have the exact word ready.",
+    "recall": "the mid-sentence correction",
+    "tags": {
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-107",
+    "deck": "portrait-pairs",
+    "text": "A pale line of chalk sat along {his} cuff where a brush had missed it, though the rest of the coat was spotless. It is the kind of mark a blackboard leaves on a sleeve after enough years at it.",
+    "recall": "the chalk-dusted cuff",
+    "tags": {
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "coat",
+      "work"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-108",
+    "deck": "portrait-pairs",
+    "text": "{He} had a collar creased in a permanent line where something had pressed against it for decades, something {he} no longer carried. {He} never said what it was from, and I did not press for it.",
+    "recall": "the collar's permanent crease",
+    "tags": {
+      "gender": "m",
+      "class": "professional",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-109",
+    "deck": "portrait-pairs",
+    "text": "{He} kept a pencil behind one ear the whole visit and never once reached for it, though {he} touched the spot twice, an unconscious check that it was still there.",
+    "recall": "the forgotten pencil",
+    "tags": {
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pp-110",
+    "deck": "portrait-pairs",
+    "text": "A line of shorthand marks showed faint on the inside of {his} wrist, ink notes taken in a hurry and not yet washed off. {He} pulled the sleeve down over it the moment {he} noticed me reading it.",
+    "recall": "the shorthand on the wrist",
+    "tags": {
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "paper",
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-111",
+    "deck": "portrait-pairs",
+    "text": "{He} wore a watch strapped with the face turned in, against the inside of the wrist instead of out. It let {him} check the time without anyone seeing {him} do it, and {he} used it twice while we talked.",
+    "recall": "the watch worn face-in",
+    "tags": {
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-112",
+    "deck": "portrait-pairs",
+    "text": "{He} wrote a line on a pad without looking down at it once, {his} eyes on me the whole time, and the words came out straight and legible anyway.",
+    "recall": "the note written blind",
+    "tags": {
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "paper",
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-113",
+    "deck": "portrait-pairs",
+    "text": "{He} laughed exactly once during the whole visit, a single breath in and nothing let out after it, the same clipped sound each of the three or four times something might have called for more.",
+    "recall": "the laugh cut short",
+    "tags": {
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [
+      "mouth"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-114",
+    "deck": "portrait-pairs",
+    "text": "{He} kept the same even calm in {his} voice whatever {he} was telling me, hard news or easy, the trained sound of years spent saying difficult things to frightened people.",
+    "recall": "the trained soothing voice",
+    "tags": {
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "old",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-115",
+    "deck": "portrait-pairs",
+    "text": "{He} pressed two fingers to {his} own wrist partway through a sentence, out of some old habit, and gave no sign of knowing {he} was doing it.",
+    "recall": "the pulse checked absently",
+    "tags": {
+      "gender": "f",
+      "class": "professional",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-116",
+    "deck": "portrait-pairs",
+    "text": "{He} counted points off on {his} fingers while explaining anything, and stopped every single time at three, whether the list needed a fourth or not.",
+    "recall": "the count stopped at three",
+    "tags": {
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "young",
+      "setting": "office"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-117",
+    "deck": "portrait-pairs",
+    "text": "{He} repeated a hard word back slowly the first time it came up, testing the sound of it once before using it out loud.",
+    "recall": "the word tested aloud",
+    "tags": {
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "young",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "voice"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-118",
+    "deck": "portrait-pairs",
+    "text": "{He} capped and uncapped a fountain pen through every pause in the conversation, never once touching it to paper the whole visit.",
+    "recall": "the pen capped and uncapped",
+    "tags": {
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "middle",
+      "setting": "office"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-119",
+    "deck": "portrait-pairs",
+    "text": "{He} squared a single sheet of paper against the desk's edge before saying anything, though there was nothing else on the desk for it to be squared against.",
+    "recall": "the paper squared alone",
+    "tags": {
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "middle",
+      "setting": "anywhere"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "pp-120",
+    "deck": "portrait-pairs",
+    "text": "{He} answered most questions by turning them around into the shape of a statement, the exact words handed back in a different order. It was an old habit, the kind worn permanent by years spent in rooms where a wrong word costs something.",
+    "recall": "the question turned to statement",
+    "tags": {
+      "gender": "any",
+      "class": "professional",
+      "ageBand": "old",
+      "setting": "office"
+    },
+    "motifs": [
+      "voice",
+      "law"
+    ],
+    "status": "generated"
+  }
+]
