@@ -7,9 +7,14 @@
  */
 
 declare module 'node:fs' {
-  export function writeFileSync(path: string, data: string): void;
+  export function writeFileSync(path: string, data: string, encoding?: string): void;
   export function mkdirSync(path: string, options?: { recursive?: boolean }): void;
   export function existsSync(path: string): boolean;
+  /** The golden loop's page dump clears its output directory before filling it. */
+  export function rmSync(
+    path: string,
+    options?: { recursive?: boolean; force?: boolean },
+  ): void;
 }
 
 declare module 'node:path' {
