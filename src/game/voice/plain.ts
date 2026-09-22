@@ -128,6 +128,178 @@ export const PLAIN_QUIET: string[] = [
   'The clock took its half hour and gave nothing back.',
 ];
 
+/* ------------------------------------------------------------------ *
+ * The briefing as an exchange (the golden loop, `docs/11-golden-loop.md` §3).
+ *
+ * The client's ten to sixteen sentences used to arrive as four blocks of
+ * quoted declaratives with nobody in the room asking anything, which is a
+ * deposition and not a scene. Hammett's clients talk in long turns, but it is
+ * the detective's short questions between them that make a turn sound spoken:
+ * "What were you doing in his rooms at half past eleven?" is what forces
+ * "Collecting."
+ *
+ * These are atoms and not cards, for the reason the head of this file gives:
+ * nothing in the plain register is dealt, scored for motifs or burned, and a
+ * deck entry would make all three true of them. `correspond-pages.ts` already
+ * harvests this module's exported strings into the engine's closed vocabulary,
+ * so a question written here is a question the checker can trace.
+ *
+ * Slots: `{victim}` the surname, `{they}`/`{them}`/`{their}` the victim's
+ * pronouns, `{place}` where it happened. No hour is ever named by a question —
+ * the client names the hours, and the page may only print the ones its own
+ * facts account for.
+ * ------------------------------------------------------------------ */
+
+/** Before the client says where and when it was found. Never says "body". */
+export const ASK_DISCOVERY: string[] = [
+  'Who found it?',
+  'When did you find it?',
+  'Where was it found?',
+  'What time was that?',
+  'Who was there first?',
+  'Where, exactly?',
+  'What did you see first?',
+  'Who else was there?',
+  'When did you know something was wrong?',
+  'Tell me how it was found.',
+  'And nobody called me until now?',
+  'Start with the finding of it.',
+];
+
+/** Before the client says how they stand to the victim. */
+export const ASK_TIE: string[] = [
+  'What were you doing there?',
+  'What were you to {victim}?',
+  'What was your business with {victim}?',
+  'How do you come into it?',
+  'What brought you to {place}?',
+  'Why were you there at all?',
+  'How well did you know {victim}?',
+  'What was the arrangement?',
+  'Where do you come into this?',
+  'And you were there why?',
+  'How long have you known {victim}?',
+  'What put you in the same room?',
+];
+
+/** Before the client says why they are hiring. */
+export const ASK_PURPOSE: string[] = [
+  'Why me?',
+  'Why not the precinct?',
+  'What do you want done?',
+  'Why come to me with it?',
+  'What is it you want?',
+  'You could have let it alone.',
+  'What am I being hired for?',
+  'And you want what, out of it?',
+  'Why pay for this?',
+  'What do you want me to do?',
+  'Say what you want.',
+  'And you want it settled.',
+];
+
+/** Before the client names who they would rather you looked at. */
+export const ASK_POINTER: string[] = [
+  'Who do you like for it?',
+  'Who would you start with?',
+  'Give me a name.',
+  'Who do you want looked at?',
+  'Who comes to mind?',
+  'Whose name have you got?',
+  'Where would you have me start?',
+  'Who had a reason?',
+  'Who is it you are thinking of?',
+  'Name somebody.',
+  'You have got somebody in mind.',
+  'Who, then?',
+];
+
+/** The neutral prod, when no sharper question fits the next turn. */
+export const ASK_FOLLOW: string[] = [
+  'And?',
+  'Go on.',
+  'Then what.',
+  'Keep going.',
+  'What else.',
+  'Then?',
+  'Say it.',
+  'I am listening.',
+  'And then?',
+  'Anything else?',
+];
+
+export type BriefingAsk = 'discovery' | 'tie' | 'purpose' | 'pointer' | 'follow';
+
+const ASKS: Record<BriefingAsk, string[]> = {
+  discovery: ASK_DISCOVERY,
+  tie: ASK_TIE,
+  purpose: ASK_PURPOSE,
+  pointer: ASK_POINTER,
+  follow: ASK_FOLLOW,
+};
+
+/**
+ * The detective registering a fact he has just been handed, without comment.
+ * Three words is the point of them: the page is starving for short sentences
+ * and these are the shortest true thing on it.
+ */
+export const BRIEFING_ACK: string[] = [
+  'I knew it.',
+  'I noted it.',
+  'I said nothing.',
+  'That fit.',
+  'I believed it.',
+  'I let it stand.',
+  'I did not argue.',
+  'I had heard worse.',
+  'That was enough.',
+  'I took it in.',
+];
+
+/** A beat the speaker takes after a hard sentence, never explained. */
+export const BRIEFING_PAUSE: string[] = [
+  '{Pronoun} let that sit.',
+  '{Pronoun} said nothing for a while.',
+  '{name} did not go on right away.',
+  '{Pronoun} stopped there.',
+  '{Pronoun} took a moment.',
+  'I did not press {name}.',
+  '{Pronoun} did not finish the sentence.',
+  'I let {name} sit with it.',
+  '{Pronoun} waited before going on.',
+  'Neither of us spoke.',
+  '{name} left it there.',
+];
+
+/**
+ * The business of staying in the chair, never of getting into it: the
+ * generator's own first sentence has already said she came up the stairs and
+ * sat down, and an atom that sat her down again would be the page arguing with
+ * itself. This is the golden's second half — "She did not take the coat off."
+ */
+export const BRIEFING_SETTLE: string[] = [
+  '{Pronoun} did not take the coat off.',
+  '{Pronoun} did not lean back.',
+  '{Pronoun} kept to the edge of the chair.',
+  '{name} kept the coat on.',
+  '{Pronoun} sat with both hands folded.',
+  '{Pronoun} sat straight and stayed that way.',
+  '{name} did not move for a while.',
+  '{Pronoun} put both feet flat on the floor.',
+  '{name} looked at the desk and not at me.',
+  '{Pronoun} kept one hand in a pocket.',
+];
+
+/** One of Dashiell's short questions, filled. Empty when no shape fits. */
+export function briefingQuestion(
+  rng: Rng,
+  kind: BriefingAsk,
+  slots: PlainSlots = {},
+  avoid: string | null = null,
+): string {
+  return pickShape(rng, ASKS[kind], slots, avoid);
+}
+
 export type ConnectiveKind = 'going' | 'arriving' | 'present' | 'leaving' | 'quiet';
 
 const POOLS: Record<ConnectiveKind, string[]> = {
@@ -166,7 +338,21 @@ export function connective(
   slots: PlainSlots = {},
   avoid: string | null = null,
 ): string {
-  const pool = POOLS[kind];
+  return pickShape(rng, POOLS[kind], slots, avoid);
+}
+
+/**
+ * Walk a pool from a random start and take the first shape whose slots are all
+ * filled, skipping the one the caller just used. Every plain pool is drawn this
+ * way: repetition is allowed — that is what the register is for — but not twice
+ * running out of the same pool.
+ */
+export function pickShape(
+  rng: Rng,
+  pool: readonly string[],
+  slots: PlainSlots = {},
+  avoid: string | null = null,
+): string {
   const start = rng.int(pool.length);
   for (let i = 0; i < pool.length; i++) {
     const template = pool[(start + i) % pool.length] as string;

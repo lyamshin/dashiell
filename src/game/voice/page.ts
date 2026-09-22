@@ -86,11 +86,16 @@ import {
 } from './exchange.js';
 import { findKindOf } from './facts.js';
 import {
+  BRIEFING_ACK,
+  BRIEFING_PAUSE,
+  BRIEFING_SETTLE,
   PLAIN_FLOOR,
   SELF_ALREADY,
   SELF_QUESTIONS,
+  briefingQuestion,
   clueAbout,
   connective,
+  pickShape,
   type ConnectiveKind,
   countSentences,
   dossierKnown,
@@ -111,6 +116,7 @@ import {
   type MotifContext,
 } from './motifs.js';
 import {
+  briefingTurns,
   clientLeavingLine,
   entranceCard,
   hiringFrame,
@@ -1713,21 +1719,75 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     keep: 2,
   });
 
-  /* 3. The briefing (M5 §2). What he saw, and then what she said. */
+  /* 3. The briefing (M5 §2, turned into an exchange by the golden loop §3).
+   *
+   * What he saw, and then what she said — but not as four blocks of quoted
+   * declaratives with nobody asking anything. Her sentences are grouped by
+   * what they are about and Dashiell's short questions go between the groups,
+   * chosen by what the *next* group establishes: a question about the finding
+   * before the discovery, one about what she was doing there before the tie,
+   * "Why me?" before the purpose. The first turn gets no question, because it
+   * is what she came up the stairs to say.
+   */
   const split = splitBriefing(view, familiar);
   const seen = [...(split.entrance ? [split.entrance] : []), ...split.narration];
   if (seen.length > 0) t.say(seen.join(' '), 'narrator', { transparent: true });
-  const speech = speechParagraphs(split.speech);
-  for (const paragraph of speech) {
-    t.say(paragraph, 'exchange', {
-      personId: client.id,
-      register: 'truth',
-      targets: ['voice', 'silence'],
-      transparent: true,
-    });
+
+  const victim = view.victim;
+  const askSlots: Slots = {
+    victim: victim.surname,
+    place: view.placeById.get(view.kase.act.place)?.shortName,
+  };
+  const plainSlots: Slots = {
+    name: client.surname,
+    Pronoun: pronounOf(client) === 'she' ? 'She' : 'He',
+  };
+  // She gets into the chair before she starts: two flat sentences of business,
+  // which is the shortest thing on the page and the page is starving for it.
+  t.say(pickShape(dealer.random, BRIEFING_SETTLE, plainSlots), 'narrator', { transparent: true });
+
+  const turns = briefingTurns(split.speech);
+  let lastAsk: string | null = null;
+  for (const [i, turn] of turns.entries()) {
+    if (turn.ask) {
+      const question = briefingQuestion(dealer.random, turn.ask, askSlots, lastAsk);
+      if (question.length > 0) {
+        lastAsk = question;
+        t.say(`“${question}”`, 'exchange', {
+          personId: client.id,
+          targets: DASHIELL_TARGETS,
+          transparent: true,
+        });
+      }
+    }
+    for (const paragraph of speechParagraphs(turn.lines)) {
+      t.say(paragraph, 'exchange', {
+        personId: client.id,
+        register: 'truth',
+        targets: ['voice', 'silence'],
+        transparent: true,
+      });
+    }
+    // Once, after the turn that carried what happened: him registering it and
+    // saying nothing else. Twice would be a tic.
+    if (i === 0) {
+      t.say(dealer.random.pick(BRIEFING_ACK), 'narrator', { transparent: true });
+    } else if (i === turns.length - 2) {
+      t.say(pickShape(dealer.random, BRIEFING_PAUSE, plainSlots), 'narrator', {
+        transparent: true,
+      });
+    }
   }
 
   /* 4. The hiring: the pointer, which is the job, and the money. */
+  const pointer = briefingQuestion(dealer.random, 'pointer', askSlots, lastAsk);
+  if (pointer.length > 0) {
+    t.say(`“${pointer}”`, 'exchange', {
+      personId: client.id,
+      targets: DASHIELL_TARGETS,
+      transparent: true,
+    });
+  }
   const clue = scene.clientClue;
   const fact =
     split.close.length > 0

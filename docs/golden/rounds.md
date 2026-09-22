@@ -185,3 +185,214 @@ you answers your questions.
 
 If I had to put money down tonight, Lanza.
 ```
+
+---
+
+## Round 1 — the briefing as an exchange
+
+```
+120 pages · 40 seeds · pages 1–3 · round 1
+
+metric                    mean        target    dist     worst  gold p1  gold p2  page
+--------------------------------------------------------------------------------------
+orphan_word_ratio        0.829       <= 0.68   0.219     0.960     0.73     0.82  seed38-p3.txt
+paragraph_cohesion       0.595       >= 0.65   0.084     0.200     0.67     0.80  seed21-p3.txt
+sentence_cohesion        0.593       >= 0.55   0.000     0.330     0.53     0.59  seed38-p3.txt
+short_share              0.146       >= 0.28   0.479     0.000     0.42     0.17  seed02-p3.txt
+long_ratio               0.032 0.0625-0.1875   0.496     0.000     0.09     0.06  seed01-p2.txt
+dialogue_share_p1        0.269      0.3-0.45   0.103     0.210     0.39     0.00  seed05-p1.txt
+figures                  0.517          <= 1   0.000     2.000     1.00     0.00  seed06-p1.txt
+plain_ratio              0.696        >= 0.6   0.000     0.500        —        —  seed01-p3.txt
+words_per_paragraph     20.498         30-45   0.317    14.200    22.40    36.00  seed16-p3.txt
+--------------------------------------------------------------------------------------
+AGGREGATE DISTANCE       1.698
+
+gaps: no-fact ×1
+```
+
+### The reading
+
+**The change.** The briefing is an exchange now (`golden-loop.md` §3): the client's sentences are grouped by what the case's own fields say each one is about — the standing and the givens, the discovery and the precinct, the tie and its backstory, the purpose and its cost — and Dashiell's short questions go between the groups, chosen by what the *next* group establishes. Two plain narration atoms ride with it: the business of staying in the chair, and one acknowledgement after the turn that carried what happened. New atoms live in `plain.ts` as engine data rather than in a deck, because nothing in the plain register is dealt, motif-scored or burned, and a deck entry would make all three true of them.
+
+**What the numbers did.** The aggregate went the wrong way, 1.485 → 1.698, on two metrics that punish paragraph count: `words_per_paragraph` 23.8 → 20.5 and `paragraph_cohesion` 0.612 → 0.595. Dialogue on the briefing page moved the right way, 0.251 → 0.269. `short_share` did not move, because the sentence splitter in `style-metrics.py` will not break after a closing quotation mark — `object.” I let it stand.` counts as one sentence — so a short quoted question is invisible to it and is glued to whatever narration follows. The golden gets the same treatment, so the measure is fair, but it means the briefing's rhythm cannot be bought in quoted lines alone.
+
+**The reading.** The page is a scene now where it was a deposition: somebody asks, somebody answers, and the facts arrive because they were asked for rather than because a list ran on. What the change exposed is the thing furthest from the golden and it is structural — the engine writes one paragraph per block, so a page of twelve blocks is twelve paragraphs of twenty words each, where the golden alternates a four-sentence paragraph that follows one thing with a two-word line of speech. Fusing what belongs together into single paragraphs is the next fix, and it is the same fix for `words_per_paragraph`, for `paragraph_cohesion` and for the sequential description of rule 3.
+
+### Page one, seeds 3, 7 and 12
+
+**Seed 3**
+
+```
+Midnight. Two rooms over a Chinese laundry on Rivington Street, the Lower
+East Side.
+
+My knuckle had split open again, the same place as last month. It caught on
+the desk drawer every time. Frost had crept across the window glass from the
+inside.
+
+Kreuzer shut the door soft, the way careful people do when doors matter to
+them. Kreuzer: a crooked little finger, broken once and never reset. Collar
+buttoned, no tie, and a smear of green paint at one shoulder.
+
+A woman came up the stairs after midnight, and sat down. Gretchen Kreuzer is
+30 years old and a pawnbroker’s clerk. Kreuzer writes the tickets behind the
+grille and knows what a thing is worth.
+
+She sat with both hands folded.
+
+“Sweeney was the reason four places on the street stayed open, and everyone
+knew it. Sweeney was found dead at the suite. Sweeney was killed at the
+suite, and nothing was carried out of the room afterwards.”
+
+“The coroner puts it between 9:30 PM and 11:00 PM, which is two hours of
+nothing useful. It was a blunt object.”
+
+I let it stand.
+
+“Tell me how it was found.”
+
+“I found Sweeney at the suite at half past eleven. The precinct took a
+statement at the desk and filed it.”
+
+“What was your business with Sweeney?”
+
+“I am a customer of Sweeney’s. I came to Sweeney on Domenico Tramonti’s
+introduction and have stayed a customer.”
+
+She stopped there.
+
+“And you want what, out of it?”
+
+“I have something owing with Sweeney that death did not settle. I am
+spending money I was owed and may never see.”
+
+“Give me a name.”
+
+"Start with Grasso. Grasso blamed Sweeney for the ruin of his business. You
+know the rate." I did. I held out my hand, and a roll with a rubber band
+round it landed in it.
+
+Kreuzer is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+Nothing is settled. If it is anybody yet, it is Grasso.
+```
+
+**Seed 7**
+
+```
+Midnight. Two rooms over a pawnshop on Great Jones Street, the Bowery.
+
+The landlady's bill was folded under the telephone. I'd see it every time
+the thing didn't ring. I decided not to open it until it did.
+
+Salerno knocked twice, waited for the second, and came in only after I
+answered. Salerno: a birthmark the shape of a thumbprint, just under the
+left ear. A hem taken up an inch, the old line still showing.
+
+A woman came up the stairs after midnight, and sat down. Lucia Salerno is 37
+years old and a chambermaid. Salerno does eleven rooms a day and the linen
+after.
+
+Salerno did not move for a while.
+
+“Brennan was the one name on the block the papers would have printed. A
+japanned cash box was taken from the back lot, which is Brennan’s. Nothing
+at the back lot was forced: the lock was turned and the door was shut again
+after.”
+
+“The precinct puts it between 10:00 PM and 11:30 PM. Brennan is not saying
+much about what was in it.”
+
+I took it in.
+
+“And nobody called me until now?”
+
+“Bledsoe found the door at the back lot shut and a japanned cash box gone,
+at 11:30 PM. The precinct came, walked through it, and went.”
+
+“How well did you know Brennan?”
+
+“I am Brennan’s tenant. Brennan put my rent up twice in a year and I paid it
+twice.”
+
+She stopped there.
+
+“Why come to me with it?”
+
+“I want it established that it was not me, before anybody says otherwise. I
+was near enough to it that night to know how it looks, so I am saying it
+first.”
+
+“Who do you like for it?”
+
+"Start with Mosley. Mosley owed Brennan four thousand dollars and was past
+due on it, Dashiell." Salerno didn't waste breath explaining further. I took
+twenty dollars the way I always did from Salerno, without counting it.
+
+Salerno is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+Nothing is settled. If it is anybody yet, it is Mosley.
+```
+
+**Seed 12**
+
+```
+Midnight. Two rooms over a pawnshop on Eighth Avenue, Chelsea.
+
+My knuckle had split open again, the same place as last month. It caught on
+the desk drawer every time. Frost had crept across the window glass from the
+inside.
+
+Tillman was talking before the door shut behind her, about the cab, the
+weather, anything but the reason she'd come. Tillman: nails bitten to the
+quick on the right hand only. A brooch pinned slightly crooked, like it went
+on in a hurry.
+
+A woman came up the stairs after midnight, and sat down. Odessa Tillman is
+47 years old and a curb broker. Tillman trades on the street for men who
+would rather not be seen doing it.
+
+She did not lean back.
+
+“Grasso could close a building with a signature, and had closed two. Grasso
+was found dead at the benches. Grasso was not killed at the benches: there
+is no blood there and no sign of a struggle.”
+
+“The coroner puts it between 6:00 PM and 7:30 PM. It was poison in a drink,
+and it happened somewhere else.”
+
+I believed it.
+
+“Who else was there?”
+
+“I found Grasso at the benches at seven o’clock. The precinct wrote it down
+as a fall and closed the book on it.”
+
+“How do you come into it?”
+
+“I am in Grasso’s debt. Grasso carried me through a bad winter and has been
+collecting on it ever since.”
+
+She took a moment.
+
+“Say what you want.”
+
+“I want the one who killed Grasso found, because the precinct has stopped
+looking. I know that asking questions on this block is a way of being asked
+some.”
+
+“Who do you want looked at?”
+
+"Start with Lanza. Lanza blamed Grasso for the ruin of his business,
+Dashiell, same as always," Tillman said, and kept talking through the part
+where a hundred dollars landed on my desk. I picked it up without breaking
+Tillman's stride.
+
+Tillman is still in the chair. Two questions on the house — a woman hiring
+you answers your questions.
+
+The money had not changed its mind about anything. If I had to put money
+down tonight, Lanza.
+```
