@@ -1,93 +1,452 @@
 [
   {
-    "id": "hrs-p001",
+    "id": "hrs-001",
     "deck": "hours",
     "text": "It was past {hour}.",
     "tags": {
       "beat": "hour"
     },
     "motifs": [],
-    "status": "placeholder",
-    "notes": "Placeholder (M6 §3). The clock's beats: an hour gone past, two calls left, the last one. Each replaces the page's transition and never adds to it."
+    "status": "generated"
   },
   {
-    "id": "hrs-p002",
+    "id": "hrs-002",
     "deck": "hours",
     "text": "It had gone {hour}.",
     "tags": {
       "beat": "hour"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "hrs-p003",
+    "id": "hrs-003",
     "deck": "hours",
     "text": "Somewhere a clock had gone past {hour}.",
     "tags": {
       "beat": "hour"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "hrs-p004",
+    "id": "hrs-004",
+    "deck": "hours",
+    "text": "It was {hour} now.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-005",
+    "deck": "hours",
+    "text": "The night had reached {hour} without my noticing.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-006",
+    "deck": "hours",
+    "text": "The hour had turned to {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-007",
+    "deck": "hours",
+    "text": "It was gone {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-008",
+    "deck": "hours",
+    "text": "Somewhere in the building a clock struck {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-009",
+    "deck": "hours",
+    "text": "It had turned {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-010",
+    "deck": "hours",
+    "text": "The night had gone past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-011",
+    "deck": "hours",
+    "text": "It was {hour} by any clock in the neighborhood.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-012",
+    "deck": "hours",
+    "text": "Somewhere, {hour} had already come and gone.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-013",
+    "deck": "hours",
+    "text": "It had come round to {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-014",
+    "deck": "hours",
+    "text": "The hour was {hour} now.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-015",
+    "deck": "hours",
+    "text": "It was past {hour}, and the night went on.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-016",
     "deck": "hours",
     "text": "Two calls left before eight, and I knew it.",
     "tags": {
       "beat": "two-left"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "hrs-p005",
+    "id": "hrs-017",
     "deck": "hours",
     "text": "That left two more calls before the DA had it.",
     "tags": {
       "beat": "two-left"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "hrs-p006",
+    "id": "hrs-018",
     "deck": "hours",
     "text": "Two more calls. After that the night was the DA's.",
     "tags": {
       "beat": "two-left"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "hrs-p007",
+    "id": "hrs-019",
+    "deck": "hours",
+    "text": "Two calls left. I felt it.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-020",
+    "deck": "hours",
+    "text": "Two more calls, and no more after that.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-021",
+    "deck": "hours",
+    "text": "Only two calls left before eight.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-022",
+    "deck": "hours",
+    "text": "Two calls left. The night was almost the DA's.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-023",
+    "deck": "hours",
+    "text": "Two more, and the night belonged to the DA.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-024",
+    "deck": "hours",
+    "text": "Two calls left before the DA filed.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-025",
+    "deck": "hours",
+    "text": "I had two calls left, and I knew it.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-026",
+    "deck": "hours",
+    "text": "Two more calls stood between me and eight o'clock.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-027",
+    "deck": "hours",
+    "text": "That left two calls before eight took it out of my hands.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-028",
+    "deck": "hours",
+    "text": "Two calls left. Not much room for a wrong turn.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-029",
+    "deck": "hours",
+    "text": "Two more calls before the night ran out.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-030",
+    "deck": "hours",
+    "text": "Two calls left before the DA's desk had it.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-031",
     "deck": "hours",
     "text": "One call left. The next one was the last.",
     "tags": {
       "beat": "last-call"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "hrs-p008",
+    "id": "hrs-032",
     "deck": "hours",
-    "text": "That left one call, and it would have to be the right one.",
+    "text": "That left one call, and it had better be the right one.",
     "tags": {
       "beat": "last-call"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
   },
   {
-    "id": "hrs-p009",
+    "id": "hrs-033",
     "deck": "hours",
     "text": "One more call and the night was over.",
     "tags": {
       "beat": "last-call"
     },
     "motifs": [],
-    "status": "placeholder"
+    "status": "generated"
+  },
+  {
+    "id": "hrs-034",
+    "deck": "hours",
+    "text": "One call left. No room after it.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-035",
+    "deck": "hours",
+    "text": "This was the last one.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-036",
+    "deck": "hours",
+    "text": "One call left before eight took it.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-037",
+    "deck": "hours",
+    "text": "The next call would be the last.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-038",
+    "deck": "hours",
+    "text": "One call left, and no second chance behind it.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-039",
+    "deck": "hours",
+    "text": "One more call, and that was the night.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-040",
+    "deck": "hours",
+    "text": "This was the last call before the DA had it.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-041",
+    "deck": "hours",
+    "text": "One call left. It had to count.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-042",
+    "deck": "hours",
+    "text": "One more, and that was all there was.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-043",
+    "deck": "hours",
+    "text": "One call left, and then the DA's desk.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-044",
+    "deck": "hours",
+    "text": "The last call was the one I had left.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-045",
+    "deck": "hours",
+    "text": "One call left. After it, the night was gone.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

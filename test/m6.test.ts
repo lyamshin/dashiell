@@ -269,24 +269,29 @@ describe('§8 errands trace', () => {
     expect(all).toEqual([]);
   });
 
-  it('holds at least three placeholder cards for every tag pair the engine can reach', () => {
+  it('holds about fifteen generated cards for every tag pair the engine can reach', () => {
+    // The M6 content pass (§2.3): the placeholder decks are filled to about
+    // fifteen cards a pair and every placeholder is gone.
     const reachable = (SCHEMA.decks.errand as unknown as { reachable: [string, string][] }).reachable;
     expect(reachable.length).toBeGreaterThan(0);
     for (const [because, forWhat] of reachable) {
       const cards = DECKS.errand.filter(
         (c) => tagIs('errand', c, 'because', because) && tagIs('errand', c, 'for', forWhat),
       );
-      expect(cards.length, `${because} × ${forWhat}`).toBeGreaterThanOrEqual(3);
-      for (const c of cards) expect(c.status).toBe('placeholder');
+      expect(cards.length, `${because} × ${forWhat}`).toBeGreaterThanOrEqual(10);
+      for (const c of cards) expect(c.status).not.toBe('placeholder');
     }
     for (const searched of ['yes', 'no']) {
       const cards = DECKS.errand.filter(
         (c) => tagIs('errand', c, 'because', 'return') && tagIs('errand', c, 'searched', searched),
       );
-      expect(cards.length, `return, searched ${searched}`).toBeGreaterThanOrEqual(3);
+      expect(cards.length, `return, searched ${searched}`).toBeGreaterThanOrEqual(10);
+      for (const c of cards) expect(c.status).not.toBe('placeholder');
     }
     for (const beat of ['hour', 'two-left', 'last-call']) {
-      expect(DECKS.hours.filter((c) => tagIs('hours', c, 'beat', beat)).length).toBeGreaterThanOrEqual(3);
+      const cards = DECKS.hours.filter((c) => tagIs('hours', c, 'beat', beat));
+      expect(cards.length).toBeGreaterThanOrEqual(10);
+      for (const c of cards) expect(c.status).not.toBe('placeholder');
     }
   });
 
