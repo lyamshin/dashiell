@@ -273,6 +273,14 @@ export interface Thread {
 export interface RunState {
   seed: number;
   difficulty: Difficulty;
+  /**
+   * M7: the tier the case was dealt at, and the level. A tiered case is a
+   * different case from the untiered one on the same seed, so resuming needs
+   * both to deal it again. Absent on an untiered case and on every save from
+   * before M7, which load as the untiered case they were.
+   */
+  tier?: 0 | 1 | 2 | 3 | 4 | 5 | 'over-easy';
+  level?: Difficulty;
   detectiveName: string;
   at: Id;
   actionsUsed: number;

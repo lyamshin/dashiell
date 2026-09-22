@@ -10,8 +10,26 @@
  * typed command handed to `stepInput`, exactly as the prompt used to hand it.
  */
 
-import { generateCase, type Case, type Difficulty } from '../gen/index.js';
+import { generateCase, type Case } from '../gen/index.js';
+import { LADDERS, type Level } from '../gen/shape.js';
 import { CROSS_RUN_TOTAL, crossRunOnly } from '../game/voice/index.js';
+import {
+  caseOptions,
+  fileToProfile,
+  loadProfile,
+  levelFor,
+  paramsForPick,
+  pickFromParams,
+  pickOfRun,
+  runMatches,
+  saveProfile,
+  shapeOf,
+  TIER_ORDER,
+  unlockedTiers,
+  withCurrent,
+  type CasePick,
+  type TierKey,
+} from '../game/profile.js';
 import { choicesFor, defaultAskPerson } from '../game/choices.js';
 import { clockStrip, usedByPage } from '../game/clock.js';
 import { buildView, gameBudget, peopleHereNow, type CaseView, type Noun } from '../game/derive.js';
@@ -32,13 +50,13 @@ import { clear, el } from './dom.js';
 import { hideCard, type CardSource } from './hover.js';
 import { renderNotebook } from './notebook-view.js';
 import { renderPage } from './prose.js';
-import { renderReportForm, renderVerdict } from './report.js';
+import { renderReportForm, renderVerdict, type TierNews } from './report.js';
 import { renderTruth } from './truth.js';
 
 type Screen =
   | { kind: 'title' }
   | { kind: 'book' }
-  | { kind: 'verdict'; verdict: Verdict }
+  | { kind: 'verdict'; verdict: Verdict; news?: TierNews }
   | { kind: 'truth' };
 
 const DEFAULT_NAME = 'Dashiell';
@@ -100,20 +118,13 @@ export function mount(root: HTMLElement): void {
 
   /* ------------------------------------------------------------ routing */
 
-  function readUrl(): { seed: number | null; difficulty: Difficulty } {
-    const params = new URLSearchParams(window.location.search);
-    const rawSeed = params.get('seed');
-    const rawDifficulty = Number(params.get('d') ?? 2);
-    const difficulty = ([1, 2, 3] as number[]).includes(rawDifficulty)
-      ? (rawDifficulty as Difficulty)
-      : 2;
-    const seed = rawSeed !== null && Number.isFinite(Number(rawSeed)) ? Number(rawSeed) : null;
-    return { seed, difficulty };
+  function readUrl(): { seed: number | null; pick: CasePick } {
+    return pickFromParams(new URLSearchParams(window.location.search));
   }
 
-  function writeUrl(seed: number, difficulty: Difficulty): void {
-    const url = `${window.location.pathname}?seed=${seed}&d=${difficulty}`;
-    window.history.replaceState(null, '', url);
+  function writeUrl(seed: number | null, pick?: CasePick): void {
+    const query = seed === null || pick === undefined ? '' : paramsForPick(seed, pick);
+    window.history.replaceState(null, '', `${window.location.pathname}${query}`);
   }
 
   /**
@@ -128,11 +139,15 @@ export function mount(root: HTMLElement): void {
     return { ...run, log: [...run.log.slice(0, -1), { ...last, offered }] };
   }
 
-  function openCase(seed: number, difficulty: Difficulty, name: string, resume: boolean): void {
-    kase = generateCase(seed, { difficulty, detectiveName: name });
+  function openCase(seed: number, pick: CasePick, name: string, resume: boolean): void {
+    // M7: a tier deals its own shape on the spec's ladder; no tier is today's
+    // untiered case. Raw plays at Beat whatever level was asked for.
+    kase = generateCase(seed, { ...caseOptions(pick), detectiveName: name });
     view = buildView(kase);
     const saved = resume ? loadRun(store) : null;
-    if (saved && saved.seed === seed && saved.difficulty === difficulty) {
+    // A save resumes only into the case it was dealt from: the same seed, the
+    // same tier (none, for a save from before tiers), the same level.
+    if (saved && runMatches(saved, seed, pick)) {
       state = saved;
     } else {
       clearRun(store);
@@ -150,9 +165,24 @@ export function mount(root: HTMLElement): void {
     screen = state.filed
       ? { kind: 'verdict', verdict: scoreReport(view, state, state.filed) }
       : { kind: 'book' };
-    writeUrl(seed, difficulty);
-    store.setItem(NAME_KEY, name);
+    writeUrl(seed, pick);
+    try {
+      store.setItem(NAME_KEY, name);
+    } catch {
+      /* a full store forgets the name; the case still opens */
+    }
     render();
+  }
+
+  /** Back to the title page, with the URL cleared so a reload stays there. */
+  function toTitle(): void {
+    screen = { kind: 'title' };
+    kase = null;
+    view = null;
+    state = null;
+    writeUrl(null);
+    render();
+    window.scrollTo?.({ top: 0 });
   }
 
   /* ------------------------------------------------------------ playing */
@@ -212,7 +242,22 @@ export function mount(root: HTMLElement): void {
     if (!view || !state) return;
     state = fileReport(state, report);
     saveRun(store, state);
-    screen = { kind: 'verdict', verdict: scoreReport(view, state, report) };
+    const verdict = scoreReport(view, state, report);
+    // M7: the profile hears about every filed report, once. A tiered case can
+    // clear its tier, and a first clear can open the next one.
+    const outcome = fileToProfile(store, {
+      ...(state.tier === undefined ? {} : { tier: state.tier }),
+      level: state.level ?? state.difficulty,
+      points: verdict.points,
+      asked: verdict.asked,
+      actionsUsed: verdict.actionsUsed,
+      par: verdict.par,
+    });
+    const news: TierNews | undefined =
+      state.tier !== undefined && (outcome.firstClear !== null || outcome.unlocked !== null)
+        ? { cleared: state.tier, unlocked: outcome.unlocked, firstClear: outcome.firstClear !== null }
+        : undefined;
+    screen = news === undefined ? { kind: 'verdict', verdict } : { kind: 'verdict', verdict, news };
     render();
   }
 
@@ -272,11 +317,14 @@ export function mount(root: HTMLElement): void {
       leaf.append(
         renderVerdict(
           screen.verdict,
-          () => openCase(randomSeed(), (kase as Case).difficulty, run.detectiveName, false),
+          // M7: another case starts on the title page, which is where the
+          // tiers are chosen and where a newly opened one shows.
+          () => toTitle(),
           () => {
             screen = { kind: 'truth' };
             render();
           },
+          screen.news,
         ),
       );
       page.append(leaf);
@@ -392,7 +440,7 @@ export function mount(root: HTMLElement): void {
         'header',
         { class: 'runhead' },
         el('span', { text: 'Notebook' }),
-        el('span', { text: `case ${(kase as Case).seed} · difficulty ${(kase as Case).difficulty}` }),
+        el('span', { text: caseLine(kase as Case) }),
       ),
     );
     const body = renderNotebook(buildNotebook(view as CaseView, state as RunState), followLead, () =>
@@ -408,55 +456,168 @@ export function mount(root: HTMLElement): void {
 
   /* -------------------------------------------------------- title page */
 
+  function storedName(): string {
+    try {
+      return store.getItem(NAME_KEY) ?? DEFAULT_NAME;
+    } catch {
+      return DEFAULT_NAME;
+    }
+  }
+
+  /**
+   * M7: the current tier and level, the tier's one rule, the difficulty (not
+   * on Raw, which is always Beat), and the ladder of tiers below with the
+   * locked ones marked. What was chosen is remembered in the profile.
+   */
   function titlePage(): HTMLElement {
-    const url = readUrl();
+    let profile = loadProfile(store);
+    const open = unlockedTiers(profile);
+    let tier: TierKey = profile.current.tier;
+    let level: Level = profile.current.level;
+
     const wrap = el('div', { class: 'title-page' });
     const form = el('form');
     const name = el('input', {
       type: 'text',
-      value: store.getItem(NAME_KEY) ?? DEFAULT_NAME,
+      value: storedName(),
       'aria-label': 'The detective’s name',
       autocomplete: 'off',
     });
     const seed = el('input', {
       type: 'number',
-      value: String(url.seed ?? randomSeed()),
+      value: String(randomSeed()),
       min: '1',
       'aria-label': 'Seed',
     });
-    const difficulty = el('select', { 'aria-label': 'Difficulty' });
-    for (const d of [1, 2, 3]) {
-      const option = el('option', { value: String(d) }, String(d));
-      if (d === url.difficulty) option.selected = true;
-      difficulty.append(option);
+
+    const now = el('p', { class: 'tier-now' });
+    const rule = el('p', { class: 'tier-rule' });
+
+    // The tier: a choice only once there is more than one to choose from.
+    const tierField = el('div', { class: 'field' }, el('label', { text: 'Tier' }));
+    let tierSelect: HTMLSelectElement | null = null;
+    if (open.length > 1) {
+      tierSelect = el('select', { 'aria-label': 'Tier', name: 'tier' });
+      for (const t of open) {
+        const option = el('option', { value: String(t) }, shapeOf(t).name);
+        if (t === tier) option.selected = true;
+        tierSelect.append(option);
+      }
+      tierField.append(tierSelect);
+    } else {
+      tierField.append(el('span', { class: 'fixed', text: shapeOf(tier).name }));
     }
+
+    // The level: the four rungs by name, or Beat and nothing to choose on Raw.
+    const levelField = el('div', { class: 'field' }, el('label', { text: 'Difficulty' }));
+    const levelSelect = el('select', { 'aria-label': 'Difficulty', name: 'difficulty' });
+    for (const l of [1, 2, 3, 4] as Level[]) {
+      const option = el('option', { value: String(l) }, LADDERS[l].name);
+      if (l === level) option.selected = true;
+      levelSelect.append(option);
+    }
+    const levelFixed = el('span', { class: 'fixed', text: LADDERS[1].name });
+    levelField.append(levelSelect, levelFixed);
+
+    const ladder = el('ol', { class: 'ladder', 'aria-label': 'The tiers' });
+
+    function paint(): void {
+      const shape = shapeOf(tier);
+      const locked = shape.lockedLevel !== undefined;
+      const played = levelFor(tier, level);
+      now.textContent = `${shape.name}, at ${LADDERS[played].name}`;
+      rule.textContent = shape.rule;
+      levelSelect.hidden = locked;
+      levelFixed.hidden = !locked;
+      clear(ladder);
+      for (const t of TIER_ORDER) {
+        const isOpen = open.includes(t);
+        // Over easy is not listed until it is open: it is the post-game.
+        if (t === 'over-easy' && !isOpen) continue;
+        const best = profile.best[String(t)];
+        const status = !isOpen
+          ? 'locked'
+          : best !== undefined
+            ? `cleared at ${LADDERS[best.level].name}, ${parWords(best.parDelta)}`
+            : 'open';
+        ladder.append(
+          el(
+            'li',
+            {
+              class: `ladder-row${isOpen ? '' : ' locked'}${t === tier ? ' current' : ''}`,
+              'data-tier': String(t),
+            },
+            el('span', { class: 'ladder-name', text: shapeOf(t).name }),
+            el('span', { class: 'ladder-status', text: status }),
+          ),
+        );
+      }
+    }
+
+    tierSelect?.addEventListener('change', () => {
+      const value = tierSelect?.value;
+      const next = open.find((t) => String(t) === value);
+      if (next !== undefined) tier = next;
+      paint();
+    });
+    levelSelect.addEventListener('change', () => {
+      level = Number(levelSelect.value) as Level;
+      paint();
+    });
 
     form.append(
       el('h1', { text: 'DASHIELL' }),
       el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }),
       el('div', { class: 'name-line' }, el('label', { text: 'The detective' }), name),
-      el(
-        'div',
-        { class: 'controls' },
-        el('div', { class: 'field' }, el('label', { text: 'Difficulty' }), difficulty),
-        el('div', { class: 'field' }, el('label', { text: 'Seed' }), seed),
-      ),
+    );
+
+    // A case left open on the desk can be gone back to, dealt again from the
+    // tier and level it was saved with (or as the untiered case it was).
+    const saved = loadRun(store);
+    if (saved && !saved.filed) {
+      const pick = pickOfRun(saved);
+      const back = el('button', { class: 'plain-button', type: 'button', text: 'Go back to it' });
+      back.addEventListener('click', () => openCase(saved.seed, pick, saved.detectiveName, true));
+      form.append(
+        el(
+          'div',
+          { class: 'resume' },
+          el('p', { text: `Case ${saved.seed} is still open on the desk: ${pickWords(pick)}.` }),
+          back,
+        ),
+      );
+    }
+
+    form.append(
+      now,
+      rule,
+      el('div', { class: 'controls' }, tierField, levelField, el('div', { class: 'field' }, el('label', { text: 'Seed' }), seed)),
       el('button', { class: 'open-case', type: 'submit', text: 'Open the case' }),
+      ladder,
+    );
+    if (profile.runs > 0) {
+      form.append(
+        el('p', {
+          class: 'stats',
+          text: `${profile.runs} ${profile.runs === 1 ? 'report' : 'reports'} filed, ${profile.wins} of them clean.`,
+        }),
+      );
+    }
+    form.append(
       el('p', {
         class: 'footnote',
         text:
-          'Every page ends in choices: ask, search, go. Each one says what it costs of the night, and a lead is marked with a star. The DA files at eight whether you have or not.',
+          'Every page ends in choices: ask, search, go. Each one says what it costs of the night, and a lead is marked with a star. The DA files at eight whether you have or not. A clean report opens the next tier.',
       }),
     );
+    paint();
+
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const chosen = Number(seed.value) || randomSeed();
-      openCase(
-        chosen,
-        Number(difficulty.value) as Difficulty,
-        name.value.trim() || DEFAULT_NAME,
-        true,
-      );
+      profile = withCurrent(profile, tier, level);
+      saveProfile(store, profile);
+      openCase(chosen, { tier, level: levelFor(tier, level) }, name.value.trim() || DEFAULT_NAME, true);
     });
     wrap.append(form);
     return wrap;
@@ -466,8 +627,26 @@ export function mount(root: HTMLElement): void {
 
   const url = readUrl();
   if (url.seed !== null) {
-    openCase(url.seed, url.difficulty, store.getItem(NAME_KEY) ?? DEFAULT_NAME, true);
+    openCase(url.seed, url.pick, storedName(), true);
   } else {
     render();
   }
+}
+
+/** The notebook's header line: the case, and what it was dealt at. */
+function caseLine(kase: Case): string {
+  if (kase.shape !== undefined && kase.ladder !== undefined) {
+    return `case ${kase.seed} · ${kase.shape.name} · ${kase.ladder.name}`;
+  }
+  return `case ${kase.seed} · difficulty ${kase.difficulty}`;
+}
+
+function pickWords(pick: CasePick): string {
+  if (pick.tier === undefined) return `difficulty ${pick.level}, from before the tiers`;
+  return `${shapeOf(pick.tier).name}, at ${LADDERS[levelFor(pick.tier, pick.level)].name}`;
+}
+
+function parWords(delta: number): string {
+  if (delta === 0) return 'at par';
+  return delta < 0 ? `${-delta} under par` : `${delta} over par`;
 }

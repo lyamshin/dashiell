@@ -2,6 +2,7 @@
 
 import type { CaseView } from '../game/derive.js';
 import { gameBudget } from '../game/derive.js';
+import { shapeOf, type TierKey } from '../game/profile.js';
 import { fieldsFor, withAnswer } from '../game/report-form.js';
 import type { Verdict } from '../game/scoring.js';
 import { EMPTY_REPORT, type Report, type RunState } from '../game/types.js';
@@ -63,10 +64,34 @@ export function renderReportForm(
   return form;
 }
 
+/** M7: what a filed report did to the ladder, for the closing page. */
+export interface TierNews {
+  /** The tier the report was filed at. */
+  cleared: TierKey;
+  /** The first full-credit report at this tier. */
+  firstClear: boolean;
+  /** The tier it opened, if it opened one. */
+  unlocked: TierKey | null;
+}
+
+/** The closing page's word on the ladder, in the book's plain voice. */
+export function tierNewsLines(news: TierNews): string[] {
+  const done = shapeOf(news.cleared).name;
+  if (news.unlocked === 'over-easy') {
+    return [`${done} is cleared, and that is the book. **Over easy is open now.**`, shapeOf('over-easy').rule];
+  }
+  if (news.unlocked !== null) {
+    const next = shapeOf(news.unlocked);
+    return [`${done} is cleared. **${next.name} is open now.**`, next.rule];
+  }
+  return news.firstClear ? [`${done} is cleared.`] : [];
+}
+
 export function renderVerdict(
   verdict: Verdict,
   onAgain: () => void,
   onTruth: () => void,
+  news?: TierNews,
 ): HTMLElement {
   const wrap = el('div', { class: 'report' });
   wrap.append(el('h2', { text: 'The verdict' }));
@@ -95,6 +120,19 @@ export function renderVerdict(
       p.append(i % 2 === 1 ? el('strong', { text: part }) : document.createTextNode(part));
     });
     wrap.append(p);
+  }
+
+  const lines = news === undefined ? [] : tierNewsLines(news);
+  if (lines.length > 0) {
+    const box = el('div', { class: 'tier-news', role: 'status' });
+    lines.forEach((line, i) => {
+      const p = el('p', { class: i === 0 ? 'tier-news-head' : 'tier-rule' });
+      line.split('**').forEach((part, j) => {
+        p.append(j % 2 === 1 ? el('strong', { text: part }) : document.createTextNode(part));
+      });
+      box.append(p);
+    });
+    wrap.append(box);
   }
 
   const again = el('button', { class: 'open-case', type: 'button', text: 'Open another case' });

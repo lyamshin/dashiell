@@ -33,7 +33,7 @@ export interface CaseShape {
   tier: TierId;
   /** The egg name. */
   name: string;
-  /** The one new rule, as the title page prints it. */
+  /** The one new rule, as the title page prints it: "This time: …", in the book's plain voice. */
   rule: string;
   suspects: 3 | 4 | 5 | 6 | 8;
   places: 3 | 4 | 5 | 6 | 8;
@@ -132,7 +132,7 @@ const ALL_LEGS: ProofLeg[] = ['access', 'method', 'motive', 'signature'];
 export const RAW: CaseShape = {
   tier: 0,
   name: 'Raw',
-  rule: 'Three people, three rooms, and one of them did it.',
+  rule: 'This time: three people, three rooms, and one name to put on the report.',
   suspects: 3,
   places: 3,
   watched: [1, 1],
@@ -161,7 +161,7 @@ export const CODDLED: CaseShape = {
   ...RAW_UNLOCKED,
   tier: 1,
   name: 'Coddled',
-  rule: 'This time the report asks how it was done.',
+  rule: 'This time: four people, and the report asks how it was done.',
   suspects: 4,
   places: 4,
   reportFields: ['who', 'how'],
@@ -175,7 +175,7 @@ export const POACHED: CaseShape = {
   ...CODDLED,
   tier: 2,
   name: 'Poached',
-  rule: 'This time somebody else is lying too.',
+  rule: 'This time: somebody else is lying too.',
   watched: [1, 2],
   innocentSecrets: 1,
   liarsAtCrime: 1,
@@ -188,7 +188,7 @@ export const SOFT_BOILED: CaseShape = {
   ...POACHED,
   tier: 3,
   name: 'Soft-boiled',
-  rule: 'This time the coroner gives you an hour, and the scene may lie.',
+  rule: 'This time: the coroner gives an hour, not a half hour, and the scene can lie.',
   coronerWidth: 2,
   anchorsRequired: 1,
   tropes: MURDER_TROPES,
@@ -200,7 +200,7 @@ export const SOFT_BOILED: CaseShape = {
 export const MEDIUM: CaseShape = {
   tier: 4,
   name: 'Medium',
-  rule: 'This time a motive names nobody on its own.',
+  rule: 'This time: more than one of them had a reason, and a reason is not proof.',
   suspects: 5,
   places: 5,
   watched: [2, 3],
@@ -231,7 +231,7 @@ export const MEDIUM: CaseShape = {
 export const HARD_BOILED: CaseShape = {
   tier: 5,
   name: 'Hard-boiled',
-  rule: 'This time the one paying you might have done it.',
+  rule: 'This time: the one paying you might have done it.',
   suspects: 6,
   places: 6,
   watched: [3, 4],
@@ -258,7 +258,7 @@ export const OVER_EASY: CaseShape = {
   ...HARD_BOILED,
   tier: 'over-easy',
   name: 'Over easy',
-  rule: 'Eight people, eight rooms, and three of them lying about the half hour.',
+  rule: 'This time: eight people, eight rooms, and three of them lying about the half hour.',
   suspects: 8,
   places: 8,
   watched: [4, 5],

@@ -933,6 +933,94 @@ li.contradiction::before {
   color: var(--accent);
 }
 
+/* M7: the tier, its one rule, and the ladder of tiers under the button. */
+
+.title-page .tier-now {
+  font-size: 1.3rem;
+  margin: 0 0 0.3rem;
+}
+
+.tier-rule {
+  color: var(--ink-soft);
+  font-style: italic;
+  margin: 0 0 1.8rem;
+}
+
+.controls .fixed {
+  display: block;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid transparent;
+}
+
+.controls .fixed[hidden],
+.controls select[hidden] {
+  display: none;
+}
+
+.ladder {
+  list-style: none;
+  margin: 2.4rem auto 0;
+  padding: 0.6rem 0 0;
+  border-top: 1px solid var(--rule);
+  max-width: 22rem;
+  font-size: 0.86rem;
+  text-align: left;
+}
+
+.ladder-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.2rem 0;
+}
+
+.ladder-row .ladder-status {
+  color: var(--ink-faint);
+  text-align: right;
+}
+
+.ladder-row.current .ladder-name {
+  color: var(--accent);
+}
+
+.ladder-row.locked {
+  color: var(--ink-faint);
+}
+
+.ladder-row.locked .ladder-status {
+  font-style: italic;
+}
+
+.title-page .resume {
+  margin: -1rem 0 2rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.title-page .resume p {
+  margin: 0 0 0.6rem;
+}
+
+.title-page .stats {
+  margin-top: 1.2rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.tier-news {
+  border-top: 1px solid var(--rule);
+  margin: 1.2rem 0 0;
+  padding-top: 0.8rem;
+}
+
+.tier-news p {
+  margin: 0 0 0.4rem;
+}
+
+.tier-news .tier-rule {
+  margin: 0;
+}
+
 .title-page .footnote {
   margin-top: 2.6rem;
   font-size: 0.78rem;
