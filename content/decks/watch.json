@@ -1,0 +1,222 @@
+[
+  {
+    "id": "wat-p001",
+    "deck": "watch",
+    "text": "{watcher} kept watch behind the bar.",
+    "tags": {
+      "watcher": "bartender"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p002",
+    "deck": "watch",
+    "text": "Nobody got a drink without {watcher} seeing the face that ordered it.",
+    "tags": {
+      "watcher": "bartender"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p003",
+    "deck": "watch",
+    "text": "{watcher} kept watch on the door.",
+    "tags": {
+      "watcher": "doorman"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p004",
+    "deck": "watch",
+    "text": "Nobody came in or went out past {watcher} without being looked at.",
+    "tags": {
+      "watcher": "doorman"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p005",
+    "deck": "watch",
+    "text": "{watcher} kept watch at the stand.",
+    "tags": {
+      "watcher": "newsstand"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p006",
+    "deck": "watch",
+    "text": "The whole street went past {watcher} and got looked at.",
+    "tags": {
+      "watcher": "newsstand"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p007",
+    "deck": "watch",
+    "text": "{watcher} kept watch behind the counter.",
+    "tags": {
+      "watcher": "counterman"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p008",
+    "deck": "watch",
+    "text": "Everybody who came in stood in front of {watcher} sooner or later.",
+    "tags": {
+      "watcher": "counterman"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p009",
+    "deck": "watch",
+    "text": "{watcher} kept watch in the booth.",
+    "tags": {
+      "watcher": "ticket-taker"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p010",
+    "deck": "watch",
+    "text": "Every ticket went through {watcher}’s hands.",
+    "tags": {
+      "watcher": "ticket-taker"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p011",
+    "deck": "watch",
+    "text": "{watcher} kept watch by the car.",
+    "tags": {
+      "watcher": "elevator-man"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p012",
+    "deck": "watch",
+    "text": "Nobody went up or down without {watcher} working the handle.",
+    "tags": {
+      "watcher": "elevator-man"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p013",
+    "deck": "watch",
+    "text": "{watcher} kept watch in the hall.",
+    "tags": {
+      "watcher": "landlady"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p014",
+    "deck": "watch",
+    "text": "Nobody used those stairs without {watcher} hearing about it.",
+    "tags": {
+      "watcher": "landlady"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p015",
+    "deck": "watch",
+    "text": "{watcher} kept watch on the corner.",
+    "tags": {
+      "watcher": "beat-cop"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p016",
+    "deck": "watch",
+    "text": "The corner was {watcher}’s, and {watcher} walked it.",
+    "tags": {
+      "watcher": "beat-cop"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p017",
+    "deck": "watch",
+    "text": "{watcher} kept watch on the stand.",
+    "tags": {
+      "watcher": "cabbie"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p018",
+    "deck": "watch",
+    "text": "Anybody who wanted a cab had to wake {watcher} for it.",
+    "tags": {
+      "watcher": "cabbie"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p019",
+    "deck": "watch",
+    "text": "{watcher} kept watch behind the counter.",
+    "tags": {
+      "watcher": "druggist"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p020",
+    "deck": "watch",
+    "text": "The counter faced the door and {watcher} faced the counter.",
+    "tags": {
+      "watcher": "druggist"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p021",
+    "deck": "watch",
+    "text": "Nobody was posted there, and nobody minded who used the stairs.",
+    "tags": {
+      "watcher": "none"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "wat-p022",
+    "deck": "watch",
+    "text": "Nobody watched the place. Anybody could have come and gone.",
+    "tags": {
+      "watcher": "none"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

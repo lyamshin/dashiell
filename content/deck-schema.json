@@ -474,7 +474,7 @@
       "placeholderPrefix": "err-p",
       "burn": "free",
       "target": 400,
-      "$comment": "M6 §2. Why the detective came, first on every page that moved him. Derived from the notebook, never invented: `because` is what sent him (a person said it, a paper named it, a thing found somewhere pointed here), `for` is the lead's shape. {name} is the person who said it, {from} is the room the paper or the thing came out of, {who} is the person he came to ask, {subject} is what the errand is about, {place} is here. Plain register, one clause of figure at most. `searched` only matters for a no-lead return. `reachable` lists the tag pairs the engine can deal; the validator reports each one below `minPerCoverageCell`, and a test holds each of them to three cards.",
+      "$comment": "M6 §2. Why the detective came, first on every page that moved him. Derived from the notebook, never invented: `because` is what sent him (a person said it, a paper named it, a thing found somewhere pointed here), `for` is the lead's shape. {name} is the person who said it, {from} is the room the paper or the thing came out of, {who} is the person he came to ask, {subject} is what the errand is about, {place} is here. Plain register, one clause of figure at most. `searched` only matters for a no-lead return. `reachable` lists the tag pairs the engine can deal; the validator reports each one below `minPerCoverageCell`, and a test holds each of them to three cards. M8 §6: `bridged: yes` marks the short form, dealt when an earlier page’s bridge already named this lead and said why (\"Kreuzer would know where the secretary had been\").",
       "minPerCoverageCell": 3,
       "reachable": [
         ["said", "ask-person"], ["said", "ask-thing"], ["said", "ask-place"], ["said", "ask-evening"], ["said", "search-room"], ["said", "search-thing"],
@@ -486,7 +486,8 @@
       "tags": {
         "because": { "required": true, "values": ["said", "document", "found", "none", "office", "return"] },
         "for": { "required": true, "values": ["ask-person", "ask-thing", "ask-place", "ask-evening", "search-room", "search-thing", "none"] },
-        "searched": { "required": false, "default": "any", "values": ["yes", "no", "any"] }
+        "searched": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
+        "bridged": { "required": false, "default": "any", "values": ["yes", "no", "any"] }
       }
     },
     "hours": {
@@ -503,6 +504,135 @@
         "beat": { "required": true, "values": ["hour", "two-left", "last-call"] }
       },
       "coverage": [["beat"]]
+    },
+    "establish": {
+      "file": "establish.json",
+      "deckValues": ["establish"],
+      "idPrefix": "EST",
+      "placeholderPrefix": "est-p",
+      "burn": "within-run",
+      "target": 144,
+      "$comment": "M8 §3. The first visit to a place: one paragraph saying what the place is and what kind of place it is, how you get in, what it is at this hour, and how the weather has emptied or filled it. Keyed by the place template id (src/gen/data/places.ts) plus `office`. {watcher} is the surname of the fixture posted there and {owner} the surname of whose place it is (the victim, for the victim’s address); either may be absent, and a card that names an absent slot is never dealt, so every place needs cards without them. The watch clause follows from the `watch` deck; the weather may be added by the engine.",
+      "slots": ["detective", "name", "place", "object", "time", "watcher", "owner"],
+      "minPerCoverageCell": 4,
+      "tags": {
+        "place": { "required": true, "values": ["res-apartment", "res-brownstone", "res-walkup", "res-suite", "res-backhouse", "rooftop", "back-alley", "office-over-tailor", "pier-shed", "laundry-yard", "walkup-flat", "hallam-vestibule", "rooming-house-room", "dolans-bar", "speakeasy", "hotel-lobby", "corner-newsstand", "automat", "movie-house", "dance-hall", "drugstore", "cab-stand", "tenement-stairwell", "pool-hall", "pawnshop", "chop-suey", "boarding-parlor", "barber-shop", "hotel-garage", "el-platform", "square-benches", "ferry-slip", "subway-kiosk", "side-chapel", "union-hall", "office"] },
+        "visit": { "required": false, "default": "first", "values": ["first"] }
+      },
+      "coverage": [["place"]]
+    },
+    "watch": {
+      "file": "watch.json",
+      "deckValues": ["watch"],
+      "idPrefix": "WAT",
+      "placeholderPrefix": "wat-p",
+      "burn": "within-run",
+      "target": 66,
+      "$comment": "M8 §3. The clause in the establish paragraph that says who watches the place, keyed by the watcher’s fixture role, or `none` for an unwatched place (\"nobody minds who uses the stairs\"). {watcher} is the watcher’s surname and never appears on a `none` card.",
+      "slots": ["detective", "place", "watcher"],
+      "minPerCoverageCell": 6,
+      "tags": {
+        "watcher": { "required": true, "values": ["bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist", "none"] }
+      },
+      "coverage": [["watcher"]]
+    },
+    "return": {
+      "file": "return.json",
+      "deckValues": ["return"],
+      "idPrefix": "RET",
+      "placeholderPrefix": "ret-p",
+      "burn": "free",
+      "target": 40,
+      "$comment": "M8 §3. One line for a return visit. `scene` is the room the night opened in (where the body, or the empty shelf, is); the rest are keyed by the place’s kind. {place} is the place’s short name, lower case (\"the speakeasy\"), and may open a sentence.",
+      "slots": ["detective", "place"],
+      "minPerCoverageCell": 10,
+      "tags": {
+        "placeKind": { "required": true, "values": ["public", "semi", "private", "scene"] }
+      },
+      "coverage": [["placeKind"]]
+    },
+    "activity": {
+      "file": "activity.json",
+      "deckValues": ["activity"],
+      "idPrefix": "ACT",
+      "placeholderPrefix": "act-p",
+      "burn": "free",
+      "target": 333,
+      "$comment": "M8 §4. What a person present is doing when the detective walks in: one sentence, from their trade, the place and the hour. Chosen once per visit and kept for it. `role` is the suspect archetype id or the fixture role (`any` is the engine’s own fallback). `band`: after-midnight is 12:00–2:59, small-hours 3:00–5:59, dawn 6:00–8:00; `any` fits all three. {name} is the surname and opens the card; never a pronoun for {name}, whose gender varies. {place} is the short name.",
+      "slots": ["detective", "name", "place"],
+      "minPerCoverageCell": 3,
+      "tags": {
+        "role": { "required": true, "values": ["arch-heir", "arch-widow", "arch-broker", "arch-society", "arch-blockowner", "arch-lawyer", "arch-bookkeeper", "arch-nurse", "arch-dentist", "arch-secretary", "arch-reporter", "arch-piano-teacher", "arch-adjuster", "arch-chambermaid", "arch-longshoreman", "arch-seamstress", "arch-hackman", "arch-tailor", "arch-stagehand", "arch-switchboard", "arch-nightman", "arch-chorus", "arch-bookmaker", "arch-heeler", "arch-pawnman", "arch-bouncer", "arch-runner", "bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist"], "extraValues": ["any"] },
+        "placeKind": { "required": true, "values": ["public", "semi", "private"], "extraValues": ["any"] },
+        "band": { "required": false, "default": "any", "values": ["after-midnight", "small-hours", "dawn"], "extraValues": ["any"] }
+      },
+      "coverage": [["role", "placeKind"]]
+    },
+    "thought": {
+      "file": "thought.json",
+      "deckValues": ["thought"],
+      "idPrefix": "THT",
+      "placeholderPrefix": "tht-p",
+      "burn": "free",
+      "target": 216,
+      "$comment": "M8 §5. What the detective makes of it, one class a card. Slots, by class: clears/implicates/contradicts — {subject} the person placed, {place} where, {time} the spoken hour, {other} the scene (clears) or the place they claimed (contradicts); implicates with basis `access` has only {subject}. observer-placed — {source} the one who saw it, {subject} whom they saw, {place}, {time}. unmentioned — {source}, {place}, {time}; `via: office` when the client left it out of the briefing, `account` when a told evening omits it. motive — {subject}, {victim}. method — {other} the thing, {place}, {victim}. window — basis `anchor`: {other} the anchor as a noun (\"the El going over\"), {time}; basis `coroner`: no anchor. not-robbery — {victim}, {place}. robbery-shape and goods — {other} the thing taken, {place}. secret and dead-end — {subject}. context — {victim}. nothing — {place}. last-seen and seen-after (missing cases) — {victim}, {place}, {time}. view — the detective’s view of a person on arrival: {subject}, keyed by `who` (watcher, client, known, stranger) and `lied`. A thought may say \"if\" and \"would\"; it never asserts a fact the notebook does not hold. Never a pronoun for a slotted person.",
+      "slots": ["detective", "name", "place", "object", "time", "subject", "source", "victim", "other"],
+      "minPerCoverageCell": 12,
+      "tags": {
+        "class": { "required": true, "values": ["clears", "implicates", "observer-placed", "unmentioned", "contradicts", "motive", "method", "window", "not-robbery", "robbery-shape", "secret", "dead-end", "context", "nothing", "goods", "last-seen", "seen-after", "view"] },
+        "case": { "required": false, "default": "any", "values": ["murder", "robbery", "missing"], "extraValues": ["any"] },
+        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner"], "extraValues": ["any"] },
+        "via": { "required": false, "default": "any", "values": ["office", "account"], "extraValues": ["any"] },
+        "who": { "required": false, "default": "any", "values": ["watcher", "client", "known", "stranger"], "extraValues": ["any"] },
+        "lied": { "required": false, "default": "any", "values": ["yes", "no"], "extraValues": ["any"] }
+      },
+      "coverage": [["class"]]
+    },
+    "bridge": {
+      "file": "bridge.json",
+      "deckValues": ["bridge"],
+      "idPrefix": "BRG",
+      "placeholderPrefix": "brg-p",
+      "burn": "free",
+      "target": 45,
+      "$comment": "M8 §6. The next lead, named, and why. {who} is the person to ask (absent when the lead is a room to search), {subject} whom or what to ask about, {tie} why the subject matters — `victim`: the relation, \"Sweeney’s secretary\"; `place`: the place’s short name; `time`: the spoken hour — and {where} where {who} is found (absent when the notebook does not know). Every tie needs cards without {where}, and `place` needs cards without {who}.",
+      "slots": ["detective", "who", "subject", "tie", "where"],
+      "minPerCoverageCell": 15,
+      "tags": {
+        "tie": { "required": true, "values": ["victim", "place", "time"] }
+      },
+      "coverage": [["tie"]]
+    },
+    "carry": {
+      "file": "carry.json",
+      "deckValues": ["carry"],
+      "idPrefix": "CAR",
+      "placeholderPrefix": "car-p",
+      "burn": "free",
+      "target": 140,
+      "$comment": "M8 §2. The reason for a search or a question at the same place, one sentence, first on the page. `lead: yes` when an open lead points at it, `no` for an unmarked choice (\"No one sent me to it\"). {who} is the person asked, {subject} what about (the thing searched, for search-thing), {name} the person whose word sent me, absent when a paper or a room did. Cards must read with {name} absent.",
+      "slots": ["detective", "who", "subject", "name", "victim"],
+      "minPerCoverageCell": 10,
+      "tags": {
+        "for": { "required": true, "values": ["ask-person", "ask-thing", "ask-place", "ask-evening", "ask-self", "search-room", "search-thing"] },
+        "lead": { "required": true, "values": ["yes", "no"] }
+      },
+      "coverage": [["for", "lead"]]
+    },
+    "answer": {
+      "file": "answer.json",
+      "deckValues": ["answer"],
+      "idPrefix": "ANS",
+      "placeholderPrefix": "ans-p",
+      "burn": "free",
+      "target": 36,
+      "$comment": "M8 §2. What came of the errand, when no thought already says it. `found`: what I came for; `dead-end`: not, and the lead was a dead end; `something-else`: not, but something else. {subject} is what the errand was about and {name} who sent me; either may be absent.",
+      "slots": ["detective", "subject", "name"],
+      "minPerCoverageCell": 12,
+      "tags": {
+        "outcome": { "required": true, "values": ["found", "dead-end", "something-else"] }
+      },
+      "coverage": [["outcome"]]
     }
   }
 }

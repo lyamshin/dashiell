@@ -45,6 +45,14 @@ import hiringJson from '../../../content/decks/hiring.json';
 import portraitPairsJson from '../../../content/decks/portrait-pairs.json';
 import errandJson from '../../../content/decks/errand.json';
 import hoursJson from '../../../content/decks/hours.json';
+import establishJson from '../../../content/decks/establish.json';
+import watchJson from '../../../content/decks/watch.json';
+import returnJson from '../../../content/decks/return.json';
+import activityJson from '../../../content/decks/activity.json';
+import thoughtJson from '../../../content/decks/thought.json';
+import bridgeJson from '../../../content/decks/bridge.json';
+import carryJson from '../../../content/decks/carry.json';
+import answerJson from '../../../content/decks/answer.json';
 
 export type DeckName =
   | 'similes'
@@ -69,7 +77,16 @@ export type DeckName =
   | 'portrait-pairs'
   /* M6 §2 and §3: why he came, and the clock's own beats. */
   | 'errand'
-  | 'hours';
+  | 'hours'
+  /* M8 §9: the scene. Placeholders on the engine branch; content in parallel. */
+  | 'establish'
+  | 'watch'
+  | 'return'
+  | 'activity'
+  | 'thought'
+  | 'bridge'
+  | 'carry'
+  | 'answer';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -172,6 +189,14 @@ const RAW: Record<DeckName, unknown> = {
   'portrait-pairs': portraitPairsJson,
   errand: errandJson,
   hours: hoursJson,
+  establish: establishJson,
+  watch: watchJson,
+  return: returnJson,
+  activity: activityJson,
+  thought: thoughtJson,
+  bridge: bridgeJson,
+  carry: carryJson,
+  answer: answerJson,
 };
 
 /** Every deck is on disk and imported; nothing is missing. */

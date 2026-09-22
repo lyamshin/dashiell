@@ -98,7 +98,13 @@ export type ProseVoice =
    * moved him, set apart in italics. Never cut, never joined, never re-worded
    * by a later pass, because the correspondence checker traces it verbatim.
    */
-  | 'errand';
+  | 'errand'
+  /* M8 — the planned page. Each beat of §1 that is prose has its own voice. */
+  | 'establish'
+  | 'act'
+  | 'thought'
+  | 'bridge'
+  | 'answer';
 
 /**
  * A run of prose on a page. `clueId` marks the paragraph that carries a
@@ -164,6 +170,62 @@ export interface Page {
    * choices greyed. Pure data, and optional so a save from before M6 loads.
    */
   offered?: OfferedGroup[];
+  /**
+   * M8 §1. Which page shape the planner laid this page out as, and the beats
+   * it planned, each with whether it reached the page. Absent on the office
+   * page and on a save from before M8.
+   */
+  shape?: PageShape;
+  beats?: BeatTrace[];
+}
+
+/**
+ * M8 §1 — the page shapes. `arrive` is a first visit to a place, `return` a
+ * later one; `look` is a free look round (or a walk to where he already is);
+ * `repeat` is a question or a search already done, read back free.
+ */
+export type PageShape = 'office' | 'arrive' | 'return' | 'search' | 'ask' | 'repeat' | 'look' | 'other';
+
+export type BeatKind =
+  | 'errand'
+  | 'establish'
+  | 'return'
+  | 'presence'
+  | 'act'
+  | 'find'
+  | 'exchange'
+  | 'thought'
+  | 'bridge'
+  | 'answer'
+  | 'clock'
+  | 'texture';
+
+/**
+ * One planned beat, as it went onto the page. The planner's `Beat` carries
+ * everything it was built from; this is what the page keeps of it, so the beat
+ * coverage check and the correspondence checker can read a page back without
+ * running the planner again.
+ */
+export interface BeatTrace {
+  kind: BeatKind;
+  required: boolean;
+  /** False only for texture the length rule cut (§8). */
+  rendered: boolean;
+  /**
+   * The beat's key: the thought class, the bridge tie, the answer outcome, the
+   * carry form (`move`, `carry`, `short`), the texture kind.
+   */
+  tag?: string;
+  /** Clues that license the beat: the find, or the facts a thought reads. */
+  clueIds?: Id[];
+  /** People the beat is about, in slot order where it has slots. */
+  personIds?: Id[];
+  /** Places the beat names. */
+  placeIds?: Id[];
+  /** For a bridge or an answer: the lead's target clue. */
+  targetId?: Id;
+  /** Exactly the words it put on the page, when it put any. */
+  text?: string;
 }
 
 /** One choice as the book drew it, kept on the page it was offered under. */
@@ -364,7 +426,50 @@ export interface RunState {
   asked: { key: string; clues: Id[] }[];
   /** Rooms already gone through. A second search of one is free and finds nothing. */
   searched: Id[];
+
+  /* ------------------------------------------------------- M8: the scene */
+
+  /**
+   * M8 §3–§4. What the night pages remember between pages: which visit this
+   * is, what each person present is doing, whose recall phrase has been used
+   * this visit, which places have had their establish paragraph, and which
+   * leads a page has already bridged. Optional, so a save from before M8
+   * loads as a night with nothing remembered yet.
+   */
+  scene?: SceneMemory;
 }
+
+/** One person's activity, chosen once per visit and kept for it (§4). */
+export interface Activity {
+  /** The visit it was chosen on. A new visit chooses again. */
+  visit: number;
+  placeId: Id;
+  /** The card it came off, or empty for the hand-written fallback. */
+  cardId: string;
+  text: string;
+  /** Spoken to since: they have stopped what they were doing. */
+  stopped: boolean;
+}
+
+export interface SceneMemory {
+  /** Goes up by one every time the detective walks into a different room. */
+  visit: number;
+  activities: Record<Id, Activity>;
+  /** The visit a person's recall phrase was last used on: once a visit (§4). */
+  recalled: Record<Id, number>;
+  /** Places whose establish paragraph has been written (§3). */
+  established: Id[];
+  /** Lead targets a bridge has named (§6), so the next errand can be short. */
+  bridged: Id[];
+}
+
+export const EMPTY_SCENE: SceneMemory = {
+  visit: 0,
+  activities: {},
+  recalled: {},
+  established: [],
+  bridged: [],
+};
 
 export const SAVE_KEY = 'dashiell:run';
 export const BURNED_KEY = 'dashiell:burned';

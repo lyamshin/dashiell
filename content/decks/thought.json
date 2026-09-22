@@ -1,0 +1,526 @@
+[
+  {
+    "id": "tht-p001",
+    "deck": "thought",
+    "text": "If {subject} was at {place} at {time}, then {subject} was not at {other} when it happened.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p002",
+    "deck": "thought",
+    "text": "That put {subject} at {place} at {time}. If it held, it cleared {subject}.",
+    "tags": {
+      "class": "clears"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p003",
+    "deck": "thought",
+    "text": "That put {subject} at {place} at {time}, which was close to the hour and close to the room.",
+    "tags": {
+      "class": "implicates",
+      "basis": "placement"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p004",
+    "deck": "thought",
+    "text": "{subject} at {place} at {time} was {subject} too near it for comfort.",
+    "tags": {
+      "class": "implicates",
+      "basis": "placement"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p005",
+    "deck": "thought",
+    "text": "So {subject} could have got at the means. That was worth something.",
+    "tags": {
+      "class": "implicates",
+      "basis": "access"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p006",
+    "deck": "thought",
+    "text": "Means, then, for {subject}. It was not the whole of it.",
+    "tags": {
+      "class": "implicates",
+      "basis": "access"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p007",
+    "deck": "thought",
+    "text": "Which put {source} at {place} at {time} too.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p008",
+    "deck": "thought",
+    "text": "To see it, {source} had to have been at {place} at {time}.",
+    "tags": {
+      "class": "observer-placed"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p009",
+    "deck": "thought",
+    "text": "{source} had sat in my office for half an hour and never mentioned it.",
+    "tags": {
+      "class": "unmentioned",
+      "via": "office"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p010",
+    "deck": "thought",
+    "text": "{source} had not said a word about it in my office.",
+    "tags": {
+      "class": "unmentioned",
+      "via": "office"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p011",
+    "deck": "thought",
+    "text": "{source} had given me an evening and left that out of it.",
+    "tags": {
+      "class": "unmentioned",
+      "via": "account"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p012",
+    "deck": "thought",
+    "text": "It was not in the evening {source} had given me.",
+    "tags": {
+      "class": "unmentioned",
+      "via": "account"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p013",
+    "deck": "thought",
+    "text": "That was not the evening {subject} had given me. One of them was wrong.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p014",
+    "deck": "thought",
+    "text": "{subject} had told me one thing, and this put {subject} at {place} at {time}.",
+    "tags": {
+      "class": "contradicts"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p015",
+    "deck": "thought",
+    "text": "That was a reason, and it was {subject}'s.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p016",
+    "deck": "thought",
+    "text": "So {subject} had a reason. A reason is not a hand on the weapon.",
+    "tags": {
+      "class": "motive"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p017",
+    "deck": "thought",
+    "text": "It told me how. It did not tell me who.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p018",
+    "deck": "thought",
+    "text": "So that was how it was done, or near enough to it.",
+    "tags": {
+      "class": "method"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p019",
+    "deck": "thought",
+    "text": "The coroner had given me the hours. {other} at {time} might give me the minute.",
+    "tags": {
+      "class": "window",
+      "basis": "anchor"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p020",
+    "deck": "thought",
+    "text": "{other} at {time} fell inside the coroner's hours. If it happened then, the noise covered it.",
+    "tags": {
+      "class": "window",
+      "basis": "anchor"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p021",
+    "deck": "thought",
+    "text": "The coroner had given me the hours. What I wanted was the minute.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p022",
+    "deck": "thought",
+    "text": "It was a window, and somebody had climbed through it.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p023",
+    "deck": "thought",
+    "text": "So it was a fight, and it was not a robbery.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p024",
+    "deck": "thought",
+    "text": "Nothing was taken. Whoever came for {victim} came for {victim} and nothing else.",
+    "tags": {
+      "class": "not-robbery"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p025",
+    "deck": "thought",
+    "text": "So {other} was gone, and that was the whole point of the night.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p026",
+    "deck": "thought",
+    "text": "It was a robbery. {other} was what it had been for.",
+    "tags": {
+      "class": "robbery-shape"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p027",
+    "deck": "thought",
+    "text": "So {other} had come this way after it left.",
+    "tags": {
+      "class": "goods"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p028",
+    "deck": "thought",
+    "text": "{other} had not gone far, and it had gone through {place}.",
+    "tags": {
+      "class": "goods"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p029",
+    "deck": "thought",
+    "text": "So that was what {subject} had been hiding. It was not murder.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p030",
+    "deck": "thought",
+    "text": "That explained {subject}. It did not explain {victim}.",
+    "tags": {
+      "class": "secret"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p031",
+    "deck": "thought",
+    "text": "That closed the door on {subject}. A dead end.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p032",
+    "deck": "thought",
+    "text": "A dead end. {subject} was out of it.",
+    "tags": {
+      "class": "dead-end"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p033",
+    "deck": "thought",
+    "text": "It didn't touch {victim} that I could see.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p034",
+    "deck": "thought",
+    "text": "I wrote it down. It did not move anything yet.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p035",
+    "deck": "thought",
+    "text": "Half an hour, and nothing to show for it.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p036",
+    "deck": "thought",
+    "text": "Nothing. The half hour was gone and so was the chance.",
+    "tags": {
+      "class": "nothing"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p037",
+    "deck": "thought",
+    "text": "So {victim} had been at {place} at {time}. That was the last anybody had.",
+    "tags": {
+      "class": "last-seen"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p038",
+    "deck": "thought",
+    "text": "{place} at {time}. After that, nobody had {victim} anywhere.",
+    "tags": {
+      "class": "last-seen"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p039",
+    "deck": "thought",
+    "text": "{victim} had been at {place} at {time}, after the hour it was supposed to have happened.",
+    "tags": {
+      "class": "seen-after"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p040",
+    "deck": "thought",
+    "text": "So {victim} was walking around at {time}. Walking meant choosing.",
+    "tags": {
+      "class": "seen-after"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p041",
+    "deck": "thought",
+    "text": "If anybody had come or gone tonight, {subject} would know it.",
+    "tags": {
+      "class": "view",
+      "who": "watcher"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p042",
+    "deck": "thought",
+    "text": "{subject} watched the room. That made {subject} worth a question.",
+    "tags": {
+      "class": "view",
+      "who": "watcher"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p043",
+    "deck": "thought",
+    "text": "{subject} was here. I did not mind that, yet.",
+    "tags": {
+      "class": "view",
+      "who": "client"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p044",
+    "deck": "thought",
+    "text": "{subject} was the client, and the client was paying.",
+    "tags": {
+      "class": "view",
+      "who": "client"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p045",
+    "deck": "thought",
+    "text": "{subject} was in the notebook already. I wanted to see how that sat.",
+    "tags": {
+      "class": "view",
+      "who": "known"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p046",
+    "deck": "thought",
+    "text": "I had {subject}'s name before I had the face.",
+    "tags": {
+      "class": "view",
+      "who": "known"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p047",
+    "deck": "thought",
+    "text": "Nobody had given me {subject}'s name yet.",
+    "tags": {
+      "class": "view",
+      "who": "stranger"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p048",
+    "deck": "thought",
+    "text": "{subject} was nobody to me yet.",
+    "tags": {
+      "class": "view",
+      "who": "stranger"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p049",
+    "deck": "thought",
+    "text": "{subject} had lied to me once already tonight.",
+    "tags": {
+      "class": "view",
+      "who": "any",
+      "lied": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "tht-p050",
+    "deck": "thought",
+    "text": "I had caught {subject} in one lie. I was listening for the next.",
+    "tags": {
+      "class": "view",
+      "who": "any",
+      "lied": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

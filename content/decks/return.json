@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ret-p001",
+    "deck": "return",
+    "text": "I was back at {place}.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ret-p002",
+    "deck": "return",
+    "text": "{place} again, and the street no different.",
+    "tags": {
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ret-p003",
+    "deck": "return",
+    "text": "I was back at {place}.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ret-p004",
+    "deck": "return",
+    "text": "I went into {place} a second time.",
+    "tags": {
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ret-p005",
+    "deck": "return",
+    "text": "I was back at {place}.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ret-p006",
+    "deck": "return",
+    "text": "I let myself into {place} again.",
+    "tags": {
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ret-p007",
+    "deck": "return",
+    "text": "I was back at {place}, where it had happened.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ret-p008",
+    "deck": "return",
+    "text": "{place} again. Nothing had been tidied.",
+    "tags": {
+      "placeKind": "scene"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

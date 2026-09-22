@@ -1,0 +1,2654 @@
+[
+  {
+    "id": "act-p001",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-heir",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p002",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-heir",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p003",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-heir",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p004",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-heir",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p005",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-heir",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p006",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-heir",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p007",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-heir",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p008",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-widow",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p009",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-widow",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p010",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-widow",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p011",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-widow",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p012",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-widow",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p013",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-widow",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p014",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-widow",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p015",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-broker",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p016",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-broker",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p017",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-broker",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p018",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-broker",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p019",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-broker",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p020",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-broker",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p021",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-broker",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p022",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-society",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p023",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-society",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p024",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-society",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p025",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-society",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p026",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-society",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p027",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-society",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p028",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-society",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p029",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-blockowner",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p030",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-blockowner",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p031",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-blockowner",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p032",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-blockowner",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p033",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-blockowner",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p034",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-blockowner",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p035",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-blockowner",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p036",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-lawyer",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p037",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-lawyer",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p038",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-lawyer",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p039",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-lawyer",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p040",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-lawyer",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p041",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-lawyer",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p042",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-lawyer",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p043",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-bookkeeper",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p044",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-bookkeeper",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p045",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-bookkeeper",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p046",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-bookkeeper",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p047",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-bookkeeper",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p048",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-bookkeeper",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p049",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-bookkeeper",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p050",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-nurse",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p051",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-nurse",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p052",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-nurse",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p053",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-nurse",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p054",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-nurse",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p055",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-nurse",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p056",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-nurse",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p057",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-dentist",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p058",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-dentist",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p059",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-dentist",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p060",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-dentist",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p061",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-dentist",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p062",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-dentist",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p063",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-dentist",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p064",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-secretary",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p065",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-secretary",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p066",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-secretary",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p067",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-secretary",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p068",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-secretary",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p069",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-secretary",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p070",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-secretary",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p071",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-reporter",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p072",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-reporter",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p073",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-reporter",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p074",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-reporter",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p075",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-reporter",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p076",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-reporter",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p077",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-reporter",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p078",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-piano-teacher",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p079",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-piano-teacher",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p080",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-piano-teacher",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p081",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-piano-teacher",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p082",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-piano-teacher",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p083",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-piano-teacher",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p084",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-piano-teacher",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p085",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-adjuster",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p086",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-adjuster",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p087",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-adjuster",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p088",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-adjuster",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p089",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-adjuster",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p090",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-adjuster",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p091",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-adjuster",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p092",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-chambermaid",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p093",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-chambermaid",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p094",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-chambermaid",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p095",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-chambermaid",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p096",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-chambermaid",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p097",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-chambermaid",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p098",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-chambermaid",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p099",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-longshoreman",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p100",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-longshoreman",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p101",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-longshoreman",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p102",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-longshoreman",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p103",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-longshoreman",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p104",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-longshoreman",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p105",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-longshoreman",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p106",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-seamstress",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p107",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-seamstress",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p108",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-seamstress",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p109",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-seamstress",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p110",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-seamstress",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p111",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-seamstress",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p112",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-seamstress",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p113",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-hackman",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p114",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-hackman",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p115",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-hackman",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p116",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-hackman",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p117",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-hackman",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p118",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-hackman",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p119",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-hackman",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p120",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-tailor",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p121",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-tailor",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p122",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-tailor",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p123",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-tailor",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p124",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-tailor",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p125",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-tailor",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p126",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-tailor",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p127",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-stagehand",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p128",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-stagehand",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p129",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-stagehand",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p130",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-stagehand",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p131",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-stagehand",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p132",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-stagehand",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p133",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-stagehand",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p134",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-switchboard",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p135",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-switchboard",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p136",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-switchboard",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p137",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-switchboard",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p138",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-switchboard",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p139",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-switchboard",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p140",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-switchboard",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p141",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-nightman",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p142",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-nightman",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p143",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-nightman",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p144",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-nightman",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p145",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-nightman",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p146",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-nightman",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p147",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-nightman",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p148",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-chorus",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p149",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-chorus",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p150",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-chorus",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p151",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-chorus",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p152",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-chorus",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p153",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-chorus",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p154",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-chorus",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p155",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-bookmaker",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p156",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-bookmaker",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p157",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-bookmaker",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p158",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-bookmaker",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p159",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-bookmaker",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p160",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-bookmaker",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p161",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-bookmaker",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p162",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-heeler",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p163",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-heeler",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p164",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-heeler",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p165",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-heeler",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p166",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-heeler",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p167",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-heeler",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p168",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-heeler",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p169",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-pawnman",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p170",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-pawnman",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p171",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-pawnman",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p172",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-pawnman",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p173",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-pawnman",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p174",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-pawnman",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p175",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-pawnman",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p176",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-bouncer",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p177",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-bouncer",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p178",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-bouncer",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p179",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-bouncer",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p180",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-bouncer",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p181",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-bouncer",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p182",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-bouncer",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p183",
+    "deck": "activity",
+    "text": "{name} was standing out of the wind with both hands in pockets.",
+    "tags": {
+      "role": "arch-runner",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p184",
+    "deck": "activity",
+    "text": "{name} was watching the street and not much else.",
+    "tags": {
+      "role": "arch-runner",
+      "placeKind": "public",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p185",
+    "deck": "activity",
+    "text": "{name} was at a table at the back with a cup of coffee going cold.",
+    "tags": {
+      "role": "arch-runner",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p186",
+    "deck": "activity",
+    "text": "{name} was reading a folded newspaper near the door.",
+    "tags": {
+      "role": "arch-runner",
+      "placeKind": "semi",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p187",
+    "deck": "activity",
+    "text": "{name} was sitting by the window with the light off.",
+    "tags": {
+      "role": "arch-runner",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p188",
+    "deck": "activity",
+    "text": "{name} was going through a drawer and shut it.",
+    "tags": {
+      "role": "arch-runner",
+      "placeKind": "private",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p189",
+    "deck": "activity",
+    "text": "{name} was awake and looked as if it had cost something.",
+    "tags": {
+      "role": "arch-runner",
+      "placeKind": "any",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p190",
+    "deck": "activity",
+    "text": "{name} was behind the bar, putting clean glasses back on the shelf.",
+    "tags": {
+      "role": "bartender",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p191",
+    "deck": "activity",
+    "text": "{name} was wiping down the bar, one end to the other.",
+    "tags": {
+      "role": "bartender",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p192",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "bartender",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p193",
+    "deck": "activity",
+    "text": "{name} was on the door, stamping the cold out of both feet.",
+    "tags": {
+      "role": "doorman",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p194",
+    "deck": "activity",
+    "text": "{name} was holding the door for nobody.",
+    "tags": {
+      "role": "doorman",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p195",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "doorman",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p196",
+    "deck": "activity",
+    "text": "{name} was squaring up the stacks of the early editions.",
+    "tags": {
+      "role": "newsstand",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p197",
+    "deck": "activity",
+    "text": "{name} was counting change into a cigar box.",
+    "tags": {
+      "role": "newsstand",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p198",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "newsstand",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p199",
+    "deck": "activity",
+    "text": "{name} was behind the counter, scraping down the grill.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p200",
+    "deck": "activity",
+    "text": "{name} was filling the sugar shakers one at a time.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p201",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p202",
+    "deck": "activity",
+    "text": "{name} was in the booth, counting the roll of tickets.",
+    "tags": {
+      "role": "ticket-taker",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p203",
+    "deck": "activity",
+    "text": "{name} was reading a magazine in the booth.",
+    "tags": {
+      "role": "ticket-taker",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p204",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "ticket-taker",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p205",
+    "deck": "activity",
+    "text": "{name} was sitting on the stool in the car with the gate open.",
+    "tags": {
+      "role": "elevator-man",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p206",
+    "deck": "activity",
+    "text": "{name} was polishing the brass on the gate.",
+    "tags": {
+      "role": "elevator-man",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p207",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "elevator-man",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p208",
+    "deck": "activity",
+    "text": "{name} was in the hall, sorting the post on the table.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p209",
+    "deck": "activity",
+    "text": "{name} was sweeping the bottom step.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p210",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p211",
+    "deck": "activity",
+    "text": "{name} was on the corner, trying doors.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p212",
+    "deck": "activity",
+    "text": "{name} was writing something in a notebook under the lamp.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p213",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p214",
+    "deck": "activity",
+    "text": "{name} was asleep behind the wheel with the meter flag up.",
+    "tags": {
+      "role": "cabbie",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p215",
+    "deck": "activity",
+    "text": "{name} was leaning on the fender, smoking.",
+    "tags": {
+      "role": "cabbie",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p216",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "cabbie",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p217",
+    "deck": "activity",
+    "text": "{name} was behind the counter, making up a prescription.",
+    "tags": {
+      "role": "druggist",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p218",
+    "deck": "activity",
+    "text": "{name} was pricing tins on the back shelf.",
+    "tags": {
+      "role": "druggist",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p219",
+    "deck": "activity",
+    "text": "{name} was yawning at the dawn and not hiding it.",
+    "tags": {
+      "role": "druggist",
+      "placeKind": "any",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p220",
+    "deck": "activity",
+    "text": "{name} was waiting, and not for me.",
+    "tags": {
+      "role": "any",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "act-p221",
+    "deck": "activity",
+    "text": "{name} was sitting still, which is its own kind of doing something.",
+    "tags": {
+      "role": "any",
+      "placeKind": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

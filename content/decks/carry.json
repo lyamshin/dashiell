@@ -1,0 +1,310 @@
+[
+  {
+    "id": "car-p001",
+    "deck": "carry",
+    "text": "{name} had given me the question. I put it to {who}.",
+    "tags": {
+      "for": "ask-person",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p002",
+    "deck": "carry",
+    "text": "I wanted {who}'s word on {subject}.",
+    "tags": {
+      "for": "ask-person",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p003",
+    "deck": "carry",
+    "text": "No one sent me to it. I asked {who} about {subject} anyway.",
+    "tags": {
+      "for": "ask-person",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p004",
+    "deck": "carry",
+    "text": "It was a question of my own, about {subject}.",
+    "tags": {
+      "for": "ask-person",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p005",
+    "deck": "carry",
+    "text": "I had been pointed at {subject}, and {who} was the one to ask.",
+    "tags": {
+      "for": "ask-thing",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p006",
+    "deck": "carry",
+    "text": "I wanted to know what {who} knew about {subject}.",
+    "tags": {
+      "for": "ask-thing",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p007",
+    "deck": "carry",
+    "text": "No one sent me to it. I asked about {subject} anyway.",
+    "tags": {
+      "for": "ask-thing",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p008",
+    "deck": "carry",
+    "text": "It was a question of my own, about {subject}.",
+    "tags": {
+      "for": "ask-thing",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p009",
+    "deck": "carry",
+    "text": "I had been pointed at {subject}, and {who} was the one to ask.",
+    "tags": {
+      "for": "ask-place",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p010",
+    "deck": "carry",
+    "text": "I wanted {who} to tell me about {subject}.",
+    "tags": {
+      "for": "ask-place",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p011",
+    "deck": "carry",
+    "text": "No one sent me to it. I asked about {subject} anyway.",
+    "tags": {
+      "for": "ask-place",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p012",
+    "deck": "carry",
+    "text": "It was a question of my own, about {subject}.",
+    "tags": {
+      "for": "ask-place",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p013",
+    "deck": "carry",
+    "text": "I wanted {who}'s evening, hour by hour.",
+    "tags": {
+      "for": "ask-evening",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p014",
+    "deck": "carry",
+    "text": "I had been told to ask where {who} had been.",
+    "tags": {
+      "for": "ask-evening",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p015",
+    "deck": "carry",
+    "text": "No one sent me to it. I wanted {who}'s evening anyway.",
+    "tags": {
+      "for": "ask-evening",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p016",
+    "deck": "carry",
+    "text": "Everybody had an evening. I wanted {who}'s.",
+    "tags": {
+      "for": "ask-evening",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p017",
+    "deck": "carry",
+    "text": "I wanted to know who {who} was.",
+    "tags": {
+      "for": "ask-self",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p018",
+    "deck": "carry",
+    "text": "I wanted {who} in {who}'s own words.",
+    "tags": {
+      "for": "ask-self",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p019",
+    "deck": "carry",
+    "text": "No one sent me to it. I wanted to know who {who} was.",
+    "tags": {
+      "for": "ask-self",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p020",
+    "deck": "carry",
+    "text": "I asked {who} for the short version of a life.",
+    "tags": {
+      "for": "ask-self",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p021",
+    "deck": "carry",
+    "text": "Something had pointed me at the room. I wanted to look at it myself.",
+    "tags": {
+      "for": "search-room",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p022",
+    "deck": "carry",
+    "text": "{name} had pointed me at the room. I wanted to look at it myself.",
+    "tags": {
+      "for": "search-room",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p023",
+    "deck": "carry",
+    "text": "No one sent me to it. I went through the room anyway.",
+    "tags": {
+      "for": "search-room",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p024",
+    "deck": "carry",
+    "text": "Nobody had pointed me at the room. I looked anyway.",
+    "tags": {
+      "for": "search-room",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p025",
+    "deck": "carry",
+    "text": "I had been pointed at {subject}. I wanted to see it.",
+    "tags": {
+      "for": "search-thing",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p026",
+    "deck": "carry",
+    "text": "{subject} was the thing I had come to look at.",
+    "tags": {
+      "for": "search-thing",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p027",
+    "deck": "carry",
+    "text": "No one sent me to {subject}. I looked at it anyway.",
+    "tags": {
+      "for": "search-thing",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "car-p028",
+    "deck": "carry",
+    "text": "Nobody had pointed me at {subject}. I went through it anyway.",
+    "tags": {
+      "for": "search-thing",
+      "lead": "no"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

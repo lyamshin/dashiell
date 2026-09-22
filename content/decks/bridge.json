@@ -1,0 +1,62 @@
+[
+  {
+    "id": "brg-p001",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} would know where {subject} had been tonight, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "brg-p002",
+    "deck": "bridge",
+    "text": "{subject} was {tie}, and that made {subject} the next question. {who} was the one to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "brg-p003",
+    "deck": "bridge",
+    "text": "{subject} had to do with {tie}. {who} would know more, and {who} was at {where}.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "brg-p004",
+    "deck": "bridge",
+    "text": "The next thing was {subject}, and {tie} was where it led.",
+    "tags": {
+      "tie": "place"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "brg-p005",
+    "deck": "bridge",
+    "text": "{subject} and {tie} were the next question, and {who} was the one to put it to.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "brg-p006",
+    "deck": "bridge",
+    "text": "Somebody had to account for {subject} at {tie}. {who} might, at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

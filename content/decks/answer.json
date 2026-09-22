@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ans-p001",
+    "deck": "answer",
+    "text": "It was what I had come for.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ans-p002",
+    "deck": "answer",
+    "text": "I had come for {subject}, and I had it.",
+    "tags": {
+      "outcome": "found"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ans-p003",
+    "deck": "answer",
+    "text": "It was a dead end, and I told myself so plainly.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ans-p004",
+    "deck": "answer",
+    "text": "Nothing came of it. A dead end.",
+    "tags": {
+      "outcome": "dead-end"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ans-p005",
+    "deck": "answer",
+    "text": "It was not what I came for, but it was something.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "ans-p006",
+    "deck": "answer",
+    "text": "I had come about {subject} and went away with something else.",
+    "tags": {
+      "outcome": "something-else"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

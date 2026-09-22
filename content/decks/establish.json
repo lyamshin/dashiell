@@ -1,0 +1,794 @@
+[
+  {
+    "id": "est-p001",
+    "deck": "establish",
+    "text": "The place was {owner}’s apartment on the fourth floor. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "res-apartment",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p002",
+    "deck": "establish",
+    "text": "{owner}’s apartment on the fourth floor. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "res-apartment",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p003",
+    "deck": "establish",
+    "text": "The place was {owner}’s rooms in the brownstone. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "res-brownstone",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p004",
+    "deck": "establish",
+    "text": "{owner}’s rooms in the brownstone. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "res-brownstone",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p005",
+    "deck": "establish",
+    "text": "The place was {owner}’s walk-up over the drugstore. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "res-walkup",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p006",
+    "deck": "establish",
+    "text": "{owner}’s walk-up over the drugstore. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "res-walkup",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p007",
+    "deck": "establish",
+    "text": "The place was {owner}’s suite at the residential hotel. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "res-suite",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p008",
+    "deck": "establish",
+    "text": "{owner}’s suite at the residential hotel. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "res-suite",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p009",
+    "deck": "establish",
+    "text": "The place was {owner}’s house on the back lot. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "res-backhouse",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p010",
+    "deck": "establish",
+    "text": "{owner}’s house on the back lot. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "res-backhouse",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p011",
+    "deck": "establish",
+    "text": "The place was the roof over the Dover. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "rooftop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p012",
+    "deck": "establish",
+    "text": "The roof over the Dover. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "rooftop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p013",
+    "deck": "establish",
+    "text": "The place was the alley behind the delicatessen. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "back-alley",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p014",
+    "deck": "establish",
+    "text": "The alley behind the delicatessen. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "back-alley",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p015",
+    "deck": "establish",
+    "text": "The place was the office over the tailor’s shop. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "office-over-tailor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p016",
+    "deck": "establish",
+    "text": "The office over the tailor’s shop. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "office-over-tailor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p017",
+    "deck": "establish",
+    "text": "The place was Pier 46, under the shed. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "pier-shed",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p018",
+    "deck": "establish",
+    "text": "Pier 46, under the shed. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "pier-shed",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p019",
+    "deck": "establish",
+    "text": "The place was the drying yard behind the laundry. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "laundry-yard",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p020",
+    "deck": "establish",
+    "text": "The drying yard behind the laundry. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "laundry-yard",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p021",
+    "deck": "establish",
+    "text": "The place was the third-floor walk-up on Ninth. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "walkup-flat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p022",
+    "deck": "establish",
+    "text": "The third-floor walk-up on Ninth. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "walkup-flat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p023",
+    "deck": "establish",
+    "text": "The place was the vestibule of the Hallam apartments. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p024",
+    "deck": "establish",
+    "text": "The vestibule of the Hallam apartments. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p025",
+    "deck": "establish",
+    "text": "The place was the back room at Mrs. Teague’s. The way in was a door off the landing, and it was not locked.",
+    "tags": {
+      "place": "rooming-house-room",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p026",
+    "deck": "establish",
+    "text": "The back room at Mrs. Teague’s. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "rooming-house-room",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p027",
+    "deck": "establish",
+    "text": "The place was Dolan’s Bar. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "dolans-bar",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p028",
+    "deck": "establish",
+    "text": "Dolan’s Bar. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "dolans-bar",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p029",
+    "deck": "establish",
+    "text": "The place was the speakeasy under the hat shop. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "speakeasy",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p030",
+    "deck": "establish",
+    "text": "The speakeasy under the hat shop. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "speakeasy",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p031",
+    "deck": "establish",
+    "text": "The place was the lobby of the Wyckoff. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "hotel-lobby",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p032",
+    "deck": "establish",
+    "text": "The lobby of the Wyckoff. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "hotel-lobby",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p033",
+    "deck": "establish",
+    "text": "The place was the newsstand on the corner. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "corner-newsstand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p034",
+    "deck": "establish",
+    "text": "The newsstand on the corner. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "corner-newsstand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p035",
+    "deck": "establish",
+    "text": "The place was the Automat on the corner. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "automat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p036",
+    "deck": "establish",
+    "text": "The Automat on the corner. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "automat",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p037",
+    "deck": "establish",
+    "text": "The place was the Bijou picture house. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "movie-house",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p038",
+    "deck": "establish",
+    "text": "The Bijou picture house. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "movie-house",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p039",
+    "deck": "establish",
+    "text": "The place was the Arcadia dance hall. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "dance-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p040",
+    "deck": "establish",
+    "text": "The Arcadia dance hall. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "dance-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p041",
+    "deck": "establish",
+    "text": "The place was Kaplan’s drugstore with the soda fountain. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "drugstore",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p042",
+    "deck": "establish",
+    "text": "Kaplan’s drugstore with the soda fountain. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "drugstore",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p043",
+    "deck": "establish",
+    "text": "The place was the cab stand outside the Hippodrome. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "cab-stand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p044",
+    "deck": "establish",
+    "text": "The cab stand outside the Hippodrome. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "cab-stand",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p045",
+    "deck": "establish",
+    "text": "The place was the stairwell of the Mott Street tenement. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p046",
+    "deck": "establish",
+    "text": "The stairwell of the Mott Street tenement. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p047",
+    "deck": "establish",
+    "text": "The place was Mancuso’s pool hall. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "pool-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p048",
+    "deck": "establish",
+    "text": "Mancuso’s pool hall. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "pool-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p049",
+    "deck": "establish",
+    "text": "The place was Zelinsky’s pawnshop, the back room. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "pawnshop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p050",
+    "deck": "establish",
+    "text": "Zelinsky’s pawnshop, the back room. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "pawnshop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p051",
+    "deck": "establish",
+    "text": "The place was the chop suey place over the laundry. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "chop-suey",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p052",
+    "deck": "establish",
+    "text": "The chop suey place over the laundry. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "chop-suey",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p053",
+    "deck": "establish",
+    "text": "The place was the parlour of Mrs. Teague’s boarding house. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "boarding-parlor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p054",
+    "deck": "establish",
+    "text": "The parlour of Mrs. Teague’s boarding house. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "boarding-parlor",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p055",
+    "deck": "establish",
+    "text": "The place was Ruggiero’s barber shop. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "barber-shop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p056",
+    "deck": "establish",
+    "text": "Ruggiero’s barber shop. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "barber-shop",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p057",
+    "deck": "establish",
+    "text": "The place was the garage on Eleventh Avenue. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "hotel-garage",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p058",
+    "deck": "establish",
+    "text": "The garage on Eleventh Avenue. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "hotel-garage",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p059",
+    "deck": "establish",
+    "text": "The place was the El platform at Twenty-Third Street. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "el-platform",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p060",
+    "deck": "establish",
+    "text": "The El platform at Twenty-Third Street. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "el-platform",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p061",
+    "deck": "establish",
+    "text": "The place was the benches at the north end of the square. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "square-benches",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p062",
+    "deck": "establish",
+    "text": "The benches at the north end of the square. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "square-benches",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p063",
+    "deck": "establish",
+    "text": "The place was the ferry slip at the foot of the street. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "ferry-slip",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p064",
+    "deck": "establish",
+    "text": "The ferry slip at the foot of the street. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "ferry-slip",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p065",
+    "deck": "establish",
+    "text": "The place was the subway kiosk at the corner. There was no way in, only the open air, and nobody to stop anybody.",
+    "tags": {
+      "place": "subway-kiosk",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p066",
+    "deck": "establish",
+    "text": "The subway kiosk at the corner. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "subway-kiosk",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p067",
+    "deck": "establish",
+    "text": "The place was the side chapel at St. Malachy’s. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "side-chapel",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p068",
+    "deck": "establish",
+    "text": "The side chapel at St. Malachy’s. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "side-chapel",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p069",
+    "deck": "establish",
+    "text": "The place was the local’s hall over the bakery. You went in off the street, through a door that was open late.",
+    "tags": {
+      "place": "union-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p070",
+    "deck": "establish",
+    "text": "The local’s hall over the bakery. After midnight it was the same place with fewer people in it.",
+    "tags": {
+      "place": "union-hall",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p071",
+    "deck": "establish",
+    "text": "My own office. Two rooms, a desk, and nobody waiting in either of them.",
+    "tags": {
+      "place": "office",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "est-p072",
+    "deck": "establish",
+    "text": "The office was where I had left it, and so was the cold.",
+    "tags": {
+      "place": "office",
+      "visit": "first"
+    },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]
