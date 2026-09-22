@@ -96,10 +96,10 @@ import {
   PLAIN_FLOOR,
   PLAIN_NOTED,
   PLAIN_STOCK,
-  CLIENT_CONTINUES,
   SELF_ALREADY,
   SELF_QUESTIONS,
   briefingQuestion,
+  fillPlain,
   clueAbout,
   connective,
   pickShape,
@@ -128,6 +128,7 @@ import {
   clientLeavingLine,
   entranceCard,
   hiringFrame,
+  planBeats,
   officeCard,
   retainerFor,
   speechParagraphs,
@@ -2378,6 +2379,32 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // to come from.
   const breathing = t.shortShare() < BREATH_SHARE_FLOOR;
   let attributions = 0;
+  // Hone 2 §A.1. The beats are budgeted before the first one is printed, so
+  // that the one the page keeps is the one the content earned rather than the
+  // first one the loop happened to reach.
+  const beats = planBeats(turns, {
+    closeIsSpeech: split.close.length > 0,
+    closePrompt: split.closePrompt,
+  });
+  /**
+   * A beat, drawn once in a run.
+   *
+   * The dealer already knows how to remember a choice that was not a card, and
+   * a beat is exactly that: the same five words twice in a night is the
+   * repetition a reader notices, whichever page it falls on. When the pool is
+   * spent the shape comes round again rather than the page going without.
+   */
+  const beatLine = (pool: readonly string[]): string => {
+    const fresh = pool.filter((shape) => {
+      const text = fillPlain(shape, plainSlots);
+      return text.length > 0 && !dealer.used(`beat:${text}`) && !spentBeats.includes(text);
+    });
+    const text = pickShape(dealer.random, fresh.length > 0 ? fresh : pool, plainSlots, spentBeats);
+    if (text.length === 0) return '';
+    spentBeats.push(text);
+    dealer.note(`beat:${text}`);
+    return text;
+  };
   for (const [i, turn] of turns.entries()) {
     if (turn.prompt !== null) {
       t.say(`“${turn.prompt}”`, 'exchange', {
@@ -2396,23 +2423,24 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
       attributions < ATTRIBUTIONS
         ? `${attributions === 0 ? pronounOf(client) : client.surname} said`
         : undefined;
+    // §A.1. Where the turn runs to more than one paragraph, the attribution
+    // goes at the seam rather than at the head: it is what joins two
+    // consecutive client paragraphs now that no beat may stand between them.
+    const plain = speechParagraphs(turn.lines, SPEECH_PER_PARAGRAPH, breathing);
     const paragraphs = speechParagraphs(
       turn.lines,
       SPEECH_PER_PARAGRAPH,
       breathing,
       attribution,
+      plain.length > 1 ? 1 : 0,
     );
     if (attribution !== undefined && paragraphs.some((p) => p.includes(attribution))) {
       attributions++;
     }
-    for (const [n, paragraph] of paragraphs.entries()) {
-      if (n > 0) {
-        const went = pickShape(dealer.random, CLIENT_CONTINUES, plainSlots, spentBeats);
-        if (went.length > 0) {
-          spentBeats.push(went);
-          t.say(went, 'narrator', { transparent: true });
-        }
-      }
+    // §A.1: nothing between two paragraphs of one turn. She was not
+    // interrupted, and a beat there says only what the quotation marks say.
+    // The turn either carries the attribution move or it runs on.
+    for (const paragraph of paragraphs) {
       t.say(paragraph, 'exchange', {
         personId: client.id,
         register: 'truth',
@@ -2420,14 +2448,13 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
         transparent: true,
       });
     }
-    // Once, after the turn that carried what happened: him registering it and
-    // saying nothing else. Twice would be a tic.
-    if (i === 0) {
-      t.say(dealer.random.pick(BRIEFING_ACK), 'narrator', { transparent: true });
-    } else if (i === turns.length - 2) {
-      t.say(pickShape(dealer.random, BRIEFING_PAUSE, plainSlots), 'narrator', {
-        transparent: true,
-      });
+    // §A.1: a beat only where the plan put one — after a one-word answer,
+    // after the purpose, or after the turn he already knew the half of — and
+    // never where the client is about to go on talking.
+    const beat = beats.find((b) => b.after === i);
+    if (beat) {
+      const line = beatLine(beat.kind === 'ack' ? BRIEFING_ACK : BRIEFING_PAUSE);
+      if (line.length > 0) t.say(line, 'narrator', { transparent: true });
     }
   }
 

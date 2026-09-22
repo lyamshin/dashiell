@@ -301,6 +301,107 @@ export function briefingTurns(
   return turns;
 }
 
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.1 — the beat budget.
+ * ------------------------------------------------------------------ */
+
+/**
+ * How many interstitial beats a page may spend.
+ *
+ * An interstitial beat is a line of narration between two blocks of speech:
+ * "She went straight on.", "I said nothing.", "I let her sit with it." One is
+ * a pause; five are a tic, and seed 3's page one had five. The golden has two
+ * on its office page — "I knew it." after the standing, and "She let that sit."
+ * after a one-word answer — and both of them are about something.
+ *
+ * One a page, two where the page is long enough to have a middle: four or more
+ * exchanges, counting the client's turns and the close.
+ */
+export const BEAT_BUDGET_BASE = 1;
+export const BEAT_BUDGET_LONG = 2;
+export const BEAT_BUDGET_EXCHANGES = 4;
+
+/** A client answer this short is the golden's "Collecting." and earns a beat. */
+export const SHORT_ANSWER_WORDS = 4;
+
+export function beatBudget(exchanges: number): number {
+  return exchanges >= BEAT_BUDGET_EXCHANGES ? BEAT_BUDGET_LONG : BEAT_BUDGET_BASE;
+}
+
+/**
+ * Which beat goes where: what he registers, and what she sits with.
+ *
+ *   `ack`   Dashiell taking a fact without comment — the golden's "I knew it."
+ *   `pause` the client stopping — the golden's "She let that sit."
+ */
+export type BeatKind = 'ack' | 'pause';
+
+export interface BeatPlacement {
+  /** The index of the turn this beat follows. */
+  after: number;
+  kind: BeatKind;
+}
+
+/** The words of a spoken line, for the one-word-answer rule. */
+function wordsIn(text: string): number {
+  const bare = text.replace(/[“”"]/g, '').trim();
+  return bare.length === 0 ? 0 : bare.split(/\s+/).length;
+}
+
+/**
+ * The beats a briefing has earned, best first and then in page order.
+ *
+ * Two rules, and they are both refusals.
+ *
+ * **Never between two consecutive client turns.** A beat there is the page
+ * apologising for a paragraph break: she was not interrupted, nobody asked
+ * her anything, and "She went straight on." says only what the quotation
+ * marks already say. Those turns join with the attribution move — "…," she
+ * said. "…" — or they simply run on. So a position is legal only when what
+ * follows it is one of Dashiell's lines.
+ *
+ * **Only where the content earns a pause.** Three things earn one: a one-word
+ * answer (the golden's "Collecting."), the purpose or the pointer — the two
+ * questions a client answers slowly, because both of them are about what she
+ * wants rather than about what happened — and the first turn, which is the one
+ * he already knew the half of.
+ */
+export function planBeats(
+  turns: readonly BriefingTurn[],
+  opts: { closeIsSpeech: boolean; closePrompt: string | null },
+): BeatPlacement[] {
+  const exchanges = turns.length + (opts.closeIsSpeech ? 1 : 0);
+  const budget = beatBudget(exchanges);
+  if (budget === 0 || turns.length === 0) return [];
+  /** Is the next thing on the page one of Dashiell's lines rather than hers? */
+  const asked = (i: number): boolean => {
+    const next = turns[i + 1];
+    if (next !== undefined) return next.prompt !== null;
+    // After the last turn comes the close, which the pointer's question opens.
+    return opts.closeIsSpeech ? opts.closePrompt !== null : false;
+  };
+  const candidates: { at: BeatPlacement; rank: number }[] = [];
+  for (const [i, turn] of turns.entries()) {
+    if (!asked(i)) continue;
+    const last = turn.lines[turn.lines.length - 1];
+    if (last !== undefined && wordsIn(last.text) <= SHORT_ANSWER_WORDS) {
+      candidates.push({ at: { after: i, kind: 'pause' }, rank: 0 });
+      continue;
+    }
+    const topic = turn.lines[0]?.topic;
+    if (topic === 'purpose' || topic === 'pointer' || topic === 'cost') {
+      candidates.push({ at: { after: i, kind: 'pause' }, rank: 1 });
+      continue;
+    }
+    if (i === 0) candidates.push({ at: { after: i, kind: 'ack' }, rank: 2 });
+  }
+  return candidates
+    .sort((a, b) => a.rank - b.rank || a.at.after - b.at.after)
+    .slice(0, budget)
+    .sort((a, b) => a.at.after - b.at.after)
+    .map((c) => c.at);
+}
+
 /**
  * The rule set, and the generator now carries it.
  *
@@ -349,6 +450,16 @@ export function speechParagraphs(
   per = 3,
   breath = false,
   attribution?: string,
+  /**
+   * Hone 2 §A.1. Which paragraph of the turn carries the attribution.
+   *
+   * Zero is the head of the turn, which is where the golden puts it when the
+   * turn is one paragraph long. A turn that runs to two takes it at the seam
+   * instead: that is the join the beat used to stand in for, and "…," she
+   * said. "…" does the work the beat was doing without narrating a pause
+   * nobody took.
+   */
+  attributeAt = 0,
 ): string[] {
   const said = lines.map((line) => {
     if (typeof line === 'string') return line;
@@ -359,7 +470,7 @@ export function speechParagraphs(
   for (let i = 0; i < said.length; i += per) {
     const chunk = said.slice(i, i + per).join(' ').trim();
     if (chunk.length === 0) continue;
-    if (i === 0 && attribution !== undefined && attribution.length > 0) {
+    if (out.length === attributeAt && attribution !== undefined && attribution.length > 0) {
       const broken = attributed(chunk, attribution);
       if (broken !== null) {
         out.push(broken);
