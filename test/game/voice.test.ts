@@ -24,6 +24,7 @@ import {
   MISSING_DECKS,
   SCHEMA,
   THEORY_TEMPLATES,
+  WINDOW_TEMPLATES,
   Dealer,
   askSlots,
   attachSimile,
@@ -730,6 +731,74 @@ describe('the reactive monologue', () => {
     expect(two.lines[0]).toBeDefined();
   });
 
+  it('counts the half hours it took off the window, and pins a window of one', () => {
+    const windowOf = (from: number[], to: number[], used?: (id: string) => boolean): string => {
+      const before = establishedFrom(view, [], []);
+      const after = establishedFrom(view, [], []);
+      before.deathTicks = from as never[];
+      after.deathTicks = to as never[];
+      const out = reactiveMonologue({
+        view,
+        roll,
+        before,
+        after,
+        touched: [],
+        actionsLeft: 9,
+        previousTheory: null,
+        seed: 5,
+        ...(used ? { used } : {}),
+      });
+      return out.lines.join(' ');
+    };
+
+    // Four half hours down to two: two were lost, and it says two.
+    const ids = new Set(WINDOW_TEMPLATES.narrowed.map((t) => t.id));
+    const counted = windowOf([0, 1, 2, 3], [0, 1], (id) => id !== 'narrowed-count');
+    expect(counted).toContain('two fewer half hours');
+    // Three down to two: one, and the noun agrees with it.
+    expect(windowOf([0, 1, 2], [0, 1], (id) => id !== 'narrowed-count')).toContain(
+      'one fewer half hour to argue',
+    );
+    expect(ids.size).toBe(3);
+
+    // Down to a single tick: a pool of its own, and no count at all.
+    const pinned = windowOf([0, 1, 2], [2]);
+    expect(WINDOW_TEMPLATES.pinned.some((t) => pinned.includes(t.text.split('{')[0] as string))).toBe(
+      true,
+    );
+    expect(pinned).not.toContain('fewer half');
+
+    // Set for the first time: nothing was taken away, so nothing is counted.
+    const set = windowOf([], [0, 1]);
+    expect(set).not.toContain('fewer half');
+    expect(set.length).toBeGreaterThan(0);
+  });
+
+  it('does not narrow the window twice in a run with the same sentence', () => {
+    for (let seed = 1; seed <= 40; seed++) {
+      const state = exhaust(seed, 2);
+      const said = new Map<string, number>();
+      for (const page of state.log) {
+        for (const block of page.blocks) {
+          if (block.kind !== 'prose' || block.voice !== 'monologue') continue;
+          for (const pool of Object.values(WINDOW_TEMPLATES)) {
+            for (const t of pool) {
+              // Two templates can share an opening — "The window is {window}
+              // now…" and "The window is {window}, and…" — so a template is
+              // named by every one of its literal runs, not just the first.
+              const runs = t.text.split(/\{[a-z]+\}/).filter((s) => s.length >= 10);
+              if (runs.length === 0 || !runs.every((s) => block.text.includes(s))) continue;
+              said.set(t.id, (said.get(t.id) ?? 0) + 1);
+            }
+          }
+        }
+      }
+      for (const [id, n] of said) {
+        expect(n, `seed ${seed}: ${id} said ${n} times`).toBe(1);
+      }
+    }
+  });
+
   it('rationalizes for a warm acquaintance until two facts, then turns', () => {
     const warm = { ...roll, knows: { [suspect.id]: { how: 'old-flame' as const, warmth: 1 as const } } };
     const templatesFor = (n: number, previous: number): string => {
@@ -862,8 +931,13 @@ describe('the burn tiers', () => {
     const state = exhaust(7, 2);
     expect(state.burned.length).toBeGreaterThan(20);
     for (const id of state.burned) {
-      // Either a deck card or one of the hand-written lines.
-      expect(deckOf(id) !== null || /^(NA|ROOM)-\d+$/.test(id), id).toBe(true);
+      // A deck card, one of the hand-written lines, or a monologue line the
+      // run noted so as not to say it twice — those belong to no deck on
+      // purpose, and carry a prefix that says so.
+      expect(
+        deckOf(id) !== null || /^(NA|ROOM)-\d+$/.test(id) || id.startsWith('monologue:'),
+        id,
+      ).toBe(true);
     }
   });
 });

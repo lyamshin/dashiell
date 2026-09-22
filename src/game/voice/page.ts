@@ -903,7 +903,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   const before: Established = establishedFrom(view, stage.foundBefore, stage.accountsBefore);
   const after: Established = establishedFrom(view, stage.foundAfter, stage.accountsAfter);
   const touched = touchedPeople(view, stage.foundAfter.slice(stage.foundBefore.length), scene);
-  let reaction: ReactiveResult = { lines: [], theory: stage.previousTheory };
+  let reaction: ReactiveResult = { lines: [], theory: stage.previousTheory, spent: [] };
   let carried = false;
   if (scene.kind !== 'nothing') {
     reaction = reactiveMonologue({
@@ -915,7 +915,9 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       actionsLeft: stage.actionsLeft,
       previousTheory: stage.previousTheory,
       seed: (stage.pageIndex + 1) * 7919 + view.kase.seed,
+      used: (id) => dealer.used(notedAs(id)),
     });
+    let said = 0;
     for (const [i, line] of reaction.lines.entries()) {
       // A page that is already long keeps the first thought and drops the
       // second. Two paragraphs of thinking on top of three finds is a page
@@ -925,7 +927,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       const glue = i === 0 && !carried ? carryNoun(dealer, ctx.before) : null;
       if (glue) carried = true;
       say(glue ? joinSentences(glue, line) : line, 'monologue');
+      said++;
     }
+    // A narrowing line the page dropped for length was never said, so the run
+    // has not spent it and may reach for it again.
+    for (const { id, line } of reaction.spent) if (line < said) dealer.note(notedAs(id));
   }
 
   /* ------------------------------------- ambient, aside, simile: the trim */
@@ -1087,6 +1093,17 @@ function sharedWith(motifs: readonly string[] | undefined, set: ReadonlySet<stri
   let n = 0;
   for (const m of motifs) if (set.has(m)) n += 2;
   return n;
+}
+
+/**
+ * A monologue line's id, as the run's spend pile carries it.
+ *
+ * The prefix belongs to no deck, so `deckOf` returns null for it and nothing
+ * that reads the pile as cards — the burn tiers, the cross-run pile, the
+ * coherence tests — ever mistakes it for one.
+ */
+export function notedAs(id: string): string {
+  return `monologue:${id}`;
 }
 
 /** What a line spoken by the person being interviewed can host (§A.3). */

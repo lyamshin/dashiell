@@ -423,6 +423,28 @@ export class Dealer {
     return null;
   }
 
+  /**
+   * A choice that was not a card, remembered like one.
+   *
+   * The reactive monologue is derived rather than dealt — it has to be *about*
+   * the board — but "do not say this twice in a night" is exactly what the
+   * dealer already knows how to do, and the run's spend is already carried in
+   * the save. So a narrowing line is noted here under an id no deck owns:
+   * `deckOf` returns null for it, so the burn tiers ignore it and the cross-run
+   * pile never sees it, and the run gets its memory for nothing.
+   */
+  note(id: string): void {
+    if (this.run.has(id)) return;
+    this.run.add(id);
+    this.order.push(id);
+    this.spent.push(id);
+  }
+
+  /** Has this id — a card or a noted choice — been spent this run? */
+  used(id: string): boolean {
+    return this.run.has(id);
+  }
+
   /** Which decks had to come round again since this was last asked. */
   takeReshuffles(): DeckName[] {
     const out = [...this.reshuffles];
