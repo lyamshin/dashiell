@@ -354,9 +354,10 @@
       "burn": "free",
       "target": 24,
       "slots": ["detective", "name", "place", "object", "time", "missed", "killer"],
-      "$m5Note": "M5 §5. The endings are keyed by case type and by trope as well as by outcome. Every card on disk was written for a hanging, so `caseType` defaults to `murder` and a robbery or a disappearance draws nothing from this deck until the content branch writes one; the engine has a hand-written closing per (type, outcome) and logs the gap. `coverage` is deliberately not extended to the new axes: demanding eighteen more cells would report the whole of the unwritten work as gaps on every run.",
+      "$m5Note": "M5 §5. The endings are keyed by case type and by trope as well as by outcome. `caseType` defaults to `murder`, which is what the first thirty cards are; the sixteen robbery and disappearance cards name theirs, two to each (type, outcome) at par. Every cell the engine can reach now has a card, so the engine's hand-written closings are the body of the page and the deck is its last line, exactly as for a murder — the gap is logged only when the draw comes back empty. `coverage` stays on outcome × parDelta: extending it to the case types would report every unwritten trope cell as a gap on every run.",
       "tags": {
-        "outcome": { "required": true, "values": ["hanged", "wrong-man", "thin-case", "cold"] },
+        "$outcomeNote": "`solved` was `hanged` until this deck had cards for a robbery and a disappearance. The axis names the outcome, not one case type's form of it: nobody goes to the gallows over a strongbox, and finding somebody alive is not a verdict. The cards that are about a hanging still say so in their own words.",
+        "outcome": { "required": true, "values": ["solved", "wrong-man", "thin-case", "cold"] },
         "parDelta": { "required": true, "values": ["under", "at", "over"] },
         "caseType": { "required": false, "default": "murder", "values": ["murder", "robbery", "missing", "any"] },
         "trope": {

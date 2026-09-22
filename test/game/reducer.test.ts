@@ -303,10 +303,11 @@ describe('the report', () => {
     expect(verdict.closing.join(' ')).toContain(String(gamePar(view.kase)));
   });
 
-  it('logs a gap where the endings deck has no card for this case type', () => {
-    const verdict = scoreReport(view, fresh(), truth);
-    if (view.kase.act.type === 'murder') expect(verdict.gaps).toEqual([]);
-    else expect(verdict.gaps.join(' ')).toContain('missing-deck: endings');
+  it('logs no gap now the endings deck has a card for every case type', () => {
+    // It logged one for a robbery and a disappearance until the sixteen cards
+    // landed. The gap is still there to be logged when a draw comes back
+    // empty, which is what a new trope tag would do.
+    expect(scoreReport(view, fresh(), truth).gaps).toEqual([]);
   });
 });
 describe('the notebook', () => {

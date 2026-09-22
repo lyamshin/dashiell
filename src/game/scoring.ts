@@ -229,19 +229,16 @@ function closingFor(
   if (ctx.wrong.length === 0) ctx.wrong = ['rest of it'];
 
   const out = (BY_TYPE[act.type] ?? MURDER)[outcome](ctx);
-  if (act.type !== 'murder') {
-    gaps.push(
-      `missing-deck: endings has no ${act.type} × ${outcome} card; a hand-written closing stood in`,
-    );
-  }
 
   // The deck's last paragraph, keyed by how the night went, by whether it beat
-  // par, and now by the case type. Every card on disk reads as a murder, so
-  // `caseType` defaults to `murder` in the schema and a robbery draws nothing
-  // until the content branch writes one.
+  // par, and by the case type. The deck now has two cards for each (type,
+  // outcome) a robbery or a disappearance can reach, so the paragraphs above
+  // are the body of the page and the card is its last line — which is what
+  // they have always been for a murder. The gap is logged when the draw comes
+  // back empty, and only then.
   const parDelta =
     state.actionsUsed < gamePar(kase) ? 'under' : state.actionsUsed === gamePar(kase) ? 'at' : 'over';
-  const deckOutcome = outcome === 'solved' ? 'hanged' : outcome === 'thin' ? 'thin-case' : outcome;
+  const deckOutcome = outcome === 'thin' ? 'thin-case' : outcome;
   const dealer = new Dealer((kase.seed * 8191 + points) >>> 0, [], []);
   const fits = (c: Parameters<typeof tagIs>[1]): boolean =>
     tagIs('endings', c, 'caseType', act.type) && tagIs('endings', c, 'trope', act.tropeId);
@@ -264,6 +261,11 @@ function closingFor(
     true,
   );
   if (ending) out.push(ending.text);
+  else {
+    gaps.push(
+      `missing-deck: endings has no ${act.type} × ${outcome} card; the hand-written closing stood alone`,
+    );
+  }
   return { paragraphs: out, gaps };
 }
 

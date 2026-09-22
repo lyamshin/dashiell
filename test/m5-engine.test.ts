@@ -371,9 +371,10 @@ describe('the report', () => {
       expect(cold.outcome).toBe('cold');
       expect(cold.closing.join(' ')).not.toEqual(solved.closing.join(' '));
 
-      // And a type the endings deck has no card for logs the gap.
-      if (type === 'murder') expect(solved.gaps).toEqual([]);
-      else expect(solved.gaps.join(' ')).toContain('missing-deck: endings');
+      // The deck has cards for all three types now, so none of them logs a
+      // gap. It logged one for a robbery and a disappearance until the
+      // sixteen cards landed.
+      expect(solved.gaps, type).toEqual([]);
     }
   });
 

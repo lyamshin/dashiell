@@ -4,7 +4,7 @@
     "deck": "endings",
     "text": "They took {killer} on a Tuesday and the paperwork went up the line without a hitch in it.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "at"
     },
     "motifs": [],
@@ -16,7 +16,7 @@
     "deck": "endings",
     "text": "They took {killer} before the office had the kettle on, and nobody asked me how.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "under"
     },
     "motifs": [
@@ -29,7 +29,7 @@
     "deck": "endings",
     "text": "They took {killer} in the end. It cost more of the night than it should have.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "over"
     },
     "motifs": [],
@@ -75,7 +75,7 @@
     "deck": "endings",
     "text": "I filed the report before the sun was properly up, {name} for the noose and the facts to back it. There was time left on the clock and nothing left to do with it.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "under"
     },
     "motifs": [
@@ -88,7 +88,7 @@
     "deck": "endings",
     "text": "The file went upstairs clean, {name}'s name at the top and the evidence lined up under it in order. I was home before the milk wagons finished their rounds.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "under"
     },
     "motifs": [
@@ -101,7 +101,7 @@
     "deck": "endings",
     "text": "{name} would hang for it, and my report said so plainly, no hour to spare and none wasted either. I signed it and went to find some sleep.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "at"
     },
     "motifs": [
@@ -114,7 +114,7 @@
     "deck": "endings",
     "text": "I closed it the way it opened, {name} at the center of it, guilty and proven so with the night's last hour to spare. It was enough.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "at"
     },
     "motifs": [],
@@ -125,7 +125,7 @@
     "deck": "endings",
     "text": "It took me every hour of the night to run {name} to ground, and the report showed it, thin at the edges where the clock had run out on my patience. But the case held.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "over"
     },
     "motifs": [
@@ -138,7 +138,7 @@
     "deck": "endings",
     "text": "I filed on {name} with the morning already up, tired past arguing, but the facts stood on their own regardless of how long they had taken me to gather.",
     "tags": {
-      "outcome": "hanged",
+      "outcome": "solved",
       "parDelta": "over"
     },
     "motifs": [
@@ -356,6 +356,229 @@
     },
     "motifs": [
       "dawn"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-025",
+    "deck": "endings",
+    "text": "I opened the report with {killer} and closed it with the address the goods went to, and the two lines held each other up. Between them was everything the night had cost me.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "robbery"
+    },
+    "motifs": [
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-026",
+    "deck": "endings",
+    "text": "I laid it out in the order it happened and left the arithmetic to them. {killer} stood in front of a magistrate by the middle of the week, and I was not called, which suited me.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "robbery"
+    },
+    "motifs": [
+      "law",
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-027",
+    "deck": "endings",
+    "text": "They charged the name I handed them and the name I handed them was wrong. {missed} sat there the whole night waiting to be asked, and {killer} spent the week not being asked anything at all.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-028",
+    "deck": "endings",
+    "text": "I was certain of it while the night was still on and I am not certain of it now. {killer} kept the goods and the quiet both, and {missed} is what I never went back for.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "robbery"
+    },
+    "motifs": [
+      "dawn"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-029",
+    "deck": "endings",
+    "text": "I could prove one end of it and not the other, and a magistrate wants both ends. What I filed was an inventory with the middle torn out.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "robbery"
+    },
+    "motifs": [
+      "ledger"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-030",
+    "deck": "endings",
+    "text": "There was enough in my report to make {killer} sweat and not enough to make anybody comfortable who had to read it after me. I know the difference and so do they.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "robbery"
+    },
+    "motifs": [
+      "sleep"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-031",
+    "deck": "endings",
+    "text": "There is a page in my drawer with the date at the head of it and not much underneath. I will look at it again in a year and it will still say nothing.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "robbery"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-032",
+    "deck": "endings",
+    "text": "I gave back the unspent part of the retainer, which was not a great deal, and said what there was to say. The shelf is empty and nothing is going to fill it.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "robbery"
+    },
+    "motifs": [
+      "money"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-033",
+    "deck": "endings",
+    "text": "I found the one I was sent to find, and that is the whole of it and enough of it. The rest of the file is arithmetic.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "missing"
+    },
+    "motifs": [
+      "window"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-034",
+    "deck": "endings",
+    "text": "I wrote an address on a card and gave the card to somebody who had been waiting a long while for it. Nobody was arrested and nothing was proved: a person had gone somewhere, and by morning it was known where.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "missing"
+    },
+    "motifs": [
+      "hands"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-035",
+    "deck": "endings",
+    "text": "I pointed them one way and the way was wrong. {missed} would have turned me round on the first night if I had thought to ask for it.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "missing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-036",
+    "deck": "endings",
+    "text": "I filed it without a doubt in it and I filed it wrong. {missed} was the part I never chased, and somebody read the wrong thing over their breakfast on account of me.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "missing"
+    },
+    "motifs": [
+      "food"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-037",
+    "deck": "endings",
+    "text": "I could put down where and I could not put down why, and the why is what I will be asked about for years. It is not a case. It is an address with a shrug after it.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "missing"
+    },
+    "motifs": [
+      "shoulders"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-038",
+    "deck": "endings",
+    "text": "What I filed would not survive a second question, and I have been asked second questions before. {missed} is the one I am going to hear about.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "missing"
+    },
+    "motifs": [
+      "quiet"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-039",
+    "deck": "endings",
+    "text": "The only thing I had to hand over when it was done was the hours. Somebody went through a door on a Tuesday, and that is still the whole of what is known.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "missing"
+    },
+    "motifs": [
+      "money",
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "end-040",
+    "deck": "endings",
+    "text": "Morning, and no address, no direction, no reason worth the paper. The file says what it said at midnight, in my handwriting this time.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "missing"
+    },
+    "motifs": [
+      "dawn",
+      "paper"
     ],
     "status": "generated"
   }

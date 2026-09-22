@@ -1712,14 +1712,36 @@ describe('the endings', () => {
   });
 
   it('keep their tags, and still cover every outcome and par delta', () => {
+    // `solved` was `hanged` until the deck had cards for a robbery and a
+    // disappearance: nobody goes to the gallows over a strongbox, and finding
+    // somebody alive is not a verdict.
     const cells = new Set<string>();
     for (const card of DECKS.endings) {
       cells.add(`${String(card.tags.outcome)}/${String(card.tags.parDelta)}`);
     }
-    for (const outcome of ['hanged', 'wrong-man', 'thin-case', 'cold']) {
+    for (const outcome of ['solved', 'wrong-man', 'thin-case', 'cold']) {
       for (const delta of ['under', 'at', 'over']) {
         expect(cells.has(`${outcome}/${delta}`), `${outcome}/${delta}`).toBe(true);
       }
+    }
+  });
+
+  it('has two cards for every (case type, outcome) the engine can reach', () => {
+    for (const caseType of ['robbery', 'missing']) {
+      for (const outcome of ['solved', 'wrong-man', 'thin-case', 'cold']) {
+        const n = DECKS.endings.filter(
+          (c) => c.tags.caseType === caseType && c.tags.outcome === outcome,
+        ).length;
+        expect(n, `${caseType} × ${outcome}`).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it('does not tell a robbery or a disappearance that somebody died', () => {
+    const death = /\b(dead|died|killed|murder|corpse|noose|gallows|hang(s|ed|ing)?)\b/i;
+    for (const card of DECKS.endings) {
+      if (card.tags.caseType !== 'robbery' && card.tags.caseType !== 'missing') continue;
+      expect(card.text, card.id).not.toMatch(death);
     }
   });
 
