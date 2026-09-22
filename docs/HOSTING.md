@@ -6,7 +6,7 @@ Dashiell is a static site: `npm run build` writes `dist/`, and nothing runs on a
 
 1. Workers & Pages → Create → Pages → Connect to Git → pick `lyamshin/dashiell`.
 2. Build settings:
-   - Framework preset: **Vite**
+   - Framework preset: **Vite** (or a Worker with deploy command `npx wrangler deploy`; `wrangler.jsonc` in the repo serves `dist` as static assets)
    - Build command: `npm run build`
    - Build output directory: `dist`
    - Node version is read from `.node-version` (22).
