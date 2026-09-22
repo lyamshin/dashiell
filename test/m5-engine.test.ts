@@ -30,6 +30,9 @@ import {
   PLAIN_TARGET,
   knowsHim,
   layerSentences,
+  pronounOf,
+  pronounSubject,
+  seenSentence,
   temperOf,
 } from '../src/game/voice/index.js';
 import type { Page, RunState } from '../src/game/types.js';
@@ -135,6 +138,10 @@ describe('the briefing page', () => {
    *   written around a fact that does not end the sentence: "…and was past due
    *   on it, Dashiell, same as always," he said. The words are all there and
    *   the full stop became a comma, which is what a frame is for.
+   * - Hone 2 §A.3 takes the dossier record off the page on purpose: "Percival
+   *   Prentiss is 36 years old and a ward heeler" is a sentence nothing in the
+   *   room told him, and what he can see stands in its place. The detail under
+   *   it stays, with a pronoun for a subject.
    */
   it('carries every sentence of the briefing, as speech or as narration', () => {
     const bare = (line: string): string => line.replace(/\s+/g, ' ').replace(/[.]+$/, '');
@@ -159,9 +166,29 @@ describe('the briefing page', () => {
         if (breath.length < 2) return false;
         return text.includes(bare(breath.join(' '))) || breath.every((p) => text.includes(bare(p)));
       };
+      // §A.3's two allowances, and the page has to show the replacement.
+      const client = view.client;
+      const narration = view.kase.briefing.filter((l) => l.speaker === 'narration');
+      const record = narration[1]?.text ?? '';
+      const detail = narration[2]?.text ?? '';
+      const seen = seenSentence(client, !familiar);
+      if (record.length > 0) {
+        expect(text.includes(bare(seen)), `seed ${seed}: what he can see`).toBe(true);
+      }
+      const allowed = (line: (typeof view.kase.briefing)[number], i: number): boolean => {
+        if (familiar && i === 0) return true;
+        if (line.speaker !== 'narration') return false;
+        if (line.text === record) return true;
+        if (line.text === detail) {
+          // In his narration with a pronoun for a subject, or in her mouth
+          // where the generator has written the first-person form.
+          return text.includes(bare(pronounSubject(line.text, client.surname, pronounOf(client))));
+        }
+        return false;
+      };
       const missing = view.kase.briefing
         .map((line, i) => ({ said: line.spoken ?? line.text, line, i }))
-        .filter(({ line, i }) => !(familiar && i === 0) && !arrived(line))
+        .filter(({ line, i }) => !allowed(line, i) && !arrived(line))
         .map(({ said }) => said);
       expect(missing, `seed ${seed}`).toEqual([]);
     }

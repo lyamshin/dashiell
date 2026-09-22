@@ -110,6 +110,9 @@ import {
   layerOfClue,
   layerSentences,
   onSightSentence,
+  opensOnSubject,
+  pronounSubject,
+  seenSentence,
   openingNote,
   plainRatio,
   type PlainCount,
@@ -132,6 +135,7 @@ import {
   entranceCard,
   hiringFrame,
   planBeats,
+  professionSpoken,
   officeCard,
   retainerFor,
   speechParagraphs,
@@ -1476,6 +1480,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   // The join costs the page the word "and", and the ceiling is the ceiling.
   if (words(blocksOf(laid)) < ceiling) carryingSentence(laid);
 
+  /* ------------------------------------------ Hone 2 §A.3: pronouns, last */
+  // After every join, because the repetition it is about can be made by one:
+  // two blocks fused into one paragraph are two sentences running.
+  pronounRepeatedSubjects(laid, [...view.personById.values()]);
+
   const counted = countsOf(laid);
   return {
     blocks: blocksOf(laid),
@@ -1498,6 +1507,67 @@ export function composePage(stage: Stage, scene: Scene): Composed {
 
 function blocksOf(laid: Laid[]): Block[] {
   return laid.map((l) => l.block);
+}
+
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.3 — the surname twice running.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The surname is never the subject of two consecutive sentences on a page.
+ *
+ * "Lucia Salerno is 37 years old and a chambermaid. Salerno does eleven rooms
+ * a day and the linen after. Salerno kept the coat on." is a card index, not a
+ * person: after the first mention English uses a pronoun, and a page that does
+ * not is a page assembled out of records.
+ *
+ * The pass runs last, over the finished blocks in page order, because the
+ * repetition it is about can straddle a paragraph break — the dossier's second
+ * sentence and the settle beat under it are two blocks and one tic. Sentences
+ * inside quotation marks are somebody's speech and are left alone: the client
+ * naming a suspect twice is a person talking, and it is the only name she has
+ * for him.
+ */
+export function pronounRepeatedSubjects(laid: Laid[], people: readonly Person[]): number {
+  const named = people.filter((p) => p.surname.length > 0);
+  if (named.length === 0) return 0;
+  let last: string | null = null;
+  let swapped = 0;
+  for (const l of laid) {
+    const block = l.block;
+    if (block.kind !== 'prose' && block.kind !== 'note') continue;
+    const sentences = splitSentences(block.text);
+    let changed = false;
+    for (const [i, sentence] of sentences.entries()) {
+      const bare = sentence.trim();
+      // Dialogue is not narration, and it breaks the run either way.
+      if (/^[“"]/.test(bare)) {
+        last = null;
+        continue;
+      }
+      const person = named.find((p) => opensOnSubject(bare, p.surname));
+      if (person === undefined) {
+        last = null;
+        continue;
+      }
+      if (last === person.surname) {
+        const fixed = pronounSubject(bare, person.surname, pronounOf(person));
+        if (fixed !== bare) {
+          sentences[i] = sentence.replace(bare, fixed);
+          changed = true;
+          swapped++;
+          last = null;
+          continue;
+        }
+      }
+      last = person.surname;
+    }
+    if (changed) {
+      const text = sentences.join(' ');
+      l.block = block.kind === 'note' ? { ...block, text } : { ...block, text };
+    }
+  }
+  return swapped;
 }
 
 /* ------------------------------------------------------------------ *
@@ -2365,8 +2435,28 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * "Why me?" before the purpose. The first turn gets no question, because it
    * is what she came up the stairs to say.
    */
-  if (split.narration.length > 0)
-    t.say(split.narration.join(' '), 'narrator', {
+  /*
+   * Hone 2 §A.3. The dossier paragraph was a record read aloud — "Gretchen
+   * Kreuzer is 30 years old and a pawnbroker's clerk. Kreuzer writes the
+   * tickets behind the grille and knows what a thing is worth." Nothing in the
+   * room told him either sentence.
+   *
+   * What is left is what he can see: the full name once and the age as a band.
+   * The trade and its detail are hers, and they go into her mouth as the first
+   * thing she says where the generator has written the first-person form.
+   * Until it has, the sentence stays where it is and takes a pronoun, because
+   * the surname twice in two sentences is the tic this rule is about.
+   */
+  const spokenProfession = professionSpoken(client);
+  const dossierLines: string[] = [seenSentence(client, split.entrance !== null)];
+  if (spokenProfession === null) {
+    for (const line of split.narration.slice(1)) {
+      dossierLines.push(pronounSubject(line, client.surname, pronounOf(client)));
+    }
+  }
+  const seenPara = dossierLines.filter((line) => line.length > 0).join(' ');
+  if (seenPara.length > 0)
+    t.say(seenPara, 'narrator', {
       transparent: true,
       verbatim: true,
       para: 'entrance',
@@ -2386,9 +2476,13 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // talked" and "She sat with both hands folded" are two accounts of one pair
   // of hands, and the page prints neither rather than both. Where the pool has
   // nothing left that does not contradict the pair, the beat is dropped.
+  //
+  // Hone 2 §A.3: and never the surname. The dossier sentence above it has just
+  // said the name in full, and this beat is the next sentence of the same
+  // paragraph — full name once, then pronouns.
   const claimed = pairBodyWords(cast, client.id, stage.appearances[client.id] ?? 0);
   const settle = BRIEFING_SETTLE.filter(
-    (shape) => !bodyConflict(claimed, fillPlain(shape, plainSlots)),
+    (shape) => !shape.includes('{name}') && !bodyConflict(claimed, fillPlain(shape, plainSlots)),
   );
   if (settle.length > 0) {
     t.say(pickShape(dealer.random, settle, plainSlots), 'narrator', {
@@ -2406,7 +2500,14 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // Everything between them is the client going on talking, because that is
   // what a client does and because a question at every paragraph break is a
   // form being filled in rather than a scene.
-  const turns = briefingTurns(split.speech);
+  // §A.3: the trade, in her mouth, before the first thing she came to say —
+  // which is where the golden puts it ("I write the tickets at Feldman's
+  // pawnshop on Orchard Street. I know what things are worth.").
+  const speech =
+    spokenProfession === null
+      ? split.speech
+      : [{ topic: 'other' as const, text: spokenProfession }, ...split.speech];
+  const turns = briefingTurns(speech);
   const asked = turns.filter((turn) => turn.prompt !== null).length +
     (split.closePrompt === null ? 0 : 1);
 

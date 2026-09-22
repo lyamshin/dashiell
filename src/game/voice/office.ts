@@ -15,6 +15,7 @@
 import { Rng } from '../../gen/rng.js';
 import { PRECINCT_TEXT } from '../../gen/victim.js';
 import type { CaseView } from '../derive.js';
+import type { Person } from '../../gen/types.js';
 import {
   CLIENT_LEAVING,
   ENTRANCE_LINES,
@@ -299,6 +300,37 @@ export function briefingTurns(
     (turns[turns.length - 1] as BriefingTurn).lines.push(line);
   }
   return turns;
+}
+
+/* ------------------------------------------------------------------ *
+ * Hone 2 §A.3 — the profession in the client's own mouth.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The profession detail as the client says it, when the generator has written
+ * one.
+ *
+ * Hone 2's Track B writes `professionFirst` beside the archetype's
+ * `professionDetails` — "I write the tickets at Feldman's. I know what things
+ * are worth." — and until it lands the engine has to run without it. The field
+ * is read wherever the generator ends up hanging it, and its absence is not an
+ * error: the narration keeps the third-person sentence and pronouns it.
+ */
+export function professionSpoken(client: Person): string | null {
+  const dossier = client.dossier as unknown as Record<string, unknown> | undefined;
+  if (dossier === undefined) return null;
+  const profession = dossier.profession as Record<string, unknown> | undefined;
+  const candidates = [
+    profession?.detailFirst,
+    profession?.professionFirst,
+    profession?.first,
+    dossier.professionFirst,
+    (client as unknown as Record<string, unknown>).professionFirst,
+  ];
+  for (const value of candidates) {
+    if (typeof value === 'string' && value.trim().length > 0) return tidyLine(value);
+  }
+  return null;
 }
 
 /* ------------------------------------------------------------------ *
