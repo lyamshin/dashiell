@@ -182,7 +182,15 @@ button {
 .prose--approach,
 .prose--exchange,
 .prose--find,
-.prose--nothing {
+.prose--nothing,
+/* M8: the planned page's beats are prose like any other; the thought is the
+   detective's own voice and reads as the page, not as an aside. */
+.prose--establish,
+.prose--presence,
+.prose--act,
+.prose--thought,
+.prose--bridge,
+.prose--answer {
   color: var(--ink);
 }
 

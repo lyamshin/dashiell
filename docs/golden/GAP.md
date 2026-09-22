@@ -85,3 +85,82 @@ correctly, golden v2's office page has no sentence over twenty-five words and
 its suite page has one: the carrying sentence the loop built in round 3 stays,
 because it reads well and rule 8 asks for a longer sentence rather than a very
 long one, but more than one of them a page is more than the golden will support.
+
+## Night targets (M8 §10)
+
+`python3 scripts/golden-loop.py --night` renders pages 1–8 of seeds 1–40 at
+Precinct on the oracle's route, holds pages 2–8 to the night golden
+(`seed3-night.md`) by page shape, and prints the office page on its own under
+the day targets above so a change to the night can be seen not to move it.
+
+### The night golden, measured one page at a time
+
+`style-metrics.py` over each page's quoted prose, the italic errand line
+included.
+
+| metric | p2 arrive | p4 arrive | p3 search | p5 ask |
+|---|---|---|---|---|
+| words | 207 | 197 | 162 | 138 |
+| orphan word ratio | 0.84 | 0.84 | 0.80 | 0.80 |
+| paragraph cohesion | 0.80 | 0.75 | 0.20 | 0.50 |
+| sentence cohesion | 0.59 | 0.67 | 0.57 | 0.39 |
+| short sentences (≤6 words) | 0.111 | 0.000 | 0.200 | 0.684 |
+| long sentences (>25 words) | 0.056 | 0.154 | 0.067 | 0.000 |
+| dialogue share | 0.00 | 0.00 | 0.00 | 0.42 |
+| figures | 0 | 1 | 1 | 0 |
+| words per paragraph | 34.5 | 39.4 | 27.0 | 19.7 |
+
+### The targets, per shape
+
+Two golden pages of a shape (the arrival): a floor is their mean, a ceiling
+their larger value, a band spans them widened by five words a paragraph, and
+orphan is the ceiling plus 0.05, as for the office. One golden page (the
+search, the question): a floor is that page less 0.10, a ceiling that page
+(long sentences never under the day's 0.06), orphan that page plus 0.05, a
+band that page plus or minus a tenth of dialogue or five words a paragraph.
+Words are §8's bands widened to hold the golden's own pages, because the
+golden runs shorter than §8 guessed (138–207 words against 180–350) and a
+target the golden misses is not a target. Figures keep rule 6's half a page;
+plain ratio keeps M5's floor. A return visit has no golden page: it is
+reported and not scored.
+
+| metric | arrive | search | ask |
+|---|---|---|---|
+| orphan word ratio | ≤ 0.89 | ≤ 0.85 | ≤ 0.85 |
+| paragraph cohesion | ≥ 0.775 | ≥ 0.10 | ≥ 0.40 |
+| sentence cohesion | ≥ 0.63 | ≥ 0.47 | ≥ 0.29 |
+| short sentences | ≥ 0.056 | ≥ 0.10 | ≥ 0.584 |
+| long sentences | ≤ 0.154 | ≤ 0.067 | ≤ 0.06 |
+| dialogue share | ≤ 0.10 | ≤ 0.10 | 0.32–0.52 |
+| figures per page | ≤ 0.5 | ≤ 0.5 | ≤ 0.5 |
+| plain ratio | ≥ 0.60 | ≥ 0.60 | ≥ 0.60 |
+| words per paragraph | 29.5–44.4 | 22–32 | 14.7–24.7 |
+| words | 170–350 | 130–280 | 130–280 |
+
+The night aggregate is the mean over the three shapes of each shape's summed
+distance, so it reads on the same scale as the day aggregate.
+
+### Where it stands (M8, placeholder scene decks)
+
+Pages 2–8 of the fixed set are 92 arrivals, 26 searches and 162 questions on
+the oracle's route.
+
+| shape | before M8 | after M8 |
+|---|---|---|
+| arrive | 0.205 | 0.288 |
+| search | 0.405 | 0.006 |
+| ask | 0.584 | 0.317 |
+| **night aggregate** | **0.398** | **0.204** |
+| office page, day targets | 0.009 | 0.009 (every office page byte-identical) |
+
+The arrival's distance is paragraph and sentence cohesion (0.668 and 0.543
+against 0.775 and 0.63): the placeholder establish, watch and activity cards
+share no nouns with each other, which is what the content pass is for. The
+question's is short sentences (0.476 against 0.584) and length (120 words
+against 130): the golden's page 5 is two-thirds dialogue in short turns, and
+the placeholder thought cards are long single sentences. The day loop over
+pages 1–3 now reads 0.227 against 0.009, all of it short sentences on pages 2
+and 3 (0.282 against 0.36): those pages are night pages now, which the night
+golden itself writes at 0.0–0.2 short, and they are held to the night targets
+above. The office page, which is all the day targets were ever about, has not
+moved.
