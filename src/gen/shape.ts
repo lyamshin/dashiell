@@ -73,7 +73,96 @@ export interface CaseShape {
   scaleSlack: boolean;
   /** A tier that is always played at one level, whatever was asked for. */
   lockedLevel?: Level;
+  /**
+   * M9: how the night is solved. Absent on a shape built before M9, in which
+   * case `deductionOf` reads the tier's preset.
+   */
+  deduction?: DeductionDials;
 }
+
+/**
+ * M9 — the logic game's dials for a tier. See `docs/20-m9-deduction.md`.
+ *
+ * Raw and Coddled keep every placement a conclusion so the first runs stay
+ * short. Poached brings the innocents' lies; Soft-boiled times sightings by
+ * anchors and wants the culprit reached by a chain; Medium brings strangers
+ * and descriptions; Hard-boiled wants a hypothesis tested.
+ */
+export interface DeductionDials {
+  /** How many innocents a single findable rule may keep away from the scene at the crime's half hour. */
+  directClears: number;
+  /** Innocents' secrets make lies in their own accounts. */
+  secretLies: boolean;
+  /** The culprit also lies about fetching the means. */
+  meansLie: boolean;
+  /** Alibi companions who lie for somebody, before the ladder adds any. */
+  companions: [number, number];
+  /** Share of sightings timed by an anchor ("just as the El went over") where an anchor could time them. */
+  anchorTimed: number;
+  /** Share of pairs with no tie between them who are strangers, so that a sighting is a description. */
+  strangers: number;
+  /** The culprit's lies are contradicted only by chains, never one rule. */
+  culpritChains: boolean;
+  /** The culprit is reached at this depth or deeper, and no shallower route exists. */
+  culpritDepth: number;
+  /** The par route needs a hypothesis tested. */
+  hypothesis: boolean;
+  /** The pages may state a conclusion ("That cleared Weisglass."). Raw and Coddled only. */
+  verdicts: boolean;
+  /**
+   * Share of the watchers' and the strangers' rules dealt as pieces (counts,
+   * absences, descriptions) rather than as a name at a time.
+   */
+  pieces: number;
+}
+
+export const DEDUCTION_PLAIN: DeductionDials = {
+  directClears: 99,
+  secretLies: false,
+  meansLie: false,
+  companions: [0, 0],
+  anchorTimed: 0,
+  strangers: 0,
+  culpritChains: false,
+  culpritDepth: 0,
+  hypothesis: false,
+  verdicts: true,
+  pieces: 0,
+};
+
+export const DEDUCTION_POACHED: DeductionDials = {
+  ...DEDUCTION_PLAIN,
+  directClears: 1,
+  secretLies: true,
+  meansLie: true,
+  verdicts: false,
+  pieces: 0.3,
+};
+
+export const DEDUCTION_SOFT: DeductionDials = {
+  ...DEDUCTION_POACHED,
+  anchorTimed: 0.5,
+  culpritChains: true,
+  culpritDepth: 3,
+  pieces: 0.5,
+};
+
+export const DEDUCTION_MEDIUM: DeductionDials = {
+  ...DEDUCTION_SOFT,
+  companions: [1, 1],
+  strangers: 1 / 3,
+  pieces: 0.6,
+};
+
+export const DEDUCTION_HARD: DeductionDials = {
+  ...DEDUCTION_MEDIUM,
+  companions: [1, 2],
+  anchorTimed: 0.6,
+  strangers: 1 / 2,
+  culpritDepth: 4,
+  hypothesis: true,
+  pieces: 0.7,
+};
 
 export interface Ladder {
   level: Level;
@@ -102,6 +191,13 @@ export interface Ladder {
   noisePlacement: 'quiet' | 'random' | 'busy';
   /** The client may point at the head of an innocent's noise branch. */
   clientRedHerring: boolean;
+  /**
+   * M9: added to the tier's share of pieces (counts, absences, descriptions)
+   * over conclusions. A dial, like the noise.
+   */
+  pieces: number;
+  /** M9: alibi companions over what the tier deals. */
+  extraLies: number;
   /**
    * The pre-M7 dials. A legacy ladder runs the old noise planner and the old
    * hand-size checks exactly, which is what keeps `{ difficulty }` byte for
@@ -153,6 +249,7 @@ export const RAW: CaseShape = {
   findable: 12,
   scaleSlack: true,
   lockedLevel: 1,
+  deduction: DEDUCTION_PLAIN,
 };
 
 const { lockedLevel: _rawLevel, ...RAW_UNLOCKED } = RAW;
@@ -174,6 +271,7 @@ export const CODDLED: CaseShape = {
 export const POACHED: CaseShape = {
   ...CODDLED,
   tier: 2,
+  deduction: DEDUCTION_POACHED,
   name: 'Poached',
   rule: 'This time: somebody else is lying too.',
   watched: [1, 2],
@@ -187,6 +285,7 @@ export const POACHED: CaseShape = {
 export const SOFT_BOILED: CaseShape = {
   ...POACHED,
   tier: 3,
+  deduction: DEDUCTION_SOFT,
   name: 'Soft-boiled',
   rule: 'This time: the coroner gives an hour, not a half hour, and the scene can lie.',
   coronerWidth: 2,
@@ -199,6 +298,7 @@ export const SOFT_BOILED: CaseShape = {
 
 export const MEDIUM: CaseShape = {
   tier: 4,
+  deduction: DEDUCTION_MEDIUM,
   name: 'Medium',
   rule: 'This time: more than one of them had a reason, and a reason is not proof.',
   suspects: 5,
@@ -230,6 +330,7 @@ export const MEDIUM: CaseShape = {
  */
 export const HARD_BOILED: CaseShape = {
   tier: 5,
+  deduction: DEDUCTION_HARD,
   name: 'Hard-boiled',
   rule: 'This time: the one paying you might have done it.',
   suspects: 6,
@@ -293,6 +394,8 @@ export const BEAT: Ladder = {
   corroboration: 'full',
   noisePlacement: 'quiet',
   clientRedHerring: false,
+  pieces: -0.1,
+  extraLies: 0,
 };
 
 export const PRECINCT: Ladder = {
@@ -306,6 +409,8 @@ export const PRECINCT: Ladder = {
   corroboration: 'full',
   noisePlacement: 'random',
   clientRedHerring: false,
+  pieces: 0,
+  extraLies: 0,
 };
 
 export const HOMICIDE: Ladder = {
@@ -319,6 +424,8 @@ export const HOMICIDE: Ladder = {
   corroboration: 'bigFive',
   noisePlacement: 'busy',
   clientRedHerring: true,
+  pieces: 0.1,
+  extraLies: 1,
 };
 
 export const DAS_OFFICE: Ladder = {
@@ -332,6 +439,8 @@ export const DAS_OFFICE: Ladder = {
   corroboration: 'single',
   noisePlacement: 'busy',
   clientRedHerring: true,
+  pieces: 0.15,
+  extraLies: 1,
 };
 
 export const LADDERS: Record<Level, Ladder> = { 1: BEAT, 2: PRECINCT, 3: HOMICIDE, 4: DAS_OFFICE };
@@ -468,4 +577,18 @@ export function describeDials(d: Dials): string {
     `depth ${l.branchDepth[0] === l.branchDepth[1] ? l.branchDepth[0] : `${l.branchDepth[0]}–${l.branchDepth[1]}`}, ` +
     `${l.corroboration}${l.legacy ? ', pre-M7 dials' : ''})`
   );
+}
+
+/**
+ * M9: the logic-game dials a shape carries, or its tier's when it carries
+ * none (a shape object built before M9). A custom shape takes Hard-boiled's.
+ */
+export function deductionOf(shape: CaseShape): DeductionDials {
+  if (shape.deduction) return shape.deduction;
+  const t = shape.tier;
+  if (t === 0 || t === 1) return DEDUCTION_PLAIN;
+  if (t === 2) return DEDUCTION_POACHED;
+  if (t === 3) return DEDUCTION_SOFT;
+  if (t === 4) return DEDUCTION_MEDIUM;
+  return DEDUCTION_HARD;
 }
