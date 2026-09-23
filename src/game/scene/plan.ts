@@ -180,6 +180,8 @@ export type Beat =
       /** The place and half hour the fact put to them is about, when it is one. */
       placeId?: Id;
       tick?: Tick;
+      /** Shorter nights §1: the second fact of the same confrontation, put for nothing. */
+      follow?: boolean;
     };
 
 export interface Plan {
@@ -207,7 +209,7 @@ export type PlanAction =
       /** M10 §A.3: there is more, and the page ends on "Go on". */
       more?: boolean;
     }
-  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement; part?: number };
+  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement; part?: number; follow?: boolean };
 
 export interface PlanInput {
   view: CaseView;
@@ -955,18 +957,20 @@ export function planPage(input: PlanInput): Plan {
       personId: action.personId,
       clueId: action.clue.id,
       outcome: action.judged.outcome,
-      stops,
+      stops: stops && !action.follow,
       ...(placeId === undefined ? {} : { placeId }),
       ...(tick === undefined ? {} : { tick }),
+      ...(action.follow ? { follow: true } : {}),
     });
     // The close: what the detective did with it. Never a verdict (spec §3:
-    // "demeanor never solves the case; the grid does").
+    // "demeanor never solves the case; the grid does"). A second fact that
+    // touched nothing ends it with the story standing, and costs nothing.
     beats.push({
       kind: 'thought',
       required: true,
       thought: {
         cls: 'confronted',
-        basis: action.judged.outcome,
+        basis: action.follow && action.judged.outcome === 'wrong' ? 'ends' : action.judged.outcome,
         subjectId: action.personId,
         ...(placeId === undefined ? {} : { placeId }),
         ...(tick === undefined ? {} : { tick }),
@@ -1030,8 +1034,18 @@ export function planPage(input: PlanInput): Plan {
     (input.portrayed === undefined || input.portrayed.includes(action.personId));
   if (recall) memory = { ...memory, recalled: { ...memory.recalled, [action.personId]: memory.visit } };
   // M10 §A.2: what the answer tells, a family at a time.
-  const telling = [...action.clues, ...(action.volunteer ? [action.volunteer] : [])].filter((c) => newIds.includes(c.id));
-  const families = action.self ? [] : familiesOf(view, telling);
+  // Shorter nights §2: their own evening, which came with the question, ends
+  // the answer, after anything they volunteered.
+  const own = (c: Clue): boolean =>
+    c.kind === 'account' && c.source.type === 'person' && c.source.personId === action.personId;
+  const telling = [
+    ...action.clues.filter((c) => !own(c)),
+    ...(action.volunteer ? [action.volunteer] : []),
+    ...action.clues.filter(own),
+  ].filter((c) => newIds.includes(c.id));
+  // Shorter nights §2: asked about themselves, somebody still gives their
+  // evening with it the first time, as a telling after their own story.
+  const families = action.self && !view.kase.logic ? [] : familiesOf(view, telling);
   const told = families.length > 0;
   beats.push({
     kind: 'exchange',
@@ -1058,7 +1072,8 @@ export function planPage(input: PlanInput): Plan {
         required: true,
         personId: action.personId,
         family,
-        first: k === 0,
+        // After somebody's story of themselves, their evening is asked for.
+        first: k === 0 && !action.self,
         volunteered: action.volunteer !== null && family.clueIds.includes(action.volunteer.id),
       });
       for (const id of family.clueIds) beats.push({ kind: 'find', required: true, clueId: id });

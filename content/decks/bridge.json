@@ -572,5 +572,165 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "brg-046",
+    "deck": "bridge",
+    "text": "{who} hadn’t told me where {who} had been tonight. Whatever I asked first, the evening would come with it.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-047",
+    "deck": "bridge",
+    "text": "{who} hadn’t given me an evening yet. One question would start it, and {who} was at {where}.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-048",
+    "deck": "bridge",
+    "text": "I had nothing yet from {who} about {who}’s own night. Any question would get it.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-049",
+    "deck": "bridge",
+    "text": "{who} was the next one to talk to. The evening would come out with the first answer.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-050",
+    "deck": "bridge",
+    "text": "{who} was next, at {where}. Once {who} was talking, the evening would come with it.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-051",
+    "deck": "bridge",
+    "text": "I wanted {who} talking. Around {tie} was the hour, and {who} would give me the rest of the night with it.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-052",
+    "deck": "bridge",
+    "text": "I still didn’t have {who}’s side of the evening. {who} was at {where}, and it would take one question.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-053",
+    "deck": "bridge",
+    "text": "Nobody had heard {who} account for the night yet. I meant to ask {who} something, anything.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-054",
+    "deck": "bridge",
+    "text": "The hour was {tie}, and I had nothing from {who} about it. The first question would do.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-055",
+    "deck": "bridge",
+    "text": "{who} was the one to see next. Ask {who} anything and the evening would follow.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-056",
+    "deck": "bridge",
+    "text": "I needed {who} to walk me through the night. {who} was at {where}, and one question would start it.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-057",
+    "deck": "bridge",
+    "text": "{who} had an evening to account for, the same as everybody. I meant to put a question to {who}.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-058",
+    "deck": "bridge",
+    "text": "There was {who} still to hear from, and the hour was {tie}. Any question would open it up.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-059",
+    "deck": "bridge",
+    "text": "{who} hadn’t said a word to me yet about the evening. {who} was at {where}.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-060",
+    "deck": "bridge",
+    "text": "I wanted to hear {who} on the night, start to finish. Whatever I asked, it would come.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "brg-061",
+    "deck": "bridge",
+    "text": "{who} was next. I didn’t need a particular question; the evening would come with any of them.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "tuned"
   }
 ]

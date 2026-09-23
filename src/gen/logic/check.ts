@@ -104,10 +104,14 @@ export function checkLogic(c: LogicCaseUnderTest): { ok: boolean; failures: stri
   }
 
   /* --- par, slack, budget -------------------------------------------------- */
+  // Shorter nights: the range bounds the size of the game, walked the M9
+  // way (`SolveSummary.walk`); the night is budgeted on the shorter `par`.
   const [lo, hi] = ded.par;
-  if (c.par < lo) failures.push(`par ${c.par} is under the floor of ${lo}`);
-  if (c.par > hi) failures.push(`par ${c.par} is over the ceiling of ${hi}`);
-  const slack = logicSlackFor(shape, ladder, c.par);
+  const size = logic.solve.walk ?? c.par;
+  if (size < lo) failures.push(`par ${size} (walked as M9 walked it) is under the floor of ${lo}`);
+  if (size > hi) failures.push(`par ${size} (walked as M9 walked it) is over the ceiling of ${hi}`);
+  if (c.par > size) failures.push(`par ${c.par} is longer than the M9 walk of ${size}`);
+  const slack = logicSlackFor(shape, ladder, c.par, size);
   if (c.slack !== slack) failures.push(`slack ${c.slack} is not ${slack}`);
   if (c.budget !== c.par + c.slack) failures.push('budget is not par plus slack');
 

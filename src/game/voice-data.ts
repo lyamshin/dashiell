@@ -224,10 +224,14 @@ export const NOTHING_LEFT: string[] = [
 
 export const HELP_LINES: { command: string; gloss: string }[] = [
   { command: 'go <place>', gloss: 'Walk there. Costs an action.' },
-  { command: 'ask <person> about <topic>', gloss: 'Ask them. Costs an action.' },
+  {
+    command: 'ask <person> about <topic>',
+    gloss: 'Ask them. Costs an action. The first time, they tell you their own evening as well.',
+  },
   {
     command: 'put <fact> to <person>',
-    gloss: 'Read them a line from the notebook that breaks what they told you. Costs an action.',
+    gloss:
+      'Read them a line from the notebook that breaks what they told you. Costs an action. If it lands, a second fact right after is free.',
   },
   {
     command: 'ask <person> about themselves',

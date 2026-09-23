@@ -728,11 +728,11 @@
       "burn": "run-to-run",
       "spent": "reshuffle",
       "target": 45,
-      "$comment": "M8 §6. The next lead, named, and why. `tie: victim` — {subject} is a person and {tie} their relation to the victim (\"Sweeney’s secretary\"). `tie: place` — {subject} is a person who keeps a place and {tie} says so (\"the landlady at the third floor\"). `tie: time` — {tie} is the spoken hour the notebook’s window opens on (\"half past nine\") and {subject} whom or what the question is about: the victim, a person, or a topic (\"the noise\", \"the lock\"). {who} is the person to ask and {where} where they are found (absent when the notebook does not know). `lead: search` (a card with no {who}) is the bridge to a room to go through, {subject} its short name; every other card is `lead: ask`, the default.",
+      "$comment": "M8 §6. The next lead, named, and why. `tie: victim` — {subject} is a person and {tie} their relation to the victim (\"Sweeney’s secretary\"). `tie: place` — {subject} is a person who keeps a place and {tie} says so (\"the landlady at the third floor\"). `tie: time` — {tie} is the spoken hour the notebook’s window opens on (\"half past nine\") and {subject} whom or what the question is about: the victim, a person, or a topic (\"the noise\", \"the lock\"). {who} is the person to ask and {where} where they are found (absent when the notebook does not know). `tie: account` (shorter nights) — the next thing is somebody’s own account of the evening, which comes with whatever the detective asks them first: {who} is that person, {tie} the spoken hour the window opens on; the card sends him to the person with any question, never to a question about the evening. `lead: search` (a card with no {who}) is the bridge to a room to go through, {subject} its short name; every other card is `lead: ask`, the default.",
       "slots": ["detective", "who", "subject", "tie", "where"],
       "minPerCoverageCell": 15,
       "tags": {
-        "tie": { "required": true, "values": ["victim", "place", "time"] },
+        "tie": { "required": true, "values": ["victim", "place", "time", "account"] },
         "lead": { "required": false, "default": "ask", "values": ["ask", "search"] }
       },
       "coverage": [["tie"]]
@@ -848,12 +848,12 @@
       "burn": "run-to-run",
       "spent": "widen",
       "target": 60,
-      "$comment": "M9 §3. Putting a fact to somebody (\"Put it to Hanrahan.\"): the detective reads a person a fact from the notebook that crosses what they said about themselves. `outcome`: wrong — the fact touches nothing they told me; second-lie — a new story for the same hours; quiet — they stop talking about it (the engine prints \"{subject} has nothing more to say about it.\"); admit — they give up where they were and what they were keeping back; hold — they keep to what they said; withdraw — somebody who said they were with another person takes it back. `part`: reaction — right after the fact is read and right before their words, what they did on hearing it (a pause, a look, something put down), never what they answer and never a judgement of it; on `wrong` the reaction carries their words, exactly “That doesn’t touch anything I told you.”; close — after their words, one or two sentences on what the detective did with it (wrote it down, looked at the grid, left it), never a verdict. {subject} their surname, on every card; {they}/{them}/{their} their pronouns, filled lower case by the engine, so never first in a sentence; {place} the place the fact is about and {time} its spoken hour, either may be absent, so each is on a minority of cards.",
+      "$comment": "M9 §3. Putting a fact to somebody (\"Put it to Hanrahan.\"): the detective reads a person a fact from the notebook that crosses what they said about themselves. `outcome`: wrong — the fact touches nothing they told me; second-lie — a new story for the same hours; quiet — they stop talking about it (the engine prints \"{subject} has nothing more to say about it.\"); admit — they give up where they were and what they were keeping back; hold — they keep to what they said; withdraw — somebody who said they were with another person takes it back. ends (shorter nights) — a second fact put in the same confrontation, for nothing, touched nothing: the story stands and they are done talking about it; its reaction carries their words, exactly “That’s all I’m going to say about it.”, and its close never says time was spent. `part`: reaction — right after the fact is read and right before their words, what they did on hearing it (a pause, a look, something put down), never what they answer and never a judgement of it; on `wrong` the reaction carries their words, exactly “That doesn’t touch anything I told you.”; close — after their words, one or two sentences on what the detective did with it (wrote it down, looked at the grid, left it), never a verdict. {subject} their surname, on every card; {they}/{them}/{their} their pronouns, filled lower case by the engine, so never first in a sentence; {place} the place the fact is about and {time} its spoken hour, either may be absent, so each is on a minority of cards.",
       "slots": ["detective", "subject", "place", "time", "they", "them", "their"],
       "requiredSlots": ["subject"],
       "minPerCoverageCell": 5,
       "tags": {
-        "outcome": { "required": true, "values": ["wrong", "second-lie", "quiet", "admit", "hold", "withdraw"] },
+        "outcome": { "required": true, "values": ["wrong", "second-lie", "quiet", "admit", "hold", "withdraw", "ends"] },
         "part": { "required": true, "values": ["reaction", "close"] }
       },
       "coverage": [["outcome", "part"]]

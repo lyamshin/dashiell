@@ -16,7 +16,12 @@ import { spokenClock } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { windowOf } from './thought.js';
 
-export type Tie = 'victim' | 'place' | 'time';
+/**
+ * `account` (shorter nights §2): the lead is somebody's own account of the
+ * evening, which comes with whatever they are asked first, so the bridge
+ * sends the detective to the person, not to a question.
+ */
+export type Tie = 'victim' | 'place' | 'time' | 'account';
 
 export interface BridgePlan {
   /** The lead's target clue: not yet found, and open once this page is read. */
@@ -120,6 +125,20 @@ export function planBridge(
 
   const whoId = target.source.personId;
   const topic = target.source.topic;
+  if (target.kind === 'account' && view.kase.logic) {
+    const where = view.placeById.has(target.place) ? target.place : undefined;
+    const hour = hourOf(view, foundAfter, accountsAfter);
+    return {
+      targetId: target.id,
+      openerId: opener.id,
+      whoId,
+      ...(where === undefined ? {} : { whereId: where }),
+      hour,
+      subject: view.personById.get(whoId)?.surname ?? '',
+      tie: 'account',
+      tieText: hour,
+    };
+  }
   const named = subjectOfTopic(view, topic);
   const where = view.placeById.has(target.place) ? target.place : undefined;
   const base = {
