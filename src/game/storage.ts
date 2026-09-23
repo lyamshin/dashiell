@@ -38,6 +38,10 @@ export function deserializeRun(raw: string | null): RunState | null {
     ...(typeof run.marks === 'object' && run.marks !== null && !Array.isArray(run.marks)
       ? { marks: run.marks }
       : { marks: undefined }),
+    // M9: confrontations and description links. A malformed one is dropped.
+    confronts: Array.isArray(run.confronts) ? run.confronts : undefined,
+    links:
+      typeof run.links === 'object' && run.links !== null && !Array.isArray(run.links) ? run.links : undefined,
   };
 }
 

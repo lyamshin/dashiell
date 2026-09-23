@@ -23,6 +23,37 @@ import type { Clue, Fact, Id, Person, Tick } from '../../gen/types.js';
 import { spokenClock } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { establishedFrom } from '../derive.js';
+import { verdictsOn } from '../m9.js';
+
+const COUNT_WORDS: Record<number, string> = { 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six' };
+
+/**
+ * An account just taken, against a placement already in hand: the thought
+ * Raw and Coddled still print ("It did not match what Kreuzer said").
+ */
+function contradictionFor(view: CaseView, personId: Id, found: readonly Id[], accountId: Id): Thought | null {
+  const claimed = view.claimedOf.get(personId) ?? [];
+  for (const id of found) {
+    for (const f of view.findableById.get(id)?.establishes ?? []) {
+      if ((f.kind !== 'personAt' && f.kind !== 'personNotAt') || f.personId !== personId) continue;
+      const claim = claimed[f.tick] ?? null;
+      if (claim === null) continue;
+      if (f.kind === 'personAt' ? claim !== f.place : claim === f.place) {
+        return {
+          cls: 'contradicts',
+          basis: f.kind === 'personAt' ? 'at' : 'not-at',
+          subjectId: personId,
+          placeId: f.place,
+          tick: f.tick,
+          otherPlaceId: claim,
+          clueIds: [id, accountId],
+          accountIds: [personId],
+        };
+      }
+    }
+  }
+  return null;
+}
 
 export type ThoughtClass =
   | 'clears'
@@ -47,7 +78,11 @@ export type ThoughtClass =
   | 'view'
   /* Night Hone 1: what used to fall through to an empty `context`. */
   | 'absent'
-  | 'hint';
+  | 'hint'
+  /* M9: what a piece of the logic game touches on the grid, never a verdict. */
+  | 'touches'
+  /* M9: what the detective did with what somebody said when a fact was put to them. */
+  | 'confronted';
 
 export const THOUGHT_CLASSES: readonly ThoughtClass[] = [
   'clears',
@@ -70,6 +105,8 @@ export const THOUGHT_CLASSES: readonly ThoughtClass[] = [
   'view',
   'absent',
   'hint',
+  'touches',
+  'confronted',
 ];
 
 /** One thought, as data: the class, what it is about, and what licensed it. */
@@ -105,7 +142,24 @@ export interface Thought {
     | 'outside'
     | 'placed'
     | 'at'
-    | 'not-at';
+    | 'not-at'
+    /* M9, `touches`: the piece of the logic game it is. */
+    | 'described'
+    | 'absence'
+    | 'count'
+    | 'anchored'
+    | 'timing'
+    | 'stranger'
+    | 'together'
+    | 'apart'
+    | 'said'
+    /* M9, `confronted`: what came of it. */
+    | 'wrong'
+    | 'second-lie'
+    | 'quiet'
+    | 'admit'
+    | 'hold'
+    | 'withdraw';
   via?: 'office' | 'account';
   who?: 'watcher' | 'client' | 'known' | 'stranger';
   lied?: boolean;
@@ -113,6 +167,10 @@ export interface Thought {
   clueIds: Id[];
   /** Accounts taken that it also rests on. */
   accountIds?: Id[];
+  /** M9: `{other}` said as words the case has: a description, a count, an anchor. */
+  otherText?: string;
+  /** M9: the second person of `together` and `apart` (`{name}`). */
+  secondId?: Id;
   /**
    * Resting on one witness's word, or on an anchor that only makes an hour
    * possible: the thought may say "if", "might" or "would", and nothing flatter.
@@ -156,6 +214,7 @@ const PRIORITY: ThoughtClass[] = [
   'window',
   'method',
   'hint',
+  'touches',
   'context',
 ];
 
@@ -182,6 +241,8 @@ const WRITTEN: ThoughtClass[] = [
   'seen-after',
   'absent',
   'hint',
+  'touches',
+  'confronted',
   'context',
   'nothing',
   'view',
@@ -275,6 +336,19 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
       ),
     );
   const lastSeenTick = kase.victimBio.lastSeen?.tick ?? null;
+  // M9, "No automatic verdicts from Poached up": no `clears` and no
+  // `contradicts`; a placement inside the window is said as what it touches.
+  const verdicts = verdictsOn(view);
+  const anchorName = (id: Id): string => view.anchorById.get(id)?.name ?? 'that';
+  const heldAnchor = (id: Id, found: readonly Id[]): Tick[] | null => {
+    for (const fid of found) {
+      for (const f of view.findableById.get(fid)?.establishes ?? []) {
+        if (f.kind === 'anchorAt' && f.anchorId === id) return f.ticks;
+      }
+    }
+    return null;
+  };
+  const speaker = (clue: Clue): Id | undefined => (clue.source.type === 'person' ? clue.source.personId : undefined);
 
   for (const clue of newClues) {
     const before = out.length;
@@ -313,7 +387,7 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
       const inWindow = window.includes(t);
       // A contradiction first: a placement against an evening the person
       // gave, in either direction, at an hour they accounted for.
-      if (accounts.has(p.personId)) {
+      if (verdicts && accounts.has(p.personId)) {
         const claim = view.claimedOf.get(p.personId)?.[t] ?? null;
         if (claim !== null && (p.present ? claim !== p.placeId : claim === p.placeId)) {
           out.push({
@@ -332,8 +406,10 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
       if (p.present && isSuspect(person) && inWindow) {
         if (p.placeId === scene) {
           out.push({ cls: 'implicates', basis: 'placement', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
-        } else {
+        } else if (verdicts) {
           out.push({ cls: 'clears', subjectId: p.personId, placeId: p.placeId, tick: t, otherPlaceId: scene, clueIds: [clue.id] });
+        } else {
+          out.push({ cls: 'touches', basis: 'placement', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
         }
       } else if (p.present && isSuspect(person) && window.length > 0 && !contradicted) {
         // A placement outside the hours that matter: it clears nobody and
@@ -383,7 +459,7 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
             if (!officeSaid(view, p.placeId, t)) {
               out.push({ cls: 'unmentioned', via: 'office', sourceId: observer.id, placeId: p.placeId, tick: t, clueIds: [clue.id] });
             }
-          } else if (accounts.has(observer.id)) {
+          } else if (accounts.has(observer.id) && verdicts) {
             const claim = view.claimedOf.get(observer.id)?.[t] ?? null;
             if (claim === null) {
               out.push({
@@ -451,6 +527,109 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           break;
         case 'secretExplained':
           out.push({ cls: clue.role === 'disqualifier' ? 'dead-end' : 'secret', subjectId: f.personId, clueIds: [clue.id] });
+          break;
+        /* M9: the pieces of the logic game, said as what they touch. */
+        case 'claims': {
+          if (out.some((x) => x.clueIds.includes(clue.id) && x.subjectId === f.personId && (x.cls === 'touches' || x.cls === 'contradicts'))) break;
+          // At Raw and Coddled an account against a placement in hand is still
+          // called a contradiction, to teach; above that it is the account.
+          const against = verdicts ? contradictionFor(view, f.personId, input.foundBefore, clue.id) : null;
+          out.push(
+            against ?? { cls: 'touches', basis: 'account', subjectId: f.personId, clueIds: [clue.id], accountIds: [f.personId] },
+          );
+          break;
+        }
+        case 'describedAt': {
+          if (out.some((x) => x.cls === 'touches' && x.basis === 'described' && x.clueIds.includes(clue.id))) break;
+          const by = speaker(clue);
+          out.push({
+            cls: 'touches',
+            basis: 'described',
+            ...(by ? { sourceId: by } : {}),
+            placeId: f.place,
+            tick: f.tick,
+            otherText: f.description.text,
+            clueIds: [clue.id],
+          });
+          break;
+        }
+        case 'absentFrom': {
+          const by = f.except[0] ?? speaker(clue);
+          out.push({
+            cls: 'touches',
+            basis: 'absence',
+            ...(by ? { sourceId: by } : {}),
+            placeId: f.place,
+            tick: tickIn(f.ticks, window),
+            clueIds: [clue.id],
+          });
+          break;
+        }
+        case 'countAt': {
+          const by = speaker(clue);
+          out.push({
+            cls: 'touches',
+            basis: 'count',
+            ...(by ? { sourceId: by } : {}),
+            placeId: f.place,
+            tick: f.tick,
+            otherText: f.count === 1 ? 'one person' : `${COUNT_WORDS[f.count] ?? String(f.count)} people`,
+            clueIds: [clue.id],
+          });
+          break;
+        }
+        case 'personAtAnchor': {
+          if (f.personId === victimId) break;
+          const ticks = heldAnchor(f.anchorId, input.foundAfter);
+          if (ticks !== null && ticks.length === 1) {
+            const t = ticks[0] as Tick;
+            if (window.includes(t) && f.place !== scene && isSuspect(view.personById.get(f.personId))) {
+              out.push(
+                verdicts
+                  ? { cls: 'clears', subjectId: f.personId, placeId: f.place, tick: t, otherPlaceId: scene, clueIds: [clue.id] }
+                  : { cls: 'touches', basis: 'placement', subjectId: f.personId, placeId: f.place, tick: t, clueIds: [clue.id] },
+              );
+              break;
+            }
+          }
+          out.push({
+            cls: 'touches',
+            basis: 'anchored',
+            subjectId: f.personId,
+            placeId: f.place,
+            anchorId: f.anchorId,
+            otherText: anchorName(f.anchorId),
+            clueIds: [clue.id],
+          });
+          break;
+        }
+        case 'anchorAt': {
+          if (f.ticks.length === 0) break;
+          out.push({
+            cls: 'touches',
+            basis: 'timing',
+            anchorId: f.anchorId,
+            tick: tickIn(f.ticks, window),
+            otherText: anchorName(f.anchorId),
+            clueIds: [clue.id],
+          });
+          break;
+        }
+        case 'acquainted': {
+          if (f.strength === 'name' || f.strength === 'relation') break;
+          out.push({ cls: 'touches', basis: 'stranger', sourceId: f.personIds[0], subjectId: f.personIds[1], clueIds: [clue.id] });
+          break;
+        }
+        case 'together':
+        case 'apart':
+          out.push({
+            cls: 'touches',
+            basis: f.kind,
+            subjectId: f.personIds[0],
+            secondId: f.personIds[1],
+            ...(f.kind === 'together' && f.ticks.length > 0 ? { tick: tickIn(f.ticks, window) } : {}),
+            clueIds: [clue.id],
+          });
           break;
         default:
           break;
@@ -579,7 +758,10 @@ function thoughtsForUnmarked(input: ThoughtInput): Thought[] {
   // half hour are one thought about Hanrahan.
   const seen = new Set<string>();
   const unique = all.filter((t) => {
-    const key = `${t.cls}|${t.subjectId ?? ''}|${t.sourceId ?? ''}|${t.objectId ?? ''}`;
+    const key =
+      t.cls === 'touches'
+        ? `${t.cls}|${t.basis ?? ''}|${t.subjectId ?? ''}|${t.sourceId ?? ''}|${t.placeId ?? ''}|${t.anchorId ?? ''}`
+        : `${t.cls}|${t.subjectId ?? ''}|${t.sourceId ?? ''}|${t.objectId ?? ''}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -638,6 +820,8 @@ export function viewOf(
 
 /** Caught in a lie: a placement in hand contradicts an evening they gave. */
 export function hasLied(view: CaseView, personId: Id, found: readonly Id[], accounts: readonly Id[]): boolean {
+  // M9: from Poached up the page never says who has lied; the grid shows both.
+  if (!verdictsOn(view)) return false;
   if (!accounts.includes(personId)) return false;
   const board = establishedFrom(view, [...found], [...accounts]);
   return (board.placements.get(personId) ?? []).some((p) => p.contradicts);

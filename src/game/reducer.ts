@@ -55,8 +55,15 @@ import {
   topicKey,
 } from './derive.js';
 import { planErrand } from './errand.js';
+import {
+  accountClueOf,
+  canConfront,
+  judgeConfront,
+  type ConfrontRecord,
+} from './m9.js';
 import { namedIn, proseTexts } from './scene/text.js';
 import { parse } from './parser.js';
+import { possessiveOf } from './voice/cast.js';
 import { DA_AT_THE_DOOR } from './voice-data.js';
 import {
   Dealer,
@@ -253,6 +260,8 @@ function stageFor(
     memory: state.scene ?? EMPTY_SCENE,
     visitedBefore: [...new Set(state.log.map((p) => p.at))],
     namedBefore: namedIn(view, state.log.flatMap(proseTexts)),
+    ...(state.marks ? { marks: state.marks } : {}),
+    ...(state.confronts ? { confronts: state.confronts } : {}),
   };
 }
 
@@ -315,7 +324,9 @@ export function answersTo(view: CaseView, personId: Id, topic: TopicRef, found: 
         view.exactBuckets.get(personId)?.get((hit.source as { topic: string }).topic) ?? [];
       return bucket.filter((c) => !have.has(c.id));
     }
-    return [];
+    // M9 (gen notes §13.1): a tiered case's evening is the account clue.
+    const account = accountClueOf(view, personId);
+    return account && !have.has(account.id) ? [account] : [];
   }
   const key = topicKey(topic);
   const hit = view.kase.findable.find(
@@ -353,7 +364,15 @@ export interface Price {
     | 'house'
     | 'familiar'
     | 'self-told'
-    | 'nobody';
+    | 'nobody'
+    /** M9 §4: a question that would get nothing new is free, and says so. */
+    | 'told'
+    /** M9 §3: a fact put to somebody. */
+    | 'confront'
+    /** The same fact put to the same person again: free, read back. */
+    | 'confront-again'
+    /** Nothing of theirs to put it to yet, or not a fact in hand. Free. */
+    | 'no-confront';
 }
 
 /** The key a question is remembered under: who, and the topic as the parser reads it. */
@@ -389,6 +408,20 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       return (state.searched ?? []).includes(state.at)
         ? { cost: 0, waived: 0, reason: 'search-again' }
         : { cost: 1, waived: 0, reason: 'search' };
+    case 'confront': {
+      const here = peopleHereNow(view, state.at, {
+        clientInOffice: state.clientInOffice,
+        found: state.found,
+      }).some((p) => p.id === command.personId);
+      if (!here) return { cost: 0, waived: 0, reason: 'nobody' };
+      if (!canConfront(view, state, command.personId) || !state.found.includes(command.clueId)) {
+        return { cost: 0, waived: 0, reason: 'no-confront' };
+      }
+      if ((state.confronts ?? []).some((r) => r.personId === command.personId && r.clueId === command.clueId)) {
+        return { cost: 0, waived: 0, reason: 'confront-again' };
+      }
+      return { cost: 1, waived: 0, reason: 'confront' };
+    }
     case 'ask': {
       const person = view.personById.get(command.personId);
       const here = peopleHereNow(view, state.at, {
@@ -402,6 +435,18 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       }
       if (askedBefore(state, person.id, command.topic)) {
         return { cost: 0, waived: 0, reason: 'ask-again' };
+      }
+      // M9 §4: "An exhausted person says so." A question that would get
+      // nothing new costs nothing: no more paying to find that out. The first
+      // question about themselves always tells something, and so does the
+      // client's own reason for hiring.
+      if (
+        view.kase.logic &&
+        command.topic.kind !== 'self' &&
+        command.topic.kind !== 'hire' &&
+        answersTo(view, person.id, command.topic, state.found).length === 0
+      ) {
+        return { cost: 0, waived: 0, reason: 'told' };
       }
       const clientOnTheHouse =
         state.clientInOffice &&
@@ -541,6 +586,7 @@ export function step(
   let shape: PageShape | undefined;
   let beats: BeatTrace[] | undefined;
   let memory: SceneMemory | undefined;
+  let confronted: ConfrontRecord | null = null;
 
   switch (command.kind) {
     case 'look':
@@ -615,6 +661,63 @@ export function step(
       };
       break;
     }
+    case 'confront': {
+      const person = view.personById.get(command.personId);
+      if (!person || price.reason === 'nobody') {
+        scene = {
+          kind: 'nothing',
+          tag: 'elsewhere',
+          slots: {
+            name: person?.surname,
+            place: view.placeById.get(state.at)?.shortName,
+            detective: state.detectiveName,
+          },
+        };
+        break;
+      }
+      if (price.reason === 'no-confront') {
+        blocks = [
+          {
+            kind: 'note',
+            text: state.accounts.includes(person.id)
+              ? `That was nothing I had written down.`
+              : `${person.surname} had not told me ${possessiveOf(person)} evening yet. There was nothing of ${pronounObject(person)} to put anything to.`,
+          },
+        ];
+        shape = 'repeat';
+        break;
+      }
+      if (price.reason === 'confront-again') {
+        const before = (state.confronts ?? []).find(
+          (r) => r.personId === person.id && r.clueId === command.clueId,
+        );
+        blocks = [
+          {
+            kind: 'note',
+            text: `I had put that to ${person.surname} already. What came of it is in the notebook, and I read it back instead of asking twice.`,
+          },
+          ...(before && before.outcome === 'wrong'
+            ? [{ kind: 'note', text: '“That doesn’t touch anything I told you.”' } as Block]
+            : []),
+        ];
+        shape = 'repeat';
+        break;
+      }
+      const clue = view.findableById.get(command.clueId);
+      if (!clue) break;
+      cost = price.cost;
+      const judged = judgeConfront(view, state, person.id, clue.id);
+      confronted = {
+        personId: person.id,
+        clueId: clue.id,
+        lieKey: judged.lieKey,
+        outcome: judged.outcome,
+        ...(judged.n === undefined ? {} : { n: judged.n }),
+        page: state.log.length,
+      };
+      scene = { kind: 'confront', personId: person.id, clue, judged };
+      break;
+    }
     case 'ask': {
       const person = view.personById.get(command.personId);
       const here = peopleHereNow(view, state.at, {
@@ -640,6 +743,13 @@ export function step(
         shape = 'repeat';
         break;
       }
+      // M9 §4: a question that would get nothing new. Free, and they say so.
+      if (price.reason === 'told') {
+        blocks = [{ kind: 'note', text: `${person.surname} shook ${possessiveOf(person)} head. “I’ve told you what I know.”` }];
+        shape = 'repeat';
+        asked.push({ key: askKey(person.id, command.topic), clues: [] });
+        break;
+      }
       cost = price.cost;
       // §B.2.4: while the client is in the office, his first two questions are
       // free. A man hiring you answers your questions. Like the free first ask
@@ -655,7 +765,10 @@ export function step(
         waived = 1;
         freeAsked.push(person.id);
       }
-      const account = command.topic.kind === 'evening' ? claimedAccount(view, person.id) : null;
+      // M9: a tiered case's evening is a clue (answered below); the old
+      // pseudo-account from the schedule is the no-options case's alone.
+      const account =
+        command.topic.kind === 'evening' && !view.kase.logic ? claimedAccount(view, person.id) : null;
       if (account) accounts.push(person.id);
       // §3: `ask X about themselves`. A pseudo-clue like "that evening":
       // always available, one action, and free the second time because the
@@ -686,10 +799,13 @@ export function step(
         }
       }
       const answers =
-        command.topic.kind === 'evening' || askedSelf
+        (command.topic.kind === 'evening' && !view.kase.logic) || askedSelf
           ? []
           : answersTo(view, command.personId, command.topic, state.found);
       gained = answers.map((c) => c.id);
+      for (const c of answers) {
+        if (c.kind === 'account' && c.source.type === 'person') accounts.push(c.source.personId);
+      }
       asked.push({ key: askKey(person.id, command.topic), clues: gained });
       const volunteer =
         answers.length > 0 || account || (askedSelf && !toldAlready)
@@ -804,6 +920,7 @@ export function step(
     sceneSeen,
     asked: [...(state.asked ?? []), ...asked],
     searched: [...new Set([...(state.searched ?? []), ...searched])],
+    ...(confronted ? { confronts: [...(state.confronts ?? []), confronted] } : {}),
     ...(memory ? { scene: memory } : state.scene ? { scene: state.scene } : {}),
   };
   const page: Page = {
@@ -983,6 +1100,10 @@ export function stepInput(
     log: [...state.log, page],
   };
   return { state: next, page };
+}
+
+function pronounObject(person: { gender?: string } & Parameters<typeof possessiveOf>[0]): string {
+  return possessiveOf(person) === 'her' ? 'her' : 'him';
 }
 
 /** Clicking a lead: travel first if the lead is elsewhere. Two actions, then. */

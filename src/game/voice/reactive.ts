@@ -283,6 +283,14 @@ export interface ReactiveInput {
   seed: number;
   /** Whether this run has already said a narrowing line, by its id. */
   used?: ((id: string) => boolean) | undefined;
+  /**
+   * M9, "No automatic verdicts from Poached up": the monologue never computes
+   * a theory of its own and never calls a story dead. Its theory is the
+   * player's pencil (`marked`), and all it may do is remark on it.
+   */
+  pencilOnly?: boolean;
+  /** The suspect the player has pencilled in at the scene, when `pencilOnly`. */
+  marked?: Id | null;
 }
 
 export interface ReactiveResult {
@@ -341,7 +349,7 @@ export function reactiveMonologue(input: ReactiveInput): ReactiveResult {
   const spent: { id: string; line: number }[] = [];
 
   /* A story that just died, or just wobbled. */
-  for (const personId of touched) {
+  for (const personId of input.pencilOnly ? [] : touched) {
     const now = contradictionsAgainst(after, personId);
     const then = contradictionsAgainst(before, personId);
     if (now.length === then.length) continue;
@@ -381,6 +389,22 @@ export function reactiveMonologue(input: ReactiveInput): ReactiveResult {
   }
 
   /* The leading theory, stated at the strength the evidence can carry. */
+  if (input.pencilOnly) {
+    // M9: the player's pencil, and a remark on it; never a theory of its own.
+    const marked = input.marked ?? null;
+    if (marked !== null && marked !== input.previousTheory) {
+      lines.push(
+        pick(rng, MARKED, {
+          name: personName(view, marked),
+          scene: placeName(view, view.sceneId),
+        }),
+      );
+    }
+    if (actionsLeft > 0 && actionsLeft < 4) {
+      lines.push(pick(rng, CLOCK, { left: String(actionsLeft) }));
+    }
+    return { lines: lines.slice(0, 2), theory: marked, spent };
+  }
   const theory = leadingTheory(view, after);
   if (theory !== null && theory !== input.previousTheory) {
     const strength = factsAgainst(after, theory);
@@ -404,6 +428,16 @@ export function reactiveMonologue(input: ReactiveInput): ReactiveResult {
 
   return { lines: lines.slice(0, 2), theory, spent };
 }
+
+/**
+ * M9: the player has pencilled somebody in at the scene. The detective notes
+ * it as his own pencil and nothing more: the notebook decides, not the page.
+ */
+const MARKED = [
+  'I had {name} pencilled in at {scene}. That was my pencil, not anybody’s word.',
+  'My pencil still had {name} at {scene}. The notebook would have to say so before the DA would.',
+  'I had put {name} at {scene} in pencil. I looked at it and left it there.',
+];
 
 /** Who else put this person somewhere: the name the contradiction is against. */
 function otherVoice(view: CaseView, est: Established, personId: Id): string | null {

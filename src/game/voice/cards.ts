@@ -57,6 +57,7 @@ import placeAmbientJson from '../../../content/decks/place-ambient.json';
 import searchActJson from '../../../content/decks/search-act.json';
 import crowdJson from '../../../content/decks/crowd.json';
 import decideJson from '../../../content/decks/decide.json';
+import confrontJson from '../../../content/decks/confront.json';
 
 export type DeckName =
   | 'similes'
@@ -95,7 +96,9 @@ export type DeckName =
   | 'place-ambient'
   | 'search-act'
   | 'crowd'
-  | 'decide';
+  | 'decide'
+  /* M9 §3: a fact put to somebody, and what they did with it. */
+  | 'confront';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -212,6 +215,7 @@ const RAW: Record<DeckName, unknown> = {
   'search-act': searchActJson,
   crowd: crowdJson,
   decide: decideJson,
+  confront: confrontJson,
 };
 
 /** Every deck is on disk and imported; nothing is missing. */

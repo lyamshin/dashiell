@@ -8,6 +8,7 @@
 
 import type { Difficulty, Entry, Id, Unknown } from '../gen/types.js';
 import type { CastSheet } from './voice/cast.js';
+import type { ConfrontRecord } from './m9.js';
 
 export type { Difficulty, Entry, Id, Unknown };
 export type { CastSheet };
@@ -34,7 +35,7 @@ export type TopicRef =
    */
   | { kind: 'exact'; personId: Id; topic: string };
 
-export type CommandKind = 'go' | 'ask' | 'examine' | 'look' | 'notebook' | 'file' | 'help';
+export type CommandKind = 'go' | 'ask' | 'examine' | 'look' | 'notebook' | 'file' | 'help' | 'confront';
 
 export type Command =
   | { kind: 'go'; placeId: Id }
@@ -44,7 +45,12 @@ export type Command =
   | { kind: 'look' }
   | { kind: 'notebook' }
   | { kind: 'file' }
-  | { kind: 'help' };
+  | { kind: 'help' }
+  /**
+   * M9 §3: put a fact from the notebook to somebody. `clueId` is a clue in
+   * hand; the generator's solver decides whether it breaks what they said.
+   */
+  | { kind: 'confront'; personId: Id; clueId: Id };
 
 /**
  * What the parser hands back when it cannot make a command. Always free.
@@ -184,7 +190,7 @@ export interface Page {
  * later one; `look` is a free look round (or a walk to where he already is);
  * `repeat` is a question or a search already done, read back free.
  */
-export type PageShape = 'office' | 'arrive' | 'return' | 'search' | 'ask' | 'repeat' | 'look' | 'other';
+export type PageShape = 'office' | 'arrive' | 'return' | 'search' | 'ask' | 'repeat' | 'look' | 'other' | 'confront';
 
 export type BeatKind =
   | 'errand'
@@ -199,7 +205,9 @@ export type BeatKind =
   | 'answer'
   | 'clock'
   | 'texture'
-  | 'decide';
+  | 'decide'
+  /** M9: a fact put to somebody, and what they said to it. */
+  | 'confront';
 
 /**
  * One planned beat, as it went onto the page. The planner's `Beat` carries
@@ -244,7 +252,7 @@ export interface OfferedChoice {
 }
 
 export interface OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront';
   heading: string;
   personId?: Id;
   choices: OfferedChoice[];
@@ -309,6 +317,11 @@ export interface Report {
   fate?: 'left' | 'taken' | 'dead' | null;
   /** `goods` — where what was taken went. */
   goodsPlaceId?: Id | null;
+  /**
+   * M9 §5: from Medium up, where every suspect was at the crime's half hour —
+   * the full crime column, one place per suspect, scored cell by cell.
+   */
+  column?: Record<Id, Id | null> | null;
 }
 
 export const EMPTY_REPORT: Report = {
@@ -452,7 +465,25 @@ export interface RunState {
    * Free, and optional so an older save loads with a clean grid.
    */
   marks?: Record<Id, Record<string, CellMark>>;
+
+  /* ------------------------------------------------------- M9: deduction */
+
+  /**
+   * Every fact put to somebody (§3), in order, with what came of it. The
+   * second confrontation of a lie reads the first. Optional, so an older save
+   * loads with nobody confronted.
+   */
+  confronts?: ConfrontRecord[];
+  /**
+   * The player's links from a stranger's description to a person (spec §2):
+   * "That was Kreuzer." Keyed by `<clueId>|<tick>`. Free, never a fact; the
+   * grid draws a linked sighting in that person's row, and the report is
+   * where a wrong one costs.
+   */
+  links?: Record<string, Id>;
 }
+
+export type { ConfrontRecord };
 
 /** One cell's pencil: at most one "was at", any number of "not at". */
 export interface CellMark {

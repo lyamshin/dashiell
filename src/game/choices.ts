@@ -22,6 +22,7 @@ import { answersTo, askedBefore, priceOf } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
+import { canConfront, confrontFacts, displayName, nameKnown } from './m9.js';
 
 export interface Choice extends OfferedChoice {
   /** The typed command this choice issues. The reducer sees nothing else. */
@@ -39,7 +40,7 @@ export interface Choice extends OfferedChoice {
 }
 
 export interface ChoiceGroup extends OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront';
   /** "Ask Callahan about", "Search", "Go to". */
   heading: string;
   /** For `ask` only: whose topics these are. */
@@ -109,7 +110,9 @@ export function knownPeople(view: CaseView, state: RunState): Person[] {
   const out: Person[] = [view.victim];
   for (const id of state.met) {
     const p = view.personById.get(id);
-    if (p && p.id !== view.victim.id && met.has(p.id)) out.push(p);
+    // M9, "Who knows whom": a person can be asked about by name only once
+    // somebody who knows them has said it.
+    if (p && p.id !== view.victim.id && met.has(p.id) && nameKnown(view, state, p.id)) out.push(p);
   }
   return out;
 }
@@ -181,7 +184,7 @@ function gainsOf(view: CaseView, state: RunState, command: Command): Id[] {
   if (command.kind === 'ask') {
     const reason = priceOf(command, state, view).reason;
     if (reason === 'ask-again' || reason === 'nobody' || reason === 'self-told') return [];
-    if (command.topic.kind === 'evening' || command.topic.kind === 'self') return [];
+    if ((command.topic.kind === 'evening' && !view.kase.logic) || command.topic.kind === 'self') return [];
     return answersTo(view, command.personId, command.topic, state.found).map((c) => c.id);
   }
   return [];
@@ -238,7 +241,8 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
     if (!clue || clue.source.type !== 'person' || clue.source.personId !== person.id) continue;
     if (seen.has(thread.command)) continue;
     seen.add(thread.command);
-    leads.push(choice(view, state, targets, thread.command, clue.source.topic));
+    const label = clue.kind === 'account' && view.kase.logic ? `${possessiveOf(person)} evening` : clue.source.topic;
+    leads.push(choice(view, state, targets, thread.command, label));
   }
 
   // 2. Their evening, and themselves. 3. Why I was hired, for the client.
@@ -256,7 +260,9 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
   }
   // Only the places and things the notebook ties to this person (M6 review):
   // every room in the case put to every person was twenty topics a page.
-  const tied = tiedTo(view, state, person);
+  // M9 §4: a tiered case offers no places or things at all except as leads —
+  // they were the main source of half hours spent for nothing.
+  const tied = view.kase.logic ? { places: [], objects: [] } : tiedTo(view, state, person);
   for (const id of tied.places) {
     const place = view.placeById.get(id);
     if (place) rest.push(ask(place.shortName, place.shortName));
@@ -277,7 +283,7 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
   const room = Math.max(0, TOPIC_LIMIT - shown.length);
   const group: ChoiceGroup = {
     kind: 'ask',
-    heading: `Ask ${s} about`,
+    heading: `Ask ${displayName(view, state, person.id)} about`,
     personId: person.id,
     choices: [...shown, ...restKept.slice(0, room)],
   };
@@ -299,6 +305,16 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
   for (const id of presentIds(view, state)) {
     const person = view.personById.get(id);
     if (person) groups.push(askGroup(view, state, person, targets));
+  }
+  // M9 §3: "Put it to Hanrahan" — the facts in the notebook, for anybody here
+  // whose own account is written down. Never marked: choosing the fact that
+  // breaks what they said is the player's work, not the page's.
+  for (const id of presentIds(view, state)) {
+    const person = view.personById.get(id);
+    if (person) {
+      const group = confrontGroup(view, state, person);
+      if (group) groups.push(group);
+    }
   }
 
   // §1.3. His own office holds nothing findable and nothing to go through.
@@ -344,6 +360,25 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
     ],
   });
   return groups;
+}
+
+/**
+ * The picker behind "Put it to …": one choice per fact in the notebook, its
+ * one-line rule as the label, newest first. Null when there is nothing of
+ * theirs to put anything to.
+ */
+export function confrontGroup(view: CaseView, state: RunState, person: Person): ChoiceGroup | null {
+  if (!canConfront(view, state, person.id)) return null;
+  const facts = confrontFacts(view, state, person.id).reverse();
+  const choices = facts.map((clue) =>
+    choice(view, state, new Set(), `put ${clue.id} to ${person.surname}`, clue.rule ?? clue.text),
+  );
+  return {
+    kind: 'confront',
+    heading: `Put it to ${displayName(view, state, person.id)}`,
+    personId: person.id,
+    choices,
+  };
 }
 
 /** Every choice in a list of groups, the collapsed ones included. */

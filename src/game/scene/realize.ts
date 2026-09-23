@@ -19,6 +19,7 @@ import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, OUTDOOR_PLACES, RELATION_PLAIN, 
 import { clueAbout, layerCredit, layerOfClue, layerSentences } from '../voice/plain.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
+import { m9Answer } from './testimony.js';
 import {
   CARRIED_QUESTIONS,
   CARRIED_QUESTIONS_PLAIN,
@@ -517,7 +518,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
               mark(j, {
                 tag: t.cls,
                 clueIds: t.clueIds,
-                personIds: [t.subjectId, t.sourceId].filter((x): x is Id => x !== undefined),
+                personIds: [t.subjectId, t.sourceId, t.secondId].filter((x): x is Id => x !== undefined),
                 placeIds: [t.placeId, t.otherPlaceId].filter((x): x is Id => x !== undefined),
                 text: lines[lines.length - 1] as string,
               });
@@ -530,7 +531,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           mark(j, {
             tag: t.cls,
             clueIds: t.clueIds,
-            personIds: [t.subjectId, t.sourceId].filter((x): x is Id => x !== undefined),
+            personIds: [t.subjectId, t.sourceId, t.secondId].filter((x): x is Id => x !== undefined),
             placeIds: [t.placeId, t.otherPlaceId].filter((x): x is Id => x !== undefined),
             text,
             ...(t.single ? { hedge: true } : {}),
@@ -672,6 +673,21 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           personIds: [beat.personId],
           ...(beat.placeId ? { placeIds: [beat.placeId] } : {}),
           text,
+        });
+        break;
+      }
+
+      /* ---------------------------------------------- M9: put it to them */
+      case 'confront': {
+        if (scene.kind !== 'confront') break;
+        const written = confrontParas(stage, scene, beat, gaps);
+        for (const p of written) push({ ...p, beats: [i] });
+        mark(i, {
+          tag: beat.outcome,
+          personIds: [beat.personId],
+          clueIds: [beat.clueId],
+          ...(beat.placeId ? { placeIds: [beat.placeId] } : {}),
+          text: written.map((p) => p.text).join(' '),
         });
         break;
       }
@@ -1105,6 +1121,9 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
       other = secret ? secretDoing(secret.type, secret.label) : undefined;
       break;
     }
+    case 'touches':
+      other = t.otherText ?? (t.anchorId ? view.anchorById.get(t.anchorId)?.name : undefined);
+      break;
     default:
       break;
   }
@@ -1131,6 +1150,8 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
     time: t.tick === undefined ? undefined : spokenClock(t.tick),
     victim: view.victim.surname,
     other,
+    // M9: the second person of `together` and `apart`.
+    name: surname(t.secondId),
     // The room it happened in, by its short name (the content branch's slot).
     scene: view.placeById.get(view.sceneId)?.shortName,
   };
@@ -1161,6 +1182,22 @@ export function secretDoing(type: string, label: string): string {
 
 function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly string[] = []): string {
   const caseType = stage.view.kase.act.type;
+  // M9 §3: after a confrontation, what the detective did with what was said.
+  // The confront deck's `close` cards; never a verdict.
+  if (t.cls === 'confronted' && t.subjectId) {
+    const person = stage.view.personById.get(t.subjectId) as Person;
+    const drawn = deal(
+      stage,
+      'confront',
+      [
+        (c) => tagIs('confront', c, 'outcome', t.basis ?? 'wrong') && tagIs('confront', c, 'part', 'close'),
+      ],
+      { ...confrontSlots(stage, person, t.placeId, t.tick) },
+    );
+    if (drawn) return drawn.text;
+    gaps.push(`no-card: confront has no close for ${t.basis ?? 'wrong'}`);
+    return `I wrote down what ${person.surname} had said.`;
+  }
   // §3–§4: the watcher's view on arrival is the place's watch clause — why
   // the watcher matters is that they watch — so it is dealt from `watch`.
   if (t.cls === 'view' && t.who === 'watcher' && t.subjectId) {
@@ -1312,6 +1349,19 @@ function exchange(
     return line;
   };
   const answerClue = (clue: Clue, followUp: boolean): void => {
+    // M9: the logic game's own kinds are said from their facts, the way the
+    // witness knows the person (spec, "Who knows whom").
+    // The grid's names, not the block's: in a logic game the place a witness
+    // names has to be the place on the grid.
+    const m9 = m9Answer(view, clue, person, (p) => p.shortName);
+    if (m9 !== null) {
+      if (followUp) {
+        const q = briefingQuestion(dealer.random, 'follow-named', { ...slots, victim: view.victim.surname }, [], clue.text);
+        if (q.length > 0) out.push({ text: `“${q}”`, voice: 'exchange' });
+      }
+      out.push({ text: withBusiness(m9), voice: 'exchange', clueId: clue.id });
+      return;
+    }
     const register = registerFor(view, person.id, clue);
     const spoken = speakClue(dealer, view, cast, clue, person, register, slots, gaps);
     const quoted = spoken.mode === 'utterance' || spoken.mode === 'quote';
@@ -1396,6 +1446,83 @@ function exchange(
     out.push({ text: `I had what I came for. ${surname} was not finished.`, voice: 'narrator' });
     answerClue(scene.volunteer, false);
   }
+  return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+}
+
+/** The confront deck's slots for one person: the surname, the pronouns, where and when. */
+function confrontSlots(stage: Stage, person: Person, placeId?: Id, tick?: Tick): Slots {
+  const she = pronounOf(person) === 'she';
+  return {
+    detective: stage.detectiveName,
+    subject: person.surname,
+    place: placeId ? stage.view.placeById.get(placeId)?.shortName : undefined,
+    time: tick === undefined ? undefined : spokenClock(tick),
+    they: she ? 'she' : 'he',
+    them: she ? 'her' : 'him',
+    their: she ? 'her' : 'his',
+  };
+}
+
+/**
+ * The fact as the detective reads it to them: the clue's own sentence, with
+ * the hours said the way people say them, and "you" where the sentence saw or
+ * placed the one it is being read to.
+ */
+export function putLine(view: Stage['view'], clue: Clue, person: Person): string {
+  void view;
+  let text = spokenSpans(clue.text).trim();
+  const name = person.surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  text = text.replace(new RegExp(`\\b(saw|see|seen|heard|placed|puts|put|noticed|spotted) ${name}\\b`, 'g'), '$1 you');
+  return endStop(capitalize(text));
+}
+
+/**
+ * M9 §3 — a confrontation, in the golden's shape: the approach (or what they
+ * stopped doing), the fact read to them, what they did on hearing it (the
+ * confront deck's `reaction`), and their words — the generator's own, or, for
+ * a fact that touches nothing, the line the spec gives them.
+ */
+function confrontParas(
+  stage: Stage,
+  scene: Extract<Scene, { kind: 'confront' }>,
+  beat: Extract<Beat, { kind: 'confront' }>,
+  gaps: string[],
+): Omit<Para, 'beats'>[] {
+  const { view, dealer } = stage;
+  const person = view.personById.get(scene.personId) as Person;
+  const surname = person.surname;
+  const out: Omit<Para, 'beats'>[] = [];
+  const opening: string[] = [];
+  if (beat.stops) {
+    const doing = stage.memory?.activities[person.id]?.text;
+    const stopped = doing ? stoppedDoing(doing, surname) : null;
+    opening.push(stopped ?? fillTemplate(dealer.random.pick(STOP_LINES), { name: surname, pronoun: pronounOf(person) }));
+  } else {
+    const again = stage.memory?.activities[person.id]?.stopped === true;
+    opening.push(fillTemplate(dealer.random.pick(again ? APPROACH_AGAIN : APPROACH), { name: surname }));
+  }
+  opening.push(`I read ${pronounOf(person) === 'she' ? 'her' : 'him'} a line out of the notebook. “${putLine(view, scene.clue, person)}”`);
+  out.push({ text: opening.join(' '), voice: 'exchange' });
+  const slots = confrontSlots(stage, person, beat.placeId, beat.tick);
+  const reaction = deal(
+    stage,
+    'confront',
+    [(c) => tagIs('confront', c, 'outcome', beat.outcome) && tagIs('confront', c, 'part', 'reaction')],
+    slots,
+  );
+  const words = scene.judged.response?.text ?? '';
+  if (beat.outcome === 'wrong') {
+    out.push({
+      text: reaction?.text ?? `${surname} heard me out. “That doesn’t touch anything I told you.”`,
+      voice: 'exchange',
+    });
+  } else {
+    // Their words: quoted speech stays as it is; a plain line ("Marchetti
+    // has nothing more to say about it.") is narration, in the past tense.
+    const said = /^[“"]/.test(words) ? words : endStop(pastTense(words));
+    out.push({ text: `${reaction?.text ?? `${surname} took a moment.`} ${said}`.trim(), voice: 'exchange' });
+  }
+  if (!reaction) gaps.push(`no-card: confront has no reaction for ${beat.outcome}`);
   return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
 }
 

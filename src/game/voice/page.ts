@@ -31,7 +31,9 @@ import type { Clue, Id, Person } from '../../gen/types.js';
 import type { Rng } from '../../gen/rng.js';
 import { spokenClock } from '../../gen/types.js';
 import { NIGHT_MINUTES } from '../types.js';
-import type { BeatTrace, Block, ErrandTrace, PageShape, ProseVoice, SceneMemory } from '../types.js';
+import type { BeatTrace, Block, ErrandTrace, PageShape, ProseVoice, RunState, SceneMemory } from '../types.js';
+import type { ConfrontJudgement, ConfrontRecord } from '../m9.js';
+import { markedTheory, verdictsOn } from '../m9.js';
 import { composeScene, isNightScene } from '../scene/index.js';
 import { OTHER_THING, type ErrandPlan } from '../errand.js';
 import type { CaseView, ClaimedAccount, Established } from '../derive.js';
@@ -434,6 +436,8 @@ export type Scene =
       clientLeaves?: boolean;
     }
   | { kind: 'examine'; placeId: Id; objectId?: Id; clues: Clue[] }
+  /** M9 §3: a fact from the notebook put to somebody, and what came of it. */
+  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement }
   | { kind: 'nothing'; tag: NothingLine['tag']; slots: Slots };
 
 export interface Stage {
@@ -487,6 +491,10 @@ export interface Stage {
   visitedBefore?: Id[];
   /** Night Hone 1: people an earlier page has named, and so said who they are. */
   namedBefore?: Id[];
+  /** M9: the player's pencil, which is all the monologue may read for a theory. */
+  marks?: RunState['marks'];
+  /** M9: every fact put to somebody so far. */
+  confronts?: ConfrontRecord[];
 }
 
 export interface Composed {
@@ -1337,6 +1345,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       previousTheory: stage.previousTheory,
       seed: (stage.pageIndex + 1) * 7919 + view.kase.seed,
       used: (id) => dealer.used(notedAs(id)),
+      ...(verdictsOn(view) ? {} : { pencilOnly: true, marked: markedTheory(view, stage.marks, after.deathTicks) }),
     });
     let said = 0;
     for (const [i, line] of reaction.lines.entries()) {

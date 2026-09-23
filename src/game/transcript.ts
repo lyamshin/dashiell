@@ -135,6 +135,19 @@ export function renderChoicesText(groups: readonly OfferedGroup[], chosen?: stri
   for (const group of groups) {
     const all = [...group.choices, ...(group.more ?? [])];
     if (all.length === 0) continue;
+    if (group.kind === 'confront') {
+      // M9 §3: the picker is a list of every fact in the notebook; the
+      // transcript says how many, and marks the one chosen.
+      const picked = all.find((c) => c.command === chosen);
+      const head = `${group.heading}:`.padEnd(headWidth);
+      const mins = minutesText(all.find((c) => !c.done)?.minutes ?? 0);
+      out.push(
+        `  ${head}${all.length} ${all.length === 1 ? 'fact' : 'facts'} in the notebook (${mins} each)${
+          picked ? ` · >${picked.label}` : ''
+        }`,
+      );
+      continue;
+    }
     const counts = new Map<number, number>();
     for (const c of all) counts.set(c.minutes, (counts.get(c.minutes) ?? 0) + 1);
     const usual = [...counts.entries()].sort((a, b) => b[1] - a[1] || b[0] - a[0])[0]?.[0] ?? 0;
@@ -166,10 +179,13 @@ export function renderNotebookText(view: CaseView, state: RunState): string {
   );
   out.push('', 'PEOPLE');
   for (const person of book.people) {
+    // M9: somebody the detective has only seen is what anybody can see of
+    // them, until somebody who knows them says the name.
+    const title = person.display === person.surname ? `${person.surname}, ${person.role}` : person.display;
     out.push(
-      `  ${person.surname}, ${person.role}${person.isClient ? ' — our client' : ''}${
+      `  ${title}${person.isClient ? ' — our client' : ''}${
         person.isVictim ? ' — the victim' : ''
-      }${person.foundAt ? ` (${person.foundAt})` : ''}`,
+      }${person.foundAt ? ` (${person.foundAt})` : ''}${person.done ? ' — told me all of it' : ''}`,
     );
     // M5 §4: the dossier, by the layer it was learned at. A layer with nothing
     // in it is not printed, because nothing has been learned at it yet.
@@ -195,6 +211,7 @@ export function renderNotebookText(view: CaseView, state: RunState): string {
       out.push(`    ${fact.contradicts ? '!' : '·'} ${fact.text} (${fact.source})`);
     }
     for (const record of person.records) out.push(wrap(`“ ${record.text}`, WIDTH, '      '));
+    for (const said of person.said) out.push(wrap(`put to: ${said.text}`, WIDTH, '      '));
   }
   out.push('', 'PLACES');
   for (const place of book.places) {

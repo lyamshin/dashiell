@@ -2081,7 +2081,7 @@
   {
     "id": "tht-e047",
     "deck": "thought",
-    "text": "I had {subject}’s name before I had the face.",
+    "text": "{subject} had been only a name in the notebook until now. Now the face was across the room from me.",
     "tags": {
       "class": "view",
       "who": "known"
@@ -2967,6 +2967,393 @@
     "text": "That was the kind of thing a person does when they are hiding something, and {subject} was doing it.",
     "tags": {
       "class": "hint"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m001",
+    "deck": "thought",
+    "text": "{subject} at {place} at {time}. That was inside the coroner’s hours, and {place} was not {scene}.",
+    "tags": {
+      "class": "touches",
+      "basis": "placement",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m002",
+    "deck": "thought",
+    "text": "It gave {subject}’s row one more square: {place}, {time}.",
+    "tags": {
+      "class": "touches",
+      "basis": "placement"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m003",
+    "deck": "thought",
+    "text": "{time} was one of the half hours that mattered, and now {subject}’s row had a place in it: {place}.",
+    "tags": {
+      "class": "touches",
+      "basis": "placement"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m004",
+    "deck": "thought",
+    "text": "{place} at {time}, with {subject} in it. The coroner put {victim}’s death somewhere in those hours, and I put {subject}’s name in that one square.",
+    "tags": {
+      "class": "touches",
+      "basis": "placement",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m005",
+    "deck": "thought",
+    "text": "{source} had seen {other} at {place} at {time}, and had no name to give me. I wrote the description in the margin, where it could wait for one.",
+    "tags": {
+      "class": "touches",
+      "basis": "described"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m006",
+    "deck": "thought",
+    "text": "{other} at {place} at {time}. It could have been anybody in the notebook who fit, and I did not pick one yet.",
+    "tags": {
+      "class": "touches",
+      "basis": "described"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m007",
+    "deck": "thought",
+    "text": "No name from {source}, only {other}. I put it under {time} at {place} and left every row blank.",
+    "tags": {
+      "class": "touches",
+      "basis": "described"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m008",
+    "deck": "thought",
+    "text": "{source} did not know the face. Whoever {other} turned out to be had been at {place} at {time}.",
+    "tags": {
+      "class": "touches",
+      "basis": "described"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m009",
+    "deck": "thought",
+    "text": "{source} kept {place}, and at {time} nobody came in but the ones {source} named. I wrote the names across that square, and the list was short.",
+    "tags": {
+      "class": "touches",
+      "basis": "absence"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m010",
+    "deck": "thought",
+    "text": "It was a fact about a door more than about anybody. At {time}, nobody went into {place} without {source} seeing it.",
+    "tags": {
+      "class": "touches",
+      "basis": "absence"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m011",
+    "deck": "thought",
+    "text": "{source} named who came into {place} at {time}, and nobody else. Every name not on the list got a line through that square.",
+    "tags": {
+      "class": "touches",
+      "basis": "absence"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m012",
+    "deck": "thought",
+    "text": "{source} counted {other} at {place} at {time}. I had that many names to find for that square, and no more.",
+    "tags": {
+      "class": "touches",
+      "basis": "count"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m013",
+    "deck": "thought",
+    "text": "{other} at {place} at {time}, by {source}’s count. A number was something I could check names against.",
+    "tags": {
+      "class": "touches",
+      "basis": "count"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m014",
+    "deck": "thought",
+    "text": "It was only a number, {other}, but it was {source}’s number for {place} at {time}, and it put a limit on that square.",
+    "tags": {
+      "class": "touches",
+      "basis": "count"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m015",
+    "deck": "thought",
+    "text": "{subject} had been at {place} at the time of {other}. I needed the hour of {other} before it could go on the grid.",
+    "tags": {
+      "class": "touches",
+      "basis": "anchored"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m016",
+    "deck": "thought",
+    "text": "It hung on {other}. Once I knew when that was, I would know when {subject} was at {place}.",
+    "tags": {
+      "class": "touches",
+      "basis": "anchored"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m017",
+    "deck": "thought",
+    "text": "I wrote {subject} and {place} in the margin under {other}. It would stay there until something gave {other} an hour.",
+    "tags": {
+      "class": "touches",
+      "basis": "anchored"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m018",
+    "deck": "thought",
+    "text": "{other} at {time}. Anything I had that was pinned to it now had an hour.",
+    "tags": {
+      "class": "touches",
+      "basis": "timing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m019",
+    "deck": "thought",
+    "text": "Now {other} had a time: {time}. I went back through the notebook for anything that hung on it.",
+    "tags": {
+      "class": "touches",
+      "basis": "timing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m020",
+    "deck": "thought",
+    "text": "{time}, then, for {other}. Whatever had been waiting in the margin under it could go on the grid.",
+    "tags": {
+      "class": "touches",
+      "basis": "timing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m021",
+    "deck": "thought",
+    "text": "It was {subject}’s evening in {subject}’s own words. Nobody else had said any of it yet.",
+    "tags": {
+      "class": "touches",
+      "basis": "account"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m022",
+    "deck": "thought",
+    "text": "I wrote it down as {subject} told it. It was one person’s account of one person, and I marked it that way.",
+    "tags": {
+      "class": "touches",
+      "basis": "account"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m023",
+    "deck": "thought",
+    "text": "{subject} had given me the evening hour by hour. It went on {subject}’s row marked as {subject}’s own word.",
+    "tags": {
+      "class": "touches",
+      "basis": "account"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m024",
+    "deck": "thought",
+    "text": "{source} did not know {subject}. It was a small fact, and I wrote it down anyway.",
+    "tags": {
+      "class": "touches",
+      "basis": "stranger"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m025",
+    "deck": "thought",
+    "text": "{source} had never heard of {subject}, or said so. Either way it went in the notebook.",
+    "tags": {
+      "class": "touches",
+      "basis": "stranger"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m026",
+    "deck": "thought",
+    "text": "To {source}, {subject} was a stranger. Whatever {source} had seen, {source} would not have put {subject}’s name to it.",
+    "tags": {
+      "class": "touches",
+      "basis": "stranger"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m027",
+    "deck": "thought",
+    "text": "{subject} and {name} in the same place at {time}. Whatever went in one of their rows for that half hour went in the other.",
+    "tags": {
+      "class": "touches",
+      "basis": "together"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m028",
+    "deck": "thought",
+    "text": "At {time}, {subject} and {name} had been together. I wrote the same place in two rows.",
+    "tags": {
+      "class": "touches",
+      "basis": "together"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m029",
+    "deck": "thought",
+    "text": "It tied {subject} to {name} at {time}. Anything I learned about one of them at that hour was about both.",
+    "tags": {
+      "class": "touches",
+      "basis": "together"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m030",
+    "deck": "thought",
+    "text": "{subject} and {name} were never in the same place all evening. There were two rows on the grid that could not share a square.",
+    "tags": {
+      "class": "touches",
+      "basis": "apart"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m031",
+    "deck": "thought",
+    "text": "Wherever {subject} had been, {name} had been somewhere else. That went for every half hour on the grid.",
+    "tags": {
+      "class": "touches",
+      "basis": "apart"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m032",
+    "deck": "thought",
+    "text": "I wrote {subject} and {name} at the side of the grid with a line between them. Not once that night had {subject} and {name} shared a room.",
+    "tags": {
+      "class": "touches",
+      "basis": "apart"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m033",
+    "deck": "thought",
+    "text": "{subject}’s new words put {subject} at {place} at {time}. I wrote them under the old ones in {subject}’s row.",
+    "tags": {
+      "class": "touches",
+      "basis": "said"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m034",
+    "deck": "thought",
+    "text": "Now {subject} said {place} at {time}. It was {subject}’s own word again, and it went on the grid the same way the first had.",
+    "tags": {
+      "class": "touches",
+      "basis": "said"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m035",
+    "deck": "thought",
+    "text": "{place} at {time} was the new answer from {subject}. I looked down the column for {time} to see who else the notebook had there.",
+    "tags": {
+      "class": "touches",
+      "basis": "said"
     },
     "motifs": [],
     "status": "generated"

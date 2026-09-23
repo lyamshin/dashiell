@@ -141,7 +141,8 @@
     "text": "{name} was racking a set of cues along the wall, straightening each one.",
     "tags": {
       "role": "counterman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "place": "pool-hall"
     },
     "motifs": [],
     "status": "generated"
@@ -152,7 +153,8 @@
     "text": "{name} was counting chips into stacks, sorting them by color.",
     "tags": {
       "role": "counterman",
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "place": "pool-hall"
     },
     "motifs": [],
     "status": "generated"
@@ -164,7 +166,8 @@
     "tags": {
       "role": "counterman",
       "placeKind": "semi",
-      "band": "small-hours"
+      "band": "small-hours",
+      "place": "pool-hall"
     },
     "motifs": [],
     "status": "generated"
@@ -3586,6 +3589,135 @@
     "tags": {
       "role": "any",
       "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-277",
+    "deck": "activity",
+    "text": "{name} was writing out a pawn ticket and tying it to a pocket watch.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "pawnshop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-278",
+    "deck": "activity",
+    "text": "{name} was holding a ring up to the lamp, turning it to read the inside.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "pawnshop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-279",
+    "deck": "activity",
+    "text": "{name} was spooning rice into paper cartons behind the counter.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "chop-suey"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-280",
+    "deck": "activity",
+    "text": "{name} was stacking bowls on the shelf over the counter, three at a time.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "chop-suey"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-281",
+    "deck": "activity",
+    "text": "{name} was stropping a razor on a leather strap, slow and even.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "barber-shop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-282",
+    "deck": "activity",
+    "text": "{name} was sweeping hair from under the chairs into a pile by the door.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "barber-shop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-283",
+    "deck": "activity",
+    "text": "{name} was wiping grease off a wrench and hanging it on the board.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "hotel-garage"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-284",
+    "deck": "activity",
+    "text": "{name} was writing a car's number in a ledger by the gas pump.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "hotel-garage"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-285",
+    "deck": "activity",
+    "text": "{name} was counting the day's takings behind the counter, the drawer half open.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-286",
+    "deck": "activity",
+    "text": "{name} was wiping down the counter, one eye on whoever came in.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-287",
+    "deck": "activity",
+    "text": "{name} was sorting a box of odds and ends behind the counter.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
